@@ -409,7 +409,7 @@ void BaseVGM::VFactory::ExportPlacements(
   
   VGM::IVolume* topVolume = (*volumeMap)[Top()->Volume()];
   
-  factory->CreatePlacement("top", 0, topVolume, 0, Identity());
+  factory->CreatePlacement(topVolume->Name(), 0, topVolume, 0, Identity());
   
   delete volumeMap;
 }
