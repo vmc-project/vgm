@@ -15,11 +15,11 @@ RootGM::Trd::Trd(const std::string& name,
                  double hx1, double hx2, double hy1, double hy2, double hz)
   : BaseVGM::VTrd(),
     fTrd(new TGeoTrd2(name.data(), 
-                      hx1/RootGM::Units::Length(), 
-		      hx2/RootGM::Units::Length(), 
-		      hy1/RootGM::Units::Length(), 
-		      hy2/RootGM::Units::Length(), 
-		      hz/RootGM::Units::Length())),
+                      hx1 / RootGM::Units::Length(), 
+		      hx2 / RootGM::Units::Length(), 
+		      hy1 / RootGM::Units::Length(), 
+		      hy2 / RootGM::Units::Length(), 
+		      hz  / RootGM::Units::Length())),
     fIsOwner(false)
 {
 // 

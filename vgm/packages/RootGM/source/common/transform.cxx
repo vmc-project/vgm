@@ -11,6 +11,7 @@
 
 #include <TGeoMatrix.h>
 #include <TGeoPatternFinder.h>
+#include <TMath.h>
 
 #include "RootGM/common/transform.h"
 #include "RootGM/common/Units.h"
@@ -68,9 +69,9 @@ VGM::Transform  RootGM::Transform(const TGeoMatrix& matrix)
     angleZ = 0.;
   }
 
-  transform[VGM::kAngleX] = angleX;
-  transform[VGM::kAngleY] = angleY;
-  transform[VGM::kAngleZ] = angleZ;
+  transform[VGM::kAngleX] = angleX * TMath::RadToDeg() * Units::Angle();
+  transform[VGM::kAngleY] = angleY * TMath::RadToDeg() * Units::Angle();
+  transform[VGM::kAngleZ] = angleZ * TMath::RadToDeg() * Units::Angle();
 
   // Reflection 
   //

@@ -2,7 +2,7 @@
 //
 // Class Units
 // --------------
-// Conversion of Root geometry units (fixed) into CLHEP system of units.
+// Conversion from Root physical units to VGM units.
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
