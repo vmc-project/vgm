@@ -146,7 +146,7 @@ namespace XmlVGM {
       void WriteTrap(std::string name, const VGM::ITrap* trap); 
       void WritePara(std::string name, const VGM::IPara* para); 
       void WritePolycone(std::string name, const VGM::IPolycone* polycone); 
-      //void WritePolyhedra(std::string name, const VGM::IPolyhedra* polyhedra); 
+      void WritePolyhedra(std::string name, const VGM::IPolyhedra* polyhedra); 
       void WriteSphere(std::string name, const VGM::ISphere* sphere); 
       void WriteTorus(std::string name, const VGM::ITorus* torus); 
       void WriteNotSupportedSolid(std::string name); 
