@@ -2,6 +2,16 @@ $Id$
 
  The Virtual Geometry Model - Versions
 =========================================
+  10/01/2005
+  version 2.00.03 (internal number)
+  version 2.01    (second public version) 
+               GDML exporter upgraded to GDML 2.0;
+	       fixed export of placements in AGDD.
+	       Fixed in GeantGM::Placement.
+   
+               Tested with CLHEP 1.8.1.0, Root 4.02/00, Geant4 7.0
+	       + fix in Root/geom/src/TGeoMatrix.cxx
+
   05/01/2005
   version 2.00.02
                Use of CLHEP system of units in VGM replaced with 
