@@ -13,8 +13,7 @@
 
 #include <TGeoMatrix.h>
 
-#include "VGM/common/ThreeVector.h"
-#include "VGM/common/Rotation.h"
+#include "VGM/common/Transform.h"
 
 #include "BaseVGM/solids/VBooleanSolid.h"
 
@@ -35,33 +34,21 @@ namespace RootGM {
       // methods
       virtual std::string Name() const;
 
-      virtual VGM::BooleanType BoolType() const;
-      virtual VGM::ISolid* ConstituentSolidA() const;
-      virtual VGM::ISolid* ConstituentSolidB() const;
-      virtual VGM::Rotation     DisplacementObjectRotation() const;      
-      virtual VGM::Rotation     DisplacementFrameRotation() const;      
-      virtual VGM::ThreeVector  DisplacementObjectTranslation() const;
-      virtual VGM::ThreeVector  DisplacementFrameTranslation() const;
-      virtual bool              DisplacementReflectionZ() const;
+      virtual VGM::BooleanType  BoolType() const;
+      virtual VGM::ISolid*      ConstituentSolidA() const;
+      virtual VGM::ISolid*      ConstituentSolidB() const;
+      virtual VGM::Transform    Displacement() const;      
 
       // utility method
       static TGeoShape* GetConstituentSolid(
                                 int index, 
-                                 TGeoCompositeShape* compositeShape);
+                                TGeoCompositeShape* compositeShape);
  
     protected:
       BooleanSolid() : BaseVGM::VBooleanSolid() {}
       BooleanSolid(const BooleanSolid& rhs) : BaseVGM::VBooleanSolid(rhs) {}
 
     private:
-      void  CreateBooleanSolid(
-                       const std::string& name, 
-                       VGM::BooleanType boolType,
-                       VGM::ISolid* solidA, VGM::ISolid* solidB,
-		       TGeoMatrix* displacementB);
-
-      TGeoHMatrix  Displacement() const;
-  
       static const char fgkIntersectionChar; 
       static const char fgkSubtractionChar; 
       static const char fgkUnionChar; 

@@ -36,7 +36,8 @@ namespace XmlVGM {
 
   class GDMLWriter : public virtual IWriter
   {
-    typedef std::vector<VGM::Rotation>  RotationMatrixVector;
+    public:
+      typedef std::vector<ThreeVector> RotationMatrixVector;
 
     public:
       GDMLWriter(std::ofstream& outFile,
@@ -80,25 +81,25 @@ namespace XmlVGM {
 			     
       virtual void WritePosition(
                             const std::string& name, 
-                            const VGM::ThreeVector& position); 
+                            const ThreeVector& position); 
 			    
       virtual void WriteRotation(
                             const std::string& name, 
-                            const VGM::Rotation& rotation); 
+                            const ThreeVector& rotation); 
 
       virtual void WritePlacement(
                             const std::string& /*lvName*/, 
-                            const VGM::ThreeVector& /*position*/) {} 
+                            const ThreeVector& /*position*/) {} 
 			    
       virtual void WritePlacementWithRotation(
                             std::string /*name*/, 
-			    const VGM::ThreeVector& /*position*/,
-   			    const VGM::Rotation& /*rotation*/) {}
+			    const ThreeVector& /*position*/,
+   			    const ThreeVector& /*rotation*/) {}
 			    
       virtual void WritePlacementWithRotationAndReflection(
                             std::string /*name*/, 
-			    const VGM::ThreeVector& /*position*/,
-                            const VGM::Rotation& /*rotation*/) {} 
+			    const ThreeVector& /*position*/,
+                            const ThreeVector& /*rotation*/) {} 
 			    
       virtual void WritePlacementWithRotation(
                             const std::string& lvName, 

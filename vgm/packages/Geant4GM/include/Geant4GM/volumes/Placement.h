@@ -11,12 +11,10 @@
 
 #include <string>
 
-#include "CLHEP/Vector/Rotation.h"
-#include "CLHEP/Vector/ThreeVector.h"
-#include "CLHEP/Geometry/Transform3D.h"
-
 #include "G4VPhysicalVolume.hh"
 #include "geomdefs.hh"
+
+#include "VGM/common/Transform.h"
 
 #include "BaseVGM/volumes/VPlacement.h"
 
@@ -43,15 +41,9 @@ namespace Geant4GM {
     
       // methods
       virtual VGM::PlacementType Type() const;
-
-      virtual std::string  Name() const;
-      virtual int          CopyNo() const;
-
-      virtual VGM::Rotation     ObjectRotation() const;      
-      virtual VGM::Rotation     FrameRotation() const;      
-      virtual VGM::ThreeVector  ObjectTranslation() const;
-      virtual VGM::ThreeVector  FrameTranslation() const;
-      virtual bool              ReflectionZ() const;
+      virtual std::string        Name() const;
+      virtual int                CopyNo() const;
+      virtual VGM::Transform     Transformation() const;      
 
       virtual bool  MultiplePlacementData(
                            VGM::Axis&  axis,

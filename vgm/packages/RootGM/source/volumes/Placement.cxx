@@ -18,7 +18,8 @@
 #include "RootGM/volumes/VolumeMap.h"
 #include "RootGM/volumes/PlacementMap.h"
 #include "RootGM/common/Units.h"
-#include "RootGM/common/utilities.h"
+#include "RootGM/common/transform.h"
+#include "RootGM/common/axis.h"
 
 //_____________________________________________________________________________
 RootGM::Placement::Placement(
@@ -115,15 +116,44 @@ RootGM::Placement::~Placement() {
 }
 
 //
-// private functions
+// public functions
 //
 
 //_____________________________________________________________________________
-TGeoHMatrix RootGM::Placement::ObjectTransform() const
+VGM::PlacementType RootGM::Placement::Type() const 
 {
-// Returns the object transfomation.
-// ---
+  // Check if division is present
+  const TGeoPatternFinder* finder 
+    = fGeoNode->GetMotherVolume()->GetFinder();    
+  if (!finder) return VGM::kSimplePlacement;;
+    
+  // Get division axis
+  VGM::Axis axis = RootGM::Axis(finder);
+  if (axis != VGM::kUnknownAxis) 
+    return VGM::kMultiplePlacement;
+  else 
+    return VGM::kUnknownPlacement;
+}  
 
+//_____________________________________________________________________________
+std::string  RootGM::Placement::Name() const
+{
+//
+  return fName;
+}  
+
+//_____________________________________________________________________________
+int RootGM::Placement::CopyNo() const
+{
+//
+  return fGeoNode->GetNumber();
+}  
+
+//_____________________________________________________________________________
+VGM::Transform
+RootGM::Placement::Transformation() const
+{
+//
   TGeoHMatrix transform3D;
   if (fGeoNode->GetVolume()->GetShape()->IsComposite()) 
   {
@@ -161,81 +191,8 @@ TGeoHMatrix RootGM::Placement::ObjectTransform() const
     transform3D = fGeoNode->GetMatrix();
   }
   
-  return transform3D;  
-}
-
-//
-// public functions
-//
-
-//_____________________________________________________________________________
-VGM::PlacementType RootGM::Placement::Type() const 
-{
-  // Check if division is present
-  const TGeoPatternFinder* finder 
-    = fGeoNode->GetMotherVolume()->GetFinder();    
-  if (!finder) return VGM::kSimplePlacement;;
-    
-  // Get division axis
-  VGM::Axis axis = RootGM::Axis(finder);
-  if (axis != VGM::kUnknownAxis) 
-    return VGM::kMultiplePlacement;
-  else 
-    return VGM::kUnknownPlacement;
+  return Transform(transform3D);
 }  
-
-//_____________________________________________________________________________
-std::string  RootGM::Placement::Name() const
-{
-//
-  return fName;
-}  
-
-//_____________________________________________________________________________
-int RootGM::Placement::CopyNo() const
-{
-//
-  return fGeoNode->GetNumber();
-}  
-
-//_____________________________________________________________________________
-VGM::Rotation RootGM::Placement::ObjectRotation() const
-{
-//
-  return Rotation(ObjectTransform());
-}  
-    
-//_____________________________________________________________________________
-VGM::Rotation RootGM::Placement::FrameRotation() const
-{
-//
-  return Rotation(ObjectTransform().Inverse());
-}  
-    
-//_____________________________________________________________________________
-VGM::ThreeVector  RootGM::Placement::ObjectTranslation() const 
-{
-//
-  return Translation(ObjectTransform());
-}
-
-//_____________________________________________________________________________
-VGM::ThreeVector  RootGM::Placement::FrameTranslation() const 
-{
-//
-  
-  VGM::ThreeVector objTranslation = ObjectTranslation();
-  for (Int_t i=0; i<3; i++) objTranslation[i] = - objTranslation[i];
-   
-  return objTranslation;
-}
-
-//_____________________________________________________________________________
-bool RootGM::Placement::ReflectionZ() const
-{
-//
-  return HasReflection(ObjectTransform()); 
-}   
 
 //_____________________________________________________________________________
 bool RootGM::Placement::MultiplePlacementData(

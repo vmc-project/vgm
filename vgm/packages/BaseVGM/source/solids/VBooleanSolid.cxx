@@ -50,13 +50,20 @@ std::ostream& BaseVGM::VBooleanSolid::Put(std::ostream& out) const
       << "  ConstituentA = " << *ConstituentSolidA() << std:: endl
       << "  ConstituentB = " << *ConstituentSolidB() << std:: endl 
       << "  Displacement translation (object):  ( " 
-      << DisplacementObjectTranslation()[0]/mm << ",  "
-      << DisplacementObjectTranslation()[1]/mm  << ",  "
-      << DisplacementObjectTranslation()[2]/mm << ") mm " << std:: endl
-      << "  Displacement rotation (frame):  (" 
-      << DisplacementFrameRotation()[0]/deg << ",  "
-      << DisplacementFrameRotation()[1]/deg << ",  "
-      << DisplacementFrameRotation()[2]/deg << ") deg";
+      << Displacement()[0]/mm << ",  "
+      << Displacement()[1]/mm  << ",  "
+      << Displacement()[2]/mm << ") mm " << std:: endl
+      << "  Displacement rotation (object):  (" 
+      << Displacement()[3]/deg << ",  "
+      << Displacement()[4]/deg << ",  "
+      << Displacement()[5]/deg << ") deg  ";
+  
+  if (round(Displacement()[6]) == 0 )
+    out << "  no reflectionZ";
+  else
+    out << "  reflectionZ";
+       
+      
   return out; 
 }
 

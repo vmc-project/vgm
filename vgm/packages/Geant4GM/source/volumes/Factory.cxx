@@ -25,7 +25,7 @@
 #include "G4Trd.hh"
 #include "G4Tubs.hh"
 
-#include "ClhepVGM/utilities.h"
+#include "ClhepVGM/transform.h"
 #include "BaseVGM/common/utilities.h"
 
 #include "Geant4GM/volumes/Factory.h"
@@ -382,6 +382,38 @@ bool Geant4GM::Factory::Import(void* topVolume)
 
 }			      
 
+//_____________________________________________________________________________
+VGM::IPlacement* 
+Geant4GM::Factory::CreateSimplePlacement(
+                               const std::string& name, 
+                               int copyNo,
+                               VGM::IVolume* volume, 
+			       VGM::IVolume* motherVolume,
+                               const VGM::Transform& transform)
+{
+//
+
+  VGM::IPlacement* placement
+    = new Geant4GM::Placement(name, 
+                              copyNo, 
+			      volume, motherVolume, 
+                              new HepRotation(ClhepVGM::Rotation(transform).inverse()), 
+			      ClhepVGM::Translation(transform));
+  			      
+  // Top volume
+  if (!motherVolume) 
+    if (!fTop)
+      fTop = placement;
+    else {
+      std::cerr << "    Geant4GM::Factory::CreatePlacement:" << std::endl; 
+      std::cerr << "    Top volume defined twice!" << std::endl;
+      std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+      exit(1);
+    }		  
+  
+  return placement;
+}			  			       
+
 //
 // public functions
 //
@@ -541,33 +573,10 @@ VGM::ISolid*
 Geant4GM::Factory::CreateIntersectionSolid(
                                const std::string& name, 
                                VGM::ISolid* solidA, VGM::ISolid* solidB, 
-                               const VGM::Rotation& rotation, 
-			       const VGM::ThreeVector& translation)
+                               const VGM::Transform& transform)
 {
 //
-  VGM::ISolid* vgmSolid 
-    = new Geant4GM::BooleanSolid(
-                          name, 
-			  VGM::kIntersection, 
-			  solidA, solidB, 
-                          new HepRotation(ClhepVGM::Rotation(rotation)), 
-			  ClhepVGM::Translation(translation));
-    
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
-}  			     
-
-//_____________________________________________________________________________
-VGM::ISolid*  
-Geant4GM::Factory::CreateIntersectionSolid(
-                               const std::string& name, 
-                               VGM::ISolid* solidA, VGM::ISolid* solidB, 
-                               const VGM::Rotation& rotation, 
-			       const VGM::ThreeVector& translation,
-			       bool hasReflectionZ)
-{
-//
-  if (hasReflectionZ) {
+  if (ClhepVGM::HasReflection(transform)) {
     std::cerr << "    Geant4GM::Factory::CreateIntersectionSolid:" << std::endl;
     std::cerr << "    Reflection in Boolean solid not supported in Geant4."
               << std::endl; 
@@ -575,25 +584,13 @@ Geant4GM::Factory::CreateIntersectionSolid(
     exit(1);
   }  	      
                
-  return CreateIntersectionSolid(name, solidA, solidB, rotation, translation);
-}  			     
-
-//_____________________________________________________________________________
-VGM::ISolid*  
-Geant4GM::Factory::CreateSubtractionSolid(
-                               const std::string& name, 
-                               VGM::ISolid* solidA, VGM::ISolid* solidB, 
-                               const VGM::Rotation& rotation, 
-			       const VGM::ThreeVector& translation)
-{
-//
   VGM::ISolid* vgmSolid 
     = new Geant4GM::BooleanSolid(
-                           name, 
-			   VGM::kSubtraction, 
-			   solidA, solidB, 
-                           new HepRotation(ClhepVGM::Rotation(rotation)),
-			   ClhepVGM::Translation(translation));
+                       name, 
+		       VGM::kIntersection, 
+		       solidA, solidB, 
+                       new HepRotation(ClhepVGM::Rotation(transform).inverse()), 
+		       ClhepVGM::Translation(transform));
     
   SolidStore().push_back(vgmSolid);
   return vgmSolid; 
@@ -604,38 +601,25 @@ VGM::ISolid*
 Geant4GM::Factory::CreateSubtractionSolid(
                                const std::string& name, 
                                VGM::ISolid* solidA, VGM::ISolid* solidB, 
-                               const VGM::Rotation& rotation, 
-			       const VGM::ThreeVector& translation,
-			       bool hasReflectionZ)
+                               const VGM::Transform& transform)
 {
 //
-  if (hasReflectionZ) {
+
+  if (ClhepVGM::HasReflection(transform)) {
     std::cerr << "    Geant4GM::Factory::CreateSubtractionSolid:" << std::endl;
     std::cerr << "    Reflection in Boolean solid not supported in Geant4."
               << std::endl; 
     std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
     exit(1);
   }  	      
-                
-  return CreateSubtractionSolid(name, solidA, solidB, rotation, translation);
-}  			     
-
-//_____________________________________________________________________________
-VGM::ISolid*  
-Geant4GM::Factory::CreateUnionSolid(
-                               const std::string& name, 
-                               VGM::ISolid* solidA, VGM::ISolid* solidB, 
-                               const VGM::Rotation& rotation, 
-			       const VGM::ThreeVector& translation)
-{
-//
+               
   VGM::ISolid* vgmSolid 
     = new Geant4GM::BooleanSolid(
-                           name, 
-			   VGM::kUnion, 
-			   solidA, solidB, 
-                           new HepRotation(ClhepVGM::Rotation(rotation)),
-			   ClhepVGM::Translation(translation));
+                        name, 
+			VGM::kSubtraction, 
+			solidA, solidB, 
+                        new HepRotation(ClhepVGM::Rotation(transform).inverse()), 
+			ClhepVGM::Translation(transform));
     
   SolidStore().push_back(vgmSolid);
   return vgmSolid; 
@@ -646,12 +630,10 @@ VGM::ISolid*
 Geant4GM::Factory::CreateUnionSolid(
                                const std::string& name, 
                                VGM::ISolid* solidA, VGM::ISolid* solidB, 
-                               const VGM::Rotation& rotation, 
-			       const VGM::ThreeVector& translation,
-			       bool hasReflectionZ)
+                               const VGM::Transform& transform)
 {
 //
-  if (hasReflectionZ) {
+  if (ClhepVGM::HasReflection(transform)) {
     std::cerr << "    Geant4GM::Factory::CreateUnionSolid:" << std::endl;
     std::cerr << "    Reflection in Boolean solid not supported in Geant4."
               << std::endl; 
@@ -659,7 +641,16 @@ Geant4GM::Factory::CreateUnionSolid(
     exit(1);
   }  	      
                
-  return CreateUnionSolid(name, solidA, solidB, rotation, translation);
+  VGM::ISolid* vgmSolid 
+    = new Geant4GM::BooleanSolid(
+                        name, 
+			VGM::kUnion, 
+			solidA, solidB, 
+                        new HepRotation(ClhepVGM::Rotation(transform).inverse()), 
+			ClhepVGM::Translation(transform));
+    
+  SolidStore().push_back(vgmSolid);
+  return vgmSolid; 
 }  			     
 
 //_____________________________________________________________________________
@@ -683,49 +674,12 @@ Geant4GM::Factory::CreatePlacement(
                                int copyNo,
                                VGM::IVolume* volume, 
 			       VGM::IVolume* motherVolume,
-                               const VGM::Rotation& rotation, 
-			       const VGM::ThreeVector& translation)
+                               const VGM::Transform& transform)
 {
 //
-
-  VGM::IPlacement* placement
-    = new Geant4GM::Placement(name, 
-                              copyNo, 
-			      volume, motherVolume, 
-                              new HepRotation(ClhepVGM::Rotation(rotation)), 
-			      ClhepVGM::Translation(translation));
-  			      
-  // Top volume
-  if (!motherVolume) 
-    if (!fTop)
-      fTop = placement;
-    else {
-      std::cerr << "    Geant4GM::Factory::CreatePlacement:" << std::endl; 
-      std::cerr << "    Top volume defined twice!" << std::endl;
-      std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
-      exit(1);
-    }		  
-  
-  return placement;
-}			  			       
-
-//_____________________________________________________________________________
-VGM::IPlacement* 
-Geant4GM::Factory::CreatePlacement(
-                               const std::string& name, 
-                               int copyNo,
-                               VGM::IVolume* volume, 
-			       VGM::IVolume* motherVolume,
-                               const VGM::Rotation& rotation, 
-			       const VGM::ThreeVector& translation,
-			       bool hasReflectionZ)
-{
-//
-  if (!hasReflectionZ) {
-    return CreatePlacement(name, copyNo, volume, motherVolume, 
-                           rotation, translation);
+  if (!ClhepVGM::HasReflection(transform)) {
+    return CreateSimplePlacement(name, copyNo, volume, motherVolume, transform);
   }			   
-
 
   // Get logical volumes from the volumes map
   G4LogicalVolume* g4LV 
@@ -740,7 +694,7 @@ Geant4GM::Factory::CreatePlacement(
 
   G4PhysicalVolumesPair pvPair
     = g4ReflectionFactory
-        ->Place(ClhepVGM::Transform(rotation, translation, hasReflectionZ),  
+        ->Place(ClhepVGM::Transform(transform),  
 	        name, g4LV, g4MotherLV, false, copyNo);
 	
   // Get info about created PV

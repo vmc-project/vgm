@@ -13,8 +13,7 @@
 #include <string>
 
 #include "VGM/common/Axis.h"
-#include "VGM/common/Rotation.h"
-#include "VGM/common/ThreeVector.h"
+#include "VGM/common/Transform.h"
 
 class VGM::IElement;
 class VGM::IMaterial;
@@ -24,6 +23,9 @@ namespace XmlVGM {
 
   class IWriter
   {
+    public:
+      typedef std::vector<double>  ThreeVector;
+ 
     public:
       virtual ~IWriter() {}
 
@@ -57,20 +59,20 @@ namespace XmlVGM {
       virtual void WriteSolid(std::string lvName, const VGM::ISolid* solid, 
                             std::string materialName) = 0; 
       virtual void WritePosition(const std::string& name, 
-                            const VGM::ThreeVector& position) = 0; 
+                            const ThreeVector& position) = 0; 
       virtual void WriteRotation(const std::string& name, 
-                            const VGM::Rotation& rotation) = 0; 
+                            const ThreeVector& rotation) = 0; 
 
       virtual void WritePlacement(const std::string& lvName, 
-                            const VGM::ThreeVector& position) = 0; 
+                            const ThreeVector& position) = 0; 
       virtual void WritePlacementWithRotation(
                             std::string lvName, 
-			    const VGM::ThreeVector& position,
-                            const VGM::Rotation& rotation) = 0; 
+			    const ThreeVector& position,
+                            const ThreeVector& rotation) = 0; 
       virtual void WritePlacementWithRotationAndReflection(
                             std::string lvName, 
-			    const VGM::ThreeVector& position,
-                            const VGM::Rotation& rotation) = 0; 
+			    const ThreeVector& position,
+                            const ThreeVector& rotation) = 0; 
       virtual void WritePlacementWithRotation(
                             const std::string& lvName, 
 			    const std::string& positionRef,

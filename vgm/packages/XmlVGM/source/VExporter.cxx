@@ -17,6 +17,8 @@
 #include "VGM/volumes/IFactory.h"
 #include "VGM/volumes/IPlacement.h"
 
+#include "ClhepVGM/transform.h"
+
 #include "XmlVGM/VExporter.h"
 #include "XmlVGM/IWriter.h"
 
@@ -128,21 +130,22 @@ double XmlVGM::VExporter::Round(double number) const
   return round(number*pow(10.,precision))/pow(10.,precision);
 }
 
+
 //_____________________________________________________________________________
-VGM::Rotation  
-XmlVGM::VExporter::Purify(const VGM::Rotation& rotation) const
+XmlVGM::ThreeVector  
+XmlVGM::VExporter::PurifyAngles(const ThreeVector& rotation) const
 {
 // Inverts angle sign if angle.is within the converter precision
 // equal - M_PI.
 
   double roundedPI = Round(M_PI/fWriter->AngleUnit());
 
-  VGM::Rotation roundedRotation(3);
+  ThreeVector roundedRotation(3);
   roundedRotation[0] = Round(rotation[0]/ fWriter->AngleUnit());
   roundedRotation[1] = Round(rotation[1]/ fWriter->AngleUnit());
   roundedRotation[2] = Round(rotation[2]/ fWriter->AngleUnit());
   
-  VGM::Rotation rotation2(3);
+  ThreeVector rotation2(3);
   rotation2[0] = rotation[0];
   rotation2[1] = rotation[1];
   rotation2[2] = rotation[2];
@@ -155,11 +158,11 @@ XmlVGM::VExporter::Purify(const VGM::Rotation& rotation) const
 }
 
 //_____________________________________________________________________________
-bool  XmlVGM::VExporter::IsIdentity(const VGM::Rotation& rotation) const
+bool  XmlVGM::VExporter::IsIdentity(const ThreeVector& rotation) const
 {
 // Returns true if roatation is identity within the converter precision.
 
-  VGM::Rotation roundedRotation(3);
+  ThreeVector roundedRotation(3);
   roundedRotation[0] = Round(rotation[0]/ fWriter->AngleUnit());
   roundedRotation[1] = Round(rotation[1]/ fWriter->AngleUnit());
   roundedRotation[2] = Round(rotation[2]/ fWriter->AngleUnit());
@@ -175,7 +178,7 @@ bool  XmlVGM::VExporter::IsIdentity(const VGM::Rotation& rotation) const
 
 //_____________________________________________________________________________
 std::string 
-XmlVGM::VExporter::AddPositionToMap(const VGM::ThreeVector& position)
+XmlVGM::VExporter::AddPositionToMap(const ThreeVector& position)
 {
 // Check if the specified position is not yet present (within the precision
 // of the convertor) and add it to the map.
@@ -183,7 +186,7 @@ XmlVGM::VExporter::AddPositionToMap(const VGM::ThreeVector& position)
 // or empty string (if not added).
 // ---
 
-  VGM::ThreeVector roundedPosition(3);
+  ThreeVector roundedPosition(3);
   roundedPosition[0] = Round(position[0]/ fWriter->LengthUnit());
   roundedPosition[1] = Round(position[1]/ fWriter->LengthUnit());
   roundedPosition[2] = Round(position[2]/ fWriter->LengthUnit());
@@ -207,7 +210,7 @@ XmlVGM::VExporter::AddPositionToMap(const VGM::ThreeVector& position)
 
 //_____________________________________________________________________________
 std::string 
-XmlVGM::VExporter::AddRotationToMap(const VGM::Rotation& rotation)
+XmlVGM::VExporter::AddRotationToMap(const ThreeVector& rotation)
 {
 // Check if the specified rotation matrix is not yet present and 
 // add it to the map.
@@ -215,7 +218,7 @@ XmlVGM::VExporter::AddRotationToMap(const VGM::Rotation& rotation)
 // or empty string (if not added).
 // ---
 
-  VGM::Rotation roundedRotation(3);
+  ThreeVector roundedRotation(3);
   roundedRotation[0] = Round(rotation[0]/ fWriter->AngleUnit());
   roundedRotation[1] = Round(rotation[1]/ fWriter->AngleUnit());
   roundedRotation[2] = Round(rotation[2]/ fWriter->AngleUnit());
@@ -245,7 +248,7 @@ XmlVGM::VExporter::AddElementToMap(const VGM::IElement* element)
 // Returns the element (if added) or 0.
 // ---
 
-  VGM::ThreeVector roundedValues(3);
+  ThreeVector roundedValues(3);
   roundedValues[0] = Round(element->Z());
   roundedValues[1] = Round(element->N());
   roundedValues[2] = Round(element->A());
@@ -301,12 +304,22 @@ void XmlVGM::VExporter::ProcessPositions(VGM::IVolume* volume)
     for (int i=0; i<nofDaughters; i++) {
       
       VGM::IPlacement* dPlacement = volume->Daughter(i);
- 
-      VGM::ThreeVector position = dPlacement->ObjectTranslation();
-      std::string posName = AddPositionToMap(position);
       
-      if (posName != std::string())
-        fWriter->WritePosition(posName, position);
+      if (dPlacement->Type() == VGM::kSimplePlacement) {
+        // Write only simple placement positions
+      
+        // Get position
+        VGM::Transform  transform = dPlacement->Transformation();
+        ThreeVector position(3);
+        position[0] = transform[VGM::kDx]; 
+        position[1] = transform[VGM::kDy]; 
+        position[2] = transform[VGM::kDz]; 
+      
+        std::string posName = AddPositionToMap(position);
+      
+        if (posName != std::string())
+          fWriter->WritePosition(posName, position);
+      }	  
 
       std::string dVolumeName = dPlacement->Volume()->Name();
       if (fVolumeNames.find(dVolumeName) == fVolumeNames.end()) {
@@ -335,14 +348,21 @@ void XmlVGM::VExporter::ProcessRotations(VGM::IVolume* volume)
     for (int i=0; i<nofDaughters; i++) {
       
       VGM::IPlacement* dPlacement = volume->Daughter(i);
+      VGM::Transform transform = dPlacement->Transformation();
+      VGM::Transform inverse = ClhepVGM::Inverse(transform);
 
-      VGM::Rotation rotation = Purify(dPlacement->ObjectRotation());
+      // Get rotation
+      ThreeVector rotation(3);
+      rotation[0] = inverse[VGM::kAngleX]; 
+      rotation[1] = inverse[VGM::kAngleY]; 
+      rotation[2] = inverse[VGM::kAngleZ]; 
+      ThreeVector rotation2 = PurifyAngles(rotation);
       
-      if (!IsIdentity(rotation)) {
-        std::string rotName = AddRotationToMap(rotation);
+      if (!IsIdentity(rotation2)) {
+        std::string rotName = AddRotationToMap(rotation2);
 
         if (rotName != std::string())
-          fWriter->WriteRotation(rotName, rotation);
+          fWriter->WriteRotation(rotName, rotation2);
       }
 
       std::string dVolumeName = dPlacement->Volume()->Name();
@@ -441,14 +461,14 @@ void XmlVGM::VExporter::ProcessSolids(VGM::IVolume* volume)
 
 //_____________________________________________________________________________
 std::string 
-XmlVGM::VExporter::FindPositionName(VGM::ThreeVector position) const
+XmlVGM::VExporter::FindPositionName(const ThreeVector& position) const
 {
 // Finds the specified position in the map (within the precision of the 
 // convertor) and returns its xml name.
 // Returns empty string if not found.
 // ---
 
-  VGM::ThreeVector roundedPosition(3);
+  ThreeVector roundedPosition(3);
   roundedPosition[0] = Round(position[0]/ fWriter->LengthUnit());
   roundedPosition[1] = Round(position[1]/ fWriter->LengthUnit());
   roundedPosition[2] = Round(position[2]/ fWriter->LengthUnit());
@@ -462,15 +482,15 @@ XmlVGM::VExporter::FindPositionName(VGM::ThreeVector position) const
 
 //_____________________________________________________________________________
 std::string  
-XmlVGM::VExporter::FindRotationName(const VGM::Rotation& rotation) const
+XmlVGM::VExporter::FindRotationName(const ThreeVector& rotation) const
 {
 // Finds the rotation in the map and returns its xml name.
 // Returns empty string if not found.
 // ---
 
-  VGM::Rotation rotation2 = Purify(rotation);
+  ThreeVector rotation2 = PurifyAngles(rotation);
 
-  VGM::Rotation roundedRotation(3);
+  ThreeVector roundedRotation(3);
   roundedRotation[0] = Round(rotation2[0]/ fWriter->AngleUnit());
   roundedRotation[1] = Round(rotation2[1]/ fWriter->AngleUnit());
   roundedRotation[2] = Round(rotation2[2]/ fWriter->AngleUnit());
@@ -493,8 +513,8 @@ void XmlVGM::VExporter::GeneratePositions(VGM::IVolume* volume)
   fWriter->OpenPositions();  
   
   // Store first the center position
-  std::string posName = AddPositionToMap(Origin());
-  fWriter->WritePosition(posName, Origin());
+  std::string posName = AddPositionToMap(Identity());
+  fWriter->WritePosition(posName, Identity());
 
   // Process positions
   ProcessPositions(volume);
@@ -516,7 +536,7 @@ void XmlVGM::VExporter::GenerateRotations(VGM::IVolume* volume)
   fWriter->OpenRotations();  
   
   // Identity
-  VGM::Rotation identity(3);
+  ThreeVector identity(3);
   identity[0] = 0.;
   identity[1] = 0.;
   identity[2] = 0.;
@@ -622,28 +642,13 @@ void XmlVGM::VExporter::ClearVolumeNames()
 }  
 
 //_____________________________________________________________________________
-VGM::ThreeVector 
-XmlVGM::VExporter::Origin()  const
-{
-// Returns the zero position.
-// ---
-  
-  VGM::ThreeVector threeVector(3);
-  threeVector[0] = 0.;
-  threeVector[1] = 0.;
-  threeVector[2] = 0.;
-
-  return threeVector;
-}  
-
-//_____________________________________________________________________________
-VGM::Rotation  
+XmlVGM::ThreeVector  
 XmlVGM::VExporter::Identity() const
 {
-// Returns identity rotation.
+// Returns zero vector
 // ---
   
-  VGM::ThreeVector rotation(3);
+  ThreeVector rotation(3);
   rotation[0] = 0.;
   rotation[1] = 0.;
   rotation[2] = 0.;

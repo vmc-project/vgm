@@ -11,11 +11,7 @@
 
 #include <iostream>
 
-#include "CLHEP/Vector/Rotation.h"
-#include "CLHEP/Vector/ThreeVector.h"
-
-#include "VGM/common/ThreeVector.h"
-#include "VGM/common/Rotation.h"
+#include "VGM/common/Transform.h"
 #include "VGM/solids/ISolid.h"
 
 namespace VGM {
@@ -41,11 +37,7 @@ namespace VGM {
       virtual BooleanType  BoolType() const = 0;
       virtual ISolid*      ConstituentSolidA() const = 0;
       virtual ISolid*      ConstituentSolidB() const = 0;
-      virtual Rotation     DisplacementObjectRotation() const = 0;      
-      virtual Rotation     DisplacementFrameRotation() const = 0;      
-      virtual ThreeVector  DisplacementObjectTranslation() const = 0;
-      virtual ThreeVector  DisplacementFrameTranslation() const = 0;
-      virtual bool         DisplacementReflectionZ() const = 0;
+      virtual Transform    Displacement() const = 0;      
 
       // streaming
       virtual std::ostream& Put(std::ostream& out) const = 0;

@@ -96,41 +96,17 @@ namespace Geant4GM {
       virtual VGM::ISolid*  CreateIntersectionSolid(
                                  const std::string& name, 
                                  VGM::ISolid* solidA, VGM::ISolid* solidB, 
-                                 const VGM::Rotation& rotation, 
-			         const VGM::ThreeVector& translation);
+                                 const VGM::Transform& transform);
 			       
-      virtual VGM::ISolid*  CreateIntersectionSolid(
-                                 const std::string& name, 
-                                 VGM::ISolid* solidA, VGM::ISolid* solidB,
-                                 const VGM::Rotation& rotation, 
-			         const VGM::ThreeVector& translation,
-				 bool hasReflectionZ);
-			       
-      virtual VGM::ISolid*  CreateSubtractionSolid(
+       virtual VGM::ISolid*  CreateSubtractionSolid(
                                  const std::string& name, 
                                  VGM::ISolid* solidA, VGM::ISolid* solidB, 
-                                 const VGM::Rotation& rotation, 
-			         const VGM::ThreeVector& translation);
-			       
-      virtual VGM::ISolid*  CreateSubtractionSolid(
-                                 const std::string& name, 
-                                 VGM::ISolid* solidA, VGM::ISolid* solidB, 
-                                 const VGM::Rotation& rotation, 
-			         const VGM::ThreeVector& translation,
-				 bool hasReflectionZ);
+                                 const VGM::Transform& transform);
 
       virtual VGM::ISolid*  CreateUnionSolid(
                                  const std::string& name, 
                                  VGM::ISolid* solidA, VGM::ISolid* solidB, 
-                                 const VGM::Rotation& rotation, 
-			         const VGM::ThreeVector& translation);
-			       
-      virtual VGM::ISolid*  CreateUnionSolid(
-                                 const std::string& name, 
-                                 VGM::ISolid* solidA, VGM::ISolid* solidB, 
-                                 const VGM::Rotation& rotation, 
-			         const VGM::ThreeVector& translation,
-				 bool hasReflectionZ);
+                                 const VGM::Transform& transform);
 
 
       // volumes
@@ -147,17 +123,7 @@ namespace Geant4GM {
                                  int copyNo,
                                  VGM::IVolume* volume, 
 			         VGM::IVolume* motherVolume,
-                                 const VGM::Rotation& rotation, 
-			         const VGM::ThreeVector& translation);
-
-      virtual VGM::IPlacement* CreatePlacement(
-                                 const std::string& name, 
-                                 int copyNo,
-                                 VGM::IVolume* volume, 
-			         VGM::IVolume* motherVolume,
-                                 const VGM::Rotation& rotation, 
-			         const VGM::ThreeVector& translation,
-				 bool hasReflectionZ);
+                                 const VGM::Transform& transform);
 
       virtual VGM::IPlacement* CreateMultiplePlacement(
                                  const std::string& name, 
@@ -191,6 +157,13 @@ namespace Geant4GM {
       void          ImportPositions();
       void          ImportPositions(G4LogicalVolume* lv);
     
+      virtual VGM::IPlacement* CreateSimplePlacement(
+                                 const std::string& name, 
+                                 int copyNo,
+                                 VGM::IVolume* volume, 
+			         VGM::IVolume* motherVolume,
+                                 const VGM::Transform& transform);
+
       // import/export
       //
       virtual bool Import(void* topVolume);

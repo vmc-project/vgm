@@ -18,7 +18,7 @@
 #include "VGM/solids/IPolyhedra.h"
 #include "VGM/solids/ITubs.h"
 
-#include "ClhepVGM/utilities.h"
+#include "ClhepVGM/transform.h"
 
 #include "Geant4GM/volumes/Placement.h"
 #include "Geant4GM/volumes/VolumeMap.h"
@@ -159,44 +159,15 @@ int Geant4GM::Placement::CopyNo() const
 }  
 
 //_____________________________________________________________________________
-VGM::Rotation 
-Geant4GM::Placement::ObjectRotation() const
+VGM::Transform 
+Geant4GM::Placement::Transformation() const
 {
 //
-  return  ClhepVGM::Rotation(*fPhysicalVolume->GetObjectRotation());
+  return  ClhepVGM::Transform(*fPhysicalVolume->GetObjectRotation(),
+                               fPhysicalVolume->GetObjectTranslation());
+  
 }  
     
-//_____________________________________________________________________________
-VGM::Rotation 
-Geant4GM::Placement::FrameRotation() const
-{
-//
-  return ClhepVGM::Rotation((*fPhysicalVolume->GetObjectRotation()).inverse());
-}  
-    
-//_____________________________________________________________________________
-VGM::ThreeVector 
-Geant4GM::Placement::ObjectTranslation() const 
-{
-//
-  return  ClhepVGM::Translation(fPhysicalVolume->GetObjectTranslation());
-}
-
-//_____________________________________________________________________________
-VGM::ThreeVector 
-Geant4GM::Placement::FrameTranslation() const 
-{
-//
-  return  ClhepVGM::Translation(- fPhysicalVolume->GetObjectTranslation());
-}
-
-//_____________________________________________________________________________
-bool Geant4GM::Placement::ReflectionZ() const
-{
-//
-  return false;
-}   
-
 //_____________________________________________________________________________
 bool Geant4GM::Placement::MultiplePlacementData(
                                 VGM::Axis&  axis,

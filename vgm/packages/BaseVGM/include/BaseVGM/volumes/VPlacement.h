@@ -23,16 +23,11 @@ namespace BaseVGM {
       virtual ~VPlacement();
     
       // methods
-      virtual std::string    Name() const = 0;
-      virtual VGM::IVolume*  Volume() const;
-      virtual VGM::IVolume*  Mother() const;
-      virtual int            CopyNo() const = 0;
-
-      virtual VGM::Rotation     ObjectRotation() const = 0;      
-      virtual VGM::Rotation     FrameRotation() const = 0; 
-      virtual VGM::ThreeVector  ObjectTranslation() const = 0;
-      virtual VGM::ThreeVector  FrameTranslation() const = 0;
-      virtual bool              ReflectionZ() const = 0;
+      virtual std::string     Name() const = 0;
+      virtual VGM::IVolume*   Volume() const;
+      virtual VGM::IVolume*   Mother() const;
+      virtual int             CopyNo() const = 0;
+      virtual VGM::Transform  Transformation() const = 0;      
 
       virtual bool  MultiplePlacementData(
                              VGM::Axis&  axis,
