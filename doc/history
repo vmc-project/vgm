@@ -2,6 +2,13 @@ $Id$
 
  The Virtual Geometry Model - Versions
 =========================================
+  05/01/2005
+  version 2.00.02
+               Use of CLHEP system of units in VGM replaced with 
+	       fixed units
+
+               Tested with CLHEP 1.8.1.0, Root 4.02/00, Geant4 7.0
+
 
   17/12/2004
   version 2.00.01 
