@@ -24,14 +24,17 @@ namespace Geant4GM {
     public:
       Volume(const std::string& name, 
              VGM::ISolid* solid, 
-             const std::string& materialName );
+	     const std::string& materialName,
+             const std::string& mediumName );
       Volume(VGM::ISolid* solid, 
-             G4LogicalVolume* lv);
+             G4LogicalVolume* lv,
+	     const std::string& mediumName );
       virtual ~Volume();
     
       // methods
       virtual std::string  Name() const;
       virtual std::string  MaterialName() const;
+      virtual std::string  MediumName() const;
     
     protected:    
       Volume() : BaseVGM::VVolume() {}
@@ -39,6 +42,7 @@ namespace Geant4GM {
     
     private:
       G4LogicalVolume* fLogicalVolume;   
+      std::string      fMediumName;   
   };
 
 }

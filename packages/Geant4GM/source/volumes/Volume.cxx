@@ -18,9 +18,11 @@
 //_____________________________________________________________________________
 Geant4GM::Volume::Volume(const std::string& name, 
                          VGM::ISolid* solid, 
-                         const std::string& materialName) 
+                         const std::string& materialName,
+			 const std::string& mediumName ) 
   : BaseVGM::VVolume(solid),
-    fLogicalVolume(0) {
+    fLogicalVolume(0),
+    fMediumName(mediumName) {
 //
 
   // Get solid from the solid map
@@ -46,9 +48,11 @@ Geant4GM::Volume::Volume(const std::string& name,
 
 //_____________________________________________________________________________
 Geant4GM::Volume::Volume(VGM::ISolid* solid, 
-                         G4LogicalVolume* lv)
+                         G4LogicalVolume* lv,
+			 const std::string& mediumName ) 
   : BaseVGM::VVolume(solid),
-    fLogicalVolume(lv)
+    fLogicalVolume(lv),
+    fMediumName(mediumName)
 {
   // Register logical volume in the map
   Geant4GM::VolumeMap::Instance()->AddVolume(this, fLogicalVolume); 
@@ -75,4 +79,11 @@ std::string  Geant4GM::Volume::MaterialName() const
 {
 //
   return fLogicalVolume->GetMaterial()->GetName();
+}
+
+//_____________________________________________________________________________
+std::string  Geant4GM::Volume::MediumName() const
+{
+//
+  return fMediumName;
 }
