@@ -1,0 +1,54 @@
+// $Id$
+//
+// Class VMedium
+// ---------------
+// The ABC for tracking medium.
+//
+// Author: Ivana Hrivnacova; IPN Orsay
+
+#include "VGM/materials/IMaterial.h"
+
+#include "BaseVGM/materials/VMedium.h"
+
+const int BaseVGM::VMedium::fgkParamSize = 20;  
+
+//_____________________________________________________________________________
+std::ostream& operator<<(std::ostream& out, const VGM::IMedium& medium)
+{
+  out << "Medium: " << "\"" << medium.Name() << "\""
+      << "  material " << medium.Name() << " g/cm3"
+      << "  parameters:";
+      
+  for (int i=0; i<medium.NofParameters(); i++) 
+    out << "  " << medium.Parameter(i);
+    
+  return out;    
+}
+
+//_____________________________________________________________________________
+BaseVGM::VMedium::VMedium(VGM::IMaterial* material) 
+  : VGM::IMedium(),
+    fMaterial(material)
+{
+//
+}
+
+//_____________________________________________________________________________
+BaseVGM::VMedium::~VMedium() {
+//
+}
+
+//_____________________________________________________________________________
+VGM::IMaterial* 
+BaseVGM::VMedium::Material() const 
+{
+//
+  return fMaterial;
+}  
+
+//_____________________________________________________________________________
+int  BaseVGM::VMedium::NofParameters() const
+{
+  return fgkParamSize;
+}  
+
