@@ -325,7 +325,7 @@ BaseVGM::VMaterialFactory::Material(const std::string& name) const
 	
 //_____________________________________________________________________________
 const VGM::IMedium* 
-BaseVGM::VMaterialFactory::Media(const std::string& name) const
+BaseVGM::VMaterialFactory::Medium(const std::string& name) const
 {	
 // Finds the VGM medium specified by name;
 // returns 0 if medium is not found.

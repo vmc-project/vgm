@@ -37,7 +37,7 @@ namespace BaseVGM {
 
       virtual const VGM::IElement*   Element(const std::string& name) const;	
       virtual const VGM::IMaterial*  Material(const std::string& name) const;	
-      virtual const VGM::IMedium*    Media(const std::string& name) const;	
+      virtual const VGM::IMedium*    Medium(const std::string& name) const;	
 
       // import/export
       //
