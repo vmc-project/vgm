@@ -476,6 +476,7 @@ void* TstGeometryViaGeant4::TestPlacements()
 
      HepRotation* rot = new HepRotation();
      rot->rotateY(phi);
+        // !!! Different meaning of rotation in Geant4 than in Root, VGM
      
      new G4PVPlacement(rot, Hep3Vector(x, y0, z),
                        volA, "layerA", worldV, false, i);
@@ -612,12 +613,9 @@ void* TstGeometryViaGeant4::TestBooleanSolids2()
   // Rotate + translate solid2
   //
   HepRotation* rot2 = new HepRotation();
+  rot2->rotateY( 45.*deg); 
   rot2->rotateX(-30.*deg);
-  rot2->rotateY(45.*deg); 
-       // apply inverse rotation to solid1 rotation
-       // as this one will be applied with placement
   Hep3Vector  tr2 = Hep3Vector(20.*cm, 0., 0.);
-     
   
   // Intersection
   //
