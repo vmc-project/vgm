@@ -1,0 +1,25 @@
+ $Id$ 
+
+ VGM Example E04
+ Exporting geometry from Root to XML
+ --------------------------------------
+ 
+ Source: Root tutorial rootgeom.C macro
+         Main program rootgeom.cxx
+         
+ 1. Define environment variables 
+    (see doc/INSTALL)
+    
+ 2. Compile the rootgeom.cxx with provided shell script
+    ./bind.sh
+    
+ 3. Run example
+    ./rootgeom
+ 
+ 4. Open and view the generated XML files;
+    in GraXML:
+    graxml
+    w.show("World.xml");
+    w.show("World.gdml");
+
+                

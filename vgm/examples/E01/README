@@ -1,0 +1,35 @@
+ $Id$ 
+
+ VGM Example E01
+ Converting geometry from Geant4 to Root
+ --------------------------------------
+ 
+ Source: Geant4 novice N03 example
+         
+ 1. Define environment variables 
+    (see doc/INSTALL)
+    
+ 2. Install Geant4 N03 example in E02 directory:
+    cp -r ${G4INSTALL}/examples/novice/N03 .
+    source env_setup.csh
+    
+ 3. Copy provided files into the example:
+    cp GNUmakefile N03
+    cp ExN03DetectorConstruction.cc N03/src
+    
+ 4. Recompile 
+    cd N03
+    gmake
+    
+ 5. Run example, the geometry will be exported during initialization
+    exampleN03
+ 
+ 6. Open and view the generated Root file 
+    root
+    root [0] gSystem->Load("libGeom");
+    root [1] new TGeoManager("N03", "Geant4 novice example N03");
+    root [2] gGeoManager->Import("N03Example.root");
+    root [3] TBrowser b;
+    root [4] gGeoManager->GetTopVolume()->Draw();
+
+                

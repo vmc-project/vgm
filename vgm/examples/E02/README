@@ -1,0 +1,32 @@
+ $Id$ 
+
+ VGM Example E02
+ Converting geometry from Root to Geant4
+ ---------------------------------------
+ 
+ Source: Root geometry file N03Example.root
+         Geant4 novice N03 example
+         
+ 1. Define environment variables 
+    (see doc/INSTALL)
+    
+ 2. Install Geant4 N03 example in E02 directory:
+    cp -r ${G4INSTALL}/examples/novice/N03 .
+    source env_setup.csh
+    
+ 3. Update example for provided files:
+    cp N03Example.root N03
+    cp GNUmakefile N03
+    cp ExN03DetectorConstruction.hh N03/include
+    cp ExN03DetectorConstruction.cc N03/src
+    cp ExN03PrimaryGeneratorAction.cc N03/src
+    cp ExN03SteppingAction.cc N03/src
+    rm N03/include/ExN03DetectorMessenger.hh
+    rm N03/src/ExN03DetectorMessenger.cc
+    
+ 4. Recompile 
+    cd N03
+    gmake
+    
+ 5. Run example, the geometry will be imported during initialization
+    exampleN03
