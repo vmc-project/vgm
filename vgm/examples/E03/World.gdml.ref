@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gdml xmlns:gdml="http://cern.ch/2001/Schemas/GDML"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="gdml_1.0.xsd">
+
+   <define>
+      <position  name=   "pos_0"  x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name=   "pos_1"  x="    -0.2500"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name=   "pos_2"  x="     0.5000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+
+      <rotation  name=   "rot_0"  x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
+   </define>
+
+   <materials>
+      <element  name= "Galactic_e"  Z="  1.0000"  N="  1" >
+         <atom type="A" unit="g/mol" value="  1.0100" />
+      </element>
+      <element  name="liquidArgon_e"  Z=" 18.0000"  N=" 40" >
+         <atom type="A" unit="g/mol" value=" 39.9500" />
+      </element>
+      <element  name=     "Lead_e"  Z=" 82.0000"  N="207" >
+         <atom type="A" unit="g/mol" value="207.1900" />
+      </element>
+
+      <material  name="Galactic"  >
+         <D type="density" unit="g/cm3" value="     0.0000"/>
+         <fraction n="    1.0000"  ref="Galactic_e"/>
+      </material>
+      <material  name="Lead"  >
+         <D type="density" unit="g/cm3" value="    11.3500"/>
+         <fraction n="    1.0000"  ref="Lead_e"/>
+      </material>
+      <material  name="liquidArgon"  >
+         <D type="density" unit="g/cm3" value="     1.3900"/>
+         <fraction n="    1.0000"  ref="liquidArgon_e"/>
+      </material>
+
+   </materials>
+
+   <solids>
+      <box  lunit="cm" aunit="degree"
+         name="World_s"
+         x="   18.0000"  y="   12.0000"  z="   12.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="Calorimeter_s"
+         x="   15.0000"  y="   10.0000"  z="   10.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="Layer_s"
+         x="    1.5000"  y="   10.0000"  z="   10.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="Absorber_s"
+         x="    1.0000"  y="   10.0000"  z="   10.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="Gap_s"
+         x="    0.5000"  y="   10.0000"  z="   10.0000" />
+
+   </solids>
+
+   <structure>
+      <volume name="Absorber">
+         <materialref ref="Lead"/>
+         <solidref ref="Absorber_s"/>
+      </volume>
+
+      <volume name="Gap">
+         <materialref ref="liquidArgon"/>
+         <solidref ref="Gap_s"/>
+      </volume>
+
+      <volume name="Layer">
+         <materialref ref="Galactic"/>
+         <solidref ref="Layer_s"/>
+         <child>
+            <volumeref ref="Absorber"/>
+               <positionref ref="pos_1"/>
+               <rotationref ref="rot_0"/>
+         </child>
+         <child>
+            <volumeref ref="Gap"/>
+               <positionref ref="pos_2"/>
+               <rotationref ref="rot_0"/>
+         </child>
+      </volume>
+
+      <volume name="Calorimeter">
+         <materialref ref="Galactic"/>
+         <solidref ref="Calorimeter_s"/>
+      </volume>
+
+      <volume name="World">
+         <materialref ref="Galactic"/>
+         <solidref ref="World_s"/>
+         <child>
+            <volumeref ref="Calorimeter"/>
+               <positionref ref="pos_0"/>
+               <rotationref ref="rot_0"/>
+         </child>
+      </volume>
+
+   </structure>
+
+   <setup name="unit1"   version="1.0">
+      <world ref="World"/>
+   </setup>
+
+</gdml>
