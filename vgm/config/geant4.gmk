@@ -1,0 +1,18 @@
+# $Id$
+
+########################  Path to Geant4 ######################################
+#
+CPPFLAGS += -I$(G4INSTALL)/include
+
+######################## Full Geant4 VIS, UI ##################################
+#
+# Full Geant4 UI, VIS, interactivity setting.
+# It enables to use all Geant4 graphics drivers and UIs,  
+# however not all these options were tested with Geant4 VMC
+# and even though a correct behaviour is expected,
+# it is not guaranteed. 
+# 
+include $(G4INSTALL)/config/G4UI_USE.gmk
+include $(G4INSTALL)/config/G4VIS_USE.gmk
+include $(G4INSTALL)/config/interactivity.gmk
+
