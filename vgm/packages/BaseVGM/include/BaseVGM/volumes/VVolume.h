@@ -29,6 +29,7 @@ namespace BaseVGM {
       // methods
       virtual std::string   Name() const = 0;
       virtual std::string   MaterialName() const = 0;
+      virtual std::string   MediumName() const = 0;
 
       virtual VGM::ISolid*      Solid() const;
       virtual int               NofDaughters() const;

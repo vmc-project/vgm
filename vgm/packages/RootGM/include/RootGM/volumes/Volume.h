@@ -25,7 +25,7 @@ namespace RootGM {
     public:
       Volume(const std::string& name, 
              VGM::ISolid* solid, 
-             const std::string& materialName );
+             const std::string& mediumName );
       Volume(VGM::ISolid* solid, 
              TGeoVolume* volume);
       virtual ~Volume();
@@ -33,6 +33,7 @@ namespace RootGM {
       // methods
       virtual std::string  Name() const;
       virtual std::string  MaterialName() const;
+      virtual std::string  MediumName() const;
     
       void ResetVolume(TGeoVolume* rootVolume);
         

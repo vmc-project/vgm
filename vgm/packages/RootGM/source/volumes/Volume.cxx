@@ -19,7 +19,7 @@
 //_____________________________________________________________________________
 RootGM::Volume::Volume(const std::string& name,
                        VGM::ISolid* solid, 
-                       const std::string& materialName) 
+                       const std::string& mediumName) 
   : BaseVGM::VVolume(solid),
     fGeoVolume(0) {
 //
@@ -27,13 +27,13 @@ RootGM::Volume::Volume(const std::string& name,
   // Get solid from the solid map
   TGeoShape* geoSolid = RootGM::SolidMap::Instance()->GetSolid(solid);
   
-  // Get material from Root
-  TGeoMedium* geoMedium = gGeoManager->GetMedium(materialName.data());
+  // Get medium from Root
+  TGeoMedium* geoMedium = gGeoManager->GetMedium(mediumName.data());
   
   if (!geoMedium) {
     std::cerr << "+++ Warning  +++" << std::endl; 
     std::cerr << "    RootGM::Volume::Volume:" << std::endl;
-    std::cerr << "    Medium \"" << materialName << "\" not found." << std::endl;
+    std::cerr << "    Medium \"" << mediumName << "\" not found." << std::endl;
     
   }	      
   
@@ -80,6 +80,18 @@ std::string  RootGM::Volume::MaterialName() const
     return "None";
 
   return std::string(fGeoVolume->GetMedium()->GetMaterial()->GetName());
+}
+
+//_____________________________________________________________________________
+std::string  RootGM::Volume::MediumName() const
+{
+//
+  // Root volumes may not have medium
+  //
+  if (!fGeoVolume->GetMedium())
+    return "None";
+
+  return std::string(fGeoVolume->GetMedium()->GetName());
 }
 
 //_____________________________________________________________________________
