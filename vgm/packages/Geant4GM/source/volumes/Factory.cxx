@@ -822,16 +822,6 @@ Geant4GM::Factory:: World() const
 
 
 //_____________________________________________________________________________
-bool Geant4GM::Factory::CLHEPRotations() const		       
-{
-// Returns true as Geant4 uses CLHEP rotations,
-// No conversion needed.
-// ---
-
-  return true;
-}  		       
-
-//_____________________________________________________________________________
 bool Geant4GM::Factory::Import(G4VPhysicalVolume* worldPV)
 {
 // Imports Geant4 native geometry

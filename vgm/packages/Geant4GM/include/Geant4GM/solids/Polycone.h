@@ -42,6 +42,13 @@ namespace Geant4GM {
       Polycone(const Polycone& rhs) : BaseVGM::VPolycone(rhs) {}
 
     private:
+      void CreateBuffers();
+
+      static const int fgkMaxNofZPlanes;
+      static double*   fgZBuffer;
+      static double*   fgRinBuffer;
+      static double*   fgRoutBuffer;
+
       bool        fIsReflected;
       double*     fZValuesRefl;
       G4Polycone* fPolycone;

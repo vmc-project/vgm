@@ -43,6 +43,13 @@ namespace Geant4GM {
       Polyhedra(const Polyhedra& rhs) : BaseVGM::VPolyhedra(rhs) {}
 
     private:
+      void CreateBuffers();
+
+      static const int fgkMaxNofZPlanes;
+      static double*   fgZBuffer;
+      static double*   fgRinBuffer;
+      static double*   fgRoutBuffer;
+
       bool         fIsReflected;
       double*      fZValuesRefl;
       G4Polyhedra* fPolyhedra;

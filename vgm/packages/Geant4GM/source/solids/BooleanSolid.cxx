@@ -6,8 +6,6 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include "CLHEP/Units/SystemOfUnits.h"
-
 #include "G4BooleanSolid.hh"
 #include "G4DisplacedSolid.hh"
 #include "G4IntersectionSolid.hh"

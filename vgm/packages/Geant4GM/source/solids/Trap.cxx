@@ -14,6 +14,8 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
+#include "ClhepVGM/Units.h"
+
 #include "Geant4GM/solids/Trap.h"
 #include "Geant4GM/solids/SolidMap.h"
 
@@ -24,8 +26,18 @@ Geant4GM::Trap::Trap(const std::string& name,
                      double dy2, double dx3, double dx4, double alpha2)
   : BaseVGM::VTrap(),
     fIsReflected(false),
-    fTrap(new G4Trap(name, hz, theta, phi,
-                     dy1, dx1, dx2, alpha1, dy2, dx3, dx4, alpha2))
+    fTrap(new G4Trap(name, 
+                     hz     / ClhepVGM::Units::Length(), 
+		     theta  / ClhepVGM::Units::Angle(), 
+		     phi    / ClhepVGM::Units::Angle(),
+                     dy1    / ClhepVGM::Units::Length(), 
+		     dx1    / ClhepVGM::Units::Length(), 
+		     dx2    / ClhepVGM::Units::Length(), 
+		     alpha1 / ClhepVGM::Units::Angle(), 
+		     dy2    / ClhepVGM::Units::Length(), 
+		     dx3    / ClhepVGM::Units::Length(), 
+		     dx4    / ClhepVGM::Units::Length(), 
+		     alpha2 / ClhepVGM::Units::Angle()) )
 {
 // 
   Geant4GM::SolidMap::Instance()->AddSolid(this, fTrap); 
@@ -61,7 +73,7 @@ std::string Geant4GM::Trap::Name() const
 //_____________________________________________________________________________
 double Geant4GM::Trap::ZHalfLength() const
 {
-  return fTrap->GetZHalfLength();
+  return fTrap->GetZHalfLength() * ClhepVGM::Units::Length();
 }  
 
 //_____________________________________________________________________________
@@ -71,9 +83,9 @@ double Geant4GM::Trap::Theta() const
   //          << atan(fTrap->GetSymAxis().x()/fTrap->GetSymAxis().z()) / deg 
   //	      << std::endl; 
   if (!fIsReflected)
-    return fTrap->GetSymAxis().theta();
+    return fTrap->GetSymAxis().theta() * ClhepVGM::Units::Angle();
   else   
-    return - fTrap->GetSymAxis().theta();
+    return - fTrap->GetSymAxis().theta() * ClhepVGM::Units::Angle();
 }  
 
 //_____________________________________________________________________________
@@ -83,80 +95,80 @@ double Geant4GM::Trap::Phi() const
   //          << atan(fTrap->GetSymAxis().y()/fTrap->GetSymAxis().z()) / deg 
   //	      << std::endl; 
   if (!fIsReflected)
-    return fTrap->GetSymAxis().phi();
+    return fTrap->GetSymAxis().phi() * ClhepVGM::Units::Angle();
   else  
-    return -fTrap->GetSymAxis().phi();
+    return -fTrap->GetSymAxis().phi() * ClhepVGM::Units::Angle();
 }  
 
 //_____________________________________________________________________________
 double Geant4GM::Trap::YHalfLengthMinusZ() const
 {
   if (!fIsReflected)
-    return fTrap->GetYHalfLength1();
+    return fTrap->GetYHalfLength1() * ClhepVGM::Units::Length();
   else   
-    return fTrap->GetYHalfLength2();
+    return fTrap->GetYHalfLength2() * ClhepVGM::Units::Length();
 }  
 
 //_____________________________________________________________________________
 double Geant4GM::Trap::XHalfLengthMinusZMinusY() const
 {
   if (!fIsReflected)
-    return fTrap->GetXHalfLength1();
+    return fTrap->GetXHalfLength1() * ClhepVGM::Units::Length();
   else   
-    return fTrap->GetXHalfLength3();
+    return fTrap->GetXHalfLength3() * ClhepVGM::Units::Length();
 }  
 
 //_____________________________________________________________________________
 double Geant4GM::Trap::XHalfLengthMinusZPlusY() const
 {
   if (!fIsReflected)
-    return fTrap->GetXHalfLength2();
+    return fTrap->GetXHalfLength2() * ClhepVGM::Units::Length();
   else   
-    return fTrap->GetXHalfLength4();
+    return fTrap->GetXHalfLength4() * ClhepVGM::Units::Length();
 }  
 
 //_____________________________________________________________________________
 double Geant4GM::Trap::AlphaMinusZ() const
 {
   if (!fIsReflected)
-    return atan(fTrap->GetTanAlpha1());
+    return atan(fTrap->GetTanAlpha1()) * ClhepVGM::Units::Angle();
   else   
-    return atan(fTrap->GetTanAlpha2());
+    return atan(fTrap->GetTanAlpha2()) * ClhepVGM::Units::Angle();
 }  
 
 //_____________________________________________________________________________
 double Geant4GM::Trap::YHalfLengthPlusZ() const
 {
   if (!fIsReflected)
-    return fTrap->GetYHalfLength2();
+    return fTrap->GetYHalfLength2() * ClhepVGM::Units::Length();
   else   
-    return fTrap->GetYHalfLength1();
+    return fTrap->GetYHalfLength1() * ClhepVGM::Units::Length();
 }  
 
 //_____________________________________________________________________________
 double Geant4GM::Trap::XHalfLengthPlusZMinusY() const
 {
   if (!fIsReflected)
-    return fTrap->GetXHalfLength3();
+    return fTrap->GetXHalfLength3() * ClhepVGM::Units::Length();
   else   
-    return fTrap->GetXHalfLength1();
+    return fTrap->GetXHalfLength1() * ClhepVGM::Units::Length();
 }  
 
 //_____________________________________________________________________________
 double Geant4GM::Trap::XHalfLengthPlusZPlusY() const
 {
   if (!fIsReflected)
-    return fTrap->GetXHalfLength4();
+    return fTrap->GetXHalfLength4() * ClhepVGM::Units::Length();
   else   
-    return fTrap->GetXHalfLength2();
+    return fTrap->GetXHalfLength2() * ClhepVGM::Units::Length();
 }  
 
 //_____________________________________________________________________________
 double Geant4GM::Trap::AlphaPlusZ() const
 {
   if (!fIsReflected)
-    return atan(fTrap->GetTanAlpha2());
+    return atan(fTrap->GetTanAlpha2()) * ClhepVGM::Units::Angle();
   else   
-    return atan(fTrap->GetTanAlpha1());
+    return atan(fTrap->GetTanAlpha1()) * ClhepVGM::Units::Angle();
 }  
 

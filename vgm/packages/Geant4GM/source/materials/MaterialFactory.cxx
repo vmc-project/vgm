@@ -9,6 +9,8 @@
 #include "G4Material.hh"
 #include "G4Element.hh"
 
+#include "ClhepVGM/Units.h"
+
 #include "BaseVGM/common/utilities.h"
 
 #include "Geant4GM/materials/MaterialFactory.h"
@@ -104,7 +106,9 @@ Geant4GM::MaterialFactory::CreateElement(
     if ( z < 1.0) {
       // special case (vacuum)
       // in Geant4 vacuum has element with z = 1.0, a = 1.01
-      vgmElement = new Geant4GM::Element(name, symbol, z = 1.0, a = 1.01*g/mole);
+      vgmElement 
+       = new Geant4GM::Element(name, symbol, z = 1.0, 
+                               a = 1.01*ClhepVGM::Units::AtomicWeight(g/mole));
     }
     else  
       vgmElement = new Geant4GM::Element(name, symbol, z, a);
@@ -124,11 +128,6 @@ Geant4GM::MaterialFactory::CreateMaterial(
 {
 // Create material 
 
-  if ( density < universe_mean_density) {
-    // lower density not allowed in Geant4
-    density = universe_mean_density;
-  } 
-  
   VGM::IMaterial* vgmMaterial 
     = new Geant4GM::Material(name, density, element);
 		      

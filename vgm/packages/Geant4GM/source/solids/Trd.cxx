@@ -10,6 +10,8 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
+#include "ClhepVGM/Units.h"
+
 #include "Geant4GM/solids/Trd.h"
 #include "Geant4GM/solids/SolidMap.h"
 
@@ -18,7 +20,12 @@ Geant4GM::Trd::Trd(const std::string& name,
                    double hx1, double hx2, double hy1, double hy2, double hz)
   : BaseVGM::VTrd(),
     fIsReflected(false),
-    fTrd(new G4Trd(name, hx1, hx2, hy1, hy2, hz))
+    fTrd( new G4Trd(name, 
+                    hx1 / ClhepVGM::Units::Length(), 
+		    hx2 / ClhepVGM::Units::Length(), 
+		    hy1 / ClhepVGM::Units::Length(), 
+		    hy2 / ClhepVGM::Units::Length(), 
+		    hz  / ClhepVGM::Units::Length()) )
 {
 // 
   Geant4GM::SolidMap::Instance()->AddSolid(this, fTrd); 
@@ -55,42 +62,42 @@ std::string Geant4GM::Trd::Name() const
 double Geant4GM::Trd::XHalfLengthMinusZ() const
 {
   if (!fIsReflected)
-    return fTrd->GetXHalfLength1();
+    return fTrd->GetXHalfLength1() * ClhepVGM::Units::Length();
   else  
-    return fTrd->GetXHalfLength2();
+    return fTrd->GetXHalfLength2() * ClhepVGM::Units::Length();
 }  
 
 //_____________________________________________________________________________
 double Geant4GM::Trd::XHalfLengthPlusZ() const
 {
   if (!fIsReflected)
-    return fTrd->GetXHalfLength2();
+    return fTrd->GetXHalfLength2() * ClhepVGM::Units::Length();
   else  
-    return fTrd->GetXHalfLength1();
+    return fTrd->GetXHalfLength1() * ClhepVGM::Units::Length();
 }  
 
 //_____________________________________________________________________________
 double Geant4GM::Trd::YHalfLengthMinusZ() const
 {
   if (!fIsReflected)
-    return fTrd->GetYHalfLength1();
+    return fTrd->GetYHalfLength1() * ClhepVGM::Units::Length();
   else  
-    return fTrd->GetYHalfLength2();
+    return fTrd->GetYHalfLength2() * ClhepVGM::Units::Length();
 }  
 
 //_____________________________________________________________________________
 double Geant4GM::Trd::YHalfLengthPlusZ() const
 {
   if (!fIsReflected)
-    return fTrd->GetYHalfLength2();
+    return fTrd->GetYHalfLength2() * ClhepVGM::Units::Length();
   else  
-    return fTrd->GetYHalfLength1();
+    return fTrd->GetYHalfLength1() * ClhepVGM::Units::Length();
 }  
 
 //_____________________________________________________________________________
 double Geant4GM::Trd::ZHalfLength() const
 {
-  return fTrd->GetZHalfLength();
+  return fTrd->GetZHalfLength() * ClhepVGM::Units::Length();
 }  
 
 

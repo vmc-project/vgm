@@ -10,6 +10,7 @@ endif
 include $(VGM_INSTALL)/config/architecture.gmk
 
 CPPFLAGS += -I$(VGM_BASE)/VGM/include
+CPPFLAGS += -I$(VGM_BASE)/ClhepVGM/include
 CPPFLAGS += -I$(VGM_BASE)/BaseVGM/include
 CPPFLAGS += -I$(VGM_BASE)/Geant4GM/include
 

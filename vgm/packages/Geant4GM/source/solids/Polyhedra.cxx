@@ -12,8 +12,15 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
+#include "ClhepVGM/Units.h"
+
 #include "Geant4GM/solids/Polyhedra.h"
 #include "Geant4GM/solids/SolidMap.h"
+
+const int Geant4GM::Polyhedra::fgkMaxNofZPlanes = 50;
+double*   Geant4GM::Polyhedra::fgZBuffer = 0;
+double*   Geant4GM::Polyhedra::fgRinBuffer = 0;
+double*   Geant4GM::Polyhedra::fgRoutBuffer = 0;
 
 //_____________________________________________________________________________
 Geant4GM::Polyhedra::Polyhedra(
@@ -23,10 +30,33 @@ Geant4GM::Polyhedra::Polyhedra(
   : BaseVGM::VPolyhedra(),
     fIsReflected(false),
     fZValuesRefl(0),
-    fPolyhedra(new G4Polyhedra(name, sphi, dphi, nofSides, nofZplanes, 
-                               z, rin, rout))
+    fPolyhedra(0)
 {
+  // Apply units
+  
+  double* z2    = new double[nofZplanes];
+  double* rin2  = new double[nofZplanes];
+  double* rout2 = new double[nofZplanes];
+
+  for (int i=0; i<nofZplanes; i++) {
+    z2[i]     = z[i]    / ClhepVGM::Units::Length();
+    rin2[i]   = rin[i]  / ClhepVGM::Units::Length();
+    rout2[i]  = rout[i] / ClhepVGM::Units::Length();
+  }  
+  
+  fPolyhedra = new G4Polyhedra(name, 
+                               sphi / ClhepVGM::Units::Angle(), 
+			       dphi / ClhepVGM::Units::Angle(), 
+			       nofSides, nofZplanes, 
+                               z2, rin2, rout2);
+			       
   Geant4GM::SolidMap::Instance()->AddSolid(this, fPolyhedra); 
+
+  CreateBuffers();
+  
+  delete [] z2;
+  delete [] rin2;
+  delete [] rout2;
 }
 
 
@@ -50,6 +80,8 @@ Geant4GM::Polyhedra::Polyhedra(
   }
   else        
     Geant4GM::SolidMap::Instance()->AddSolid(this, phedra); 
+
+  CreateBuffers();
 }
 
 //_____________________________________________________________________________
@@ -57,6 +89,14 @@ Geant4GM::Polyhedra::~Polyhedra() {
 //
   delete [] fZValuesRefl;
 }    
+
+//_____________________________________________________________________________
+void  Geant4GM::Polyhedra::CreateBuffers()
+{
+  if (!fgZBuffer)    fgZBuffer    = new double [fgkMaxNofZPlanes];
+  if (!fgRinBuffer)  fgRinBuffer  = new double [fgkMaxNofZPlanes];
+  if (!fgRoutBuffer) fgRoutBuffer = new double [fgkMaxNofZPlanes];
+}
 
 //_____________________________________________________________________________
 std::string Geant4GM::Polyhedra::Name() const
@@ -67,13 +107,15 @@ std::string Geant4GM::Polyhedra::Name() const
 //_____________________________________________________________________________
 double Geant4GM::Polyhedra::StartPhi() const
 {
-  return fPolyhedra->GetStartPhi();
+  return fPolyhedra->GetStartPhi() * ClhepVGM::Units::Angle();
 }  
 
 //_____________________________________________________________________________
 double Geant4GM::Polyhedra::DeltaPhi() const
 {
-  return fPolyhedra->GetEndPhi() - fPolyhedra->GetStartPhi();
+  double deltaPhi = fPolyhedra->GetEndPhi() - fPolyhedra->GetStartPhi();
+  
+  return deltaPhi * ClhepVGM::Units::Angle() ;
 }  
 
 //_____________________________________________________________________________
@@ -91,39 +133,61 @@ int Geant4GM::Polyhedra::NofZPlanes() const
 //_____________________________________________________________________________
 double* Geant4GM::Polyhedra::ZValues() const
 {
-  double* newZValues = new double[NofZPlanes()];
-  if (!fIsReflected) {  
-    for (int i=0; i<NofZPlanes(); i++)
-      newZValues[i] = fPolyhedra->GetOriginalParameters()->Z_values[i];
-  }    
-  else {
-    for (int i=0; i<NofZPlanes(); i++)
-      newZValues[i] = fZValuesRefl[i];
-  }    
-  
-  return newZValues;  
+  int nofZPlanes = NofZPlanes();
+  if (nofZPlanes > fgkMaxNofZPlanes) {
+    nofZPlanes = fgkMaxNofZPlanes;
+    std::cerr << "+++ Warning  +++" << std::endl; 
+    std::cerr << "    Number of Zplanes > size of buffer." << std::endl;
+    std::cerr << "    only " << nofZPlanes << " values are returned." << std::endl;
+  }  
+
+  for (int i=0; i<nofZPlanes; i++)
+    if (!fIsReflected) {
+      fgZBuffer[i] = fPolyhedra->GetOriginalParameters()->Z_values[i];
+      fgZBuffer[i] *= ClhepVGM::Units::Length();
+    }  
+    else
+      fgZBuffer[i] = fZValuesRefl[i] * ClhepVGM::Units::Length();
+
+  return fgZBuffer;
 }  
 
 //_____________________________________________________________________________
 double* Geant4GM::Polyhedra::InnerRadiusValues() const
 {
-  double* newRinValues = new double[NofZPlanes()];
-  for (int i=0; i<NofZPlanes(); i++) {
-    newRinValues[i] = fPolyhedra->GetOriginalParameters()->Rmin[i] 
-                    * ConvertRadiusFactor();
-  }		    
+  int nofZPlanes = NofZPlanes();
+  if (nofZPlanes > fgkMaxNofZPlanes) {
+    nofZPlanes = fgkMaxNofZPlanes;
+    std::cerr << "+++ Warning  +++" << std::endl; 
+    std::cerr << "    Number of Zplanes > size of buffer." << std::endl;
+    std::cerr << "    only " << nofZPlanes << " values are returned." << std::endl;
+  }  
 
-  return newRinValues;
+  for (int i=0; i<nofZPlanes; i++) {
+    fgRinBuffer[i] = fPolyhedra->GetOriginalParameters()->Rmin[i];
+    fgRinBuffer[i] *= ConvertRadiusFactor();
+    fgRinBuffer[i] *= ClhepVGM::Units::Length();
+  }  
+
+  return fgRinBuffer;
 }  
 
 //_____________________________________________________________________________
 double* Geant4GM::Polyhedra::OuterRadiusValues() const
 {
-  double* newRoutValues = new double[NofZPlanes()];
-  for (int i=0; i<NofZPlanes(); i++) {
-    newRoutValues[i] = fPolyhedra->GetOriginalParameters()->Rmax[i] 
-                     * ConvertRadiusFactor();
-  }  		     
+  int nofZPlanes = NofZPlanes();
+  if (nofZPlanes > fgkMaxNofZPlanes) {
+    nofZPlanes = fgkMaxNofZPlanes;
+    std::cerr << "+++ Warning  +++" << std::endl; 
+    std::cerr << "    Number of Zplanes > size of buffer." << std::endl;
+    std::cerr << "    only " << nofZPlanes << " values are returned." << std::endl;
+  }  
 
-  return newRoutValues;
+  for (int i=0; i<nofZPlanes; i++) {
+    fgRoutBuffer[i] = fPolyhedra->GetOriginalParameters()->Rmax[i];
+    fgRoutBuffer[i] *= ConvertRadiusFactor();
+    fgRoutBuffer[i] *= ClhepVGM::Units::Length();
+  }  
+
+  return fgRoutBuffer;
 }  
