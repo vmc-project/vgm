@@ -135,13 +135,7 @@ void XmlVGM::VExporter::ProcessPositions(VGM::IVolume* volume)
       VGM::ISolid* dSolid = dPlacement->Volume()->Solid();
       if (dSolid->Type() == VGM::kBoolean) {
       
-	VGM::IBooleanSolid* boolSolid
-	  = dynamic_cast<VGM::IBooleanSolid*>(dSolid);
-        VGM::Transform transform = boolSolid->Displacement();
-        std::string name = fMaps.AddPosition(transform);
-	
-	if (name != "")
-	  fWriter->WritePosition(name, transform);
+	ProcessPositionsInBoolean(dSolid);  
       }	
 
       std::string dVolumeName = dPlacement->Volume()->Name();
@@ -151,6 +145,32 @@ void XmlVGM::VExporter::ProcessPositions(VGM::IVolume* volume)
       }	
     }
   }  
+}  
+
+//_____________________________________________________________________________
+void XmlVGM::VExporter::ProcessPositionsInBoolean(VGM::ISolid* solid) 
+{
+// Writes all position in the boolean solid and its constituents
+// (if Booleans too) 
+// ---
+
+   if (solid->Type() != VGM::kBoolean)  return;
+      
+   VGM::IBooleanSolid* boolSolid
+     = dynamic_cast<VGM::IBooleanSolid*>(solid);
+     
+   VGM::Transform transform = boolSolid->Displacement();
+   std::string name = fMaps.AddPosition(transform);
+	
+   if (name != "")
+     fWriter->WritePosition(name, transform);
+
+   // Process constituents
+   VGM::ISolid* solidA = boolSolid->ConstituentSolidA();
+   VGM::ISolid* solidB = boolSolid->ConstituentSolidB();
+   
+   if (solidA->Type() == VGM::kBoolean) ProcessPositionsInBoolean(solidA);
+   if (solidB->Type() == VGM::kBoolean) ProcessPositionsInBoolean(solidB);
 }  
 
 //_____________________________________________________________________________
@@ -184,15 +204,11 @@ void XmlVGM::VExporter::ProcessRotations(VGM::IVolume* volume)
 
       // Displacemnt rotations in Boolean solids
       //
+
       VGM::ISolid* dSolid = dPlacement->Volume()->Solid();
       if (dSolid->Type() == VGM::kBoolean) {
-	VGM::IBooleanSolid* boolSolid
-	  = dynamic_cast<VGM::IBooleanSolid*>(dSolid);
-        VGM::Transform transform = boolSolid->Displacement();
-        std::string name = fMaps.AddRotation(transform);
-
-	if (name != "")
-  	  fWriter->WriteRotation(name, transform);
+      
+	ProcessRotationsInBoolean(dSolid);  
       }	
 
       std::string dVolumeName = dPlacement->Volume()->Name();
@@ -202,6 +218,32 @@ void XmlVGM::VExporter::ProcessRotations(VGM::IVolume* volume)
       }	
     }
   }  
+}  
+
+//_____________________________________________________________________________
+void XmlVGM::VExporter::ProcessRotationsInBoolean(VGM::ISolid* solid) 
+{
+// Writes all rotations in the boolean solid and its constituents
+// (if Booleans too) 
+// ---
+
+   if (solid->Type() != VGM::kBoolean)  return;
+      
+   VGM::IBooleanSolid* boolSolid
+     = dynamic_cast<VGM::IBooleanSolid*>(solid);
+     
+   VGM::Transform transform = boolSolid->Displacement();
+   std::string name = fMaps.AddRotation(transform);
+	
+   if (name != "")
+     fWriter->WriteRotation(name, transform);
+
+   // Process constituents
+   VGM::ISolid* solidA = boolSolid->ConstituentSolidA();
+   VGM::ISolid* solidB = boolSolid->ConstituentSolidB();
+   
+   if (solidA->Type() == VGM::kBoolean) ProcessRotationsInBoolean(solidA);
+   if (solidB->Type() == VGM::kBoolean) ProcessPositionsInBoolean(solidB);
 }  
 
 //_____________________________________________________________________________
