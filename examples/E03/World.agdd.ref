@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<AGDD DTD_version = "v6">
+
+<!-- materials are not yet generated --> 
+
+<section DTD_version = "v6"
+         name        = "World"
+         version     = "$Id$"
+         date        = "Undefined"
+         author      = "VGM AGGD Writer"
+         top_volume  = "World_comp"  >
+
+   <box    name="World"
+      material="Galactic"
+      X_Y_Z="18.0000; 12.0000; 12.0000" />
+
+   <box    name="Calorimeter"
+      material="Galactic"
+      X_Y_Z="15.0000; 10.0000; 10.0000" />
+
+   <box    name="Layer"
+      material="Galactic"
+      X_Y_Z=" 1.5000; 10.0000; 10.0000" />
+
+   <box    name="Absorber"
+      material="Lead"
+      X_Y_Z=" 1.0000; 10.0000; 10.0000" />
+
+   <box    name="Gap"
+      material="liquidArgon"
+      X_Y_Z=" 0.5000; 10.0000; 10.0000" />
+
+
+   <composition name="World_comp">
+      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="Calorimeter"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="Calorimeter_comp"/>
+      </posXYZ>
+   </composition>
+
+   <composition name="Calorimeter_comp">
+      <mposX ncopy="  10"  X0=" -6.7500"  dX="  1.5000"> <volume name="Layer"/>
+      </mposX>
+      <mposX ncopy="  10"  X0=" -6.7500"  dX="  1.5000"> <volume name="Layer_comp"/>
+      </mposX>
+   </composition>
+
+   <composition name="Layer_comp">
+      <posXYZ   X_Y_Z=" -0.2500;   0.0000;   0.0000"> <volume name="Absorber"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="  0.5000;   0.0000;   0.0000"> <volume name="Gap"/>
+      </posXYZ>
+   </composition>
+
+
+</section>
+
+</AGDD>
