@@ -1,16 +1,15 @@
-<?xml version="1.0"?>
-<!DOCTYPE AGDD SYSTEM "AGDD.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
 
-<AGDD>
+<AGDD DTD_version = "v6">
 
 <!-- materials are not yet generated --> 
 
 <section DTD_version = "v6"
          name        = "worldV"
-         version     = "1.0"
+         version     = "$Id$"
          date        = "Undefined"
-         author      = "G4 XML Convertor"
-         top_volume  = "worldV"  >
+         author      = "VGM AGGD Writer"
+         top_volume  = "worldV_comp"  >
 
    <box    name="worldV"
       material="Basic"
@@ -76,21 +75,27 @@
       Rio_Z  ="20.0000; 40.0000; 100.0000" />
 
 
-   <composition name="worldV">
-      <posXYZ      volume="worldV_comp"            X_Y_Z="  0.0000;   0.0000;   0.0000" />
-   </composition>
-
    <composition name="worldV_comp">
-      <posXYZ      volume="boxV"                   X_Y_Z="-1000.0000; -250.0000;   0.0000" />
-      <posXYZ      volume="consV"                  X_Y_Z="-1000.0000; 250.0000;   0.0000" />
-      <posXYZ      volume="paraV"                  X_Y_Z="-833.3333; -250.0000;   0.0000" />
-      <posXYZ      volume="pconeV"                 X_Y_Z="-833.3333; 250.0000;   0.0000" />
-      <posXYZ      volume="phedraV"                X_Y_Z="-666.6667; -250.0000;   0.0000" />
-      <posXYZ      volume="sphereV1"               X_Y_Z="-666.6667; 250.0000;   0.0000" />
-      <posXYZ      volume="torusV"                 X_Y_Z="-500.0000; -250.0000;   0.0000" />
-      <posXYZ      volume="trapV"                  X_Y_Z="-500.0000; 250.0000;   0.0000" />
-      <posXYZ      volume="trdV"                   X_Y_Z="-333.3333; -250.0000;   0.0000" />
-      <posXYZ      volume="tubsV"                  X_Y_Z="-333.3333; 250.0000;   0.0000" />
+      <posXYZ   X_Y_Z="-1000.0000; -250.0000;   0.0000"> <volume name="boxV"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-1000.0000; 250.0000;   0.0000"> <volume name="consV"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-833.3333; -250.0000;   0.0000"> <volume name="paraV"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-833.3333; 250.0000;   0.0000"> <volume name="pconeV"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-666.6667; -250.0000;   0.0000"> <volume name="phedraV"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-666.6667; 250.0000;   0.0000"> <volume name="sphereV1"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-500.0000; -250.0000;   0.0000"> <volume name="torusV"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-500.0000; 250.0000;   0.0000"> <volume name="trapV"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-333.3333; -250.0000;   0.0000"> <volume name="trdV"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-333.3333; 250.0000;   0.0000"> <volume name="tubsV"/>
+      </posXYZ>
    </composition>
 
 
