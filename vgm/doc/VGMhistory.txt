@@ -2,6 +2,15 @@ $Id$
 
  The Virtual Geometry Model - Versions
 =========================================
+  08/03/2005
+  version 2.03    (public version)
+               Port to gcc 3.4.2 (FC3);
+	       AGDD exporter upgraded to the new version of AGDD schema;
+	       fix in importing media in RootGM.
+	       
+	       Tested with  CLHEP 1.8.1.0, Root 4.03/02, Geant4 7.0;
+	       gcc 3.2.2 and gcc 3.4.2. 
+
   28/01/2005
   version 2.02    (public version) 
                Modifications in VGM interface needed
