@@ -1,0 +1,63 @@
+#
+# ------ GNU/LINUX ------ gcc 2.95.2
+#
+ifeq ($(VGM_SYSTEM),Linux-g++)
+  CXX       := g++
+  GNU_GCC = 1
+  CXXFLAGS  := -W -Wall -Woverloaded-virtual -ansi -pedantic -pipe -fno-for-scope -DGNU_GCC
+  ifdef VGM_OPTIMISE
+    CXXFLAGS  += -O2
+    FCFLAGS   := -O
+    CCFLAGS   := -O2
+  else
+    ifdef VGM_DEBUG
+      CXXFLAGS  += -g
+      FCFLAGS   := -g
+      CCFLAGS   := -g
+    endif
+  endif
+  ifdef VGM_PROFILE
+    CXXFLAGS  += -pg
+    FCFLAGS   += -pg
+    CCFLAGS   += -pg
+  endif
+  ifdef VGM_LIB_BUILD_SHARED
+    CXXFLAGS  += -fPIC
+    FCFLAGS   += -fPIC
+    CCFLAGS   += -fPIC
+  endif
+  VGM_RUNPATHOPTION := -Wl,-rpath 
+  FC := g77
+  FCFLAGS += -fno-automatic -fno-backslash -fno-second-underscore
+  FCLIBS := -lg2c -lnsl
+  ECHO    := /bin/echo -e
+  SHEXT   := so
+  X11FLAGS  := -I/usr/include/X11/extensions -I/usr/include/X11
+  X11LIBS   := -L/usr/X11R6/lib  -lXmu -lXt -lXext -lX11 -lSM -lICE
+  XMFLAGS   := -I/usr/X11R6/include
+  XMLIBS    := -lXm -lXpm
+  DLDLIBS   := -ldl
+  ifndef OGLFLAGS
+    ifneq ($(OGLHOME), /usr) 
+      OGLFLAGS  := -I$(OGLHOME)/include 
+    endif  
+  endif
+  ifndef OGLLIBS
+    OGLLIBS   := -L$(OGLHOME)/lib -lGLU -lGL
+  endif
+  OIVFLAGS  += -I$(OIHOME)/include 
+  VGM_USE_STD_NAMESPACE := yes
+  CPPFLAGS += -DVGM_USE_STD_NAMESPACE
+  define build-granular-shared-lib
+    @libdir=`(cd $(@D);/bin/pwd)`; \
+     cd $(VGM_TMPDIR); \
+     $(CXX) -Wl,-soname,$(@F) -shared -o $$libdir/$(@F) *.o
+  endef
+  define build-global-shared-lib
+    @libdir=`(cd $(@D);/bin/pwd)`; \
+     cd $(VGM_TMP)/$(VGM_SYSTEM); \
+     $(CXX) -Wl,-soname,$(@F) -shared -o $$libdir/$(@F) \
+                    $(foreach dir,$(SUBLIBS),$(dir)/*.o);
+  endef
+
+endif
