@@ -87,6 +87,7 @@ namespace XmlVGM {
       
       VGM::ThreeVector Origin()   const;
       VGM::Rotation    Identity() const;
+      bool             IsIdentity(const VGM::Rotation& rotation) const;
 
       // static data members
       static const std::string fgkUndefinedFileName; //default value of file name
@@ -105,6 +106,7 @@ namespace XmlVGM {
       //
       void   CutName(std::string& name) const;
       double Round(double number) const;
+      VGM::Rotation  Purify(const VGM::Rotation& rotation) const;
  
       std::string  AddPositionToMap(const VGM::ThreeVector& position);
       std::string  AddRotationToMap(const VGM::Rotation& rotation);
