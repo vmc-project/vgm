@@ -62,7 +62,7 @@ namespace VGM {
 
       virtual const IElement*   Element(const std::string& name) const = 0;	
       virtual const IMaterial*  Material(const std::string& name) const = 0;	
-      virtual const IMedium*    Media(const std::string& name) const = 0;	
+      virtual const IMedium*    Medium(const std::string& name) const = 0;	
 
       // import/export
       //
