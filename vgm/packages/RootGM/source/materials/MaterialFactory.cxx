@@ -227,7 +227,7 @@ bool RootGM::MaterialFactory::Import()
 
   TList* media = gGeoManager->GetListOfMedia();
   TIter next2(media);
-  while (TObject *obj = next()) {
+  while (TObject *obj = next2()) {
     TGeoMedium* medium = (TGeoMedium*)obj;    
     ImportMedium(medium);
   }
