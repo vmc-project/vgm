@@ -25,6 +25,7 @@ namespace VGM {
       // methods
       virtual std::string  Name() const = 0;
       virtual std::string  MaterialName() const = 0;
+      virtual std::string  MediumName() const = 0;
 
       virtual ISolid*      Solid() const = 0;
       virtual int          NofDaughters() const = 0;
