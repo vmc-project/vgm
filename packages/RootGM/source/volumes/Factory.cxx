@@ -600,11 +600,11 @@ RootGM::Factory::CreateUnionSolid(
 VGM::IVolume* 
 RootGM::Factory::CreateVolume(const std::string& name, 
                               VGM::ISolid* solid, 
-                              const std::string& materialName)
+                              const std::string& mediumName)
 {
 //
   VGM::IVolume* volume
-    = new RootGM::Volume(name, solid, materialName);
+    = new RootGM::Volume(name, solid, mediumName);
 
   VolumeStore().push_back(volume);
   return volume;

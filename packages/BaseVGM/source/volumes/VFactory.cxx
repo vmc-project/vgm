@@ -268,7 +268,7 @@ BaseVGM::VFactory::ExportVolumeStore(VGM::IFactory* factory) const
     VGM::IVolume* newVolume 
       = factory->CreateVolume(volume->Name(), 
                               solid, 
-		   	      volume->MaterialName());
+			      volume->MediumName());
 			     
     // Map new volume to old volume
     (*volumeMap)[volume] = newVolume;			     

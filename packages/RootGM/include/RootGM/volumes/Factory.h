@@ -102,7 +102,7 @@ namespace RootGM {
       virtual VGM::IVolume* CreateVolume(
                                  const std::string& name, 
                                  VGM::ISolid* solid, 
-                                 const std::string& materialName);
+                                 const std::string& mediumName);
 
       // placements
       //

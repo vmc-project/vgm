@@ -93,7 +93,7 @@ namespace VGM {
       virtual IVolume* CreateVolume(
                                const std::string& name, 
                                ISolid* solid, 
-                               const std::string& materialName) = 0;
+                               const std::string& mediumName) = 0;
 
       // placements
       //

@@ -34,6 +34,8 @@
 #include "Geant4GM/volumes/Volume.h"
 #include "Geant4GM/volumes/Placement.h"
 #include "Geant4GM/materials/MaterialFactory.h"
+#include "Geant4GM/materials/Medium.h"
+#include "Geant4GM/materials/Material.h"
 #include "Geant4GM/solids/SolidMap.h"
 #include "Geant4GM/solids/BooleanSolid.h"
 #include "Geant4GM/solids/Box.h"
@@ -234,7 +236,8 @@ Geant4GM::Factory::ImportLV(G4LogicalVolume* lv)
   VGM::ISolid* solid = ImportSolid(lv->GetSolid());
     
   // Create vgm volume 
-  VGM::IVolume* volume = new Geant4GM::Volume(solid,lv);
+  VGM::IVolume* volume 
+    = new Geant4GM::Volume(solid, lv, lv->GetMaterial()->GetName());
   VolumeStore().push_back(volume);
   return volume;
 }
@@ -657,11 +660,27 @@ Geant4GM::Factory::CreateUnionSolid(
 VGM::IVolume* 
 Geant4GM::Factory::CreateVolume(const std::string& name, 
                                 VGM::ISolid* solid, 
-                                const std::string& materialName)
+                                const std::string& mediumName)
 {
 //
+  // Get material name from medium
+  const VGM::IMedium* medium = MaterialFactory()->Medium(mediumName);
+  if (!medium) {
+    std::cerr << "Geant4GM::Factory::CreateVolume: " << std::endl; 
+    std::cerr << "   Medium " << mediumName << " not found." << std::endl; 
+    exit(1);
+  }  
+  const VGM::IMaterial* material = medium->Material();
+  if (!material) {
+    std::cerr << "Geant4GM::Factory::CreateVolume: " << std::endl; 
+    std::cerr << "   No material is defined for medium " << mediumName << std::endl; 
+    exit(1);
+  }  
+  std::string materialName = material->Name();
+
+
   VGM::IVolume* volume 
-    = new Geant4GM::Volume(name, solid, materialName);
+    = new Geant4GM::Volume(name, solid, materialName, mediumName);
     
   VolumeStore().push_back(volume);
   return volume;
