@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup BaseVGM_solids
 //
-// Class VPara
-// ---------------
-// The ABC for para solids.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class BaseVGM::VPara
+///
+/// The ABC for para solids.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef BASE_VGM_V_PARA_H
 #define BASE_VGM_V_PARA_H

@@ -21,7 +21,12 @@ Geant4GM::Element::Element(const std::string& name,
     fElement( new G4Element(name, symbol, z, 
                             a / ClhepVGM::Units::AtomicWeight()) )    			       			  
 {
-  // Create element if 
+/// Standard constructor to define element from parameters 
+/// \param name its name
+///	   (must be unique in the factory)
+/// \param symbol its symbol
+/// \param z the effective atomic number
+/// \param a the effective mass of a mole in g/mole 
 
   // Register element in the map
   ElementMap::Instance()->AddElement(this, fElement); 
@@ -32,11 +37,26 @@ Geant4GM::Element::Element(G4Element* element)
   : VGM::IElement(),
     fElement(element)
 {
-//
+/// Standard constructor to define element from the G4 object
+
   // Register element in the map
   ElementMap::Instance()->AddElement(this, fElement); 
 }
 			   
+//_____________________________________________________________________________
+Geant4GM::Element::Element() 
+  : VGM::IElement() 
+{
+/// Protected default constructor
+}  
+
+//_____________________________________________________________________________
+Geant4GM::Element::Element(const Element& rhs) 
+  : VGM::IElement(rhs) 
+{
+/// Protected copy constructor
+}
+
 //_____________________________________________________________________________
 Geant4GM::Element::~Element() {
 //

@@ -39,8 +39,9 @@ RootGM::Factory::Factory()
   : VGM::IFactory(),
     BaseVGM::VFactory("Root_GM_Factory",      
                      new RootGM::MaterialFactory()),
-    fTop(0) {
-//
+    fTop(0) 
+{
+/// Standard default constructor
   
   if (!gGeoManager)
     new TGeoManager("VGM Root geometry", "VGM Root geometry");  
@@ -51,7 +52,7 @@ RootGM::Factory::Factory(const Factory& rhs)
   : VGM::IFactory(rhs),
     BaseVGM::VFactory(rhs) 
 {
-//
+/// Protected copy constructor
 }      
 
 //_____________________________________________________________________________
@@ -77,8 +78,7 @@ void RootGM::Factory::ImportConstituentSolid(
                                   int index, 
                                   TGeoCompositeShape* solid)
 {
-// Imports constituents of Root Boolean solid into VGM
-// ---
+/// Import constituents of Root Boolean solid into VGM
 
   TGeoShape* consSolid 
     = RootGM::BooleanSolid::GetConstituentSolid(index, solid);
@@ -91,8 +91,7 @@ void RootGM::Factory::ImportConstituentSolid(
 VGM::ISolid* 
 RootGM::Factory::ImportSolid(TGeoShape* shape)
 {
-// Converts TGeo shape into VGM solid
-// ---
+/// Convert TGeo shape into VGM solid
 
   // Do not import the same solid twice
   //
@@ -250,8 +249,7 @@ RootGM::Factory::ImportVolume(TGeoVolume* rootVolume)
 //_____________________________________________________________________________
 void RootGM::Factory::ImportDaughters(TGeoVolume* rootVolume)
 {
-// Imports recursively all daughters volumes.
-// ---
+/// Imports recursively all daughters volumes
 
   if (Debug()) {
     BaseVGM::DebugInfo();
@@ -280,8 +278,7 @@ void RootGM::Factory::ImportDaughters(TGeoVolume* rootVolume)
 void RootGM::Factory::ImportPlacements(const TGeoVolume* rootVolume, 
                                        VGM::IVolume* volume)
 {
-// Builds Root geometry for the daughters of the specified volume.
-// ---
+/// Build Root geometry for the daughters of the specified volume
 
   for (int i=0; i<rootVolume->GetNdaughters(); i++) {
     
@@ -307,8 +304,7 @@ void RootGM::Factory::ImportPlacements(const TGeoVolume* rootVolume,
 void RootGM::Factory::ImportDivision(const TGeoVolume* rootVolume,
                                      VGM::IVolume* volume)
 {
-// Import division
-// ---
+/// Import division
 
   // Get  pattern finder
   TGeoPatternFinder* finderNonConst = rootVolume->GetFinder();    
@@ -334,8 +330,7 @@ void RootGM::Factory::ImportDivision(const TGeoVolume* rootVolume,
 //_____________________________________________________________________________
 void RootGM::Factory::ImportPositions()
 {
-// Imports placements for all volumes imported.
-// ---
+/// Imports placements for all volumes imported
 
   if (Debug()>0) {
     BaseVGM::DebugInfo();
@@ -379,9 +374,8 @@ bool RootGM::Factory::Import(void* topVolume)
 //_____________________________________________________________________________
 bool RootGM::Factory::IsDivided(const TGeoVolume* volume) const
 {
-// Returns true if the volume is divided
-// and division is known to VGM.
-// ---
+/// Returns true if the volume is divided
+/// and division is known to VGM.
 
   // Check if division is present
   const TGeoPatternFinder* finder = volume->GetFinder();    
@@ -703,8 +697,7 @@ RootGM::Factory::CreateMultiplePlacement(
 VGM::IPlacement* 
 RootGM::Factory::Top() const 
 {
-// Returns the top volume
-// ---
+/// Returns the top volume (VGM placement)
 
   return fTop;
 }  		       
@@ -713,8 +706,7 @@ RootGM::Factory::Top() const
 TGeoVolume*  
 RootGM::Factory:: World() const
 {
-// Returns the world volume (Root volume)
-// ---
+/// Returns the world volume (Root volume)
 
   //return (RootGM::PlacementMap::Instance()->GetPlacement(fTop))->GetVolume();
   return RootGM::VolumeMap::Instance()->GetVolume(fTop->Volume());
@@ -724,8 +716,7 @@ RootGM::Factory:: World() const
 //_____________________________________________________________________________
 bool RootGM::Factory::Import(TGeoVolume* topVolume)
 {
-// Imports Root geometry
-// ---
+/// Import Root native geometry
 
 
   if (Debug()>0) {

@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup Geant4GM_volumes
 //
-// Class Factory
-// ---------------
-// VGM factory for Geant4.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class Geant4GM::Factory
+///
+/// VGM factory for Geant4.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef GEANT4_GM_FACTORY_H
 #define GEANT4_GM_FACTORY_H

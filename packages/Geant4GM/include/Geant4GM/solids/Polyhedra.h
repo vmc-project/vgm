@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup Geant4GM_solids
 //
-// Class Polyhedra
-// -------------------
-// VGM implementation for Geant4 polyhedra solid.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class Geant4GM::Polyhedra
+///
+/// VGM implementation for Geant4 polyhedra solid.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef GEANT4_GM_POLYHEDRA_H
 #define GEANT4_GM_POLYHEDRA_H

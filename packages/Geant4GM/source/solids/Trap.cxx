@@ -41,7 +41,32 @@ Geant4GM::Trap::Trap(const std::string& name,
 		     dx4    / ClhepVGM::Units::Length(), 
 		     alpha2 / ClhepVGM::Units::Angle()) )
 {
-// 
+/// Standard constructor to define trap from parameters
+/// ( Note that of the 11 parameters described below, only 9 
+///   are really independent)
+/// \param hz half-length along the z axis in mm
+/// \param theta polar angle of the line joining the centres
+///	   of the faces at -hz and +hz in deg
+/// \param phi azimuthal angle of the line joining the centres
+///	   of the faces at -hz and +hz in deg
+/// \param dy1 half-length along y of the face at -hz in mm
+/// \param dx1 half-length along x of the side at -hy 
+///	   of the face at -hz in mm
+/// \param dx2 half-length along x of the side at +hy
+///	   of the face at +hz in mm
+/// \param alpha1  angle with respect to the y axis from the 
+///	   centre of the side at -hy to the centre at +hy
+///	   of the face at -hz
+/// \param dy2 half-length along y of the face at +hz in mm
+/// \param dx3 half-length along x of the side at -hy 
+///	   of the face at +hz in mm
+/// \param dx4 half-length along x of the side at +hy
+///	   of the face at +hz in mm
+/// \param alpha1  angle with respect to the y axis from the 
+///	   centre of the side at -hy to the centre at +hy
+///	   of the face at +hz
+
+
   Geant4GM::SolidMap::Instance()->AddSolid(this, fTrap); 
 }
 
@@ -55,6 +80,8 @@ Geant4GM::Trap::Trap(G4Trap* trap,
     fIsReflected(false),
     fTrap(trap)
 {    
+/// Standard constructor to define trap from G4 object
+
   if (reflTrap) {
     fIsReflected = true;
     Geant4GM::SolidMap::Instance()->AddSolid(this, reflTrap);
@@ -69,7 +96,7 @@ Geant4GM::Trap::Trap()
     VGM::ITrap(),
     BaseVGM::VTrap() 
 {
-//
+/// Protected default constructor
 }
 
 //_____________________________________________________________________________
@@ -78,7 +105,7 @@ Geant4GM::Trap::Trap(const Trap& rhs)
     VGM::ITrap(rhs),
     BaseVGM::VTrap(rhs) 
 {
-//
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________

@@ -1,11 +1,11 @@
 // $Id$
-// Category: basic
+/// \ingroup BaseVGM_volumes
 //
-// Class VVolume
-// ---------------
-// The abstract base class for volumes.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class BaseVGM::VVolume
+///
+/// The abstract base class for volumes.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef BASE_VGM_V_VOLUME_H
 #define BASE_VGM_V_VOLUME_H
@@ -38,8 +38,8 @@ namespace BaseVGM {
       virtual void  AddDaughter(VGM::IPlacement* daughter);
     
     protected:   
-      VVolume() : VGM::IVolume() {} 
-      VVolume(const VVolume& rhs) : VGM::IVolume(rhs) {}
+      VVolume();
+      VVolume(const VVolume& rhs);
 
     private:
       VGM::ISolid*  fSolid;

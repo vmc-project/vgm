@@ -29,7 +29,13 @@ Geant4GM::BooleanSolid::BooleanSolid(
     BaseVGM::VBooleanSolid(),
     fBooleanSolid(0) 
 {
-//  
+/// Standard constructor to define Boolean solids via constituents
+/// \param boolType type of Boolean operation (kIntersection, kSubtraction,
+///        kUnion)
+/// \param solidA, solidB constituent solids
+/// \param rotation, translation  the CLHEP rotation and translation of
+///        the solidB with respect to solidA
+
   // Get solids from the volumes map
   G4VSolid* g4SolidA = Geant4GM::SolidMap::Instance()->GetSolid(solidA);
   G4VSolid* g4SolidB = Geant4GM::SolidMap::Instance()->GetSolid(solidB);
@@ -69,7 +75,8 @@ Geant4GM::BooleanSolid::BooleanSolid(G4BooleanSolid* booleanSolid)
     BaseVGM::VBooleanSolid(),
     fBooleanSolid(booleanSolid) 
 {
-//  
+/// Standard constructor to define Boolean solid via G4 object 
+  
   Geant4GM::SolidMap::Instance()->AddSolid(this, fBooleanSolid); 
 }
 
@@ -79,7 +86,7 @@ Geant4GM::BooleanSolid::BooleanSolid()
     VGM::IBooleanSolid(),
     BaseVGM::VBooleanSolid() 
 {
-//
+/// Protected default constructor
 }
 
 //_____________________________________________________________________________
@@ -88,7 +95,7 @@ Geant4GM::BooleanSolid::BooleanSolid(const BooleanSolid& rhs)
     VGM::IBooleanSolid(rhs),
     BaseVGM::VBooleanSolid(rhs) 
 {
-//
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________
@@ -196,7 +203,7 @@ Geant4GM::BooleanSolid::GetConstituentSolid(
                               G4BooleanSolid* booleanSolid)
 {
 // Returns the constituent solid specified by index,
-// in the constituent solid is displaced solid, returns
+// if the constituent solid is displaced solid, returns
 // its moved constituent
 // ---
 

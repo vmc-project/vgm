@@ -21,7 +21,7 @@ const int Geant4GM::Medium::fgkParamSize = 20;
 Geant4GM::Medium::Medium(const std::string& name, 
                          int mediumId,
                          VGM::IMaterial* material,
-                         int nofParameters, double* parameters)
+                         int nofParameters, double* parameters)			 
   : VGM::IMedium(),
     BaseVGM::VMedium(material),
     fName(name),
@@ -29,6 +29,14 @@ Geant4GM::Medium::Medium(const std::string& name,
     fId(mediumId),
     fParameters(new G4double[fgkParamSize])
 {
+/// Standard constructor to define medium from parameters 
+/// \param name its name
+///	   (must be unique in the factory)
+/// \param mediumId its unique identifier
+/// \param material associated material
+/// \param nofParameters number of defined parameters
+/// \param parameters array of parameters
+
   for (G4int i=0; i<fgkParamSize; i++) {
     if (i<nofParameters) 
       fParameters[i] = parameters[i];
@@ -42,7 +50,7 @@ Geant4GM::Medium::Medium()
   : VGM::IMedium(),
     BaseVGM::VMedium() 
 {
-//
+/// Protected default constructor
 }  
 
 //_____________________________________________________________________________
@@ -50,7 +58,7 @@ Geant4GM::Medium::Medium(const Medium& rhs)
   : VGM::IMedium(rhs),
     BaseVGM::VMedium(rhs) 
 {
-//
+/// Protected copy constructor
 }
     
 //_____________________________________________________________________________

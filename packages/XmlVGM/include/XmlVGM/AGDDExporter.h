@@ -1,11 +1,12 @@
 // $Id$
+/// \ingroup XmlVGM
 //
-// Class AGDDExporter
-// -------------------
-// Class for generation of geometry data files in XML,
-// in the AGDD XML format.
-//
-// Author: I. Hrivnacova, 19.1.2004
+/// \class XmlVGM::AGDDExporter
+///
+/// Class for generation of geometry data files in XML,
+/// in the AGDD XML format.
+///
+/// Author: I. Hrivnacova, 19.1.2004
 
 #ifndef XML_VGM_AGDD_EXPORTER_H
 #define XML_VGM_AGDD_EXPORTER_H
@@ -22,10 +23,12 @@ namespace XmlVGM {
     public:
       AGDDExporter(const VGM::IFactory* factory);
       // --> protected
+      // AGDDExporter();
       // AGDDExporter(const AGDDExporter& right);
       virtual ~AGDDExporter();
 
     protected:
+      AGDDExporter();
       AGDDExporter(const AGDDExporter& right);
 
       // operators

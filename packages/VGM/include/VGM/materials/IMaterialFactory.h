@@ -1,11 +1,12 @@
 // $Id$
+/// \ingroup VGM_materials
 //
-// Class IMaterialFactory
-// ------------------------
-// The VGM interface to material factory providing
-// functions for material conversions.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class VGM::IMaterialFactory
+///
+/// The VGM interface to material factory providing
+/// functions for material conversions.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef VGM_I_MATERIAL_FACTORY_H
 #define VGM_I_MATERIAL_FACTORY_H
@@ -31,53 +32,119 @@ namespace VGM {
       //
       // methods
       //
+                          /// Create a chemical element
+		          /// \param name its name
+			  ///        (must be unique in the factory)
+		          /// \param symbol its symbol
+		          /// \param z the effective atomic number
+		          /// \param a the effective mass of a mole in g/mole 
+			  /// 
       virtual IElement*   CreateElement(
                                  const std::string& name,      
                                  const std::string& symbol,      
                                  double z, double a) = 0;
 
+                          /// Create a material
+		          /// \param name its name 
+			  ///        (must be unique in the factory)
+			  /// \param density in g/cm3
+			  /// \param element element constituing this material
+			  /// \param radlen radiation length in mm
+			  /// \param intlen nuclear interaction length in mm
+			  ///
       virtual IMaterial*  CreateMaterial(
                                  const std::string& name, 
 	  		         double density, 
-			         IElement* element,     
+			         VGM::IElement* element,     
 			         double radlen, double intlen) = 0;
+
+                          /// Create a compound material
+		          /// \param name its name
+			  ///        (must be unique in the factory)
+			  /// \param density in g/cm3
+			  /// \param elements vector of elements constituing 
+			  ///        this material
+			  /// \param fractions vector of mass fractions of
+			  ///        elements constituing this material
+			  ///
       virtual IMaterial*  CreateMaterial(
                                  const std::string& name, 
                                  double density,
-			         const ElementVector& elements,
-                                 const MassFractionVector& fractions) = 0;
+			         const VGM::ElementVector& elements,
+                                 const VGM::MassFractionVector& fractions) = 0;
 
+                          /// Create a tracking medium
+		          /// \param name its name
+			  ///        (must be unique in the factory)
+			  /// \param mediumId its unique identifier
+			  /// \param material associated material
+			  /// \param nofParameters number of defined parameters
+			  /// \param parameters array of parameters
+			  ///
       virtual IMedium*    CreateMedium(
                                  const std::string& name,
                                  int mediumId,
-			         IMaterial* material,
+			         VGM::IMaterial* material,
 			         int nofParameters,
 			         double* parameters) = 0;      
     
-      // access  
+      //
+      // access 
+      // 
+	                              ///
+                                      /// Return the name of this factory
       virtual std::string Name() const = 0;
+	                             ///
+                                     /// Return the store of elements
       virtual const ElementStore&   Elements() const = 0;	
+	                             ///
+                                     /// Return the store of materials
       virtual const MaterialStore&  Materials() const = 0;	
+	                             ///
+                                     /// Return the store of media
       virtual const MediumStore&    Media() const = 0;	
 
-      virtual const IElement*   Element(const std::string& name) const = 0;	
-      virtual const IMaterial*  Material(const std::string& name) const = 0;	
-      virtual const IMedium*    Medium(const std::string& name) const = 0;	
+	                            ///
+                                    /// Return element specified by name
+      virtual const IElement*  Element(const std::string& name) const = 0;	
+	                            ///
+                                    /// Return material specified by name
+      virtual const IMaterial* Material(const std::string& name) const = 0;	
+	                            ///
+                                    /// Return medium specified by name
+      virtual const IMedium*   Medium(const std::string& name) const = 0;	
 
+      //
       // import/export
       //
+                     ///
+                     /// Import native materials
       virtual bool Import() = 0;			       
-      virtual bool Export(IMaterialFactory* factory) const = 0;			       
+                     ///
+                     /// Export materials to the specified material factory
+     virtual bool  Export(IMaterialFactory* factory) const = 0;			       
 
+      //
       // listings
       //
+	             ///
+                     /// Print all elements
       virtual void PrintElements() const = 0;			       
+	             ///
+                     /// Print all materials
       virtual void PrintMaterials() const = 0;			       
+	             ///
+                     /// Print all media
       virtual void PrintMedia() const = 0;			       
 
+      //
       // debug
       //
+	             ///
+                     /// Set the debug level
       virtual void SetDebug (int debug) = 0;			       
+	             ///
+                     /// Return the debug level
       virtual int  Debug() const = 0;
   };
 }  

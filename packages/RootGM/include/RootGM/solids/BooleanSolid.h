@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup RootGM_solids
 //
-// Class BooleanSolid
-// ---------------------
-// VGM implementation for Root Boolean solid
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class RootGM:: BooleanSolid
+///
+/// VGM implementation for Root Boolean solid
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef ROOT_GM_BOOLEAN_SOLID_H
 #define ROOT_GM_BOOLEAN_SOLID_H

@@ -1,11 +1,12 @@
 // $Id$
+/// \ingroup XmlVGM
 //
-// Author: I. Hrivnacova, 31.03.2004 
-//
-// Class GDMLWriter
-// ----------------------
-// The implementation of the interface for the XML writer that
-// writes VGM geometry objects to XML defined by GDML scheme.
+/// \class XmlVGM::GDMLWriter
+///
+/// The implementation of the interface for the XML writer that
+/// writes VGM geometry objects to XML defined by GDML scheme.
+///
+/// Author: I. Hrivnacova, 31.03.2004 
 
 #ifndef XML_VGM_GDML_WRITER_H
 #define XML_VGM_GDML_WRITER_H
@@ -114,6 +115,9 @@ namespace XmlVGM {
       virtual double GetNumWidth() const;
       virtual double GetNumPrecision() const;
 
+    protected:
+       GDMLWriter(const GDMLWriter& rhs); 
+
     private:
       // types
       //
@@ -203,7 +207,8 @@ inline double XmlVGM::GDMLWriter::MassDensityUnit() const
 { return  1.; }   // g/cm3
  
 inline void XmlVGM::GDMLWriter::SetMaps(Maps* maps)
-{ fMaps = maps; }
+{ /// Set the name maps
+  fMaps = maps; }
 
 inline void XmlVGM::GDMLWriter::SetNumWidth(int width)
 { fNW = width; }

@@ -30,7 +30,22 @@ BaseVGM::VMedium::VMedium(VGM::IMaterial* material)
   : VGM::IMedium(),
     fMaterial(material)
 {
-//
+/// Standard constructor
+}
+
+
+//_____________________________________________________________________________
+BaseVGM::VMedium::VMedium() 
+  : VGM::IMedium() 
+{
+/// Protected default constructor
+}
+
+//_____________________________________________________________________________
+BaseVGM::VMedium::VMedium(const VMedium& rhs) 
+  : VGM::IMedium(rhs)
+{
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________

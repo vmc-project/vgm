@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup RootGM_solids
 //
-// Class Sphere
-// ---------------
-// VGM implementation for Root sphere solid.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class RootGM:: Sphere
+///
+/// VGM implementation for Root sphere solid.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef ROOT_GM_SPHERE_H
 #define ROOT_GM_SPHERE_H

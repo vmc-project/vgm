@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup BaseVGM_common
 //
-// BaseVGM utilities
-// -----------------
-// Utility functions 
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// BaseVGM utilities
+/// 
+/// Utility functions 
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef BASE_VGM_UTILITIES_H
 #define BASE_VGM_UTILITIES_H

@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup Geant4GM_materials
 //
-// Class ElementMap
-// ------------------
-// The map between VGM and Geant4 elements.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class Geant4GM::ElementMap
+///
+/// The map between VGM and Geant4 elements.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef GEANT4_GM_ELEMENT_MAP_H
 #define GEANT4_GM_ELEMENT_MAP_H
@@ -43,9 +44,10 @@ namespace Geant4GM {
       G4Element*     GetElement(VGM::IElement* iElement) const;
       VGM::IElement* GetElement(G4Element* g4Element) const;
 
-    private:
-      ElementMap(const ElementMap&) {}
+    protected:
+      ElementMap(const ElementMap&);
 
+    private:
       // static data members
       static ElementMap*  fgInstance;
   

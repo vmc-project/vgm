@@ -24,7 +24,17 @@ RootGM::Trd::Trd(const std::string& name,
 		      hz  / RootGM::Units::Length())),
     fIsOwner(false)
 {
-// 
+/// Standard constructor to define trd from parameters
+/// \param hx1 half-length along x at the surface positioned 
+///	       at -hz in mm 
+/// \param hx2 half-length along x at the surface positioned 
+///	       at +hz in mm 
+/// \param hy1 half-length along y at the surface positioned 
+///	       at -hz in mm 
+/// \param hy2 half-length along y at the surface positioned 
+///	       at +hz in mm 
+/// \param hz half-length along the z axis in mm 
+
   RootGM::SolidMap::Instance()->AddSolid(this, fTrd); 
 }
 
@@ -37,6 +47,8 @@ RootGM::Trd::Trd(TGeoTrd2* trd)
     fTrd(trd),
     fIsOwner(false)
 {    
+/// Standard constructor to define trd from Root Trd2 object
+
   RootGM::SolidMap::Instance()->AddSolid(this, fTrd); 
 }
 
@@ -52,6 +64,8 @@ RootGM::Trd::Trd(TGeoTrd1* trd)
     fIsOwner(true)
 		      
 {    
+/// Standard constructor to define trd from Root Trd1 object
+
   RootGM::SolidMap::Instance()->AddSolid(this, trd); 
 }
 
@@ -61,7 +75,7 @@ RootGM::Trd::Trd()
     VGM::ITrd(),
     BaseVGM::VTrd() 
 {
-//
+/// Protected default constructor
 }
 
 //_____________________________________________________________________________
@@ -70,7 +84,7 @@ RootGM::Trd::Trd(const Trd& rhs)
     VGM::ITrd(rhs),
     BaseVGM::VTrd(rhs) 
 {
-//
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________

@@ -1,12 +1,13 @@
 // $Id$
+/// \ingroup XmlVGM
 //
-// Class AGDDWriter
-// ---------------------
-// The implementation of the interface for the XML writer that
-// writes VGM geometry objects to XML defined by AGDD.dtd
-// (ATLAS Generic Detector Description)
-//
-// Author: I. Hrivnacova, 16.01.2004 
+/// \class XmlVGM::AGDDWriter
+///
+/// The implementation of the interface for the XML writer that
+/// writes VGM geometry objects to XML defined by AGDD.dtd
+/// (ATLAS Generic Detector Description)
+///
+/// Author: I. Hrivnacova, 16.01.2004 
 
 #ifndef XML_VGM_AGDD_WRITER_H
 #define XML_VGM_AGDD_WRITER_H
@@ -113,14 +114,15 @@ namespace XmlVGM {
       virtual double GetNumWidth() const;
       virtual double GetNumPrecision() const;
 
+    protected:
+       AGDDWriter(const AGDDWriter& rhs); 
+
     private:
       // Utility methods
       //
       void Append(std::string& string, int number) const;
       void CutName(std::string& name) const;
       void CutName(std::string& name, int size) const;
-      void PutName(std::string& element, std::string name, 
-                   std::string templ) const;
       std::ostream& SmartPut(std::ostream& out, int size, int precision,
 		 double number, const std::string& separator) const;
       double  Round(double number) const;

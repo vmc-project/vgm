@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup BaseVGM_solids
 //
-// Class VCons
-// ---------------
-// The ABC for cons solids.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class BaseVGM::VCons
+///
+/// The ABC for cons solids.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef BASE_VGM_V_CONS_H
 #define BASE_VGM_V_CONS_H

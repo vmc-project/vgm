@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup Geant4GM_solids
 //
-// Class Box
-// ---------------
-// VGM implementation for Geant4 box solid.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class Geant4GM::Box
+///
+/// VGM implementation for Geant4 box solid.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef GEANT4_GM_BOX_H
 #define GEANT4_GM_BOX_H

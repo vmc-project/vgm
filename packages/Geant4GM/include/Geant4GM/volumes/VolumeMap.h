@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup Geant4GM_volumes
 //
-// Class VolumeMap
-// ------------------
-// The map between VGM and Geant4 volumes.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class Geant4GM::VolumeMap
+///
+/// The map between VGM and Geant4 volumes.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef GEANT4_GM_VOLUME_MAP_H
 #define GEANT4_GM_VOLUME_MAP_H
@@ -44,7 +45,7 @@ namespace Geant4GM {
       VGM::IVolume*    GetVolume(G4LogicalVolume* lv) const;
 
     private:
-      VolumeMap(const VolumeMap&) {}
+      VolumeMap(const VolumeMap&);
 
       // static data members
       static VolumeMap*  fgInstance;

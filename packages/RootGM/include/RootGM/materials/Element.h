@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup RootGM_materials
 //
-// Class Element
-// ---------------
-// VGM implementation for Root element.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class RootGM:: Element
+///
+/// VGM implementation for Root element.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef ROOT_GM_ELEMENT_H
 #define ROOT_GM_ELEMENT_H
@@ -35,8 +36,8 @@ namespace RootGM {
       virtual double  A() const;     
 
     protected:  
-      Element() : VGM::IElement() {}  
-      Element(const Element& rhs) : VGM::IElement(rhs) {}
+      Element();
+      Element(const Element& rhs);
     
     private:
       void CheckIndex(int iel) const;

@@ -18,10 +18,10 @@ std::ostream& operator<<(std::ostream& out, const VGM::ITubs& tubs)
 
 //_____________________________________________________________________________
 BaseVGM::VTubs::VTubs()
-  : VGM::ITubs() {
-//  
+  : VGM::ITubs() 
+{
+/// Default constructor  
 }
-
 
 //_____________________________________________________________________________
 BaseVGM::VTubs::~VTubs() {

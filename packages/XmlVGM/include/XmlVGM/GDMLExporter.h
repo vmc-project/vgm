@@ -1,11 +1,12 @@
 // $Id$
+/// \ingroup XmlVGM
 //
-// Author: I. Hrivnacova, 31.03.2004 
-//
-// Class GDMLExporter
-// -------------------
-// Class for generation of geometry data files in XML,
-// in the GDML format.
+/// \class XmlVGM::GDMLExporter
+///
+/// Class for generation of geometry data files in XML,
+/// in the GDML format.
+///
+/// Author: I. Hrivnacova, 31.03.2004 
 
 #ifndef XML_VGM_GDML_EXPORTER_H
 #define XML_VGM_GDML_EXPORTER_H
@@ -26,6 +27,7 @@ namespace XmlVGM {
       virtual ~GDMLExporter();
  
     protected:
+      GDMLExporter();
       GDMLExporter(const GDMLExporter& right);
 
       // operators

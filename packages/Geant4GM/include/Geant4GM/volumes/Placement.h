@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup Geant4GM_volumes
 //
-// Class Placement
-// -----------------
-// VGM implementation for Geant4 positions of volumes.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class Geant4GM::Placement
+///
+/// VGM implementation for Geant4 positions of volumes.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef GEANT4_GM_PLACEMENT_H
 #define GEANT4_GM_PLACEMENT_H

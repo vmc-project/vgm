@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup VGM_materials
 //
-// Class IMedium
-// ---------------
-// The VGM interface to tracking medium.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class VGM::IMedium
+///
+/// The VGM interface to tracking medium.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef VGM_I_MEDIUM_H
 #define VGM_I_MEDIUM_H
@@ -20,14 +21,22 @@ namespace VGM {
   {
     public:
       virtual ~IMedium() {}
-    
-      // methods
+      
+      // metods
+			   ///
+                           /// Return its name
       virtual std::string Name() const = 0;
-
+			   ///
+                           /// Return its associated material
       virtual IMaterial*  Material() const = 0;
-
+	                   ///
+                           /// Return its unique identifier
       virtual int     Id() const = 0;
+	                   ///
+                           /// Return the number of defined parameters
       virtual int     NofParameters() const = 0;
+	                   ///
+                           /// Return the i-th parameter
       virtual double  Parameter(int i) const = 0;
   };
 }  

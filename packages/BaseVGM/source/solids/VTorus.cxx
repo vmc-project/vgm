@@ -18,8 +18,9 @@ std::ostream& operator<<(std::ostream& out, const VGM::ITorus& torus)
 
 //_____________________________________________________________________________
 BaseVGM::VTorus::VTorus()
-  : VGM::ITorus() {
-//  
+  : VGM::ITorus() 
+{
+/// Default constructor  
 }
 
 

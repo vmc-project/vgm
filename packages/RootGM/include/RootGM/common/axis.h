@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup RootGM_common
 //
-// BaseVGM utilities
-// --------------
-// Utility functions 
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// BaseVGM utilities
+///
+/// Utility functions 
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef ROOT_GM_AXIS_H
 #define ROOT_GM_AXIS_H

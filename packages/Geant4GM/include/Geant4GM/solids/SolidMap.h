@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup Geant4GM_solids
 //
-// Class SolidMap
-// ------------------
-// The map between VGM and Geant4 solids.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class Geant4GM::SolidMap
+///
+/// The map between VGM and Geant4 solids.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef GEANT4_GM_SOLID_MAP_H
 #define GEANT4_GM_SOLID_MAP_H
@@ -43,7 +44,7 @@ namespace Geant4GM {
       VGM::ISolid*  GetSolid(G4VSolid* solid) const;
 
     private:
-      SolidMap(const SolidMap&) {}
+      SolidMap(const SolidMap&);
 
       // static data members
       static SolidMap*  fgInstance;

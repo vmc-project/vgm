@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup Geant4GM_materials
 //
-// Class Element
-// ---------------
-// VGM implementation for Geant4 element.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class Geant4GM::Element
+///
+/// VGM implementation for Geant4 element.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef GEANT4_GM_ELEMENT_H
 #define GEANT4_GM_ELEMENT_H
@@ -35,8 +36,8 @@ namespace Geant4GM {
       virtual double  A() const;     
 
     protected:  
-      Element() : VGM::IElement() {}  
-      Element(const Element& rhs) : VGM::IElement(rhs) {}
+      Element();
+      Element(const Element& rhs);
     
     private:
       void CheckIndex(int iel) const;

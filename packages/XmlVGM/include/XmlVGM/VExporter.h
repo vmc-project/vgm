@@ -1,13 +1,14 @@
 // $Id$
+/// \ingroup XmlVGM
 //
-// Class VExporter
-// --------------------
-// Class for generation of geometry data files in XML,
-// the XML format is independent from the geometry object model. 
-// It has one abstract method for processing the volume tree
-// that has to be provided by derived classes.
-//
-// Author: I. Hrivnacova, 19.1.2004
+/// \class XmlVGM::VExporter
+///
+/// Class for generation of geometry data files in XML,
+/// the XML format is independent from the geometry object model. 
+/// It has one abstract method for processing the volume tree
+/// that has to be provided by derived classes.
+///
+/// Author: I. Hrivnacova, 19.1.2004
 
 #ifndef XML_VGM_V_EXPORTER_H
 #define XML_VGM_V_EXPORTER_H
@@ -66,7 +67,9 @@ namespace XmlVGM {
       // abstract methods
       // specific to XML definition
       //
-      virtual void GenerateGeometry(VGM::IVolume* volume) = 0;
+                  /// Generate XML geometry file for the geometry tree 
+                  /// starting from the specified VGM volume
+     virtual void GenerateGeometry(VGM::IVolume* volume) = 0;
 
       // methods
       //
@@ -106,16 +109,20 @@ namespace XmlVGM {
 // inline methods
 
 inline void XmlVGM::VExporter::SetFileName(const std::string& fileName)
-{ fFileName = fileName; }
+{ /// Set the XML file name
+  fFileName = fileName; }
 
 inline void XmlVGM::VExporter::SetDebug(int debug)
-{ fDebug = debug; }
+{ /// Set the debug level
+  fDebug = debug; }
 
 inline std::string XmlVGM::VExporter::FileName() const
-{ return fFileName; }
+{ /// Return the XML file name
+  return fFileName; }
 
 inline int XmlVGM::VExporter::Debug() const
-{ return fDebug; }
+{ /// Return the debug level
+  return fDebug; }
 
 #endif //XML_VGM_V_EXPORTER_H
 

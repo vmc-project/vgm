@@ -14,8 +14,7 @@ Geant4GM::SolidMap*  Geant4GM::SolidMap::fgInstance = 0;
 Geant4GM::SolidMap* 
 Geant4GM::SolidMap::Instance()
 { 
-// Singleton access function.
-// ---
+/// Singleton access function.
 
   if (!fgInstance) new Geant4GM::SolidMap();
   
@@ -27,8 +26,15 @@ Geant4GM::SolidMap::SolidMap()
   : fG4Solids(),
     fVgmSolids()
 {
-//  
+/// Standard default constructor
+
   fgInstance = this;
+}
+
+//_____________________________________________________________________________
+Geant4GM::SolidMap::SolidMap(const SolidMap&)
+{
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________
@@ -42,8 +48,7 @@ Geant4GM::SolidMap::~SolidMap()
 void  Geant4GM::SolidMap::AddSolid(VGM::ISolid* iSolid,     
                                    G4VSolid* g4Solid)
 {
-// Adds the specified pair in the map.
-// ---
+/// Add the specified pair in the map
 
   fG4Solids[iSolid] = g4Solid;
   fVgmSolids[g4Solid] = iSolid;
@@ -53,8 +58,7 @@ void  Geant4GM::SolidMap::AddSolid(VGM::ISolid* iSolid,
 G4VSolid* 
 Geant4GM::SolidMap::GetSolid(VGM::ISolid* iSolid) const
 {
-// Finds the G4 solid corresponding to a specified VGM solid.
-// ---
+/// Find the G4 solid corresponding to a specified VGM solid
 
   G4SolidMapCIterator i = fG4Solids.find(iSolid);
   if (i != fG4Solids.end()) 
@@ -67,8 +71,7 @@ Geant4GM::SolidMap::GetSolid(VGM::ISolid* iSolid) const
 VGM::ISolid* 
 Geant4GM::SolidMap::GetSolid(G4VSolid* solid) const
 {
-// Finds the G4 logical volume corresponding to a specified VGM volume.
-// ---
+/// Find the VGM solid corresponding to a specified G4 solid
 
   VgmSolidMapCIterator i = fVgmSolids.find(solid);
   if (i != fVgmSolids.end()) 

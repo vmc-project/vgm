@@ -32,7 +32,12 @@ RootGM::BooleanSolid::BooleanSolid(
     BaseVGM::VBooleanSolid(),
     fCompositeShape(0) 
 {
-//  
+/// Standard constructor to define Boolean solids via constituents
+/// \param boolType type of Boolean operation (kIntersection, kSubtraction,
+///        kUnion)
+/// \param solidA, solidB constituent solids
+/// \param displacementB the Root 3D transformation that defines the
+///        displacement of the solidB with respect to solidA
 
   // Get solids from the volumes map
   TGeoShape* rootSolidA = RootGM::SolidMap::Instance()->GetSolid(solidA);
@@ -80,7 +85,8 @@ RootGM::BooleanSolid::BooleanSolid(TGeoCompositeShape* compositeShape)
     BaseVGM::VBooleanSolid(),
     fCompositeShape(compositeShape) 
 {
-//  
+/// Standard constructor to define Boolean solid via Root object 
+
   RootGM::SolidMap::Instance()->AddSolid(this, fCompositeShape); 
 }
 
@@ -91,7 +97,7 @@ RootGM::BooleanSolid::BooleanSolid()
     VGM::IBooleanSolid(),
     BaseVGM::VBooleanSolid() 
 {
-//
+/// Protected default constructor
 }
 
 //_____________________________________________________________________________
@@ -100,17 +106,13 @@ RootGM::BooleanSolid::BooleanSolid(const BooleanSolid& rhs)
     VGM::IBooleanSolid(rhs),
     BaseVGM::VBooleanSolid(rhs) 
 {
-//
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________
 RootGM::BooleanSolid::~BooleanSolid() {
 //
 }
-
-// 
-// private methods
-//
 
 // 
 // public methods
@@ -166,7 +168,7 @@ RootGM::BooleanSolid::ConstituentSolidA() const
 VGM::ISolid* 
 RootGM::BooleanSolid::ConstituentSolidB() const
 {
-// Returns the first constituent solid.
+// Returns the second constituent solid.
 // ---
 
   TGeoBoolNode* boolNode = fCompositeShape->GetBoolNode();
@@ -242,8 +244,7 @@ RootGM::BooleanSolid::GetConstituentSolid(
                                int index, 
                                TGeoCompositeShape* compositeShape)
 {
-// Returns the constituent shape specified by index.
-// ---
+/// Return the constituent shape specified by index
 
   TGeoBoolNode* boolNode = compositeShape->GetBoolNode();
 

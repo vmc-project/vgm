@@ -1,10 +1,11 @@
 // $Id$
-//
-// Class VTubs
-// ---------------
-// The ABC for tubs solids.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \ingroup BaseVGM_solids
+///
+/// \class BaseVGM::VTubs
+///
+/// The ABC for tubs solids.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef BASE_VGM_V_TUBS_H
 #define BASE_VGM_V_TUBS_H

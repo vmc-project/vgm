@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup Geant4GM_solids
 //
-// Class BooleanSolid
-// ---------------------
-// VGM implementation for Geant4 Boolean solid
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class Geant4GM::BooleanSolid
+///
+/// VGM implementation for Geant4 Boolean solid
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef GEANT4_GM_BOOLEAN_SOLID_H
 #define GEANT4_GM_BOOLEAN_SOLID_H

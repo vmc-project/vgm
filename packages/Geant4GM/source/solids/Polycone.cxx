@@ -33,6 +33,15 @@ Geant4GM::Polycone::Polycone(
     fZValuesRefl(0),
     fPolycone(0)
 {
+/// Standard constructor to define polycone from parameters
+/// \param sphi starting angle of the segment in deg
+/// \param dphi opening angle of the segment in deg
+/// \param nofZplanes number of planes perpendicular to the
+///	   z axis (has to be >= 2)
+/// \param z  array of z positions of the planes in mm
+/// \param rin array of inside radius of the planes in mm
+/// \param rout array of outside radius of the planes in mm
+
   // Apply units
   
   double* z2    = new double[nofZplanes];
@@ -73,6 +82,8 @@ Geant4GM::Polycone::Polycone(
     fZValuesRefl(0),
     fPolycone(polycone)
 {    
+/// Standard constructor to define polycone from G4 object
+
   if (reflPolycone) {
     int     nofZplanes = polycone->GetOriginalParameters()->Num_z_planes;
     double* zValues    = polycone->GetOriginalParameters()->Z_values;
@@ -94,7 +105,7 @@ Geant4GM::Polycone::Polycone()
     VGM::IPolycone(),
     BaseVGM::VPolycone() 
 {
-//
+/// Protected default constructor
 }
 
 //_____________________________________________________________________________
@@ -103,7 +114,7 @@ Geant4GM::Polycone::Polycone(const Polycone& rhs)
     VGM::IPolycone(rhs),
     BaseVGM::VPolycone(rhs) 
 {
-//
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________

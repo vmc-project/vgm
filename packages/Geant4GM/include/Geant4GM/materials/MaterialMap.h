@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup Geant4GM_materials
 //
-// Class MaterialMap
-// ------------------
-// The map between VGM and Geant4 material.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class Geant4GM::MaterialMap
+///
+/// The map between VGM and Geant4 material.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef GEANT4_GM_VOLUME_MAP_H
 #define GEANT4_GM_VOLUME_MAP_H
@@ -43,9 +44,10 @@ namespace Geant4GM {
       G4Material* GetMaterial(VGM::IMaterial* iMaterial) const;
       VGM::IMaterial* GetMaterial(G4Material* g4Material) const;
 
-    private:
-      MaterialMap(const MaterialMap&) {}
+    protected:
+      MaterialMap(const MaterialMap&);
 
+    private:
       // static data members
       static MaterialMap*  fgInstance;
   

@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup RootGM_solids
 //
-// Class Trd
-// ---------------
-// VGM implementation for Root trd solid.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class RootGM:: Trd
+///
+/// VGM implementation for Root trd solid.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef ROOT_GM_TRD_H
 #define ROOT_GM_TRD_H

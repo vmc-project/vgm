@@ -21,7 +21,11 @@ RootGM::Box::Box(const std::string& name,
 		      hy / RootGM::Units::Length(), 
 		      hz / RootGM::Units::Length()))
 {
-// 
+/// Standard constructor to define box from parameters
+/// \param hx half-length along the x axis in mm 
+/// \param hy half-length along the y axis in mm 
+/// \param hz half-length along the z axis in mm
+
   RootGM::SolidMap::Instance()->AddSolid(this, fBox); 
 }
 
@@ -33,6 +37,8 @@ RootGM::Box::Box(TGeoBBox* box)
     BaseVGM::VBox(),
     fBox(box)
 {    
+/// Standard constructor to define box from Root object
+
   RootGM::SolidMap::Instance()->AddSolid(this, fBox); 
 }
 
@@ -42,7 +48,7 @@ RootGM::Box::Box()
     VGM::IBox(),
     BaseVGM::VBox() 
 {
-//
+/// Protected default constructor
 }
 
 //_____________________________________________________________________________
@@ -51,7 +57,7 @@ RootGM::Box::Box(const Box& rhs)
     VGM::IBox(rhs),
     BaseVGM::VBox(rhs) 
 {
-//
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________

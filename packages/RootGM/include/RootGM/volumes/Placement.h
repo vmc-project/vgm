@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup RootGM_volumes
 //
-// Class Placement
-// ------------------
-// VGM implementation for Root positions of volumes.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class RootGM:: Placement
+///
+/// VGM implementation for Root positions of volumes.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef ROOT_GM_PLACEMENT_H
 #define ROOT_GM_PLACEMENT_H

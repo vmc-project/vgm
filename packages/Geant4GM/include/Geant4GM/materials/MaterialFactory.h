@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup Geant4GM_materials
 //
-// Class MaterialFactory
-// ------------------------
-// VGM material factory for Geant4.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class Geant4GM::MaterialFactory
+///
+/// VGM material factory for Geant4.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef GEANT4_GM_MATERIAL_FACTORY_H
 #define GEANT4_GM_MATERIAL_FACTORY_H

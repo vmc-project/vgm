@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup RootGM_solids
 //
-// Class SolidMap
-// ---------------
-// The map between VGM and Root solids.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class RootGM:: SolidMap
+///
+/// The map between VGM and Root solids.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef ROOT_GM_SOLID_MAP_H
 #define ROOT_GM_SOLID_MAP_H

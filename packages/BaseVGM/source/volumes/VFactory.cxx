@@ -34,7 +34,21 @@ BaseVGM::VFactory::VFactory(const std::string& name,
     fVolumes(),
     fMaterialFactory(materialFactory)
 {
-//
+/// Standard constructor
+}
+
+//_____________________________________________________________________________
+BaseVGM::VFactory::VFactory() 
+  : VGM::IFactory() 
+{
+/// Protected default constructor
+}
+
+//_____________________________________________________________________________
+BaseVGM::VFactory::VFactory(const VFactory& rhs) 
+  : VGM::IFactory(rhs) 
+{
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________
@@ -431,8 +445,7 @@ VGM::Transform  BaseVGM::VFactory::Identity() const
 //_____________________________________________________________________________
 bool BaseVGM::VFactory::Export(VGM::IFactory* factory) const
 {
-// Export the whole geometry to the given factory.
-// ---
+/// Export the whole geometry to the given factory.
 
   // Export materials
   //

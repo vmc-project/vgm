@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup Geant4GM_solids
 //
-// Class Cons
-// ---------------
-// VGM implementation for Geant4 cons solid.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class Geant4GM::Cons
+///
+/// VGM implementation for Geant4 cons solid.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef GEANT4_GM_CONS_H
 #define GEANT4_GM_CONS_H

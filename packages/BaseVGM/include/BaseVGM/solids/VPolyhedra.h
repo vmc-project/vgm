@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup BaseVGM_solids
 //
-// Class VPolyhedra
-// ---------------
-// The ABC for polyhedra solids.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class BaseVGM::VPolyhedra
+///
+/// The ABC for polyhedra solids.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef BASE_VGM_V_POLYHEDRA_H
 #define BASE_VGM_V_POLYHEDRA_H

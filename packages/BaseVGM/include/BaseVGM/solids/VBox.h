@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup BaseVGM_solids
 //
-// Class VBox
-// ---------------
-// The ABC for box solids.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class BaseVGM::VBox
+///
+/// The ABC for box solids.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef BASE_VGM_V_BOX_H
 #define BASE_VGM_V_BOX_H

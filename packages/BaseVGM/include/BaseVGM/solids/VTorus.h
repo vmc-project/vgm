@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup BaseVGM_solids
 //
-// Class VTorus
-// ---------------
-// The ABC for torus solids.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class BaseVGM::VTorus
+///
+/// The ABC for torus solids.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef BASE_VGM_V_TORUS_H
 #define BASE_VGM_V_TORUS_H

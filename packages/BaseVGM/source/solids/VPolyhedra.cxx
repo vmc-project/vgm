@@ -20,8 +20,9 @@ std::ostream& operator<<(std::ostream& out, const VGM::IPolyhedra& polyhedra)
 
 //_____________________________________________________________________________
 BaseVGM::VPolyhedra::VPolyhedra()
-  : VGM::IPolyhedra() {
-//  
+  : VGM::IPolyhedra() 
+{
+/// Default constructor  
 }
 
 

@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup Geant4GM_solids
 //
-// Class Polycone
-// -----------------
-// VGM implementation for Geant4 polycone solid.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class Geant4GM::Polycone
+///
+/// VGM implementation for Geant4 polycone solid.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef GEANT4_GM_POLYCONE_H
 #define GEANT4_GM_POLYCONE_H

@@ -23,8 +23,12 @@ Geant4GM::Volume::Volume(const std::string& name,
   : VGM::IVolume(),
     BaseVGM::VVolume(solid),
     fLogicalVolume(0),
-    fMediumName(mediumName) {
-//
+    fMediumName(mediumName) 
+{
+/// Standard constructor to define a volume via parameters
+/// \param solid the associated solid
+/// \param materialName the name of the associated material
+/// \param mediumName the name of the associated medium
 
   // Get solid from the solid map
   G4VSolid* g4Solid = Geant4GM::SolidMap::Instance()->GetSolid(solid);
@@ -56,6 +60,8 @@ Geant4GM::Volume::Volume(VGM::ISolid* solid,
     fLogicalVolume(lv),
     fMediumName(mediumName)
 {
+/// Standard constructor to define a volume via G4 object
+
   // Register logical volume in the map
   Geant4GM::VolumeMap::Instance()->AddVolume(this, fLogicalVolume); 
 }  
@@ -65,7 +71,7 @@ Geant4GM::Volume::Volume()
   : VGM::IVolume(),
     BaseVGM::VVolume() 
 {
-//
+/// Protected default constructor
 }
 
 //_____________________________________________________________________________
@@ -73,7 +79,7 @@ Geant4GM::Volume::Volume(const Volume& rhs)
   : VGM::IVolume(rhs),
     BaseVGM::VVolume(rhs) 
 {
-//
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________

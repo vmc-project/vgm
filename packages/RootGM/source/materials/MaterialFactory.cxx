@@ -25,7 +25,7 @@ RootGM::MaterialFactory::MaterialFactory()
   : VGM::IMaterialFactory(),
     BaseVGM::VMaterialFactory("Root_GM_Material_Factory")
 {  
-//
+/// Standard default constructor
   
   if (!gGeoManager)
     new TGeoManager("VGM Root geometry", "VGM Root geometry");  
@@ -36,7 +36,7 @@ RootGM::MaterialFactory::MaterialFactory(const MaterialFactory& rhs)
   : VGM::IMaterialFactory(rhs),
     BaseVGM::VMaterialFactory(rhs) 
 {
-//
+/// Protected copy constructor
 } 
 
 //_____________________________________________________________________________
@@ -58,8 +58,7 @@ RootGM::MaterialFactory::~MaterialFactory() {
 //_____________________________________________________________________________
 void RootGM::MaterialFactory::ImportElement(TGeoElement* element)
 {
-// Imports the specified Root element.
-// ---
+/// Import the specified Root element
 
   if (Debug()>0) {
     BaseVGM::DebugInfo();
@@ -78,8 +77,7 @@ void RootGM::MaterialFactory::ImportElement(TGeoElement* element)
 //_____________________________________________________________________________
 void RootGM::MaterialFactory::ImportMaterial(TGeoMaterial* material)
 {
-// Imports the specified Root material.
-// ---
+/// Import the specified Root material
 
   if (Debug()>0) {
     BaseVGM::DebugInfo();
@@ -114,8 +112,7 @@ void RootGM::MaterialFactory::ImportMaterial(TGeoMaterial* material)
 //_____________________________________________________________________________
 void RootGM::MaterialFactory::ImportMedium(TGeoMedium* medium)
 {
-// Imports the specified TGeo medium.
-// ---
+/// Imports the specified TGeo medium
 
   if (Debug()>0) {
     BaseVGM::DebugInfo();
@@ -223,9 +220,8 @@ RootGM::MaterialFactory::CreateMedium(
 //_____________________________________________________________________________
 bool RootGM::MaterialFactory::Import()
 {
-// Import all elements, materials end media from TGeoManager
-// (Elements are imported duiring import of materials)
-// ---
+/// Import all elements, materials and media from TGeoManager
+/// (Elements are imported during import of materials)
 
   TList* materials = gGeoManager->GetListOfMaterials();
   TIter next(materials);

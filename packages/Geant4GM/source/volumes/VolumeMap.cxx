@@ -14,8 +14,7 @@ Geant4GM::VolumeMap*  Geant4GM::VolumeMap::fgInstance = 0;
 Geant4GM::VolumeMap* 
 Geant4GM::VolumeMap::Instance()
 { 
-// Singleton access function.
-// ---
+/// Singleton access function
 
   if (!fgInstance) new Geant4GM::VolumeMap();
   
@@ -27,8 +26,15 @@ Geant4GM::VolumeMap::VolumeMap()
   : fG4Volumes(),
     fVgmVolumes()
 {
-//  
+/// Standard default constructor
+
   fgInstance = this;
+}
+
+//_____________________________________________________________________________
+Geant4GM::VolumeMap::VolumeMap(const VolumeMap&)
+{
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________
@@ -43,8 +49,7 @@ Geant4GM::VolumeMap::~VolumeMap()
 void  Geant4GM::VolumeMap::AddVolume(VGM::IVolume* iVolume, 
                                      G4LogicalVolume* g4Volume)
 {
-// Adds the specified pair in the map.
-// ---
+/// Add the specified pair in the map
 
   fG4Volumes[iVolume] = g4Volume;
   fVgmVolumes[g4Volume] = iVolume;
@@ -53,8 +58,7 @@ void  Geant4GM::VolumeMap::AddVolume(VGM::IVolume* iVolume,
 //_____________________________________________________________________________
 void  Geant4GM::VolumeMap::Print() const
 {
-// Prints all volumes in  the map.
-// ---
+/// Print all volumes in  the map
 
   std::cout << "Geant4 Volumes Map: " << std::endl; 
 
@@ -76,8 +80,7 @@ void  Geant4GM::VolumeMap::Print() const
 G4LogicalVolume* 
 Geant4GM::VolumeMap::GetVolume(VGM::IVolume* iVolume) const
 {
-// Finds the G4 logical volume corresponding to a specified VGM volume.
-// ---
+/// Find the G4 logical volume corresponding to a specified VGM volume
 
   G4VolumeMapCIterator i = fG4Volumes.find(iVolume);
   if (i != fG4Volumes.end()) 
@@ -90,8 +93,7 @@ Geant4GM::VolumeMap::GetVolume(VGM::IVolume* iVolume) const
 VGM::IVolume* 
 Geant4GM::VolumeMap::GetVolume(G4LogicalVolume* lv) const
 {
-// Finds the G4 logical volume corresponding to a specified VGM volume.
-// ---
+/// Find the VGM volume corresponding to a specified  G4 logical volume
 
   VgmVolumeMapCIterator i = fVgmVolumes.find(lv);
   if (i != fVgmVolumes.end()) 

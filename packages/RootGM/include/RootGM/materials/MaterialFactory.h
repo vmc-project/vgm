@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup RootGM_materials
 //
-// Class MaterialFactory
-// ------------------------
-// VGM material factory for Root.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class RootGM:: MaterialFactory
+///
+/// VGM material factory for Root.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef ROOT_GM_MATERIAL_FACTORY_H
 #define ROOT_GM_MATERIAL_FACTORY_H

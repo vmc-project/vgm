@@ -29,7 +29,10 @@ XmlVGM::Maps::Maps(double numPrecision,
     fElements(),
     fMaterials()
 {
-//
+/// Standard constructor
+/// \param numPrecision fixed format number precision
+/// \param angleUnit the unit for angle values
+/// \param lengthUnit the unit for length values
 }
 
 //_____________________________________________________________________________
@@ -39,7 +42,8 @@ XmlVGM::Maps::Maps()
     fElements(),
     fMaterials()
 {
-// 
+/// Protected default constructor
+ 
   std::cerr << "   XmlVGM::Maps::Maps:" << std::endl;
   std::cerr << "   Dummy constructor protected." << std::endl;
   std::cerr << "** Exception: Aborting execution **" << std::endl;   
@@ -53,7 +57,8 @@ XmlVGM::Maps::Maps(const Maps& /*right*/)
     fElements(),
     fMaterials()
 {
-// 
+/// Protected copy constructor
+
   std::cerr << "   XmlVGM::Maps::Maps:" << std::endl;
   std::cerr << "   Copy constructor not implemented." << std::endl;
   std::cerr << "** Exception: Aborting execution **" << std::endl;   
@@ -73,6 +78,8 @@ XmlVGM::Maps::~Maps() {
 XmlVGM::Maps& 
 XmlVGM::Maps::operator=(const Maps& right)
 {
+/// Protected assignement operator
+
   // check assignement to self
   if (this == &right) return *this;
 
@@ -92,8 +99,7 @@ XmlVGM::Maps::operator=(const Maps& right)
 //_____________________________________________________________________________
 void XmlVGM::Maps::CutName(std::string& name) const
 {
-// Removes spaces after the name if present.
-// ---
+/// Remove spaces after the name if present
 
   int i = name.length();
   while (name[--i] == ' ') name = std::string(name, 0, i);
@@ -102,8 +108,7 @@ void XmlVGM::Maps::CutName(std::string& name) const
 //_____________________________________________________________________________
 double XmlVGM::Maps::Round(double number) const
 {
-// Rounds the position elements to the numeric precision of the
-// convertor.
+/// Round the number to the numeric precision of the map
 
   double precision = fNumPrecision;
   return round(number*pow(10.,precision))/pow(10.,precision);
@@ -114,8 +119,8 @@ double XmlVGM::Maps::Round(double number) const
 XmlVGM::ThreeVector  
 XmlVGM::Maps::PurifyAngles(const ThreeVector& rotation) const
 {
-// Inverts angle sign if angle.is within the converter precision
-// equal - M_PI.
+/// Invert angle sign if angle.is within the maps precision
+/// equal - M_PI.
 
   double roundedPI = Round(M_PI/fAngleUnit);
 
@@ -144,9 +149,8 @@ XmlVGM::Maps::PurifyAngles(const ThreeVector& rotation) const
 std::string
 XmlVGM::Maps::AddPosition(const VGM::Transform& transform)
 {
-// Check if the specified position is not yet present (within the precision
-// of the convertor), add it to the map and return its generated name
-// ---
+/// Check if the specified position is not yet present (within the maps 
+/// precision), add it to the map and return its generated name
 
   ThreeVector position(3);
   position[0] = transform[VGM::kDx]; 
@@ -178,9 +182,8 @@ XmlVGM::Maps::AddPosition(const VGM::Transform& transform)
 std::string
 XmlVGM::Maps::AddRotation(const VGM::Transform& transform)
 {
-// Check if the specified rotation matrix is not yet present, 
-// add it to the map and return its generated name
-// ---
+/// Check if the specified rotation matrix is not yet present, 
+/// add it to the map and return its generated name
 
   // Get rotation
   ThreeVector rotation(3);
@@ -213,10 +216,9 @@ XmlVGM::Maps::AddRotation(const VGM::Transform& transform)
 const VGM::IElement* 
 XmlVGM::Maps::AddElement(const VGM::IElement* element)
 {
-// Check if the specified element is not yet present (within the precision
-// of the convertor) and add it to the map.
-// Returns the element (if added) or 0.
-// ---
+/// Check if the specified element is not yet present (within the maps 
+/// precision) and add it to the map.
+/// Return the element (if added) or 0.
 
   ThreeVector roundedValues(3);
   roundedValues[0] = Round(element->Z());
@@ -241,9 +243,8 @@ XmlVGM::Maps::AddElement(const VGM::IElement* element)
 const VGM::IMaterial* 
 XmlVGM::Maps::AddMaterial(const VGM::IMaterial* material)
 {
-// Check if the specified material is not yet present and add it to the map.
-// Returns the material (if added) or 0.
-// ---
+/// Check if the specified material is not yet present and add it to the map.
+/// Return the material (if added) or 0.
 
   std::string name = material->Name();
   CutName(name);
@@ -262,10 +263,9 @@ XmlVGM::Maps::AddMaterial(const VGM::IMaterial* material)
 std::string 
 XmlVGM::Maps::FindPositionName(const VGM::Transform& transform) const
 {
-// Finds the specified position in the map (within the precision of the 
-// convertor) and returns its xml name.
-// Returns empty string if not found.
-// ---
+/// Find the position from the given transformation in the map (within the maps
+/// precision) and return its xml name.
+/// Return an empty string if not found.
 
   ThreeVector position(3);
   position[0] = transform[VGM::kDx];
@@ -288,9 +288,9 @@ XmlVGM::Maps::FindPositionName(const VGM::Transform& transform) const
 std::string  
 XmlVGM::Maps::FindRotationName(const VGM::Transform& transform) const
 {
-// Finds the rotation in the map and returns its xml name.
-// Returns empty string if not found.
-// ---
+/// Find the rotation from the given transformation in the map (within the maps
+/// precision) and return its xml name.
+/// Return an empty string if not found.
 
   // rotation
   ThreeVector rotation(3);
@@ -316,7 +316,7 @@ XmlVGM::Maps::FindRotationName(const VGM::Transform& transform) const
 void 
 XmlVGM::Maps::WriteAllPositions(IWriter* writer)
 {
-// Write all positions in the map
+/// Write all positions in the map with the given writer
 
   ThreeVectorMap::const_iterator it1;
   for (it1 = fPositions.begin(); it1 != fPositions.end(); it1++)
@@ -327,7 +327,7 @@ XmlVGM::Maps::WriteAllPositions(IWriter* writer)
 void 
 XmlVGM::Maps::WriteAllRotations(IWriter* writer)
 {
-// Write all rotation in the map
+/// Write all rotations in the map with the given writer
 
   ThreeVectorMap::const_iterator it1;
   for (it1 = fRotations.begin(); it1 != fRotations.end(); it1++)
@@ -338,7 +338,7 @@ XmlVGM::Maps::WriteAllRotations(IWriter* writer)
 void 
 XmlVGM::Maps::WriteAllElements(IWriter* writer)
 {
-// Write all elements from the map
+/// Write all elements from the map with the given writer
 
   ElementMap::const_iterator it1;
   for (it1 = fElements.begin(); it1 != fElements.end(); it1++)
@@ -349,7 +349,7 @@ XmlVGM::Maps::WriteAllElements(IWriter* writer)
 void 
 XmlVGM::Maps::WriteAllMaterials(IWriter* writer)
 {
-// Write all materials from the map
+/// Write all materials from the map with the given writer
 
   MaterialMap::const_iterator it2;
   for (it2 = fMaterials.begin(); it2 != fMaterials.end(); it2++)
@@ -361,7 +361,7 @@ XmlVGM::Maps::WriteAllMaterials(IWriter* writer)
 void 
 XmlVGM::Maps::ClearAllMaps()
 {
-// Clear all maps
+/// Clear all maps
 
   fPositions.erase(fPositions.begin(), fPositions.end());
   fRotations.erase(fRotations.begin(), fRotations.end());

@@ -34,6 +34,17 @@ Geant4GM::Polyhedra::Polyhedra(
     fZValuesRefl(0),
     fPolyhedra(0)
 {
+/// Standard constructor to define polyhedra from parameters
+/// \param sphi starting angle of the segment in deg
+/// \param dphi opening angle of the segment in deg
+/// \param nofSides number of sides of the cross section
+///	   between the given phi limits
+/// \param nofZplanes number of planes perpendicular to the
+///	   z axis (has to be >= 2)
+/// \param z  array of z positions of the planes in mm
+/// \param rin array of inside radius of the planes in mm
+/// \param rout array of outside radius of the planes in mm
+
   // Apply units
   
   double* z2    = new double[nofZplanes];
@@ -73,6 +84,8 @@ Geant4GM::Polyhedra::Polyhedra(
     fZValuesRefl(0),
     fPolyhedra(phedra)
 { 
+/// Standard constructor to define polyhedra from G4 object
+
   if (reflPhedra) {
     int     nofZplanes = phedra->GetOriginalParameters()->Num_z_planes;
     double* zValues    = phedra->GetOriginalParameters()->Z_values;
@@ -94,7 +107,7 @@ Geant4GM::Polyhedra::Polyhedra()
     VGM::IPolyhedra(),
     BaseVGM::VPolyhedra() 
 {
-//
+/// Protected default constructor
 }
 
 //_____________________________________________________________________________
@@ -103,7 +116,7 @@ Geant4GM::Polyhedra::Polyhedra(const Polyhedra& rhs)
     VGM::IPolyhedra(rhs),
     BaseVGM::VPolyhedra(rhs) 
 {
-//
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________

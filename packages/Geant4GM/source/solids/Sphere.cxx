@@ -32,7 +32,14 @@ Geant4GM::Sphere::Sphere(const std::string& name,
 			  stheta / ClhepVGM::Units::Angle(), 
 			  dtheta / ClhepVGM::Units::Angle()))
 {
-// 
+/// Standard constructor to define sphere from parameters
+/// \param rin inside radius of the shell in mm
+/// \param rout outside radius of the shell in mm
+/// \param sphi starting azimuthal angle of the segment in deg
+/// \param dphi opening azimuthal angle of the segment in deg
+/// \param stheta starting polar angle of the segment in deg
+/// \param dtheta opening polar angle of the segment in deg
+
   Geant4GM::SolidMap::Instance()->AddSolid(this, fSphere); 
 }
 
@@ -46,6 +53,8 @@ Geant4GM::Sphere::Sphere(G4Sphere* sphere,
     fIsReflected(false),
     fSphere(sphere)
 {    
+/// Standard constructor to define sphere from G4 object
+
   if (reflSphere) { 
     fIsReflected = true;
     Geant4GM::SolidMap::Instance()->AddSolid(this, reflSphere);
@@ -60,7 +69,7 @@ Geant4GM::Sphere::Sphere()
     VGM::ISphere(),
     BaseVGM::VSphere() 
 {
-//
+/// Protected default constructor
 }
 
 //_____________________________________________________________________________
@@ -69,7 +78,7 @@ Geant4GM::Sphere::Sphere(const Sphere& rhs)
     VGM::ISphere(rhs),
     BaseVGM::VSphere(rhs) 
 {
-//
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________

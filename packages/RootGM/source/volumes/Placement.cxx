@@ -32,6 +32,13 @@ RootGM::Placement::Placement(
     fGeoNode(0),
     fName(name)       
 {
+/// Standard constructor to define a simple placement via parameters
+/// \param copyNo the copy number of this placement
+/// \param volume the associated volume
+/// \param motherVolume the associated mother volume
+/// \param transformation the 3D transformation of the volume 
+///	   with respect to its mother
+  
   if (!motherVolume) {
 
     // Top volume is not placed in TGeo
@@ -72,6 +79,16 @@ RootGM::Placement::Placement(
     fGeoNode(0),
     fName(name) 
 {
+/// Standard constructor to define a multiple placement via parameters
+/// \param volume the associated volume which will be replicated
+/// \param motherVolume the associated mother volume
+/// \param axis the replication axis
+/// \param nofItems number of replications
+/// \param with the replication width (the unit depends on the axis;
+///	   can be mm or deg)
+///  \param offset the replication offset (the unit depends on the axis;
+///	   can be mm or deg)
+
   // Get TGeo volumes from the volumes map
   TGeoVolume* geoMotherVolume 
     = RootGM::VolumeMap::Instance()->GetVolume(motherVolume);
@@ -105,6 +122,8 @@ RootGM::Placement::Placement(
     fGeoNode(node),
     fName()       
 {
+/// Standard constructor to define a multiple placement via Root object
+
   if (volume) fName = volume->Name();
       // Root nodes have not own name; 
       // use the volume name in this case 
@@ -118,7 +137,7 @@ RootGM::Placement::Placement()
   : VGM::IPlacement(),
     BaseVGM::VPlacement() 
 {
-//
+/// Protected default constructor
 }
 
 //_____________________________________________________________________________
@@ -126,7 +145,7 @@ RootGM::Placement::Placement(const Placement& rhs)
   : VGM::IPlacement(rhs),
     BaseVGM::VPlacement(rhs) 
 {
-//
+/// Protected copy constructor
 }      
 
 //_____________________________________________________________________________

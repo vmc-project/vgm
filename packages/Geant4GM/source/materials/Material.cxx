@@ -20,6 +20,11 @@ Geant4GM::Material::Material(const std::string& name,
     fMaterial(0)
 			       			  
 {
+/// Standard constructor to define material from parameters 
+/// \param name its name
+///	   (must be unique in the factory)
+/// \param density in g/cm3
+/// \param element element constituing this material
 
   if (!CheckVacuum(name, density)) { 
 
@@ -43,6 +48,15 @@ Geant4GM::Material::Material(const std::string& name,
   : VGM::IMaterial(),
     fMaterial(0)
 {
+/// Standard constructor to define compound material from parameters 
+/// \param name its name
+///	   (must be unique in the factory)
+/// \param density in g/cm3
+/// \param elements vector of elements constituing 
+///	   this material
+/// \param fractions vector of mass fractions of
+///	   elements constituing this material
+
 //
   // Check coherence
   if (elements.size() != fractions.size()) {
@@ -74,8 +88,22 @@ Geant4GM::Material::Material(G4Material* material)
   : VGM::IMaterial(),
     fMaterial(material)	
 {
-//
+/// Standard constructor to define material from the G4 object
 }    		  
+
+//_____________________________________________________________________________
+Geant4GM::Material::Material() 
+  : VGM::IMaterial() 
+{
+/// Protected default constructor
+}  
+
+//_____________________________________________________________________________
+Geant4GM::Material::Material(const Material& rhs) 
+  : VGM::IMaterial(rhs) 
+{
+/// Protected copy constructor
+}
 
 //_____________________________________________________________________________
 Geant4GM::Material::~Material() {

@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup RootGM_materials
 //
-// Class Material
-// ---------------
-// VGM implementation for Root material.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class RootGM:: Material
+///
+/// VGM implementation for Root material.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef ROOT_GM_MATERIAL_H
 #define ROOT_GM_MATERIAL_H
@@ -43,8 +44,8 @@ namespace RootGM {
       virtual double          MassFraction(int iel) const;
 
     protected:  
-      Material() : VGM::IMaterial() {}  
-      Material(const Material& rhs) : VGM::IMaterial(rhs) {}
+      Material(); 
+      Material(const Material& rhs);
     
     private:
       void CheckIndex(int iel) const;

@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup BaseVGM_solids
 //
-// Class VTrap
-// ---------------
-// The ABC for trap solids.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class BaseVGM::VTrap
+///
+/// The ABC for trap solids.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef BASE_VGM_V_TRAP_H
 #define BASE_VGM_V_TRAP_H

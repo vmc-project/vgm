@@ -56,7 +56,7 @@ Geant4GM::Factory::Factory()
                      new Geant4GM::MaterialFactory()),
     fTop(0)
 {
-//
+/// Standard default constructor
 }
 
 //_____________________________________________________________________________
@@ -64,7 +64,7 @@ Geant4GM::Factory::Factory(const Factory& rhs)
   : VGM::IFactory(rhs),
     BaseVGM::VFactory(rhs) 
 {
-//
+/// Protected copy constructor
 } 
 
 //_____________________________________________________________________________
@@ -88,8 +88,7 @@ Geant4GM::Factory::~Factory()
 void Geant4GM::Factory::ImportConstituentSolid(int index, 
                                                G4BooleanSolid* solid)
 {
-// Imports constituents of G4 Boolean solid into VGM
-// ---
+/// Import constituents of G4 Boolean solid into VGM
 
   G4VSolid* consSolid 
     = Geant4GM::BooleanSolid::GetConstituentSolid(index, solid);
@@ -102,8 +101,7 @@ void Geant4GM::Factory::ImportConstituentSolid(int index,
 VGM::ISolid* 
 Geant4GM::Factory::ImportSolid(G4VSolid* solid)
 {
-// Import G4 solid into VGM
-// ---
+/// Import G4 solid into VGM
 
   // Do not import the same solid twice
   //
@@ -236,6 +234,8 @@ Geant4GM::Factory::ImportSolid(G4VSolid* solid)
 VGM::IVolume* 
 Geant4GM::Factory::ImportLV(G4LogicalVolume* lv)
 {
+/// Import logical volume in VGM
+
   if (Debug()) {
     BaseVGM::DebugInfo();
     std::cout << "Importing LV: " << lv->GetName() << std::endl;
@@ -255,8 +255,7 @@ Geant4GM::Factory::ImportLV(G4LogicalVolume* lv)
 //_____________________________________________________________________________
 void Geant4GM::Factory::ImportDaughters(G4LogicalVolume* lv)
 {
-// Imports recursively all daughters logical volumes.
-// ---
+// Import recursively all daughters logical volumes.
 
   if (Debug()) {
     BaseVGM::DebugInfo();
@@ -284,8 +283,7 @@ void Geant4GM::Factory::ImportDaughters(G4LogicalVolume* lv)
 //_____________________________________________________________________________
 void Geant4GM::Factory::ImportPositions()
 {
-// Imports placements for all volumes imported.
-// ---
+// Import placements for all volumes imported
 
   if (Debug()>0) {
     BaseVGM::DebugInfo();
@@ -329,9 +327,8 @@ void Geant4GM::Factory::ImportPositions()
 //_____________________________________________________________________________
 void Geant4GM::Factory::ImportPositions(G4LogicalVolume* lv)
 {
-// Imports placements for daughters tree of specified lv.
+// Import placements for daughters tree of specified lv.
 // Check if the placement has been already imported.
-// ---
 
   if (Debug()>0) {
     BaseVGM::DebugInfo();
@@ -386,7 +383,8 @@ void Geant4GM::Factory::ImportPositions(G4LogicalVolume* lv)
 //_____________________________________________________________________________
 bool Geant4GM::Factory::Import(void* topVolume)
 {
-//
+/// Import native geometry
+
   G4VPhysicalVolume* worldPV
     = static_cast<G4VPhysicalVolume*>(topVolume);
 
@@ -832,8 +830,7 @@ Geant4GM::Factory::CreateMultiplePlacement(
 VGM::IPlacement* 
 Geant4GM::Factory::Top() const 
 {
-// Returns the top volume (VGM placement)
-// ---
+/// Return the top volume (VGM placement)
 
   return fTop;
 }  		       
@@ -842,8 +839,7 @@ Geant4GM::Factory::Top() const
 G4VPhysicalVolume*  
 Geant4GM::Factory:: World() const
 {
-// Returns the world volume (G4 physical volume)
-// ---
+/// Return the world volume (G4 physical volume)
 
   return Geant4GM::PlacementMap::Instance()->GetPlacement(fTop);
 }
@@ -852,8 +848,7 @@ Geant4GM::Factory:: World() const
 //_____________________________________________________________________________
 bool Geant4GM::Factory::Import(G4VPhysicalVolume* worldPV)
 {
-// Imports Geant4 native geometry
-//
+/// Import Geant4 native geometry
 
   if (Debug()>0) {
     BaseVGM::DebugInfo();

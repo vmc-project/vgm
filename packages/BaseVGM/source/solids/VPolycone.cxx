@@ -18,8 +18,9 @@ std::ostream& operator<<(std::ostream& out, const VGM::IPolycone& polycone)
 
 //_____________________________________________________________________________
 BaseVGM::VPolycone::VPolycone()
-  : VGM::IPolycone() {
-//  
+  : VGM::IPolycone() 
+{
+/// Default constructor  
 }
 
 

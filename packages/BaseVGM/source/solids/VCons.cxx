@@ -18,8 +18,9 @@ std::ostream& operator<<(std::ostream& out, const VGM::ICons& cons)
 
 //_____________________________________________________________________________
 BaseVGM::VCons::VCons()
-  : VGM::ICons() {
-//  
+  : VGM::ICons() 
+{
+/// Default constructor  
 }
 
 

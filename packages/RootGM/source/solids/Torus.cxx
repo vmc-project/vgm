@@ -24,7 +24,14 @@ RootGM::Torus::Torus(const std::string& name,
 		         sphi / RootGM::Units::Angle(), 
 		         dphi / RootGM::Units::Angle()))
 {
-// 
+/// Standard constructor to define torus from parameters
+/// \param rin inside radius of the torus in mm 
+/// \param rout outside radius of the torus in mm 
+/// \param rax axial (swept) radius of the torus in mm 
+/// \param sphi starting angle of the segment in deg
+///	   (with 0 being the +x axis)
+/// \param dphi opening angle of the segment in deg
+
   RootGM::SolidMap::Instance()->AddSolid(this, fTorus); 
 }
 
@@ -36,6 +43,8 @@ RootGM::Torus::Torus(TGeoTorus* torus)
     BaseVGM::VTorus(),
     fTorus(torus)
 {    
+/// Standard constructor to define torus from Root object
+
   RootGM::SolidMap::Instance()->AddSolid(this, fTorus); 
 }
 
@@ -45,7 +54,7 @@ RootGM::Torus::Torus()
     VGM::ITorus(),
     BaseVGM::VTorus() 
 {
-//
+/// Protected default constructor
 }
 
 //_____________________________________________________________________________
@@ -54,7 +63,7 @@ RootGM::Torus::Torus(const Torus& rhs)
     VGM::ITorus(rhs),
     BaseVGM::VTorus(rhs) 
 {
-//
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________

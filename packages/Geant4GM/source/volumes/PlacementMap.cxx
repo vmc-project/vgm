@@ -14,8 +14,7 @@ Geant4GM::PlacementMap*  Geant4GM::PlacementMap::fgInstance = 0;
 Geant4GM::PlacementMap* 
 Geant4GM::PlacementMap::Instance()
 { 
-// Singleton access function.
-// ---
+/// Singleton access function.
 
   if (!fgInstance) new Geant4GM::PlacementMap();
   
@@ -27,8 +26,15 @@ Geant4GM::PlacementMap::PlacementMap()
   : fG4Placements(),
     fVgmPlacements()
 {
-//  
+/// Standard default constructor
+
   fgInstance = this;
+}
+
+//_____________________________________________________________________________
+Geant4GM::PlacementMap::PlacementMap(const PlacementMap&)
+{
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________
@@ -42,8 +48,7 @@ Geant4GM::PlacementMap::~PlacementMap()
 void  Geant4GM::PlacementMap::AddPlacement(VGM::IPlacement* iPlacement, 
                                            G4VPhysicalVolume* g4Placement)
 {
-// Adds the specified pair in the map.
-// ---
+/// Add the specified pair in the map
 
   fG4Placements[iPlacement] = g4Placement;
   fVgmPlacements[g4Placement] = iPlacement;
@@ -53,8 +58,7 @@ void  Geant4GM::PlacementMap::AddPlacement(VGM::IPlacement* iPlacement,
 G4VPhysicalVolume* 
 Geant4GM::PlacementMap::GetPlacement(VGM::IPlacement* iPlacement) const
 {
-// Finds the G4 physical volume corresponding to a specified VGM placement.
-// ---
+/// Find the G4 physical volume corresponding to a specified VGM placement
 
   G4PlacementMapCIterator i = fG4Placements.find(iPlacement);
   if (i != fG4Placements.end()) 
@@ -67,8 +71,7 @@ Geant4GM::PlacementMap::GetPlacement(VGM::IPlacement* iPlacement) const
 VGM::IPlacement* 
 Geant4GM::PlacementMap::GetPlacement(G4VPhysicalVolume* pv) const
 {
-// Finds the G4 physical volume corresponding to a specified VGM placement.
-// ---
+/// Find the VGM placement corresponding to a specified G4 physical volume
 
   VgmPlacementMapCIterator i = fVgmPlacements.find(pv);
   if (i != fVgmPlacements.end()) 

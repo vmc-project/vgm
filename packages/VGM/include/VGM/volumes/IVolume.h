@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup VGM_volumes
 //
-// Class IVolume
-// ---------------
-// The VGM interface to volumes.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class VGM::IVolume
+///
+/// The VGM interface to volumes.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef VGM_I_VOLUME_H
 #define VGM_I_VOLUME_H
@@ -23,15 +24,28 @@ namespace VGM {
       virtual ~IVolume() {}
     
       // methods
+      			    ///
+                            /// Return the name of this volume
       virtual std::string  Name() const = 0;
+			    ///
+                            /// Return the name of the associated material
       virtual std::string  MaterialName() const = 0;
+			    ///
+                            /// Return the name of the associated medium
       virtual std::string  MediumName() const = 0;
 
+			    ///
+                            /// Return the associated solid
       virtual ISolid*      Solid() const = 0;
+			    ///
+			    /// Return the number of volume daughters
       virtual int          NofDaughters() const = 0;
+			    ///
+                            /// Return the i-th daughter
       virtual IPlacement*  Daughter(int i) const = 0;
-    
-      virtual void  AddDaughter(IPlacement* daughter) = 0;
+			    ///
+                            /// Add the specified daughter
+      virtual void  AddDaughter(VGM::IPlacement* daughter) = 0;
   };
 
 }  

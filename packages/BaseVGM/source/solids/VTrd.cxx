@@ -18,8 +18,9 @@ std::ostream& operator<<(std::ostream& out, const VGM::ITrd& trd)
 
 //_____________________________________________________________________________
 BaseVGM::VTrd::VTrd()
-  : VGM::ITrd() {
-//  
+  : VGM::ITrd()
+{
+/// Default constructor  
 }
 
 //_____________________________________________________________________________

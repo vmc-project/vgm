@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup Geant4GM_materials
 //
-// Class Material
-// ---------------
-// VGM implementation for Geant4 material.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class Geant4GM::Material
+///
+/// VGM implementation for Geant4 material.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef GEANT4_GM_MATERIAL_H
 #define GEANT4_GM_MATERIAL_H
@@ -42,8 +43,8 @@ namespace Geant4GM {
       virtual double  MassFraction(int iel) const;
 
     protected:  
-      Material() : VGM::IMaterial() {}  
-      Material(const Material& rhs) : VGM::IMaterial(rhs) {}
+      Material();  
+      Material(const Material& rhs);
      
     private:
       bool CheckVacuum(const std::string& name, double density);

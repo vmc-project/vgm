@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup Geant4GM_solids
 //
-// Class Trap
-// ---------------
-// VGM implementation for Geant4 trap solid.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class Geant4GM::Trap
+///
+/// VGM implementation for Geant4 trap solid.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef GEANT4_GM_TRAP_H
 #define GEANT4_GM_TRAP_H

@@ -14,8 +14,7 @@ RootGM::VolumeMap*  RootGM::VolumeMap::fgInstance = 0;
 RootGM::VolumeMap* 
 RootGM::VolumeMap::Instance()
 { 
-// Singleton access function.
-// ---
+/// Singleton access function
 
   if (!fgInstance) new RootGM::VolumeMap();
   
@@ -27,8 +26,15 @@ RootGM::VolumeMap::VolumeMap()
   : fRootVolumes(),
     fVgmVolumes()
 {
-//  
+/// Standard default constructor
+
   fgInstance = this;
+}
+
+//_____________________________________________________________________________
+RootGM::VolumeMap::VolumeMap(const VolumeMap&)
+{
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________
@@ -46,8 +52,7 @@ RootGM::VolumeMap::~VolumeMap()
 void  RootGM::VolumeMap::AddVolume(VGM::IVolume* iVolume,        
                                    TGeoVolume* rootVolume)
 {
-// Adds the specified pair in the maps.
-// ---
+/// Add the specified pair in the maps
 
   fRootVolumes[iVolume] = rootVolume;
   fVgmVolumes[rootVolume] = iVolume;
@@ -56,8 +61,7 @@ void  RootGM::VolumeMap::AddVolume(VGM::IVolume* iVolume,
 //_____________________________________________________________________________
 void  RootGM::VolumeMap::Print() const
 {
-// Prints all volumes in  the maps.
-// ---
+/// Print all volumes in  the maps
 
   std::cout << "Root Volumes Map: " << std::endl; 
 
@@ -79,8 +83,7 @@ void  RootGM::VolumeMap::Print() const
 TGeoVolume* 
 RootGM::VolumeMap::GetVolume(VGM::IVolume* iVolume) const
 {
-// Finds the Root volume corresponding to a specified VGM volume.
-// ---
+/// Find the Root volume corresponding to a specified VGM volume
 
   RootVolumeMapCIterator i = fRootVolumes.find(iVolume);
   if (i != fRootVolumes.end()) 
@@ -93,8 +96,7 @@ RootGM::VolumeMap::GetVolume(VGM::IVolume* iVolume) const
 VGM::IVolume* 
 RootGM::VolumeMap::GetVolume(TGeoVolume* rootVolume) const
 {
-// Finds the VGM volume corresponding to a specified Root volume.
-// ---
+/// Finds the VGM volume corresponding to a specified Root volume
 
   VgmVolumeMapCIterator i = fVgmVolumes.find(rootVolume);
   if (i != fVgmVolumes.end()) 
