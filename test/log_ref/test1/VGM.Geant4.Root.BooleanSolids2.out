@@ -48,12 +48,8 @@ VGM info:   Exporting solid:
 VGM info:      Boolean  "solid1Isolid2S"  Intersection: 
   ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
   ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
-  Displacement translation (object):  (200,0,0)
-  Displacement rotation (frame):  
-   [ (    0.707107     -0.353553      0.612372)
-     (           0      0.866025           0.5)
-     (   -0.707107     -0.353553      0.612372) ]
-
+  Displacement translation (object):  ( 200,  0,  0) mm 
+  Displacement rotation (object):  (39.2315,  -37.7612,  -26.5651) deg    no reflectionZ
 VGM info:   Exporting solid: 
 VGM info:      Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
 VGM info:   Exporting solid: 
@@ -63,12 +59,8 @@ VGM info:   Exporting solid:
 VGM info:      Boolean  "solid1Ssolid2S"  Subtraction: 
   ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
   ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
-  Displacement translation (object):  (200,0,0)
-  Displacement rotation (frame):  
-   [ (    0.707107     -0.353553      0.612372)
-     (           0      0.866025           0.5)
-     (   -0.707107     -0.353553      0.612372) ]
-
+  Displacement translation (object):  ( 200,  0,  0) mm 
+  Displacement rotation (object):  (39.2315,  -37.7612,  -26.5651) deg    no reflectionZ
 VGM info:   Exporting solid: 
 VGM info:      Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
 VGM info:   Exporting solid: 
@@ -78,12 +70,8 @@ VGM info:   Exporting solid:
 VGM info:      Boolean  "solid1Usolid2S"  Union: 
   ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
   ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
-  Displacement translation (object):  (200,0,0)
-  Displacement rotation (frame):  
-   [ (    0.707107     -0.353553      0.612372)
-     (           0      0.866025           0.5)
-     (   -0.707107     -0.353553      0.612372) ]
-
+  Displacement translation (object):  ( 200,  0,  0) mm 
+  Displacement rotation (object):  (39.2315,  -37.7612,  -26.5651) deg    no reflectionZ
 VGM info:   Exporting solid: 
 VGM info:      Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
 VGM info:   Exporting solid: 

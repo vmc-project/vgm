@@ -1,2 +1,12 @@
 Warning in <TGeoManager::Init>: Deleting previous geometry: VGM Root geometry/VGM Root geometry
 Warning in <TGeoManager::dtor>: deleting previous geometry: VGM Root geometry/VGM Root geometry
+Warning in <TGeoMatrix::dtor>: Registered matrix  was removed
+Warning in <TGeoMatrix::dtor>: Registered matrix  was removed
+Warning in <TGeoMatrix::dtor>: Registered matrix  was removed
+Warning in <TGeoMatrix::dtor>: Registered matrix  was removed
+Warning in <TGeoMatrix::dtor>: Registered matrix  was removed
+Warning in <TGeoMatrix::dtor>: Registered matrix  was removed
+Warning in <TGeoMatrix::dtor>: Registered matrix  was removed
+Warning in <TGeoMatrix::dtor>: Registered matrix  was removed
+Warning in <TGeoMatrix::dtor>: Registered matrix  was removed
+Warning in <TGeoMatrix::dtor>: Registered matrix  was removed
