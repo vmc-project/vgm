@@ -60,6 +60,8 @@
    examples - examples for use of VGM
    packages - source code:
    	      VGM       - interfaces
+	      ClhepVGM  - conversion functions between CLHEP and VGM
+	                  transformations
 	      BaseVGM   - common implementation
 	      Geant4GM  - VGM implementation for Geant4
 	      RootGM    - VGM implementation for Root TGeo
