@@ -2,13 +2,11 @@
 //
 // Class Units
 // ------------------
-// Conversion of Root geometry units into CLHEP system of units.
+// Conversion from Root physical units to VGM units.
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
 #include <iostream>
-
-#include "CLHEP/Units/SystemOfUnits.h" 
 
 #include "RootGM/common/Units.h"
 
@@ -16,10 +14,10 @@
 // static const data members
 //
 
-const double RootGM::Units::fgkLength = cm;
-const double RootGM::Units::fgkAngle  = deg;
-const double RootGM::Units::fgkMassDensity  = g/cm3;
-const double RootGM::Units::fgkAtomicWeight = g/mole;
+const double RootGM::Units::fgkLength       = 10.;     // cm 
+const double RootGM::Units::fgkAngle        = 1.;      // deg
+const double RootGM::Units::fgkMassDensity  = 1.;      // g/cm3;
+const double RootGM::Units::fgkAtomicWeight = 1.;      // g/mole;
 
 //_____________________________________________________________________________
 RootGM::Units::Units() {

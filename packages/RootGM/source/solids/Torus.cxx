@@ -16,11 +16,11 @@ RootGM::Torus::Torus(const std::string& name,
 		     double sphi, double dphi)
   : BaseVGM::VTorus(),
     fTorus(new TGeoTorus(name.data(), 
-                         rax /RootGM::Units::Length(), 
-		         rin /RootGM::Units::Length(), 
-		         rout/RootGM::Units::Length(), 
-		         sphi/RootGM::Units::Angle(), 
-		         dphi/RootGM::Units::Angle()))
+                         rax  / RootGM::Units::Length(), 
+		         rin  / RootGM::Units::Length(), 
+		         rout / RootGM::Units::Length(), 
+		         sphi / RootGM::Units::Angle(), 
+		         dphi / RootGM::Units::Angle()))
 {
 // 
   RootGM::SolidMap::Instance()->AddSolid(this, fTorus); 
