@@ -14,8 +14,7 @@
 #include <vector>
 
 #include "VGM/common/Axis.h"
-#include "VGM/common/ThreeVector.h"
-#include "VGM/common/Rotation.h"
+#include "VGM/common/Transform.h"
 
 namespace VGM {
 
@@ -78,36 +77,16 @@ namespace VGM {
       // 
       virtual ISolid*  CreateIntersectionSolid(const std::string& name, 
                                ISolid* solidA, ISolid* solidB, 
-                               const Rotation& rotation, 
-			       const ThreeVector& translation) = 0;
+                               const VGM::Transform& transform) = 0;
  
-      virtual ISolid*  CreateIntersectionSolid(const std::string& name, 
-                               ISolid* solidA, ISolid* solidB, 
-                               const Rotation& rotation, 
-			       const ThreeVector& translation,
-			       bool hasReflectionZ) = 0;
-
       virtual ISolid*  CreateSubtractionSolid(const std::string& name, 
                                ISolid* solidA, ISolid* solidB, 
-                               const Rotation& rotation, 
-			       const ThreeVector& translation) = 0;
-
-      virtual ISolid*  CreateSubtractionSolid(const std::string& name, 
-                               ISolid* solidA, ISolid* solidB, 
-                               const Rotation& rotation, 
-			       const ThreeVector& translation,
-			       bool hasReflectionZ) = 0;
+                               const VGM::Transform& transform) = 0;
 
       virtual ISolid*  CreateUnionSolid(const std::string& name, 
                                ISolid* solidA, ISolid* solidB, 
-                               const Rotation& rotation, 
-			       const ThreeVector& translation) = 0;
+                               const VGM::Transform& transform) = 0;
 
-      virtual ISolid*  CreateUnionSolid(const std::string& name, 
-                               ISolid* solidA, ISolid* solidB, 
-                               const Rotation& rotation, 
-			       const ThreeVector& translation,
-			       bool hasReflectionZ) = 0;
 
       // volumes
       //
@@ -123,18 +102,8 @@ namespace VGM {
                                int copyNo,
                                IVolume* volume, 
 			       IVolume* motherVolume,
-                               const Rotation& rotation, 
-			       const ThreeVector& translation) = 0;
+			       const Transform& transform) = 0;
 
-      virtual IPlacement* CreatePlacement(
-                               const std::string& name, 
-                               int copyNo,
-                               IVolume* volume, 
-			       IVolume* motherVolume,
-                               const Rotation& rotation, 
-			       const ThreeVector& translation,
-			       bool  HasReflection) = 0;
-			       
       virtual IPlacement* CreateMultiplePlacement(
                                const std::string& name, 
                                IVolume* volume, 

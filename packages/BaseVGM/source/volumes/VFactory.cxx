@@ -83,26 +83,23 @@ BaseVGM::VFactory::ExportBooleanSolid(VGM::IBooleanSolid* solid,
 
 
   VGM::BooleanType boolType = solid->BoolType();
-  VGM::ThreeVector translation =  solid->DisplacementObjectTranslation();
-  VGM::Rotation rotation =  solid->DisplacementObjectRotation();
-  bool reflectionZ = solid->DisplacementReflectionZ();
-
+  VGM::Transform transform =  solid->Displacement();
 
   VGM::ISolid* newSolid = 0;
   if (boolType == VGM::kIntersection) {
     newSolid = factory->CreateIntersectionSolid(
                                solid->Name(), solidA, solidB,
-			       translation, rotation, reflectionZ);
+			       transform);
   }
   else if (boolType == VGM::kSubtraction) { 
     newSolid = factory->CreateSubtractionSolid(
                                solid->Name(), solidA, solidB,
-			       translation, rotation, reflectionZ);
+			       transform);
   }
   else if (boolType == VGM::kUnion) { 
     newSolid = factory->CreateUnionSolid(
                                solid->Name(), solidA, solidB,
-			       translation, rotation, reflectionZ); 
+			       transform);
   }
 
   if (!newSolid) {
@@ -316,9 +313,7 @@ BaseVGM::VFactory::ExportSimplePlacement(
                        placement->CopyNo(),
 	               newVolume,
 		       newMother,
-		       placement->FrameRotation(),
-		       placement->ObjectTranslation(),
-		       placement->ReflectionZ());
+		       placement->Transformation());
       
   return newPlacement;
 }
@@ -416,9 +411,19 @@ void BaseVGM::VFactory::ExportPlacements(
   
   VGM::IVolume* topVolume = (*volumeMap)[Top()->Volume()];
   
-  factory->CreatePlacement("top", 0, topVolume, 0, 
-                           BaseVGM::Identity(), BaseVGM::Origin());
+  factory->CreatePlacement("top", 0, topVolume, 0, Identity());
+  
   delete volumeMap;
+}
+
+//_____________________________________________________________________________
+VGM::Transform  BaseVGM::VFactory::Identity() const
+{
+//
+  VGM::Transform transform(VGM::kSize);
+  for (int i=0; i<7; i++) transform[i] = 0;
+
+  return transform;
 }
 
 //

@@ -832,7 +832,7 @@ void XmlVGM::AGDDWriter::WriteSolid(
 //_____________________________________________________________________________
 void XmlVGM::AGDDWriter::WriteRotation(
                               const std::string& /*name*/, 
-                              const VGM::Rotation& rotation)
+                              const ThreeVector& rotation)
 {
 // Writes rotation. 
 // ---
@@ -897,7 +897,7 @@ void XmlVGM::AGDDWriter::WriteRotation(
 //_____________________________________________________________________________
 void XmlVGM::AGDDWriter::WritePlacement(
                               const std::string& volumeName, 
-                              const VGM::ThreeVector& position) 
+                              const ThreeVector& position) 
 {
 // Writes position without rotation with a given volume name. 
 // ---
@@ -929,8 +929,8 @@ void XmlVGM::AGDDWriter::WritePlacement(
 //_____________________________________________________________________________
 void XmlVGM::AGDDWriter::WritePlacementWithRotation(
                               std::string volumeName, 
-			      const VGM::ThreeVector& position, 
-			      const VGM::Rotation& rotation)
+			      const ThreeVector& position, 
+			      const ThreeVector& rotation)
 {
 // Writes position with rotation with a given volume name. 
 // ---
@@ -940,11 +940,12 @@ void XmlVGM::AGDDWriter::WritePlacementWithRotation(
   double y = position[1]/LengthUnit();
   double z = position[2]/LengthUnit();
   
+  // convert object rotation to frame rotation
   HepRotation hepRotation;
   hepRotation.rotateX(rotation[0]);
   hepRotation.rotateY(rotation[1]);
   hepRotation.rotateZ(rotation[2]);
-
+ 
   double xx = hepRotation.xx();
   double xy = hepRotation.xy();
   double xz = hepRotation.xz();
@@ -1003,8 +1004,8 @@ void XmlVGM::AGDDWriter::WritePlacementWithRotation(
 //_____________________________________________________________________________
 void XmlVGM::AGDDWriter::WritePlacementWithRotationAndReflection(
                               std::string volumeName, 
-			      const VGM::ThreeVector& position, 
-			      const VGM::Rotation& rotation)
+			      const ThreeVector& position, 
+			      const ThreeVector& rotation)
 {
 // Writes position with rotation and reflection with a given volume name. 
 // ---
@@ -1013,11 +1014,12 @@ void XmlVGM::AGDDWriter::WritePlacementWithRotationAndReflection(
   //
   HepTranslate3D translate3D(position[0], position[1], position[2]);
 
+  // inverse rotation
   HepRotation hepRotation;
   hepRotation.rotateX(rotation[0]);
   hepRotation.rotateY(rotation[1]);
   hepRotation.rotateZ(rotation[2]);
-  HepRotate3D rotate3D(hepRotation);
+  HepRotate3D rotate3D(hepRotation.inverse());
 
   HepScaleZ3D scale3D(-1.0);
 

@@ -79,6 +79,8 @@ namespace BaseVGM {
       void             ExportPlacements(
                              VGM::IFactory* factory, 
 			     VolumeMap* map) const;
+  
+      VGM::Transform   Identity() const;
 
       // data members
       int                     fDebug;

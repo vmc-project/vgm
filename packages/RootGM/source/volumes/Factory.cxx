@@ -18,7 +18,8 @@
 #include "RootGM/volumes/Volume.h"
 #include "RootGM/volumes/Placement.h"
 #include "RootGM/volumes/PlacementMap.h"
-#include "RootGM/common/utilities.h"
+#include "RootGM/common/transform.h"
+#include "RootGM/common/axis.h"
 #include "RootGM/materials/MaterialFactory.h"
 #include "RootGM/solids/SolidMap.h"
 #include "RootGM/solids/BooleanSolid.h"
@@ -348,7 +349,7 @@ void RootGM::Factory::ImportPositions()
       std::cout << std::endl; 
     }		
      
-    if (RootGM::IsDivided(rootVolume))
+    if (IsDivided(rootVolume))
       ImportDivision(rootVolume, volume);
     else 
       ImportPlacements(rootVolume, volume);
@@ -365,6 +366,25 @@ bool RootGM::Factory::Import(void* topVolume)
   return Import(rootVolume);
 
 }			      
+
+//_____________________________________________________________________________
+bool RootGM::Factory::IsDivided(const TGeoVolume* volume) const
+{
+// Returns true if the volume is divided
+// and division is known to VGM.
+// ---
+
+  // Check if division is present
+  const TGeoPatternFinder* finder = volume->GetFinder();    
+  if (!finder) return false;
+    
+  // Get division axis
+  VGM::Axis axis = Axis(finder);
+  if (axis == VGM::kUnknownAxis) return false;
+  
+  // Volume can be processed as VGM division
+  return true;
+}  
 
 //
 // public functions
@@ -524,8 +544,7 @@ VGM::ISolid*
 RootGM::Factory::CreateIntersectionSolid(
                              const std::string& name, 
                              VGM::ISolid* solidA, VGM::ISolid* solidB, 
-                             const VGM::Rotation& rotation, 
-			     const VGM::ThreeVector& translation)
+                             const VGM::Transform& transform)
 {
 //
   VGM::ISolid* vgmSolid 
@@ -533,28 +552,7 @@ RootGM::Factory::CreateIntersectionSolid(
                          name, 
                          VGM::kIntersection, 
 			 solidA, solidB, 
-                         CreateTransform(rotation,translation, false));
-    
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
-}  			     
-
-//_____________________________________________________________________________
-VGM::ISolid*  
-RootGM::Factory::CreateIntersectionSolid(
-                             const std::string& name, 
-                             VGM::ISolid* solidA, VGM::ISolid* solidB, 
-                             const VGM::Rotation& rotation, 
-			     const VGM::ThreeVector& translation,
-			     bool hasReflectionZ)
-{
-//
-  VGM::ISolid* vgmSolid 
-    = new RootGM::BooleanSolid(
-                         name, 
-                         VGM::kIntersection, 
-			 solidA, solidB, 
-                         CreateTransform(rotation,translation, hasReflectionZ));
+                         CreateTransform(transform));
     
   SolidStore().push_back(vgmSolid);
   return vgmSolid; 
@@ -565,8 +563,7 @@ VGM::ISolid*
 RootGM::Factory::CreateSubtractionSolid(
                              const std::string& name, 
                              VGM::ISolid* solidA, VGM::ISolid* solidB, 
-                             const VGM::Rotation& rotation, 
-			     const VGM::ThreeVector& translation)
+                             const VGM::Transform& transform)
 {
 //
   VGM::ISolid* vgmSolid 
@@ -574,28 +571,7 @@ RootGM::Factory::CreateSubtractionSolid(
                          name, 
 			 VGM::kSubtraction,
 			 solidA, solidB, 
-                         CreateTransform(rotation,translation, false));
-    
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
-}  			     
-
-//_____________________________________________________________________________
-VGM::ISolid*  
-RootGM::Factory::CreateSubtractionSolid(
-                             const std::string& name, 
-                             VGM::ISolid* solidA, VGM::ISolid* solidB, 
-                             const VGM::Rotation& rotation, 
-			     const VGM::ThreeVector& translation,
-			     bool hasReflectionZ)
-{
-//
-  VGM::ISolid* vgmSolid 
-    = new RootGM::BooleanSolid(
-                         name, 
-			 VGM::kSubtraction,
-			 solidA, solidB, 
-                         CreateTransform(rotation,translation, hasReflectionZ));
+                         CreateTransform(transform));
     
   SolidStore().push_back(vgmSolid);
   return vgmSolid; 
@@ -606,8 +582,7 @@ VGM::ISolid*
 RootGM::Factory::CreateUnionSolid(
                              const std::string& name, 
                              VGM::ISolid* solidA, VGM::ISolid* solidB, 
-                             const VGM::Rotation& rotation, 
-			     const VGM::ThreeVector& translation)
+                             const VGM::Transform& transform)
 {
 //
   VGM::ISolid* vgmSolid 
@@ -615,28 +590,7 @@ RootGM::Factory::CreateUnionSolid(
                          name, 
 			 VGM::kUnion, 
 			 solidA, solidB, 
-                         CreateTransform(rotation,translation, false));
-    
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
-}  			     
-
-//_____________________________________________________________________________
-VGM::ISolid*  
-RootGM::Factory::CreateUnionSolid(
-                             const std::string& name, 
-                             VGM::ISolid* solidA, VGM::ISolid* solidB, 
-                             const VGM::Rotation& rotation, 
-			     const VGM::ThreeVector& translation,
-			     bool hasReflectionZ)
-{
-//
-  VGM::ISolid* vgmSolid 
-    = new RootGM::BooleanSolid(
-                         name, 
-			 VGM::kUnion, 
-			 solidA, solidB, 
-                         CreateTransform(rotation,translation, hasReflectionZ));
+                         CreateTransform(transform));
     
   SolidStore().push_back(vgmSolid);
   return vgmSolid; 
@@ -663,8 +617,7 @@ RootGM::Factory::CreatePlacement(
                                int copyNo,
                                VGM::IVolume* volume, 
 			       VGM::IVolume* motherVolume,
-                               const VGM::Rotation& rotation, 
-			       const VGM::ThreeVector& translation)
+                               const VGM::Transform& transform)
 {
 //
   VGM::IPlacement* placement
@@ -672,7 +625,7 @@ RootGM::Factory::CreatePlacement(
                        name, 
                        copyNo, 
 		       volume, motherVolume, 
-		       CreateTransform(rotation,translation,false)); 
+		       CreateTransform(transform)); 
 		       
   // Top volume
   if (!motherVolume) 
@@ -687,39 +640,6 @@ RootGM::Factory::CreatePlacement(
   
   return placement;
 }			  			       
-
-//_____________________________________________________________________________
-VGM::IPlacement* 
-RootGM::Factory::CreatePlacement(
-                               const std::string& name, 
-                               int copyNo,
-                               VGM::IVolume* volume, 
-			       VGM::IVolume* motherVolume,
-                               const VGM::Rotation& rotation, 
-			       const VGM::ThreeVector& translation,
-			       bool hasReflectionZ)
-{
-//
-  VGM::IPlacement* placement
-    = new RootGM::Placement(
-                       name, 
-                       copyNo, 
-		       volume, motherVolume, 
-                       CreateTransform(rotation,translation, hasReflectionZ));
-
-  // Top volume
-  if (!motherVolume) 
-    if (!fTop)
-      fTop = placement;
-    else {
-      std::cerr << "    RootGM::Factory::CreatePlacement:" << std::endl;
-      std::cerr << "    Top volume defided twice!" << std::endl;
-      std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
-      exit(1);
-    }		  
-  
-  return 0; 
-}
 
 //_____________________________________________________________________________
 VGM::IPlacement* 

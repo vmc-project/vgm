@@ -17,7 +17,6 @@
 #include <set>
 #include <map>
 
-#include "VGM/common/ThreeVector.h"
 #include "VGM/materials/IElement.h"
 #include "VGM/materials/IMaterial.h"
 #include "VGM/volumes/IFactory.h"
@@ -25,18 +24,24 @@
 
 namespace XmlVGM {
 
+  typedef std::vector<double> ThreeVector;
+
   class IWriter;
   
   class VExporter
   {
     public:
-      typedef std::set <std::string, std::less<std::string> > StringSet; 
-      typedef std::map <VGM::ThreeVector, std::string, 
-                      std::less<VGM::ThreeVector> >  ThreeVectorMap; 
-      typedef std::multimap <VGM::ThreeVector, const VGM::IElement*, 
-                      std::less<VGM::ThreeVector> >  ElementMap; 
-      typedef std::map <std::string, const VGM::IMaterial*, 
-                      std::less<std::string> > MaterialMap; 
+      typedef std::set <std::string, 
+                        std::less<std::string> >  StringSet; 
+      typedef std::map <ThreeVector, 
+                        std::string, 
+                        std::less<ThreeVector> >  ThreeVectorMap; 
+      typedef std::multimap <ThreeVector, 
+                        const VGM::IElement*, 
+                        std::less<ThreeVector> >  ElementMap; 
+      typedef std::map <std::string, 
+                        const VGM::IMaterial*, 
+                        std::less<std::string> >  MaterialMap; 
 
     public:
       VExporter(const VGM::IFactory* factory);
@@ -73,8 +78,8 @@ namespace XmlVGM {
 
       // methods
       //
-      std::string  FindPositionName(VGM::ThreeVector position) const;
-      std::string  FindRotationName(const VGM::Rotation& rotation) const;
+      std::string  FindPositionName(const ThreeVector& position) const;
+      std::string  FindRotationName(const ThreeVector& rotation) const;
 
       void GeneratePositions(VGM::IVolume* volume);
       void GenerateRotations(VGM::IVolume* volume);
@@ -85,9 +90,8 @@ namespace XmlVGM {
       void CloseFile();
       void ClearVolumeNames();
       
-      VGM::ThreeVector Origin()   const;
-      VGM::Rotation    Identity() const;
-      bool             IsIdentity(const VGM::Rotation& rotation) const;
+      ThreeVector Identity() const;
+      bool        IsIdentity(const ThreeVector& rotation) const;
 
       // static data members
       static const std::string fgkUndefinedFileName; //default value of file name
@@ -104,12 +108,12 @@ namespace XmlVGM {
     private:
       // methods
       //
-      void   CutName(std::string& name) const;
-      double Round(double number) const;
-      VGM::Rotation  Purify(const VGM::Rotation& rotation) const;
+      void         CutName(std::string& name) const;
+      double       Round(double number) const;
+      ThreeVector  PurifyAngles(const ThreeVector& rotation) const;
  
-      std::string  AddPositionToMap(const VGM::ThreeVector& position);
-      std::string  AddRotationToMap(const VGM::Rotation& rotation);
+      std::string  AddPositionToMap(const ThreeVector& position);
+      std::string  AddRotationToMap(const ThreeVector& rotation);
       const VGM::IElement*  AddElementToMap(const VGM::IElement* element);
       const VGM::IMaterial* AddMaterialToMap(const VGM::IMaterial* material);
     

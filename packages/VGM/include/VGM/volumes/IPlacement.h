@@ -12,8 +12,7 @@
 #include <string>
 
 #include "VGM/common/Axis.h"
-#include "VGM/common/ThreeVector.h"
-#include "VGM/common/Rotation.h"
+#include "VGM/common/Transform.h"
 
 namespace VGM {
 
@@ -38,12 +37,7 @@ namespace VGM {
       virtual IVolume*     Volume() const = 0;
       virtual IVolume*     Mother() const = 0;
       virtual int          CopyNo() const = 0;
-
-      virtual Rotation     ObjectRotation() const = 0;      
-      virtual Rotation     FrameRotation() const = 0;      
-      virtual ThreeVector  ObjectTranslation() const = 0;
-      virtual ThreeVector  FrameTranslation() const = 0;
-      virtual bool         ReflectionZ() const = 0;
+      virtual Transform    Transformation() const = 0;      
 
       virtual bool  MultiplePlacementData(
                            Axis&   axis,

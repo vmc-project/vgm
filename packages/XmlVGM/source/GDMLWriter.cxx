@@ -12,8 +12,12 @@
 #include <sstream>
 #include <float.h>
 
+#include "CLHEP/Vector/Rotation.h"
+
 #include "VGM/materials/IMaterial.h"
 #include "VGM/materials/IElement.h"
+
+#include "ClhepVGM/transform.h"
 
 #include "XmlVGM/GDMLWriter.h"
 
@@ -1112,7 +1116,7 @@ void XmlVGM::GDMLWriter::WriteSolid(
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WritePosition(
                               const std::string& name, 
-                              const VGM::ThreeVector& position) 
+                              const ThreeVector& position) 
 {
 // Writes position element with a given name. 
 // ---
@@ -1146,7 +1150,7 @@ void XmlVGM::GDMLWriter::WritePosition(
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteRotation(
                               const std::string& name, 
-                              const VGM::Rotation& rotation)
+                              const ThreeVector& rotation)
 {
 // Writes rotation element with a given name. 
 // ---

@@ -11,6 +11,8 @@
 #include "VGM/volumes/IVolume.h"
 #include "VGM/volumes/IPlacement.h"
 
+#include "ClhepVGM/transform.h"
+
 #include "XmlVGM/AGDDExporter.h"
 #include "XmlVGM/AGDDWriter.h"
 
@@ -132,7 +134,7 @@ void XmlVGM::AGDDExporter::ProcessTopVolume(VGM::IVolume* volume)
   name.append("_comp");
 
   fWriter->OpenComposition(volumeName, volume->MaterialName());
-  fWriter->WritePlacement(name, Origin());
+  fWriter->WritePlacement(name, Identity());
   fWriter->CloseComposition();	
   fWriter->WriteEmptyLine();
 }  
@@ -174,12 +176,22 @@ void XmlVGM::AGDDExporter::ProcessVolume(VGM::IVolume* volume)
 
     if (dPlacementType == VGM::kSimplePlacement) {
     
-      // simple placement
-      VGM::ThreeVector position = dPlacement->ObjectTranslation();
-      VGM::Rotation rotation = dPlacement->ObjectRotation();
-      bool isReflection = dPlacement->ReflectionZ();
+      VGM::Transform transform = dPlacement->Transformation();
+      VGM::Transform inverse = ClhepVGM::Inverse(transform);
 
-      if (isReflection) {
+      // position
+      ThreeVector position(3);
+      position[0] = transform[VGM::kDx];
+      position[1] = transform[VGM::kDy];
+      position[2] = transform[VGM::kDz];
+      
+      // rotation
+      ThreeVector rotation(3);
+      rotation[0] = inverse[VGM::kAngleX];
+      rotation[1] = inverse[VGM::kAngleY];
+      rotation[2] = inverse[VGM::kAngleZ];
+
+      if (ClhepVGM::HasReflection(transform)) {
         fWriter
 	  ->WritePlacementWithRotationAndReflection(
 	         volumeName, position, rotation);

@@ -14,7 +14,7 @@
 #include "G4SubtractionSolid.hh"
 #include "G4UnionSolid.hh"
 
-#include "ClhepVGM/utilities.h"
+#include "ClhepVGM/transform.h"
 
 #include "Geant4GM/solids/BooleanSolid.h"
 #include "Geant4GM/solids/SolidMap.h"
@@ -153,71 +153,20 @@ Geant4GM::BooleanSolid::ConstituentSolidB() const
 } 
 
 //_____________________________________________________________________________
-VGM::Rotation 
-Geant4GM::BooleanSolid::DisplacementObjectRotation() const
+VGM::Transform 
+Geant4GM::BooleanSolid::Displacement() const
 {
 // Returns the first constituent solid.
 // ---
 
  const G4DisplacedSolid* g4DisplacedSolid = DisplacedSolid();
  
- if (g4DisplacedSolid)
-   return ClhepVGM::Rotation(g4DisplacedSolid->GetObjectRotation());
+ if (g4DisplacedSolid) {
+   return ClhepVGM::Transform(g4DisplacedSolid->GetObjectRotation(),
+                              g4DisplacedSolid->GetObjectTranslation());
+ } 			      
  else
-   return ClhepVGM::Rotation(HepRotation());
-}    
-
-//_____________________________________________________________________________
-VGM::Rotation 
-Geant4GM::BooleanSolid::DisplacementFrameRotation() const
-{
-// Returns the first constituent solid.
-// ---
-
- const G4DisplacedSolid* g4DisplacedSolid = DisplacedSolid();
-
- if (g4DisplacedSolid)
-   return ClhepVGM::Rotation(g4DisplacedSolid->GetFrameRotation());
- else
-   return ClhepVGM::Rotation(HepRotation());
-}    
-//_____________________________________________________________________________
-VGM::ThreeVector 
-Geant4GM::BooleanSolid::DisplacementObjectTranslation() const
-{
-// Returns the first constituent solid.
-// ---
-
- const G4DisplacedSolid* g4DisplacedSolid = DisplacedSolid();
- 
- if (g4DisplacedSolid)
-   return ClhepVGM::Translation(g4DisplacedSolid->GetObjectTranslation());
- else
-   return ClhepVGM::Translation(Hep3Vector());
-}    
-
-//_____________________________________________________________________________
-VGM::ThreeVector 
-Geant4GM::BooleanSolid::DisplacementFrameTranslation() const
-{
-// Returns the first constituent solid.
-// ---
-
- const G4DisplacedSolid* g4DisplacedSolid = DisplacedSolid();
-
- if (g4DisplacedSolid)
-   return ClhepVGM::Translation(g4DisplacedSolid->GetFrameTranslation());
- else
-   return ClhepVGM::Translation(Hep3Vector());
-}    
-
-//_____________________________________________________________________________
-bool Geant4GM::BooleanSolid::DisplacementReflectionZ() const
-{
-// Returns the first constituent solid.
-// ---
-
-  return false;
+   return ClhepVGM::Transform(HepRotation(), Hep3Vector());
 }    
 
 //_____________________________________________________________________________

@@ -10,6 +10,8 @@
 #include "VGM/volumes/IVolume.h"
 #include "VGM/volumes/IPlacement.h"
 
+#include "ClhepVGM/transform.h"
+
 #include "XmlVGM/GDMLExporter.h"
 #include "XmlVGM/GDMLWriter.h"
 
@@ -158,16 +160,29 @@ void XmlVGM::GDMLExporter::ProcessVolume(VGM::IVolume* volume)
       if (dPlacementType == VGM::kSimplePlacement) {
         // simple placement
 	 
+	VGM::Transform transform = dPlacement->Transformation();
+        VGM::Transform inverse = ClhepVGM::Inverse(transform);
+	 
+        // position
+        ThreeVector position(3);
+        position[0] = transform[VGM::kDx];
+        position[1] = transform[VGM::kDy];
+        position[2] = transform[VGM::kDz];
+      
+        // rotation
+        ThreeVector rotation(3);
+        rotation[0] = inverse[VGM::kAngleX];
+        rotation[1] = inverse[VGM::kAngleY];
+        rotation[2] = inverse[VGM::kAngleZ];
+
         // Get position
-        VGM::ThreeVector  position = dPlacement->ObjectTranslation();
 	std::string positionRef = FindPositionName(position);
       
         // Get rotation
-        VGM::Rotation rotation = dPlacement->ObjectRotation();
 	std::string rotationRef = FindRotationName(rotation);
 	
         // Reflection is not supported by GDML
-        if  (dPlacement->ReflectionZ()) {
+        if  (ClhepVGM::HasReflection(transform)) {
           std::cerr << "+++ Warning  +++" << std::endl; 
           std::cerr << "    XmlVGM::GDMLExporter::ProcessVolume: " << std::endl;
           std::cerr << "    Placement with reflection is not yet supported in GDML." 

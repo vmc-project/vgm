@@ -14,7 +14,7 @@
 
 #include "RootGM/solids/BooleanSolid.h"
 #include "RootGM/solids/SolidMap.h"
-#include "RootGM/common/utilities.h"
+#include "RootGM/common/transform.h"
 
 const char RootGM::BooleanSolid::fgkIntersectionChar = '*'; 
 const char RootGM::BooleanSolid::fgkSubtractionChar = '-'; 
@@ -26,41 +26,12 @@ RootGM::BooleanSolid::BooleanSolid(
                              const std::string& name, 
                              VGM::BooleanType boolType,
                              VGM::ISolid* solidA, VGM::ISolid* solidB,
-			     TGeoMatrix* displacement) 
+			     TGeoMatrix* displacementB) 
   : BaseVGM::VBooleanSolid(),
     fCompositeShape(0) 
 {
 //  
-  // Call common constructor function
-  CreateBooleanSolid(name, boolType, solidA, solidB, displacement);  
-}
 
-//_____________________________________________________________________________
-RootGM::BooleanSolid::BooleanSolid(TGeoCompositeShape* compositeShape)
-  : BaseVGM::VBooleanSolid(),
-    fCompositeShape(compositeShape) 
-{
-//  
-  RootGM::SolidMap::Instance()->AddSolid(this, fCompositeShape); 
-}
-
-//_____________________________________________________________________________
-RootGM::BooleanSolid::~BooleanSolid() {
-//
-}
-
-// 
-// private methods
-//
-
-//_____________________________________________________________________________
-void RootGM::BooleanSolid::CreateBooleanSolid(
-                                 const std::string& name, 
-                                 VGM::BooleanType boolType,
-                                 VGM::ISolid* solidA, VGM::ISolid* solidB, 
-                                 TGeoMatrix* displacementB)
-{
-//  
   // Get solids from the volumes map
   TGeoShape* rootSolidA = RootGM::SolidMap::Instance()->GetSolid(solidA);
   TGeoShape* rootSolidB = RootGM::SolidMap::Instance()->GetSolid(solidB);
@@ -100,131 +71,23 @@ void RootGM::BooleanSolid::CreateBooleanSolid(
   RootGM::SolidMap::Instance()->AddSolid(this, fCompositeShape); 
 }
 
-/*
 //_____________________________________________________________________________
-HepTransform3D  RootGM::BooleanSolid::Displacement() const
+RootGM::BooleanSolid::BooleanSolid(TGeoCompositeShape* compositeShape)
+  : BaseVGM::VBooleanSolid(),
+    fCompositeShape(compositeShape) 
 {
-// Returns the solid displacemnt transformation
-// in the frame of the first (left) solid.
-// ---
-
-
-  //TGeoBoolNode* boolNode = fCompositeShape->GetBoolNode();
-  //
-  //TGeoMatrix* matrixA = boolNode->GetLeftMatrix();
-  //TGeoMatrix* matrixB = boolNode->GetRightMatrix();
-  //
-  //return RootGM::Convert(matrixB, matrixA, false, true);
-
-  TGeoBoolNode* boolNode = fCompositeShape->GetBoolNode();
-  
-  TGeoMatrix* matrixA = boolNode->GetLeftMatrix();
-  TGeoMatrix* matrixB = boolNode->GetRightMatrix();
-  
-  HepTransform3D transformA = RootGM::Convert(matrixA);
-  HepTransform3D transformB = RootGM::Convert(matrixB);
-
-  // If constituents are composite shapes,
-  // the displacement have to take into account the transformation
-  // of left constituent not passed to the solid
-
-  HepTransform3D totalTransformA = transformA;
-  TGeoShape* shapeA = boolNode->GetLeftShape();
-  while (shapeA->IsComposite()) { 
-      
-     TGeoBoolNode* boolNodeAC 
-       = ((TGeoCompositeShape*)shapeA)->GetBoolNode();
-      
-     TGeoShape* shapeAC = boolNodeAC->GetLeftShape();
-          // left component of the shape A 
-
-     TGeoMatrix* matrixAC = boolNodeAC->GetLeftMatrix();
-     HepTransform3D transformAC = RootGM::Convert(matrixAC);
-    
-     totalTransformA = totalTransformA * transformAC;
-     
-     shapeA = shapeAC;
-  }
-  
-  HepTransform3D totalTransformB = transformB;
-  TGeoShape* shapeB = boolNode->GetRightShape();
-  while (shapeB->IsComposite()) { 
-      
-     TGeoBoolNode* boolNodeBC 
-       = ((TGeoCompositeShape*)shapeB)->GetBoolNode();
-      
-     TGeoShape* shapeBC = boolNodeBC->GetLeftShape();
-          // left component of the shape B 
-
-     TGeoMatrix* matrixBC = boolNodeBC->GetLeftMatrix();
-     HepTransform3D transformBC = RootGM::Convert(matrixBC);
-    
-     totalTransformB = totalTransformB * transformBC;
-     
-     shapeB = shapeBC;
-  }
-  
-  return totalTransformA.inverse() * totalTransformB;
-}  
-*/
+//  
+  RootGM::SolidMap::Instance()->AddSolid(this, fCompositeShape); 
+}
 
 //_____________________________________________________________________________
-TGeoHMatrix  RootGM::BooleanSolid::Displacement() const
-{
-// Returns the solid displacemnt transformation
-// in the frame of the first (left) solid.
-// ---
+RootGM::BooleanSolid::~BooleanSolid() {
+//
+}
 
-  TGeoBoolNode* boolNode = fCompositeShape->GetBoolNode();
-  
-  TGeoMatrix* matrixA = boolNode->GetLeftMatrix();
-  TGeoMatrix* matrixB = boolNode->GetRightMatrix();
-  
-  TGeoHMatrix transformA(*matrixA);
-  TGeoHMatrix transformB(*matrixB);
-
-  // If constituents are composite shapes,
-  // the displacement have to take into account the transformation
-  // of left constituent not passed to the solid
-
-  TGeoHMatrix totalTransformA(transformA);
-  TGeoShape* shapeA = boolNode->GetLeftShape();
-  while (shapeA->IsComposite()) { 
-      
-     TGeoBoolNode* boolNodeAC 
-       = ((TGeoCompositeShape*)shapeA)->GetBoolNode();
-      
-     TGeoShape* shapeAC = boolNodeAC->GetLeftShape();
-          // left component of the shape A 
-
-     TGeoMatrix* matrixAC = boolNodeAC->GetLeftMatrix();
-     TGeoHMatrix transformAC(*matrixAC);
-    
-     totalTransformA = totalTransformA * transformAC;
-     
-     shapeA = shapeAC;
-  }
-  
-  TGeoHMatrix totalTransformB(transformB);
-  TGeoShape* shapeB = boolNode->GetRightShape();
-  while (shapeB->IsComposite()) { 
-      
-     TGeoBoolNode* boolNodeBC 
-       = ((TGeoCompositeShape*)shapeB)->GetBoolNode();
-      
-     TGeoShape* shapeBC = boolNodeBC->GetLeftShape();
-          // left component of the shape B 
-
-     TGeoMatrix* matrixBC = boolNodeBC->GetLeftMatrix();
-     TGeoHMatrix transformBC(*matrixBC);
-    
-     totalTransformB = totalTransformB * transformBC;
-     
-     shapeB = shapeBC;
-  }
-  
-  return totalTransformA.Inverse() * totalTransformB;
-}  
+// 
+// private methods
+//
 
 // 
 // public methods
@@ -292,54 +155,62 @@ RootGM::BooleanSolid::ConstituentSolidB() const
 } 
 
 //_____________________________________________________________________________
-VGM::Rotation 
-RootGM::BooleanSolid::DisplacementObjectRotation() const
+VGM::Transform  
+RootGM::BooleanSolid::Displacement() const
 {
-// Returns the displacemnt object rotation.
+// Returns the solid displacemnt transformation
+// in the frame of the first (left) solid.
 // ---
 
-  return Rotation(Displacement());     
-}    
+  TGeoBoolNode* boolNode = fCompositeShape->GetBoolNode();
+  
+  TGeoMatrix* matrixA = boolNode->GetLeftMatrix();
+  TGeoMatrix* matrixB = boolNode->GetRightMatrix();
+  
+  TGeoHMatrix transformA(*matrixA);
+  TGeoHMatrix transformB(*matrixB);
 
-//_____________________________________________________________________________
-VGM::Rotation 
-RootGM::BooleanSolid::DisplacementFrameRotation() const
-{
-// Returns the displacemnt frame rotation.
-// ---
+  // If constituents are composite shapes,
+  // the displacement have to take into account the transformation
+  // of left constituent not passed to the solid
 
-  return Rotation(Displacement().Inverse());
-}    
-//_____________________________________________________________________________
-VGM::ThreeVector 
-RootGM::BooleanSolid::DisplacementObjectTranslation() const
-{
-// Returns the  displacemnt object translation.
-// ---
+  TGeoHMatrix totalTransformA(transformA);
+  TGeoShape* shapeA = boolNode->GetLeftShape();
+  while (shapeA->IsComposite()) { 
+      
+     TGeoBoolNode* boolNodeAC 
+       = ((TGeoCompositeShape*)shapeA)->GetBoolNode();
+      
+     TGeoShape* shapeAC = boolNodeAC->GetLeftShape();
+          // left component of the shape A 
 
-  return Translation(Displacement());     
-}    
+     TGeoMatrix* matrixAC = boolNodeAC->GetLeftMatrix();
+     TGeoHMatrix transformAC(*matrixAC);
+    
+     totalTransformA = totalTransformA * transformAC;
+     
+     shapeA = shapeAC;
+  }
+  
+  TGeoHMatrix totalTransformB(transformB);
+  TGeoShape* shapeB = boolNode->GetRightShape();
+  while (shapeB->IsComposite()) { 
+      
+     TGeoBoolNode* boolNodeBC 
+       = ((TGeoCompositeShape*)shapeB)->GetBoolNode();
+      
+     TGeoShape* shapeBC = boolNodeBC->GetLeftShape();
+          // left component of the shape B 
 
-//_____________________________________________________________________________
-VGM::ThreeVector 
-RootGM::BooleanSolid::DisplacementFrameTranslation() const
-{
-// Returns the  displacemnt frame translation.
-// ---
-
-   VGM::ThreeVector objTranslation = DisplacementObjectTranslation();
-   for (Int_t i=0; i<3; i++) objTranslation[i] = - objTranslation[i];
-   
-   return objTranslation;
-}    
-
-//_____________________________________________________________________________
-bool  RootGM::BooleanSolid::DisplacementReflectionZ() const
-{
-// Returns true if solid displacement trasformation
-// includes reflection.
-
-  return HasReflection(Displacement());     
+     TGeoMatrix* matrixBC = boolNodeBC->GetLeftMatrix();
+     TGeoHMatrix transformBC(*matrixBC);
+    
+     totalTransformB = totalTransformB * transformBC;
+     
+     shapeB = shapeBC;
+  }
+  
+  return Transform(totalTransformA.Inverse() * totalTransformB);
 }  
 
 //_____________________________________________________________________________

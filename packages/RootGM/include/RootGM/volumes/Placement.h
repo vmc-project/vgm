@@ -14,8 +14,7 @@
 #include <TGeoMatrix.h>
 #include <TGeoNode.h>
 
-#include "VGM/common/ThreeVector.h"
-#include "VGM/common/Rotation.h"
+#include "VGM/common/Transform.h"
 
 #include "BaseVGM/volumes/VPlacement.h"
 
@@ -44,15 +43,9 @@ namespace RootGM {
     
       // methods
       virtual VGM::PlacementType Type() const;
-
-      virtual std::string   Name() const;
-      virtual int           CopyNo() const;
-
-      virtual VGM::Rotation     ObjectRotation() const;      
-      virtual VGM::Rotation     FrameRotation() const;      
-      virtual VGM::ThreeVector  ObjectTranslation() const;
-      virtual VGM::ThreeVector  FrameTranslation() const;
-      virtual bool              ReflectionZ() const;
+      virtual std::string        Name() const;
+      virtual int                CopyNo() const;
+      virtual VGM::Transform     Transformation() const;      
 
       virtual bool  MultiplePlacementData(
                                 VGM::Axis&  axis,
@@ -65,9 +58,6 @@ namespace RootGM {
       Placement() : BaseVGM::VPlacement() {}
 
     private:
-      // methods
-      TGeoHMatrix ObjectTransform() const;
-      
       // data members
       TGeoNode*    fGeoNode;
       std::string  fName;
