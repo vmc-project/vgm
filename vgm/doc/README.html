@@ -129,6 +129,7 @@
 
  <pre>                                                    <font face="Courier" color="#00aa00">
  #include "VGM/volumes/IFactory.h"
+ #include "ClhepVGM/transform.h"
  using namespace VGM;
 
  MyDetectorConstruction::Construct(VGM::IFactory* factory)
@@ -142,7 +143,7 @@
      = factory->CreateVolume("worldV", worldS, "Air");    <font color="#aa00ff"><I>
                 // create the world volume                </font></I>
 
-   factory->CreatePlacement("world", 0, worldV, 0, 0, Hep3Vector());<font color="#aa00ff"><I>
+   factory->CreatePlacement("world", 0, worldV, 0, ClhepVGM::Identity());<font color="#aa00ff"><I>
                 // place the world volume                 </font></I></font>
  }    
  </pre>
