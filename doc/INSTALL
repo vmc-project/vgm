@@ -6,28 +6,33 @@
  Environment:
  -----------
    The following environment variables have to be set by user:
-   VGM_INSTALL     - path to VGM installation
+   VGM_INSTALL     - path to the VGM installation
    VGM_SYSTEM      - platform (Linux-g++, SunOS, DEC-cxx, HP-aCC)
-   CLHEP_BASE_DIR  - path to CLHEP installation
+   CLHEP_BASE_DIR  - path to the CLHEP installation
 
-   In order to use VGM with Geant4 and/or Root,
-   the environment for these packages has to be set in a standard
-   way.
+   In order to VGM with Geant4 and/or Root,
+   the environment for these packages has to be set in their 
+   standard way.
    If G4INSTALL and/or ROOTSYS environment variables are set,
    the Geant4 VGM and/or Root VGM are built automatically.
    User can exclude it from compilation by setting variables:
    VGM_NO_GEANT4 - do not build Geant4 VGM
    VGM_NO_ROOT   - do not build Root VGM
 
+   Geant4 configuration:
+   The VGM requires Geant4 installed with include directory.
+   
+   The path to VGM libraries $VGM_INSTALL/lib/$VGM_SYSTEM
+   has to be added to the path to shared libraries
+   (LD_LIBRARY_PATH on most systems, SHLIB_PATH on HP-UX).
+   
    The default environment setting (for VGM only) is provided 
    in the config/setup.(c)sh script.   
   
  Compilation:
  -----------
    cd $VGM_INSTALL/packages
-   gmake                - build libraries 
-                          (in $VGM_INSTALL/lib/$VGM_SYSTEM)
- 
+   gmake  
 
  Test:
  -----

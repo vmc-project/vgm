@@ -11,8 +11,8 @@ ifeq ($(VGM_SYSTEM),Linux-g++)
     CCFLAGS   := -O2
   else
     ifdef VGM_DEBUG
-      CXXFLAGS  += -g
-      FCFLAGS   := -g
+      CXXFLAGS  += -g -O
+      FCFLAGS   := -g 
       CCFLAGS   := -g
     endif
   endif
