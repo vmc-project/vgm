@@ -103,6 +103,8 @@
  from a concrete geometry model:
 
  #include "VGM/volumes/IFactory.h"
+ #include "ClhepVGM/transform.h"
+
  using namespace VGM;
 
  MyDetectorConstruction::Construct(VGM::IFactory* factory)
@@ -116,7 +118,7 @@
      = factory->CreateVolume("worldV", worldS, "Air");
                 // create the world volume 
 
-   factory->CreatePlacement("world", 0, worldV, 0, 0, Hep3Vector());
+   factory->CreatePlacement("world", 0, worldV, ClhepVGM::Identity());
                 // place the world volume 
  }    
  
