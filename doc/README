@@ -1,0 +1,165 @@
+ $Id$
+
+ The Virtual Geometry Model (VGM)
+ ================================
+ 
+ Content:
+ 
+ 1. Introduction
+ 2. Installation, Examples
+ 3. Geometry conversions
+ 4. Geometry construction via VGM
+ 5. XML
+ 6. Platforms
+ 
+ 
+ 1. Introduction
+ ---------------
+
+ The Virtual Geometry Model (VGM) has been developed as generalization
+ of existing convertors roottog4, g4toxml provided within 
+ <a href="http://root.cern.ch/root/vmc/VirtualMC.html"> Geant4 VMC </a> 
+ when new directions: g4toroot, roottoxml were asked by users.
+ Instead of adding other bilateral converters and multiplying
+ the implementations, the abstract layer to geometry has been defined
+ and the geometry models have been "mapped" to this generalized
+ models. Once this is done, the geometry objects in different models 
+ can be handled in the same way.
+ 
+ In the VGM, the abstract interfaces to geometry objects and an abstract 
+ factory for geometry construction, import and export are introduced.
+ The interfaces to geometry objects were defined to be
+ suitable to describe "geant-like" geometries with a hierarchical volume
+ structure.
+ 
+ The implementation of the VGM for a concrete geometry model represents
+ a layer between the VGM and the particular native geometry.
+ At the present time this implementation is provided for the Geant4 and
+ the Root TGeo geometry models.
+
+ Using the VGM factory, geometry can first be defined independently from
+ a concrete geometry model, and then built by choosing a concrete
+ instantiation of it. Alternatively, the import function of the VGM factory
+ makes it possible to use VGM directly with native geometries (Geant4,
+ TGeo). The export functions provide conversion into other native 
+ geometries or the XML format.
+
+ To port a third geometry model, then providing the VGM layer for it is 
+ sufficient to obtain all the converters between this third geometry and 
+ already ported geometries (Geant4, Root).
+
+ 2. Installation, Examples
+ -------------------------
+ 
+ The installation and testing procedures are described in detail
+ in vgm/doc/INSTALL.
+ As the test program (being written for the purpose of testing of all
+ features) is too complex, four simple examples demonstrating use
+ of VGM for converting native geometries are provided in vgm/examples.
+ A detailed guide how to build and run the examples is included
+ in the README file in each example.
+ 
+
+ 3. Geometry conversions
+ -----------------------
+ 
+ To convert native geometry from one geometry model to another,
+ the geometry has to be first imported in the VGM (the native geometry 
+ objects are mapped to the VGM interfaces) using the concrete VGM factory 
+ for this geometry model, and then exported using the VGM factory for 
+ the other geometry model.
+ 
+ To convert Geant4 geometry in Root:
+
+ #include "Geant4GM/volumes/Factory.h" 
+ #include "RootGM/volumes/Factory.h" 
+ #include "TGeoManager.h"
+ 
+  // Import Geant4 geometry to VGM
+  //
+  Geant4GM::Factory g4Factory;
+  g4Factory.Import(physiWorld);
+     // where physiWorld is of G4VPhysicalVolume* type
+  
+  // Export VGM geometry to Root
+  //
+  RootGM::Factory rtFactory;
+  g4Factory.Export(&rtFactory);
+  gGeoManager->CloseGeometry();
+  
+  // Return top volume
+  //
+  return rtFactory.World();
+      // returns Root top volume, of TGeoVolume* type
+      
+  The geometry conversions between Geant4 and Root
+  geometry models are demonstrated in examples E01 and E02.
+
+
+ 4. Geometry construction via VGM
+ --------------------------------
+ 
+ The VGM interfaces can be used to define geometry independently
+ from a concrete geometry model:
+
+ #include "VGM/volumes/IFactory.h"
+ using namespace VGM;
+
+ MyDetectorConstruction::Construct(VGM::IFactory* factory)
+ {
+   double wSize = 10*m;
+   GISolid* worldS
+     = factory->CreateBox("worldS", wSize, wSize, wSize);
+                // create the world solid
+
+   GIVolume* worldV
+     = factory->CreateVolume("worldV", worldS, "Air");
+                // create the world volume 
+
+   factory->CreatePlacement("world", 0, worldV, 0, 0, Hep3Vector());
+                // place the world volume 
+ }    
+ 
+ Choosing the concrete factory (Geant4 or Root VGM factory)
+ will then build the geometry of the chosen model ( Geant4 or Root):
+
+ #include "Geant4GM/volumes/Factory.h"
+ MyDetectorConstruction myDetectorConstruction;
+ Geant4GM::Factory theFactory;
+ myDetectorConstruction->Construct(&theFactory);
+         // Geant4 geometry will be built
+ 
+ #include "RootGM/volumes/Factory.h"
+ MyDetectorConstruction myDetectorConstruction;
+ RootGM::Factory theFactory;
+ myDetectorConstruction->Construct(&theFactory);
+         // Root geometry will be built
+ 
+ 5. XML
+ -------
+ 
+ The VGM geometry can be exported to XML in the AGDD or GDML format.
+ The complying with the XML schema is embedded in the VGM XML exporter
+ code itself, no external XML parser is then needed.
+
+ #include "XmlVGM/AGDDExporter.h"
+ XmlVGM::AGDDExporter xmlExporter1(&theFactory);
+ xmlExporter1.GenerateXMLGeometry();
+      // Export geometry to AGDD
+
+ #include "XmlVGM/GDMLExporter.h"
+ XmlVGM::GDMLExporter xmlExporter2(&theFactory);
+ xmlExporter2.GenerateXMLGeometry();
+      // Export geometry to GDML
+  
+ The export from native geometries (Geant4, Root) to XML
+ is demonstrated in examples E03 and E04.
+ The exported XML files (both AGDD, GDML) can be then viewed
+ with the GraXML tool.
+
+ 6. Platforms
+ -------------
+
+ Tested platform: Linux gcc-3.2.2
+ There are other platforms configured (SUN-CC5, DEC-cxx, HP-aCC), 
+ but they were not tested .  
