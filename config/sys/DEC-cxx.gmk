@@ -1,0 +1,53 @@
+#
+# -------- DEC ---------
+#
+ifeq ($(VGM_SYSTEM),DEC-cxx)
+  CXX		:= cxx
+  ifdef VGM_OPTIMISE
+    CXXFLAGS	:= -O
+  else
+    ifdef VGM_DEBUG
+      CXXFLAGS	:= -gall
+      FCFLAGS	:= -g
+      CCFLAGS   := -g
+    endif
+  endif
+  VGM_HAVE_BOOL  := yes
+  CXXFLAGS	+= -ieee -timplicit_local
+  SHEXT         := so
+#future  MPRUNPATHOPTION := -rpath
+  FC		:= f77
+  FCLIBS	:= -lUfor -lfor -lFutil -lots
+  X11FLAGS  := -I/usr/include/X11/extensions -I/usr/include/X11
+  ifndef OGLFLAGS
+    OGLFLAGS  := -I$(OGLHOME)/include 
+#   OGLFLAGS  := -I/usr/include -I/usr/local/include
+  endif
+  ifndef OGLLIBS
+    OGLLIBS   := -L$(OGLHOME)/lib -lGLU -lGL
+#   OGLLIBS   := -lMesaGLU -lMesaGL
+  endif
+#  CPPFLAGS += -I$(VGM_BASE)/basic/include/mpstd/wrappers/$(VGM_SYSTEM)
+  ifdef VGM_USE_OSPACE
+    CPPFLAGS += -DOS_OSF1_4 -DOS_NEW_CHECK -DOS_STL_ASSERT -DOS_NO_WSTRING
+    CPPFLAGS += -DOS_NO_ALLOCATORS -D__NO_EDG_EXCEPTION_CLASSES
+    CPPFLAGS += $(OSPACEINC) -I$(OSPACE_BASE_DIR)
+    CXXFLAGS += -nostdnew
+  else
+    ifndef VGM_NO_STD_NAMESPACE
+      VGM_USE_STD_NAMESPACE := yes
+      #CXXFLAGS += -std strict_ansi
+      CPPFLAGS += -DVGM_USE_STD_NAMESPACE
+    endif
+  endif
+
+  define build-granular-shared-lib
+    @libdir=`(cd $(@D);/bin/pwd)`; \
+     cd $(VGM_TMPDIR); \
+     $(CXX) -shared -o $$libdir/$(@F) *.o
+  endef
+#  transform-RPath = 1
+  define build-global-shared-lib
+    @echo "Global shared Libraries not yet supported on $(VGM_SYSTEM)
+  endef
+endif
