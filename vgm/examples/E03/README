@@ -16,6 +16,7 @@
  3. Copy provided files into the example:
     cp GNUmakefile N03
     cp ExN03DetectorConstruction.cc N03/src
+    cp AGDD.dtd N03
     
  4. Recompile 
     cd N03
