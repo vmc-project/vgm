@@ -84,13 +84,10 @@ void XmlVGM::AGDDExporter::GenerateGeometry(VGM::IVolume* volume)
   std::string fileName;
   if (fFileName == fgkUndefinedFileName) {
     fileName = volume->Name();
-    fileName = fileName + ".xml";
+    fileName = fileName + ".agdd";
   }  
   else 
     fileName = fFileName;
-  
-  // set top volume name
-  std::string topName = volume->Name() + "_comp";
   
   // Open XML file and document  
   fWriter->OpenFile(fileName);
@@ -128,9 +125,6 @@ void XmlVGM::AGDDExporter::GenerateSection(VGM::IVolume* volume)
   // process solids
   GenerateSolids(volume);
     
-  // write top volume
-  ProcessTopVolume(volume);
-
   // process geometry tree
   ProcessVolume(volume);
   fWriter->WriteEmptyLine();
@@ -139,23 +133,6 @@ void XmlVGM::AGDDExporter::GenerateSection(VGM::IVolume* volume)
   // close section
   fWriter->CloseSection(volume->Name());
 }   
-
-//_____________________________________________________________________________
-void XmlVGM::AGDDExporter::ProcessTopVolume(VGM::IVolume* volume) 
-{
-// Writes the top volume position.
-// ---
-  
-  // open composition
-  std::string volumeName = volume->Name();
-  std::string name = volumeName;
-  name.append("_comp");
-
-  fWriter->OpenComposition(volumeName, volume->MaterialName());
-  dynamic_cast<AGDDWriter*>(fWriter)->WritePlacement(name, Identity());
-  fWriter->CloseComposition();	
-  fWriter->WriteEmptyLine();
-}  
 
 //_____________________________________________________________________________
 void XmlVGM::AGDDExporter::ProcessVolume(VGM::IVolume* volume) 
@@ -167,10 +144,7 @@ void XmlVGM::AGDDExporter::ProcessVolume(VGM::IVolume* volume)
   if (nofDaughters == 0) return;
   
   // open composition
-  std::string volumeName = volume->Name();
-  std::string name = volumeName;
-  name.append("_comp");
-  fWriter->OpenComposition(name, volume->MaterialName());
+  fWriter->OpenComposition(volume->Name(), volume->MaterialName());
   
   // write positions  
   int i;
@@ -189,7 +163,7 @@ void XmlVGM::AGDDExporter::ProcessVolume(VGM::IVolume* volume)
   fWriter->WriteEmptyLine();
 
   // store the name of logical volume in the set
-  fVolumeNames.insert(fVolumeNames.begin(), volumeName); 
+  fVolumeNames.insert(fVolumeNames.begin(), volume->Name()); 
 
   // process daughters
   for (i=0; i<nofDaughters; i++) {

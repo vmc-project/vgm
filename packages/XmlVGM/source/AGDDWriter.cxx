@@ -36,10 +36,11 @@
 
 #include "XmlVGM/AGDDWriter.h"
 
-const int XmlVGM::AGDDWriter::fgkMaxVolumeNameLength   = 20;
-const int XmlVGM::AGDDWriter::fgkMaxMaterialNameLength = 20;
-const int XmlVGM::AGDDWriter::fgkDefaultNumWidth = 7;
-const int XmlVGM::AGDDWriter::fgkDefaultNumPrecision = 4;
+const int         XmlVGM::AGDDWriter::fgkMaxVolumeNameLength   = 20;
+const int         XmlVGM::AGDDWriter::fgkMaxMaterialNameLength = 20;
+const int         XmlVGM::AGDDWriter::fgkDefaultNumWidth       = 7;
+const int         XmlVGM::AGDDWriter::fgkDefaultNumPrecision   = 4;
+const std::string XmlVGM::AGDDWriter::fgkCompNameExtension     = "_comp";
 
 //_____________________________________________________________________________
 XmlVGM::AGDDWriter::AGDDWriter(const std::string& version,
@@ -636,10 +637,9 @@ void XmlVGM::AGDDWriter::OpenDocument()
 // ---
 
   // Opening xml document
-  fOutFile << "<?xml version=\"1.0\"?>" << std::endl
-           << "<!DOCTYPE AGDD SYSTEM \"AGDD.dtd\" >" << std::endl
+  fOutFile << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" << std::endl
 	   << std::endl
-	   << "<AGDD>" << std::endl
+	   << "<AGDD DTD_version = \"v6\">" << std::endl
 	   << std::endl;
 }  
 
@@ -661,13 +661,19 @@ void XmlVGM::AGDDWriter::OpenSection(const std::string& topVolume)
   std::string element7 = "  >";
   std::string quota = "\"";   
   
+  std::string version = fVersion;
+  if (version == "Undefined") version = "$Id$";
+
+  std::string name = topVolume;
+  name.append(fgkCompNameExtension);
+
   // write element
   fOutFile << element1 << fDtdVersion << quota << std::endl
            << element2 << topVolume   << quota << std::endl
-           << element3 << fVersion    << quota << std::endl
+           << element3 << version     << quota << std::endl
            << element4 << fDate       << quota << std::endl
            << element5 << fAuthor     << quota << std::endl
-           << element6 << topVolume   << quota
+           << element6 << name        << quota
            << element7 << std::endl;
 }  
 
@@ -706,9 +712,12 @@ void XmlVGM::AGDDWriter::OpenComposition(
 {
 // Writes composition opening.
 // ---
+
+  std::string compName = name;
+  compName.append(fgkCompNameExtension);
 			 
   std::string element = "<composition name=\"";
-  element.append(name);
+  element.append(compName);
   element.append("\">");
 
   // write element
@@ -894,7 +903,7 @@ void XmlVGM::AGDDWriter::WritePlacement(
   // get parameters
   std::string volumeName = placement.Volume()->Name();
   std::string compName = volumeName;
-  compName.append("_comp");    
+  compName.append(fgkCompNameExtension);    
   int nd = placement.Volume()->NofDaughters();
 
   VGM::PlacementType placementType = placement.Type();
@@ -978,22 +987,21 @@ void XmlVGM::AGDDWriter::WritePlacement(
   double z = position[2]/LengthUnit();
 
   // compose element string template
-  std::string element1 = "<posXYZ      volume=\"#####################   X_Y_Z=\"";
-  std::string element2 = "\" />";
-  
-  // put volume name
-  PutName(element1, volumeName, "#");
+  std::string element1 = "<posXYZ   X_Y_Z=\"";
+  std::string element2 = "\"> <volume name=\"";
+  std::string element3 = "\"/>"; 
+  std::string element4 = "</posXYZ>";
   
   // write element
-  fOutFile << fIndention
-           << element1;
+  fOutFile << fIndention << element1;
 
   SmartPut(fOutFile, fNW+1, fNP, x, "; ");
   SmartPut(fOutFile, fNW+1, fNP, y, "; ");
   SmartPut(fOutFile, fNW+1, fNP, z, "");
 
-  fOutFile << element2
-	   << std::endl;
+  fOutFile << element2  << volumeName << element3 << std::endl 
+           << fIndention << element4 << std::endl;
+	   
 }  
 
 //_____________________________________________________________________________
@@ -1028,13 +1036,12 @@ void XmlVGM::AGDDWriter::WritePlacementWithRotation(
   
   // compose element string template
   std::string quota = "\"\n";
-  std::string element1 = "<transform   volume=\"#####################     pos=\"";
-  std::string element2 = "                                            matrix=\"";
-  std::string element3 = "                                                    ";
-  std::string element4 = "\" />";
-  
-  // put solid name
-  PutName(element1, volumeName, "#");
+  std::string element1 = "<transform    pos=\"";
+  std::string element2 = "           matrix=\"";
+  std::string element3 = "                   ";
+  std::string element4 = "\"> <volume name=\"";
+  std::string element5 = "\"/>";
+  std::string element6 = "</transform>";
   
   // write element
   fOutFile << fIndention
@@ -1044,31 +1051,28 @@ void XmlVGM::AGDDWriter::WritePlacementWithRotation(
   SmartPut(fOutFile, fNW+1, fNP, y, "; ");	   
   SmartPut(fOutFile, fNW+1, fNP, z, quota);	   
 
-  fOutFile << fIndention
-	   << element2; 
+  fOutFile << fIndention << element2; 
 	   
   SmartPut(fOutFile, 8, 5, xx, "; ");	   
   SmartPut(fOutFile, 8, 5, xy, "; ");	   
   SmartPut(fOutFile, 8, 5, xz, "; ");	   
 
   fOutFile << std::endl
-           << fIndention
-           << element3;
+           << fIndention << element3;
 
   SmartPut(fOutFile, 8, 5, yx, "; ");	   
   SmartPut(fOutFile, 8, 5, yy, "; ");	   
   SmartPut(fOutFile, 8, 5, yz, "; ");	   
 
   fOutFile << std::endl
-	   << fIndention
-           << element3;
+	   << fIndention << element3;
 
   SmartPut(fOutFile, 8, 5, zx, "; ");	   
   SmartPut(fOutFile, 8, 5, zy, "; ");	   
   SmartPut(fOutFile, 8, 5, zz, "");	   
 
-  fOutFile << element4
-	   << std::endl;
+  fOutFile << element4 << volumeName << element5 << std::endl
+           << fIndention << element6 << std::endl;
 }  
 
 //_____________________________________________________________________________
@@ -1112,13 +1116,12 @@ void XmlVGM::AGDDWriter::WritePlacementWithRotationAndReflection(
   
   // compose element string template
   std::string quota = "\"\n";
-  std::string element1 = "<transform   volume=\"#####################     pos=\"";
-  std::string element2 = "                                            matrix=\"";
-  std::string element3 = "                                                    ";
-  std::string element4 = "\" />";
-  
-  // put solid name
-  PutName(element1, volumeName, "#");
+  std::string element1 = "<transform    pos=\"";
+  std::string element2 = "           matrix=\"";
+  std::string element3 = "                   ";
+  std::string element4 = "\"> <volume name=\"";
+  std::string element5 = "\"/>";
+  std::string element6 = "</transform>";
   
   // write element
   fOutFile << fIndention
@@ -1128,31 +1131,29 @@ void XmlVGM::AGDDWriter::WritePlacementWithRotationAndReflection(
   SmartPut(fOutFile, fNW+1, fNP, y, "; ");	   
   SmartPut(fOutFile, fNW+1, fNP, z, quota);	   
 
-  fOutFile << fIndention
-	   << element2; 
+  fOutFile << fIndention << element2; 
 	   
   SmartPut(fOutFile, 8, 5, xx, "; ");	   
   SmartPut(fOutFile, 8, 5, xy, "; ");	   
   SmartPut(fOutFile, 8, 5, xz, "; ");	   
 
   fOutFile << std::endl
-           << fIndention
-           << element3;
+           << fIndention << element3;
 
   SmartPut(fOutFile, 8, 5, yx, "; ");	   
   SmartPut(fOutFile, 8, 5, yy, "; ");	   
   SmartPut(fOutFile, 8, 5, yz, "; ");	   
 
   fOutFile << std::endl
-	   << fIndention
-           << element3;
+	   << fIndention << element3;
 
   SmartPut(fOutFile, 8, 5, zx, "; ");	   
   SmartPut(fOutFile, 8, 5, zy, "; ");	   
   SmartPut(fOutFile, 8, 5, zz, "");	   
 
-  fOutFile << element4
-	   << std::endl;
+  fOutFile << element4 << volumeName << element5 << std::endl
+           << fIndention << element6 << std::endl;
+
 }  
 
 //_____________________________________________________________________________
@@ -1197,24 +1198,23 @@ void XmlVGM::AGDDWriter::WriteMultiplePlacement(
   std::string a2 = "d";  a2 = a2 + tag; 
 
   // compose element string template
-  std::string element1 = "<" + a0 + "      volume=\"#####################   ncopy=\"";
-  std::string element2 = "\"   " + a1 + "=\"";
-  std::string element3 = "\"   " + a2 + "=\"";
-  std::string element4 = "\" />";
-  
-  // put solid name
-  PutName(element1, volumeName, "#");
+  std::string element1 = "<" + a0 + " ncopy=\"";
+  std::string element2 = "\"  " + a1 + "=\"";
+  std::string element3 = "\"  " + a2 + "=\"";
+  std::string element4 = "\"> <volume name=\"";
+  std::string element5 = "\"/>";
+  std::string element6 = "</" + a0 + ">";
   
   // write element
   fOutFile << fIndention
            << element1
-           << std::setw(fNW+1) << std::setprecision(fNP) << nofReplicas
+           << std::setw(fNW+1-fNP) << nofReplicas
 	   << element2
            << std::setw(fNW+1) << std::setprecision(fNP) << value0
 	   << element3	   
            << std::setw(fNW+1) << std::setprecision(fNP) << dValue
-	   << element4
-	   << std::endl;
+	   << element4 << volumeName << element5 << std::endl
+           << fIndention << element6 << std::endl;
 }  
 
 //_____________________________________________________________________________
