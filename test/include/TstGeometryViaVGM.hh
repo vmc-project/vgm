@@ -48,6 +48,11 @@ class TstGeometryViaVGM : public TstVGeometry
  
     // data members
     VGM::IFactory*  fFactory;
+    
+    const double    fCm;
+    const double    fDeg;
+    const double    fGcm3;
+    const double    fGmole;
 };
 
 #endif //TST_GEOMETRY_VIA_VGM_H

@@ -16,6 +16,7 @@
 #include "VGM/volumes/IVolume.h"
 
 #include "ClhepVGM/transform.h"
+#include "ClhepVGM/Units.h"
 
 #include "TstGeometryViaVGM.hh"
 #include "TstParameters.hh"
@@ -25,7 +26,11 @@ using namespace VGM;
 //_____________________________________________________________________________
 TstGeometryViaVGM::TstGeometryViaVGM(IFactory* factory)
   : TstVGeometry(),
-    fFactory(factory)
+    fFactory(factory),
+    fCm(ClhepVGM::Units::Length(cm)),
+    fDeg(ClhepVGM::Units::Angle(deg)),
+    fGcm3(ClhepVGM::Units::MassDensity(g/cm3)),
+    fGmole(ClhepVGM::Units::AtomicWeight(g/mole))
 {
 //
 }  
@@ -56,7 +61,7 @@ IVolume* TstGeometryViaVGM::CreateWorld()
 IVolume* TstGeometryViaVGM::CreateBox()
 {
   ISolid* boxS
-    = fFactory->CreateBox("boxS", 20.*cm, 60.*cm, 50.*cm);
+    = fFactory->CreateBox("boxS", 20. * fCm, 60.* fCm, 50.* fCm);
   
   return fFactory->CreateVolume("boxV", boxS, "Basic");
 }  
@@ -66,8 +71,9 @@ IVolume* TstGeometryViaVGM::CreateBox()
 IVolume* TstGeometryViaVGM::CreateCons(double sphi, double dphi)
 {
   ISolid* consS
-    = fFactory->CreateCons("consS", 10.*cm, 40.*cm, 20.*cm, 60.*cm, 50*cm,
-                          sphi, dphi);
+    = fFactory->CreateCons("consS", 
+                           10.* fCm, 40.* fCm, 20.* fCm, 60.* fCm, 50* fCm,
+                           sphi, dphi);
   
   return fFactory->CreateVolume("consV", consS, "Basic");
 }
@@ -76,8 +82,8 @@ IVolume* TstGeometryViaVGM::CreateCons(double sphi, double dphi)
 IVolume* TstGeometryViaVGM::CreatePara()
 {
   ISolid* paraS
-    = fFactory->CreatePara("paraS", 40.*cm, 60.*cm, 50.*cm, 
-                           30.*deg, 30.*deg, 30.*deg);
+    = fFactory->CreatePara("paraS", 40.* fCm, 60.* fCm, 50.* fCm, 
+                           30.* fDeg, 30.* fDeg, 30.* fDeg);
 
   return fFactory->CreateVolume("paraV", paraS, "Basic");
 }  
@@ -92,17 +98,17 @@ IVolume* TstGeometryViaVGM::CreatePolycone(double sphi, double dphi)
   double rin[3];
   double rout[3];
 
-  z[0] = -50.*cm;
-  rin[0] = 10.*cm;
-  rout[0] = 50.*cm;
+  z[0] = -50.* fCm;
+  rin[0] = 10.* fCm;
+  rout[0] = 50.* fCm;
   
-  z[1] = 10.*cm;
-  rin[1] = 20.*cm;
-  rout[1] = 30.*cm;
+  z[1] = 10.* fCm;
+  rin[1] = 20.* fCm;
+  rout[1] = 30.* fCm;
   
-  z[2] = 40.*cm;
-  rin[2] = 30.*cm;
-  rout[2] = 60.*cm;
+  z[2] = 40.* fCm;
+  rin[2] = 30.* fCm;
+  rout[2] = 60.* fCm;
   
   ISolid* pconeS
     = fFactory->CreatePolycone("pconeS", sphi, dphi, nofPlanes, z, rin, rout);
@@ -121,17 +127,17 @@ IVolume* TstGeometryViaVGM::CreatePolyhedra(double sphi, double dphi)
   double rin[3];
   double rout[3];
 
-  z[0] = -50.*cm;
-  rin[0] = 10.*cm;
-  rout[0] = 40.*cm;
+  z[0] = -50.* fCm;
+  rin[0] = 10.* fCm;
+  rout[0] = 40.* fCm;
   
-  z[1] = 10.*cm;
-  rin[1] = 20.*cm;
-  rout[1] = 20.*cm;
+  z[1] = 10.* fCm;
+  rin[1] = 20.* fCm;
+  rout[1] = 20.* fCm;
   
-  z[2] = 40.*cm;
-  rin[2] = 30.*cm;
-  rout[2] = 50.*cm;
+  z[2] = 40.* fCm;
+  rin[2] = 30.* fCm;
+  rout[2] = 50.* fCm;
   
 
   ISolid* phedraS
@@ -145,7 +151,7 @@ IVolume* TstGeometryViaVGM::CreatePolyhedra(double sphi, double dphi)
 IVolume* TstGeometryViaVGM::CreateSphere(double sphi, double dphi)
 {
   ISolid* sphereS1
-    = fFactory->CreateSphere("sphereS", 20.*cm, 60.*cm,
+    = fFactory->CreateSphere("sphereS", 20.* fCm, 60.* fCm,
                             sphi, dphi, sphi/2., dphi/2.); 
 			    
   return fFactory->CreateVolume("sphereV1", sphereS1, "Basic");
@@ -155,7 +161,7 @@ IVolume* TstGeometryViaVGM::CreateSphere(double sphi, double dphi)
 IVolume* TstGeometryViaVGM::CreateTorus(double sphi, double dphi)
 {
   ISolid* torusS
-    = fFactory->CreateTorus("torusS", 20.*cm, 30.*cm, 40.*cm,
+    = fFactory->CreateTorus("torusS", 20.* fCm, 30.* fCm, 40.* fCm,
                             sphi, dphi);
 			    
   return fFactory->CreateVolume("torusV", torusS, "Basic");  
@@ -165,9 +171,9 @@ IVolume* TstGeometryViaVGM::CreateTorus(double sphi, double dphi)
 IVolume* TstGeometryViaVGM::CreateTrap()
 {
   ISolid* trapS
-    = fFactory->CreateTrap("trapS", 30.*cm, 25.*deg, 35.*deg,
-		          20.*cm, 10.*cm, 15.*cm, 0.*deg,
-		          20.*cm, 10.*cm, 15.*cm, 0.*deg);
+    = fFactory->CreateTrap("trapS", 30.* fCm, 25.* fDeg, 35.* fDeg,
+		          20.* fCm, 10.* fCm, 15.* fCm, 0.* fDeg,
+		          20.* fCm, 10.* fCm, 15.* fCm, 0.* fDeg);
   return fFactory->CreateVolume("trapV", trapS, "Basic");
 }
 
@@ -175,7 +181,7 @@ IVolume* TstGeometryViaVGM::CreateTrap()
 IVolume* TstGeometryViaVGM::CreateTrd()
 {
   ISolid* trdS
-    = fFactory->CreateTrd("trdS", 20.*cm, 30*cm, 40.*cm, 50.*cm, 50.*cm);
+    = fFactory->CreateTrd("trdS", 20.* fCm, 30* fCm, 40.* fCm, 50.* fCm, 50.* fCm);
 
   return fFactory->CreateVolume("trdV", trdS, "Basic");
 }  
@@ -184,7 +190,7 @@ IVolume* TstGeometryViaVGM::CreateTrd()
 IVolume* TstGeometryViaVGM::CreateTubs(double sphi, double dphi)
 {
   ISolid* tubsS
-    = fFactory->CreateTubs("tubsS", 20.*cm, 40*cm, 50.*cm, sphi, dphi);
+    = fFactory->CreateTubs("tubsS", 20.* fCm, 40* fCm, 50.* fCm, sphi, dphi);
 
   return fFactory->CreateVolume("tubsV", tubsS, "Basic");
 }  
@@ -193,11 +199,11 @@ IVolume* TstGeometryViaVGM::CreateTubs(double sphi, double dphi)
 void* TstGeometryViaVGM::PlaceSolids(IVolume* mother,
                                      bool fullPhi, bool reflect, double zpos)
 {
-  double sphi =   0.*deg;
-  double dphi = 360.*deg;
+  double sphi =   0.* fDeg;
+  double dphi = 360.* fDeg;
   if (!fullPhi) {
-    sphi = 45.*deg;
-    dphi = 90.*deg;
+    sphi = 45.* fDeg;
+    dphi = 90.* fDeg;
   }  
  
   int counter = 0;
@@ -333,24 +339,24 @@ void  TstGeometryViaVGM::DefineMaterials()
   // create elements
   double z, a, density, radlen, intlen; 
   IElement* elVacuum
-    = materialFactory->CreateElement(" ",  "Vacuum",    z=1.,  a= 1.01*g/mole);
+    = materialFactory->CreateElement(" ",  "Vacuum",    z=1.,  a= 1.01 * fGmole);
   IElement* elN
-    = materialFactory->CreateElement("N",  "Nitrogen",  z=7.,  a=14.01*g/mole);
+    = materialFactory->CreateElement("N",  "Nitrogen",  z=7.,  a=14.01 * fGmole);
   IElement* elO
-    = materialFactory->CreateElement("O",  "Oxygen",    z=8.,  a=16.00*g/mole);
+    = materialFactory->CreateElement("O",  "Oxygen",    z=8.,  a=16.00 * fGmole);
   IElement* elAl
-    = materialFactory->CreateElement("Al", "Aluminium", z=13., a=26.98*g/mole);
+    = materialFactory->CreateElement("Al", "Aluminium", z=13., a=26.98 * fGmole);
 
 
   // simple material (Al)
   //
   IMaterial* basic 
     = materialFactory
-      ->CreateMaterial("Basic", density=2.700*g/cm3, elAl, radlen=0., intlen=0.);
+      ->CreateMaterial("Basic", density=2.700* fGcm3, elAl, radlen=0., intlen=0.);
 
   // compound/mixture material
   //
-  density = 1.290*mg/cm3;
+  density = 1.290 * ClhepVGM::Units::MassDensity(mg/cm3);
   ElementVector elements;
   MassFractionVector fractions;
   elements.push_back(elN);
@@ -360,14 +366,14 @@ void  TstGeometryViaVGM::DefineMaterials()
     
   IMaterial* air 
     = materialFactory
-      ->CreateMaterial("Air", density= 1.290*mg/cm3, elements, fractions);
+      ->CreateMaterial("Air", density, elements, fractions);
 
   // vacuum
   //
+  density = universe_mean_density / (g/cm3) * fGcm3;
   IMaterial* vacuum
     = materialFactory
-      ->CreateMaterial("Vacuum", density = universe_mean_density,
-                       elVacuum, radlen=0., intlen=0.);
+      ->CreateMaterial("Vacuum", density, elVacuum, radlen=0., intlen=0.);
 
   // Cannont pass state, pressure, temperature:
   //                kStateGas, 3.e-18*pascal, 2.73*kelvin
@@ -402,21 +408,21 @@ void* TstGeometryViaVGM::TestPlacements()
   // Big box A
   //
   ISolid * boxA
-    = fFactory->CreateBox("boxA", 20.*cm, 60.*cm, 50.*cm);
+    = fFactory->CreateBox("boxA", 20.* fCm, 60.* fCm, 50.* fCm);
   IVolume* volA
     = fFactory->CreateVolume("volA", boxA, "Basic");
   
   // Thick layer B (in A)
   //
   ISolid * boxB
-    = fFactory->CreateBox("boxB", 20.*cm, 10.*cm, 50.*cm);
+    = fFactory->CreateBox("boxB", 20.* fCm, 10.* fCm, 50.* fCm);
   IVolume * volB
     = fFactory->CreateVolume("volB", boxB, "Basic");
 
   // Thin layer C (in B)
   //
   ISolid * boxC
-    = fFactory->CreateBox("boxC", 20.*cm, 0.2*cm, 50.*cm);
+    = fFactory->CreateBox("boxC", 20.* fCm, 0.2* fCm, 50.* fCm);
   IVolume * volC
     = fFactory->CreateVolume("volC", boxC, "Basic");
 
@@ -427,7 +433,7 @@ void* TstGeometryViaVGM::TestPlacements()
              // division in the whole mother
 
   fFactory->CreateMultiplePlacement("layerB", volB, volA, 
-                                   VGM::kYAxis, 3, 20.*cm, 60.*cm);
+                                   VGM::kYAxis, 3, 20.* fCm, 60.* fCm);
              // division with offset
 
 	// If layers C placed first, they are not passed
@@ -438,11 +444,11 @@ void* TstGeometryViaVGM::TestPlacements()
   //
   fFactory->CreatePlacement("layerC", 0, volC, volB,  
                             ClhepVGM::Transform(
-			      HepRotation(), Hep3Vector(0.,  9.8*cm, 0.)));
+			      HepRotation(), Hep3Vector(0.,  9.8* fCm, 0.)));
 
   fFactory->CreatePlacement("layerC", 1, volC, volB, 
                             ClhepVGM::Transform(
-			      HepRotation(), Hep3Vector(0., -9.8*cm, 0.)));
+			      HepRotation(), Hep3Vector(0., -9.8* fCm, 0.)));
 
 
   // Placements of A in a circle
@@ -451,7 +457,8 @@ void* TstGeometryViaVGM::TestPlacements()
    
      double x0 = 5. *m;
      double y0 = 0. *m;
-     double dphi = 15.*deg;
+     double dphi = 15.* deg;
+         // use directly CLHEP units when using CLHEP rotations
 
      double phi = dphi*(i+1);
      double x = x0*cos(phi);
@@ -473,7 +480,7 @@ void* TstGeometryViaVGM::TestReflections(bool fullPhi)
   IVolume* worldV = CreateWorld();
   fFactory->CreatePlacement("world", 0, worldV, 0, ClhepVGM::Identity());
   
-  PlaceSolids(worldV, fullPhi, true, 1.*m);
+  PlaceSolids(worldV, fullPhi, true, 100.* fCm);
 
   return (void*) fFactory->Top();
  }
@@ -490,11 +497,12 @@ void* TstGeometryViaVGM::TestBooleanSolids1()
   
   // Create solids
   ISolid* solid1 
-    = fFactory->CreateBox("boxS", 50.*cm, 50.*cm, 50.*cm);
+    = fFactory->CreateBox("boxS", 50.* fCm, 50.* fCm, 50.* fCm);
 
   ISolid* solid2 
     = fFactory->CreateCons("consS", 
-                          10.*cm, 30.*cm, 20.*cm, 40.*cm, 100.*cm, 0., 360.*deg) ;
+                          10.* fCm, 30.* fCm, 20.* fCm, 40.* fCm, 100.* fCm, 
+			  0., 360.* fDeg) ;
     
   // Simple solids placed for a control
   //
@@ -502,13 +510,13 @@ void* TstGeometryViaVGM::TestBooleanSolids1()
     = fFactory->CreateVolume("volume1", solid1, "Basic");
   fFactory->CreatePlacement("solid1", 0, volume1, worldV, 
                    ClhepVGM::Transform( 
-		     HepRotation(), Hep3Vector(-wSize/8., 0., -2.*m)));
+		     HepRotation(), Hep3Vector(-wSize/8., 0., -200.* fCm)));
 
   IVolume* volume2
     = fFactory->CreateVolume("volume2", solid2, "Basic");
   fFactory->CreatePlacement("solid2", 0, volume2, worldV, 
                    ClhepVGM::Transform(
-		     HepRotation(), Hep3Vector( wSize/8., 0., -2.*m)));
+		     HepRotation(), Hep3Vector( wSize/8., 0., -200.* fCm)));
 
 
   // Intersection
@@ -517,14 +525,14 @@ void* TstGeometryViaVGM::TestBooleanSolids1()
     = fFactory->CreateIntersectionSolid(
                   "solid1Isolid2S", solid1, solid2, 
 		   ClhepVGM::Transform(
-		     HepRotation(),Hep3Vector(20.*cm, 0., 0.))); 
+		     HepRotation(),Hep3Vector(20.* fCm, 0., 0.))); 
 
   IVolume* intersectionV
     = fFactory->CreateVolume("solid1Isolid2V", intersectionS, "Basic");
 
   fFactory->CreatePlacement("solid1Isolid2", 0, intersectionV, worldV, 
 		   ClhepVGM::Transform(
-		     HepRotation(), Hep3Vector(-wSize/4., 0., 2.*m)));
+		     HepRotation(), Hep3Vector(-wSize/4., 0., 200.* fCm)));
   
   // Subtraction
   //
@@ -532,14 +540,14 @@ void* TstGeometryViaVGM::TestBooleanSolids1()
     = fFactory->CreateSubtractionSolid(
                   "solid1Ssolid2S", solid1, solid2, 
                    ClhepVGM::Transform(
-		     HepRotation(), Hep3Vector(20.*cm, 0., 0.))); 
+		     HepRotation(), Hep3Vector(20.* fCm, 0., 0.))); 
 				       
   IVolume* subtractionV
     = fFactory->CreateVolume("solid1Ssolid2V", subtractionS, "Basic");
 
   fFactory->CreatePlacement("solid1Ssolid2", 0, subtractionV, worldV, 
                    ClhepVGM::Transform(
-		     HepRotation(), Hep3Vector(0., 0., 2.*m)));
+		     HepRotation(), Hep3Vector(0., 0., 200.* fCm)));
   
   // Union
   //
@@ -547,13 +555,13 @@ void* TstGeometryViaVGM::TestBooleanSolids1()
     = fFactory->CreateUnionSolid(
                   "solid1Usolid2S", solid1, solid2, 
                    ClhepVGM::Transform(
-		     HepRotation(), Hep3Vector(20.*cm, 0., 0.))); 
+		     HepRotation(), Hep3Vector(20.* fCm, 0., 0.))); 
   IVolume* unionV
     = fFactory->CreateVolume("solid1Usolid2V", unionS, "Basic");
 
   fFactory->CreatePlacement("solid1Usolid2", 0, unionV, worldV, 
                    ClhepVGM::Transform(
-		     HepRotation(), Hep3Vector( wSize/4., 0., 2.*m)));
+		     HepRotation(), Hep3Vector( wSize/4., 0., 200.* fCm)));
   
   return (void*) fFactory->Top();
 }
@@ -570,11 +578,12 @@ void* TstGeometryViaVGM::TestBooleanSolids2()
   
   // Create solids
   ISolid* solid1 
-    = fFactory->CreateBox("boxS", 50.*cm, 50.*cm, 50.*cm);
+    = fFactory->CreateBox("boxS", 50.* fCm, 50.* fCm, 50.* fCm);
 
   ISolid* solid2 
     = fFactory->CreateCons("consS", 
-                         10.*cm, 30.*cm, 20.*cm, 40.*cm, 100.*cm, 0., 360.*deg) ;
+                         10.* fCm, 30.* fCm, 20.* fCm, 40.* fCm, 100.* fCm, 
+			 0., 360.* fDeg) ;
     
   // Simple solids placed for a control
   //
@@ -582,13 +591,13 @@ void* TstGeometryViaVGM::TestBooleanSolids2()
     = fFactory->CreateVolume("volume1", solid1, "Basic");
   fFactory->CreatePlacement("solid1", 0, volume1, worldV,
                             ClhepVGM::Transform(
-			      HepRotation(), Hep3Vector(-wSize/8., 0., -2.*m)));
+			      HepRotation(), Hep3Vector(-wSize/8., 0., -200.* fCm)));
 
   IVolume* volume2
     = fFactory->CreateVolume("volume2", solid2, "Basic");
   fFactory->CreatePlacement("solid2", 0, volume2, worldV, 
                             ClhepVGM::Transform(
-			      HepRotation(), Hep3Vector( wSize/8., 0., -2.*m)));
+			      HepRotation(), Hep3Vector( wSize/8., 0., -200.* fCm)));
 
 
   // Define displacement transformations
@@ -596,16 +605,16 @@ void* TstGeometryViaVGM::TestBooleanSolids2()
  
   // Rotate solid1  
   HepRotation rot1;
-  rot1.rotateY(-45.*deg);
+  rot1.rotateY(-45.* deg);
 
   // Rotate + translate solid2
   //
   HepRotation rot2;
-  rot2.rotateX(-30.*deg);
-  rot2.rotateY(45.*deg); 
+  rot2.rotateX(-30.* deg);
+  rot2.rotateY(45.* deg); 
        // apply inverse rotation to solid1 rotation
        // as this one will be applied with placement
-  Hep3Vector tr2 = Hep3Vector(20.*cm, 0., 0.);
+  Hep3Vector tr2 = Hep3Vector(20.* fCm, 0., 0.);
   
   // Intersection
   //
@@ -618,7 +627,7 @@ void* TstGeometryViaVGM::TestBooleanSolids2()
 
   fFactory->CreatePlacement("solid1Isolid2", 0, intersectionV, worldV, 
                             ClhepVGM::Transform(
-			      rot1.inverse(), Hep3Vector(-wSize/4., 0., 2.*m)));
+			      rot1.inverse(), Hep3Vector(-wSize/4., 0., 200.* fCm)));
   
   // Subtraction
   //
@@ -631,7 +640,7 @@ void* TstGeometryViaVGM::TestBooleanSolids2()
 
   fFactory->CreatePlacement("solid1Ssolid2", 0, subtractionV, worldV, 
                             ClhepVGM::Transform(
-			      rot1.inverse(), Hep3Vector(0., 0., 2.*m)));
+			      rot1.inverse(), Hep3Vector(0., 0., 200.* fCm)));
   
   // Union
   //
@@ -644,7 +653,7 @@ void* TstGeometryViaVGM::TestBooleanSolids2()
 
   fFactory->CreatePlacement("solid1Usolid2", 0, unionV, worldV, 
                             ClhepVGM::Transform(
-			      rot1.inverse(), Hep3Vector( wSize/4., 0., 2.*m)));
+			      rot1.inverse(), Hep3Vector( wSize/4., 0., 200.* fCm)));
   
   return (void*) fFactory->Top();
 }
@@ -661,11 +670,12 @@ void* TstGeometryViaVGM::TestBooleanSolids3()
   
   // Create solids
   ISolid* solid1 
-    = fFactory->CreateBox("boxS", 50.*cm, 50.*cm, 50.*cm);
+    = fFactory->CreateBox("boxS", 50.* fCm, 50.* fCm, 50.* fCm);
 
   ISolid* solid2 
     = fFactory->CreateCons("consS", 
-                         10.*cm, 30.*cm, 20.*cm, 40.*cm, 100.*cm, 0., 360.*deg) ;
+                         10.* fCm, 30.* fCm, 20.* fCm, 40.* fCm, 100.* fCm, 
+			 0., 360.* fDeg) ;
     
   // Simple solids placed for a control
   //
@@ -673,13 +683,13 @@ void* TstGeometryViaVGM::TestBooleanSolids3()
     = fFactory->CreateVolume("volume1", solid1, "Basic");
   fFactory->CreatePlacement("solid1", 0, volume1, worldV, 
                             ClhepVGM::Transform(
-			      HepRotation(), Hep3Vector(-wSize/8., 0., -2.*m)));
+			      HepRotation(), Hep3Vector(-wSize/8., 0., -200.* fCm)));
 
   IVolume* volume2
     = fFactory->CreateVolume("volume2", solid2, "Basic");
   fFactory->CreatePlacement("solid2", 0, volume2, worldV, 
                             ClhepVGM::Transform(
-			      HepRotation(), Hep3Vector( wSize/8., 0., -2.*m)));
+			      HepRotation(), Hep3Vector( wSize/8., 0., -200.* fCm)));
 
 
   // Define displacement transformations
@@ -687,13 +697,13 @@ void* TstGeometryViaVGM::TestBooleanSolids3()
  
   // Rotate solid1  
   HepRotation rot1;
-  rot1.rotateY(-45.*deg);
+  rot1.rotateY(-45.* deg);
 
   // Rotate + translate solid2
   //
   HepReflectZ3D reflect2 = HepReflectZ3D();
-  HepTranslate3D translate2 = HepTranslate3D(20.*cm, 0., 0.);
-  HepRotate3D  rotInv1 =  HepRotateY3D(-45.*deg);
+  HepTranslate3D translate2 = HepTranslate3D(20.* fCm, 0., 0.);
+  HepRotate3D  rotInv1 =  HepRotateY3D(-45.* deg);
          // the same angle as in rot1 as in 3D transform we pass
 	 // object rotations and not frame rotations
   HepTransform3D transform2 =  rotInv1 * translate2 * reflect2;
@@ -709,7 +719,7 @@ void* TstGeometryViaVGM::TestBooleanSolids3()
 
   fFactory->CreatePlacement("solid1Isolid2", 0, intersectionV, worldV, 
                             ClhepVGM::Transform(
-			      rot1.inverse(), Hep3Vector(-wSize/4., 0., 2.*m)));
+			      rot1.inverse(), Hep3Vector(-wSize/4., 0., 200.* fCm)));
   
   // Subtraction
   //
@@ -722,7 +732,7 @@ void* TstGeometryViaVGM::TestBooleanSolids3()
 
   fFactory->CreatePlacement("solid1Ssolid2", 0, subtractionV, worldV, 
                             ClhepVGM::Transform(
-			      rot1.inverse(), Hep3Vector(0., 0., 2.*m)));
+			      rot1.inverse(), Hep3Vector(0., 0., 200.* fCm)));
   
   // Union
   //
@@ -736,7 +746,7 @@ void* TstGeometryViaVGM::TestBooleanSolids3()
 
   fFactory->CreatePlacement("solid1Usolid2", 0, unionV, worldV, 
                             ClhepVGM::Transform(
-			      rot1.inverse(), Hep3Vector( wSize/4., 0., 2.*m)));
+			      rot1.inverse(), Hep3Vector( wSize/4., 0., 200.* fCm)));
   
   return (void*) fFactory->Top();
   return 0;
