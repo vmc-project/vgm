@@ -7,8 +7,6 @@
 // -------------------
 // See the class description in the header file.
 
-#include "CLHEP/Vector/Rotation.h"
-
 #include "VGM/volumes/IFactory.h"
 #include "VGM/volumes/IVolume.h"
 #include "VGM/volumes/IPlacement.h"
@@ -190,12 +188,7 @@ void XmlVGM::AGDDExporter::ProcessVolume(VGM::IVolume* volume)
 	                    compName, position, rotation);
       }	  
       else {
-        HepRotation hepRotation;
-	hepRotation.rotateX(rotation[0]);
-	hepRotation.rotateY(rotation[1]);
-	hepRotation.rotateZ(rotation[2]);
-      
-        if (hepRotation.isIdentity()) {
+        if (IsIdentity(rotation)) {
      	  fWriter->WritePlacement(volumeName, position);
           // if volume is not leaf node place its logical volume
           if (nd>0) 
