@@ -1,0 +1,184 @@
+# $Id$
+# Based on G4 makefiles
+#
+# Id: architecture.gmk,v 1.70 2000/12/08 09:41:26 gcosmo Exp 
+# ------------------------------------------------------------------------
+#       GEANT 4 - Architecture configuration script for GNU Make
+#
+#       First implementation: July 7th 1995
+#
+# Description
+# -----------
+# to override variables defined in this script, use "gmake -e", this will
+# cause environment variables to take precedence. In this case watch for
+# inadvertant overrides!
+#
+# List of the supported architectures/compilers and related flavors for
+# the environment variable G4SYSTEM:
+#
+#          SUN-CC      SunOS 5.6, CC 4.2 compiler (default)
+#
+#          HP-aCC      HP-UX 10.20, aCC A.01.23 compiler
+#
+#          DEC-cxx     DEC-OSF/1 4.0, DEC C++ 6.1
+#
+#          Linux-g++   Linux (Red Hat 6.1), egcs 1.1.2
+#
+# -------------------------------------------------------------------------
+
+MAKEFLAGS= --no-print-directory
+
+# If not specified, the default platform for VGM_SYSTEM is Linux-g++ ...
+#
+ifndef VGM_SYSTEM
+  VGM_SYSTEM := Linux-g++
+endif
+
+# If not specified, the default path for mapping installation VGM_INSTALL is
+# set to $HOME/mapping ...
+#
+ifndef VGM_INSTALL
+  VGM_INSTALL := $(HOME)/vgm
+endif
+
+# VGM_BASE is set to $VGM_INSTALL/source ...
+#
+VGM_BASE := $(VGM_INSTALL)/packages
+
+# The user's workdir is the same as VGM_INSTALL ...
+#
+VGM_WORKDIR := $(VGM_INSTALL)
+
+# The path for temporary files VGM_TMP is set to $VGM_WORKDIR/tmp/$VGM_SYSTEM ...
+#
+VGM_TMP := $(VGM_WORKDIR)/tmp
+VGM_DUMMY_VARIABLE:=$(shell [ ! -d $(VGM_TMP) ] && mkdir -p $(VGM_TMP) )
+	
+# The path for libraries VGM_LIB is set to $VGM_INSTALL/lib/$VGM_SYSTEM ...
+#
+VGM_LIB := $(VGM_INSTALL)/lib
+VGM_DUMMY_VARIABLE:=$(shell [ ! -d $(VGM_LIB) ] && mkdir -p $(VGM_LIB) )
+VGM_DUMMY_VARIABLE:=$(shell [ ! -d $(VGM_LIB)/$(VGM_SYSTEM) ] && mkdir -p $(VGM_LIB)/$(VGM_SYSTEM) )
+
+# The path to install include files is VGM_INCLUDE set to $VGM_INSTALL/include ...
+#
+#VGM_INCLUDE := $(VGM_INSTALL)/include/
+#VGM_DUMMY_VARIABLE:=$(shell [ ! -d $(VGM_INCLUDE) ] && mkdir -p $(VGM_INCLUDE) )
+
+# Always build shared libraries
+VGM_LIB_BUILD_SHARED = 1
+
+# The path for binaries VGM_BIN is set to $VGM_WORKDIR/bin/$VGM_SYSTEM ...
+#
+#VGM_BIN := $(VGM_WORKDIR)/bin
+#VGM_DUMMY_VARIABLE:=$(shell [ ! -d $(VGM_BIN) ] && mkdir -p $(VGM_BIN) )
+
+
+# If VGM_DEBUG or VGM_NO_OPTIMISE are not specified,
+# the default compilation is optimised ...
+#
+ifdef VGM_DEBUG
+  CPPFLAGS += -DVGM_DEBUG
+  VGM_DEBUG := 1
+else
+  ifndef VGM_NO_OPTIMISE
+    CPPFLAGS += -DVGM_OPTIMISE
+    VGM_OPTIMISE := 1
+  endif
+endif
+
+# Toggle variables (positional qualifiers) between WIN32-VC and UNIX...
+#
+OUT_OBJ := -o 
+FOR_OBJ := -o 
+OUT_LIB := 
+OUT_EXE := -o 
+LIB_PATH := -L
+CERNLIB_PATH := /cern/pro/lib
+PATH_DEL := /
+#
+# pattern for next substitution
+#
+LIB_PATT  := -l(LibName)
+FLIB_PATT := $(LIB_PATT)
+
+# Variables for implicit rules, etc., as suggested in GNU Make manual...
+#
+CPPFLAGS += -I$(CLHEP_BASE_DIR)/include
+
+# ROOT includes
+#
+CPPFLAGS += -I$(ROOTSYS)/include -I.
+
+# Positional qualifiers in action...
+#
+LOADLIBS  += -lm
+
+# For cfront compilers the repository location is set to
+# $VGM_TMP/$VGM_SYSTEM/mp.ptrepository.
+#
+VGM_TEMPLATE_REPOSITORY := $(VGM_SYSTEM)/mp.ptrepository
+VGM_TEMPEXEC_REPOSITORY := $(VGM_TEMPLATE_REPOSITORY)/exec
+VGM_TREP := $(VGM_TMP)/$(VGM_TEMPLATE_REPOSITORY)
+
+# Default archive call. Changed for: SUN-CC.
+#
+AR := ar r
+
+# Default echo used with makedepend. Changed for SUN-CC, Linux-g++.
+#
+ECHO:= echo
+
+# Default grep used with source/GNUmakfile.  Changed for SUN-CC.
+#
+GREP := grep
+
+# Include architecture dependent setups...
+#
+include $(VGM_INSTALL)/config/sys/$(VGM_SYSTEM).gmk
+
+# If compiler recognises implicit C++ type bool...
+#
+ifdef VGM_HAVE_BOOL
+  CPPFLAGS += -DVGM_HAVE_BOOL
+endif
+
+# If there is no cbrt() function...
+#
+ifdef VGM_NO_CBRT
+  CPPFLAGS += -DVGM_NO_CBRT
+endif
+
+# Verbosity code can be left out (for better performance)
+# by defining VGM_NO_VERBOSE.
+#
+ifndef VGM_NO_VERBOSE
+  CPPFLAGS += -DVGM_VERBOSE
+endif
+
+# Template setup - repositories, special options etc
+#
+ifdef CFRONT_VGM_TEMPLATE_REPOSITORY
+  ifeq ($(findstring DEC,$(VGM_SYSTEM)),DEC)
+      ifdef VGM_EXEC_BUILD
+        CXXTEMPLATE_FLAGS := -ptr $(VGM_TREP)/exec -ptr $(VGM_TREP)
+      else
+        CXXTEMPLATE_FLAGS := -ptr $(VGM_TREP)
+      endif
+  else
+      ifdef VGM_EXEC_BUILD
+        CXXTEMPLATE_FLAGS := -ptr$(VGM_TREP)/exec -ptr$(VGM_TREP)
+      else
+        CXXTEMPLATE_FLAGS := -ptr$(VGM_TREP)
+      endif
+  endif
+  CXXFLAGS += $(CXXTEMPLATE_FLAGS)
+  CFRONT := true
+endif
+ifdef CFRONT
+  VGM_TEMPLATE_REPOSITORY_PARENT := $(shell echo $(VGM_TREP) | sed 's!/[^/][^/]*/*$$!!' )
+  VGM_DUMMY_VARIABLE:=$(shell [ ! -d $(VGM_TEMPLATE_REPOSITORY_PARENT) ] && mkdir -p $(VGM_TEMPLATE_REPOSITORY_PARENT) )
+  VGM_DUMMY_VARIABLE:=$(shell [ ! -d $(VGM_TREP) ] && mkdir -p $(VGM_TREP) )
+  VGM_DUMMY_VARIABLE:=$(shell [ ! -d $(VGM_TREP)/exec ] &&mkdir -p $(VGM_TREP)/exec )
+endif
+
