@@ -29,6 +29,12 @@ VGM info:   Importing material:
 VGM info:   Material Vacuum    A=0 Z=0 rho=0 radlen=0 index=2
 VGM info:   Importing element: 
 VGM info:   OBJ: TGeoElement	VACUUM	VACUUM
+VGM info:   Importing medium: 
+VGM info:   OBJ: TGeoMedium	Basic	
+VGM info:   Importing medium: 
+VGM info:   OBJ: TGeoMedium	Air	
+VGM info:   Importing medium: 
+VGM info:   OBJ: TGeoMedium	Galactic	
 VGM info:   Importing volume: worldV
 VGM info:   Importing shape: worldS
 VGM info:   ImportDaughters for worldV
@@ -125,16 +131,12 @@ VGM info:   Material: "Air"  density 0.00129 g/cm3  radlen 28405.7 cm  intlen 0 
 VGM info:   Exporting material: 
 VGM info:   Material: "Vacuum"  density 0 g/cm3  radlen 0 cm  intlen 0 cm
    0th element:   Z = 0  A = 0 g/mole  fractionMass = 100 %
-VGM info:   Generation medium for material: 
-VGM info:   Material: "Basic"  density 2.7 g/cm3  radlen 8.8751 cm  intlen 0 cm
-   0th element:   Z = 13  A = 26.9815 g/mole  fractionMass = 100 %
-VGM info:   Generation medium for material: 
-VGM info:   Material: "Air"  density 0.00129 g/cm3  radlen 28405.7 cm  intlen 0 cm
-   0th element:   Z = 7  A = 14.0067 g/mole  fractionMass = 70 %
-   1th element:   Z = 8  A = 15.9994 g/mole  fractionMass = 30 %
-VGM info:   Generation medium for material: 
-VGM info:   Material: "Vacuum"  density 0 g/cm3  radlen 0 cm  intlen 0 cm
-   0th element:   Z = 0  A = 0 g/mole  fractionMass = 100 %
+VGM info:   Exporting medium: 
+VGM info:   Medium: "Basic"  material Basic g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  1.75896e+247  8.80087e+199  4.13864e-61  7.21053e+159  6.96026e+252  6.96026e+252  4.9524e+223  4.9524e+223  2.10274e-75  1.99447e+161
+VGM info:   Exporting medium: 
+VGM info:   Medium: "Air"  material Air g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+VGM info:   Exporting medium: 
+VGM info:   Medium: "Galactic"  material Galactic g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
 VGM info:   Exporting volume store: 
 VGM info:   Exporting solid: 
 VGM info:      Box  "worldS"  hx = 10000mm  hy = 10000mm  hz = 10000mm
