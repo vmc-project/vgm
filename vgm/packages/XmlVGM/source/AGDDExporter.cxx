@@ -18,10 +18,9 @@
 
 //_____________________________________________________________________________
 XmlVGM::AGDDExporter::AGDDExporter(const VGM::IFactory* factory)
-  : VExporter(factory)
+  : VExporter(factory, new AGDDWriter())
 {
 //
-  fWriter = new AGDDWriter(fOutFile);  
 }
 
 //_____________________________________________________________________________
@@ -52,6 +51,25 @@ XmlVGM::AGDDExporter::operator=(const AGDDExporter& right)
 }    
           
 //
+// private methods
+//
+
+//_____________________________________________________________________________
+XmlVGM::ThreeVector  
+XmlVGM::AGDDExporter::Identity() const
+{
+// Returns zero vector
+// ---
+  
+  ThreeVector rotation(3);
+  rotation[0] = 0.;
+  rotation[1] = 0.;
+  rotation[2] = 0.;
+
+  return rotation;
+}  
+
+//
 // protected methods
 //
 
@@ -75,7 +93,7 @@ void XmlVGM::AGDDExporter::GenerateGeometry(VGM::IVolume* volume)
   std::string topName = volume->Name() + "_comp";
   
   // Open XML file and document  
-  OpenFile(fileName);
+  fWriter->OpenFile(fileName);
   fWriter->OpenDocument();
 
   // generate materials 
@@ -89,7 +107,7 @@ void XmlVGM::AGDDExporter::GenerateGeometry(VGM::IVolume* volume)
 
   // Close XML file and document  
   fWriter->CloseDocument();
-  CloseFile();
+  fWriter->CloseFile();
   
   if (fDebug > 0) 
     std::cout << "File " << fileName << " has been generated." << std::endl;
@@ -134,7 +152,7 @@ void XmlVGM::AGDDExporter::ProcessTopVolume(VGM::IVolume* volume)
   name.append("_comp");
 
   fWriter->OpenComposition(volumeName, volume->MaterialName());
-  fWriter->WritePlacement(name, Identity());
+  dynamic_cast<AGDDWriter*>(fWriter)->WritePlacement(name, Identity());
   fWriter->CloseComposition();	
   fWriter->WriteEmptyLine();
 }  
@@ -163,83 +181,7 @@ void XmlVGM::AGDDExporter::ProcessVolume(VGM::IVolume* volume)
                 << volume->Name() << std::endl;
     }	     
    
-    VGM::IPlacement* dPlacement = volume->Daughter(i);
-    VGM::IVolume* dVolume = dPlacement->Volume();
-      
-    // get parameters
-    std::string volumeName = dVolume->Name();
-    std::string compName = dVolume->Name();
-    compName.append("_comp");      
-    int nd = dVolume->NofDaughters(); 
-    
-    VGM::PlacementType dPlacementType = dPlacement->Type();
-
-    if (dPlacementType == VGM::kSimplePlacement) {
-    
-      VGM::Transform transform = dPlacement->Transformation();
-      VGM::Transform inverse = ClhepVGM::Inverse(transform);
-
-      // position
-      ThreeVector position(3);
-      position[0] = transform[VGM::kDx];
-      position[1] = transform[VGM::kDy];
-      position[2] = transform[VGM::kDz];
-      
-      // rotation
-      ThreeVector rotation(3);
-      rotation[0] = inverse[VGM::kAngleX];
-      rotation[1] = inverse[VGM::kAngleY];
-      rotation[2] = inverse[VGM::kAngleZ];
-
-      if (ClhepVGM::HasReflection(transform)) {
-        fWriter
-	  ->WritePlacementWithRotationAndReflection(
-	         volumeName, position, rotation);
-        if (nd>0) 
-      	   fWriter->WritePlacementWithRotationAndReflection(
-	                    compName, position, rotation);
-      }	  
-      else {
-        if (IsIdentity(rotation)) {
-     	  fWriter->WritePlacement(volumeName, position);
-          // if volume is not leaf node place its logical volume
-          if (nd>0) 
-    	    fWriter->WritePlacement(compName, position);
-        }
-        else {  
-  	  fWriter->WritePlacementWithRotation(
-	                   volumeName, position, rotation);
-          if (nd>0) 
-      	     fWriter->WritePlacementWithRotation(
-	                      compName, position, rotation);
-        }
-      }	
-    }
-    else if (dPlacementType == VGM::kMultiplePlacement) {
-      
-      // get parameters
-      VGM::Axis axis;
-      int nReplicas;
-      double width;
-      double offset;
-      dPlacement->MultiplePlacementData(axis, nReplicas, width, offset);
-	    
-      // write multiple position
-      fWriter
-        ->WriteMultiplePlacement(volumeName, axis, nReplicas, width, offset);
-
-      // if volume is not leaf node place its logical volume
-      if (nd>0) 
-      	fWriter
-	  ->WriteMultiplePlacement(compName, axis, nReplicas, width, offset);
-    }
-    else {
-      std::cerr << "+++ Warning  +++" << std::endl; 
-      std::cerr << "    XmlVGM::AGDDExporter::ProcessVolume: " << std::endl;
-      std::cerr << "    Unknown placement type. " << std::endl;
-      std::cerr << "    Volume \"" << dPlacement->Name() 
-                << "\" was not converted." << std::endl;  
-    }
+    fWriter->WritePlacement(*volume->Daughter(i));
   }  
 
   // close composition

@@ -17,10 +17,10 @@
 
 //_____________________________________________________________________________
 XmlVGM::GDMLExporter::GDMLExporter(const VGM::IFactory* factory)
-  : VExporter(factory)
+  : VExporter(factory, new GDMLWriter())
 {
 //
-  fWriter = new GDMLWriter(fOutFile);  
+  dynamic_cast<GDMLWriter*>(fWriter)->SetMaps(&fMaps);
 }
 
 //_____________________________________________________________________________
@@ -70,7 +70,7 @@ void XmlVGM::GDMLExporter::GenerateGeometry(VGM::IVolume* volume)
     fileName = fFileName;
   
   // Open XML file and document  
-  OpenFile(fileName);
+  fWriter->OpenFile(fileName);
   fWriter->OpenDocument();
 
   // Generate volumes tree
@@ -78,7 +78,7 @@ void XmlVGM::GDMLExporter::GenerateGeometry(VGM::IVolume* volume)
 
   // Close XML file and document  
   fWriter->CloseDocument();
-  CloseFile();
+  fWriter->CloseFile();
   
   if (fDebug > 0) 
     std::cout << "File " << fileName << " has been generated." << std::endl;
@@ -142,7 +142,7 @@ void XmlVGM::GDMLExporter::ProcessVolume(VGM::IVolume* volume)
     //
     // Open composition
     fWriter->OpenComposition(volume->Name(), 
-                                volume->MaterialName());
+                             volume->MaterialName());
     
     // Write positions  
     for (int j=0; j<nofDaughters; j++) {
@@ -152,65 +152,7 @@ void XmlVGM::GDMLExporter::ProcessVolume(VGM::IVolume* volume)
                   << volume->Name() << std::endl;
       }	     
    
-      VGM::IPlacement* dPlacement = volume->Daughter(j);
-      VGM::IVolume* dVolume = dPlacement->Volume();
-      
-      VGM::PlacementType dPlacementType = dPlacement->Type();
-
-      if (dPlacementType == VGM::kSimplePlacement) {
-        // simple placement
-	 
-	VGM::Transform transform = dPlacement->Transformation();
-        VGM::Transform inverse = ClhepVGM::Inverse(transform);
-	 
-        // position
-        ThreeVector position(3);
-        position[0] = transform[VGM::kDx];
-        position[1] = transform[VGM::kDy];
-        position[2] = transform[VGM::kDz];
-      
-        // rotation
-        ThreeVector rotation(3);
-        rotation[0] = inverse[VGM::kAngleX];
-        rotation[1] = inverse[VGM::kAngleY];
-        rotation[2] = inverse[VGM::kAngleZ];
-
-        // Get position
-	std::string positionRef = FindPositionName(position);
-      
-        // Get rotation
-	std::string rotationRef = FindRotationName(rotation);
-	
-        // Reflection is not supported by GDML
-        if  (ClhepVGM::HasReflection(transform)) {
-          std::cerr << "+++ Warning  +++" << std::endl; 
-          std::cerr << "    XmlVGM::GDMLExporter::ProcessVolume: " << std::endl;
-          std::cerr << "    Placement with reflection is not yet supported in GDML." 
-	            << std::endl;
-          std::cerr << "    Volume \"" << dPlacement->Name() 
-	            << "\" was not converted."  << std::endl; 
-        }		    
-	else   
-          fWriter->WritePlacementWithRotation(
-	                   dVolume->Name(), positionRef, rotationRef);
-      }
-      else if (dPlacementType == VGM::kMultiplePlacement) {
-        // not yet supported in GDML
-        std::cerr << "+++ Warning  +++" << std::endl; 
-        std::cerr << "    XmlVGM::GDMLExporter::ProcessVolume: " << std::endl;
-        std::cerr << "    Multiple placement is not yet supported in GDML." 
-	          << std::endl;
-        std::cerr << "    Volume \"" << dPlacement->Name() 
-	          << "\" was not converted." << std::endl; 
-     
-      }
-      else {
-        std::cerr << "+++ Warning  +++" << std::endl; 
-        std::cerr << "    XmlVGM::GDMLExporter::ProcessVolume: " << std::endl;
-        std::cerr << "    Unknown placement type. " << std::endl;
-        std::cerr << "    Volume \"" << dPlacement->Name() 
-	          << "\" was not converted." << std::endl;  
-      }
+      fWriter->WritePlacement(*volume->Daughter(j));
     }  
   }
   

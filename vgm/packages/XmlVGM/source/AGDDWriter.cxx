@@ -20,6 +20,7 @@
 
 #include <VGM/materials/IMaterial.h>
 #include <VGM/volumes/IPlacement.h>
+#include <VGM/volumes/IVolume.h>
 #include <VGM/solids/ISolid.h>
 #include <VGM/solids/IBox.h>
 #include <VGM/solids/ICons.h>
@@ -31,6 +32,8 @@
 #include <VGM/solids/ITrd.h>
 #include <VGM/solids/ITubs.h>
 
+#include <ClhepVGM/transform.h>
+
 #include "XmlVGM/AGDDWriter.h"
 
 const int XmlVGM::AGDDWriter::fgkMaxVolumeNameLength   = 20;
@@ -39,13 +42,12 @@ const int XmlVGM::AGDDWriter::fgkDefaultNumWidth = 7;
 const int XmlVGM::AGDDWriter::fgkDefaultNumPrecision = 4;
 
 //_____________________________________________________________________________
-XmlVGM::AGDDWriter::AGDDWriter(std::ofstream& outFile,
-                               const std::string& version,
+XmlVGM::AGDDWriter::AGDDWriter(const std::string& version,
 		               const std::string& date,
                                const std::string& author,
 			       const std::string dtdVersion) 
   : IWriter(),
-    fOutFile(outFile),
+    fOutFile(),
     fVersion(version),
     fDate(date),
     fAuthor(author),
@@ -53,9 +55,7 @@ XmlVGM::AGDDWriter::AGDDWriter(std::ofstream& outFile,
     fkBasicIndention("   "),
     fIndention(fkBasicIndention),
     fNW(fgkDefaultNumWidth),
-    fNP(fgkDefaultNumPrecision),
-    fRotationCounter(0),
-    fRotations()
+    fNP(fgkDefaultNumPrecision)
 {
   fOutFile.width(fgkDefaultNumWidth);
   fOutFile.precision(fgkDefaultNumPrecision);
@@ -141,6 +141,36 @@ XmlVGM::AGDDWriter::SmartPut(std::ostream& out,
   
   return out;
 }
+
+//_____________________________________________________________________________
+double XmlVGM::AGDDWriter::Round(double number) const
+{
+// Rounds the position elements to the numeric precision of the
+// convertor.
+
+  double precision = fNP;
+  return round(number*pow(10.,precision))/pow(10.,precision);
+}
+
+//_____________________________________________________________________________
+bool  XmlVGM::AGDDWriter::IsIdentity(const ThreeVector& rotation) const
+{
+// Returns true if roatation is identity within the converter precision.
+
+  ThreeVector roundedRotation(3);
+  roundedRotation[0] = Round(rotation[0]/ AngleUnit());
+  roundedRotation[1] = Round(rotation[1]/ AngleUnit());
+  roundedRotation[2] = Round(rotation[2]/ AngleUnit());
+
+  if ( roundedRotation[0] == 0. && 
+       roundedRotation[1] == 0. &&
+       roundedRotation[2] == 0. )
+       
+    return true;
+  else
+    return false;
+}               
+
 
 //_____________________________________________________________________________
 void XmlVGM::AGDDWriter::WriteBox(
@@ -581,6 +611,24 @@ void XmlVGM::AGDDWriter::WriteNotSupportedSolid(
 //
 
 //_____________________________________________________________________________
+void XmlVGM::AGDDWriter::OpenFile(std::string filePath)
+{ 
+// Opens output file.
+// ---
+
+  fOutFile.open(filePath.data(), std::ios::out); 
+  
+  if (!fOutFile) {
+    std::cerr << "   Cannot open " << filePath << std::endl;  
+    std::cerr << "** Exception: Aborting execution **" << std::endl;   
+    exit(1);
+  }
+  
+  // use FORTRAN compatibility output
+  fOutFile.setf(std::ios::fixed, std::ios::floatfield);
+}
+
+//_____________________________________________________________________________
 void XmlVGM::AGDDWriter::OpenDocument()
 {
 // Writes document opening.
@@ -671,6 +719,15 @@ void XmlVGM::AGDDWriter::OpenComposition(
   // increase indention
   IncreaseIndention();	   
 }  
+
+//_____________________________________________________________________________
+void XmlVGM::AGDDWriter::CloseFile()
+{ 
+// Closes output file.
+// ---
+
+  fOutFile.close(); 
+}
 
 //_____________________________________________________________________________
 void XmlVGM::AGDDWriter::CloseDocument()
@@ -831,69 +888,81 @@ void XmlVGM::AGDDWriter::WriteSolid(
 }  
 
 //_____________________________________________________________________________
-void XmlVGM::AGDDWriter::WriteRotation(
-                              const std::string& /*name*/, 
-                              const ThreeVector& rotation)
-{
-// Writes rotation. 
-// ---
-
-  HepRotation hepRotation;
-  hepRotation.rotateX(rotation[0]*deg);
-  hepRotation.rotateY(rotation[1]*deg);
-  hepRotation.rotateZ(rotation[2]*deg);
-
-  // return if this rotation was already written
-  int nofRotations = fRotations.size();
-  if (nofRotations>0)
-    for (int i=0; i<nofRotations; i++) 
-      if (fRotations[i] == rotation) return;
-
-  fRotations.push_back(rotation);  
-
-
+void XmlVGM::AGDDWriter::WritePlacement(
+                              const VGM::IPlacement& placement)
+{			      
   // get parameters
-  double xx = hepRotation.xx();
-  double xy = hepRotation.xy();
-  double xz = hepRotation.xz();
-  double yx = hepRotation.yx();
-  double yy = hepRotation.yy();
-  double yz = hepRotation.yz();
-  double zx = hepRotation.zx();
-  double zy = hepRotation.zy();
-  double zz = hepRotation.zz();
-  std::string id = "RM";
-  Append(id, ++fRotationCounter);
- 
-  // compose element string template
-  std::string quota = "\"\n";
-  std::string element1 = "<rot_matrix   id=\"#######  XX_XY_XZ=\"";
-  std::string element2 = "                           YX_YY_YZ=\"";
-  std::string element3 = "                           ZX_ZY_ZZ=\"";
-  std::string element4 = "\" />";
-  
-  // put identifier
-  PutName(element1, id, "#");
+  std::string volumeName = placement.Volume()->Name();
+  std::string compName = volumeName;
+  compName.append("_comp");    
+  int nd = placement.Volume()->NofDaughters();
 
-  // write element
-  fOutFile << fkBasicIndention
-           << element1
-	   << std::setw(8) << std::setprecision(5) << xx << "; "  
-	   << std::setw(8) << std::setprecision(5) << xy << "; "  
-	   << std::setw(8) << std::setprecision(5) << xz << quota
-           << fkBasicIndention
-           << element2
-	   << std::setw(8) << std::setprecision(5) << yx << "; "  
-	   << std::setw(8) << std::setprecision(5) << yy << "; "  
-	   << std::setw(8) << std::setprecision(5) << yz << quota
-	   << fkBasicIndention
-           << element3
-	   << std::setw(8) << std::setprecision(5) << zx << "; "  
-	   << std::setw(8) << std::setprecision(5) << zy << "; "  
-	   << std::setw(8) << std::setprecision(5) << zz 
-	   << element4 	   
-           << std::endl;
-}  
+  VGM::PlacementType placementType = placement.Type();
+
+  if (placementType == VGM::kSimplePlacement) {
+    
+    VGM::Transform transform = placement.Transformation();
+
+    // position
+    ThreeVector position(3);
+    position[0] = transform[VGM::kDx];
+    position[1] = transform[VGM::kDy];
+    position[2] = transform[VGM::kDz];
+      
+    // rotation
+    ThreeVector rotation(3);
+    rotation[0] = transform[VGM::kAngleX];
+    rotation[1] = transform[VGM::kAngleY];
+    rotation[2] = transform[VGM::kAngleZ];
+
+    if (ClhepVGM::HasReflection(transform)) {
+      WritePlacementWithRotationAndReflection(
+	         volumeName, position, rotation);
+		 
+      if (nd>0) 
+    	 WritePlacementWithRotationAndReflection(
+	                    compName, position, rotation);
+    }	  
+    else {
+      if (IsIdentity(rotation)) {
+     	WritePlacement(volumeName, position);
+        // if volume is not leaf node place its logical volume
+        if (nd>0) 
+    	  WritePlacement(compName, position);
+      }
+      else {  
+  	WritePlacementWithRotation(
+	                   volumeName, position, rotation);
+        if (nd>0) 
+          WritePlacementWithRotation(
+	                      compName, position, rotation);
+      }
+    }	
+  }
+  else if (placementType == VGM::kMultiplePlacement) {
+      
+    // get parameters
+    VGM::Axis axis;
+    int nReplicas;
+    double width;
+    double offset;
+    placement.MultiplePlacementData(axis, nReplicas, width, offset);
+	    
+    // write multiple position
+    WriteMultiplePlacement(volumeName, axis, nReplicas, width, offset);
+
+    // if volume is not leaf node place its logical volume
+    if (nd>0) 
+     WriteMultiplePlacement(compName, axis, nReplicas, width, offset);
+  }
+  else {
+    std::cerr << "+++ Warning  +++" << std::endl; 
+    std::cerr << "  XmlVGM::Writer::WritePlacement: " << std::endl;
+    std::cerr << "  Unknown placement type. " << std::endl;
+    std::cerr << "  Volume \"" << placement.Name() 
+              << "\" was not converted." << std::endl;  
+  }
+}
 
 //_____________________________________________________________________________
 void XmlVGM::AGDDWriter::WritePlacement(
@@ -1015,12 +1084,12 @@ void XmlVGM::AGDDWriter::WritePlacementWithRotationAndReflection(
   //
   HepTranslate3D translate3D(position[0], position[1], position[2]);
 
-  // inverse rotation
+  // rotation
   HepRotation hepRotation;
   hepRotation.rotateX(rotation[0]*deg);
   hepRotation.rotateY(rotation[1]*deg);
   hepRotation.rotateZ(rotation[2]*deg);
-  HepRotate3D rotate3D(hepRotation.inverse());
+  HepRotate3D rotate3D(hepRotation);
 
   HepScaleZ3D scale3D(-1.0);
 
