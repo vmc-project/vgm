@@ -6,8 +6,6 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include "CLHEP/Units/SystemOfUnits.h"
-
 #include "BaseVGM/solids/VSphere.h"
 
 //_____________________________________________________________________________
@@ -33,12 +31,12 @@ BaseVGM::VSphere::~VSphere() {
 //_____________________________________________________________________________
 std::ostream& BaseVGM::VSphere::Put(std::ostream& out) const
 {
-  out << "  rin = "    << InnerRadius()/mm << "mm" 
-      << "  rout = "   << OuterRadius()/mm << "mm" 
-      << "  sphi = "   << StartPhi()/deg   << "deg"
-      << "  dphi = "   << DeltaPhi()/deg   << "deg"
-      << "  stheta = " << StartTheta()/deg << "deg"
-      << "  dtheta = " << DeltaTheta()/deg << "deg";
+  out << "  rin = "    << InnerRadius() << "mm" 
+      << "  rout = "   << OuterRadius() << "mm" 
+      << "  sphi = "   << StartPhi()    << "deg"
+      << "  dphi = "   << DeltaPhi()    << "deg"
+      << "  stheta = " << StartTheta()  << "deg"
+      << "  dtheta = " << DeltaTheta()  << "deg";
   return out; 
 }
 

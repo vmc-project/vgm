@@ -6,8 +6,6 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include "CLHEP/Units/SystemOfUnits.h"
-
 #include "BaseVGM/solids/VCons.h"
 
 //_____________________________________________________________________________
@@ -33,13 +31,13 @@ BaseVGM::VCons::~VCons() {
 //_____________________________________________________________________________
 std::ostream& BaseVGM::VCons::Put(std::ostream& out) const
 {
-  out << "  rin1 = "  << InnerRadiusMinusZ()/mm << "mm" 
-      << "  rout1 = " << OuterRadiusMinusZ()/mm << "mm" 
-      << "  rin2 = "  << InnerRadiusPlusZ()/mm  << "mm" 
-      << "  rout2 = " << OuterRadiusPlusZ()/mm  << "mm" 
-      << "  hz = "    << ZHalfLength()/mm       << "mm" 
-      << "  sphi = "  << StartPhi()/deg         << "deg"
-      << "  dphi = "  << DeltaPhi()/deg         << "deg";
+  out << "  rin1 = "  << InnerRadiusMinusZ() << "mm" 
+      << "  rout1 = " << OuterRadiusMinusZ() << "mm" 
+      << "  rin2 = "  << InnerRadiusPlusZ()  << "mm" 
+      << "  rout2 = " << OuterRadiusPlusZ()  << "mm" 
+      << "  hz = "    << ZHalfLength()       << "mm" 
+      << "  sphi = "  << StartPhi()          << "deg"
+      << "  dphi = "  << DeltaPhi()          << "deg";
   return out; 
 }
 

@@ -9,6 +9,7 @@
 #include <float.h>
 
 #include "ClhepVGM/transform.h"
+#include "ClhepVGM/Units.h"
 
 //_____________________________________________________________________________
 VGM::Transform    
@@ -19,9 +20,9 @@ ClhepVGM::Transform(const HepRotation& rotation,
   // Translation
   //
   VGM::Transform transform(VGM::kSize);
-  transform[VGM::kDx] = translation.x();
-  transform[VGM::kDy] = translation.y();
-  transform[VGM::kDz] = translation.z();
+  transform[VGM::kDx] = translation.x() * Units::Length();
+  transform[VGM::kDy] = translation.y() * Units::Length();
+  transform[VGM::kDz] = translation.z() * Units::Length();
 
   // Get axis angles
   // (Using E.Tchernaiev formula)
@@ -40,9 +41,9 @@ ClhepVGM::Transform(const HepRotation& rotation,
     angleZ = 0.;
   }
 
-  transform[VGM::kAngleX] = angleX;
-  transform[VGM::kAngleY] = angleY;
-  transform[VGM::kAngleZ] = angleZ;
+  transform[VGM::kAngleX] = angleX * Units::Angle();
+  transform[VGM::kAngleY] = angleY * Units::Angle();
+  transform[VGM::kAngleZ] = angleZ * Units::Angle();
 
   // No reflection
   transform[VGM::kReflZ] = 0.;
@@ -106,10 +107,10 @@ Hep3Vector ClhepVGM::Translation(const VGM::Transform& transform)
     exit(1);
   }  
     
-  return Hep3Vector(transform[VGM::kDx], 
-                    transform[VGM::kDy], 
-		    transform[VGM::kDz]);
-}  
+  return Hep3Vector(transform[VGM::kDx] / Units::Length(), 
+                    transform[VGM::kDy] / Units::Length(), 
+		    transform[VGM::kDz] / Units::Length());
+} 
 
 
 //_____________________________________________________________________________
@@ -122,9 +123,9 @@ HepRotation  ClhepVGM::Rotation(const VGM::Transform& transform)
   }  
     
   HepRotation hepRotation;
-  hepRotation.rotateX(transform[VGM::kAngleX]);
-  hepRotation.rotateY(transform[VGM::kAngleY]);
-  hepRotation.rotateZ(transform[VGM::kAngleZ]);
+  hepRotation.rotateX(transform[VGM::kAngleX] / Units::Angle() );
+  hepRotation.rotateY(transform[VGM::kAngleY] / Units::Angle() );
+  hepRotation.rotateZ(transform[VGM::kAngleZ] / Units::Angle() );
 
   return hepRotation;
 }  

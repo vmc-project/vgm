@@ -8,8 +8,6 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include "CLHEP/Units/SystemOfUnits.h"
-
 #include "VGM/materials/IElement.h"
 #include "VGM/materials/IMaterial.h"
 #include "VGM/materials/IMedium.h"

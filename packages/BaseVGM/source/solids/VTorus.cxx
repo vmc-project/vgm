@@ -6,8 +6,6 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include "CLHEP/Units/SystemOfUnits.h"
-
 #include "BaseVGM/solids/VTorus.h"
 
 //_____________________________________________________________________________
@@ -33,11 +31,11 @@ BaseVGM::VTorus::~VTorus() {
 //_____________________________________________________________________________
 std::ostream& BaseVGM::VTorus::Put(std::ostream& out) const
 {
-  out << "  rin = "  << InnerRadius()/mm << "mm" 
-      << "  rout = " << OuterRadius()/mm << "mm" 
-      << "  rtor = " << AxialRadius()/mm << "mm" 
-      << "  sphi = " << StartPhi()/deg   << "deg" 
-      << "  dphi = " << DeltaPhi()/deg   << "deg"; 
+  out << "  rin = "  << InnerRadius() << "mm" 
+      << "  rout = " << OuterRadius() << "mm" 
+      << "  rtor = " << AxialRadius() << "mm" 
+      << "  sphi = " << StartPhi()    << "deg" 
+      << "  dphi = " << DeltaPhi()    << "deg"; 
   return out; 
 }
 

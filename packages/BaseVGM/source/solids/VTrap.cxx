@@ -6,8 +6,6 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include "CLHEP/Units/SystemOfUnits.h"
-
 #include "BaseVGM/solids/VTrap.h"
 
 //_____________________________________________________________________________
@@ -33,16 +31,16 @@ BaseVGM::VTrap::~VTrap() {
 //_____________________________________________________________________________
 std::ostream& BaseVGM::VTrap::Put(std::ostream& out) const
 {
-  out << "  hz = "     << ZHalfLength()/mm             << "mm" 
-      << "  theta = "  << Theta()/deg                  << "deg" 
-      << "  phi = "    << Phi()/deg                    << "deg" 
-      << "  hy1 = "    << YHalfLengthMinusZ()/mm       << "mm" 
-      << "  hx1 = "    << XHalfLengthMinusZMinusY()/mm << "mm" 
-      << "  hx2 = "    << XHalfLengthMinusZPlusY()/mm  << "mm" 
+  out << "  hz = "     << ZHalfLength()                << "mm" 
+      << "  theta = "  << Theta()                      << "deg" 
+      << "  phi = "    << Phi()                        << "deg" 
+      << "  hy1 = "    << YHalfLengthMinusZ()          << "mm" 
+      << "  hx1 = "    << XHalfLengthMinusZMinusY()    << "mm" 
+      << "  hx2 = "    << XHalfLengthMinusZPlusY()     << "mm" 
       << "  alpha1 = " << AlphaMinusZ()                << "deg" 
-      << "  hy2 = "    << YHalfLengthPlusZ()/mm        << "mm" 
-      << "  hx3 = "    << XHalfLengthPlusZMinusY()/mm  << "mm" 
-      << "  hx4 = "    << XHalfLengthPlusZPlusY()/mm   << "mm"
+      << "  hy2 = "    << YHalfLengthPlusZ()           << "mm" 
+      << "  hx3 = "    << XHalfLengthPlusZMinusY()     << "mm" 
+      << "  hx4 = "    << XHalfLengthPlusZPlusY()      << "mm"
       << "  alpha2 = " << AlphaPlusZ()                 << "deg"; 
   return out; 
 }
