@@ -13,6 +13,7 @@
 
 #include <fstream>
 #include <vector>
+#include <string>
 
 #include "VGM/solids/ISolid.h"
 #include "VGM/solids/IBox.h"
@@ -38,9 +39,9 @@ namespace XmlVGM {
   class AGDDWriter : public virtual IWriter
   {
     public:
-      AGDDWriter(const std::string& version = "1.0", 
+      AGDDWriter(const std::string& version = "Undefined", 
 	         const std::string& date = "Undefined", 
-                 const std::string& author = "G4 XML Convertor", 
+                 const std::string& author = "VGM AGGD Writer", 
 	         const std::string dtdVersion = "v6");
       virtual ~AGDDWriter();
 
@@ -180,6 +181,7 @@ namespace XmlVGM {
       static const int fgkMaxMaterialNameLength;//maximal material name length
       static const int fgkDefaultNumWidth;      //default output numbers width
       static const int fgkDefaultNumPrecision;  //default output numbers precision 
+      static const std::string fgkCompNameExtension; //name extension for composition
 
       // data members
       //

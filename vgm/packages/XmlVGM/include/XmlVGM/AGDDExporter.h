@@ -36,7 +36,6 @@ namespace XmlVGM {
       //
       virtual void GenerateGeometry(VGM::IVolume* volume);
       virtual void GenerateSection(VGM::IVolume* volume);
-      virtual void ProcessTopVolume(VGM::IVolume* volume); 
       virtual void ProcessVolume(VGM::IVolume* volume); 
 
     private:
