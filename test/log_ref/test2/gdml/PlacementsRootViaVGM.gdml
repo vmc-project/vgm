@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gdml xmlns:gdml="http://cern.ch/2001/Schemas/GDML"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="gdml_1.0.xsd">
+
+   <define>
+      <position  name=   "pos_0"  x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name=   "pos_1"  x="   482.9629"  y="     0.0000"  z="   129.4095"  unit="cm" />
+      <position  name=   "pos_2"  x="     0.0000"  y="    50.0000"  z="     0.0000"  unit="cm" />
+      <position  name=   "pos_3"  x="     0.0000"  y="     9.8000"  z="     0.0000"  unit="cm" />
+      <position  name=   "pos_4"  x="     0.0000"  y="    -9.8000"  z="     0.0000"  unit="cm" />
+      <position  name=   "pos_5"  x="   433.0127"  y="     0.0000"  z="   250.0000"  unit="cm" />
+      <position  name=   "pos_6"  x="   353.5534"  y="     0.0000"  z="   353.5534"  unit="cm" />
+      <position  name=   "pos_7"  x="   250.0000"  y="     0.0000"  z="   433.0127"  unit="cm" />
+      <position  name=   "pos_8"  x="   129.4095"  y="     0.0000"  z="   482.9629"  unit="cm" />
+      <position  name=   "pos_9"  x="     0.0000"  y="     0.0000"  z="   500.0000"  unit="cm" />
+      <position  name=  "pos_10"  x="  -129.4095"  y="     0.0000"  z="   482.9629"  unit="cm" />
+      <position  name=  "pos_11"  x="  -250.0000"  y="     0.0000"  z="   433.0127"  unit="cm" />
+      <position  name=  "pos_12"  x="  -353.5534"  y="     0.0000"  z="   353.5534"  unit="cm" />
+      <position  name=  "pos_13"  x="  -433.0127"  y="     0.0000"  z="   250.0000"  unit="cm" />
+      <position  name=  "pos_14"  x="  -482.9629"  y="     0.0000"  z="   129.4095"  unit="cm" />
+      <position  name=  "pos_15"  x="  -500.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name=  "pos_16"  x="  -482.9629"  y="     0.0000"  z="  -129.4095"  unit="cm" />
+      <position  name=  "pos_17"  x="  -433.0127"  y="     0.0000"  z="  -250.0000"  unit="cm" />
+      <position  name=  "pos_18"  x="  -353.5534"  y="     0.0000"  z="  -353.5534"  unit="cm" />
+      <position  name=  "pos_19"  x="  -250.0000"  y="     0.0000"  z="  -433.0127"  unit="cm" />
+      <position  name=  "pos_20"  x="  -129.4095"  y="     0.0000"  z="  -482.9629"  unit="cm" />
+      <position  name=  "pos_21"  x="     0.0000"  y="     0.0000"  z="  -500.0000"  unit="cm" />
+      <position  name=  "pos_22"  x="   129.4095"  y="     0.0000"  z="  -482.9629"  unit="cm" />
+      <position  name=  "pos_23"  x="   250.0000"  y="     0.0000"  z="  -433.0127"  unit="cm" />
+      <position  name=  "pos_24"  x="   353.5534"  y="     0.0000"  z="  -353.5534"  unit="cm" />
+      <position  name=  "pos_25"  x="   433.0127"  y="     0.0000"  z="  -250.0000"  unit="cm" />
+      <position  name=  "pos_26"  x="   482.9629"  y="     0.0000"  z="  -129.4095"  unit="cm" />
+      <position  name=  "pos_27"  x="   500.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+
+      <rotation  name=   "rot_0"  x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name=   "rot_1"  x="     0.0000"  y="   -15.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name=   "rot_2"  x="     0.0000"  y="   -30.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name=   "rot_3"  x="     0.0000"  y="   -45.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name=   "rot_4"  x="     0.0000"  y="   -60.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name=   "rot_5"  x="     0.0000"  y="   -75.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name=   "rot_6"  x="     0.0000"  y="   -90.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name=   "rot_7"  x="   180.0000"  y="   -75.0000"  z="   180.0000"  unit="degree" />
+      <rotation  name=   "rot_8"  x="   180.0000"  y="   -60.0000"  z="   180.0000"  unit="degree" />
+      <rotation  name=   "rot_9"  x="   180.0000"  y="   -45.0000"  z="   180.0000"  unit="degree" />
+      <rotation  name=  "rot_10"  x="   180.0000"  y="   -30.0000"  z="   180.0000"  unit="degree" />
+      <rotation  name=  "rot_11"  x="   180.0000"  y="   -15.0000"  z="   180.0000"  unit="degree" />
+      <rotation  name=  "rot_12"  x="   180.0000"  y="     0.0000"  z="   180.0000"  unit="degree" />
+      <rotation  name=  "rot_13"  x="   180.0000"  y="    15.0000"  z="   180.0000"  unit="degree" />
+      <rotation  name=  "rot_14"  x="   180.0000"  y="    30.0000"  z="   180.0000"  unit="degree" />
+      <rotation  name=  "rot_15"  x="   180.0000"  y="    45.0000"  z="   180.0000"  unit="degree" />
+      <rotation  name=  "rot_16"  x="   180.0000"  y="    60.0000"  z="   180.0000"  unit="degree" />
+      <rotation  name=  "rot_17"  x="   180.0000"  y="    75.0000"  z="   180.0000"  unit="degree" />
+      <rotation  name=  "rot_18"  x="     0.0000"  y="    90.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name=  "rot_19"  x="     0.0000"  y="    75.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name=  "rot_20"  x="     0.0000"  y="    60.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name=  "rot_21"  x="     0.0000"  y="    45.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name=  "rot_22"  x="     0.0000"  y="    30.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name=  "rot_23"  x="     0.0000"  y="    15.0000"  z="     0.0000"  unit="degree" />
+   </define>
+
+   <materials>
+      <element  name="ALUMINIUM_e"  Z=" 13.0000"  N=" 27" >
+         <atom type="A" unit="g/mol" value=" 26.9815" />
+      </element>
+
+      <material  name="Basic"  >
+         <D type="density" unit="g/cm3" value="     2.7000"/>
+         <fraction n="    1.0000"  ref="ALUMINIUM_e"/>
+      </material>
+
+   </materials>
+
+   <solids>
+      <box  lunit="cm" aunit="degree"
+         name="worldV_s"
+         x=" 2000.0000"  y=" 2000.0000"  z=" 2000.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="volA_s"
+         x="   40.0000"  y="  120.0000"  z="  100.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="volB_s"
+         x="   40.0000"  y="   20.0000"  z="  100.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="volC_s"
+         x="   40.0000"  y="    0.4000"  z="  100.0000" />
+
+   </solids>
+
+   <structure>
+      <volume name="volC">
+         <materialref ref="Basic"/>
+         <solidref ref="volC_s"/>
+      </volume>
+
+      <volume name="volB">
+         <materialref ref="Basic"/>
+         <solidref ref="volB_s"/>
+         <child>
+            <volumeref ref="volC"/>
+               <positionref ref="pos_3"/>
+               <rotationref ref="rot_0"/>
+         </child>
+         <child>
+            <volumeref ref="volC"/>
+               <positionref ref="pos_4"/>
+               <rotationref ref="rot_0"/>
+         </child>
+      </volume>
+
+      <volume name="volA">
+         <materialref ref="Basic"/>
+         <solidref ref="volA_s"/>
+      </volume>
+
+      <volume name="worldV">
+         <materialref ref="Basic"/>
+         <solidref ref="worldV_s"/>
+         <child>
+            <volumeref ref="volA"/>
+               <positionref ref="pos_1"/>
+               <rotationref ref="rot_1"/>
+         </child>
+         <child>
+            <volumeref ref="volA"/>
+               <positionref ref="pos_5"/>
+               <rotationref ref="rot_2"/>
+         </child>
+         <child>
+            <volumeref ref="volA"/>
+               <positionref ref="pos_6"/>
+               <rotationref ref="rot_3"/>
+         </child>
+         <child>
+            <volumeref ref="volA"/>
+               <positionref ref="pos_7"/>
+               <rotationref ref="rot_4"/>
+         </child>
+         <child>
+            <volumeref ref="volA"/>
+               <positionref ref="pos_8"/>
+               <rotationref ref="rot_5"/>
+         </child>
+         <child>
+            <volumeref ref="volA"/>
+               <positionref ref="pos_9"/>
+               <rotationref ref="rot_6"/>
+         </child>
+         <child>
+            <volumeref ref="volA"/>
+               <positionref ref="pos_10"/>
+               <rotationref ref="rot_7"/>
+         </child>
+         <child>
+            <volumeref ref="volA"/>
+               <positionref ref="pos_11"/>
+               <rotationref ref="rot_8"/>
+         </child>
+         <child>
+            <volumeref ref="volA"/>
+               <positionref ref="pos_12"/>
+               <rotationref ref="rot_9"/>
+         </child>
+         <child>
+            <volumeref ref="volA"/>
+               <positionref ref="pos_13"/>
+               <rotationref ref="rot_10"/>
+         </child>
+         <child>
+            <volumeref ref="volA"/>
+               <positionref ref="pos_14"/>
+               <rotationref ref="rot_11"/>
+         </child>
+         <child>
+            <volumeref ref="volA"/>
+               <positionref ref="pos_15"/>
+               <rotationref ref="rot_12"/>
+         </child>
+         <child>
+            <volumeref ref="volA"/>
+               <positionref ref="pos_16"/>
+               <rotationref ref="rot_13"/>
+         </child>
+         <child>
+            <volumeref ref="volA"/>
+               <positionref ref="pos_17"/>
+               <rotationref ref="rot_14"/>
+         </child>
+         <child>
+            <volumeref ref="volA"/>
+               <positionref ref="pos_18"/>
+               <rotationref ref="rot_15"/>
+         </child>
+         <child>
+            <volumeref ref="volA"/>
+               <positionref ref="pos_19"/>
+               <rotationref ref="rot_16"/>
+         </child>
+         <child>
+            <volumeref ref="volA"/>
+               <positionref ref="pos_20"/>
+               <rotationref ref="rot_17"/>
+         </child>
+         <child>
+            <volumeref ref="volA"/>
+               <positionref ref="pos_21"/>
+               <rotationref ref="rot_18"/>
+         </child>
+         <child>
+            <volumeref ref="volA"/>
+               <positionref ref="pos_22"/>
+               <rotationref ref="rot_19"/>
+         </child>
+         <child>
+            <volumeref ref="volA"/>
+               <positionref ref="pos_23"/>
+               <rotationref ref="rot_20"/>
+         </child>
+         <child>
+            <volumeref ref="volA"/>
+               <positionref ref="pos_24"/>
+               <rotationref ref="rot_21"/>
+         </child>
+         <child>
+            <volumeref ref="volA"/>
+               <positionref ref="pos_25"/>
+               <rotationref ref="rot_22"/>
+         </child>
+         <child>
+            <volumeref ref="volA"/>
+               <positionref ref="pos_26"/>
+               <rotationref ref="rot_23"/>
+         </child>
+         <child>
+            <volumeref ref="volA"/>
+               <positionref ref="pos_27"/>
+               <rotationref ref="rot_0"/>
+         </child>
+      </volume>
+
+   </structure>
+
+   <setup name="unit1"   version="1.0">
+      <world ref="worldV"/>
+   </setup>
+
+</gdml>
