@@ -11,6 +11,7 @@
 #include "CLHEP/Vector/Rotation.h"
 #include "CLHEP/Vector/ThreeVector.h"
 #include "CLHEP/Geometry/Transform3D.h"
+#include "CLHEP/Units/SystemOfUnits.h"
 
 #include <iostream>
 #include <iomanip>
@@ -333,14 +334,14 @@ void XmlVGM::AGDDWriter::WriteTrap(
   // declination: alpha1, alpha2
 
   // get inclination angles
-  //
   double thetaCphi = tan(theta)*cos(phi);
   double thetaSphi = tan(theta)*sin(phi);
   double cosTheta = 1.0/sqrt(1+thetaCphi*thetaCphi + thetaSphi*thetaSphi) ;
+    // TO DO: change to radians in tan(), cos() !!!
 
   Hep3Vector symAxis(thetaCphi*cosTheta, thetaSphi*cosTheta, cosTheta);
-  double inc1 = atan(symAxis.x()/symAxis.z()) / AngleUnit();
-  double inc2 = atan(symAxis.y()/symAxis.z()) / AngleUnit();
+  double inc1 = atan(symAxis.x()/symAxis.z())/deg;
+  double inc2 = atan(symAxis.y()/symAxis.z())/deg;
 
   // compose element string template
   std::string quota = "\"";
@@ -571,7 +572,7 @@ void XmlVGM::AGDDWriter::WriteNotSupportedSolid(
 	   << fIndention << element3 << std::endl;
 	   
   // Write dummy box element
-  WriteBox(name, 1.*mm, 1.*mm, 1.*mm, materialName); 
+  WriteBox(name, 1.0, 1.0, 1.0, materialName); 
 }  	   
 
 
@@ -838,9 +839,9 @@ void XmlVGM::AGDDWriter::WriteRotation(
 // ---
 
   HepRotation hepRotation;
-  hepRotation.rotateX(rotation[0]);
-  hepRotation.rotateY(rotation[1]);
-  hepRotation.rotateZ(rotation[2]);
+  hepRotation.rotateX(rotation[0]*deg);
+  hepRotation.rotateY(rotation[1]*deg);
+  hepRotation.rotateZ(rotation[2]*deg);
 
   // return if this rotation was already written
   int nofRotations = fRotations.size();
@@ -942,9 +943,9 @@ void XmlVGM::AGDDWriter::WritePlacementWithRotation(
   
   // convert object rotation to frame rotation
   HepRotation hepRotation;
-  hepRotation.rotateX(rotation[0]);
-  hepRotation.rotateY(rotation[1]);
-  hepRotation.rotateZ(rotation[2]);
+  hepRotation.rotateX(rotation[0]*deg);
+  hepRotation.rotateY(rotation[1]*deg);
+  hepRotation.rotateZ(rotation[2]*deg);
  
   double xx = hepRotation.xx();
   double xy = hepRotation.xy();
@@ -1016,9 +1017,9 @@ void XmlVGM::AGDDWriter::WritePlacementWithRotationAndReflection(
 
   // inverse rotation
   HepRotation hepRotation;
-  hepRotation.rotateX(rotation[0]);
-  hepRotation.rotateY(rotation[1]);
-  hepRotation.rotateZ(rotation[2]);
+  hepRotation.rotateX(rotation[0]*deg);
+  hepRotation.rotateY(rotation[1]*deg);
+  hepRotation.rotateZ(rotation[2]*deg);
   HepRotate3D rotate3D(hepRotation.inverse());
 
   HepScaleZ3D scale3D(-1.0);

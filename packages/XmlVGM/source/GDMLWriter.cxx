@@ -12,8 +12,6 @@
 #include <sstream>
 #include <float.h>
 
-#include "CLHEP/Vector/Rotation.h"
-
 #include "VGM/materials/IMaterial.h"
 #include "VGM/materials/IElement.h"
 
@@ -92,11 +90,11 @@ XmlVGM::GDMLWriter::UpdateName(const std::string& name,
 //_____________________________________________________________________________
 double XmlVGM::GDMLWriter::UpdateAngle(double angle) const
 {
-// Checks if the value of the angle is within (-2*PI, 2*PI),
-// and converts the value to fit within (0, 2*PI).
+// Checks if the value of the angle is within (-360., 360.),
+// and converts the value to fit within (0, 360.).
 // ---
  
-  if (angle < -2.0*M_PI || angle > 2.0*M_PI) {
+  if (angle < -360. || angle > 360.) {
     std::cerr << "+++ Warning +++: " << std::endl;
     std::cerr << "    XmlVGM::GDMLWriter::UpdateAngle:" << std::endl;
     std::cerr << "    Angle " << angle/AngleUnit() 
@@ -105,7 +103,7 @@ double XmlVGM::GDMLWriter::UpdateAngle(double angle) const
     return 0.;	      
   }
   
-  if (angle < 0.) return angle + 2.0*M_PI;
+  if (angle < 0.) return angle + 360.;
   
   return angle;  
 }
@@ -1030,7 +1028,7 @@ void XmlVGM::GDMLWriter::WriteNotSupportedSolid(
 	   << fIndention << element3 << std::endl;
 	   
   // Write dummy box element
-  WriteBox(name, 1.*mm, 1.*mm, 1.*mm, materialName); 
+  WriteBox(name, 1.0, 1.0, 1.0, materialName); 
 }  	   
 
 //_____________________________________________________________________________
