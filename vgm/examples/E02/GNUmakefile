@@ -24,7 +24,7 @@ CPPFLAGS  += -I$(VGM_INSTALL)/packages/BaseVGM/include
 CPPFLAGS  += -I$(VGM_INSTALL)/packages/Geant4GM/include
 CPPFLAGS  += -I$(VGM_INSTALL)/packages/RootGM/include
 EXTRALIBS += -L$(VGM_INSTALL)/lib/$(VGM_SYSTEM)
-EXTRALIBS += -lGeant4GM -lRootGM  -lBaseVGM
+EXTRALIBS += -lGeant4GM -lRootGM -lBaseVGM -lClhepVGM
 
 include $(G4INSTALL)/config/binmake.gmk
 

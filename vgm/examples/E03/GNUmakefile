@@ -16,11 +16,12 @@ all: lib bin
 
 # VGM
 CPPFLAGS  += -I$(VGM_INSTALL)/packages/VGM/include
+CPPFLAGS  += -I$(VGM_INSTALL)/packages/XmlVGM/include
 CPPFLAGS  += -I$(VGM_INSTALL)/packages/BaseVGM/include
 CPPFLAGS  += -I$(VGM_INSTALL)/packages/Geant4GM/include
 CPPFLAGS += -I$(VGM_INSTALL)/include
 EXTRALIBS += -L$(VGM_INSTALL)/lib/$(VGM_SYSTEM)
-EXTRALIBS += -lGeant4GM -lBaseVGM
+EXTRALIBS += -lGeant4GM -lBaseVGM -lXmlVGM -lClhepVGM
 
 include $(G4INSTALL)/config/binmake.gmk
 
