@@ -637,11 +637,10 @@ void XmlVGM::GDMLWriter::WritePolycone(
 }  
 
 
-/*
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WritePolyhedra(
                              std::string name, 
-			     const VGM::IPolyhedra* polyhedra, 
+			     const VGM::IPolyhedra* polyhedra)
 {
 // Writes VGM::IPolyhedra solid.
 // ---
@@ -713,7 +712,6 @@ void XmlVGM::GDMLWriter::WritePolyhedra(
   delete [] rmaxArray;	
   delete [] zArray;			      
 }  
-*/
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteSphere(
@@ -1244,13 +1242,11 @@ void XmlVGM::GDMLWriter::WriteSolid(
     WritePolycone(solidName, polycone); 
     return;   
   }
-/*
   else if (solidType == VGM::kPolyhedra) { 
     const VGM::IPolyhedra* polyhedra = dynamic_cast<const VGM::IPolyhedra*>(solid); 
     WritePolyhedra(solidName, polyhedra); 
     return;   
   }
-*/
   else if (solidType == VGM::kSphere) { 
     const VGM::ISphere* sphere = dynamic_cast<const VGM::ISphere*>(solid); 
     WriteSphere(solidName, sphere); 
