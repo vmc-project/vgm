@@ -444,7 +444,7 @@ void* TstGeometryViaRoot::TestPlacements()
 
      TGeoRotation* rot = new TGeoRotation();
      rot->RotateY(-phi);
-        // !!! Different meaning of rotation in Root geometry
+        // !!! Different meaning of rotation in Root than in Geant4
      
      TGeoCombiTrans* combi= new TGeoCombiTrans( x, y0, z, rot);
      worldV->AddNode(volA, i+1, combi);

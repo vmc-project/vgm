@@ -465,10 +465,11 @@ void* TstGeometryViaVGM::TestPlacements()
      double z = x0*sin(phi);
 
      HepRotation rot;
-     rot.rotateY(phi);
+     rot.rotateY(-phi);
+        // !!! Different meaning of rotation in VGM than in Geant4 
      
      fFactory->CreatePlacement("layerA", i, volA, worldV,
-                               ClhepVGM::Transform(rot.inverse(), Hep3Vector(x, y0, z)));
+                               ClhepVGM::Transform(rot, Hep3Vector(x, y0, z)));
    }
    
   return (void*) fFactory->Top();
@@ -605,15 +606,13 @@ void* TstGeometryViaVGM::TestBooleanSolids2()
  
   // Rotate solid1  
   HepRotation rot1;
-  rot1.rotateY(-45.* deg);
+  rot1.rotateY(45.* deg);
 
   // Rotate + translate solid2
   //
   HepRotation rot2;
-  rot2.rotateX(-30.* deg);
-  rot2.rotateY(45.* deg); 
-       // apply inverse rotation to solid1 rotation
-       // as this one will be applied with placement
+  rot2.rotateX( 30.* deg);
+  rot2.rotateY(-45.* deg); 
   Hep3Vector tr2 = Hep3Vector(20.* fCm, 0., 0.);
   
   // Intersection
@@ -621,39 +620,39 @@ void* TstGeometryViaVGM::TestBooleanSolids2()
   ISolid* intersectionS
     = fFactory->CreateIntersectionSolid(
                   "solid1Isolid2S", solid1, solid2, 
-		  ClhepVGM::Transform(rot2.inverse(),tr2)); 
+		  ClhepVGM::Transform(rot2,tr2)); 
   IVolume* intersectionV
     = fFactory->CreateVolume("solid1Isolid2V", intersectionS, "Basic");
 
   fFactory->CreatePlacement("solid1Isolid2", 0, intersectionV, worldV, 
                             ClhepVGM::Transform(
-			      rot1.inverse(), Hep3Vector(-wSize/4., 0., 200.* fCm)));
+			      rot1, Hep3Vector(-wSize/4., 0., 200.* fCm)));
   
   // Subtraction
   //
   ISolid* subtractionS
     = fFactory->CreateSubtractionSolid(
                   "solid1Ssolid2S", solid1, solid2, 
-		  ClhepVGM::Transform(rot2.inverse(),tr2)); 
+		  ClhepVGM::Transform(rot2, tr2)); 
   IVolume* subtractionV
     = fFactory->CreateVolume("solid1Ssolid2V", subtractionS, "Basic");
 
   fFactory->CreatePlacement("solid1Ssolid2", 0, subtractionV, worldV, 
                             ClhepVGM::Transform(
-			      rot1.inverse(), Hep3Vector(0., 0., 200.* fCm)));
+			      rot1, Hep3Vector(0., 0., 200.* fCm)));
   
   // Union
   //
   ISolid* unionS
     = fFactory->CreateUnionSolid(
                   "solid1Usolid2S", solid1, solid2, 
-		  ClhepVGM::Transform(rot2.inverse(),tr2)); 
+		  ClhepVGM::Transform(rot2, tr2)); 
   IVolume* unionV
     = fFactory->CreateVolume("solid1Usolid2V", unionS, "Basic");
 
   fFactory->CreatePlacement("solid1Usolid2", 0, unionV, worldV, 
                             ClhepVGM::Transform(
-			      rot1.inverse(), Hep3Vector( wSize/4., 0., 200.* fCm)));
+			      rot1, Hep3Vector( wSize/4., 0., 200.* fCm)));
   
   return (void*) fFactory->Top();
 }
@@ -697,15 +696,13 @@ void* TstGeometryViaVGM::TestBooleanSolids3()
  
   // Rotate solid1  
   HepRotation rot1;
-  rot1.rotateY(-45.* deg);
+  rot1.rotateY( 45.* deg);
 
   // Rotate + translate solid2
   //
   HepReflectZ3D reflect2 = HepReflectZ3D();
   HepTranslate3D translate2 = HepTranslate3D(20.* fCm, 0., 0.);
-  HepRotate3D  rotInv1 =  HepRotateY3D(-45.* deg);
-         // the same angle as in rot1 as in 3D transform we pass
-	 // object rotations and not frame rotations
+  HepRotate3D  rotInv1 =  HepRotateY3D( -45.* deg);
   HepTransform3D transform2 =  rotInv1 * translate2 * reflect2;
   
   // Intersection
@@ -719,7 +716,7 @@ void* TstGeometryViaVGM::TestBooleanSolids3()
 
   fFactory->CreatePlacement("solid1Isolid2", 0, intersectionV, worldV, 
                             ClhepVGM::Transform(
-			      rot1.inverse(), Hep3Vector(-wSize/4., 0., 200.* fCm)));
+			      rot1, Hep3Vector(-wSize/4., 0., 200.* fCm)));
   
   // Subtraction
   //
@@ -732,7 +729,7 @@ void* TstGeometryViaVGM::TestBooleanSolids3()
 
   fFactory->CreatePlacement("solid1Ssolid2", 0, subtractionV, worldV, 
                             ClhepVGM::Transform(
-			      rot1.inverse(), Hep3Vector(0., 0., 200.* fCm)));
+			      rot1, Hep3Vector(0., 0., 200.* fCm)));
   
   // Union
   //
@@ -746,7 +743,7 @@ void* TstGeometryViaVGM::TestBooleanSolids3()
 
   fFactory->CreatePlacement("solid1Usolid2", 0, unionV, worldV, 
                             ClhepVGM::Transform(
-			      rot1.inverse(), Hep3Vector( wSize/4., 0., 200.* fCm)));
+			      rot1, Hep3Vector( wSize/4., 0., 200.* fCm)));
   
   return (void*) fFactory->Top();
   return 0;
