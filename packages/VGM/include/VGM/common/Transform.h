@@ -7,9 +7,9 @@
 //   std::vector<double>[0]   translation X in mm
 //   std::vector<double>[1]   translation Y in mm
 //   std::vector<double>[2]   translation Z in mm
-//   std::vector<double>[3]   axis angle X in rad
-//   std::vector<double>[4]   axis angle Y in rad
-//   std::vector<double>[5]   axis angle Z in rad
+//   std::vector<double>[3]   axis angle X in degree
+//   std::vector<double>[4]   axis angle Y in degree
+//   std::vector<double>[5]   axis angle Z in degree
 //   std::vector<double>[6]   reflection info: 
 //                                 0  - no reflection
 //                                 1. - reflection in Z
