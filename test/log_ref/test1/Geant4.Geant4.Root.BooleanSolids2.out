@@ -47,7 +47,7 @@ VGM info:   Boolean  "solid1Isolid2S"  Intersection:
   ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
   ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
   Displacement translation (object):  ( 200,  0,  0) mm 
-  Displacement rotation (object):  (39.2315,  -37.7612,  -26.5651) deg    no reflectionZ
+  Displacement rotation (object):  (30,  -45,  0) deg    no reflectionZ
 VGM info:   ImportDaughters for solid1Isolid2V
 VGM info:   Importing LV: solid1Ssolid2V
 VGM info:   Importing solid: solid1Ssolid2S
@@ -56,7 +56,7 @@ VGM info:   Boolean  "solid1Ssolid2S"  Subtraction:
   ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
   ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
   Displacement translation (object):  ( 200,  0,  0) mm 
-  Displacement rotation (object):  (39.2315,  -37.7612,  -26.5651) deg    no reflectionZ
+  Displacement rotation (object):  (30,  -45,  0) deg    no reflectionZ
 VGM info:   ImportDaughters for solid1Ssolid2V
 VGM info:   Importing LV: solid1Usolid2V
 VGM info:   Importing solid: solid1Usolid2S
@@ -65,7 +65,7 @@ VGM info:   Boolean  "solid1Usolid2S"  Union:
   ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
   ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
   Displacement translation (object):  ( 200,  0,  0) mm 
-  Displacement rotation (object):  (39.2315,  -37.7612,  -26.5651) deg    no reflectionZ
+  Displacement rotation (object):  (30,  -45,  0) deg    no reflectionZ
 VGM info:   ImportDaughters for solid1Usolid2V
 VGM info:   Import positions: 
 VGM info:   0th volume: worldV  
@@ -88,17 +88,17 @@ Geant4_GM_Factory factory solids store:
   ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
   ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
   Displacement translation (object):  ( 200,  0,  0) mm 
-  Displacement rotation (object):  (39.2315,  -37.7612,  -26.5651) deg    no reflectionZ
+  Displacement rotation (object):  (30,  -45,  0) deg    no reflectionZ
    4th solid: Boolean  "solid1Ssolid2S"  Subtraction: 
   ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
   ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
   Displacement translation (object):  ( 200,  0,  0) mm 
-  Displacement rotation (object):  (39.2315,  -37.7612,  -26.5651) deg    no reflectionZ
+  Displacement rotation (object):  (30,  -45,  0) deg    no reflectionZ
    5th solid: Boolean  "solid1Usolid2S"  Union: 
   ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
   ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
   Displacement translation (object):  ( 200,  0,  0) mm 
-  Displacement rotation (object):  (39.2315,  -37.7612,  -26.5651) deg    no reflectionZ
+  Displacement rotation (object):  (30,  -45,  0) deg    no reflectionZ
 Geant4_GM_Factory factory volumes store: 
    0th: Volume: "worldV" material "Basic" solid "Box"  5 daughters: "solid1"  "solid2"  "solid1Isolid2"  "solid1Ssolid2"  "solid1Usolid2"  
    1th: Volume: "volume1" material "Basic" solid "Box"  0 daughters: 
@@ -152,7 +152,7 @@ VGM info:      Boolean  "solid1Isolid2S"  Intersection:
   ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
   ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
   Displacement translation (object):  ( 200,  0,  0) mm 
-  Displacement rotation (object):  (39.2315,  -37.7612,  -26.5651) deg    no reflectionZ
+  Displacement rotation (object):  (30,  -45,  0) deg    no reflectionZ
 VGM info:   Exporting solid: 
 VGM info:      Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
 VGM info:   Exporting solid: 
@@ -163,7 +163,7 @@ VGM info:      Boolean  "solid1Ssolid2S"  Subtraction:
   ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
   ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
   Displacement translation (object):  ( 200,  0,  0) mm 
-  Displacement rotation (object):  (39.2315,  -37.7612,  -26.5651) deg    no reflectionZ
+  Displacement rotation (object):  (30,  -45,  0) deg    no reflectionZ
 VGM info:   Exporting solid: 
 VGM info:      Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
 VGM info:   Exporting solid: 
@@ -174,7 +174,7 @@ VGM info:      Boolean  "solid1Usolid2S"  Union:
   ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
   ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
   Displacement translation (object):  ( 200,  0,  0) mm 
-  Displacement rotation (object):  (39.2315,  -37.7612,  -26.5651) deg    no reflectionZ
+  Displacement rotation (object):  (30,  -45,  0) deg    no reflectionZ
 VGM info:   Exporting solid: 
 VGM info:      Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
 VGM info:   Exporting solid: 
