@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gdml xmlns:gdml="http://cern.ch/2001/Schemas/GDML"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="gdml_1.0.xsd">
+
+   <define>
+      <position  name=   "pos_0"  x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name=   "pos_1"  x=" -1000.0000"  y="  -250.0000"  z="   100.0000"  unit="cm" />
+      <position  name=   "pos_2"  x=" -1000.0000"  y="  -250.0000"  z="  -100.0000"  unit="cm" />
+      <position  name=   "pos_3"  x=" -1000.0000"  y="   250.0000"  z="   100.0000"  unit="cm" />
+      <position  name=   "pos_4"  x=" -1000.0000"  y="   250.0000"  z="  -100.0000"  unit="cm" />
+      <position  name=   "pos_5"  x="  -833.3333"  y="  -250.0000"  z="   100.0000"  unit="cm" />
+      <position  name=   "pos_6"  x="  -833.3333"  y="  -250.0000"  z="  -100.0000"  unit="cm" />
+      <position  name=   "pos_7"  x="  -833.3333"  y="   250.0000"  z="   100.0000"  unit="cm" />
+      <position  name=   "pos_8"  x="  -833.3333"  y="   250.0000"  z="  -100.0000"  unit="cm" />
+      <position  name=   "pos_9"  x="  -666.6667"  y="  -250.0000"  z="   100.0000"  unit="cm" />
+      <position  name=  "pos_10"  x="  -666.6667"  y="  -250.0000"  z="  -100.0000"  unit="cm" />
+      <position  name=  "pos_11"  x="  -666.6667"  y="   250.0000"  z="   100.0000"  unit="cm" />
+      <position  name=  "pos_12"  x="  -666.6667"  y="   250.0000"  z="  -100.0000"  unit="cm" />
+      <position  name=  "pos_13"  x="  -500.0000"  y="  -250.0000"  z="   100.0000"  unit="cm" />
+      <position  name=  "pos_14"  x="  -500.0000"  y="  -250.0000"  z="  -100.0000"  unit="cm" />
+      <position  name=  "pos_15"  x="  -500.0000"  y="   250.0000"  z="   100.0000"  unit="cm" />
+      <position  name=  "pos_16"  x="  -500.0000"  y="   250.0000"  z="  -100.0000"  unit="cm" />
+      <position  name=  "pos_17"  x="  -333.3333"  y="  -250.0000"  z="   100.0000"  unit="cm" />
+      <position  name=  "pos_18"  x="  -333.3333"  y="  -250.0000"  z="  -100.0000"  unit="cm" />
+      <position  name=  "pos_19"  x="  -333.3333"  y="   250.0000"  z="   100.0000"  unit="cm" />
+      <position  name=  "pos_20"  x="  -333.3333"  y="   250.0000"  z="  -100.0000"  unit="cm" />
+
+      <rotation  name=   "rot_0"  x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
+   </define>
+
+   <materials>
+      <element  name=    "Basic_e"  Z=" 13.0000"  N=" 27" >
+         <atom type="A" unit="g/mol" value=" 26.9800" />
+      </element>
+
+      <material  name="Basic"  >
+         <D type="density" unit="g/cm3" value="     2.7000"/>
+         <fraction n="    1.0000"  ref="Basic_e"/>
+      </material>
+
+   </materials>
+
+   <solids>
+      <box  lunit="cm" aunit="degree"
+         name="worldV_s"
+         x=" 2000.0000"  y=" 2000.0000"  z=" 2000.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="boxV_s"
+         x="   40.0000"  y="  120.0000"  z="  100.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="boxV_refl_s"
+         x="   40.0000"  y="  120.0000"  z="  100.0000" />
+
+      <cone  lunit="cm" aunit="degree"
+         name="consV_s"
+         rmin1="   10.0000"  rmin2="   20.0000"  rmax1="   40.0000"  rmax2="   60.0000"
+         z="  100.0000"
+         startphi="    0.0000"  deltaphi="  360.0000" />
+
+      <cone  lunit="cm" aunit="degree"
+         name="consV_refl_s"
+         rmin1="   20.0000"  rmin2="   10.0000"  rmax1="   60.0000"  rmax2="   40.0000"
+         z="  100.0000"
+         startphi="    0.0000"  deltaphi="  360.0000" />
+
+      <para  lunit="cm" aunit="degree"
+         name="paraV_s"
+         x="   80.0000"  y="  120.0000"  z="  100.0000"
+         alpha="   30.0000"  theta="   30.0000"  phi="   30.0000" />
+
+      <para  lunit="cm" aunit="degree"
+         name="paraV_refl_s"
+         x="   80.0000"  y="  120.0000"  z="  100.0000"
+         alpha="   30.0000"  theta="  150.0000"  phi="   30.0000" />
+
+      <!-- !!! unsupported shape  !!!  name= "pconeV_s" -->
+      <!-- dummy box is written instead  -->
+      <box  lunit="cm" aunit="degree"
+         name="pconeV_s"
+         x="    0.2000"  y="    0.2000"  z="    0.2000" />
+
+      <!-- !!! unsupported shape  !!!  name= "pconeV_refl_s" -->
+      <!-- dummy box is written instead  -->
+      <box  lunit="cm" aunit="degree"
+         name="pconeV_refl_s"
+         x="    0.2000"  y="    0.2000"  z="    0.2000" />
+
+      <!-- !!! unsupported shape  !!!  name= "phedraV_s" -->
+      <!-- dummy box is written instead  -->
+      <box  lunit="cm" aunit="degree"
+         name="phedraV_s"
+         x="    0.2000"  y="    0.2000"  z="    0.2000" />
+
+      <!-- !!! unsupported shape  !!!  name= "phedraV_refl_s" -->
+      <!-- dummy box is written instead  -->
+      <box  lunit="cm" aunit="degree"
+         name="phedraV_refl_s"
+         x="    0.2000"  y="    0.2000"  z="    0.2000" />
+
+      <sphere  lunit="cm" aunit="degree"
+         name="sphereV1_s"
+         rmin="   20.0000"  rmax="   60.0000"
+         startphi="    0.0000"  deltaphi="  360.0000"  starttheta="    0.0000"  deltatheta="  180.0000" />
+
+      <sphere  lunit="cm" aunit="degree"
+         name="sphereV1_refl_s"
+         rmin="   20.0000"  rmax="   60.0000"
+         startphi="    0.0000"  deltaphi="  360.0000"  starttheta="    0.0000"  deltatheta="  180.0000" />
+
+      <!-- !!! unsupported shape  !!!  name= "torusV_s" -->
+      <!-- dummy box is written instead  -->
+      <box  lunit="cm" aunit="degree"
+         name="torusV_s"
+         x="    0.2000"  y="    0.2000"  z="    0.2000" />
+
+      <!-- !!! unsupported shape  !!!  name= "torusV_refl_s" -->
+      <!-- dummy box is written instead  -->
+      <box  lunit="cm" aunit="degree"
+         name="torusV_refl_s"
+         x="    0.2000"  y="    0.2000"  z="    0.2000" />
+
+      <trap  lunit="cm" aunit="degree"
+         name="trapV_s"
+         z="   60.0000"
+         theta="   25.0000"  phi="   35.0000"
+         y1="   40.0000"  x1="   20.0000"  x2="   30.0000"  alpha1="    0.0000"
+         y2="   40.0000"  x3="   20.0000"  x4="   30.0000"  alpha2="    0.0000" />
+
+      <trap  lunit="cm" aunit="degree"
+         name="trapV_refl_s"
+         z="   60.0000"
+         theta="  335.0000"  phi="  325.0000"
+         y1="   40.0000"  x1="   20.0000"  x2="   30.0000"  alpha1="    0.0000"
+         y2="   40.0000"  x3="   20.0000"  x4="   30.0000"  alpha2="    0.0000" />
+
+      <trd  lunit="cm" aunit="degree"
+         name="trdV_s"
+         x1="   40.0000"  x2="   60.0000"  y1="   80.0000"  y2="  100.0000"
+         z="  100.0000" />
+
+      <trd  lunit="cm" aunit="degree"
+         name="trdV_refl_s"
+         x1="   60.0000"  x2="   40.0000"  y1="  100.0000"  y2="   80.0000"
+         z="  100.0000" />
+
+      <tube  lunit="cm" aunit="degree"
+         name="tubsV_s"
+         rmin="   20.0000"  rmax="   40.0000"  z="  100.0000"
+         startphi="    0.0000"  deltaphi="  360.0000" />
+
+      <tube  lunit="cm" aunit="degree"
+         name="tubsV_refl_s"
+         rmin="   20.0000"  rmax="   40.0000"  z="  100.0000"
+         startphi="    0.0000"  deltaphi="  360.0000" />
+
+   </solids>
+
+   <structure>
+      <volume name="boxV">
+         <materialref ref="Basic"/>
+         <solidref ref="boxV_s"/>
+      </volume>
+
+      <volume name="boxV_refl">
+         <materialref ref="Basic"/>
+         <solidref ref="boxV_refl_s"/>
+      </volume>
+
+      <volume name="consV">
+         <materialref ref="Basic"/>
+         <solidref ref="consV_s"/>
+      </volume>
+
+      <volume name="consV_refl">
+         <materialref ref="Basic"/>
+         <solidref ref="consV_refl_s"/>
+      </volume>
+
+      <volume name="paraV">
+         <materialref ref="Basic"/>
+         <solidref ref="paraV_s"/>
+      </volume>
+
+      <volume name="paraV_refl">
+         <materialref ref="Basic"/>
+         <solidref ref="paraV_refl_s"/>
+      </volume>
+
+      <volume name="pconeV">
+         <materialref ref="Basic"/>
+         <solidref ref="pconeV_s"/>
+      </volume>
+
+      <volume name="pconeV_refl">
+         <materialref ref="Basic"/>
+         <solidref ref="pconeV_refl_s"/>
+      </volume>
+
+      <volume name="phedraV">
+         <materialref ref="Basic"/>
+         <solidref ref="phedraV_s"/>
+      </volume>
+
+      <volume name="phedraV_refl">
+         <materialref ref="Basic"/>
+         <solidref ref="phedraV_refl_s"/>
+      </volume>
+
+      <volume name="sphereV1">
+         <materialref ref="Basic"/>
+         <solidref ref="sphereV1_s"/>
+      </volume>
+
+      <volume name="sphereV1_refl">
+         <materialref ref="Basic"/>
+         <solidref ref="sphereV1_refl_s"/>
+      </volume>
+
+      <volume name="torusV">
+         <materialref ref="Basic"/>
+         <solidref ref="torusV_s"/>
+      </volume>
+
+      <volume name="torusV_refl">
+         <materialref ref="Basic"/>
+         <solidref ref="torusV_refl_s"/>
+      </volume>
+
+      <volume name="trapV">
+         <materialref ref="Basic"/>
+         <solidref ref="trapV_s"/>
+      </volume>
+
+      <volume name="trapV_refl">
+         <materialref ref="Basic"/>
+         <solidref ref="trapV_refl_s"/>
+      </volume>
+
+      <volume name="trdV">
+         <materialref ref="Basic"/>
+         <solidref ref="trdV_s"/>
+      </volume>
+
+      <volume name="trdV_refl">
+         <materialref ref="Basic"/>
+         <solidref ref="trdV_refl_s"/>
+      </volume>
+
+      <volume name="tubsV">
+         <materialref ref="Basic"/>
+         <solidref ref="tubsV_s"/>
+      </volume>
+
+      <volume name="tubsV_refl">
+         <materialref ref="Basic"/>
+         <solidref ref="tubsV_refl_s"/>
+      </volume>
+
+      <volume name="worldV">
+         <materialref ref="Basic"/>
+         <solidref ref="worldV_s"/>
+         <child>
+            <volumeref ref="boxV"/>
+               <positionref ref="pos_1"/>
+               <rotationref ref="rot_0"/>
+         </child>
+         <child>
+            <volumeref ref="boxV_refl"/>
+               <positionref ref="pos_2"/>
+               <rotationref ref="rot_0"/>
+         </child>
+         <child>
+            <volumeref ref="consV"/>
+               <positionref ref="pos_3"/>
+               <rotationref ref="rot_0"/>
+         </child>
+         <child>
+            <volumeref ref="consV_refl"/>
+               <positionref ref="pos_4"/>
+               <rotationref ref="rot_0"/>
+         </child>
+         <child>
+            <volumeref ref="paraV"/>
+               <positionref ref="pos_5"/>
+               <rotationref ref="rot_0"/>
+         </child>
+         <child>
+            <volumeref ref="paraV_refl"/>
+               <positionref ref="pos_6"/>
+               <rotationref ref="rot_0"/>
+         </child>
+         <child>
+            <volumeref ref="pconeV"/>
+               <positionref ref="pos_7"/>
+               <rotationref ref="rot_0"/>
+         </child>
+         <child>
+            <volumeref ref="pconeV_refl"/>
+               <positionref ref="pos_8"/>
+               <rotationref ref="rot_0"/>
+         </child>
+         <child>
+            <volumeref ref="phedraV"/>
+               <positionref ref="pos_9"/>
+               <rotationref ref="rot_0"/>
+         </child>
+         <child>
+            <volumeref ref="phedraV_refl"/>
+               <positionref ref="pos_10"/>
+               <rotationref ref="rot_0"/>
+         </child>
+         <child>
+            <volumeref ref="sphereV1"/>
+               <positionref ref="pos_11"/>
+               <rotationref ref="rot_0"/>
+         </child>
+         <child>
+            <volumeref ref="sphereV1_refl"/>
+               <positionref ref="pos_12"/>
+               <rotationref ref="rot_0"/>
+         </child>
+         <child>
+            <volumeref ref="torusV"/>
+               <positionref ref="pos_13"/>
+               <rotationref ref="rot_0"/>
+         </child>
+         <child>
+            <volumeref ref="torusV_refl"/>
+               <positionref ref="pos_14"/>
+               <rotationref ref="rot_0"/>
+         </child>
+         <child>
+            <volumeref ref="trapV"/>
+               <positionref ref="pos_15"/>
+               <rotationref ref="rot_0"/>
+         </child>
+         <child>
+            <volumeref ref="trapV_refl"/>
+               <positionref ref="pos_16"/>
+               <rotationref ref="rot_0"/>
+         </child>
+         <child>
+            <volumeref ref="trdV"/>
+               <positionref ref="pos_17"/>
+               <rotationref ref="rot_0"/>
+         </child>
+         <child>
+            <volumeref ref="trdV_refl"/>
+               <positionref ref="pos_18"/>
+               <rotationref ref="rot_0"/>
+         </child>
+         <child>
+            <volumeref ref="tubsV"/>
+               <positionref ref="pos_19"/>
+               <rotationref ref="rot_0"/>
+         </child>
+         <child>
+            <volumeref ref="tubsV_refl"/>
+               <positionref ref="pos_20"/>
+               <rotationref ref="rot_0"/>
+         </child>
+      </volume>
+
+   </structure>
+
+   <setup name="unit1"   version="1.0">
+      <world ref="worldV"/>
+   </setup>
+
+</gdml>
