@@ -21,7 +21,7 @@
 
    Geant4 configuration:
    The VGM requires Geant4 installed with include directory.
-   
+
    The path to VGM libraries $VGM_INSTALL/lib/$VGM_SYSTEM
    has to be added to the path to shared libraries
    (LD_LIBRARY_PATH on most systems, SHLIB_PATH on HP-UX).
