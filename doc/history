@@ -3,10 +3,18 @@ $Id$
  The Virtual Geometry Model - Versions
 =========================================
 
+  17/12/2004
+  version 2.00.01 
+               CLHEP transformations in VGM interfaces replaced 
+	       with VGM::Transform;
+	       Added ClhepVGM package with utility functions
+	       for coversions between VGM::Transform and CLHEP.
+
+               Tested with CLHEP 1.8.1.0, Root 4.01/02, Geant4 6.2p02
+
   13/12/2004
   version 2.00.00  
-             
-	        Restructured source into independent packages:
+	       Restructured source into independent packages:
                   source -> packages with:
 	  	  VGM       - interfaces
 		  BaseVGM   - common implementation
@@ -14,20 +22,20 @@ $Id$
 		  RootGM    - VGM implementation for Root TGeo
 		  XmlVGM    - XML eporters
 
-                Introduced namespaces per package;
-		the name of namespace = name of package.
+               Introduced namespaces per package;
+	       the name of namespace = name of package.
  
-                Tested with CLHEP 1.8.1.0, Root 4.00/08, Geant4 6.2
+               Tested with CLHEP 1.8.1.0, Root 4.00/08, Geant4 6.2.p02
 
   03/12/2004
   version 1.00.01  internal version
   
-                Removed dependence on G3toG4 (not used);
-		improved implementation of Root polyhedra, polycone interface;
-		improved test2 output;
-		fixed GDML exporter (export full lengths instead of
-		half lengths of solids).
-                Tested with CLHEP 1.8.1.0, Root 4.01/02, Geant4 6.2.p02
+               Removed dependence on G3toG4 (not used);
+	       improved implementation of Root polyhedra, polycone interface;
+	       improved test2 output;
+	       fixed GDML exporter (export full lengths instead of
+	       half lengths of solids).
+               Tested with CLHEP 1.8.1.0, Root 4.01/02, Geant4 6.2.p02
 		
 
   20/08/2004:
