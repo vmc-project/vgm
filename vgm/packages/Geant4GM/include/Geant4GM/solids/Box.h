@@ -34,8 +34,8 @@ namespace Geant4GM {
       virtual double ZHalfLength() const;
 
     protected:
-      Box() : BaseVGM::VBox() {}
-      Box(const Box& rhs) : BaseVGM::VBox(rhs) {}
+      Box();
+      Box(const Box& rhs);
 
     private:
       G4Box* fBox;

@@ -36,8 +36,8 @@ namespace RootGM {
       virtual double DeltaTheta() const;
 
     protected:
-      Sphere() : BaseVGM::VSphere() {}
-      Sphere(const Sphere& rhs) : BaseVGM::VSphere(rhs) {}
+      Sphere();
+      Sphere(const Sphere& rhs);
 
     private:
       TGeoSphere* fSphere;

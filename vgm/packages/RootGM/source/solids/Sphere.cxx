@@ -15,7 +15,9 @@ RootGM::Sphere::Sphere(const std::string& name,
                        double rin, double rout, 
 		       double sphi, double dphi, 
 	               double stheta, double dtheta)
-  : BaseVGM::VSphere(),
+  : VGM::ISolid(),
+    VGM::ISphere(),
+    BaseVGM::VSphere(),
     fSphere(new TGeoSphere(name.data(), 
                            rin              / RootGM::Units::Length(), 
 			   rout             / RootGM::Units::Length(), 
@@ -31,10 +33,30 @@ RootGM::Sphere::Sphere(const std::string& name,
 
 //_____________________________________________________________________________
 RootGM::Sphere::Sphere(TGeoSphere* sphere)
-  : BaseVGM::VSphere(),
+  : VGM::ISolid(),
+    VGM::ISphere(),
+    BaseVGM::VSphere(),
     fSphere(sphere)
 {    
   RootGM::SolidMap::Instance()->AddSolid(this, fSphere); 
+}
+
+//_____________________________________________________________________________
+RootGM::Sphere::Sphere() 
+  : VGM::ISolid(),
+    VGM::ISphere(),
+    BaseVGM::VSphere() 
+{
+//
+}
+
+//_____________________________________________________________________________
+RootGM::Sphere::Sphere(const Sphere& rhs) 
+  : VGM::ISolid(rhs),
+    VGM::ISphere(rhs),
+    BaseVGM::VSphere(rhs) 
+{
+//
 }
 
 //_____________________________________________________________________________

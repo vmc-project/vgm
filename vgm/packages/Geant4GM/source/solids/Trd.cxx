@@ -18,7 +18,9 @@
 //_____________________________________________________________________________
 Geant4GM::Trd::Trd(const std::string& name, 
                    double hx1, double hx2, double hy1, double hy2, double hz)
-  : BaseVGM::VTrd(),
+  : VGM::ISolid(),
+    VGM::ITrd(),
+    BaseVGM::VTrd(),
     fIsReflected(false),
     fTrd( new G4Trd(name, 
                     hx1 / ClhepVGM::Units::Length(), 
@@ -35,7 +37,9 @@ Geant4GM::Trd::Trd(const std::string& name,
 //_____________________________________________________________________________
 Geant4GM::Trd::Trd(G4Trd* trd, 
                    G4ReflectedSolid* reflTrd)
-  : BaseVGM::VTrd(),
+  : VGM::ISolid(),
+    VGM::ITrd(),
+    BaseVGM::VTrd(),
     fIsReflected(false),
     fTrd(trd)
 {    
@@ -45,6 +49,24 @@ Geant4GM::Trd::Trd(G4Trd* trd,
   }   
   else   
     Geant4GM::SolidMap::Instance()->AddSolid(this, trd); 
+}
+
+//_____________________________________________________________________________
+Geant4GM::Trd::Trd() 
+  : VGM::ISolid(),
+    VGM::ITrd(),
+    BaseVGM::VTrd() 
+{
+//
+}
+
+//_____________________________________________________________________________
+Geant4GM::Trd::Trd(const Trd& rhs) 
+  : VGM::ISolid(rhs),
+    VGM::ITrd(rhs),
+    BaseVGM::VTrd(rhs) 
+{
+//
 }
 
 //_____________________________________________________________________________

@@ -144,7 +144,7 @@ namespace Geant4GM {
       bool Import(G4VPhysicalVolume* topVolume);
 
     protected:
-      Factory(const Factory& rhs) : BaseVGM::VFactory(rhs) {} 
+      Factory(const Factory& rhs); 
 
     private:
       // methods

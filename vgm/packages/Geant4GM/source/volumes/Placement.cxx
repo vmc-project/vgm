@@ -30,7 +30,8 @@ Geant4GM::Placement::Placement(
                         const std::string& name, int copyNo,
                         VGM::IVolume* volume, VGM::IVolume* motherVolume,
                         HepRotation* rotation, const Hep3Vector& translation)
-  : BaseVGM::VPlacement(volume, motherVolume),
+  : VGM::IPlacement(),
+    BaseVGM::VPlacement(volume, motherVolume),
     fPhysicalVolume(0)       
 {
   
@@ -56,7 +57,8 @@ Geant4GM::Placement::Placement(
                          VGM::IVolume* volume, VGM::IVolume* motherVolume,
                          VGM::Axis axis, 
 			 int nofItems, double  width, double  offset)
-  : BaseVGM::VPlacement(volume, motherVolume),
+  : VGM::IPlacement(),
+    BaseVGM::VPlacement(volume, motherVolume),
     fPhysicalVolume(0) 
 {
   // Get logical volumes from the volumes map
@@ -83,11 +85,28 @@ Geant4GM::Placement::Placement(
 Geant4GM::Placement::Placement(      
                          VGM::IVolume* volume, VGM::IVolume* motherVolume,
                          G4VPhysicalVolume* pv)
-  : BaseVGM::VPlacement(volume, motherVolume),
+  : VGM::IPlacement(),
+    BaseVGM::VPlacement(volume, motherVolume),
     fPhysicalVolume(pv)       
 {
   // Register physical volume in the map
   Geant4GM::PlacementMap::Instance()->AddPlacement(this, fPhysicalVolume); 
+}
+
+//_____________________________________________________________________________
+Geant4GM::Placement::Placement() 
+  : VGM::IPlacement(),
+    BaseVGM::VPlacement() 
+{
+//
+}
+
+//_____________________________________________________________________________
+Geant4GM::Placement::Placement(const Placement& rhs) 
+  : VGM::IPlacement(rhs),
+    BaseVGM::VPlacement(rhs) 
+{
+//
 }
 
 //_____________________________________________________________________________

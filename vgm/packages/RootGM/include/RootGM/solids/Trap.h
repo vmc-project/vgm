@@ -42,8 +42,8 @@ namespace RootGM {
       virtual double AlphaPlusZ() const;
 
     protected:
-      Trap() : BaseVGM::VTrap() {}
-      Trap(const Trap& rhs) : BaseVGM::VTrap(rhs) {}
+      Trap();
+      Trap(const Trap& rhs);
 
     private:
       TGeoTrap* fTrap;

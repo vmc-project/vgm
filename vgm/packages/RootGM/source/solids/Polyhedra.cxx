@@ -25,7 +25,9 @@ RootGM::Polyhedra::Polyhedra(
                        double sphi, double dphi, 
 		       int nofSides, int nofZPlanes,
                        double* z, double* rin, double* rout)
-  : BaseVGM::VPolyhedra(),
+  : VGM::ISolid(),
+    VGM::IPolyhedra(),
+    BaseVGM::VPolyhedra(),
     fPolyhedra(0)
 {
 // 
@@ -56,11 +58,31 @@ RootGM::Polyhedra::Polyhedra(
 
 //_____________________________________________________________________________
 RootGM::Polyhedra::Polyhedra(TGeoPgon* polyhedra)
-  : BaseVGM::VPolyhedra(),
+  : VGM::ISolid(),
+    VGM::IPolyhedra(),
+    BaseVGM::VPolyhedra(),
     fPolyhedra(polyhedra)
 {    
   RootGM::SolidMap::Instance()->AddSolid(this, fPolyhedra); 
   CreateBuffers();
+}
+
+//_____________________________________________________________________________
+RootGM::Polyhedra::Polyhedra() 
+  : VGM::ISolid(),
+    VGM::IPolyhedra(),
+    BaseVGM::VPolyhedra() 
+{
+//
+}
+
+//_____________________________________________________________________________
+RootGM::Polyhedra::Polyhedra(const Polyhedra& rhs) 
+  : VGM::ISolid(rhs),
+    VGM::IPolyhedra(rhs),
+    BaseVGM::VPolyhedra(rhs) 
+{
+//
 }
 
 //_____________________________________________________________________________

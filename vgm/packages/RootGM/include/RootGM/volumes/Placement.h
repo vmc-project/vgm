@@ -54,8 +54,8 @@ namespace RootGM {
                                 double&  offset) const;
 
     protected:
-      Placement(const Placement& rhs) : BaseVGM::VPlacement(rhs) {}
-      Placement() : BaseVGM::VPlacement() {}
+      Placement();
+      Placement(const Placement& rhs);
 
     private:
       // data members

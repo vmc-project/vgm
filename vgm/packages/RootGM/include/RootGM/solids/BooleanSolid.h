@@ -45,8 +45,8 @@ namespace RootGM {
                                 TGeoCompositeShape* compositeShape);
  
     protected:
-      BooleanSolid() : BaseVGM::VBooleanSolid() {}
-      BooleanSolid(const BooleanSolid& rhs) : BaseVGM::VBooleanSolid(rhs) {}
+      BooleanSolid();
+      BooleanSolid(const BooleanSolid& rhs);
 
     private:
       static const char fgkIntersectionChar; 

@@ -20,7 +20,8 @@ Geant4GM::Volume::Volume(const std::string& name,
                          VGM::ISolid* solid, 
                          const std::string& materialName,
 			 const std::string& mediumName ) 
-  : BaseVGM::VVolume(solid),
+  : VGM::IVolume(),
+    BaseVGM::VVolume(solid),
     fLogicalVolume(0),
     fMediumName(mediumName) {
 //
@@ -50,13 +51,30 @@ Geant4GM::Volume::Volume(const std::string& name,
 Geant4GM::Volume::Volume(VGM::ISolid* solid, 
                          G4LogicalVolume* lv,
 			 const std::string& mediumName ) 
-  : BaseVGM::VVolume(solid),
+  : VGM::IVolume(),
+    BaseVGM::VVolume(solid),
     fLogicalVolume(lv),
     fMediumName(mediumName)
 {
   // Register logical volume in the map
   Geant4GM::VolumeMap::Instance()->AddVolume(this, fLogicalVolume); 
 }  
+
+//_____________________________________________________________________________
+Geant4GM::Volume::Volume() 
+  : VGM::IVolume(),
+    BaseVGM::VVolume() 
+{
+//
+}
+
+//_____________________________________________________________________________
+Geant4GM::Volume::Volume(const Volume& rhs) 
+  : VGM::IVolume(rhs),
+    BaseVGM::VVolume(rhs) 
+{
+//
+}
 
 //_____________________________________________________________________________
 Geant4GM::Volume::~Volume() {

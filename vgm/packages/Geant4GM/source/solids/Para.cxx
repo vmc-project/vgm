@@ -20,7 +20,9 @@
 Geant4GM::Para::Para(const std::string& name,
                      double dx, double dy, double dz,
 	             double alpha, double theta, double phi)
-  : BaseVGM::VPara(),
+  : VGM::ISolid(),
+    VGM::IPara(),
+    BaseVGM::VPara(),
     fIsReflected(false),
     fPara( new G4Para(name, 
                       dx    / ClhepVGM::Units::Length(), 
@@ -38,7 +40,9 @@ Geant4GM::Para::Para(const std::string& name,
 //_____________________________________________________________________________
 Geant4GM::Para::Para(G4Para* para, 
                      G4ReflectedSolid* reflPara)
-  : BaseVGM::VPara(),
+  : VGM::ISolid(),
+    VGM::IPara(),
+    BaseVGM::VPara(),
     fIsReflected(false),
     fPara(para)
 {    
@@ -48,6 +52,24 @@ Geant4GM::Para::Para(G4Para* para,
   }
   else   
     Geant4GM::SolidMap::Instance()->AddSolid(this, para); 
+}
+
+//_____________________________________________________________________________
+Geant4GM::Para::Para() 
+  : VGM::ISolid(),
+    VGM::IPara(),
+    BaseVGM::VPara() 
+{
+//
+}
+
+//_____________________________________________________________________________
+Geant4GM::Para::Para(const Para& rhs) 
+  : VGM::ISolid(rhs),
+    VGM::IPara(rhs),
+    BaseVGM::VPara(rhs) 
+{
+//
 }
 
 //_____________________________________________________________________________

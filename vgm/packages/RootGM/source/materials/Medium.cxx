@@ -18,7 +18,8 @@ RootGM::Medium::Medium(const std::string& name,
                        int mediumId,
                        VGM::IMaterial* material,
                        int nofParameters, double* parameters)
-  : BaseVGM::VMedium(material),
+  : VGM::IMedium(),
+    BaseVGM::VMedium(material),
     fMedium(0)
 {
 
@@ -38,13 +39,30 @@ RootGM::Medium::Medium(const std::string& name,
 			   
 //_____________________________________________________________________________
 RootGM::Medium::Medium(TGeoMedium* medium)
-  : BaseVGM::VMedium(RootGM::MaterialMap::Instance()
+  : VGM::IMedium(),
+    BaseVGM::VMedium(RootGM::MaterialMap::Instance()
                     ->GetMaterial(medium->GetMaterial())),
     fMedium(medium)
 {
 //
 }
 			   
+//_____________________________________________________________________________
+RootGM::Medium::Medium() 
+  : VGM::IMedium(),
+    BaseVGM::VMedium() 
+{
+//
+}  
+
+//_____________________________________________________________________________
+RootGM::Medium::Medium(const Medium& rhs) 
+  : VGM::IMedium(rhs),
+    BaseVGM::VMedium(rhs) 
+{
+//
+}
+
 //_____________________________________________________________________________
 RootGM::Medium::~Medium() {
 //

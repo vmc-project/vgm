@@ -15,7 +15,9 @@
 Geant4GM::Tubs::Tubs(const std::string& name, 
                      double rin, double rout, double hz, 
 		     double sphi, double dphi)
-  : BaseVGM::VTubs(),
+  : VGM::ISolid(),
+    VGM::ITubs(),
+    BaseVGM::VTubs(),
     fTubs(new G4Tubs(name, 
                      rin  / ClhepVGM::Units::Length(), 
 		     rout / ClhepVGM::Units::Length(), 
@@ -31,13 +33,33 @@ Geant4GM::Tubs::Tubs(const std::string& name,
 //_____________________________________________________________________________
 Geant4GM::Tubs::Tubs(G4Tubs* tubs, 
                      G4ReflectedSolid* reflTubs)
-  : BaseVGM::VTubs(),
+  : VGM::ISolid(),
+    VGM::ITubs(),
+    BaseVGM::VTubs(),
     fTubs(tubs)
 {    
   if (reflTubs) 
     Geant4GM::SolidMap::Instance()->AddSolid(this, reflTubs);
   else   
     Geant4GM::SolidMap::Instance()->AddSolid(this, tubs);
+}
+
+//_____________________________________________________________________________
+Geant4GM::Tubs::Tubs() 
+  : VGM::ISolid(),
+    VGM::ITubs(),
+    BaseVGM::VTubs() 
+{
+//
+}
+
+//_____________________________________________________________________________
+Geant4GM::Tubs::Tubs(const Tubs& rhs) 
+  : VGM::ISolid(rhs),
+    VGM::ITubs(rhs),
+    BaseVGM::VTubs(rhs) 
+{
+//
 }
 
 //_____________________________________________________________________________

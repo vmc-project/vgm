@@ -14,7 +14,9 @@
 RootGM::Torus::Torus(const std::string& name, 
                      double rin, double rout, double rax, 
 		     double sphi, double dphi)
-  : BaseVGM::VTorus(),
+  : VGM::ISolid(),
+    VGM::ITorus(),
+    BaseVGM::VTorus(),
     fTorus(new TGeoTorus(name.data(), 
                          rax  / RootGM::Units::Length(), 
 		         rin  / RootGM::Units::Length(), 
@@ -29,10 +31,30 @@ RootGM::Torus::Torus(const std::string& name,
 
 //_____________________________________________________________________________
 RootGM::Torus::Torus(TGeoTorus* torus)
-  : BaseVGM::VTorus(),
+  : VGM::ISolid(),
+    VGM::ITorus(),
+    BaseVGM::VTorus(),
     fTorus(torus)
 {    
   RootGM::SolidMap::Instance()->AddSolid(this, fTorus); 
+}
+
+//_____________________________________________________________________________
+RootGM::Torus::Torus() 
+  : VGM::ISolid(),
+    VGM::ITorus(),
+    BaseVGM::VTorus() 
+{
+//
+}
+
+//_____________________________________________________________________________
+RootGM::Torus::Torus(const Torus& rhs) 
+  : VGM::ISolid(rhs),
+    VGM::ITorus(rhs),
+    BaseVGM::VTorus(rhs) 
+{
+//
 }
 
 //_____________________________________________________________________________

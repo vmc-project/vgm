@@ -26,6 +26,6 @@ namespace RootGM {
     // VGM -> Root
     TGeoMatrix*     CreateTransform(const VGM::Transform& transform);
     bool            HasReflection(const VGM::Transform& transform);
-};
+}
 
 #endif //ROOT_GM_TRANSFORM_H

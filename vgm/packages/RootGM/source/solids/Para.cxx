@@ -14,7 +14,9 @@
 RootGM::Para::Para(const std::string& name,
                    double dx, double dy, double dz,
 	           double alpha, double theta, double phi)
-  : BaseVGM::VPara(),
+  : VGM::ISolid(),
+    VGM::IPara(),
+    BaseVGM::VPara(),
     fPara(new TGeoPara(name.data(), 
                        dx    / RootGM::Units::Length(), 
 		       dy    / RootGM::Units::Length(), 
@@ -30,10 +32,30 @@ RootGM::Para::Para(const std::string& name,
 
 //_____________________________________________________________________________
 RootGM::Para::Para(TGeoPara* para)
-  : BaseVGM::VPara(),
+  : VGM::ISolid(),
+    VGM::IPara(),
+    BaseVGM::VPara(),
     fPara(para)
 {    
   RootGM::SolidMap::Instance()->AddSolid(this, fPara); 
+}
+
+//_____________________________________________________________________________
+RootGM::Para::Para() 
+  : VGM::ISolid(),
+    VGM::IPara(),
+    BaseVGM::VPara() 
+{
+//
+}
+
+//_____________________________________________________________________________
+RootGM::Para::Para(const Para& rhs) 
+  : VGM::ISolid(rhs),
+    VGM::IPara(rhs),
+    BaseVGM::VPara(rhs) 
+{
+//
 }
 
 //_____________________________________________________________________________

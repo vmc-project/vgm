@@ -51,12 +51,21 @@
 
 //_____________________________________________________________________________
 Geant4GM::Factory::Factory()
-  : BaseVGM::VFactory("Geant4_GM_Factory", 
+  : VGM::IFactory(),
+    BaseVGM::VFactory("Geant4_GM_Factory", 
                      new Geant4GM::MaterialFactory()),
     fTop(0)
 {
 //
 }
+
+//_____________________________________________________________________________
+Geant4GM::Factory::Factory(const Factory& rhs) 
+  : VGM::IFactory(rhs),
+    BaseVGM::VFactory(rhs) 
+{
+//
+} 
 
 //_____________________________________________________________________________
 Geant4GM::Factory::~Factory() 

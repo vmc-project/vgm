@@ -15,7 +15,9 @@
 Geant4GM::Torus::Torus(const std::string& name, 
                        double rin, double rout, double rax, 
 		       double sphi, double dphi)
-  : BaseVGM::VTorus(),
+  : VGM::ISolid(),
+    VGM::ITorus(),
+    BaseVGM::VTorus(),
     fTorus( new G4Torus(name, 
                         rin  / ClhepVGM::Units::Length(), 
 			rout / ClhepVGM::Units::Length(), 
@@ -31,13 +33,33 @@ Geant4GM::Torus::Torus(const std::string& name,
 //_____________________________________________________________________________
 Geant4GM::Torus::Torus(G4Torus* torus, 
                        G4ReflectedSolid* reflTorus)
-  : BaseVGM::VTorus(),
+  : VGM::ISolid(),
+    VGM::ITorus(),
+    BaseVGM::VTorus(),
     fTorus(torus)
 {    
   if (reflTorus)
     Geant4GM::SolidMap::Instance()->AddSolid(this, reflTorus);
   else  
     Geant4GM::SolidMap::Instance()->AddSolid(this, torus);
+}
+
+//_____________________________________________________________________________
+Geant4GM::Torus::Torus() 
+  : VGM::ISolid(),
+    VGM::ITorus(),
+    BaseVGM::VTorus() 
+{
+//
+}
+
+//_____________________________________________________________________________
+Geant4GM::Torus::Torus(const Torus& rhs) 
+  : VGM::ISolid(rhs),
+    VGM::ITorus(rhs),
+    BaseVGM::VTorus(rhs) 
+{
+//
 }
 
 //_____________________________________________________________________________

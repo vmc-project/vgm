@@ -27,7 +27,9 @@ RootGM::BooleanSolid::BooleanSolid(
                              VGM::BooleanType boolType,
                              VGM::ISolid* solidA, VGM::ISolid* solidB,
 			     TGeoMatrix* displacementB) 
-  : BaseVGM::VBooleanSolid(),
+  : VGM::ISolid(),
+    VGM::IBooleanSolid(),
+    BaseVGM::VBooleanSolid(),
     fCompositeShape(0) 
 {
 //  
@@ -73,11 +75,32 @@ RootGM::BooleanSolid::BooleanSolid(
 
 //_____________________________________________________________________________
 RootGM::BooleanSolid::BooleanSolid(TGeoCompositeShape* compositeShape)
-  : BaseVGM::VBooleanSolid(),
+  : VGM::ISolid(),
+    VGM::IBooleanSolid(),
+    BaseVGM::VBooleanSolid(),
     fCompositeShape(compositeShape) 
 {
 //  
   RootGM::SolidMap::Instance()->AddSolid(this, fCompositeShape); 
+}
+
+
+//_____________________________________________________________________________
+RootGM::BooleanSolid::BooleanSolid() 
+  : VGM::ISolid(),
+    VGM::IBooleanSolid(),
+    BaseVGM::VBooleanSolid() 
+{
+//
+}
+
+//_____________________________________________________________________________
+RootGM::BooleanSolid::BooleanSolid(const BooleanSolid& rhs) 
+  : VGM::ISolid(rhs),
+    VGM::IBooleanSolid(rhs),
+    BaseVGM::VBooleanSolid(rhs) 
+{
+//
 }
 
 //_____________________________________________________________________________

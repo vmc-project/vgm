@@ -37,8 +37,8 @@ namespace Geant4GM {
       virtual std::string  MediumName() const;
     
     protected:    
-      Volume() : BaseVGM::VVolume() {}
-      Volume(const Volume& rhs) : BaseVGM::VVolume(rhs) {}
+      Volume();
+      Volume(const Volume& rhs);
     
     private:
       G4LogicalVolume* fLogicalVolume;   

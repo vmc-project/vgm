@@ -37,8 +37,8 @@ namespace RootGM {
       virtual double Phi() const;
 
     protected:
-      Para() : BaseVGM::VPara() {}
-      Para(const Para& rhs) : BaseVGM::VPara(rhs) {}
+      Para();
+      Para(const Para& rhs);
 
     private:
       TGeoPara* fPara;

@@ -37,8 +37,8 @@ namespace Geant4GM {
       virtual double DeltaPhi() const;
 
     protected:
-      Torus() : BaseVGM::VTorus() {}
-      Torus(const Torus& rhs) : BaseVGM::VTorus(rhs) {}
+      Torus();
+      Torus(const Torus& rhs);
 
     private:
       G4Torus* fTorus;

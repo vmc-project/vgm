@@ -37,8 +37,8 @@ namespace RootGM {
       virtual double DeltaPhi() const;
 
     protected:
-      Cons() : BaseVGM::VCons() {}
-      Cons(const Cons& rhs) : BaseVGM::VCons(rhs) {}
+      Cons();
+      Cons(const Cons& rhs);
 
     private:
       TGeoCone* fCons;

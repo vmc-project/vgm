@@ -24,6 +24,6 @@ namespace RootGM {
     //
     int      Axis(VGM::Axis axis);
     double   AxisUnit(VGM::Axis axis);
-};
+}
 
 #endif //ROOT_GM_AXIS_H

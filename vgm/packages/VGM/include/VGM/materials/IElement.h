@@ -26,7 +26,7 @@ namespace VGM {
       virtual double  N() const = 0;     
       virtual double  A() const = 0; 
   };       
-}; 
+} 
 
 std::ostream& operator << (std::ostream& out, const VGM::IElement& element);
 

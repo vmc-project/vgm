@@ -23,7 +23,9 @@ RootGM::Polycone::Polycone(
                       double sphi, double dphi, 
 		      int nofZPlanes,
                       double* z, double* rin, double* rout)
-  : BaseVGM::VPolycone(),
+  : VGM::ISolid(),
+    VGM::IPolycone(),
+    BaseVGM::VPolycone(),
     fPolycone(0)
 {
 // 
@@ -53,11 +55,31 @@ RootGM::Polycone::Polycone(
 
 //_____________________________________________________________________________
 RootGM::Polycone::Polycone(TGeoPcon* polycone)
-  : BaseVGM::VPolycone(),
+  : VGM::ISolid(),
+    VGM::IPolycone(),
+    BaseVGM::VPolycone(),
     fPolycone(polycone)
 {    
   RootGM::SolidMap::Instance()->AddSolid(this, fPolycone); 
   CreateBuffers();
+}
+
+//_____________________________________________________________________________
+RootGM::Polycone::Polycone() 
+  : VGM::ISolid(),
+    VGM::IPolycone(),
+    BaseVGM::VPolycone() 
+{
+//
+}
+
+//_____________________________________________________________________________
+RootGM::Polycone::Polycone(const Polycone& rhs) 
+  : VGM::ISolid(rhs),
+    VGM::IPolycone(rhs),
+    BaseVGM::VPolycone(rhs) 
+{
+//
 }
 
 //_____________________________________________________________________________

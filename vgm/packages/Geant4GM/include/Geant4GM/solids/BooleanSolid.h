@@ -45,8 +45,8 @@ namespace Geant4GM {
                                G4BooleanSolid* booleanSolid);
 
     protected:
-      BooleanSolid() : BaseVGM::VBooleanSolid() {}
-      BooleanSolid(const BooleanSolid& rhs) : BaseVGM::VBooleanSolid(rhs) {}
+      BooleanSolid();
+      BooleanSolid(const BooleanSolid& rhs);
 
     private:
       const G4DisplacedSolid* DisplacedSolid() const;

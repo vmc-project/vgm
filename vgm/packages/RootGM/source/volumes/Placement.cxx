@@ -27,7 +27,8 @@ RootGM::Placement::Placement(
 		      int copyNo,
                       VGM::IVolume* volume, VGM::IVolume* motherVolume,
 		      TGeoMatrix* transformation)
-  : BaseVGM::VPlacement(volume, motherVolume),
+  : VGM::IPlacement(),
+    BaseVGM::VPlacement(volume, motherVolume),
     fGeoNode(0),
     fName(name)       
 {
@@ -66,7 +67,8 @@ RootGM::Placement::Placement(
                       VGM::IVolume* volume, VGM::IVolume* motherVolume,
                       VGM::Axis axis, 
 		      int nofItems, double  width, double  offset)
-  : BaseVGM::VPlacement(volume, motherVolume),
+  : VGM::IPlacement(),
+    BaseVGM::VPlacement(volume, motherVolume),
     fGeoNode(0),
     fName(name) 
 {
@@ -98,7 +100,8 @@ RootGM::Placement::Placement(
 RootGM::Placement::Placement(
                       VGM::IVolume* volume, VGM::IVolume* motherVolume,
                       TGeoNode* node)
-  : BaseVGM::VPlacement(volume, motherVolume),
+  : VGM::IPlacement(),
+    BaseVGM::VPlacement(volume, motherVolume),
     fGeoNode(node),
     fName()       
 {
@@ -109,6 +112,22 @@ RootGM::Placement::Placement(
   // Register physical volume in the map
   RootGM::PlacementMap::Instance()->AddPlacement(this, fGeoNode); 
 }
+
+//_____________________________________________________________________________
+RootGM::Placement::Placement() 
+  : VGM::IPlacement(),
+    BaseVGM::VPlacement() 
+{
+//
+}
+
+//_____________________________________________________________________________
+RootGM::Placement::Placement(const Placement& rhs) 
+  : VGM::IPlacement(rhs),
+    BaseVGM::VPlacement(rhs) 
+{
+//
+}      
 
 //_____________________________________________________________________________
 RootGM::Placement::~Placement() {

@@ -14,7 +14,9 @@
 //_____________________________________________________________________________
 Geant4GM::Box::Box(const std::string& name, 
                    double hx, double hy, double hz)
-  : BaseVGM::VBox(),
+  : VGM::ISolid(),
+    VGM::IBox(),
+    BaseVGM::VBox(),
     fBox( new G4Box(name, 
                     hx / ClhepVGM::Units::Length(), 
 		    hy / ClhepVGM::Units::Length(), 
@@ -28,13 +30,33 @@ Geant4GM::Box::Box(const std::string& name,
 //_____________________________________________________________________________
 Geant4GM::Box::Box(G4Box* box, 
                    G4ReflectedSolid* reflBox)
-  : BaseVGM::VBox(),
+  : VGM::ISolid(),
+    VGM::IBox(),
+    BaseVGM::VBox(),
     fBox(box)
 {    
   if (reflBox)
     Geant4GM::SolidMap::Instance()->AddSolid(this, reflBox);
   else
     Geant4GM::SolidMap::Instance()->AddSolid(this, box);
+}
+
+//_____________________________________________________________________________
+Geant4GM::Box::Box() 
+  : VGM::ISolid(),
+    VGM::IBox(),
+    BaseVGM::VBox() 
+{
+//
+}
+
+//_____________________________________________________________________________
+Geant4GM::Box::Box(const Box& rhs) 
+  : VGM::ISolid(rhs),
+    VGM::IBox(rhs),
+    BaseVGM::VBox(rhs) 
+{
+//
 }
 
 //_____________________________________________________________________________

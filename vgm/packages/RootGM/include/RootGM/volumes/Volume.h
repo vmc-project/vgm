@@ -38,8 +38,8 @@ namespace RootGM {
       void ResetVolume(TGeoVolume* rootVolume);
         
     protected:
-      Volume() : BaseVGM::VVolume() {}
-      Volume(const Volume& rhs) : BaseVGM::VVolume(rhs) {}      
+      Volume();
+      Volume(const Volume& rhs);      
     
     private:
       TGeoVolume* fGeoVolume;   
