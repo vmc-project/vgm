@@ -21,16 +21,18 @@
 // ********************************************************************
 //
 //
-// Id: ExN03DetectorConstruction.cc,v 1.19 2003/11/25 14:23:44 gcosmo Exp 
-// GEANT4 tag Name: geant4-06-00-patch-01 
+// Id: ExN03DetectorConstruction.cc,v 1.21 2004/11/14 10:12:08 gbarrand Exp 
+// GEANT4 tag $Name$
 //
 // $Id$
+//
 // 
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 #include "ExN03DetectorConstruction.hh"
+//#include "ExN03DetectorMessenger.hh"
 
 #include "G4Material.hh"
 #include "G4Box.hh"
@@ -47,9 +49,11 @@
 #include "G4VisAttributes.hh"
 #include "G4Colour.hh"
 
+// VGM demo
 #include "Geant4GM/volumes/Factory.h"
 #include "RootGM/volumes/Factory.h"
 #include "TGeoManager.h"
+// end VGM demo
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
@@ -65,6 +69,10 @@ ExN03DetectorConstruction::ExN03DetectorConstruction()
 
 ExN03DetectorConstruction::~ExN03DetectorConstruction()
 {}
+
+  // ---------------------------------------------------------------------------
+  // VGM demo 
+  //
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
@@ -88,7 +96,6 @@ ExN03DetectorConstruction::FindVolume(const G4String& name) const
 
 G4VPhysicalVolume* ExN03DetectorConstruction::Construct()
 {
-  
   // 
   // Import geometry from Root
   //
@@ -125,6 +132,10 @@ G4VPhysicalVolume* ExN03DetectorConstruction::Construct()
   logicLayer->SetVisAttributes(simpleBoxVisAtt);
   logicAbsorber->SetVisAttributes(simpleBoxVisAtt);
   logicGap->SetVisAttributes(simpleBoxVisAtt);
- 
+  
   return world;
+
+  //
+  // end VGM demo
+  //---------------------------------------------------------------------------
 }

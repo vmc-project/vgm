@@ -21,10 +21,9 @@
 // ********************************************************************
 //
 //
-// Id: ExN03DetectorConstruction.cc,v 1.19 2003/11/25 14:23:44 gcosmo Exp 
-// GEANT4 tag Name: geant4-06-00-patch-01 
-//
 // $Id$
+// GEANT4 tag $Name$
+//
 // 
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -48,9 +47,11 @@
 #include "G4VisAttributes.hh"
 #include "G4Colour.hh"
 
+// VGM demo
 #include "Geant4GM/volumes/Factory.h"
 #include "XmlVGM/AGDDExporter.h"
 #include "XmlVGM/GDMLExporter.h"
+// end VGM demo
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
@@ -308,7 +309,7 @@ G4VPhysicalVolume* ExN03DetectorConstruction::ConstructCalorimeter()
       			                  AbsorberMaterial, //its material
       			                  //AbsorberMaterial->GetName()); //name
       			                 "Absorber"); //name
-					 
+      			                  
 		     // The name of logical volume has been changed
 		     // to be different from the name of material
  		     // In VGM GDML exporter, there are automatically
@@ -359,10 +360,37 @@ G4VPhysicalVolume* ExN03DetectorConstruction::ConstructCalorimeter()
   // Visualization attributes
   //
   logicWorld->SetVisAttributes (G4VisAttributes::Invisible);
+
   G4VisAttributes* simpleBoxVisAtt= new G4VisAttributes(G4Colour(1.0,1.0,1.0));
   simpleBoxVisAtt->SetVisibility(true);
   logicCalor->SetVisAttributes(simpleBoxVisAtt);
+
+ /*
+  // Below are vis attributes that permits someone to test / play 
+  // with the interactive expansion / contraction geometry system of the
+  // vis/OpenInventor driver :
+ {G4VisAttributes* simpleBoxVisAtt= new G4VisAttributes(G4Colour(1.0,1.0,0.0));
+  simpleBoxVisAtt->SetVisibility(true);
+  delete logicCalor->GetVisAttributes();
+  logicCalor->SetVisAttributes(simpleBoxVisAtt);}
+
+ {G4VisAttributes* atb= new G4VisAttributes(G4Colour(1.0,0.0,0.0));
+  logicLayer->SetVisAttributes(atb);}
   
+ {G4VisAttributes* atb= new G4VisAttributes(G4Colour(0.0,1.0,0.0));
+  atb->SetForceSolid(true);
+  logicAbsorber->SetVisAttributes(atb);}
+  
+ {//Set opacity = 0.2 then transparency = 1 - 0.2 = 0.8
+  G4VisAttributes* atb= new G4VisAttributes(G4Colour(0.0,0.0,1.0,0.2));
+  atb->SetForceSolid(true);
+  logicGap->SetVisAttributes(atb);}
+  */
+
+  // ---------------------------------------------------------------------------
+  // VGM demo 
+  //
+
   // 
   // Export geometry in XML (both AGDD, GDML formats)
   //
@@ -385,6 +413,11 @@ G4VPhysicalVolume* ExN03DetectorConstruction::ConstructCalorimeter()
   //
   // End of Export geometry in xml
   //
+
+  //
+  // end VGM demo
+  //---------------------------------------------------------------------------
+
 
   //
   //always return the physical World
