@@ -1,0 +1,145 @@
+# $Id$
+# Based on G4 makefile:
+#
+# Id: common.gmk,v 1.30 2001/06/25 10:58:51 morita Exp 
+# ----------------------------------------------------------------
+# Common part of GNUmakefile for libraries.  John Allison, 5/7/95.
+# ----------------------------------------------------------------
+# Libraries are created according to VGM_SYSTEM. G.Cosmo, 11/6/96.
+# Introduced VGM_LIBDIR and VGM_TMPDIR. G.Cosmo, 23/6/98.
+# Introduced G4SCHEMA_HEADER_DIR and G4SCHEMA_SRC_DIR. Y.Morita, 16/11/99.
+# Actual targets splitted into common_kernel.gmk and common_objy.gmk,
+#                                                      Y.Morita, 15/3/01.
+
+ifndef VGM_LIBDIR
+  VGM_LIBDIR := $(VGM_LIB)/$(VGM_SYSTEM)
+endif
+VGM_TMPDIR := $(VGM_TMP)/$(VGM_SYSTEM)/$(name)
+
+sources := $(wildcard *.cxx)
+objects := $(patsubst %.cxx,$(VGM_TMPDIR)/%.o,$(sources))
+dependencies := $(patsubst %.cxx,$(VGM_TMPDIR)/%.d,$(sources))
+
+#dict := T$(name)Cint.cxx
+#dict_headers := $(patsubst %.cxx,include/%.h,$(sources))
+#dict_headers += $(ADD_HEADERS)
+#dict_headers += include/$(name)LinkDef.h
+#dict_headers := $(filter-out include/T$(name)Cint.h,$(dict_headers))
+#dict_objects := $(patsubst %.cxx,$(VGM_TMPDIR)/%.o,$(dict))
+
+
+   mplibraries_to_build :=
+ifneq ($(VGM_LIB_BUILD_SHARED),)
+   mplibraries_to_build += $(VGM_LIBDIR)/lib$(name).$(SHEXT)
+endif
+ifneq ($(VGM_LIB_BUILD_STATIC),)
+   mplibraries_to_build += $(VGM_LIBDIR)/lib$(name).a
+endif
+
+# GPPFLAGS is defined here to make the .d file(s) and include it(them).
+# This variable is actually used in common_kernel.gmk and common_objy.gmk.
+
+GPPFLAGS := "-M"
+
+###############################################################################
+#
+# Actual gmake targets.
+#
+
+#lib: $(dict) $(mplibraries_to_build)
+lib: $(mplibraries_to_build)
+
+$(dict): $(dict_headers)
+
+ifneq ($(VGM_LIB_BUILD_SHARED),)
+# Make shared library.
+$(VGM_LIBDIR)/lib$(name).$(SHEXT): $(VGM_TMPDIR)/obj.last
+	@if [ ! -d $(VGM_LIBDIR) ] ; then mkdir $(VGM_LIBDIR) ;fi
+	@echo Creating shared library $@
+	@$(RM) $@
+#      use architecture specific macro defined in sys/$(VGM_SYSTEM).gmk
+	$(build-granular-shared-lib)
+endif
+
+ifneq ($(VGM_LIB_BUILD_STATIC),)
+# Make static (archive) library.
+$(VGM_LIBDIR)/lib$(name).a: $(VGM_TMPDIR)/obj.last
+	@if [ ! -d $(VGM_LIBDIR) ] ; then mkdir $(VGM_LIBDIR) ;fi
+	@echo Creating/replacing object files in $(VGM_LIBDIR)/lib$(name).a
+	@rm -f $(VGM_LIBDIR)/lib$(name).a
+	@$(AR) $(OUT_LIB)$(VGM_LIBDIR)/lib$(name).a $(VGM_TMPDIR)/*.o
+	@if [ -f /usr/bin/ranlib -o -f /bin/ranlib ] ; then ranlib $(VGM_LIBDIR)/lib$(name).a ;fi
+endif
+
+###############################################################################
+#
+# Actual targets for .o, .d files and others are defined in
+# common_kernel.gmk and common_objy.gmk.
+#
+
+include $(VGM_INSTALL)/config/common_kernel.gmk
+
+###############################################################################
+
+# Touch the versioning file
+$(VGM_TMPDIR)/obj.last: $(objects) $(dict_objects) $(schema_o)
+	@touch $@
+
+# Make the .d file(s) and include it(them).
+# g++ -MM (or -M) is good at this, except it forgets the subdirectory
+# (hence the use of $VGM_TMP/).
+# schema_hh and schema_ref_hh are defined in common_objy.gmk.
+
+$(VGM_TMPDIR)/%.d: %.cxx $(schema_hh) $(schema_ref_hh)
+	@echo Making dependency for file $< ...
+	@if [ ! -d $(VGM_TMPDIR) ] ; then mkdir -p $(VGM_TMPDIR)  ;fi
+	@($(ECHO) $(VGM_TMPDIR)/\\c ; \
+	g++ $(GPPFLAGS) $(CPPFLAGS) $< ) | sed 's!$(VGM_TMPDIR)/$*.o!& $@!' >$@
+ifneq ($(dependencies),)
+-include $(dependencies)
+endif
+
+#
+# Installation of include files
+#
+installed_includes:=$(foreach file,$(wildcard include/*),$(shell test -f $(file) && echo $(file)))
+installed_includes:=$(patsubst include/%,$(VGM_INCLUDE)/%,$(installed_includes))
+
+# NOTE: the double colon rule allows to add other rules for the same target
+#
+includes::	$(installed_includes)
+
+# Static Pattern rules, see GNU make manual for details.
+#           target(s): target-pattern : dep-pattern	
+#
+$(installed_includes): $(VGM_INCLUDE)/% : include/%
+	@cp -p $< $@
+
+#
+# Clean up libraries
+#
+ifndef VGM_EXLIB
+clean:
+	@echo Cleaning up ...
+	@rm -f $(VGM_LIBDIR)/lib$(name).a
+	@rm -f $(VGM_LIBDIR)/lib$(name).$(SHEXT)
+ifdef schema_hh
+	@rm -f $(schema_hh) $(schema_ref_hh)
+endif
+	@rm -rf $(VGM_TMPDIR)
+endif
+
+clean_libs:
+	@if [ -f $(VGM_LIBDIR)/lib$(name).a ] ; then \
+	$(ECHO) Removing library lib$(name).a ... ; \
+	$(RM) -f $(VGM_LIBDIR)/lib$(name).a ; fi
+	@if [ -f $(VGM_LIBDIR)/lib$(name).$(SHEXT) ] ; then \
+	$(ECHO) Removing library lib$(name).$(SHEXT) ... ; \
+	$(RM) -f $(VGM_LIBDIR)/lib$(name).$(SHEXT) ; fi
+
+clean_dicts:
+	@if [ -f T$(name)Cint.cxx ] ; then \
+	$(ECHO) Removing dictionary T$(name)Cint ... ; \
+	$(RM) -f include/T$(name)Cint.h ; \
+	$(RM) -f T$(name)Cint.cxx ; fi
+

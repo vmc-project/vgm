@@ -1,0 +1,32 @@
+# $Id$
+# Based on G4 makefile:
+#
+# Id: common_kernel.gmk,v 1.3 2001/06/21 17:48:33 morita Exp 
+# ----------------------------------------------------------------
+# Common part of GNUmakefile for libraries.  John Allison, 5/7/95.
+# ----------------------------------------------------------------
+# Splitted from common.gmk for transient part of G4.   Y.Morita, 15/3/01.
+
+$(dict):
+		@echo "Generating $@"
+ifdef CPPVERBOSE
+		rootcint -f $@ -c $(filter -I%,$(CXXFLAGS)) $(CPPFLAGS) $^
+else
+		@rootcint -f $@ -c $(filter -I%,$(CXXFLAGS)) $(CPPFLAGS) $^
+endif
+		@mv T$(name)Cint.h include
+ 
+$(VGM_TMPDIR)/%.o: %.cxx
+ifdef CPPVERBOSE
+	$(CXX) $(CXXFLAGS) $(CPPFLAGS) -c $(OUT_OBJ)$(VGM_TMPDIR)/$(*F).o $*.cxx
+else
+	@echo Compiling $*.cxx ...
+	@$(CXX) $(CXXFLAGS) $(CPPFLAGS) -c $(OUT_OBJ)$(VGM_TMPDIR)/$(*F).o $*.cxx
+endif
+
+# .PHONY targets are executed regardless of time-stamp of any file of
+# same name.
+.PHONY: all obj lib clean clean_libs includes
+
+obj: $(VGM_TMPDIR)/obj.last
+
