@@ -6,8 +6,6 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include "CLHEP/Units/SystemOfUnits.h"
-
 #include "TGeoManager.h"
 #include "TGeoMatrix.h"
 #include "TGeoVolume.h"
@@ -24,38 +22,43 @@
 
 //_____________________________________________________________________________
 RootGM::Placement::Placement(
-                      const std::string& name, int copyNo,
+                      const std::string& name, 
+		      int copyNo,
                       VGM::IVolume* volume, VGM::IVolume* motherVolume,
-                      HepRotation* rotation, 
-		      const Hep3Vector& translation)
+		      TGeoMatrix* transformation)
   : BaseVGM::VPlacement(volume, motherVolume),
     fGeoNode(0),
     fName(name)       
 {
-  // Create TGeo matrix
-  TGeoMatrix* geoMatrix = RootGM::Convert(rotation, translation);
+  if (!motherVolume) {
 
-  // Create TGeo node
-  CreateNode(copyNo, volume, motherVolume, geoMatrix);  
+    // Top volume is not placed in TGeo
+    fGeoNode = 0;
+    
+    // Set top volume to TGeo
+    gGeoManager
+      ->SetTopVolume(RootGM::VolumeMap::Instance()->GetVolume(volume));
+  }  
+  else {  
+
+    // Get TGeo volumes from the volumes map
+    TGeoVolume* geoVolume 
+      = RootGM::VolumeMap::Instance()->GetVolume(volume);
+    
+    TGeoVolume* geoMotherVolume 
+      = RootGM::VolumeMap::Instance()->GetVolume(motherVolume);
+
+    // Create TGeo node
+    geoMotherVolume->AddNode(geoVolume, copyNo, transformation);
+  
+    // Retrieve the node created
+    fGeoNode = geoMotherVolume->GetNode(geoMotherVolume->GetNdaughters()-1);
+  }
+
+  // Register physical volume in the map
+  RootGM::PlacementMap::Instance()->AddPlacement(this, fGeoNode); 
 }  
 
-//_____________________________________________________________________________
-RootGM::Placement::Placement(
-                      const std::string& name, int copyNo,
-                      VGM::IVolume* volume, VGM::IVolume* motherVolume,
-                      const HepTransform3D& transformation)
-  : BaseVGM::VPlacement(volume, motherVolume),
-    fGeoNode(0),
-    fName(name)       
-{
-  
-  // Create TGeo matrix
-  TGeoMatrix* geoMatrix = RootGM::Convert(transformation);
-  
-  // Create TGeo node
-  CreateNode(copyNo, volume, motherVolume, geoMatrix);  
-}    
-    
 //_____________________________________________________________________________
 RootGM::Placement::Placement(
                       const std::string& name, 
@@ -75,7 +78,7 @@ RootGM::Placement::Placement(
   offset /= RootGM::Units::AxisUnit(axis);
 
  // Convert VGM parameters to TGeo
-  Int_t iAxis = RootGM::GetAxis(axis);
+  Int_t iAxis = RootGM::Axis(axis);
   Double_t xlo, xhi;
   geoMotherVolume->GetShape()->GetAxisRange(iAxis, xlo, xhi);
   Double_t start = xlo + offset;
@@ -116,54 +119,20 @@ RootGM::Placement::~Placement() {
 //
 
 //_____________________________________________________________________________
-void RootGM::Placement::CreateNode(
-                              int copyNo,
-                              VGM::IVolume* volume, VGM::IVolume* motherVolume, 
-			      TGeoMatrix* matrix)
-{	
-  if (!motherVolume) {
-
-    // Top volume is not placed in TGeo
-    fGeoNode = 0;
-    
-    // Set top volume to TGeo
-    gGeoManager->SetTopVolume(RootGM::VolumeMap::Instance()->GetVolume(volume));
-  }  
-  else {  
-
-    // Get TGeo volumes from the volumes map
-    TGeoVolume* geoVolume 
-      = RootGM::VolumeMap::Instance()->GetVolume(volume);
-    
-    TGeoVolume* geoMotherVolume 
-      = RootGM::VolumeMap::Instance()->GetVolume(motherVolume);
-
-    // Create TGeo node
-    geoMotherVolume->AddNode(geoVolume, copyNo, matrix);
-  
-    // Retrieve the node created
-    fGeoNode = geoMotherVolume->GetNode(geoMotherVolume->GetNdaughters()-1);
-  }
-
-  // Register physical volume in the map
-  RootGM::PlacementMap::Instance()->AddPlacement(this, fGeoNode); 
-}
-  
-//_____________________________________________________________________________
-HepTransform3D RootGM::Placement::ObjectTransform3D() const
+TGeoHMatrix RootGM::Placement::ObjectTransform() const
 {
 // Returns the object transfomation.
 // ---
 
-  HepTransform3D transform3D;
+  TGeoHMatrix transform3D;
   if (fGeoNode->GetVolume()->GetShape()->IsComposite()) 
   {
     TGeoCompositeShape* composite 
       = (TGeoCompositeShape*)fGeoNode->GetVolume()->GetShape();
     TGeoMatrix* leftMatrix = composite->GetBoolNode()->GetLeftMatrix();    
    
-    HepTransform3D t1 = RootGM::Convert(leftMatrix);  
-    HepTransform3D t2 = RootGM::Convert(fGeoNode->GetMatrix());
+    TGeoHMatrix t1(*leftMatrix);  
+    TGeoHMatrix t2(*(fGeoNode->GetMatrix()));
    
     transform3D = t2 * t1;
  
@@ -181,7 +150,7 @@ HepTransform3D RootGM::Placement::ObjectTransform3D() const
           // left component of the shape A 
 
       TGeoMatrix* matrixAC = boolNodeAC->GetLeftMatrix();
-      HepTransform3D transformAC = RootGM::Convert(matrixAC);
+      TGeoHMatrix transformAC(*matrixAC);
     
       transform3D = transform3D * transformAC;
      
@@ -189,7 +158,7 @@ HepTransform3D RootGM::Placement::ObjectTransform3D() const
     }
   }  
   else {
-    transform3D = RootGM::Convert(fGeoNode->GetMatrix());
+    transform3D = fGeoNode->GetMatrix();
   }
   
   return transform3D;  
@@ -208,7 +177,7 @@ VGM::PlacementType RootGM::Placement::Type() const
   if (!finder) return VGM::kSimplePlacement;;
     
   // Get division axis
-  VGM::Axis axis = RootGM::GetAxis(finder);
+  VGM::Axis axis = RootGM::Axis(finder);
   if (axis != VGM::kUnknownAxis) 
     return VGM::kMultiplePlacement;
   else 
@@ -230,73 +199,42 @@ int RootGM::Placement::CopyNo() const
 }  
 
 //_____________________________________________________________________________
-HepRotation RootGM::Placement::ObjectRotation() const
+VGM::Rotation RootGM::Placement::ObjectRotation() const
 {
 //
-/*
-  return RootGM::GetRotation(fGeoNode->GetMatrix());
-*/
-/*
-  // If Boolean shape, take into account eventuel 
-  // displacement of the left constituent
-  if (fGeoNode->GetVolume()->GetShape()->IsComposite()) {
-    TGeoCompositeShape* composite 
-      = (TGeoCompositeShape*)fGeoNode->GetVolume()->GetShape();
-    TGeoMatrix* leftMatrix = composite->GetBoolNode()->GetLeftMatrix();    
-   
-    HepTransform3D t1 = RootGM::Convert(leftMatrix);  
-    HepTransform3D t2 = RootGM::Convert(fGeoNode->GetMatrix());
-   
-    HepTransform3D composed = t2 * t1;
-
-    HepScale3D     scale3D;
-    HepRotate3D    rotate3D;
-    HepTranslate3D translate3D;
-    composed.getDecomposition(scale3D, rotate3D, translate3D);
-   
-    return rotate3D.getRotation();
-  }
-  else   
-   return RootGM::GetRotation(fGeoNode->GetMatrix());
-*/
-  return BaseVGM::GetRotation(ObjectTransform3D());
+  return Rotation(ObjectTransform());
 }  
     
 //_____________________________________________________________________________
-Hep3Vector  RootGM::Placement::ObjectTranslation() const 
+VGM::Rotation RootGM::Placement::FrameRotation() const
 {
 //
-/*
-  // If Boolean shape, take into account eventuel 
-  // displacement of the left constituent
-  if (fGeoNode->GetVolume()->GetShape()->IsComposite()) {
-    TGeoCompositeShape* composite 
-      = (TGeoCompositeShape*)fGeoNode->GetVolume()->GetShape();
-    TGeoMatrix* leftMatrix = composite->GetBoolNode()->GetLeftMatrix();    
-   
-    HepTransform3D t1 = RootGM::Convert(leftMatrix);  
-    HepTransform3D t2 = RootGM::Convert(fGeoNode->GetMatrix());
-   
-    HepTransform3D composed = t2 * t1;
+  return Rotation(ObjectTransform().Inverse());
+}  
+    
+//_____________________________________________________________________________
+VGM::ThreeVector  RootGM::Placement::ObjectTranslation() const 
+{
+//
+  return Translation(ObjectTransform());
+}
 
-    HepScale3D     scale3D;
-    HepRotate3D    rotate3D;
-    HepTranslate3D translate3D;
-    composed.getDecomposition(scale3D, rotate3D, translate3D);
-
-    return translate3D.getTranslation();
-  }
-  else
-   return  RootGM::GetTranslation(fGeoNode->GetMatrix()); 
-*/
-  return BaseVGM::GetTranslation( ObjectTransform3D());
+//_____________________________________________________________________________
+VGM::ThreeVector  RootGM::Placement::FrameTranslation() const 
+{
+//
+  
+  VGM::ThreeVector objTranslation = ObjectTranslation();
+  for (Int_t i=0; i<3; i++) objTranslation[i] = - objTranslation[i];
+   
+  return objTranslation;
 }
 
 //_____________________________________________________________________________
 bool RootGM::Placement::ReflectionZ() const
 {
 //
-  return RootGM::HasReflection(fGeoNode->GetMatrix()); 
+  return HasReflection(ObjectTransform()); 
 }   
 
 //_____________________________________________________________________________
@@ -311,12 +249,12 @@ bool RootGM::Placement::MultiplePlacementData(
   if (!finder) return false;
     
   // Get division parameters
-  axis = RootGM::GetAxis(finder);
+  axis = RootGM::Axis(finder);
   nofItems = finder->GetNdiv();
   Double_t start = finder->GetStart();
   Double_t xlo, xhi;
   fGeoNode->GetMotherVolume()->GetShape()
-    ->GetAxisRange(RootGM::GetAxis(axis), xlo, xhi);
+    ->GetAxisRange(RootGM::Axis(axis), xlo, xhi);
   offset = start - xlo;
   width  = finder->GetStep();
 

@@ -49,10 +49,14 @@ std::ostream& BaseVGM::VBooleanSolid::Put(std::ostream& out) const
       << VGM::BooleanTypeName(BoolType()) << ": " << std:: endl
       << "  ConstituentA = " << *ConstituentSolidA() << std:: endl
       << "  ConstituentB = " << *ConstituentSolidB() << std:: endl 
-      << "  Displacement translation (object):  " 
-      << DisplacementObjectTranslation() << std:: endl
-      << "  Displacement rotation (frame):  " 
-      << DisplacementFrameRotation();
+      << "  Displacement translation (object):  ( " 
+      << DisplacementObjectTranslation()[0]/mm << ",  "
+      << DisplacementObjectTranslation()[1]/mm  << ",  "
+      << DisplacementObjectTranslation()[2]/mm << ") mm " << std:: endl
+      << "  Displacement rotation (frame):  (" 
+      << DisplacementFrameRotation()[0]/deg << ",  "
+      << DisplacementFrameRotation()[1]/deg << ",  "
+      << DisplacementFrameRotation()[2]/deg << ") deg";
   return out; 
 }
 

@@ -14,6 +14,8 @@
 #include "G4SubtractionSolid.hh"
 #include "G4UnionSolid.hh"
 
+#include "ClhepVGM/utilities.h"
+
 #include "Geant4GM/solids/BooleanSolid.h"
 #include "Geant4GM/solids/SolidMap.h"
 
@@ -35,7 +37,7 @@ Geant4GM::BooleanSolid::BooleanSolid(
   switch (boolType) {
     case VGM::kIntersection:
       fBooleanSolid 
-        = new G4IntersectionSolid(name, g4SolidA, g4SolidB, rotation, translation);
+        = new G4IntersectionSolid(name, g4SolidA, g4SolidB, rotation, translation); 
       break;					 
 
     case VGM::kSubtraction:
@@ -45,7 +47,7 @@ Geant4GM::BooleanSolid::BooleanSolid(
 					 
     case VGM::kUnion:
       fBooleanSolid 
-        = new G4UnionSolid(name, g4SolidA, g4SolidB, rotation, translation);
+        = new G4UnionSolid(name, g4SolidA, g4SolidB, rotation, translation); 
       break;
       
     case VGM::kUnknownBoolean:
@@ -151,7 +153,7 @@ Geant4GM::BooleanSolid::ConstituentSolidB() const
 } 
 
 //_____________________________________________________________________________
-HepRotation 
+VGM::Rotation 
 Geant4GM::BooleanSolid::DisplacementObjectRotation() const
 {
 // Returns the first constituent solid.
@@ -160,13 +162,13 @@ Geant4GM::BooleanSolid::DisplacementObjectRotation() const
  const G4DisplacedSolid* g4DisplacedSolid = DisplacedSolid();
  
  if (g4DisplacedSolid)
-   return g4DisplacedSolid->GetObjectRotation();
+   return ClhepVGM::Rotation(g4DisplacedSolid->GetObjectRotation());
  else
-   return HepRotation();
+   return ClhepVGM::Rotation(HepRotation());
 }    
 
 //_____________________________________________________________________________
-HepRotation 
+VGM::Rotation 
 Geant4GM::BooleanSolid::DisplacementFrameRotation() const
 {
 // Returns the first constituent solid.
@@ -175,12 +177,12 @@ Geant4GM::BooleanSolid::DisplacementFrameRotation() const
  const G4DisplacedSolid* g4DisplacedSolid = DisplacedSolid();
 
  if (g4DisplacedSolid)
-   return g4DisplacedSolid->GetFrameRotation();
+   return ClhepVGM::Rotation(g4DisplacedSolid->GetFrameRotation());
  else
-   return HepRotation();
+   return ClhepVGM::Rotation(HepRotation());
 }    
 //_____________________________________________________________________________
-Hep3Vector 
+VGM::ThreeVector 
 Geant4GM::BooleanSolid::DisplacementObjectTranslation() const
 {
 // Returns the first constituent solid.
@@ -189,13 +191,13 @@ Geant4GM::BooleanSolid::DisplacementObjectTranslation() const
  const G4DisplacedSolid* g4DisplacedSolid = DisplacedSolid();
  
  if (g4DisplacedSolid)
-   return g4DisplacedSolid->GetObjectTranslation();
+   return ClhepVGM::Translation(g4DisplacedSolid->GetObjectTranslation());
  else
-   return Hep3Vector();
+   return ClhepVGM::Translation(Hep3Vector());
 }    
 
 //_____________________________________________________________________________
-Hep3Vector 
+VGM::ThreeVector 
 Geant4GM::BooleanSolid::DisplacementFrameTranslation() const
 {
 // Returns the first constituent solid.
@@ -204,9 +206,9 @@ Geant4GM::BooleanSolid::DisplacementFrameTranslation() const
  const G4DisplacedSolid* g4DisplacedSolid = DisplacedSolid();
 
  if (g4DisplacedSolid)
-   return g4DisplacedSolid->GetFrameTranslation();
+   return ClhepVGM::Translation(g4DisplacedSolid->GetFrameTranslation());
  else
-   return Hep3Vector();
+   return ClhepVGM::Translation(Hep3Vector());
 }    
 
 //_____________________________________________________________________________

@@ -6,8 +6,6 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include "CLHEP/Units/SystemOfUnits.h"
-
 #include "TGeoCompositeShape.h"
 #include "TGeoBoolNode.h"
 #include "TGeoMatrix.h"
@@ -27,35 +25,14 @@ const char RootGM::BooleanSolid::fgkSeparator = ':';
 RootGM::BooleanSolid::BooleanSolid(
                              const std::string& name, 
                              VGM::BooleanType boolType,
-                             VGM::ISolid* solidA, VGM::ISolid* solidB, 
-                             HepRotation* rotation, 
-			     const Hep3Vector& translation)
+                             VGM::ISolid* solidA, VGM::ISolid* solidB,
+			     TGeoMatrix* displacement) 
   : BaseVGM::VBooleanSolid(),
     fCompositeShape(0) 
 {
 //  
-  // Create TGeo matrix
-  TGeoMatrix* displacementB = RootGM::Convert(rotation, translation);
-
   // Call common constructor function
-  CreateBooleanSolid(name, boolType, solidA, solidB, displacementB);  
-}
-
-//_____________________________________________________________________________
-RootGM::BooleanSolid::BooleanSolid(    
-                             const std::string& name, 
-                             VGM::BooleanType boolType,
-                             VGM::ISolid* solidA, VGM::ISolid* solidB, 
-                             const HepTransform3D& transform3D)
-  : BaseVGM::VBooleanSolid(),
-    fCompositeShape(0) 
-{
-//  
-  // Create TGeo matrix
-  TGeoMatrix* displacementB = RootGM::Convert(transform3D);
-
-  // Call common constructor function
-  CreateBooleanSolid(name, boolType, solidA, solidB, displacementB);  
+  CreateBooleanSolid(name, boolType, solidA, solidB, displacement);  
 }
 
 //_____________________________________________________________________________
@@ -123,6 +100,7 @@ void RootGM::BooleanSolid::CreateBooleanSolid(
   RootGM::SolidMap::Instance()->AddSolid(this, fCompositeShape); 
 }
 
+/*
 //_____________________________________________________________________________
 HepTransform3D  RootGM::BooleanSolid::Displacement() const
 {
@@ -130,14 +108,13 @@ HepTransform3D  RootGM::BooleanSolid::Displacement() const
 // in the frame of the first (left) solid.
 // ---
 
-/*
-  TGeoBoolNode* boolNode = fCompositeShape->GetBoolNode();
-  
-  TGeoMatrix* matrixA = boolNode->GetLeftMatrix();
-  TGeoMatrix* matrixB = boolNode->GetRightMatrix();
-  
-  return RootGM::Convert(matrixB, matrixA, false, true);
-*/
+
+  //TGeoBoolNode* boolNode = fCompositeShape->GetBoolNode();
+  //
+  //TGeoMatrix* matrixA = boolNode->GetLeftMatrix();
+  //TGeoMatrix* matrixB = boolNode->GetRightMatrix();
+  //
+  //return RootGM::Convert(matrixB, matrixA, false, true);
 
   TGeoBoolNode* boolNode = fCompositeShape->GetBoolNode();
   
@@ -188,6 +165,65 @@ HepTransform3D  RootGM::BooleanSolid::Displacement() const
   }
   
   return totalTransformA.inverse() * totalTransformB;
+}  
+*/
+
+//_____________________________________________________________________________
+TGeoHMatrix  RootGM::BooleanSolid::Displacement() const
+{
+// Returns the solid displacemnt transformation
+// in the frame of the first (left) solid.
+// ---
+
+  TGeoBoolNode* boolNode = fCompositeShape->GetBoolNode();
+  
+  TGeoMatrix* matrixA = boolNode->GetLeftMatrix();
+  TGeoMatrix* matrixB = boolNode->GetRightMatrix();
+  
+  TGeoHMatrix transformA(*matrixA);
+  TGeoHMatrix transformB(*matrixB);
+
+  // If constituents are composite shapes,
+  // the displacement have to take into account the transformation
+  // of left constituent not passed to the solid
+
+  TGeoHMatrix totalTransformA(transformA);
+  TGeoShape* shapeA = boolNode->GetLeftShape();
+  while (shapeA->IsComposite()) { 
+      
+     TGeoBoolNode* boolNodeAC 
+       = ((TGeoCompositeShape*)shapeA)->GetBoolNode();
+      
+     TGeoShape* shapeAC = boolNodeAC->GetLeftShape();
+          // left component of the shape A 
+
+     TGeoMatrix* matrixAC = boolNodeAC->GetLeftMatrix();
+     TGeoHMatrix transformAC(*matrixAC);
+    
+     totalTransformA = totalTransformA * transformAC;
+     
+     shapeA = shapeAC;
+  }
+  
+  TGeoHMatrix totalTransformB(transformB);
+  TGeoShape* shapeB = boolNode->GetRightShape();
+  while (shapeB->IsComposite()) { 
+      
+     TGeoBoolNode* boolNodeBC 
+       = ((TGeoCompositeShape*)shapeB)->GetBoolNode();
+      
+     TGeoShape* shapeBC = boolNodeBC->GetLeftShape();
+          // left component of the shape B 
+
+     TGeoMatrix* matrixBC = boolNodeBC->GetLeftMatrix();
+     TGeoHMatrix transformBC(*matrixBC);
+    
+     totalTransformB = totalTransformB * transformBC;
+     
+     shapeB = shapeBC;
+  }
+  
+  return totalTransformA.Inverse() * totalTransformB;
 }  
 
 // 
@@ -256,43 +292,45 @@ RootGM::BooleanSolid::ConstituentSolidB() const
 } 
 
 //_____________________________________________________________________________
-HepRotation 
+VGM::Rotation 
 RootGM::BooleanSolid::DisplacementObjectRotation() const
 {
-// Returns the first constituent solid.
+// Returns the displacemnt object rotation.
 // ---
 
-  return BaseVGM::GetRotation(Displacement());     
+  return Rotation(Displacement());     
 }    
 
 //_____________________________________________________________________________
-HepRotation 
+VGM::Rotation 
 RootGM::BooleanSolid::DisplacementFrameRotation() const
 {
-// Returns the first constituent solid.
+// Returns the displacemnt frame rotation.
 // ---
 
-  return DisplacementObjectRotation().inverse();
+  return Rotation(Displacement().Inverse());
 }    
 //_____________________________________________________________________________
-Hep3Vector 
+VGM::ThreeVector 
 RootGM::BooleanSolid::DisplacementObjectTranslation() const
 {
-// Returns the first constituent solid.
+// Returns the  displacemnt object translation.
 // ---
 
-  return BaseVGM::GetTranslation(Displacement());     
+  return Translation(Displacement());     
 }    
 
 //_____________________________________________________________________________
-Hep3Vector 
+VGM::ThreeVector 
 RootGM::BooleanSolid::DisplacementFrameTranslation() const
 {
-// Returns the first constituent solid.
+// Returns the  displacemnt frame translation.
 // ---
 
-   // To be done in a base class
-   return - DisplacementObjectTranslation();
+   VGM::ThreeVector objTranslation = DisplacementObjectTranslation();
+   for (Int_t i=0; i<3; i++) objTranslation[i] = - objTranslation[i];
+   
+   return objTranslation;
 }    
 
 //_____________________________________________________________________________
@@ -301,7 +339,7 @@ bool  RootGM::BooleanSolid::DisplacementReflectionZ() const
 // Returns true if solid displacement trasformation
 // includes reflection.
 
-  return BaseVGM::HasReflection(Displacement());     
+  return HasReflection(Displacement());     
 }  
 
 //_____________________________________________________________________________

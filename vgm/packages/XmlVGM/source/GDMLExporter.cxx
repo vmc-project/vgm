@@ -159,11 +159,11 @@ void XmlVGM::GDMLExporter::ProcessVolume(VGM::IVolume* volume)
         // simple placement
 	 
         // Get position
-        Hep3Vector  position = dPlacement->ObjectTranslation();
+        VGM::ThreeVector  position = dPlacement->ObjectTranslation();
 	std::string positionRef = FindPositionName(position);
       
         // Get rotation
-        HepRotation rotation = dPlacement->ObjectRotation();
+        VGM::Rotation rotation = dPlacement->ObjectRotation();
 	std::string rotationRef = FindRotationName(rotation);
 	
         // Reflection is not supported by GDML

@@ -1,217 +1,149 @@
 // $Id$
 //
-// Utilities
+// RootGM utilities
 // --------------
-// Functions for conversion between Root and VGM basic elements
+// Utility functions 
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include "CLHEP/Units/SystemOfUnits.h"
-#include "CLHEP/Geometry/Transform3D.h"
+#include <iostream>
+#include <float.h>
 
-#include "TGeoManager.h"
-#include "TGeoMatrix.h"
-#include "TGeoVolume.h"
-
-#include "BaseVGM/common/utilities.h"
+#include <TGeoMatrix.h>
+#include <TGeoPatternFinder.h>
 
 #include "RootGM/common/utilities.h"
-#include "RootGM/common/RotationMatrix.h"
 #include "RootGM/common/Units.h"
 
+//
+// Root -> VGM
+//
+
 //_____________________________________________________________________________
-TGeoMatrix* RootGM::Convert(HepRotation* rot, const Hep3Vector& tr)
+VGM::ThreeVector  RootGM::Translation(const TGeoMatrix& matrix)
 {
-  if (!rot)
-    return new TGeoTranslation(tr.x()/RootGM::Units::Length(),
-                               tr.y()/RootGM::Units::Length(), 
-			       tr.z()/RootGM::Units::Length());			  
-  else {
-    // 
-    HepRotation rot2 = rot->inverse();
-    
-    TGeoRotation* rootRotation 
-      = new TGeoRotation("rot", 
-                rot2.thetaX()/RootGM::Units::Angle(), 
-		rot2.phiX()/RootGM::Units::Angle(), 
-	        rot2.thetaY()/RootGM::Units::Angle(), 
-		rot2.phiY()/RootGM::Units::Angle(),
-                rot2.thetaZ()/RootGM::Units::Angle(), 
-		rot2.phiZ()/RootGM::Units::Angle());
-    
-    return new TGeoCombiTrans(tr.x()/RootGM::Units::Length(), 
-                              tr.y()/RootGM::Units::Length(), 
-			      tr.z()/RootGM::Units::Length(), 
-			      rootRotation);
-  }  			  
+//
+  const Double_t* translation = matrix.GetTranslation();
+
+  VGM::ThreeVector threeVector(3);
+  threeVector[0] = translation[0] * Units::Length();
+  threeVector[1] = translation[1] * Units::Length();
+  threeVector[2] = translation[2] * Units::Length();
+
+  return threeVector;
 }
-
+    
 //_____________________________________________________________________________
-TGeoMatrix* RootGM::Convert(const HepTransform3D& transform3D)
+VGM::ThreeVector  RootGM::Rotation(const TGeoMatrix& matrix)
 {
-  // Decompose transformation
-  HepScale3D     scale3D;
-  HepRotate3D    rotate3D;
-  HepTranslate3D translate3D;
-  transform3D.getDecomposition(scale3D, rotate3D, translate3D);
-
-  Hep3Vector translation = translate3D.getTranslation();
-
-  HepTransform3D rotateAndScale3D = rotate3D * scale3D;
-  Double_t* matrix = new Double_t[9];
-  matrix[0] = rotateAndScale3D(0,0);
-  matrix[1] = rotateAndScale3D(0,1);
-  matrix[2] = rotateAndScale3D(0,2);
-  matrix[3] = rotateAndScale3D(1,0);
-  matrix[4] = rotateAndScale3D(1,1);
-  matrix[5] = rotateAndScale3D(1,2);
-  matrix[6] = rotateAndScale3D(2,0);
-  matrix[7] = rotateAndScale3D(2,1);
-  matrix[8] = rotateAndScale3D(2,2);
-  TGeoRotation* rootRotation = new TGeoRotation("rot");
-  rootRotation->SetMatrix(matrix);
-
-  return new TGeoCombiTrans(translation.x()/RootGM::Units::Length(), 
-                            translation.y()/RootGM::Units::Length(), 
-			    translation.z()/RootGM::Units::Length(), 
-			    rootRotation);
-}			    
-
+//
 /*
-//_____________________________________________________________________________
-TGeoMatrix* RootGM::Convert(const HepTransform3D& transform3D)
-{
- // Though more elegant, does not work,
- // as Root does not allow scale <0. 
+  // Decompose general matrix 
+  const Double_t* tm = matrix.GetTranslation();
+  const Double_t* rm = matrix.GetRotationMatrix();
+  const Double_t* sm = matrix.GetScale();
 
- // Decompose transformation
-  HepScale3D     scale3D;
-  HepRotate3D    rotate3D;
-  HepTranslate3D translate3D;
-  transform3D.getDecomposition(scale3D, rotate3D, translate3D);
+  // Matrix
+  // rm[0] * sm[0], rm[1] * sm[1], rm[2] * sm[2], tm[0]
+  // rm[3] * sm[0], rm[4] * sm[1], rm[5] * sm[2], tm[1]
+  // rm[6] * sm[0], rm[7] * sm[1], rm[8] * sm[2], tm[2]
 
-  Hep3Vector translation = translate3D.getTranslation();
-  TGeoTranslation rootTranslation
-    = TGeoTranslation(translation.x()/RootGM::Units::Length(),
-                      translation.y()/RootGM::Units::Length(), 
-		      translation.z()/RootGM::Units::Length());			  
+  double xx, xy, xz, dx,     // 4x3  Transformation Matrix
+         yx, yy, yz, dy,
+         zx, zy, zz, dz;
+  double sx, sy, sz;
 
-  HepRotation rotation = rotate3D.getRotation();
-  TGeoRotation rootRotation 
-    = TGeoRotation("rot", 
-                    rotation.thetaX()/RootGM::Units::Angle(), 
-		    rotation.phiX()/RootGM::Units::Angle(), 
-	            rotation.thetaY()/RootGM::Units::Angle(), 
-		    rotation.phiY()/RootGM::Units::Angle(),
-                    rotation.thetaZ()/RootGM::Units::Angle(), 
-		    rotation.phiZ()/RootGM::Units::Angle());
-		       
-  TGeoScale rootScale
-    = TGeoScale(scale3D(0,0), scale3D(1,1), scale3D(2,2));
-  		       
-  // Recompose TGeoHMatrix
-  TGeoHMatrix matrix =  (rootTranslation) * (rootRotation) * (rootScale);
-  
-  // Return new TGeoCombiTrans as this type should be used
-  // in building geometry
-  return new TGeoCombiTrans(matrix.GetTranslation()[0],
-                            matrix.GetTranslation()[1],
-                            matrix.GetTranslation()[2],
-			    rootRotation2);
-}
-*/  
+  xx = rm[0]; xy = rm[1]; xz = rm[2];
+  yx = rm[3]; yy = rm[4]; yz = rm[5];
+  zx = rm[6]; zy = rm[7]; zz = rm[8];
+  dx = tm[0]; dy = tm[1]; dz = tm[2];
+  sx = sm[0]; sy = sm[1]; sz = sm[2];
 
-//_____________________________________________________________________________
-HepTransform3D RootGM::Convert(const TGeoMatrix* matrix)
-{
-// Convert Root transformation into CLHEP one
-// --- 
-
-  const double* rtTranslation = matrix->GetTranslation();
-  const double* rtRotation = matrix->GetRotationMatrix();
-  const double* rtScale = matrix->GetScale();
-
-/*
-  std::cout << "Root: " << std::endl;
-  std::cout << rtTranslation[0] * RootGM::Units::Length() << ", "
-            << rtTranslation[1] * RootGM::Units::Length() << ", "
-	    << rtTranslation[2] * RootGM::Units::Length() << std::endl
-	    << "---" << std::endl;
-	    
-  std::cout << rtRotation[0] << ", " << rtRotation[1] << ", " << rtRotation[2] << std::endl	    
-            << rtRotation[3] << ", " << rtRotation[4] << ", " << rtRotation[5] << std::endl	    
-            << rtRotation[6] << ", " << rtRotation[7] << ", " << rtRotation[8] << std::endl
-	    << "---" << std::endl;
-
-  std::cout << rtScale[0] << ", " << rtScale[1] << ", " << rtScale[2] << std::endl	    	    
-	    << "===" << std::endl;
-*/   
-  HepTranslate3D translate3D(rtTranslation[0] * RootGM::Units::Length(),
-                             rtTranslation[1] * RootGM::Units::Length(), 
-	 		     rtTranslation[2] * RootGM::Units::Length());
-  RootGM::RotationMatrix grtRotation;
-  grtRotation.SetRotationMatrixByRow(
-                    Hep3Vector(rtRotation[0], rtRotation[1], rtRotation[2]),
-                    Hep3Vector(rtRotation[3], rtRotation[4], rtRotation[5]),
-                    Hep3Vector(rtRotation[6], rtRotation[7], rtRotation[8]));
-  HepRotate3D rotate3D(grtRotation);
-  HepScale3D scale3D(rtScale[0], rtScale[1], rtScale[2]);
- 
-  HepTransform3D transform3D = translate3D * rotate3D * scale3D;
-
-/*  
-  HepScale3D scale2;
-  HepRotate3D rotation2;
-  HepTranslate3D translation2;
-  transform3D.getDecomposition(scale2, rotation2, translation2);
-
-  std::cout << "CLHEP: " << std::endl;
-  std::cout << translation2.getTranslation()[0] << ", "
-            << translation2.getTranslation()[1] << ", "
-	    << translation2.getTranslation()[2] << std::endl
-	    << "---" << std::endl;
-	    
-  std::cout << rotation2.getRotation()(0,0) << ", " << rotation2.getRotation()(0,1) << ", " << rotation2.getRotation()(0,2) << std::endl	    
-            << rotation2.getRotation()(1,0) << ", " << rotation2.getRotation()(1,1) << ", " << rotation2.getRotation()(1,2) << std::endl	    
-            << rotation2.getRotation()(2,0) << ", " << rotation2.getRotation()(2,1) << ", " << rotation2.getRotation()(2,2) << std::endl
-	    << "---" << std::endl;
-
-  std::cout << scale2(0,0) << ", " << scale2(1,1) << ", " << scale2(2,2) << std::endl	    	    
-	    << "===" << std::endl;
+  // If reflection, apply it to scaleZ
+  if (xx*(yy*zz-yz*zy) - xy*(yx*zz-yz*zx) + xz*(yx*zy-yy*zx) < 0) {
+    sz = -sz;
+    xz = -xz; yz = -yz; zz = -zz;
+  }  
 */
-  return transform3D;
-}  
+  // Get rotation matrix parameters 
+
+  const Double_t* rm = matrix.GetRotationMatrix();
+
+  double xx, xy, xz,     // 3x3  Rotation Matrix
+         yx, yy, yz,
+         zx, zy, zz;
+
+  xx = rm[0]; xy = rm[1]; xz = rm[2];
+  yx = rm[3]; yy = rm[4]; yz = rm[5];
+  zx = rm[6]; zy = rm[7]; zz = rm[8];
+
+  // Decompose reflectionZ from rotation matrix 
+
+  if ( HasReflection(matrix) ) {
+    xz = -xz; yz = -yz; zz = -zz;
+  }  
+
+  // Get axis angles
+  // (Using E.Tchernaiev formula)
+
+  double angleX;
+  double angleY;
+  double angleZ;
+  double cosb = sqrt(xx*xx + yx*yx); 
+  if (cosb > 16*FLT_EPSILON) {
+    angleX = atan2( zy, zz);
+    angleY = atan2(-zx, cosb);
+    angleZ = atan2( yx, xx);
+  }
+  else{
+    angleX = atan2(-yz, yy);
+    angleY = atan2(-zx, cosb);
+    angleZ = 0.;
+  }
+
+  VGM::ThreeVector threeVector(3);
+  threeVector[0] = angleX;
+  threeVector[1] = angleY;
+  threeVector[2] = angleZ;
+
+  return threeVector;
+}
 
 //_____________________________________________________________________________
-Hep3Vector RootGM::GetTranslation(const TGeoMatrix* matrix)
+bool RootGM::HasReflection(const TGeoMatrix& matrix)
 {
-  HepTransform3D transform3D = Convert(matrix);
-  return BaseVGM::GetTranslation(transform3D);
-}  
+//
+/*
+  // Decompose general matrix 
+  const Double_t* rm = matrix.GetRotation()
+
+  // Matrix
+  // rm[0] * sm[0], rm[1] * sm[1], rm[2] * sm[2], tm[0]
+  // rm[3] * sm[0], rm[4] * sm[1], rm[5] * sm[2], tm[1]
+  // rm[6] * sm[0], rm[7] * sm[1], rm[8] * sm[2], tm[2]
+
+  double xx, xy, xz, dx,     // 4x3  Transformation Matrix
+         yx, yy, yz, dy,
+         zx, zy, zz, dz;
+
+  xx = rm[0]; xy = rm[1]; xz = rm[2];
+  yx = rm[3]; yy = rm[4]; yz = rm[5];
+  zx = rm[6]; zy = rm[7]; zz = rm[8];
+  dx = tm[0]; dy = tm[1]; dz = tm[2];
+  sx = sm[0]; sy = sm[1]; sz = sm[2];
+
+  // If reflection, apply it to scaleZ
+  if (xx*(yy*zz-yz*zy) - xy*(yx*zz-yz*zx) + xz*(yx*zy-yy*zx) < 0) 
+    return true;
+  else
+    return false  
+*/
+
+  return matrix.IsReflection();
+}
 
 //_____________________________________________________________________________
-HepRotation RootGM::GetRotation(const TGeoMatrix* matrix)
-{
-  HepTransform3D transform3D = Convert(matrix);
-  return BaseVGM::GetRotation(transform3D);
-}  
-
-//_____________________________________________________________________________
-HepScale3D RootGM::GetScale(const TGeoMatrix* matrix)
-{
-  HepTransform3D transform3D = Convert(matrix);
-  return BaseVGM::GetScale(transform3D);
-}  
-
-//_____________________________________________________________________________
-bool RootGM::HasReflection(const TGeoMatrix* matrix)
-{
-  HepScale3D scale = GetScale(matrix);
-  return BaseVGM::HasReflection(scale);
-}  
-
-//_____________________________________________________________________________
-VGM::Axis RootGM::GetAxis(const TGeoPatternFinder* finder)
+VGM::Axis RootGM::Axis(const TGeoPatternFinder* finder)
 {
 // Checks the finder concrete type and returns the division axis.
 // ---
@@ -270,8 +202,87 @@ VGM::Axis RootGM::GetAxis(const TGeoPatternFinder* finder)
   return  VGM::kUnknownAxis;
  }
 
+//
+// VGM -> Root
+//
+
 //_____________________________________________________________________________
-int RootGM::GetAxis(VGM::Axis axis)
+TGeoMatrix*  RootGM::CreateTranslation(VGM::ThreeVector translation)
+{
+  if (translation.size() != 3) {
+    std::cerr << "RootGM::CreateTranslation: " << std::endl;
+    std::cerr << "Wrong vector size. " << std::endl;
+    exit(1);
+  }  
+    
+  return new TGeoTranslation(translation[0] / Units::Length(), 
+                             translation[1] / Units::Length(), 
+			     translation[2] / Units::Length());
+}  
+  
+
+//_____________________________________________________________________________
+TGeoMatrix*  RootGM::CreateRotation(VGM::Rotation rotation)
+{
+  if (rotation.size() != 3) {
+    std::cerr << "RootGM::CreateRotation: " << std::endl;
+    std::cerr << "Wrong vector size. " << std::endl;
+    exit(1);
+  }  
+    
+  TGeoRotation* rootRotation = new TGeoRotation();
+  rootRotation->RotateX( - rotation[0] / Units::Angle() );
+  rootRotation->RotateY( - rotation[1] / Units::Angle() );
+  rootRotation->RotateZ( - rotation[2] / Units::Angle() );
+
+  return rootRotation;
+}  
+
+//_____________________________________________________________________________
+TGeoMatrix*  RootGM::CreateTransform(VGM::Rotation rotation,
+				     VGM::ThreeVector translation,
+                                     bool hasReflection)
+{
+
+  if (translation.size() != 3) {
+    std::cerr << "RootGM::CreateTransform: " << std::endl;
+    std::cerr << "Wrong translation vector size. " << std::endl;
+    exit(1);
+  }  
+    
+  if (rotation.size() != 3) {
+    std::cerr << "RootGM::CreateTransform: " << std::endl;
+    std::cerr << "Wrong rotation vector size. " << std::endl;
+    exit(1);
+  }  
+    
+  TGeoRotation* rootRotation = new TGeoRotation();
+  rootRotation->RotateX( - rotation[0] / Units::Angle() );
+  rootRotation->RotateY( - rotation[1] / Units::Angle() );
+  rootRotation->RotateZ( - rotation[2] / Units::Angle() );
+
+  if (hasReflection) {
+    // copy matrix in a new one
+    const Double_t* matrix = rootRotation->GetRotationMatrix();
+    Double_t matrix2[9];
+    for (Int_t i=0; i<9; i++) matrix2[i] = matrix[i];
+    
+    // apply reflectionZ to rotation matrix
+    matrix2[2] = - matrix2[2];  //xz
+    matrix2[5] = - matrix2[5];  //yz
+    matrix2[8] = - matrix2[8];  //zz
+
+    // reset matrix
+    rootRotation->SetMatrix(matrix2);
+ }
+ 
+ return new TGeoCombiTrans(translation[0] / Units::Length(),
+                           translation[1] / Units::Length(),
+                           translation[2] / Units::Length(),
+			   rootRotation);
+}
+//_____________________________________________________________________________
+int RootGM::Axis(VGM::Axis axis)
 {
 // Converts VGM axis enum to Root axis number.
 // ---
@@ -291,7 +302,7 @@ int RootGM::GetAxis(VGM::Axis axis)
 }    
 
 //_____________________________________________________________________________
-double RootGM::GetAxisUnit(VGM::Axis axis)
+double RootGM::AxisUnit(VGM::Axis axis)
 {
   switch (axis) {
     case VGM::kXAxis:    return RootGM::Units::Length(); break;
@@ -305,6 +316,10 @@ double RootGM::GetAxisUnit(VGM::Axis axis)
   }  
 }    
 
+//
+// Other functions
+//
+
 //_____________________________________________________________________________
 bool RootGM::IsDivided(const TGeoVolume* volume)
 {
@@ -317,7 +332,7 @@ bool RootGM::IsDivided(const TGeoVolume* volume)
   if (!finder) return false;
     
   // Get division axis
-  VGM::Axis axis = GetAxis(finder);
+  VGM::Axis axis = Axis(finder);
   if (axis == VGM::kUnknownAxis) return false;
   
   // Volume can be processed as VGM division

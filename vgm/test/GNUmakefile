@@ -18,11 +18,13 @@ CPPFLAGS += -I$(ROOTSYS)/include
 EXTRALIBS = $(shell root-config --glibs) -lGeomPainter -lGeom
 
 CPPFLAGS  += -I$(VGM_INSTALL)/packages/VGM/include
+CPPFLAGS  += -I$(VGM_INSTALL)/packages/ClhepVGM/include
 CPPFLAGS  += -I$(VGM_INSTALL)/packages/BaseVGM/include
 CPPFLAGS  += -I$(VGM_INSTALL)/packages/Geant4GM/include
 CPPFLAGS  += -I$(VGM_INSTALL)/packages/RootGM/include
 CPPFLAGS  += -I$(VGM_INSTALL)/packages/XmlVGM/include
-EXTRALIBS += -L$(VGM_INSTALL)/lib/$(VGM_SYSTEM) -lGeant4GM -lRootGM  -lBaseVGM -lXmlVGM
+EXTRALIBS += -L$(VGM_INSTALL)/lib/$(VGM_SYSTEM)
+EXTRALIBS += -lGeant4GM -lRootGM  -lBaseVGM -lClhepVGM -lXmlVGM
 
 include $(G4INSTALL)/config/binmake.gmk
 

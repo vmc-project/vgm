@@ -6,59 +6,32 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
+#include <iostream>
+
 #include "BaseVGM/common/utilities.h"
 
 //_____________________________________________________________________________
-Hep3Vector  BaseVGM::GetTranslation(const HepTransform3D& transform)
+VGM::ThreeVector  BaseVGM::Origin()
 {
 //
-  HepScale3D scale;
-  HepRotate3D rotation;
-  HepTranslate3D translation;
-  transform.getDecomposition(scale, rotation, translation);
+  VGM::ThreeVector threeVector(3);
+  threeVector[0] = 0.;
+  threeVector[1] = 0.;
+  threeVector[2] = 0.;
 
-  return translation.getTranslation();
-}
-    
-//_____________________________________________________________________________
-HepRotation  BaseVGM::GetRotation(const HepTransform3D& transform)
-{
-// 
-  HepScale3D scale;
-  HepRotate3D rotation;
-  HepTranslate3D translation;
-  transform.getDecomposition(scale, rotation, translation);
-
-  return rotation.getRotation();
+  return threeVector;
 }
 
 //_____________________________________________________________________________
-HepScale3D BaseVGM::GetScale(const HepTransform3D& transform)
-{    
-// 
-  HepScale3D scale;
-  HepRotate3D rotation;
-  HepTranslate3D translation;
-  transform.getDecomposition(scale, rotation, translation);
-
-  return scale;
-}
-
-//_____________________________________________________________________________
-bool BaseVGM::HasReflection(const HepTransform3D& transform)
+VGM::Rotation  BaseVGM::Identity()
 {
 //
-  return HasReflection(GetScale(transform));
-}
+  VGM::Rotation rotation(3);
+  rotation[0] = 0.;
+  rotation[1] = 0.;
+  rotation[2] = 0.;
 
-//_____________________________________________________________________________
-bool BaseVGM::HasReflection(const HepScale3D& scale)
-{
-//
-  if (scale(0,0)*scale(1,1)*scale(2,2) < 0.)
-    return true;
-  else 
-    return false;  
+  return rotation;
 }
 
 //_____________________________________________________________________________

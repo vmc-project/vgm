@@ -28,12 +28,11 @@ namespace BaseVGM {
       virtual VGM::IVolume*  Mother() const;
       virtual int            CopyNo() const = 0;
 
-      virtual HepRotation  ObjectRotation() const = 0;      
-      virtual HepRotation  FrameRotation() const;      
-      virtual Hep3Vector   ObjectTranslation() const = 0;
-      virtual Hep3Vector   FrameTranslation() const;
-      virtual bool         ReflectionZ() const = 0;
-      // add general transformation
+      virtual VGM::Rotation     ObjectRotation() const = 0;      
+      virtual VGM::Rotation     FrameRotation() const = 0; 
+      virtual VGM::ThreeVector  ObjectTranslation() const = 0;
+      virtual VGM::ThreeVector  FrameTranslation() const = 0;
+      virtual bool              ReflectionZ() const = 0;
 
       virtual bool  MultiplePlacementData(
                              VGM::Axis&  axis,

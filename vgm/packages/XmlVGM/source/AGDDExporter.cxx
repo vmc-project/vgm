@@ -7,6 +7,8 @@
 // -------------------
 // See the class description in the header file.
 
+#include "CLHEP/Vector/Rotation.h"
+
 #include "VGM/volumes/IFactory.h"
 #include "VGM/volumes/IVolume.h"
 #include "VGM/volumes/IPlacement.h"
@@ -132,7 +134,7 @@ void XmlVGM::AGDDExporter::ProcessTopVolume(VGM::IVolume* volume)
   name.append("_comp");
 
   fWriter->OpenComposition(volumeName, volume->MaterialName());
-  fWriter->WritePlacement(name, Hep3Vector());
+  fWriter->WritePlacement(name, Origin());
   fWriter->CloseComposition();	
   fWriter->WriteEmptyLine();
 }  
@@ -175,8 +177,8 @@ void XmlVGM::AGDDExporter::ProcessVolume(VGM::IVolume* volume)
     if (dPlacementType == VGM::kSimplePlacement) {
     
       // simple placement
-      Hep3Vector position = dPlacement->ObjectTranslation();
-      HepRotation rotation = dPlacement->ObjectRotation();
+      VGM::ThreeVector position = dPlacement->ObjectTranslation();
+      VGM::Rotation rotation = dPlacement->ObjectRotation();
       bool isReflection = dPlacement->ReflectionZ();
 
       if (isReflection) {
@@ -188,7 +190,12 @@ void XmlVGM::AGDDExporter::ProcessVolume(VGM::IVolume* volume)
 	                    compName, position, rotation);
       }	  
       else {
-        if (rotation.isIdentity()) {
+        HepRotation hepRotation;
+	hepRotation.rotateX(rotation[0]);
+	hepRotation.rotateY(rotation[1]);
+	hepRotation.rotateZ(rotation[2]);
+      
+        if (hepRotation.isIdentity()) {
      	  fWriter->WritePlacement(volumeName, position);
           // if volume is not leaf node place its logical volume
           if (nd>0) 

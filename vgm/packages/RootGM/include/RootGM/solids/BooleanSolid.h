@@ -11,9 +11,10 @@
 
 #include <iostream>
 
-#include "CLHEP/Vector/Rotation.h"
-#include "CLHEP/Vector/ThreeVector.h"
-#include "CLHEP/Geometry/Transform3D.h"
+#include <TGeoMatrix.h>
+
+#include "VGM/common/ThreeVector.h"
+#include "VGM/common/Rotation.h"
 
 #include "BaseVGM/solids/VBooleanSolid.h"
 
@@ -27,11 +28,7 @@ namespace RootGM {
       BooleanSolid(const std::string& name, 
                    VGM::BooleanType boolType,
                    VGM::ISolid* solidA, VGM::ISolid* solidB, 
-                   HepRotation* rotation, const Hep3Vector& translation);
-      BooleanSolid(const std::string& name, 
-                   VGM::BooleanType boolType,
-                   VGM::ISolid* solidA, VGM::ISolid* solidB, 
-                   const HepTransform3D& transform3D);
+                   TGeoMatrix* displacementB);
       BooleanSolid(TGeoCompositeShape* compositeShape);
       virtual ~BooleanSolid();
 
@@ -41,17 +38,17 @@ namespace RootGM {
       virtual VGM::BooleanType BoolType() const;
       virtual VGM::ISolid* ConstituentSolidA() const;
       virtual VGM::ISolid* ConstituentSolidB() const;
-      virtual HepRotation  DisplacementObjectRotation() const;      
-      virtual HepRotation  DisplacementFrameRotation() const;      
-      virtual Hep3Vector   DisplacementObjectTranslation() const;
-      virtual Hep3Vector   DisplacementFrameTranslation() const;
-      virtual bool         DisplacementReflectionZ() const;
+      virtual VGM::Rotation     DisplacementObjectRotation() const;      
+      virtual VGM::Rotation     DisplacementFrameRotation() const;      
+      virtual VGM::ThreeVector  DisplacementObjectTranslation() const;
+      virtual VGM::ThreeVector  DisplacementFrameTranslation() const;
+      virtual bool              DisplacementReflectionZ() const;
 
       // utility method
       static TGeoShape* GetConstituentSolid(
-                           int index, 
-                           TGeoCompositeShape* compositeShape);
-
+                                int index, 
+                                 TGeoCompositeShape* compositeShape);
+ 
     protected:
       BooleanSolid() : BaseVGM::VBooleanSolid() {}
       BooleanSolid(const BooleanSolid& rhs) : BaseVGM::VBooleanSolid(rhs) {}
@@ -63,7 +60,7 @@ namespace RootGM {
                        VGM::ISolid* solidA, VGM::ISolid* solidB,
 		       TGeoMatrix* displacementB);
 
-      HepTransform3D  Displacement() const;
+      TGeoHMatrix  Displacement() const;
   
       static const char fgkIntersectionChar; 
       static const char fgkSubtractionChar; 

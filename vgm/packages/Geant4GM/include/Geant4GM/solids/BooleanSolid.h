@@ -11,8 +11,8 @@
 
 #include <iostream>
 
-#include "CLHEP/Vector/Rotation.h"
-#include "CLHEP/Vector/ThreeVector.h"
+#include "VGM/common/Rotation.h"
+#include "VGM/common/ThreeVector.h"
 
 #include "BaseVGM/solids/VBooleanSolid.h"
 
@@ -38,11 +38,11 @@ namespace Geant4GM {
       virtual VGM::BooleanType BoolType() const;
       virtual VGM::ISolid* ConstituentSolidA() const;
       virtual VGM::ISolid* ConstituentSolidB() const;
-      virtual HepRotation  DisplacementObjectRotation() const;      
-      virtual HepRotation  DisplacementFrameRotation() const;      
-      virtual Hep3Vector   DisplacementObjectTranslation() const;
-      virtual Hep3Vector   DisplacementFrameTranslation() const;
-      virtual bool         DisplacementReflectionZ() const;
+      virtual VGM::Rotation     DisplacementObjectRotation() const;      
+      virtual VGM::Rotation     DisplacementFrameRotation() const;      
+      virtual VGM::ThreeVector  DisplacementObjectTranslation() const;
+      virtual VGM::ThreeVector  DisplacementFrameTranslation() const;
+      virtual bool              DisplacementReflectionZ() const;
 
       // utility method
       static G4VSolid* GetConstituentSolid(

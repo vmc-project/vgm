@@ -14,8 +14,6 @@
 #include <fstream>
 #include <vector>
 
-#include "CLHEP/Vector/Rotation.h"
-#include "CLHEP/Vector/ThreeVector.h"
 #include "CLHEP/Units/SystemOfUnits.h" 
 
 #include "VGM/solids/ISolid.h"
@@ -40,7 +38,7 @@ namespace XmlVGM {
 
   class AGDDWriter : public virtual IWriter
   {
-    typedef std::vector<HepRotation> RotationMatrixVector;
+    typedef std::vector<VGM::Rotation> RotationMatrixVector;
 
     public:
       AGDDWriter(std::ofstream& outFile,
@@ -84,20 +82,22 @@ namespace XmlVGM {
                             std::string materialName); 
 			    
       virtual void WritePosition(const std::string& /*name*/, 
-                            Hep3Vector /*position*/) {} 
+                            const VGM::ThreeVector& /*position*/) {} 
 			    
       virtual void WriteRotation(const std::string& name, 
-                            const HepRotation& rotation); 
+                            const VGM::Rotation& rotation); 
 
       virtual void WritePlacement(const std::string& lvName, 
-                            Hep3Vector position); 
+                            const VGM::ThreeVector& position); 
       virtual void WritePlacementWithRotation(
-                            std::string lvName, Hep3Vector position,
-   			    const HepRotation& rotation);
+                            std::string lvName, 
+			    const VGM::ThreeVector& position,
+   			    const VGM::Rotation& rotation);
 			    
       virtual void WritePlacementWithRotationAndReflection(
-                            std::string lvName, Hep3Vector position,
-                            const HepRotation& rotation); 
+                            std::string lvName, 
+			    const VGM::ThreeVector& position,
+                            const VGM::Rotation& rotation); 
 			    
       virtual void WritePlacementWithRotation(
                             const std::string& /*lvName*/, 

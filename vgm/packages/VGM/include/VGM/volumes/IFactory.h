@@ -13,11 +13,9 @@
 #include <string>
 #include <vector>
 
-#include "CLHEP/Vector/Rotation.h"
-#include "CLHEP/Vector/ThreeVector.h"
-#include "CLHEP/Geometry/Transform3D.h"
-
 #include "VGM/common/Axis.h"
+#include "VGM/common/ThreeVector.h"
+#include "VGM/common/Rotation.h"
 
 namespace VGM {
 
@@ -80,27 +78,36 @@ namespace VGM {
       // 
       virtual ISolid*  CreateIntersectionSolid(const std::string& name, 
                                ISolid* solidA, ISolid* solidB, 
-                               HepRotation* rotation, 
-			       const Hep3Vector& translation) = 0;
+                               const Rotation& rotation, 
+			       const ThreeVector& translation) = 0;
+ 
       virtual ISolid*  CreateIntersectionSolid(const std::string& name, 
-                               ISolid* solidA, ISolid* solidB,
-			       const HepTransform3D& transform3D) = 0;
+                               ISolid* solidA, ISolid* solidB, 
+                               const Rotation& rotation, 
+			       const ThreeVector& translation,
+			       bool hasReflectionZ) = 0;
 
       virtual ISolid*  CreateSubtractionSolid(const std::string& name, 
                                ISolid* solidA, ISolid* solidB, 
-                               HepRotation* rotation, 
-			       const Hep3Vector& translation) = 0;
+                               const Rotation& rotation, 
+			       const ThreeVector& translation) = 0;
+
       virtual ISolid*  CreateSubtractionSolid(const std::string& name, 
                                ISolid* solidA, ISolid* solidB, 
-			       const HepTransform3D& transform3D) = 0;
+                               const Rotation& rotation, 
+			       const ThreeVector& translation,
+			       bool hasReflectionZ) = 0;
 
       virtual ISolid*  CreateUnionSolid(const std::string& name, 
                                ISolid* solidA, ISolid* solidB, 
-                               HepRotation* rotation, 
-			       const Hep3Vector& translation) = 0;
+                               const Rotation& rotation, 
+			       const ThreeVector& translation) = 0;
+
       virtual ISolid*  CreateUnionSolid(const std::string& name, 
                                ISolid* solidA, ISolid* solidB, 
-			       const HepTransform3D& transform3D) = 0;
+                               const Rotation& rotation, 
+			       const ThreeVector& translation,
+			       bool hasReflectionZ) = 0;
 
       // volumes
       //
@@ -116,16 +123,18 @@ namespace VGM {
                                int copyNo,
                                IVolume* volume, 
 			       IVolume* motherVolume,
-                               HepRotation* rotation, 
-			       const Hep3Vector& translation) = 0;
+                               const Rotation& rotation, 
+			       const ThreeVector& translation) = 0;
 
       virtual IPlacement* CreatePlacement(
                                const std::string& name, 
                                int copyNo,
                                IVolume* volume, 
 			       IVolume* motherVolume,
-			       const HepTransform3D& transformation) = 0;
-
+                               const Rotation& rotation, 
+			       const ThreeVector& translation,
+			       bool  HasReflection) = 0;
+			       
       virtual IPlacement* CreateMultiplePlacement(
                                const std::string& name, 
                                IVolume* volume, 
@@ -145,7 +154,6 @@ namespace VGM {
       // top volume
       //
       virtual IPlacement* Top() const = 0;		       
-      virtual bool CLHEPRotations() const = 0;		       
 			       
       // access
       //
