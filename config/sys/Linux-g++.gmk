@@ -1,6 +1,6 @@
 #
 # ------ GNU/LINUX ------ gcc 2.95.2
-#
+# 
 ifeq ($(VGM_SYSTEM),Linux-g++)
   CXX       := g++
   GNU_GCC = 1
