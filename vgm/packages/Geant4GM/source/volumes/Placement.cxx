@@ -246,11 +246,11 @@ bool Geant4GM::Placement::MultiplePlacementData(
     offset = param->GetOffset();
   }  
 
+  axis = GetAxis(g4Axis);
+
   // Convert units
   offset *= ClhepVGM::Units::AxisUnit(axis);
   width  *= ClhepVGM::Units::AxisUnit(axis);
-
-  axis = GetAxis(g4Axis);
 
   return true;
 }
