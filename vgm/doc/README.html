@@ -1,0 +1,214 @@
+<html><head><title>Virtual Geometry Model</title></head><body bgcolor="white" text="black">
+<basefont face="verdana,arial,helvetica,sans-serif">
+
+ <h1> Virtual Geometry Model </h1>
+
+ <ul><li><a href="#Introduction">        Introduction</a>
+     <li><a href="#Download">            Download</a>
+     <li><a href="#Installation">        Installation, Examples</a>
+     <li><a href="#GeometryConversions"> Geometry conversions</a>
+     <li><a href="#GeometryConstruction">Geometry construction via VGM</a>
+     <li><a href="#XML">                 XML</a>
+     <li><a href="#Platforms">           Platforms</a>
+ </ul>
+    
+ <a name="Introduction"></a> 
+ <h2> Introduction </h2>
+
+ <p>  
+ The Virtual Geometry Model (VGM) has been developed as a generalization
+ of the existing convertors roottog4, g4toxml provided within 
+ <a href="http://root.cern.ch/root/vmc/VirtualMC.html"> Geant4 VMC </a>,
+ when new directions: g4toroot, roottoxml were asked by users.
+ Instead of adding other bilateral converters and multiplying
+ the implementations, the abstract layer to geometry has been defined
+ and the geometry models have been "mapped" to this generalized
+ scheme. Once this is done, the geometry objects in different models 
+ can be handled in the same way.
+ 
+ <p>  
+ In the VGM, abstract interfaces to geometry objects 
+ and an abstract factory for geometry construction, import and export are 
+ introduced. The interfaces to geometry objects were defined with the intention
+ to be suitable for desription of "geant-like" geometries with a hierarchical volume
+ structure.
+
+ <p>
+ The implementation of the VGM for a concrete geometry model represents
+ a layer between the VGM and the particular native geometry.
+ At present  this implementation is provided for the 
+ <a href="http://wwwasd.web.cern.ch/wwwasd/geant4/geant4.html"> Geant4 </a> 
+ and the 
+ <a href="http://root.cern.ch"> Root TGeo </a>
+ geometry models.
+
+ <p>
+ Using the VGM factory, geometry can first be defined independently from
+ a concrete geometry model, and then built by choosing a concrete
+ instantiation of it. Alternatively, the import function of the VGM factory
+ makes it possible to use VGM directly with native geometries (Geant4,
+ TGeo). The export functions provide conversion into other native 
+ geometries or the XML format.
+
+ <p>
+ To port a third geometry model, then providing the VGM layer for it is 
+ sufficient to obtain all the converters between this third geometry and 
+ already ported geometries (Geant4, Root, XML AGDD, GDML).
+
+ <a name="Download"></a> 
+ <h2> Download </h2>
+
+ <p> 
+ Distribution tar file:
+ 
+ <table cellspacing="0" width="80%">
+ <tbody>
+     </td><td width="20%"> 
+         <i> version 1.00 </i>
+     </td><td width="20%"> 
+         <a href="http://ivana.home.cern.ch/ivana/vgm.1.00.tar.gz"> vgm.1.00.tar.gz </a>
+     </td><td width="40%"> 
+         <i> Tested with CLHEP 1.8.1.0, <br> Root 4.00/08, Geant4 6.2 </i>
+ </td></tr></tbody></table>  
+
+ <a name="Installation"></a> 
+ <h2> Installation, Examples </h2>
+ 
+ <p>
+ The installation and testing procedures are described in detail
+ in vgm/doc/INSTALL.
+
+ <p>
+ As the test program (being written for the purpose of testing of all
+ features) is too complex, four simple examples demonstrating use
+ of VGM for converting native geometries are provided in vgm/examples.
+ A detailed guide for how to build and run the examples is included
+ in the README file in each example.
+
+ <a name="GeometryConversions"></a> 
+ <h2> Geometry conversions </h2>
+
+ <p>
+ To convert native geometry from one geometry model to another,
+ the geometry has to be first imported in the VGM (the native geometry 
+ objects are mapped to the VGM interfaces) using the concrete VGM factory 
+ for this geometry model, and then exported using the VGM factory for 
+ the other geometry model.
+ 
+ <p>
+ To convert Geant4 geometry in Root:
+ <pre>                                                  <font face="Courier" color="#00aa00">
+ #include "Geant4GM/volumes/Factory.h" 
+ #include "RootGM/volumes/Factory.h" 
+ #include "TGeoManager.h"                               
+                                                        <font color="#aa00ff"><I>
+ // Import Geant4 geometry to VGM                       </I></font>
+ Geant4GM::Factory g4Factory;
+ g4Factory.Import(physiWorld);                          <font color="#aa00ff"><I>
+      // where physiWorld is of G4VPhysicalVolume* type </I></font><font color="#aa00ff"><I>
+
+ // Export VGM geometry to Root                         </I></font>
+ RootGM::Factory rtFactory;
+ g4Factory.Export(&rtFactory);
+ gGeoManager->CloseGeometry();
+ return rtFactory.World();                              <<font color="#aa00ff"><I>
+      // returns Root top volume, of TGeoVolume* type   </I></font></font>
+ </pre>
+      
+ <p>
+ The geometry conversions between Geant4 and Root
+ geometry models are demonstrated in provided examples E01 and E02.
+
+ <a name="GeometryConstruction"></a> 
+ <h2> Geometry construction via VGM </h2>
+
+ <p>
+ The VGM interfaces can be used to define geometry independently
+ from a concrete geometry model. <br>
+ For example, the code below builds a world box volume:
+
+ <pre>                                                    <font face="Courier" color="#00aa00">
+ #include "VGM/volumes/IFactory.h"
+ using namespace VGM;
+
+ MyDetectorConstruction::Construct(VGM::IFactory* factory)
+ {                                                    
+   double wSize = 10*m;
+   GISolid* worldS
+     = factory->CreateBox("worldS", wSize, wSize, wSize); <font color="#aa00ff"><I>
+                // create the world solid                 </font></I>		
+
+   GIVolume* worldV
+     = factory->CreateVolume("worldV", worldS, "Air");    <font color="#aa00ff"><I>
+                // create the world volume                </font></I>
+
+   factory->CreatePlacement("world", 0, worldV, 0, 0, Hep3Vector());<font color="#aa00ff"><I>
+                // place the world volume                 </font></I></font>
+ }    
+ </pre>
+ 
+ Choosing the concrete factory (Geant4 or Root VGM factory)
+ will then build the geometry of the chosen model ( Geant4 or Root):
+
+ <pre>                                                    <font face="Courier" color="#00aa00">
+ #include "Geant4GM/volumes/Factory.h"
+ MyDetectorConstruction myDetectorConstruction;
+ Geant4GM::Factory theFactory;
+ myDetectorConstruction->Construct(&theFactory);          <font color="#aa00ff"><I>
+         // Geant4 geometry will be built                 </font></I>	
+ 
+ #include "RootGM/volumes/Factory.h"
+ MyDetectorConstruction myDetectorConstruction;
+ RootGM::Factory theFactory;
+ myDetectorConstruction->Construct(&theFactory);          <font color="#aa00ff"><I>
+         // Root geometry will be built                   </font></I></font>
+ </pre>
+ 
+ <a name="XML"></a> 
+ <h2> XML </h2>
+
+ <p>
+ The VGM geometry can be exported to XML in the AGDD or 
+ <a href="http://gdml.web.cern.ch/gdml"> GDML </a> 
+ format.
+ The complying with the XML schema is embedded in the VGM XML exporter
+ code itself, no external XML parser is then needed.
+
+ <pre>                                                    <font face="Courier" color="#00aa00">
+ #include "XmlVGM/AGDDExporter.h"
+ XmlVGM::AGDDExporter xmlExporter1(&theFactory);
+ xmlExporter1.GenerateXMLGeometry();                      <font color="#aa00ff"><I>
+      // Export geometry to AGDD                          </font></I> 
+                                                        
+ #include "XmlVGM/GDMLExporter.h"
+ XmlVGM::GDMLExporter xmlExporter2(&theFactory);
+ xmlExporter2.GenerateXMLGeometry();                      <font color="#aa00ff"><I> 
+      // Export geometry to GDML                          </font></I></font>
+ </pre>
+  
+ The export from native geometries (Geant4, Root) to XML
+ is demonstrated in examples E03 and E04.
+ The exported XML files (both AGDD and GDML) can be then viewed
+ with the 
+  <a href="http://hrivnac.home.cern.ch/hrivnac/Activities/Packages/GraXML">
+ GraXML tool </a>.
+
+ </p>
+
+ <a name="Platforms"></a> 
+ <h2> Platforms </h2>
+
+ <p>
+ Tested platform: Linux gcc-3.2.2 <br>
+ There are other platforms configured (SUN-CC5, DEC-cxx, HP-aCC), 
+ but they were not tested .  
+
+<hr>
+
+<p>
+
+Contact: 
+<a href="mailto:Ivana.Hrivnacova@cern.ch"> Ivana.Hrivnacova@cern.ch </a> <br>
+<i> Last update: 20/08/2004 </i>
+
+</p></body></html>
