@@ -1,0 +1,104 @@
+
+*************************************************************
+ Geant4 version $Name$   (26-October-2004)
+                      Copyright : Geant4 Collaboration
+                      Reference : NIM A 506 (2003), 250-303
+                            WWW : http://cern.ch/geant4
+*************************************************************
+
+===> VGM Root geometry, VGM Root geometry created
+Root geometry will be defined via VGM and exported to Geant4
+Top volume is worldV. Master volume is worldV
+TestBooleanSolids2 finished
+Go to export
+VGM info:   Exporting element: 
+VGM info:   Element: "HYDROGEN"  "H"  Z = 1  N = 1.00794  A = 1.00794 g/mole
+VGM info:   Exporting element: 
+VGM info:   Element: "NITROGEN"  "N"  Z = 7  N = 14.0067  A = 14.0067 g/mole
+VGM info:   Exporting element: 
+VGM info:   Element: "OXYGEN"  "O"  Z = 8  N = 15.9994  A = 15.9994 g/mole
+VGM info:   Exporting element: 
+VGM info:   Element: "ALUMINIUM"  "AL"  Z = 13  N = 26.9815  A = 26.9815 g/mole
+VGM info:   Exporting material: 
+VGM info:   Material: "Basic"  density 2.7 g/cm3  radlen 8.87561 cm  intlen 0 cm
+   0th element:   Z = 13  A = 26.9815 g/mole  fractionMass = 100 %
+VGM info:   Exporting material: 
+VGM info:   Material: "Air"  density 0.00129 g/cm3  radlen 28400.9 cm  intlen 0 cm
+   0th element:   Z = 7  A = 14.0067 g/mole  fractionMass = 70 %
+   1th element:   Z = 8  A = 15.9994 g/mole  fractionMass = 30 %
+VGM info:   Exporting material: 
+VGM info:   Material: "Vacuum"  density 1e-25 g/cm3  radlen 5.78371e+26 cm  intlen 0 cm
+   0th element:   Z = 1  A = 1.00794 g/mole  fractionMass = 100 %
+VGM info:   Exporting medium: 
+VGM info:   Medium: "Basic"  material Basic g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+VGM info:   Exporting medium: 
+VGM info:   Medium: "Air"  material Air g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+VGM info:   Exporting medium: 
+VGM info:   Medium: "Vacuum"  material Vacuum g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+VGM info:   Exporting volume store: 
+VGM info:   Exporting solid: 
+VGM info:      Box  "worldS"  hx = 10000mm  hy = 10000mm  hz = 10000mm
+VGM info:      0th volume: worldV
+VGM info:   Exporting solid: 
+VGM info:      Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
+VGM info:      1th volume: volume1
+VGM info:   Exporting solid: 
+VGM info:      Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
+VGM info:      2th volume: volume2
+VGM info:   Exporting solid: 
+VGM info:      Boolean  "solid1Isolid2S"  Intersection: 
+  ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
+  ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
+  Displacement translation (object):  (200,0,0)
+  Displacement rotation (frame):  
+   [ (    0.707107     -0.353553      0.612372)
+     (           0      0.866025           0.5)
+     (   -0.707107     -0.353553      0.612372) ]
+
+VGM info:   Exporting solid: 
+VGM info:      Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
+VGM info:   Exporting solid: 
+VGM info:      Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
+VGM info:      3th volume: solid1Isolid2V
+VGM info:   Exporting solid: 
+VGM info:      Boolean  "solid1Ssolid2S"  Subtraction: 
+  ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
+  ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
+  Displacement translation (object):  (200,0,0)
+  Displacement rotation (frame):  
+   [ (    0.707107     -0.353553      0.612372)
+     (           0      0.866025           0.5)
+     (   -0.707107     -0.353553      0.612372) ]
+
+VGM info:   Exporting solid: 
+VGM info:      Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
+VGM info:   Exporting solid: 
+VGM info:      Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
+VGM info:      4th volume: solid1Ssolid2V
+VGM info:   Exporting solid: 
+VGM info:      Boolean  "solid1Usolid2S"  Union: 
+  ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
+  ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
+  Displacement translation (object):  (200,0,0)
+  Displacement rotation (frame):  
+   [ (    0.707107     -0.353553      0.612372)
+     (           0      0.866025           0.5)
+     (   -0.707107     -0.353553      0.612372) ]
+
+VGM info:   Exporting solid: 
+VGM info:      Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
+VGM info:   Exporting solid: 
+VGM info:      Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
+VGM info:      5th volume: solid1Usolid2V
+VGM info:   ExportPlacements for 0th volume worldV
+VGM info:      0th daughter vol = solid1  simple placement: solid1
+VGM info:      1th daughter vol = solid2  simple placement: solid2
+VGM info:      2th daughter vol = solid1Isolid2  simple placement: solid1Isolid2
+VGM info:      3th daughter vol = solid1Ssolid2  simple placement: solid1Ssolid2
+VGM info:      4th daughter vol = solid1Usolid2  simple placement: solid1Usolid2
+VGM info:   ExportPlacements for 1th volume volume1
+VGM info:   ExportPlacements for 2th volume volume2
+VGM info:   ExportPlacements for 3th volume solid1Isolid2V
+VGM info:   ExportPlacements for 4th volume solid1Ssolid2V
+VGM info:   ExportPlacements for 5th volume solid1Usolid2V
+Export finished

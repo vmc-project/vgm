@@ -1,0 +1,50 @@
+
+*************************************************************
+ Geant4 version $Name$   (26-October-2004)
+                      Copyright : Geant4 Collaboration
+                      Reference : NIM A 506 (2003), 250-303
+                            WWW : http://cern.ch/geant4
+*************************************************************
+
+Geant4 geometry will be defined via VGM
+VGM info:   Importing LV: boxV_refl
+VGM info:   Importing solid: boxS_refl
+VGM info:   ImportDaughters for boxV_refl
+VGM info:   ImportPositions for lv boxV_refl nofDaughters: 0
+VGM info:   Importing LV: consV_refl
+VGM info:   Importing solid: consS_refl
+VGM info:   ImportDaughters for consV_refl
+VGM info:   ImportPositions for lv consV_refl nofDaughters: 0
+VGM info:   Importing LV: paraV_refl
+VGM info:   Importing solid: paraS_refl
+VGM info:   ImportDaughters for paraV_refl
+VGM info:   ImportPositions for lv paraV_refl nofDaughters: 0
+VGM info:   Importing LV: pconeV_refl
+VGM info:   Importing solid: pconeS_refl
+VGM info:   ImportDaughters for pconeV_refl
+VGM info:   ImportPositions for lv pconeV_refl nofDaughters: 0
+VGM info:   Importing LV: phedraV_refl
+VGM info:   Importing solid: phedraS_refl
+VGM info:   ImportDaughters for phedraV_refl
+VGM info:   ImportPositions for lv phedraV_refl nofDaughters: 0
+VGM info:   Importing LV: sphereV1_refl
+VGM info:   Importing solid: sphereS_refl
+VGM info:   ImportDaughters for sphereV1_refl
+VGM info:   ImportPositions for lv sphereV1_refl nofDaughters: 0
+VGM info:   Importing LV: torusV_refl
+VGM info:   Importing solid: torusS_refl
+VGM info:   ImportDaughters for torusV_refl
+VGM info:   ImportPositions for lv torusV_refl nofDaughters: 0
+VGM info:   Importing LV: trapV_refl
+VGM info:   Importing solid: trapS_refl
+VGM info:   ImportDaughters for trapV_refl
+VGM info:   ImportPositions for lv trapV_refl nofDaughters: 0
+VGM info:   Importing LV: trdV_refl
+VGM info:   Importing solid: trdS_refl
+VGM info:   ImportDaughters for trdV_refl
+VGM info:   ImportPositions for lv trdV_refl nofDaughters: 0
+VGM info:   Importing LV: tubsV_refl
+VGM info:   Importing solid: tubsS_refl
+VGM info:   ImportDaughters for tubsV_refl
+VGM info:   ImportPositions for lv tubsV_refl nofDaughters: 0
+TestReflections finished

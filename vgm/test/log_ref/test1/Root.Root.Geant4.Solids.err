@@ -1,0 +1,2 @@
+Warning in <TGeoManager::Init>: Deleting previous geometry: VGM Root geometry/VGM Root geometry
+Warning in <TGeoManager::dtor>: deleting previous geometry: VGM Root geometry/VGM Root geometry
