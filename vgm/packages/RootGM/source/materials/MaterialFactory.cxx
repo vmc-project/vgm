@@ -85,8 +85,11 @@ void RootGM::MaterialFactory::ImportMaterial(TGeoMaterial* material)
   // Number of elements
   Int_t nofElements = 1;
   if (material->IsMixture()) 
-    nofElements = ((TGeoMixture*)material)->GetNelements();  
+    nofElements = ((TGeoMixture*)material)->GetNelements();
 
+  // To be removed when fixed in Root
+  if (! TGeoElementTable::Instance() ) new TGeoElementTable(1);
+  
   // Import elements
   for (Int_t i=0; i<nofElements; i++) {
     TGeoElement* rootElement = material->GetElement(i);
