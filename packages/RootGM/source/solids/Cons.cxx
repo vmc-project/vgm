@@ -16,7 +16,9 @@
 RootGM::Cons::Cons(const std::string& name, 
                    double rin1, double rout1, double rin2, double rout2,
 	           double hz, double sphi, double dphi)
-  : BaseVGM::VCons(),
+  : VGM::ISolid(),
+    VGM::ICons(),
+    BaseVGM::VCons(),
     fCons(new TGeoConeSeg(name.data(), 
 			  hz         / RootGM::Units::Length(),
                           rin1       / RootGM::Units::Length(), 
@@ -34,10 +36,30 @@ RootGM::Cons::Cons(const std::string& name,
 
 //_____________________________________________________________________________
 RootGM::Cons::Cons(TGeoCone* cons)
-  : BaseVGM::VCons(),
+  : VGM::ISolid(),
+    VGM::ICons(),
+    BaseVGM::VCons(),
     fCons(cons)
 {    
   RootGM::SolidMap::Instance()->AddSolid(this, fCons); 
+}
+
+//_____________________________________________________________________________
+RootGM::Cons::Cons() 
+  : VGM::ISolid(),
+    VGM::ICons(),
+    BaseVGM::VCons() 
+{
+//
+}
+
+//_____________________________________________________________________________
+RootGM::Cons::Cons(const Cons& rhs) 
+  : VGM::ISolid(rhs),
+    VGM::ICons(rhs),
+    BaseVGM::VCons(rhs) 
+{
+//
 }
 
 //_____________________________________________________________________________

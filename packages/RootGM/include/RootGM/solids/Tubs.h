@@ -34,8 +34,8 @@ namespace RootGM {
       virtual double DeltaPhi() const;
 
     protected:
-      Tubs() : BaseVGM::VTubs() {}
-      Tubs(const Tubs& rhs) : BaseVGM::VTubs(rhs) {}
+      Tubs();
+      Tubs(const Tubs& rhs);
 
     private:
       TGeoTube* fTubs;

@@ -37,8 +37,8 @@ namespace RootGM {
       virtual double* OuterRadiusValues() const;
 
     protected:
-      Polyhedra() : BaseVGM::VPolyhedra() {}
-      Polyhedra(const Polyhedra& rhs) : BaseVGM::VPolyhedra(rhs) {}
+      Polyhedra();
+      Polyhedra(const Polyhedra& rhs);
 
     private:
       void CreateBuffers();

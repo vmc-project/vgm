@@ -36,8 +36,8 @@ namespace Geant4GM {
       virtual double ZHalfLength() const;
 
     protected:
-      Trd() : BaseVGM::VTrd() {}
-      Trd(const Trd& rhs) : BaseVGM::VTrd(rhs) {}
+      Trd();
+      Trd(const Trd& rhs);
 
     private:
       bool    fIsReflected;

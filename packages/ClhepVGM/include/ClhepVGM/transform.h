@@ -35,6 +35,6 @@ namespace ClhepVGM {
     // VGM
     //
     VGM::Transform  Inverse(const VGM::Transform& transform);
-};
+}
 
 #endif //CLHEP_VGM_TRANSFORM_H

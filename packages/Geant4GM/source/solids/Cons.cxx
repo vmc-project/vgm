@@ -20,7 +20,9 @@
 Geant4GM::Cons::Cons(const std::string& name, 
                      double rin1, double rout1, double rin2, double rout2,
 	             double hz, double sphi, double dphi)
-  : BaseVGM::VCons(),
+  : VGM::ISolid(),
+    VGM::ICons(),
+    BaseVGM::VCons(),
     fIsReflected(false),
     fCons( new G4Cons(name, 
                       rin1  / ClhepVGM::Units::Length(), 
@@ -39,7 +41,9 @@ Geant4GM::Cons::Cons(const std::string& name,
 //_____________________________________________________________________________
 Geant4GM::Cons::Cons(G4Cons* cons, 
                      G4ReflectedSolid* reflCons)
-  : BaseVGM::VCons(),
+  : VGM::ISolid(),
+    VGM::ICons(),
+    BaseVGM::VCons(),
     fIsReflected(false),
     fCons(cons)
 {    
@@ -50,6 +54,24 @@ Geant4GM::Cons::Cons(G4Cons* cons,
   else
     Geant4GM::SolidMap::Instance()->AddSolid(this, cons); 
       
+}
+
+//_____________________________________________________________________________
+Geant4GM::Cons::Cons() 
+  : VGM::ISolid(),
+    VGM::ICons(),
+    BaseVGM::VCons() 
+{
+//
+}
+
+//_____________________________________________________________________________
+Geant4GM::Cons::Cons(const Cons& rhs) 
+  : VGM::ISolid(rhs),
+    VGM::ICons(rhs),
+    BaseVGM::VCons(rhs) 
+{
+//
 }
 
 //_____________________________________________________________________________

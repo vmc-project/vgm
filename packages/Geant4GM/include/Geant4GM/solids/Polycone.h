@@ -38,8 +38,8 @@ namespace Geant4GM {
       virtual double* OuterRadiusValues() const;
 
     protected:
-      Polycone() : BaseVGM::VPolycone() {}
-      Polycone(const Polycone& rhs) : BaseVGM::VPolycone(rhs) {}
+      Polycone();
+      Polycone(const Polycone& rhs);
 
     private:
       void CreateBuffers();

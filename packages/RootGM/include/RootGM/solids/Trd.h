@@ -36,8 +36,8 @@ namespace RootGM {
       virtual double ZHalfLength() const;
 
     protected:
-      Trd() : BaseVGM::VTrd() {}
-      Trd(const Trd& rhs) : BaseVGM::VTrd(rhs) {}
+      Trd();
+      Trd(const Trd& rhs);
 
     private:
       TGeoTrd2* fTrd;

@@ -20,7 +20,9 @@
 Geant4GM::Sphere::Sphere(const std::string& name, 
                          double rin, double rout, double sphi, double dphi, 
 	                 double stheta, double dtheta)
-  : BaseVGM::VSphere(),
+  : VGM::ISolid(),
+    VGM::ISphere(),
+    BaseVGM::VSphere(),
     fIsReflected(false),
     fSphere( new G4Sphere(name, 
                           rin    / ClhepVGM::Units::Length(), 
@@ -38,7 +40,9 @@ Geant4GM::Sphere::Sphere(const std::string& name,
 //_____________________________________________________________________________
 Geant4GM::Sphere::Sphere(G4Sphere* sphere, 
                          G4ReflectedSolid* reflSphere)
-  : BaseVGM::VSphere(),
+  : VGM::ISolid(),
+    VGM::ISphere(),
+    BaseVGM::VSphere(),
     fIsReflected(false),
     fSphere(sphere)
 {    
@@ -48,6 +52,24 @@ Geant4GM::Sphere::Sphere(G4Sphere* sphere,
   }   
   else
     Geant4GM::SolidMap::Instance()->AddSolid(this, sphere); 
+}
+
+//_____________________________________________________________________________
+Geant4GM::Sphere::Sphere() 
+  : VGM::ISolid(),
+    VGM::ISphere(),
+    BaseVGM::VSphere() 
+{
+//
+}
+
+//_____________________________________________________________________________
+Geant4GM::Sphere::Sphere(const Sphere& rhs) 
+  : VGM::ISolid(rhs),
+    VGM::ISphere(rhs),
+    BaseVGM::VSphere(rhs) 
+{
+//
 }
 
 //_____________________________________________________________________________

@@ -20,7 +20,8 @@
 RootGM::Volume::Volume(const std::string& name,
                        VGM::ISolid* solid, 
                        const std::string& mediumName) 
-  : BaseVGM::VVolume(solid),
+  : VGM::IVolume(),
+    BaseVGM::VVolume(solid),
     fGeoVolume(0) {
 //
 
@@ -46,12 +47,29 @@ RootGM::Volume::Volume(const std::string& name,
 
 //_____________________________________________________________________________
 RootGM::Volume::Volume(VGM::ISolid* solid, TGeoVolume* volume)
-  : BaseVGM::VVolume(solid),
+  : VGM::IVolume(),
+    BaseVGM::VVolume(solid),
     fGeoVolume(volume)
 {
   // Register logical volume in the map
   RootGM::VolumeMap::Instance()->AddVolume(this, fGeoVolume); 
 }  
+
+//_____________________________________________________________________________
+RootGM::Volume::Volume() 
+  : VGM::IVolume(),
+    BaseVGM::VVolume() 
+{
+//
+}
+
+//_____________________________________________________________________________
+RootGM::Volume::Volume(const Volume& rhs) 
+  : VGM::IVolume(rhs),
+    BaseVGM::VVolume(rhs) 
+{
+//
+}      
 
 //_____________________________________________________________________________
 RootGM::Volume::~Volume() {

@@ -27,7 +27,9 @@ Geant4GM::Polyhedra::Polyhedra(
                          const std::string& name, 
                          double sphi, double dphi, int nofSides, int nofZplanes,
                          double* z, double* rin, double* rout)
-  : BaseVGM::VPolyhedra(),
+  : VGM::ISolid(),
+    VGM::IPolyhedra(),
+    BaseVGM::VPolyhedra(),
     fIsReflected(false),
     fZValuesRefl(0),
     fPolyhedra(0)
@@ -64,7 +66,9 @@ Geant4GM::Polyhedra::Polyhedra(
 Geant4GM::Polyhedra::Polyhedra(
                          G4Polyhedra* phedra, 
 			 G4ReflectedSolid* reflPhedra)
-  : BaseVGM::VPolyhedra(),
+  : VGM::ISolid(),
+    VGM::IPolyhedra(),
+    BaseVGM::VPolyhedra(),
     fIsReflected(false),
     fZValuesRefl(0),
     fPolyhedra(phedra)
@@ -82,6 +86,24 @@ Geant4GM::Polyhedra::Polyhedra(
     Geant4GM::SolidMap::Instance()->AddSolid(this, phedra); 
 
   CreateBuffers();
+}
+
+//_____________________________________________________________________________
+Geant4GM::Polyhedra::Polyhedra() 
+  : VGM::ISolid(),
+    VGM::IPolyhedra(),
+    BaseVGM::VPolyhedra() 
+{
+//
+}
+
+//_____________________________________________________________________________
+Geant4GM::Polyhedra::Polyhedra(const Polyhedra& rhs) 
+  : VGM::ISolid(rhs),
+    VGM::IPolyhedra(rhs),
+    BaseVGM::VPolyhedra(rhs) 
+{
+//
 }
 
 //_____________________________________________________________________________

@@ -13,7 +13,9 @@
 //_____________________________________________________________________________
 RootGM::Box::Box(const std::string& name, 
                  double hx, double hy, double hz)
-  : BaseVGM::VBox(),
+  : VGM::ISolid(),
+    VGM::IBox(),
+    BaseVGM::VBox(),
     fBox(new TGeoBBox(name.data(), 
                       hx / RootGM::Units::Length(), 
 		      hy / RootGM::Units::Length(), 
@@ -26,10 +28,30 @@ RootGM::Box::Box(const std::string& name,
 
 //_____________________________________________________________________________
 RootGM::Box::Box(TGeoBBox* box)
-  : BaseVGM::VBox(),
+  : VGM::ISolid(),
+    VGM::IBox(),
+    BaseVGM::VBox(),
     fBox(box)
 {    
   RootGM::SolidMap::Instance()->AddSolid(this, fBox); 
+}
+
+//_____________________________________________________________________________
+RootGM::Box::Box() 
+  : VGM::ISolid(),
+    VGM::IBox(),
+    BaseVGM::VBox() 
+{
+//
+}
+
+//_____________________________________________________________________________
+RootGM::Box::Box(const Box& rhs) 
+  : VGM::ISolid(rhs),
+    VGM::IBox(rhs),
+    BaseVGM::VBox(rhs) 
+{
+//
 }
 
 //_____________________________________________________________________________

@@ -13,6 +13,6 @@ namespace BaseVGM {
 
     // Debug printing 
     void  DebugInfo();
-};
+}
 
 #endif //BASE_VGM_UTILITIES_H

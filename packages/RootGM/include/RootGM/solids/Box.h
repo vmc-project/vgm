@@ -31,8 +31,8 @@ namespace RootGM {
       virtual double ZHalfLength() const;
 
     protected:
-      Box() : BaseVGM::VBox() {}
-      Box(const Box& rhs) : BaseVGM::VBox(rhs) {}
+      Box();
+      Box(const Box& rhs);
     
     private:
       TGeoBBox*  fBox;

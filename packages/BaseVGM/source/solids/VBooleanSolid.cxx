@@ -6,6 +6,8 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
+#include <math.h>
+
 #include "BaseVGM/solids/VBooleanSolid.h"
 
 //_____________________________________________________________________________

@@ -22,13 +22,22 @@
 
 //_____________________________________________________________________________
 RootGM::MaterialFactory::MaterialFactory()
-  : BaseVGM::VMaterialFactory("Root_GM_Material_Factory")
+  : VGM::IMaterialFactory(),
+    BaseVGM::VMaterialFactory("Root_GM_Material_Factory")
 {  
 //
   
   if (!gGeoManager)
     new TGeoManager("VGM Root geometry", "VGM Root geometry");  
 }
+
+//_____________________________________________________________________________
+RootGM::MaterialFactory::MaterialFactory(const MaterialFactory& rhs) 
+  : VGM::IMaterialFactory(rhs),
+    BaseVGM::VMaterialFactory(rhs) 
+{
+//
+} 
 
 //_____________________________________________________________________________
 RootGM::MaterialFactory::~MaterialFactory() {

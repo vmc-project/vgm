@@ -14,7 +14,9 @@
 RootGM::Tubs::Tubs(const std::string& name, 
                    double rin, double rout, double hz,
 		   double sphi, double dphi)
-  : BaseVGM::VTubs(),
+  : VGM::ISolid(),
+    VGM::ITubs(),
+    BaseVGM::VTubs(),
     fTubs(new TGeoTubeSeg(name.data(), 
                           rin         / RootGM::Units::Length(), 
 			  rout        / RootGM::Units::Length(), 
@@ -29,10 +31,30 @@ RootGM::Tubs::Tubs(const std::string& name,
 
 //_____________________________________________________________________________
 RootGM::Tubs::Tubs(TGeoTube* tubs)
-  : BaseVGM::VTubs(),
+  : VGM::ISolid(),
+    VGM::ITubs(),
+    BaseVGM::VTubs(),
     fTubs(tubs)
 {    
   RootGM::SolidMap::Instance()->AddSolid(this, fTubs); 
+}
+
+//_____________________________________________________________________________
+RootGM::Tubs::Tubs() 
+  : VGM::ISolid(),
+    VGM::ITubs(),
+    BaseVGM::VTubs() 
+{
+//
+}
+
+//_____________________________________________________________________________
+RootGM::Tubs::Tubs(const Tubs& rhs) 
+  : VGM::ISolid(rhs),
+    VGM::ITubs(rhs),
+    BaseVGM::VTubs(rhs) 
+{
+//
 }
 
 //_____________________________________________________________________________

@@ -15,7 +15,9 @@ RootGM::Trap::Trap(const std::string& name,
                    double hz, double theta, double phi,
                    double dy1, double dx1, double dx2, double alpha1, 
                    double dy2, double dx3, double dx4, double alpha2 )
-  : BaseVGM::VTrap(),
+  : VGM::ISolid(),
+    VGM::ITrap(),
+    BaseVGM::VTrap(),
     fTrap(new TGeoTrap(name.data(), 
                        hz     / RootGM::Units::Length(), 
 		       theta  / RootGM::Units::Angle(), 
@@ -36,10 +38,30 @@ RootGM::Trap::Trap(const std::string& name,
 
 //_____________________________________________________________________________
 RootGM::Trap::Trap(TGeoTrap* trap)
-  : BaseVGM::VTrap(),
+  : VGM::ISolid(),
+    VGM::ITrap(),
+    BaseVGM::VTrap(),
     fTrap(trap)
 {    
   RootGM::SolidMap::Instance()->AddSolid(this, fTrap); 
+}
+
+//_____________________________________________________________________________
+RootGM::Trap::Trap() 
+  : VGM::ISolid(),
+    VGM::ITrap(),
+    BaseVGM::VTrap() 
+{
+//
+}
+
+//_____________________________________________________________________________
+RootGM::Trap::Trap(const Trap& rhs) 
+  : VGM::ISolid(rhs),
+    VGM::ITrap(rhs),
+    BaseVGM::VTrap(rhs) 
+{
+//
 }
 
 //_____________________________________________________________________________

@@ -24,7 +24,9 @@ Geant4GM::BooleanSolid::BooleanSolid(
                             VGM::ISolid* solidA, VGM::ISolid* solidB, 
                             HepRotation* rotation, 
 			    const Hep3Vector& translation)
-  : BaseVGM::VBooleanSolid(),
+  : VGM::ISolid(), 
+    VGM::IBooleanSolid(),
+    BaseVGM::VBooleanSolid(),
     fBooleanSolid(0) 
 {
 //  
@@ -62,11 +64,31 @@ Geant4GM::BooleanSolid::BooleanSolid(
 
 //_____________________________________________________________________________
 Geant4GM::BooleanSolid::BooleanSolid(G4BooleanSolid* booleanSolid)
-  : BaseVGM::VBooleanSolid(),
+  : VGM::ISolid(), 
+    VGM::IBooleanSolid(),
+    BaseVGM::VBooleanSolid(),
     fBooleanSolid(booleanSolid) 
 {
 //  
   Geant4GM::SolidMap::Instance()->AddSolid(this, fBooleanSolid); 
+}
+
+//_____________________________________________________________________________
+Geant4GM::BooleanSolid::BooleanSolid() 
+  : VGM::ISolid(), 
+    VGM::IBooleanSolid(),
+    BaseVGM::VBooleanSolid() 
+{
+//
+}
+
+//_____________________________________________________________________________
+Geant4GM::BooleanSolid::BooleanSolid(const BooleanSolid& rhs) 
+  : VGM::ISolid(rhs), 
+    VGM::IBooleanSolid(rhs),
+    BaseVGM::VBooleanSolid(rhs) 
+{
+//
 }
 
 //_____________________________________________________________________________

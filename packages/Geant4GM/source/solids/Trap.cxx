@@ -24,7 +24,9 @@ Geant4GM::Trap::Trap(const std::string& name,
                      double hz, double theta, double phi,
                      double dy1, double dx1, double dx2, double alpha1, 
                      double dy2, double dx3, double dx4, double alpha2)
-  : BaseVGM::VTrap(),
+  : VGM::ISolid(),
+    VGM::ITrap(),
+    BaseVGM::VTrap(),
     fIsReflected(false),
     fTrap(new G4Trap(name, 
                      hz     / ClhepVGM::Units::Length(), 
@@ -47,7 +49,9 @@ Geant4GM::Trap::Trap(const std::string& name,
 //_____________________________________________________________________________
 Geant4GM::Trap::Trap(G4Trap* trap, 
                      G4ReflectedSolid* reflTrap)
-  : BaseVGM::VTrap(),
+  : VGM::ISolid(),
+    VGM::ITrap(),
+    BaseVGM::VTrap(),
     fIsReflected(false),
     fTrap(trap)
 {    
@@ -57,6 +61,24 @@ Geant4GM::Trap::Trap(G4Trap* trap,
   }  
   else   
     Geant4GM::SolidMap::Instance()->AddSolid(this, trap);
+}
+
+//_____________________________________________________________________________
+Geant4GM::Trap::Trap() 
+  : VGM::ISolid(),
+    VGM::ITrap(),
+    BaseVGM::VTrap() 
+{
+//
+}
+
+//_____________________________________________________________________________
+Geant4GM::Trap::Trap(const Trap& rhs) 
+  : VGM::ISolid(rhs),
+    VGM::ITrap(rhs),
+    BaseVGM::VTrap(rhs) 
+{
+//
 }
 
 //_____________________________________________________________________________

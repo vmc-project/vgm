@@ -22,7 +22,16 @@
 
 //_____________________________________________________________________________
 Geant4GM::MaterialFactory::MaterialFactory()
-  : BaseVGM::VMaterialFactory("Geant4_GM_Material_Factory")
+  : VGM::IMaterialFactory(),
+    BaseVGM::VMaterialFactory("Geant4_GM_Material_Factory")
+{  
+//
+}
+
+//_____________________________________________________________________________
+Geant4GM::MaterialFactory::MaterialFactory(const MaterialFactory& rhs)
+  : VGM::IMaterialFactory(rhs),
+    BaseVGM::VMaterialFactory(rhs)
 {  
 //
 }

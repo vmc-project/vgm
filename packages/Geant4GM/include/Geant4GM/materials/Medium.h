@@ -33,8 +33,8 @@ namespace Geant4GM {
       virtual double  Parameter(int i) const;
 
     protected:  
-      Medium() : BaseVGM::VMedium() {}  
-      Medium(const Medium& rhs) : BaseVGM::VMedium(rhs) {}
+      Medium();
+      Medium(const Medium& rhs); 
     
     private:
       void CheckIndex(int iel) const;

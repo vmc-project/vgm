@@ -13,7 +13,9 @@
 //_____________________________________________________________________________
 RootGM::Trd::Trd(const std::string& name, 
                  double hx1, double hx2, double hy1, double hy2, double hz)
-  : BaseVGM::VTrd(),
+  : VGM::ISolid(),
+    VGM::ITrd(),
+    BaseVGM::VTrd(),
     fTrd(new TGeoTrd2(name.data(), 
                       hx1 / RootGM::Units::Length(), 
 		      hx2 / RootGM::Units::Length(), 
@@ -29,7 +31,9 @@ RootGM::Trd::Trd(const std::string& name,
 
 //_____________________________________________________________________________
 RootGM::Trd::Trd(TGeoTrd2* trd)
-  : BaseVGM::VTrd(),
+  : VGM::ISolid(),
+    VGM::ITrd(),
+    BaseVGM::VTrd(),
     fTrd(trd),
     fIsOwner(false)
 {    
@@ -38,7 +42,9 @@ RootGM::Trd::Trd(TGeoTrd2* trd)
 
 //_____________________________________________________________________________
 RootGM::Trd::Trd(TGeoTrd1* trd)
-  : BaseVGM::VTrd(),
+  : VGM::ISolid(),
+    VGM::ITrd(),
+    BaseVGM::VTrd(),
     fTrd(new TGeoTrd2(trd->GetName(), 
                       trd->GetDx1(), trd->GetDx2(),
 		      trd->GetDy(), trd->GetDy(), 
@@ -47,6 +53,24 @@ RootGM::Trd::Trd(TGeoTrd1* trd)
 		      
 {    
   RootGM::SolidMap::Instance()->AddSolid(this, trd); 
+}
+
+//_____________________________________________________________________________
+RootGM::Trd::Trd() 
+  : VGM::ISolid(),
+    VGM::ITrd(),
+    BaseVGM::VTrd() 
+{
+//
+}
+
+//_____________________________________________________________________________
+RootGM::Trd::Trd(const Trd& rhs) 
+  : VGM::ISolid(rhs),
+    VGM::ITrd(rhs),
+    BaseVGM::VTrd(rhs) 
+{
+//
 }
 
 //_____________________________________________________________________________

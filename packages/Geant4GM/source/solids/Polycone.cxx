@@ -26,7 +26,9 @@ Geant4GM::Polycone::Polycone(
                         const std::string& name, 
                         double sphi, double dphi, int nofZplanes,
                         double* z, double* rin, double* rout)
-  : BaseVGM::VPolycone(),
+  : VGM::ISolid(),
+    VGM::IPolycone(),
+    BaseVGM::VPolycone(),
     fIsReflected(false),
     fZValuesRefl(0),
     fPolycone(0)
@@ -64,7 +66,9 @@ Geant4GM::Polycone::Polycone(
 Geant4GM::Polycone::Polycone(
                         G4Polycone* polycone,
                         G4ReflectedSolid* reflPolycone)
-  : BaseVGM::VPolycone(),
+  : VGM::ISolid(),
+    VGM::IPolycone(),
+    BaseVGM::VPolycone(),
     fIsReflected(false),
     fZValuesRefl(0),
     fPolycone(polycone)
@@ -82,6 +86,24 @@ Geant4GM::Polycone::Polycone(
     Geant4GM::SolidMap::Instance()->AddSolid(this, polycone); 
 
   CreateBuffers();
+}
+
+//_____________________________________________________________________________
+Geant4GM::Polycone::Polycone() 
+  : VGM::ISolid(),
+    VGM::IPolycone(),
+    BaseVGM::VPolycone() 
+{
+//
+}
+
+//_____________________________________________________________________________
+Geant4GM::Polycone::Polycone(const Polycone& rhs) 
+  : VGM::ISolid(rhs),
+    VGM::IPolycone(rhs),
+    BaseVGM::VPolycone(rhs) 
+{
+//
 }
 
 //_____________________________________________________________________________

@@ -22,7 +22,8 @@ Geant4GM::Medium::Medium(const std::string& name,
                          int mediumId,
                          VGM::IMaterial* material,
                          int nofParameters, double* parameters)
-  : BaseVGM::VMedium(material),
+  : VGM::IMedium(),
+    BaseVGM::VMedium(material),
     fName(name),
     fMaterial(MaterialMap::Instance()->GetMaterial(material)), 
     fId(mediumId),
@@ -36,6 +37,22 @@ Geant4GM::Medium::Medium(const std::string& name,
   }   
 }
 			   
+//_____________________________________________________________________________
+Geant4GM::Medium::Medium() 
+  : VGM::IMedium(),
+    BaseVGM::VMedium() 
+{
+//
+}  
+
+//_____________________________________________________________________________
+Geant4GM::Medium::Medium(const Medium& rhs) 
+  : VGM::IMedium(rhs),
+    BaseVGM::VMedium(rhs) 
+{
+//
+}
+    
 //_____________________________________________________________________________
 Geant4GM::Medium::~Medium() {
 //

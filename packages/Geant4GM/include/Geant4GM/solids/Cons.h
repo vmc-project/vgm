@@ -39,8 +39,8 @@ namespace Geant4GM {
       virtual double DeltaPhi() const;
 
     protected:
-      Cons() : BaseVGM::VCons() {}
-      Cons(const Cons& rhs) : BaseVGM::VCons(rhs) {}
+      Cons();
+      Cons(const Cons& rhs);
  
     private:
       bool    fIsReflected;

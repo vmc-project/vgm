@@ -52,8 +52,7 @@ namespace Geant4GM {
       virtual bool Import();			       
  
     protected:
-      MaterialFactory(const MaterialFactory& rhs) 
-        : BaseVGM::VMaterialFactory(rhs) {} 
+      MaterialFactory(const MaterialFactory& rhs);
     
     private:
       // methods

@@ -52,9 +52,9 @@ namespace Geant4GM {
                            double&  offset) const;
 
     protected:
-      Placement(const Placement& rhs) : BaseVGM::VPlacement(rhs) {}
-      Placement() : BaseVGM::VPlacement() {}
-
+      Placement();
+      Placement(const Placement& rhs);
+      
     private:
       EAxis GetAxis(VGM::Axis axis) const;
       VGM::Axis GetAxis(EAxis axis) const;
