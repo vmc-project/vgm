@@ -11,10 +11,9 @@
 
 #include <string>
 
-#include "CLHEP/Vector/Rotation.h"
-#include "CLHEP/Vector/ThreeVector.h"
-
 #include "VGM/common/Axis.h"
+#include "VGM/common/ThreeVector.h"
+#include "VGM/common/Rotation.h"
 
 namespace VGM {
 
@@ -40,10 +39,10 @@ namespace VGM {
       virtual IVolume*     Mother() const = 0;
       virtual int          CopyNo() const = 0;
 
-      virtual HepRotation  ObjectRotation() const = 0;      
-      virtual HepRotation  FrameRotation() const = 0;      
-      virtual Hep3Vector   ObjectTranslation() const = 0;
-      virtual Hep3Vector   FrameTranslation() const = 0;
+      virtual Rotation     ObjectRotation() const = 0;      
+      virtual Rotation     FrameRotation() const = 0;      
+      virtual ThreeVector  ObjectTranslation() const = 0;
+      virtual ThreeVector  FrameTranslation() const = 0;
       virtual bool         ReflectionZ() const = 0;
 
       virtual bool  MultiplePlacementData(

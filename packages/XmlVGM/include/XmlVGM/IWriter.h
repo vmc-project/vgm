@@ -12,10 +12,9 @@
 
 #include <string>
 
-#include "CLHEP/Vector/Rotation.h"
-#include "CLHEP/Vector/ThreeVector.h"
-
 #include "VGM/common/Axis.h"
+#include "VGM/common/Rotation.h"
+#include "VGM/common/ThreeVector.h"
 
 class VGM::IElement;
 class VGM::IMaterial;
@@ -58,20 +57,22 @@ namespace XmlVGM {
       virtual void WriteSolid(std::string lvName, const VGM::ISolid* solid, 
                             std::string materialName) = 0; 
       virtual void WritePosition(const std::string& name, 
-                            Hep3Vector position) = 0; 
+                            const VGM::ThreeVector& position) = 0; 
       virtual void WriteRotation(const std::string& name, 
-                            const HepRotation& rotation) = 0; 
+                            const VGM::Rotation& rotation) = 0; 
 
       virtual void WritePlacement(const std::string& lvName, 
-                            Hep3Vector position) = 0; 
+                            const VGM::ThreeVector& position) = 0; 
       virtual void WritePlacementWithRotation(
-                            std::string lvName, Hep3Vector position,
-                            const HepRotation& rotation) = 0; 
+                            std::string lvName, 
+			    const VGM::ThreeVector& position,
+                            const VGM::Rotation& rotation) = 0; 
       virtual void WritePlacementWithRotationAndReflection(
-                            std::string lvName, Hep3Vector position,
-                            const HepRotation& rotation) = 0; 
+                            std::string lvName, 
+			    const VGM::ThreeVector& position,
+                            const VGM::Rotation& rotation) = 0; 
       virtual void WritePlacementWithRotation(
-                             const std::string& lvName, 
+                            const std::string& lvName, 
 			    const std::string& positionRef,
 			    const std::string& rotationRef) = 0; 
       virtual void WriteMultiplePlacement(

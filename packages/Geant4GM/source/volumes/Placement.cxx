@@ -18,6 +18,8 @@
 #include "VGM/solids/IPolyhedra.h"
 #include "VGM/solids/ITubs.h"
 
+#include "ClhepVGM/utilities.h"
+
 #include "Geant4GM/volumes/Placement.h"
 #include "Geant4GM/volumes/VolumeMap.h"
 #include "Geant4GM/volumes/PlacementMap.h"
@@ -157,17 +159,35 @@ int Geant4GM::Placement::CopyNo() const
 }  
 
 //_____________________________________________________________________________
-HepRotation Geant4GM::Placement::ObjectRotation() const
+VGM::Rotation 
+Geant4GM::Placement::ObjectRotation() const
 {
 //
-  return  *fPhysicalVolume->GetObjectRotation();
+  return  ClhepVGM::Rotation(*fPhysicalVolume->GetObjectRotation());
 }  
     
 //_____________________________________________________________________________
-Hep3Vector Geant4GM::Placement::ObjectTranslation() const 
+VGM::Rotation 
+Geant4GM::Placement::FrameRotation() const
 {
 //
-  return fPhysicalVolume->GetObjectTranslation();
+  return ClhepVGM::Rotation((*fPhysicalVolume->GetObjectRotation()).inverse());
+}  
+    
+//_____________________________________________________________________________
+VGM::ThreeVector 
+Geant4GM::Placement::ObjectTranslation() const 
+{
+//
+  return  ClhepVGM::Translation(fPhysicalVolume->GetObjectTranslation());
+}
+
+//_____________________________________________________________________________
+VGM::ThreeVector 
+Geant4GM::Placement::FrameTranslation() const 
+{
+//
+  return  ClhepVGM::Translation(- fPhysicalVolume->GetObjectTranslation());
 }
 
 //_____________________________________________________________________________

@@ -1112,15 +1112,15 @@ void XmlVGM::GDMLWriter::WriteSolid(
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WritePosition(
                               const std::string& name, 
-                              Hep3Vector position) 
+                              const VGM::ThreeVector& position) 
 {
 // Writes position element with a given name. 
 // ---
 
   // get parameters
-  double x = position.x()/LengthUnit();
-  double y = position.y()/LengthUnit();
-  double z = position.z()/LengthUnit();
+  double x = position[0]/LengthUnit();
+  double y = position[1]/LengthUnit();
+  double z = position[2]/LengthUnit();
 
   // compose element string template
   std::string quota1 = "\"";
@@ -1146,32 +1146,15 @@ void XmlVGM::GDMLWriter::WritePosition(
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteRotation(
                               const std::string& name, 
-                              const HepRotation& rotation)
+                              const VGM::Rotation& rotation)
 {
 // Writes rotation element with a given name. 
 // ---
 
   // Get parameters
-  // (Using E.Tchernaiev formula)
-  double angleX;
-  double angleY;
-  double angleZ;
-  double cosb = sqrt(rotation.xx()*rotation.xx() + rotation.yx()*rotation.yx()); 
-  if (cosb > 16*FLT_EPSILON) {
-    angleX = atan2( rotation.zy(), rotation.zz());
-    angleY = atan2(-rotation.zx(), cosb);
-    angleZ = atan2( rotation.yx(), rotation.xx());
-  }
-  else{
-    angleX = atan2(-rotation.yz(), rotation.yy());
-    angleY = atan2(-rotation.zx(), cosb);
-    angleZ = 0.;
-  }
-
-  // Apply units
-  angleX /= AngleUnit();
-  angleY /= AngleUnit();
-  angleZ /= AngleUnit();
+  double angleX = rotation[0] / AngleUnit();
+  double angleY = rotation[1] / AngleUnit();
+  double angleZ = rotation[2] / AngleUnit();
 
   // Compose element string template
   std::string quota1 = "\"";
@@ -1193,45 +1176,6 @@ void XmlVGM::GDMLWriter::WriteRotation(
 
   fOutFile << element5 << std::endl;
 }  
-
-/*
-//_____________________________________________________________________________
-void XmlVGM::GDMLWriter::WriteRotation(
-                              const std::string& name, 
-                              const HepRotation& rotation)
-{
-// Writes rotation element with a given name. 
-// (Euler angles)
-// ---
-
-  // Get parameters
-  // Writes Euler angles now;
-  // should be axis angles - to be clarified
-  double phi = rotation.getPhi()/ AngleUnit();
-  double theta = rotation.getTheta()/ AngleUnit();
-  double psi = rotation.getPsi()/ AngleUnit();
-
-  // Compose element string template
-  std::string quota1 = "\"";
-  std::string quota2 = "\"  ";
-  std::string element1 = "<rotation  name=";
-  Append(element1, 12, quota1 + name + quota2);
-
-  std::string element2 = "x=\"";
-  std::string element3 = "y=\"";
-  std::string element4 = "z=\"";
-  std::string element5 = "\"  unit=\"degree\" />";
-  
-  // Write element
-  fOutFile << fIndention << element1;
-
-  SmartPut(fOutFile, fNW+1, fNP, element2, phi, quota2);
-  SmartPut(fOutFile, fNW+1, fNP, element3, theta, quota2);
-  SmartPut(fOutFile, fNW+1, fNP, element4, psi, "");
-
-  fOutFile << element5 << std::endl;
-}  
-*/
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WritePlacementWithRotation(

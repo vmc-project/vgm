@@ -49,20 +49,6 @@ VGM::IVolume* BaseVGM::VPlacement::Mother() const
 }  
 
 //_____________________________________________________________________________
-HepRotation BaseVGM::VPlacement::FrameRotation() const
-{
-//
-  return ObjectRotation().inverse();
-}        
-
-//_____________________________________________________________________________
-Hep3Vector BaseVGM::VPlacement::FrameTranslation() const
-{
-//
-  return -ObjectTranslation();
-}  
-        
-//_____________________________________________________________________________
 void BaseVGM::VPlacement::SetVolume(VGM::IVolume* volume)
 {
 //

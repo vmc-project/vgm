@@ -5,6 +5,12 @@ MAKEFLAGS= --no-print-directory
 
 SUBDIR = BaseVGM/source XmlVGM/source
 
+ifeq ($(VGM_NO_CLHEP),)
+ifneq ($(CLHEP_BASE_DIR),)
+SUBDIR += ClhepVGM/source
+endif
+endif
+
 ifeq ($(VGM_NO_GEANT4),)
 ifneq ($(G4INSTALL),)
 SUBDIR += Geant4GM/source

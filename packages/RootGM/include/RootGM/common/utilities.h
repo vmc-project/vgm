@@ -1,45 +1,42 @@
 // $Id$
 //
-// Utilities
+// BaseVGM utilities
 // --------------
-// Functions for conversion between Root and VGM basic elements
+// Utility functions 
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef ROOT_GM_UTILITIES_H
 #define ROOT_GM_UTILITIES_H
 
-#include <string>
-
-#include "CLHEP/Vector/Rotation.h"
-#include "CLHEP/Vector/ThreeVector.h"
-#include "CLHEP/Geometry/Transform3D.h"
-
 #include "VGM/common/Axis.h"
+#include "VGM/common/ThreeVector.h"
+#include "VGM/common/Rotation.h"
 
 class TGeoMatrix;
-class TGeoVolume;
 class TGeoPatternFinder;
 
 namespace RootGM {
 
-    // CLHEP -> Root conversion
+    // Root -> VGM
     //
-    TGeoMatrix*    Convert(HepRotation* rotation, 
-                           const Hep3Vector& translation);
-    TGeoMatrix*    Convert(const HepTransform3D& transformation);  
-
-    // Root -> CLHEP conversion
+    VGM::ThreeVector  Translation(const TGeoMatrix& matrix);
+    VGM::Rotation     Rotation(const TGeoMatrix& matrix);
+    bool              HasReflection(const TGeoMatrix& matrix);
+    VGM::Axis         Axis(const TGeoPatternFinder* finder);
+    
+    // VGM -> Root
     //
-    HepTransform3D Convert(const TGeoMatrix* matrix);  
-    Hep3Vector     GetTranslation(const TGeoMatrix* matrix);
-    HepRotation    GetRotation(const TGeoMatrix* matrix);
-    HepScale3D     GetScale(const TGeoMatrix* matrix);
-    bool           HasReflection(const TGeoMatrix* matrix);
 
-    int        GetAxis(VGM::Axis axis);
-    double     GetAxisUnit(VGM::Axis axis);
-    VGM::Axis  GetAxis(const TGeoPatternFinder* finder);
+    TGeoMatrix*   CreateTranslation(VGM::ThreeVector translation);
+    TGeoMatrix*   CreateRotation(VGM::Rotation rotation);
+    TGeoMatrix*   CreateTransform(VGM::Rotation rotation,
+			          VGM::ThreeVector translation,
+                                  bool hasReflection);
+    int           Axis(VGM::Axis axis);
+    double        AxisUnit(VGM::Axis axis);
+
+    // Other functions
 
     bool IsDivided(const TGeoVolume* mother);
 };

@@ -47,9 +47,11 @@ namespace Geant4GM {
       virtual std::string  Name() const;
       virtual int          CopyNo() const;
 
-      virtual HepRotation  ObjectRotation() const;      
-      virtual Hep3Vector   ObjectTranslation() const;
-      virtual bool         ReflectionZ() const;
+      virtual VGM::Rotation     ObjectRotation() const;      
+      virtual VGM::Rotation     FrameRotation() const;      
+      virtual VGM::ThreeVector  ObjectTranslation() const;
+      virtual VGM::ThreeVector  FrameTranslation() const;
+      virtual bool              ReflectionZ() const;
 
       virtual bool  MultiplePlacementData(
                            VGM::Axis&  axis,

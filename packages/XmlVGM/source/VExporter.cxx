@@ -129,7 +129,8 @@ double XmlVGM::VExporter::Round(double number) const
 }
 
 //_____________________________________________________________________________
-std::string XmlVGM::VExporter::AddPositionToMap(Hep3Vector position)
+std::string 
+XmlVGM::VExporter::AddPositionToMap(const VGM::Rotation& position)
 {
 // Check if the specified position is not yet present (within the precision
 // of the convertor) and add it to the map.
@@ -137,10 +138,10 @@ std::string XmlVGM::VExporter::AddPositionToMap(Hep3Vector position)
 // or empty string (if not added).
 // ---
 
-  double x = position.x()/ fWriter->LengthUnit();
-  double y = position.y()/ fWriter->LengthUnit();
-  double z = position.z()/ fWriter->LengthUnit();
-  Hep3Vector roundedPosition(Round(x), Round(y), Round(z));
+  VGM::ThreeVector roundedPosition(3);
+  roundedPosition[0] = Round(position[0]/ fWriter->LengthUnit());
+  roundedPosition[1] = Round(position[1]/ fWriter->LengthUnit());
+  roundedPosition[2] = Round(position[2]/ fWriter->LengthUnit());
   
   if (fPositions.find(roundedPosition) != fPositions.end()) 
     return std::string();
@@ -161,7 +162,7 @@ std::string XmlVGM::VExporter::AddPositionToMap(Hep3Vector position)
 
 //_____________________________________________________________________________
 std::string 
-XmlVGM::VExporter::AddRotationToMap(const HepRotation& rotation)
+XmlVGM::VExporter::AddRotationToMap(const VGM::Rotation& rotation)
 {
 // Check if the specified rotation matrix is not yet present and 
 // add it to the map.
@@ -169,12 +170,13 @@ XmlVGM::VExporter::AddRotationToMap(const HepRotation& rotation)
 // or empty string (if not added).
 // ---
 
-  double phi   = rotation.getPhi()  / fWriter->AngleUnit();
-  double theta = rotation.getTheta()/ fWriter->AngleUnit();
-  double psi   = rotation.getPsi()  / fWriter->AngleUnit();
-  Hep3Vector roundedAngles(Round(phi), Round(theta), Round(psi));
+  VGM::Rotation roundedRotation(3);
+  roundedRotation[0] = Round(rotation[0]/ fWriter->AngleUnit());
+  roundedRotation[1] = Round(rotation[1]/ fWriter->AngleUnit());
+  roundedRotation[2] = Round(rotation[2]/ fWriter->AngleUnit());
   
-  if (fRotations.find(roundedAngles) != fRotations.end()) return std::string();
+  if (fRotations.find(roundedRotation) != fRotations.end()) 
+    return std::string();
   
   // Generate position name
   //
@@ -184,7 +186,7 @@ XmlVGM::VExporter::AddRotationToMap(const HepRotation& rotation)
   name.append(tmpStream.str());
 
   // Add position to the map
-  fRotations[roundedAngles] = name;
+  fRotations[roundedRotation] = name;
   
   return name;  
 }    
@@ -198,10 +200,10 @@ XmlVGM::VExporter::AddElementToMap(const VGM::IElement* element)
 // Returns the element (if added) or 0.
 // ---
 
-  double x = element->Z();
-  double y = element->N();
-  double z = element->A();
-  Hep3Vector roundedValues(Round(x), Round(y), Round(z));
+  VGM::ThreeVector roundedValues(3);
+  roundedValues[0] = Round(element->Z());
+  roundedValues[1] = Round(element->N());
+  roundedValues[2] = Round(element->A());
   
   //if (fElements.find(roundedValues) != fElements.end()) return 0;
   ElementMap::iterator it;
@@ -255,7 +257,7 @@ void XmlVGM::VExporter::ProcessPositions(VGM::IVolume* volume)
       
       VGM::IPlacement* dPlacement = volume->Daughter(i);
  
-      Hep3Vector position = dPlacement->ObjectTranslation();
+      VGM::ThreeVector position = dPlacement->ObjectTranslation();
       std::string posName = AddPositionToMap(position);
       
       if (posName != std::string())
@@ -289,13 +291,13 @@ void XmlVGM::VExporter::ProcessRotations(VGM::IVolume* volume)
       
       VGM::IPlacement* dPlacement = volume->Daughter(i);
 
-      HepRotation rotation = dPlacement->ObjectRotation();
-      if (!rotation.isIdentity()) {
+      VGM::Rotation rotation = dPlacement->ObjectRotation();
+      //if (!rotation.isIdentity()) {
         std::string rotName = AddRotationToMap(rotation);
 
         if (rotName != std::string())
           fWriter->WriteRotation(rotName, rotation);
-      }
+      //}
 
       std::string dVolumeName = dPlacement->Volume()->Name();
       if (fVolumeNames.find(dVolumeName) == fVolumeNames.end()) {
@@ -393,17 +395,17 @@ void XmlVGM::VExporter::ProcessSolids(VGM::IVolume* volume)
 
 //_____________________________________________________________________________
 std::string 
-XmlVGM::VExporter::FindPositionName(Hep3Vector position) const
+XmlVGM::VExporter::FindPositionName(VGM::ThreeVector position) const
 {
 // Finds the specified position in the map (within the precision of the 
 // convertor) and returns its xml name.
 // Returns empty string if not found.
 // ---
 
-  double x = position.x()/ fWriter->LengthUnit();
-  double y = position.y()/ fWriter->LengthUnit();
-  double z = position.z()/ fWriter->LengthUnit();
-  Hep3Vector roundedPosition(Round(x), Round(y), Round(z));
+  VGM::ThreeVector roundedPosition(3);
+  roundedPosition[0] = Round(position[0]/ fWriter->LengthUnit());
+  roundedPosition[1] = Round(position[1]/ fWriter->LengthUnit());
+  roundedPosition[2] = Round(position[2]/ fWriter->LengthUnit());
   
   ThreeVectorMap::const_iterator it = fPositions.find(roundedPosition);    
   if (it != fPositions.end())
@@ -414,18 +416,19 @@ XmlVGM::VExporter::FindPositionName(Hep3Vector position) const
 
 //_____________________________________________________________________________
 std::string  
-XmlVGM::VExporter::FindRotationName(const HepRotation& rotation) const
+XmlVGM::VExporter::FindRotationName(const VGM::Rotation& rotation) const
 {
 // Finds the rotation in the map and returns its xml name.
 // Returns empty string if not found.
 // ---
 
-  double phi   = rotation.getPhi()  / fWriter->AngleUnit();
-  double theta = rotation.getTheta()/ fWriter->AngleUnit();
-  double psi   = rotation.getPsi()  / fWriter->AngleUnit();
-  Hep3Vector roundedAngles(Round(phi), Round(theta), Round(psi));
+  VGM::Rotation roundedRotation(3);
+  roundedRotation[0] = Round(rotation[0]/ fWriter->AngleUnit());
+  roundedRotation[1] = Round(rotation[1]/ fWriter->AngleUnit());
+  roundedRotation[2] = Round(rotation[2]/ fWriter->AngleUnit());
   
-  ThreeVectorMap::const_iterator it = fRotations.find(roundedAngles);
+  
+  ThreeVectorMap::const_iterator it = fRotations.find(roundedRotation);
   if (it != fRotations.end())
     return (*it).second;
   else
@@ -443,8 +446,8 @@ void XmlVGM::VExporter::GeneratePositions(VGM::IVolume* volume)
   fWriter->OpenPositions();  
   
   // Store first the center position
-  std::string posName = AddPositionToMap(Hep3Vector());
-  fWriter->WritePosition(posName, Hep3Vector());
+  std::string posName = AddPositionToMap(Origin());
+  fWriter->WritePosition(posName, Origin());
 
   // Process positions
   ProcessPositions(volume);
@@ -465,9 +468,15 @@ void XmlVGM::VExporter::GenerateRotations(VGM::IVolume* volume)
   // Open section
   fWriter->OpenRotations();  
   
+  // Identity
+  VGM::Rotation identity(3);
+  identity[0] = 0.;
+  identity[1] = 0.;
+  identity[2] = 0.;
+
   // Store first the identity matrix
-  std::string rotName = AddRotationToMap(HepRotation::IDENTITY);
-  fWriter->WriteRotation(rotName, HepRotation::IDENTITY);
+  std::string rotName = AddRotationToMap(identity);
+  fWriter->WriteRotation(rotName, identity);
 
   // Process rotations
   ProcessRotations(volume);
@@ -563,6 +572,36 @@ void XmlVGM::VExporter::ClearVolumeNames()
 // ---
 
   fVolumeNames.erase(fVolumeNames.begin(), fVolumeNames.end());
+}  
+
+//_____________________________________________________________________________
+VGM::ThreeVector 
+XmlVGM::VExporter::Origin()  const
+{
+// Returns the zero position.
+// ---
+  
+  VGM::ThreeVector threeVector(3);
+  threeVector[0] = 0.;
+  threeVector[1] = 0.;
+  threeVector[2] = 0.;
+
+  return threeVector;
+}  
+
+//_____________________________________________________________________________
+VGM::Rotation  
+XmlVGM::VExporter::Identity() const
+{
+// Returns identity rotation.
+// ---
+  
+  VGM::ThreeVector rotation(3);
+  rotation[0] = 0.;
+  rotation[1] = 0.;
+  rotation[2] = 0.;
+
+  return rotation;
 }  
 
 //

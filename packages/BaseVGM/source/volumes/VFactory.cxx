@@ -81,54 +81,29 @@ BaseVGM::VFactory::ExportBooleanSolid(VGM::IBooleanSolid* solid,
 	// the solid has been already exported
 	// Should not harm, but will be better to be avoided	
 
+
   VGM::BooleanType boolType = solid->BoolType();
+  VGM::ThreeVector translation =  solid->DisplacementObjectTranslation();
+  VGM::Rotation rotation =  solid->DisplacementObjectRotation();
+  bool reflectionZ = solid->DisplacementReflectionZ();
 
-  HepRotation* rotation = 0;
-  if (!solid->DisplacementObjectRotation().isIdentity())
-      rotation = new HepRotation(solid->DisplacementObjectRotation());		
 
-  HepTranslate3D translate3D(solid->DisplacementObjectTranslation());
-  HepRotate3D rotate3D;
-  if (rotation) rotate3D = HepRotate3D(*rotation);
-  HepScaleZ3D scale3D;
-  if (solid->DisplacementReflectionZ()) scale3D = HepScaleZ3D(-1.0);
-  HepTransform3D transform3D = translate3D * rotate3D * scale3D; 
-
-  VGM::ISolid* newSolid = 0;
-  if (boolType == VGM::kIntersection) {
-    newSolid = factory->CreateIntersectionSolid(
-                               solid->Name(), solidA, solidB, transform3D);
-  }
-  else if (boolType == VGM::kSubtraction) { 
-    newSolid = factory->CreateSubtractionSolid(
-                               solid->Name(), solidA, solidB, transform3D);
-  }
-  else if (boolType == VGM::kUnion) { 
-    newSolid = factory->CreateUnionSolid(
-                               solid->Name(), solidA, solidB, transform3D); 
-  }
-/*
   VGM::ISolid* newSolid = 0;
   if (boolType == VGM::kIntersection) {
     newSolid = factory->CreateIntersectionSolid(
                                solid->Name(), solidA, solidB,
-			       rotation,
-			       solid->DisplacementObjectTranslation());
+			       translation, rotation, reflectionZ);
   }
   else if (boolType == VGM::kSubtraction) { 
     newSolid = factory->CreateSubtractionSolid(
-                               solid->Name(), solidA, solidB, 
-			       rotation,
-			       solid->DisplacementObjectTranslation());
+                               solid->Name(), solidA, solidB,
+			       translation, rotation, reflectionZ);
   }
   else if (boolType == VGM::kUnion) { 
     newSolid = factory->CreateUnionSolid(
-                               solid->Name(), solidA, solidB, 
-			       rotation,
-			       solid->DisplacementObjectTranslation());
+                               solid->Name(), solidA, solidB,
+			       translation, rotation, reflectionZ); 
   }
-*/
-  if (!factory->CLHEPRotations()) delete rotation;
 
   if (!newSolid) {
     std::cerr << "    BaseVGM::VFactory::ExportBooleanSolid:" << std::endl;
@@ -335,45 +310,15 @@ BaseVGM::VFactory::ExportSimplePlacement(
   VGM::IVolume* newVolume = (*volumeMap)[placement->Volume()];
   VGM::IVolume* newMother = (*volumeMap)[placement->Mother()];
   
-  VGM::IPlacement* newPlacement;
-/*
-  if (!placement->ReflectionZ()) {
-    HepRotation* rotation = 0;
-    if (!placement->FrameRotation().isIdentity())
-      rotation = new HepRotation(placement->FrameRotation());		
-
-    newPlacement
-      = factory->CreatePlacement(
+  VGM::IPlacement* newPlacement
+    = factory->CreatePlacement(
                        placement->Name(), 
                        placement->CopyNo(),
 	               newVolume,
 		       newMother,
-		       rotation,
-		       placement->ObjectTranslation());
-    if (!factory->CLHEPRotations()) delete rotation;
-  }
-  else {
-*/  
-    HepRotation* rotation = 0;
-    if (!placement->FrameRotation().isIdentity())
-      rotation = new HepRotation(placement->ObjectRotation());	
-
-    HepTranslate3D translate3D(placement->ObjectTranslation());
-    HepRotate3D rotate3D;
-    if (rotation) rotate3D = HepRotate3D(*rotation);
-    HepScaleZ3D scale3D;
-    if (placement->ReflectionZ()) scale3D = HepScaleZ3D(-1.0);
-    HepTransform3D transform3D = translate3D * rotate3D * scale3D; 
-
-    newPlacement
-      = factory->CreatePlacement(
-                       placement->Name(), 
-                       placement->CopyNo(),
-	               newVolume,
-		       newMother,
-		       transform3D);
-    if (!factory->CLHEPRotations()) delete rotation;
-//  }   		       
+		       placement->FrameRotation(),
+		       placement->ObjectTranslation(),
+		       placement->ReflectionZ());
       
   return newPlacement;
 }
@@ -470,8 +415,9 @@ void BaseVGM::VFactory::ExportPlacements(
   //  explicitely)
   
   VGM::IVolume* topVolume = (*volumeMap)[Top()->Volume()];
-  factory->CreatePlacement("top", 0, topVolume, 0, 0, Hep3Vector());
-
+  
+  factory->CreatePlacement("top", 0, topVolume, 0, 
+                           BaseVGM::Identity(), BaseVGM::Origin());
   delete volumeMap;
 }
 

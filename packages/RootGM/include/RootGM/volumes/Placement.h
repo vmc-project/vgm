@@ -11,11 +11,11 @@
 
 #include <string>
 
-#include "CLHEP/Vector/Rotation.h"
-#include "CLHEP/Vector/ThreeVector.h"
-#include "CLHEP/Geometry/Transform3D.h"
+#include <TGeoMatrix.h>
+#include <TGeoNode.h>
 
-#include "TGeoNode.h"
+#include "VGM/common/ThreeVector.h"
+#include "VGM/common/Rotation.h"
 
 #include "BaseVGM/volumes/VPlacement.h"
 
@@ -29,13 +29,10 @@ namespace RootGM {
   {
     public:
       Placement(
-         const std::string& name, int copyNo,
+         const std::string& name, 
+	 int copyNo,
          VGM::IVolume* volume, VGM::IVolume* motherVolume,
-         HepRotation* rotation, const Hep3Vector& translation);
-      Placement(
-         const std::string& name, int copyNo,
-         VGM::IVolume* volume, VGM::IVolume* motherVolume,
-         const HepTransform3D& transformation);
+	 TGeoMatrix* transformation);
       Placement(
          const std::string& name, 
          VGM::IVolume* volume, VGM::IVolume* motherVolume,
@@ -51,15 +48,17 @@ namespace RootGM {
       virtual std::string   Name() const;
       virtual int           CopyNo() const;
 
-      virtual HepRotation   ObjectRotation() const;      
-      virtual Hep3Vector    ObjectTranslation() const;
-      virtual bool          ReflectionZ() const;
+      virtual VGM::Rotation     ObjectRotation() const;      
+      virtual VGM::Rotation     FrameRotation() const;      
+      virtual VGM::ThreeVector  ObjectTranslation() const;
+      virtual VGM::ThreeVector  FrameTranslation() const;
+      virtual bool              ReflectionZ() const;
 
       virtual bool  MultiplePlacementData(
-                            VGM::Axis&  axis,
-                            int&     nofItems,
-                            double&  width,
-                            double&  offset) const;
+                                VGM::Axis&  axis,
+                                int&     nofItems,
+                                double&  width,
+                                double&  offset) const;
 
     protected:
       Placement(const Placement& rhs) : BaseVGM::VPlacement(rhs) {}
@@ -67,12 +66,7 @@ namespace RootGM {
 
     private:
       // methods
-      void CreateNode(int copyNo, 
-                      VGM::IVolume* volume, 
-		      VGM::IVolume* motherVolume, 
-		      TGeoMatrix* matrix);
-		      
-      HepTransform3D ObjectTransform3D() const;
+      TGeoHMatrix ObjectTransform() const;
       
       // data members
       TGeoNode*    fGeoNode;
