@@ -45,11 +45,11 @@
       <rotation  name=  "rot_10"  x="   180.0000"  y="    30.0000"  z="   180.0000"  unit="degree" />
       <rotation  name=  "rot_11"  x="   180.0000"  y="    15.0000"  z="   180.0000"  unit="degree" />
       <rotation  name=  "rot_12"  x="   180.0000"  y="     0.0000"  z="   180.0000"  unit="degree" />
-      <rotation  name=  "rot_13"  x="   180.0000"  y="   -15.0000"  z="   180.0000"  unit="degree" />
-      <rotation  name=  "rot_14"  x="   180.0000"  y="   -30.0000"  z="   180.0000"  unit="degree" />
-      <rotation  name=  "rot_15"  x="   180.0000"  y="   -45.0000"  z="   180.0000"  unit="degree" />
-      <rotation  name=  "rot_16"  x="   180.0000"  y="   -60.0000"  z="   180.0000"  unit="degree" />
-      <rotation  name=  "rot_17"  x="   180.0000"  y="   -75.0000"  z="   180.0000"  unit="degree" />
+      <rotation  name=  "rot_13"  x="   180.0000"  y="   -15.0000"  z="  -180.0000"  unit="degree" />
+      <rotation  name=  "rot_14"  x="   180.0000"  y="   -30.0000"  z="  -180.0000"  unit="degree" />
+      <rotation  name=  "rot_15"  x="   180.0000"  y="   -45.0000"  z="  -180.0000"  unit="degree" />
+      <rotation  name=  "rot_16"  x="   180.0000"  y="   -60.0000"  z="  -180.0000"  unit="degree" />
+      <rotation  name=  "rot_17"  x="   180.0000"  y="   -75.0000"  z="  -180.0000"  unit="degree" />
       <rotation  name=  "rot_18"  x="     0.0000"  y="   -90.0000"  z="     0.0000"  unit="degree" />
       <rotation  name=  "rot_19"  x="     0.0000"  y="   -75.0000"  z="     0.0000"  unit="degree" />
       <rotation  name=  "rot_20"  x="     0.0000"  y="   -60.0000"  z="     0.0000"  unit="degree" />
