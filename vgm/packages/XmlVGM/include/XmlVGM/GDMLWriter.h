@@ -14,8 +14,6 @@
 #include <vector>
 #include <set>
 
-#include "CLHEP/Units/SystemOfUnits.h" 
-
 #include "VGM/solids/ISolid.h"
 #include "VGM/solids/IBox.h"
 #include "VGM/solids/ICons.h"
@@ -211,17 +209,17 @@ namespace XmlVGM {
 }
 
 inline double XmlVGM::GDMLWriter::LengthUnit() const
-{ return cm; }
+{ return 10.; }    // cm
 
 inline double XmlVGM::GDMLWriter::AngleUnit() const
-{ return deg; }
+{ return  1.; }    // deg
 
 inline double XmlVGM::GDMLWriter::AtomicWeightUnit() const
-{ return g/mole; }
+{ return  1.; }   // g/mole
 
 inline double XmlVGM::GDMLWriter::MassDensityUnit() const
-{ return g/cm3; }
-
+{ return  1.; }   // g/cm3
+ 
 inline void XmlVGM::GDMLWriter::SetNumWidth(int width)
 { fNW = width; }
 

@@ -14,8 +14,6 @@
 #include <fstream>
 #include <vector>
 
-#include "CLHEP/Units/SystemOfUnits.h" 
-
 #include "VGM/solids/ISolid.h"
 #include "VGM/solids/IBox.h"
 #include "VGM/solids/IBox.h"
@@ -199,17 +197,17 @@ namespace XmlVGM {
 // inline functions
 
 inline double XmlVGM::AGDDWriter::LengthUnit() const
-{ return cm; }
+{ return 10.; }    // cm
 
 inline double XmlVGM::AGDDWriter::AngleUnit() const
-{ return deg; }
+{ return  1.; }    // deg
 
 inline double XmlVGM::AGDDWriter::AtomicWeightUnit() const
-{ return g/mole; }
+{ return  1.; }   // g/mole
 
 inline double XmlVGM::AGDDWriter::MassDensityUnit() const
-{ return g/cm3; }
-
+{ return  1.; }   // g/cm3
+ 
 inline void XmlVGM::AGDDWriter::SetNumWidth(int width)
 { fNW = width; }
 
