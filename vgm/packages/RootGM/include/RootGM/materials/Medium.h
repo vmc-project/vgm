@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup RootGM_materials
 //
-// Class Medium
-// ---------------
-// VGM implementation for Root medium.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class RootGM:: Medium
+///
+/// VGM implementation for Root medium.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef ROOT_GM_MEDIUM_H
 #define ROOT_GM_MEDIUM_H

@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup RootGM_solids
 //
-// Class Polyhedra
-// ---------------
-// VGM implementation for Root polyhedra solid.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class RootGM:: Polyhedra
+///
+/// VGM implementation for Root polyhedra solid.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef ROOT_GM_POLYHEDRA_H
 #define ROOT_GM_POLYHEDRA_H

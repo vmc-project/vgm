@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup RootGM_solids
 //
-// Class Para
-// ---------------
-// VGM implementation for Root para solid.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class RootGM:: Para
+///
+/// VGM implementation for Root para solid.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef ROOT_GM_PARA_H
 #define ROOT_GM_PARA_H

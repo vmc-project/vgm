@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup RootGM_common
 //
-// Class Units
-// --------------
-// Conversion from Root physical units to VGM units.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class RootGM:: Units
+///
+/// Conversion from Root physical units to VGM units.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef ROOT_GM_UNITS_H
 #define ROOT_GM_UNITS_H
@@ -20,11 +21,28 @@ namespace RootGM {
       // Units();  
       virtual ~Units();
   
+      //
       // static get methods
+      //
+      
+                    /// Return Root length unit in VGM units
+		    ///
       static double Length(); 
+
+                    /// Return Root angle unit in VGM units
+		    ///
       static double Angle(); 
+
+                    /// Return Root unit for the given axis in VGM units
+		    ///
       static double AxisUnit(VGM::Axis axis); 
+
+                    /// Return Root mass density unit in VGM units
+		    ///
       static double MassDensity(); 
+
+                    /// Return Root atomic weight unit in VGM units
+		    ///
       static double AtomicWeight();     
       
     protected:

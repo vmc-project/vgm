@@ -24,7 +24,13 @@ RootGM::Tubs::Tubs(const std::string& name,
 			  sphi        / RootGM::Units::Angle(), 
 			  (sphi+dphi) / RootGM::Units::Angle()))
 {
-// 
+/// Standard constructor to define tubs from parameters
+/// \param rin inside radius in mm 
+/// \param rout outside radius in mm 
+/// \param hz half-length along the z axis in mm 
+/// \param sphi starting angle of the segment in deg
+/// \param dphi opening angle of the segment in deg
+
   RootGM::SolidMap::Instance()->AddSolid(this, fTubs); 
 }
 
@@ -36,6 +42,8 @@ RootGM::Tubs::Tubs(TGeoTube* tubs)
     BaseVGM::VTubs(),
     fTubs(tubs)
 {    
+/// Standard constructor to define tubs from Root object
+
   RootGM::SolidMap::Instance()->AddSolid(this, fTubs); 
 }
 
@@ -45,7 +53,7 @@ RootGM::Tubs::Tubs()
     VGM::ITubs(),
     BaseVGM::VTubs() 
 {
-//
+/// Protected default constructor
 }
 
 //_____________________________________________________________________________
@@ -54,7 +62,7 @@ RootGM::Tubs::Tubs(const Tubs& rhs)
     VGM::ITubs(rhs),
     BaseVGM::VTubs(rhs) 
 {
-//
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________

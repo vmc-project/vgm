@@ -14,8 +14,7 @@ RootGM::SolidMap*  RootGM::SolidMap::fgInstance = 0;
 RootGM::SolidMap* 
 RootGM::SolidMap::Instance()
 { 
-// Singleton access function.
-// ---
+/// Singleton access function
 
   if (!fgInstance) new RootGM::SolidMap();
   
@@ -27,14 +26,16 @@ RootGM::SolidMap::SolidMap()
   : fRootSolids(),
     fVgmSolids()
 {
-//  
+/// Standard default constructor
+
   fgInstance = this;
 }
 
 //_____________________________________________________________________________
 RootGM::SolidMap::SolidMap(const SolidMap&)
 {
-//
+/// Protected copy constructor
+
   fgInstance = 0;
 }
 
@@ -47,8 +48,7 @@ RootGM::SolidMap::~SolidMap() {
 void  RootGM::SolidMap::AddSolid(VGM::ISolid* iSolid, 
                                  TGeoShape* rootSolid)
 {
-// Adds the specified pair in the map.
-// ---
+/// Adds the specified pair in the map
 
   fRootSolids[iSolid] = rootSolid;
   fVgmSolids[rootSolid] = iSolid;
@@ -58,8 +58,7 @@ void  RootGM::SolidMap::AddSolid(VGM::ISolid* iSolid,
 TGeoShape* 
 RootGM::SolidMap::GetSolid(VGM::ISolid* iSolid) const
 {
-// Finds the Root solid corresponding to a specified VGM solid.
-// ---
+/// Find the Root solid corresponding to a specified VGM solid
 
   RootSolidMapCIterator i = fRootSolids.find(iSolid);
   if (i != fRootSolids.end()) 
@@ -72,8 +71,7 @@ RootGM::SolidMap::GetSolid(VGM::ISolid* iSolid) const
 VGM::ISolid* 
 RootGM::SolidMap::GetSolid(TGeoShape* rootSolid) const
 {
-// Finds the Root solid corresponding to a specified VGM solid.
-// ---
+/// Find the VGM solid corresponding to a specified Root solid
 
   VgmSolidMapCIterator i = fVgmSolids.find(rootSolid);
   if (i != fVgmSolids.end()) 

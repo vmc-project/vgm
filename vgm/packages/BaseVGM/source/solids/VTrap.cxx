@@ -18,8 +18,9 @@ std::ostream& operator<<(std::ostream& out, const VGM::ITrap& trap)
 
 //_____________________________________________________________________________
 BaseVGM::VTrap::VTrap()
-  : VGM::ITrap() {
-//  
+  : VGM::ITrap() 
+{
+/// Default constructor  
 }
 
 

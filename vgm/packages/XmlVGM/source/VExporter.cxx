@@ -37,7 +37,9 @@ XmlVGM::VExporter::VExporter(const VGM::IFactory* factory,
           writer->AngleUnit(),
           writer->LengthUnit())
 {
-//
+/// Standard constructor
+/// \param factory the VGM factory which geometry will be exported in XML
+/// \param writer  the XML writer
 }
 
 //_____________________________________________________________________________
@@ -49,8 +51,8 @@ XmlVGM::VExporter::VExporter()
     fDebug(1), 
     fMaps(0, 1., 1.)
 {
-//
-// 
+/// Protected default constructor
+
   std::cerr << "    XmlVGM::VExporter::VExporter:" << std::endl;
   std::cerr << "    Not allowed constructor." << std::endl;
   std::cerr << "*** Error: Aborting execution  +++" << std::endl; 
@@ -65,7 +67,8 @@ XmlVGM::VExporter::VExporter(const VExporter& /*right*/)
     fDebug(0), 
     fMaps(0, 1., 1.)
 {
-// 
+/// Protected copy constructor
+
   std::cerr << "   XmlVGM::VExporter::VExporter:" << std::endl;
   std::cerr << "   Copy constructor not implemented." << std::endl;
   std::cerr << "** Exception: Aborting execution **" << std::endl;   
@@ -86,6 +89,8 @@ XmlVGM::VExporter::~VExporter() {
 XmlVGM::VExporter& 
 XmlVGM::VExporter::operator=(const VExporter& right)
 {
+/// Protected assignement operator
+
   // check assignement to self
   if (this == &right) return *this;
 
@@ -105,8 +110,7 @@ XmlVGM::VExporter::operator=(const VExporter& right)
 //_____________________________________________________________________________
 void XmlVGM::VExporter::ProcessPositions(VGM::IVolume* volume) 
 {
-// Writes all position in the daughters tree of the given logical volume.
-// ---
+/// Write all positions in the daughters tree of the given VGM volume.
 
   std::string volumeName = volume->Name();
 
@@ -150,9 +154,8 @@ void XmlVGM::VExporter::ProcessPositions(VGM::IVolume* volume)
 //_____________________________________________________________________________
 void XmlVGM::VExporter::ProcessPositionsInBoolean(VGM::ISolid* solid) 
 {
-// Writes all position in the boolean solid and its constituents
-// (if Booleans too) 
-// ---
+/// Write all positions in the Boolean solid and its constituents
+/// (if Booleans too) 
 
    if (solid->Type() != VGM::kBoolean)  return;
       
@@ -176,9 +179,8 @@ void XmlVGM::VExporter::ProcessPositionsInBoolean(VGM::ISolid* solid)
 //_____________________________________________________________________________
 void XmlVGM::VExporter::ProcessRotations(VGM::IVolume* volume) 
 {
-// Writes all rotation matrices in the volume tree of
-// the given volume .
-// ---
+/// Write all rotation matrices in the volume tree of
+/// the given VGM volume .
 
   std::string volumeName = volume->Name();
 
@@ -223,9 +225,8 @@ void XmlVGM::VExporter::ProcessRotations(VGM::IVolume* volume)
 //_____________________________________________________________________________
 void XmlVGM::VExporter::ProcessRotationsInBoolean(VGM::ISolid* solid) 
 {
-// Writes all rotations in the boolean solid and its constituents
-// (if Booleans too) 
-// ---
+/// Write all rotations in the Boolean solid and its constituents
+/// (if Booleans too) 
 
    if (solid->Type() != VGM::kBoolean)  return;
       
@@ -249,8 +250,7 @@ void XmlVGM::VExporter::ProcessRotationsInBoolean(VGM::ISolid* solid)
 //_____________________________________________________________________________
 void XmlVGM::VExporter::ProcessMaterials(VGM::IVolume* volume) 
 {
-// Writes all position in the daughters tree of the given logical volume.
-// ---
+/// Write the material asociated with the given VGM volume.
 
   std::string volumeName = volume->Name();
 
@@ -296,8 +296,7 @@ void XmlVGM::VExporter::ProcessMaterials(VGM::IVolume* volume)
 //_____________________________________________________________________________
 void XmlVGM::VExporter::ProcessSolids(VGM::IVolume* volume) 
 {
-// Writes all solids of given volume.
-// ---
+/// Write the solid associated with the given VGM volume
 
   VGM::ISolid* solid = volume->Solid();
   std::string volumeName = volume->Name();
@@ -334,9 +333,8 @@ void XmlVGM::VExporter::ProcessSolids(VGM::IVolume* volume)
 //_____________________________________________________________________________
 void XmlVGM::VExporter::GeneratePositions(VGM::IVolume* volume)
 {
-// Generates the XML elements containing
-// all positions present in given logical volume daughters tree.
-// ---
+/// Generate the XML elements containing
+/// all positions present in the given VGM volume daughters tree
 
   // Open section
   fWriter->OpenPositions();  
@@ -357,9 +355,8 @@ void XmlVGM::VExporter::GeneratePositions(VGM::IVolume* volume)
 //_____________________________________________________________________________
 void XmlVGM::VExporter::GenerateRotations(VGM::IVolume* volume)
 {
-// Generates the XML elements containing
-// all positions present in given logical volume daughters tree.
-// ---
+/// Generate the XML elements containing
+/// all rotations present in the given VGM volume daughters tree
 
   // Open section
   fWriter->OpenRotations();  
@@ -380,9 +377,8 @@ void XmlVGM::VExporter::GenerateRotations(VGM::IVolume* volume)
 //_____________________________________________________________________________
 void XmlVGM::VExporter::GenerateMaterials(VGM::IVolume* volume)
 {
-// Generates the XML material element containing
-// all materials present in given logical volume.
-// ---
+/// Generate the XML elements containing
+/// all materials present in the given VGM volume tree
 
   // Create section
   fWriter->OpenMaterials();  
@@ -410,9 +406,8 @@ void XmlVGM::VExporter::GenerateMaterials(VGM::IVolume* volume)
 //_____________________________________________________________________________
 void XmlVGM::VExporter::GenerateSolids(VGM::IVolume* volume)
 {
-// Generates the XML solids element containing
-// all solids present in given logical volume.
-// ---
+/// Generate the XML elements containing
+/// all solids present in given VGM volume tree
 
   fWriter->OpenSolids();  
   ProcessSolids(volume);
@@ -424,8 +419,7 @@ void XmlVGM::VExporter::GenerateSolids(VGM::IVolume* volume)
 //_____________________________________________________________________________
 void XmlVGM::VExporter::ClearVolumeNames() 
 {
-// Clears the set of volume names.
-// ---
+/// Clear the set of volume names.
 
   fVolumeNames.erase(fVolumeNames.begin(), fVolumeNames.end());
 }  
@@ -438,8 +432,7 @@ void XmlVGM::VExporter::ClearVolumeNames()
 //_____________________________________________________________________________
 void XmlVGM::VExporter::GenerateXMLGeometry()
 {
-// Generates XML geometry file from the top (world) volume.
-// ---
+/// Generate XML geometry file from the top (world) volume.
 
   GenerateGeometry(fFactory->Top()->Volume());
 }  
@@ -447,8 +440,7 @@ void XmlVGM::VExporter::GenerateXMLGeometry()
 //_____________________________________________________________________________
 void XmlVGM::VExporter::GenerateXMLGeometry(const std::string& volumeName) 
 {
-// Generates XML geometry file from the logical volume specified by name.
-// ---
+/// Generate XML geometry file from the VGM volume specified by name.
 
   // Find volume
   const VGM::VolumeStore& volumeStore = fFactory->Volumes();

@@ -25,7 +25,18 @@ RootGM::Para::Para(const std::string& name,
 		       theta / RootGM::Units::Angle(), 
 		       phi   / RootGM::Units::Angle()))
 {
-// 
+/// Standard constructor to define para from parameters
+/// \param dx half-length along the x axis in mm
+/// \param dy half-length along the y axis in mm
+/// \param dz half-length along the z axis in mm
+/// \param alpha angle formed by the y axis and by the plane
+///	   joining the centre of the faces parallel to the
+///	   z-x plane at -hy and +hy in deg
+/// \param theta polar angle of the line joining the centres
+///	   of the faces at -hz and +hz in deg
+/// \param phi azimuthal angle of the line joining the centres
+///	   of the faces at -hz and +hz in deg
+
   RootGM::SolidMap::Instance()->AddSolid(this, fPara); 
 }
 
@@ -37,6 +48,8 @@ RootGM::Para::Para(TGeoPara* para)
     BaseVGM::VPara(),
     fPara(para)
 {    
+/// Standard constructor to define para from G4 object
+
   RootGM::SolidMap::Instance()->AddSolid(this, fPara); 
 }
 
@@ -46,7 +59,7 @@ RootGM::Para::Para()
     VGM::IPara(),
     BaseVGM::VPara() 
 {
-//
+/// Protected default constructor
 }
 
 //_____________________________________________________________________________
@@ -55,7 +68,7 @@ RootGM::Para::Para(const Para& rhs)
     VGM::IPara(rhs),
     BaseVGM::VPara(rhs) 
 {
-//
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________

@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup RootGM_materials
 //
-// Class MaterialMap
-// ------------------
-// The map between VGM and Root material.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class RootGM:: MaterialMap
+///
+/// The map between VGM and Root material.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef ROOT_GM_MATERIAL_MAP_H
 #define ROOT_GM_MATERIAL_MAP_H
@@ -44,7 +45,7 @@ namespace RootGM {
       VGM::IMaterial* GetMaterial(TGeoMaterial* rootMaterial) const;
 
     private:
-      MaterialMap(const MaterialMap&) {}
+      MaterialMap(const MaterialMap&);
 
       // static data members
      static MaterialMap*  fgInstance;

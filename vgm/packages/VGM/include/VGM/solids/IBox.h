@@ -1,10 +1,11 @@
 // $Id$
-//
-// Class IBox
-// ---------------
-// The VGM interface to box solids.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \ingroup VGM_solids
+///
+/// \class VGM::IBox
+/// 
+/// The VGM interface to box solids.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef VGM_I_BOX_H
 #define VGM_I_BOX_H
@@ -21,11 +22,18 @@ namespace VGM {
       virtual ~IBox() {}
 
       // methods
+      
       virtual SolidType   Type() const = 0;
       virtual std::string Name() const = 0;
 
+		     ///
+		     /// Return the half-length along the x axis in mm
       virtual double XHalfLength() const = 0;
+		     ///
+		     /// Return the half-length along the y axis in mm
       virtual double YHalfLength() const = 0;
+		     ///
+		     /// Return the half-length along the z axis in mm
       virtual double ZHalfLength() const = 0;
 
       // streaming

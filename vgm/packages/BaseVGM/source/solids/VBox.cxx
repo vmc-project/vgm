@@ -18,8 +18,9 @@ std::ostream& operator<<(std::ostream& out, const VGM::IBox& box)
 
 //_____________________________________________________________________________
 BaseVGM::VBox::VBox()
-  : VGM::IBox() {
-//  
+  : VGM::IBox() 
+{
+/// Default constructor  
 }
 
 //_____________________________________________________________________________

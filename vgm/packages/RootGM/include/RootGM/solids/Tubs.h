@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup RootGM_solids
 //
-// Class Tubs
-// ---------------
-// VGM implementation for Root tubs solid.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class RootGM:: Tubs
+///
+/// VGM implementation for Root tubs solid.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef ROOT_GM_TUBS_H
 #define ROOT_GM_TUBS_H

@@ -14,8 +14,7 @@ Geant4GM::ElementMap*  Geant4GM::ElementMap::fgInstance = 0;
 Geant4GM::ElementMap* 
 Geant4GM::ElementMap::Instance()
 { 
-// Singleton access function.
-// ---
+/// Singleton access function.
 
   if (!fgInstance) new ElementMap();
   
@@ -27,8 +26,15 @@ Geant4GM::ElementMap::ElementMap()
   : fG4Elements(),
     fVgmElements()
 {
-//  
+/// Standard default constructor
+  
   fgInstance = this;
+}
+
+//_____________________________________________________________________________
+Geant4GM::ElementMap::ElementMap(const ElementMap&)
+{
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________
@@ -38,12 +44,16 @@ Geant4GM::ElementMap::~ElementMap()
   fgInstance = 0;
 }    
 
+
+//
+// public methods
+//
+
 //_____________________________________________________________________________
 void  Geant4GM::ElementMap::AddElement(VGM::IElement* iElement, 
                                        G4Element* g4Element)
 {
-// Adds the specified pair in the map.
-// ---
+/// Add the specified pair in the map
 
   fG4Elements[iElement] = g4Element;
   fVgmElements[g4Element] = iElement;
@@ -52,8 +62,7 @@ void  Geant4GM::ElementMap::AddElement(VGM::IElement* iElement,
 //_____________________________________________________________________________
 void  Geant4GM::ElementMap::Print() const
 {
-// Prints all elements in  the map.
-// ---
+/// Prints all elements in the map
 
   std::cout << "Geant4 Elements Map: " << std::endl; 
 
@@ -75,8 +84,7 @@ void  Geant4GM::ElementMap::Print() const
 G4Element* 
 Geant4GM::ElementMap::GetElement(VGM::IElement* iElement) const
 {
-// Finds the G4 element corresponding to a specified VGM element.
-// ---
+/// Find the G4 element corresponding to a specified VGM element
 
   G4ElementMapCIterator i = fG4Elements.find(iElement);
   if (i != fG4Elements.end()) 
@@ -89,8 +97,7 @@ Geant4GM::ElementMap::GetElement(VGM::IElement* iElement) const
 VGM::IElement* 
 Geant4GM::ElementMap::GetElement(G4Element* element) const
 {
-// Finds the G4 element corresponding to a specified VGM element.
-// ---
+/// Find the VGM element corresponding to a specified G4 element
 
   VgmElementMapCIterator i = fVgmElements.find(element);
   if (i != fVgmElements.end()) 

@@ -1,10 +1,12 @@
 // $Id$
+/// \ingroup XmlVGM
 //
-// Class Maps
-// --------------------
-// Add 
-//
-// Author: I. Hrivnacova, 19.1.2004
+/// \class XmlVGM::Maps
+/// --------------------
+/// Utility class for mapping XML element values to their names
+/// within the XML exporter precision
+///
+/// Author: I. Hrivnacova, 19.1.2004
 
 #ifndef XML_VGM_MAPS_H
 #define XML_VGM_MAPS_H

@@ -25,7 +25,7 @@ Geant4GM::MaterialFactory::MaterialFactory()
   : VGM::IMaterialFactory(),
     BaseVGM::VMaterialFactory("Geant4_GM_Material_Factory")
 {  
-//
+/// Standard default constructor
 }
 
 //_____________________________________________________________________________
@@ -33,7 +33,7 @@ Geant4GM::MaterialFactory::MaterialFactory(const MaterialFactory& rhs)
   : VGM::IMaterialFactory(rhs),
     BaseVGM::VMaterialFactory(rhs)
 {  
-//
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________
@@ -57,8 +57,7 @@ Geant4GM::MaterialFactory::~MaterialFactory() {
 //_____________________________________________________________________________
 void Geant4GM::MaterialFactory::ImportElement(G4Element* element)
 {
-// Imports the specified G4 element.
-// ---
+/// Import the specified G4 element.
 
   if (Debug()>0) {
     BaseVGM::DebugInfo();
@@ -76,8 +75,7 @@ void Geant4GM::MaterialFactory::ImportElement(G4Element* element)
 //_____________________________________________________________________________
 void Geant4GM::MaterialFactory::ImportMaterial(G4Material* material)
 {
-// Imports the specified G4 material.
-// ---
+/// Import the specified G4 material.
 
   if (Debug()>0) {
     BaseVGM::DebugInfo();
@@ -181,8 +179,7 @@ Geant4GM::MaterialFactory::CreateMedium(const std::string& name,
 //_____________________________________________________________________________
 bool Geant4GM::MaterialFactory::Import()
 {
-// Import all elements, materials from G4MaterialTable
-// ---
+/// Import all elements, materials from G4MaterialTable
 
   const G4ElementTable* elementTable = G4Element::GetElementTable();
   

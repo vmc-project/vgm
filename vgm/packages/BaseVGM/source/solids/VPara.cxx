@@ -18,8 +18,9 @@ std::ostream& operator<<(std::ostream& out, const VGM::IPara& para)
 
 //_____________________________________________________________________________
 BaseVGM::VPara::VPara()
-  : VGM::IPara() {
-//  
+  : VGM::IPara() 
+{
+/// Default constructor  
 }
 
 //_____________________________________________________________________________

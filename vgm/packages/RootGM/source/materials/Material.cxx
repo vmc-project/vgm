@@ -21,7 +21,14 @@ RootGM::Material::Material(const std::string& name,
   : VGM::IMaterial(),
     fMaterial(0)
 {
-//
+/// Standard constructor to define material from parameters 
+/// \param name its name
+///	   (must be unique in the factory)
+/// \param density in g/cm3
+/// \param element element constituing this material
+/// \param radlen radiation length in mm
+/// \param intlen nuclear interaction length in mm
+
   fMaterial = new TGeoMixture(name.data(), 1,
 	 		      density / RootGM::Units::MassDensity());
 			      
@@ -47,7 +54,15 @@ RootGM::Material::Material(const std::string& name,
   : VGM::IMaterial(),
     fMaterial(0)
 {
-//
+/// Standard constructor to define compound material from parameters 
+/// \param name its name
+///	   (must be unique in the factory)
+/// \param density in g/cm3
+/// \param elements vector of elements constituing 
+///	   this material
+/// \param fractions vector of mass fractions of
+///	   elements constituing this material
+
   // Check coherence
   if (elements.size() != fractions.size()) {
     std::cerr << "    RootGM::Material::Material: " << std::endl; 
@@ -78,11 +93,25 @@ RootGM::Material::Material(TGeoMaterial* material)
   : VGM::IMaterial(),
     fMaterial(material)	
 {
-//
-  
+/// Standard constructor to define material from the Root object
+
   // Register material in the map
   RootGM::MaterialMap::Instance()->AddMaterial(this, fMaterial); 
 }    		  
+
+//_____________________________________________________________________________
+RootGM::Material::Material() 
+  : VGM::IMaterial() 
+{
+/// Protected default constructor
+}  
+
+//_____________________________________________________________________________
+RootGM::Material::Material(const Material& rhs) 
+  : VGM::IMaterial(rhs) 
+{
+/// Protected copy constructor
+}
 
 //_____________________________________________________________________________
 RootGM::Material::~Material() {
@@ -92,6 +121,7 @@ RootGM::Material::~Material() {
 //
 // private functions
 //
+
 //_____________________________________________________________________________
 void RootGM::Material::CheckIndex(int iel) const
 {

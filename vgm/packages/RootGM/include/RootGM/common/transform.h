@@ -1,11 +1,12 @@
 // $Id$
+/// \ingroup RootGM_common
 //
-// RootGM transformations
-// ----------------------
-// Utility functions for conversions between Root and VGM
-// transformtaions.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// RootGM transformations
+///
+/// Utility functions for conversions between Root and VGM
+/// transformtaions.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef ROOT_GM_TRANSFORM_H
 #define ROOT_GM_TRANSFORM_H

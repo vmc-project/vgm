@@ -1,10 +1,11 @@
 // $Id$
-//
-// Class ISolid
-// ---------------
-// The VGM interface to solids.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \ingroup VGM_solids
+///
+/// \class VGM::ISolid
+/// 
+/// The VGM interface to solids.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef VGM_I_SOLID_H
 #define VGM_I_SOLID_H
@@ -37,10 +38,16 @@ namespace VGM {
       virtual ~ISolid() {}
     
       // methods
-      virtual SolidType   Type() const = 0;
-      virtual std::string Name() const = 0;
+			     /// 
+                             /// Return the type of this solid
+      virtual SolidType     Type() const = 0;
+			     /// 
+                             /// Return the name of this solid
+      virtual std::string   Name() const = 0;
     
       // streaming
+                            /// Put the printing of the solid parameters
+			    /// in the out stream
       virtual std::ostream& Put(std::ostream& out) const = 0;
   };
 

@@ -19,15 +19,23 @@
 XmlVGM::GDMLExporter::GDMLExporter(const VGM::IFactory* factory)
   : VExporter(factory, new GDMLWriter())
 {
-//
+/// Standard constructor
+
   dynamic_cast<GDMLWriter*>(fWriter)->SetMaps(&fMaps);
+}
+
+//_____________________________________________________________________________
+XmlVGM::GDMLExporter::GDMLExporter() 
+  : VExporter()
+{
+/// Protected default constructor  
 }
 
 //_____________________________________________________________________________
 XmlVGM::GDMLExporter::GDMLExporter(const GDMLExporter& right) 
   : VExporter(right)
 {
-// 
+/// Protected copy constructor  
 }
 
 //_____________________________________________________________________________
@@ -41,6 +49,8 @@ XmlVGM::GDMLExporter::~GDMLExporter() {
 XmlVGM::GDMLExporter& 
 XmlVGM::GDMLExporter::operator=(const GDMLExporter& right)
 {
+/// Protected assignement operator
+
   // check assignement to self
   if (this == &right) return *this;
   
@@ -57,8 +67,8 @@ XmlVGM::GDMLExporter::operator=(const GDMLExporter& right)
 //_____________________________________________________________________________
 void XmlVGM::GDMLExporter::GenerateGeometry(VGM::IVolume* volume)  
 {
-// Generates XML geometry file starting from the specified logical volume.
-// ---
+// Generate XML geometry file for the geometry tree 
+// starting from the specified VGM volume.
 
   // Compose filename
   std::string fileName;
@@ -87,10 +97,9 @@ void XmlVGM::GDMLExporter::GenerateGeometry(VGM::IVolume* volume)
 //_____________________________________________________________________________
 void XmlVGM::GDMLExporter::GenerateSection(VGM::IVolume* volume)
 {
-// Generates the XML section element containing
-// all geometry objects defined in given logical volume:
-// rotation matrices, solids and volumes hierarchy.
-// ---
+/// Generate the XML section element containing
+/// all geometry objects defined in given logical volume:
+/// positions, rotations, materials, solids and volumes hierarchy
 
   // Create section
   fWriter->OpenSection(volume->Name());  
@@ -116,8 +125,7 @@ void XmlVGM::GDMLExporter::GenerateSection(VGM::IVolume* volume)
 //_____________________________________________________________________________
 void XmlVGM::GDMLExporter::ProcessVolume(VGM::IVolume* volume) 
 {
-// Writes logical volume tree.
-// ---
+/// Process the VGM volume tree
   
   int nofDaughters = volume->NofDaughters();
 

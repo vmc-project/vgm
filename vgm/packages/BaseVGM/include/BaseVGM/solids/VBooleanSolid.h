@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup BaseVGM_solids
 //
-// Class VBooleanSolid
-// --------------------
-// The ABC for Boolean solids.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class BaseVGM::VBooleanSolid
+///
+/// The ABC for Boolean solids.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef BASE_VGM_V_BOOLEAN_SOLID_H
 #define BASE_VGM_V_BOOLEAN_SOLID_H

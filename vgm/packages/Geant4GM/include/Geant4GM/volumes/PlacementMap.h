@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup Geant4GM_volumes
 //
-// Class PlacementMap
-// ---------------------
-// The map between VGM and Geant4 placements.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class Geant4GM::PlacementMap
+///
+/// The map between VGM and Geant4 placements.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef GEANT4_GM_PLACEMENT_MAP_H
 #define GEANT4_GM_PLACEMENT_MAP_H
@@ -42,7 +43,7 @@ namespace Geant4GM {
       VGM::IPlacement*   GetPlacement(G4VPhysicalVolume* pv) const;
 
     private:
-      PlacementMap(const PlacementMap&) {}
+      PlacementMap(const PlacementMap&);
 
       // static data members
       static PlacementMap*  fgInstance;

@@ -25,7 +25,21 @@ BaseVGM::VMaterialFactory::VMaterialFactory(const std::string& name)
     fMaterials(),
     fMedia()
 {
-//
+/// Standard constructor
+}
+
+//_____________________________________________________________________________
+BaseVGM::VMaterialFactory::VMaterialFactory() 
+  : VGM::IMaterialFactory() 
+{
+/// Protected default constructor
+}
+
+//_____________________________________________________________________________
+BaseVGM::VMaterialFactory::VMaterialFactory(const VMaterialFactory& rhs) 
+  : VGM::IMaterialFactory(rhs)
+{
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________
@@ -295,9 +309,8 @@ void BaseVGM::VMaterialFactory::GenerateMedia(
 const VGM::IElement* 
 BaseVGM::VMaterialFactory::Element(const std::string& name) const
 {
-// Finds the VGM element specified by name;
-// returns 0 if element is not found.
-// ---
+/// Finds the VGM element specified by name;
+/// returns 0 if element is not found.
 
   for (unsigned int i=0; i<Elements().size(); i++) {
     const VGM::IElement* element = Elements()[i];
@@ -311,9 +324,8 @@ BaseVGM::VMaterialFactory::Element(const std::string& name) const
 const VGM::IMaterial* 
 BaseVGM::VMaterialFactory::Material(const std::string& name) const
 {
-// Finds the VGM material specified by name;
-// returns 0 if material is not found.
-// ---
+/// Finds the VGM material specified by name;
+/// returns 0 if material is not found.
 
   for (unsigned int i=0; i<Materials().size(); i++) {
     const VGM::IMaterial* material = Materials()[i];
@@ -327,9 +339,9 @@ BaseVGM::VMaterialFactory::Material(const std::string& name) const
 const VGM::IMedium* 
 BaseVGM::VMaterialFactory::Medium(const std::string& name) const
 {	
-// Finds the VGM medium specified by name;
-// returns 0 if medium is not found.
-// ---
+/// Finds the VGM medium specified by name;
+/// returns 0 if medium is not found.
+
   for (unsigned int i=0; i<Media().size(); i++) {
     const VGM::IMedium* medium = Media()[i];
     if (medium->Name() == name) return medium;
@@ -341,8 +353,7 @@ BaseVGM::VMaterialFactory::Medium(const std::string& name) const
 //_____________________________________________________________________________
 bool BaseVGM::VMaterialFactory::Export(VGM::IMaterialFactory* factory) const
 {
-// Export the whole material and media store to the given factory.
-// ---
+/// Export the whole material and media store to the given factory.
 
   ElementMap* elementMap = ExportElements(factory); 
   MaterialMap* materialMap = ExportMaterials(factory, elementMap);
@@ -357,8 +368,7 @@ bool BaseVGM::VMaterialFactory::Export(VGM::IMaterialFactory* factory) const
 //_____________________________________________________________________________
 void  BaseVGM::VMaterialFactory::PrintElements() const
 {
-// Print all elements.
-// ---			       
+/// Print all elements.
 
   const VGM::ElementStore& elements = Elements();
 
@@ -372,8 +382,7 @@ void  BaseVGM::VMaterialFactory::PrintElements() const
 //_____________________________________________________________________________
 void  BaseVGM::VMaterialFactory::PrintMaterials() const
 {
-// Print all materials.
-// ---			       
+/// Print all materials.
 
   const VGM::MaterialStore& materials = Materials();
 
@@ -387,8 +396,7 @@ void  BaseVGM::VMaterialFactory::PrintMaterials() const
 //_____________________________________________________________________________
 void  BaseVGM::VMaterialFactory::PrintMedia() const
 {
-// Print all materials.
-// ---			       
+/// Print all media
 
   const VGM::MediumStore& media = Media();
 

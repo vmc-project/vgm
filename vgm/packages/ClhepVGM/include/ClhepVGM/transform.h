@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup ClhepVGM
 //
-// ClhepVGM utilities
-// -------------------
-// Utility functions 
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// ClhepVGM utilities
+///
+/// Utility functions 
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef CLHEP_VGM_TRANSFORM_H
 #define CLHEP_VGM_TRANSFORM_H

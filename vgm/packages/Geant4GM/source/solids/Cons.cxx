@@ -33,7 +33,15 @@ Geant4GM::Cons::Cons(const std::string& name,
 		      sphi  / ClhepVGM::Units::Angle(), 
 		      dphi  / ClhepVGM::Units::Angle()))
 {
-// 
+/// Standard constructor to define cons from parameters
+/// \param rin1 inside radius at -hz in mm
+/// \param rout1 outside radius at -hz in mm
+/// \param rin2 inside radius at +hz in mm
+/// \param rout2 outside radius at +hz in mm
+/// \param hz half-length along the z axis in mm
+/// \param sphi starting angle of the segment in deg
+/// \param dphi opening angle of the segment in deg
+
   Geant4GM::SolidMap::Instance()->AddSolid(this, fCons); 
 }
 
@@ -47,6 +55,8 @@ Geant4GM::Cons::Cons(G4Cons* cons,
     fIsReflected(false),
     fCons(cons)
 {    
+/// Standard constructor to define cons from G4 object
+
   if (reflCons) {
     fIsReflected = true;
     Geant4GM::SolidMap::Instance()->AddSolid(this, reflCons); 
@@ -62,7 +72,7 @@ Geant4GM::Cons::Cons()
     VGM::ICons(),
     BaseVGM::VCons() 
 {
-//
+/// Protected default constructor
 }
 
 //_____________________________________________________________________________
@@ -71,7 +81,7 @@ Geant4GM::Cons::Cons(const Cons& rhs)
     VGM::ICons(rhs),
     BaseVGM::VCons(rhs) 
 {
-//
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________

@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup Geant4GM_solids
 //
-// Class Trd
-// ---------------
-// VGM implementation for Geant4 trd solid.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class Geant4GM::Trd
+///
+/// VGM implementation for Geant4 trd solid.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef GEANT4_GM_TRD_H
 #define GEANT4_GM_TRD_H

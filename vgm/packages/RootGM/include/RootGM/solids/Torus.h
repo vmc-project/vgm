@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup RootGM_solids
 //
-// Class Torus
-// ---------------
-// VGM implementation for Root torus solid.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class RootGM:: Torus
+///
+/// VGM implementation for Root torus solid.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef ROOT_GM_TORUS_H
 #define ROOT_GM_TORUS_H

@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup Geant4GM_solids
 //
-// Class Para
-// ---------------
-// VGM implementation for Geant4 para solid.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class Geant4GM::Para
+///
+/// VGM implementation for Geant4 para solid.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef GEANT4_GM_PARA_H
 #define GEANT4_GM_PARA_H

@@ -22,6 +22,13 @@ RootGM::Medium::Medium(const std::string& name,
     BaseVGM::VMedium(material),
     fMedium(0)
 {
+/// Standard constructor to define medium from parameters 
+/// \param name its name
+///	   (must be unique in the factory)
+/// \param mediumId its unique identifier
+/// \param material associated material
+/// \param nofParameters number of defined parameters
+/// \param parameters array of parameters
 
   TGeoMaterial* geoMaterial
     = RootGM::MaterialMap::Instance()->GetMaterial(material);
@@ -44,7 +51,7 @@ RootGM::Medium::Medium(TGeoMedium* medium)
                     ->GetMaterial(medium->GetMaterial())),
     fMedium(medium)
 {
-//
+/// Standard constructor to define medium from Root object
 }
 			   
 //_____________________________________________________________________________
@@ -52,7 +59,7 @@ RootGM::Medium::Medium()
   : VGM::IMedium(),
     BaseVGM::VMedium() 
 {
-//
+/// Protected default constructor
 }  
 
 //_____________________________________________________________________________
@@ -60,7 +67,7 @@ RootGM::Medium::Medium(const Medium& rhs)
   : VGM::IMedium(rhs),
     BaseVGM::VMedium(rhs) 
 {
-//
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________

@@ -26,7 +26,14 @@ RootGM::Sphere::Sphere(const std::string& name,
 			   sphi             / RootGM::Units::Angle(), 
 			   (sphi + dphi)    / RootGM::Units::Angle()))
 {
-// 
+/// Standard constructor to define sphere from parameters
+/// \param rin inside radius of the shell in mm 
+/// \param rout outside radius of the shell in mm
+/// \param sphi starting azimuthal angle of the segment in deg
+/// \param dphi opening azimuthal angle of the segment in deg
+/// \param stheta starting polar angle of the segment in deg
+/// \param dtheta opening polar angle of the segment in deg
+
   RootGM::SolidMap::Instance()->AddSolid(this, fSphere); 
 }
 
@@ -38,6 +45,8 @@ RootGM::Sphere::Sphere(TGeoSphere* sphere)
     BaseVGM::VSphere(),
     fSphere(sphere)
 {    
+/// Standard constructor to define sphere from G4 object
+
   RootGM::SolidMap::Instance()->AddSolid(this, fSphere); 
 }
 
@@ -47,7 +56,7 @@ RootGM::Sphere::Sphere()
     VGM::ISphere(),
     BaseVGM::VSphere() 
 {
-//
+/// Protected default constructor
 }
 
 //_____________________________________________________________________________
@@ -56,7 +65,7 @@ RootGM::Sphere::Sphere(const Sphere& rhs)
     VGM::ISphere(rhs),
     BaseVGM::VSphere(rhs) 
 {
-//
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________

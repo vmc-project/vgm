@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup BaseVGM_solids
 //
-// Class VPolycone
-// ---------------
-// The ABC for polycone solids.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class BaseVGM::VPolycone
+///
+/// The ABC for polycone solids.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef BASE_VGM_V_POLYCONE_H
 #define BASE_VGM_V_POLYCONE_H

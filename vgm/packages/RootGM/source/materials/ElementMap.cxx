@@ -14,8 +14,7 @@ RootGM::ElementMap*  RootGM::ElementMap::fgInstance = 0;
 RootGM::ElementMap* 
 RootGM::ElementMap::Instance()
 { 
-// Singleton access function.
-// ---
+/// Singleton access function.
 
   if (!fgInstance) new RootGM::ElementMap();
   
@@ -27,8 +26,15 @@ RootGM::ElementMap::ElementMap()
   : fRootElements(),
     fVgmElements()
 {
-//  
+/// Standard default constructor
+
   fgInstance = this;
+}
+
+//_____________________________________________________________________________
+RootGM::ElementMap::ElementMap(const ElementMap&)
+{
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________
@@ -42,8 +48,7 @@ RootGM::ElementMap::~ElementMap()
 void  RootGM::ElementMap::AddElement(VGM::IElement* iElement, 
                                      TGeoElement* rtElement)
 {
-// Adds the specified pair in the map.
-// ---
+/// Add the specified pair in the map
 
   fRootElements[iElement] = rtElement;
   fVgmElements[rtElement] = iElement;
@@ -52,8 +57,7 @@ void  RootGM::ElementMap::AddElement(VGM::IElement* iElement,
 //_____________________________________________________________________________
 void  RootGM::ElementMap::Print() const
 {
-// Prints all elements in  the map.
-// ---
+/// Print all elements in  the map
 
   std::cout << "Root Elements Map: " << std::endl; 
 
@@ -75,8 +79,7 @@ void  RootGM::ElementMap::Print() const
 TGeoElement* 
 RootGM::ElementMap::GetElement(VGM::IElement* iElement) const
 {
-// Finds the Root element corresponding to a specified VGM element.
-// ---
+/// Find the Root element corresponding to a specified VGM element
 
   RootElementMapCIterator i = fRootElements.find(iElement);
   if (i != fRootElements.end()) 
@@ -89,8 +92,7 @@ RootGM::ElementMap::GetElement(VGM::IElement* iElement) const
 VGM::IElement* 
 RootGM::ElementMap::GetElement(TGeoElement* element) const
 {
-// Finds the VGM element corresponding to a specified Root element.
-// ---
+/// Finds the VGM element corresponding to a specified Root element
 
   VgmElementMapCIterator i = fVgmElements.find(element);
   if (i != fVgmElements.end()) 

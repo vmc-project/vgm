@@ -14,8 +14,7 @@ RootGM::PlacementMap*  RootGM::PlacementMap::fgInstance = 0;
 RootGM::PlacementMap* 
 RootGM::PlacementMap::Instance()
 { 
-// Singleton access function.
-// ---
+/// Singleton access function.
 
   if (!fgInstance) new RootGM::PlacementMap();
   
@@ -25,8 +24,15 @@ RootGM::PlacementMap::Instance()
 //_____________________________________________________________________________
 RootGM::PlacementMap::PlacementMap()
 {
-//  
+/// Standard default constructor
+
   fgInstance = this;
+}
+
+//_____________________________________________________________________________
+RootGM::PlacementMap::PlacementMap(const PlacementMap&)
+{
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________
@@ -44,8 +50,7 @@ RootGM::PlacementMap::~PlacementMap()
 void  RootGM::PlacementMap::AddPlacement(VGM::IPlacement* iPlacement, 
                                          TGeoNode* rtPlacement)
 {
-// Adds the specified pair in the map.
-// ---
+/// Add the specified pair in the map
 
   fPlacements[iPlacement] = rtPlacement;
 }  
@@ -54,8 +59,7 @@ void  RootGM::PlacementMap::AddPlacement(VGM::IPlacement* iPlacement,
 TGeoNode* 
 RootGM::PlacementMap::GetPlacement(VGM::IPlacement* iPlacement) const
 {
-// Finds the Root node corresponding to a specified VGM placement.
-// ---
+/// Find the Root node corresponding to a specified VGM placement.
 
   RootPlacementMapCIterator i = fPlacements.find(iPlacement);
   if (i != fPlacements.end()) 

@@ -18,8 +18,9 @@ std::ostream& operator<<(std::ostream& out, const VGM::ISphere& sphere)
 
 //_____________________________________________________________________________
 BaseVGM::VSphere::VSphere()
-  : VGM::ISphere() {
-//  
+  : VGM::ISphere()
+{
+/// Default constructor  
 }
 
 

@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup BaseVGM_materials
 //
-// Class VMedium
-// ---------------
-// The ABC for tracking medium.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class BaseVGM::VMedium
+///
+/// The ABC for tracking medium.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef BASE_VGM_V_MEDIUM_H
 #define BASE_VGM_V_MEDIUM_H
@@ -24,14 +25,12 @@ namespace BaseVGM {
       virtual ~VMedium();
     
       // methods
-      virtual std::string Name() const = 0;
-
       virtual VGM::IMaterial* Material() const ;
       virtual int  NofParameters() const;
 
     protected:   
-      VMedium() : VGM::IMedium() {} 
-      VMedium(const VMedium& rhs) : VGM::IMedium(rhs) {}
+      VMedium();
+      VMedium(const VMedium& rhs);
     
       // data members
       static const int fgkParamSize;  

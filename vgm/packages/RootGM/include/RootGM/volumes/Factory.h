@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup RootGM_volumes
 //
-// Class Factory
-// ----------------
-// VGM factory for Root.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class RootGM:: Factory
+///
+/// VGM factory for Root.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef ROOT_GM_FACTORY_H
 #define ROOT_GM_FACTORY_H

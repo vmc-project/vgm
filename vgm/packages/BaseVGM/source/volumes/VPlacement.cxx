@@ -14,12 +14,13 @@
 
 //_____________________________________________________________________________
 BaseVGM::VPlacement::VPlacement(VGM::IVolume* volume, 
-                               VGM::IVolume* motherVolume)
+                                VGM::IVolume* motherVolume)
   : VGM::IPlacement(),
     fVolume(volume),
     fMotherVolume(motherVolume) 
 {
-//
+/// Standard constructor
+
   // Update mother volume 
   if (motherVolume)
     motherVolume->AddDaughter(this);
@@ -27,6 +28,20 @@ BaseVGM::VPlacement::VPlacement(VGM::IVolume* volume,
     // check if top volume not yet set and
     // set top volume here  
     ;
+}
+
+//_____________________________________________________________________________
+BaseVGM::VPlacement::VPlacement() 
+  : VGM::IPlacement() 
+{
+/// Protected default constructor
+} 
+
+//_____________________________________________________________________________
+BaseVGM::VPlacement::VPlacement(const VPlacement& rhs) 
+  : VGM::IPlacement(rhs) 
+{
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________
@@ -51,6 +66,10 @@ VGM::IVolume* BaseVGM::VPlacement::Mother() const
 //_____________________________________________________________________________
 void BaseVGM::VPlacement::SetVolume(VGM::IVolume* volume)
 {
-//
+/// Set the associated volume 
+/// (Needed in a special case when a volume is
+///  created only when it is being placed)
+///		    
+
   fVolume = volume;
 }   			       

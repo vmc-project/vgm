@@ -25,7 +25,13 @@ Geant4GM::Tubs::Tubs(const std::string& name,
 		     sphi / ClhepVGM::Units::Angle(), 
 		     dphi / ClhepVGM::Units::Angle()))
 {
-// 
+/// Standard constructor to define tubs from parameters
+/// \param rin inside radius in mm
+/// \param rout outside radius in mm
+/// \param hz half-length along the z axis in mm
+/// \param sphi starting angle of the segment in deg
+/// \param dphi opening angle of the segment in deg
+
   Geant4GM::SolidMap::Instance()->AddSolid(this, fTubs); 
 }
 
@@ -38,6 +44,8 @@ Geant4GM::Tubs::Tubs(G4Tubs* tubs,
     BaseVGM::VTubs(),
     fTubs(tubs)
 {    
+/// Standard constructor to define tubs from G4 object
+
   if (reflTubs) 
     Geant4GM::SolidMap::Instance()->AddSolid(this, reflTubs);
   else   
@@ -50,7 +58,7 @@ Geant4GM::Tubs::Tubs()
     VGM::ITubs(),
     BaseVGM::VTubs() 
 {
-//
+/// Protected default constructor
 }
 
 //_____________________________________________________________________________
@@ -59,7 +67,7 @@ Geant4GM::Tubs::Tubs(const Tubs& rhs)
     VGM::ITubs(rhs),
     BaseVGM::VTubs(rhs) 
 {
-//
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________

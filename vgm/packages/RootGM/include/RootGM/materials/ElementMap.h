@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup RootGM_materials
 //
-// Class ElementMap
-// ------------------
-// The map between VGM and Root elements.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class RootGM:: ElementMap
+///
+/// The map between VGM and Root elements.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef ROOT_GM_ELEMENT_MAP_H
 #define ROOT_GM_ELEMENT_MAP_H
@@ -44,7 +45,7 @@ namespace RootGM {
       VGM::IElement* GetElement(TGeoElement* rtElement) const;
 
     private:
-      ElementMap(const ElementMap&) {}
+      ElementMap(const ElementMap&);
 
       // static data members
       static ElementMap*  fgInstance;

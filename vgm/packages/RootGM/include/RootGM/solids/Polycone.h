@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup RootGM_solids
 //
-// Class Polycone
-// ---------------
-// VGM implementation for Root polycone solid.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class RootGM:: Polycone
+///
+/// VGM implementation for Root polycone solid.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef ROOT_GM_POLYCONE_H
 #define ROOT_GM_POLYCONE_H

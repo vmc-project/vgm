@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup RootGM_solids
 //
-// Class Trap
-// ---------------
-// VGM implementation for Root trap solid.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class RootGM:: Trap
+///
+/// VGM implementation for Root trap solid.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef ROOT_GM_TRAP_H
 #define ROOT_GM_TRAP_H

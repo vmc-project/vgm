@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup RootGM_volumes
 //
-// Class PlacementMap
-// ---------------------
-// The map between VGM and Root placements.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class RootGM:: PlacementMap
+///
+/// The map between VGM and Root placements.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef ROOT_GM_PLACEMENT_MAP_H
 #define ROOT_GM_PLACEMENT_MAP_H
@@ -37,7 +38,7 @@ namespace RootGM {
       TGeoNode* GetPlacement(VGM::IPlacement* iPlacement) const;
 
     protected:
-      PlacementMap(const PlacementMap&) {}
+      PlacementMap(const PlacementMap&);
 
     private:
       // static data members

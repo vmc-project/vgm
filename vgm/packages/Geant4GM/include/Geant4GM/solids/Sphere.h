@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup Geant4GM_solids
 //
-// Class Sphere
-// ----------------
-// VGM implementation for Geant4 sphere solid.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class Geant4GM::Sphere
+///
+/// VGM implementation for Geant4 sphere solid.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef GEANT4_GM_SPHERE_H
 #define GEANT4_GM_SPHERE_H

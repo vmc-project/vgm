@@ -22,8 +22,12 @@ RootGM::Volume::Volume(const std::string& name,
                        const std::string& mediumName) 
   : VGM::IVolume(),
     BaseVGM::VVolume(solid),
-    fGeoVolume(0) {
-//
+    fGeoVolume(0) 
+{
+/// Standard constructor to define a volume via parameters
+/// \param solid the associated solid
+/// \param mediumName the name of the associated medium
+
 
   // Get solid from the solid map
   TGeoShape* geoSolid = RootGM::SolidMap::Instance()->GetSolid(solid);
@@ -51,6 +55,8 @@ RootGM::Volume::Volume(VGM::ISolid* solid, TGeoVolume* volume)
     BaseVGM::VVolume(solid),
     fGeoVolume(volume)
 {
+/// Standard constructor to define a volume via Root object
+
   // Register logical volume in the map
   RootGM::VolumeMap::Instance()->AddVolume(this, fGeoVolume); 
 }  
@@ -60,7 +66,7 @@ RootGM::Volume::Volume()
   : VGM::IVolume(),
     BaseVGM::VVolume() 
 {
-//
+/// Protected default constructor
 }
 
 //_____________________________________________________________________________
@@ -68,7 +74,7 @@ RootGM::Volume::Volume(const Volume& rhs)
   : VGM::IVolume(rhs),
     BaseVGM::VVolume(rhs) 
 {
-//
+/// Protected copy constructor
 }      
 
 //_____________________________________________________________________________
@@ -115,6 +121,8 @@ std::string  RootGM::Volume::MediumName() const
 //_____________________________________________________________________________
 void RootGM::Volume::ResetVolume(TGeoVolume* volume) 
 {
+/// Reset the associated Root volume to the specified one
+
   fGeoVolume = volume; 
   RootGM::VolumeMap::Instance()->AddVolume(this, fGeoVolume);
       // Check solid for this case

@@ -22,7 +22,11 @@ Geant4GM::Box::Box(const std::string& name,
 		    hy / ClhepVGM::Units::Length(), 
 		    hz / ClhepVGM::Units::Length()) )
 {
-// 
+/// Standard constructor to define box from parameters
+/// \param hx half-length along the x axis in mm
+/// \param hy half-length along the y axis in mm
+/// \param hz half-length along the z axis in mm
+
   Geant4GM::SolidMap::Instance()->AddSolid(this, fBox); 
 }
 
@@ -35,6 +39,8 @@ Geant4GM::Box::Box(G4Box* box,
     BaseVGM::VBox(),
     fBox(box)
 {    
+/// Standard constructor to define box from G4 object
+
   if (reflBox)
     Geant4GM::SolidMap::Instance()->AddSolid(this, reflBox);
   else
@@ -47,7 +53,7 @@ Geant4GM::Box::Box()
     VGM::IBox(),
     BaseVGM::VBox() 
 {
-//
+/// Protected default constructor
 }
 
 //_____________________________________________________________________________
@@ -56,7 +62,7 @@ Geant4GM::Box::Box(const Box& rhs)
     VGM::IBox(rhs),
     BaseVGM::VBox(rhs) 
 {
-//
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________

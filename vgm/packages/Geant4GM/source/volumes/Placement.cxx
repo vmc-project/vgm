@@ -34,6 +34,12 @@ Geant4GM::Placement::Placement(
     BaseVGM::VPlacement(volume, motherVolume),
     fPhysicalVolume(0)       
 {
+/// Standard constructor to define a simple placement via parameters
+/// \param copyNo the copy number of this placement
+/// \param volume the associated volume
+/// \param motherVolume the associated mother volume
+/// \param rotation, translation the CLHEP rotation and translation 
+///	   of the volume with respect to its mother
   
   // Get logical volumes from the volumes map
   G4LogicalVolume* g4LV 
@@ -61,6 +67,16 @@ Geant4GM::Placement::Placement(
     BaseVGM::VPlacement(volume, motherVolume),
     fPhysicalVolume(0) 
 {
+/// Standard constructor to define a multiple placement via parameters
+/// \param volume the associated volume which will be replicated
+/// \param motherVolume the associated mother volume
+/// \param axis the replication axis
+/// \param nofItems number of replications
+/// \param with the replication width (the unit depends on the axis;
+///	   can be mm or deg)
+///  \param offset the replication offset (the unit depends on the axis;
+///	   can be mm or deg)
+
   // Get logical volumes from the volumes map
   G4LogicalVolume* g4LV 
     = Geant4GM::VolumeMap::Instance()->GetVolume(volume);
@@ -89,6 +105,8 @@ Geant4GM::Placement::Placement(
     BaseVGM::VPlacement(volume, motherVolume),
     fPhysicalVolume(pv)       
 {
+/// Standard constructor to define a multiple placement via G4 object
+
   // Register physical volume in the map
   Geant4GM::PlacementMap::Instance()->AddPlacement(this, fPhysicalVolume); 
 }
@@ -98,7 +116,7 @@ Geant4GM::Placement::Placement()
   : VGM::IPlacement(),
     BaseVGM::VPlacement() 
 {
-//
+/// Protected default constructor
 }
 
 //_____________________________________________________________________________
@@ -106,7 +124,7 @@ Geant4GM::Placement::Placement(const Placement& rhs)
   : VGM::IPlacement(rhs),
     BaseVGM::VPlacement(rhs) 
 {
-//
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________

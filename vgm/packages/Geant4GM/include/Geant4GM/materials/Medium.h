@@ -1,12 +1,13 @@
 // $Id$
+/// \ingroup Geant4GM_materials
 //
-// Class Medium
-// ---------------
-// The VGM implementation of interface to tracking medium.
-// As there is no equivalent object in Geant4, the tracking medium
-// parameters are store in data members of this class.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class Geant4GM::Medium
+///
+/// The VGM implementation of interface to tracking medium.
+/// As there is no equivalent object in Geant4, the tracking medium
+/// parameters are store in data members of this class.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef GEANT4_GM_MEDIUM_H
 #define GEANT4_GM_MEDIUM_H

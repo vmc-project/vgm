@@ -1,10 +1,11 @@
 // $Id$
-//
-// Class IPolyhedra
-// ---------------
-// The VGM interface to polyhedra solids.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \ingroup VGM_solids
+///
+/// \class VGM::IPolyhedra
+/// 
+/// The VGM interface to polyhedra solids.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef VGM_I_POLYHEDRA_H
 #define VGM_I_POLYHEDRA_H
@@ -21,15 +22,31 @@ namespace VGM {
       virtual ~IPolyhedra() {}
 
       // methods
+      
       virtual SolidType   Type() const = 0;
       virtual std::string Name() const = 0;
 
+		       /// 
+		       /// Return starting phi angle of the segment in deg
       virtual double  StartPhi() const = 0;
+		       /// 
+		       /// Return opening phi angle of the segment in deg
       virtual double  DeltaPhi() const = 0;
+		       /// 
+		       /// Return number of sides of the cross section
+		       /// between the given phi limits
       virtual int     NofSides() const = 0;
+		       /// 
+		       /// Return number of planes perpendicular to the z axis
       virtual int     NofZPlanes() const = 0;
+		       /// 
+		       /// Return the array of z positions of the planes in mm
       virtual double* ZValues() const = 0;
+		       /// 
+		       /// Return the array of innner radius of the planes in mm
       virtual double* InnerRadiusValues() const = 0;
+		       /// 
+		       /// Return the array of outer radius of the planes in mm
       virtual double* OuterRadiusValues() const = 0;
 
       // streaming

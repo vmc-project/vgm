@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup Geant4GM_solids
 //
-// Class Torus
-// ---------------
-// VGM implementation for Geant4 torus solid.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class Geant4GM::Torus
+///
+/// VGM implementation for Geant4 torus solid.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef GEANT4_GM_TORUS_H
 #define GEANT4_GM_TORUS_H

@@ -13,8 +13,7 @@ RootGM::MaterialMap*  RootGM::MaterialMap::fgInstance = 0;
 //_____________________________________________________________________________
 RootGM::MaterialMap* RootGM::MaterialMap::Instance()
 { 
-// Singleton access function.
-// ---
+/// Singleton access function
 
   if (!fgInstance) new RootGM::MaterialMap();
   
@@ -26,8 +25,15 @@ RootGM::MaterialMap::MaterialMap()
   : fRootMaterials(),
     fVgmMaterials()
 {
-//  
+/// Standard default constructor
+
   fgInstance = this;
+}
+
+//_____________________________________________________________________________
+RootGM::MaterialMap::MaterialMap(const MaterialMap&)
+{
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________
@@ -45,8 +51,7 @@ RootGM::MaterialMap::~MaterialMap()
 void  RootGM::MaterialMap::AddMaterial(VGM::IMaterial* iMaterial, 
                                        TGeoMaterial* rootMaterial)
 {
-// Adds the specified pair in the maps.
-// ---
+/// Add the specified pair in the maps
 
   fRootMaterials[iMaterial] = rootMaterial;
   fVgmMaterials[rootMaterial] = iMaterial;
@@ -55,8 +60,7 @@ void  RootGM::MaterialMap::AddMaterial(VGM::IMaterial* iMaterial,
 //_____________________________________________________________________________
 void  RootGM::MaterialMap::Print() const
 {
-// Prints all materials in  the maps.
-// ---
+/// Prints all materials in the maps
 
   std::cout << "Root Materials Map: " << std::endl; 
 
@@ -78,8 +82,7 @@ void  RootGM::MaterialMap::Print() const
 TGeoMaterial* 
 RootGM::MaterialMap::GetMaterial(VGM::IMaterial* iMaterial) const
 {
-// Finds the Root material corresponding to a specified VGM material.
-// ---
+/// Find the Root material corresponding to a specified VGM material
 
   RootMaterialMapCIterator i = fRootMaterials.find(iMaterial);
   if (i != fRootMaterials.end()) 
@@ -92,8 +95,7 @@ RootGM::MaterialMap::GetMaterial(VGM::IMaterial* iMaterial) const
 VGM::IMaterial* 
 RootGM::MaterialMap::GetMaterial(TGeoMaterial* rootMaterial) const
 {
-// Finds the VGM material corresponding to a specified Root material.
-// ---
+/// Finds the VGM material corresponding to a specified Root material
 
   VgmMaterialMapCIterator i = fVgmMaterials.find(rootMaterial);
   if (i != fVgmMaterials.end()) 

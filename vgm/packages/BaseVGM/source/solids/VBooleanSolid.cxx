@@ -33,8 +33,9 @@ std::string VGM::BooleanTypeName(VGM::BooleanType typeId)
 
 //_____________________________________________________________________________
 BaseVGM::VBooleanSolid::VBooleanSolid()
-  : VGM::IBooleanSolid() {
-//  
+  : VGM::IBooleanSolid() 
+{
+/// Default constructor  
 }
 
 //_____________________________________________________________________________

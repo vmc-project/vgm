@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup RootGM_volumes
 //
-// Class VolumeMap
-// ------------------
-// The map between VGM and Root volumes.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class RootGM:: VolumeMap
+///
+/// The map between VGM and Root volumes.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef ROOT_GM_VOLUME_MAP_H
 #define ROOT_GM_VOLUME_MAP_H
@@ -44,7 +45,7 @@ namespace RootGM {
       VGM::IVolume* GetVolume(TGeoVolume* rootVolume) const;
 
     private:
-      VolumeMap(const VolumeMap&) {}
+      VolumeMap(const VolumeMap&);
 
       // static data members
       static VolumeMap*  fgInstance;

@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup BaseVGM_volumes
 //
-// Class VPlacement
-// -----------------
-// The abstract base class to positions of volumes.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class BaseVGM::VPlacement
+///
+/// The abstract base class to positions of volumes.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef BASE_VGM_V_PLACEMENT_H
 #define BASE_VGM_V_PLACEMENT_H
@@ -23,6 +24,7 @@ namespace BaseVGM {
       virtual ~VPlacement();
     
       // methods
+      
       virtual std::string     Name() const = 0;
       virtual VGM::IVolume*   Volume() const;
       virtual VGM::IVolume*   Mother() const;
@@ -34,12 +36,12 @@ namespace BaseVGM {
                              int&     nofDivisions,
                              double&  width,
                              double&  offset) const = 0;
-			       
+
       void SetVolume(VGM::IVolume* volume);			       
  
     protected:
-      VPlacement() : VGM::IPlacement() {}
-      VPlacement(const VPlacement& rhs) : VGM::IPlacement(rhs) {}
+      VPlacement();
+      VPlacement(const VPlacement& rhs);
     
     private:
       VGM::IVolume*  fVolume;

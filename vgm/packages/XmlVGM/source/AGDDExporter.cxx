@@ -20,14 +20,21 @@
 XmlVGM::AGDDExporter::AGDDExporter(const VGM::IFactory* factory)
   : VExporter(factory, new AGDDWriter())
 {
-//
+/// Standard constructor
+}
+
+//_____________________________________________________________________________
+XmlVGM::AGDDExporter::AGDDExporter() 
+  : VExporter()
+{
+/// Protected default constructor  
 }
 
 //_____________________________________________________________________________
 XmlVGM::AGDDExporter::AGDDExporter(const AGDDExporter& right) 
   : VExporter(right)
 {
-// 
+/// Protected copy constructor  
 }
 
 //_____________________________________________________________________________
@@ -41,6 +48,8 @@ XmlVGM::AGDDExporter::~AGDDExporter() {
 XmlVGM::AGDDExporter& 
 XmlVGM::AGDDExporter::operator=(const AGDDExporter& right)
 {
+/// Protected assignement operator
+
   // check assignement to self
   if (this == &right) return *this;
 
@@ -58,8 +67,7 @@ XmlVGM::AGDDExporter::operator=(const AGDDExporter& right)
 XmlVGM::ThreeVector  
 XmlVGM::AGDDExporter::Identity() const
 {
-// Returns zero vector
-// ---
+/// Return zero vector
   
   ThreeVector rotation(3);
   rotation[0] = 0.;
@@ -76,9 +84,8 @@ XmlVGM::AGDDExporter::Identity() const
 //_____________________________________________________________________________
 void XmlVGM::AGDDExporter::GenerateGeometry(VGM::IVolume* volume)  
 {
-// Generates XML geometry file for the geometry tree 
-// starting from the specified logical volume.
-// ---
+// Generate XML geometry file for the geometry tree 
+// starting from the specified VGM volume.
 
   // filename
   std::string fileName;
@@ -113,10 +120,9 @@ void XmlVGM::AGDDExporter::GenerateGeometry(VGM::IVolume* volume)
 //_____________________________________________________________________________
 void XmlVGM::AGDDExporter::GenerateSection(VGM::IVolume* volume)
 {
-// Generates the XML section element containing
-// all geometry objects defined in given logical volume:
-// solids and volumes tree.
-// ---
+/// Generate the XML section element containing
+/// all geometry objects defined in given VGM volume:
+/// solids and volumes tree.
 
   // create section
   fWriter->OpenSection(volume->Name());  
@@ -137,8 +143,7 @@ void XmlVGM::AGDDExporter::GenerateSection(VGM::IVolume* volume)
 //_____________________________________________________________________________
 void XmlVGM::AGDDExporter::ProcessVolume(VGM::IVolume* volume) 
 {
-// Writes the logical volume tree.
-// ---
+/// Process the VGM volume tree
   
   int nofDaughters = volume->NofDaughters();
   if (nofDaughters == 0) return;

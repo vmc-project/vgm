@@ -1,12 +1,13 @@
 // $Id$
+/// \ingroup BaseVGM_materials
 //
-// Class VMaterialFactory
-// ---------------
-// The abstract base class to material factory.
-// It owns the material stores and implements the export 
-// to other factory. 
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class BaseVGM::VMaterialFactory
+///
+/// The abstract base class to material factory.
+/// It owns the material stores and implements the export 
+/// to other factory. 
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef BASE_VGM_V_MATERIAL_FACTORY_H
 #define BASE_VGM_V_MATERIAL_FACTORY_H
@@ -29,6 +30,7 @@ namespace BaseVGM {
       //
     
       // access  
+      //
       virtual std::string Name() const;
 
       virtual const VGM::ElementStore&   Elements() const;	
@@ -55,10 +57,8 @@ namespace BaseVGM {
       virtual int  Debug() const;
 
     protected:
-      VMaterialFactory() 
-        : VGM::IMaterialFactory() {}
-      VMaterialFactory(const VMaterialFactory& rhs) 
-        : VGM::IMaterialFactory(rhs) {}
+      VMaterialFactory();
+      VMaterialFactory(const VMaterialFactory& rhs); 
 
       virtual VGM::ElementStore&    ElementStore();			       
       virtual VGM::MaterialStore&   MaterialStore();			       
@@ -120,15 +120,24 @@ BaseVGM::VMaterialFactory::Media() const
 
 inline VGM::ElementStore& 
 BaseVGM::VMaterialFactory::ElementStore()
-{ return fElements; }
+{  
+  /// Return the store of elements (non const)
+  return fElements; 
+}
 			       
 inline VGM::MaterialStore& 
 BaseVGM::VMaterialFactory::MaterialStore()
-{ return fMaterials; }
+{   
+  /// Return the store of materials (non const)
+  return fMaterials; 
+}
 			       
 inline VGM::MediumStore& 
 BaseVGM::VMaterialFactory::MediumStore()
-{ return fMedia; }
+{
+  /// Return the store of media (non const)
+  return fMedia; 
+}
 			       
 inline void 
 BaseVGM::VMaterialFactory::SetDebug (int debug)

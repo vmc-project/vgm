@@ -20,8 +20,9 @@ const double RootGM::Units::fgkMassDensity  = 1.;      // g/cm3;
 const double RootGM::Units::fgkAtomicWeight = 1.;      // g/mole;
 
 //_____________________________________________________________________________
-RootGM::Units::Units() {
-//
+RootGM::Units::Units() 
+{
+/// Protected default constructor
 }
   
 //_____________________________________________________________________________

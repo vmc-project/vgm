@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup BaseVGM_solids
 //
-// Class VSphere
-// ---------------
-// The ABC for sphere solids.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class BaseVGM::VSphere
+///
+/// The ABC for sphere solids.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef BASE_VGM_V_SPHERE_H
 #define BASE_VGM_V_SPHERE_H

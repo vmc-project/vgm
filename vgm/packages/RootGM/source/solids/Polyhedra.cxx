@@ -30,6 +30,16 @@ RootGM::Polyhedra::Polyhedra(
     BaseVGM::VPolyhedra(),
     fPolyhedra(0)
 {
+/// Standard constructor to define polyhedra from parameters
+/// \param sphi starting angle of the segment in deg
+/// \param dphi opening angle of the segment in deg
+/// \param nofSides number of sides of the cross section
+///	   between the given phi limits
+/// \param nofZplanes number of planes perpendicular to the
+///	   z axis (has to be >= 2)
+/// \param z  array of z positions of the planes in mm 
+/// \param rin array of inside radius of the planes in mm 
+/// \param rout array of outside radius of the planes in mm 
 // 
   double* param = new double[4+3*nofZPlanes]; 
           // number of parameters: sphi, dphi, nz + 3*nofZPlanes
@@ -63,6 +73,8 @@ RootGM::Polyhedra::Polyhedra(TGeoPgon* polyhedra)
     BaseVGM::VPolyhedra(),
     fPolyhedra(polyhedra)
 {    
+/// Standard constructor to define polyhedra from Root object
+
   RootGM::SolidMap::Instance()->AddSolid(this, fPolyhedra); 
   CreateBuffers();
 }
@@ -73,7 +85,7 @@ RootGM::Polyhedra::Polyhedra()
     VGM::IPolyhedra(),
     BaseVGM::VPolyhedra() 
 {
-//
+/// Protected default constructor
 }
 
 //_____________________________________________________________________________
@@ -82,7 +94,7 @@ RootGM::Polyhedra::Polyhedra(const Polyhedra& rhs)
     VGM::IPolyhedra(rhs),
     BaseVGM::VPolyhedra(rhs) 
 {
-//
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________

@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup Geant4GM_solids
 //
-// Class Tubs
-// ---------------
-// VGM implementation for Geant4 tubs solid.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class Geant4GM::Tubs
+///
+/// VGM implementation for Geant4 tubs solid.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef GEANT4_GM_TUBS_H
 #define GEANT4_GM_TUBS_H

@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup RootGM_solids
 //
-// Class Box
-// ---------------
-// VGM implementation for Root box solid.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class RootGM:: Box
+///
+/// VGM implementation for Root box solid.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef ROOT_GM_BOX_H
 #define ROOT_GM_BOX_H

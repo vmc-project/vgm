@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup RootGM_volumes
 //
-// Class Volume
-// ---------------
-// VGM implementation for Root volume.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class RootGM:: Volume
+///
+/// VGM implementation for Root volume.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef ROOT_GM_VOLUME_H
 #define ROOT_GM_VOLUME_H

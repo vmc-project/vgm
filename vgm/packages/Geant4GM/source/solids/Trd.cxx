@@ -29,7 +29,17 @@ Geant4GM::Trd::Trd(const std::string& name,
 		    hy2 / ClhepVGM::Units::Length(), 
 		    hz  / ClhepVGM::Units::Length()) )
 {
-// 
+/// Standard constructor to define trd from parameters
+/// \param hx1 half-length along x at the surface positioned 
+///	       at -hz in mm
+/// \param hx2 half-length along x at the surface positioned 
+///	       at +hz in mm
+/// \param hy1 half-length along y at the surface positioned 
+///	       at -hz in mm
+/// \param hy2 half-length along y at the surface positioned 
+///	       at +hz in mm
+/// \param hz half-length along the z axis in mm
+
   Geant4GM::SolidMap::Instance()->AddSolid(this, fTrd); 
 }
 
@@ -43,6 +53,8 @@ Geant4GM::Trd::Trd(G4Trd* trd,
     fIsReflected(false),
     fTrd(trd)
 {    
+/// Standard constructor to define trd from G4 object
+
   if (reflTrd) {
     fIsReflected = true;
     Geant4GM::SolidMap::Instance()->AddSolid(this, reflTrd);
@@ -57,7 +69,7 @@ Geant4GM::Trd::Trd()
     VGM::ITrd(),
     BaseVGM::VTrd() 
 {
-//
+/// Protected default constructor
 }
 
 //_____________________________________________________________________________
@@ -66,7 +78,7 @@ Geant4GM::Trd::Trd(const Trd& rhs)
     VGM::ITrd(rhs),
     BaseVGM::VTrd(rhs) 
 {
-//
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________

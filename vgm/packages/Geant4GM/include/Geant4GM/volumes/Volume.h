@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup Geant4GM_volumes
 //
-// Class Volume
-// ---------------
-// VGM implementation for Geant4 volume.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class Geant4GM::Volume
+///
+/// VGM implementation for Geant4 volume.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef GEANT4_GM_VOLUME_H
 #define GEANT4_GM_VOLUME_H

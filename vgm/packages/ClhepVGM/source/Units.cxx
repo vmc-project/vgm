@@ -20,15 +20,11 @@ const double ClhepVGM::Units::fgkLength       = 1./mm;
 const double ClhepVGM::Units::fgkAngle        = 1./deg;
 const double ClhepVGM::Units::fgkMassDensity  = 1./(g/cm3);
 const double ClhepVGM::Units::fgkAtomicWeight = 1./(g/mole);
-/*
-const double ClhepVGM::Units::fgkLength       = mm;
-const double ClhepVGM::Units::fgkAngle        = deg;
-const double ClhepVGM::Units::fgkMassDensity  = (g/cm3);
-const double ClhepVGM::Units::fgkAtomicWeight = (g/mole);
-*/
+
 //_____________________________________________________________________________
-ClhepVGM::Units::Units() {
-//
+ClhepVGM::Units::Units() 
+{
+/// Protected default constructor
 }
   
 //_____________________________________________________________________________

@@ -1,10 +1,11 @@
 // $Id$
+/// \ingroup RootGM_solids
 //
-// Class Cons
-// ---------------
-// VGM implementation for Root cons solid.
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class RootGM:: Cons
+///
+/// VGM implementation for Root cons solid.
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef ROOT_GM_CONS_H
 #define ROOT_GM_CONS_H

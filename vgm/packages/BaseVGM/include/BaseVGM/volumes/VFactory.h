@@ -1,13 +1,13 @@
 // $Id$
-// Category: basic
+/// \ingroup BaseVGM_volumes
 //
-// Class VFactory
-// ---------------
-// The abstract base class to geometry factory.
-// It owns the solids and volumes stores and
-// implements the export to other factory. 
-//
-// Author: Ivana Hrivnacova; IPN Orsay
+/// \class BaseVGM::VFactory
+///
+/// The abstract base class to geometry factory.
+/// It owns the solids and volumes stores and
+/// implements the export to other factory. 
+///
+/// Author: Ivana Hrivnacova; IPN Orsay
 
 #ifndef BASE_VGM_V_FACTORY_H
 #define BASE_VGM_V_FACTORY_H
@@ -49,8 +49,8 @@ namespace BaseVGM {
       virtual int   Debug() const;
 
     protected:
-      VFactory() : VGM::IFactory() {}
-      VFactory(const VFactory& rhs) : VGM::IFactory(rhs) {}
+      VFactory();
+      VFactory(const VFactory& rhs);
 
       virtual VGM::SolidStore&   SolidStore();			       
       virtual VGM::VolumeStore&  VolumeStore();
@@ -112,11 +112,17 @@ BaseVGM::VFactory::MaterialFactory() const
 
 inline VGM::SolidStore& 
 BaseVGM::VFactory::SolidStore()
-{ return fSolids; }
+{ 
+  /// Return the store of solids (non const)
+  return fSolids; 
+}
 			       
 inline VGM::VolumeStore& 
 BaseVGM::VFactory::VolumeStore()
-{ return fVolumes; }
+{ 
+  /// Return the store of volumes (non const)
+  return fVolumes;
+}
 
 inline int BaseVGM::VFactory::Debug() const
 { return fDebug; }

@@ -28,7 +28,15 @@ RootGM::Polycone::Polycone(
     BaseVGM::VPolycone(),
     fPolycone(0)
 {
-// 
+/// Standard constructor to define polycone from parameters
+/// \param sphi starting angle of the segment in deg
+/// \param dphi opening angle of the segment in deg
+/// \param nofZplanes number of planes perpendicular to the
+///	   z axis (has to be >= 2)
+/// \param z  array of z positions of the planes in mm 
+/// \param rin array of inside radius of the planes in mm 
+/// \param rout array of outside radius of the planes in mm 
+
   double* param = new double[3+3*nofZPlanes]; 
           // number of parameters: sphi, dphi, nz + 3*nofZPlanes
  
@@ -60,6 +68,8 @@ RootGM::Polycone::Polycone(TGeoPcon* polycone)
     BaseVGM::VPolycone(),
     fPolycone(polycone)
 {    
+/// Standard constructor to define polycone from Root object
+
   RootGM::SolidMap::Instance()->AddSolid(this, fPolycone); 
   CreateBuffers();
 }
@@ -70,7 +80,7 @@ RootGM::Polycone::Polycone()
     VGM::IPolycone(),
     BaseVGM::VPolycone() 
 {
-//
+/// Protected default constructor
 }
 
 //_____________________________________________________________________________
@@ -79,7 +89,7 @@ RootGM::Polycone::Polycone(const Polycone& rhs)
     VGM::IPolycone(rhs),
     BaseVGM::VPolycone(rhs) 
 {
-//
+/// Protected copy constructor
 }
 
 //_____________________________________________________________________________
