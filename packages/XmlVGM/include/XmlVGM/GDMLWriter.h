@@ -15,12 +15,14 @@
 #include <set>
 
 #include "VGM/solids/ISolid.h"
+#include "VGM/solids/IBooleanSolid.h"
 #include "VGM/solids/IBox.h"
 #include "VGM/solids/ICons.h"
 #include "VGM/solids/IPara.h"
 #include "VGM/solids/IPolycone.h"
 #include "VGM/solids/IPolyhedra.h"
 #include "VGM/solids/ISphere.h"
+#include "VGM/solids/ITorus.h"
 #include "VGM/solids/ITrap.h"
 #include "VGM/solids/ITrd.h"
 #include "VGM/solids/ITubs.h"
@@ -32,14 +34,12 @@ class VGM::IElement;
 
 namespace XmlVGM {
 
+  class Maps;
+
   class GDMLWriter : public virtual IWriter
   {
     public:
-      typedef std::vector<ThreeVector> RotationMatrixVector;
-
-    public:
-      GDMLWriter(std::ofstream& outFile,
-		 const std::string& unitName = "unit1", 
+      GDMLWriter(const std::string& unitName = "unit1", 
                  const std::string& version = "1.0"); 
       virtual ~GDMLWriter();
 
@@ -47,6 +47,7 @@ namespace XmlVGM {
 
       // XML elements 
       //
+      virtual void OpenFile(std::string filePath);
       virtual void OpenDocument();
       virtual void OpenSection(const std::string& topVolume);
       virtual void OpenPositions(); 
@@ -57,6 +58,7 @@ namespace XmlVGM {
       virtual void OpenComposition(const std::string& name,
                                    const std::string& materialName);
 
+      virtual void CloseFile();
       virtual void CloseDocument();
       virtual void CloseSection(const std::string& topVolume);
       virtual void ClosePositions();
@@ -79,35 +81,14 @@ namespace XmlVGM {
 			     
       virtual void WritePosition(
                             const std::string& name, 
-                            const ThreeVector& position); 
+                            const VGM::Transform& transform); 
 			    
       virtual void WriteRotation(
                             const std::string& name, 
-                            const ThreeVector& rotation); 
+                            const VGM::Transform& transform); 
 
       virtual void WritePlacement(
-                            const std::string& /*lvName*/, 
-                            const ThreeVector& /*position*/) {} 
-			    
-      virtual void WritePlacementWithRotation(
-                            std::string /*name*/, 
-			    const ThreeVector& /*position*/,
-   			    const ThreeVector& /*rotation*/) {}
-			    
-      virtual void WritePlacementWithRotationAndReflection(
-                            std::string /*name*/, 
-			    const ThreeVector& /*position*/,
-                            const ThreeVector& /*rotation*/) {} 
-			    
-      virtual void WritePlacementWithRotation(
-                            const std::string& lvName, 
-			    const std::string& positionRef,
-			    const std::string& rotationRef);
-			     
-      virtual void WriteMultiplePlacement(
-                            const std::string& lvName,
-                            VGM::Axis axis, int nofReplicas, 
-			    double width, double offset);			       
+                            const VGM::IPlacement& placement); 
 
       // Formatting utilities
       //
@@ -124,6 +105,7 @@ namespace XmlVGM {
 
       // Set methods
       //
+      virtual void SetMaps(Maps* maps);
       virtual void SetNumWidth(int width);
       virtual void SetNumPrecision(int precision);
 
@@ -134,10 +116,14 @@ namespace XmlVGM {
 
     private:
       // types
+      //
       typedef std::set <std::string, std::less<std::string> > StringSet; 
 
-      //methods
+      // Utility methods
+      //
       std::string UpdateName(const std::string& name,         
+                             const std::string& extension = "") const;
+      std::string StripName(const std::string& name,         
                              const std::string& extension = "") const;
       double UpdateAngle(double angle) const;
       void Append(std::string& name, int size, std::string string) const;
@@ -147,45 +133,38 @@ namespace XmlVGM {
 		        const std::string& separator1, 
 		        double number, const std::string& separator2) const;
     
-           // writing solids
+      // Writing solids
+      //
+      void WriteBooleanSolid(
+                     std::string name, const VGM::IBooleanSolid* solid);  
       void WriteBox (std::string lvName, 
-                     double hx, double hy, double hz,  
-                     std::string materialName); 
-		    
-      void WriteBox (std::string name, const VGM::IBox*  box,  
-                     std::string materialName); 
-		     
-      void WriteTubs(std::string name, const VGM::ITubs* tubs, 
-                     std::string materialName); 
-		     
-      void WriteCons(std::string name, const VGM::ICons* cons, 
-                     std::string materialName); 
-		     
-      void WriteTrd (std::string name, const VGM::ITrd*  trd,  
-                     std::string materialName); 
-		     
-      void WriteTrap(std::string name, const VGM::ITrap* trap, 
-                     std::string materialName); 
-		     
-      void WritePara(std::string name, const VGM::IPara* para, 
-                     std::string materialName); 
-		     
-      //void WritePolycone(std::string name, const VGM::IPolycone* polycone, 
-      //               std::string materialName); 
-      
-      //void WritePolyhedra(std::string name, const VGM::IPolyhedra* polyhedra, 
-      //               std::string materialName); 
-      
-      void WriteSphere(std::string name, const VGM::ISphere* sphere, 
-                     std::string materialName); 
-		     
-      //void WriteTorus(std::string name, const VGM::ISphere* sphere, 
-      //                std::string materialName); 
-      
-      void WriteNotSupportedSolid(std::string name, 
-                        std::string materialName); 
+                     double hx, double hy, double hz);
+      void WriteBox (std::string name, const VGM::IBox*  box);  
+      void WriteTubs(std::string name, const VGM::ITubs* tubs); 
+      void WriteCons(std::string name, const VGM::ICons* cons); 
+      void WriteTrd (std::string name, const VGM::ITrd*  trd);  
+      void WriteTrap(std::string name, const VGM::ITrap* trap); 
+      void WritePara(std::string name, const VGM::IPara* para); 
+      void WritePolycone(std::string name, const VGM::IPolycone* polycone); 
+      //void WritePolyhedra(std::string name, const VGM::IPolyhedra* polyhedra); 
+      void WriteSphere(std::string name, const VGM::ISphere* sphere); 
+      void WriteTorus(std::string name, const VGM::ITorus* torus); 
+      void WriteNotSupportedSolid(std::string name); 
   
+      // Writing placements
+      //
+      virtual void WriteSimplePlacement(
+                            const std::string& lvName, 
+			    const std::string& positionRef,
+			    const std::string& rotationRef);
+			     
+      virtual void WriteMultiplePlacement(
+                            const std::string& lvName,
+                            VGM::Axis axis, int nofReplicas, 
+			    double width, double offset);			       
+
       // static data members
+      //
       static const int          fgkDefaultNumWidth;     //default output numbers width
       static const int          fgkDefaultNumPrecision; //default output numbers precision 
       static const std::string  fgkSolidNameExtension;  //solid names extension 
@@ -196,7 +175,8 @@ namespace XmlVGM {
                                                         //in XML names
 
       // data members
-      std::ofstream&     fOutFile;          //output file
+      //
+      std::ofstream      fOutFile;          //output file
       std::string        fUnitName;         //unit name
       std::string        fVersion;          //geometry version
       const std::string  fkBasicIndention;  //basic indention 
@@ -204,6 +184,8 @@ namespace XmlVGM {
       int                fNW;               //output numbers width
       int                fNP;               //output numbers precision 
       StringSet          fGDMLNames;        //names in GDML 
+      Maps*              fMaps;             //name maps
+      bool               fFullLengths;      //full lengths in solids
   };
 
 }
@@ -220,6 +202,9 @@ inline double XmlVGM::GDMLWriter::AtomicWeightUnit() const
 inline double XmlVGM::GDMLWriter::MassDensityUnit() const
 { return  1.; }   // g/cm3
  
+inline void XmlVGM::GDMLWriter::SetMaps(Maps* maps)
+{ fMaps = maps; }
+
 inline void XmlVGM::GDMLWriter::SetNumWidth(int width)
 { fNW = width; }
 

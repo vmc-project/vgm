@@ -4,8 +4,8 @@
 // --------------------
 // Class for generation of geometry data files in XML,
 // the XML format is independent from the geometry object model. 
-// It has three abstract methods (for processing the volume tree)
-// that have to be provided by derived classes.
+// It has one abstract method for processing the volume tree
+// that has to be provided by derived classes.
 //
 // Author: I. Hrivnacova, 19.1.2004
 
@@ -22,6 +22,8 @@
 #include "VGM/volumes/IFactory.h"
 #include "VGM/volumes/IVolume.h"
 
+#include "XmlVGM/Maps.h"
+
 namespace XmlVGM {
 
   typedef std::vector<double> ThreeVector;
@@ -33,18 +35,10 @@ namespace XmlVGM {
     public:
       typedef std::set <std::string, 
                         std::less<std::string> >  StringSet; 
-      typedef std::map <ThreeVector, 
-                        std::string, 
-                        std::less<ThreeVector> >  ThreeVectorMap; 
-      typedef std::multimap <ThreeVector, 
-                        const VGM::IElement*, 
-                        std::less<ThreeVector> >  ElementMap; 
-      typedef std::map <std::string, 
-                        const VGM::IMaterial*, 
-                        std::less<std::string> >  MaterialMap; 
 
     public:
-      VExporter(const VGM::IFactory* factory);
+      VExporter(const VGM::IFactory* factory,
+                IWriter* writer);
       // --> protected
       // VExporter();
       // VExporter(const VExporter& right);
@@ -59,7 +53,7 @@ namespace XmlVGM {
       void SetDebug(int debug);
 
       // get methods
-      std::string GetFileName() const;
+      std::string FileName() const;
       int  Debug() const;
 
     protected:
@@ -73,63 +67,36 @@ namespace XmlVGM {
       // specific to XML definition
       //
       virtual void GenerateGeometry(VGM::IVolume* volume) = 0;
-      virtual void GenerateSection(VGM::IVolume* volume) = 0;
-      virtual void ProcessVolume(VGM::IVolume* volume) = 0;  
 
       // methods
       //
-      std::string  FindPositionName(const ThreeVector& position) const;
-      std::string  FindRotationName(const ThreeVector& rotation) const;
-
       void GeneratePositions(VGM::IVolume* volume);
       void GenerateRotations(VGM::IVolume* volume);
       void GenerateMaterials(VGM::IVolume* volume);
       void GenerateSolids(VGM::IVolume* volume);
 
-      void OpenFile(std::string filePath);
-      void CloseFile();
       void ClearVolumeNames();
       
-      ThreeVector Identity() const;
-      bool        IsIdentity(const ThreeVector& rotation) const;
-
       // static data members
       static const std::string fgkUndefinedFileName; //default value of file name
                                      
       // data members
       //
       const VGM::IFactory*  fFactory; // VGM factory 
-      IWriter*       fWriter;         //interface to XML writer 
-      StringSet      fVolumeNames;    //set of volume names
-      std::ofstream  fOutFile;        //output file
-      std::string    fFileName;       //output file name
-      int            fDebug;          //debug level
+      IWriter*       fWriter;         // interface to XML writer 
+      std::string    fFileName;       // output file name
+      StringSet      fVolumeNames;    // set of volume names
+      int            fDebug;          // debug level
+      Maps           fMaps; // maps between XML elements and their names
 
     private:
       // methods
       //
-      void         CutName(std::string& name) const;
-      double       Round(double number) const;
-      ThreeVector  PurifyAngles(const ThreeVector& rotation) const;
- 
-      std::string  AddPositionToMap(const ThreeVector& position);
-      std::string  AddRotationToMap(const ThreeVector& rotation);
-      const VGM::IElement*  AddElementToMap(const VGM::IElement* element);
-      const VGM::IMaterial* AddMaterialToMap(const VGM::IMaterial* material);
-    
       void ProcessPositions(VGM::IVolume* volume); 
       void ProcessRotations(VGM::IVolume* volume); 
       void ProcessMaterials(VGM::IVolume* volume); 
       void ProcessSolids(VGM::IVolume* volume); 
-
-      // data members
-      //
-      ThreeVectorMap     fPositions; //map between positions and their XML names
-      ThreeVectorMap     fRotations; //map between rotations and their XML names
-      ElementMap         fElements;  //map of elements
-      MaterialMap        fMaterials; //map of materials
   };
-
 }
 
 // inline methods
@@ -140,7 +107,7 @@ inline void XmlVGM::VExporter::SetFileName(const std::string& fileName)
 inline void XmlVGM::VExporter::SetDebug(int debug)
 { fDebug = debug; }
 
-inline std::string XmlVGM::VExporter::GetFileName() const
+inline std::string XmlVGM::VExporter::FileName() const
 { return fFileName; }
 
 inline int XmlVGM::VExporter::Debug() const

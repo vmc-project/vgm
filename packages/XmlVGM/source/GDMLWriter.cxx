@@ -14,10 +14,12 @@
 
 #include "VGM/materials/IMaterial.h"
 #include "VGM/materials/IElement.h"
+#include "VGM/volumes/IVolume.h"
 
 #include "ClhepVGM/transform.h"
 
 #include "XmlVGM/GDMLWriter.h"
+#include "XmlVGM/Maps.h"
 
 const int         XmlVGM::GDMLWriter::fgkDefaultNumWidth = 10;
 const int         XmlVGM::GDMLWriter::fgkDefaultNumPrecision = 4;
@@ -28,18 +30,19 @@ const std::string XmlVGM::GDMLWriter::fgkNotAllowedChars = " +-*/&<>%^";
 const std::string XmlVGM::GDMLWriter::fgkNotAllowedChars1 = "0123456789"; 
 
 //_____________________________________________________________________________
-XmlVGM::GDMLWriter::GDMLWriter(std::ofstream& outFile,
-		               const std::string& unitName, 
+XmlVGM::GDMLWriter::GDMLWriter(const std::string& unitName, 
                                const std::string& version)
   : IWriter(),
-    fOutFile(outFile),
+    fOutFile(),
     fUnitName(unitName),
     fVersion(version),
     fkBasicIndention("   "),
     fIndention(fkBasicIndention),
     fNW(fgkDefaultNumWidth),
     fNP(fgkDefaultNumPrecision),
-    fGDMLNames()
+    fGDMLNames(),
+    fMaps(0),
+    fFullLengths(false)
 {
   fOutFile.width(fgkDefaultNumWidth);
   fOutFile.precision(fgkDefaultNumPrecision);
@@ -85,6 +88,17 @@ XmlVGM::GDMLWriter::UpdateName(const std::string& name,
   newName.append(extension);
   
   return newName;     
+}  
+
+//_____________________________________________________________________________
+std::string 
+XmlVGM::GDMLWriter::StripName(const std::string& name,
+                              const std::string& extension) const
+{
+// Removes specified extension from the name if present,
+// ---
+
+  return name.substr(0, name.find(extension));
 }  
 
 //_____________________________________________________________________________
@@ -163,19 +177,93 @@ XmlVGM::GDMLWriter::SmartPut(std::ostream& out,
   return out;
 }
 
+
+//_____________________________________________________________________________
+void XmlVGM::GDMLWriter::WriteBooleanSolid(
+                            std::string lvName, 
+                            const VGM::IBooleanSolid* booleanSolid) 
+{
+// Write Boolean solid
+			      
+  // Get constituent solids
+  VGM::ISolid* solidA = booleanSolid->ConstituentSolidA();
+  VGM::ISolid* solidB = booleanSolid->ConstituentSolidB();
+  
+  // Write constituent solids
+  std::string nameA = StripName(lvName, fgkSolidNameExtension) + "_constA";
+  std::string nameB = StripName(lvName, fgkSolidNameExtension) + "_constB";
+  WriteSolid(nameA, solidA, ""); 
+  WriteSolid(nameB, solidB, ""); 
+  
+  // Update names
+  nameA = UpdateName(nameA, fgkSolidNameExtension); 
+  nameB = UpdateName(nameB, fgkSolidNameExtension); 
+  
+  // Get displacement
+  VGM::Transform transform = booleanSolid->Displacement();
+  std::string positionRef = fMaps->FindPositionName(transform);
+  std::string rotationRef = fMaps->FindRotationName(transform);
+	
+  // Get boolean type
+  VGM::BooleanType boolType = booleanSolid->BoolType();
+  
+  // compose element string template
+  //
+  std::string element1;
+  std::string element8;
+  switch (boolType) {
+    case VGM::kIntersection:
+      element1 = "<intersection name=\"";
+      element8 = "</intersection>";
+      break;
+    case VGM::kSubtraction:
+      element1 = "<subtraction name=\"";
+      element8 = "</subtraction>";
+      break;
+    case VGM::kUnion:
+      element1 = "<union name=\"";
+      element8 = "</union>";
+      break;
+    case VGM::kUnknownBoolean:
+      break;
+  }    
+  std::string element2 = "\" >";
+  std::string element3 = "<first  ref=\"";
+  std::string element4 = "\" />";
+  std::string element5 = "<second ref=\"";
+  std::string element6 = "<positionref ref=\"";
+  std::string element7 = "<rotationref ref=\"";
+  std::string indention = fIndention + fkBasicIndention;
+  
+  // write element
+  fOutFile << fIndention << element1 << lvName  
+           << element2   << std::endl  
+           << indention  << element3 << nameA        << element4   << std::endl
+           << indention  << element5 << nameB        << element4   << std::endl
+           << indention  << element6 << positionRef  << element4   << std::endl
+           << indention  << element7 << rotationRef  << element4   << std::endl
+	   << fIndention << element8   << std::endl << std::endl;
+}
+
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteBox(
                               std::string name,
-                              double hx, double hy, double hz,  
-                              std::string /*materialName*/)
+                              double hx, double hy, double hz)  
 {			      
 // Writes box solid.
 // ---
 
   // get parameters
-  double x = hx/LengthUnit()*2.;
-  double y = hy/LengthUnit()*2.;
-  double z = hz/LengthUnit()*2.;
+  double x = hx/LengthUnit();
+  double y = hy/LengthUnit();
+  double z = hz/LengthUnit();
+  
+  // convert half lengths to full lengths
+  if (fFullLengths) {
+    x *= 2.;
+    y *= 2.;
+    z *= 2.;
+  } 
 
   // compose element string template
   std::string quota = "\"";
@@ -200,22 +288,19 @@ void XmlVGM::GDMLWriter::WriteBox(
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteBox(
                               std::string name, 
-			      const VGM::IBox* box, 
-                              std::string materialName)
+			      const VGM::IBox* box) 
 {
 // Writes box solid.
 // ---
 
   WriteBox(name, 
-           box->XHalfLength(), box->YHalfLength(), box->ZHalfLength(),
-	   materialName);
+           box->XHalfLength(), box->YHalfLength(), box->ZHalfLength());
 }
  
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteTubs(
                               std::string name, 
-			      const VGM::ITubs* tubs, 
-                              std::string /*materialName*/)
+			      const VGM::ITubs* tubs)
 {
 // Writes tubs solid.
 // ---
@@ -223,9 +308,14 @@ void XmlVGM::GDMLWriter::WriteTubs(
   // get parameters
   double rmin = tubs->InnerRadius()/LengthUnit();
   double rmax = tubs->OuterRadius()/LengthUnit();
-  double hz   = tubs->ZHalfLength()/LengthUnit()*2.;
+  double hz   = tubs->ZHalfLength()/LengthUnit();
   double sphi = UpdateAngle(tubs->StartPhi())/AngleUnit();
   double dphi = UpdateAngle(tubs->DeltaPhi())/AngleUnit();
+
+  // convert half lengths to full lengths
+  if (fFullLengths) {
+    hz *= 2.;
+  }  
 
   // compose element string template
   std::string quota = "\"";
@@ -256,8 +346,7 @@ void XmlVGM::GDMLWriter::WriteTubs(
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteCons(
                               std::string name, 
-			      const VGM::ICons* cons, 
-                              std::string /*materialName*/)
+			      const VGM::ICons* cons)
 {
 // Writes cons solid.
 // ---
@@ -267,9 +356,14 @@ void XmlVGM::GDMLWriter::WriteCons(
   double rmax1 = cons->OuterRadiusMinusZ()/LengthUnit();
   double rmin2 = cons->InnerRadiusPlusZ()/LengthUnit();
   double rmax2 = cons->OuterRadiusPlusZ()/LengthUnit();
-  double hz   = cons->ZHalfLength()/LengthUnit()*2.;
+  double hz   = cons->ZHalfLength()/LengthUnit();
   double sphi = UpdateAngle(cons->StartPhi())/AngleUnit();
   double dphi = UpdateAngle(cons->DeltaPhi())/AngleUnit();
+
+  // convert half lengths to full lengths
+  if (fFullLengths) {
+    hz *= 2.;
+  }  
 
   // compose element string template
   std::string quota = "\"";
@@ -304,18 +398,26 @@ void XmlVGM::GDMLWriter::WriteCons(
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteTrd(
                               std::string name, 
-			      const VGM::ITrd* trd, 
-                              std::string /*materialName*/)
+			      const VGM::ITrd* trd)
 {
 // Writes VGM::ITrd solid.
 // ---
 
   // get parameters
-  double x1 = trd->XHalfLengthMinusZ()/LengthUnit()*2.;
-  double x2 = trd->XHalfLengthPlusZ()/LengthUnit()*2.;
-  double y1 = trd->YHalfLengthMinusZ()/LengthUnit()*2.;
-  double y2 = trd->YHalfLengthPlusZ()/LengthUnit()*2.;
-  double hz = trd->ZHalfLength()/LengthUnit()*2.;
+  double x1 = trd->XHalfLengthMinusZ()/LengthUnit();
+  double x2 = trd->XHalfLengthPlusZ()/LengthUnit();
+  double y1 = trd->YHalfLengthMinusZ()/LengthUnit();
+  double y2 = trd->YHalfLengthPlusZ()/LengthUnit();
+  double hz = trd->ZHalfLength()/LengthUnit();
+
+  // convert half lengths to full lengths
+  if (fFullLengths) {
+    x1 *= 2.;
+    x2 *= 2.;
+    y1 *= 2.;
+    y2 *= 2.;
+    hz *= 2.;
+  }  
 
   // compose element string template
   std::string quota = "\"";
@@ -345,24 +447,34 @@ void XmlVGM::GDMLWriter::WriteTrd(
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteTrap(
                               std::string name, 
-			      const VGM::ITrap* trap, 
-                              std::string /*materialName*/)
+			      const VGM::ITrap* trap)
 {
 // Writes VGM::ITrap solid.
 // ---
 
   // get parameters
-  double dz = trap->ZHalfLength()/LengthUnit()*2.;
+  double dz = trap->ZHalfLength()/LengthUnit();
   double theta = UpdateAngle(trap->Theta())/AngleUnit();
   double phi   = UpdateAngle(trap->Phi())/AngleUnit();
-  double y1 = trap->YHalfLengthMinusZ()/LengthUnit()*2.;
-  double x1 = trap->XHalfLengthMinusZMinusY()/LengthUnit()*2.;
-  double x2 = trap->XHalfLengthMinusZPlusY()/LengthUnit()*2.;
+  double y1 = trap->YHalfLengthMinusZ()/LengthUnit();
+  double x1 = trap->XHalfLengthMinusZMinusY()/LengthUnit();
+  double x2 = trap->XHalfLengthMinusZPlusY()/LengthUnit();
   double alpha1 = trap->AlphaMinusZ()/AngleUnit();
-  double y2 = trap->YHalfLengthPlusZ()/LengthUnit()*2.;
-  double x3 = trap->XHalfLengthPlusZMinusY()/LengthUnit()*2.;
-  double x4 = trap->XHalfLengthPlusZPlusY()/LengthUnit()*2.;
+  double y2 = trap->YHalfLengthPlusZ()/LengthUnit();
+  double x3 = trap->XHalfLengthPlusZMinusY()/LengthUnit();
+  double x4 = trap->XHalfLengthPlusZPlusY()/LengthUnit();
   double alpha2 = trap->AlphaPlusZ()/AngleUnit();
+
+  // convert half lengths to full lengths
+  if (fFullLengths) {
+    dz *= 2.;
+    y1 *= 2.;
+    x1 *= 2.;
+    x2 *= 2.;
+    y2 *= 2.;
+    x3 *= 2.;
+    x4 *= 2.;
+  }  
 
   // compose element string template
   std::string quota = "\"";
@@ -406,19 +518,25 @@ void XmlVGM::GDMLWriter::WriteTrap(
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WritePara(
                               std::string name, 
-			      const VGM::IPara* para, 
-                              std::string /*materialName*/)
+			      const VGM::IPara* para)
 {
 // Writes VGM::IPara solid.
 // ---
 
   // get parameters
-  double dx = para->XHalfLength()/LengthUnit()*2.;
-  double dy = para->YHalfLength()/LengthUnit()*2.;
-  double dz = para->ZHalfLength()/LengthUnit()*2.;
+  double dx = para->XHalfLength()/LengthUnit();
+  double dy = para->YHalfLength()/LengthUnit();
+  double dz = para->ZHalfLength()/LengthUnit();
   double alpha = para->Alpha()/AngleUnit();
   double theta = UpdateAngle(para->Theta())/AngleUnit();
   double phi   = UpdateAngle(para->Phi())/AngleUnit();
+
+  // convert half lengths to full lengths
+  if (fFullLengths) {
+    dx *= 2.;
+    dy *= 2.;
+    dz *= 2.;
+  }  
 
   // compose element string template
   std::string quota = "\"";
@@ -435,7 +553,7 @@ void XmlVGM::GDMLWriter::WritePara(
   
   // write element
   fOutFile << fIndention << element1 << std::endl  
-           << indention        << element2 << std::endl
+           << indention  << element2 << std::endl
 	   << indention        
 	   << element3 << std::setw(fNW) << std::setprecision(fNP) << dx << quota << "  "
 	   << element4 << std::setw(fNW) << std::setprecision(fNP) << dy << quota << "  "
@@ -447,15 +565,12 @@ void XmlVGM::GDMLWriter::WritePara(
 	   << element9 << std::endl << std::endl;
 }
  
-/*
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WritePolycone(
                              std::string name, 
-			     const VGM::IPolycone* polycone, 
-                             std::string materialName)
+			     const VGM::IPolycone* polycone)
 {
 // Writes VGM::IPolycone solid.
-// Not yet supported by GDML.
 // ---
 
   // get profile parameters
@@ -468,133 +583,131 @@ void XmlVGM::GDMLWriter::WritePolycone(
   double* rmaxArray = new double[nofZPlanes];
   double* zArray = new double[nofZPlanes];
   for (int i=0; i<nofZPlanes; i++) {
-    rminArray[i] = polycone->InnerRadiusValues()[i];
-    rmaxArray[i] = polycone->OuterRadiusValues()[i];
-    zArray[i] = polycone->ZValues()[i];
+    rminArray[i] = polycone->InnerRadiusValues()[i]/LengthUnit();
+    rmaxArray[i] = polycone->OuterRadiusValues()[i]/LengthUnit();
+    zArray[i]    = polycone->ZValues()[i]/LengthUnit();
+    
+    // convert half lengths to full lengths
+    if (fFullLengths) {
+      zArray[i] *= 2.;
+    }  
   }  
     
   // compose element string template
   std::string quota = "\"";
-  std::string element1 = "<pcon   name=\"" + volumeName + quota; 
-  std::string element2 = "material=\"" + materialName + quota;
-  std::string element3 = "profile=\"";
-  std::string element4 = "\" >";
-  std::string element5 = "<polyplane Rio_Z=\"";
-  std::string element6 = "\" />";
-  std::string element7 = "</pcon>";
-  std::string indention = fkBasicIndention + fkBasicIndention;
+  std::string element1 = "<polycone  lunit=\"cm\" aunit=\"degree\"";
+  std::string element2 = "name=\"" + name + quota;
+  std::string element3 = "startphi=\"";
+  std::string element4 = "deltaphi=\"";
+  std::string element5 = "\" >";
+  std::string element6 = "<zplane  z=\"";
+  std::string element7 = "rmin=\"";
+  std::string element8 = "rmax=\"";
+  std::string element9 = "\" />";
+  std::string element10 = "</polycone>";
+  std::string indention = fIndention + fkBasicIndention;
   
   // write pcon element
-  fOutFile << fkBasicIndention << element1 << std::endl
-	   << indention        << element2 << std::endl
-	   << indention        << element3
-           << std::setw(fNW) << std::setprecision(fNP) << sphi << "; "
-           << std::setw(fNW) << std::setprecision(fNP) << dphi
-	   << element4 << std::endl;
+  fOutFile << fIndention << element1 << std::endl
+	   << indention  << element2 << std::endl
+	   << indention  
+	   << element3 << std::setw(fNW) << std::setprecision(fNP) << sphi << quota << "  "
+	   << element4 << std::setw(fNW) << std::setprecision(fNP) << dphi
+	   << element5
+	   << std::endl;
 
   // write polyplane elements
-  for (int i=0; i<nofZPlanes; i++) {
+  for (int j=0; j<nofZPlanes; j++) {
   
-    // set units
-    double rmin = rminArray[i]/LengthUnit();
-    double rmax = rmaxArray[i]/LengthUnit();
-    double z    = zArray[i]/LengthUnit();
-
-    fOutFile << indention << element5
-             << std::setw(fNW) << std::setprecision(fNP) << rmin << "; "
-             << std::setw(fNW) << std::setprecision(fNP) << rmax << "; " 
-             << std::setw(fNW) << std::setprecision(fNP) << z 
-	     << element6
+    fOutFile << indention 
+             << element6 << std::setw(fNW) << std::setprecision(fNP) << zArray[j]    << quota << "  "
+	     << element7 << std::setw(fNW) << std::setprecision(fNP) << rminArray[j] << quota << "  "
+	     << element8 << std::setw(fNW) << std::setprecision(fNP) << rmaxArray[j]  
+	     << element9
 	     << std::endl;
   }
   
   // close pcon element
-  fOutFile << fkBasicIndention
-           << element7 << std::endl << std::endl;  	     
+  fOutFile << fIndention
+           << element10 << std::endl << std::endl;  	     
 
   delete [] rminArray;			      
   delete [] rmaxArray;	
   delete [] zArray;			      
 }  
-*/
+
 
 /*
 //_____________________________________________________________________________
-void XmlVGM::GDMLWriter::WritePolyhedra(    
-                              std::string name, 
-			      const VGM::IPolyhedra* polyhedra, 
-                              std::string materialName)
+void XmlVGM::GDMLWriter::WritePolyhedra(
+                             std::string name, 
+			     const VGM::IPolyhedra* polyhedra, 
 {
-// Writes VGM::IPolycone solid.
-// Not yet supported by GDML.
+// Writes VGM::IPolyhedra solid.
 // ---
 
-  // get parameters
-  int nofSides = polyhedra->NofSides();
-  double sphi = polyhedra->StartPhi()/AngleUnit();
-  double dphi = polyhedra->DeltaPhi()/AngleUnit();
-
+  // get profile parameters
+  double sphi = UpdateAngle(polyhedra->StartPhi())/AngleUnit();
+  double dphi = UpdateAngle(polyhedra->DeltaPhi())/AngleUnit();
+  double phi = sphi + dphi;
+  
   // get polyhedra Z planes parameters
   int nofZPlanes = polyhedra->NofZPlanes();
+  int nofSides = polyhedra->NofSides();
   double* rminArray = new double[nofZPlanes];
   double* rmaxArray = new double[nofZPlanes];
   double* zArray = new double[nofZPlanes];
   for (int i=0; i<nofZPlanes; i++) {
-    rminArray[i] = polyhedra->InnerRadiusValues()[i];
-    rmaxArray[i] = polyhedra->OuterRadiusValues()[i];
-    zArray[i] = polyhedra->ZValues()[i];
-  }  
+    rminArray[i] = polyhedra->InnerRadiusValues()[i]/LengthUnit();
+    rmaxArray[i] = polyhedra->OuterRadiusValues()[i]/LengthUnit();
+    zArray[i]    = polyhedra->ZValues()[i]/LengthUnit();
 
+    // convert half lengths to full lengths
+    if (fFullLengths) {
+      zArray[i] *= 2.;
+    }  
+  }  
+    
   // compose element string template
   std::string quota = "\"";
-  std::string element1 = "<phedra name=\"" + volumeName + quota; 
-  std::string element2 = "material=\"" + materialName + quota;
-  std::string element3 = "profile=\"";
-  std::string element4 = "sides =\"";
-  std::string element5 = "Ris=\"";
-  std::string element6 = "Ros=\"";
-  std::string element7 = "Zs =\"";
-  std::string element8 = "\" />";
-  std::string indention = fkBasicIndention + fkBasicIndention;
+  std::string element1 = "<polyhedra  lunit=\"cm\" aunit=\"degree\"";
+  std::string element2 = "name=\"" + name + quota;
+  std::string element3 = "numsides=\"";
+  std::string element4 = "startphi=\"";
+  std::string element5 = "totalphi=\"";
+  std::string element6 = "\" >";
+  std::string element7 = "<zplane  z=\"";
+  std::string element8 = "rmin=\"";
+  std::string element9 = "rmax=\"";
+  std::string element10 = "\" />";
+  std::string element11 = "</polyhedra>";
+  std::string indention = fIndention + fkBasicIndention;
   
-  // write element
-  fOutFile << fkBasicIndention << element1 << std::endl
-	   << indention        << element2 << std::endl
-	   << indention        << element3
-           << std::setw(fNW) << std::setprecision(fNP) << sphi << "; "
-           << std::setw(fNW) << std::setprecision(fNP) << dphi
-	   << quota << std::endl
-	   << indention       << element4 
-	   << nofSides
-	   << quota << std::endl;
+  // write pcon element
+  fOutFile << fIndention << element1 << std::endl
+	   << indention  << element2 << std::endl
+	   << indention  
+	   << element3 << nofSides << quota << std::endl
+	   << indention  
+	   << element4 << std::setw(fNW) << std::setprecision(fNP) << sphi << quota << "  "
+	   << element5 << std::setw(fNW) << std::setprecision(fNP) << phi
+	   << element6
+	   << std::endl;
 
-  fOutFile << indention << element5;
-  int i;
-  for (i=0; i<nofZPlanes; i++) {  
-    // set units    
-    double rmin = rminArray[i]/LengthUnit();
-    if (i>0) fOutFile << "; ";
-    fOutFile << std::setw(fNW) << std::setprecision(fNP) << rmin;
-  };
-  fOutFile << quota << std::endl;
-
-  fOutFile << indention << element6;
-  for (i=0; i<nofZPlanes; i++) {  
-    // set units
-    double rmax = rmaxArray[i]/LengthUnit();
-    if (i>0) fOutFile << "; ";
-    fOutFile << std::setw(fNW) << std::setprecision(fNP) << rmax;
-  };
-  fOutFile << quota << std::endl;
-
-  fOutFile << indention << element7;
-  for (i=0; i<nofZPlanes; i++) {  
-    // set units
-    double z = zArray[i]/LengthUnit();
-    if (i>0) fOutFile << "; ";
-    fOutFile << std::setw(fNW) << std::setprecision(fNP) << z;
-  };
-  fOutFile << element8 << std::endl << std::endl;
+  // write polyplane elements
+  for (int j=0; j<nofZPlanes; j++) {
+  
+    fOutFile << indention 
+             << element7 << std::setw(fNW) << std::setprecision(fNP) << zArray[j]    << quota << "  "
+	     << element8 << std::setw(fNW) << std::setprecision(fNP) << rminArray[j] << quota << "  "
+	     << element9 << std::setw(fNW) << std::setprecision(fNP) << rmaxArray[j]  
+	     << element10
+	     << std::endl;
+  }
+  
+  // close pcon element
+  fOutFile << fIndention
+           << element11 << std::endl << std::endl;  	     
 
   delete [] rminArray;			      
   delete [] rmaxArray;	
@@ -605,8 +718,7 @@ void XmlVGM::GDMLWriter::WritePolyhedra(
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteSphere(
                               std::string name, 
-			      const VGM::ISphere* sphere, 
-                              std::string /*materialName*/)
+			      const VGM::ISphere* sphere) 
 {
 // Writes VGM::ISphere solid.
 // ---
@@ -647,9 +759,68 @@ void XmlVGM::GDMLWriter::WriteSphere(
 	   << element9 << std::endl << std::endl;
 }
  
+//_____________________________________________________________________________
+void XmlVGM::GDMLWriter::WriteTorus(
+                              std::string name, 
+			      const VGM::ITorus* torus)
+{
+// Writes VGM::ITorus solid.
+// ---
+
+  // get parameters
+  double rmin = torus->InnerRadius()/LengthUnit();
+  double rmax = torus->OuterRadius()/LengthUnit();
+  double rax  = torus->AxialRadius()/LengthUnit();
+  double sphi = UpdateAngle(torus->StartPhi())/AngleUnit();
+  double dphi = UpdateAngle(torus->DeltaPhi())/AngleUnit();
+
+  // compose element string template
+  std::string quota = "\"";
+  std::string element1 = "<torus  lunit=\"cm\" aunit=\"degree\"";
+  std::string element2 = "name=\"" + name + quota;
+  std::string element3 = "rmin=\"";
+  std::string element4 = "rmax=\"";
+  std::string element5 = "rtor=\"";
+  std::string element6 = "startphi=\"";
+  std::string element7 = "deltaphi=\"";
+  std::string element8 = "\" />";
+  std::string indention = fIndention + fkBasicIndention;
+  
+  // write element
+  fOutFile << fIndention << element1 << std::endl
+	   << indention  << element2 << std::endl
+	   << indention        
+	   << element3 << std::setw(fNW) << std::setprecision(fNP) << rmin << quota << "  "
+	   << element4 << std::setw(fNW) << std::setprecision(fNP) << rmax << quota << "  " 
+	   << element5 << std::setw(fNW) << std::setprecision(fNP) << rax  << quota
+	   << std::endl
+	   << indention        
+	   << element6 << std::setw(fNW)   << std::setprecision(fNP) << sphi << quota << "  "
+	   << element7 << std::setw(fNW)   << std::setprecision(fNP) << dphi
+	   << element8 << std::endl << std::endl;
+}  
+
 //
 // public methods
 //
+
+//_____________________________________________________________________________
+void XmlVGM::GDMLWriter::OpenFile(std::string filePath)
+{ 
+// Opens output file.
+// ---
+
+  fOutFile.open(filePath.data(), std::ios::out); 
+  
+  if (!fOutFile) {
+    std::cerr << "   Cannot open " << filePath << std::endl;  
+    std::cerr << "** Exception: Aborting execution **" << std::endl;   
+    exit(1);
+  }
+  
+  // use FORTRAN compatibility output
+  fOutFile.setf(std::ios::fixed, std::ios::floatfield);
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::OpenDocument()
@@ -785,6 +956,15 @@ void XmlVGM::GDMLWriter::OpenComposition(
   // increase indention
   IncreaseIndention();	   
 }  
+
+//_____________________________________________________________________________
+void XmlVGM::GDMLWriter::CloseFile()
+{ 
+// Closes output file.
+// ---
+
+  fOutFile.close(); 
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::CloseDocument()
@@ -1011,8 +1191,7 @@ void XmlVGM::GDMLWriter::WriteMaterial(const VGM::IMaterial* material)
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteNotSupportedSolid(
-                              std::string name, 
-                              std::string materialName)
+                              std::string name)
 {				   
 // Write a comment line with awarning
 // and then write a box element instead 
@@ -1028,14 +1207,14 @@ void XmlVGM::GDMLWriter::WriteNotSupportedSolid(
 	   << fIndention << element3 << std::endl;
 	   
   // Write dummy box element
-  WriteBox(name, 1.0, 1.0, 1.0, materialName); 
+  WriteBox(name, 1.0, 1.0, 1.0); 
 }  	   
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteSolid(
                               std::string volumeName, 
 			      const VGM::ISolid* solid, 
-                              std::string materialName) 
+                              std::string /*materialName*/) 
 {
 // Finds solid concrete type and calls writing function. 
 // For not yet implemented solids, only XML comment element is written.
@@ -1047,82 +1226,79 @@ void XmlVGM::GDMLWriter::WriteSolid(
   VGM::SolidType solidType = solid->Type();
   if (solidType == VGM::kBox) { 
     const VGM::IBox* box = dynamic_cast<const VGM::IBox*>(solid); 
-    WriteBox(solidName, box, materialName); 
+    WriteBox(solidName, box); 
     return;   
   }
   else if (solidType == VGM::kCons) { 
     const VGM::ICons* cons = dynamic_cast<const VGM::ICons*>(solid); 
-    WriteCons(solidName, cons, materialName); 
+    WriteCons(solidName, cons); 
     return;   
   }
   else if (solidType == VGM::kPara) { 
     const VGM::IPara* para = dynamic_cast<const VGM::IPara*>(solid); 
-    WritePara(solidName, para, materialName); 
+    WritePara(solidName, para); 
+    return;   
+  }
+  else if (solidType == VGM::kPolycone) { 
+    const VGM::IPolycone* polycone = dynamic_cast<const VGM::IPolycone*>(solid); 
+    WritePolycone(solidName, polycone); 
     return;   
   }
 /*
-  else if (solidType == VGM::kPolycone) { 
-    const VGM::IPolycone* polycone = dynamic_cast<const VGM::IPolycone*>(solid); 
-    WritePolycone(solidName, polycone, materialName); 
-    return;   
-  }
   else if (solidType == VGM::kPolyhedra) { 
     const VGM::IPolyhedra* polyhedra = dynamic_cast<const VGM::IPolyhedra*>(solid); 
-    WritePolyhedra(solidName, polyhedra, materialName); 
+    WritePolyhedra(solidName, polyhedra); 
     return;   
   }
 */
   else if (solidType == VGM::kSphere) { 
     const VGM::ISphere* sphere = dynamic_cast<const VGM::ISphere*>(solid); 
-    WriteSphere(solidName, sphere, materialName); 
+    WriteSphere(solidName, sphere); 
     return;   
   }
-/*
   else if (solidType == VGM::kTorus) { 
     const VGM::ITorus* torus = dynamic_cast<const VGM::ITorus*>(solid); 
-    WriteTorus(solidName, torus, materialName); 
+    WriteTorus(solidName, torus); 
     return;   
   }
-*/
   else if (solidType == VGM::kTrap) { 
     const VGM::ITrap* trap = dynamic_cast<const VGM::ITrap*>(solid); 
-    WriteTrap(solidName, trap, materialName); 
+    WriteTrap(solidName, trap); 
     return;   
   }
   else if (solidType == VGM::kTrd) { 
     const VGM::ITrd* trd = dynamic_cast<const VGM::ITrd*>(solid); 
-    WriteTrd(solidName, trd, materialName); 
+    WriteTrd(solidName, trd); 
     return;   
   }
   else if (solidType == VGM::kTubs) { 
     const VGM::ITubs* tubs = dynamic_cast<const VGM::ITubs*>(solid); 
-    WriteTubs(solidName, tubs, materialName); 
+    WriteTubs(solidName, tubs); 
     return;   
   }
-/*
   else if (solidType == VGM::kBoolean) { 
-    VGM::IBooleanSolid* boolean = dynamic_cast<VGM::IBooleanSolid*>(solid);
-    WriteBoolean(solidName, boolean, materialName); 
+    const VGM::IBooleanSolid* boolean 
+      = dynamic_cast<const VGM::IBooleanSolid*>(solid);
+    WriteBooleanSolid(solidName, boolean); 
     return;   
   }
-*/
 
   // Not supported solid
-  WriteNotSupportedSolid(solidName, materialName);
+  WriteNotSupportedSolid(solidName);
 }  
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WritePosition(
                               const std::string& name, 
-                              const ThreeVector& position) 
+                              const VGM::Transform& transform) 
 {
 // Writes position element with a given name. 
 // ---
 
   // get parameters
-  double x = position[0]/LengthUnit();
-  double y = position[1]/LengthUnit();
-  double z = position[2]/LengthUnit();
+  double x = transform[VGM::kDx]/LengthUnit();
+  double y = transform[VGM::kDy]/LengthUnit();
+  double z = transform[VGM::kDz]/LengthUnit();
 
   // compose element string template
   std::string quota1 = "\"";
@@ -1148,15 +1324,15 @@ void XmlVGM::GDMLWriter::WritePosition(
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteRotation(
                               const std::string& name, 
-                              const ThreeVector& rotation)
+                              const VGM::Transform& transform)
 {
 // Writes rotation element with a given name. 
 // ---
 
   // Get parameters
-  double angleX = rotation[0] / AngleUnit();
-  double angleY = rotation[1] / AngleUnit();
-  double angleZ = rotation[2] / AngleUnit();
+  double angleX = transform[VGM::kAngleX] / AngleUnit();
+  double angleY = transform[VGM::kAngleY] / AngleUnit();
+  double angleZ = transform[VGM::kAngleZ] / AngleUnit();
 
   // Compose element string template
   std::string quota1 = "\"";
@@ -1180,7 +1356,56 @@ void XmlVGM::GDMLWriter::WriteRotation(
 }  
 
 //_____________________________________________________________________________
-void XmlVGM::GDMLWriter::WritePlacementWithRotation(
+void XmlVGM::GDMLWriter::WritePlacement(
+                              const VGM::IPlacement& placement)
+{			       
+  
+  VGM::PlacementType placementType = placement.Type();
+
+  if (placementType == VGM::kSimplePlacement) {
+    
+    // simple placement
+    VGM::Transform transform = placement.Transformation();
+	 
+    // Get position
+    std::string positionRef = fMaps->FindPositionName(transform);
+  
+    // Get rotation
+    std::string rotationRef = fMaps->FindRotationName(transform);
+	
+    // Reflection is not supported by GDML
+    if  (ClhepVGM::HasReflection(transform)) {
+      std::cerr << "+++ Warning  +++" << std::endl; 
+      std::cerr << "    XmlVGM::GDMLExporter::ProcessVolume: " << std::endl;
+      std::cerr << "    Placement with reflection is not yet supported in GDML." 
+	        << std::endl;
+      std::cerr << "    Volume \"" << placement.Name() 
+	        << "\" was not converted."  << std::endl; 
+    }		    
+    else   
+      WriteSimplePlacement(placement.Volume()->Name(), positionRef, rotationRef);
+  }
+  else if (placementType == VGM::kMultiplePlacement) {
+    // not yet supported in GDML
+    std::cerr << "+++ Warning  +++" << std::endl; 
+    std::cerr << "    XmlVGM::GDMLExporter::ProcessVolume: " << std::endl;
+    std::cerr << "    Multiple placement is not yet supported in GDML." 
+	          << std::endl;
+    std::cerr << "    Volume \"" << placement.Name() 
+	          << "\" was not converted." << std::endl; 
+     
+  }
+  else {
+    std::cerr << "+++ Warning  +++" << std::endl; 
+    std::cerr << "    XmlVGM::GDMLExporter::ProcessVolume: " << std::endl;
+    std::cerr << "    Unknown placement type. " << std::endl;
+    std::cerr << "    Volume \"" << placement.Name() 
+	      << "\" was not converted." << std::endl;  
+  }
+}
+
+//_____________________________________________________________________________
+void XmlVGM::GDMLWriter::WriteSimplePlacement(
                               const std::string& volumeName, 
 			      const std::string& positionRef,
 			      const std::string& rotationRef)
@@ -1194,7 +1419,7 @@ void XmlVGM::GDMLWriter::WritePlacementWithRotation(
   // Compose element strings
   //
   std::string element0 = "\"/>";
-  std::string element1 = "<child>";
+  std::string element1 = "<physvol>";
  
   std::string element2 = "<volumeref ref=\"";
   element2.append(name);
@@ -1208,7 +1433,7 @@ void XmlVGM::GDMLWriter::WritePlacementWithRotation(
   element4.append(rotationRef);
   element4.append(element0);
 
-  std::string element5 = "</child>";
+  std::string element5 = "</physvol>";
   
   std::string indention1 = fIndention + fkBasicIndention;
   std::string indention2 = fIndention + fkBasicIndention + fkBasicIndention;

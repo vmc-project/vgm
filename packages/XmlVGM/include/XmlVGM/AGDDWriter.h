@@ -26,6 +26,7 @@
 #include "VGM/solids/IPolyhedra.h"
 
 #include "XmlVGM/IWriter.h"
+#include "XmlVGM/Maps.h"
 
 class VGM::IMaterial;
 class VGM::IElement;
@@ -37,11 +38,7 @@ namespace XmlVGM {
   class AGDDWriter : public virtual IWriter
   {
     public:
-      typedef std::vector<ThreeVector> RotationMatrixVector;
-
-    public:
-      AGDDWriter(std::ofstream& outFile,
-                 const std::string& version = "1.0", 
+      AGDDWriter(const std::string& version = "1.0", 
 	         const std::string& date = "Undefined", 
                  const std::string& author = "G4 XML Convertor", 
 	         const std::string dtdVersion = "v6");
@@ -51,6 +48,7 @@ namespace XmlVGM {
 
       // XML elements 
       //
+      virtual void OpenFile(std::string filePath);
       virtual void OpenDocument();
       virtual void OpenSection(const std::string& topVolume);
       virtual void OpenPositions() {} 
@@ -61,6 +59,7 @@ namespace XmlVGM {
       virtual void OpenComposition(const std::string& name,
                                    const std::string& /*materialName*/);
 
+      virtual void CloseFile();
       virtual void CloseDocument();
       virtual void CloseSection(const std::string& /*topVolume*/);
       virtual void ClosePositions() {}
@@ -81,32 +80,14 @@ namespace XmlVGM {
                             std::string materialName); 
 			    
       virtual void WritePosition(const std::string& /*name*/, 
-                            const ThreeVector& /*position*/) {} 
-			    
-      virtual void WriteRotation(const std::string& name, 
-                            const ThreeVector& rotation); 
+                            const VGM::Transform& /*position*/) {} 
+      virtual void WriteRotation(const std::string& /*name*/, 
+                            const VGM::Transform& /*rotation*/) {} 
 
-      virtual void WritePlacement(const std::string& lvName, 
+              void WritePlacement(const std::string& lvName, 
                             const ThreeVector& position); 
-      virtual void WritePlacementWithRotation(
-                            std::string lvName, 
-			    const ThreeVector& position,
-   			    const ThreeVector& rotation);
-			    
-      virtual void WritePlacementWithRotationAndReflection(
-                            std::string lvName, 
-			    const ThreeVector& position,
-                            const ThreeVector& rotation); 
-			    
-      virtual void WritePlacementWithRotation(
-                            const std::string& /*lvName*/, 
-			    const std::string& /*positionRef*/,
-			    const std::string& /*rotationRef*/) {} 
-			    
-      virtual void WriteMultiplePlacement(
-                            const std::string& lvName,
-                            VGM::Axis axis, int nofReplicas, 
-			    double width, double offset);			       
+      virtual void WritePlacement(
+                            const VGM::IPlacement& placement); 
 
       // Formatting utilities
       //
@@ -132,7 +113,8 @@ namespace XmlVGM {
       virtual double GetNumPrecision() const;
 
     private:
-      //methods
+      // Utility methods
+      //
       void Append(std::string& string, int number) const;
       void CutName(std::string& name) const;
       void CutName(std::string& name, int size) const;
@@ -140,8 +122,11 @@ namespace XmlVGM {
                    std::string templ) const;
       std::ostream& SmartPut(std::ostream& out, int size, int precision,
 		 double number, const std::string& separator) const;
+      double  Round(double number) const;
+      bool    IsIdentity(const ThreeVector& rotation) const;
    
-             // writing solids
+      // Writing solids
+      //
       void WriteBox (std::string lvName, 
                    double hx, double hy, double hz,  
                    std::string materialName); 
@@ -172,14 +157,33 @@ namespace XmlVGM {
 		   
       void WriteNotSupportedSolid(std::string name, std::string materialName); 
   
+      // Writing placements
+      //
+      virtual void WritePlacementWithRotation(
+                            std::string lvName, 
+			    const ThreeVector& position,
+   			    const ThreeVector& rotation);
+			    
+      virtual void WritePlacementWithRotationAndReflection(
+                            std::string lvName, 
+			    const ThreeVector& position,
+                            const ThreeVector& rotation); 
+			    
+      virtual void WriteMultiplePlacement(
+                            const std::string& lvName,
+                            VGM::Axis axis, int nofReplicas, 
+			    double width, double offset);			       
+
       // static data members
+      //
       static const int fgkMaxVolumeNameLength;  //maximal volume name length
       static const int fgkMaxMaterialNameLength;//maximal material name length
       static const int fgkDefaultNumWidth;      //default output numbers width
       static const int fgkDefaultNumPrecision;  //default output numbers precision 
 
       // data members
-      std::ofstream&     fOutFile;          //output file
+      //
+      std::ofstream      fOutFile;          //output file
       std::string        fVersion;          //geometry version
       std::string        fDate;             //date
       std::string        fAuthor;           //geometry author
@@ -188,8 +192,6 @@ namespace XmlVGM {
       std::string        fIndention;        //indention string
       int                fNW;               //output numbers width
       int                fNP;               //output numbers precision 
-      int                fRotationCounter;  //counter of rotations
-      RotationMatrixVector  fRotations;     //vector of rot matrices
   };
 
 }
