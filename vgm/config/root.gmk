@@ -1,0 +1,8 @@
+# $Id$
+
+CPPFLAGS += -I$(ROOTSYS)/include
+
+ifeq ($(VGM_SYSTEM),Linux-g++)
+  CXXFLAGS := $(filter-out -pedantic,$(CXXFLAGS))
+endif  
+
