@@ -1,0 +1,13 @@
+ $Id$ 
+
+ README
+ -------
+
+ The examples demonstrate use of VGM for conversion
+ of existing native geometries
+ (Geant4 novice example N03, root rootgeom.C)
+ 
+ E01:  Geant4 -> Root
+ E02:  Root   -> Geant4
+ E03:  Geant4 -> XML 
+ E04:  Root   -> XML 
