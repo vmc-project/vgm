@@ -14,7 +14,7 @@ for outputXML in AGDD GDML
 do
   # file extension
   if [ $outputXML = "AGDD" ]; then
-     EXT="xml"
+     EXT="agdd"
   fi   
   if [ $outputXML = "GDML" ]; then
      EXT="gdml"

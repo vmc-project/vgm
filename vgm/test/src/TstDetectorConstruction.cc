@@ -406,7 +406,7 @@ void TstDetectorConstruction::SelectChannels(const G4String& inputType,
   // Select XML output
   if (outputXML == "AGDD") {
     fXMLExporter = new XmlVGM::AGDDExporter(fInputFactory);
-    fXMLFileName += ".xml";
+    fXMLFileName += ".agdd";
   }  
   else if (outputXML == "GDML") { 
     fXMLExporter = new XmlVGM::GDMLExporter(fInputFactory);
