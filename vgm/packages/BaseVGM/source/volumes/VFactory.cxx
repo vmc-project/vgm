@@ -6,8 +6,6 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include "CLHEP/Units/SystemOfUnits.h"
-
 #include "VGM/materials/IMaterialFactory.h"
 #include "VGM/solids/IBooleanSolid.h"
 #include "VGM/solids/IBox.h"

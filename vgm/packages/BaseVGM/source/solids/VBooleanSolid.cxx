@@ -6,8 +6,6 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include "CLHEP/Units/SystemOfUnits.h"
-
 #include "BaseVGM/solids/VBooleanSolid.h"
 
 //_____________________________________________________________________________
@@ -50,13 +48,13 @@ std::ostream& BaseVGM::VBooleanSolid::Put(std::ostream& out) const
       << "  ConstituentA = " << *ConstituentSolidA() << std:: endl
       << "  ConstituentB = " << *ConstituentSolidB() << std:: endl 
       << "  Displacement translation (object):  ( " 
-      << Displacement()[0]/mm << ",  "
-      << Displacement()[1]/mm  << ",  "
-      << Displacement()[2]/mm << ") mm " << std:: endl
+      << Displacement()[VGM::kDx] << ",  "
+      << Displacement()[VGM::kDy]  << ",  "
+      << Displacement()[VGM::kDz] << ") mm " << std:: endl
       << "  Displacement rotation (object):  (" 
-      << Displacement()[3]/deg << ",  "
-      << Displacement()[4]/deg << ",  "
-      << Displacement()[5]/deg << ") deg  ";
+      << Displacement()[VGM::kAngleX] << ",  "
+      << Displacement()[VGM::kAngleY] << ",  "
+      << Displacement()[VGM::kAngleZ] << ") deg  ";
   
   if (round(Displacement()[6]) == 0 )
     out << "  no reflectionZ";

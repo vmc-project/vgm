@@ -6,8 +6,6 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include "CLHEP/Units/SystemOfUnits.h"
-
 #include "BaseVGM/solids/VBox.h"
 
 //_____________________________________________________________________________
@@ -32,9 +30,9 @@ BaseVGM::VBox::~VBox() {
 //_____________________________________________________________________________
 std::ostream& BaseVGM::VBox::Put(std::ostream& out) const
 {
-  out << "  hx = " << XHalfLength()/mm << "mm" 
-      << "  hy = " << YHalfLength()/mm << "mm" 
-      << "  hz = " << ZHalfLength()/mm << "mm"; 
+  out << "  hx = " << XHalfLength() << "mm" 
+      << "  hy = " << YHalfLength() << "mm" 
+      << "  hz = " << ZHalfLength() << "mm"; 
   return out; 
 }
 

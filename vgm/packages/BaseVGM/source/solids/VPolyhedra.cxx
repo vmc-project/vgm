@@ -8,8 +8,6 @@
 
 #include <math.h>
 
-#include "CLHEP/Units/SystemOfUnits.h"
-
 #include "BaseVGM/solids/VPolyhedra.h"
 
 //_____________________________________________________________________________
@@ -46,8 +44,8 @@ double BaseVGM::VPolyhedra::ConvertRadiusFactor() const
 //_____________________________________________________________________________
 std::ostream& BaseVGM::VPolyhedra::Put(std::ostream& out) const
 {
-  out << "  sphi = "   << StartPhi()/deg << "deg" 
-      << "  dphi = "   << DeltaPhi()/deg << "deg"
+  out << "  sphi = "   << StartPhi() << "deg" 
+      << "  dphi = "   << DeltaPhi() << "deg"
       << "  nsides = " << NofSides()
       << "  nz = "     << NofZPlanes()
       << std::endl;
@@ -59,9 +57,9 @@ std::ostream& BaseVGM::VPolyhedra::Put(std::ostream& out) const
   for (int i=0; i<NofZPlanes(); i++) {
     out << "   "
         << i << "th plane: "        
-        << " z = "    << zvalues[i]/mm << "mm"  
-        << " rin = "  << rinvalues[i]/mm << "mm"  
-        << " rout = " << routvalues[i]/mm << "mm"; 
+        << " z = "    << zvalues[i]    << "mm"  
+        << " rin = "  << rinvalues[i]  << "mm"  
+        << " rout = " << routvalues[i] << "mm"; 
   
     if (i<NofZPlanes()-1) out << std::endl;
   }

@@ -6,8 +6,6 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include "CLHEP/Units/SystemOfUnits.h"
-
 #include "BaseVGM/solids/VTubs.h"
 
 //_____________________________________________________________________________
@@ -33,11 +31,11 @@ BaseVGM::VTubs::~VTubs() {
 //_____________________________________________________________________________
 std::ostream& BaseVGM::VTubs::Put(std::ostream& out) const
 {
-  out << "  rin = "  << InnerRadius()/mm << "mm" 
-      << "  rout = " << OuterRadius()/mm << "mm" 
-      << "  hz = "   << ZHalfLength()/mm << "mm" 
-      << "  sphi = " << StartPhi()/deg   << "deg" 
-      << "  dphi = " << DeltaPhi()/deg   << "deg";
+  out << "  rin = "  << InnerRadius()  << "mm" 
+      << "  rout = " << OuterRadius()  << "mm" 
+      << "  hz = "   << ZHalfLength()  << "mm" 
+      << "  sphi = " << StartPhi()     << "deg" 
+      << "  dphi = " << DeltaPhi()     << "deg";
   return out; 
 }
 

@@ -6,8 +6,6 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include "CLHEP/Units/SystemOfUnits.h"
-
 #include "BaseVGM/solids/VPara.h"
 
 //_____________________________________________________________________________
@@ -32,12 +30,12 @@ BaseVGM::VPara::~VPara() {
 //_____________________________________________________________________________
 std::ostream& BaseVGM::VPara::Put(std::ostream& out) const
 {
-  out << "  hx = "    << XHalfLength()/mm << "mm" 
-      << "  hy = "    << YHalfLength()/mm << "mm" 
-      << "  hz = "    << ZHalfLength()/mm << "mm" 
-      << "  alpha = " << Alpha()/deg      << "deg"
-      << "  theta = " << Theta()/deg      << "deg"
-      << "  phi = "   << Phi()/deg        << "deg";
+  out << "  hx = "    << XHalfLength() << "mm" 
+      << "  hy = "    << YHalfLength() << "mm" 
+      << "  hz = "    << ZHalfLength() << "mm" 
+      << "  alpha = " << Alpha()       << "deg"
+      << "  theta = " << Theta()       << "deg"
+      << "  phi = "   << Phi()         << "deg";
   return out; 
 }
 
