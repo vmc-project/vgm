@@ -2,6 +2,18 @@ $Id$
 
  The Virtual Geometry Model - Versions
 =========================================
+  28/01/2005
+  version 2.02    (public version) 
+               Modifications in VGM interface needed
+	       for geometry conversion in Geant4 VMC:
+	       - adding VGM::IVolume::MediumName()
+	       - change materailName to mediumName in
+	         VGM::IFactory:: CreateVolume()
+   
+               Tested with CLHEP 1.8.1.0, Root 4.02/00, Geant4 7.0
+	       + fix in Root/geom/inc/TGeoMatrix.h - rev 1.18
+	                Root/geom/src/TGeoMatrix.cxx - rev 1.32
+
   14/01/2005
   version 2.00.03 (internal number)
   version 2.01    (second public version) 
