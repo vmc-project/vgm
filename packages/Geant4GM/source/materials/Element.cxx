@@ -8,6 +8,8 @@
 
 #include "G4Element.hh"
 
+#include "ClhepVGM/Units.h"
+
 #include "Geant4GM/materials/Element.h"
 #include "Geant4GM/materials/ElementMap.h"
 
@@ -16,7 +18,8 @@ Geant4GM::Element::Element(const std::string& name,
                            const std::string& symbol,      
                            double z, double a) 
   : VGM::IElement(),
-    fElement(new G4Element(name, symbol, z, a))    			       			  
+    fElement( new G4Element(name, symbol, z, 
+                            a / ClhepVGM::Units::AtomicWeight()) )    			       			  
 {
   // Create element if 
 
@@ -70,6 +73,6 @@ double  Geant4GM::Element::N() const
 //_____________________________________________________________________________
 double  Geant4GM::Element::A() const    
 {
-  return fElement->GetA();
+  return fElement->GetA() * ClhepVGM::Units::AtomicWeight();
 }
 

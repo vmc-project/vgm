@@ -6,6 +6,8 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
+#include "ClhepVGM/Units.h"
+
 #include "Geant4GM/materials/Material.h"
 #include "Geant4GM/materials/Element.h"
 #include "Geant4GM/materials/ElementMap.h"
@@ -19,12 +21,11 @@ Geant4GM::Material::Material(const std::string& name,
 			       			  
 {
 
-  if ( density == universe_mean_density ) {
-    // Create Vacuum material
-    fMaterial = new G4Material(name, density, 1,
-                               kStateGas, 3.e-18*pascal, 2.73*kelvin);
-  }		       
-  else {
+  if (!CheckVacuum(name, density)) { 
+
+    // Convert units
+    density /= ClhepVGM::Units::MassDensity();
+
     // Create normal material 
     fMaterial = new G4Material(name, density, 1);
   }   
@@ -51,8 +52,14 @@ Geant4GM::Material::Material(const std::string& name,
     exit(1);
   }
     
-  // Create material 
-  fMaterial = new G4Material(name, density, elements.size());
+  if (!CheckVacuum(name, density)) { 
+
+    // Convert units
+    density /= ClhepVGM::Units::MassDensity();
+
+    // Create material 
+    fMaterial = new G4Material(name, density, elements.size());
+  }  
 
   // Add elements
   for (unsigned int i=0; i<elements.size(); i++) {
@@ -78,6 +85,31 @@ Geant4GM::Material::~Material() {
 //
 // private functions
 //
+
+//_____________________________________________________________________________
+bool Geant4GM::Material::CheckVacuum(const std::string& name, double density)
+{
+  // Convert units
+  density /= ClhepVGM::Units::MassDensity();
+
+  if ( density < universe_mean_density ) {
+    // lower density not allowed in Geant4
+    density = universe_mean_density;
+  }
+    
+  if ( density == universe_mean_density ) {
+  
+    // Create Vacuum material
+    fMaterial = new G4Material(name, density, 1,
+                               kStateGas, 3.e-18*pascal, 2.73*kelvin);
+
+    return true;
+  }
+  
+  return false;
+}  		       
+
+
 //_____________________________________________________________________________
 void Geant4GM::Material::CheckIndex(int iel) const
 {
@@ -102,19 +134,19 @@ std::string Geant4GM::Material::Name() const
 //_____________________________________________________________________________
 double  Geant4GM::Material::Density() const
 {
-  return fMaterial->GetDensity();
+  return fMaterial->GetDensity() * ClhepVGM::Units::MassDensity();
 }
 
 //_____________________________________________________________________________
 double  Geant4GM::Material::RadiationLength() const
 {
-  return fMaterial->GetRadlen();
+  return fMaterial->GetRadlen() * ClhepVGM::Units::Length();
 }
 
 //_____________________________________________________________________________
 double  Geant4GM::Material::NuclearInterLength() const
 {
-  return fMaterial->GetNuclearInterLength();
+  return fMaterial->GetNuclearInterLength() * ClhepVGM::Units::Length();
 }
     
 //_____________________________________________________________________________

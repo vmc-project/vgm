@@ -11,8 +11,15 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
+#include "ClhepVGM/Units.h"
+
 #include "Geant4GM/solids/Polycone.h"
 #include "Geant4GM/solids/SolidMap.h"
+
+const int Geant4GM::Polycone::fgkMaxNofZPlanes = 50;
+double*   Geant4GM::Polycone::fgZBuffer = 0;
+double*   Geant4GM::Polycone::fgRinBuffer = 0;
+double*   Geant4GM::Polycone::fgRoutBuffer = 0;
 
 //_____________________________________________________________________________
 Geant4GM::Polycone::Polycone(
@@ -22,9 +29,34 @@ Geant4GM::Polycone::Polycone(
   : BaseVGM::VPolycone(),
     fIsReflected(false),
     fZValuesRefl(0),
-    fPolycone(new G4Polycone(name, sphi, dphi, nofZplanes, z, rin, rout))
+    fPolycone(0)
 {
+  // Apply units
+  
+  double* z2    = new double[nofZplanes];
+  double* rin2  = new double[nofZplanes];
+  double* rout2 = new double[nofZplanes];
+  
+  for (int i=0; i<nofZplanes; i++) {
+    z2[i]     = z[i]    / ClhepVGM::Units::Length();
+    rin2[i]   = rin[i]  / ClhepVGM::Units::Length();
+    rout2[i]  = rout[i] / ClhepVGM::Units::Length();
+  }  
+  
+  fPolycone = new G4Polycone(name,     
+                           sphi / ClhepVGM::Units::Angle(), 
+			   dphi / ClhepVGM::Units::Angle(), 
+			   nofZplanes, 
+			   z2, rin2, rout2);
+  
+
   Geant4GM::SolidMap::Instance()->AddSolid(this, fPolycone); 
+
+  CreateBuffers();
+  
+  delete [] z2;
+  delete [] rin2;
+  delete [] rout2;
 }
 
 
@@ -48,6 +80,8 @@ Geant4GM::Polycone::Polycone(
   } 
   else   
     Geant4GM::SolidMap::Instance()->AddSolid(this, polycone); 
+
+  CreateBuffers();
 }
 
 //_____________________________________________________________________________
@@ -55,6 +89,14 @@ Geant4GM::Polycone::~Polycone() {
 //
   delete [] fZValuesRefl;
 }    
+
+//_____________________________________________________________________________
+void  Geant4GM::Polycone::CreateBuffers()
+{
+  if (!fgZBuffer)    fgZBuffer    = new double [fgkMaxNofZPlanes];
+  if (!fgRinBuffer)  fgRinBuffer  = new double [fgkMaxNofZPlanes];
+  if (!fgRoutBuffer) fgRoutBuffer = new double [fgkMaxNofZPlanes];
+}
 
 //_____________________________________________________________________________
 std::string Geant4GM::Polycone::Name() const
@@ -65,13 +107,15 @@ std::string Geant4GM::Polycone::Name() const
 //_____________________________________________________________________________
 double Geant4GM::Polycone::StartPhi() const
 {
-  return fPolycone->GetStartPhi();
+  return fPolycone->GetStartPhi() * ClhepVGM::Units::Angle();
 }  
 
 //_____________________________________________________________________________
 double Geant4GM::Polycone::DeltaPhi() const
 {
-  return fPolycone->GetEndPhi() - fPolycone->GetStartPhi();
+  double deltaPhi = fPolycone->GetEndPhi() - fPolycone->GetStartPhi();
+  
+  return deltaPhi * ClhepVGM::Units::Angle() ;
 }  
 
 //_____________________________________________________________________________
@@ -83,20 +127,59 @@ int Geant4GM::Polycone::NofZPlanes() const
 //_____________________________________________________________________________
 double* Geant4GM::Polycone::ZValues() const
 {
-  if (!fIsReflected)
-    return fPolycone->GetOriginalParameters()->Z_values;
-  else
-    return fZValuesRefl;  
+  int nofZPlanes = NofZPlanes();
+  if (nofZPlanes > fgkMaxNofZPlanes) {
+    nofZPlanes = fgkMaxNofZPlanes;
+    std::cerr << "+++ Warning  +++" << std::endl; 
+    std::cerr << "    Number of Zplanes > size of buffer." << std::endl;
+    std::cerr << "    only " << nofZPlanes << " values are returned." << std::endl;
+  }  
+
+  for (int i=0; i<nofZPlanes; i++)
+    if (!fIsReflected) {
+      fgZBuffer[i] = fPolycone->GetOriginalParameters()->Z_values[i];
+      fgZBuffer[i] *= ClhepVGM::Units::Length();
+    }  
+    else
+      fgZBuffer[i] = fZValuesRefl[i] * ClhepVGM::Units::Length();
+
+  return fgZBuffer;
 }  
 
 //_____________________________________________________________________________
 double* Geant4GM::Polycone::InnerRadiusValues() const
 {
-  return fPolycone->GetOriginalParameters()->Rmin;
+  int nofZPlanes = NofZPlanes();
+  if (nofZPlanes > fgkMaxNofZPlanes) {
+    nofZPlanes = fgkMaxNofZPlanes;
+    std::cerr << "+++ Warning  +++" << std::endl; 
+    std::cerr << "    Number of Zplanes > size of buffer." << std::endl;
+    std::cerr << "    only " << nofZPlanes << " values are returned." << std::endl;
+  }  
+
+  for (int i=0; i<nofZPlanes; i++) {
+    fgRinBuffer[i] = fPolycone->GetOriginalParameters()->Rmin[i];
+    fgRinBuffer[i] *= ClhepVGM::Units::Length();
+  }  
+
+  return fgRinBuffer;
 }  
 
 //_____________________________________________________________________________
 double* Geant4GM::Polycone::OuterRadiusValues() const
 {
-  return fPolycone->GetOriginalParameters()->Rmax;
+  int nofZPlanes = NofZPlanes();
+  if (nofZPlanes > fgkMaxNofZPlanes) {
+    nofZPlanes = fgkMaxNofZPlanes;
+    std::cerr << "+++ Warning  +++" << std::endl; 
+    std::cerr << "    Number of Zplanes > size of buffer." << std::endl;
+    std::cerr << "    only " << nofZPlanes << " values are returned." << std::endl;
+  }  
+
+  for (int i=0; i<nofZPlanes; i++) {
+    fgRoutBuffer[i] = fPolycone->GetOriginalParameters()->Rmax[i];
+    fgRoutBuffer[i] *= ClhepVGM::Units::Length();
+  }  
+
+  return fgRoutBuffer;
 }  

@@ -19,6 +19,7 @@
 #include "VGM/solids/ITubs.h"
 
 #include "ClhepVGM/transform.h"
+#include "ClhepVGM/Units.h"
 
 #include "Geant4GM/volumes/Placement.h"
 #include "Geant4GM/volumes/VolumeMap.h"
@@ -65,6 +66,10 @@ Geant4GM::Placement::Placement(
   G4LogicalVolume* g4MotherLV 
     = Geant4GM::VolumeMap::Instance()->GetVolume(motherVolume);
         
+  // Apply units
+  width  /= ClhepVGM::Units::AxisUnit(axis);
+  offset /= ClhepVGM::Units::AxisUnit(axis);
+
   // Create PV division 
   fPhysicalVolume
     = new G4PVDivision(name, g4LV, g4MotherLV, 
@@ -99,14 +104,14 @@ EAxis
 Geant4GM::Placement::GetAxis(VGM::Axis axis) const
 {
   switch (axis) {
-    case VGM::kXAxis: return kXAxis; break;
-    case VGM::kYAxis: return kYAxis; break;
-    case VGM::kZAxis: return kZAxis; break;
-    case VGM::kRho:   return kRho;   break;
+    case VGM::kXAxis:    return kXAxis;    break;
+    case VGM::kYAxis:    return kYAxis;    break;
+    case VGM::kZAxis:    return kZAxis;    break;
+    case VGM::kRho:      return kRho;      break;
     case VGM::kRadial3D: return kRadial3D; break;
-    case VGM::kPhi:   return kPhi;   break;
+    case VGM::kPhi:      return kPhi;      break;
     case VGM::kUnknownAxis: return kUndefined; break;
-    default:   return  kUndefined; break;
+    default:                return kUndefined; break;
   }  
 }    
 
@@ -115,14 +120,14 @@ VGM::Axis
 Geant4GM::Placement::GetAxis(EAxis axis) const
 {
   switch (axis) {
-    case kXAxis: return VGM::kXAxis; break;
-    case kYAxis: return VGM::kYAxis; break;
-    case kZAxis: return VGM::kZAxis; break;
-    case kRho:   return VGM::kRho;   break;
-    case kRadial3D: return VGM::kRadial3D; break;
-    case kPhi:   return VGM::kPhi;   break;
+    case kXAxis:     return VGM::kXAxis;    break;
+    case kYAxis:     return VGM::kYAxis;    break;
+    case kZAxis:     return VGM::kZAxis;    break;
+    case kRho:       return VGM::kRho;      break;
+    case kRadial3D:  return VGM::kRadial3D; break;
+    case kPhi:       return VGM::kPhi;      break;
     case kUndefined: return VGM::kUnknownAxis; break;
-    default:     return  VGM::kUnknownAxis; break;
+    default:         return VGM::kUnknownAxis; break;
   }  
 }    
 
@@ -240,6 +245,10 @@ bool Geant4GM::Placement::MultiplePlacementData(
     width =  param->GetWidth();
     offset = param->GetOffset();
   }  
+
+  // Convert units
+  offset *= ClhepVGM::Units::AxisUnit(axis);
+  width  *= ClhepVGM::Units::AxisUnit(axis);
 
   axis = GetAxis(g4Axis);
 

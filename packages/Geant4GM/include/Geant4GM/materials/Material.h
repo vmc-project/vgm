@@ -46,6 +46,7 @@ namespace Geant4GM {
       Material(const Material& rhs) : VGM::IMaterial(rhs) {}
      
     private:
+      bool CheckVacuum(const std::string& name, double density);
       void CheckIndex(int iel) const;
   
       G4Material*  fMaterial;  

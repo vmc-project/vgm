@@ -138,7 +138,6 @@ namespace Geant4GM {
       //
       virtual VGM::IPlacement* Top() const;	
       G4VPhysicalVolume*     World() const;	       
-      virtual bool CLHEPRotations() const;		       
 
       // import/export
       //

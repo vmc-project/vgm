@@ -6,6 +6,8 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
+#include "ClhepVGM/Units.h"
+
 #include "Geant4GM/solids/Box.h"
 #include "Geant4GM/solids/SolidMap.h"
 
@@ -13,7 +15,10 @@
 Geant4GM::Box::Box(const std::string& name, 
                    double hx, double hy, double hz)
   : BaseVGM::VBox(),
-    fBox(new G4Box(name, hx, hy, hz))
+    fBox( new G4Box(name, 
+                    hx / ClhepVGM::Units::Length(), 
+		    hy / ClhepVGM::Units::Length(), 
+		    hz / ClhepVGM::Units::Length()) )
 {
 // 
   Geant4GM::SolidMap::Instance()->AddSolid(this, fBox); 
@@ -46,19 +51,19 @@ std::string Geant4GM::Box::Name() const
 //_____________________________________________________________________________
 double Geant4GM::Box::XHalfLength() const
 {
-  return fBox->GetXHalfLength();
+  return fBox->GetXHalfLength() * ClhepVGM::Units::Length();
 }  
 
 //_____________________________________________________________________________
 double Geant4GM::Box::YHalfLength() const
 {
-  return fBox->GetYHalfLength();
+  return fBox->GetYHalfLength() * ClhepVGM::Units::Length();
 }  
 
 //_____________________________________________________________________________
 double Geant4GM::Box::ZHalfLength() const
 {
-  return fBox->GetZHalfLength();
+  return fBox->GetZHalfLength() * ClhepVGM::Units::Length();
 }  
 
 

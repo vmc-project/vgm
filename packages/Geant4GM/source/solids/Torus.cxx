@@ -6,6 +6,8 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
+#include "ClhepVGM/Units.h"
+
 #include "Geant4GM/solids/Torus.h"
 #include "Geant4GM/solids/SolidMap.h"
 
@@ -14,7 +16,12 @@ Geant4GM::Torus::Torus(const std::string& name,
                        double rin, double rout, double rax, 
 		       double sphi, double dphi)
   : BaseVGM::VTorus(),
-    fTorus(new G4Torus(name, rin, rout, rax, sphi, dphi))
+    fTorus( new G4Torus(name, 
+                        rin  / ClhepVGM::Units::Length(), 
+			rout / ClhepVGM::Units::Length(), 
+			rax  / ClhepVGM::Units::Length(), 
+			sphi / ClhepVGM::Units::Angle(), 
+			dphi / ClhepVGM::Units::Angle()) )
 {
 // 
   Geant4GM::SolidMap::Instance()->AddSolid(this, fTorus); 
@@ -47,29 +54,29 @@ std::string Geant4GM::Torus::Name() const
 //_____________________________________________________________________________
 double Geant4GM::Torus::InnerRadius() const
 {
-  return fTorus->GetRmin();
+  return fTorus->GetRmin() * ClhepVGM::Units::Length();
 }  
 
 //_____________________________________________________________________________
 double Geant4GM::Torus::OuterRadius() const
 {
-  return fTorus->GetRmax();
+  return fTorus->GetRmax() * ClhepVGM::Units::Length();
 }  
 
 //_____________________________________________________________________________
 double Geant4GM::Torus::AxialRadius() const
 {
-  return fTorus->GetRtor();
+  return fTorus->GetRtor() * ClhepVGM::Units::Length();
 }  
 
 //_____________________________________________________________________________
 double Geant4GM::Torus::StartPhi() const
 {
-  return fTorus->GetSPhi();
+  return fTorus->GetSPhi() * ClhepVGM::Units::Angle();
 }  
 
 //_____________________________________________________________________________
 double Geant4GM::Torus::DeltaPhi() const
 {
-  return fTorus->GetDPhi();
+  return fTorus->GetDPhi() * ClhepVGM::Units::Angle();
 }  
