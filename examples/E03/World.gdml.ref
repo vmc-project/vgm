@@ -40,23 +40,23 @@
    <solids>
       <box  lunit="cm" aunit="degree"
          name="World_s"
-         x="   18.0000"  y="   12.0000"  z="   12.0000" />
+         x="    9.0000"  y="    6.0000"  z="    6.0000" />
 
       <box  lunit="cm" aunit="degree"
          name="Calorimeter_s"
-         x="   15.0000"  y="   10.0000"  z="   10.0000" />
+         x="    7.5000"  y="    5.0000"  z="    5.0000" />
 
       <box  lunit="cm" aunit="degree"
          name="Layer_s"
-         x="    1.5000"  y="   10.0000"  z="   10.0000" />
+         x="    0.7500"  y="    5.0000"  z="    5.0000" />
 
       <box  lunit="cm" aunit="degree"
          name="Absorber_s"
-         x="    1.0000"  y="   10.0000"  z="   10.0000" />
+         x="    0.5000"  y="    5.0000"  z="    5.0000" />
 
       <box  lunit="cm" aunit="degree"
          name="Gap_s"
-         x="    0.5000"  y="   10.0000"  z="   10.0000" />
+         x="    0.2500"  y="    5.0000"  z="    5.0000" />
 
    </solids>
 
@@ -74,16 +74,16 @@
       <volume name="Layer">
          <materialref ref="Galactic"/>
          <solidref ref="Layer_s"/>
-         <child>
+         <physvol>
             <volumeref ref="Absorber"/>
                <positionref ref="pos_1"/>
                <rotationref ref="rot_0"/>
-         </child>
-         <child>
+         </physvol>
+         <physvol>
             <volumeref ref="Gap"/>
                <positionref ref="pos_2"/>
                <rotationref ref="rot_0"/>
-         </child>
+         </physvol>
       </volume>
 
       <volume name="Calorimeter">
@@ -94,11 +94,11 @@
       <volume name="World">
          <materialref ref="Galactic"/>
          <solidref ref="World_s"/>
-         <child>
+         <physvol>
             <volumeref ref="Calorimeter"/>
                <positionref ref="pos_0"/>
                <rotationref ref="rot_0"/>
-         </child>
+         </physvol>
       </volume>
 
    </structure>
