@@ -1,12 +1,12 @@
 
 *************************************************************
- Geant4 version $Name$   (26-October-2004)
+ Geant4 version $Name$   (17-December-2004)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
 *************************************************************
 
-===> VGM Root geometry, VGM Root geometry created
+Geometry VGM Root geometry, VGM Root geometry created
 Root geometry will be defined via VGM
 Top volume is worldV. Master volume is worldV
 TestReflections finished
