@@ -2,6 +2,14 @@ $Id$
 
  The Virtual Geometry Model - Versions
 =========================================
+  16/05/2005
+  version 2.04    (public version)
+               Upgrade to Root 4.04/02;
+	       bug fix in AGDD exporter (trap solid)
+	       
+	       Tested with  CLHEP 1.8.1.0, Root 4.04/02, Geant4 7.0;
+	       gcc 3.2.2 
+
   08/03/2005
   version 2.03    (public version)
                Port to gcc 3.4.2 (FC3);
