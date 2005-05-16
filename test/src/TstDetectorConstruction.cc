@@ -285,7 +285,6 @@ void TstDetectorConstruction::DrawRootGeometry(bool withRayTrace) const
   if (withRayTrace)
     gGeoManager->GetTopVolume()->Raytrace();
   else {
-    if (gPad) gPad->x3d();
     gGeoManager->GetTopVolume()->Draw();
   } 
   gApplication->Run();
