@@ -347,10 +347,9 @@ void XmlVGM::AGDDWriter::WriteTrap(
   // declination: alpha1, alpha2
 
   // get inclination angles
-  double thetaCphi = tan(theta)*cos(phi);
-  double thetaSphi = tan(theta)*sin(phi);
+  double thetaCphi = tan(theta*deg)*cos(phi*deg);
+  double thetaSphi = tan(theta*deg)*sin(phi*deg);
   double cosTheta = 1.0/sqrt(1+thetaCphi*thetaCphi + thetaSphi*thetaSphi) ;
-    // TO DO: change to radians in tan(), cos() !!!
 
   Hep3Vector symAxis(thetaCphi*cosTheta, thetaSphi*cosTheta, cosTheta);
   double inc1 = atan(symAxis.x()/symAxis.z())/deg;
