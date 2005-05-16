@@ -27,7 +27,7 @@
  6. Open and view the generated XML files;
     in GraXML:
     graxml
-    w.show("World.xml");
+    w.show("World.agdd");
     w.show("World.gdml");
     
    
