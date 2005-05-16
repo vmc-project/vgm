@@ -9,7 +9,7 @@
 #include <math.h>
 
 #include "TGeoElement.h"
-#include "TGeoElement.h"
+#include "TGeoManager.h"
 
 #include "RootGM/materials/Element.h"
 #include "RootGM/materials/ElementMap.h"
@@ -31,12 +31,12 @@ RootGM::Element::Element(const std::string& name,
 
   // Use Root element table to create Root element
   // (to get it registered here)
-  TGeoElementTable::Instance()
-    ->AddElement(symbol.data(),
-                 name.data(),
-		 (int)z,
-		 a /RootGM::Units::AtomicWeight()); 
-  fElement = TGeoElementTable::Instance()->FindElement(symbol.data());
+  TGeoElementTable* elementTable = gGeoManager->GetElementTable();
+  elementTable->AddElement(symbol.data(),
+                           name.data(),
+		           (int)z,
+		           a /RootGM::Units::AtomicWeight()); 
+  fElement = elementTable->FindElement(symbol.data());
 
   // Register element in the map
   RootGM::ElementMap::Instance()->AddElement(this, fElement); 

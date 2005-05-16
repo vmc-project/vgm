@@ -95,7 +95,7 @@ void RootGM::MaterialFactory::ImportMaterial(TGeoMaterial* material)
     nofElements = ((TGeoMixture*)material)->GetNelements();
 
   // To be removed when fixed in Root
-  if (! TGeoElementTable::Instance() ) new TGeoElementTable(200);
+  if (! gGeoManager->GetElementTable() ) new TGeoElementTable(200);
   
   // Import elements
   for (Int_t i=0; i<nofElements; i++) {
@@ -145,7 +145,7 @@ RootGM::MaterialFactory::CreateElement(
   VGM::IElement* vgmElement = 0;
 
   TGeoElement* rootElement 
-    = TGeoElementTable::Instance()->GetElement((int)z);
+    = gGeoManager->GetElementTable()->GetElement((int)z);
     
   if (!rootElement) {
     // The element is not defined in Root table - create a new one
