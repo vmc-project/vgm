@@ -2,6 +2,14 @@ $Id$
 
  The Virtual Geometry Model - Versions
 =========================================
+  15/06/2005
+  version 2.05    (public version)
+               Added elliptical tube solid;
+	       fix for general trapezoid with triangular faces (in Geant4GM).
+	       
+	       Tested with  CLHEP 1.8.1.0, Root 4.04/02, Geant4 7.0;
+	       gcc 3.2.2 
+
   16/05/2005
   version 2.04    (public version)
                Upgrade to Root 4.04/02;
