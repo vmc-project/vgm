@@ -15,6 +15,10 @@ VGM info:   Importing LV: consV_refl
 VGM info:   Importing solid: consS_refl
 VGM info:   ImportDaughters for consV_refl
 VGM info:   ImportPositions for lv consV_refl nofDaughters: 0
+VGM info:   Importing LV: eltuV_refl
+VGM info:   Importing solid: eltuS_refl
+VGM info:   ImportDaughters for eltuV_refl
+VGM info:   ImportPositions for lv eltuV_refl nofDaughters: 0
 VGM info:   Importing LV: paraV_refl
 VGM info:   Importing solid: paraS_refl
 VGM info:   ImportDaughters for paraV_refl

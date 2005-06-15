@@ -46,6 +46,12 @@ VGM info:   ImportDaughters for consV
 VGM info:   Importing LV: consV_refl
 VGM info:   Importing solid: consS_refl
 VGM info:   ImportDaughters for consV_refl
+VGM info:   Importing LV: eltuV
+VGM info:   Importing solid: eltuS
+VGM info:   ImportDaughters for eltuV
+VGM info:   Importing LV: eltuV_refl
+VGM info:   Importing solid: eltuS_refl
+VGM info:   ImportDaughters for eltuV_refl
 VGM info:   Importing LV: paraV
 VGM info:   Importing solid: paraS
 VGM info:   ImportDaughters for paraV
@@ -100,42 +106,46 @@ VGM info:      0th daughter  lv=boxV vgmVol=boxV
 VGM info:      1th daughter  lv=boxV_refl vgmVol=boxV_refl
 VGM info:      2th daughter  lv=consV vgmVol=consV
 VGM info:      3th daughter  lv=consV_refl vgmVol=consV_refl
-VGM info:      4th daughter  lv=paraV vgmVol=paraV
-VGM info:      5th daughter  lv=paraV_refl vgmVol=paraV_refl
-VGM info:      6th daughter  lv=pconeV vgmVol=pconeV
-VGM info:      7th daughter  lv=pconeV_refl vgmVol=pconeV_refl
-VGM info:      8th daughter  lv=phedraV vgmVol=phedraV
-VGM info:      9th daughter  lv=phedraV_refl vgmVol=phedraV_refl
-VGM info:      10th daughter  lv=sphereV1 vgmVol=sphereV1
-VGM info:      11th daughter  lv=sphereV1_refl vgmVol=sphereV1_refl
-VGM info:      12th daughter  lv=torusV vgmVol=torusV
-VGM info:      13th daughter  lv=torusV_refl vgmVol=torusV_refl
-VGM info:      14th daughter  lv=trapV vgmVol=trapV
-VGM info:      15th daughter  lv=trapV_refl vgmVol=trapV_refl
-VGM info:      16th daughter  lv=trdV vgmVol=trdV
-VGM info:      17th daughter  lv=trdV_refl vgmVol=trdV_refl
-VGM info:      18th daughter  lv=tubsV vgmVol=tubsV
-VGM info:      19th daughter  lv=tubsV_refl vgmVol=tubsV_refl
+VGM info:      4th daughter  lv=eltuV vgmVol=eltuV
+VGM info:      5th daughter  lv=eltuV_refl vgmVol=eltuV_refl
+VGM info:      6th daughter  lv=paraV vgmVol=paraV
+VGM info:      7th daughter  lv=paraV_refl vgmVol=paraV_refl
+VGM info:      8th daughter  lv=pconeV vgmVol=pconeV
+VGM info:      9th daughter  lv=pconeV_refl vgmVol=pconeV_refl
+VGM info:      10th daughter  lv=phedraV vgmVol=phedraV
+VGM info:      11th daughter  lv=phedraV_refl vgmVol=phedraV_refl
+VGM info:      12th daughter  lv=sphereV1 vgmVol=sphereV1
+VGM info:      13th daughter  lv=sphereV1_refl vgmVol=sphereV1_refl
+VGM info:      14th daughter  lv=torusV vgmVol=torusV
+VGM info:      15th daughter  lv=torusV_refl vgmVol=torusV_refl
+VGM info:      16th daughter  lv=trapV vgmVol=trapV
+VGM info:      17th daughter  lv=trapV_refl vgmVol=trapV_refl
+VGM info:      18th daughter  lv=trdV vgmVol=trdV
+VGM info:      19th daughter  lv=trdV_refl vgmVol=trdV_refl
+VGM info:      20th daughter  lv=tubsV vgmVol=tubsV
+VGM info:      21th daughter  lv=tubsV_refl vgmVol=tubsV_refl
 VGM info:   1th volume: boxV  
 VGM info:   2th volume: boxV_refl  
 VGM info:   3th volume: consV  
 VGM info:   4th volume: consV_refl  
-VGM info:   5th volume: paraV  
-VGM info:   6th volume: paraV_refl  
-VGM info:   7th volume: pconeV  
-VGM info:   8th volume: pconeV_refl  
-VGM info:   9th volume: phedraV  
-VGM info:   10th volume: phedraV_refl  
-VGM info:   11th volume: sphereV1  
-VGM info:   12th volume: sphereV1_refl  
-VGM info:   13th volume: torusV  
-VGM info:   14th volume: torusV_refl  
-VGM info:   15th volume: trapV  
-VGM info:   16th volume: trapV_refl  
-VGM info:   17th volume: trdV  
-VGM info:   18th volume: trdV_refl  
-VGM info:   19th volume: tubsV  
-VGM info:   20th volume: tubsV_refl  
+VGM info:   5th volume: eltuV  
+VGM info:   6th volume: eltuV_refl  
+VGM info:   7th volume: paraV  
+VGM info:   8th volume: paraV_refl  
+VGM info:   9th volume: pconeV  
+VGM info:   10th volume: pconeV_refl  
+VGM info:   11th volume: phedraV  
+VGM info:   12th volume: phedraV_refl  
+VGM info:   13th volume: sphereV1  
+VGM info:   14th volume: sphereV1_refl  
+VGM info:   15th volume: torusV  
+VGM info:   16th volume: torusV_refl  
+VGM info:   17th volume: trapV  
+VGM info:   18th volume: trapV_refl  
+VGM info:   19th volume: trdV  
+VGM info:   20th volume: trdV_refl  
+VGM info:   21th volume: tubsV  
+VGM info:   22th volume: tubsV_refl  
 VGM info:   
 Geant4_GM_Factory factory solids store: 
    0th solid: Box  "worldS"  hx = 10000mm  hy = 10000mm  hz = 10000mm
@@ -143,56 +153,60 @@ Geant4_GM_Factory factory solids store:
    2th solid: Box  "boxS"  hx = 200mm  hy = 600mm  hz = 500mm
    3th solid: Cons  "consS"  rin1 = 100mm  rout1 = 400mm  rin2 = 200mm  rout2 = 600mm  hz = 500mm  sphi = 0deg  dphi = 360deg
    4th solid: Cons  "consS"  rin1 = 200mm  rout1 = 600mm  rin2 = 100mm  rout2 = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
-   5th solid: Para  "paraS"  hx = 400mm  hy = 600mm  hz = 500mm  alpha = 30deg  theta = 30deg  phi = 30deg
-   6th solid: Para  "paraS"  hx = 400mm  hy = 600mm  hz = 500mm  alpha = 30deg  theta = 150deg  phi = 30deg
-   7th solid: Polycone  "pconeS"  sphi = 0deg  dphi = 360deg  nz = 3
+   5th solid: Eltu  "eltuS"  dx = 200mm  dy = 300mm  hz = 500mm
+   6th solid: Eltu  "eltuS"  dx = 200mm  dy = 300mm  hz = 500mm
+   7th solid: Para  "paraS"  hx = 400mm  hy = 600mm  hz = 500mm  alpha = 30deg  theta = 30deg  phi = 30deg
+   8th solid: Para  "paraS"  hx = 400mm  hy = 600mm  hz = 500mm  alpha = 30deg  theta = 150deg  phi = 30deg
+   9th solid: Polycone  "pconeS"  sphi = 0deg  dphi = 360deg  nz = 3
    0th plane:  z = -500mm rin = 100mm rout = 500mm
    1th plane:  z = 100mm rin = 200mm rout = 300mm
    2th plane:  z = 400mm rin = 300mm rout = 600mm
-   8th solid: Polycone  "pconeS"  sphi = 0deg  dphi = 360deg  nz = 3
+   10th solid: Polycone  "pconeS"  sphi = 0deg  dphi = 360deg  nz = 3
    0th plane:  z = 500mm rin = 100mm rout = 500mm
    1th plane:  z = -100mm rin = 200mm rout = 300mm
    2th plane:  z = -400mm rin = 300mm rout = 600mm
-   9th solid: Polygone  "phedraS"  sphi = 0deg  dphi = 360deg  nsides = 4  nz = 3
+   11th solid: Polygone  "phedraS"  sphi = 0deg  dphi = 360deg  nsides = 4  nz = 3
    0th plane:  z = -500mm rin = 100mm rout = 400mm
    1th plane:  z = 100mm rin = 200mm rout = 200mm
    2th plane:  z = 400mm rin = 300mm rout = 500mm
-   10th solid: Polygone  "phedraS"  sphi = 0deg  dphi = 360deg  nsides = 4  nz = 3
+   12th solid: Polygone  "phedraS"  sphi = 0deg  dphi = 360deg  nsides = 4  nz = 3
    0th plane:  z = 500mm rin = 100mm rout = 400mm
    1th plane:  z = -100mm rin = 200mm rout = 200mm
    2th plane:  z = -400mm rin = 300mm rout = 500mm
-   11th solid: Sphere  "sphereS"  rin = 200mm  rout = 600mm  sphi = 0deg  dphi = 360deg  stheta = 0deg  dtheta = 180deg
-   12th solid: Sphere  "sphereS"  rin = 200mm  rout = 600mm  sphi = 0deg  dphi = 360deg  stheta = 0deg  dtheta = 180deg
-   13th solid: Torus  "torusS"  rin = 200mm  rout = 300mm  rtor = 400mm  sphi = 0deg  dphi = 360deg
-   14th solid: Torus  "torusS"  rin = 200mm  rout = 300mm  rtor = 400mm  sphi = 0deg  dphi = 360deg
-   15th solid: Trap  "trapS"  hz = 300mm  theta = 25deg  phi = 35deg  hy1 = 200mm  hx1 = 100mm  hx2 = 150mm  alpha1 = 0deg  hy2 = 200mm  hx3 = 100mm  hx4 = 150mm  alpha2 = 0deg
-   16th solid: Trap  "trapS"  hz = 300mm  theta = -25deg  phi = -35deg  hy1 = 200mm  hx1 = 100mm  hx2 = 150mm  alpha1 = 0deg  hy2 = 200mm  hx3 = 100mm  hx4 = 150mm  alpha2 = 0deg
-   17th solid: Trd  "trdS"  hx1 = 200mm  hx2 = 300mm  hy1 = 400mm  hy2 = 500mm  hz = 500mm
-   18th solid: Trd  "trdS"  hx1 = 300mm  hx2 = 200mm  hy1 = 500mm  hy2 = 400mm  hz = 500mm
-   19th solid: Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
-   20th solid: Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
+   13th solid: Sphere  "sphereS"  rin = 200mm  rout = 600mm  sphi = 0deg  dphi = 360deg  stheta = 0deg  dtheta = 180deg
+   14th solid: Sphere  "sphereS"  rin = 200mm  rout = 600mm  sphi = 0deg  dphi = 360deg  stheta = 0deg  dtheta = 180deg
+   15th solid: Torus  "torusS"  rin = 200mm  rout = 300mm  rtor = 400mm  sphi = 0deg  dphi = 360deg
+   16th solid: Torus  "torusS"  rin = 200mm  rout = 300mm  rtor = 400mm  sphi = 0deg  dphi = 360deg
+   17th solid: Trap  "trapS"  hz = 300mm  theta = 25deg  phi = 35deg  hy1 = 200mm  hx1 = 100mm  hx2 = 150mm  alpha1 = 0deg  hy2 = 200mm  hx3 = 100mm  hx4 = 150mm  alpha2 = 0deg
+   18th solid: Trap  "trapS"  hz = 300mm  theta = -25deg  phi = -35deg  hy1 = 200mm  hx1 = 100mm  hx2 = 150mm  alpha1 = 0deg  hy2 = 200mm  hx3 = 100mm  hx4 = 150mm  alpha2 = 0deg
+   19th solid: Trd  "trdS"  hx1 = 200mm  hx2 = 300mm  hy1 = 400mm  hy2 = 500mm  hz = 500mm
+   20th solid: Trd  "trdS"  hx1 = 300mm  hx2 = 200mm  hy1 = 500mm  hy2 = 400mm  hz = 500mm
+   21th solid: Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
+   22th solid: Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
 Geant4_GM_Factory factory volumes store: 
-   0th: Volume: "worldV" material "Basic" solid "Box"  20 daughters: "box"  "box"  "cons"  "cons"  "para"  "para"  "pcone"  "pcone"  "phedra"  "phedra"  "sphere"  "sphere"  "torus"  "torus"  "trap"  "trap"  "trd"  "trd"  "tubs"  "tubs"  
+   0th: Volume: "worldV" material "Basic" solid "Box"  22 daughters: "box"  "box"  "cons"  "cons"  "cons"  "cons"  "para"  "para"  "pcone"  "pcone"  "phedra"  "phedra"  "sphere"  "sphere"  "torus"  "torus"  "trap"  "trap"  "trd"  "trd"  "tubs"  "tubs"  
    1th: Volume: "boxV" material "Basic" solid "Box"  0 daughters: 
    2th: Volume: "boxV_refl" material "Basic" solid "Box"  0 daughters: 
    3th: Volume: "consV" material "Basic" solid "Cons"  0 daughters: 
    4th: Volume: "consV_refl" material "Basic" solid "Cons"  0 daughters: 
-   5th: Volume: "paraV" material "Basic" solid "Para"  0 daughters: 
-   6th: Volume: "paraV_refl" material "Basic" solid "Para"  0 daughters: 
-   7th: Volume: "pconeV" material "Basic" solid "Polycone"  0 daughters: 
-   8th: Volume: "pconeV_refl" material "Basic" solid "Polycone"  0 daughters: 
-   9th: Volume: "phedraV" material "Basic" solid "Polygone"  0 daughters: 
-   10th: Volume: "phedraV_refl" material "Basic" solid "Polygone"  0 daughters: 
-   11th: Volume: "sphereV1" material "Basic" solid "Sphere"  0 daughters: 
-   12th: Volume: "sphereV1_refl" material "Basic" solid "Sphere"  0 daughters: 
-   13th: Volume: "torusV" material "Basic" solid "Torus"  0 daughters: 
-   14th: Volume: "torusV_refl" material "Basic" solid "Torus"  0 daughters: 
-   15th: Volume: "trapV" material "Basic" solid "Trap"  0 daughters: 
-   16th: Volume: "trapV_refl" material "Basic" solid "Trap"  0 daughters: 
-   17th: Volume: "trdV" material "Basic" solid "Trd"  0 daughters: 
-   18th: Volume: "trdV_refl" material "Basic" solid "Trd"  0 daughters: 
-   19th: Volume: "tubsV" material "Basic" solid "Tubs"  0 daughters: 
-   20th: Volume: "tubsV_refl" material "Basic" solid "Tubs"  0 daughters: 
+   5th: Volume: "eltuV" material "Basic" solid "Eltu"  0 daughters: 
+   6th: Volume: "eltuV_refl" material "Basic" solid "Eltu"  0 daughters: 
+   7th: Volume: "paraV" material "Basic" solid "Para"  0 daughters: 
+   8th: Volume: "paraV_refl" material "Basic" solid "Para"  0 daughters: 
+   9th: Volume: "pconeV" material "Basic" solid "Polycone"  0 daughters: 
+   10th: Volume: "pconeV_refl" material "Basic" solid "Polycone"  0 daughters: 
+   11th: Volume: "phedraV" material "Basic" solid "Polygone"  0 daughters: 
+   12th: Volume: "phedraV_refl" material "Basic" solid "Polygone"  0 daughters: 
+   13th: Volume: "sphereV1" material "Basic" solid "Sphere"  0 daughters: 
+   14th: Volume: "sphereV1_refl" material "Basic" solid "Sphere"  0 daughters: 
+   15th: Volume: "torusV" material "Basic" solid "Torus"  0 daughters: 
+   16th: Volume: "torusV_refl" material "Basic" solid "Torus"  0 daughters: 
+   17th: Volume: "trapV" material "Basic" solid "Trap"  0 daughters: 
+   18th: Volume: "trapV_refl" material "Basic" solid "Trap"  0 daughters: 
+   19th: Volume: "trdV" material "Basic" solid "Trd"  0 daughters: 
+   20th: Volume: "trdV_refl" material "Basic" solid "Trd"  0 daughters: 
+   21th: Volume: "tubsV" material "Basic" solid "Tubs"  0 daughters: 
+   22th: Volume: "tubsV_refl" material "Basic" solid "Tubs"  0 daughters: 
 VGM info:   Geant4GM::Factory::Import finished.
 Import finished
 Go to export
@@ -241,105 +255,115 @@ VGM info:   Exporting solid:
 VGM info:      Cons  "consS"  rin1 = 200mm  rout1 = 600mm  rin2 = 100mm  rout2 = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
 VGM info:      4th volume: consV_refl
 VGM info:   Exporting solid: 
+VGM info:      Eltu  "eltuS"  dx = 200mm  dy = 300mm  hz = 500mm
+VGM info:      5th volume: eltuV
+VGM info:   Exporting solid: 
+VGM info:      Eltu  "eltuS"  dx = 200mm  dy = 300mm  hz = 500mm
+VGM info:      6th volume: eltuV_refl
+VGM info:   Exporting solid: 
 VGM info:      Para  "paraS"  hx = 400mm  hy = 600mm  hz = 500mm  alpha = 30deg  theta = 30deg  phi = 30deg
-VGM info:      5th volume: paraV
+VGM info:      7th volume: paraV
 VGM info:   Exporting solid: 
 VGM info:      Para  "paraS"  hx = 400mm  hy = 600mm  hz = 500mm  alpha = 30deg  theta = 150deg  phi = 30deg
-VGM info:      6th volume: paraV_refl
+VGM info:      8th volume: paraV_refl
 VGM info:   Exporting solid: 
 VGM info:      Polycone  "pconeS"  sphi = 0deg  dphi = 360deg  nz = 3
    0th plane:  z = -500mm rin = 100mm rout = 500mm
    1th plane:  z = 100mm rin = 200mm rout = 300mm
    2th plane:  z = 400mm rin = 300mm rout = 600mm
-VGM info:      7th volume: pconeV
+VGM info:      9th volume: pconeV
 VGM info:   Exporting solid: 
 VGM info:      Polycone  "pconeS"  sphi = 0deg  dphi = 360deg  nz = 3
    0th plane:  z = 500mm rin = 100mm rout = 500mm
    1th plane:  z = -100mm rin = 200mm rout = 300mm
    2th plane:  z = -400mm rin = 300mm rout = 600mm
-VGM info:      8th volume: pconeV_refl
+VGM info:      10th volume: pconeV_refl
 VGM info:   Exporting solid: 
 VGM info:      Polygone  "phedraS"  sphi = 0deg  dphi = 360deg  nsides = 4  nz = 3
    0th plane:  z = -500mm rin = 100mm rout = 400mm
    1th plane:  z = 100mm rin = 200mm rout = 200mm
    2th plane:  z = 400mm rin = 300mm rout = 500mm
-VGM info:      9th volume: phedraV
+VGM info:      11th volume: phedraV
 VGM info:   Exporting solid: 
 VGM info:      Polygone  "phedraS"  sphi = 0deg  dphi = 360deg  nsides = 4  nz = 3
    0th plane:  z = 500mm rin = 100mm rout = 400mm
    1th plane:  z = -100mm rin = 200mm rout = 200mm
    2th plane:  z = -400mm rin = 300mm rout = 500mm
-VGM info:      10th volume: phedraV_refl
+VGM info:      12th volume: phedraV_refl
 VGM info:   Exporting solid: 
 VGM info:      Sphere  "sphereS"  rin = 200mm  rout = 600mm  sphi = 0deg  dphi = 360deg  stheta = 0deg  dtheta = 180deg
-VGM info:      11th volume: sphereV1
+VGM info:      13th volume: sphereV1
 VGM info:   Exporting solid: 
 VGM info:      Sphere  "sphereS"  rin = 200mm  rout = 600mm  sphi = 0deg  dphi = 360deg  stheta = 0deg  dtheta = 180deg
-VGM info:      12th volume: sphereV1_refl
+VGM info:      14th volume: sphereV1_refl
 VGM info:   Exporting solid: 
 VGM info:      Torus  "torusS"  rin = 200mm  rout = 300mm  rtor = 400mm  sphi = 0deg  dphi = 360deg
-VGM info:      13th volume: torusV
+VGM info:      15th volume: torusV
 VGM info:   Exporting solid: 
 VGM info:      Torus  "torusS"  rin = 200mm  rout = 300mm  rtor = 400mm  sphi = 0deg  dphi = 360deg
-VGM info:      14th volume: torusV_refl
+VGM info:      16th volume: torusV_refl
 VGM info:   Exporting solid: 
 VGM info:      Trap  "trapS"  hz = 300mm  theta = 25deg  phi = 35deg  hy1 = 200mm  hx1 = 100mm  hx2 = 150mm  alpha1 = 0deg  hy2 = 200mm  hx3 = 100mm  hx4 = 150mm  alpha2 = 0deg
-VGM info:      15th volume: trapV
+VGM info:      17th volume: trapV
 VGM info:   Exporting solid: 
 VGM info:      Trap  "trapS"  hz = 300mm  theta = -25deg  phi = -35deg  hy1 = 200mm  hx1 = 100mm  hx2 = 150mm  alpha1 = 0deg  hy2 = 200mm  hx3 = 100mm  hx4 = 150mm  alpha2 = 0deg
-VGM info:      16th volume: trapV_refl
+VGM info:      18th volume: trapV_refl
 VGM info:   Exporting solid: 
 VGM info:      Trd  "trdS"  hx1 = 200mm  hx2 = 300mm  hy1 = 400mm  hy2 = 500mm  hz = 500mm
-VGM info:      17th volume: trdV
+VGM info:      19th volume: trdV
 VGM info:   Exporting solid: 
 VGM info:      Trd  "trdS"  hx1 = 300mm  hx2 = 200mm  hy1 = 500mm  hy2 = 400mm  hz = 500mm
-VGM info:      18th volume: trdV_refl
+VGM info:      20th volume: trdV_refl
 VGM info:   Exporting solid: 
 VGM info:      Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
-VGM info:      19th volume: tubsV
+VGM info:      21th volume: tubsV
 VGM info:   Exporting solid: 
 VGM info:      Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
-VGM info:      20th volume: tubsV_refl
+VGM info:      22th volume: tubsV_refl
 VGM info:   ExportPlacements for 0th volume worldV
 VGM info:      0th daughter vol = box  simple placement: box
 VGM info:      1th daughter vol = box  simple placement: box
 VGM info:      2th daughter vol = cons  simple placement: cons
 VGM info:      3th daughter vol = cons  simple placement: cons
-VGM info:      4th daughter vol = para  simple placement: para
-VGM info:      5th daughter vol = para  simple placement: para
-VGM info:      6th daughter vol = pcone  simple placement: pcone
-VGM info:      7th daughter vol = pcone  simple placement: pcone
-VGM info:      8th daughter vol = phedra  simple placement: phedra
-VGM info:      9th daughter vol = phedra  simple placement: phedra
-VGM info:      10th daughter vol = sphere  simple placement: sphere
-VGM info:      11th daughter vol = sphere  simple placement: sphere
-VGM info:      12th daughter vol = torus  simple placement: torus
-VGM info:      13th daughter vol = torus  simple placement: torus
-VGM info:      14th daughter vol = trap  simple placement: trap
-VGM info:      15th daughter vol = trap  simple placement: trap
-VGM info:      16th daughter vol = trd  simple placement: trd
-VGM info:      17th daughter vol = trd  simple placement: trd
-VGM info:      18th daughter vol = tubs  simple placement: tubs
-VGM info:      19th daughter vol = tubs  simple placement: tubs
+VGM info:      4th daughter vol = cons  simple placement: cons
+VGM info:      5th daughter vol = cons  simple placement: cons
+VGM info:      6th daughter vol = para  simple placement: para
+VGM info:      7th daughter vol = para  simple placement: para
+VGM info:      8th daughter vol = pcone  simple placement: pcone
+VGM info:      9th daughter vol = pcone  simple placement: pcone
+VGM info:      10th daughter vol = phedra  simple placement: phedra
+VGM info:      11th daughter vol = phedra  simple placement: phedra
+VGM info:      12th daughter vol = sphere  simple placement: sphere
+VGM info:      13th daughter vol = sphere  simple placement: sphere
+VGM info:      14th daughter vol = torus  simple placement: torus
+VGM info:      15th daughter vol = torus  simple placement: torus
+VGM info:      16th daughter vol = trap  simple placement: trap
+VGM info:      17th daughter vol = trap  simple placement: trap
+VGM info:      18th daughter vol = trd  simple placement: trd
+VGM info:      19th daughter vol = trd  simple placement: trd
+VGM info:      20th daughter vol = tubs  simple placement: tubs
+VGM info:      21th daughter vol = tubs  simple placement: tubs
 VGM info:   ExportPlacements for 1th volume boxV
 VGM info:   ExportPlacements for 2th volume boxV_refl
 VGM info:   ExportPlacements for 3th volume consV
 VGM info:   ExportPlacements for 4th volume consV_refl
-VGM info:   ExportPlacements for 5th volume paraV
-VGM info:   ExportPlacements for 6th volume paraV_refl
-VGM info:   ExportPlacements for 7th volume pconeV
-VGM info:   ExportPlacements for 8th volume pconeV_refl
-VGM info:   ExportPlacements for 9th volume phedraV
-VGM info:   ExportPlacements for 10th volume phedraV_refl
-VGM info:   ExportPlacements for 11th volume sphereV1
-VGM info:   ExportPlacements for 12th volume sphereV1_refl
-VGM info:   ExportPlacements for 13th volume torusV
-VGM info:   ExportPlacements for 14th volume torusV_refl
-VGM info:   ExportPlacements for 15th volume trapV
-VGM info:   ExportPlacements for 16th volume trapV_refl
-VGM info:   ExportPlacements for 17th volume trdV
-VGM info:   ExportPlacements for 18th volume trdV_refl
-VGM info:   ExportPlacements for 19th volume tubsV
-VGM info:   ExportPlacements for 20th volume tubsV_refl
+VGM info:   ExportPlacements for 5th volume eltuV
+VGM info:   ExportPlacements for 6th volume eltuV_refl
+VGM info:   ExportPlacements for 7th volume paraV
+VGM info:   ExportPlacements for 8th volume paraV_refl
+VGM info:   ExportPlacements for 9th volume pconeV
+VGM info:   ExportPlacements for 10th volume pconeV_refl
+VGM info:   ExportPlacements for 11th volume phedraV
+VGM info:   ExportPlacements for 12th volume phedraV_refl
+VGM info:   ExportPlacements for 13th volume sphereV1
+VGM info:   ExportPlacements for 14th volume sphereV1_refl
+VGM info:   ExportPlacements for 15th volume torusV
+VGM info:   ExportPlacements for 16th volume torusV_refl
+VGM info:   ExportPlacements for 17th volume trapV
+VGM info:   ExportPlacements for 18th volume trapV_refl
+VGM info:   ExportPlacements for 19th volume trdV
+VGM info:   ExportPlacements for 20th volume trdV_refl
+VGM info:   ExportPlacements for 21th volume tubsV
+VGM info:   ExportPlacements for 22th volume tubsV_refl
 Top volume is worldV. Master volume is worldV
 Export finished
