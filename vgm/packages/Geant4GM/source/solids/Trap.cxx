@@ -28,18 +28,7 @@ Geant4GM::Trap::Trap(const std::string& name,
     VGM::ITrap(),
     BaseVGM::VTrap(),
     fIsReflected(false),
-    fTrap(new G4Trap(name, 
-                     hz     / ClhepVGM::Units::Length(), 
-		     theta  / ClhepVGM::Units::Angle(), 
-		     phi    / ClhepVGM::Units::Angle(),
-                     dy1    / ClhepVGM::Units::Length(), 
-		     dx1    / ClhepVGM::Units::Length(), 
-		     dx2    / ClhepVGM::Units::Length(), 
-		     alpha1 / ClhepVGM::Units::Angle(), 
-		     dy2    / ClhepVGM::Units::Length(), 
-		     dx3    / ClhepVGM::Units::Length(), 
-		     dx4    / ClhepVGM::Units::Length(), 
-		     alpha2 / ClhepVGM::Units::Angle()) )
+    fTrap(0)
 {
 /// Standard constructor to define trap from parameters
 /// ( Note that of the 11 parameters described below, only 9 
@@ -66,6 +55,26 @@ Geant4GM::Trap::Trap(const std::string& name,
 ///	   centre of the side at -hy to the centre at +hy
 ///	   of the face at +hz
 
+  // Geant4 does not allow to define trapezoid with dx = 0.
+  // while other geometry can do it;
+  // change dx to 10 microns in such a case   
+  if ( dx1 == 0. ) dx1 = 10.0e-3;
+  if ( dx2 == 0. ) dx2 = 10.0e-3;
+  if ( dx3 == 0. ) dx3 = 10.0e-3;
+  if ( dx4 == 0. ) dx4 = 10.0e-3;
+
+  fTrap = new G4Trap(name, 
+                     hz     / ClhepVGM::Units::Length(), 
+		     theta  / ClhepVGM::Units::Angle(), 
+		     phi    / ClhepVGM::Units::Angle(),
+                     dy1    / ClhepVGM::Units::Length(), 
+		     dx1    / ClhepVGM::Units::Length(), 
+		     dx2    / ClhepVGM::Units::Length(), 
+		     alpha1 / ClhepVGM::Units::Angle(), 
+		     dy2    / ClhepVGM::Units::Length(), 
+		     dx3    / ClhepVGM::Units::Length(), 
+		     dx4    / ClhepVGM::Units::Length(), 
+		     alpha2 / ClhepVGM::Units::Angle());
 
   Geant4GM::SolidMap::Instance()->AddSolid(this, fTrap); 
 }
