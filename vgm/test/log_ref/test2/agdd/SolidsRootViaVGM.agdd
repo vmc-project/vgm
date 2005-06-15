@@ -24,6 +24,12 @@
       profile=" 0.0000; 360.0000"
       Rio1_Rio2_Z  ="10.0000; 20.0000; 40.0000; 60.0000; 100.0000" />
 
+   <!-- !!! unsupported shape  !!!  name= "eltuV" -->
+   <!-- dummy box is written instead  -->
+   <box    name="eltuV"
+      material="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
    <para   name="paraV"
       material="Basic"
       X_Y_Z="80.0000; 120.0000; 100.0000"
@@ -62,7 +68,7 @@
    <trap   name="trapV"
       material="Basic"
       Xmumdpupd_Ymp_Z="30.0000; 20.0000; 30.0000; 20.0000; 40.0000; 40.0000; 60.0000"
-      inclination=" 6.8804;  3.2722"
+      inclination="20.9057; 14.9740"
       declination=" 0.0000;  0.0000" />
 
    <trd    name="trdV"
@@ -80,21 +86,23 @@
       </posXYZ>
       <posXYZ   X_Y_Z="-1000.0000; 250.0000;   0.0000"> <volume name="consV"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="-833.3333; -250.0000;   0.0000"> <volume name="paraV"/>
+      <posXYZ   X_Y_Z="-833.3333; -250.0000;   0.0000"> <volume name="eltuV"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="-833.3333; 250.0000;   0.0000"> <volume name="pconeV"/>
+      <posXYZ   X_Y_Z="-833.3333; 250.0000;   0.0000"> <volume name="paraV"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="-666.6667; -250.0000;   0.0000"> <volume name="phedraV"/>
+      <posXYZ   X_Y_Z="-666.6667; -250.0000;   0.0000"> <volume name="pconeV"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="-666.6667; 250.0000;   0.0000"> <volume name="sphereV1"/>
+      <posXYZ   X_Y_Z="-666.6667; 250.0000;   0.0000"> <volume name="phedraV"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="-500.0000; -250.0000;   0.0000"> <volume name="torusV"/>
+      <posXYZ   X_Y_Z="-500.0000; -250.0000;   0.0000"> <volume name="sphereV1"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="-500.0000; 250.0000;   0.0000"> <volume name="trapV"/>
+      <posXYZ   X_Y_Z="-500.0000; 250.0000;   0.0000"> <volume name="torusV"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="-333.3333; -250.0000;   0.0000"> <volume name="trdV"/>
+      <posXYZ   X_Y_Z="-333.3333; -250.0000;   0.0000"> <volume name="trapV"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="-333.3333; 250.0000;   0.0000"> <volume name="tubsV"/>
+      <posXYZ   X_Y_Z="-333.3333; 250.0000;   0.0000"> <volume name="trdV"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-166.6667; -250.0000;   0.0000"> <volume name="tubsV"/>
       </posXYZ>
    </composition>
 

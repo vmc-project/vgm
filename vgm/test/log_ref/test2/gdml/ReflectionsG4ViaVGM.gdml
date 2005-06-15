@@ -25,6 +25,8 @@
       <position  name=  "pos_18"  x="  -333.3333"  y="  -250.0000"  z="  -100.0000"  unit="cm" />
       <position  name=  "pos_19"  x="  -333.3333"  y="   250.0000"  z="   100.0000"  unit="cm" />
       <position  name=  "pos_20"  x="  -333.3333"  y="   250.0000"  z="  -100.0000"  unit="cm" />
+      <position  name=  "pos_21"  x="  -166.6667"  y="  -250.0000"  z="   100.0000"  unit="cm" />
+      <position  name=  "pos_22"  x="  -166.6667"  y="  -250.0000"  z="  -100.0000"  unit="cm" />
 
       <rotation  name=   "rot_0"  x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
    </define>
@@ -65,6 +67,18 @@
          rmin1="   20.0000"  rmin2="   10.0000"  rmax1="   60.0000"  rmax2="   40.0000"
          z="   50.0000"
          startphi="    0.0000"  deltaphi="  360.0000" />
+
+      <!-- !!! unsupported shape  !!!  name= "eltuV_s" -->
+      <!-- dummy box is written instead  -->
+      <box  lunit="cm" aunit="degree"
+         name="eltuV_s"
+         x="    0.1000"  y="    0.1000"  z="    0.1000" />
+
+      <!-- !!! unsupported shape  !!!  name= "eltuV_refl_s" -->
+      <!-- dummy box is written instead  -->
+      <box  lunit="cm" aunit="degree"
+         name="eltuV_refl_s"
+         x="    0.1000"  y="    0.1000"  z="    0.1000" />
 
       <para  lunit="cm" aunit="degree"
          name="paraV_s"
@@ -187,6 +201,16 @@
          <solidref ref="consV_refl_s"/>
       </volume>
 
+      <volume name="eltuV">
+         <materialref ref="Basic"/>
+         <solidref ref="eltuV_s"/>
+      </volume>
+
+      <volume name="eltuV_refl">
+         <materialref ref="Basic"/>
+         <solidref ref="eltuV_refl_s"/>
+      </volume>
+
       <volume name="paraV">
          <materialref ref="Basic"/>
          <solidref ref="paraV_s"/>
@@ -291,83 +315,93 @@
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
-            <volumeref ref="paraV"/>
+            <volumeref ref="eltuV"/>
                <positionref ref="pos_5"/>
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
-            <volumeref ref="paraV_refl"/>
+            <volumeref ref="eltuV_refl"/>
                <positionref ref="pos_6"/>
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
-            <volumeref ref="pconeV"/>
+            <volumeref ref="paraV"/>
                <positionref ref="pos_7"/>
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
-            <volumeref ref="pconeV_refl"/>
+            <volumeref ref="paraV_refl"/>
                <positionref ref="pos_8"/>
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
-            <volumeref ref="phedraV"/>
+            <volumeref ref="pconeV"/>
                <positionref ref="pos_9"/>
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
-            <volumeref ref="phedraV_refl"/>
+            <volumeref ref="pconeV_refl"/>
                <positionref ref="pos_10"/>
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
-            <volumeref ref="sphereV1"/>
+            <volumeref ref="phedraV"/>
                <positionref ref="pos_11"/>
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
-            <volumeref ref="sphereV1_refl"/>
+            <volumeref ref="phedraV_refl"/>
                <positionref ref="pos_12"/>
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
-            <volumeref ref="torusV"/>
+            <volumeref ref="sphereV1"/>
                <positionref ref="pos_13"/>
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
-            <volumeref ref="torusV_refl"/>
+            <volumeref ref="sphereV1_refl"/>
                <positionref ref="pos_14"/>
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
-            <volumeref ref="trapV"/>
+            <volumeref ref="torusV"/>
                <positionref ref="pos_15"/>
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
-            <volumeref ref="trapV_refl"/>
+            <volumeref ref="torusV_refl"/>
                <positionref ref="pos_16"/>
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
-            <volumeref ref="trdV"/>
+            <volumeref ref="trapV"/>
                <positionref ref="pos_17"/>
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
-            <volumeref ref="trdV_refl"/>
+            <volumeref ref="trapV_refl"/>
                <positionref ref="pos_18"/>
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
-            <volumeref ref="tubsV"/>
+            <volumeref ref="trdV"/>
                <positionref ref="pos_19"/>
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
-            <volumeref ref="tubsV_refl"/>
+            <volumeref ref="trdV_refl"/>
                <positionref ref="pos_20"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="tubsV"/>
+               <positionref ref="pos_21"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="tubsV_refl"/>
+               <positionref ref="pos_22"/>
                <rotationref ref="rot_0"/>
          </physvol>
       </volume>
