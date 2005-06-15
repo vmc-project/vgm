@@ -79,6 +79,15 @@ IVolume* TstGeometryViaVGM::CreateCons(double sphi, double dphi)
 }
 
 //_____________________________________________________________________________
+IVolume* TstGeometryViaVGM::CreateEllipticalTube()
+{
+  ISolid* eltuS
+    = fFactory->CreateEllipticalTube("eltuS", 20.* fCm, 50.* fCm, 50* fCm);
+  
+  return fFactory->CreateVolume("eltuV", eltuS, "Basic");
+}
+
+//_____________________________________________________________________________
 IVolume* TstGeometryViaVGM::CreatePara()
 {
   ISolid* paraS
@@ -172,8 +181,9 @@ IVolume* TstGeometryViaVGM::CreateTrap()
 {
   ISolid* trapS
     = fFactory->CreateTrap("trapS", 30.* fCm, 25.* fDeg, 35.* fDeg,
-		          20.* fCm, 10.* fCm, 15.* fCm, 0.* fDeg,
-		          20.* fCm, 10.* fCm, 15.* fCm, 0.* fDeg);
+  		          20.* fCm, 10.* fCm, 15.* fCm, 0.* fDeg,
+  		          20.* fCm, 10.* fCm, 15.* fCm, 0.* fDeg);
+
   return fFactory->CreateVolume("trapV", trapS, "Basic");
 }
 
@@ -235,93 +245,104 @@ void* TstGeometryViaVGM::PlaceSolids(IVolume* mother,
                   ClhepVGM::Transform(
                     HepTranslate3D(-wSize + (counter)*dz, dy, -zpos) * reflect3D));
 
+  // Elliptical tube 
+  //
+  IVolume* eltuV = CreateEllipticalTube();
+  fFactory->CreatePlacement("eltu", 0, eltuV, mother, 
+                  ClhepVGM::Transform(
+                    HepTranslate3D(-wSize + (++counter)*dz, -dy, zpos)));
+  if (reflect)
+  fFactory->CreatePlacement("cons", 0, eltuV, mother, 
+                  ClhepVGM::Transform(
+                    HepTranslate3D(-wSize + (counter)*dz, -dy, -zpos) * reflect3D));
+
   // Para
   //
   IVolume* paraV = CreatePara();
   fFactory->CreatePlacement("para", 0, paraV, mother, 
                   ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (++counter)*dz,  -dy, zpos)));
+                    HepTranslate3D(-wSize + (counter)*dz,  dy, zpos)));
   if (reflect)
     fFactory->CreatePlacement("para", 0, paraV, mother, 
                   ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (counter)*dz,  -dy, -zpos) * reflect3D));
+                    HepTranslate3D(-wSize + (counter)*dz,  dy, -zpos) * reflect3D));
   
   // Polycone
   //
   IVolume* pconeV = CreatePolycone(sphi, dphi);
   fFactory->CreatePlacement("pcone", 0, pconeV, mother, 
                   ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (counter)*dz, dy, zpos)));
+                    HepTranslate3D(-wSize + (++counter)*dz, -dy, zpos)));
   if (reflect)
     fFactory->CreatePlacement("pcone", 0, pconeV, mother, 
                   ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (counter)*dz, dy, -zpos) * reflect3D));
+                    HepTranslate3D(-wSize + (counter)*dz, -dy, -zpos) * reflect3D));
 
   // Polyhedra
   //
   IVolume* phedraV = CreatePolyhedra(sphi, dphi);
   fFactory->CreatePlacement("phedra", 0, phedraV, mother, 
                   ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (++counter)*dz,  -dy, zpos)));
+                    HepTranslate3D(-wSize + (counter)*dz,  dy, zpos)));
   if (reflect)
     fFactory->CreatePlacement("phedra", 0, phedraV, mother, 
                   ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (counter)*dz,  -dy, -zpos) * reflect3D));
+                    HepTranslate3D(-wSize + (counter)*dz,  dy, -zpos) * reflect3D));
 
   // Sphere 
   //
   IVolume* sphereV = CreateSphere(sphi, dphi);
   fFactory->CreatePlacement("sphere", 0, sphereV, mother, 
                   ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (counter)*dz, dy, zpos)));
+                    HepTranslate3D(-wSize + (++counter)*dz, -dy, zpos)));
   if (reflect)
     fFactory->CreatePlacement("sphere", 0, sphereV, mother, 
                   ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (counter)*dz, dy, -zpos) * reflect3D));
+                    HepTranslate3D(-wSize + (counter)*dz, -dy, -zpos) * reflect3D));
 
   // Torus
   //
   IVolume* torusV = CreateTorus(sphi, dphi);
   fFactory->CreatePlacement("torus", 0, torusV, mother, 
                   ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (++counter)*dz,  -dy, zpos)));
+                    HepTranslate3D(-wSize + (counter)*dz,  dy, zpos)));
   if (reflect)
     fFactory->CreatePlacement("torus", 0, torusV, mother, 
                   ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (counter)*dz,  -dy, -zpos) * reflect3D));
+                    HepTranslate3D(-wSize + (counter)*dz,  dy, -zpos) * reflect3D));
 
   // Trap 
   //
   IVolume* trapV = CreateTrap();
   fFactory->CreatePlacement("trap", 0, trapV, mother, 
                   ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (counter)*dz, dy, zpos)));
+                    HepTranslate3D(-wSize + (++counter)*dz, -dy, zpos)));
   if (reflect)
     fFactory->CreatePlacement("trap", 0, trapV, mother, 
                   ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (counter)*dz, dy, -zpos) * reflect3D));
+                    HepTranslate3D(-wSize + (counter)*dz, -dy, -zpos) * reflect3D));
 
   // Trd
   //
   IVolume* trdV = CreateTrd();
   fFactory->CreatePlacement("trd", 0, trdV, mother, 
                   ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (++counter)*dz,  -dy, zpos)));
+                    HepTranslate3D(-wSize + (counter)*dz,  dy, zpos)));
   if (reflect)
     fFactory->CreatePlacement("trd", 0, trdV, mother, 
                   ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (counter)*dz,  -dy, -zpos) * reflect3D));
+                    HepTranslate3D(-wSize + (counter)*dz,  dy, -zpos) * reflect3D));
  
   // Trd
   //
   IVolume* tubsV = CreateTubs(sphi, dphi);
   fFactory->CreatePlacement("tubs", 0, tubsV, mother, 
                   ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (counter)*dz, dy, zpos)));
+                    HepTranslate3D(-wSize + (++counter)*dz, -dy, zpos)));
   if (reflect)
     fFactory->CreatePlacement("tubs", 0, tubsV, mother, 
                   ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (counter)*dz, dy, -zpos) * reflect3D));
+                    HepTranslate3D(-wSize + (counter)*dz, -dy, -zpos) * reflect3D));
 
   return (void*) fFactory->Top();
  }
