@@ -48,6 +48,6 @@ namespace VGM {
 
 }
 
-std::ostream& operator << (std::ostream& out, const VGM::ITubs& box);
+std::ostream& operator << (std::ostream& out, const VGM::ITubs& tubs);
 
 #endif //VGM_I_TUBS_H
