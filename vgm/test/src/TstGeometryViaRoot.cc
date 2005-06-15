@@ -21,6 +21,7 @@
 #include "TGeoArb8.h"
 #include "TGeoBBox.h"
 #include "TGeoCone.h"
+#include "TGeoEltu.h"
 #include "TGeoPara.h"
 #include "TGeoPcon.h"
 #include "TGeoPgon.h"
@@ -89,6 +90,16 @@ TGeoVolume* TstGeometryViaRoot::CreateCons(Double_t sphi, Double_t dphi)
   
   return new TGeoVolume("consV", consS, fBasicMedium);
 }
+
+//_____________________________________________________________________________
+TGeoVolume* TstGeometryViaRoot::CreateEllipticalTube()
+{
+  TGeoShape* eltuS
+    = new TGeoEltu("eltuS", 20., 50., 50.);
+  
+  return new TGeoVolume("eltuV", eltuS, fBasicMedium);
+}  
+
 
 //_____________________________________________________________________________
 TGeoVolume* TstGeometryViaRoot::CreatePara()
@@ -278,77 +289,86 @@ TGeoVolume* TstGeometryViaRoot::PlaceSolids(TGeoVolume* mother,
     mother->AddNode(consV, 1,
                   new TGeoCombiTrans(-wSize + (counter)*dz, dy, -zpos, reflect3D));
 
+  // Elliptical tube 
+  //
+  TGeoVolume* eltuV = CreateEllipticalTube();
+  mother->AddNode(eltuV, 0, 
+                  new TGeoTranslation(-wSize + (++counter)*dz, -dy, zpos));
+  if (reflect)
+    mother->AddNode(eltuV, 1,
+                  new TGeoCombiTrans(-wSize + (counter)*dz, -dy, -zpos, reflect3D));
+
   // Para
   //
   TGeoVolume* paraV = CreatePara();
   mother->AddNode(paraV, 0, 
-                  new TGeoTranslation(-wSize + (++counter)*dz,  -dy, zpos));
+                  new TGeoTranslation(-wSize + (counter)*dz,  dy, zpos));
   if (reflect)
     mother->AddNode(paraV, 1, 
-                  new TGeoCombiTrans(-wSize + (counter)*dz,  -dy, -zpos, reflect3D));
+                  new TGeoCombiTrans(-wSize + (counter)*dz,  dy, -zpos, reflect3D));
 
   // Polycone
   //
   TGeoVolume* pconeV = CreatePolycone(sphi, dphi);
   mother->AddNode(pconeV, 0,
-                  new TGeoTranslation(-wSize + (counter)*dz, dy, zpos));
+                  new TGeoTranslation(-wSize + (++counter)*dz, -dy, zpos));
   if (reflect)
     mother->AddNode(pconeV, 1, 
-                  new TGeoCombiTrans(-wSize + (counter)*dz, dy, -zpos, reflect3D));
+                  new TGeoCombiTrans(-wSize + (counter)*dz, -dy, -zpos, reflect3D));
 
   // Polyhedra
   //
   TGeoVolume* phedraV = CreatePolyhedra(sphi, dphi);
   mother->AddNode(phedraV, 0, 
-                  new TGeoTranslation(-wSize + (++counter)*dz,  -dy, zpos));
+                  new TGeoTranslation(-wSize + (counter)*dz,  dy, zpos));
   if (reflect)
     mother->AddNode(phedraV, 1,
-                  new TGeoCombiTrans(-wSize + (counter)*dz,  -dy, -zpos, reflect3D));
+                  new TGeoCombiTrans(-wSize + (counter)*dz,  dy, -zpos, reflect3D));
 
   // Sphere 
   //
   TGeoVolume* sphereV = CreateSphere(sphi, dphi);
   mother->AddNode(sphereV, 0, 
-                  new TGeoTranslation(-wSize + (counter)*dz, dy, zpos));
+                  new TGeoTranslation(-wSize + (++counter)*dz, -dy, zpos));
   if (reflect)
     mother->AddNode(sphereV, 1,
-                  new TGeoCombiTrans(-wSize + (counter)*dz, dy, -zpos, reflect3D));
+                  new TGeoCombiTrans(-wSize + (counter)*dz, -dy, -zpos, reflect3D));
 
   // Torus
   //
   TGeoVolume* torusV = CreateTorus(sphi, dphi);
   mother->AddNode(torusV, 0, 
-                  new TGeoTranslation(-wSize + (++counter)*dz,  -dy, zpos));
+                  new TGeoTranslation(-wSize + (counter)*dz,  dy, zpos));
   if (reflect)
     mother->AddNode(torusV, 1,
-                  new TGeoCombiTrans(-wSize + (counter)*dz,  -dy, -zpos, reflect3D));
+                  new TGeoCombiTrans(-wSize + (counter)*dz,  dy, -zpos, reflect3D));
 
   // Trap 
   //
   TGeoVolume* trapV = CreateTrap();
   mother->AddNode(trapV, 0, 
-                  new TGeoTranslation(-wSize + (counter)*dz, dy, zpos));
+                  new TGeoTranslation(-wSize + (++counter)*dz, -dy, zpos));
   if (reflect)
     mother->AddNode(trapV, 1,
-                  new TGeoCombiTrans(-wSize + (counter)*dz, dy, -zpos, reflect3D));
+                  new TGeoCombiTrans(-wSize + (counter)*dz, -dy, -zpos, reflect3D));
 
   // Trd
   //
   TGeoVolume* trdV = CreateTrd();
   mother->AddNode(trdV, 0, 
-                  new TGeoTranslation(-wSize + (++counter)*dz,  -dy, zpos));
+                  new TGeoTranslation(-wSize + (counter)*dz,  dy, zpos));
   if (reflect)
     mother->AddNode(trdV, 1, 
-                  new TGeoCombiTrans(-wSize + (counter)*dz,  -dy, -zpos, reflect3D));
+                  new TGeoCombiTrans(-wSize + (counter)*dz,  dy, -zpos, reflect3D));
  
   // Tube
   //
   TGeoVolume* tubsV = CreateTubs(sphi, dphi);
   mother->AddNode(tubsV, 0, 
-                  new TGeoTranslation(-wSize + (counter)*dz, dy, zpos));
+                  new TGeoTranslation(-wSize + (++counter)*dz, -dy, zpos));
   if (reflect)
     mother->AddNode(tubsV, 1,
-                  new TGeoCombiTrans(-wSize + (counter)*dz, dy, -zpos, reflect3D));
+                  new TGeoCombiTrans(-wSize + (counter)*dz, -dy, -zpos, reflect3D));
 
   return mother;   		  
 }

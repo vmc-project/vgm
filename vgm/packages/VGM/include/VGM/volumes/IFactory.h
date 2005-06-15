@@ -58,6 +58,14 @@ namespace VGM {
 			       double rin2, double rout2, double hz,
 	                       double sphi, double dphi) = 0; 
 
+                       /// Create the elliptical tube solid
+                       /// \param dx the semi-axis of the ellipse along x in mm
+                       /// \param dx the semi-axis of the ellipse along y in mm
+                       /// \param hz half-length along the z axis in mm
+                       ///
+      virtual ISolid*  CreateEllipticalTube(const std::string& name, 
+                               double dx, double dy, double hz) = 0; 
+
                        /// Create the para solid = parallelepiped
 		       /// \param hx half-length along the x axis in mm
 		       /// \param hy half-length along the y axis in mm
@@ -70,7 +78,7 @@ namespace VGM {
 		       /// \param phi azimuthal angle of the line joining the centres
  		       ///        of the faces at -hz and +hz in deg
                        ///
-      virtual ISolid*  CreatePara(const std::string& name, 
+     virtual ISolid*  CreatePara(const std::string& name, 
                                double hx, double hy, double hz,
 	                       double alpha, double theta, double phi) = 0;
 

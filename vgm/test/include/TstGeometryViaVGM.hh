@@ -35,6 +35,7 @@ class TstGeometryViaVGM : public TstVGeometry
     VGM::IVolume* CreateWorld();
     VGM::IVolume* CreateBox();
     VGM::IVolume* CreateCons(double sphi, double dphi);
+    VGM::IVolume* CreateEllipticalTube();
     VGM::IVolume* CreatePara();
     VGM::IVolume* CreatePolycone(double sphi, double dphi);
     VGM::IVolume* CreatePolyhedra(double sphi, double dphi);

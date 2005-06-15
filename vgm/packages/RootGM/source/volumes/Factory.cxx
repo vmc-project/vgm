@@ -25,6 +25,7 @@
 #include "RootGM/solids/BooleanSolid.h"
 #include "RootGM/solids/Box.h"
 #include "RootGM/solids/Cons.h"
+#include "RootGM/solids/EllipticalTube.h"
 #include "RootGM/solids/Para.h"
 #include "RootGM/solids/Polycone.h"
 #include "RootGM/solids/Polyhedra.h"
@@ -120,6 +121,14 @@ RootGM::Factory::ImportSolid(TGeoShape* shape)
     VGM::ICons* vgmCons = new RootGM::Cons(cons);
     SolidStore().push_back(vgmCons);
     return vgmCons; 
+  }
+
+  TGeoEltu* eltu = dynamic_cast<TGeoEltu*>(shape);
+  if (eltu ) { 
+     
+    VGM::IEllipticalTube* vgmEltu = new RootGM::EllipticalTube(eltu);
+    SolidStore().push_back(vgmEltu);
+    return vgmEltu; 
   }
 
   TGeoCone* cone = dynamic_cast<TGeoCone*>(shape);
@@ -416,6 +425,19 @@ RootGM::Factory::CreateCons(const std::string& name,
 //
   VGM::ISolid* vgmSolid 
     = new RootGM::Cons(name, rin1, rout1, rin2, rout2, hz, sphi, dphi);
+
+  SolidStore().push_back(vgmSolid);
+  return vgmSolid; 
+}  			     
+			       
+//_____________________________________________________________________________
+VGM::ISolid*  
+RootGM::Factory::CreateEllipticalTube(const std::string& name, 
+                              double dx, double dy, double hz)
+{			       
+//
+  VGM::ISolid* vgmSolid 
+    = new RootGM::EllipticalTube(name, dx, dy,  hz);
 
   SolidStore().push_back(vgmSolid);
   return vgmSolid; 

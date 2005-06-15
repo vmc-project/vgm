@@ -39,6 +39,7 @@ class TstGeometryViaRoot : public TstVGeometry
     TGeoVolume* CreateWorld();
     TGeoVolume* CreateBox();
     TGeoVolume* CreateCons(Double_t sphi, Double_t dphi);
+    TGeoVolume* CreateEllipticalTube();
     TGeoVolume* CreatePara();
     TGeoVolume* CreatePolycone(Double_t sphi, Double_t dphi);
     TGeoVolume* CreatePolyhedra(Double_t sphi, Double_t dphi);

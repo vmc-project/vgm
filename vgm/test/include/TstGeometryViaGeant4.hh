@@ -34,6 +34,7 @@ class TstGeometryViaGeant4 : public TstVGeometry
     G4LogicalVolume* CreateWorld();
     G4LogicalVolume* CreateBox();
     G4LogicalVolume* CreateCons(G4double sphi, G4double dphi);
+    G4LogicalVolume* CreateEllipticalTube();
     G4LogicalVolume* CreatePara();
     G4LogicalVolume* CreatePolycone(G4double sphi, G4double dphi);
     G4LogicalVolume* CreatePolyhedra(G4double sphi, G4double dphi);
