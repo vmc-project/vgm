@@ -16,6 +16,7 @@
 #include "G4DisplacedSolid.hh"
 #include "G4Box.hh"
 #include "G4Cons.hh"
+#include "G4EllipticalTube.hh"
 #include "G4Para.hh"
 #include "G4Polycone.hh"
 #include "G4Polyhedra.hh"
@@ -40,6 +41,7 @@
 #include "Geant4GM/solids/BooleanSolid.h"
 #include "Geant4GM/solids/Box.h"
 #include "Geant4GM/solids/Cons.h"
+#include "Geant4GM/solids/EllipticalTube.h"
 #include "Geant4GM/solids/Para.h"
 #include "Geant4GM/solids/Polycone.h"
 #include "Geant4GM/solids/Polyhedra.h"
@@ -138,6 +140,13 @@ Geant4GM::Factory::ImportSolid(G4VSolid* solid)
     VGM::ICons* vgmCons = new Geant4GM::Cons(cons, reflSolid);
     SolidStore().push_back(vgmCons);
     return vgmCons; 
+  }
+
+  G4EllipticalTube* eltu = dynamic_cast<G4EllipticalTube*>(consSolid);
+  if (eltu) { 
+    VGM::IEllipticalTube* vgmEltu = new Geant4GM::EllipticalTube(eltu, reflSolid);
+    SolidStore().push_back(vgmEltu);
+    return vgmEltu; 
   }
 
   G4Para* para = dynamic_cast<G4Para*>(consSolid);
@@ -451,6 +460,19 @@ Geant4GM::Factory::CreateCons(const std::string& name,
 //
   VGM::ISolid* vgmSolid 
     = new Geant4GM::Cons(name, rin1, rout1, rin2, rout2, hz, sphi, dphi);
+
+  SolidStore().push_back(vgmSolid);
+  return vgmSolid; 
+}  			     
+			       
+//_____________________________________________________________________________
+VGM::ISolid*  
+Geant4GM::Factory::CreateEllipticalTube(const std::string& name, 
+                              double dx, double dy, double hz)
+{			       
+//
+  VGM::ISolid* vgmSolid 
+    = new Geant4GM::EllipticalTube(name, dx, dy,  hz);
 
   SolidStore().push_back(vgmSolid);
   return vgmSolid; 

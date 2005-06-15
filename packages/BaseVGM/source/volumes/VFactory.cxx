@@ -10,6 +10,7 @@
 #include "VGM/solids/IBooleanSolid.h"
 #include "VGM/solids/IBox.h"
 #include "VGM/solids/ICons.h"
+#include "VGM/solids/IEllipticalTube.h"
 #include "VGM/solids/IPara.h"
 #include "VGM/solids/IPolycone.h"
 #include "VGM/solids/IPolyhedra.h"
@@ -160,6 +161,13 @@ BaseVGM::VFactory::ExportSolid(VGM::ISolid* solid,
 			      cons->ZHalfLength(),  
 			      cons->StartPhi(),
 			      cons->DeltaPhi());  
+  }
+  else if (solidType == VGM::kEltu) { 
+    VGM::IEllipticalTube* eltu = dynamic_cast<VGM::IEllipticalTube*>(solid); 
+    return factory->CreateEllipticalTube(eltu->Name(), 
+                              eltu->Dx(),
+			      eltu->Dy(), 
+                              eltu->ZHalfLength());  
   }
   else if (solidType == VGM::kPara) { 
     VGM::IPara* para = dynamic_cast<VGM::IPara*>(solid); 

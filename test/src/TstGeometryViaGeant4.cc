@@ -19,6 +19,7 @@
 #include "G4VSolid.hh"
 #include "G4Box.hh"
 #include "G4Cons.hh"
+#include "G4EllipticalTube.hh"
 #include "G4Para.hh"
 #include "G4Polycone.hh"
 #include "G4Polyhedra.hh"
@@ -89,6 +90,16 @@ G4LogicalVolume* TstGeometryViaGeant4::CreateCons(G4double sphi, G4double dphi)
                  sphi, dphi);
   
   return new G4LogicalVolume(consS, fBasicMaterial, "consV");
+}
+
+
+//_____________________________________________________________________________
+G4LogicalVolume* TstGeometryViaGeant4::CreateEllipticalTube()
+{
+  G4VSolid* eltuS
+    = new G4EllipticalTube("eltuS", 20.* cm, 30.* cm, 50* cm);
+  
+  return new G4LogicalVolume(eltuS, fBasicMaterial, "eltuV");
 }
 
 //_____________________________________________________________________________
@@ -266,16 +277,29 @@ TstGeometryViaGeant4::PlaceSolids(G4LogicalVolume* mother,
 	      "cons", consV, mother, false, 0);
   }	      
 
+  // Elliptical tube 
+  //
+  G4LogicalVolume* eltuV = CreateEllipticalTube();
+  new G4PVPlacement(
+               HepTranslate3D(-wSize + (++counter)*dz, -dy, zpos),
+	       eltuV, "cons", mother, false, 0);
+
+  if (reflect) {
+    G4ReflectionFactory::Instance()
+      ->Place(HepTranslate3D(-wSize + (counter)*dz, -dy, -zpos) * reflect3D,
+	      "cons", eltuV, mother, false, 0);
+  }	      
+
   // Para
   //
   G4LogicalVolume* paraV = CreatePara();
   new G4PVPlacement( 
-               HepTranslate3D(-wSize + (++counter)*dz,  -dy, zpos),
+               HepTranslate3D(-wSize + (counter)*dz,  dy, zpos),
 	       paraV, "para", mother, false, 0);
 
   if (reflect) {
     G4ReflectionFactory::Instance()
-      ->Place(HepTranslate3D(-wSize + (counter)*dz,  -dy, -zpos) * reflect3D,
+      ->Place(HepTranslate3D(-wSize + (counter)*dz,  dy, -zpos) * reflect3D,
 	      "para", paraV, mother, false, 0);
   }	      
   
@@ -283,12 +307,12 @@ TstGeometryViaGeant4::PlaceSolids(G4LogicalVolume* mother,
   //
   G4LogicalVolume* pconeV = CreatePolycone(sphi, dphi);
   new G4PVPlacement( 
-               HepTranslate3D(-wSize + (counter)*dz, dy, zpos),
+               HepTranslate3D(-wSize + (++counter)*dz, -dy, zpos),
 	       pconeV, "pcone", mother, false, 0);
 
   if (reflect) {
     G4ReflectionFactory::Instance()
-      ->Place(HepTranslate3D(-wSize + (counter)*dz, dy, -zpos) * reflect3D,
+      ->Place(HepTranslate3D(-wSize + (counter)*dz, -dy, -zpos) * reflect3D,
 	      "pcone", pconeV, mother, false, 0);
   }	      
 
@@ -296,12 +320,12 @@ TstGeometryViaGeant4::PlaceSolids(G4LogicalVolume* mother,
   //
   G4LogicalVolume* phedraV = CreatePolyhedra(sphi, dphi);
   new G4PVPlacement( 
-               HepTranslate3D(-wSize + (++counter)*dz,  -dy, zpos),
+               HepTranslate3D(-wSize + (counter)*dz,  dy, zpos),
 	       phedraV, "phedra", mother, false, 0);
 
   if (reflect) {
     G4ReflectionFactory::Instance()
-      ->Place(HepTranslate3D(-wSize + (counter)*dz,  -dy, -zpos) * reflect3D,
+      ->Place(HepTranslate3D(-wSize + (counter)*dz,  dy, -zpos) * reflect3D,
 	      "phedra", phedraV, mother, false, 0);
   }	      
 
@@ -309,12 +333,12 @@ TstGeometryViaGeant4::PlaceSolids(G4LogicalVolume* mother,
   //
   G4LogicalVolume* sphereV = CreateSphere(sphi, dphi);
   new G4PVPlacement(
-               HepTranslate3D(-wSize + (counter)*dz, dy, zpos),
+               HepTranslate3D(-wSize + (++counter)*dz, -dy, zpos),
 	       sphereV, "sphere", mother, false, 0);
 	       
   if (reflect) {
     G4ReflectionFactory::Instance()
-      ->Place(HepTranslate3D(-wSize + (counter)*dz, dy, -zpos) * reflect3D,
+      ->Place(HepTranslate3D(-wSize + (counter)*dz, -dy, -zpos) * reflect3D,
 	      "sphere", sphereV, mother, false, 0);
   }	      
 
@@ -322,12 +346,12 @@ TstGeometryViaGeant4::PlaceSolids(G4LogicalVolume* mother,
   //
   G4LogicalVolume* torusV = CreateTorus(sphi, dphi);
   new G4PVPlacement( 
-               HepTranslate3D(-wSize + (++counter)*dz,  -dy, zpos),
+               HepTranslate3D(-wSize + (counter)*dz,  dy, zpos),
 	       torusV, "torus", mother, false, 0);
 
   if (reflect) {
     G4ReflectionFactory::Instance()
-      ->Place(HepTranslate3D(-wSize + (counter)*dz,  -dy, -zpos) * reflect3D,
+      ->Place(HepTranslate3D(-wSize + (counter)*dz,  dy, -zpos) * reflect3D,
 	      "torus", torusV, mother, false, 0);
   }	      
 
@@ -335,12 +359,12 @@ TstGeometryViaGeant4::PlaceSolids(G4LogicalVolume* mother,
   //
   G4LogicalVolume* trapV = CreateTrap();
   new G4PVPlacement( 
-               HepTranslate3D(-wSize + (counter)*dz, dy, zpos),
+               HepTranslate3D(-wSize + (++counter)*dz, -dy, zpos),
 	       trapV, "trap", mother, false, 0);
 
   if (reflect) {
     G4ReflectionFactory::Instance()
-      ->Place(HepTranslate3D(-wSize + (counter)*dz, dy, -zpos) * reflect3D,
+      ->Place(HepTranslate3D(-wSize + (counter)*dz, -dy, -zpos) * reflect3D,
 	      "trap", trapV, mother, false, 0);
   }	      
 
@@ -348,12 +372,12 @@ TstGeometryViaGeant4::PlaceSolids(G4LogicalVolume* mother,
   //
   G4LogicalVolume* trdV = CreateTrd();
   new G4PVPlacement( 
-               HepTranslate3D(-wSize + (++counter)*dz,  -dy, zpos),
+               HepTranslate3D(-wSize + (counter)*dz,  dy, zpos),
 	       trdV, "trd", mother, false, 0);
 
   if (reflect) {
     G4ReflectionFactory::Instance()
-      ->Place(HepTranslate3D(-wSize + (counter)*dz,  -dy, -zpos) * reflect3D,
+      ->Place(HepTranslate3D(-wSize + (counter)*dz,  dy, -zpos) * reflect3D,
 	      "trd", trdV, mother, false, 0);
   }	      
  
@@ -361,12 +385,12 @@ TstGeometryViaGeant4::PlaceSolids(G4LogicalVolume* mother,
   //
   G4LogicalVolume* tubsV = CreateTubs(sphi, dphi);
   new G4PVPlacement(
-               HepTranslate3D(-wSize + (counter)*dz, dy, zpos),
+               HepTranslate3D(-wSize + (++counter)*dz, -dy, zpos),
 	       tubsV, "tubs", mother, false, 0);
 
   if (reflect) {
     G4ReflectionFactory::Instance()
-      ->Place(HepTranslate3D(-wSize + (counter)*dz, dy, -zpos) * reflect3D,
+      ->Place(HepTranslate3D(-wSize + (counter)*dz, -dy, -zpos) * reflect3D,
 	      "tubs", tubsV, mother, false, 0);
   }	      
 
