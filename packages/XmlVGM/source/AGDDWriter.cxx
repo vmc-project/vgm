@@ -846,7 +846,11 @@ void XmlVGM::AGDDWriter::OpenSection(const std::string& topVolume)
   std::string quota = "\"";   
   
   std::string version = fVersion;
-  if (version == "Undefined") version = "$Id$";
+  if (version == "Undefined") {
+    version = "$Id$";
+    // strip $ from the string
+    version = version.substr(1,version.size()-2);
+  }  
 
   std::string name = topVolume;
   name.append(fgkCompNameExtension);
