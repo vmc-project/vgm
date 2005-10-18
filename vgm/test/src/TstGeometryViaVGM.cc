@@ -508,6 +508,14 @@ void* TstGeometryViaVGM::TestReflections(bool fullPhi)
  }
 
 //_____________________________________________________________________________
+void* TstGeometryViaVGM::TestAssemblies()
+{
+  std::cout << "TestAssemblies: not available via VGM" << std::endl;
+
+  return 0;
+ }
+
+//_____________________________________________________________________________
 void* TstGeometryViaVGM::TestBooleanSolids1()
 {
 // Only translation in solid displacement

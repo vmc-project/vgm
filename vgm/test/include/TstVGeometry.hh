@@ -21,6 +21,7 @@ class TstVGeometry
     virtual void* TestSolids(bool fullPhi = true) = 0;
     virtual void* TestPlacements() = 0;
     virtual void* TestReflections(bool fullPhi = true) = 0;
+    virtual void* TestAssemblies() = 0;
     virtual void* TestBooleanSolids1() = 0;
     virtual void* TestBooleanSolids2() = 0;
     virtual void* TestBooleanSolids3() = 0;

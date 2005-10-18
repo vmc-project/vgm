@@ -10,7 +10,8 @@
 //         inputFactory  = Geant4, Root
 //         outputFactory = Geant4, Root, None
 //         outputXML = AGDD, GDML, None
-//         selectedTest  = Solids, Placements, Reflections, BooleanSolidsN
+//         selectedTest  = Solids, Placements, Reflections, Assemblies, 
+//                         BooleanSolidsN
 //                             where N = 1, 2, 3
 //         debug         = if specified the factories operate in debug mode
 //         openAngle     = if specified, solids like tubs, cons etc. are built
@@ -47,13 +48,14 @@ int main(int argc, char** argv)
   if (argc < 6 || argc > 8) {
     std::cerr << " Usage: " << std::endl;
     std::cerr << " vgm_test inputType inputFactory outputFactory outputXML selectedTest " 
-              << std::endl << std::endl;
+              << std::endl;
     std::cerr << "          [debug] [openAngle] [noVis]" << std::endl;
     std::cerr << "          inputType     = VGM, Geant4, Root" << std::endl;
     std::cerr << "          inputFactory  = Geant4, Root" << std::endl;
     std::cerr << "          outputFactory = Geant4, Root, None" << std::endl;
     std::cerr << "          outputXML     = AGDD, GDML, noXML" << std::endl;
-    std::cerr << "          selectedTest  = Solids, Placements, Reflections, BooleanSolidsN" << std::endl;
+    std::cerr << "          selectedTest  = Solids, Placements, Reflections, Assemblies," << std::endl;
+    std::cerr << "                          BooleanSolids" << std::endl;
     std::cerr << "                               where N = 1, 2, 3" << std::endl;
     std::cerr << "          debug         = if specified the factories operate in debug mode"  << std::endl;
     std::cerr << "          openAngle     = if specified, solids like tubs, cons etc. are built" << std::endl;

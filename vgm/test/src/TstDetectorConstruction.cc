@@ -15,7 +15,7 @@
 #include "TstGeometryViaRoot.hh"
 
 const G4String TstDetectorConstruction::fgkTestNameCandidates 
-  = "Solids Placements Reflections BooleanSolids1 BooleanSolids2 BooleanSolids3 BooleanSolids4 BooleanSolids5";
+  = "Solids Placements Reflections Assemblies BooleanSolids1 BooleanSolids2 BooleanSolids3 BooleanSolids4 BooleanSolids5";
 const G4String TstDetectorConstruction::fgkVisModeCandidates 
   = "Geant4 Root None";
 const G4String TstDetectorConstruction::fgkInputCandidates 
@@ -85,6 +85,10 @@ G4VPhysicalVolume* TstDetectorConstruction::Construct()
     world = fGeometry->TestReflections(fFullAngle);
     std::cout << "TestReflections finished" << std::endl;
   }
+  else if (fSelectedTest == "Assemblies") {
+    world = fGeometry->TestAssemblies();
+    std::cout << "TestAssemblies finished" << std::endl;
+  }
   else if (fSelectedTest == "BooleanSolids1") {
     world = fGeometry->TestBooleanSolids1();
     std::cout << "TestBooleanSolids1 finished" << std::endl;
@@ -106,6 +110,13 @@ G4VPhysicalVolume* TstDetectorConstruction::Construct()
     std::cout << "TestBooleanSolids5 finished" << std::endl;
   }
   
+  // Check if geometry was built
+  if ( !world) {  
+    std::cout << "No geometry is built." << std::endl;
+    exit (0);
+    return 0;
+  }  
+
   // If native geometry, import it into VGM 
   // and export it into other factory
   //
@@ -278,7 +289,7 @@ void TstDetectorConstruction::DrawRootGeometry(bool withRayTrace) const
   
   // Draw Root geometry
   //
-  //gGeoManager->SetVisLevel(4);
+  gGeoManager->SetVisLevel(4);
   gGeoManager->SetVisOption(0);
   new TBrowser();
 

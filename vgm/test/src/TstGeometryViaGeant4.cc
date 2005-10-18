@@ -7,12 +7,14 @@
 // Author: Ivana Hrivnacova; IPN Orsay
 
 #include <iomanip>
+#include <math.h>
 
 #include "G4Material.hh"
 #include "G4Element.hh"
 #include "G4LogicalVolume.hh"
 #include "G4PVPlacement.hh"
 #include "G4ReflectionFactory.hh"
+#include "G4AssemblyVolume.hh"
 #include "G4IntersectionSolid.hh"
 #include "G4SubtractionSolid.hh"
 #include "G4UnionSolid.hh"
@@ -521,6 +523,119 @@ void* TstGeometryViaGeant4::TestReflections(G4bool fullPhi)
   
   PlaceSolids(worldV, fullPhi, true, 1.*m);
 
+  return (void*) world;
+}
+
+//_____________________________________________________________________________
+void* TstGeometryViaGeant4::TestAssemblies()
+{
+// Example for assemblies from Root tutorial
+// Geant4 geometry model does not support assembly of assemblies,
+// the Root example geometry is not compete
+
+  // Get medium
+  //
+  if (!fBasicMaterial) {
+    fBasicMaterial = G4Material::GetMaterial("Basic");
+    G4cout << "Basic material: " << fBasicMaterial << G4endl;
+  }  
+
+  // World
+  //
+  G4double wSize = 1000.*cm;
+  G4VSolid* worldS
+    = new G4Box("worldS", wSize, wSize, wSize);
+  G4LogicalVolume* worldV
+    = new G4LogicalVolume(worldS, fBasicMaterial, "worldV");
+  G4VPhysicalVolume* world
+    = new G4PVPlacement(0, G4ThreeVector(), worldV, "world", 0, false, 0); 
+   
+  // Make the elementary assembly of the whole structure
+  // Use mother volume instead of assembly as Geant4 does not 
+  // support assebly of assemblies
+
+  G4int ntooth = 5;
+  G4double xplate = 25.*cm;
+  G4double yplate = 50.*cm;
+  G4double xtooth = 10.*cm;
+  G4double ytooth = 0.5*yplate/ntooth;
+  G4double dshift = 2.*xplate + xtooth;
+  G4double xt,yt;
+
+  G4AssemblyVolume* tplate = new G4AssemblyVolume();
+
+  // plate volume
+  G4Box* plateS
+    = new G4Box("plateS", xplate, yplate, 1.*cm);
+  G4LogicalVolume* plateV
+    = new G4LogicalVolume(plateS, fBasicMaterial, "PLATE");
+   
+  // tooth volume
+  G4Box* toothS
+    = new G4Box("toothS", xtooth, ytooth, 1.*cm);
+  G4LogicalVolume* toothV
+    = new G4LogicalVolume(toothS, fBasicMaterial, "TOOTH");
+   
+  // compose assembly 
+  G4ThreeVector pos0(0.,0., 0.);
+  tplate->AddPlacedVolume(plateV, pos0, 0);
+  for (G4int i=0; i<ntooth; i++) {
+    xt = xplate+xtooth;
+    yt = -yplate + (4*i+1)*ytooth;
+    G4ThreeVector pos1(xt, yt, 0);
+    tplate->AddPlacedVolume(toothV, pos1, 0);
+
+    xt = -xplate-xtooth;
+    yt = -yplate + (4*i+3)*ytooth;
+    G4ThreeVector pos2(xt, yt, 0);
+    tplate->AddPlacedVolume(toothV, pos2, 0);
+  }  
+  
+  // place assemblies
+  G4RotationMatrix* rot1 = new G4RotationMatrix();
+  rot1->rotateX(90.*deg);
+  G4RotationMatrix *rot;
+  // Make a hexagone cell out of 6 toothplates. These can zip togeather
+  // without generating overlaps (they are self-contained)
+  for (G4int i2=0; i2<6; i2++) {
+    G4double phi =  60.*i2 * deg;
+    G4double xp = dshift*sin(phi);
+    G4double yp = -dshift*cos(phi);
+    rot = new G4RotationMatrix(*rot1);
+    rot->rotateZ(phi); 
+    G4ThreeVector pos(xp, yp,0.);
+    tplate->MakeImprint(worldV, pos, rot);
+  }   
+
+/*
+  // Cannot go on - limitation on assemblies
+  // Cannot add assembly to assembly
+
+  // top->AddNode(cell, 1, new TGeoTranslation());
+     
+  // Make a row as an assembly of cells, then combine rows in a honeycomb
+  // structure. This again works without any need to define rows as "overlapping"
+  TGeoVolume *row = new TGeoVolumeAssembly("ROW");
+  Int_t ncells = 5;
+  for (Int_t i3=0; i3<ncells; i3++) {
+    G4double ycell = (2*i3+1)*(dshift+10);
+    row->AddNode(cell, ncells+i3+1, new TGeoTranslation(0,ycell,0));
+    row->AddNode(cell,ncells-i3,new TGeoTranslation(0,-ycell,0));
+  }
+  //top->AddNode(row, 1, new TGeoTranslation());
+ 
+  G4double dxrow = 3.*(dshift+10.)*TMath::Tan(30.*TMath::DegToRad());
+  G4double dyrow = dshift+10.;
+  Int_t nrows = 5;
+  for (Int_t i4=0; i4<nrows; i4++) {
+    G4double xrow = 0.5*(2*i4+1)*dxrow;
+    G4double yrow = 0.5*dyrow;
+    if ((i4%2)==0) yrow = -yrow;
+    top->AddNode(row, nrows+i4+1, new TGeoTranslation(xrow,yrow,0));
+    top->AddNode(row, nrows-i4, new TGeoTranslation(-xrow,-yrow,0));
+  }        
+*/
+  
   return (void*) world;
 }
 
