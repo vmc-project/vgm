@@ -1,10 +1,18 @@
 
 *************************************************************
- Geant4 version $Name$   (17-December-2004)
+ Geant4 version Name: geant4-07-01    (30-June-2005)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
 *************************************************************
 
 Geant4 geometry will be defined via VGM
+
+---> warning from G4Element::GetElement(). The element:   does not exist in the table. Return NULL pointer.
+
+---> warning from G4Element::GetElement(). The element: N does not exist in the table. Return NULL pointer.
+
+---> warning from G4Element::GetElement(). The element: O does not exist in the table. Return NULL pointer.
+
+---> warning from G4Element::GetElement(). The element: Al does not exist in the table. Return NULL pointer.
 TestBooleanSolids2 finished
