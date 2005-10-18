@@ -1,0 +1,231 @@
+
+*************************************************************
+ Geant4 version Name: geant4-07-01    (30-June-2005)
+                      Copyright : Geant4 Collaboration
+                      Reference : NIM A 506 (2003), 250-303
+                            WWW : http://cern.ch/geant4
+*************************************************************
+
+Geant4 geometry will be defined via Geant4 and exported to Root
+Basic material:  Material:    Basic     density:  2.700 g/cm3   temperature: 273.15 K  pressure:   1.00 atm  RadLength:   8.893 cm 
+   --->  Element: Basic ( )   Z = 13.0   N =  27.0   A =  26.98 g/mole  fractionMass: 100.00 %  Abundance 100.00 %
+TestAssemblies finished
+Go to Import
+VGM info:   Geant4GM::Factory::Import started ...
+VGM info:   Importing element: 
+VGM info:    Element: Basic ( )   Z = 13.0   N =  27.0   A =  26.98 g/mole
+VGM info:   Importing element: 
+VGM info:    Element: Nitrogen (N)   Z =  7.0   N =  14.0   A =  14.01 g/mole
+VGM info:   Importing element: 
+VGM info:    Element: Oxygen (O)   Z =  8.0   N =  16.0   A =  16.00 g/mole
+VGM info:   Importing element: 
+VGM info:    Element: Vacuum ( )   Z =  1.0   N =   1.0   A =   1.01 g/mole
+VGM info:   Importing material: 
+VGM info:    Material:    Basic     density:  2.700 g/cm3   temperature: 273.15 K  pressure:   1.00 atm  RadLength:   8.893 cm 
+   --->  Element: Basic ( )   Z = 13.0   N =  27.0   A =  26.98 g/mole  fractionMass: 100.00 %  Abundance 100.00 %
+VGM info:   Importing material: 
+VGM info:    Material:      Air     density:  1.290 mg/cm3  temperature: 273.15 K  pressure:   1.00 atm  RadLength: 285.161 m  
+   --->  Element: Nitrogen (N)   Z =  7.0   N =  14.0   A =  14.01 g/mole  fractionMass:  70.00 %  Abundance  72.71 %
+   --->  Element: Oxygen (O)   Z =  8.0   N =  16.0   A =  16.00 g/mole  fractionMass:  30.00 %  Abundance  27.29 %
+VGM info:   Importing material: 
+VGM info:    Material:   Vacuum     density:  0.000 mg/cm3  temperature:   0.00 K  pressure:   0.00 atm  RadLength: 204727576.737 pc 
+   --->  Element: Vacuum ( )   Z =  1.0   N =   1.0   A =   1.01 g/mole  fractionMass: 100.00 %  Abundance 100.00 %
+VGM info:   Importing LV: worldV
+VGM info:   Importing solid: worldS
+VGM info:   ImportDaughters for worldV
+VGM info:   Importing LV: PLATE
+VGM info:   Importing solid: plateS
+VGM info:   ImportDaughters for PLATE
+VGM info:   Importing LV: TOOTH
+VGM info:   Importing solid: toothS
+VGM info:   ImportDaughters for TOOTH
+VGM info:   Import positions: 
+VGM info:   0th volume: worldV  
+VGM info:      0th daughter  lv=PLATE vgmVol=PLATE
+VGM info:      1th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      2th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      3th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      4th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      5th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      6th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      7th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      8th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      9th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      10th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      11th daughter  lv=PLATE vgmVol=PLATE
+VGM info:      12th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      13th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      14th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      15th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      16th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      17th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      18th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      19th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      20th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      21th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      22th daughter  lv=PLATE vgmVol=PLATE
+VGM info:      23th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      24th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      25th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      26th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      27th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      28th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      29th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      30th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      31th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      32th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      33th daughter  lv=PLATE vgmVol=PLATE
+VGM info:      34th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      35th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      36th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      37th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      38th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      39th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      40th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      41th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      42th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      43th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      44th daughter  lv=PLATE vgmVol=PLATE
+VGM info:      45th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      46th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      47th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      48th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      49th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      50th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      51th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      52th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      53th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      54th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      55th daughter  lv=PLATE vgmVol=PLATE
+VGM info:      56th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      57th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      58th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      59th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      60th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      61th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      62th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      63th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      64th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:      65th daughter  lv=TOOTH vgmVol=TOOTH
+VGM info:   1th volume: PLATE  
+VGM info:   2th volume: TOOTH  
+VGM info:   
+Geant4_GM_Factory factory solids store: 
+   0th solid: Box  "worldS"  hx = 10000mm  hy = 10000mm  hz = 10000mm
+   1th solid: Box  "plateS"  hx = 250mm  hy = 500mm  hz = 10mm
+   2th solid: Box  "toothS"  hx = 100mm  hy = 50mm  hz = 10mm
+Geant4_GM_Factory factory volumes store: 
+   0th: Volume: "worldV" material "Basic" solid "Box"  66 daughters: "av_1_impr_1_PLATE_pv_0"  "av_1_impr_1_TOOTH_pv_1"  "av_1_impr_1_TOOTH_pv_2"  "av_1_impr_1_TOOTH_pv_3"  "av_1_impr_1_TOOTH_pv_4"  "av_1_impr_1_TOOTH_pv_5"  "av_1_impr_1_TOOTH_pv_6"  "av_1_impr_1_TOOTH_pv_7"  "av_1_impr_1_TOOTH_pv_8"  "av_1_impr_1_TOOTH_pv_9"  "av_1_impr_1_TOOTH_pv_10"  "av_1_impr_2_PLATE_pv_0"  "av_1_impr_2_TOOTH_pv_1"  "av_1_impr_2_TOOTH_pv_2"  "av_1_impr_2_TOOTH_pv_3"  "av_1_impr_2_TOOTH_pv_4"  "av_1_impr_2_TOOTH_pv_5"  "av_1_impr_2_TOOTH_pv_6"  "av_1_impr_2_TOOTH_pv_7"  "av_1_impr_2_TOOTH_pv_8"  "av_1_impr_2_TOOTH_pv_9"  "av_1_impr_2_TOOTH_pv_10"  "av_1_impr_3_PLATE_pv_0"  "av_1_impr_3_TOOTH_pv_1"  "av_1_impr_3_TOOTH_pv_2"  "av_1_impr_3_TOOTH_pv_3"  "av_1_impr_3_TOOTH_pv_4"  "av_1_impr_3_TOOTH_pv_5"  "av_1_impr_3_TOOTH_pv_6"  "av_1_impr_3_TOOTH_pv_7"  "av_1_impr_3_TOOTH_pv_8"  "av_1_impr_3_TOOTH_pv_9"  "av_1_impr_3_TOOTH_pv_10"  "av_1_impr_4_PLATE_pv_0"  "av_1_impr_4_TOOTH_pv_1"  "av_1_impr_4_TOOTH_pv_2"  "av_1_impr_4_TOOTH_pv_3"  "av_1_impr_4_TOOTH_pv_4"  "av_1_impr_4_TOOTH_pv_5"  "av_1_impr_4_TOOTH_pv_6"  "av_1_impr_4_TOOTH_pv_7"  "av_1_impr_4_TOOTH_pv_8"  "av_1_impr_4_TOOTH_pv_9"  "av_1_impr_4_TOOTH_pv_10"  "av_1_impr_5_PLATE_pv_0"  "av_1_impr_5_TOOTH_pv_1"  "av_1_impr_5_TOOTH_pv_2"  "av_1_impr_5_TOOTH_pv_3"  "av_1_impr_5_TOOTH_pv_4"  "av_1_impr_5_TOOTH_pv_5"  "av_1_impr_5_TOOTH_pv_6"  "av_1_impr_5_TOOTH_pv_7"  "av_1_impr_5_TOOTH_pv_8"  "av_1_impr_5_TOOTH_pv_9"  "av_1_impr_5_TOOTH_pv_10"  "av_1_impr_6_PLATE_pv_0"  "av_1_impr_6_TOOTH_pv_1"  "av_1_impr_6_TOOTH_pv_2"  "av_1_impr_6_TOOTH_pv_3"  "av_1_impr_6_TOOTH_pv_4"  "av_1_impr_6_TOOTH_pv_5"  "av_1_impr_6_TOOTH_pv_6"  "av_1_impr_6_TOOTH_pv_7"  "av_1_impr_6_TOOTH_pv_8"  "av_1_impr_6_TOOTH_pv_9"  "av_1_impr_6_TOOTH_pv_10"  
+   1th: Volume: "PLATE" material "Basic" solid "Box"  0 daughters: 
+   2th: Volume: "TOOTH" material "Basic" solid "Box"  0 daughters: 
+VGM info:   Geant4GM::Factory::Import finished.
+Import finished
+Go to export
+VGM info:   Exporting element: 
+VGM info:   Element: "Basic"  " "  Z = 13  N = 26.98  A = 26.98 g/mole
+VGM info:   Exporting element: 
+VGM info:   Element: "Nitrogen"  "N"  Z = 7  N = 14.01  A = 14.01 g/mole
+VGM info:   Exporting element: 
+VGM info:   Element: "Oxygen"  "O"  Z = 8  N = 16  A = 16 g/mole
+VGM info:   Exporting element: 
+VGM info:   Element: "Vacuum"  " "  Z = 1  N = 1.01  A = 1.01 g/mole
+VGM info:   Exporting material: 
+VGM info:   Material: "Basic"  density 2.7 g/cm3  radlen 8.89253 cm  intlen 38.8793 cm
+   0th element:   Z = 13  A = 26.98 g/mole  fractionMass = 100 %
+VGM info:   Exporting material: 
+VGM info:   Material: "Air"  density 0.00129 g/cm3  radlen 28516.1 cm  intlen 66268 cm
+   0th element:   Z = 7  A = 14.01 g/mole  fractionMass = 70 %
+   1th element:   Z = 8  A = 16 g/mole  fractionMass = 30 %
+VGM info:   Exporting material: 
+VGM info:   Material: "Vacuum"  density 1e-25 g/cm3  radlen 6.31723e+26 cm  intlen 3.51163e+26 cm
+   0th element:   Z = 1  A = 1.01 g/mole  fractionMass = 100 %
+VGM info:   Generation medium for material: 
+VGM info:   Material: "Basic"  density 2.7 g/cm3  radlen 8.89253 cm  intlen 38.8793 cm
+   0th element:   Z = 13  A = 26.98 g/mole  fractionMass = 100 %
+VGM info:   Generation medium for material: 
+VGM info:   Material: "Air"  density 0.00129 g/cm3  radlen 28516.1 cm  intlen 66268 cm
+   0th element:   Z = 7  A = 14.01 g/mole  fractionMass = 70 %
+   1th element:   Z = 8  A = 16 g/mole  fractionMass = 30 %
+VGM info:   Generation medium for material: 
+VGM info:   Material: "Vacuum"  density 1e-25 g/cm3  radlen 6.31723e+26 cm  intlen 3.51163e+26 cm
+   0th element:   Z = 1  A = 1.01 g/mole  fractionMass = 100 %
+VGM info:   Exporting volume store: 
+VGM info:   Exporting solid: 
+VGM info:      Box  "worldS"  hx = 10000mm  hy = 10000mm  hz = 10000mm
+VGM info:      0th volume: worldV
+VGM info:   Exporting solid: 
+VGM info:      Box  "plateS"  hx = 250mm  hy = 500mm  hz = 10mm
+VGM info:      1th volume: PLATE
+VGM info:   Exporting solid: 
+VGM info:      Box  "toothS"  hx = 100mm  hy = 50mm  hz = 10mm
+VGM info:      2th volume: TOOTH
+VGM info:   ExportPlacements for 0th volume worldV
+VGM info:      0th daughter vol = av_1_impr_1_PLATE_pv_0  simple placement: av_1_impr_1_PLATE_pv_0
+VGM info:      1th daughter vol = av_1_impr_1_TOOTH_pv_1  simple placement: av_1_impr_1_TOOTH_pv_1
+VGM info:      2th daughter vol = av_1_impr_1_TOOTH_pv_2  simple placement: av_1_impr_1_TOOTH_pv_2
+VGM info:      3th daughter vol = av_1_impr_1_TOOTH_pv_3  simple placement: av_1_impr_1_TOOTH_pv_3
+VGM info:      4th daughter vol = av_1_impr_1_TOOTH_pv_4  simple placement: av_1_impr_1_TOOTH_pv_4
+VGM info:      5th daughter vol = av_1_impr_1_TOOTH_pv_5  simple placement: av_1_impr_1_TOOTH_pv_5
+VGM info:      6th daughter vol = av_1_impr_1_TOOTH_pv_6  simple placement: av_1_impr_1_TOOTH_pv_6
+VGM info:      7th daughter vol = av_1_impr_1_TOOTH_pv_7  simple placement: av_1_impr_1_TOOTH_pv_7
+VGM info:      8th daughter vol = av_1_impr_1_TOOTH_pv_8  simple placement: av_1_impr_1_TOOTH_pv_8
+VGM info:      9th daughter vol = av_1_impr_1_TOOTH_pv_9  simple placement: av_1_impr_1_TOOTH_pv_9
+VGM info:      10th daughter vol = av_1_impr_1_TOOTH_pv_10  simple placement: av_1_impr_1_TOOTH_pv_10
+VGM info:      11th daughter vol = av_1_impr_2_PLATE_pv_0  simple placement: av_1_impr_2_PLATE_pv_0
+VGM info:      12th daughter vol = av_1_impr_2_TOOTH_pv_1  simple placement: av_1_impr_2_TOOTH_pv_1
+VGM info:      13th daughter vol = av_1_impr_2_TOOTH_pv_2  simple placement: av_1_impr_2_TOOTH_pv_2
+VGM info:      14th daughter vol = av_1_impr_2_TOOTH_pv_3  simple placement: av_1_impr_2_TOOTH_pv_3
+VGM info:      15th daughter vol = av_1_impr_2_TOOTH_pv_4  simple placement: av_1_impr_2_TOOTH_pv_4
+VGM info:      16th daughter vol = av_1_impr_2_TOOTH_pv_5  simple placement: av_1_impr_2_TOOTH_pv_5
+VGM info:      17th daughter vol = av_1_impr_2_TOOTH_pv_6  simple placement: av_1_impr_2_TOOTH_pv_6
+VGM info:      18th daughter vol = av_1_impr_2_TOOTH_pv_7  simple placement: av_1_impr_2_TOOTH_pv_7
+VGM info:      19th daughter vol = av_1_impr_2_TOOTH_pv_8  simple placement: av_1_impr_2_TOOTH_pv_8
+VGM info:      20th daughter vol = av_1_impr_2_TOOTH_pv_9  simple placement: av_1_impr_2_TOOTH_pv_9
+VGM info:      21th daughter vol = av_1_impr_2_TOOTH_pv_10  simple placement: av_1_impr_2_TOOTH_pv_10
+VGM info:      22th daughter vol = av_1_impr_3_PLATE_pv_0  simple placement: av_1_impr_3_PLATE_pv_0
+VGM info:      23th daughter vol = av_1_impr_3_TOOTH_pv_1  simple placement: av_1_impr_3_TOOTH_pv_1
+VGM info:      24th daughter vol = av_1_impr_3_TOOTH_pv_2  simple placement: av_1_impr_3_TOOTH_pv_2
+VGM info:      25th daughter vol = av_1_impr_3_TOOTH_pv_3  simple placement: av_1_impr_3_TOOTH_pv_3
+VGM info:      26th daughter vol = av_1_impr_3_TOOTH_pv_4  simple placement: av_1_impr_3_TOOTH_pv_4
+VGM info:      27th daughter vol = av_1_impr_3_TOOTH_pv_5  simple placement: av_1_impr_3_TOOTH_pv_5
+VGM info:      28th daughter vol = av_1_impr_3_TOOTH_pv_6  simple placement: av_1_impr_3_TOOTH_pv_6
+VGM info:      29th daughter vol = av_1_impr_3_TOOTH_pv_7  simple placement: av_1_impr_3_TOOTH_pv_7
+VGM info:      30th daughter vol = av_1_impr_3_TOOTH_pv_8  simple placement: av_1_impr_3_TOOTH_pv_8
+VGM info:      31th daughter vol = av_1_impr_3_TOOTH_pv_9  simple placement: av_1_impr_3_TOOTH_pv_9
+VGM info:      32th daughter vol = av_1_impr_3_TOOTH_pv_10  simple placement: av_1_impr_3_TOOTH_pv_10
+VGM info:      33th daughter vol = av_1_impr_4_PLATE_pv_0  simple placement: av_1_impr_4_PLATE_pv_0
+VGM info:      34th daughter vol = av_1_impr_4_TOOTH_pv_1  simple placement: av_1_impr_4_TOOTH_pv_1
+VGM info:      35th daughter vol = av_1_impr_4_TOOTH_pv_2  simple placement: av_1_impr_4_TOOTH_pv_2
+VGM info:      36th daughter vol = av_1_impr_4_TOOTH_pv_3  simple placement: av_1_impr_4_TOOTH_pv_3
+VGM info:      37th daughter vol = av_1_impr_4_TOOTH_pv_4  simple placement: av_1_impr_4_TOOTH_pv_4
+VGM info:      38th daughter vol = av_1_impr_4_TOOTH_pv_5  simple placement: av_1_impr_4_TOOTH_pv_5
+VGM info:      39th daughter vol = av_1_impr_4_TOOTH_pv_6  simple placement: av_1_impr_4_TOOTH_pv_6
+VGM info:      40th daughter vol = av_1_impr_4_TOOTH_pv_7  simple placement: av_1_impr_4_TOOTH_pv_7
+VGM info:      41th daughter vol = av_1_impr_4_TOOTH_pv_8  simple placement: av_1_impr_4_TOOTH_pv_8
+VGM info:      42th daughter vol = av_1_impr_4_TOOTH_pv_9  simple placement: av_1_impr_4_TOOTH_pv_9
+VGM info:      43th daughter vol = av_1_impr_4_TOOTH_pv_10  simple placement: av_1_impr_4_TOOTH_pv_10
+VGM info:      44th daughter vol = av_1_impr_5_PLATE_pv_0  simple placement: av_1_impr_5_PLATE_pv_0
+VGM info:      45th daughter vol = av_1_impr_5_TOOTH_pv_1  simple placement: av_1_impr_5_TOOTH_pv_1
+VGM info:      46th daughter vol = av_1_impr_5_TOOTH_pv_2  simple placement: av_1_impr_5_TOOTH_pv_2
+VGM info:      47th daughter vol = av_1_impr_5_TOOTH_pv_3  simple placement: av_1_impr_5_TOOTH_pv_3
+VGM info:      48th daughter vol = av_1_impr_5_TOOTH_pv_4  simple placement: av_1_impr_5_TOOTH_pv_4
+VGM info:      49th daughter vol = av_1_impr_5_TOOTH_pv_5  simple placement: av_1_impr_5_TOOTH_pv_5
+VGM info:      50th daughter vol = av_1_impr_5_TOOTH_pv_6  simple placement: av_1_impr_5_TOOTH_pv_6
+VGM info:      51th daughter vol = av_1_impr_5_TOOTH_pv_7  simple placement: av_1_impr_5_TOOTH_pv_7
+VGM info:      52th daughter vol = av_1_impr_5_TOOTH_pv_8  simple placement: av_1_impr_5_TOOTH_pv_8
+VGM info:      53th daughter vol = av_1_impr_5_TOOTH_pv_9  simple placement: av_1_impr_5_TOOTH_pv_9
+VGM info:      54th daughter vol = av_1_impr_5_TOOTH_pv_10  simple placement: av_1_impr_5_TOOTH_pv_10
+VGM info:      55th daughter vol = av_1_impr_6_PLATE_pv_0  simple placement: av_1_impr_6_PLATE_pv_0
+VGM info:      56th daughter vol = av_1_impr_6_TOOTH_pv_1  simple placement: av_1_impr_6_TOOTH_pv_1
+VGM info:      57th daughter vol = av_1_impr_6_TOOTH_pv_2  simple placement: av_1_impr_6_TOOTH_pv_2
+VGM info:      58th daughter vol = av_1_impr_6_TOOTH_pv_3  simple placement: av_1_impr_6_TOOTH_pv_3
+VGM info:      59th daughter vol = av_1_impr_6_TOOTH_pv_4  simple placement: av_1_impr_6_TOOTH_pv_4
+VGM info:      60th daughter vol = av_1_impr_6_TOOTH_pv_5  simple placement: av_1_impr_6_TOOTH_pv_5
+VGM info:      61th daughter vol = av_1_impr_6_TOOTH_pv_6  simple placement: av_1_impr_6_TOOTH_pv_6
+VGM info:      62th daughter vol = av_1_impr_6_TOOTH_pv_7  simple placement: av_1_impr_6_TOOTH_pv_7
+VGM info:      63th daughter vol = av_1_impr_6_TOOTH_pv_8  simple placement: av_1_impr_6_TOOTH_pv_8
+VGM info:      64th daughter vol = av_1_impr_6_TOOTH_pv_9  simple placement: av_1_impr_6_TOOTH_pv_9
+VGM info:      65th daughter vol = av_1_impr_6_TOOTH_pv_10  simple placement: av_1_impr_6_TOOTH_pv_10
+VGM info:   ExportPlacements for 1th volume PLATE
+VGM info:   ExportPlacements for 2th volume TOOTH
+Export finished
