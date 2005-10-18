@@ -1,20 +1,17 @@
 
 *************************************************************
- Geant4 version $Name$   (17-December-2004)
+ Geant4 version Name: geant4-07-01    (30-June-2005)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
 *************************************************************
 
-Geometry VGM Root geometry, VGM Root geometry created
-Geometry Test, Test geometry via Root created
 Root geometry will be defined via Root and exported to Geant4
-Top volume is worldV. Master volume is worldV
 TestSolids finished
 Go to Import
 VGM info:   RootGM::Factory::Import started ...
 VGM info:   Importing material: 
-VGM info:   Material Basic    A=26.98 Z=13 rho=2.7 radlen=8.8751 index=0
+VGM info:   Material Basic    A=26.98 Z=13 rho=2.7 radlen=0 index=0
 VGM info:   Importing element: 
 VGM info:   OBJ: TGeoElement	AL	ALUMINIUM
 VGM info:   Importing material: 
@@ -133,14 +130,22 @@ Import finished
 Go to export
 VGM info:   Exporting element: 
 VGM info:   Element: "ALUMINIUM"  "AL"  Z = 13  N = 26.9815  A = 26.9815 g/mole
+
+---> warning from G4Element::GetElement(). The element: ALUMINIUM does not exist in the table. Return NULL pointer.
 VGM info:   Exporting element: 
 VGM info:   Element: "NITROGEN"  "N"  Z = 7  N = 14.0067  A = 14.0067 g/mole
+
+---> warning from G4Element::GetElement(). The element: NITROGEN does not exist in the table. Return NULL pointer.
 VGM info:   Exporting element: 
 VGM info:   Element: "OXYGEN"  "O"  Z = 8  N = 15.9994  A = 15.9994 g/mole
+
+---> warning from G4Element::GetElement(). The element: OXYGEN does not exist in the table. Return NULL pointer.
 VGM info:   Exporting element: 
 VGM info:   Element: "VACUUM"  "VACUUM"  Z = 0  N = 0  A = 0 g/mole
+
+---> warning from G4Element::GetElement(). The element: VACUUM does not exist in the table. Return NULL pointer.
 VGM info:   Exporting material: 
-VGM info:   Material: "Basic"  density 2.7 g/cm3  radlen 8.8751 cm  intlen 0 cm
+VGM info:   Material: "Basic"  density 2.7 g/cm3  radlen 0 cm  intlen 0 cm
    0th element:   Z = 13  A = 26.9815 g/mole  fractionMass = 100 %
 VGM info:   Exporting material: 
 VGM info:   Material: "Air"  density 0.00129 g/cm3  radlen 28405.7 cm  intlen 0 cm
@@ -150,7 +155,7 @@ VGM info:   Exporting material:
 VGM info:   Material: "Vacuum"  density 0 g/cm3  radlen 0 cm  intlen 0 cm
    0th element:   Z = 0  A = 0 g/mole  fractionMass = 100 %
 VGM info:   Exporting medium: 
-VGM info:   Medium: "Basic"  material Basic g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  1.75896e+247  8.80087e+199  4.13864e-61  7.21053e+159  6.96026e+252  6.96026e+252  4.9524e+223  4.9524e+223  2.10274e-75  1.99447e+161
+VGM info:   Medium: "Basic"  material Basic g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
 VGM info:   Exporting medium: 
 VGM info:   Medium: "Air"  material Air g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
 VGM info:   Exporting medium: 

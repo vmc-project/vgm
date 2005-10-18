@@ -1,3 +1,5 @@
+Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometry created
+Info in <TGeoManager::SetTopVolume>: Top volume is worldV. Master volume is worldV
 Warning in <TGeoVolume::AddNode>: Volume worldV : added node boxV_0 with same name
 Warning in <TGeoVolume::AddNode>: Volume worldV : added node consV_0 with same name
 Warning in <TGeoVolume::AddNode>: Volume worldV : added node eltuV_0 with same name
