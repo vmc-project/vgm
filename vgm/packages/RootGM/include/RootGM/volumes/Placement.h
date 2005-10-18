@@ -11,6 +11,7 @@
 #define ROOT_GM_PLACEMENT_H
 
 #include <string>
+#include <vector>
 
 #include <TGeoMatrix.h>
 #include <TGeoNode.h>
@@ -40,6 +41,9 @@ namespace RootGM {
       Placement(
          VGM::IVolume* volume, VGM::IVolume* motherVolume,
          TGeoNode* node);
+      Placement(
+         VGM::IVolume* volume, VGM::IVolume* motherVolume,
+         TGeoNode* node, std::vector<const TGeoNode*> assemblyNodes);
       virtual ~Placement();
     
       // methods
@@ -60,8 +64,9 @@ namespace RootGM {
 
     private:
       // data members
-      TGeoNode*    fGeoNode;
       std::string  fName;
+      TGeoNode*    fGeoNode;
+      std::vector<const TGeoNode*>  fAssemblyNodes;
   };
 
 }

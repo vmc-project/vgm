@@ -6,9 +6,13 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
+#include <algorithm>
+
 #include <TGeoManager.h>
 #include <TGeoShape.h>
+#include <TGeoShapeAssembly.h>
 #include <TGeoCompositeShape.h>
+#include <TGeoVolume.h>
 #include <TObjArray.h>
 
 #include "BaseVGM/common/utilities.h"
@@ -211,6 +215,11 @@ RootGM::Factory::ImportSolid(TGeoShape* shape)
     return vgmTubs; 
   }
 
+  TGeoShapeAssembly* assembly = dynamic_cast<TGeoShapeAssembly*>(shape);
+  if (assembly) { 
+    return 0; 
+  }
+
   TGeoCompositeShape* composite = dynamic_cast<TGeoCompositeShape*>(shape);
   if (composite) { 
     ImportConstituentSolid(0, composite);
@@ -247,6 +256,9 @@ RootGM::Factory::ImportVolume(TGeoVolume* rootVolume)
 
   // Import solid
   VGM::ISolid* solid = ImportSolid(rootVolume->GetShape());
+  
+  // Do not import assembly volumes
+  if (dynamic_cast<TGeoVolumeAssembly*>(rootVolume) ) return 0;
     
   // Create vgm volume 
   VGM::IVolume* volume = new RootGM::Volume(solid, rootVolume);
@@ -284,6 +296,51 @@ void RootGM::Factory::ImportDaughters(TGeoVolume* rootVolume)
 }
 
 //_____________________________________________________________________________
+void RootGM::Factory::ImportAssembly(const TGeoVolume* rootVolume,
+                                     VGM::IVolume* volume,
+                                     const TGeoNode* rootAssemblyNode,
+				     std::vector<const TGeoNode*>& assemblyNodes)
+{
+/// Import an assembly daughter of the rootVolume.                            \n
+/// Called recursively if the daughter of assembly is again assembly.
+
+  TGeoVolume* rootAssemblyVolume = rootAssemblyNode->GetVolume();
+
+  if ( ! rootAssemblyVolume->IsAssembly()) return;
+  
+  assemblyNodes.push_back(rootAssemblyNode);
+    
+  for (int i=0; i<rootAssemblyVolume->GetNdaughters(); i++) {
+       
+    TGeoNode* dNode = rootAssemblyVolume->GetNode(i);
+    TGeoVolume* dRootVolume = dNode->GetVolume();
+    
+    if ( ! dRootVolume->IsAssembly() ) {
+      VGM::IVolume* dVolume 
+        = RootGM::VolumeMap::Instance()->GetVolume(dRootVolume);
+	 
+      if (Debug()>0) {
+         BaseVGM::DebugInfo();
+         std::cout << "   " << i << "th assembly daughter  rtVol = ";
+         if (Debug()>1) std::cout << dRootVolume << "  "; 
+         std::cout << dRootVolume->GetName() << " vgmVol = "; 
+         if (Debug()>1) std::cout << dVolume << "  "; 
+         std::cout << dVolume->Name() << std::endl;
+      }
+      // Create placement	    
+      new RootGM::Placement(dVolume, volume, dNode, assemblyNodes);
+    }  
+    else {
+      std::vector<const TGeoNode*> assemblyNodes2(assemblyNodes.size());
+      copy (assemblyNodes.begin(), assemblyNodes.end(),
+            assemblyNodes2.begin());
+
+      ImportAssembly(rootVolume, volume, dNode, assemblyNodes2);
+    }
+  }
+}
+
+//_____________________________________________________________________________
 void RootGM::Factory::ImportPlacements(const TGeoVolume* rootVolume, 
                                        VGM::IVolume* volume)
 {
@@ -293,19 +350,31 @@ void RootGM::Factory::ImportPlacements(const TGeoVolume* rootVolume,
     
     TGeoNode* dNode = rootVolume->GetNode(i);
     TGeoVolume* dRootVolume = dNode->GetVolume();
-    VGM::IVolume* dVolume= RootGM::VolumeMap::Instance()->GetVolume(dRootVolume);
-      
+    
     if (Debug()>0) {
       BaseVGM::DebugInfo();
       std::cout << "   " << i << "th daughter  rtVol = ";
       if (Debug()>1) std::cout << dRootVolume << "  "; 
-      std::cout << dRootVolume->GetName() << " vgmVol = "; 
-      if (Debug()>1) std::cout << dVolume << "  "; 
-      std::cout << dVolume->Name() << std::endl;
+      std::cout << dRootVolume->GetName();    
     }	    
 	    
-    // Create placement
-    new RootGM::Placement(dVolume, volume, dNode);
+    if ( ! dRootVolume->IsAssembly()) {
+    
+      VGM::IVolume* dVolume= RootGM::VolumeMap::Instance()->GetVolume(dRootVolume);
+      
+      if (Debug()>0) {
+        std::cout << " vgmVol = "; 
+        if (Debug()>1) std::cout << dVolume << "  "; 
+        std::cout << dVolume->Name() << std::endl;
+      }	    
+	    
+      // Create placement
+      new RootGM::Placement(dVolume, volume, dNode);
+    }
+    else {
+      std::vector<const TGeoNode*> assemblyNodes;
+      ImportAssembly(rootVolume, volume, dNode, assemblyNodes);
+    } 
   }
 }
 
@@ -351,6 +420,8 @@ void RootGM::Factory::ImportPositions()
   for (int i=0; i<rootVolumes->GetEntriesFast(); i++) {
   
     TGeoVolume* rootVolume = (TGeoVolume*)rootVolumes->At(i);
+    if (rootVolume->IsAssembly()) continue;
+    
     VGM::IVolume* volume= RootGM::VolumeMap::Instance()->GetVolume(rootVolume);
 
     if (Debug()>0) {
@@ -364,7 +435,7 @@ void RootGM::Factory::ImportPositions()
      
     if (IsDivided(rootVolume))
       ImportDivision(rootVolume, volume);
-    else 
+    else  
       ImportPlacements(rootVolume, volume);
   }    	
 }
