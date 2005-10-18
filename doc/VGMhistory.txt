@@ -2,6 +2,15 @@ $Id$
 
  The Virtual Geometry Model - Versions
 =========================================
+  18/10/2005
+  version 2.06    (public version)
+               RootGM - updated for new implementation of volumes assemblies;
+	       added test for volume assemblies to vgm_test (included in
+	       the test suites.
+	       
+	       Tested with  CLHEP 1.9.2.1, Root 5.04/00, Geant4 7.1;
+	       gcc 3.2.2 
+
   16/06/2005
   version 2.05    (public version)
                Added elliptical tube solid;
