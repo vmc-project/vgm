@@ -30,7 +30,7 @@ do
   do
     for inputFactory in Geant4 Root
     do
-      for selectedTest in Solids Placements Reflections BooleanSolids2 
+      for selectedTest in Solids Placements Reflections Assemblies BooleanSolids2 
       #for selectedTest in Placements 
       do
         #
@@ -42,13 +42,17 @@ do
 	then
 	  DUMMY=0
 	else 
-          echo "Testing configuration: $inputType $inputFactory $outputXML $selectedTest"
-	  vgm_test $inputType $inputFactory "None" $outputXML $selectedTest $NOVIS \
-	    > /dev/null 2> /dev/null
+ 	  if [ $inputType = "VGM" -a "$selectedTest" = "Assemblies" ]
+	  then
+	    DUMMY=0
+	  else 
+            echo "Testing configuration: $inputType $inputFactory $outputXML $selectedTest"
+	    vgm_test $inputType $inputFactory "None" $outputXML $selectedTest $NOVIS \
+	      > /dev/null 2> /dev/null
 
-	  # copy file to output dir
-	  mv *.$EXT  $OUTDIR/$EXT
-
+	    # copy file to output dir
+	    mv *.$EXT  $OUTDIR/$EXT
+            fi
         fi
       done 	
     done
