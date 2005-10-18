@@ -3,8 +3,6 @@
   (now available in Root)    
 - Geant4: use G4ReflectionFactory for divisions
   (now available in Geant4)    
-- Gg4Polyhedra - use static buffer when returning array parameters
-  (to avoid memory leaks)  
 - replace maps with a template class
 - make maps not singletons but data members of factories
   (as the factories are not singleton)
