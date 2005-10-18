@@ -29,6 +29,7 @@ class TstGeometryViaRoot : public TstVGeometry
     virtual void* TestSolids(Bool_t fullPhi);
     virtual void* TestPlacements();
     virtual void* TestReflections(Bool_t fullPhi);
+    virtual void* TestAssemblies();
     virtual void* TestBooleanSolids1();
     virtual void* TestBooleanSolids2();
     virtual void* TestBooleanSolids3();

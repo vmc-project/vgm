@@ -26,6 +26,7 @@ class TstGeometryViaGeant4 : public TstVGeometry
     virtual void* TestSolids(G4bool fullPhi);
     virtual void* TestPlacements();
     virtual void* TestReflections(G4bool fullPhi);
+    virtual void* TestAssemblies();
     virtual void* TestBooleanSolids1();
     virtual void* TestBooleanSolids2();
     virtual void* TestBooleanSolids3();
