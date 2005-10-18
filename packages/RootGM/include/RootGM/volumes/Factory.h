@@ -17,6 +17,7 @@
 class TGeoShape;
 class TGeoVolume;
 class TGeoCompositeShape;
+class TGeoNode;
 
 class VGM::ISolid;
 class VGM::IVolume;
@@ -144,13 +145,17 @@ namespace RootGM {
       void          ImportConstituentSolid(int index, TGeoCompositeShape* solid);      
       VGM::ISolid*  ImportSolid(TGeoShape* shape);
       VGM::IVolume* ImportVolume(TGeoVolume* rootVolume);
+      void          ImportDaughters(TGeoVolume* rootVolume);
+      void          ImportAssembly(const TGeoVolume* rootVolume,
+                                VGM::IVolume* volume,
+                                const TGeoNode* rootAssemblyNode,
+				std::vector<const TGeoNode*>& assemblyNodes);
       void          ImportPlacements(
                                 const TGeoVolume* rootVolume, 
                                 VGM::IVolume* volume);
       void          ImportDivision(
                                 const TGeoVolume* rootVolume, 
                                 VGM::IVolume* volume);
-      void          ImportDaughters(TGeoVolume* rootVolume);
       void          ImportPositions();
       bool          IsDivided(const TGeoVolume* volume) const;
 
