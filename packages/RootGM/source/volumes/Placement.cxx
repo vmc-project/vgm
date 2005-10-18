@@ -29,8 +29,9 @@ RootGM::Placement::Placement(
 		      TGeoMatrix* transformation)
   : VGM::IPlacement(),
     BaseVGM::VPlacement(volume, motherVolume),
+    fName(name),       
     fGeoNode(0),
-    fName(name)       
+    fAssemblyNodes()
 {
 /// Standard constructor to define a simple placement via parameters
 /// \param copyNo the copy number of this placement
@@ -76,8 +77,9 @@ RootGM::Placement::Placement(
 		      int nofItems, double  width, double  offset)
   : VGM::IPlacement(),
     BaseVGM::VPlacement(volume, motherVolume),
+    fName(name), 
     fGeoNode(0),
-    fName(name) 
+    fAssemblyNodes()
 {
 /// Standard constructor to define a multiple placement via parameters
 /// \param volume the associated volume which will be replicated
@@ -119,8 +121,30 @@ RootGM::Placement::Placement(
                       TGeoNode* node)
   : VGM::IPlacement(),
     BaseVGM::VPlacement(volume, motherVolume),
+    fName(),       
     fGeoNode(node),
-    fName()       
+    fAssemblyNodes()
+{
+/// Standard constructor to define a multiple placement via Root object
+
+  if (volume) fName = volume->Name();
+      // Root nodes have not own name; 
+      // use the volume name in this case 
+
+  // Register physical volume in the map
+  RootGM::PlacementMap::Instance()->AddPlacement(this, fGeoNode); 
+}
+
+//_____________________________________________________________________________
+RootGM::Placement::Placement(
+                      VGM::IVolume* volume, VGM::IVolume* motherVolume,
+                      TGeoNode* node, 
+		      std::vector<const TGeoNode*> assemblyNodes)
+  : VGM::IPlacement(),
+    BaseVGM::VPlacement(volume, motherVolume),
+    fName(),       
+    fGeoNode(node),
+    fAssemblyNodes(assemblyNodes)
 {
 /// Standard constructor to define a multiple placement via Root object
 
@@ -228,6 +252,12 @@ RootGM::Placement::Transformation() const
   else {
     transform3D = fGeoNode->GetMatrix();
   }
+
+  for (unsigned i=fAssemblyNodes.size(); i>0; i-- ) {
+    TGeoMatrix* matrixAN =fAssemblyNodes[i-1]->GetMatrix();
+    TGeoHMatrix transformAN(*matrixAN);
+    transform3D = transformAN * transform3D;
+  }    
   
   return Transform(transform3D);
 }  
