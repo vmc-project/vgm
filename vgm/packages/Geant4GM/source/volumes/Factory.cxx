@@ -413,11 +413,12 @@ Geant4GM::Factory::CreateSimplePlacement(
 //
 
   VGM::IPlacement* placement
-    = new Geant4GM::Placement(name, 
-                              copyNo, 
-			      volume, motherVolume, 
-                              new HepRotation(ClhepVGM::Rotation(transform).inverse()), 
-			      ClhepVGM::Translation(transform));
+    = new Geant4GM::Placement(
+            name, 
+            copyNo, 
+	    volume, motherVolume, 
+            new CLHEP::HepRotation(ClhepVGM::Rotation(transform).inverse()), 
+	    ClhepVGM::Translation(transform));
   			      
   // Top volume
   if (!motherVolume) 
@@ -618,11 +619,11 @@ Geant4GM::Factory::CreateIntersectionSolid(
                
   VGM::ISolid* vgmSolid 
     = new Geant4GM::BooleanSolid(
-                       name, 
-		       VGM::kIntersection, 
-		       solidA, solidB, 
-                       new HepRotation(ClhepVGM::Rotation(transform).inverse()), 
-		       ClhepVGM::Translation(transform));
+            name, 
+	    VGM::kIntersection, 
+	    solidA, solidB, 
+            new CLHEP::HepRotation(ClhepVGM::Rotation(transform).inverse()), 
+	    ClhepVGM::Translation(transform));
     
   SolidStore().push_back(vgmSolid);
   return vgmSolid; 
@@ -647,11 +648,11 @@ Geant4GM::Factory::CreateSubtractionSolid(
                
   VGM::ISolid* vgmSolid 
     = new Geant4GM::BooleanSolid(
-                        name, 
-			VGM::kSubtraction, 
-			solidA, solidB, 
-                        new HepRotation(ClhepVGM::Rotation(transform).inverse()), 
-			ClhepVGM::Translation(transform));
+            name, 
+	    VGM::kSubtraction, 
+	    solidA, solidB, 
+            new CLHEP::HepRotation(ClhepVGM::Rotation(transform).inverse()), 
+	    ClhepVGM::Translation(transform));
     
   SolidStore().push_back(vgmSolid);
   return vgmSolid; 
@@ -675,11 +676,11 @@ Geant4GM::Factory::CreateUnionSolid(
                
   VGM::ISolid* vgmSolid 
     = new Geant4GM::BooleanSolid(
-                        name, 
-			VGM::kUnion, 
-			solidA, solidB, 
-                        new HepRotation(ClhepVGM::Rotation(transform).inverse()), 
-			ClhepVGM::Translation(transform));
+            name, 
+	    VGM::kUnion, 
+	    solidA, solidB, 
+            new CLHEP::HepRotation(ClhepVGM::Rotation(transform).inverse()), 
+	    ClhepVGM::Translation(transform));
     
   SolidStore().push_back(vgmSolid);
   return vgmSolid; 

@@ -12,6 +12,13 @@
 
 #include "ClhepVGM/Units.h"
 
+using CLHEP::mm;
+using CLHEP::cm;
+using CLHEP::cm3;
+using CLHEP::deg;
+using CLHEP::g;
+using CLHEP::mole;
+
 //
 // static const data members
 //

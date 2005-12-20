@@ -221,128 +221,128 @@ void* TstGeometryViaVGM::PlaceSolids(IVolume* mother,
   double dz = wSize/6.;
   double dy = wSize/4.;
   
-  HepReflectZ3D reflect3D;
+  HepGeom::ReflectZ3D reflect3D;
  
   // Box
   //
   IVolume* boxV = CreateBox();
   fFactory->CreatePlacement("box", 0, boxV, mother, 
-                  ClhepVGM::Transform(
-		    HepTranslate3D(-wSize + (counter)*dz,  -dy, zpos))); 
+              ClhepVGM::Transform(
+	        HepGeom::Translate3D(-wSize + (counter)*dz,  -dy, zpos))); 
   if (reflect)
     fFactory->CreatePlacement("box", 0, boxV, mother, 
-                  ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (counter)*dz,  -dy, -zpos) * reflect3D)); 
+                ClhepVGM::Transform(
+                  HepGeom::Translate3D(-wSize + (counter)*dz,  -dy, -zpos) * reflect3D)); 
 
   // Cons 
   //
   IVolume* consV = CreateCons(sphi, dphi);
   fFactory->CreatePlacement("cons", 0, consV, mother, 
-                  ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (counter)*dz, dy, zpos)));
+              ClhepVGM::Transform(
+                HepGeom::Translate3D(-wSize + (counter)*dz, dy, zpos)));
   if (reflect)
     fFactory->CreatePlacement("cons", 0, consV, mother, 
-                  ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (counter)*dz, dy, -zpos) * reflect3D));
+                ClhepVGM::Transform(
+                  HepGeom::Translate3D(-wSize + (counter)*dz, dy, -zpos) * reflect3D));
 
   // Elliptical tube 
   //
   IVolume* eltuV = CreateEllipticalTube();
   fFactory->CreatePlacement("eltu", 0, eltuV, mother, 
-                  ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (++counter)*dz, -dy, zpos)));
+               ClhepVGM::Transform(
+                 HepGeom::Translate3D(-wSize + (++counter)*dz, -dy, zpos)));
   if (reflect)
   fFactory->CreatePlacement("cons", 0, eltuV, mother, 
-                  ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (counter)*dz, -dy, -zpos) * reflect3D));
+               ClhepVGM::Transform(
+                 HepGeom::Translate3D(-wSize + (counter)*dz, -dy, -zpos) * reflect3D));
 
   // Para
   //
   IVolume* paraV = CreatePara();
   fFactory->CreatePlacement("para", 0, paraV, mother, 
-                  ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (counter)*dz,  dy, zpos)));
+               ClhepVGM::Transform(
+                 HepGeom::Translate3D(-wSize + (counter)*dz,  dy, zpos)));
   if (reflect)
     fFactory->CreatePlacement("para", 0, paraV, mother, 
-                  ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (counter)*dz,  dy, -zpos) * reflect3D));
+                ClhepVGM::Transform(
+                  HepGeom::Translate3D(-wSize + (counter)*dz,  dy, -zpos) * reflect3D));
   
   // Polycone
   //
   IVolume* pconeV = CreatePolycone(sphi, dphi);
   fFactory->CreatePlacement("pcone", 0, pconeV, mother, 
-                  ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (++counter)*dz, -dy, zpos)));
+               ClhepVGM::Transform(
+                 HepGeom::Translate3D(-wSize + (++counter)*dz, -dy, zpos)));
   if (reflect)
     fFactory->CreatePlacement("pcone", 0, pconeV, mother, 
-                  ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (counter)*dz, -dy, -zpos) * reflect3D));
+                ClhepVGM::Transform(
+                  HepGeom::Translate3D(-wSize + (counter)*dz, -dy, -zpos) * reflect3D));
 
   // Polyhedra
   //
   IVolume* phedraV = CreatePolyhedra(sphi, dphi);
   fFactory->CreatePlacement("phedra", 0, phedraV, mother, 
-                  ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (counter)*dz,  dy, zpos)));
+               ClhepVGM::Transform(
+                 HepGeom::Translate3D(-wSize + (counter)*dz,  dy, zpos)));
   if (reflect)
     fFactory->CreatePlacement("phedra", 0, phedraV, mother, 
-                  ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (counter)*dz,  dy, -zpos) * reflect3D));
+                ClhepVGM::Transform(
+                  HepGeom::Translate3D(-wSize + (counter)*dz,  dy, -zpos) * reflect3D));
 
   // Sphere 
   //
   IVolume* sphereV = CreateSphere(sphi, dphi);
   fFactory->CreatePlacement("sphere", 0, sphereV, mother, 
-                  ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (++counter)*dz, -dy, zpos)));
+               ClhepVGM::Transform(
+                 HepGeom::Translate3D(-wSize + (++counter)*dz, -dy, zpos)));
   if (reflect)
     fFactory->CreatePlacement("sphere", 0, sphereV, mother, 
-                  ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (counter)*dz, -dy, -zpos) * reflect3D));
+                 ClhepVGM::Transform(
+                   HepGeom::Translate3D(-wSize + (counter)*dz, -dy, -zpos) * reflect3D));
 
   // Torus
   //
   IVolume* torusV = CreateTorus(sphi, dphi);
   fFactory->CreatePlacement("torus", 0, torusV, mother, 
-                  ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (counter)*dz,  dy, zpos)));
+               ClhepVGM::Transform(
+                 HepGeom::Translate3D(-wSize + (counter)*dz,  dy, zpos)));
   if (reflect)
     fFactory->CreatePlacement("torus", 0, torusV, mother, 
-                  ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (counter)*dz,  dy, -zpos) * reflect3D));
+                 ClhepVGM::Transform(
+                   HepGeom::Translate3D(-wSize + (counter)*dz,  dy, -zpos) * reflect3D));
 
   // Trap 
   //
   IVolume* trapV = CreateTrap();
   fFactory->CreatePlacement("trap", 0, trapV, mother, 
-                  ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (++counter)*dz, -dy, zpos)));
+               ClhepVGM::Transform(
+                 HepGeom::Translate3D(-wSize + (++counter)*dz, -dy, zpos)));
   if (reflect)
     fFactory->CreatePlacement("trap", 0, trapV, mother, 
-                  ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (counter)*dz, -dy, -zpos) * reflect3D));
+                 ClhepVGM::Transform(
+                   HepGeom::Translate3D(-wSize + (counter)*dz, -dy, -zpos) * reflect3D));
 
   // Trd
   //
   IVolume* trdV = CreateTrd();
   fFactory->CreatePlacement("trd", 0, trdV, mother, 
-                  ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (counter)*dz,  dy, zpos)));
+               ClhepVGM::Transform(
+                 HepGeom::Translate3D(-wSize + (counter)*dz,  dy, zpos)));
   if (reflect)
     fFactory->CreatePlacement("trd", 0, trdV, mother, 
-                  ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (counter)*dz,  dy, -zpos) * reflect3D));
+                 ClhepVGM::Transform(
+                   HepGeom::Translate3D(-wSize + (counter)*dz,  dy, -zpos) * reflect3D));
  
   // Trd
   //
   IVolume* tubsV = CreateTubs(sphi, dphi);
   fFactory->CreatePlacement("tubs", 0, tubsV, mother, 
-                  ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (++counter)*dz, -dy, zpos)));
+               ClhepVGM::Transform(
+                 HepGeom::Translate3D(-wSize + (++counter)*dz, -dy, zpos)));
   if (reflect)
     fFactory->CreatePlacement("tubs", 0, tubsV, mother, 
-                  ClhepVGM::Transform(
-                    HepTranslate3D(-wSize + (counter)*dz, -dy, -zpos) * reflect3D));
+                 ClhepVGM::Transform(
+                   HepGeom::Translate3D(-wSize + (counter)*dz, -dy, -zpos) * reflect3D));
 
   return (void*) fFactory->Top();
  }
@@ -465,11 +465,13 @@ void* TstGeometryViaVGM::TestPlacements()
   //
   fFactory->CreatePlacement("layerC", 0, volC, volB,  
                             ClhepVGM::Transform(
-			      HepRotation(), Hep3Vector(0.,  9.8* fCm, 0.)));
+			      CLHEP::HepRotation(), 
+			      CLHEP::Hep3Vector(0.,  9.8* fCm, 0.)));
 
   fFactory->CreatePlacement("layerC", 1, volC, volB, 
                             ClhepVGM::Transform(
-			      HepRotation(), Hep3Vector(0., -9.8* fCm, 0.)));
+			      CLHEP::HepRotation(), 
+			      CLHEP::Hep3Vector(0., -9.8* fCm, 0.)));
 
 
   // Placements of A in a circle
@@ -485,12 +487,12 @@ void* TstGeometryViaVGM::TestPlacements()
      double x = x0*cos(phi);
      double z = x0*sin(phi);
 
-     HepRotation rot;
+     CLHEP::HepRotation rot;
      rot.rotateY(-phi);
         // !!! Different meaning of rotation in VGM than in Geant4 
      
      fFactory->CreatePlacement("layerA", i, volA, worldV,
-                               ClhepVGM::Transform(rot, Hep3Vector(x, y0, z)));
+                               ClhepVGM::Transform(rot, CLHEP::Hep3Vector(x, y0, z)));
    }
    
   return (void*) fFactory->Top();
@@ -540,13 +542,15 @@ void* TstGeometryViaVGM::TestBooleanSolids1()
     = fFactory->CreateVolume("volume1", solid1, "Basic");
   fFactory->CreatePlacement("solid1", 0, volume1, worldV, 
                    ClhepVGM::Transform( 
-		     HepRotation(), Hep3Vector(-wSize/8., 0., -200.* fCm)));
+		     CLHEP::HepRotation(), 
+		     CLHEP::Hep3Vector(-wSize/8., 0., -200.* fCm)));
 
   IVolume* volume2
     = fFactory->CreateVolume("volume2", solid2, "Basic");
   fFactory->CreatePlacement("solid2", 0, volume2, worldV, 
                    ClhepVGM::Transform(
-		     HepRotation(), Hep3Vector( wSize/8., 0., -200.* fCm)));
+		     CLHEP::HepRotation(), 
+		     CLHEP::Hep3Vector( wSize/8., 0., -200.* fCm)));
 
 
   // Intersection
@@ -555,14 +559,16 @@ void* TstGeometryViaVGM::TestBooleanSolids1()
     = fFactory->CreateIntersectionSolid(
                   "solid1Isolid2S", solid1, solid2, 
 		   ClhepVGM::Transform(
-		     HepRotation(),Hep3Vector(20.* fCm, 0., 0.))); 
+		     CLHEP::HepRotation(),
+		     CLHEP::Hep3Vector(20.* fCm, 0., 0.))); 
 
   IVolume* intersectionV
     = fFactory->CreateVolume("solid1Isolid2V", intersectionS, "Basic");
 
   fFactory->CreatePlacement("solid1Isolid2", 0, intersectionV, worldV, 
 		   ClhepVGM::Transform(
-		     HepRotation(), Hep3Vector(-wSize/4., 0., 200.* fCm)));
+		     CLHEP::HepRotation(), 
+		     CLHEP::Hep3Vector(-wSize/4., 0., 200.* fCm)));
   
   // Subtraction
   //
@@ -570,14 +576,16 @@ void* TstGeometryViaVGM::TestBooleanSolids1()
     = fFactory->CreateSubtractionSolid(
                   "solid1Ssolid2S", solid1, solid2, 
                    ClhepVGM::Transform(
-		     HepRotation(), Hep3Vector(20.* fCm, 0., 0.))); 
+		     CLHEP::HepRotation(), 
+		     CLHEP::Hep3Vector(20.* fCm, 0., 0.))); 
 				       
   IVolume* subtractionV
     = fFactory->CreateVolume("solid1Ssolid2V", subtractionS, "Basic");
 
   fFactory->CreatePlacement("solid1Ssolid2", 0, subtractionV, worldV, 
                    ClhepVGM::Transform(
-		     HepRotation(), Hep3Vector(0., 0., 200.* fCm)));
+		     CLHEP::HepRotation(), 
+		     CLHEP::Hep3Vector(0., 0., 200.* fCm)));
   
   // Union
   //
@@ -585,13 +593,15 @@ void* TstGeometryViaVGM::TestBooleanSolids1()
     = fFactory->CreateUnionSolid(
                   "solid1Usolid2S", solid1, solid2, 
                    ClhepVGM::Transform(
-		     HepRotation(), Hep3Vector(20.* fCm, 0., 0.))); 
+		     CLHEP::HepRotation(), 
+		     CLHEP::Hep3Vector(20.* fCm, 0., 0.))); 
   IVolume* unionV
     = fFactory->CreateVolume("solid1Usolid2V", unionS, "Basic");
 
   fFactory->CreatePlacement("solid1Usolid2", 0, unionV, worldV, 
                    ClhepVGM::Transform(
-		     HepRotation(), Hep3Vector( wSize/4., 0., 200.* fCm)));
+		     CLHEP::HepRotation(), 
+		     CLHEP::Hep3Vector( wSize/4., 0., 200.* fCm)));
   
   return (void*) fFactory->Top();
 }
@@ -621,28 +631,30 @@ void* TstGeometryViaVGM::TestBooleanSolids2()
     = fFactory->CreateVolume("volume1", solid1, "Basic");
   fFactory->CreatePlacement("solid1", 0, volume1, worldV,
                             ClhepVGM::Transform(
-			      HepRotation(), Hep3Vector(-wSize/8., 0., -200.* fCm)));
+			      CLHEP::HepRotation(), 
+			      CLHEP::Hep3Vector(-wSize/8., 0., -200.* fCm)));
 
   IVolume* volume2
     = fFactory->CreateVolume("volume2", solid2, "Basic");
   fFactory->CreatePlacement("solid2", 0, volume2, worldV, 
                             ClhepVGM::Transform(
-			      HepRotation(), Hep3Vector( wSize/8., 0., -200.* fCm)));
+			      CLHEP::HepRotation(), 
+			      CLHEP::Hep3Vector( wSize/8., 0., -200.* fCm)));
 
 
   // Define displacement transformations
   //
  
   // Rotate solid1  
-  HepRotation rot1;
+  CLHEP::HepRotation rot1;
   rot1.rotateY(45.* deg);
 
   // Rotate + translate solid2
   //
-  HepRotation rot2;
+  CLHEP::HepRotation rot2;
   rot2.rotateX( 30.* deg);
   rot2.rotateY(-45.* deg); 
-  Hep3Vector tr2 = Hep3Vector(20.* fCm, 0., 0.);
+  CLHEP::Hep3Vector tr2 = CLHEP::Hep3Vector(20.* fCm, 0., 0.);
   
   // Intersection
   //
@@ -655,7 +667,7 @@ void* TstGeometryViaVGM::TestBooleanSolids2()
 
   fFactory->CreatePlacement("solid1Isolid2", 0, intersectionV, worldV, 
                             ClhepVGM::Transform(
-			      rot1, Hep3Vector(-wSize/4., 0., 200.* fCm)));
+			      rot1, CLHEP::Hep3Vector(-wSize/4., 0., 200.* fCm)));
   
   // Subtraction
   //
@@ -668,7 +680,7 @@ void* TstGeometryViaVGM::TestBooleanSolids2()
 
   fFactory->CreatePlacement("solid1Ssolid2", 0, subtractionV, worldV, 
                             ClhepVGM::Transform(
-			      rot1, Hep3Vector(0., 0., 200.* fCm)));
+			      rot1, CLHEP::Hep3Vector(0., 0., 200.* fCm)));
   
   // Union
   //
@@ -681,7 +693,7 @@ void* TstGeometryViaVGM::TestBooleanSolids2()
 
   fFactory->CreatePlacement("solid1Usolid2", 0, unionV, worldV, 
                             ClhepVGM::Transform(
-			      rot1, Hep3Vector( wSize/4., 0., 200.* fCm)));
+			      rot1, CLHEP::Hep3Vector( wSize/4., 0., 200.* fCm)));
   
   return (void*) fFactory->Top();
 }
@@ -711,28 +723,30 @@ void* TstGeometryViaVGM::TestBooleanSolids3()
     = fFactory->CreateVolume("volume1", solid1, "Basic");
   fFactory->CreatePlacement("solid1", 0, volume1, worldV, 
                             ClhepVGM::Transform(
-			      HepRotation(), Hep3Vector(-wSize/8., 0., -200.* fCm)));
+			      CLHEP::HepRotation(), 
+			      CLHEP::Hep3Vector(-wSize/8., 0., -200.* fCm)));
 
   IVolume* volume2
     = fFactory->CreateVolume("volume2", solid2, "Basic");
   fFactory->CreatePlacement("solid2", 0, volume2, worldV, 
                             ClhepVGM::Transform(
-			      HepRotation(), Hep3Vector( wSize/8., 0., -200.* fCm)));
+			      CLHEP::HepRotation(), 
+			      CLHEP::Hep3Vector( wSize/8., 0., -200.* fCm)));
 
 
   // Define displacement transformations
   //
  
   // Rotate solid1  
-  HepRotation rot1;
+  CLHEP::HepRotation rot1;
   rot1.rotateY( 45.* deg);
 
   // Rotate + translate solid2
   //
-  HepReflectZ3D reflect2 = HepReflectZ3D();
-  HepTranslate3D translate2 = HepTranslate3D(20.* fCm, 0., 0.);
-  HepRotate3D  rotInv1 =  HepRotateY3D( -45.* deg);
-  HepTransform3D transform2 =  rotInv1 * translate2 * reflect2;
+  HepGeom::ReflectZ3D reflect2 = HepGeom::ReflectZ3D();
+  HepGeom::Translate3D translate2 = HepGeom::Translate3D(20.* fCm, 0., 0.);
+  HepGeom::Rotate3D  rotInv1 =  HepGeom::RotateY3D( -45.* deg);
+  HepGeom::Transform3D transform2 =  rotInv1 * translate2 * reflect2;
   
   // Intersection
   //
@@ -745,7 +759,7 @@ void* TstGeometryViaVGM::TestBooleanSolids3()
 
   fFactory->CreatePlacement("solid1Isolid2", 0, intersectionV, worldV, 
                             ClhepVGM::Transform(
-			      rot1, Hep3Vector(-wSize/4., 0., 200.* fCm)));
+			      rot1, CLHEP::Hep3Vector(-wSize/4., 0., 200.* fCm)));
   
   // Subtraction
   //
@@ -758,7 +772,7 @@ void* TstGeometryViaVGM::TestBooleanSolids3()
 
   fFactory->CreatePlacement("solid1Ssolid2", 0, subtractionV, worldV, 
                             ClhepVGM::Transform(
-			      rot1, Hep3Vector(0., 0., 200.* fCm)));
+			      rot1, CLHEP::Hep3Vector(0., 0., 200.* fCm)));
   
   // Union
   //
@@ -772,7 +786,7 @@ void* TstGeometryViaVGM::TestBooleanSolids3()
 
   fFactory->CreatePlacement("solid1Usolid2", 0, unionV, worldV, 
                             ClhepVGM::Transform(
-			      rot1, Hep3Vector( wSize/4., 0., 200.* fCm)));
+			      rot1, CLHEP::Hep3Vector( wSize/4., 0., 200.* fCm)));
   
   return (void*) fFactory->Top();
   return 0;

@@ -36,6 +36,8 @@
 
 #include "XmlVGM/AGDDWriter.h"
 
+using CLHEP::deg;
+
 const int         XmlVGM::AGDDWriter::fgkMaxVolumeNameLength   = 20;
 const int         XmlVGM::AGDDWriter::fgkMaxMaterialNameLength = 20;
 const int         XmlVGM::AGDDWriter::fgkDefaultNumWidth       = 7;
@@ -351,7 +353,7 @@ void XmlVGM::AGDDWriter::WriteTrap(
   double thetaSphi = tan(theta*deg)*sin(phi*deg);
   double cosTheta = 1.0/sqrt(1+thetaCphi*thetaCphi + thetaSphi*thetaSphi) ;
 
-  Hep3Vector symAxis(thetaCphi*cosTheta, thetaSphi*cosTheta, cosTheta);
+  CLHEP::Hep3Vector symAxis(thetaCphi*cosTheta, thetaSphi*cosTheta, cosTheta);
   double inc1 = atan(symAxis.x()/symAxis.z())/deg;
   double inc2 = atan(symAxis.y()/symAxis.z())/deg;
 
@@ -597,7 +599,7 @@ void XmlVGM::AGDDWriter::WritePlacementWithRotation(
   double z = position[2]/LengthUnit();
   
   // convert object rotation to frame rotation
-  HepRotation hepRotation;
+  CLHEP::HepRotation hepRotation;
   hepRotation.rotateX(rotation[0]*deg);
   hepRotation.rotateY(rotation[1]*deg);
   hepRotation.rotateZ(rotation[2]*deg);
@@ -663,20 +665,20 @@ void XmlVGM::AGDDWriter::WritePlacementWithRotationAndReflection(
 
   // get parameters
   //
-  HepTranslate3D translate3D(position[0], position[1], position[2]);
+  HepGeom::Translate3D translate3D(position[0], position[1], position[2]);
 
   // rotation
-  HepRotation hepRotation;
+  CLHEP::HepRotation hepRotation;
   hepRotation.rotateX(rotation[0]*deg);
   hepRotation.rotateY(rotation[1]*deg);
   hepRotation.rotateZ(rotation[2]*deg);
-  HepRotate3D rotate3D(hepRotation);
+  HepGeom::Rotate3D rotate3D(hepRotation);
 
-  HepScaleZ3D scale3D(-1.0);
+  HepGeom::ScaleZ3D scale3D(-1.0);
 
-  HepTransform3D transform3D = translate3D * rotate3D * scale3D;
+  HepGeom::Transform3D transform3D = translate3D * rotate3D * scale3D;
 
-  Hep3Vector translation = transform3D.getTranslation();
+  CLHEP::Hep3Vector translation = transform3D.getTranslation();
   double x = translation.x()/LengthUnit();
   double y = translation.y()/LengthUnit();
   double z = translation.z()/LengthUnit();

@@ -27,8 +27,8 @@ namespace Geant4GM {
                    VGM::BooleanType boolType,
                    VGM::ISolid* solidA, 
 		   VGM::ISolid* solidB, 
-                   HepRotation* rotation, 
-		   const Hep3Vector& translation);
+                   CLHEP::HepRotation* rotation, 
+		   const CLHEP::Hep3Vector& translation);
       BooleanSolid(G4BooleanSolid* booleanSolid);
       virtual ~BooleanSolid();
 
