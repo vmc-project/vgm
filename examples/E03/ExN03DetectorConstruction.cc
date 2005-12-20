@@ -21,9 +21,10 @@
 // ********************************************************************
 //
 //
-// $Id$
-// GEANT4 tag $Name$
+// Id: ExN03DetectorConstruction.cc,v 1.22 2005/11/14 16:17:20 maire Exp 
+// GEANT4 tag Name: geant4-08-00 
 //
+// $Id$
 // 
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -52,6 +53,7 @@
 #include "XmlVGM/AGDDExporter.h"
 #include "XmlVGM/GDMLExporter.h"
 // end VGM demo
+
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
@@ -202,7 +204,7 @@ steam->AddMaterial(H2O, fractionmass=1.);
 
 G4Material* Vacuum =
 new G4Material("Galactic", z=1., a=1.01*g/mole,density= universe_mean_density,
-                           kStateGas, 3.e-18*pascal, 2.73*kelvin);
+                           kStateGas, 2.73*kelvin, 3.e-18*pascal);
 
 G4Material* beam = 
 new G4Material("Beam", density= 1.e-5*g/cm3, ncomponents=1,
@@ -318,8 +320,8 @@ G4VPhysicalVolume* ExN03DetectorConstruction::ConstructCalorimeter()
 		     // however	there were not supposed to get clash
 		     // from material x volume names
 		     // TO DO : to take care of this in future 		 
-      			                  
-      physiAbsorber = new G4PVPlacement(0,		   //no rotation
+
+     physiAbsorber = new G4PVPlacement(0,		   //no rotation
       		    G4ThreeVector(-GapThickness/2,0.,0.),  //its position
                                         logicAbsorber,     //its logical volume		    
                                         AbsorberMaterial->GetName(), //its name
@@ -386,6 +388,7 @@ G4VPhysicalVolume* ExN03DetectorConstruction::ConstructCalorimeter()
   atb->SetForceSolid(true);
   logicGap->SetVisAttributes(atb);}
   */
+
 
   // ---------------------------------------------------------------------------
   // VGM demo 

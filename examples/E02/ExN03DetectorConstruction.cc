@@ -21,8 +21,8 @@
 // ********************************************************************
 //
 //
-// Id: ExN03DetectorConstruction.cc,v 1.21 2004/11/14 10:12:08 gbarrand Exp 
-// GEANT4 tag $Name$
+// Id: ExN03DetectorConstruction.cc,v 1.22 2005/11/14 16:17:20 maire Exp 
+// GEANT4 tag Name: geant4-08-00 
 //
 // $Id$
 //
@@ -134,8 +134,8 @@ G4VPhysicalVolume* ExN03DetectorConstruction::Construct()
   logicGap->SetVisAttributes(simpleBoxVisAtt);
   
   return world;
+}
 
   //
   // end VGM demo
   //---------------------------------------------------------------------------
-}
