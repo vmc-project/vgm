@@ -2,6 +2,13 @@ $Id$
 
  The Virtual Geometry Model - Versions
 =========================================
+  20/12/2005
+  version 2.07    (public version)
+               Upgrade to CLHEP 2.0.2.2 (with namespaces)
+	       	       
+	       Tested with  CLHEP 1.9.2.1 and 2.0.2.2, Root 5.08/00, Geant4 8.0;
+	       gcc 3.2.2 
+
   18/10/2005
   version 2.06    (public version)
                RootGM - updated for new implementation of volumes assemblies;
