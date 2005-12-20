@@ -6,7 +6,7 @@
 
 <section DTD_version = "v6"
          name        = "TOP"
-         version     = "Id: AGDDWriter.cxx,v 1.9 2005/06/16 08:59:25 ivana Exp "
+         version     = "Id: AGDDWriter.cxx,v 1.10 2005/12/20 14:20:24 ivana Exp "
          date        = "Undefined"
          author      = "VGM AGGD Writer"
          top_volume  = "TOP_comp"  >
