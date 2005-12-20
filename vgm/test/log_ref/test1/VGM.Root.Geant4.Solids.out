@@ -11,20 +11,12 @@ TestSolids finished
 Go to export
 VGM info:   Exporting element: 
 VGM info:   Element: "HYDROGEN"  "H"  Z = 1  N = 1.00794  A = 1.00794 g/mole
-
----> warning from G4Element::GetElement(). The element: HYDROGEN does not exist in the table. Return NULL pointer.
 VGM info:   Exporting element: 
 VGM info:   Element: "NITROGEN"  "N"  Z = 7  N = 14.0067  A = 14.0067 g/mole
-
----> warning from G4Element::GetElement(). The element: NITROGEN does not exist in the table. Return NULL pointer.
 VGM info:   Exporting element: 
 VGM info:   Element: "OXYGEN"  "O"  Z = 8  N = 15.9994  A = 15.9994 g/mole
-
----> warning from G4Element::GetElement(). The element: OXYGEN does not exist in the table. Return NULL pointer.
 VGM info:   Exporting element: 
 VGM info:   Element: "ALUMINIUM"  "AL"  Z = 13  N = 26.9815  A = 26.9815 g/mole
-
----> warning from G4Element::GetElement(). The element: ALUMINIUM does not exist in the table. Return NULL pointer.
 VGM info:   Exporting material: 
 VGM info:   Material: "Basic"  density 2.7 g/cm3  radlen 8.87561 cm  intlen 0 cm
    0th element:   Z = 13  A = 26.9815 g/mole  fractionMass = 100 %
