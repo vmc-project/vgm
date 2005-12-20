@@ -22,8 +22,8 @@ Geant4GM::BooleanSolid::BooleanSolid(
                             const std::string& name, 
                             VGM::BooleanType boolType,
                             VGM::ISolid* solidA, VGM::ISolid* solidB, 
-                            HepRotation* rotation, 
-			    const Hep3Vector& translation)
+                            CLHEP::HepRotation* rotation, 
+			    const CLHEP::Hep3Vector& translation)
   : VGM::ISolid(), 
     VGM::IBooleanSolid(),
     BaseVGM::VBooleanSolid(),
@@ -193,7 +193,7 @@ Geant4GM::BooleanSolid::Displacement() const
                               g4DisplacedSolid->GetObjectTranslation());
  } 			      
  else
-   return ClhepVGM::Transform(HepRotation(), Hep3Vector());
+   return ClhepVGM::Transform(CLHEP::HepRotation(), CLHEP::Hep3Vector());
 }    
 
 //_____________________________________________________________________________

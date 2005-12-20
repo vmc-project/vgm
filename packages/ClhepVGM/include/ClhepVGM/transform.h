@@ -20,17 +20,17 @@ namespace ClhepVGM {
 
     // CLHEP -> VGM
     //
-    VGM::Transform    Transform(const HepRotation& rotation,
-                                const Hep3Vector& translation);
-    VGM::Transform    Transform(const HepTransform3D& objectTransform);
-    VGM::Transform    Identity();
-    bool              HasReflection(const HepTransform3D& transform);
+    VGM::Transform  Transform(const CLHEP::HepRotation& rotation,
+                              const CLHEP::Hep3Vector& translation);
+    VGM::Transform  Transform(const HepGeom::Transform3D& objectTransform);
+    VGM::Transform  Identity();
+    bool            HasReflection(const HepGeom::Transform3D& transform);
     
     // VGM -> CLHEP
     //
-    Hep3Vector      Translation(const VGM::Transform& transform);
-    HepRotation     Rotation(const VGM::Transform& transform);
-    HepTransform3D  Transform(const VGM::Transform& transform);
+    CLHEP::Hep3Vector     Translation(const VGM::Transform& transform);
+    CLHEP::HepRotation    Rotation(const VGM::Transform& transform);
+    HepGeom::Transform3D  Transform(const VGM::Transform& transform);
     bool            HasReflection(const VGM::Transform& transform);
 
     // VGM

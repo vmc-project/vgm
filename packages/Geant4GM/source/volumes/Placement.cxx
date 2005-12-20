@@ -29,7 +29,8 @@
 Geant4GM::Placement::Placement(
                         const std::string& name, int copyNo,
                         VGM::IVolume* volume, VGM::IVolume* motherVolume,
-                        HepRotation* rotation, const Hep3Vector& translation)
+                        CLHEP::HepRotation* rotation, 
+			const CLHEP::Hep3Vector& translation)
   : VGM::IPlacement(),
     BaseVGM::VPlacement(volume, motherVolume),
     fPhysicalVolume(0)       

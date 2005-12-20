@@ -13,8 +13,8 @@
 
 //_____________________________________________________________________________
 VGM::Transform    
-ClhepVGM::Transform(const HepRotation& rotation,
-                    const Hep3Vector&  translation)
+ClhepVGM::Transform(const CLHEP::HepRotation& rotation,
+                    const CLHEP::Hep3Vector&  translation)
 {
 
   // Translation
@@ -53,12 +53,12 @@ ClhepVGM::Transform(const HepRotation& rotation,
 				
 //_____________________________________________________________________________
 VGM::Transform    
-ClhepVGM::Transform(const HepTransform3D& objectTransform)
+ClhepVGM::Transform(const HepGeom::Transform3D& objectTransform)
 {
 // 
-  HepScale3D scale;
-  HepRotate3D rotate;
-  HepTranslate3D translate;
+  HepGeom::Scale3D scale;
+  HepGeom::Rotate3D rotate;
+  HepGeom::Translate3D translate;
   objectTransform.getDecomposition(scale, rotate, translate);
   
   VGM::Transform transform 
@@ -84,12 +84,12 @@ VGM::Transform  ClhepVGM::Identity()
 }
 
 //_____________________________________________________________________________
-bool ClhepVGM::HasReflection(const HepTransform3D& transform)
+bool ClhepVGM::HasReflection(const HepGeom::Transform3D& transform)
 {
 //
-  HepScale3D scale;
-  HepRotate3D rotate;
-  HepTranslate3D translate;
+  HepGeom::Scale3D scale;
+  HepGeom::Rotate3D rotate;
+  HepGeom::Translate3D translate;
   transform.getDecomposition(scale, rotate, translate);
 
   if (scale(0,0)*scale(1,1)*scale(2,2) < 0.)
@@ -99,7 +99,7 @@ bool ClhepVGM::HasReflection(const HepTransform3D& transform)
 }
 
 //_____________________________________________________________________________
-Hep3Vector ClhepVGM::Translation(const VGM::Transform& transform)
+CLHEP::Hep3Vector ClhepVGM::Translation(const VGM::Transform& transform)
 {
   if (transform.size() != VGM::kSize) {
     std::cerr << "ClhepVGM::Translation: " << std::endl;
@@ -107,14 +107,14 @@ Hep3Vector ClhepVGM::Translation(const VGM::Transform& transform)
     exit(1);
   }  
     
-  return Hep3Vector(transform[VGM::kDx] / Units::Length(), 
-                    transform[VGM::kDy] / Units::Length(), 
-		    transform[VGM::kDz] / Units::Length());
+  return CLHEP::Hep3Vector(transform[VGM::kDx] / Units::Length(), 
+                           transform[VGM::kDy] / Units::Length(), 
+		           transform[VGM::kDz] / Units::Length());
 } 
 
 
 //_____________________________________________________________________________
-HepRotation  ClhepVGM::Rotation(const VGM::Transform& transform)
+CLHEP::HepRotation  ClhepVGM::Rotation(const VGM::Transform& transform)
 {
   if (transform.size() != VGM::kSize) {
     std::cerr << "ClhepVGM::Rotation: " << std::endl;
@@ -122,7 +122,7 @@ HepRotation  ClhepVGM::Rotation(const VGM::Transform& transform)
     exit(1);
   }  
     
-  HepRotation hepRotation;
+  CLHEP::HepRotation hepRotation;
   hepRotation.rotateX(transform[VGM::kAngleX] / Units::Angle() );
   hepRotation.rotateY(transform[VGM::kAngleY] / Units::Angle() );
   hepRotation.rotateZ(transform[VGM::kAngleZ] / Units::Angle() );
@@ -131,12 +131,12 @@ HepRotation  ClhepVGM::Rotation(const VGM::Transform& transform)
 }  
 
 //_____________________________________________________________________________
-HepTransform3D  ClhepVGM::Transform(const VGM::Transform& transform)
+HepGeom::Transform3D  ClhepVGM::Transform(const VGM::Transform& transform)
 {    
-  HepTranslate3D translate(Translation(transform));
-  HepRotate3D rotate(Rotation(transform));
-  HepScaleZ3D scale;
-  if (HasReflection(transform)) scale = HepScaleZ3D(-1.0);
+  HepGeom::Translate3D translate(Translation(transform));
+  HepGeom::Rotate3D rotate(Rotation(transform));
+  HepGeom::ScaleZ3D scale;
+  if (HasReflection(transform)) scale = HepGeom::ScaleZ3D(-1.0);
 
   return translate * rotate * scale; 
 }
@@ -150,10 +150,10 @@ bool ClhepVGM::HasReflection(const VGM::Transform& transform)
 //_____________________________________________________________________________
 VGM::Transform  ClhepVGM::Inverse(const VGM::Transform& transform)
 {    
-  HepTranslate3D translate(Translation(transform));
-  HepRotate3D rotate(Rotation(transform));
-  HepScaleZ3D scale;
-  if (HasReflection(transform)) scale = HepScaleZ3D(-1.0);
+  HepGeom::Translate3D translate(Translation(transform));
+  HepGeom::Rotate3D rotate(Rotation(transform));
+  HepGeom::ScaleZ3D scale;
+  if (HasReflection(transform)) scale = HepGeom::ScaleZ3D(-1.0);
   
   return Transform((translate * rotate * scale).inverse());
 }

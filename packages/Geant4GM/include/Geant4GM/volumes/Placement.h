@@ -30,7 +30,8 @@ namespace Geant4GM {
                 int copyNo,
                 VGM::IVolume* volume, 
 		VGM::IVolume* motherVolume,
-                HepRotation* rotation, const Hep3Vector& translation);
+                CLHEP::HepRotation* rotation, 
+		const CLHEP::Hep3Vector& translation);
       Placement(const std::string& name,
                 VGM::IVolume* volume, 
 		VGM::IVolume* motherVolume,
