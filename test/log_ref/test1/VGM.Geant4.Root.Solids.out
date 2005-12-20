@@ -7,14 +7,6 @@
 *************************************************************
 
 Geant4 geometry will be defined via VGM and exported to Root
-
----> warning from G4Element::GetElement(). The element:   does not exist in the table. Return NULL pointer.
-
----> warning from G4Element::GetElement(). The element: N does not exist in the table. Return NULL pointer.
-
----> warning from G4Element::GetElement(). The element: O does not exist in the table. Return NULL pointer.
-
----> warning from G4Element::GetElement(). The element: Al does not exist in the table. Return NULL pointer.
 TestSolids finished
 Go to export
 VGM info:   Exporting element: 
