@@ -104,7 +104,7 @@ Geant4GM::MaterialFactory::CreateElement(
 // Create element if such element with specified properties does not
 // yet exist
 
-  G4Element* g4Element = G4Element::GetElement(name);
+  G4Element* g4Element = G4Element::GetElement(name, false);
   
   VGM::IElement* vgmElement;
   if (g4Element)
