@@ -1,6 +1,6 @@
 
 *************************************************************
- Geant4 version Name: geant4-07-01    (30-June-2005)
+ Geant4 version Name: geant4-08-00    (16-December-2005)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -11,7 +11,7 @@ TestSolids finished
 Go to Import
 VGM info:   RootGM::Factory::Import started ...
 VGM info:   Importing material: 
-VGM info:   Material Basic    A=26.98 Z=13 rho=2.7 radlen=0 index=0
+VGM info:   Material Basic    A=26.98 Z=13 rho=2.7 radlen=8.8751 index=0
 VGM info:   Importing element: 
 VGM info:   OBJ: TGeoElement	AL	ALUMINIUM
 VGM info:   Importing material: 
@@ -145,7 +145,7 @@ VGM info:   Element: "VACUUM"  "VACUUM"  Z = 0  N = 0  A = 0 g/mole
 
 ---> warning from G4Element::GetElement(). The element: VACUUM does not exist in the table. Return NULL pointer.
 VGM info:   Exporting material: 
-VGM info:   Material: "Basic"  density 2.7 g/cm3  radlen 0 cm  intlen 0 cm
+VGM info:   Material: "Basic"  density 2.7 g/cm3  radlen 8.8751 cm  intlen 0 cm
    0th element:   Z = 13  A = 26.9815 g/mole  fractionMass = 100 %
 VGM info:   Exporting material: 
 VGM info:   Material: "Air"  density 0.00129 g/cm3  radlen 28405.7 cm  intlen 0 cm
