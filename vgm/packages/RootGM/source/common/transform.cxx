@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <float.h>
+#include <math.h>
 
 #include <TGeoMatrix.h>
 #include <TGeoPatternFinder.h>
