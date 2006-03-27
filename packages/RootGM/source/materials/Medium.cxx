@@ -33,7 +33,7 @@ RootGM::Medium::Medium(const std::string& name,
   TGeoMaterial* geoMaterial
     = RootGM::MaterialMap::Instance()->GetMaterial(material);
 
-  Double_t param[fgkParamSize];
+  Double_t* param = new Double_t[fgkParamSize];
   for (Int_t i=0; i<fgkParamSize; i++) {
     if (i<nofParameters) 
       param[i] = parameters[i];
@@ -42,6 +42,8 @@ RootGM::Medium::Medium(const std::string& name,
   }   
 
   fMedium = new TGeoMedium(name.data(), mediumId, geoMaterial, param);
+  
+  delete [] param;
 }
 			   
 //_____________________________________________________________________________
