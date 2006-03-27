@@ -1,5 +1,11 @@
 # $Id$
 
+ifndef VGM_LIBDIR
+  VGM_LIBDIR := $(VGM_LIB)/$(VGM_SYSTEM)
+endif
+
+INTYLIBS += -L$(VGM_LIBDIR) -lBaseVGM -L$(ROOT_LIBDIR) -lGeom -lCore -lCint
+
 CPPFLAGS += -I$(ROOTSYS)/include
 
 ifeq ($(VGM_SYSTEM),Linux-g++)

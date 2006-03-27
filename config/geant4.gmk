@@ -1,7 +1,11 @@
 # $Id$
 
-########################  Path to Geant4 ######################################
-#
+ifndef VGM_LIBDIR
+  VGM_LIBDIR := $(VGM_LIB)/$(VGM_SYSTEM)
+endif
+
+INTYLIBS += -L$(VGM_LIBDIR) -lClhepVGM -lBaseVGM -L$(G4_LIBDIR) -lG4geometry -lG4Materials
+
 CPPFLAGS += -I$(G4INSTALL)/include
 
 ######################## Full Geant4 VIS, UI ##################################
