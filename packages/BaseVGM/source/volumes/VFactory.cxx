@@ -10,6 +10,7 @@
 #include "VGM/solids/IBooleanSolid.h"
 #include "VGM/solids/IBox.h"
 #include "VGM/solids/ICons.h"
+#include "VGM/solids/ICtubs.h"
 #include "VGM/solids/IEllipticalTube.h"
 #include "VGM/solids/IPara.h"
 #include "VGM/solids/IPolycone.h"
@@ -161,6 +162,21 @@ BaseVGM::VFactory::ExportSolid(VGM::ISolid* solid,
 			      cons->ZHalfLength(),  
 			      cons->StartPhi(),
 			      cons->DeltaPhi());  
+  }
+  else if (solidType == VGM::kCtubs) { 
+    VGM::ICtubs* ctubs = dynamic_cast<VGM::ICtubs*>(solid); 
+    return factory->CreateCtubs(ctubs->Name(), 
+                              ctubs->InnerRadius(),
+			      ctubs->OuterRadius(), 
+			      ctubs->ZHalfLength(),  
+			      ctubs->StartPhi(),
+			      ctubs->DeltaPhi(),
+			      ctubs->NxLow(),
+			      ctubs->NyLow(),
+			      ctubs->NzLow(),
+			      ctubs->NxHigh(),
+			      ctubs->NyHigh(),
+			      ctubs->NzHigh());  
   }
   else if (solidType == VGM::kEltu) { 
     VGM::IEllipticalTube* eltu = dynamic_cast<VGM::IEllipticalTube*>(solid); 
@@ -327,13 +343,21 @@ BaseVGM::VFactory::ExportSimplePlacement(
   VGM::IVolume* newVolume = (*volumeMap)[placement->Volume()];
   VGM::IVolume* newMother = (*volumeMap)[placement->Mother()];
   
+  // If boolean solid that have to be reflected
+  /// set reflection to the transformation
+  VGM::Transform transform = placement->Transformation();
+  VGM::IBooleanSolid* booleanSolid 
+    = dynamic_cast<VGM::IBooleanSolid*>(placement->Volume()->Solid());
+  if ( booleanSolid && booleanSolid->ToBeReflected() )
+     transform[VGM::kReflZ] = 1;
+  
   VGM::IPlacement* newPlacement
     = factory->CreatePlacement(
                        placement->Name(), 
                        placement->CopyNo(),
 	               newVolume,
 		       newMother,
-		       placement->Transformation());
+		       transform);
       
   return newPlacement;
 }

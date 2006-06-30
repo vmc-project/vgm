@@ -58,6 +58,32 @@ namespace VGM {
 			       double rin2, double rout2, double hz,
 	                       double sphi, double dphi) = 0; 
 
+                       /// Create the cut tubs solid = phi segment of a tube
+		       /// vut with two planes
+		       /// \param rin inside radius in mm
+		       /// \param rout outside radius in mm
+		       /// \param hz half-length along the z axis in mm
+		       /// \param sphi starting angle of the segment in deg
+		       /// \param dphi opening angle of the segment in deg
+                       /// \param nxlow X-component of the normal unit vector 
+		       ///        to the cut plane in -z
+                       /// \param nylow Y-component of the normal unit vector 
+		       ///        to the cut plane in -z
+                       /// \param nzlow Z-component of the normal unit vector 
+		       ///        to the cut plane in -z
+                       /// \param nxhigh X-component of the normal unit vector 
+		       ///        to the cut plane in +z
+                       /// \param nyhigh Y-component of the normal unit vector 
+		       ///        to the cut plane in +z
+                       /// \param nzhigh Z-component of the normal unit vector 
+		       ///        to the cut plane in +z
+		       ///
+      virtual ISolid*  CreateCtubs(const std::string& name, 
+                               double rin, double rout, double hz, 
+			       double sphi, double dphi,
+			       double nxlow, double nylow, double nzlow,
+			       double nxhigh, double nyhigh, double nzhigh) = 0;
+
                        /// Create the elliptical tube solid
                        /// \param dx the semi-axis of the ellipse along x in mm
                        /// \param dx the semi-axis of the ellipse along y in mm
@@ -186,7 +212,7 @@ namespace VGM {
                                double hx1, double hx2, double hy1, double hy2, 
 			       double hz) = 0;
 
-                       /// Create the tubs solid = phi segment of a tube
+                       /// Create the trd solid = phi segment of a tube
 		       /// \param rin inside radius in mm
 		       /// \param rout outside radius in mm
 		       /// \param hz half-length along the z axis in mm
