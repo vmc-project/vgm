@@ -49,6 +49,7 @@ class TstGeometryViaRoot : public TstVGeometry
     TGeoVolume* CreateTrap();
     TGeoVolume* CreateTrd();
     TGeoVolume* CreateTubs(Double_t sphi, Double_t dphi);
+    TGeoVolume* CreateCtubs(Double_t sphi, Double_t dphi);
     TGeoVolume* PlaceSolids(TGeoVolume* mother,
                      Bool_t fullPhi, Bool_t reflect, Double_t zpos);
 

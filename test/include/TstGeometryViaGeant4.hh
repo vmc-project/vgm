@@ -44,6 +44,7 @@ class TstGeometryViaGeant4 : public TstVGeometry
     G4LogicalVolume* CreateTrap();
     G4LogicalVolume* CreateTrd();
     G4LogicalVolume* CreateTubs(G4double sphi, G4double dphi);
+    G4LogicalVolume* CreateCtubs(G4double sphi, G4double dphi);
     G4LogicalVolume* PlaceSolids(G4LogicalVolume* mother,
                           G4bool fullPhi, G4bool reflect, G4double zpos);
 

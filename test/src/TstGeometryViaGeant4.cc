@@ -38,6 +38,11 @@
 #include "TstGeometryViaGeant4.hh"
 #include "TstParameters.hh"
 
+#include <math.h>
+
+using CLHEP::Hep3Vector;
+using CLHEP::HepRotation;
+
 //_____________________________________________________________________________
 TstGeometryViaGeant4::TstGeometryViaGeant4()
   : TstVGeometry(),
@@ -234,11 +239,94 @@ G4LogicalVolume* TstGeometryViaGeant4::CreateTubs(G4double sphi, G4double dphi)
   return new G4LogicalVolume(tubsS, fBasicMaterial, "tubsV");
 }  
  
+
+//_____________________________________________________________________________
+G4LogicalVolume* TstGeometryViaGeant4::CreateCtubs(G4double /*sphi*/, G4double /*dphi*/)
+{
+  // Input parameters
+  G4double rin  = 20.*cm;
+  G4double rout = 30.*cm;
+  G4double hz = 60.49*cm;
+  G4double sphi = 330.*deg;
+  G4double dphi = 280.*deg;
+  Hep3Vector nLow( 0.00, 0.64, -0.77);
+  Hep3Vector nHigh( 0.00, 0.09, 0.87);
+
+  // Get angles 
+  double thetaLow = nLow.theta();
+  double thetaHigh = nHigh.theta();
+
+  // Calculate new hz
+  double dzLow  = fabs(rout * tan(thetaLow));
+  double dzHigh = fabs(rout * tan(thetaHigh));
+  double dzMax = fmax(dzLow, dzHigh);
+  double hzNew = hz + dzMax*1.2;
+
+  /// Create tube 
+  G4VSolid* tubs = new G4Tubs("tubs", rin, rout, hzNew, sphi, dphi);
+		     
+  // Define  dimensions of boxes
+  //
+  double hzLow = 1.2 * fabs(rout / cos(thetaLow));		     
+  double hzHigh = 1.2 * fabs(rout / cos(thetaHigh));
+
+  double dHz = hzNew-hz;
+  double thetaLow2 = thetaLow;
+  double thetaHigh2 = thetaHigh;
+  if ( thetaLow2 > CLHEP::pi/2. ) thetaLow2 = thetaLow - CLHEP::pi/2.;
+  if ( thetaHigh2 > CLHEP::pi/2. ) thetaHigh2 = thetaHigh - CLHEP::pi/2.;
+  double rCorner = sqrt(rout*rout + dHz*dHz);
+  double thetaPlusLow = atan(dHz/rout) - thetaLow2;
+  double thetaPlusHigh = atan(dHz/rout) - thetaHigh2;
+  double hxLow = 2.*rCorner*cos(thetaPlusLow);
+  double hxHigh = 2.*rCorner*cos(thetaPlusHigh);
+
+  G4VSolid* boxLow = new G4Box("boxLow", hxLow, hxLow, hzLow);  
+  G4VSolid* boxHigh = new G4Box("boxHigh", hxHigh, hxHigh, hzHigh);  
+
+  
+  // Define rotations of boxes
+  //
+  // Rotation axis - cross product of normals
+  Hep3Vector axisLow = Hep3Vector(0,0,1).cross(nLow);
+  double angleLow = Hep3Vector(0,0,1).angle(nLow);
+  HepRotation rotLow;
+  rotLow.set(axisLow, angleLow);
+  
+  Hep3Vector axisHigh = Hep3Vector(0,0,1).cross(nHigh);
+  double angleHigh = Hep3Vector(0,0,1).angle(nHigh);
+  HepRotation rotHigh;
+  rotHigh.set(axisHigh, angleHigh);
+ 
+  // Define displacement of boxes
+  //
+  double zposLow  = fabs(hzLow  / cos(thetaLow));
+  double zposHigh = fabs(hzHigh / cos(thetaHigh));
+  //std::cout << "zposLow="  << zposLow  << std::endl;
+  //std::cout << "zposHigh=" << zposHigh << std::endl;
+
+
+  // Subtract boxes from tube
+  G4VSolid* booleanSolid1
+     = new G4SubtractionSolid("ctubs1", tubs, boxLow,
+                               new HepRotation(rotLow.inverse()),
+                               Hep3Vector(0, 0, - (hz + zposLow)));			
+
+  G4VSolid* booleanSolid2
+     = new G4SubtractionSolid("ctubs2", booleanSolid1, boxHigh,
+                               new HepRotation(rotHigh.inverse()),
+                               Hep3Vector(0, 0, hz + zposHigh));			
+
+  return new G4LogicalVolume(booleanSolid2, fBasicMaterial, "ctubsV");
+}  
+ 
+
 //_____________________________________________________________________________
 G4LogicalVolume* 
 TstGeometryViaGeant4::PlaceSolids(G4LogicalVolume* mother,
                                   G4bool fullPhi, G4bool reflect, G4double zpos)
 {
+
   G4double sphi =   0.*deg;
   G4double dphi = 360.*deg;
   if (!fullPhi) {
@@ -383,7 +471,7 @@ TstGeometryViaGeant4::PlaceSolids(G4LogicalVolume* mother,
 	      "trd", trdV, mother, false, 0);
   }	      
  
-  // Trd
+  // Tubs
   //
   G4LogicalVolume* tubsV = CreateTubs(sphi, dphi);
   new G4PVPlacement(
@@ -396,7 +484,22 @@ TstGeometryViaGeant4::PlaceSolids(G4LogicalVolume* mother,
 	      "tubs", tubsV, mother, false, 0);
   }	      
 
+  // CTubs
+  //
+  G4LogicalVolume* ctubsV = CreateCtubs(sphi, dphi);
+  new G4PVPlacement(
+               HepGeom::Translate3D(-wSize + (counter)*dz, dy, zpos),
+	       ctubsV, "ctubs", mother, false, 0);
+
+  if (reflect) {
+    G4ReflectionFactory::Instance()
+      ->Place(HepGeom::Translate3D(-wSize + (counter)*dz, dy, -zpos) * reflect3D,
+	      "ctubs", ctubsV, mother, false, 0);
+  }	      
+
+ 
   return mother;
+  
  }
 
 //
