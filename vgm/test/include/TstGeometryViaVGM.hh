@@ -45,6 +45,7 @@ class TstGeometryViaVGM : public TstVGeometry
     VGM::IVolume* CreateTrap();
     VGM::IVolume* CreateTrd();
     VGM::IVolume* CreateTubs(double sphi, double dphi);
+    VGM::IVolume* CreateCtubs(double sphi, double dphi);
     void* PlaceSolids(VGM::IVolume* mother,
                       bool fullPhi, bool reflect, double zpos);
  

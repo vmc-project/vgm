@@ -249,9 +249,23 @@ TGeoVolume* TstGeometryViaRoot::CreateTubs(Double_t sphi, Double_t dphi)
 }  
  
 //_____________________________________________________________________________
+TGeoVolume* TstGeometryViaRoot::CreateCtubs(Double_t /*sphi*/, Double_t /*dphi*/)
+{
+  //TGeoShape* tubsS
+  //  = new TGeoCtub("ctubsS", 20., 30, 60.49, sphi, sphi + dphi,
+  //                 0.00, 0.64, -0.77, 0.00, 0.09, 0.87);
+  TGeoShape* tubsS
+    = new TGeoCtub("ctubsS", 20., 30, 60.49, 330., 610.,
+                   0.00, 0.64, -0.77, 0.00, 0.09, 0.87);
+
+  return new TGeoVolume("tubsV", tubsS, fBasicMedium);
+}  
+ 
+//_____________________________________________________________________________
 TGeoVolume* TstGeometryViaRoot::PlaceSolids(TGeoVolume* mother,
                                      Bool_t fullPhi, Bool_t reflect, Double_t zpos)
 {
+
   Double_t sphi =   0.;
   Double_t dphi = 360.;
   if (!fullPhi) {
@@ -370,6 +384,15 @@ TGeoVolume* TstGeometryViaRoot::PlaceSolids(TGeoVolume* mother,
   if (reflect)
     mother->AddNode(tubsV, 1,
                   new TGeoCombiTrans(-wSize + (counter)*dz, -dy, -zpos, reflect3D));
+
+   // Ctubs
+  //
+  TGeoVolume* ctubsV = CreateCtubs(sphi, dphi);
+  mother->AddNode(ctubsV, 0, 
+                  new TGeoTranslation(-wSize + (counter)*dz, dy, zpos));
+  if (reflect)
+    mother->AddNode(ctubsV, 1,
+                  new TGeoCombiTrans(-wSize + (counter)*dz, dy, -zpos, reflect3D));
 
   return mother;   		  
 }

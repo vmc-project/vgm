@@ -206,6 +206,17 @@ IVolume* TstGeometryViaVGM::CreateTubs(double sphi, double dphi)
 }  
  
 //_____________________________________________________________________________
+IVolume* TstGeometryViaVGM::CreateCtubs(double /*sphi*/, double /*dphi*/)
+{
+  ISolid* ctubsS
+    = fFactory->CreateCtubs("ctubsS", 20.* fCm, 30* fCm, 60.49* fCm, 
+                           330.* fDeg, 280.*fDeg,
+			   0.00, 0.64, -0.77, 0.00, 0.09, 0.87);
+
+  return fFactory->CreateVolume("ctubsV", ctubsS, "Basic");
+}  
+ 
+//_____________________________________________________________________________
 void* TstGeometryViaVGM::PlaceSolids(IVolume* mother,
                                      bool fullPhi, bool reflect, double zpos)
 {
@@ -333,7 +344,7 @@ void* TstGeometryViaVGM::PlaceSolids(IVolume* mother,
                  ClhepVGM::Transform(
                    HepGeom::Translate3D(-wSize + (counter)*dz,  dy, -zpos) * reflect3D));
  
-  // Trd
+  // Tube
   //
   IVolume* tubsV = CreateTubs(sphi, dphi);
   fFactory->CreatePlacement("tubs", 0, tubsV, mother, 
@@ -343,6 +354,17 @@ void* TstGeometryViaVGM::PlaceSolids(IVolume* mother,
     fFactory->CreatePlacement("tubs", 0, tubsV, mother, 
                  ClhepVGM::Transform(
                    HepGeom::Translate3D(-wSize + (counter)*dz, -dy, -zpos) * reflect3D));
+
+  // Ctubs
+  //
+  IVolume* ctubsV = CreateCtubs(sphi, dphi);
+  fFactory->CreatePlacement("ctubs", 0, ctubsV, mother, 
+               ClhepVGM::Transform(
+                 HepGeom::Translate3D(-wSize + (counter)*dz, dy, zpos)));
+  if (reflect)
+    fFactory->CreatePlacement("ctubs", 0, ctubsV, mother, 
+                 ClhepVGM::Transform(
+                   HepGeom::Translate3D(-wSize + (counter)*dz, dy, -zpos) * reflect3D));
 
   return (void*) fFactory->Top();
  }
