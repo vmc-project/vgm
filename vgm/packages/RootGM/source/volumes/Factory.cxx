@@ -29,6 +29,7 @@
 #include "RootGM/solids/BooleanSolid.h"
 #include "RootGM/solids/Box.h"
 #include "RootGM/solids/Cons.h"
+#include "RootGM/solids/Ctubs.h"
 #include "RootGM/solids/EllipticalTube.h"
 #include "RootGM/solids/Para.h"
 #include "RootGM/solids/Polycone.h"
@@ -199,6 +200,13 @@ RootGM::Factory::ImportSolid(TGeoShape* shape)
     VGM::ITrd* vgmTrd = new RootGM::Trd(trd2);
     SolidStore().push_back(vgmTrd);
     return vgmTrd; 
+  }
+
+  TGeoCtub* ctubs = dynamic_cast<TGeoCtub*>(shape);
+  if (ctubs) { 
+    VGM::ICtubs* vgmCtubs = new RootGM::Ctubs(ctubs);
+    SolidStore().push_back(vgmCtubs);
+    return vgmCtubs; 
   }
 
   TGeoTubeSeg* tubs = dynamic_cast<TGeoTubeSeg*>(shape);
@@ -496,6 +504,23 @@ RootGM::Factory::CreateCons(const std::string& name,
 //
   VGM::ISolid* vgmSolid 
     = new RootGM::Cons(name, rin1, rout1, rin2, rout2, hz, sphi, dphi);
+
+  SolidStore().push_back(vgmSolid);
+  return vgmSolid; 
+}  			     
+			       
+//_____________________________________________________________________________
+VGM::ISolid*  
+RootGM::Factory::CreateCtubs(const std::string& name, 
+                            double rin, double rout, double hz, 
+			    double sphi, double dphi,
+			    double nxlow, double nylow, double nzlow,
+			    double nxhigh, double nyhigh, double nzhigh)
+{			       
+//
+  VGM::ISolid* vgmSolid 
+    = new RootGM::Ctubs(name, rin, rout, hz, sphi, dphi, 
+                        nxlow, nylow, nzlow, nxhigh, nyhigh, nzhigh);
 
   SolidStore().push_back(vgmSolid);
   return vgmSolid; 

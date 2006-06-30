@@ -21,6 +21,7 @@ std::string VGM::SolidTypeName(VGM::SolidType typeId)
   switch (typeId) {
     case kBox:          return "Box";       break;
     case kCons:         return "Cons";      break;
+    case kCtubs:        return "Ctubs";     break;
     case kEltu:         return "Eltu";      break;
     case kPara:         return "Para";      break;
     case kPolycone:     return "Polycone";  break;

@@ -18,6 +18,7 @@ namespace VGM {
   enum SolidType {
     kBox,
     kCons,
+    kCtubs,
     kEltu,
     kPara,
     kPolycone,

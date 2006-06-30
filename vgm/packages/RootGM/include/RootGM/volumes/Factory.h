@@ -47,6 +47,12 @@ namespace RootGM {
 			       double rin2, double rout2, double hz,
 	                       double sphi, double dphi); 
 			       
+      virtual VGM::ISolid*  CreateCtubs(const std::string& name, 
+                               double rin, double rout, double hz, 
+			       double sphi, double dphi,
+			       double nxlow, double nylow, double nzlow,
+			       double nxhigh, double nyhigh, double nzhigh);
+			       
       virtual VGM::ISolid*  CreateEllipticalTube(
                                const std::string& name, 
                                double dx, double dy, double hz); 

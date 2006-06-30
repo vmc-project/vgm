@@ -41,6 +41,7 @@
 #include "Geant4GM/solids/BooleanSolid.h"
 #include "Geant4GM/solids/Box.h"
 #include "Geant4GM/solids/Cons.h"
+#include "Geant4GM/solids/Ctubs.h"
 #include "Geant4GM/solids/EllipticalTube.h"
 #include "Geant4GM/solids/Para.h"
 #include "Geant4GM/solids/Polycone.h"
@@ -217,7 +218,7 @@ Geant4GM::Factory::ImportSolid(G4VSolid* solid)
   if (boolean) { 
     ImportConstituentSolid(0, boolean);
     ImportConstituentSolid(1, boolean);
-    VGM::IBooleanSolid* vgmBoolean = new Geant4GM::BooleanSolid(boolean);
+    VGM::IBooleanSolid* vgmBoolean = new Geant4GM::BooleanSolid(boolean, reflSolid);
     SolidStore().push_back(vgmBoolean);
 
     if (Debug()>0) {
@@ -461,6 +462,23 @@ Geant4GM::Factory::CreateCons(const std::string& name,
 //
   VGM::ISolid* vgmSolid 
     = new Geant4GM::Cons(name, rin1, rout1, rin2, rout2, hz, sphi, dphi);
+
+  SolidStore().push_back(vgmSolid);
+  return vgmSolid; 
+}  			     
+			       
+//_____________________________________________________________________________
+VGM::ISolid*  
+Geant4GM::Factory::CreateCtubs(const std::string& name, 
+                              double rin, double rout, double hz, 
+			      double sphi, double dphi,
+			      double nxlow, double nylow, double nzlow,
+			      double nxhigh, double nyhigh, double nzhigh)
+{			      
+//
+  VGM::ISolid* vgmSolid 
+    = new Geant4GM::Ctubs(name, rin, rout, hz, sphi, dphi,
+                          nxlow, nylow, nzlow, nxhigh, nyhigh, nzhigh);
 
   SolidStore().push_back(vgmSolid);
   return vgmSolid; 
