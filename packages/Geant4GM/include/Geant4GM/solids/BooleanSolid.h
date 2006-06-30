@@ -17,6 +17,7 @@
 #include "BaseVGM/solids/VBooleanSolid.h"
 
 class G4BooleanSolid;
+class G4ReflectedSolid;
 
 namespace Geant4GM {
 
@@ -29,7 +30,8 @@ namespace Geant4GM {
 		   VGM::ISolid* solidB, 
                    CLHEP::HepRotation* rotation, 
 		   const CLHEP::Hep3Vector& translation);
-      BooleanSolid(G4BooleanSolid* booleanSolid);
+      BooleanSolid(G4BooleanSolid* booleanSolid,
+                   G4ReflectedSolid* reflectedBoolean);
       virtual ~BooleanSolid();
 
       // methods
@@ -39,6 +41,7 @@ namespace Geant4GM {
       virtual VGM::ISolid*     ConstituentSolidA() const;
       virtual VGM::ISolid*     ConstituentSolidB() const;
       virtual VGM::Transform   Displacement() const;      
+      virtual bool             ToBeReflected() const;     
 
       // utility method
       static G4VSolid* GetConstituentSolid(
@@ -53,8 +56,12 @@ namespace Geant4GM {
       const G4DisplacedSolid* DisplacedSolid() const;
 
       G4BooleanSolid* fBooleanSolid;
+      bool            fToBeReflected;
   };
   
 }  
+
+inline bool Geant4GM::BooleanSolid::ToBeReflected() const
+{ return fToBeReflected; }     
 
 #endif //GEANT4_GM_BOOLEAN_SOLID_H

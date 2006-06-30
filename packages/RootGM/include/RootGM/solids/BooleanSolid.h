@@ -39,6 +39,7 @@ namespace RootGM {
       virtual VGM::ISolid*      ConstituentSolidA() const;
       virtual VGM::ISolid*      ConstituentSolidB() const;
       virtual VGM::Transform    Displacement() const;      
+      virtual bool              ToBeReflected() const;     
 
       // utility method
       static TGeoShape* GetConstituentSolid(
@@ -59,5 +60,8 @@ namespace RootGM {
   };
 
 }
+
+inline bool RootGM::BooleanSolid::ToBeReflected() const
+{ return false; }     
 
 #endif //ROOT_GM_BOOLEAN_SOLID_H
