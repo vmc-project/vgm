@@ -11,6 +11,7 @@
 #include "G4IntersectionSolid.hh"
 #include "G4SubtractionSolid.hh"
 #include "G4UnionSolid.hh"
+#include "G4ReflectedSolid.hh"
 
 #include "ClhepVGM/transform.h"
 
@@ -27,7 +28,8 @@ Geant4GM::BooleanSolid::BooleanSolid(
   : VGM::ISolid(), 
     VGM::IBooleanSolid(),
     BaseVGM::VBooleanSolid(),
-    fBooleanSolid(0) 
+    fBooleanSolid(0),
+    fToBeReflected(false)
 {
 /// Standard constructor to define Boolean solids via constituents
 /// \param boolType type of Boolean operation (kIntersection, kSubtraction,
@@ -69,15 +71,22 @@ Geant4GM::BooleanSolid::BooleanSolid(
 }
 
 //_____________________________________________________________________________
-Geant4GM::BooleanSolid::BooleanSolid(G4BooleanSolid* booleanSolid)
+Geant4GM::BooleanSolid::BooleanSolid(G4BooleanSolid* booleanSolid,
+                                     G4ReflectedSolid* reflectedBoolean)
   : VGM::ISolid(), 
     VGM::IBooleanSolid(),
     BaseVGM::VBooleanSolid(),
-    fBooleanSolid(booleanSolid) 
+    fBooleanSolid(booleanSolid), 
+    fToBeReflected(false)
 {
 /// Standard constructor to define Boolean solid via G4 object 
-  
-  Geant4GM::SolidMap::Instance()->AddSolid(this, fBooleanSolid); 
+
+  if (reflectedBoolean) {
+    fToBeReflected = true;
+    Geant4GM::SolidMap::Instance()->AddSolid(this, reflectedBoolean);
+  }   
+  else 
+    Geant4GM::SolidMap::Instance()->AddSolid(this, fBooleanSolid); 
 }
 
 //_____________________________________________________________________________

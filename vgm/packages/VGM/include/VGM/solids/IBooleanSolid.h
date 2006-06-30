@@ -48,7 +48,11 @@ namespace VGM {
 			    /// 
                             /// Return the 3D displacement of the second 
 			    /// constituent solid with respect to the first one
-      virtual Transform    Displacement() const = 0;      
+      virtual Transform    Displacement() const = 0; 
+			    /// 
+                            /// Return true if the solid has to be first
+			    /// reflected before being placed
+      virtual bool         ToBeReflected() const = 0;     
 
       // streaming
       virtual std::ostream& Put(std::ostream& out) const = 0;
