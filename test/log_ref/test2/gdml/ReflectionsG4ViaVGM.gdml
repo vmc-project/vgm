@@ -27,8 +27,14 @@
       <position  name=  "pos_20"  x="  -333.3333"  y="   250.0000"  z="  -100.0000"  unit="cm" />
       <position  name=  "pos_21"  x="  -166.6667"  y="  -250.0000"  z="   100.0000"  unit="cm" />
       <position  name=  "pos_22"  x="  -166.6667"  y="  -250.0000"  z="  -100.0000"  unit="cm" />
+      <position  name=  "pos_23"  x="  -166.6667"  y="   250.0000"  z="   100.0000"  unit="cm" />
+      <position  name=  "pos_24"  x="  -166.6667"  y="   250.0000"  z="  -100.0000"  unit="cm" />
+      <position  name=  "pos_25"  x="     0.0000"  y="     0.0000"  z="    96.8753"  unit="cm" />
+      <position  name=  "pos_26"  x="     0.0000"  y="     0.0000"  z="  -121.3603"  unit="cm" />
 
       <rotation  name=   "rot_0"  x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name=   "rot_1"  x="    -5.9061"  y="     0.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name=   "rot_2"  x="  -140.2677"  y="     0.0000"  z="     0.0000"  unit="degree" />
    </define>
 
    <materials>
@@ -178,6 +184,39 @@
          rmin="   20.0000"  rmax="   40.0000"  z="   50.0000"
          startphi="    0.0000"  deltaphi="  360.0000" />
 
+      <!-- !!! unsupported shape  !!!  name= "ctubsV_s" -->
+      <!-- dummy box is written instead  -->
+      <box  lunit="cm" aunit="degree"
+         name="ctubsV_s"
+         x="    0.1000"  y="    0.1000"  z="    0.1000" />
+
+      <tube  lunit="cm" aunit="degree"
+         name="ctubsV_refl_constA_constA_s"
+         rmin="   20.0000"  rmax="   30.0000"  z="   90.4121"
+         startphi="  330.0000"  deltaphi="  280.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="ctubsV_refl_constA_constB_s"
+         x="   84.3746"  y="   84.3746"  z="   46.8117" />
+
+      <subtraction name="ctubsV_refl_constA_s" >
+         <first  ref="ctubsV_refl_constA_constA_s" />
+         <second ref="ctubsV_refl_constA_constB_s" />
+         <positionref ref="pos_26" />
+         <rotationref ref="rot_2" />
+      </subtraction>
+
+      <box  lunit="cm" aunit="degree"
+         name="ctubsV_refl_constB_s"
+         x="   65.8394"  y="   65.8394"  z="   36.1921" />
+
+      <subtraction name="ctubsV_refl_s" >
+         <first  ref="ctubsV_refl_constA_s" />
+         <second ref="ctubsV_refl_constB_s" />
+         <positionref ref="pos_25" />
+         <rotationref ref="rot_1" />
+      </subtraction>
+
    </solids>
 
    <structure>
@@ -291,6 +330,16 @@
          <solidref ref="tubsV_refl_s"/>
       </volume>
 
+      <volume name="ctubsV">
+         <materialref ref="Basic"/>
+         <solidref ref="ctubsV_s"/>
+      </volume>
+
+      <volume name="ctubsV_refl">
+         <materialref ref="Basic"/>
+         <solidref ref="ctubsV_refl_s"/>
+      </volume>
+
       <volume name="worldV">
          <materialref ref="Basic"/>
          <solidref ref="worldV_s"/>
@@ -402,6 +451,16 @@
          <physvol>
             <volumeref ref="tubsV_refl"/>
                <positionref ref="pos_22"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="ctubsV"/>
+               <positionref ref="pos_23"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="ctubsV_refl"/>
+               <positionref ref="pos_24"/>
                <rotationref ref="rot_0"/>
          </physvol>
       </volume>

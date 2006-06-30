@@ -159,6 +159,13 @@
                           0.00000;  1.00000;  0.00000; 
                           0.00000;  0.00000; -1.00000"> <volume name="tubsV"/>
       </transform>
+      <posXYZ   X_Y_Z="-166.6667; 250.0000; 100.0000"> <volume name="tubsV"/>
+      </posXYZ>
+      <transform    pos="-166.6667; 250.0000; -100.0000"
+                 matrix=" 1.00000;  0.00000;  0.00000; 
+                          0.00000;  1.00000;  0.00000; 
+                          0.00000;  0.00000; -1.00000"> <volume name="tubsV"/>
+      </transform>
    </composition>
 
 

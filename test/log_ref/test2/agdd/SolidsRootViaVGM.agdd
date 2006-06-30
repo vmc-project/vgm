@@ -80,6 +80,12 @@
       profile=" 0.0000; 360.0000"
       Rio_Z  ="20.0000; 40.0000; 100.0000" />
 
+   <!-- !!! unsupported shape  !!!  name= "ctubsV" -->
+   <!-- dummy box is written instead  -->
+   <box    name="ctubsV"
+      material="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
 
    <composition name="worldV_comp">
       <posXYZ   X_Y_Z="-1000.0000; -250.0000;   0.0000"> <volume name="boxV"/>
@@ -103,6 +109,8 @@
       <posXYZ   X_Y_Z="-333.3333; 250.0000;   0.0000"> <volume name="trdV"/>
       </posXYZ>
       <posXYZ   X_Y_Z="-166.6667; -250.0000;   0.0000"> <volume name="tubsV"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-166.6667; 250.0000;   0.0000"> <volume name="ctubsV"/>
       </posXYZ>
    </composition>
 

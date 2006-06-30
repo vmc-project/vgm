@@ -1,12 +1,14 @@
 
 *************************************************************
- Geant4 version Name: geant4-08-00    (16-December-2005)
+ Geant4 version Name: geant4-08-00-patch-01    (10-February-2006)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
 *************************************************************
 
 Geant4 geometry will be defined via VGM and exported to Root
+thetaLow= 140.268
+thetaHigh= 5.90614
 TestSolids finished
 Go to export
 VGM info:   Exporting element: 
@@ -76,6 +78,9 @@ VGM info:      10th volume: trdV
 VGM info:   Exporting solid: 
 VGM info:      Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
 VGM info:      11th volume: tubsV
+VGM info:   Exporting solid: 
+VGM info:      Ctubs  "tubs"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = -30deg  dphi = 280deg  nlow = (0, 0.64, -0.77)  nhigh = (0, 0.09, 0.87)
+VGM info:      12th volume: ctubsV
 VGM info:   ExportPlacements for 0th volume worldV
 VGM info:      0th daughter vol = box  simple placement: box
 VGM info:      1th daughter vol = cons  simple placement: cons
@@ -88,6 +93,7 @@ VGM info:      7th daughter vol = torus  simple placement: torus
 VGM info:      8th daughter vol = trap  simple placement: trap
 VGM info:      9th daughter vol = trd  simple placement: trd
 VGM info:      10th daughter vol = tubs  simple placement: tubs
+VGM info:      11th daughter vol = ctubs  simple placement: ctubs
 VGM info:   ExportPlacements for 1th volume boxV
 VGM info:   ExportPlacements for 2th volume consV
 VGM info:   ExportPlacements for 3th volume eltuV
@@ -99,4 +105,5 @@ VGM info:   ExportPlacements for 8th volume torusV
 VGM info:   ExportPlacements for 9th volume trapV
 VGM info:   ExportPlacements for 10th volume trdV
 VGM info:   ExportPlacements for 11th volume tubsV
+VGM info:   ExportPlacements for 12th volume ctubsV
 Export finished

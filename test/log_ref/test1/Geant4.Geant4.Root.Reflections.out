@@ -1,6 +1,6 @@
 
 *************************************************************
- Geant4 version Name: geant4-08-00    (16-December-2005)
+ Geant4 version Name: geant4-08-00-patch-01    (10-February-2006)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -24,7 +24,7 @@ VGM info:   Importing material:
 VGM info:    Material:    Basic     density:  2.700 g/cm3   temperature: 273.15 K  pressure:   1.00 atm  RadLength:   8.893 cm 
    --->  Element: Basic ( )   Z = 13.0   N =  27.0   A =  26.98 g/mole  fractionMass: 100.00 %  Abundance 100.00 %
 VGM info:   Importing material: 
-VGM info:    Material:      Air     density:  1.290 kg/m3   temperature: 273.15 K  pressure:   1.00 atm  RadLength: 285.161 m  
+VGM info:    Material:      Air     density:  1.290 mg/cm3  temperature: 273.15 K  pressure:   1.00 atm  RadLength: 285.161 m  
    --->  Element: Nitrogen (N)   Z =  7.0   N =  14.0   A =  14.01 g/mole  fractionMass:  70.00 %  Abundance  72.71 %
    --->  Element: Oxygen (O)   Z =  8.0   N =  16.0   A =  16.00 g/mole  fractionMass:  30.00 %  Abundance  27.29 %
 VGM info:   Importing material: 
@@ -99,6 +99,42 @@ VGM info:   ImportDaughters for tubsV
 VGM info:   Importing LV: tubsV_refl
 VGM info:   Importing solid: tubsS_refl
 VGM info:   ImportDaughters for tubsV_refl
+VGM info:   Importing LV: ctubsV
+VGM info:   Importing solid: ctubs2
+VGM info:   Importing solid: ctubs1
+VGM info:   Importing solid: tubs
+VGM info:   Importing solid: boxLow
+VGM info:   Imported Boolean solid: 
+VGM info:   Boolean  "ctubs1"  Subtraction: 
+  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
+  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
+  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
+  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
+VGM info:   Importing solid: boxHigh
+VGM info:   Imported Boolean solid: 
+VGM info:   Boolean  "ctubs2"  Subtraction: 
+  ConstituentA = Boolean  "ctubs1"  Subtraction: 
+  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
+  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
+  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
+  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
+  ConstituentB = Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
+  Displacement translation (object):  ( 0,  0,  968.753) mm 
+  Displacement rotation (object):  (-5.90614,  -0,  0) deg    no reflectionZ
+VGM info:   ImportDaughters for ctubsV
+VGM info:   Importing LV: ctubsV_refl
+VGM info:   Importing solid: ctubs2_refl
+VGM info:   Imported Boolean solid: 
+VGM info:   Boolean  "ctubs2"  Subtraction: 
+  ConstituentA = Boolean  "ctubs1"  Subtraction: 
+  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
+  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
+  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
+  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
+  ConstituentB = Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
+  Displacement translation (object):  ( 0,  0,  968.753) mm 
+  Displacement rotation (object):  (-5.90614,  -0,  0) deg    no reflectionZ
+VGM info:   ImportDaughters for ctubsV_refl
 VGM info:   Import positions: 
 VGM info:   0th volume: worldV  
 VGM info:      0th daughter  lv=boxV vgmVol=boxV
@@ -123,6 +159,8 @@ VGM info:      18th daughter  lv=trdV vgmVol=trdV
 VGM info:      19th daughter  lv=trdV_refl vgmVol=trdV_refl
 VGM info:      20th daughter  lv=tubsV vgmVol=tubsV
 VGM info:      21th daughter  lv=tubsV_refl vgmVol=tubsV_refl
+VGM info:      22th daughter  lv=ctubsV vgmVol=ctubsV
+VGM info:      23th daughter  lv=ctubsV_refl vgmVol=ctubsV_refl
 VGM info:   1th volume: boxV  
 VGM info:   2th volume: boxV_refl  
 VGM info:   3th volume: consV  
@@ -145,6 +183,8 @@ VGM info:   19th volume: trdV
 VGM info:   20th volume: trdV_refl  
 VGM info:   21th volume: tubsV  
 VGM info:   22th volume: tubsV_refl  
+VGM info:   23th volume: ctubsV  
+VGM info:   24th volume: ctubsV_refl  
 VGM info:   
 Geant4_GM_Factory factory solids store: 
    0th solid: Box  "worldS"  hx = 10000mm  hy = 10000mm  hz = 10000mm
@@ -182,8 +222,34 @@ Geant4_GM_Factory factory solids store:
    20th solid: Trd  "trdS"  hx1 = 300mm  hx2 = 200mm  hy1 = 500mm  hy2 = 400mm  hz = 500mm
    21th solid: Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
    22th solid: Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
+   23th solid: Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
+   24th solid: Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
+   25th solid: Boolean  "ctubs1"  Subtraction: 
+  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
+  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
+  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
+  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
+   26th solid: Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
+   27th solid: Boolean  "ctubs2"  Subtraction: 
+  ConstituentA = Boolean  "ctubs1"  Subtraction: 
+  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
+  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
+  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
+  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
+  ConstituentB = Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
+  Displacement translation (object):  ( 0,  0,  968.753) mm 
+  Displacement rotation (object):  (-5.90614,  -0,  0) deg    no reflectionZ
+   28th solid: Boolean  "ctubs2"  Subtraction: 
+  ConstituentA = Boolean  "ctubs1"  Subtraction: 
+  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
+  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
+  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
+  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
+  ConstituentB = Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
+  Displacement translation (object):  ( 0,  0,  968.753) mm 
+  Displacement rotation (object):  (-5.90614,  -0,  0) deg    no reflectionZ
 Geant4_GM_Factory factory volumes store: 
-   0th: Volume: "worldV" material "Basic" solid "Box"  22 daughters: "box"  "box"  "cons"  "cons"  "cons"  "cons"  "para"  "para"  "pcone"  "pcone"  "phedra"  "phedra"  "sphere"  "sphere"  "torus"  "torus"  "trap"  "trap"  "trd"  "trd"  "tubs"  "tubs"  
+   0th: Volume: "worldV" material "Basic" solid "Box"  24 daughters: "box"  "box"  "cons"  "cons"  "cons"  "cons"  "para"  "para"  "pcone"  "pcone"  "phedra"  "phedra"  "sphere"  "sphere"  "torus"  "torus"  "trap"  "trap"  "trd"  "trd"  "tubs"  "tubs"  "ctubs"  "ctubs"  
    1th: Volume: "boxV" material "Basic" solid "Box"  0 daughters: 
    2th: Volume: "boxV_refl" material "Basic" solid "Box"  0 daughters: 
    3th: Volume: "consV" material "Basic" solid "Cons"  0 daughters: 
@@ -206,6 +272,8 @@ Geant4_GM_Factory factory volumes store:
    20th: Volume: "trdV_refl" material "Basic" solid "Trd"  0 daughters: 
    21th: Volume: "tubsV" material "Basic" solid "Tubs"  0 daughters: 
    22th: Volume: "tubsV_refl" material "Basic" solid "Tubs"  0 daughters: 
+   23th: Volume: "ctubsV" material "Basic" solid "Boolean"  0 daughters: 
+   24th: Volume: "ctubsV_refl" material "Basic" solid "Boolean"  0 daughters: 
 VGM info:   Geant4GM::Factory::Import finished.
 Import finished
 Go to export
@@ -319,6 +387,52 @@ VGM info:      21th volume: tubsV
 VGM info:   Exporting solid: 
 VGM info:      Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
 VGM info:      22th volume: tubsV_refl
+VGM info:   Exporting solid: 
+VGM info:      Boolean  "ctubs2"  Subtraction: 
+  ConstituentA = Boolean  "ctubs1"  Subtraction: 
+  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
+  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
+  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
+  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
+  ConstituentB = Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
+  Displacement translation (object):  ( 0,  0,  968.753) mm 
+  Displacement rotation (object):  (-5.90614,  -0,  0) deg    no reflectionZ
+VGM info:   Exporting solid: 
+VGM info:      Boolean  "ctubs1"  Subtraction: 
+  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
+  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
+  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
+  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
+VGM info:   Exporting solid: 
+VGM info:      Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
+VGM info:   Exporting solid: 
+VGM info:      Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
+VGM info:   Exporting solid: 
+VGM info:      Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
+VGM info:      23th volume: ctubsV
+VGM info:   Exporting solid: 
+VGM info:      Boolean  "ctubs2"  Subtraction: 
+  ConstituentA = Boolean  "ctubs1"  Subtraction: 
+  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
+  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
+  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
+  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
+  ConstituentB = Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
+  Displacement translation (object):  ( 0,  0,  968.753) mm 
+  Displacement rotation (object):  (-5.90614,  -0,  0) deg    no reflectionZ
+VGM info:   Exporting solid: 
+VGM info:      Boolean  "ctubs1"  Subtraction: 
+  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
+  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
+  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
+  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
+VGM info:   Exporting solid: 
+VGM info:      Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
+VGM info:   Exporting solid: 
+VGM info:      Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
+VGM info:   Exporting solid: 
+VGM info:      Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
+VGM info:      24th volume: ctubsV_refl
 VGM info:   ExportPlacements for 0th volume worldV
 VGM info:      0th daughter vol = box  simple placement: box
 VGM info:      1th daughter vol = box  simple placement: box
@@ -342,6 +456,8 @@ VGM info:      18th daughter vol = trd  simple placement: trd
 VGM info:      19th daughter vol = trd  simple placement: trd
 VGM info:      20th daughter vol = tubs  simple placement: tubs
 VGM info:      21th daughter vol = tubs  simple placement: tubs
+VGM info:      22th daughter vol = ctubs  simple placement: ctubs
+VGM info:      23th daughter vol = ctubs  simple placement: ctubs
 VGM info:   ExportPlacements for 1th volume boxV
 VGM info:   ExportPlacements for 2th volume boxV_refl
 VGM info:   ExportPlacements for 3th volume consV
@@ -364,4 +480,6 @@ VGM info:   ExportPlacements for 19th volume trdV
 VGM info:   ExportPlacements for 20th volume trdV_refl
 VGM info:   ExportPlacements for 21th volume tubsV
 VGM info:   ExportPlacements for 22th volume tubsV_refl
+VGM info:   ExportPlacements for 23th volume ctubsV
+VGM info:   ExportPlacements for 24th volume ctubsV_refl
 Export finished

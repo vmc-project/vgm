@@ -1,6 +1,6 @@
 
 *************************************************************
- Geant4 version Name: geant4-08-00    (16-December-2005)
+ Geant4 version Name: geant4-08-00-patch-01    (10-February-2006)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -76,6 +76,11 @@ VGM info:      10th volume: trdV
 VGM info:   Exporting solid: 
 VGM info:      Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
 VGM info:      11th volume: tubsV
+VGM info:   Exporting solid: 
+VGM info:      Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = 330deg  dphi = 280deg  nlow = (0, 0.64, -0.77)  nhigh = (0, 0.09, 0.87)
+thetaLow= 140.268
+thetaHigh= 5.90614
+VGM info:      12th volume: ctubsV
 VGM info:   ExportPlacements for 0th volume worldV
 VGM info:      0th daughter vol = box  simple placement: box
 VGM info:      1th daughter vol = box  simple placement: box
@@ -143,6 +148,32 @@ VGM info:   Importing LV: tubsV_refl
 VGM info:   Importing solid: tubsS_refl
 VGM info:   ImportDaughters for tubsV_refl
 VGM info:   ImportPositions for lv tubsV_refl nofDaughters: 0
+VGM info:      22th daughter vol = ctubs  simple placement: ctubs
+VGM info:      23th daughter vol = ctubs  simple placement: ctubs
+VGM info:   Importing LV: ctubsV_refl
+VGM info:   Importing solid: ctubsS_refl
+VGM info:   Importing solid: boolean
+VGM info:   Importing solid: tubs
+VGM info:   Importing solid: boxLow
+VGM info:   Imported Boolean solid: 
+VGM info:   Boolean  "boolean"  Subtraction: 
+  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
+  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
+  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
+  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
+VGM info:   Importing solid: boxHigh
+VGM info:   Imported Boolean solid: 
+VGM info:   Boolean  "ctubsS"  Subtraction: 
+  ConstituentA = Boolean  "boolean"  Subtraction: 
+  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
+  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
+  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
+  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
+  ConstituentB = Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
+  Displacement translation (object):  ( 0,  0,  968.753) mm 
+  Displacement rotation (object):  (-5.90614,  -0,  0) deg    no reflectionZ
+VGM info:   ImportDaughters for ctubsV_refl
+VGM info:   ImportPositions for lv ctubsV_refl nofDaughters: 0
 VGM info:   ExportPlacements for 1th volume boxV
 VGM info:   ExportPlacements for 2th volume consV
 VGM info:   ExportPlacements for 3th volume eltuV
@@ -154,4 +185,5 @@ VGM info:   ExportPlacements for 8th volume torusV
 VGM info:   ExportPlacements for 9th volume trapV
 VGM info:   ExportPlacements for 10th volume trdV
 VGM info:   ExportPlacements for 11th volume tubsV
+VGM info:   ExportPlacements for 12th volume ctubsV
 Export finished
