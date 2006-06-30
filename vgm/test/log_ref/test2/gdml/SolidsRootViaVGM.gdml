@@ -16,6 +16,7 @@
       <position  name=   "pos_9"  x="  -333.3333"  y="  -250.0000"  z="     0.0000"  unit="cm" />
       <position  name=  "pos_10"  x="  -333.3333"  y="   250.0000"  z="     0.0000"  unit="cm" />
       <position  name=  "pos_11"  x="  -166.6667"  y="  -250.0000"  z="     0.0000"  unit="cm" />
+      <position  name=  "pos_12"  x="  -166.6667"  y="   250.0000"  z="     0.0000"  unit="cm" />
 
       <rotation  name=   "rot_0"  x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
    </define>
@@ -102,6 +103,12 @@
          rmin="   20.0000"  rmax="   40.0000"  z="   50.0000"
          startphi="    0.0000"  deltaphi="  360.0000" />
 
+      <!-- !!! unsupported shape  !!!  name= "ctubsV_s" -->
+      <!-- dummy box is written instead  -->
+      <box  lunit="cm" aunit="degree"
+         name="ctubsV_s"
+         x="    0.1000"  y="    0.1000"  z="    0.1000" />
+
    </solids>
 
    <structure>
@@ -160,6 +167,11 @@
          <solidref ref="tubsV_s"/>
       </volume>
 
+      <volume name="ctubsV">
+         <materialref ref="Basic"/>
+         <solidref ref="ctubsV_s"/>
+      </volume>
+
       <volume name="worldV">
          <materialref ref="Basic"/>
          <solidref ref="worldV_s"/>
@@ -216,6 +228,11 @@
          <physvol>
             <volumeref ref="tubsV"/>
                <positionref ref="pos_11"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="ctubsV"/>
+               <positionref ref="pos_12"/>
                <rotationref ref="rot_0"/>
          </physvol>
       </volume>

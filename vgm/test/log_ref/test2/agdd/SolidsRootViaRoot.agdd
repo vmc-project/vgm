@@ -104,6 +104,8 @@
       </posXYZ>
       <posXYZ   X_Y_Z="-166.6667; -250.0000;   0.0000"> <volume name="tubsV"/>
       </posXYZ>
+      <posXYZ   X_Y_Z="-166.6667; 250.0000;   0.0000"> <volume name="tubsV"/>
+      </posXYZ>
    </composition>
 
 

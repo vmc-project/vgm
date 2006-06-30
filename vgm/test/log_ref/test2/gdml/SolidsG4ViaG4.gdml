@@ -16,8 +16,13 @@
       <position  name=   "pos_9"  x="  -333.3333"  y="  -250.0000"  z="     0.0000"  unit="cm" />
       <position  name=  "pos_10"  x="  -333.3333"  y="   250.0000"  z="     0.0000"  unit="cm" />
       <position  name=  "pos_11"  x="  -166.6667"  y="  -250.0000"  z="     0.0000"  unit="cm" />
+      <position  name=  "pos_12"  x="  -166.6667"  y="   250.0000"  z="     0.0000"  unit="cm" />
+      <position  name=  "pos_13"  x="     0.0000"  y="     0.0000"  z="    96.8753"  unit="cm" />
+      <position  name=  "pos_14"  x="     0.0000"  y="     0.0000"  z="  -121.3603"  unit="cm" />
 
       <rotation  name=   "rot_0"  x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name=   "rot_1"  x="    -5.9061"  y="     0.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name=   "rot_2"  x="  -140.2677"  y="     0.0000"  z="     0.0000"  unit="degree" />
    </define>
 
    <materials>
@@ -102,6 +107,33 @@
          rmin="   20.0000"  rmax="   40.0000"  z="   50.0000"
          startphi="    0.0000"  deltaphi="  360.0000" />
 
+      <tube  lunit="cm" aunit="degree"
+         name="ctubsV_constA_constA_s"
+         rmin="   20.0000"  rmax="   30.0000"  z="   90.4121"
+         startphi="  330.0000"  deltaphi="  280.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="ctubsV_constA_constB_s"
+         x="   84.3746"  y="   84.3746"  z="   46.8117" />
+
+      <subtraction name="ctubsV_constA_s" >
+         <first  ref="ctubsV_constA_constA_s" />
+         <second ref="ctubsV_constA_constB_s" />
+         <positionref ref="pos_14" />
+         <rotationref ref="rot_2" />
+      </subtraction>
+
+      <box  lunit="cm" aunit="degree"
+         name="ctubsV_constB_s"
+         x="   65.8394"  y="   65.8394"  z="   36.1921" />
+
+      <subtraction name="ctubsV_s" >
+         <first  ref="ctubsV_constA_s" />
+         <second ref="ctubsV_constB_s" />
+         <positionref ref="pos_13" />
+         <rotationref ref="rot_1" />
+      </subtraction>
+
    </solids>
 
    <structure>
@@ -160,6 +192,11 @@
          <solidref ref="tubsV_s"/>
       </volume>
 
+      <volume name="ctubsV">
+         <materialref ref="Basic"/>
+         <solidref ref="ctubsV_s"/>
+      </volume>
+
       <volume name="worldV">
          <materialref ref="Basic"/>
          <solidref ref="worldV_s"/>
@@ -216,6 +253,11 @@
          <physvol>
             <volumeref ref="tubsV"/>
                <positionref ref="pos_11"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="ctubsV"/>
+               <positionref ref="pos_12"/>
                <rotationref ref="rot_0"/>
          </physvol>
       </volume>

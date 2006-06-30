@@ -1,6 +1,6 @@
 
 *************************************************************
- Geant4 version Name: geant4-08-00    (16-December-2005)
+ Geant4 version Name: geant4-08-00-patch-01    (10-February-2006)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -68,6 +68,9 @@ VGM info:   ImportDaughters for trdV
 VGM info:   Importing volume: tubsV
 VGM info:   Importing shape: tubsS
 VGM info:   ImportDaughters for tubsV
+VGM info:   Importing volume: tubsV
+VGM info:   Importing shape: ctubsS
+VGM info:   ImportDaughters for tubsV
 VGM info:   Import positions: 
 VGM info:   0th volume: worldV  
 VGM info:      0th daughter  rtVol = boxV vgmVol = boxV
@@ -81,6 +84,7 @@ VGM info:      7th daughter  rtVol = torusV vgmVol = torusV
 VGM info:      8th daughter  rtVol = trapV vgmVol = trapV
 VGM info:      9th daughter  rtVol = trdV vgmVol = trdV
 VGM info:      10th daughter  rtVol = tubsV vgmVol = tubsV
+VGM info:      11th daughter  rtVol = tubsV vgmVol = tubsV
 VGM info:   1th volume: boxV  
 VGM info:   2th volume: consV  
 VGM info:   3th volume: eltuV  
@@ -92,6 +96,7 @@ VGM info:   8th volume: torusV
 VGM info:   9th volume: trapV  
 VGM info:   10th volume: trdV  
 VGM info:   11th volume: tubsV  
+VGM info:   12th volume: tubsV  
 VGM info:   
 Root_GM_Factory factory solids store: 
    0th solid: Box  "worldS"  hx = 10000mm  hy = 10000mm  hz = 10000mm
@@ -112,8 +117,9 @@ Root_GM_Factory factory solids store:
    9th solid: Trap  "trapS"  hz = 300mm  theta = 25deg  phi = 35deg  hy1 = 200mm  hx1 = 100mm  hx2 = 150mm  alpha1 = 0deg  hy2 = 200mm  hx3 = 100mm  hx4 = 150mm  alpha2 = 0deg
    10th solid: Trd  "trdS"  hx1 = 200mm  hx2 = 300mm  hy1 = 400mm  hy2 = 500mm  hz = 500mm
    11th solid: Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
+   12th solid: Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = 330deg  dphi = 280deg  nlow = (0, 6.4, -7.7)  nhigh = (0, 0.9, 8.7)
 Root_GM_Factory factory volumes store: 
-   0th: Volume: "worldV" material "Basic" solid "Box"  11 daughters: "boxV"  "consV"  "eltuV"  "paraV"  "pconeV"  "phedraV"  "sphereV1"  "torusV"  "trapV"  "trdV"  "tubsV"  
+   0th: Volume: "worldV" material "Basic" solid "Box"  12 daughters: "boxV"  "consV"  "eltuV"  "paraV"  "pconeV"  "phedraV"  "sphereV1"  "torusV"  "trapV"  "trdV"  "tubsV"  "tubsV"  
    1th: Volume: "boxV" material "Basic" solid "Box"  0 daughters: 
    2th: Volume: "consV" material "Basic" solid "Cons"  0 daughters: 
    3th: Volume: "eltuV" material "Basic" solid "Eltu"  0 daughters: 
@@ -125,6 +131,7 @@ Root_GM_Factory factory volumes store:
    9th: Volume: "trapV" material "Basic" solid "Trap"  0 daughters: 
    10th: Volume: "trdV" material "Basic" solid "Trd"  0 daughters: 
    11th: Volume: "tubsV" material "Basic" solid "Tubs"  0 daughters: 
+   12th: Volume: "tubsV" material "Basic" solid "Ctubs"  0 daughters: 
 VGM info:   RootGM::Factory::Import finished.
 Import finished
 Go to export
@@ -195,6 +202,11 @@ VGM info:      10th volume: trdV
 VGM info:   Exporting solid: 
 VGM info:      Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
 VGM info:      11th volume: tubsV
+VGM info:   Exporting solid: 
+VGM info:      Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = 330deg  dphi = 280deg  nlow = (0, 6.4, -7.7)  nhigh = (0, 0.9, 8.7)
+thetaLow= 140.268
+thetaHigh= 5.90614
+VGM info:      12th volume: tubsV
 VGM info:   ExportPlacements for 0th volume worldV
 VGM info:      0th daughter vol = boxV  simple placement: boxV
 VGM info:      1th daughter vol = consV  simple placement: consV
@@ -207,6 +219,7 @@ VGM info:      7th daughter vol = torusV  simple placement: torusV
 VGM info:      8th daughter vol = trapV  simple placement: trapV
 VGM info:      9th daughter vol = trdV  simple placement: trdV
 VGM info:      10th daughter vol = tubsV  simple placement: tubsV
+VGM info:      11th daughter vol = tubsV  simple placement: tubsV
 VGM info:   ExportPlacements for 1th volume boxV
 VGM info:   ExportPlacements for 2th volume consV
 VGM info:   ExportPlacements for 3th volume eltuV
@@ -218,4 +231,5 @@ VGM info:   ExportPlacements for 8th volume torusV
 VGM info:   ExportPlacements for 9th volume trapV
 VGM info:   ExportPlacements for 10th volume trdV
 VGM info:   ExportPlacements for 11th volume tubsV
+VGM info:   ExportPlacements for 12th volume tubsV
 Export finished

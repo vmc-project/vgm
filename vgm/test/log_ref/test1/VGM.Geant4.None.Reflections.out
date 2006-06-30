@@ -1,6 +1,6 @@
 
 *************************************************************
- Geant4 version Name: geant4-08-00    (16-December-2005)
+ Geant4 version Name: geant4-08-00-patch-01    (10-February-2006)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -51,4 +51,30 @@ VGM info:   Importing LV: tubsV_refl
 VGM info:   Importing solid: tubsS_refl
 VGM info:   ImportDaughters for tubsV_refl
 VGM info:   ImportPositions for lv tubsV_refl nofDaughters: 0
+thetaLow= 140.268
+thetaHigh= 5.90614
+VGM info:   Importing LV: ctubsV_refl
+VGM info:   Importing solid: ctubsS_refl
+VGM info:   Importing solid: boolean
+VGM info:   Importing solid: tubs
+VGM info:   Importing solid: boxLow
+VGM info:   Imported Boolean solid: 
+VGM info:   Boolean  "boolean"  Subtraction: 
+  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
+  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
+  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
+  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
+VGM info:   Importing solid: boxHigh
+VGM info:   Imported Boolean solid: 
+VGM info:   Boolean  "ctubsS"  Subtraction: 
+  ConstituentA = Boolean  "boolean"  Subtraction: 
+  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
+  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
+  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
+  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
+  ConstituentB = Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
+  Displacement translation (object):  ( 0,  0,  968.753) mm 
+  Displacement rotation (object):  (-5.90614,  -0,  0) deg    no reflectionZ
+VGM info:   ImportDaughters for ctubsV_refl
+VGM info:   ImportPositions for lv ctubsV_refl nofDaughters: 0
 TestReflections finished
