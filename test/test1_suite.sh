@@ -22,7 +22,7 @@ do
   do
     for outputFactory in None Geant4 Root
     do
-      for selectedTest in Solids Placements Reflections Assemblies BooleanSolids2 
+      for selectedTest in Solids Placements Reflections Assemblies1 Assemblies2 BooleanSolids2 
       #for selectedTest in Placements 
       do
         #
