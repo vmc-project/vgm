@@ -633,8 +633,6 @@ void* TstGeometryViaGeant4::TestReflections(G4bool fullPhi)
 void* TstGeometryViaGeant4::TestAssemblies()
 {
 // Example for assemblies from Root tutorial
-// Geant4 geometry model does not support assembly of assemblies,
-// the Root example geometry is not compete
 
   // Get medium
   //
@@ -654,9 +652,7 @@ void* TstGeometryViaGeant4::TestAssemblies()
     = new G4PVPlacement(0, G4ThreeVector(), worldV, "world", 0, false, 0); 
    
   // Make the elementary assembly of the whole structure
-  // Use mother volume instead of assembly as Geant4 does not 
-  // support assebly of assemblies
-
+  //
   G4int ntooth = 5;
   G4double xplate = 25.*cm;
   G4double yplate = 50.*cm;
@@ -666,6 +662,7 @@ void* TstGeometryViaGeant4::TestAssemblies()
   G4double xt,yt;
 
   G4AssemblyVolume* tplate = new G4AssemblyVolume();
+  G4cout << "tplate" << tplate << G4endl;
 
   // plate volume
   G4Box* plateS
@@ -694,10 +691,18 @@ void* TstGeometryViaGeant4::TestAssemblies()
     tplate->AddPlacedVolume(toothV, pos2, 0);
   }  
   
-  // place assemblies
+/*
+  // simple placement in the world
+  G4RotationMatrix* rotv = 0;
+  G4ThreeVector posv;
+  tplate->MakeImprint(worldV, posv, rotv);
+*/  
+
   G4RotationMatrix* rot1 = new G4RotationMatrix();
   rot1->rotateX(90.*deg);
   G4RotationMatrix *rot;
+  G4AssemblyVolume* cell = new G4AssemblyVolume();
+  G4cout << "cell" << cell << G4endl;
   // Make a hexagone cell out of 6 toothplates. These can zip togeather
   // without generating overlaps (they are self-contained)
   for (G4int i2=0; i2<6; i2++) {
@@ -707,38 +712,124 @@ void* TstGeometryViaGeant4::TestAssemblies()
     rot = new G4RotationMatrix(*rot1);
     rot->rotateZ(phi); 
     G4ThreeVector pos(xp, yp,0.);
-    tplate->MakeImprint(worldV, pos, rot);
+    cell->AddPlacedAssembly(tplate, pos, rot);
   }   
-
 /*
-  // Cannot go on - limitation on assemblies
-  // Cannot add assembly to assembly
-
-  // top->AddNode(cell, 1, new TGeoTranslation());
-     
+  // simple placement in the world
+  G4RotationMatrix* rotv = 0;
+  G4ThreeVector posv;
+  cell->MakeImprint(worldV, posv, rotv);
+  return (void*) world;
+*/     
   // Make a row as an assembly of cells, then combine rows in a honeycomb
   // structure. This again works without any need to define rows as "overlapping"
-  TGeoVolume *row = new TGeoVolumeAssembly("ROW");
-  Int_t ncells = 5;
-  for (Int_t i3=0; i3<ncells; i3++) {
-    G4double ycell = (2*i3+1)*(dshift+10);
-    row->AddNode(cell, ncells+i3+1, new TGeoTranslation(0,ycell,0));
-    row->AddNode(cell,ncells-i3,new TGeoTranslation(0,-ycell,0));
+  G4AssemblyVolume* row = new G4AssemblyVolume();
+  G4int ncells = 5;
+  for (G4int i3=0; i3<ncells; i3++) {
+    G4double ycell = (2*i3+1)*(dshift+10.*cm);
+    G4ThreeVector pos1(0., ycell, 0.);
+    row->AddPlacedAssembly(cell, pos1, 0);
+    G4ThreeVector pos2(0., -ycell, 0.);
+    row->AddPlacedAssembly(cell, pos2, 0);
   }
-  //top->AddNode(row, 1, new TGeoTranslation());
- 
-  G4double dxrow = 3.*(dshift+10.)*TMath::Tan(30.*TMath::DegToRad());
-  G4double dyrow = dshift+10.;
-  Int_t nrows = 5;
-  for (Int_t i4=0; i4<nrows; i4++) {
+/*
+  // simple placement in the world
+  G4RotationMatrix* rotv = 0;
+  G4ThreeVector posv;
+  row->MakeImprint(worldV, posv, rotv);
+  return (void*) world;
+*/
+  G4double dxrow = 3.*(dshift+10.*cm)*tan(30.*deg);
+  G4double dyrow = dshift+10.*cm;
+  G4int nrows = 5;
+  for (G4int i4=0; i4<nrows; i4++) {
     G4double xrow = 0.5*(2*i4+1)*dxrow;
     G4double yrow = 0.5*dyrow;
     if ((i4%2)==0) yrow = -yrow;
-    top->AddNode(row, nrows+i4+1, new TGeoTranslation(xrow,yrow,0));
-    top->AddNode(row, nrows-i4, new TGeoTranslation(-xrow,-yrow,0));
+    G4ThreeVector pos1(xrow, yrow, 0.);
+    row->MakeImprint(worldV, pos1, 0);
+    G4ThreeVector pos2(-xrow, -yrow, 0.);
+    row->MakeImprint(worldV, pos2, 0);
   }        
-*/
   
+  return (void*) world;
+}
+
+//_____________________________________________________________________________
+void* TstGeometryViaGeant4::TestAssemblies2()
+{
+// Example for assemblies with reflections
+
+  // Get medium
+  //
+  if (!fBasicMaterial) {
+    fBasicMaterial = G4Material::GetMaterial("Basic");
+    G4cout << "Basic material: " << fBasicMaterial << G4endl;
+  }  
+
+  // World
+  //
+  G4double wSize = 1000.*cm;
+  G4VSolid* worldS
+    = new G4Box("worldS", wSize, wSize, wSize);
+  G4LogicalVolume* worldV
+    = new G4LogicalVolume(worldS, fBasicMaterial, "worldV");
+  G4VPhysicalVolume* world
+    = new G4PVPlacement(0, G4ThreeVector(), worldV, "world", 0, false, 0); 
+   
+  // Assembly 
+  //
+  G4AssemblyVolume* assembly = new G4AssemblyVolume();
+
+  // Cons volume
+  G4VSolid* consS
+    = new G4Cons("consS", 10.*cm, 40.*cm, 20.*cm, 60.*cm, 50*cm, 0., 360.*deg);
+
+  G4LogicalVolume* consV
+    = new G4LogicalVolume(consS, fBasicMaterial, "CONS");
+
+  // Transformations
+  //
+  HepGeom::Transform3D transform1
+   = HepGeom::Translate3D( 110.*cm,0., 0.)
+   * HepGeom::RotateY3D( 90.*deg);
+ 
+  HepGeom::Transform3D transform2
+   = HepGeom::ReflectX3D()
+   * HepGeom::Translate3D( 110.*cm,0., 0.)
+   * HepGeom::RotateY3D( 90.*deg);
+  
+  HepGeom::Transform3D transform3
+   = HepGeom::Translate3D( 0., 110.*cm, 0.)
+   * HepGeom::RotateX3D(-90.*deg);
+ 
+  HepGeom::Transform3D transform4
+   = HepGeom::ReflectY3D()
+   * HepGeom::Translate3D( 0., 110.*cm, 0.)
+   * HepGeom::RotateX3D(-90.*deg);
+/*
+  // Simple placement
+  G4ReflectionFactory::Instance()
+    ->Place( transform1, "cons", consV, worldV, false, 0);    
+  G4ReflectionFactory::Instance()
+    ->Place( transform2, "cons", consV, worldV, false, 0);    
+  G4ReflectionFactory::Instance()
+    ->Place( transform3, "cons", consV, worldV, false, 0);    
+  G4ReflectionFactory::Instance()
+    ->Place( transform4, "cons", consV, worldV, false, 0);    
+
+*/  
+  // Place via assembly
+  assembly->AddPlacedVolume(consV, transform1);
+  assembly->AddPlacedVolume(consV, transform2);
+  assembly->AddPlacedVolume(consV, transform3);
+  assembly->AddPlacedVolume(consV, transform4);
+
+  // Make imprint
+  G4RotationMatrix* rotv = 0;
+  G4ThreeVector posv;
+  assembly->MakeImprint(worldV, posv, rotv);
+ 
   return (void*) world;
 }
 
