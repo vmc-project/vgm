@@ -12,8 +12,9 @@
     
  2. Install Geant4 N03 example in E02 directory:
     cp -r ${G4INSTALL}/examples/novice/N03 .
-    source env_setup.csh
-    
+    source env_setup.csh    OR
+    . env_setup.sh
+  
  3. Update example for provided files:
     cp N03Example.root N03
     cp GNUmakefile N03
