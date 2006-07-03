@@ -564,8 +564,7 @@ void* TstGeometryViaRoot::TestAssemblies()
     rot->RotateZ(phi);     
     cell->AddNode(tplate,i2+1,new TGeoCombiTrans(xp,yp,0,rot));
   }   
-
-  top->AddNode(cell, 1, new TGeoTranslation());
+  //top->AddNode(cell, 1, new TGeoTranslation());
     
   // Make a row as an assembly of cells, then combine rows in a honeycomb
   // structure. This again works without any need to define rows as "overlapping"
@@ -591,6 +590,85 @@ void* TstGeometryViaRoot::TestAssemblies()
   
   return (void*) top;
 }
+
+//_____________________________________________________________________________
+void* TstGeometryViaRoot::TestAssemblies2()
+{
+// Example for assemblies with reflections
+
+  // Get medium
+  //
+  if (!fBasicMedium)
+    fBasicMedium =  fGeoManager->GetMedium("Basic"); 
+
+  // World
+  //
+  TGeoVolume* top 
+    = fGeoManager->MakeBox("TOP", fBasicMedium, 1000., 1000., 1000.);
+  fGeoManager->SetTopVolume(top);  
+   
+  // Assembly
+  //
+  TGeoVolume* assembly = new TGeoVolumeAssembly("Assembly");
+
+  // Cons volume
+  Double_t rmin1 = 10.;
+  Double_t rmax1 = 40;
+  Double_t rmin2 = 20.;
+  Double_t rmax2 = 60;
+  Double_t hz = 50.;
+  Double_t phi1 = 0.; 
+  Double_t phi2 = 360.;
+  TGeoVolume* consV 
+    = fGeoManager->MakeCons("CONS", fBasicMedium, 
+                            hz, rmin1, rmax1, rmin2, rmax2, phi1, phi2);
+
+  // Transformations
+  //
+  
+  TGeoRotation* rot1 = new TGeoRotation();
+  rot1->RotateY( 90.);
+  TGeoCombiTrans* combi1 = new TGeoCombiTrans( 110., 0., 0., rot1);
+
+  TGeoRotation* reflectX3D = new TGeoRotation();
+  // how to simply apply reflection ???
+  Double_t* mX = new Double_t[9];
+  mX[0] = -1; mX[1] = 0; mX[2] = 0;
+  mX[3] =  0; mX[4] = 1; mX[5] = 0;
+  mX[6] =  0; mX[7] = 0; mX[8] = 1;
+  reflectX3D->SetMatrix(mX);
+  TGeoCombiTrans* combi2 = new TGeoCombiTrans( (*reflectX3D) * (*combi1));
+  
+  TGeoRotation* rot3 = new TGeoRotation();
+  rot3->RotateX(-90.);
+  TGeoCombiTrans* combi3 = new TGeoCombiTrans( 0., 110., 0., rot3);
+
+  TGeoRotation* reflectY3D = new TGeoRotation();
+  // how to simply apply reflection ???
+  Double_t* mY = new Double_t[9];
+  mY[0] = 1; mY[1] =  0; mY[2] = 0;
+  mY[3] = 0; mY[4] = -1; mY[5] = 0;
+  mY[6] = 0; mY[7] =  0; mY[8] = 1;
+  reflectY3D->SetMatrix(mY);
+  TGeoCombiTrans* combi4 = new TGeoCombiTrans( (*reflectY3D) * (*combi3));
+
+/* 
+  // Simple placement
+  top->AddNode(consV, 1, combi1);
+  top->AddNode(consV, 2, combi2);
+  top->AddNode(consV, 3, combi3);
+  top->AddNode(consV, 4, combi4);
+*/  
+
+  // Place via assembly
+  assembly->AddNode(consV, 1, combi1);
+  assembly->AddNode(consV, 2, combi2);
+  assembly->AddNode(consV, 3, combi3);
+  assembly->AddNode(consV, 4, combi4);
+  top->AddNode(assembly, 1);
+
+  return (void*) top;
+ }
 
 //_____________________________________________________________________________
 void* TstGeometryViaRoot::TestBooleanSolids1()
