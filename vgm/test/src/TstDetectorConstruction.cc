@@ -15,7 +15,7 @@
 #include "TstGeometryViaRoot.hh"
 
 const G4String TstDetectorConstruction::fgkTestNameCandidates 
-  = "Solids Placements Reflections Assemblies BooleanSolids1 BooleanSolids2 BooleanSolids3 BooleanSolids4 BooleanSolids5";
+  = "Solids Placements Reflections Assemblies1 Assemblies2 BooleanSolids1 BooleanSolids2 BooleanSolids3 BooleanSolids4 BooleanSolids5";
 const G4String TstDetectorConstruction::fgkVisModeCandidates 
   = "Geant4 Root None";
 const G4String TstDetectorConstruction::fgkInputCandidates 
@@ -85,9 +85,13 @@ G4VPhysicalVolume* TstDetectorConstruction::Construct()
     world = fGeometry->TestReflections(fFullAngle);
     std::cout << "TestReflections finished" << std::endl;
   }
-  else if (fSelectedTest == "Assemblies") {
+  else if (fSelectedTest == "Assemblies1") {
     world = fGeometry->TestAssemblies();
     std::cout << "TestAssemblies finished" << std::endl;
+  }
+  else if (fSelectedTest == "Assemblies2") {
+    world = fGeometry->TestAssemblies2();
+    std::cout << "TestAssemblies2 finished" << std::endl;
   }
   else if (fSelectedTest == "BooleanSolids1") {
     world = fGeometry->TestBooleanSolids1();
