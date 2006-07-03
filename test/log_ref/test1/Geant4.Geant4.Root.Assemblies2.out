@@ -1,0 +1,107 @@
+
+*************************************************************
+ Geant4 version Name: geant4-08-01    (30-June-2006)
+                      Copyright : Geant4 Collaboration
+                      Reference : NIM A 506 (2003), 250-303
+                            WWW : http://cern.ch/geant4
+*************************************************************
+
+Geant4 geometry will be defined via Geant4 and exported to Root
+Basic material:  Material:    Basic     density:  2.700 g/cm3   temperature: 273.15 K  pressure:   1.00 atm  RadLength:   8.893 cm 
+   --->  Element: Basic ( )   Z = 13.0   N =  27.0   A =  26.98 g/mole  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
+TestAssemblies2 finished
+Go to Import
+VGM info:   Geant4GM::Factory::Import started ...
+VGM info:   Importing element: 
+VGM info:    Element: Basic ( )   Z = 13.0   N =  27.0   A =  26.98 g/mole
+VGM info:   Importing element: 
+VGM info:    Element: Nitrogen (N)   Z =  7.0   N =  14.0   A =  14.01 g/mole
+VGM info:   Importing element: 
+VGM info:    Element: Oxygen (O)   Z =  8.0   N =  16.0   A =  16.00 g/mole
+VGM info:   Importing element: 
+VGM info:    Element: Vacuum ( )   Z =  1.0   N =   1.0   A =   1.01 g/mole
+VGM info:   Importing material: 
+VGM info:    Material:    Basic     density:  2.700 g/cm3   temperature: 273.15 K  pressure:   1.00 atm  RadLength:   8.893 cm 
+   --->  Element: Basic ( )   Z = 13.0   N =  27.0   A =  26.98 g/mole  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
+VGM info:   Importing material: 
+VGM info:    Material:      Air     density:  1.290 mg/cm3  temperature: 273.15 K  pressure:   1.00 atm  RadLength: 285.161 m  
+   --->  Element: Nitrogen (N)   Z =  7.0   N =  14.0   A =  14.01 g/mole  ElmMassFraction:  70.00 %  ElmAbundance  72.71 %
+   --->  Element: Oxygen (O)   Z =  8.0   N =  16.0   A =  16.00 g/mole  ElmMassFraction:  30.00 %  ElmAbundance  27.29 %
+VGM info:   Importing material: 
+VGM info:    Material:   Vacuum     density:  0.000 kg/m3   temperature:   0.00 K  pressure:   0.00 atm  RadLength: 204727576.737 pc 
+   --->  Element: Vacuum ( )   Z =  1.0   N =   1.0   A =   1.01 g/mole  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
+VGM info:   Importing LV: worldV
+VGM info:   Importing solid: worldS
+VGM info:   ImportDaughters for worldV
+VGM info:   Importing LV: CONS
+VGM info:   Importing solid: consS
+VGM info:   ImportDaughters for CONS
+VGM info:   Importing LV: CONS_refl
+VGM info:   Importing solid: consS_refl
+VGM info:   ImportDaughters for CONS_refl
+VGM info:   Import positions: 
+VGM info:   0th volume: worldV  
+VGM info:      0th daughter  lv=CONS vgmVol=CONS
+VGM info:      1th daughter  lv=CONS_refl vgmVol=CONS_refl
+VGM info:      2th daughter  lv=CONS vgmVol=CONS
+VGM info:      3th daughter  lv=CONS_refl vgmVol=CONS_refl
+VGM info:   1th volume: CONS  
+VGM info:   2th volume: CONS_refl  
+VGM info:   
+Geant4_GM_Factory factory solids store: 
+   0th solid: Box  "worldS"  hx = 10000mm  hy = 10000mm  hz = 10000mm
+   1th solid: Cons  "consS"  rin1 = 100mm  rout1 = 400mm  rin2 = 200mm  rout2 = 600mm  hz = 500mm  sphi = 0deg  dphi = 360deg
+   2th solid: Cons  "consS"  rin1 = 200mm  rout1 = 600mm  rin2 = 100mm  rout2 = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
+Geant4_GM_Factory factory volumes store: 
+   0th: Volume: "worldV" material "Basic" solid "Box"  4 daughters: "av_1_impr_1_CONS_pv_0"  "av_1_impr_1_CONS_pv_1"  "av_1_impr_1_CONS_pv_2"  "av_1_impr_1_CONS_pv_3"  
+   1th: Volume: "CONS" material "Basic" solid "Cons"  0 daughters: 
+   2th: Volume: "CONS_refl" material "Basic" solid "Cons"  0 daughters: 
+VGM info:   Geant4GM::Factory::Import finished.
+Import finished
+Go to export
+VGM info:   Exporting element: 
+VGM info:   Element: "Basic"  " "  Z = 13  N = 26.98  A = 26.98 g/mole
+VGM info:   Exporting element: 
+VGM info:   Element: "Nitrogen"  "N"  Z = 7  N = 14.01  A = 14.01 g/mole
+VGM info:   Exporting element: 
+VGM info:   Element: "Oxygen"  "O"  Z = 8  N = 16  A = 16 g/mole
+VGM info:   Exporting element: 
+VGM info:   Element: "Vacuum"  " "  Z = 1  N = 1.01  A = 1.01 g/mole
+VGM info:   Exporting material: 
+VGM info:   Material: "Basic"  density 2.7 g/cm3  radlen 8.89253 cm  intlen 38.8793 cm
+   0th element:   Z = 13  A = 26.98 g/mole  fractionMass = 100 %
+VGM info:   Exporting material: 
+VGM info:   Material: "Air"  density 0.00129 g/cm3  radlen 28516.1 cm  intlen 66268 cm
+   0th element:   Z = 7  A = 14.01 g/mole  fractionMass = 70 %
+   1th element:   Z = 8  A = 16 g/mole  fractionMass = 30 %
+VGM info:   Exporting material: 
+VGM info:   Material: "Vacuum"  density 1e-25 g/cm3  radlen 6.31723e+26 cm  intlen 3.51163e+26 cm
+   0th element:   Z = 1  A = 1.01 g/mole  fractionMass = 100 %
+VGM info:   Generation medium for material: 
+VGM info:   Material: "Basic"  density 2.7 g/cm3  radlen 8.89253 cm  intlen 38.8793 cm
+   0th element:   Z = 13  A = 26.98 g/mole  fractionMass = 100 %
+VGM info:   Generation medium for material: 
+VGM info:   Material: "Air"  density 0.00129 g/cm3  radlen 28516.1 cm  intlen 66268 cm
+   0th element:   Z = 7  A = 14.01 g/mole  fractionMass = 70 %
+   1th element:   Z = 8  A = 16 g/mole  fractionMass = 30 %
+VGM info:   Generation medium for material: 
+VGM info:   Material: "Vacuum"  density 1e-25 g/cm3  radlen 6.31723e+26 cm  intlen 3.51163e+26 cm
+   0th element:   Z = 1  A = 1.01 g/mole  fractionMass = 100 %
+VGM info:   Exporting volume store: 
+VGM info:   Exporting solid: 
+VGM info:      Box  "worldS"  hx = 10000mm  hy = 10000mm  hz = 10000mm
+VGM info:      0th volume: worldV
+VGM info:   Exporting solid: 
+VGM info:      Cons  "consS"  rin1 = 100mm  rout1 = 400mm  rin2 = 200mm  rout2 = 600mm  hz = 500mm  sphi = 0deg  dphi = 360deg
+VGM info:      1th volume: CONS
+VGM info:   Exporting solid: 
+VGM info:      Cons  "consS"  rin1 = 200mm  rout1 = 600mm  rin2 = 100mm  rout2 = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
+VGM info:      2th volume: CONS_refl
+VGM info:   ExportPlacements for 0th volume worldV
+VGM info:      0th daughter vol = av_1_impr_1_CONS_pv_0  simple placement: av_1_impr_1_CONS_pv_0
+VGM info:      1th daughter vol = av_1_impr_1_CONS_pv_1  simple placement: av_1_impr_1_CONS_pv_1
+VGM info:      2th daughter vol = av_1_impr_1_CONS_pv_2  simple placement: av_1_impr_1_CONS_pv_2
+VGM info:      3th daughter vol = av_1_impr_1_CONS_pv_3  simple placement: av_1_impr_1_CONS_pv_3
+VGM info:   ExportPlacements for 1th volume CONS
+VGM info:   ExportPlacements for 2th volume CONS_refl
+Export finished
