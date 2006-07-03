@@ -1,6 +1,6 @@
 
 *************************************************************
- Geant4 version Name: geant4-08-00-patch-01    (10-February-2006)
+ Geant4 version Name: geant4-08-01    (30-June-2006)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -8,7 +8,7 @@
 
 Geant4 geometry will be defined via Geant4 and exported to Root
 Basic material:  Material:    Basic     density:  2.700 g/cm3   temperature: 273.15 K  pressure:   1.00 atm  RadLength:   8.893 cm 
-   --->  Element: Basic ( )   Z = 13.0   N =  27.0   A =  26.98 g/mole  fractionMass: 100.00 %  Abundance 100.00 %
+   --->  Element: Basic ( )   Z = 13.0   N =  27.0   A =  26.98 g/mole  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
 TestBooleanSolids2 finished
 Go to Import
 VGM info:   Geant4GM::Factory::Import started ...
@@ -22,14 +22,14 @@ VGM info:   Importing element:
 VGM info:    Element: Vacuum ( )   Z =  1.0   N =   1.0   A =   1.01 g/mole
 VGM info:   Importing material: 
 VGM info:    Material:    Basic     density:  2.700 g/cm3   temperature: 273.15 K  pressure:   1.00 atm  RadLength:   8.893 cm 
-   --->  Element: Basic ( )   Z = 13.0   N =  27.0   A =  26.98 g/mole  fractionMass: 100.00 %  Abundance 100.00 %
+   --->  Element: Basic ( )   Z = 13.0   N =  27.0   A =  26.98 g/mole  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
 VGM info:   Importing material: 
 VGM info:    Material:      Air     density:  1.290 mg/cm3  temperature: 273.15 K  pressure:   1.00 atm  RadLength: 285.161 m  
-   --->  Element: Nitrogen (N)   Z =  7.0   N =  14.0   A =  14.01 g/mole  fractionMass:  70.00 %  Abundance  72.71 %
-   --->  Element: Oxygen (O)   Z =  8.0   N =  16.0   A =  16.00 g/mole  fractionMass:  30.00 %  Abundance  27.29 %
+   --->  Element: Nitrogen (N)   Z =  7.0   N =  14.0   A =  14.01 g/mole  ElmMassFraction:  70.00 %  ElmAbundance  72.71 %
+   --->  Element: Oxygen (O)   Z =  8.0   N =  16.0   A =  16.00 g/mole  ElmMassFraction:  30.00 %  ElmAbundance  27.29 %
 VGM info:   Importing material: 
 VGM info:    Material:   Vacuum     density:  0.000 kg/m3   temperature:   0.00 K  pressure:   0.00 atm  RadLength: 204727576.737 pc 
-   --->  Element: Vacuum ( )   Z =  1.0   N =   1.0   A =   1.01 g/mole  fractionMass: 100.00 %  Abundance 100.00 %
+   --->  Element: Vacuum ( )   Z =  1.0   N =   1.0   A =   1.01 g/mole  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
 VGM info:   Importing LV: worldV
 VGM info:   Importing solid: worldS
 VGM info:   ImportDaughters for worldV
