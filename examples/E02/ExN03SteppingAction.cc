@@ -1,30 +1,32 @@
 //
 // ********************************************************************
-// * DISCLAIMER                                                       *
+// * License and Disclaimer                                           *
 // *                                                                  *
-// * The following disclaimer summarizes all the specific disclaimers *
-// * of contributors to this software. The specific disclaimers,which *
-// * govern, are listed with their locations in:                      *
-// *   http://cern.ch/geant4/license                                  *
+// * The  Geant4 software  is  copyright of the Copyright Holders  of *
+// * the Geant4 Collaboration.  It is provided  under  the terms  and *
+// * conditions of the Geant4 Software License,  included in the file *
+// * LICENSE and available at  http://cern.ch/geant4/license .  These *
+// * include a list of copyright holders.                             *
 // *                                                                  *
 // * Neither the authors of this software system, nor their employing *
 // * institutes,nor the agencies providing financial support for this *
 // * work  make  any representation or  warranty, express or implied, *
 // * regarding  this  software system or assume any liability for its *
-// * use.                                                             *
+// * use.  Please see the license in the file  LICENSE  and URL above *
+// * for the full disclaimer and the limitation of liability.         *
 // *                                                                  *
-// * This  code  implementation is the  intellectual property  of the *
-// * GEANT4 collaboration.                                            *
-// * By copying,  distributing  or modifying the Program (or any work *
-// * based  on  the Program)  you indicate  your  acceptance of  this *
-// * statement, and all its terms.                                    *
+// * This  code  implementation is the result of  the  scientific and *
+// * technical work of the GEANT4 collaboration.                      *
+// * By using,  copying,  modifying or  distributing the software (or *
+// * any work based  on the software)  you  agree  to acknowledge its *
+// * use  in  resulting  scientific  publications,  and indicate your *
+// * acceptance of all terms of the Geant4 Software license.          *
 // ********************************************************************
 //
 //
-// Id: ExN03SteppingAction.cc,v 1.8 2003/09/15 15:38:18 maire Exp 
-// GEANT4 tag Name: geant4-06-00-patch-01 
-//
 // $Id$
+// GEANT4 tag $Name$
+//
 // 
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -35,7 +37,7 @@
 #include "ExN03DetectorConstruction.hh"
 #include "ExN03EventAction.hh"
 
-#include "G4Track.hh"
+#include "G4Step.hh"
 
 ////#include "G4RunManager.hh"
 
@@ -55,27 +57,23 @@ ExN03SteppingAction::~ExN03SteppingAction()
 
 void ExN03SteppingAction::UserSteppingAction(const G4Step* aStep)
 {
-  const G4Track* track = aStep->GetTrack();
-  //G4VPhysicalVolume* volume = track->GetVolume();
-  G4LogicalVolume* volume = track->GetVolume()->GetLogicalVolume();
-  
+  // get volume of the current step
+  G4VPhysicalVolume* volume 
+  = aStep->GetPreStepPoint()->GetTouchableHandle()->GetVolume();
+  G4LogicalVolume* lvVolume = volume->GetLogicalVolume();
+ 
   // collect energy and track length step by step
   G4double edep = aStep->GetTotalEnergyDeposit();
   
   G4double stepl = 0.;
-  if (track->GetDefinition()->GetPDGCharge() != 0.)
+  if (aStep->GetTrack()->GetDefinition()->GetPDGCharge() != 0.)
     stepl = aStep->GetStepLength();
       
-  if ((edep!=0.)) {
-    if (volume == detector->GetAbsorber()) eventaction->AddAbs(edep,stepl);
-    if (volume == detector->GetGap())      eventaction->AddGap(edep,stepl);
-  }
-       
- // save the random number seed of this event, under condition
- //// if(condition) G4RunManager::GetRunManager()->rndmSaveThisEvent();
+  if (lvVolume == detector->GetAbsorber()) eventaction->AddAbs(edep,stepl);
+  if (lvVolume == detector->GetGap())      eventaction->AddGap(edep,stepl);
+  
+  //example of saving random number seed of this event, under condition
+  //// if (condition) G4RunManager::GetRunManager()->rndmSaveThisEvent(); 
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-
-
-
