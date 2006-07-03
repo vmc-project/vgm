@@ -14,11 +14,14 @@
    Solids          -  builds all VGM supported solids 
    Placements      -  test for placements via translation and rotation
    Reflections     -  test positions with reflection for all solids               
-   BooleansSolidsN -  test Boolean solids
-                      N=1 - Boolean solids with no displacement
-                      N=2 - Boolean solids with displacement including
+   AssembliesN     -  test volume assemblies
+                      N=1 - assemblies in more levels
+                      N=2 - assemblies with reflection
+   BooleansSolidsM -  test Boolean solids
+                      M=1 - Boolean solids with no displacement
+                      M=2 - Boolean solids with displacement including
 		            translation and rotation
-                      N=3 - Boolean solids with displacement including
+                      M=3 - Boolean solids with displacement including
 		            reflection
  (See TstVGeometry class)			    
 			    
@@ -39,9 +42,9 @@
 //         inputFactory  = Geant4, Root
 //         outputFactory = Geant4, Root, None
 //         outputXML = AGDD, GDML, None
-//         selectedTest  = Solids, Placements, Reflections, Assemblies, 
-//                         BooleanSolidsN
-//                             where N = 1, 2, 3
+//         selectedTest  = Solids, Placements, Reflections, 
+//                         AssembliesN, BooleanSolidsM
+//                             where N = 1, 2; M = 1, 2, 3
 //         debug         = if specified the factories operate in debug mode
 //         openAngle     = if specified, solids like tubs, cons etc. are built
 //                         with open azimuthal angle
