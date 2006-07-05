@@ -13,6 +13,8 @@
 #include "RootGM/materials/Medium.h"
 #include "RootGM/materials/MaterialMap.h"
 
+const int RootGM::Medium::fgkParamSize = 20;  
+
 //_____________________________________________________________________________
 RootGM::Medium::Medium(const std::string& name, 
                        int mediumId,
