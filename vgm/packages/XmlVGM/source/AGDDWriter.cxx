@@ -123,7 +123,7 @@ XmlVGM::AGDDWriter::SmartPut(std::ostream& out,
 /// Help function to supress - sign in case the number == 0
 /// within the given precision
 
-  if ( round(number*pow(10.,precision))/pow(10.,precision) == 0.0) {
+  if ( ClhepVGM::Round(number*pow(10.,precision))/pow(10.,precision) == 0.0) {
     number = 0.;
   }  
   
@@ -134,13 +134,13 @@ XmlVGM::AGDDWriter::SmartPut(std::ostream& out,
 }
 
 //_____________________________________________________________________________
-double XmlVGM::AGDDWriter::Round(double number) const
+double XmlVGM::AGDDWriter::Round2(double number) const
 {
 /// Round the position elements to the numeric precision of the
 /// convertor
 
   double precision = fNP;
-  return round(number*pow(10.,precision))/pow(10.,precision);
+  return ClhepVGM::Round(number*pow(10.,precision))/pow(10.,precision);
 }
 
 //_____________________________________________________________________________
@@ -149,9 +149,9 @@ bool  XmlVGM::AGDDWriter::IsIdentity(const ThreeVector& rotation) const
 /// Return true if roatation is identity within the converter precision.
 
   ThreeVector roundedRotation(3);
-  roundedRotation[0] = Round(rotation[0]/ AngleUnit());
-  roundedRotation[1] = Round(rotation[1]/ AngleUnit());
-  roundedRotation[2] = Round(rotation[2]/ AngleUnit());
+  roundedRotation[0] = Round2(rotation[0]/ AngleUnit());
+  roundedRotation[1] = Round2(rotation[1]/ AngleUnit());
+  roundedRotation[2] = Round2(rotation[2]/ AngleUnit());
 
   if ( roundedRotation[0] == 0. && 
        roundedRotation[1] == 0. &&
