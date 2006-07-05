@@ -72,30 +72,4 @@ namespace ClhepVGM {
   
 }      
 
-// inline methods
-
-inline double ClhepVGM::Units::Length()       
-{ return fgkLength; }
-
-inline double ClhepVGM::Units::Length(double clhepUnit)       
-{ return fgkLength * clhepUnit; }
-
-inline double ClhepVGM::Units::Angle()        
-{ return fgkAngle; }
-
-inline double ClhepVGM::Units::Angle(double clhepUnit)        
-{ return fgkAngle * clhepUnit; }
-
-inline double ClhepVGM::Units::MassDensity()  
-{ return fgkMassDensity; }
-
-inline double ClhepVGM::Units::MassDensity(double clhepUnit)  
-{ return fgkMassDensity * clhepUnit; }
-
-inline double ClhepVGM::Units::AtomicWeight() 
-{ return fgkAtomicWeight; }
-
-inline double ClhepVGM::Units::AtomicWeight(double clhepUnit) 
-{ return fgkAtomicWeight * clhepUnit; }
-
 #endif //CLHEP_VGM_UNITS_H
