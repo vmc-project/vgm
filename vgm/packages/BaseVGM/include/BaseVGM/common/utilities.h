@@ -14,6 +14,9 @@ namespace BaseVGM {
 
     // Debug printing 
     void  DebugInfo();
+
+    // Round number
+    double Round(double x);
 }
 
 #endif //BASE_VGM_UTILITIES_H
