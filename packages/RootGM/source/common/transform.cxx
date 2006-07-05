@@ -14,6 +14,8 @@
 #include <TGeoPatternFinder.h>
 #include <TMath.h>
 
+#include "BaseVGM/common/utilities.h"
+
 #include "RootGM/common/transform.h"
 #include "RootGM/common/Units.h"
 
@@ -159,6 +161,6 @@ TGeoMatrix* RootGM::CreateTransform(const VGM::Transform& transform)
 //_____________________________________________________________________________
 bool RootGM::HasReflection(const VGM::Transform& transform)
 {
-  return round(transform[VGM::kReflZ]) == 1.;
+  return BaseVGM::Round(transform[VGM::kReflZ]) == 1.;
 }  
 
