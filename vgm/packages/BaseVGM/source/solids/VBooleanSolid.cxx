@@ -8,6 +8,7 @@
 
 #include <math.h>
 
+#include "BaseVGM/common/utilities.h"
 #include "BaseVGM/solids/VBooleanSolid.h"
 
 //_____________________________________________________________________________
@@ -59,7 +60,7 @@ std::ostream& BaseVGM::VBooleanSolid::Put(std::ostream& out) const
       << Displacement()[VGM::kAngleY] << ",  "
       << Displacement()[VGM::kAngleZ] << ") deg  ";
   
-  if (round(Displacement()[6]) == 0 )
+  if ( Round(Displacement()[6]) == 0 )
     out << "  no reflectionZ";
   else
     out << "  reflectionZ";
