@@ -125,7 +125,7 @@ namespace XmlVGM {
       void CutName(std::string& name, int size) const;
       std::ostream& SmartPut(std::ostream& out, int size, int precision,
 		 double number, const std::string& separator) const;
-      double  Round(double number) const;
+      double  Round2(double number) const;
       bool    IsIdentity(const ThreeVector& rotation) const;
    
       // Writing solids

@@ -12,6 +12,8 @@
 #include <stdlib.h>
 #include <sstream>
 
+#include "VGM/common/Math.h"
+
 #include "ClhepVGM/transform.h"
 
 #include "XmlVGM/Maps.h"
@@ -106,12 +108,12 @@ void XmlVGM::Maps::CutName(std::string& name) const
 }  
 
 //_____________________________________________________________________________
-double XmlVGM::Maps::Round(double number) const
+double XmlVGM::Maps::Round2(double number) const
 {
 /// Round the number to the numeric precision of the map
 
   double precision = fNumPrecision;
-  return round(number*pow(10.,precision))/pow(10.,precision);
+  return ClhepVGM::Round(number*pow(10.,precision))/pow(10.,precision);
 }
 
 
@@ -122,12 +124,12 @@ XmlVGM::Maps::PurifyAngles(const ThreeVector& rotation) const
 /// Invert angle sign if angle.is within the maps precision
 /// equal - M_PI.
 
-  double roundedPI = Round(M_PI/fAngleUnit);
+  double roundedPI = Round2(M_PI/fAngleUnit);
 
   ThreeVector roundedRotation(3);
-  roundedRotation[0] = Round(rotation[0]/ fAngleUnit);
-  roundedRotation[1] = Round(rotation[1]/ fAngleUnit);
-  roundedRotation[2] = Round(rotation[2]/ fAngleUnit);
+  roundedRotation[0] = Round2(rotation[0]/ fAngleUnit);
+  roundedRotation[1] = Round2(rotation[1]/ fAngleUnit);
+  roundedRotation[2] = Round2(rotation[2]/ fAngleUnit);
   
   ThreeVector rotation2(3);
   rotation2[0] = rotation[0];
@@ -158,9 +160,9 @@ XmlVGM::Maps::AddPosition(const VGM::Transform& transform)
   position[2] = transform[VGM::kDz]; 
 
   ThreeVector roundedPosition(3);
-  roundedPosition[0] = Round(position[0]/ fLengthUnit);
-  roundedPosition[1] = Round(position[1]/ fLengthUnit);
-  roundedPosition[2] = Round(position[2]/ fLengthUnit);
+  roundedPosition[0] = Round2(position[0]/ fLengthUnit);
+  roundedPosition[1] = Round2(position[1]/ fLengthUnit);
+  roundedPosition[2] = Round2(position[2]/ fLengthUnit);
   
   if (fPositions.find(roundedPosition) != fPositions.end()) return "";
   
@@ -193,9 +195,9 @@ XmlVGM::Maps::AddRotation(const VGM::Transform& transform)
   ThreeVector rotation2 = PurifyAngles(rotation);
       
   ThreeVector roundedRotation(3);
-  roundedRotation[0] = Round(rotation2[0]/ fAngleUnit);
-  roundedRotation[1] = Round(rotation2[1]/ fAngleUnit);
-  roundedRotation[2] = Round(rotation2[2]/ fAngleUnit);
+  roundedRotation[0] = Round2(rotation2[0]/ fAngleUnit);
+  roundedRotation[1] = Round2(rotation2[1]/ fAngleUnit);
+  roundedRotation[2] = Round2(rotation2[2]/ fAngleUnit);
   
   if (fRotations.find(roundedRotation) != fRotations.end()) return "";
   
@@ -221,9 +223,9 @@ XmlVGM::Maps::AddElement(const VGM::IElement* element)
 /// Return the element (if added) or 0.
 
   ThreeVector roundedValues(3);
-  roundedValues[0] = Round(element->Z());
-  roundedValues[1] = Round(element->N());
-  roundedValues[2] = Round(element->A());
+  roundedValues[0] = Round2(element->Z());
+  roundedValues[1] = Round2(element->N());
+  roundedValues[2] = Round2(element->A());
   
   //if (fElements.find(roundedValues) != fElements.end()) return 0;
   ElementMap::iterator it;
@@ -273,9 +275,9 @@ XmlVGM::Maps::FindPositionName(const VGM::Transform& transform) const
   position[2] = transform[VGM::kDz];
       
   ThreeVector roundedPosition(3);
-  roundedPosition[0] = Round(position[0]/ fLengthUnit);
-  roundedPosition[1] = Round(position[1]/ fLengthUnit);
-  roundedPosition[2] = Round(position[2]/ fLengthUnit);
+  roundedPosition[0] = Round2(position[0]/ fLengthUnit);
+  roundedPosition[1] = Round2(position[1]/ fLengthUnit);
+  roundedPosition[2] = Round2(position[2]/ fLengthUnit);
   
   ThreeVectorMap::const_iterator it = fPositions.find(roundedPosition);    
   if (it != fPositions.end())
@@ -301,9 +303,9 @@ XmlVGM::Maps::FindRotationName(const VGM::Transform& transform) const
   ThreeVector rotation2 = PurifyAngles(rotation);
 
   ThreeVector roundedRotation(3);
-  roundedRotation[0] = Round(rotation2[0]/ fAngleUnit);
-  roundedRotation[1] = Round(rotation2[1]/ fAngleUnit);
-  roundedRotation[2] = Round(rotation2[2]/ fAngleUnit);
+  roundedRotation[0] = Round2(rotation2[0]/ fAngleUnit);
+  roundedRotation[1] = Round2(rotation2[1]/ fAngleUnit);
+  roundedRotation[2] = Round2(rotation2[2]/ fAngleUnit);
   
   ThreeVectorMap::const_iterator it = fRotations.find(roundedRotation);
   if (it != fRotations.end())
