@@ -71,7 +71,7 @@ namespace XmlVGM {
       // methods
       //
       void         CutName(std::string& name) const;
-      double       Round(double number) const;
+      double       Round2(double number) const;
       ThreeVector  PurifyAngles(const ThreeVector& rotation) const;
  
       // data members
