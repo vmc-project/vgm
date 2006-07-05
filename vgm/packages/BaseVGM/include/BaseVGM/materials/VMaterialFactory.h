@@ -91,7 +91,7 @@ namespace BaseVGM {
                                 MaterialMap* map) const;			       
 
       // data members
-      bool                fDebug;
+      int                 fDebug;
       std::string         fName;
       VGM::ElementStore   fElements;
       VGM::MaterialStore  fMaterials;
