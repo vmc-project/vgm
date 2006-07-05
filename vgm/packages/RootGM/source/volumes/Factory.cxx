@@ -431,6 +431,11 @@ void RootGM::Factory::ImportPositions()
     if (rootVolume->IsAssembly()) continue;
     
     VGM::IVolume* volume= RootGM::VolumeMap::Instance()->GetVolume(rootVolume);
+    
+    if ( !volume ) continue;
+      // There may be defined volumes which are placed
+      // or not placed withing this top volume
+      // Hence they were not imported and we skip them
 
     if (Debug()>0) {
       BaseVGM::DebugInfo();
