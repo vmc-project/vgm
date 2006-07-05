@@ -6,7 +6,7 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include <math.h>
+#include "VGM/common/Math.h"
 
 #include "BaseVGM/solids/VPolyhedra.h"
 

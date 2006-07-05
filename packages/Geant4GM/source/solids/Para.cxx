@@ -11,6 +11,8 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
+#include "VGM/common/Math.h"
+
 #include "ClhepVGM/Units.h"
 
 #include "Geant4GM/solids/Para.h"
