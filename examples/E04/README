@@ -7,11 +7,14 @@
  Source: Root tutorial rootgeom.C macro
          Main program rootgeom.cxx
          
- 1. Define environment variables 
-    (see doc/INSTALL)
+ 1. The provided installation script (E03/install.sh)
+    will install rootgeom.cxx main program:
+    ./install.sh
     
- 2. Compile the rootgeom.cxx with provided shell script
-    ./bind.sh
+    This step is not necessary if you installed all examples
+    at once from up directory.
+  
+ 2. Your environment for VGM has to be set first, see doc/INSTALL)
     
  3. Run example
     ./rootgeom

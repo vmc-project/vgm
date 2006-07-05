@@ -11,3 +11,12 @@
  E02:  Root   -> Geant4
  E03:  Geant4 -> XML 
  E04:  Root   -> XML 
+ 
+ 
+ All examples can be installed from this directory using
+ the provided install script:
+ ./install.sh
+ 
+ 
+ 
+ 
