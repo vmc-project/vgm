@@ -175,7 +175,7 @@ XmlVGM::GDMLWriter::SmartPut(std::ostream& out,
 /// Help function to supress - sign in case the number == 0
 /// within the given precision
 
-  if ( round(number*pow(10.,precision))/pow(10.,precision) == 0.0) {
+  if ( ClhepVGM::Round(number*pow(10.,precision))/pow(10.,precision) == 0.0) {
     number = 0.;
   }  
   
@@ -1211,7 +1211,7 @@ void XmlVGM::GDMLWriter::WriteElement(const VGM::IElement* element)
     
   // Get parameters
   double theZ = element->Z();
-  int    theN = (int) round(element->N());
+  int    theN = (int) ClhepVGM::Round(element->N());
   double theA = element->A()/ AtomicWeightUnit();
   
   // GDML does not allow N=0
