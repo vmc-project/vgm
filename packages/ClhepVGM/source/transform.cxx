@@ -144,7 +144,7 @@ HepGeom::Transform3D  ClhepVGM::Transform(const VGM::Transform& transform)
 //_____________________________________________________________________________
 bool ClhepVGM::HasReflection(const VGM::Transform& transform)
 {
-  return round(transform[VGM::kReflZ]) == 1.;
+  return Round(transform[VGM::kReflZ]) == 1.;
 }  
 
 //_____________________________________________________________________________
@@ -156,5 +156,24 @@ VGM::Transform  ClhepVGM::Inverse(const VGM::Transform& transform)
   if (HasReflection(transform)) scale = HepGeom::ScaleZ3D(-1.0);
   
   return Transform((translate * rotate * scale).inverse());
+}
+
+//_____________________________________________________________________________
+double ClhepVGM::Round(double x)
+{
+/// Replacement for round(double) function from math.h
+/// which is not available on all platforms (gcc 2.95.x, Windows)
+
+  double t;
+  if (x >= 0.0) {
+    t = ceil(x);
+    if (t - x > 0.5) t -= 1.0;
+    return t;
+  } 
+  else {
+    t = ceil(-x);
+    if (t + x > 0.5) t -= 1.0;
+    return -t;
+  }
 }
 
