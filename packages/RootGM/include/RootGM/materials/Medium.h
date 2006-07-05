@@ -41,6 +41,8 @@ namespace RootGM {
       void CheckIndex(int iel) const;
 
       // data members
+      static  const int fgkParamSize;  
+          
       TGeoMedium*  fMedium;  
   };
 
