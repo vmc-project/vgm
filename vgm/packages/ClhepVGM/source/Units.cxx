@@ -66,3 +66,52 @@ double ClhepVGM::Units::AxisUnit(VGM::Axis axis)
   std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
   exit(1);
 }
+
+//_____________________________________________________________________________
+double ClhepVGM::Units::Length()       
+{ 
+  return fgkLength; 
+}
+
+//_____________________________________________________________________________
+double ClhepVGM::Units::Length(double clhepUnit)       
+{ 
+  return fgkLength * clhepUnit; 
+}
+
+//_____________________________________________________________________________
+double ClhepVGM::Units::Angle()        
+{ 
+  return fgkAngle; 
+}
+
+//_____________________________________________________________________________
+double ClhepVGM::Units::Angle(double clhepUnit)        
+{ 
+  return fgkAngle * clhepUnit; 
+}
+
+//_____________________________________________________________________________
+double ClhepVGM::Units::MassDensity()  
+{ 
+  return fgkMassDensity; 
+}
+
+//_____________________________________________________________________________
+double ClhepVGM::Units::MassDensity(double clhepUnit)  
+{ 
+  return fgkMassDensity * clhepUnit; 
+}
+
+//_____________________________________________________________________________
+double ClhepVGM::Units::AtomicWeight() 
+{ 
+  return fgkAtomicWeight; 
+}
+
+//_____________________________________________________________________________
+double ClhepVGM::Units::AtomicWeight(double clhepUnit) 
+{ 
+  return fgkAtomicWeight * clhepUnit; 
+}
+
