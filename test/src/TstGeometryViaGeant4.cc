@@ -662,7 +662,6 @@ void* TstGeometryViaGeant4::TestAssemblies()
   G4double xt,yt;
 
   G4AssemblyVolume* tplate = new G4AssemblyVolume();
-  G4cout << "tplate" << tplate << G4endl;
 
   // plate volume
   G4Box* plateS
@@ -702,7 +701,6 @@ void* TstGeometryViaGeant4::TestAssemblies()
   rot1->rotateX(90.*deg);
   G4RotationMatrix *rot;
   G4AssemblyVolume* cell = new G4AssemblyVolume();
-  G4cout << "cell" << cell << G4endl;
   // Make a hexagone cell out of 6 toothplates. These can zip togeather
   // without generating overlaps (they are self-contained)
   for (G4int i2=0; i2<6; i2++) {
