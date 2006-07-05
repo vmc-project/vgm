@@ -89,6 +89,11 @@ Geant4GM::Placement::Placement(
   width  /= ClhepVGM::Units::AxisUnit(axis);
   offset /= ClhepVGM::Units::AxisUnit(axis);
 
+  // Update offset if it goes beyond mother dhi
+  if ( axis == VGM::kPhi &&
+       offset + nofItems * width > 2 * CLHEP::pi ) 
+    offset = offset - 2 * CLHEP::pi;   
+
   // Create PV division 
   fPhysicalVolume
     = new G4PVDivision(name, g4LV, g4MotherLV, 
