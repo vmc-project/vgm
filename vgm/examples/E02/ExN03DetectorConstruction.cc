@@ -131,10 +131,10 @@ G4VPhysicalVolume* ExN03DetectorConstruction::Construct()
   logicWorld->SetVisAttributes (G4VisAttributes::Invisible);
   G4VisAttributes* simpleBoxVisAtt= new G4VisAttributes(G4Colour(1.0,0.0,0.0));
   simpleBoxVisAtt->SetVisibility(true);
-  logicCalor->SetVisAttributes(simpleBoxVisAtt);
-  logicLayer->SetVisAttributes(simpleBoxVisAtt);
-  logicAbsorber->SetVisAttributes(simpleBoxVisAtt);
-  logicGap->SetVisAttributes(simpleBoxVisAtt);
+  if (logicCalor)    logicCalor->SetVisAttributes(simpleBoxVisAtt);
+  if (logicLayer)    logicLayer->SetVisAttributes(simpleBoxVisAtt);
+  if (logicAbsorber) logicAbsorber->SetVisAttributes(simpleBoxVisAtt);
+  if (logicGap)      logicGap->SetVisAttributes(simpleBoxVisAtt);
   
   return world;
 }
