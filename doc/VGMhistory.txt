@@ -2,6 +2,24 @@ $Id$
 
  The Virtual Geometry Model - Versions
 =========================================
+  05/07/2006
+  version 2.08    (public version)
+              - Added support for Ctubs solid (cut tube);
+                in Geant4 the solid is realised via Boolean operations
+              - Added installation scripts to examples
+              - Ported to MacOS (thanks to Laurent Garnier, LAL)
+	      - Added CMT configuration file (Laurent Garnier, LAL)
+              - Added test for assemblies with reflections, the first test for 
+                assemblies now includes assemblies of assemblies 
+                (available in Geant4 from version 8.1)
+              - Fixes:
+                - Corrected export of reflected boolean solids (in G4->Root way)
+                - Import from Root geometry containing not placed volumes
+                - Multiple placement (division) offset in Geant4
+	       	       
+	       Tested with CLHEP 2.0.2.3, Root 5.11/06, Geant4 8.1;
+	       Linux: gcc 4.1.1 (FC5)
+
   20/12/2005
   version 2.07    (public version)
                Upgrade to CLHEP 2.0.2.2 (with namespaces)
