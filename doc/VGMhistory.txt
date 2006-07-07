@@ -2,7 +2,7 @@ $Id$
 
  The Virtual Geometry Model - Versions
 =========================================
-  05/07/2006
+  08/07/2006
   version 2.08    (public version)
               - Added support for Ctubs solid (cut tube);
                 in Geant4 the solid is realised via Boolean operations
