@@ -1,0 +1,61 @@
+ $Id$ 
+
+ The Virtual Geometry Model - Installation with CMT
+====================================================
+ 
+ Interfaces:
+ -----------
+  CMT is a powerfull configuration management tool. See http://www.cmtsite.org/ 
+  for more ionformations
+
+  CMT requires some interfaces files to configure Interface between VGM and others 
+  packages. These packages are: Geant4, CLHEP and ROOT.
+  
+  If you don't have these CMT Interfaces files, you can dawnload them 
+  from LAL CVS serever, using the following command for each package:
+  > cvs -d:pserver:anonymous@cvsserver.lal.in2p3.fr:/projects/cvs checkout Interfaces/PACKAGE Interfaces/PACKAGE/vxxx
+              where PACKAGE = ROOT, Geant4, CLHEP, Platform.  
+  Note that besides the packages mentioned above you need also
+  platform dependent configuration files provided within package Platform.	      
+
+  To let CMT know about the location of these files
+  you have to set the environment variable CMTPATH.
+
+  You now have to specify where are your ROOT, Geant4 and CLHEP directories :
+    - open the Interface/ROOT/v****/cmt/requirements file and edit the 
+      ROOT_home macro to match your installation
+    - open the Interface/Geant4/v****/cmt/requirements file and edit the 
+      Geant4_home macro to match your installation
+    - open the Interface/CLHEP/v****/cmt/requirements file and edit the 
+      CLHEP_home macro to match your installation
+
+ Compilation:
+ -----------
+   cd vgm/cmt
+   source $where_cmt_is_install/mgr/setup.csh   
+   export CMTPATH=`pwd`
+   cmt config
+   cmt make VGM
+
+ Test:
+ -----
+   cd vgm/cmt
+   cmt make tests
+   
+   For different test options, see vgm/test/README file;
+   eg.
+   vgm_test.exe VGM Geant4 Root noXML Solids
+
+ Examples:
+ ---------
+   cd vgm/examples
+   ./install_sources.sh
+   cd vgm/cmt
+   cmt make examples
+ 
+ Tested platform:
+ -----------------
+   Linux FC5, gcc 4.1.1
+   MacOS Powerbook 10.4.7 gcc 4
+   Windows/XP VC++ 7.1
+
