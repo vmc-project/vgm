@@ -259,7 +259,7 @@ G4LogicalVolume* TstGeometryViaGeant4::CreateCtubs(G4double /*sphi*/, G4double /
   // Calculate new hz
   double dzLow  = fabs(rout * tan(thetaLow));
   double dzHigh = fabs(rout * tan(thetaHigh));
-  double dzMax = fmax(dzLow, dzHigh);
+  double dzMax = dzLow >= dzHigh ? dzLow : dzHigh;
   double hzNew = hz + dzMax*1.2;
 
   /// Create tube 

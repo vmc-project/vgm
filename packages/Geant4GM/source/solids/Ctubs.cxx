@@ -19,8 +19,6 @@
 #include "G4Tubs.hh"
 #include "G4SubtractionSolid.hh"
 
-#include <math.h>
-
 using CLHEP::Hep3Vector;
 using CLHEP::HepRotation;
 
@@ -64,7 +62,7 @@ Geant4GM::Ctubs::Ctubs(const std::string& name,
   // Calculate new hz
   double dzLow  = fabs(rout * tan(thetaLow));
   double dzHigh = fabs(rout * tan(thetaHigh));
-  double dzMax = fmax(dzLow, dzHigh);
+  double dzMax = dzLow >= dzHigh ? dzLow : dzHigh;
   double hzNew = hz + dzMax*1.2;
   //std::cout << "dzLow= " << dzLow << std::endl;
   //std::cout << "dzHigh= " << dzHigh << std::endl;
