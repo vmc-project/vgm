@@ -13,10 +13,11 @@
  E04:  Root   -> XML 
  
  
- All examples can be installed from this directory using
+ The source for all examples can be installed from this directory using
  the provided install script:
- ./install.sh
+ ./install_sources.sh
  
- 
+ The script install.sh will install sources and compile examples
+ using the G4 based GNUmakefiles. 
  
  
