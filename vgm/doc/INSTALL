@@ -38,7 +38,7 @@
  -----
    To build test program:
    cd $VGM_INSTALL/test
-   source env_setup.csh
+   . env_setup.sh   or  source env_setup.csh
    gmake
    
    For different test options, see vgm/test/README file;
@@ -47,7 +47,12 @@
 
  Examples:
  ---------
-   To build examples, see README in the example directory. 
+   To build examples:
+   cd $VGM_INSTALL/examples
+   ./install.sh
+   
+   How to run each example see in their README file.
+   
  
  Tested platform:
  -----------------
