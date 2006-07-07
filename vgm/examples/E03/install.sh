@@ -5,9 +5,7 @@
 CURDIR=`pwd`
 
 echo "... Installing E03"
-cp -r ${G4INSTALL}/examples/novice/N03 .
-cp GNUmakefile N03
-cp ExN03DetectorConstruction.cc N03/src
+./install_sources.sh
 . env_setup.sh
 cd N03
 gmake
