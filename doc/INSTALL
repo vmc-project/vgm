@@ -51,26 +51,7 @@
  
  Tested platform:
  -----------------
-   Linux RH 9.0, 
-   gcc version 3.2.2 20030222 (Red Hat Linux 3.2.2-5)
-
- Files:
- ------
-   config   - general makefiles
-              setup.(c)sh - script for setting environment
-   doc      - documents:
-              INSTALL - this file	
-	      README  - VGM User's guide
-	      history - versions description  
-   examples - examples for use of VGM
-   packages - source code:
-   	      VGM       - interfaces
-	      ClhepVGM  - conversion functions between CLHEP and VGM
-	                  transformations
-	      BaseVGM   - common implementation
-	      Geant4GM  - VGM implementation for Geant4
-	      RootGM    - VGM implementation for Root TGeo
-	      XmlVGM    - XML eporters
-   test     - test code
-   include, lib, tmp - generated during compilation 	   
+   Linux FC5, gcc 4.1.1
+   MacOS Powerbook 10.4.7 gcc 4
   
+
