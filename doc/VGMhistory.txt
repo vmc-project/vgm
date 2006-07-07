@@ -18,7 +18,8 @@ $Id$
                 - Multiple placement (division) offset in Geant4
 	       	       
 	       Tested with CLHEP 2.0.2.3, Root 5.11/06, Geant4 8.1;
-	       Linux: gcc 4.1.1 (FC5)
+	       Linux: gcc 4.1.1 (FC5),
+	       MacOS Powerbook 10.4.7 gcc 4 
 
   20/12/2005
   version 2.07    (public version)
