@@ -263,6 +263,28 @@ Geant4GM::Factory::ImportLV(G4LogicalVolume* lv)
   
 
 //_____________________________________________________________________________
+VGM::IVolume* 
+Geant4GM::Factory::ImportLV(G4LogicalVolume* lv, const std::string& mediumName)
+{
+/// Import logical volume in VGM
+
+  if (Debug()) {
+    BaseVGM::DebugInfo();
+    std::cout << "Importing LV: " << lv->GetName() << std::endl;
+  }  
+
+  // Import solid
+  VGM::ISolid* solid = ImportSolid(lv->GetSolid());
+    
+  // Create vgm volume 
+  VGM::IVolume* volume 
+    = new Geant4GM::Volume(solid, lv, mediumName);
+  VolumeStore().push_back(volume);
+  return volume;
+}
+  
+
+//_____________________________________________________________________________
 void Geant4GM::Factory::ImportDaughters(G4LogicalVolume* lv)
 {
 // Import recursively all daughters logical volumes.
@@ -771,7 +793,7 @@ Geant4GM::Factory::CreatePlacement(
   if (!iv1) {
      // a new logical volume has been created by G4 reflection factory
      // has to be imported into VGM
-     iv1 = ImportLV(lv1);
+     iv1 = ImportLV(lv1, volume->MediumName());
      ImportDaughters(lv1);
      ImportPositions(lv1);
   }    			
@@ -811,7 +833,7 @@ Geant4GM::Factory::CreatePlacement(
       if (!iv2) {
         // a new logical volume has been created by G4 reflection factory
         // has to be imported into VGM
-        iv2 = ImportLV(lv2);
+        iv2 = ImportLV(lv2, volume->MediumName());
         ImportDaughters(lv2);
 	ImportPositions(lv2);
       }

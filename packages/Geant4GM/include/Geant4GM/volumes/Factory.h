@@ -163,6 +163,7 @@ namespace Geant4GM {
       void          ImportConstituentSolid(int index, G4BooleanSolid* solid);
       VGM::ISolid*  ImportSolid(G4VSolid* solid);
       VGM::IVolume* ImportLV(G4LogicalVolume* lv);
+      VGM::IVolume* ImportLV(G4LogicalVolume* lv, const std::string& mediumName);
       void          ImportDaughters(G4LogicalVolume* lv);
       void          ImportPositions();
       void          ImportPositions(G4LogicalVolume* lv);
