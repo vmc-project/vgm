@@ -56,8 +56,8 @@ Geant4GM::Ctubs::Ctubs(const std::string& name,
   // Get angles 
   double thetaLow = fNLow.theta();
   double thetaHigh = fNHigh.theta();
-  std::cout << "thetaLow= " << thetaLow*ClhepVGM::Units::Angle() << std::endl;
-  std::cout << "thetaHigh= " << thetaHigh*ClhepVGM::Units::Angle() << std::endl;
+  //std::cout << "thetaLow= " << thetaLow*ClhepVGM::Units::Angle() << std::endl;
+  //std::cout << "thetaHigh= " << thetaHigh*ClhepVGM::Units::Angle() << std::endl;
 
   // Calculate new hz
   double dzLow  = fabs(rout * tan(thetaLow));
