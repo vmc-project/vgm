@@ -10,8 +10,9 @@
  3. Geometry conversions
  4. Geometry construction via VGM
  5. XML
- 6. Platforms
- 7. Files
+ 6. Options
+ 7. Platforms
+ 8. Files
  
  
  1. Introduction
@@ -95,8 +96,7 @@
       
   The geometry conversions between Geant4 and Root
   geometry models are demonstrated in examples E01 and E02.
-
-
+  
  4. Geometry construction via VGM
  --------------------------------
  
@@ -159,15 +159,37 @@
  is demonstrated in examples E03 and E04.
  The exported XML files (both AGDD, GDML) can be then viewed
  with the GraXML tool.
+ 
+ 6. Options
+ -----------
+ 
+ 6.1. Debug
+ 
+ Debug printing can be switched on via VGM::IFactory::SetDebug function:
+ 
+ IFactory& myFactory;
+ myFactory.SetDebug(n);
+      where n=1 or 2; if 2 also object adresses are printed
+  
+ 6.2. Ignore 
+ 
+ If geometry imported in VGM includes some solid not supported
+ in VGM (eg. a user defined solid in Geant4), then VGM prints a warning 
+ and stops. It is however possible to let VGM continue by setting the option
+ "Ignore" to the factory importing the geometry:
 
- 6. Platforms
+ IFactory& myFactory;
+ myFactory.SetIgnore(true);
+ 
+
+ 7. Platforms
  -------------
 
  Tested platforms:
  - Linux FC5, gcc 4.1.1
  - MacOS Powerbook 10.4.7 gcc 4
 
- 7. Files
+ 8. Files
  ---------
    config   - general makefiles (not use by cmt)
               setup.(c)sh - script for setting environment (not use by cmt)
