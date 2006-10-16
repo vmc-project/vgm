@@ -9,6 +9,7 @@
      <li><a href="#GeometryConversions"> Geometry conversions</a>
      <li><a href="#GeometryConstruction">Geometry construction via VGM</a>
      <li><a href="#XML">                 XML</a>
+     <li><a href="#Options">             Options</a>
      <li><a href="#Documentation">       Source code documentation</a>
      <li><a href="#Platforms">           Platforms</a>
  </ul>
@@ -65,12 +66,12 @@
  <table cellspacing="0" width="100%">
  <tbody>
      </td><td width="20%"> 
-         <i> version 2.08.01 </i>
+         <i> version 2.08.02 </i>
      </td><td width="20%"> 
-         <a href="http://ivana.home.cern.ch/ivana/vgm.2.08.01.tar.gz"> vgm.2.08.01.tar.gz </a>
+         <a href="http://ivana.home.cern.ch/ivana/vgm.2.08.02.tar.gz"> vgm.2.08.02.tar.gz </a>
      </td><td width="60%"> 
          <i> Tested with CLHEP 2.0.2.3, <br> 
-	     Geant4 8.1, Root 5.12/00 <br>
+	     Geant4 8.1, Root 5.13/04 <br>
 	     </i>
  </td></tr></tbody></table>  
 
@@ -204,6 +205,35 @@
   <a href="http://hrivnac.home.cern.ch/hrivnac/Activities/Packages/GraXML">
  GraXML tool </a>.
 
+ </p>
+
+ <a name="Options"></a> 
+ <h2> Options </h2>
+ 
+ <h3> Debug </h3>
+ 
+ <p>
+ Debug printing can be switched on via VGM::IFactory::SetDebug function:
+ 
+ <pre>                                                    <font face="Courier" color="#00aa00">
+ IFactory& myFactory;                                     
+ myFactory.SetDebug(n);                                   </font><font color="#aa00ff"><I>
+      // where n=1 or 2; if 2 also object adresses are printed  </font></I>
+ </pre>
+ </p>
+ 
+ <h3> Ignore </h3> 
+ 
+ <p>
+ If geometry imported in VGM includes some solid not supported
+ in VGM (eg. a user defined solid in Geant4), then VGM prints a warning 
+ and stops. It is however possible to let VGM continue by setting the option
+ "Ignore" to the factory importing the geometry:
+
+ <pre>                                                    <font face="Courier" color="#00aa00">
+ IFactory& myFactory;                                     
+ myFactory.SetIgnore(true);                               </font>
+ </pre>
  </p>
 
  <a name="Documentation"></a> 
