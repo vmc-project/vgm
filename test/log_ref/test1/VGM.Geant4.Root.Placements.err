@@ -1,0 +1,2 @@
+Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometry created
+Info in <TGeoManager::SetTopVolume>: Top volume is worldV. Master volume is worldV

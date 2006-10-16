@@ -1,0 +1,102 @@
+
+*************************************************************
+ Geant4 version Name: geant4-08-01    (30-June-2006)
+                      Copyright : Geant4 Collaboration
+                      Reference : NIM A 506 (2003), 250-303
+                            WWW : http://cern.ch/geant4
+*************************************************************
+
+Root geometry will be defined via Root and exported to Geant4
+TestAssemblies2 finished
+Go to Import
+VGM info:   RootGM::Factory::Import started ...
+VGM info:   Importing material: 
+VGM info:   Material Basic    A=26.98 Z=13 rho=2.7 radlen=8.8751 index=0
+VGM info:   Importing element: 
+VGM info:   OBJ: TGeoElement	AL	ALUMINIUM
+VGM info:   Importing material: 
+VGM info:   Mixture Air    Aeff=14.607 Zeff=7.3 rho=0.00129 radlen=28405.7 index=1
+   Element #0 : N  Z=  7.00 A= 14.01 w= 0.700
+   Element #1 : O  Z=  8.00 A= 16.00 w= 0.300
+VGM info:   Importing element: 
+VGM info:   OBJ: TGeoElement	N	NITROGEN
+VGM info:   Importing element: 
+VGM info:   OBJ: TGeoElement	O	OXYGEN
+VGM info:   Importing material: 
+VGM info:   Material Vacuum    A=0 Z=0 rho=0 radlen=0 index=2
+VGM info:   Importing element: 
+VGM info:   OBJ: TGeoElement	VACUUM	VACUUM
+VGM info:   Importing medium: 
+VGM info:   OBJ: TGeoMedium	Basic	
+VGM info:   Importing medium: 
+VGM info:   OBJ: TGeoMedium	Air	
+VGM info:   Importing medium: 
+VGM info:   OBJ: TGeoMedium	Galactic	
+VGM info:   Importing volume: TOP
+VGM info:   Importing shape: TGeoBBox
+VGM info:   ImportDaughters for TOP
+VGM info:   Importing volume: Assembly
+VGM info:   Importing shape: TGeoShapeAssembly
+VGM info:   ImportDaughters for Assembly
+VGM info:   Importing volume: CONS
+VGM info:   Importing shape: TGeoConeSeg
+VGM info:   ImportDaughters for CONS
+VGM info:   Import positions: 
+VGM info:   0th volume: TOP  
+VGM info:      0th daughter  rtVol = AssemblyVGM info:      0th assembly daughter  rtVol = CONS vgmVol = CONS
+VGM info:      1th assembly daughter  rtVol = CONS vgmVol = CONS
+VGM info:      2th assembly daughter  rtVol = CONS vgmVol = CONS
+VGM info:      3th assembly daughter  rtVol = CONS vgmVol = CONS
+VGM info:   2th volume: CONS  
+VGM info:   
+Root_GM_Factory factory solids store: 
+   0th solid: Box  "TGeoBBox"  hx = 10000mm  hy = 10000mm  hz = 10000mm
+   1th solid: Cons  "TGeoConeSeg"  rin1 = 100mm  rout1 = 400mm  rin2 = 200mm  rout2 = 600mm  hz = 500mm  sphi = 0deg  dphi = 360deg
+Root_GM_Factory factory volumes store: 
+   0th: Volume: "TOP" material "Basic" solid "Box"  4 daughters: "CONS"  "CONS"  "CONS"  "CONS"  
+   1th: Volume: "CONS" material "Basic" solid "Cons"  0 daughters: 
+VGM info:   RootGM::Factory::Import finished.
+Import finished
+Go to export
+VGM info:   Exporting element: 
+VGM info:   Element: "ALUMINIUM"  "AL"  Z = 13  N = 26.9815  A = 26.9815 g/mole
+VGM info:   Exporting element: 
+VGM info:   Element: "NITROGEN"  "N"  Z = 7  N = 14.0067  A = 14.0067 g/mole
+VGM info:   Exporting element: 
+VGM info:   Element: "OXYGEN"  "O"  Z = 8  N = 15.9994  A = 15.9994 g/mole
+VGM info:   Exporting element: 
+VGM info:   Element: "VACUUM"  "VACUUM"  Z = 0  N = 0  A = 0 g/mole
+VGM info:   Exporting material: 
+VGM info:   Material: "Basic"  density 2.7 g/cm3  radlen 8.8751 cm  intlen 0 cm
+   0th element:   Z = 13  A = 26.9815 g/mole  fractionMass = 100 %
+VGM info:   Exporting material: 
+VGM info:   Material: "Air"  density 0.00129 g/cm3  radlen 28405.7 cm  intlen 0 cm
+   0th element:   Z = 7  A = 14.0067 g/mole  fractionMass = 70 %
+   1th element:   Z = 8  A = 15.9994 g/mole  fractionMass = 30 %
+VGM info:   Exporting material: 
+VGM info:   Material: "Vacuum"  density 0 g/cm3  radlen 0 cm  intlen 0 cm
+   0th element:   Z = 0  A = 0 g/mole  fractionMass = 100 %
+VGM info:   Exporting medium: 
+VGM info:   Medium: "Basic"  material Basic g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+VGM info:   Exporting medium: 
+VGM info:   Medium: "Air"  material Air g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+VGM info:   Exporting medium: 
+VGM info:   Medium: "Galactic"  material Galactic g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+VGM info:   Exporting volume store: 
+VGM info:   Exporting solid: 
+VGM info:      Box  "TGeoBBox"  hx = 10000mm  hy = 10000mm  hz = 10000mm
+VGM info:      0th volume: TOP
+VGM info:   Exporting solid: 
+VGM info:      Cons  "TGeoConeSeg"  rin1 = 100mm  rout1 = 400mm  rin2 = 200mm  rout2 = 600mm  hz = 500mm  sphi = 0deg  dphi = 360deg
+VGM info:      1th volume: CONS
+VGM info:   ExportPlacements for 0th volume TOP
+VGM info:      0th daughter vol = CONS  simple placement: CONS
+VGM info:      1th daughter vol = CONS  simple placement: CONS
+VGM info:   Importing LV: CONS_refl
+VGM info:   Importing solid: TGeoConeSeg_refl
+VGM info:   ImportDaughters for CONS_refl
+VGM info:   ImportPositions for lv CONS_refl nofDaughters: 0
+VGM info:      2th daughter vol = CONS  simple placement: CONS
+VGM info:      3th daughter vol = CONS  simple placement: CONS
+VGM info:   ExportPlacements for 1th volume CONS
+Export finished
