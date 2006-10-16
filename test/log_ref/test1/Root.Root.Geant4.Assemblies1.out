@@ -16,8 +16,8 @@ VGM info:   Importing element:
 VGM info:   OBJ: TGeoElement	AL	ALUMINIUM
 VGM info:   Importing material: 
 VGM info:   Mixture Air    Aeff=14.607 Zeff=7.3 rho=0.00129 radlen=28405.7 index=1
-   Element #0 : Z=  7.00 A= 14.01 w=  0.70
-   Element #1 : Z=  8.00 A= 16.00 w=  0.30
+   Element #0 : N  Z=  7.00 A= 14.01 w= 0.700
+   Element #1 : O  Z=  8.00 A= 16.00 w= 0.300
 VGM info:   Importing element: 
 VGM info:   OBJ: TGeoElement	N	NITROGEN
 VGM info:   Importing element: 

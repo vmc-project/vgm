@@ -7,8 +7,6 @@
 *************************************************************
 
 Geant4 geometry will be defined via VGM and exported to Root
-thetaLow= 140.268
-thetaHigh= 5.90614
 TestSolids finished
 Go to export
 VGM info:   Exporting element: 

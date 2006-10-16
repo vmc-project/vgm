@@ -16,8 +16,8 @@ VGM info:   Importing element:
 VGM info:   OBJ: TGeoElement	AL	ALUMINIUM
 VGM info:   Importing material: 
 VGM info:   Mixture Air    Aeff=14.607 Zeff=7.3 rho=0.00129 radlen=28405.7 index=1
-   Element #0 : Z=  7.00 A= 14.01 w=  0.70
-   Element #1 : Z=  8.00 A= 16.00 w=  0.30
+   Element #0 : N  Z=  7.00 A= 14.01 w= 0.700
+   Element #1 : O  Z=  8.00 A= 16.00 w= 0.300
 VGM info:   Importing element: 
 VGM info:   OBJ: TGeoElement	N	NITROGEN
 VGM info:   Importing element: 
@@ -204,8 +204,6 @@ VGM info:      Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg
 VGM info:      11th volume: tubsV
 VGM info:   Exporting solid: 
 VGM info:      Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = 330deg  dphi = 280deg  nlow = (0, 6.4, -7.7)  nhigh = (0, 0.9, 8.7)
-thetaLow= 140.268
-thetaHigh= 5.90614
 VGM info:      12th volume: tubsV
 VGM info:   ExportPlacements for 0th volume worldV
 VGM info:      0th daughter vol = boxV  simple placement: boxV
