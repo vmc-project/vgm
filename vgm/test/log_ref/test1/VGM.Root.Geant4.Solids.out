@@ -78,8 +78,6 @@ VGM info:      Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg
 VGM info:      11th volume: tubsV
 VGM info:   Exporting solid: 
 VGM info:      Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = 330deg  dphi = 280deg  nlow = (0, 0.64, -0.77)  nhigh = (0, 0.09, 0.87)
-thetaLow= 140.268
-thetaHigh= 5.90614
 VGM info:      12th volume: ctubsV
 VGM info:   ExportPlacements for 0th volume worldV
 VGM info:      0th daughter vol = box  simple placement: box

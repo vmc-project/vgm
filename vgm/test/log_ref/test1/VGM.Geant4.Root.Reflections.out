@@ -51,8 +51,6 @@ VGM info:   Importing LV: tubsV_refl
 VGM info:   Importing solid: tubsS_refl
 VGM info:   ImportDaughters for tubsV_refl
 VGM info:   ImportPositions for lv tubsV_refl nofDaughters: 0
-thetaLow= 140.268
-thetaHigh= 5.90614
 VGM info:   Importing LV: ctubsV_refl
 VGM info:   Importing solid: ctubsS_refl
 VGM info:   Importing solid: boolean
