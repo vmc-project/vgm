@@ -48,6 +48,10 @@ namespace BaseVGM {
       virtual void  SetDebug (int debug);			       
       virtual int   Debug() const;
 
+      virtual void  SetIgnore (bool ignore);			       
+      virtual bool  Ignore() const;
+
+
     protected:
       VFactory();
       VFactory(const VFactory& rhs);
@@ -84,6 +88,7 @@ namespace BaseVGM {
 
       // data members
       int                     fDebug;
+      bool                    fIgnore;
       std::string             fName;
       VGM::SolidStore         fSolids;
       VGM::VolumeStore        fVolumes;
@@ -126,5 +131,11 @@ BaseVGM::VFactory::VolumeStore()
 
 inline int BaseVGM::VFactory::Debug() const
 { return fDebug; }
+ 
+inline void BaseVGM::VFactory::SetIgnore (bool ignore)
+{ fIgnore = ignore; }			       
+
+inline bool BaseVGM::VFactory::Ignore() const
+{ return fIgnore; }
 
 #endif //BASE_VGM_V_FACTORY_H

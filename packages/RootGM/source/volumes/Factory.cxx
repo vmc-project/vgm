@@ -247,10 +247,21 @@ RootGM::Factory::ImportSolid(TGeoShape* shape)
   }
 
   std::cerr << "    RootGM::Factory::ImportSolid: " << std::endl; 
-  std::cerr << "    Unsupported shape type (shape \'" 
-            << shape->GetName() << "\")" << std::endl;
-  std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
-  exit(1);
+  std::cerr << "    Unsupported solid type (solid \'" 
+            << shape->GetName() << "\")" 
+	    << std::endl;
+	    
+  if ( Ignore() ) {
+    std::cerr << "*** Warning: Using a box instead  ***" << std::endl; 
+    VGM::IBox* vgmBox 
+      = new RootGM::Box(shape->GetName(), 1., 1., 1.);
+    SolidStore().push_back(vgmBox);
+    return vgmBox; 
+  }
+  else {	    
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    exit(1);
+  }  
 }
 
 //_____________________________________________________________________________

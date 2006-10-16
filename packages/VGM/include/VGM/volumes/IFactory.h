@@ -359,6 +359,19 @@ namespace VGM {
                    /// Return the debug level
       virtual int  Debug() const = 0;
 
+      //
+      // optins
+      //
+	           ///
+                   /// Set ignoring of unsupported features
+		   /// - if not set (default) - program stops when an unsupported 
+		   ///   feature occurs
+		   /// - if set - only warning is issued
+      virtual void SetIgnore (bool debug) = 0;			       
+	           ///
+                   /// Return the ignore option
+      virtual bool Ignore() const = 0;
+
     private:
   
       //

@@ -233,11 +233,23 @@ Geant4GM::Factory::ImportSolid(G4VSolid* solid)
     return vgmBoolean; 
   }
 
-  std::cerr << "    Geant4GM::Factory::ImportSolid: " << std::endl; 
-  std::cerr << "    Unsupported solid type (solid \'" 
-            << solid->GetName() << "\")" << std::endl;
-  std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
-  exit(1);
+  std::cerr << "Geant4GM::Factory::ImportSolid: " << std::endl; 
+  std::cerr << "Unsupported solid type (solid \'" 
+            << solid->GetName() << "\"" 
+	    << "   type \"" << solid->GetEntityType() << "\")" 
+	    << std::endl;
+	    
+  if ( Ignore() ) {
+    std::cerr << "*** Warning: Using a box instead  ***" << std::endl; 
+    VGM::IBox* vgmBox 
+      = new Geant4GM::Box(solid->GetName(), 1.*mm, 1.*mm, 1.*mm);
+    SolidStore().push_back(vgmBox);
+    return vgmBox; 
+  }
+  else {	    
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    exit(1);
+  }  
 }
 
 //_____________________________________________________________________________

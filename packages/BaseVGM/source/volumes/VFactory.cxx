@@ -31,6 +31,7 @@ BaseVGM::VFactory::VFactory(const std::string& name,
                            VGM::IMaterialFactory* materialFactory)
   : VGM::IFactory(),
     fDebug(0),
+    fIgnore(false),
     fName(name),
     fSolids(),
     fVolumes(),
