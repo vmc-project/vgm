@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<AGDD DTD_version = "v6">
+
+<!-- materials are not yet generated --> 
+
+<section DTD_version = "v6"
+         name        = "TOP"
+         version     = "Id: AGDDWriter.cxx,v 1.11 2006/07/05 11:00:27 ivana Exp "
+         date        = "Undefined"
+         author      = "VGM AGGD Writer"
+         top_volume  = "TOP_comp"  >
+
+   <box    name="TOP"
+      material="Basic"
+      X_Y_Z="2000.0000; 2000.0000; 2000.0000" />
+
+   <cons   name="CONS"
+      material="Basic"
+      profile=" 0.0000; 360.0000"
+      Rio1_Rio2_Z  ="10.0000; 20.0000; 40.0000; 60.0000; 100.0000" />
+
+
+   <composition name="TOP_comp">
+      <transform    pos="110.0000;   0.0000;   0.0000"
+                 matrix=" 0.00000;  0.00000;  1.00000; 
+                          0.00000;  1.00000;  0.00000; 
+                         -1.00000;  0.00000;  0.00000"> <volume name="CONS"/>
+      </transform>
+      <transform    pos="-110.0000;   0.0000;   0.0000"
+                 matrix=" 0.00000;  0.00000; -1.00000; 
+                          0.00000;  1.00000;  0.00000; 
+                         -1.00000;  0.00000;  0.00000"> <volume name="CONS"/>
+      </transform>
+      <transform    pos="  0.0000; 110.0000;   0.0000"
+                 matrix=" 1.00000;  0.00000;  0.00000; 
+                          0.00000;  0.00000;  1.00000; 
+                          0.00000; -1.00000;  0.00000"> <volume name="CONS"/>
+      </transform>
+      <transform    pos="  0.0000; -110.0000;   0.0000"
+                 matrix=" 1.00000;  0.00000;  0.00000; 
+                          0.00000;  0.00000; -1.00000; 
+                          0.00000; -1.00000;  0.00000"> <volume name="CONS"/>
+      </transform>
+   </composition>
+
+
+</section>
+
+</AGDD>
