@@ -2,6 +2,15 @@ $Id$
 
  The Virtual Geometry Model - Versions
 =========================================
+  16/10/2006
+  version 2.08.02    (public version)
+               Adding option ignore (see its description in documentation)
+		       
+	       Tested with CLHEP 2.0.2.3, Root 5.13/04, Geant4 8.1;
+	       Linux: gcc 4.1.1 (FC5),
+	       MacOS Powerbook 10.4.7 gcc 4 
+
+
   04/08/2006
   version 2.08.01    (public version)
                Fixes only:
