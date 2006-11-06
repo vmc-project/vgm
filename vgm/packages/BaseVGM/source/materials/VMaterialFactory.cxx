@@ -123,7 +123,10 @@ BaseVGM::VMaterialFactory::ExportMaterial(
                         material->Density(),
 			newElement,
 			material->RadiationLength(),
-			material->NuclearInterLength());
+			material->NuclearInterLength(),
+			material->State(),
+			material->Temperature(),
+			material->Pressure());
   }			
   else {  
     // Fill elements vector
@@ -143,7 +146,10 @@ BaseVGM::VMaterialFactory::ExportMaterial(
                         material->Name(),
 			material->Density(),
 			elements,
-			massFractions);
+			massFractions,
+			material->State(),
+			material->Temperature(),
+			material->Pressure());
   }			
 
   return newMaterial;									
