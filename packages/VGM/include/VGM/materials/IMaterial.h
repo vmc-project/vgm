@@ -21,6 +21,13 @@ namespace VGM {
   typedef std::vector<IElement*>  ElementVector;
   typedef std::vector<double>     MassFractionVector;
 
+  enum MaterialState {
+    kUndefined, ///< Undefined material state
+    kSolid,	///< Solid material 
+    kLiquid,	///< Liquid material
+    kGas 	///< Gas materila
+  };	   
+
   class IMaterial
   {
     public:
@@ -39,6 +46,15 @@ namespace VGM {
 			  ///
                           /// Return the nuclear interaction length in mm 
       virtual double  NuclearInterLength() const = 0;
+                          ///
+			  /// Return the material state
+      virtual MaterialState  State() const = 0;
+                          /// 
+			  /// Return the temperature in kelvins
+      virtual double  Temperature() const = 0;
+                          ///
+			  /// Return the density in atmosphere
+      virtual double  Pressure() const = 0;			  
 			  ///
                           /// Return the number of elements constituing 
 			  /// this material 
