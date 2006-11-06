@@ -531,7 +531,7 @@ void  TstGeometryViaGeant4::DefineMaterials()
   //
   new G4Material("Vacuum", 
                  z=1., a=1.01*g/mole,density= universe_mean_density,
-                 kStateGas, 3.e-18*pascal, 2.73*kelvin);
+                 kStateGas, 2.73*kelvin, 3.e-18*pascal);
 }
 
 //_____________________________________________________________________________
