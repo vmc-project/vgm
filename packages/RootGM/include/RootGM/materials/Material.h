@@ -24,11 +24,17 @@ namespace RootGM {
       Material(const std::string& name,      
                double density, 
 	       VGM::IElement* element,
-	       double radlen, double intlen);
+	       double radlen, double intlen,
+	       VGM::MaterialState state = fgkDefaultState,
+	       double temperature = fgkDefaultTemperature, 
+	       double pressure = fgkDefaultPressure);
       Material(const std::string& name, 
                double density,
 	       const VGM::ElementVector& elements,
-               const VGM::MassFractionVector& fractions);
+               const VGM::MassFractionVector& fractions,
+	       VGM::MaterialState state = fgkDefaultState,
+	       double temperature = fgkDefaultTemperature, 
+	       double pressure = fgkDefaultPressure);
       Material(TGeoMaterial* material);		
       virtual ~Material();
     
@@ -38,6 +44,9 @@ namespace RootGM {
       virtual double  Density() const;
       virtual double  RadiationLength() const;
       virtual double  NuclearInterLength() const;
+      virtual VGM::MaterialState  State() const;
+      virtual double  Temperature() const;
+      virtual double  Pressure() const;			  
     
       virtual int             NofElements() const;
       virtual VGM::IElement*  Element(int iel) const;     
@@ -48,9 +57,20 @@ namespace RootGM {
       Material(const Material& rhs);
     
     private:
-      void CheckIndex(int iel) const;
+      void   CheckIndex(int iel) const;
+      double UpdateParametersIfVacuum(double density);
+      
+      static const VGM::MaterialState  fgkDefaultState;
+      static const double  fgkDefaultTemperature;
+      static const double  fgkDefaultPressure; 
+      static const double  fgkVacuumDensity;
+      static const double  fgkVacuumTemperature;
+      static const double  fgkVacuumPressure;  
   
-      TGeoMaterial*  fMaterial;  
+      TGeoMaterial*       fMaterial; 
+      VGM::MaterialState  fState;
+      double              fTemperature;
+      double              fPressure; 
   };
 
 }
