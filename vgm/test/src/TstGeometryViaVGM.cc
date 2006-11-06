@@ -30,7 +30,9 @@ TstGeometryViaVGM::TstGeometryViaVGM(IFactory* factory)
     fCm(ClhepVGM::Units::Length(cm)),
     fDeg(ClhepVGM::Units::Angle(deg)),
     fGcm3(ClhepVGM::Units::MassDensity(g/cm3)),
-    fGmole(ClhepVGM::Units::AtomicWeight(g/mole))
+    fGmole(ClhepVGM::Units::AtomicWeight(g/mole)),
+    fKelvin(ClhepVGM::Units::Temperature(kelvin)),
+    fAtm(ClhepVGM::Units::Pressure(atmosphere))
 {
 //
 }  
@@ -380,7 +382,7 @@ void  TstGeometryViaVGM::DefineMaterials()
   IMaterialFactory* materialFactory = fFactory->MaterialFactory();
 
   // create elements
-  double z, a, density, radlen, intlen; 
+  double z, a, density, radlen, intlen, temperature, pressure; 
   IElement* elVacuum
     = materialFactory->CreateElement(" ",  "Vacuum",    z=1.,  a= 1.01 * fGmole);
   IElement* elN
@@ -414,13 +416,12 @@ void  TstGeometryViaVGM::DefineMaterials()
   // vacuum
   //
   density = universe_mean_density / (g/cm3) * fGcm3;
+  temperature = 2.73 * fKelvin;
+  pressure = 3.e-18 * ClhepVGM::Units::Pressure(pascal);
   IMaterial* vacuum
     = materialFactory
-      ->CreateMaterial("Vacuum", density, elVacuum, radlen=0., intlen=0.);
-
-  // Cannont pass state, pressure, temperature:
-  //                kStateGas, 3.e-18*pascal, 2.73*kelvin
-  // TO DO: to be improved later
+      ->CreateMaterial("Vacuum", density, elVacuum, radlen=0., intlen=0.,
+                       VGM::kGas, temperature, pressure);
 
   // define tracking media
   // with no parameters specified
