@@ -144,6 +144,26 @@ Geant4GM::MaterialFactory::CreateMaterial(
 
 //_____________________________________________________________________________
 VGM::IMaterial* 
+Geant4GM::MaterialFactory::CreateMaterial(     
+                                 const std::string& name,      
+                                 double density, 
+                                 VGM::IElement* element,
+                                 double /*radlen*/, double /*intlen*/,
+                                 VGM::MaterialState state, 
+                                 double temperature, double pressure)
+{
+// Create material 
+
+  VGM::IMaterial* vgmMaterial 
+    = new Geant4GM::Material(name, density, element, 
+                             state, temperature, pressure);
+		      
+  MaterialStore().push_back(vgmMaterial);
+  return vgmMaterial; 
+}			       
+
+//_____________________________________________________________________________
+VGM::IMaterial* 
 Geant4GM::MaterialFactory::CreateMaterial(
                                  const std::string& name, 
                                  double density,
@@ -154,6 +174,26 @@ Geant4GM::MaterialFactory::CreateMaterial(
 
   VGM::IMaterial* vgmMaterial
     = new Geant4GM::Material(name, density, elements, fractions);
+		      
+  MaterialStore().push_back(vgmMaterial);
+  return vgmMaterial; 
+}			       
+
+//_____________________________________________________________________________
+VGM::IMaterial* 
+Geant4GM::MaterialFactory::CreateMaterial(
+                                 const std::string& name, 
+                                 double density,
+			         const VGM::ElementVector& elements,
+                                 const VGM::MassFractionVector& fractions,
+                                 VGM::MaterialState state,
+                                 double temperature, double pressure)
+{
+// Create material 
+
+  VGM::IMaterial* vgmMaterial
+    = new Geant4GM::Material(name, density, elements, fractions,
+                             state, temperature, pressure);
 		      
   MaterialStore().push_back(vgmMaterial);
   return vgmMaterial; 

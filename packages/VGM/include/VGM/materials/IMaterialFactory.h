@@ -62,6 +62,25 @@ namespace VGM {
 		          /// \param name its name
 			  ///        (must be unique in the factory)
 			  /// \param density in g/cm3
+			  /// \param element element constituing this material
+			  /// \param radlen radiation length in mm			  
+			  /// \param intlen nuclear interaction length in mm
+			  /// \param state material state
+			  /// \param temperature temperature in kelvin
+			  /// \param pressure pressure in atmosphere 
+			  ///
+      virtual IMaterial*  CreateMaterial(
+                                 const std::string& name, 
+	  		         double density, 
+			         VGM::IElement* element,     
+			         double radlen, double intlen,
+				 VGM::MaterialState state,
+				 double temperature, double pressure) = 0;
+
+                          /// Create a compound material
+		          /// \param name its name
+			  ///        (must be unique in the factory)
+			  /// \param density in g/cm3
 			  /// \param elements vector of elements constituing 
 			  ///        this material
 			  /// \param fractions vector of mass fractions of
@@ -72,6 +91,26 @@ namespace VGM {
                                  double density,
 			         const VGM::ElementVector& elements,
                                  const VGM::MassFractionVector& fractions) = 0;
+
+                          /// Create a compound material
+		          /// \param name its name
+			  ///        (must be unique in the factory)
+			  /// \param density in g/cm3
+			  /// \param elements vector of elements constituing 
+			  ///        this material
+			  /// \param fractions vector of mass fractions of
+			  ///        elements constituing this material
+			  /// \param state material state
+			  /// \param temperature temperature in kelvin
+			  /// \param pressure pressure in atmosphere 
+			  ///
+      virtual IMaterial*  CreateMaterial(
+                                 const std::string& name, 
+                                 double density,
+			         const VGM::ElementVector& elements,
+                                 const VGM::MassFractionVector& fractions,
+				 VGM::MaterialState state,
+				 double temperature, double pressure) = 0;
 
                           /// Create a tracking medium
 		          /// \param name its name
