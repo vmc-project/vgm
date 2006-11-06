@@ -52,7 +52,23 @@ namespace ClhepVGM {
                     /// Convert CLHEP  atomic weight  unit in VGM units
 		    ///
       static double AtomicWeight(double clhepUnit);     
+
+                    /// Return CLHEP default temperature unit in VGM unit
+		    ///
+      static double Temperature();		    
       
+                    /// Convert CLHEP temperature unit in VGM unit
+		    ///
+      static double Temperature(double clhepUnit);		    
+
+                    /// Return CLHEP default pressure unit in VGM unit
+		    ///
+      static double Pressure();		    
+      
+                    /// Convert CLHEP temperature unit in VGM unit
+		    ///
+      static double Pressure(double clhepUnit);		    
+
                     /// Convert CLHEP  default unit for given axis type
 		    /// in VGM units
 		    ///
@@ -68,6 +84,8 @@ namespace ClhepVGM {
       static const double fgkAngle;  
       static const double fgkMassDensity;
       static const double fgkAtomicWeight;
+      static const double fgkTemperature;
+      static const double fgkPressure;
   }; 
   
 }      

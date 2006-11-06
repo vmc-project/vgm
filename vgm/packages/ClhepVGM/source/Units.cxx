@@ -18,6 +18,8 @@ using CLHEP::cm3;
 using CLHEP::deg;
 using CLHEP::g;
 using CLHEP::mole;
+using CLHEP::kelvin;
+using CLHEP::atmosphere;
 
 //
 // static const data members
@@ -27,6 +29,8 @@ const double ClhepVGM::Units::fgkLength       = 1./mm;
 const double ClhepVGM::Units::fgkAngle        = 1./deg;
 const double ClhepVGM::Units::fgkMassDensity  = 1./(g/cm3);
 const double ClhepVGM::Units::fgkAtomicWeight = 1./(g/mole);
+const double ClhepVGM::Units::fgkTemperature  = 1./kelvin;
+const double ClhepVGM::Units::fgkPressure     = 1./atmosphere;
 
 //_____________________________________________________________________________
 ClhepVGM::Units::Units() 
@@ -113,5 +117,29 @@ double ClhepVGM::Units::AtomicWeight()
 double ClhepVGM::Units::AtomicWeight(double clhepUnit) 
 { 
   return fgkAtomicWeight * clhepUnit; 
+}
+
+//_____________________________________________________________________________
+double ClhepVGM::Units::Temperature() 
+{ 
+  return fgkTemperature; 
+}
+
+//_____________________________________________________________________________
+double ClhepVGM::Units::Temperature(double clhepUnit) 
+{ 
+  return fgkTemperature * clhepUnit; 
+}
+
+//_____________________________________________________________________________
+double ClhepVGM::Units::Pressure() 
+{ 
+  return fgkPressure; 
+}
+
+//_____________________________________________________________________________
+double ClhepVGM::Units::Pressure(double clhepUnit) 
+{ 
+  return fgkPressure * clhepUnit; 
 }
 
