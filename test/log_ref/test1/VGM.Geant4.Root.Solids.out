@@ -18,14 +18,14 @@ VGM info:   Element: "O"  "Oxygen"  Z = 8  N = 16  A = 16 g/mole
 VGM info:   Exporting element: 
 VGM info:   Element: "Al"  "Aluminium"  Z = 13  N = 26.98  A = 26.98 g/mole
 VGM info:   Exporting material: 
-VGM info:   Material: "Basic"  density 2.7 g/cm3  radlen 8.89253 cm  intlen 38.8793 cm
+VGM info:   Material: "Basic"  density 2.7 g/cm3  radlen 8.89253 cm  intlen 38.8793 cm  state "Solid"  temperature 273.15 kelvin  pressure 1 atm
    0th element:   Z = 13  A = 26.98 g/mole  fractionMass = 100 %
 VGM info:   Exporting material: 
-VGM info:   Material: "Air"  density 0.00129 g/cm3  radlen 28516.1 cm  intlen 66268 cm
+VGM info:   Material: "Air"  density 0.00129 g/cm3  radlen 28516.1 cm  intlen 66268 cm  state "Gas"  temperature 273.15 kelvin  pressure 1 atm
    0th element:   Z = 7  A = 14.01 g/mole  fractionMass = 70 %
    1th element:   Z = 8  A = 16 g/mole  fractionMass = 30 %
 VGM info:   Exporting material: 
-VGM info:   Material: "Vacuum"  density 1e-25 g/cm3  radlen 6.31723e+26 cm  intlen 3.51163e+26 cm
+VGM info:   Material: "Vacuum"  density 1e-25 g/cm3  radlen 6.31723e+26 cm  intlen 3.51163e+26 cm  state "Gas"  temperature 2.73 kelvin  pressure 2.96077e-23 atm
    0th element:   Z = 1  A = 1.01 g/mole  fractionMass = 100 %
 VGM info:   Exporting medium: 
 VGM info:   Medium: "Basic"  material Basic g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0

@@ -156,14 +156,14 @@ VGM info:   Element: "OXYGEN"  "O"  Z = 8  N = 15.9994  A = 15.9994 g/mole
 VGM info:   Exporting element: 
 VGM info:   Element: "VACUUM"  "VACUUM"  Z = 0  N = 0  A = 0 g/mole
 VGM info:   Exporting material: 
-VGM info:   Material: "Basic"  density 2.7 g/cm3  radlen 8.8751 cm  intlen 0 cm
+VGM info:   Material: "Basic"  density 2.7 g/cm3  radlen 8.8751 cm  intlen 0 cm  state "Undefined"  temperature 275.13 kelvin  pressure 1 atm
    0th element:   Z = 13  A = 26.9815 g/mole  fractionMass = 100 %
 VGM info:   Exporting material: 
-VGM info:   Material: "Air"  density 0.00129 g/cm3  radlen 28405.7 cm  intlen 0 cm
+VGM info:   Material: "Air"  density 0.00129 g/cm3  radlen 28405.7 cm  intlen 0 cm  state "Undefined"  temperature 275.13 kelvin  pressure 1 atm
    0th element:   Z = 7  A = 14.0067 g/mole  fractionMass = 70 %
    1th element:   Z = 8  A = 15.9994 g/mole  fractionMass = 30 %
 VGM info:   Exporting material: 
-VGM info:   Material: "Vacuum"  density 0 g/cm3  radlen 0 cm  intlen 0 cm
+VGM info:   Material: "Vacuum"  density 0 g/cm3  radlen 0 cm  intlen 0 cm  state "Undefined"  temperature 2.73 kelvin  pressure 2.96077e-23 atm
    0th element:   Z = 0  A = 0 g/mole  fractionMass = 100 %
 VGM info:   Exporting medium: 
 VGM info:   Medium: "Basic"  material Basic g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0

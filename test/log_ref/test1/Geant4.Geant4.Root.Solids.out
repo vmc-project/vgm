@@ -28,7 +28,7 @@ VGM info:    Material:      Air     density:  1.290 mg/cm3  temperature: 273.15 
    --->  Element: Nitrogen (N)   Z =  7.0   N =  14.0   A =  14.01 g/mole  ElmMassFraction:  70.00 %  ElmAbundance  72.71 %
    --->  Element: Oxygen (O)   Z =  8.0   N =  16.0   A =  16.00 g/mole  ElmMassFraction:  30.00 %  ElmAbundance  27.29 %
 VGM info:   Importing material: 
-VGM info:    Material:   Vacuum     density:  0.000 kg/m3   temperature:   0.00 K  pressure:   0.00 atm  RadLength: 204727576.737 pc 
+VGM info:    Material:   Vacuum     density:  0.000 kg/m3   temperature:   2.73 K  pressure:   0.00 atm  RadLength: 204727576.737 pc 
    --->  Element: Vacuum ( )   Z =  1.0   N =   1.0   A =   1.01 g/mole  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
 VGM info:   Importing LV: worldV
 VGM info:   Importing solid: worldS
@@ -178,24 +178,24 @@ VGM info:   Element: "Oxygen"  "O"  Z = 8  N = 16  A = 16 g/mole
 VGM info:   Exporting element: 
 VGM info:   Element: "Vacuum"  " "  Z = 1  N = 1.01  A = 1.01 g/mole
 VGM info:   Exporting material: 
-VGM info:   Material: "Basic"  density 2.7 g/cm3  radlen 8.89253 cm  intlen 38.8793 cm
+VGM info:   Material: "Basic"  density 2.7 g/cm3  radlen 8.89253 cm  intlen 38.8793 cm  state "Solid"  temperature 273.15 kelvin  pressure 1 atm
    0th element:   Z = 13  A = 26.98 g/mole  fractionMass = 100 %
 VGM info:   Exporting material: 
-VGM info:   Material: "Air"  density 0.00129 g/cm3  radlen 28516.1 cm  intlen 66268 cm
+VGM info:   Material: "Air"  density 0.00129 g/cm3  radlen 28516.1 cm  intlen 66268 cm  state "Gas"  temperature 273.15 kelvin  pressure 1 atm
    0th element:   Z = 7  A = 14.01 g/mole  fractionMass = 70 %
    1th element:   Z = 8  A = 16 g/mole  fractionMass = 30 %
 VGM info:   Exporting material: 
-VGM info:   Material: "Vacuum"  density 1e-25 g/cm3  radlen 6.31723e+26 cm  intlen 3.51163e+26 cm
+VGM info:   Material: "Vacuum"  density 1e-25 g/cm3  radlen 6.31723e+26 cm  intlen 3.51163e+26 cm  state "Gas"  temperature 2.73 kelvin  pressure 2.96077e-23 atm
    0th element:   Z = 1  A = 1.01 g/mole  fractionMass = 100 %
 VGM info:   Generation medium for material: 
-VGM info:   Material: "Basic"  density 2.7 g/cm3  radlen 8.89253 cm  intlen 38.8793 cm
+VGM info:   Material: "Basic"  density 2.7 g/cm3  radlen 8.89253 cm  intlen 38.8793 cm  state "Solid"  temperature 273.15 kelvin  pressure 1 atm
    0th element:   Z = 13  A = 26.98 g/mole  fractionMass = 100 %
 VGM info:   Generation medium for material: 
-VGM info:   Material: "Air"  density 0.00129 g/cm3  radlen 28516.1 cm  intlen 66268 cm
+VGM info:   Material: "Air"  density 0.00129 g/cm3  radlen 28516.1 cm  intlen 66268 cm  state "Gas"  temperature 273.15 kelvin  pressure 1 atm
    0th element:   Z = 7  A = 14.01 g/mole  fractionMass = 70 %
    1th element:   Z = 8  A = 16 g/mole  fractionMass = 30 %
 VGM info:   Generation medium for material: 
-VGM info:   Material: "Vacuum"  density 1e-25 g/cm3  radlen 6.31723e+26 cm  intlen 3.51163e+26 cm
+VGM info:   Material: "Vacuum"  density 1e-25 g/cm3  radlen 6.31723e+26 cm  intlen 3.51163e+26 cm  state "Gas"  temperature 2.73 kelvin  pressure 2.96077e-23 atm
    0th element:   Z = 1  A = 1.01 g/mole  fractionMass = 100 %
 VGM info:   Exporting volume store: 
 VGM info:   Exporting solid: 
