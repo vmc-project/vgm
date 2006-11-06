@@ -2,6 +2,17 @@ $Id$
 
  The Virtual Geometry Model - Versions
 =========================================
+  06/11/2006
+  version 2.08.03    (public version)
+               Adding material state, temperature and pressure
+	       to the material interface;
+	       these material properties are now handled via
+	       VGM when creating or converting geometry.
+		       
+	       Tested with CLHEP 2.0.2.3, Root 5.13/04, Geant4 8.1;
+	       Linux: gcc 4.1.1 (FC6),
+	       MacOS Powerbook 10.4.7 gcc 4 
+
   16/10/2006
   version 2.08.02    (public version)
                Adding option ignore (see its description in documentation)
