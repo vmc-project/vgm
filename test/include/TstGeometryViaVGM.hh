@@ -57,6 +57,8 @@ class TstGeometryViaVGM : public TstVGeometry
     const double    fDeg;
     const double    fGcm3;
     const double    fGmole;
+    const double    fKelvin;
+    const double    fAtm;
 };
 
 #endif //TST_GEOMETRY_VIA_VGM_H
