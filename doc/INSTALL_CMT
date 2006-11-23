@@ -33,8 +33,9 @@
  -----------
    cd vgm/cmt
    source $where_cmt_is_install/mgr/setup.csh   
-   export CMTPATH=`pwd`
+   export CMTPATH="where_you_have_put_your_CLHEP_ROOT_GEANT4_InterfacesFiles"
    cmt config
+   . setup.sh
    cmt make VGM
 
  Test:
@@ -46,15 +47,19 @@
    eg.
    vgm_test.exe VGM Geant4 Root noXML Solids
 
+   For launching "test suite" files :
+   ../test/test1_suite.sh  or
+   ../test/test2_suite.sh
+   The output from tests stored in log directory can be then compared
+   with the reference output in vgm/test/log_ref directory.
+ 
  Examples:
  ---------
-   cd vgm/examples
-   ./install_sources.sh
    cd vgm/cmt
    cmt make examples
  
  Tested platform:
  -----------------
    Linux FC5, gcc 4.1.1
-   MacOS Powerbook 10.4.7 gcc 4
+   MacOS Powerbook 10.4.8 gcc 4.0.1
 
