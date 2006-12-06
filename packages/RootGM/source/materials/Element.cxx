@@ -20,7 +20,10 @@ RootGM::Element::Element(const std::string& name,
                          const std::string& symbol,      
                          double z, double a) 
   : VGM::IElement(),
-    fElement(0)    			       			  
+    fElement(0),
+    fName(name),
+    fZ(z),
+    fA(a)    			       			  
 {
 /// Standard constructor to define element from parameters 
 /// \param name its name
@@ -43,9 +46,28 @@ RootGM::Element::Element(const std::string& name,
 }
 			   
 //_____________________________________________________________________________
+RootGM::Element::Element(TGeoElement* element, 
+                         const std::string& name, double z, double a)
+  : VGM::IElement(),
+    fElement(element),
+    fName(name),
+    fZ(z),
+    fA(a)    			       			  
+{
+/// Standard constructor to define element from the Root object
+
+  // Register element in the map
+  RootGM::ElementMap::Instance()->AddElement(this, fElement); 
+}
+			   
+			   
+//_____________________________________________________________________________
 RootGM::Element::Element(TGeoElement* element)
   : VGM::IElement(),
-    fElement(element)
+    fElement(element),
+    fName(element->GetTitle()),
+    fZ(element->Z()),
+    fA(element->A())
 {
 /// Standard constructor to define element from the Root object
 
@@ -80,7 +102,7 @@ RootGM::Element::~Element() {
 //_____________________________________________________________________________
 std::string RootGM::Element::Name() const
 {
-  return fElement->GetTitle();
+  return fName;
 }  
 
 //_____________________________________________________________________________
@@ -92,18 +114,18 @@ std::string RootGM::Element::Symbol() const
 //_____________________________________________________________________________
 double  RootGM::Element::Z() const    
 {
-  return fElement->Z();
+  return fZ;
 }
 
 //_____________________________________________________________________________
 double  RootGM::Element::N() const    
 {
-  return fElement->A();
+  return fA;
 }
 
 //_____________________________________________________________________________
 double  RootGM::Element::A() const    
 {
-  return fElement->A() * RootGM::Units::AtomicWeight();
+  return fA * RootGM::Units::AtomicWeight();
 }
 
