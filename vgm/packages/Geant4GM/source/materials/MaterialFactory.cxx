@@ -23,7 +23,8 @@
 //_____________________________________________________________________________
 Geant4GM::MaterialFactory::MaterialFactory()
   : VGM::IMaterialFactory(),
-    BaseVGM::VMaterialFactory("Geant4_GM_Material_Factory")
+    BaseVGM::VMaterialFactory("Geant4_GM_Material_Factory"),
+    fVacuumElements()
 {  
 /// Standard default constructor
 }
@@ -31,7 +32,9 @@ Geant4GM::MaterialFactory::MaterialFactory()
 //_____________________________________________________________________________
 Geant4GM::MaterialFactory::MaterialFactory(const MaterialFactory& rhs)
   : VGM::IMaterialFactory(rhs),
-    BaseVGM::VMaterialFactory(rhs)
+    BaseVGM::VMaterialFactory(rhs),
+    fVacuumElements(rhs.fVacuumElements)
+    
 {  
 /// Protected copy constructor
 }
@@ -116,9 +119,12 @@ Geant4GM::MaterialFactory::CreateElement(
       vgmElement 
        = new Geant4GM::Element(name, symbol, z = 1.0, 
                                a = 1.01*ClhepVGM::Units::AtomicWeight(g/mole));
+
+      fVacuumElements.insert(vgmElement);                               
     }
-    else  
+    else  {
       vgmElement = new Geant4GM::Element(name, symbol, z, a);
+    }  
 
     ElementStore().push_back(vgmElement);
   }    
@@ -135,8 +141,11 @@ Geant4GM::MaterialFactory::CreateMaterial(
 {
 // Create material 
 
+  bool isVacuum = false;
+  if ( fVacuumElements.find(element) != fVacuumElements.end() ) isVacuum = true;
+
   VGM::IMaterial* vgmMaterial 
-    = new Geant4GM::Material(name, density, element);
+    = new Geant4GM::Material(name, density, element, isVacuum);
 		      
   MaterialStore().push_back(vgmMaterial);
   return vgmMaterial; 
@@ -154,9 +163,12 @@ Geant4GM::MaterialFactory::CreateMaterial(
 {
 // Create material 
 
+  bool isVacuum = false;
+  if ( fVacuumElements.find(element) != fVacuumElements.end() ) isVacuum = true;
+
   VGM::IMaterial* vgmMaterial 
     = new Geant4GM::Material(name, density, element, 
-                             state, temperature, pressure);
+                             state, temperature, pressure, isVacuum);
 		      
   MaterialStore().push_back(vgmMaterial);
   return vgmMaterial; 
