@@ -1,6 +1,6 @@
 
 *************************************************************
- Geant4 version Name: geant4-08-01    (30-June-2006)
+ Geant4 version Name: geant4-08-01-patch-02    (10-November-2006)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -78,13 +78,13 @@ VGM info:   ImportPositions for lv ctubsV_refl nofDaughters: 0
 TestReflections finished
 Go to export
 VGM info:   Exporting element: 
-VGM info:   Element: " "  "Vacuum"  Z = 1  N = 1.01  A = 1.01 g/mole
+VGM info:   Element: "Vacuum"  " "  Z = 1  N = 1.01  A = 1.01 g/mole
 VGM info:   Exporting element: 
-VGM info:   Element: "N"  "Nitrogen"  Z = 7  N = 14.01  A = 14.01 g/mole
+VGM info:   Element: "Nitrogen"  "N"  Z = 7  N = 14.01  A = 14.01 g/mole
 VGM info:   Exporting element: 
-VGM info:   Element: "O"  "Oxygen"  Z = 8  N = 16  A = 16 g/mole
+VGM info:   Element: "Oxygen"  "O"  Z = 8  N = 16  A = 16 g/mole
 VGM info:   Exporting element: 
-VGM info:   Element: "Al"  "Aluminium"  Z = 13  N = 26.98  A = 26.98 g/mole
+VGM info:   Element: "Aluminium"  "Al"  Z = 13  N = 26.98  A = 26.98 g/mole
 VGM info:   Exporting material: 
 VGM info:   Material: "Basic"  density 2.7 g/cm3  radlen 8.89253 cm  intlen 38.8793 cm  state "Solid"  temperature 273.15 kelvin  pressure 1 atm
    0th element:   Z = 13  A = 26.98 g/mole  fractionMass = 100 %
