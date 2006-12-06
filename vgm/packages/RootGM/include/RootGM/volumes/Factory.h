@@ -142,7 +142,7 @@ namespace RootGM {
 
       // import/export
       //
-      bool Import(TGeoVolume* topVolume);			       
+      bool Import(TGeoNode* topNode);			       
 			       
     protected:
       Factory(const Factory& rhs);
@@ -167,7 +167,7 @@ namespace RootGM {
 
       // import/export
       //
-      virtual bool Import(void* topVolume);			       
+      virtual bool Import(void* topNode);			       
     
       VGM::IPlacement* fTop;      
   };
