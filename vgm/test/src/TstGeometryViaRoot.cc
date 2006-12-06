@@ -435,7 +435,7 @@ void* TstGeometryViaRoot::TestSolids(Bool_t fullPhi)
   
   PlaceSolids(worldV, fullPhi, false, 0.);
 
-  return (void*) worldV;
+  return (void*) gGeoManager->GetTopNode();
  }
 
 //_____________________________________________________________________________
@@ -494,7 +494,7 @@ void* TstGeometryViaRoot::TestPlacements()
      worldV->AddNode(volA, i+1, combi);
    }
    
-  return (void*) worldV;
+  return (void*) gGeoManager->GetTopNode();
 }
 
 //_____________________________________________________________________________
@@ -505,7 +505,7 @@ void* TstGeometryViaRoot::TestReflections(Bool_t fullPhi)
   
   PlaceSolids(worldV, fullPhi, true, 100.);
 
-  return (void*) worldV;
+  return (void*) gGeoManager->GetTopNode();
 }
 
 //_____________________________________________________________________________
@@ -588,7 +588,7 @@ void* TstGeometryViaRoot::TestAssemblies()
     top->AddNode(row, nrows-i4, new TGeoTranslation(-xrow,-yrow,0));
   }        
   
-  return (void*) top;
+  return (void*) gGeoManager->GetTopNode();
 }
 
 //_____________________________________________________________________________
@@ -667,7 +667,7 @@ void* TstGeometryViaRoot::TestAssemblies2()
   assembly->AddNode(consV, 4, combi4);
   top->AddNode(assembly, 1);
 
-  return (void*) top;
+  return (void*) gGeoManager->GetTopNode();
  }
 
 //_____________________________________________________________________________
@@ -735,7 +735,7 @@ void* TstGeometryViaRoot::TestBooleanSolids1()
   worldV->AddNode(unionV, 1, 
                   new TGeoTranslation(wSize/4., 0., 200.));
   
-  return (void*) worldV;
+  return (void*) gGeoManager->GetTopNode();
 }
 
 //_____________________________________________________________________________
@@ -813,7 +813,7 @@ void* TstGeometryViaRoot::TestBooleanSolids2()
   worldV->AddNode(unionV, 1, 
                   new TGeoTranslation(wSize/4., 0., 200.));
   
-  return (void*) worldV;
+  return (void*) gGeoManager->GetTopNode();
 }
 
 //_____________________________________________________________________________
@@ -897,7 +897,7 @@ void* TstGeometryViaRoot::TestBooleanSolids3()
   worldV->AddNode(unionV, 1, 
                   new TGeoTranslation(wSize/4., 0., 200.));
   
-  return (void*) worldV;
+  return (void*) gGeoManager->GetTopNode();
 }
 
 //_____________________________________________________________________________
@@ -950,7 +950,7 @@ void* TstGeometryViaRoot::TestBooleanSolids4()
 
   top->AddNode(comp, 1); 
 
-  return (void*) top;
+  return (void*) gGeoManager->GetTopNode();
 }
 
 //_____________________________________________________________________________
@@ -1024,6 +1024,6 @@ void* TstGeometryViaRoot::TestBooleanSolids5()
 
   top->AddNode(comp, 1, new TGeoTranslation(0, 0, 150.)); 
 
-  return (void*) top;
+  return (void*) gGeoManager->GetTopNode();
 }
 
