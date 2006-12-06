@@ -23,12 +23,14 @@ namespace Geant4GM {
     public:
       Material(const std::string& name,
                double density,
-               VGM::IElement* element);
+               VGM::IElement* element,
+               bool isVacuum = false);
       Material(const std::string& name,
                double density,
                VGM::IElement* element,
 	       VGM::MaterialState state,
-	       double temperature, double pressure);
+	       double temperature, double pressure,
+               bool isVacuum = false);
       Material(const std::string& name, 
                double density,
 	       const VGM::ElementVector& elements,
