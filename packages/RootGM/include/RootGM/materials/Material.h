@@ -35,7 +35,8 @@ namespace RootGM {
 	       VGM::MaterialState state = fgkDefaultState,
 	       double temperature = fgkDefaultTemperature, 
 	       double pressure = fgkDefaultPressure);
-      Material(TGeoMaterial* material);		
+      Material(TGeoMaterial* material,
+               const VGM::ElementVector& elements);		
       virtual ~Material();
     
       // methods
@@ -58,7 +59,7 @@ namespace RootGM {
     
     private:
       void   CheckIndex(int iel) const;
-      double UpdateParametersIfVacuum(double density);
+      double UpdateParametersIfVacuum(double density, double z);
       
       static const VGM::MaterialState  fgkDefaultState;
       static const double  fgkDefaultTemperature;
@@ -68,6 +69,7 @@ namespace RootGM {
       static const double  fgkVacuumPressure;  
   
       TGeoMaterial*       fMaterial; 
+      std::vector<VGM::IElement*>  fElements;
       VGM::MaterialState  fState;
       double              fTemperature;
       double              fPressure; 
