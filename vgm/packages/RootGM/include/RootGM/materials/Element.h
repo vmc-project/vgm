@@ -24,6 +24,8 @@ namespace RootGM {
       Element(const std::string& name, 
               const std::string& symbol,      
               double z, double a); 
+      Element(TGeoElement* element, 
+              const std::string& name, double z, double a);		
       Element(TGeoElement* element);		
       virtual ~Element();
     
@@ -42,7 +44,10 @@ namespace RootGM {
     private:
       void CheckIndex(int iel) const;
   
-      TGeoElement*  fElement;  
+      TGeoElement*  fElement; 
+      std::string   fName;
+      double  fZ;
+      double  fA; 
   };
   
 }  
