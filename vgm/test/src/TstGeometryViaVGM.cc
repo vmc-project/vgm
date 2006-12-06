@@ -384,13 +384,13 @@ void  TstGeometryViaVGM::DefineMaterials()
   // create elements
   double z, a, density, radlen, intlen, temperature, pressure; 
   IElement* elVacuum
-    = materialFactory->CreateElement(" ",  "Vacuum",    z=1.,  a= 1.01 * fGmole);
+    = materialFactory->CreateElement("Vacuum",    " ",  z=1.,  a= 1.01 * fGmole);
   IElement* elN
-    = materialFactory->CreateElement("N",  "Nitrogen",  z=7.,  a=14.01 * fGmole);
+    = materialFactory->CreateElement("Nitrogen",  "N",  z=7.,  a=14.01 * fGmole);
   IElement* elO
-    = materialFactory->CreateElement("O",  "Oxygen",    z=8.,  a=16.00 * fGmole);
+    = materialFactory->CreateElement("Oxygen",    "O",  z=8.,  a=16.00 * fGmole);
   IElement* elAl
-    = materialFactory->CreateElement("Al", "Aluminium", z=13., a=26.98 * fGmole);
+    = materialFactory->CreateElement("Aluminium", "Al", z=13., a=26.98 * fGmole);
 
 
   // simple material (Al)
