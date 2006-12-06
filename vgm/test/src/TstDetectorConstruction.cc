@@ -139,7 +139,7 @@ G4VPhysicalVolume* TstDetectorConstruction::Construct()
      RootGM::Factory* rtInputFactory
        = dynamic_cast<RootGM::Factory*>(fInputFactory);
      if (rtInputFactory)
-       rtInputFactory->Import(static_cast<TGeoVolume*>(world));
+       rtInputFactory->Import(static_cast<TGeoNode*>(world));
     
     std::cout << "Import finished" << std::endl;
   }  
