@@ -17,7 +17,8 @@
 //_____________________________________________________________________________
 Geant4GM::Material::Material(const std::string& name, 
                              double density,
-			     VGM::IElement* element) 
+			     VGM::IElement* element,
+                             bool isVacuum) 
   : VGM::IMaterial(),
     fMaterial(0)
 			       			  
@@ -38,19 +39,26 @@ Geant4GM::Material::Material(const std::string& name,
   // Convert units
   density /= ClhepVGM::Units::MassDensity();
 
-  // Update density if lower than universe_mean_density
-  if ( density < universe_mean_density ) {
+  // Create vacuum if not allowed low density or
+  // if material was associated with an element with Z < 1.0 
+  // 
+  if ( density < universe_mean_density  || isVacuum ) {
     // lower density not allowed in Geant4
     density = universe_mean_density;
+
+    // Create vacuum
+    fMaterial 
+      = new G4Material(name, 1., 1.01*g/mole, density, 
+                       kStateGas, 2.73*kelvin, 3.e-18*pascal);
   }
+  else {
+    // Create normal material 
+    fMaterial = new G4Material(name, density, 1);
 
-
-  // Create normal material 
-  fMaterial = new G4Material(name, density, 1);
-
-  // Add element
-  G4Element* g4Element = ElementMap::Instance()->GetElement(element);
-  fMaterial->AddElement(g4Element, 1.); 
+    // Add element
+    G4Element* g4Element = ElementMap::Instance()->GetElement(element);
+    fMaterial->AddElement(g4Element, 1.); 
+  }  
 }
 			   
 //_____________________________________________________________________________
@@ -58,7 +66,8 @@ Geant4GM::Material::Material(const std::string& name,
                              double density,
 			     VGM::IElement* element,
 	                     VGM::MaterialState state,
-	                     double temperature, double pressure)
+	                     double temperature, double pressure,
+                             bool isVacuum)
   : VGM::IMaterial(),
     fMaterial(0)
 			       			  
@@ -83,19 +92,27 @@ Geant4GM::Material::Material(const std::string& name,
   G4State g4State = GetG4State(state);
 
 
-  // Update density if lower than universe_mean_density
-  if ( density < universe_mean_density ) {
+  // Create vacuum if not allowed low density or
+  // if material was associated with an element with Z < 1.0 
+  // 
+  if ( density < universe_mean_density || isVacuum ) {
     // lower density not allowed in Geant4
     density = universe_mean_density;
-  }
-    
-  // Create normal material 
-  fMaterial 
-    = new G4Material(name, density, 1, g4State, temperature, pressure);  
 
-  // Add element
-  G4Element* g4Element = ElementMap::Instance()->GetElement(element);
-  fMaterial->AddElement(g4Element, 1.);  
+    // Create vacuum
+    fMaterial 
+      = new G4Material(name, 1., 1.01*g/mole, density, 
+                       kStateGas, 2.73*kelvin, 3.e-18*pascal);
+  }
+  else {
+    // Create normal material 
+    fMaterial 
+      = new G4Material(name, density, 1, g4State, temperature, pressure);
+
+    // Add element
+    G4Element* g4Element = ElementMap::Instance()->GetElement(element);
+    fMaterial->AddElement(g4Element, 1.); 
+  }   
 }
 			   
 //_____________________________________________________________________________
