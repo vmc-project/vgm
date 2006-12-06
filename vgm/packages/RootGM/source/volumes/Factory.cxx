@@ -465,13 +465,13 @@ void RootGM::Factory::ImportPositions()
 }
 
 //_____________________________________________________________________________
-bool RootGM::Factory::Import(void* topVolume)
+bool RootGM::Factory::Import(void* topNode)
 {
 //
-  TGeoVolume* rootVolume
-    = static_cast<TGeoVolume*>(topVolume);
+  TGeoNode* rootNode
+    = static_cast<TGeoNode*>(topNode);
 
-  return Import(rootVolume);
+  return Import(rootNode);
 
 }			      
 
@@ -813,6 +813,7 @@ RootGM::Factory::CreateMultiplePlacement(
       
   TGeoVolume* oldVolume 
       = RootGM::VolumeMap::Instance()->GetVolume(volume);
+  oldVolume->SetName("volumeNotPlacedInGeometry");    
   if (oldVolume->GetNdaughters()>0) {
     std::cerr << "*** Limitation  ***" << std::endl; 
     std::cerr << "    RootGM::Factory::CreateMultiplePlacement: " <<  std::endl;
@@ -848,7 +849,7 @@ RootGM::Factory:: World() const
 
 
 //_____________________________________________________________________________
-bool RootGM::Factory::Import(TGeoVolume* topVolume)
+bool RootGM::Factory::Import(TGeoNode* topNode)
 {
 /// Import Root native geometry
 
@@ -856,13 +857,16 @@ bool RootGM::Factory::Import(TGeoVolume* topVolume)
   if (Debug()>0) {
     BaseVGM::DebugInfo();
     std::cout << "RootGM::Factory::Import started ...";
-    if (Debug()>1)  std::cout << topVolume;
+    if (Debug()>1)  std::cout << topNode;
     std::cout << std::endl;
   }  
  
   // Import materials
   // 
   MaterialFactory()->Import();
+  
+  // Get top volume
+  TGeoVolume* topVolume = topNode->GetVolume();
 
   // Import the top volume 
   VGM::IVolume* worldVolume = ImportVolume(topVolume);
@@ -883,7 +887,7 @@ bool RootGM::Factory::Import(TGeoVolume* topVolume)
   }  
   
   // Position the top volume
-  fTop = new RootGM::Placement(worldVolume, 0, 0);
+  fTop = new RootGM::Placement(worldVolume, 0, topNode);
   
   if (Debug()>0) {
     BaseVGM::DebugInfo();
