@@ -42,12 +42,12 @@ RootGM::Placement::Placement(
   
   if (!motherVolume) {
 
-    // Top volume is not placed in TGeo
-    fGeoNode = 0;
-    
     // Set top volume to TGeo
     gGeoManager
       ->SetTopVolume(RootGM::VolumeMap::Instance()->GetVolume(volume));
+
+    // Get top node 
+    fGeoNode = gGeoManager->GetTopNode();
   }  
   else {  
 
@@ -129,8 +129,8 @@ RootGM::Placement::Placement(
 
   if (volume) fName = volume->Name();
       // Root nodes have not own name; 
-      // use the volume name in this case 
-
+      // use the volume name in this case
+      
   // Register physical volume in the map
   RootGM::PlacementMap::Instance()->AddPlacement(this, fGeoNode); 
 }
