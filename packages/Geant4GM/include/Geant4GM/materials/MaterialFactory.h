@@ -14,6 +14,8 @@
 
 #include "BaseVGM/materials/VMaterialFactory.h"
 
+#include <set>
+
 class G4Element;
 class G4Material;
 
@@ -78,8 +80,10 @@ namespace Geant4GM {
       // methods
       void  ImportElement(G4Element* element);
       void  ImportMaterial(G4Material* material);
+      
+      // data members
+      std::set<VGM::IElement*>  fVacuumElements;
   };
-
 }
 
 #endif //GEANT4_GM_MATERIAL_FACTORY_H
