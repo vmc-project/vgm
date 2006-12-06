@@ -63,7 +63,7 @@ namespace RootGM {
 				 VGM::MaterialState state,
 				 double temperature, double pressure);
 
-      virtual VGM::IMedium*    CreateMedium(
+      virtual VGM::IMedium*   CreateMedium(
                                  const std::string& name,
 			         int mediumId,
 			         VGM::IMaterial* material,
@@ -71,16 +71,25 @@ namespace RootGM {
 			         double* parameters);      
       // import/export
       //
-      virtual bool Import();			       
+      virtual bool Import();
+      
+      // options
+      void UseTGeoElementTable(bool useTGeoElementTable);		       
  
     protected:
       MaterialFactory(const MaterialFactory& rhs);
     
     private:
       // methods
-      void  ImportElement(TGeoElement* element);
+      VGM::IElement*  ImportElement(TGeoElement* element);
+      VGM::IElement*  ImportElement(TGeoElement* element,
+                                    int index, TGeoMaterial* material);
+
       void  ImportMaterial(TGeoMaterial* material);
       void  ImportMedium(TGeoMedium* medium);
+      
+      // data members
+      bool fUseTGeoElementTable;
   };
 
 }
