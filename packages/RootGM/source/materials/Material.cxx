@@ -12,14 +12,62 @@
 #include "RootGM/materials/ElementMap.h"
 #include "RootGM/common/Units.h"
 
-const VGM::MaterialState
-              RootGM::Material::fgkDefaultState = VGM::kUndefined;
-const double  RootGM::Material::fgkDefaultTemperature = 273.15;  // kelvin
-const double  RootGM::Material::fgkDefaultPressure = 1.0;        // atmosphere  
 const double  RootGM::Material::fgkVacuumDensity = 1.e-25;       // g/cm3
 const double  RootGM::Material::fgkVacuumTemperature = 2.73;     // kelvin
-const double  RootGM::Material::fgkVacuumPressure = 3.03975e-13; // atmosphere  
+const double  RootGM::Material::fgkVacuumPressure = 2.96077e-23; // atmosphere  
 
+//_____________________________________________________________________________
+RootGM::Material::Material(const std::string& name, 
+                           double density, 
+		           VGM::IElement* element,
+			   double radlen, double intlen)
+ :  VGM::IMaterial(),
+    fMaterial(0),
+    fElements()
+{
+/// Standard constructor to define material from parameters 
+/// \param name its name
+///	   (must be unique in the factory)
+/// \param density in g/cm3
+/// \param element element constituing this material
+/// \param radlen radiation length in mm
+/// \param intlen nuclear interaction length in mm
+
+  if ( ! element ) {
+    std::cerr << "    RootGM::Material::Material: " << std::endl; 
+    std::cerr << "    No element defined.";
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    exit(1);
+  }
+
+  // Create vacuum if density is lower than universe mean density
+  // or Z < 1.0
+  if ( density < fgkVacuumDensity || element->Z() < 1.0 ) {
+    fMaterial = new TGeoMaterial(name.data(), 
+                                 element->A(), 
+                                 element->Z(),
+                                 fgkVacuumDensity  / RootGM::Units::MassDensity(),
+                                 TGeoMaterial::kMatStateGas,
+                                 fgkVacuumTemperature,
+                                 fgkVacuumPressure / RootGM::Units::Pressure());
+  }
+  else {
+    fMaterial = new TGeoMaterial(name.data(), 
+                                 element->A(), 
+                                 element->Z(),
+                                 density / RootGM::Units::MassDensity());
+  }
+
+  // Add element
+  fElements.push_back(element);
+  
+  // Set parameters
+  fMaterial->SetRadLen(radlen, intlen);
+  
+  // Register material in the map
+  RootGM::MaterialMap::Instance()->AddMaterial(this, fMaterial); 
+}
+			   
 //_____________________________________________________________________________
 RootGM::Material::Material(const std::string& name, 
                            double density, 
@@ -29,10 +77,7 @@ RootGM::Material::Material(const std::string& name,
 	                   double temperature, double pressure)
  :  VGM::IMaterial(),
     fMaterial(0),
-    fElements(),
-    fState(state),
-    fTemperature(temperature),
-    fPressure(pressure)
+    fElements()
 {
 /// Standard constructor to define material from parameters 
 /// \param name its name
@@ -52,13 +97,28 @@ RootGM::Material::Material(const std::string& name,
     exit(1);
   }
 
-  // Update parameters if vacuum
-  density = UpdateParametersIfVacuum(density, element->Z());
-  
-  fMaterial = new TGeoMaterial(name.data(), 
-                               element->A(), 
-                               element->Z(),
-                               density / RootGM::Units::MassDensity());
+  // Create vacuum if density is lower than universe mean density
+  // or Z < 1.0
+  if ( density < fgkVacuumDensity || element->Z() < 1.0 ) {
+    fMaterial = new TGeoMaterial(
+                        name.data(), 
+                        element->A(), 
+                        element->Z(),
+                        fgkVacuumDensity     / RootGM::Units::MassDensity(),
+                        TGeoMaterial::kMatStateGas,
+                        fgkVacuumTemperature / RootGM::Units::Temperature(),
+                        fgkVacuumPressure    / RootGM::Units::Pressure());
+  }
+  else {
+    fMaterial = new TGeoMaterial(
+                        name.data(), 
+                        element->A(), 
+                        element->Z(),
+                        density     / RootGM::Units::MassDensity(),
+                        GetGeoState(state),
+                        temperature / RootGM::Units::Temperature(),
+                        pressure    / RootGM::Units::Pressure());
+  }                        
 
   // Add element
   fElements.push_back(element);
@@ -74,15 +134,10 @@ RootGM::Material::Material(const std::string& name,
 RootGM::Material::Material(const std::string& name,
                            double density, 
 		           const VGM::ElementVector& elements,
-                           const VGM::MassFractionVector& fractions,
- 	                   VGM::MaterialState state,
-	                   double temperature, double pressure)
+                           const VGM::MassFractionVector& fractions)
   : VGM::IMaterial(),
     fMaterial(0),
-    fElements(),
-    fState(state),
-    fTemperature(temperature),
-    fPressure(pressure)
+    fElements()
 {
 /// Standard constructor to define compound material from parameters 
 /// \param name its name
@@ -108,12 +163,66 @@ RootGM::Material::Material(const std::string& name,
     exit(1);
   }
     
-  // Update parameters if vacuum
-  density = UpdateParametersIfVacuum(density, elements[0]->Z());
-  
   fMaterial = new TGeoMixture(name.data(), 
                               elements.size(),
 			      density / RootGM::Units::MassDensity());
+			      
+  TGeoMixture* mixture = (TGeoMixture*)fMaterial;			      			      
+
+  // Add elements
+  for (UInt_t i=0; i<elements.size(); i++) {
+    VGM::IElement* element = elements[i];
+    mixture->AddElement(element->A(), element->Z(), fractions[i]);
+    fElements.push_back(element);
+  }			    			    
+  
+  // Register material in the map
+  RootGM::MaterialMap::Instance()->AddMaterial(this, fMaterial); 
+}
+			   
+//_____________________________________________________________________________
+RootGM::Material::Material(const std::string& name,
+                           double density, 
+		           const VGM::ElementVector& elements,
+                           const VGM::MassFractionVector& fractions,
+ 	                   VGM::MaterialState state,
+	                   double temperature, double pressure)
+  : VGM::IMaterial(),
+    fMaterial(0),
+    fElements()
+{
+/// Standard constructor to define compound material from parameters 
+/// \param name its name
+///	   (must be unique in the factory)
+/// \param density in g/cm3
+/// \param elements vector of elements constituing 
+///	   this material
+/// \param fractions vector of mass fractions of
+///	   elements constituing this material
+
+  if ( ! elements.size() ) {
+    std::cerr << "    RootGM::Material::Material: " << std::endl; 
+    std::cerr << "    No elements defined.";
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    exit(1);
+  }
+
+  // Check coherence
+  if (elements.size() != fractions.size()) {
+    std::cerr << "    RootGM::Material::Material: " << std::endl; 
+    std::cerr << "    Elements size and fractions size differ." << std::endl;
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    exit(1);
+  }
+    
+  fMaterial = new TGeoMixture(
+                      name.data(), 
+                      elements.size(),
+		      density     / RootGM::Units::MassDensity());
+
+  fMaterial->SetState(GetGeoState(state));
+  fMaterial->SetTemperature(temperature / RootGM::Units::Temperature());
+  fMaterial->SetPressure(pressure / RootGM::Units::Pressure());
 			      
   TGeoMixture* mixture = (TGeoMixture*)fMaterial;			      			      
 
@@ -133,18 +242,10 @@ RootGM::Material::Material(TGeoMaterial* material,
                            const VGM::ElementVector& elements)
   : VGM::IMaterial(),
     fMaterial(material),
-    fElements(elements),	
-    fState(fgkDefaultState),
-    fTemperature(fgkDefaultTemperature),
-    fPressure(fgkDefaultPressure)
+    fElements(elements)
 {
 /// Standard constructor to define material from the Root object
 
-  // Update parameters if vacuum
-  UpdateParametersIfVacuum(Density(), material->GetZ());
-  
-  /// fill elements
-  
   // Register material in the map
   RootGM::MaterialMap::Instance()->AddMaterial(this, fMaterial); 
 }    		  
@@ -153,10 +254,7 @@ RootGM::Material::Material(TGeoMaterial* material,
 RootGM::Material::Material() 
   : VGM::IMaterial(),
     fMaterial(0), 
-    fElements(),
-    fState(fgkDefaultState),
-    fTemperature(fgkDefaultTemperature),
-    fPressure(fgkDefaultPressure)
+    fElements()
 {
 /// Protected default constructor
 }  
@@ -165,10 +263,7 @@ RootGM::Material::Material()
 RootGM::Material::Material(const Material& rhs) 
   : VGM::IMaterial(rhs), 
     fMaterial(0),
-    fElements(rhs.fElements), 
-    fState(fgkDefaultState),
-    fTemperature(fgkDefaultTemperature),
-    fPressure(fgkDefaultPressure)
+    fElements(rhs.fElements)
 {
 /// Protected copy constructor
 }
@@ -194,18 +289,35 @@ void RootGM::Material::CheckIndex(int iel) const
 }    
 
 //_____________________________________________________________________________
-double RootGM::Material::UpdateParametersIfVacuum(double density, double z)
+TGeoMaterial::EGeoMaterialState 
+RootGM::Material::GetGeoState(VGM::MaterialState state) const
 {
-  if ( density < fgkVacuumDensity || z < 1.0 ) {
-    // std::cout << "Updating parameters for vacuum material" << std::endl;
-    fTemperature = fgkVacuumTemperature;
-    fPressure = fgkVacuumPressure;
-    fState = VGM::kGas;
-    return fgkVacuumDensity;
+  switch ( state ) {
+    case VGM::kUndefined: return TGeoMaterial::kMatStateUndefined;
+    case VGM::kSolid:     return TGeoMaterial::kMatStateSolid;
+    case VGM::kLiquid:    return TGeoMaterial::kMatStateLiquid;
+    case VGM::kGas:       return TGeoMaterial::kMatStateGas;
+    default:              return TGeoMaterial::kMatStateUndefined;
   }
-  else
-    return density;
-}    
+  
+  return TGeoMaterial::kMatStateUndefined;
+}  
+
+
+//_____________________________________________________________________________
+VGM::MaterialState 
+RootGM::Material::GetVGMState(TGeoMaterial::EGeoMaterialState state) const
+{
+  switch ( state ) {
+    case TGeoMaterial::kMatStateUndefined : return VGM::kUndefined;
+    case TGeoMaterial::kMatStateSolid:      return VGM::kSolid;
+    case TGeoMaterial::kMatStateLiquid:     return VGM::kLiquid;
+    case TGeoMaterial::kMatStateGas:        return VGM::kGas;
+    default:                                return VGM::kUndefined;
+  }
+
+  return VGM::kUndefined;
+}  
 
 //
 // public functions
@@ -238,19 +350,19 @@ double  RootGM::Material::NuclearInterLength() const
 //_____________________________________________________________________________
 VGM::MaterialState  RootGM::Material::State() const
 {
-  return fState; 
+  return GetVGMState(fMaterial->GetState()); 
 }    
 
 //_____________________________________________________________________________
 double  RootGM::Material::Temperature() const
 {
-  return fTemperature;
+  return fMaterial->GetTemperature() * RootGM::Units::Temperature();
 }
   
 //_____________________________________________________________________________
 double  RootGM::Material::Pressure() const
 {
-  return fPressure;
+  return fMaterial->GetPressure() * RootGM::Units::Pressure();
 }  			  
 
 //_____________________________________________________________________________
@@ -280,7 +392,7 @@ RootGM::Material::Element(int iel) const
 double  RootGM::Material::MassFraction(int iel) const
 {
   CheckIndex(iel);
-
+  
   if (!fMaterial->IsMixture())
     return 1.0;
   else  
