@@ -14,10 +14,12 @@
 // static const data members
 //
 
-const double RootGM::Units::fgkLength       = 10.;     // cm 
-const double RootGM::Units::fgkAngle        = 1.;      // deg
-const double RootGM::Units::fgkMassDensity  = 1.;      // g/cm3;
-const double RootGM::Units::fgkAtomicWeight = 1.;      // g/mole;
+const double RootGM::Units::fgkLength       = 10.;          // cm 
+const double RootGM::Units::fgkAngle        = 1.;           // deg
+const double RootGM::Units::fgkMassDensity  = 1.;           // g/cm3;
+const double RootGM::Units::fgkAtomicWeight = 1.;           // g/mole;
+const double RootGM::Units::fgkTemperature  = 1.;           // kelvin
+const double RootGM::Units::fgkPressure     = 1./6.32420e+8;// MeV/mm3
 
 //_____________________________________________________________________________
 RootGM::Units::Units() 
