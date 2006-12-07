@@ -24,17 +24,25 @@ namespace RootGM {
       Material(const std::string& name,      
                double density, 
 	       VGM::IElement* element,
+	       double radlen, double intlen);
+      Material(const std::string& name,      
+               double density, 
+	       VGM::IElement* element,
 	       double radlen, double intlen,
-	       VGM::MaterialState state = fgkDefaultState,
-	       double temperature = fgkDefaultTemperature, 
-	       double pressure = fgkDefaultPressure);
+	       VGM::MaterialState state,
+	       double temperature, 
+	       double pressure);
+      Material(const std::string& name, 
+               double density,
+	       const VGM::ElementVector& elements,
+               const VGM::MassFractionVector& fractions);
       Material(const std::string& name, 
                double density,
 	       const VGM::ElementVector& elements,
                const VGM::MassFractionVector& fractions,
-	       VGM::MaterialState state = fgkDefaultState,
-	       double temperature = fgkDefaultTemperature, 
-	       double pressure = fgkDefaultPressure);
+	       VGM::MaterialState state,
+	       double temperature, 
+	       double pressure);
       Material(TGeoMaterial* material,
                const VGM::ElementVector& elements);		
       virtual ~Material();
@@ -59,20 +67,15 @@ namespace RootGM {
     
     private:
       void   CheckIndex(int iel) const;
-      double UpdateParametersIfVacuum(double density, double z);
+      TGeoMaterial::EGeoMaterialState  GetGeoState(VGM::MaterialState state) const;
+      VGM::MaterialState GetVGMState(TGeoMaterial::EGeoMaterialState state) const;
       
-      static const VGM::MaterialState  fgkDefaultState;
-      static const double  fgkDefaultTemperature;
-      static const double  fgkDefaultPressure; 
       static const double  fgkVacuumDensity;
       static const double  fgkVacuumTemperature;
       static const double  fgkVacuumPressure;  
   
       TGeoMaterial*       fMaterial; 
       std::vector<VGM::IElement*>  fElements;
-      VGM::MaterialState  fState;
-      double              fTemperature;
-      double              fPressure; 
   };
 
 }
