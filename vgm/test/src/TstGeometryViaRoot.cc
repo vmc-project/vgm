@@ -420,7 +420,10 @@ void  TstGeometryViaRoot::DefineMaterials()
   // vacuum
   //
   TGeoMaterial* material3
-    = new TGeoMaterial("Vacuum", 0, 0, 0); 
+    = new TGeoMaterial("Vacuum", 0, 0, 0,
+                       TGeoMaterial::kMatStateGas, 
+                       2.73 /* kelvin*/ , 
+                       3.e-18/*pascal*/ * 6.24150e+3 /* MeV/mm3 */); 
 
   // Tracking medias
   new TGeoMedium("Basic",    1, material1);
