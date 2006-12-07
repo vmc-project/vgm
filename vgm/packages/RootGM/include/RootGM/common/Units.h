@@ -45,6 +45,14 @@ namespace RootGM {
 		    ///
       static double AtomicWeight();     
       
+                    /// Return Root temperature unit in VGM unit
+		    ///
+      static double Temperature();		    
+      
+                    /// Return Root pressure unit in VGM unit
+		    ///
+      static double Pressure();		    
+
     protected:
       Units();      
           // only static data members and methods
@@ -55,6 +63,8 @@ namespace RootGM {
       static const double fgkAngle;  
       static const double fgkMassDensity;
       static const double fgkAtomicWeight;
+      static const double fgkTemperature;
+      static const double fgkPressure;
   }; 
   
 }      
@@ -65,5 +75,7 @@ inline double RootGM::Units::Length()       { return fgkLength; }
 inline double RootGM::Units::Angle()        { return fgkAngle; }
 inline double RootGM::Units::MassDensity()  { return fgkMassDensity; }
 inline double RootGM::Units::AtomicWeight() { return fgkAtomicWeight; }
+inline double RootGM::Units::Temperature()  { return fgkTemperature; }
+inline double RootGM::Units::Pressure()     { return fgkPressure; }
 
 #endif //ROOT_GM_UNITS_H
