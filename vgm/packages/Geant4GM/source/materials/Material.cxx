@@ -47,18 +47,17 @@ Geant4GM::Material::Material(const std::string& name,
     density = universe_mean_density;
 
     // Create vacuum
-    fMaterial 
-      = new G4Material(name, 1., 1.01*g/mole, density, 
-                       kStateGas, 2.73*kelvin, 3.e-18*pascal);
+    fMaterial = new G4Material(name, density, 1,
+                               kStateGas, 2.73*kelvin, 3.e-18*pascal);
   }
   else {
     // Create normal material 
     fMaterial = new G4Material(name, density, 1);
-
-    // Add element
-    G4Element* g4Element = ElementMap::Instance()->GetElement(element);
-    fMaterial->AddElement(g4Element, 1.); 
   }  
+
+  // Add element
+  G4Element* g4Element = ElementMap::Instance()->GetElement(element);
+  fMaterial->AddElement(g4Element, 1.); 
 }
 			   
 //_____________________________________________________________________________
@@ -100,19 +99,18 @@ Geant4GM::Material::Material(const std::string& name,
     density = universe_mean_density;
 
     // Create vacuum
-    fMaterial 
-      = new G4Material(name, 1., 1.01*g/mole, density, 
-                       kStateGas, 2.73*kelvin, 3.e-18*pascal);
+    fMaterial = new G4Material(name, density, 1, 
+                               kStateGas, 2.73*kelvin, 3.e-18*pascal);
   }
   else {
     // Create normal material 
     fMaterial 
       = new G4Material(name, density, 1, g4State, temperature, pressure);
+  }    
 
-    // Add element
-    G4Element* g4Element = ElementMap::Instance()->GetElement(element);
-    fMaterial->AddElement(g4Element, 1.); 
-  }   
+  // Add element
+  G4Element* g4Element = ElementMap::Instance()->GetElement(element);
+  fMaterial->AddElement(g4Element, 1.); 
 }
 			   
 //_____________________________________________________________________________
@@ -369,6 +367,7 @@ Geant4GM::Material::Element(int iel) const
 double  Geant4GM::Material::MassFraction(int iel) const
 {
   CheckIndex(iel);
+  
   return fMaterial->GetFractionVector()[iel];
 }
 
