@@ -163,7 +163,7 @@ macro XmlVGM_linkopts "-L${VGMROOT}/$(Platform_bin) -lXmlVGM" WIN32 "${VGMROOT}\
 #//////////////////////////////////////////////////
 
 
-library TestVGM -import=Geant4 -import=ROOT -group=cmt_tests -s=../test/src/ \
+library TestVGM -import=Geant4 -import=ROOT -group=tests -s=../test/src/ \
  TstDetectorConstruction.cc \
  TstGeometryViaGeant4.cc\
  TstGeometryViaRoot.cc\
@@ -181,26 +181,25 @@ macro TestVGM_shlibflags "${dld_linkopts} ${G4global_linkopts} ${G4materials_lin
 
 macro TestVGM_linkopts "-L${VGMROOT}/$(Platform_bin) -lTestVGM" WIN32 "${VGMROOT}\$(Platform_bin)\TestVGM.lib"
 
-application vgm_test ../test/vgm_test.cc -import=Geant4 -import=ROOT -group=cmt_tests use_cppflags='"${TestVGM_cppflags} ${ROOT_cppflags} ${G4global_incs} ${CLHEP_cppflags} ${G4track_incs} ${G4geometry_incs} ${G4materials_incs} ${G4intercoms_incs} ${G4interfaces_incs}"' use_linkopts='"${G4run_linkopts} ${G4global_linkopts} ${G4intercoms_linkopts} ${G4interfaces_linkopts} ${ROOT_Core_linkopts} ${G4digits_hits_linkopts} ${G4event_linkopts} ${G4processes_linkopts} ${G4particles_linkopts} ${G4tracking_linkopts} ${G4geometry_linkopts} ${G4graphics_reps_linkopts} ${ROOT_Cint_linkopts} ${G4track_linkopts} ${G4materials_linkopts} ${CLHEP_linkopts} ${BaseVGM_linkopts} ${RootGM_linkopts} ${Geant4GM_linkopts}  ${XmlVGM_linkopts} ${TestVGM_linkopts} ${ClhepVGM_linkopts}"'
+application vgm_test ../test/vgm_test.cc -import=Geant4 -import=ROOT -group=tests use_cppflags='"${TestVGM_cppflags} ${ROOT_cppflags} ${G4global_incs} ${CLHEP_cppflags} ${G4track_incs} ${G4geometry_incs} ${G4materials_incs} ${G4intercoms_incs} ${G4interfaces_incs}"' use_linkopts='"${G4run_linkopts} ${G4global_linkopts} ${G4intercoms_linkopts} ${G4interfaces_linkopts} ${ROOT_Core_linkopts} ${G4digits_hits_linkopts} ${G4event_linkopts} ${G4processes_linkopts} ${G4particles_linkopts} ${G4tracking_linkopts} ${G4geometry_linkopts} ${G4graphics_reps_linkopts} ${ROOT_Cint_linkopts} ${G4track_linkopts} ${G4materials_linkopts} ${CLHEP_linkopts} ${BaseVGM_linkopts} ${RootGM_linkopts} ${Geant4GM_linkopts}  ${XmlVGM_linkopts} ${TestVGM_linkopts} ${ClhepVGM_linkopts}"'
 
-action tests "cmt make cmt_tests;cd ${VGMROOT}/$(Platform_bin); rm -rf *_deps tests *GM vgm_test vgm_e01 vgm_e02 vgm_e03 vgm_e04;rm *.make *.stamp *.shstamp; ln -sf vgm_test.exe vgm_test " CYGWIN "" WIN32 "" # Darwin "" 
 
 #//////////////////////////////////////////////////
 #//          Ex1                                //
 #//////////////////////////////////////////////////
 
 
-library E01VGM -group=examples -import=Geant4 -import=ROOT \
- ../examples/E01/ExN03DetectorConstruction.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03DetectorMessenger.cc \
- ${Geant4_install}/examples/novice/N03/src/ExN03EventAction.cc\ 
- ${Geant4_install}/examples/novice/N03/src/ExN03EventActionMessenger.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03PhysicsList.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03PrimaryGeneratorAction.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03PrimaryGeneratorMessenger.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03RunAction.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03SteppingAction.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03SteppingVerbose.cc
+library E01VGM -group=examples -import=Geant4 -import=ROOT -s=../examples/E01/N03/src\
+ ExN03DetectorConstruction.cc\
+ ExN03DetectorMessenger.cc \
+ ExN03EventAction.cc\ 
+ ExN03EventActionMessenger.cc\
+ ExN03PhysicsList.cc\
+ ExN03PrimaryGeneratorAction.cc\
+ ExN03PrimaryGeneratorMessenger.cc\
+ ExN03RunAction.cc\
+ ExN03SteppingAction.cc\
+ ExN03SteppingVerbose.cc
 
 macro E01VGM_cppflags " -I${Geant4_install}/examples/novice/N03/include ${G4run_incs} ${G4intercoms_incs} ${G4graphics_reps_incs} ${Geant4GM_cppflags} ${RootGM_cppflags} ${G4event_incs} ${G4track_incs} ${G4particles_incs} ${G4tracking_incs} ${G4processes_incs} ${G4digits_hits_incs}"
 
@@ -218,16 +217,16 @@ application vgm_e01 ${Geant4_install}/examples/novice/N03/exampleN03.cc -import=
 #//          Ex2                                //
 #//////////////////////////////////////////////////
 
-library E02VGM -group=examples -import=Geant4 -import=ROOT \
- ../examples/E02/ExN03DetectorConstruction.cc\
- ../examples/E02/ExN03PrimaryGeneratorAction.cc\
- ../examples/E02/ExN03SteppingAction.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03EventAction.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03EventActionMessenger.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03PhysicsList.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03PrimaryGeneratorMessenger.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03RunAction.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03SteppingVerbose.cc
+library E02VGM -group=examples -import=Geant4 -import=ROOT -s=../examples/E02/N03/src\
+ ExN03DetectorConstruction.cc\
+ ExN03PrimaryGeneratorAction.cc\
+ ExN03SteppingAction.cc\
+ ExN03EventAction.cc\ 
+ ExN03EventActionMessenger.cc\
+ ExN03PhysicsList.cc\
+ ExN03PrimaryGeneratorMessenger.cc\
+ ExN03RunAction.cc\
+ ExN03SteppingVerbose.cc
 
 
 macro E02VGM_cppflags "-I$(VGMROOT)/examples/E02 -I${Geant4_install}/examples/novice/N03/include ${G4run_incs} ${G4intercoms_incs} ${G4graphics_reps_incs} ${Geant4GM_cppflags} ${RootGM_cppflags} ${G4event_incs} ${G4track_incs} ${G4particles_incs} ${G4tracking_incs} ${G4processes_incs} ${G4digits_hits_incs}"
@@ -245,17 +244,17 @@ application vgm_e02 ${Geant4_install}/examples/novice/N03/exampleN03.cc -import=
 #//          Ex3                                //
 #//////////////////////////////////////////////////
 
-library E03VGM -group=examples -import=Geant4 \
- ../examples/E03/ExN03DetectorConstruction.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03DetectorMessenger.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03EventAction.cc\ 
- ${Geant4_install}/examples/novice/N03/src/ExN03EventActionMessenger.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03PhysicsList.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03PrimaryGeneratorAction.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03PrimaryGeneratorMessenger.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03RunAction.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03SteppingAction.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03SteppingVerbose.cc
+library E03VGM -group=examples -import=Geant4 -s=../examples/E03/N03/src \
+ ExN03DetectorConstruction.cc\
+ ExN03DetectorMessenger.cc\
+ ExN03EventAction.cc\ 
+ ExN03EventActionMessenger.cc\
+ ExN03PhysicsList.cc\
+ ExN03PrimaryGeneratorAction.cc\
+ ExN03PrimaryGeneratorMessenger.cc\
+ ExN03RunAction.cc\
+ ExN03SteppingAction.cc\
+ ExN03SteppingVerbose.cc
 
 
 macro E03VGM_cppflags " -I${Geant4_install}/examples/novice/N03/include -I$(VGMROOT)/packages/XmlVGM/include ${G4run_incs} ${G4intercoms_incs} ${G4graphics_reps_incs} ${Geant4GM_cppflags} ${RootGM_cppflags} ${G4event_incs} ${G4track_incs} ${G4particles_incs} ${G4tracking_incs} ${G4processes_incs} ${G4digits_hits_incs}"
@@ -306,12 +305,10 @@ public
 #// Run time //////////////////////////////////////
 #//////////////////////////////////////////////////
 path_remove LD_LIBRARY_PATH "/VGM/" WIN32 "" Darwin ""
-path_append LD_LIBRARY_PATH "${VGMROOT}/$(Platform_bin)" WIN32 "" Darwin ""
+path_append LD_LIBRARY_PATH "${VGMROO}T/$(Platform_bin)" WIN32 "" Darwin ""
 
 path_remove DYLD_LIBRARY_PATH "" Darwin "/VGM/" WIN32 ""
 path_append DYLD_LIBRARY_PATH "" Darwin "${VGMROOT}/$(Platform_bin)" WIN32 ""
 
-path_append VGM_INSTALL "${VGMROOT}"
 path_remove PATH "" WIN32 "\VGM\"
-path_append PATH "${VGMROOT}/$(Platform_bin)/" WIN32 "${VGMROOT}\$(Platform_bin)"
-
+path_append PATH "" WIN32 "${VGMROOT}\$(Platform_bin)"
