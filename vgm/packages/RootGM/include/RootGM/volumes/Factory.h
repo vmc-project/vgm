@@ -138,7 +138,7 @@ namespace RootGM {
       // top volume
       //
       virtual VGM::IPlacement* Top() const;		       
-      TGeoVolume*  World() const;	       
+      TGeoNode*  World() const;	       
 
       // import/export
       //

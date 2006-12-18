@@ -838,13 +838,12 @@ RootGM::Factory::Top() const
 }  		       
 
 //_____________________________________________________________________________
-TGeoVolume*  
+TGeoNode*  
 RootGM::Factory:: World() const
 {
-/// Returns the world volume (Root volume)
+/// Returns the world volume (Root node)
 
-  //return (RootGM::PlacementMap::Instance()->GetPlacement(fTop))->GetVolume();
-  return RootGM::VolumeMap::Instance()->GetVolume(fTop->Volume());
+  return RootGM::PlacementMap::Instance()->GetPlacement(fTop);
 }
 
 
