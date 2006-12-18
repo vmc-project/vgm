@@ -66,12 +66,12 @@
  <table cellspacing="0" width="100%">
  <tbody>
      </td><td width="20%"> 
-         <i> version 2.08.03 </i>
+         <i> version 2.08.04 </i>
      </td><td width="20%"> 
-         <a href="http://ivana.home.cern.ch/ivana/vgm.2.08.03.tar.gz"> vgm.2.08.03.tar.gz </a>
+         <a href="http://ivana.home.cern.ch/ivana/vgm.2.08.04.tar.gz"> vgm.2.08.04.tar.gz </a>
      </td><td width="60%"> 
-         <i> Tested with CLHEP 2.0.2.3, <br> 
-	     Geant4 8.1, Root 5.13/04 <br>
+         <i> Tested with CLHEP 2.0.3.1, <br> 
+	     Geant4 8.2, Root 5.14/00 <br>
 	     </i>
  </td></tr></tbody></table>  
 
@@ -122,8 +122,8 @@
  RootGM::Factory rtFactory;
  g4Factory.Export(&rtFactory);
  gGeoManager->CloseGeometry();
- return rtFactory.World();                              <<font color="#aa00ff"><I>
-      // returns Root top volume, of TGeoVolume* type   </I></font></font>
+ return rtFactory.World();                              <font color="#aa00ff"><I>
+      // returns Root top node, of TGeoNode* type       </I></font></font>
  </pre>
       
  <p>

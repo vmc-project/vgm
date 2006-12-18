@@ -2,20 +2,37 @@ $Id$
 
  The Virtual Geometry Model - Versions
 =========================================
-  06/23/2006
-  version 2.08.03    (public version)
-               - Adding material state, temperature and pressure
-	         to the material interface;
-	         these material properties are now handled via
-	         VGM when creating or converting geometry.
-	       - Improving CMT configuration (Laurent Garnier, LAL)	 
+  18/12/2006
+  version 2.08.04 
+               In RootGM:
+                - Material state, temperature and pressure
+               stored now directly in TGeoMaterial, their default
+               values are defined by TGeo, too. 
+               - By default use user defined elements (may be different
+               from TGeo elements return from material; possibility
+               to use Teo elements kepts as an option. 
+               - Now importingtop node (was volume in previous version)
+               In BaseVGM: 
+               - Export copyNo of the world volume (was set to 0
+               in the previous version);
+               
+               Tested with CLHEP 2.0.3.1, Root 5.14/00, Geant4 8.2;
+               Linux: gcc 4.1.1 (FC6),
+               MacOS Powerbook 10.4.7 gcc 4 
+
+  06/11/2006
+  version 2.08.03 
+               Adding material state, temperature and pressure
+	       to the material interface;
+	       these material properties are now handled via
+	       VGM when creating or converting geometry.
 		       
 	       Tested with CLHEP 2.0.2.3, Root 5.13/04, Geant4 8.1;
 	       Linux: gcc 4.1.1 (FC6),
-	       MacOS Powerbook 10.4.8 gcc 4.0.1 
+	       MacOS Powerbook 10.4.7 gcc 4 
 
   16/10/2006
-  version 2.08.02    (public version)
+  version 2.08.02 
                Adding option ignore (see its description in documentation)
 		       
 	       Tested with CLHEP 2.0.2.3, Root 5.13/04, Geant4 8.1;
@@ -24,7 +41,7 @@ $Id$
 
 
   04/08/2006
-  version 2.08.01    (public version)
+  version 2.08.01 
                Fixes only:
 	       Corrected import of reflected volumes if assoiciated
 	       with medias ( affects Root->G4 conversion) 
@@ -34,7 +51,7 @@ $Id$
 	       MacOS Powerbook 10.4.7 gcc 4 
 
   08/07/2006
-  version 2.08    (public version)
+  version 2.08 
               - Added support for Ctubs solid (cut tube);
                 in Geant4 the solid is realised via Boolean operations
               - Added installation scripts to examples
@@ -53,14 +70,14 @@ $Id$
 	       MacOS Powerbook 10.4.7 gcc 4 
 
   20/12/2005
-  version 2.07    (public version)
+  version 2.07
                Upgrade to CLHEP 2.0.2.2 (with namespaces)
 	       	       
 	       Tested with  CLHEP 1.9.2.1 and 2.0.2.2, Root 5.08/00, Geant4 8.0;
 	       gcc 3.2.2 
 
   18/10/2005
-  version 2.06    (public version)
+  version 2.06 
                RootGM - updated for new implementation of volumes assemblies;
 	       added test for volume assemblies to vgm_test (included in
 	       the test suites.
@@ -69,7 +86,7 @@ $Id$
 	       gcc 3.2.2 
 
   16/06/2005
-  version 2.05    (public version)
+  version 2.05 
                Added elliptical tube solid;
 	       fix for general trapezoid with triangular faces (in Geant4GM).
 	       
@@ -77,7 +94,7 @@ $Id$
 	       gcc 3.2.2 
 
   16/05/2005
-  version 2.04    (public version)
+  version 2.04 
                Upgrade to Root 4.04/02;
 	       bug fix in AGDD exporter (trap solid)
 	       
@@ -85,7 +102,7 @@ $Id$
 	       gcc 3.2.2 
 
   08/03/2005
-  version 2.03    (public version)
+  version 2.03 
                Port to gcc 3.4.2 (FC3);
 	       AGDD exporter upgraded to the new version of AGDD schema;
 	       fix in importing media in RootGM.
@@ -94,7 +111,7 @@ $Id$
 	       gcc 3.2.2 and gcc 3.4.2. 
 
   28/01/2005
-  version 2.02    (public version) 
+  version 2.02  
                Modifications in VGM interface needed
 	       for geometry conversion in Geant4 VMC:
 	       - adding VGM::IVolume::MediumName()
