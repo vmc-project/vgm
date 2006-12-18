@@ -110,7 +110,7 @@ G4VPhysicalVolume* ExN03DetectorConstruction::Construct()
   // Import geometry from Root to VGM
   RootGM::Factory rtFactory;
   rtFactory.SetDebug(1);
-  rtFactory.Import(gGeoManager->GetTopVolume());
+  rtFactory.Import(gGeoManager->GetTopNode());
 
   // Export VGM geometry to Geant4
   //
