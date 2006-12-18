@@ -24,7 +24,7 @@ int main(int argc,char** argv)
   // Import Root geometry to VGM
   //
   RootGM::Factory factory;
-  factory.Import(gGeoManager->GetTopVolume());
+  factory.Import(gGeoManager->GetTopNode());
   
   // Export geometry to AGDD
   //
