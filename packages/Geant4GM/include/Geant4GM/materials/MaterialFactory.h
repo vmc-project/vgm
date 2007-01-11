@@ -16,6 +16,7 @@
 
 #include <set>
 
+class G4Isotope;
 class G4Element;
 class G4Material;
 
@@ -30,10 +31,23 @@ namespace Geant4GM {
       //
       // methods
       //
+      virtual VGM::IIsotope*  CreateIsotope(
+                                 const std::string& name,      
+                                 int z, int n, double a);
+
       virtual VGM::IElement*  CreateElement(
                                  const std::string& name,      
                                  const std::string& symbol,      
                                  double z, double a);
+
+      virtual VGM::IElement*  CreateElement(
+                                 const std::string& name,      
+                                 const std::string& symbol,      
+	                         const VGM::IsotopeVector& isotopes,
+                                 const VGM::RelAbundanceVector& relAbundances);
+                                 
+      virtual VGM::IElement*  CreateElement(
+                                 int z, bool isotopes);
 
       virtual VGM::IMaterial* CreateMaterial(
                                  const std::string& name,      
@@ -63,6 +77,20 @@ namespace Geant4GM {
 				 VGM::MaterialState state,
 				 double temperature, double pressure);
 
+      virtual VGM::IMaterial*  CreateMaterial(
+                                 const std::string& name, 
+                                 double density,
+			         const VGM::ElementVector& elements,
+                                 const VGM::AtomCountVector& atomCounts);
+
+      virtual VGM::IMaterial* CreateMaterial(
+                                 const std::string& name, 
+                                 double density,
+			         const VGM::ElementVector& elements,
+                                 const VGM::AtomCountVector& atomCounts,
+				 VGM::MaterialState state,
+				 double temperature, double pressure);
+
       virtual VGM::IMedium*   CreateMedium(
                                  const std::string& name,
 			         int mediumId,
@@ -78,6 +106,7 @@ namespace Geant4GM {
     
     private:
       // methods
+      void  ImportIsotope(G4Isotope* element);
       void  ImportElement(G4Element* element);
       void  ImportMaterial(G4Material* material);
       
