@@ -207,8 +207,6 @@ RootGM::MaterialFactory::CreateIsotope(
 {
 // Create isotope if it does not yet exists
 
-  std::cout << "RootGM::MaterialFactory::CreateIsotope" << std::endl;
-
   // Check first if the isotope with given z, n already exists
   VGM::IIsotope* vgmIsotope = GetIsotope(z, n);
   if ( vgmIsotope ) return vgmIsotope;
@@ -216,7 +214,6 @@ RootGM::MaterialFactory::CreateIsotope(
   // The isotope is not yet defined - create a new one
   vgmIsotope = new RootGM::Isotope(name, z, n, a);
   IsotopeStore().push_back(vgmIsotope);
-  std::cout << "vgmIsotope: " << vgmIsotope << std::endl;
 
   return vgmIsotope; 
 }			       
