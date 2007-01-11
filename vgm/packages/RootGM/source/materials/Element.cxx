@@ -12,7 +12,7 @@
 #include "TGeoManager.h"
 
 #include "RootGM/materials/Element.h"
-#include "RootGM/materials/ElementMap.h"
+#include "RootGM/materials/Isotope.h"
 #include "RootGM/common/Units.h"
 
 //_____________________________________________________________________________
@@ -20,10 +20,13 @@ RootGM::Element::Element(const std::string& name,
                          const std::string& symbol,      
                          double z, double a) 
   : VGM::IElement(),
-    fElement(0),
     fName(name),
+    fSymbol(symbol),
     fZ(z),
-    fA(a)    			       			  
+    fN(a),
+    fA(a),    			       			  
+    fIsotopes(),
+    fRelAbundances()    			       			  
 {
 /// Standard constructor to define element from parameters 
 /// \param name its name
@@ -32,68 +35,139 @@ RootGM::Element::Element(const std::string& name,
 /// \param z the effective atomic number
 /// \param a the effective mass of a mole in g/mole 
 
-  // Use Root element table to create Root element
-  // (to get it registered here)
-  TGeoElementTable* elementTable = gGeoManager->GetElementTable();
-  elementTable->AddElement(symbol.data(),
-                           name.data(),
-		           (int)z,
-		           a /RootGM::Units::AtomicWeight()); 
-  fElement = elementTable->FindElement(symbol.data());
-
-  // Register element in the map
-  RootGM::ElementMap::Instance()->AddElement(this, fElement); 
 }
 			   
 //_____________________________________________________________________________
-RootGM::Element::Element(TGeoElement* element, 
-                         const std::string& name, double z, double a)
+RootGM::Element::Element(const std::string& name, 
+                         const std::string& symbol,      
+                         const VGM::IsotopeVector& isotopes,
+                         const VGM::RelAbundanceVector& relAbundances) 
   : VGM::IElement(),
-    fElement(element),
     fName(name),
-    fZ(z),
-    fA(a)    			       			  
+    fSymbol(symbol),
+    fZ(0),
+    fN(0),
+    fA(0),
+    fIsotopes(),
+    fRelAbundances()    			       			  
 {
-/// Standard constructor to define element from the Root object
+/// Standard constructor to define element from parameters 
+/// \param name its name
+///	   (must be unique in the factory)
+/// \param symbol  its symbol
+/// \param isotopes  the vector if isotopes
+/// \param relAbundances  the vector of relative abundances of isotopes
 
-  // Register element in the map
-  RootGM::ElementMap::Instance()->AddElement(this, fElement); 
+  if ( ! isotopes.size() ) {
+    std::cerr << "    RootGM::Element::Element: " << std::endl; 
+    std::cerr << "    No isotopes defined.";
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    exit(1);
+  }
+
+  // Check coherence
+  if (isotopes.size() != relAbundances.size()) {
+    std::cerr << "    RootGM::Element::Element: " << std::endl; 
+    std::cerr << "    Isotopes size and relAbundances size differ.";
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    exit(1);
+  }
+    
+  // Compute Neff, Aeff
+  double wtSum = 0.;
+  fN = 0;
+  fA = 0;
+  for ( unsigned int i=0; i<isotopes.size(); i++ ) {
+    fIsotopes.push_back(isotopes[i]);
+    fRelAbundances.push_back(relAbundances[i]);
+    
+    std::cout << isotopes[i] << std::endl;
+    
+    if (fZ == 0 ) fZ = isotopes[i]->Z();
+    if (fZ != 0 && fZ != isotopes[i]->Z() ) {
+      std::cerr << "    RootGM::Element::Element: " << std::endl; 
+      std::cerr << "    Isotopes with different Z not allowed.";
+      std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+      exit(1);
+    }  
+    
+    fN += relAbundances[i] * isotopes[i]->N();
+    fA += relAbundances[i] * isotopes[i]->A();
+    wtSum +=  relAbundances[i];
+  }
+  fN /=  wtSum;
+  fA /=  wtSum;
 }
 			   
-			   
-//_____________________________________________________________________________
-RootGM::Element::Element(TGeoElement* element)
-  : VGM::IElement(),
-    fElement(element),
-    fName(element->GetTitle()),
-    fZ(element->Z()),
-    fA(element->A())
-{
-/// Standard constructor to define element from the Root object
-
-  // Register element in the map
-  RootGM::ElementMap::Instance()->AddElement(this, fElement); 
-}
-			   
-			   
-//_____________________________________________________________________________
-RootGM::Element::Element() 
-  : VGM::IElement() 
-{
-/// Protected default constructor
-}  
-
 //_____________________________________________________________________________
 RootGM::Element::Element(const Element& rhs) 
-  : VGM::IElement(rhs) 
+  : VGM::IElement(rhs), 
+    fName(rhs.fName),
+    fSymbol(rhs.fSymbol),
+    fZ(rhs.fZ),
+    fN(rhs.fN),
+    fA(rhs.fA),    			       			  
+    fIsotopes(rhs.fIsotopes),
+    fRelAbundances(rhs.fRelAbundances)    			       			  
 {
-/// Protected copy constructor
+/// Copy constructor
 }
+
+//_____________________________________________________________________________
+RootGM::Element::Element() 
+  : VGM::IElement(), 
+    fName("Undefined"),
+    fSymbol("Undefined"),
+    fZ(0),
+    fN(0),
+    fA(0),    			       			  
+    fIsotopes(),
+    fRelAbundances()    			       			  
+{
+/// Default constructor
+}  
 
 //_____________________________________________________________________________
 RootGM::Element::~Element() {
 //
 }
+
+//
+// operators
+//
+
+//_____________________________________________________________________________
+RootGM::Element& 
+RootGM::Element::operator = (const Element& rhs) 
+{
+/// Assignment operator
+ 
+  // check assignment to self
+  if ( this == &rhs ) return *this;
+
+  // assignment operator
+  fName= rhs.fName;
+  fSymbol = rhs.fSymbol;
+  fZ = rhs.fZ;
+  fA = rhs.fA;
+  
+  return *this; 
+}  
+
+//
+// private functions
+//
+
+//_____________________________________________________________________________
+void RootGM::Element::CheckIndex(int i) const
+{
+  if ( i < 0 || i >= NofIsotopes()) {  
+    std::cerr << "    RootGM::Element::CheckIndex: " << std::endl;
+    std::cerr << "    Index of isotope outside limits." << std::endl;
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    exit(1);
+  }  
+}    
 
 //
 // public functions
@@ -108,7 +182,7 @@ std::string RootGM::Element::Name() const
 //_____________________________________________________________________________
 std::string RootGM::Element::Symbol() const
 {
-  return fElement->GetName();
+  return fSymbol;
 }  
 
 //_____________________________________________________________________________
@@ -120,7 +194,7 @@ double  RootGM::Element::Z() const
 //_____________________________________________________________________________
 double  RootGM::Element::N() const    
 {
-  return fA;
+  return fN;
 }
 
 //_____________________________________________________________________________
@@ -128,4 +202,26 @@ double  RootGM::Element::A() const
 {
   return fA * RootGM::Units::AtomicWeight();
 }
+
+//_____________________________________________________________________________
+int RootGM::Element::NofIsotopes() const 
+{
+  return fIsotopes.size();
+}
+
+//_____________________________________________________________________________
+VGM::IIsotope*  RootGM::Element::Isotope(int i) const
+{
+  CheckIndex(i);
+
+  return fIsotopes[i];
+}  
+
+//_____________________________________________________________________________
+double  RootGM::Element::RelAbundance(int i) const 
+{
+  CheckIndex(i);
+
+  return fRelAbundances[i];
+}  
 
