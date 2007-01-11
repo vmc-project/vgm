@@ -1,71 +1,122 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gdml xmlns:gdml="http://cern.ch/2001/Schemas/GDML"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="gdml_1.0.xsd">
+      xsi:noNamespaceSchemaLocation="gdml.xsd">
 
    <define>
-      <position  name=   "pos_0"  x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
-      <position  name=   "pos_1"  x="   482.9629"  y="     0.0000"  z="   129.4095"  unit="cm" />
-      <position  name=   "pos_2"  x="     0.0000"  y="     9.8000"  z="     0.0000"  unit="cm" />
-      <position  name=   "pos_3"  x="     0.0000"  y="    -9.8000"  z="     0.0000"  unit="cm" />
-      <position  name=   "pos_4"  x="   433.0127"  y="     0.0000"  z="   250.0000"  unit="cm" />
-      <position  name=   "pos_5"  x="   353.5534"  y="     0.0000"  z="   353.5534"  unit="cm" />
-      <position  name=   "pos_6"  x="   250.0000"  y="     0.0000"  z="   433.0127"  unit="cm" />
-      <position  name=   "pos_7"  x="   129.4095"  y="     0.0000"  z="   482.9629"  unit="cm" />
-      <position  name=   "pos_8"  x="     0.0000"  y="     0.0000"  z="   500.0000"  unit="cm" />
-      <position  name=   "pos_9"  x="  -129.4095"  y="     0.0000"  z="   482.9629"  unit="cm" />
-      <position  name=  "pos_10"  x="  -250.0000"  y="     0.0000"  z="   433.0127"  unit="cm" />
-      <position  name=  "pos_11"  x="  -353.5534"  y="     0.0000"  z="   353.5534"  unit="cm" />
-      <position  name=  "pos_12"  x="  -433.0127"  y="     0.0000"  z="   250.0000"  unit="cm" />
-      <position  name=  "pos_13"  x="  -482.9629"  y="     0.0000"  z="   129.4095"  unit="cm" />
-      <position  name=  "pos_14"  x="  -500.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
-      <position  name=  "pos_15"  x="  -482.9629"  y="     0.0000"  z="  -129.4095"  unit="cm" />
-      <position  name=  "pos_16"  x="  -433.0127"  y="     0.0000"  z="  -250.0000"  unit="cm" />
-      <position  name=  "pos_17"  x="  -353.5534"  y="     0.0000"  z="  -353.5534"  unit="cm" />
-      <position  name=  "pos_18"  x="  -250.0000"  y="     0.0000"  z="  -433.0127"  unit="cm" />
-      <position  name=  "pos_19"  x="  -129.4095"  y="     0.0000"  z="  -482.9629"  unit="cm" />
-      <position  name=  "pos_20"  x="     0.0000"  y="     0.0000"  z="  -500.0000"  unit="cm" />
-      <position  name=  "pos_21"  x="   129.4095"  y="     0.0000"  z="  -482.9629"  unit="cm" />
-      <position  name=  "pos_22"  x="   250.0000"  y="     0.0000"  z="  -433.0127"  unit="cm" />
-      <position  name=  "pos_23"  x="   353.5534"  y="     0.0000"  z="  -353.5534"  unit="cm" />
-      <position  name=  "pos_24"  x="   433.0127"  y="     0.0000"  z="  -250.0000"  unit="cm" />
-      <position  name=  "pos_25"  x="   482.9629"  y="     0.0000"  z="  -129.4095"  unit="cm" />
-      <position  name=  "pos_26"  x="   500.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_1"     x="   482.9629"  y="     0.0000"  z="   129.4095"  unit="cm" />
+      <position  name="pos_2"     x="     0.0000"  y="     9.8000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_3"     x="     0.0000"  y="    -9.8000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_4"     x="   433.0127"  y="     0.0000"  z="   250.0000"  unit="cm" />
+      <position  name="pos_5"     x="   353.5534"  y="     0.0000"  z="   353.5534"  unit="cm" />
+      <position  name="pos_6"     x="   250.0000"  y="     0.0000"  z="   433.0127"  unit="cm" />
+      <position  name="pos_7"     x="   129.4095"  y="     0.0000"  z="   482.9629"  unit="cm" />
+      <position  name="pos_8"     x="     0.0000"  y="     0.0000"  z="   500.0000"  unit="cm" />
+      <position  name="pos_9"     x="  -129.4095"  y="     0.0000"  z="   482.9629"  unit="cm" />
+      <position  name="pos_10"    x="  -250.0000"  y="     0.0000"  z="   433.0127"  unit="cm" />
+      <position  name="pos_11"    x="  -353.5534"  y="     0.0000"  z="   353.5534"  unit="cm" />
+      <position  name="pos_12"    x="  -433.0127"  y="     0.0000"  z="   250.0000"  unit="cm" />
+      <position  name="pos_13"    x="  -482.9629"  y="     0.0000"  z="   129.4095"  unit="cm" />
+      <position  name="pos_14"    x="  -500.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_15"    x="  -482.9629"  y="     0.0000"  z="  -129.4095"  unit="cm" />
+      <position  name="pos_16"    x="  -433.0127"  y="     0.0000"  z="  -250.0000"  unit="cm" />
+      <position  name="pos_17"    x="  -353.5534"  y="     0.0000"  z="  -353.5534"  unit="cm" />
+      <position  name="pos_18"    x="  -250.0000"  y="     0.0000"  z="  -433.0127"  unit="cm" />
+      <position  name="pos_19"    x="  -129.4095"  y="     0.0000"  z="  -482.9629"  unit="cm" />
+      <position  name="pos_20"    x="     0.0000"  y="     0.0000"  z="  -500.0000"  unit="cm" />
+      <position  name="pos_21"    x="   129.4095"  y="     0.0000"  z="  -482.9629"  unit="cm" />
+      <position  name="pos_22"    x="   250.0000"  y="     0.0000"  z="  -433.0127"  unit="cm" />
+      <position  name="pos_23"    x="   353.5534"  y="     0.0000"  z="  -353.5534"  unit="cm" />
+      <position  name="pos_24"    x="   433.0127"  y="     0.0000"  z="  -250.0000"  unit="cm" />
+      <position  name="pos_25"    x="   482.9629"  y="     0.0000"  z="  -129.4095"  unit="cm" />
+      <position  name="pos_26"    x="   500.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
 
-      <rotation  name=   "rot_0"  x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
-      <rotation  name=   "rot_1"  x="     0.0000"  y="   -15.0000"  z="     0.0000"  unit="degree" />
-      <rotation  name=   "rot_2"  x="     0.0000"  y="   -30.0000"  z="     0.0000"  unit="degree" />
-      <rotation  name=   "rot_3"  x="     0.0000"  y="   -45.0000"  z="     0.0000"  unit="degree" />
-      <rotation  name=   "rot_4"  x="     0.0000"  y="   -60.0000"  z="     0.0000"  unit="degree" />
-      <rotation  name=   "rot_5"  x="     0.0000"  y="   -75.0000"  z="     0.0000"  unit="degree" />
-      <rotation  name=   "rot_6"  x="     0.0000"  y="   -90.0000"  z="     0.0000"  unit="degree" />
-      <rotation  name=   "rot_7"  x="   180.0000"  y="   -75.0000"  z="   180.0000"  unit="degree" />
-      <rotation  name=   "rot_8"  x="   180.0000"  y="   -60.0000"  z="   180.0000"  unit="degree" />
-      <rotation  name=   "rot_9"  x="   180.0000"  y="   -45.0000"  z="   180.0000"  unit="degree" />
-      <rotation  name=  "rot_10"  x="   180.0000"  y="   -30.0000"  z="   180.0000"  unit="degree" />
-      <rotation  name=  "rot_11"  x="   180.0000"  y="   -15.0000"  z="   180.0000"  unit="degree" />
-      <rotation  name=  "rot_12"  x="   180.0000"  y="     0.0000"  z="   180.0000"  unit="degree" />
-      <rotation  name=  "rot_13"  x="  -180.0000"  y="    15.0000"  z="   180.0000"  unit="degree" />
-      <rotation  name=  "rot_14"  x="  -180.0000"  y="    30.0000"  z="   180.0000"  unit="degree" />
-      <rotation  name=  "rot_15"  x="  -180.0000"  y="    45.0000"  z="   180.0000"  unit="degree" />
-      <rotation  name=  "rot_16"  x="  -180.0000"  y="    60.0000"  z="   180.0000"  unit="degree" />
-      <rotation  name=  "rot_17"  x="  -180.0000"  y="    75.0000"  z="   180.0000"  unit="degree" />
-      <rotation  name=  "rot_18"  x="     0.0000"  y="    90.0000"  z="     0.0000"  unit="degree" />
-      <rotation  name=  "rot_19"  x="     0.0000"  y="    75.0000"  z="     0.0000"  unit="degree" />
-      <rotation  name=  "rot_20"  x="     0.0000"  y="    60.0000"  z="     0.0000"  unit="degree" />
-      <rotation  name=  "rot_21"  x="     0.0000"  y="    45.0000"  z="     0.0000"  unit="degree" />
-      <rotation  name=  "rot_22"  x="     0.0000"  y="    30.0000"  z="     0.0000"  unit="degree" />
-      <rotation  name=  "rot_23"  x="     0.0000"  y="    15.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name="rot_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name="rot_1"     x="     0.0000"  y="    15.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name="rot_2"     x="     0.0000"  y="    30.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name="rot_3"     x="     0.0000"  y="    45.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name="rot_4"     x="     0.0000"  y="    60.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name="rot_5"     x="     0.0000"  y="    75.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name="rot_6"     x="     0.0000"  y="    90.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name="rot_7"     x="   180.0000"  y="    75.0000"  z="   180.0000"  unit="degree" />
+      <rotation  name="rot_8"     x="   180.0000"  y="    60.0000"  z="   180.0000"  unit="degree" />
+      <rotation  name="rot_9"     x="   180.0000"  y="    45.0000"  z="   180.0000"  unit="degree" />
+      <rotation  name="rot_10"    x="   180.0000"  y="    30.0000"  z="   180.0000"  unit="degree" />
+      <rotation  name="rot_11"    x="   180.0000"  y="    15.0000"  z="   180.0000"  unit="degree" />
+      <rotation  name="rot_12"    x="   180.0000"  y="     0.0000"  z="   180.0000"  unit="degree" />
+      <rotation  name="rot_13"    x="  -180.0000"  y="   -15.0000"  z="   180.0000"  unit="degree" />
+      <rotation  name="rot_14"    x="  -180.0000"  y="   -30.0000"  z="   180.0000"  unit="degree" />
+      <rotation  name="rot_15"    x="  -180.0000"  y="   -45.0000"  z="   180.0000"  unit="degree" />
+      <rotation  name="rot_16"    x="  -180.0000"  y="   -60.0000"  z="   180.0000"  unit="degree" />
+      <rotation  name="rot_17"    x="  -180.0000"  y="   -75.0000"  z="   180.0000"  unit="degree" />
+      <rotation  name="rot_18"    x="     0.0000"  y="   -90.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name="rot_19"    x="     0.0000"  y="   -75.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name="rot_20"    x="     0.0000"  y="   -60.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name="rot_21"    x="     0.0000"  y="   -45.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name="rot_22"    x="     0.0000"  y="   -30.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name="rot_23"    x="     0.0000"  y="   -15.0000"  z="     0.0000"  unit="degree" />
    </define>
 
    <materials>
-      <element  name="Aluminium_e"  Z=" 13.0000"  N=" 27" >
-         <atom type="A" unit="g/mol" value=" 26.9800" />
+      <isotope  name="H_1_i"     Z="  1.0000"  N="  1" >
+         <atom type="A" unit="g/mol" value="  1.0078" />
+      </isotope>
+      <isotope  name="H_2_i"     Z="  1.0000"  N="  2" >
+         <atom type="A" unit="g/mol" value="  2.0141" />
+      </isotope>
+      <isotope  name="C_12_i"    Z="  6.0000"  N=" 12" >
+         <atom type="A" unit="g/mol" value=" 12.0000" />
+      </isotope>
+      <isotope  name="C_13_i"    Z="  6.0000"  N=" 13" >
+         <atom type="A" unit="g/mol" value=" 13.0034" />
+      </isotope>
+      <isotope  name="U_235_i"   Z=" 92.0000"  N="235" >
+         <atom type="A" unit="g/mol" value="1466816410390727319617536.0000" />
+      </isotope>
+      <isotope  name="U_238_i"   Z=" 92.0000"  N="238" >
+         <atom type="A" unit="g/mol" value="1485665759607271307870208.0000" />
+      </isotope>
+
+      <element  name="H_e"  >
+         <fraction n="  0.9999"  ref="H_1_i" />
+         <fraction n="  0.0001"  ref="H_2_i" />
+      </element>
+      <element  name="Vacuum_e"  Z="  1.0000"  N="  1" >
+         <atom type="A" unit="g/mol" value="  1.0100" />
+      </element>
+      <element  name="C_e"  >
+         <fraction n="  0.9893"  ref="C_12_i" />
+         <fraction n="  0.0107"  ref="C_13_i" />
+      </element>
+      <element  name="Nitrogen_e"  Z="  7.0000"  N=" 14" >
+         <atom type="A" unit="g/mol" value=" 14.0100" />
+      </element>
+      <element  name="Oxygen_e"  Z="  8.0000"  N=" 16" >
+         <atom type="A" unit="g/mol" value=" 16.0000" />
+      </element>
+      <element  name="enriched_Uranium_e"  >
+         <fraction n="  0.9000"  ref="U_235_i" />
+         <fraction n="  0.1000"  ref="U_238_i" />
       </element>
 
-      <material  name="Basic"  >
-         <D type="density" unit="g/cm3" value="     2.7000"/>
-         <fraction n="    1.0000"  ref="Aluminium_e"/>
+      <material  name="Air"  >
+         <D type="density" unit="g/cm3" value="     0.0013"/>
+         <fraction n="    0.7000"  ref="Nitrogen_e"/>
+         <fraction n="    0.3000"  ref="Oxygen_e"/>
+      </material>
+      <material  name="Scintillator"  >
+         <D type="density" unit="g/cm3" value="     1.0320"/>
+         <fraction n="    0.9147"  ref="C_e"/>
+         <fraction n="    0.0853"  ref="H_e"/>
+      </material>
+      <material  name="Uranium"  >
+         <D type="density" unit="g/cm3" value="    13.6100"/>
+         <fraction n="    1.0000"  ref="enriched_Uranium_e"/>
+      </material>
+      <material  name="Vacuum"  >
+         <D type="density" unit="g/cm3" value="     0.0000"/>
+         <fraction n="    1.0000"  ref="Vacuum_e"/>
       </material>
 
    </materials>
@@ -73,30 +124,30 @@
    <solids>
       <box  lunit="cm" aunit="degree"
          name="worldV_s"
-         x=" 1000.0000"  y=" 1000.0000"  z=" 1000.0000" />
+         x=" 2000.0000"  y=" 2000.0000"  z=" 2000.0000" />
 
       <box  lunit="cm" aunit="degree"
          name="volA_s"
-         x="   20.0000"  y="   60.0000"  z="   50.0000" />
+         x="   40.0000"  y="  120.0000"  z="  100.0000" />
 
       <box  lunit="cm" aunit="degree"
          name="volB_s"
-         x="   20.0000"  y="   10.0000"  z="   50.0000" />
+         x="   40.0000"  y="   20.0000"  z="  100.0000" />
 
       <box  lunit="cm" aunit="degree"
          name="volC_s"
-         x="   20.0000"  y="    0.2000"  z="   50.0000" />
+         x="   40.0000"  y="    0.4000"  z="  100.0000" />
 
    </solids>
 
    <structure>
       <volume name="volC">
-         <materialref ref="Basic"/>
+         <materialref ref="Scintillator"/>
          <solidref ref="volC_s"/>
       </volume>
 
       <volume name="volB">
-         <materialref ref="Basic"/>
+         <materialref ref="Uranium"/>
          <solidref ref="volB_s"/>
          <physvol>
             <volumeref ref="volC"/>
@@ -111,12 +162,12 @@
       </volume>
 
       <volume name="volA">
-         <materialref ref="Basic"/>
+         <materialref ref="Air"/>
          <solidref ref="volA_s"/>
       </volume>
 
       <volume name="worldV">
-         <materialref ref="Basic"/>
+         <materialref ref="Vacuum"/>
          <solidref ref="worldV_s"/>
          <physvol>
             <volumeref ref="volA"/>
