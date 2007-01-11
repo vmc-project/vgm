@@ -123,7 +123,11 @@ void RootGM::Volume::ResetVolume(TGeoVolume* volume)
 {
 /// Reset the associated Root volume to the specified one
 
+  TGeoVolume* oldVolume = fGeoVolume;
+
   fGeoVolume = volume; 
+  if (oldVolume) fGeoVolume->SetMedium(oldVolume->GetMedium());
+  
   RootGM::VolumeMap::Instance()->AddVolume(this, fGeoVolume);
       // Check solid for this case
  }
