@@ -20,6 +20,7 @@ namespace VGM {
 
   typedef std::vector<IElement*>  ElementVector;
   typedef std::vector<double>     MassFractionVector;
+  typedef std::vector<int>        AtomCountVector;
 
   enum MaterialState {
     kUndefined, ///< Undefined material state
@@ -66,6 +67,10 @@ namespace VGM {
                           /// Return the mass fraction of the i-th element 
 			  /// constituing this material
       virtual double     MassFraction(int iel) const = 0 ;
+			  ///
+                          /// Return the atom count of the i-th element 
+			  /// constituing this material
+      virtual int        AtomCount(int iel) const = 0 ;
   };
 }  
 
