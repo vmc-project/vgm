@@ -33,7 +33,8 @@ std::ostream& operator<<(std::ostream& out, const VGM::IMaterial& material)
       
   for (int i=0; i<material.NofElements(); i++) {
     out << "   "
-        << i << "th element: " << *material.Element(i);
+        << i << "th element: " << *material.Element(i)
+        << "  Elm mass fraction: " <<  material.MassFraction(i) * 100. << " %";
     if (i<material.NofElements()-1) out <<std::endl;
   }       
     
