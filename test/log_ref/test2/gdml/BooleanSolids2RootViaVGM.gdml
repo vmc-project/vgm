@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gdml xmlns:gdml="http://cern.ch/2001/Schemas/GDML"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="gdml_1.0.xsd">
+      xsi:noNamespaceSchemaLocation="gdml.xsd">
 
    <define>
-      <position  name=   "pos_0"  x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
-      <position  name=   "pos_1"  x="  -125.0000"  y="     0.0000"  z="  -200.0000"  unit="cm" />
-      <position  name=   "pos_2"  x="   125.0000"  y="     0.0000"  z="  -200.0000"  unit="cm" />
-      <position  name=   "pos_3"  x="  -250.0000"  y="     0.0000"  z="   200.0000"  unit="cm" />
-      <position  name=   "pos_4"  x="    20.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
-      <position  name=   "pos_5"  x="     0.0000"  y="     0.0000"  z="   200.0000"  unit="cm" />
-      <position  name=   "pos_6"  x="   250.0000"  y="     0.0000"  z="   200.0000"  unit="cm" />
+      <position  name="pos_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_1"     x="  -125.0000"  y="     0.0000"  z="  -200.0000"  unit="cm" />
+      <position  name="pos_2"     x="   125.0000"  y="     0.0000"  z="  -200.0000"  unit="cm" />
+      <position  name="pos_3"     x="  -250.0000"  y="     0.0000"  z="   200.0000"  unit="cm" />
+      <position  name="pos_5"     x="     0.0000"  y="     0.0000"  z="   200.0000"  unit="cm" />
+      <position  name="pos_6"     x="   250.0000"  y="     0.0000"  z="   200.0000"  unit="cm" />
 
-      <rotation  name=   "rot_0"  x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
-      <rotation  name=   "rot_1"  x="     0.0000"  y="    45.0000"  z="     0.0000"  unit="degree" />
-      <rotation  name=   "rot_2"  x="    30.0000"  y="   -45.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name="rot_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name="rot_1"     x="     0.0000"  y="   -45.0000"  z="     0.0000"  unit="degree" />
    </define>
 
    <materials>
+
       <element  name="Aluminium_e"  Z=" 13.0000"  N=" 27" >
          <atom type="A" unit="g/mol" value=" 26.9800" />
       </element>
@@ -32,67 +31,67 @@
    <solids>
       <box  lunit="cm" aunit="degree"
          name="worldV_s"
-         x=" 1000.0000"  y=" 1000.0000"  z=" 1000.0000" />
+         x=" 2000.0000"  y=" 2000.0000"  z=" 2000.0000" />
 
       <box  lunit="cm" aunit="degree"
          name="volume1_s"
-         x="   50.0000"  y="   50.0000"  z="   50.0000" />
+         x="  100.0000"  y="  100.0000"  z="  100.0000" />
 
       <cone  lunit="cm" aunit="degree"
          name="volume2_s"
          rmin1="   10.0000"  rmin2="   20.0000"  rmax1="   30.0000"  rmax2="   40.0000"
-         z="  100.0000"
+         z="  200.0000"
          startphi="    0.0000"  deltaphi="  360.0000" />
 
       <box  lunit="cm" aunit="degree"
          name="solid1Isolid2V_constA_s"
-         x="   50.0000"  y="   50.0000"  z="   50.0000" />
+         x="  100.0000"  y="  100.0000"  z="  100.0000" />
 
       <cone  lunit="cm" aunit="degree"
          name="solid1Isolid2V_constB_s"
          rmin1="   10.0000"  rmin2="   20.0000"  rmax1="   30.0000"  rmax2="   40.0000"
-         z="  100.0000"
+         z="  200.0000"
          startphi="    0.0000"  deltaphi="  360.0000" />
 
       <intersection name="solid1Isolid2V_s" >
          <first  ref="solid1Isolid2V_constA_s" />
          <second ref="solid1Isolid2V_constB_s" />
-         <positionref ref="pos_4" />
-         <rotationref ref="rot_2" />
+         <position  name="pos_4"     x="    20.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+         <rotation  name="rot_2"     x="   -39.2315"  y="    37.7612"  z="   -26.5651"  unit="degree" />
       </intersection>
 
       <box  lunit="cm" aunit="degree"
          name="solid1Ssolid2V_constA_s"
-         x="   50.0000"  y="   50.0000"  z="   50.0000" />
+         x="  100.0000"  y="  100.0000"  z="  100.0000" />
 
       <cone  lunit="cm" aunit="degree"
          name="solid1Ssolid2V_constB_s"
          rmin1="   10.0000"  rmin2="   20.0000"  rmax1="   30.0000"  rmax2="   40.0000"
-         z="  100.0000"
+         z="  200.0000"
          startphi="    0.0000"  deltaphi="  360.0000" />
 
       <subtraction name="solid1Ssolid2V_s" >
          <first  ref="solid1Ssolid2V_constA_s" />
          <second ref="solid1Ssolid2V_constB_s" />
-         <positionref ref="pos_4" />
-         <rotationref ref="rot_2" />
+         <position  name="pos_4"     x="    20.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+         <rotation  name="rot_2"     x="   -39.2315"  y="    37.7612"  z="   -26.5651"  unit="degree" />
       </subtraction>
 
       <box  lunit="cm" aunit="degree"
          name="solid1Usolid2V_constA_s"
-         x="   50.0000"  y="   50.0000"  z="   50.0000" />
+         x="  100.0000"  y="  100.0000"  z="  100.0000" />
 
       <cone  lunit="cm" aunit="degree"
          name="solid1Usolid2V_constB_s"
          rmin1="   10.0000"  rmin2="   20.0000"  rmax1="   30.0000"  rmax2="   40.0000"
-         z="  100.0000"
+         z="  200.0000"
          startphi="    0.0000"  deltaphi="  360.0000" />
 
       <union name="solid1Usolid2V_s" >
          <first  ref="solid1Usolid2V_constA_s" />
          <second ref="solid1Usolid2V_constB_s" />
-         <positionref ref="pos_4" />
-         <rotationref ref="rot_2" />
+         <position  name="pos_4"     x="    20.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+         <rotation  name="rot_2"     x="   -39.2315"  y="    37.7612"  z="   -26.5651"  unit="degree" />
       </union>
 
    </solids>
