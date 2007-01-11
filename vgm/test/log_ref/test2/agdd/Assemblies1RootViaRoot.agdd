@@ -1,26 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<AGDD DTD_version = "v6">
+<AGDD DTD_version = "v7"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
 
-<!-- materials are not yet generated --> 
+<xi:include href="StandardColors.agdd"/>
 
-<section DTD_version = "v6"
+<materials  version = "Id: AGDDWriter.cxx,v 1.12 2007/01/11 12:20:31 ivana Exp "
+            date    = "2007-01-11"
+            author  = "VGM AGGD Writer"
+            DTD_version="v7"  >
+
+
+   <element  symbol="AL">
+      <atom zeff="13.0000"  aweight="26.9800" />
+   </element>
+
+   <material  name="Basic_mat"  density="  2.7000">
+      <addelement name="AL"  natoms=" 1.0000"/>
+   </material>
+
+</materials>
+
+<media  version = "Id: AGDDWriter.cxx,v 1.12 2007/01/11 12:20:31 ivana Exp "
+        date    = "2007-01-11"
+        author  = "VGM AGGD Writer"
+        DTD_version="v7"  >
+
+   <medium  name="Basic"  
+      material="Basic_mat"  
+      color="random"
+      sensitive="true"
+      parameters=" 0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000"/>
+
+</media>
+
+<section DTD_version = "v7"
          name        = "TOP"
-         version     = "Id: AGDDWriter.cxx,v 1.11 2006/07/05 11:00:27 ivana Exp "
-         date        = "Undefined"
+         version     = "Id: AGDDWriter.cxx,v 1.12 2007/01/11 12:20:31 ivana Exp "
+         date        = "2007-01-11"
          author      = "VGM AGGD Writer"
          top_volume  = "TOP_comp"  >
 
    <box    name="TOP"
-      material="Basic"
+      medium="Basic"
       X_Y_Z="2000.0000; 2000.0000; 200.0000" />
 
    <box    name="PLATE"
-      material="Basic"
+      medium="Basic"
       X_Y_Z="50.0000; 100.0000;  2.0000" />
 
    <box    name="TOOTH"
-      material="Basic"
+      medium="Basic"
       X_Y_Z="20.0000; 10.0000;  2.0000" />
 
 
