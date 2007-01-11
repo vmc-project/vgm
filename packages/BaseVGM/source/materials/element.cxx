@@ -21,7 +21,8 @@ std::ostream& operator<<(std::ostream& out, const VGM::IElement& element)
   for ( int i=0; i<element.NofIsotopes(); i++ ) {
     if ( i == 0 ) out << std::endl;
     out << "     "
-        << i << "th isotope: " << *element.Isotope(i);
+        << i << "th isotope: " << *element.Isotope(i)
+        << "  abundance: " << element.RelAbundance(i) * 100. << "%";
     if ( i<element.NofIsotopes()-1 ) out << std::endl;    
   }       
     
