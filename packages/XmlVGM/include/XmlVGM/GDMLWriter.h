@@ -19,6 +19,7 @@
 #include "VGM/solids/IBooleanSolid.h"
 #include "VGM/solids/IBox.h"
 #include "VGM/solids/ICons.h"
+#include "VGM/solids/IEllipticalTube.h"
 #include "VGM/solids/IPara.h"
 #include "VGM/solids/IPolycone.h"
 #include "VGM/solids/IPolyhedra.h"
@@ -54,6 +55,7 @@ namespace XmlVGM {
       virtual void OpenPositions(); 
       virtual void OpenRotations();       
       virtual void OpenMaterials();
+      virtual void OpenMedia() {} 
       virtual void OpenSolids(); 
       virtual void OpenStructure(); 
       virtual void OpenComposition(const std::string& name,
@@ -65,20 +67,26 @@ namespace XmlVGM {
       virtual void ClosePositions();
       virtual void CloseRotations();
       virtual void CloseMaterials();
+      virtual void CloseMedia() {}
       virtual void CloseSolids();
       virtual void CloseStructure();
       virtual void CloseComposition();
 
       // Geometry elements
       //
+      virtual void WriteIsotope(const VGM::IIsotope* isotope);
+
       virtual void WriteElement(const VGM::IElement* element); 
       
       virtual void WriteMaterial(const VGM::IMaterial* material); 
+
+      virtual void WriteMedium(const VGM::IMedium* /*medium*/) {} 
+      virtual void WriteMedium(const VGM::IMaterial* /*material*/) {} 
       
       virtual void WriteSolid(
                             std::string lvName, 
                             const VGM::ISolid* solid, 
-                            std::string materialName);
+                            std::string /*mediumName*/);
 			     
       virtual void WritePosition(
                             const std::string& name, 
@@ -125,17 +133,8 @@ namespace XmlVGM {
 
       // Utility methods
       //
-      std::string UpdateName(const std::string& name,         
-                             const std::string& extension = "") const;
-      std::string StripName(const std::string& name,         
-                             const std::string& extension = "") const;
       double UpdateAngle(double angle) const;
-      void Append(std::string& name, int size, std::string string) const;
       void RegisterName(const std::string& name, bool warning = true);
-      std::ostream& SmartPut(std::ostream& out,
-		        int size, int precision,
-		        const std::string& separator1, 
-		        double number, const std::string& separator2) const;
     
       // Writing solids
       //
@@ -144,15 +143,16 @@ namespace XmlVGM {
       void WriteBox (std::string lvName, 
                      double hx, double hy, double hz);
       void WriteBox (std::string name, const VGM::IBox*  box);  
-      void WriteTubs(std::string name, const VGM::ITubs* tubs); 
       void WriteCons(std::string name, const VGM::ICons* cons); 
-      void WriteTrd (std::string name, const VGM::ITrd*  trd);  
-      void WriteTrap(std::string name, const VGM::ITrap* trap); 
+      void WriteEllipticalTube(std::string name, const VGM::IEllipticalTube* eltu); 
       void WritePara(std::string name, const VGM::IPara* para); 
       void WritePolycone(std::string name, const VGM::IPolycone* polycone); 
       void WritePolyhedra(std::string name, const VGM::IPolyhedra* polyhedra); 
       void WriteSphere(std::string name, const VGM::ISphere* sphere); 
       void WriteTorus(std::string name, const VGM::ITorus* torus); 
+      void WriteTrap(std::string name, const VGM::ITrap* trap); 
+      void WriteTrd (std::string name, const VGM::ITrd*  trd);  
+      void WriteTubs(std::string name, const VGM::ITubs* tubs); 
       void WriteNotSupportedSolid(std::string name); 
   
       // Writing placements
@@ -172,6 +172,7 @@ namespace XmlVGM {
       static const int          fgkDefaultNumWidth;     //default output numbers width
       static const int          fgkDefaultNumPrecision; //default output numbers precision 
       static const std::string  fgkSolidNameExtension;  //solid names extension 
+      static const std::string  fgkIsotopeNameExtension;//isotope names extension 
       static const std::string  fgkElementNameExtension;//element names extension 
       static const char         fgkCharReplacement;     //replacement for ' ' in names 
       static const std::string  fgkNotAllowedChars;     //not allowed characters in XML
