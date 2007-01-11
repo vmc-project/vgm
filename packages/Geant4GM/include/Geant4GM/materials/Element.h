@@ -24,6 +24,12 @@ namespace Geant4GM {
       Element(const std::string& name, 
               const std::string& symbol,      
               double z, double a); 
+              
+      Element(const std::string& name, 
+              const std::string& symbol,      
+	      const VGM::IsotopeVector& isotopes,
+              const VGM::RelAbundanceVector& relAbundances);
+              
       Element(G4Element* element);		
       virtual ~Element();
     
@@ -34,6 +40,10 @@ namespace Geant4GM {
       virtual double  Z() const;     
       virtual double  N() const;     
       virtual double  A() const;     
+
+      virtual int     NofIsotopes() const;
+      virtual VGM::IIsotope*  Isotope(int i) const;
+      virtual double  RelAbundance(int i) const;
 
     protected:  
       Element();
