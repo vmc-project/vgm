@@ -81,8 +81,6 @@ RootGM::Element::Element(const std::string& name,
     fIsotopes.push_back(isotopes[i]);
     fRelAbundances.push_back(relAbundances[i]);
     
-    std::cout << isotopes[i] << std::endl;
-    
     if (fZ == 0 ) fZ = isotopes[i]->Z();
     if (fZ != 0 && fZ != isotopes[i]->Z() ) {
       std::cerr << "    RootGM::Element::Element: " << std::endl; 
