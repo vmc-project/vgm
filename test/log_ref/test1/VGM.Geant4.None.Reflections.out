@@ -7,6 +7,14 @@
 *************************************************************
 
 Geant4 geometry will be defined via VGM
+VGM info:   Importing isotope: 
+VGM info:    Isotope:     H   Z =  1   N =   1   A =   1.01 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:     H   Z =  1   N =   2   A =   2.01 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:     C   Z =  6   N =  12   A =  12.00 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:     C   Z =  6   N =  13   A =  13.00 g/mole
 VGM info:   Importing LV: boxV_refl
 VGM info:   Importing solid: boxS_refl
 VGM info:   ImportDaughters for boxV_refl
