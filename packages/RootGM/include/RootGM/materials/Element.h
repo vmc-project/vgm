@@ -14,8 +14,6 @@
 
 #include "VGM/materials/IElement.h"
 
-class TGeoElement;
-
 namespace RootGM {
 
   class Element : public virtual VGM::IElement
@@ -24,10 +22,18 @@ namespace RootGM {
       Element(const std::string& name, 
               const std::string& symbol,      
               double z, double a); 
-      Element(TGeoElement* element, 
-              const std::string& name, double z, double a);		
-      Element(TGeoElement* element);		
+
+      Element(const std::string& name, 
+              const std::string& symbol,      
+	      const VGM::IsotopeVector& isotopes,
+              const VGM::RelAbundanceVector& relAbundances);
+              
+      Element(const Element& rhs);
+      Element();
       virtual ~Element();
+      
+      // operators
+      Element& operator=(const Element& rhs);
     
       // methods
       virtual std::string Name() const;
@@ -37,17 +43,20 @@ namespace RootGM {
       virtual double  N() const;     
       virtual double  A() const;     
 
-    protected:  
-      Element();
-      Element(const Element& rhs);
+      virtual int     NofIsotopes() const;
+      virtual VGM::IIsotope*  Isotope(int i) const;
+      virtual double  RelAbundance(int i) const;
     
     private:
-      void CheckIndex(int iel) const;
-  
-      TGeoElement*  fElement; 
+      void   CheckIndex(int iel) const;
+
       std::string   fName;
+      std::string   fSymbol;
       double  fZ;
+      double  fN;
       double  fA; 
+      VGM::IsotopeVector       fIsotopes;
+      VGM::RelAbundanceVector  fRelAbundances;
   };
   
 }  
