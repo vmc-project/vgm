@@ -15,6 +15,10 @@
 
 #include "VGM/common/Axis.h"
 #include "VGM/common/Transform.h"
+#include "VGM/materials/IIsotope.h"
+#include "VGM/materials/IElement.h"
+#include "VGM/materials/IMaterial.h"
+#include "VGM/materials/IMedium.h"
 #include "VGM/solids/ISolid.h"
 #include "VGM/volumes/IPlacement.h"
 
@@ -51,6 +55,9 @@ namespace XmlVGM {
                     /// Write materials definitions opening
       virtual void OpenMaterials() = 0; 
 		    ///
+                    /// Write media definitions opening
+      virtual void OpenMedia() = 0; 
+		    ///
                     /// Write solids definitions opening
       virtual void OpenSolids() = 0; 
 		    ///
@@ -80,6 +87,9 @@ namespace XmlVGM {
                     /// Write materials definitions closing
       virtual void CloseMaterials() = 0;
 		    ///
+                    /// Write media definitions closing
+      virtual void CloseMedia() = 0;
+		    ///
                     /// Write materials definitions closing
       virtual void CloseSolids() = 0;
 		    ///
@@ -92,16 +102,25 @@ namespace XmlVGM {
       // Geometry elements
       //
 		    ///
+                    /// Write VGM isotope
+      virtual void WriteIsotope(const VGM::IIsotope* isotope) = 0; 
+                    ///  
                     /// Write VGM element
       virtual void WriteElement(const VGM::IElement* element) = 0; 
 		    ///
                     /// Write VGM material
       virtual void WriteMaterial(const VGM::IMaterial* material) = 0; 
 		    ///
+                    /// Write VGM medium
+      virtual void WriteMedium(const VGM::IMedium* medium) = 0; 
+		    ///
+                    /// Write medium element from material
+      virtual void WriteMedium(const VGM::IMaterial* material) = 0; 
+		    ///
                     /// Write VGM solid
       virtual void WriteSolid(std::string lvName, 
                             const VGM::ISolid* solid, 
-                            std::string materialName) = 0; 
+                            std::string mediumName) = 0; 
 		    ///
                     /// Write position (from VGM transformation)
       virtual void WritePosition(const std::string& name, 

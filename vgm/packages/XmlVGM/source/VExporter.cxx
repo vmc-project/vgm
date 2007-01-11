@@ -165,8 +165,8 @@ void XmlVGM::VExporter::ProcessPositionsInBoolean(VGM::ISolid* solid)
    VGM::Transform transform = boolSolid->Displacement();
    std::string name = fMaps.AddPosition(transform);
 	
-   if (name != "")
-     fWriter->WritePosition(name, transform);
+   //if (name != "")
+   //  fWriter->WritePosition(name, transform);
 
    // Process constituents
    VGM::ISolid* solidA = boolSolid->ConstituentSolidA();
@@ -206,7 +206,6 @@ void XmlVGM::VExporter::ProcessRotations(VGM::IVolume* volume)
 
       // Displacemnt rotations in Boolean solids
       //
-
       VGM::ISolid* dSolid = dPlacement->Volume()->Solid();
       if (dSolid->Type() == VGM::kBoolean) {
       
@@ -236,8 +235,8 @@ void XmlVGM::VExporter::ProcessRotationsInBoolean(VGM::ISolid* solid)
    VGM::Transform transform = boolSolid->Displacement();
    std::string name = fMaps.AddRotation(transform);
 	
-   if (name != "")
-     fWriter->WriteRotation(name, transform);
+   //if (name != "")
+   //  fWriter->WriteRotation(name, transform);
 
    // Process constituents
    VGM::ISolid* solidA = boolSolid->ConstituentSolidA();
@@ -250,10 +249,11 @@ void XmlVGM::VExporter::ProcessRotationsInBoolean(VGM::ISolid* solid)
 //_____________________________________________________________________________
 void XmlVGM::VExporter::ProcessMaterials(VGM::IVolume* volume) 
 {
-/// Write the material asociated with the given VGM volume.
+/// Map the material asociated with the given VGM volume.
 
   std::string volumeName = volume->Name();
 
+  // Material
   const VGM::IMaterial* volumeMaterial 
     = fFactory->MaterialFactory()->Material(volume->MaterialName());
     
@@ -267,10 +267,15 @@ void XmlVGM::VExporter::ProcessMaterials(VGM::IVolume* volume)
   const VGM::IMaterial* material 
     = fMaps.AddMaterial(volumeMaterial);
 	
+  // Elements
   if (material) {
-    // process material elements
-    for (int j=0; j<int(material->NofElements()); j++){
-      fMaps.AddElement(material->Element(j));
+    for (int j=0; j<int(material->NofElements()); j++ ){
+      VGM::IElement* element = material->Element(j);
+      fMaps.AddElement(element);
+      
+      // Isotopes
+      for ( int k=0; k<int(element->NofIsotopes()); k++ )
+        fMaps.AddIsotope(element->Isotope(k));
     }  
   }	
 
@@ -286,8 +291,47 @@ void XmlVGM::VExporter::ProcessMaterials(VGM::IVolume* volume)
 
       std::string dVolumeName = dPlacement->Volume()->Name();
       if (fVolumeNames.find(dVolumeName) == fVolumeNames.end()) {
-        // process volumed only if it was not yet processed
+        // process volume only if it was not yet processed
         ProcessMaterials(dPlacement->Volume());
+      }	
+    }
+  }  
+}  
+
+//_____________________________________________________________________________
+void XmlVGM::VExporter::ProcessMedia(VGM::IVolume* volume) 
+{
+/// Map the medium asociated with the given VGM volume.
+
+  std::string volumeName = volume->Name();
+
+  // Medium
+  const VGM::IMedium* volumeMedium 
+    = fFactory->MaterialFactory()->Medium(volume->MediumName());
+    
+  if (!volumeMedium) {
+    std::cerr << "XmlVGM::VExporter::ProcessMedia: " << std::endl;
+    std::cerr << "   Medium " << volume->MediumName() << " not found." 
+              << std::endl;
+    // exit(1);
+  }  	      
+  else     
+    fMaps.AddMedium(volumeMedium);
+	
+  // store the name of logical volume in the set
+  fVolumeNames.insert(fVolumeNames.begin(), volumeName); 
+  
+  int nofDaughters = volume->NofDaughters();
+
+  if (nofDaughters>0) {
+    for (int i=0; i<nofDaughters; i++) {
+      
+      VGM::IPlacement* dPlacement = volume->Daughter(i);
+
+      std::string dVolumeName = dPlacement->Volume()->Name();
+      if (fVolumeNames.find(dVolumeName) == fVolumeNames.end()) {
+        // process volume only if it was not yet processed
+        ProcessMedia(dPlacement->Volume());
       }	
     }
   }  
@@ -300,8 +344,8 @@ void XmlVGM::VExporter::ProcessSolids(VGM::IVolume* volume)
 
   VGM::ISolid* solid = volume->Solid();
   std::string volumeName = volume->Name();
-  std::string materialName = volume->MaterialName();
-  fWriter->WriteSolid(volumeName, solid, materialName);
+  std::string mediumName = volume->MediumName();
+  fWriter->WriteSolid(volumeName, solid, mediumName);
   
   // store the name of logical volume in the set
   fVolumeNames.insert(fVolumeNames.begin(), volumeName); 
@@ -383,8 +427,14 @@ void XmlVGM::VExporter::GenerateMaterials(VGM::IVolume* volume)
   // Create section
   fWriter->OpenMaterials();  
   
-  // Fill maps of elements and materials
+  // Fill maps of elements, materials and media
   ProcessMaterials(volume);
+  
+  // Write isotopes from the map
+  fMaps.WriteAllIsotopes(fWriter);
+
+  // Empty line
+  fWriter->WriteEmptyLine();
   
   // Write elements from the map
   fMaps.WriteAllElements(fWriter);
@@ -400,6 +450,36 @@ void XmlVGM::VExporter::GenerateMaterials(VGM::IVolume* volume)
 
   // Close section
   fWriter->CloseMaterials();
+  fWriter->WriteEmptyLine();
+}   
+
+//_____________________________________________________________________________
+void XmlVGM::VExporter::GenerateMedia(VGM::IVolume* volume)
+{
+/// Generate the XML elements containing
+/// all materials present in the given VGM volume tree
+
+  // Create section
+  fWriter->OpenMedia();  
+  
+   if ( fFactory->MaterialFactory()->Media().size() > 0 ) {
+    // Fill maps of media
+    ProcessMedia(volume);
+  
+    // Write elements from the map
+    fMaps.WriteAllMedia(fWriter);
+  }
+  else {
+    // Write media from materials if media are not defined
+    fMaps.WriteAllMediaFromMaterials(fWriter);
+  }  
+
+  // Empty line
+  fWriter->WriteEmptyLine();
+  ClearVolumeNames();
+
+  // Close section
+  fWriter->CloseMedia();
   fWriter->WriteEmptyLine();
 }   
 
@@ -433,6 +513,10 @@ void XmlVGM::VExporter::ClearVolumeNames()
 void XmlVGM::VExporter::GenerateXMLGeometry()
 {
 /// Generate XML geometry file from the top (world) volume.
+
+  std::cout << fFactory << std::endl;
+  std::cout << fFactory->Top()<< std::endl;
+  std::cout << fFactory->Top()->Volume()<< std::endl;
 
   GenerateGeometry(fFactory->Top()->Volume());
 }  
