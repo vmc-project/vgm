@@ -1,41 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gdml xmlns:gdml="http://cern.ch/2001/Schemas/GDML"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="gdml_1.0.xsd">
+      xsi:noNamespaceSchemaLocation="gdml.xsd">
 
    <define>
-      <position  name=   "pos_0"  x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
-      <position  name=   "pos_1"  x=" -1000.0000"  y="  -250.0000"  z="   100.0000"  unit="cm" />
-      <position  name=   "pos_2"  x=" -1000.0000"  y="  -250.0000"  z="  -100.0000"  unit="cm" />
-      <position  name=   "pos_3"  x=" -1000.0000"  y="   250.0000"  z="   100.0000"  unit="cm" />
-      <position  name=   "pos_4"  x=" -1000.0000"  y="   250.0000"  z="  -100.0000"  unit="cm" />
-      <position  name=   "pos_5"  x="  -833.3333"  y="  -250.0000"  z="   100.0000"  unit="cm" />
-      <position  name=   "pos_6"  x="  -833.3333"  y="  -250.0000"  z="  -100.0000"  unit="cm" />
-      <position  name=   "pos_7"  x="  -833.3333"  y="   250.0000"  z="   100.0000"  unit="cm" />
-      <position  name=   "pos_8"  x="  -833.3333"  y="   250.0000"  z="  -100.0000"  unit="cm" />
-      <position  name=   "pos_9"  x="  -666.6667"  y="  -250.0000"  z="   100.0000"  unit="cm" />
-      <position  name=  "pos_10"  x="  -666.6667"  y="  -250.0000"  z="  -100.0000"  unit="cm" />
-      <position  name=  "pos_11"  x="  -666.6667"  y="   250.0000"  z="   100.0000"  unit="cm" />
-      <position  name=  "pos_12"  x="  -666.6667"  y="   250.0000"  z="  -100.0000"  unit="cm" />
-      <position  name=  "pos_13"  x="  -500.0000"  y="  -250.0000"  z="   100.0000"  unit="cm" />
-      <position  name=  "pos_14"  x="  -500.0000"  y="  -250.0000"  z="  -100.0000"  unit="cm" />
-      <position  name=  "pos_15"  x="  -500.0000"  y="   250.0000"  z="   100.0000"  unit="cm" />
-      <position  name=  "pos_16"  x="  -500.0000"  y="   250.0000"  z="  -100.0000"  unit="cm" />
-      <position  name=  "pos_17"  x="  -333.3333"  y="  -250.0000"  z="   100.0000"  unit="cm" />
-      <position  name=  "pos_18"  x="  -333.3333"  y="  -250.0000"  z="  -100.0000"  unit="cm" />
-      <position  name=  "pos_19"  x="  -333.3333"  y="   250.0000"  z="   100.0000"  unit="cm" />
-      <position  name=  "pos_20"  x="  -333.3333"  y="   250.0000"  z="  -100.0000"  unit="cm" />
-      <position  name=  "pos_21"  x="  -166.6667"  y="  -250.0000"  z="   100.0000"  unit="cm" />
-      <position  name=  "pos_22"  x="  -166.6667"  y="  -250.0000"  z="  -100.0000"  unit="cm" />
-      <position  name=  "pos_23"  x="  -166.6667"  y="   250.0000"  z="   100.0000"  unit="cm" />
-      <position  name=  "pos_24"  x="  -166.6667"  y="   250.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_1"     x=" -1000.0000"  y="  -250.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_2"     x=" -1000.0000"  y="  -250.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_3"     x=" -1000.0000"  y="   250.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_4"     x=" -1000.0000"  y="   250.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_5"     x="  -833.3333"  y="  -250.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_6"     x="  -833.3333"  y="  -250.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_7"     x="  -833.3333"  y="   250.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_8"     x="  -833.3333"  y="   250.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_9"     x="  -666.6667"  y="  -250.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_10"    x="  -666.6667"  y="  -250.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_11"    x="  -666.6667"  y="   250.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_12"    x="  -666.6667"  y="   250.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_13"    x="  -500.0000"  y="  -250.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_14"    x="  -500.0000"  y="  -250.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_15"    x="  -500.0000"  y="   250.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_16"    x="  -500.0000"  y="   250.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_17"    x="  -333.3333"  y="  -250.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_18"    x="  -333.3333"  y="  -250.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_19"    x="  -333.3333"  y="   250.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_20"    x="  -333.3333"  y="   250.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_21"    x="  -166.6667"  y="  -250.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_22"    x="  -166.6667"  y="  -250.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_23"    x="  -166.6667"  y="   250.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_24"    x="  -166.6667"  y="   250.0000"  z="  -100.0000"  unit="cm" />
 
-      <rotation  name=   "rot_0"  x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name="rot_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
    </define>
 
    <materials>
+
       <element  name="ALUMINIUM_e"  Z=" 13.0000"  N=" 27" >
-         <atom type="A" unit="g/mol" value=" 26.9815" />
+         <atom type="A" unit="g/mol" value=" 26.9800" />
       </element>
 
       <material  name="Basic"  >
@@ -48,44 +49,42 @@
    <solids>
       <box  lunit="cm" aunit="degree"
          name="worldV_s"
-         x=" 1000.0000"  y=" 1000.0000"  z=" 1000.0000" />
+         x=" 2000.0000"  y=" 2000.0000"  z=" 2000.0000" />
 
       <box  lunit="cm" aunit="degree"
          name="boxV_s"
-         x="   20.0000"  y="   60.0000"  z="   50.0000" />
+         x="   40.0000"  y="  120.0000"  z="  100.0000" />
 
       <cone  lunit="cm" aunit="degree"
          name="consV_s"
          rmin1="   10.0000"  rmin2="   20.0000"  rmax1="   40.0000"  rmax2="   60.0000"
-         z="   50.0000"
+         z="  100.0000"
          startphi="    0.0000"  deltaphi="  360.0000" />
 
-      <!-- !!! unsupported shape  !!!  name= "eltuV_s" -->
-      <!-- dummy box is written instead  -->
-      <box  lunit="cm" aunit="degree"
+      <eltube  lunit="cm" aunit="degree"
          name="eltuV_s"
-         x="    0.1000"  y="    0.1000"  z="    0.1000" />
+         dx="   20.0000"  dy="   50.0000"  dz="  100.0000" />
 
       <para  lunit="cm" aunit="degree"
          name="paraV_s"
-         x="   40.0000"  y="   60.0000"  z="   50.0000"
+         x="   80.0000"  y="  120.0000"  z="  100.0000"
          alpha="   30.0000"  theta="   30.0000"  phi="   30.0000" />
 
       <polycone  lunit="cm" aunit="degree"
          name="pconeV_s"
          startphi="    0.0000"  deltaphi="  360.0000" >
-         <zplane  z="  -50.0000"  rmin="   10.0000"  rmax="   50.0000" />
-         <zplane  z="   10.0000"  rmin="   20.0000"  rmax="   30.0000" />
-         <zplane  z="   40.0000"  rmin="   30.0000"  rmax="   60.0000" />
+         <zplane  z=" -100.0000"  rmin="   10.0000"  rmax="   50.0000" />
+         <zplane  z="   20.0000"  rmin="   20.0000"  rmax="   30.0000" />
+         <zplane  z="   80.0000"  rmin="   30.0000"  rmax="   60.0000" />
       </polycone>
 
       <polyhedra  lunit="cm" aunit="degree"
          name="phedraV_s"
          numsides="4"
          startphi="    0.0000"  totalphi="  360.0000" >
-         <zplane  z="  -50.0000"  rmin="   10.0000"  rmax="   40.0000" />
-         <zplane  z="   10.0000"  rmin="   20.0000"  rmax="   20.0000" />
-         <zplane  z="   40.0000"  rmin="   30.0000"  rmax="   50.0000" />
+         <zplane  z=" -100.0000"  rmin="   10.0000"  rmax="   40.0000" />
+         <zplane  z="   20.0000"  rmin="   20.0000"  rmax="   20.0000" />
+         <zplane  z="   80.0000"  rmin="   30.0000"  rmax="   50.0000" />
       </polyhedra>
 
       <sphere  lunit="cm" aunit="degree"
@@ -100,19 +99,19 @@
 
       <trap  lunit="cm" aunit="degree"
          name="trapV_s"
-         z="   30.0000"
+         z="   60.0000"
          theta="   25.0000"  phi="   35.0000"
-         y1="   20.0000"  x1="   10.0000"  x2="   15.0000"  alpha1="    0.0000"
-         y2="   20.0000"  x3="   10.0000"  x4="   15.0000"  alpha2="    0.0000" />
+         y1="   40.0000"  x1="   20.0000"  x2="   30.0000"  alpha1="    0.0000"
+         y2="   40.0000"  x3="   20.0000"  x4="   30.0000"  alpha2="    0.0000" />
 
       <trd  lunit="cm" aunit="degree"
          name="trdV_s"
-         x1="   20.0000"  x2="   30.0000"  y1="   40.0000"  y2="   50.0000"
-         z="   50.0000" />
+         x1="   40.0000"  x2="   60.0000"  y1="   80.0000"  y2="  100.0000"
+         z="  100.0000" />
 
       <tube  lunit="cm" aunit="degree"
          name="tubsV_s"
-         rmin="   20.0000"  rmax="   40.0000"  z="   50.0000"
+         rmin="   20.0000"  rmax="   40.0000"  z="  100.0000"
          startphi="    0.0000"  deltaphi="  360.0000" />
 
    </solids>
