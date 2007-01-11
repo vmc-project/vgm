@@ -15,6 +15,7 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include <set>
 
 #include "VGM/solids/ISolid.h"
 #include "VGM/solids/IBox.h"
@@ -41,9 +42,8 @@ namespace XmlVGM {
   {
     public:
       AGDDWriter(const std::string& version = "Undefined", 
-	         const std::string& date = "Undefined", 
                  const std::string& author = "VGM AGGD Writer", 
-	         const std::string dtdVersion = "v6");
+	         const std::string dtdVersion = "v7");
       virtual ~AGDDWriter();
 
       // methods
@@ -56,6 +56,7 @@ namespace XmlVGM {
       virtual void OpenPositions() {} 
       virtual void OpenRotations() {}     
       virtual void OpenMaterials();
+      virtual void OpenMedia();
       virtual void OpenSolids() {} 
       virtual void OpenStructure() {} 
       virtual void OpenComposition(const std::string& name,
@@ -67,19 +68,25 @@ namespace XmlVGM {
       virtual void ClosePositions() {}
       virtual void CloseRotations() {}
       virtual void CloseMaterials();
+      virtual void CloseMedia();
       virtual void CloseSolids() {}
       virtual void CloseStructure() {}
       virtual void CloseComposition();
 
       // Geometry elements
       //
-      virtual void WriteElement(const VGM::IElement* /*element*/) {} 
+      virtual void WriteIsotope(const VGM::IIsotope* isotope);
+       
+      virtual void WriteElement(const VGM::IElement* element);
     
       virtual void WriteMaterial(const VGM::IMaterial* material); 
     
+      virtual void WriteMedium(const VGM::IMedium* medium);
+      virtual void WriteMedium(const VGM::IMaterial* material); 
+
       virtual void WriteSolid(std::string lvName, 
                             const VGM::ISolid* solid, 
-                            std::string materialName); 
+                            std::string mediumName); 
 			    
       virtual void WritePosition(const std::string& /*name*/, 
                             const VGM::Transform& /*position*/) {} 
@@ -118,13 +125,14 @@ namespace XmlVGM {
        AGDDWriter(const AGDDWriter& rhs); 
 
     private:
+      // types
+      //
+      typedef std::set <std::string, std::less<std::string> > StringSet; 
+
       // Utility methods
       //
-      void Append(std::string& string, int number) const;
-      void CutName(std::string& name) const;
-      void CutName(std::string& name, int size) const;
-      std::ostream& SmartPut(std::ostream& out, int size, int precision,
-		 double number, const std::string& separator) const;
+      std::string ElementSymbol(const VGM::IElement* element) const;                       
+      void RegisterName(const std::string& name, bool warning = true);
       double  Round2(double number) const;
       bool    IsIdentity(const ThreeVector& rotation) const;
    
@@ -132,33 +140,33 @@ namespace XmlVGM {
       //
       void WriteBox (std::string lvName, 
                    double hx, double hy, double hz,  
-                   std::string materialName); 
+                   std::string mediumName); 
 		   
       void WriteBox (std::string lvName, const VGM::IBox*  box,  
-                     std::string materialName); 
+                     std::string mediumName); 
 		     
-      void WriteTubs(std::string lvName, const VGM::ITubs* tubs, 
-                   std::string materialName); 
-		   
       void WriteCons(std::string lvName, const VGM::ICons* cons, 
-                   std::string materialName); 
+                   std::string mediumName); 
 		   
-      void WriteTrd (std::string lvName, const VGM::ITrd*  trd,  
-                   std::string materialName); 
-		   
-      void WriteTrap(std::string lvName, const VGM::ITrap* trap, 
-                    std::string materialName); 
-		    
       void WritePara(std::string lvName, const VGM::IPara* para, 
-                   std::string materialName); 
+                   std::string mediumName); 
 		   
       void WritePolycone(std::string lvName, const VGM::IPolycone* polycone, 
-                   std::string materialName);
+                   std::string mediumName);
 		    
       void WritePolyhedra(std::string lvName, const VGM::IPolyhedra* polyhedra, 
-                   std::string materialName); 
+                   std::string mediumName); 
 		   
-      void WriteNotSupportedSolid(std::string name, std::string materialName); 
+      void WriteTrap(std::string lvName, const VGM::ITrap* trap, 
+                    std::string mediumName); 
+		    
+      void WriteTrd (std::string lvName, const VGM::ITrd*  trd,  
+                   std::string mediumName); 
+		   
+      void WriteTubs(std::string lvName, const VGM::ITubs* tubs, 
+                   std::string mediumName); 
+		   
+      void WriteNotSupportedSolid(std::string name, std::string mediumName); 
   
       // Writing placements
       //
@@ -179,23 +187,24 @@ namespace XmlVGM {
 
       // static data members
       //
-      static const int fgkMaxVolumeNameLength;  //maximal volume name length
-      static const int fgkMaxMaterialNameLength;//maximal material name length
       static const int fgkDefaultNumWidth;      //default output numbers width
       static const int fgkDefaultNumPrecision;  //default output numbers precision 
-      static const std::string fgkCompNameExtension; //name extension for composition
+      static const std::string  fgkCompNameExtension; //name extension for composition
+      static const std::string  fgkElementNameExtension; //element name extension 
+      static const std::string  fgkMaterialNameExtension;//material name extension 
 
       // data members
       //
       std::ofstream      fOutFile;          //output file
       std::string        fVersion;          //geometry version
-      std::string        fDate;             //date
       std::string        fAuthor;           //geometry author
       std::string        fDtdVersion;       //DTD version
       const std::string  fkBasicIndention;  //basic indention 
       std::string        fIndention;        //indention string
       int                fNW;               //output numbers width
       int                fNP;               //output numbers precision 
+      StringSet          fAGDDNames;        //names in GDML 
+      Maps*              fMaps;             //name maps
   };
 
 }
