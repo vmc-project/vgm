@@ -381,10 +381,14 @@ void  TstGeometryViaVGM::DefineMaterials()
   // Get material factory
   IMaterialFactory* materialFactory = fFactory->MaterialFactory();
 
+  // predefined elements
+  IElement* elH = materialFactory->CreateElement(1);
+  IElement* elC = materialFactory->CreateElement(6);
+
   // create elements
   double z, a, density, radlen, intlen, temperature, pressure; 
   IElement* elVacuum
-    = materialFactory->CreateElement("Vacuum",    " ",  z=1.,  a= 1.01 * fGmole);
+    = materialFactory->CreateElement("Vacuum",    "Vacuum_e",  z=1.,  a= 1.01 * fGmole);
   IElement* elN
     = materialFactory->CreateElement("Nitrogen",  "N",  z=7.,  a=14.01 * fGmole);
   IElement* elO
@@ -392,42 +396,84 @@ void  TstGeometryViaVGM::DefineMaterials()
   IElement* elAl
     = materialFactory->CreateElement("Aluminium", "Al", z=13., a=26.98 * fGmole);
 
-
   // simple material (Al)
   //
-  IMaterial* basic 
+  IMaterial* material1 
     = materialFactory
       ->CreateMaterial("Basic", density=2.700* fGcm3, elAl, radlen=0., intlen=0.);
 
   // compound/mixture material
   //
-  density = 1.290 * ClhepVGM::Units::MassDensity(mg/cm3);
   ElementVector elements;
-  MassFractionVector fractions;
   elements.push_back(elN);
-  fractions.push_back(0.7);
   elements.push_back(elO);
+
+  MassFractionVector fractions;
+  fractions.push_back(0.7);
   fractions.push_back(0.3);
     
-  IMaterial* air 
+  density = 1.290 * ClhepVGM::Units::MassDensity(mg/cm3);
+  IMaterial* material2 
     = materialFactory
       ->CreateMaterial("Air", density, elements, fractions);
+
+  // material from predefined elements
+  //
+
+  ElementVector elements2;
+  elements2.push_back(elC);
+  elements2.push_back(elH);
+
+  AtomCountVector atomCounts;
+  atomCounts.push_back(9);
+  atomCounts.push_back(10);
+
+  density = 1.032 * ClhepVGM::Units::MassDensity(g/cm3);
+  IMaterial* material3
+    = materialFactory
+      ->CreateMaterial("Scintillator", density, elements2, atomCounts);
+
+  // material using isotopes
+  G4int iz, n;
+  IIsotope* isoU5 
+    = materialFactory->CreateIsotope("U235", iz=92, n=235, a=235.01*g/mole);
+  IIsotope* isoU8 
+    = materialFactory->CreateIsotope("U238", iz=92, n=238, a=238.03*g/mole);
+ 
+  IsotopeVector isotopes;
+  isotopes.push_back(isoU5);
+  isotopes.push_back(isoU8);
+
+  RelAbundanceVector relAbundances;
+  relAbundances.push_back(0.90);
+  relAbundances.push_back(0.10);
+    
+  IElement* elU  
+    = materialFactory
+      ->CreateElement("enriched Uranium", "U", isotopes, relAbundances);
+
+  density = 13.61 * ClhepVGM::Units::MassDensity(g/cm3);
+  IMaterial* material4
+    = materialFactory
+      ->CreateMaterial("Uranium", density, elU, radlen=0., intlen=0.);
 
   // vacuum
   //
   density = universe_mean_density / (g/cm3) * fGcm3;
   temperature = 2.73 * fKelvin;
   pressure = 3.e-18 * ClhepVGM::Units::Pressure(pascal);
-  IMaterial* vacuum
+  IMaterial* material5
     = materialFactory
       ->CreateMaterial("Vacuum", density, elVacuum, radlen=0., intlen=0.,
                        VGM::kGas, temperature, pressure);
 
   // define tracking media
   // with no parameters specified
-  materialFactory->CreateMedium("Basic", 1, basic, 0, 0); 
-  materialFactory->CreateMedium("Air",   1, air, 0, 0); 
-  materialFactory->CreateMedium("Vacuum",1, vacuum, 0, 0); 
+  materialFactory->CreateMedium("Basic",        1, material1, 0, 0); 
+  materialFactory->CreateMedium("Air",          2, material2, 0, 0); 
+  materialFactory->CreateMedium("Scintillator", 3, material3, 0, 0); 
+  materialFactory->CreateMedium("Uranium",      4, material4, 0, 0); 
+  materialFactory->CreateMedium("Vacuum",       5, material5, 0, 0); 
 }
 
 //_____________________________________________________________________________
@@ -446,29 +492,33 @@ void* TstGeometryViaVGM::TestPlacements()
 {
   // World
   //
-  IVolume* worldV = CreateWorld();
+  double wSize = TstParameters::WorldLength();
+  ISolid* worldS
+    = fFactory->CreateBox("worldS", wSize, wSize, wSize);
+  IVolume* worldV
+    = fFactory->CreateVolume("worldV", worldS, "Vacuum");
   fFactory->CreatePlacement("world", 0, worldV, 0, ClhepVGM::Identity());
-    
+
   // Big box A
   //
   ISolid * boxA
     = fFactory->CreateBox("boxA", 20.* fCm, 60.* fCm, 50.* fCm);
   IVolume* volA
-    = fFactory->CreateVolume("volA", boxA, "Basic");
+    = fFactory->CreateVolume("volA", boxA, "Air");
   
   // Thick layer B (in A)
   //
   ISolid * boxB
     = fFactory->CreateBox("boxB", 20.* fCm, 10.* fCm, 50.* fCm);
   IVolume * volB
-    = fFactory->CreateVolume("volB", boxB, "Basic");
+    = fFactory->CreateVolume("volB", boxB, "Uranium");
 
   // Thin layer C (in B)
   //
   ISolid * boxC
     = fFactory->CreateBox("boxC", 20.* fCm, 0.2* fCm, 50.* fCm);
   IVolume * volC
-    = fFactory->CreateVolume("volC", boxC, "Basic");
+    = fFactory->CreateVolume("volC", boxC, "Scintillator");
 
   // Place layers B   
   //

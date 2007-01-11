@@ -9,6 +9,7 @@
 #include <iomanip>
 #include <math.h>
 
+#include "G4NistManager.hh"
 #include "G4Material.hh"
 #include "G4Element.hh"
 #include "G4LogicalVolume.hh"
@@ -526,6 +527,32 @@ void  TstGeometryViaGeant4::DefineMaterials()
   G4Material* material2 = new G4Material("Air", density, 2);
   material2->AddElement(N, fractionmass=0.7);
   material2->AddElement(O, fractionmass=0.3);
+  
+  // material from predefined elements
+  //
+  G4NistManager* nistManager = G4NistManager::Instance();
+  G4Element* H = nistManager->FindOrBuildElement(1);
+  G4Element* C = nistManager->FindOrBuildElement(6);
+
+  G4int natoms; 
+  density = 1.032*g/cm3;
+  G4Material* material3 = new G4Material("Scintillator", density, 2);  
+  material3->AddElement(C, natoms= 9);
+  material3->AddElement(H, natoms=10);
+
+  // material using isotopes
+  G4int iz, n, ncomponents;
+  G4double abundance;
+  G4Isotope* U5 = new G4Isotope("U235", iz=92, n=235, a=235.01*g/mole);
+  G4Isotope* U8 = new G4Isotope("U238", iz=92, n=238, a=238.03*g/mole);
+  G4Element* U  
+    = new G4Element("enriched Uranium", "U", ncomponents=2);
+  U->AddIsotope(U5, abundance= 90.*perCent);
+  U->AddIsotope(U8, abundance= 10.*perCent);
+
+  G4Material* material4
+    = new G4Material("Uranium", density=13.61*g/cm3, ncomponents=1);
+  material4->AddElement(U, 1);
 
   // vacuum
   //
@@ -555,26 +582,35 @@ void* TstGeometryViaGeant4::TestPlacements()
   G4VPhysicalVolume* world
     = new G4PVPlacement(0, CLHEP::Hep3Vector(), worldV, "world", 0, false, 0); 
     
+  // Get materials via names
+  G4Material* air = G4Material::GetMaterial("Air");
+  G4Material* scintillator = G4Material::GetMaterial("Scintillator");
+  G4Material* uranium = G4Material::GetMaterial("Uranium");
+  G4Material* vacuum = G4Material::GetMaterial("Vacuum");
+  
+  // Reset world material to vacuum
+  worldV->SetMaterial(vacuum);
+
   // Big box A
   //
   G4VSolid * boxA
     = new G4Box("boxA", 20.*cm, 60.*cm, 50.*cm);
   G4LogicalVolume* volA
-    = new G4LogicalVolume(boxA, fBasicMaterial, "volA");
+    = new G4LogicalVolume(boxA, air, "volA");
   
   // Thick layer B (in A)
   //
   G4VSolid * boxB
     = new G4Box("boxB", 20.*cm, 10.*cm, 50.*cm);
   G4LogicalVolume * volB
-    = new G4LogicalVolume(boxB, fBasicMaterial, "volB");
+    = new G4LogicalVolume(boxB, uranium, "volB");
 
   // Thin layer C (in B)
   //
   G4VSolid * boxC
     = new G4Box("boxC", 20.*cm, 0.2*cm, 50.*cm);
   G4LogicalVolume * volC
-    = new G4LogicalVolume(boxC, fBasicMaterial, "volC");
+    = new G4LogicalVolume(boxC, scintillator, "volC");
 
   // Place layers C
   //

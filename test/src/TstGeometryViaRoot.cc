@@ -417,18 +417,38 @@ void  TstGeometryViaRoot::DefineMaterials()
   material2->DefineElement(0, a=14.01, z=7.0, w=0.7); 
   material2->DefineElement(1, a=16.00, z=8.0, w=0.3); 
 
+  // material from predefined elements
+  //
+  TGeoElementTable* elemTable = gGeoManager->GetElementTable();
+  TGeoElement* H = elemTable->GetElement(1);
+  TGeoElement* C = elemTable->GetElement(6);
+
+  Int_t natoms; 
+  TGeoMixture* material3
+    = new TGeoMixture("Scintillator", 2, density=1.032);  
+  material3->AddElement(C, natoms= 9);
+  material3->AddElement(H, natoms=10);
+
+  // material using isotopes 
+  // not supported in Root - using simple material definition
+  //
+  TGeoMaterial* material4
+    = new TGeoMaterial("Uranium", a=235.31, z=92., density=13.61);
+
   // vacuum
   //
-  TGeoMaterial* material3
+  TGeoMaterial* material5
     = new TGeoMaterial("Vacuum", 0, 0, 0,
                        TGeoMaterial::kMatStateGas, 
                        2.73 /* kelvin*/ , 
                        3.e-18/*pascal*/ * 6.24150e+3 /* MeV/mm3 */); 
 
   // Tracking medias
-  new TGeoMedium("Basic",    1, material1);
-  new TGeoMedium("Air",      2, material2);
-  new TGeoMedium("Galactic", 3, material3);
+  new TGeoMedium("Basic",        1, material1);
+  new TGeoMedium("Air",          2, material2);
+  new TGeoMedium("Scintillator", 3, material3);
+  new TGeoMedium("Uranium",      4, material4);
+  new TGeoMedium("Vacuum",       5, material5);
 }
 
 //_____________________________________________________________________________
@@ -437,6 +457,8 @@ void* TstGeometryViaRoot::TestSolids(Bool_t fullPhi)
   TGeoVolume* worldV = CreateWorld();
   
   PlaceSolids(worldV, fullPhi, false, 0.);
+  
+  //gGeoManager->Export("Solids.gdml");
 
   return (void*) gGeoManager->GetTopNode();
  }
@@ -449,12 +471,21 @@ void* TstGeometryViaRoot::TestPlacements()
   //
   TGeoVolume* worldV = CreateWorld();
     
+  // Get materials via names
+  TGeoMedium* air = gGeoManager->GetMedium("Air");
+  TGeoMedium* scintillator = gGeoManager->GetMedium("Scintillator");
+  TGeoMedium* uranium = gGeoManager->GetMedium("Uranium");
+  TGeoMedium* vacuum = gGeoManager->GetMedium("Vacuum");
+  
+  // Reset world material to vacuum
+  worldV->SetMedium(vacuum);
+
   // Big box A
   //
   TGeoShape* boxA
     = new TGeoBBox("boxA", 20., 60., 50.);
   TGeoVolume* volA
-    = new TGeoVolume("volA", boxA, fBasicMedium);
+    = new TGeoVolume("volA", boxA, air);
   
   // Thick layer B (in A)
   // Place layers B  (division) 
@@ -462,7 +493,8 @@ void* TstGeometryViaRoot::TestPlacements()
   //TGeoVolume* volB = volA->Divide("volB", 2, 6, -6., 2.); 
   //           // division in the whole mother
         
-  TGeoVolume* volB = volA->Divide("volB", 2, 3, 0., 20.);  
+  TGeoVolume* volB = volA->Divide("volB", 2, 3, 0., 20.); 
+  volB->SetMedium(uranium); 
              // division with offset
 
   // Thin layer C (in B)
@@ -470,7 +502,7 @@ void* TstGeometryViaRoot::TestPlacements()
   TGeoShape* boxC
     = new TGeoBBox("boxC", 20., 0.2, 50.);
   TGeoVolume* volC
-    = new TGeoVolume("volC", boxC, fBasicMedium);
+    = new TGeoVolume("volC", boxC, scintillator);
 
   // Place layers C
   //
@@ -497,6 +529,8 @@ void* TstGeometryViaRoot::TestPlacements()
      worldV->AddNode(volA, i+1, combi);
    }
    
+  //gGeoManager->Export("Placements.gdml");
+
   return (void*) gGeoManager->GetTopNode();
 }
 
@@ -507,6 +541,8 @@ void* TstGeometryViaRoot::TestReflections(Bool_t fullPhi)
   TGeoVolume* worldV = CreateWorld();
   
   PlaceSolids(worldV, fullPhi, true, 100.);
+
+  //gGeoManager->Export("Reflections.gdml");
 
   return (void*) gGeoManager->GetTopNode();
 }
@@ -591,6 +627,8 @@ void* TstGeometryViaRoot::TestAssemblies()
     top->AddNode(row, nrows-i4, new TGeoTranslation(-xrow,-yrow,0));
   }        
   
+  //gGeoManager->Export("Assemblies1.gdml");
+  
   return (void*) gGeoManager->GetTopNode();
 }
 
@@ -670,6 +708,8 @@ void* TstGeometryViaRoot::TestAssemblies2()
   assembly->AddNode(consV, 4, combi4);
   top->AddNode(assembly, 1);
 
+  //gGeoManager->Export("Assemblies2.gdml");
+
   return (void*) gGeoManager->GetTopNode();
  }
 
@@ -738,6 +778,8 @@ void* TstGeometryViaRoot::TestBooleanSolids1()
   worldV->AddNode(unionV, 1, 
                   new TGeoTranslation(wSize/4., 0., 200.));
   
+  //gGeoManager->Export("BooleanSolids1.gdml");
+
   return (void*) gGeoManager->GetTopNode();
 }
 
@@ -769,7 +811,6 @@ void* TstGeometryViaRoot::TestBooleanSolids2()
   worldV->AddNode(volume2, 1, 
                   new TGeoTranslation( wSize/8., 0., -200.));
 
-
   // Define displacement transformations
   //
   
@@ -797,7 +838,7 @@ void* TstGeometryViaRoot::TestBooleanSolids2()
     = new TGeoVolume("solid1Isolid2V", intersectionS, fBasicMedium);
   worldV->AddNode(intersectionV, 1, 
                   new TGeoTranslation(- wSize/4., 0., 200.));
-  
+
   // Subtraction
   //
   TGeoShape* subtractionS
@@ -816,6 +857,8 @@ void* TstGeometryViaRoot::TestBooleanSolids2()
   worldV->AddNode(unionV, 1, 
                   new TGeoTranslation(wSize/4., 0., 200.));
   
+  //gGeoManager->Export("BooleanSolids2.gdml");
+
   return (void*) gGeoManager->GetTopNode();
 }
 
@@ -900,6 +943,8 @@ void* TstGeometryViaRoot::TestBooleanSolids3()
   worldV->AddNode(unionV, 1, 
                   new TGeoTranslation(wSize/4., 0., 200.));
   
+  //gGeoManager->Export("BooleanSolids3.gdml");
+
   return (void*) gGeoManager->GetTopNode();
 }
 
@@ -952,6 +997,8 @@ void* TstGeometryViaRoot::TestBooleanSolids4()
   comp->SetLineColor(5);  
 
   top->AddNode(comp, 1); 
+
+  //gGeoManager->Export("BooleanSolids4.gdml");
 
   return (void*) gGeoManager->GetTopNode();
 }
@@ -1026,6 +1073,8 @@ void* TstGeometryViaRoot::TestBooleanSolids5()
   comp->SetLineColor(5);  
 
   top->AddNode(comp, 1, new TGeoTranslation(0, 0, 150.)); 
+
+  //gGeoManager->Export("BooleanSolids5.gdml");
 
   return (void*) gGeoManager->GetTopNode();
 }
