@@ -317,6 +317,7 @@ BaseVGM::VFactory::ExportVolumeStore(VGM::IFactory* factory) const
     if (Debug()>0) {
       BaseVGM::DebugInfo();
       std::cout << "   " << i << "th volume: " << volume->Name();
+      std::cout << "   " << "material: " << volume->MaterialName();
       if (Debug()>1)
         std::cout << "   " << " oldVGM=" << volume << " newVGM=" << newVolume;
       std::cout << std::endl;
