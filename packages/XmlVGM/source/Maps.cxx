@@ -28,8 +28,10 @@ XmlVGM::Maps::Maps(double numPrecision,
     fLengthUnit(lengthUnit),
     fPositions(),
     fRotations(),
+    fIsotopes(),
     fElements(),
-    fMaterials()
+    fMaterials(),
+    fMedia()
 {
 /// Standard constructor
 /// \param numPrecision fixed format number precision
@@ -41,8 +43,10 @@ XmlVGM::Maps::Maps(double numPrecision,
 XmlVGM::Maps::Maps() 
   : fPositions(),
     fRotations(),
+    fIsotopes(),
     fElements(),
-    fMaterials()
+    fMaterials(),
+    fMedia()
 {
 /// Protected default constructor
  
@@ -56,6 +60,7 @@ XmlVGM::Maps::Maps()
 XmlVGM::Maps::Maps(const Maps& /*right*/) 
   : fPositions(),
     fRotations(),
+    fIsotopes(),
     fElements(),
     fMaterials()
 {
@@ -215,6 +220,33 @@ XmlVGM::Maps::AddRotation(const VGM::Transform& transform)
 }    
 
 //_____________________________________________________________________________
+const VGM::IIsotope* 
+XmlVGM::Maps::AddIsotope(const VGM::IIsotope* isotope)
+{
+/// Check if the specified isotope is not yet present (within the maps 
+/// precision) and add it to the map.
+/// Return the isotope (if added) or 0.
+
+  ThreeVector roundedValues(3);
+  roundedValues[0] = Round2(isotope->Z());
+  roundedValues[1] = Round2(isotope->N());
+  roundedValues[2] = Round2(isotope->A());
+  
+  //if (fIsotopes.find(roundedValues) != fIsotopes.end()) return 0;
+  IsotopeMap::iterator it;
+  for (it=fIsotopes.begin(); it != fIsotopes.end(); it++) {
+    if ( (*it).first  == roundedValues &&
+         (*it).second->Name() == isotope->Name() ) return 0; 
+  }      
+  
+  // Add isotope to the map
+  //fIsotopes[roundedValues] = isotope;
+  fIsotopes.insert(std::make_pair(roundedValues, isotope));
+ 
+  return isotope;  
+}    
+
+//_____________________________________________________________________________
 const VGM::IElement* 
 XmlVGM::Maps::AddElement(const VGM::IElement* element)
 {
@@ -257,6 +289,25 @@ XmlVGM::Maps::AddMaterial(const VGM::IMaterial* material)
   fMaterials[name] = material;
   
   return material;  
+}    
+
+
+//_____________________________________________________________________________
+const VGM::IMedium* 
+XmlVGM::Maps::AddMedium(const VGM::IMedium* medium)
+{
+/// Check if the specified material is not yet present and add it to the map.
+/// Return the material (if added) or 0.
+
+  std::string name = medium->Name();
+  CutName(name);
+
+  if (fMedia.find(name) != fMedia.end()) return 0;
+  
+  // Add material to the map
+  fMedia[name] = medium;
+  
+  return medium;  
 }    
 
 
@@ -338,6 +389,17 @@ XmlVGM::Maps::WriteAllRotations(IWriter* writer)
 
 //_____________________________________________________________________________
 void 
+XmlVGM::Maps::WriteAllIsotopes(IWriter* writer)
+{
+/// Write all isotopes from the map with the given writer
+
+  IsotopeMap::const_iterator it1;
+  for (it1 = fIsotopes.begin(); it1 != fIsotopes.end(); it1++)
+    writer->WriteIsotope((*it1).second);
+}    
+
+//_____________________________________________________________________________
+void 
 XmlVGM::Maps::WriteAllElements(IWriter* writer)
 {
 /// Write all elements from the map with the given writer
@@ -361,14 +423,40 @@ XmlVGM::Maps::WriteAllMaterials(IWriter* writer)
 
 //_____________________________________________________________________________
 void 
+XmlVGM::Maps::WriteAllMedia(IWriter* writer)
+{
+/// Write all materials from the map with the given writer
+
+  MediumMap::const_iterator it;
+  for ( it = fMedia.begin(); it != fMedia.end(); it++)
+    writer->WriteMedium((*it).second);
+  
+}    
+
+//_____________________________________________________________________________
+void 
+XmlVGM::Maps::WriteAllMediaFromMaterials(IWriter* writer)
+{
+/// Write all materials from the map with the given writer
+
+  MaterialMap::const_iterator it;
+  for ( it = fMaterials.begin(); it != fMaterials.end(); it++)
+    writer->WriteMedium((*it).second);
+  
+}    
+
+//_____________________________________________________________________________
+void 
 XmlVGM::Maps::ClearAllMaps()
 {
 /// Clear all maps
 
   fPositions.erase(fPositions.begin(), fPositions.end());
   fRotations.erase(fRotations.begin(), fRotations.end());
+  fIsotopes.erase(fIsotopes.begin(), fIsotopes.end());
   fElements.erase(fElements.begin(), fElements.end());
   fMaterials.erase(fMaterials.begin(), fMaterials.end());
+  fMedia.erase(fMedia.begin(), fMedia.end());
 }  
 
 

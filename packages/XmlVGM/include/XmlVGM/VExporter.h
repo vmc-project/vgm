@@ -76,6 +76,7 @@ namespace XmlVGM {
       void GeneratePositions(VGM::IVolume* volume);
       void GenerateRotations(VGM::IVolume* volume);
       void GenerateMaterials(VGM::IVolume* volume);
+      void GenerateMedia(VGM::IVolume* volume);
       void GenerateSolids(VGM::IVolume* volume);
 
       void ClearVolumeNames();
@@ -102,6 +103,7 @@ namespace XmlVGM {
       void ProcessRotationsInBoolean(VGM::ISolid* solid); 
 
       void ProcessMaterials(VGM::IVolume* volume); 
+      void ProcessMedia(VGM::IVolume* volume); 
       void ProcessSolids(VGM::IVolume* volume); 
   };
 }
