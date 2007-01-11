@@ -6,6 +6,8 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
+#include <math.h>
+
 #include "TGeoManager.h"
 #include "TGeoMaterial.h"
 #include "TGeoElement.h"
@@ -15,16 +17,18 @@
 
 #include "RootGM/materials/MaterialFactory.h"
 #include "RootGM/materials/Element.h"
-#include "RootGM/materials/ElementMap.h"
+#include "RootGM/materials/ElementGeo.h"
+#include "RootGM/materials/Isotope.h"
 #include "RootGM/materials/Material.h"
 #include "RootGM/materials/MaterialMap.h"
 #include "RootGM/materials/Medium.h"
 
+const double RootGM::MaterialFactory::fgkTolerance = 1e-09; 
+
 //_____________________________________________________________________________
 RootGM::MaterialFactory::MaterialFactory()
   : VGM::IMaterialFactory(),
-    BaseVGM::VMaterialFactory("Root_GM_Material_Factory"),
-    fUseTGeoElementTable(true)    
+    BaseVGM::VMaterialFactory("Root_GM_Material_Factory")
 {  
 /// Standard default constructor
   
@@ -35,8 +39,7 @@ RootGM::MaterialFactory::MaterialFactory()
 //_____________________________________________________________________________
 RootGM::MaterialFactory::MaterialFactory(const MaterialFactory& rhs) 
   : VGM::IMaterialFactory(rhs),
-    BaseVGM::VMaterialFactory(rhs), 
-    fUseTGeoElementTable(rhs.fUseTGeoElementTable)    
+    BaseVGM::VMaterialFactory(rhs)
 {
 /// Protected copy constructor
 } 
@@ -46,7 +49,6 @@ RootGM::MaterialFactory::~MaterialFactory() {
 //
   
   // delete map singletons
-  delete RootGM::ElementMap::Instance();
   delete RootGM::MaterialMap::Instance();
               // There is inconsistence in using the singleton maps
 	      // via a factory which is not a singleton
@@ -59,66 +61,95 @@ RootGM::MaterialFactory::~MaterialFactory() {
 
 //_____________________________________________________________________________
 VGM::IElement* 
-RootGM::MaterialFactory::ImportElement(TGeoElement* rootElement)
+RootGM::MaterialFactory::GetElement(double z, double a) const
 {
-/// Import the specified Root element
+/// Find element with given z, a in the element store
 
-  VGM::IElement* vgmElement
-    = RootGM::ElementMap::Instance()->GetElement(rootElement);
-  if ( vgmElement ) return vgmElement;
-
-  if (Debug()>0) {
-    BaseVGM::DebugInfo();
-    std::cout << "Importing element: "; 
-    if (Debug()>1) std::cout << rootElement;
-    std::cout << std::endl;
-    BaseVGM::DebugInfo();
-    // std::cout << *element << std::endl;
-    rootElement->Print();
-  }	      
-      
-  vgmElement = new RootGM::Element(rootElement);
-  ElementStore().push_back(vgmElement);
+  for ( unsigned i=0; i<Elements().size(); i++ ) {
+    VGM::IElement* element = Elements()[i];
+    
+    if ( fabs(z - element->Z()) < fgkTolerance &&
+         fabs(a - element->A()) < fgkTolerance ) return element;
+  }
   
-  return vgmElement;
-}
+  return 0;
+}   
+
 
 //_____________________________________________________________________________
-VGM::IElement* 
-RootGM::MaterialFactory::ImportElement(TGeoElement* element,
-                                       int index, TGeoMaterial* material)
+VGM::IIsotope* 
+RootGM::MaterialFactory::GetIsotope(double z, double n) const
 {
-/// Import the element with given index from the given material 
+/// Find isotope with given z, n in the isotope store
 
-  if (Debug()>0) {
-    BaseVGM::DebugInfo();
-    std::cout << "Importing " << index 
-              << "th element of material \"" << material->GetName() << "\"  ";
-    if (Debug()>1) std::cout << material;
-    std::cout << std::endl;
-    BaseVGM::DebugInfo();
-    // std::cout << *element << std::endl;
-    material->Print();
-  }	      
-
-  double z;
-  double a;
-  if ( ! material->IsMixture() ) { 
-    z = material->GetZ();
-    a = material->GetA();
+  for ( unsigned i=0; i<Isotopes().size(); i++ ) {
+    VGM::IIsotope* isotope = Isotopes()[i];
+    
+    if ( z == isotope->Z() && n == isotope->N() ) return isotope;
   }
-  else {
-    z = ((TGeoMixture*)material)->GetZmixt()[index];
-    a = ((TGeoMixture*)material)->GetAmixt()[index];
-  }  
   
-  std::string name = element->GetName();
-  name += material->GetName();
+  return 0;
+}   
 
-  VGM::IElement* vgmElement = new RootGM::Element(element, name, z, a);
-  ElementStore().push_back(vgmElement);
-  
-  return vgmElement;
+
+//_____________________________________________________________________________
+void 
+RootGM::MaterialFactory::ImportElements(TGeoMaterial* material,
+                                        std::vector<VGM::IElement*>& elements)
+{
+/// Import elements from given Root material
+/// (We do not use TGeoElementTable as the elements here may
+/// differ from those defined in material
+
+
+  int nofElements = 1;
+  if ( material->IsMixture() ) 
+    nofElements = ((TGeoMixture*)material)->GetNelements();
+
+  for (Int_t i=0; i<nofElements; i++) {
+   
+    double z = material->GetZ();
+    double a = material->GetA();
+    if ( material->IsMixture() ) {
+      z = ((TGeoMixture*)material)->GetZmixt()[i];
+      a = ((TGeoMixture*)material)->GetAmixt()[i];
+    }  
+
+    // Get element from element store it it already exists
+    VGM::IElement* vgmElement = GetElement(z, a);
+
+    // Create VGM element if it does not exist  
+    if ( ! vgmElement ) {
+      // Get element name & symbol from Root element table
+      TGeoElementTable* elementTable = gGeoManager->GetElementTable();
+      TGeoElement* geoElement = elementTable->GetElement((int)z);
+      std::string name = geoElement->GetTitle();
+      std::string symbol = geoElement->GetName();
+
+      bool isFromTable = 
+             fabs(geoElement->Z() - z ) < fgkTolerance &&
+             fabs(geoElement->A() - a ) < fgkTolerance;
+      std::string from;           
+
+      if ( isFromTable ) {
+        vgmElement = new RootGM::ElementGeo(geoElement);
+        from = "from TGeoTable";
+      }  
+      else  { 
+        vgmElement = new RootGM::Element(name, symbol, z, a);
+        from = "from material";
+      }  
+        
+      if (Debug()>0) {
+        BaseVGM::DebugInfo();
+        std::cout << "Importing element: "; 
+        std::cout << name << " " << symbol << " " << from << std::endl;
+      }             
+      
+      ElementStore().push_back(vgmElement);
+    }
+    elements.push_back(vgmElement); 
+  }
 }
 
 //_____________________________________________________________________________
@@ -136,27 +167,11 @@ void RootGM::MaterialFactory::ImportMaterial(TGeoMaterial* material)
     material->Print();
   }	      
 
-  // Number of elements
-  Int_t nofElements = 1;
-  if (material->IsMixture()) 
-    nofElements = ((TGeoMixture*)material)->GetNelements();
-
-  // To be removed when fixed in Root
-  if (! gGeoManager->GetElementTable() ) new TGeoElementTable(200);
-  
   // Import elements
   std::vector<VGM::IElement*> elements;
-  for (Int_t i=0; i<nofElements; i++) {
-    TGeoElement* rootElement = material->GetElement(i);
-    VGM::IElement* vgmElement;
-    if ( fUseTGeoElementTable ) 
-      vgmElement = ImportElement(rootElement);
-    else 
-      vgmElement = ImportElement(rootElement, i, material);
-    elements.push_back(vgmElement);  
-  }               
+  ImportElements(material, elements);
 
-   // Create material
+  // Create material
   VGM::IMaterial* vgmMaterial = new RootGM::Material(material, elements);
   MaterialStore().push_back(vgmMaterial);
 }
@@ -185,6 +200,30 @@ void RootGM::MaterialFactory::ImportMedium(TGeoMedium* medium)
 //
 
 //_____________________________________________________________________________
+VGM::IIsotope*   
+RootGM::MaterialFactory::CreateIsotope(
+                               const std::string& name,      
+                               int z, int n, double a)
+{
+// Create isotope if it does not yet exists
+
+  std::cout << "RootGM::MaterialFactory::CreateIsotope" << std::endl;
+
+  // Check first if the isotope with given z, n already exists
+  VGM::IIsotope* vgmIsotope = GetIsotope(z, n);
+  if ( vgmIsotope ) return vgmIsotope;
+
+  // The isotope is not yet defined - create a new one
+  vgmIsotope = new RootGM::Isotope(name, z, n, a);
+  IsotopeStore().push_back(vgmIsotope);
+  std::cout << "vgmIsotope: " << vgmIsotope << std::endl;
+
+  return vgmIsotope; 
+}			       
+
+                               
+
+//_____________________________________________________________________________
 VGM::IElement* 
 RootGM::MaterialFactory::CreateElement(
                                const std::string& name,      
@@ -194,16 +233,56 @@ RootGM::MaterialFactory::CreateElement(
 // Create element if such element with specified properties does not
 // yet exist
 
-  // Check first if the element with this name already exists
-  VGM::IElement* vgmElement = 0;
-  for ( unsigned int i=0; i<ElementStore().size(); i++) {
-    VGM::IElement* element = ElementStore()[i];
-    if ( element->Name() == name ) vgmElement = element;
-  }
+  // Check first if the element with this z, a already exists
+  VGM::IElement* vgmElement = GetElement(z, a);
   if ( vgmElement ) return vgmElement;
 
   // The element is not yet defined - create a new one
   vgmElement = new RootGM::Element(name, symbol, z, a);
+  ElementStore().push_back(vgmElement);
+
+  return vgmElement; 
+}			       
+
+//_____________________________________________________________________________
+VGM::IElement* 
+RootGM::MaterialFactory::CreateElement(
+                               const std::string& name,      
+                               const std::string& symbol,      
+ 	                       const VGM::IsotopeVector& isotopes,
+                               const VGM::RelAbundanceVector& relAbundances)
+{
+// Create element from isotopes
+
+  // Create element 
+  VGM::IElement* vgmElement 
+    = new RootGM::Element(name, symbol, isotopes, relAbundances);
+  ElementStore().push_back(vgmElement);
+
+  return vgmElement; 
+}			       
+
+//_____________________________________________________________________________
+VGM::IElement* 
+RootGM::MaterialFactory::CreateElement(int z, bool /*isotopes*/)
+{
+// Create element using TGeoElementTable
+// if such element with specified properties does not yet exist
+
+
+  TGeoElementTable* elementTable = gGeoManager->GetElementTable();
+  TGeoElement* geoElement = elementTable->GetElement(z);
+  if ( ! geoElement ) {
+    std::cerr << "No element with z=" << z << " defined." << std::endl;
+    return 0;
+  }  
+  
+  // Check first if the element with this name already exists
+  VGM::IElement* vgmElement = GetElement(z, geoElement->A());
+  if ( vgmElement ) return vgmElement;
+
+  // The element is not yet defined - create a new one
+  vgmElement = new RootGM::ElementGeo(geoElement);
   ElementStore().push_back(vgmElement);
 
   return vgmElement; 
@@ -284,6 +363,43 @@ RootGM::MaterialFactory::CreateMaterial(
 }			       
 
 //_____________________________________________________________________________
+VGM::IMaterial* 
+RootGM::MaterialFactory::CreateMaterial(
+                               const std::string& name, 
+                               double density,
+			       const VGM::ElementVector& elements,
+                               const VGM::AtomCountVector& atomCounts)
+{
+// Create material 
+
+  VGM::IMaterial* vgmMaterial
+    = new RootGM::Material(name, density, elements, atomCounts);
+		      
+  MaterialStore().push_back(vgmMaterial);
+  return vgmMaterial; 
+}			       
+
+//_____________________________________________________________________________
+VGM::IMaterial* 
+RootGM::MaterialFactory::CreateMaterial(
+                               const std::string& name, 
+                               double density,
+			       const VGM::ElementVector& elements,
+                               const VGM::AtomCountVector& atomCounts,
+			       VGM::MaterialState state,
+			       double temperature, double pressure)
+{
+// Create material 
+
+  VGM::IMaterial* vgmMaterial
+    = new RootGM::Material(name, density, elements, atomCounts,
+                           state, temperature, pressure);
+		      
+  MaterialStore().push_back(vgmMaterial);
+  return vgmMaterial; 
+}			       
+
+//_____________________________________________________________________________
 VGM::IMedium*  
 RootGM::MaterialFactory::CreateMedium(
                                const std::string& name,
@@ -324,18 +440,3 @@ bool RootGM::MaterialFactory::Import()
 
   return true;
 }			      
-
-
-//_____________________________________________________________________________
-void RootGM::MaterialFactory::UseTGeoElementTable(bool useTGeoElementTable)
-{
-/// Set option to use TGeo element table for elements definition
-/// (this will set the A to elements defined in TGeo table instead
-/// of that defined bu user and can reduce the number of elements
-/// in case the same element is defined with different precision
-/// in material definition)
-
-  fUseTGeoElementTable = useTGeoElementTable;
-}  
-
-  		       
