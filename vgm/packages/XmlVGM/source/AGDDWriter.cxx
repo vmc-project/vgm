@@ -17,8 +17,11 @@
 #include <iomanip>
 #include <math.h>
 #include <sstream>
+#include <time.h>
 
+#include <VGM/materials/IElement.h>
 #include <VGM/materials/IMaterial.h>
+#include <VGM/materials/IMedium.h>
 #include <VGM/volumes/IPlacement.h>
 #include <VGM/volumes/IVolume.h>
 #include <VGM/solids/ISolid.h>
@@ -35,24 +38,23 @@
 #include <ClhepVGM/transform.h>
 
 #include "XmlVGM/AGDDWriter.h"
+#include "XmlVGM/utilities.h"
 
 using CLHEP::deg;
 
-const int         XmlVGM::AGDDWriter::fgkMaxVolumeNameLength   = 20;
-const int         XmlVGM::AGDDWriter::fgkMaxMaterialNameLength = 20;
 const int         XmlVGM::AGDDWriter::fgkDefaultNumWidth       = 7;
 const int         XmlVGM::AGDDWriter::fgkDefaultNumPrecision   = 4;
 const std::string XmlVGM::AGDDWriter::fgkCompNameExtension     = "_comp";
+const std::string XmlVGM::AGDDWriter::fgkElementNameExtension  = "_e";
+const std::string XmlVGM::AGDDWriter::fgkMaterialNameExtension = "_mat";
 
 //_____________________________________________________________________________
 XmlVGM::AGDDWriter::AGDDWriter(const std::string& version,
-		               const std::string& date,
                                const std::string& author,
 			       const std::string dtdVersion) 
   : IWriter(),
     fOutFile(),
     fVersion(version),
-    fDate(date),
     fAuthor(author),
     fDtdVersion(dtdVersion),
     fkBasicIndention("   "),
@@ -87,51 +89,39 @@ XmlVGM::AGDDWriter::~AGDDWriter() {
 //
 
 //_____________________________________________________________________________
-void XmlVGM::AGDDWriter::Append(std::string& s, int a) const
+std::string 
+XmlVGM::AGDDWriter::ElementSymbol(const VGM::IElement* element) const
 {
-/// Append number to string
+/// Return element symbol if defined, element name with element extension
+/// otherwise
 
-  std::ostringstream tmpStream;
-  tmpStream << a;  
-  s.append(tmpStream.str());
-}
-
-//_____________________________________________________________________________
-void XmlVGM::AGDDWriter::CutName(std::string& name) const
-{
-/// Removes spaces after the name if present
-
-  int i = name.length();
-  while (name[--i] == ' ') name = std::string(name,0,i);
-}  
-
-//_____________________________________________________________________________
-void XmlVGM::AGDDWriter::CutName(std::string& name, int size) const
-{
-// Cut name to given size
-
-  if (int(name.length()) > size) name = std::string(name, 0, size);
-}  
-
-//_____________________________________________________________________________
-std::ostream& 
-XmlVGM::AGDDWriter::SmartPut(std::ostream& out, 
-                             int size, int precision,
-                             double number, 
-		             const std::string& separator) const
-{
-/// Help function to supress - sign in case the number == 0
-/// within the given precision
-
-  if ( ClhepVGM::Round(number*pow(10.,precision))/pow(10.,precision) == 0.0) {
-    number = 0.;
+  std::string symbol = element->Symbol();
+  if ( symbol == " " ) {
+    symbol = element->Name();
+    symbol.append(fgkElementNameExtension);
   }  
   
-  out << std::setw(size) << std::setprecision(precision) 
-      << number << separator;
+  return symbol;
+}  
+                       
+//_____________________________________________________________________________
+void XmlVGM::AGDDWriter::RegisterName(const std::string& name, 
+                                      bool warning)
+{
+/// Register the given name
+/// and give a warning if a duplicated name occurs
   
-  return out;
-}
+  // Check if the name is unique
+  if (fAGDDNames.find(name) == fAGDDNames.end())
+    fAGDDNames.insert(name);
+  else 
+    if (warning) {
+      std::cerr << "+++ Warning +++: " << std::endl;
+      std::cerr << "    Duplicated name has occured: \"" << name << "\"" 
+                << " in geometry." << std::endl;
+      std::cerr << "    Duplicated names are not allowed in AGDD." << std::endl;
+    }
+}  
 
 //_____________________________________________________________________________
 double XmlVGM::AGDDWriter::Round2(double number) const
@@ -162,12 +152,11 @@ bool  XmlVGM::AGDDWriter::IsIdentity(const ThreeVector& rotation) const
     return false;
 }               
 
-
 //_____________________________________________________________________________
 void XmlVGM::AGDDWriter::WriteBox(
                               std::string volumeName, 
                               double hx, double hy, double hz,  
-                              std::string materialName)
+                              std::string mediumName)
 {
 /// Write box solid defined by parameters
 
@@ -179,7 +168,7 @@ void XmlVGM::AGDDWriter::WriteBox(
   // compose element string template
   std::string quota = "\"";
   std::string element1 = "<box    name=\"" + volumeName + quota;
-  std::string element2 = "material=\"" + materialName + quota;
+  std::string element2 = "medium=\"" + mediumName + quota;
   std::string element3 = "X_Y_Z=\"";
   std::string element4 = "\" />";
   std::string indention = fkBasicIndention + fkBasicIndention;
@@ -198,20 +187,20 @@ void XmlVGM::AGDDWriter::WriteBox(
 void XmlVGM::AGDDWriter::WriteBox(
                               std::string volumeName, 
 			      const VGM::IBox* box, 
-                              std::string materialName)
+                              std::string mediumName)
 {
 /// Write box solid
 
   WriteBox(volumeName, 
            box->XHalfLength(), box->YHalfLength(), box->ZHalfLength(),
-	   materialName); 
+	   mediumName); 
 }
  
 //_____________________________________________________________________________
 void XmlVGM::AGDDWriter::WriteTubs(
                               std::string volumeName, 
 			      const VGM::ITubs* tubs, 
-                              std::string materialName)
+                              std::string mediumName)
 {
 /// Write tubs solid
 
@@ -225,7 +214,7 @@ void XmlVGM::AGDDWriter::WriteTubs(
   // compose element string template
   std::string quota = "\"";
   std::string element1 = "<tubs   name=\"" + volumeName + quota; 
-  std::string element2 = "material=\"" + materialName + quota;
+  std::string element2 = "medium=\"" + mediumName + quota;
   std::string element3 = "profile=\"";
   std::string element4 = "Rio_Z  =\"";
   std::string element5 = "\" />";
@@ -249,7 +238,7 @@ void XmlVGM::AGDDWriter::WriteTubs(
 void XmlVGM::AGDDWriter::WriteCons(
                               std::string volumeName, 
 			      const VGM::ICons* cons, 
-                              std::string materialName)
+                              std::string mediumName)
 {
 /// Write cons solid
 
@@ -265,7 +254,7 @@ void XmlVGM::AGDDWriter::WriteCons(
   // compose element string template
   std::string quota = "\"";
   std::string element1 = "<cons   name=\"" + volumeName + quota; 
-  std::string element2 = "material=\"" + materialName + quota;
+  std::string element2 = "medium=\"" + mediumName + quota;
   std::string element3 = "profile=\"";
   std::string element4 = "Rio1_Rio2_Z  =\"";
   std::string element5 = "\" />";
@@ -291,7 +280,7 @@ void XmlVGM::AGDDWriter::WriteCons(
 void XmlVGM::AGDDWriter::WriteTrd(
                               std::string volumeName, 
 			      const VGM::ITrd* trd, 
-                              std::string materialName)
+                              std::string mediumName)
 {
 /// Write VGM::ITrd solid
 
@@ -305,7 +294,7 @@ void XmlVGM::AGDDWriter::WriteTrd(
   // compose element string template
   std::string quota = "\"";
   std::string element1 = "<trd    name=\"" + volumeName + quota; 
-  std::string element2 = "material=\"" + materialName + quota;
+  std::string element2 = "medium=\"" + mediumName + quota;
   std::string element3 = "Xmp_Ymp_Z=\"";
   std::string element4 = "\" />";
   std::string indention = fkBasicIndention + fkBasicIndention;
@@ -326,7 +315,7 @@ void XmlVGM::AGDDWriter::WriteTrd(
 void XmlVGM::AGDDWriter::WriteTrap(
                               std::string volumeName, 
 			      const VGM::ITrap* trap, 
-                              std::string materialName)
+                              std::string mediumName)
 {
 /// Write VGM::ITrap solid
 
@@ -360,7 +349,7 @@ void XmlVGM::AGDDWriter::WriteTrap(
   // compose element string template
   std::string quota = "\"";
   std::string element1 = "<trap   name=\"" + volumeName + quota; 
-  std::string element2 = "material=\"" + materialName + quota;
+  std::string element2 = "medium=\"" + mediumName + quota;
   std::string element3 = "Xmumdpupd_Ymp_Z=\"";
   std::string element4 = "inclination=\""; 
   std::string element5 = "declination=\""; 
@@ -393,7 +382,7 @@ void XmlVGM::AGDDWriter::WriteTrap(
 void XmlVGM::AGDDWriter::WritePara(     
                               std::string volumeName, 
 			      const VGM::IPara* para, 
-                              std::string materialName)
+                              std::string mediumName)
 {
 /// Write VGM::IPara solid
 
@@ -408,7 +397,7 @@ void XmlVGM::AGDDWriter::WritePara(
   // compose element string template
   std::string quota = "\"";
   std::string element1 = "<para   name=\"" + volumeName + quota;
-  std::string element2 = "material=\"" + materialName + quota;
+  std::string element2 = "medium=\"" + mediumName + quota;
   std::string element3 = "X_Y_Z=\"";
   std::string element4 = "alpha=\"";
   std::string element5 = "theta=\"";
@@ -439,7 +428,7 @@ void XmlVGM::AGDDWriter::WritePara(
 void XmlVGM::AGDDWriter::WritePolycone(
                               std::string volumeName, 
                               const VGM::IPolycone* polycone, 
-                              std::string materialName)
+                              std::string mediumName)
 {
 /// Write VGM::IPolycone solid
 
@@ -456,7 +445,7 @@ void XmlVGM::AGDDWriter::WritePolycone(
   // compose element string template
   std::string quota = "\"";
   std::string element1 = "<pcon   name=\"" + volumeName + quota; 
-  std::string element2 = "material=\"" + materialName + quota;
+  std::string element2 = "medium=\"" + mediumName + quota;
   std::string element3 = "profile=\"";
   std::string element4 = "\" >";
   std::string element5 = "<polyplane Rio_Z=\"";
@@ -497,7 +486,7 @@ void XmlVGM::AGDDWriter::WritePolycone(
 void XmlVGM::AGDDWriter::WritePolyhedra(
                               std::string volumeName, 
                               const VGM::IPolyhedra* polyhedra, 
-                              std::string materialName)
+                              std::string mediumName)
 {
 /// Write VGM::IPolyhedra solid
 
@@ -515,7 +504,7 @@ void XmlVGM::AGDDWriter::WritePolyhedra(
   // compose element string template
   std::string quota = "\"";
   std::string element1 = "<phedra name=\"" + volumeName + quota; 
-  std::string element2 = "material=\"" + materialName + quota;
+  std::string element2 = "medium=\"" + mediumName + quota;
   std::string element3 = "profile=\"";
   std::string element4 = "sides =\"";
   std::string element5 = "Ris=\"";
@@ -567,7 +556,7 @@ void XmlVGM::AGDDWriter::WritePolyhedra(
 //_____________________________________________________________________________
 void XmlVGM::AGDDWriter::WriteNotSupportedSolid(
                               std::string name, 
-                              std::string materialName)
+                              std::string mediumName)
 {				   
 /// Write a comment line with a warning
 /// and then write a box element instead 
@@ -582,7 +571,7 @@ void XmlVGM::AGDDWriter::WriteNotSupportedSolid(
 	   << fIndention << element3 << std::endl;
 	   
   // Write dummy box element
-  WriteBox(name, 1.0, 1.0, 1.0, materialName); 
+  WriteBox(name, 1.0, 1.0, 1.0, mediumName); 
 }  	   
 
 //_____________________________________________________________________________
@@ -826,8 +815,11 @@ void XmlVGM::AGDDWriter::OpenDocument()
   // Opening xml document
   fOutFile << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" << std::endl
 	   << std::endl
-	   << "<AGDD DTD_version = \"v6\">" << std::endl
-	   << std::endl;
+	   << "<AGDD DTD_version = \"v7\"" << std::endl
+           << "      xmlns:xi=\"http://www.w3.org/2001/XInclude\">" << std::endl
+	   << std::endl
+           << "<xi:include href=\"StandardColors.agdd\"/>" << std::endl
+           << std::endl;
 }  
 
 //_____________________________________________________________________________
@@ -856,12 +848,14 @@ void XmlVGM::AGDDWriter::OpenSection(const std::string& topVolume)
 
   std::string name = topVolume;
   name.append(fgkCompNameExtension);
+  
+  std::string date = Date();
 
   // write element
   fOutFile << element1 << fDtdVersion << quota << std::endl
            << element2 << topVolume   << quota << std::endl
            << element3 << version     << quota << std::endl
-           << element4 << fDate       << quota << std::endl
+           << element4 << date       << quota << std::endl
            << element5 << fAuthor     << quota << std::endl
            << element6 << name        << quota
            << element7 << std::endl;
@@ -872,12 +866,6 @@ void XmlVGM::AGDDWriter::OpenMaterials()
 {
 // Write materials opening.
 			 
-
- fOutFile << "<!-- materials are not yet generated --> "
-	  << std::endl 
-	  << std::endl;
-
-/*
   std::string element1 = "<materials  version = \"";
   std::string element2 = "            date    = \"";
   std::string element3 = "            author  = \"";
@@ -885,13 +873,50 @@ void XmlVGM::AGDDWriter::OpenMaterials()
   std::string element5 = "  >";
   std::string quota = "\"";   
   
+  std::string version = fVersion;
+  if (version == "Undefined") {
+    version = "$Id$";
+    // strip $ from the string
+    version = version.substr(1,version.size()-2);
+  }  
+
+  std::string date = Date();
+
   // write element
-  fOutFile << element1 << fVersion << quota << std::endl
-           << element2 << fDate    << quota << std::endl
+  fOutFile << element1 << version << quota << std::endl
+           << element2 << date    << quota << std::endl
            << element3 << fAuthor  << quota << std::endl
            << element4 << fDtdVersion << quota
-           << element5 << std::endl;
-*/
+           << element5 << std::endl << std::endl;
+}  
+
+//_____________________________________________________________________________
+void XmlVGM::AGDDWriter::OpenMedia()
+{
+// Write materials opening.
+			 
+  std::string element1 = "<media  version = \"";
+  std::string element2 = "        date    = \"";
+  std::string element3 = "        author  = \"";
+  std::string element4 = "        DTD_version=\"";
+  std::string element5 = "  >";
+  std::string quota = "\"";   
+  
+  std::string version = fVersion;
+  if (version == "Undefined") {
+    version = "$Id$";
+    // strip $ from the string
+    version = version.substr(1,version.size()-2);
+  }  
+
+  std::string date = Date();
+
+  // write element
+  fOutFile << element1 << version << quota << std::endl
+           << element2 << date    << quota << std::endl
+           << element3 << fAuthor  << quota << std::endl
+           << element4 << fDtdVersion << quota
+           << element5 << std::endl << std::endl;
 }  
 
 //_____________________________________________________________________________
@@ -956,14 +981,27 @@ void XmlVGM::AGDDWriter::CloseMaterials()
 {
 // Write materials closing
 
-/*
+
   // define element
   std::string element = "</materials>";
 
   // write element
   fOutFile << element
 	   << std::endl;
-*/
+}  
+
+//_____________________________________________________________________________
+void XmlVGM::AGDDWriter::CloseMedia()
+{
+// Write materials closing
+
+
+  // define element
+  std::string element = "</media>";
+
+  // write element
+  fOutFile << element
+	   << std::endl;
 }  
 
 //_____________________________________________________________________________
@@ -984,30 +1022,238 @@ void XmlVGM::AGDDWriter::CloseComposition()
 }  
 
 //_____________________________________________________________________________
+void XmlVGM::AGDDWriter::WriteIsotope(const VGM::IIsotope* isotope) 
+{
+// Write VGM::IElement 
+
+  // Get parameters
+  int    theZ = isotope->Z();
+  int    theN = isotope->N();
+  int    theA = isotope->N();
+  //double theA = isotope->A()/ AtomicWeightUnit();
+      /// !! Should not be int here
+  
+  // Compose name as name_N
+  std::string name = IsotopeName(isotope);
+  RegisterName(name);  
+
+  // AGDD does not allow N=0
+  // Let's put =1 in this case
+  if (theN == 0) theN = 1;
+
+  // Compose element string template
+  std::string quota1 = "\"";
+  std::string quota2 = "\"  ";
+  std::string element1 = "<isotope  name=\"";  
+  std::string element2 = "z=\"";
+  std::string element3 = "n=\"";
+  std::string element4 = "a=\"";
+  std::string element5 = "\"/>";
+  
+  std::string indention = fIndention + fkBasicIndention;
+  
+  // Write element
+  fOutFile << fIndention << element1 << name << quota1;
+  for ( int i=0; i< 8 - int(name.size()); i++ ) fOutFile << " ";
+  
+  fOutFile << element2 << std::setw(3) << theZ << quota2;
+  //SmartPut(fOutFile, fNW, fNP, theZ, quota2);
+
+  fOutFile << element3 << std::setw(3) << theN << quota2;
+  //SmartPut(fOutFile, fNW, fNP, theN, quota2);
+
+  fOutFile << element4 << std::setw(3) << theA << element5;
+  // SmartPut(fOutFile, fNW, fNP, theA, element5);
+  fOutFile << std::endl; 
+}  
+
+//_____________________________________________________________________________
+void XmlVGM::AGDDWriter::WriteElement(const VGM::IElement* element) 
+{
+// Write VGM::IElement 
+
+  std::string symbol = ElementSymbol(element);
+  RegisterName(symbol);  
+    
+  // Compose element string template
+  std::string quota1 = "\"";
+  std::string quota2 = "\"  ";
+  std::string element1 = "<element  symbol=\"";
+  std::string element2 = "\">";
+  std::string element6 = "</element>";
+  
+  std::string indention = fIndention + fkBasicIndention;
+  
+  // Write element name
+  fOutFile << fIndention << element1 << symbol << element2 << std::endl;
+
+  // Get parameters
+  if ( element->NofIsotopes() > 0 ) {
+    for ( int i=0; i<element->NofIsotopes(); i++ ) {
+      VGM::IIsotope* isotope = element->Isotope(i);
+      std::string name = IsotopeName(isotope);
+      double natoms = element->RelAbundance(i);
+      int natomsInt = (int)(Round2(natoms * 100));
+  
+      std::string element3 = "<addisotope name=\"";
+      std::string element4 = "natoms=\"";
+      std::string element5 = "\" />";
+  
+      fOutFile << indention << element3 << name << quota2;
+      fOutFile << element4;
+      //SmartPut(fOutFile, fNW-2, fNP, natoms, element5);
+      fOutFile << std::setw(3) << natomsInt << element5;
+      fOutFile << std::endl; 
+    }  
+  }
+  else { 
+    double theZ = element->Z();
+    int    theN = (int) ClhepVGM::Round(element->N());
+    double theA = element->A()/ AtomicWeightUnit();
+  
+    // AGDD does not allow N=0
+    // Let's put =1 in this case
+    if (theN == 0) theN = 1;
+
+    std::string element3 = "<atom zeff=\"";
+    std::string element4 = "aweight=\"";
+    std::string element5 = "\" />";
+  
+    fOutFile << indention << element3;
+    SmartPut(fOutFile, fNW-2, fNP, theZ, quota2);
+
+    fOutFile << element4;
+    SmartPut(fOutFile, fNW-2, fNP, theA, element5);
+    fOutFile << std::endl; 
+  }  
+
+  fOutFile << fIndention << element6 << std::endl;
+}  
+
+//_____________________________________________________________________________
 void XmlVGM::AGDDWriter::WriteMaterial(const VGM::IMaterial* material) 
 {
-// Write Material. 
-// Not yet implemented, only XML comment element is written
+// Write material. 
 
-  std::string name = material->Name();
-  CutName(name);
+  std::string materialName 
+    = UpdateName(material->Name(), fgkMaterialNameExtension);
+  RegisterName(materialName);
 
-  // only comment line
-  std::string element1 = "<!-- material = \""; 
-  std::string element2 = "\" -->";
+  // Get parameters
+  double density = material->Density()/ MassDensityUnit();
+ 
+  // Compose material string template
+  std::string quota = "\"  ";
+  std::string element1 = "<material  name=\"";
+  std::string element2 = "density=\"";
+  std::string element3 = "\">"; 
+  std::string element4 = "<addelement name=\""; 
+  std::string element5 = "natoms=\""; 
+  std::string element6 = "\"/>"; 
+  std::string element7 = "</material>";
   
-  // write element
-  fOutFile << fkBasicIndention
-           << element1 << name
-	   << element2
-           << std::endl;
+  std::string indention = fIndention + fkBasicIndention;
+  
+  // Write element
+  fOutFile << fIndention;
+  fOutFile  << element1 << materialName << quota;
+  
+  fOutFile  << element2;
+  SmartPut(fOutFile, fNW+1, fNP, density, element3);
+  fOutFile << std::endl; 
+  
+  for (int i=0; i<int(material->NofElements()); i++) {
+    double fraction = material->MassFraction(i);
+    std::string elementSymbol= ElementSymbol(material->Element(i));  
+
+    fOutFile << indention << element4 << elementSymbol << quota;
+    fOutFile << element5;
+    SmartPut(fOutFile, fNW, fNP, fraction, element6);
+    fOutFile << std::endl;
+  }  
+
+  fOutFile << fIndention << element7 << std::endl;
+}  
+
+//_____________________________________________________________________________
+void XmlVGM::AGDDWriter::WriteMedium(const VGM::IMedium* medium) 
+{
+// Write medium. 
+
+  std::string mediumName = UpdateName(medium->Name());
+  RegisterName(mediumName);
+
+  // Get parameters
+  std::string materialName 
+    = UpdateName(medium->Material()->Name(), fgkMaterialNameExtension);
+ 
+  // Compose material string template
+  std::string quota = "\"  ";
+  std::string element1 = "<medium  name=\"";
+  std::string element2 = "material=\"";
+  std::string element3 = "color=\"random\"";
+  std::string element4 = "sensitive=\"true\"";
+  std::string element5 = "parameters=\"";
+  std::string element6 = ";  "; 
+  std::string element7 = "\"/>"; 
+  
+  std::string indention = fIndention + fkBasicIndention;
+  
+  // Write element
+  fOutFile << fIndention;
+  fOutFile  << element1 << mediumName << quota << std::endl;
+  
+  fOutFile << indention << element2 << materialName << quota << std::endl;
+  fOutFile << indention << element3 << std::endl;
+  fOutFile << indention << element4 << std::endl;
+  fOutFile << indention << element5;
+  
+  for (int i=0; i<medium->NofParameters(); i++) {
+    double parameter = medium->Parameter(i);
+    std::string separator = element6;
+    if ( i == medium->NofParameters()-1 ) separator = element7;
+    SmartPut(fOutFile, fNW, fNP, parameter, separator);
+  }  
+  fOutFile  << std::endl;
+}  
+
+//_____________________________________________________________________________
+void XmlVGM::AGDDWriter::WriteMedium(const VGM::IMaterial* material) 
+{
+// Write medium element from material. 
+
+  std::string mediumName = UpdateName(material->Name());
+  RegisterName(mediumName);
+
+  // Get parameters
+  std::string materialName 
+    = UpdateName(material->Name(), fgkMaterialNameExtension);
+ 
+  // Compose material string template
+  std::string quota = "\"  ";
+  std::string element1 = "<medium  name=\"";
+  std::string element2 = "material=\"";
+  std::string element3 = "color=\"random\"";
+  std::string element4 = "sensitive=\"true\"";
+  std::string element5 = "parameters=\"\"/>";
+  
+  std::string indention = fIndention + fkBasicIndention;
+  
+  // Write element
+  fOutFile << fIndention;
+  fOutFile  << element1 << mediumName << quota << std::endl;
+  
+  fOutFile << indention << element2 << materialName << quota << std::endl;
+  fOutFile << indention << element3 << std::endl;
+  fOutFile << indention << element4 << std::endl;
+  fOutFile << indention << element5 << std::endl;
 }  
 
 //_____________________________________________________________________________
 void XmlVGM::AGDDWriter::WriteSolid(
                               std::string volumeName, 
 			      const VGM::ISolid* solid, 
-                              std::string materialName) 
+                              std::string mediumName) 
 {
 // Get VGM::ISolid concrete type and calls writing function
 
@@ -1015,66 +1261,74 @@ void XmlVGM::AGDDWriter::WriteSolid(
 
   if (solidType == VGM::kBox) { 
     const VGM::IBox* box = dynamic_cast<const VGM::IBox*>(solid); 
-    WriteBox(volumeName, box, materialName); 
+    WriteBox(volumeName, box, UpdateName(mediumName)); 
     return;   
   }
   else if (solidType == VGM::kCons) { 
     const VGM::ICons* cons = dynamic_cast<const VGM::ICons*>(solid); 
-    WriteCons(volumeName, cons, materialName); 
+    WriteCons(volumeName, cons, UpdateName(mediumName)); 
     return;   
   }
+/*
+  else if (solidType == VGM::kEltu) { 
+    const VGM::IEllipticalTube* eltu 
+      = dynamic_cast<const VGM::IEllipticalTube*>(solid); 
+    WriteEllipticalTube(solidName, eltu); 
+    return;   
+  }
+*/
   else if (solidType == VGM::kPara) { 
     const VGM::IPara* para = dynamic_cast<const VGM::IPara*>(solid); 
-    WritePara(volumeName, para, materialName); 
+    WritePara(volumeName, para, UpdateName(mediumName)); 
     return;   
   }
   else if (solidType == VGM::kPolycone) { 
     const VGM::IPolycone* polycone = dynamic_cast<const VGM::IPolycone*>(solid); 
-    WritePolycone(volumeName, polycone, materialName); 
+    WritePolycone(volumeName, polycone, UpdateName(mediumName)); 
     return;   
   }
   else if (solidType == VGM::kPolyhedra) { 
     const VGM::IPolyhedra* polyhedra = dynamic_cast<const VGM::IPolyhedra*>(solid); 
-    WritePolyhedra(volumeName, polyhedra, materialName); 
+    WritePolyhedra(volumeName, polyhedra, UpdateName(mediumName)); 
     return;   
   }
 /*
   else if (solidType == VGM::kSphere) { 
     const VGM::ISphere* sphere = dynamic_cast<const VGM::ISphere*>(solid); 
-    WriteSphere(volumeName, sphere, materialName); 
+    WriteSphere(volumeName, sphere, UpdateName(mediumName)); 
     return;   
   }
   else if (solidType == VGM::kTorus) { 
     const VGM::ITorus* torus = dynamic_cast<const VGM::ITorus*>(solid); 
-    WriteTorus(volumeName, torus, materialName); 
+    WriteTorus(volumeName, torus, UpdateName(mediumName)); 
     return;   
   }
 */
   else if (solidType == VGM::kTrap) { 
     const VGM::ITrap* trap = dynamic_cast<const VGM::ITrap*>(solid); 
-    WriteTrap(volumeName, trap, materialName); 
+    WriteTrap(volumeName, trap, UpdateName(mediumName)); 
     return;   
   }
   else if (solidType == VGM::kTrd) { 
     const VGM::ITrd* trd = dynamic_cast<const VGM::ITrd*>(solid); 
-    WriteTrd(volumeName, trd, materialName); 
+    WriteTrd(volumeName, trd, UpdateName(mediumName)); 
     return;   
   }
   else if (solidType == VGM::kTubs) { 
     const VGM::ITubs* tubs = dynamic_cast<const VGM::ITubs*>(solid); 
-    WriteTubs(volumeName, tubs, materialName); 
+    WriteTubs(volumeName, tubs, UpdateName(mediumName)); 
     return;   
   }
 /*
   else if (solidType == VGM::kBoolean) { 
     VGM::IBooleanSolid* boolean = dynamic_cast<VGM::IBooleanSolid*>(solid);
-    WriteBoolean(volumeName, boolean, materialName); 
+    WriteBoolean(volumeName, boolean, UpdateName(mediumName)); 
     return;   
   }
 */
 
   // Not supported solid
-  WriteNotSupportedSolid(volumeName, materialName);
+  WriteNotSupportedSolid(volumeName, UpdateName(mediumName));
 }  
 
 //_____________________________________________________________________________
