@@ -11,11 +11,11 @@
 #define ROOT_GM_MATERIAL_FACTORY_H
 
 #include "VGM/materials/IMaterial.h"
+#include "VGM/materials/IIsotope.h"
 
 #include "BaseVGM/materials/VMaterialFactory.h"
 
 class TGeoElement;
-class TGeoElementTable;
 class TGeoMaterial;
 class TGeoMedium;
 
@@ -30,10 +30,23 @@ namespace RootGM {
       //
       // methods
       //
+      virtual VGM::IIsotope*   CreateIsotope(
+                                 const std::string& name,      
+                                 int z, int n, double a = 0.);
+
       virtual VGM::IElement*   CreateElement(
                                  const std::string& name,      
                                  const std::string& symbol,      
                                  double z, double a);
+
+      virtual VGM::IElement*   CreateElement(
+                                 const std::string& name,      
+                                 const std::string& symbol,      
+	                         const VGM::IsotopeVector& isotopes,
+                                 const VGM::RelAbundanceVector& relAbundances);
+
+      virtual VGM::IElement*   CreateElement(
+                                 int z, bool isotopes);
 
       virtual VGM::IMaterial*  CreateMaterial(
                                  const std::string& name,      
@@ -41,7 +54,7 @@ namespace RootGM {
                                  VGM::IElement* element,
 			         double radlen, double intlen);
 
-      virtual VGM::IMaterial* CreateMaterial(
+      virtual VGM::IMaterial*  CreateMaterial(
                                  const std::string& name, 
 	  		         double density, 
 			         VGM::IElement* element,     
@@ -55,7 +68,7 @@ namespace RootGM {
 			         const VGM::ElementVector& elements,
                                  const VGM::MassFractionVector& fractions);
 
-      virtual VGM::IMaterial* CreateMaterial(
+      virtual VGM::IMaterial*  CreateMaterial(
                                  const std::string& name, 
                                  double density,
 			         const VGM::ElementVector& elements,
@@ -63,7 +76,21 @@ namespace RootGM {
 				 VGM::MaterialState state,
 				 double temperature, double pressure);
 
-      virtual VGM::IMedium*   CreateMedium(
+      virtual VGM::IMaterial*  CreateMaterial(
+                                 const std::string& name, 
+                                 double density,
+			         const VGM::ElementVector& elements,
+                                 const VGM::AtomCountVector& atomCounts);
+
+      virtual VGM::IMaterial*  CreateMaterial(
+                                 const std::string& name, 
+                                 double density,
+			         const VGM::ElementVector& elements,
+                                 const VGM::AtomCountVector& atomCounts,
+				 VGM::MaterialState state,
+				 double temperature, double pressure);
+
+      virtual VGM::IMedium*    CreateMedium(
                                  const std::string& name,
 			         int mediumId,
 			         VGM::IMaterial* material,
@@ -72,24 +99,22 @@ namespace RootGM {
       // import/export
       //
       virtual bool Import();
-      
-      // options
-      void UseTGeoElementTable(bool useTGeoElementTable);		       
  
     protected:
       MaterialFactory(const MaterialFactory& rhs);
     
     private:
       // methods
-      VGM::IElement*  ImportElement(TGeoElement* element);
-      VGM::IElement*  ImportElement(TGeoElement* element,
-                                    int index, TGeoMaterial* material);
+      VGM::IElement* GetElement(double z, double a) const;
+      VGM::IIsotope* GetIsotope(double z, double n) const;
 
+      void  ImportElements(TGeoMaterial* material,
+                           std::vector<VGM::IElement*>& elements);
       void  ImportMaterial(TGeoMaterial* material);
       void  ImportMedium(TGeoMedium* medium);
       
       // data members
-      bool fUseTGeoElementTable;
+      static const double fgkTolerance; 
   };
 
 }
