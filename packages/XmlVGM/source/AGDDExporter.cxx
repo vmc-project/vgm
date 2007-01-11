@@ -101,10 +101,10 @@ void XmlVGM::AGDDExporter::GenerateGeometry(VGM::IVolume* volume)
   fWriter->OpenDocument();
 
   // generate materials 
-  fWriter->OpenMaterials();
-  // not implemented
-  // GenerateMaterials(volume);
-  fWriter->CloseMaterials();  
+  GenerateMaterials(volume);
+
+  // generate media
+  GenerateMedia(volume);
 
   // generate volumes tree
   GenerateSection(volume);
