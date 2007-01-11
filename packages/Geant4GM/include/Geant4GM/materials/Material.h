@@ -25,22 +25,38 @@ namespace Geant4GM {
                double density,
                VGM::IElement* element,
                bool isVacuum = false);
+               
       Material(const std::string& name,
                double density,
                VGM::IElement* element,
 	       VGM::MaterialState state,
 	       double temperature, double pressure,
                bool isVacuum = false);
+               
       Material(const std::string& name, 
                double density,
 	       const VGM::ElementVector& elements,
                const VGM::MassFractionVector& fractions);
+               
       Material(const std::string& name, 
                double density,
 	       const VGM::ElementVector& elements,
                const VGM::MassFractionVector& fractions,
 	       VGM::MaterialState state,
 	       double temperature, double pressure);
+               
+      Material(const std::string& name, 
+               double density,
+	       const VGM::ElementVector& elements,
+               const VGM::AtomCountVector& atomCounts);
+               
+      Material(const std::string& name, 
+               double density,
+	       const VGM::ElementVector& elements,
+               const VGM::AtomCountVector& atomCounts,
+	       VGM::MaterialState state,
+	       double temperature, double pressure);
+               
       Material(G4Material* material);		
       virtual ~Material();
     
@@ -57,6 +73,7 @@ namespace Geant4GM {
       virtual int     NofElements() const;
       virtual VGM::IElement*  Element(int iel) const;
       virtual double  MassFraction(int iel) const;
+      virtual int     AtomCount(int iel) const;
 
     protected:  
       Material();  
