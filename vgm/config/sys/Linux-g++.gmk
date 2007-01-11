@@ -4,7 +4,7 @@
 ifeq ($(VGM_SYSTEM),Linux-g++)
   CXX       := g++
   GNU_GCC = 1
-  CXXFLAGS  := -W -Wall -Woverloaded-virtual -ansi -pedantic -pipe -fno-for-scope -DGNU_GCC
+  CXXFLAGS  := -W -Wall -Woverloaded-virtual -ansi -pedantic -pipe -DGNU_GCC
   ifdef VGM_OPTIMISE
     CXXFLAGS  += -O2
     FCFLAGS   := -O
