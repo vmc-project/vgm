@@ -25,6 +25,7 @@ namespace RootGM {
                double density, 
 	       VGM::IElement* element,
 	       double radlen, double intlen);
+               
       Material(const std::string& name,      
                double density, 
 	       VGM::IElement* element,
@@ -32,10 +33,12 @@ namespace RootGM {
 	       VGM::MaterialState state,
 	       double temperature, 
 	       double pressure);
+               
       Material(const std::string& name, 
                double density,
 	       const VGM::ElementVector& elements,
                const VGM::MassFractionVector& fractions);
+               
       Material(const std::string& name, 
                double density,
 	       const VGM::ElementVector& elements,
@@ -43,6 +46,20 @@ namespace RootGM {
 	       VGM::MaterialState state,
 	       double temperature, 
 	       double pressure);
+               
+      Material(const std::string& name, 
+               double density,
+	       const VGM::ElementVector& elements,
+               const VGM::AtomCountVector& atomCounts);
+               
+      Material(const std::string& name, 
+               double density,
+	       const VGM::ElementVector& elements,
+               const VGM::AtomCountVector& atomCounts,
+	       VGM::MaterialState state,
+	       double temperature, 
+	       double pressure);
+               
       Material(TGeoMaterial* material,
                const VGM::ElementVector& elements);		
       virtual ~Material();
@@ -60,6 +77,7 @@ namespace RootGM {
       virtual int             NofElements() const;
       virtual VGM::IElement*  Element(int iel) const;     
       virtual double          MassFraction(int iel) const;
+      virtual int             AtomCount(int iel) const;
 
     protected:  
       Material(); 
@@ -70,12 +88,12 @@ namespace RootGM {
       TGeoMaterial::EGeoMaterialState  GetGeoState(VGM::MaterialState state) const;
       VGM::MaterialState GetVGMState(TGeoMaterial::EGeoMaterialState state) const;
       
-      static const double  fgkVacuumDensity;
-      static const double  fgkVacuumTemperature;
-      static const double  fgkVacuumPressure;  
+      static const double   fgkVacuumDensity;
+      static const double   fgkVacuumTemperature;
+      static const double   fgkVacuumPressure; 
   
       TGeoMaterial*       fMaterial; 
-      std::vector<VGM::IElement*>  fElements;
+      VGM::ElementVector  fElements;
   };
 
 }

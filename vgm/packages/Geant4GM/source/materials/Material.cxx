@@ -231,6 +231,123 @@ Geant4GM::Material::Material(const std::string& name,
 }
 			   
 //_____________________________________________________________________________
+Geant4GM::Material::Material(const std::string& name,
+                             double density,
+		             const VGM::ElementVector& elements,
+                             const VGM::AtomCountVector& atomCounts)
+  : VGM::IMaterial(),
+    fMaterial(0)
+{
+/// Standard constructor to define compound material from parameters 
+/// \param name its name
+///	   (must be unique in the factory)
+/// \param density in g/cm3
+/// \param elements vector of elements constituing 
+///	   this material
+/// \param atomCounts vector of atom counts of
+///	   elements constituing this material
+
+//
+
+  if ( ! elements.size() ) {
+    std::cerr << "    Geant4GM::Material::Material: " << std::endl; 
+    std::cerr << "    No elements defined.";
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    exit(1);
+  }
+
+  // Check coherence
+  if (elements.size() != atomCounts.size()) {
+    std::cerr << "    Geant4GM::Material::Material: " << std::endl; 
+    std::cerr << "    Elements size and atomCounts size differ.";
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    exit(1);
+  }
+    
+  // Convert units
+  density /= ClhepVGM::Units::MassDensity();
+
+  // Update density if lower than universe_mean_density
+  if ( density < universe_mean_density ) {
+    // lower density not allowed in Geant4
+    density = universe_mean_density;
+  }
+    
+  // Create material 
+  fMaterial = new G4Material(name, density, elements.size());
+
+  // Add elements
+  for (unsigned int i=0; i<elements.size(); i++) {
+    G4Element* g4Element 
+      = ElementMap::Instance()->GetElement(elements[i]);
+    fMaterial->AddElement(g4Element, atomCounts[i]);    
+  }
+}
+			   
+
+
+//_____________________________________________________________________________
+Geant4GM::Material::Material(const std::string& name,
+                             double density,
+		             const VGM::ElementVector& elements,
+                             const VGM::AtomCountVector& atomCounts,
+	                     VGM::MaterialState state,
+	                     double temperature, double pressure)
+  : VGM::IMaterial(),
+    fMaterial(0)
+{
+/// Standard constructor to define compound material from parameters 
+/// \param name its name
+///	   (must be unique in the factory)
+/// \param density in g/cm3
+/// \param elements vector of elements constituing 
+///	   this material
+/// \param atomCounts vector of atom counts of
+///	   elements constituing this material
+
+//
+
+  if ( ! elements.size() ) {
+    std::cerr << "    Geant4GM::Material::Material: " << std::endl; 
+    std::cerr << "    No elements defined.";
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    exit(1);
+  }
+
+  // Check coherence
+  if (elements.size() != atomCounts.size()) {
+    std::cerr << "    Geant4GM::Material::Material: " << std::endl; 
+    std::cerr << "    Elements size and atomCounts size differ.";
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    exit(1);
+  }
+    
+  // Convert units
+  density /= ClhepVGM::Units::MassDensity();
+  temperature /= ClhepVGM::Units::Temperature();
+  pressure /= ClhepVGM::Units::Pressure();
+  G4State g4State = GetG4State(state);
+
+
+  // Update density if lower than universe_mean_density
+  if ( density < universe_mean_density ) {
+    // lower density not allowed in Geant4
+    density = universe_mean_density;
+  }
+    
+  // Create material 
+  fMaterial = new G4Material(name, density, elements.size(),
+                             g4State, temperature, pressure);
+
+  // Add elements
+  for (unsigned int i=0; i<elements.size(); i++) {
+    G4Element* g4Element 
+      = ElementMap::Instance()->GetElement(elements[i]);
+    fMaterial->AddElement(g4Element, atomCounts[i]);    
+  }
+}
+			   
+//_____________________________________________________________________________
 Geant4GM::Material::Material(G4Material* material)
   : VGM::IMaterial(),
     fMaterial(material)	
@@ -369,6 +486,14 @@ double  Geant4GM::Material::MassFraction(int iel) const
   CheckIndex(iel);
   
   return fMaterial->GetFractionVector()[iel];
+}
+
+//_____________________________________________________________________________
+int  Geant4GM::Material::AtomCount(int iel) const
+{
+  CheckIndex(iel);
+  
+  return fMaterial->GetAtomsVector()[iel];
 }
 
 

@@ -9,7 +9,6 @@
 #include "RootGM/materials/Material.h"
 #include "RootGM/materials/MaterialMap.h"
 #include "RootGM/materials/Element.h"
-#include "RootGM/materials/ElementMap.h"
 #include "RootGM/common/Units.h"
 
 const double  RootGM::Material::fgkVacuumDensity = 1.e-25;       // g/cm3
@@ -24,6 +23,7 @@ RootGM::Material::Material(const std::string& name,
  :  VGM::IMaterial(),
     fMaterial(0),
     fElements()
+
 {
 /// Standard constructor to define material from parameters 
 /// \param name its name
@@ -238,6 +238,131 @@ RootGM::Material::Material(const std::string& name,
 }
 			   
 //_____________________________________________________________________________
+RootGM::Material::Material(const std::string& name,
+                           double density, 
+		           const VGM::ElementVector& elements,
+                           const VGM::AtomCountVector& atomCounts)
+  : VGM::IMaterial(),
+    fMaterial(0),
+    fElements()
+{
+/// Standard constructor to define compound material from parameters 
+/// \param name its name
+///	   (must be unique in the factory)
+/// \param density in g/cm3
+/// \param elements vector of elements constituing 
+///	   this material
+/// \param atomCounts vector of atom counts of
+///	   elements constituing this material
+
+  if ( ! elements.size() ) {
+    std::cerr << "    RootGM::Material::Material: " << std::endl; 
+    std::cerr << "    No elements defined.";
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    exit(1);
+  }
+
+  // Check coherence
+  if (elements.size() != atomCounts.size()) {
+    std::cerr << "    RootGM::Material::Material: " << std::endl; 
+    std::cerr << "    Elements size and atomCounts size differ." << std::endl;
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    exit(1);
+  }
+    
+  fMaterial = new TGeoMixture(name.data(), 
+                              elements.size(),
+			      density / RootGM::Units::MassDensity());
+			      
+  TGeoMixture* mixture = (TGeoMixture*)fMaterial;			      			      
+
+  // Calculate molecule mass to get mass fractions of elements
+  // (As we cannot add element via a, z, atomCount to mixture
+  //  directly)
+
+  double amol = 0;
+  for ( unsigned i=0; i<elements.size(); i++) 
+    amol += elements[i]->A()*atomCounts[i];
+
+  // Add elements
+  for ( unsigned i=0; i<elements.size(); i++) {
+    VGM::IElement* element = elements[i];
+    double fraction = atomCounts[i] * element->A()/amol;
+    mixture->AddElement(element->A(), element->Z(), fraction);
+    fElements.push_back(element);
+  }			    			    
+  
+  // Register material in the map
+  RootGM::MaterialMap::Instance()->AddMaterial(this, fMaterial); 
+}
+			   
+//_____________________________________________________________________________
+RootGM::Material::Material(const std::string& name,
+                           double density, 
+		           const VGM::ElementVector& elements,
+                           const VGM::AtomCountVector& atomCounts,
+ 	                   VGM::MaterialState state,
+	                   double temperature, double pressure)
+  : VGM::IMaterial(),
+    fMaterial(0),
+    fElements()
+{
+/// Standard constructor to define compound material from parameters 
+/// \param name its name
+///	   (must be unique in the factory)
+/// \param density in g/cm3
+/// \param elements vector of elements constituing 
+///	   this material
+/// \param atomCounts vector of atom counts of
+///	   elements constituing this material
+
+  if ( ! elements.size() ) {
+    std::cerr << "    RootGM::Material::Material: " << std::endl; 
+    std::cerr << "    No elements defined.";
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    exit(1);
+  }
+
+  // Check coherence
+  if (elements.size() != atomCounts.size()) {
+    std::cerr << "    RootGM::Material::Material: " << std::endl; 
+    std::cerr << "    Elements size and atomCounts size differ." << std::endl;
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    exit(1);
+  }
+    
+  fMaterial = new TGeoMixture(
+                      name.data(), 
+                      elements.size(),
+		      density     / RootGM::Units::MassDensity());
+
+  fMaterial->SetState(GetGeoState(state));
+  fMaterial->SetTemperature(temperature / RootGM::Units::Temperature());
+  fMaterial->SetPressure(pressure / RootGM::Units::Pressure());
+			      
+  TGeoMixture* mixture = (TGeoMixture*)fMaterial;			      			      
+
+  // Calculate molecule mass to get mass fractions of elements
+  // (As we cannot add element via a, z, atomCount to mixture
+  //  directly)
+
+  double amol = 0;
+  for ( unsigned i=0; i<elements.size(); i++) 
+    amol += elements[i]->A()*atomCounts[i];
+
+  // Add elements
+  for (UInt_t i=0; i<elements.size(); i++) {
+    VGM::IElement* element = elements[i];
+    double fraction = atomCounts[i] * element->A()/amol;
+    mixture->AddElement(element->A(), element->Z(), fraction);
+    fElements.push_back(element);
+  }			    			    
+  
+  // Register material in the map
+  RootGM::MaterialMap::Instance()->AddMaterial(this, fMaterial); 
+}
+			   
+//_____________________________________________________________________________
 RootGM::Material::Material(TGeoMaterial* material,
                            const VGM::ElementVector& elements)
   : VGM::IMaterial(),
@@ -262,7 +387,7 @@ RootGM::Material::Material()
 //_____________________________________________________________________________
 RootGM::Material::Material(const Material& rhs) 
   : VGM::IMaterial(rhs), 
-    fMaterial(0),
+    fMaterial(rhs.fMaterial),
     fElements(rhs.fElements)
 {
 /// Protected copy constructor
@@ -380,13 +505,8 @@ RootGM::Material::Element(int iel) const
 {
   CheckIndex(iel);
 
-  //TGeoElement* rootElement = fMaterial->GetElement(iel);
-  //return RootGM::ElementMap::Instance()->GetElement(rootElement);
-  
   return fElements[iel];
 }
-
-
 
 //_____________________________________________________________________________
 double  RootGM::Material::MassFraction(int iel) const
@@ -397,6 +517,17 @@ double  RootGM::Material::MassFraction(int iel) const
     return 1.0;
   else  
     return ((TGeoMixture*)fMaterial)->GetWmixt()[iel];
+}
+
+//_____________________________________________________________________________
+int  RootGM::Material::AtomCount(int iel) const
+{
+  CheckIndex(iel);
+  
+  if (!fMaterial->IsMixture())
+    return 1;
+  else  
+    return ((TGeoMixture*)fMaterial)->GetNmixt()[iel];
 }
 
 
