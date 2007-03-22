@@ -26,84 +26,6 @@
 #include "Geant4GM/volumes/PlacementMap.h"
 
 //_____________________________________________________________________________
-Geant4GM::Placement::Placement(
-                        const std::string& name, int copyNo,
-                        VGM::IVolume* volume, VGM::IVolume* motherVolume,
-                        CLHEP::HepRotation* rotation, 
-			const CLHEP::Hep3Vector& translation)
-  : VGM::IPlacement(),
-    BaseVGM::VPlacement(volume, motherVolume),
-    fPhysicalVolume(0)       
-{
-/// Standard constructor to define a simple placement via parameters
-/// \param copyNo the copy number of this placement
-/// \param volume the associated volume
-/// \param motherVolume the associated mother volume
-/// \param rotation, translation the CLHEP rotation and translation 
-///	   of the volume with respect to its mother
-  
-  // Get logical volumes from the volumes map
-  G4LogicalVolume* g4LV 
-    = Geant4GM::VolumeMap::Instance()->GetVolume(volume);
-    
-  G4LogicalVolume* g4MotherLV 
-    = Geant4GM::VolumeMap::Instance()->GetVolume(motherVolume);
-
-  // Create PV placement
-  fPhysicalVolume 
-    = new G4PVPlacement(rotation, translation, g4LV, name, g4MotherLV, 
-                        false, copyNo);
-			
-  // Register physical volume in the map
-  Geant4GM::PlacementMap::Instance()->AddPlacement(this, fPhysicalVolume); 
-}  
-
-//_____________________________________________________________________________
-Geant4GM::Placement::Placement(
-                         const std::string& name,
-                         VGM::IVolume* volume, VGM::IVolume* motherVolume,
-                         VGM::Axis axis, 
-			 int nofItems, double  width, double  offset)
-  : VGM::IPlacement(),
-    BaseVGM::VPlacement(volume, motherVolume),
-    fPhysicalVolume(0) 
-{
-/// Standard constructor to define a multiple placement via parameters
-/// \param volume the associated volume which will be replicated
-/// \param motherVolume the associated mother volume
-/// \param axis the replication axis
-/// \param nofItems number of replications
-/// \param with the replication width (the unit depends on the axis;
-///	   can be mm or deg)
-///  \param offset the replication offset (the unit depends on the axis;
-///	   can be mm or deg)
-
-  // Get logical volumes from the volumes map
-  G4LogicalVolume* g4LV 
-    = Geant4GM::VolumeMap::Instance()->GetVolume(volume);
-    
-  G4LogicalVolume* g4MotherLV 
-    = Geant4GM::VolumeMap::Instance()->GetVolume(motherVolume);
-        
-  // Apply units
-  width  /= ClhepVGM::Units::AxisUnit(axis);
-  offset /= ClhepVGM::Units::AxisUnit(axis);
-
-  // Update offset if it goes beyond mother dhi
-  if ( axis == VGM::kPhi &&
-       offset + nofItems * width > 2 * CLHEP::pi ) 
-    offset = offset - 2 * CLHEP::pi;   
-
-  // Create PV division 
-  fPhysicalVolume
-    = new G4PVDivision(name, g4LV, g4MotherLV, 
-                       GetAxis(axis), nofItems, width, offset);
-			
-  // Register physical volume in the map
-  Geant4GM::PlacementMap::Instance()->AddPlacement(this, fPhysicalVolume); 
-}    
-       
-//_____________________________________________________________________________
 Geant4GM::Placement::Placement(      
                          VGM::IVolume* volume, VGM::IVolume* motherVolume,
                          G4VPhysicalVolume* pv)
@@ -139,12 +61,12 @@ Geant4GM::Placement::~Placement() {
 }
 
 //
-// private functions
+// static public functions
 //
 
 //_____________________________________________________________________________
 EAxis 
-Geant4GM::Placement::GetAxis(VGM::Axis axis) const
+Geant4GM::Placement::GetAxis(VGM::Axis axis)
 {
   switch (axis) {
     case VGM::kXAxis:    return kXAxis;    break;
@@ -160,7 +82,7 @@ Geant4GM::Placement::GetAxis(VGM::Axis axis) const
 
 //_____________________________________________________________________________
 VGM::Axis 
-Geant4GM::Placement::GetAxis(EAxis axis) const
+Geant4GM::Placement::GetAxis(EAxis axis)
 {
   switch (axis) {
     case kXAxis:     return VGM::kXAxis;    break;
