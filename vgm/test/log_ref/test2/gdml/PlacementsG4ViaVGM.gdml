@@ -82,9 +82,6 @@
          <fraction n="  0.9999"  ref="H_1_i" />
          <fraction n="  0.0001"  ref="H_2_i" />
       </element>
-      <element  name="Vacuum_e"  Z="  1.0000"  N="  1" >
-         <atom type="A" unit="g/mol" value="  1.0100" />
-      </element>
       <element  name="C_e"  >
          <fraction n="  0.9893"  ref="C_12_i" />
          <fraction n="  0.0107"  ref="C_13_i" />
@@ -94,6 +91,9 @@
       </element>
       <element  name="Oxygen_e"  Z="  8.0000"  N=" 16" >
          <atom type="A" unit="g/mol" value=" 16.0000" />
+      </element>
+      <element  name="Aluminium_e"  Z=" 13.0000"  N=" 27" >
+         <atom type="A" unit="g/mol" value=" 26.9800" />
       </element>
       <element  name="enriched_Uranium_e"  >
          <fraction n="  0.9000"  ref="U_235_i" />
@@ -105,6 +105,10 @@
          <fraction n="    0.7000"  ref="Nitrogen_e"/>
          <fraction n="    0.3000"  ref="Oxygen_e"/>
       </material>
+      <material  name="Basic"  >
+         <D type="density" unit="g/cm3" value="     2.7000"/>
+         <fraction n="    1.0000"  ref="Aluminium_e"/>
+      </material>
       <material  name="Scintillator"  >
          <D type="density" unit="g/cm3" value="     1.0320"/>
          <fraction n="    0.9147"  ref="C_e"/>
@@ -114,17 +118,13 @@
          <D type="density" unit="g/cm3" value="    13.6100"/>
          <fraction n="    1.0000"  ref="enriched_Uranium_e"/>
       </material>
-      <material  name="Vacuum"  >
-         <D type="density" unit="g/cm3" value="     0.0000"/>
-         <fraction n="    1.0000"  ref="Vacuum_e"/>
-      </material>
 
    </materials>
 
    <solids>
       <box  lunit="cm" aunit="degree"
-         name="worldV_s"
-         x=" 2000.0000"  y=" 2000.0000"  z=" 2000.0000" />
+         name="world_s"
+         x=" 1200.0000"  y="  200.0000"  z=" 1200.0000" />
 
       <box  lunit="cm" aunit="degree"
          name="volA_s"
@@ -166,9 +166,9 @@
          <solidref ref="volA_s"/>
       </volume>
 
-      <volume name="worldV">
-         <materialref ref="Vacuum"/>
-         <solidref ref="worldV_s"/>
+      <volume name="world">
+         <materialref ref="Basic"/>
+         <solidref ref="world_s"/>
          <physvol>
             <volumeref ref="volA"/>
                <positionref ref="pos_1"/>
@@ -294,7 +294,7 @@
    </structure>
 
    <setup name="unit1"   version="1.0">
-      <world ref="worldV"/>
+      <world ref="world"/>
    </setup>
 
 </gdml>

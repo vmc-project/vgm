@@ -5,18 +5,18 @@
 
    <define>
       <position  name="pos_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
-      <position  name="pos_1"     x=" -1000.0000"  y="  -250.0000"  z="     0.0000"  unit="cm" />
-      <position  name="pos_2"     x=" -1000.0000"  y="   250.0000"  z="     0.0000"  unit="cm" />
-      <position  name="pos_3"     x="  -833.3333"  y="  -250.0000"  z="     0.0000"  unit="cm" />
-      <position  name="pos_4"     x="  -833.3333"  y="   250.0000"  z="     0.0000"  unit="cm" />
-      <position  name="pos_5"     x="  -666.6667"  y="  -250.0000"  z="     0.0000"  unit="cm" />
-      <position  name="pos_6"     x="  -666.6667"  y="   250.0000"  z="     0.0000"  unit="cm" />
-      <position  name="pos_7"     x="  -500.0000"  y="  -250.0000"  z="     0.0000"  unit="cm" />
-      <position  name="pos_8"     x="  -500.0000"  y="   250.0000"  z="     0.0000"  unit="cm" />
-      <position  name="pos_9"     x="  -333.3333"  y="  -250.0000"  z="     0.0000"  unit="cm" />
-      <position  name="pos_10"    x="  -333.3333"  y="   250.0000"  z="     0.0000"  unit="cm" />
-      <position  name="pos_11"    x="  -166.6667"  y="  -250.0000"  z="     0.0000"  unit="cm" />
-      <position  name="pos_12"    x="  -166.6667"  y="   250.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_1"     x="  -350.0000"  y="  -150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_2"     x="  -350.0000"  y="   150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_3"     x="  -200.0000"  y="  -150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_4"     x="  -200.0000"  y="   150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_5"     x="   -50.0000"  y="  -150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_6"     x="   -50.0000"  y="   150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_7"     x="   100.0000"  y="  -150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_8"     x="   100.0000"  y="   150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_9"     x="   250.0000"  y="  -150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_10"    x="   250.0000"  y="   150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_11"    x="   400.0000"  y="  -150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_12"    x="   400.0000"  y="   150.0000"  z="     0.0000"  unit="cm" />
 
       <rotation  name="rot_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
    </define>
@@ -36,30 +36,30 @@
 
    <solids>
       <box  lunit="cm" aunit="degree"
-         name="worldV_s"
-         x=" 2000.0000"  y=" 2000.0000"  z=" 2000.0000" />
+         name="world_s"
+         x=" 1000.0000"  y="  600.0000"  z="  400.0000" />
 
       <box  lunit="cm" aunit="degree"
-         name="boxV_s"
+         name="box_s"
          x="   40.0000"  y="  120.0000"  z="  100.0000" />
 
       <cone  lunit="cm" aunit="degree"
-         name="consV_s"
+         name="cons_s"
          rmin1="   10.0000"  rmin2="   20.0000"  rmax1="   40.0000"  rmax2="   60.0000"
          z="  100.0000"
          startphi="    0.0000"  deltaphi="  360.0000" />
 
       <eltube  lunit="cm" aunit="degree"
-         name="eltuV_s"
+         name="eltu_s"
          dx="   20.0000"  dy="   30.0000"  dz="  100.0000" />
 
       <para  lunit="cm" aunit="degree"
-         name="paraV_s"
+         name="para_s"
          x="   80.0000"  y="  120.0000"  z="  100.0000"
          alpha="   30.0000"  theta="   30.0000"  phi="   30.0000" />
 
       <polycone  lunit="cm" aunit="degree"
-         name="pconeV_s"
+         name="pcone_s"
          startphi="    0.0000"  deltaphi="  360.0000" >
          <zplane  z=" -100.0000"  rmin="   10.0000"  rmax="   50.0000" />
          <zplane  z="   20.0000"  rmin="   20.0000"  rmax="   30.0000" />
@@ -67,7 +67,7 @@
       </polycone>
 
       <polyhedra  lunit="cm" aunit="degree"
-         name="phedraV_s"
+         name="phedra_s"
          numsides="4"
          startphi="    0.0000"  totalphi="  360.0000" >
          <zplane  z=" -100.0000"  rmin="   10.0000"  rmax="   40.0000" />
@@ -76,55 +76,55 @@
       </polyhedra>
 
       <sphere  lunit="cm" aunit="degree"
-         name="sphereV1_s"
+         name="sphere_s"
          rmin="   20.0000"  rmax="   60.0000"
          startphi="    0.0000"  deltaphi="  360.0000"  starttheta="    0.0000"  deltatheta="  180.0000" />
 
       <torus  lunit="cm" aunit="degree"
-         name="torusV_s"
+         name="torus_s"
          rmin="   20.0000"  rmax="   30.0000"  rtor="   40.0000"
          startphi="    0.0000"  deltaphi="  360.0000" />
 
       <trap  lunit="cm" aunit="degree"
-         name="trapV_s"
+         name="trap_s"
          z="   60.0000"
          theta="   25.0000"  phi="   35.0000"
          y1="   40.0000"  x1="   20.0000"  x2="   30.0000"  alpha1="    0.0000"
          y2="   40.0000"  x3="   20.0000"  x4="   30.0000"  alpha2="    0.0000" />
 
       <trd  lunit="cm" aunit="degree"
-         name="trdV_s"
+         name="trd_s"
          x1="   40.0000"  x2="   60.0000"  y1="   80.0000"  y2="  100.0000"
          z="  100.0000" />
 
       <tube  lunit="cm" aunit="degree"
-         name="tubsV_s"
+         name="tubs_s"
          rmin="   20.0000"  rmax="   40.0000"  z="  100.0000"
          startphi="    0.0000"  deltaphi="  360.0000" />
 
       <tube  lunit="cm" aunit="degree"
-         name="ctubsV_constA_constA_s"
+         name="ctubs_constA_constA_s"
          rmin="   20.0000"  rmax="   30.0000"  z="  180.8242"
          startphi="  330.0000"  deltaphi="  280.0000" />
 
       <box  lunit="cm" aunit="degree"
-         name="ctubsV_constA_constB_s"
+         name="ctubs_constA_constB_s"
          x="  168.7492"  y="  168.7492"  z="   93.6233" />
 
-      <subtraction name="ctubsV_constA_s" >
-         <first  ref="ctubsV_constA_constA_s" />
-         <second ref="ctubsV_constA_constB_s" />
+      <subtraction name="ctubs_constA_s" >
+         <first  ref="ctubs_constA_constA_s" />
+         <second ref="ctubs_constA_constB_s" />
          <position  name="pos_14"    x="     0.0000"  y="     0.0000"  z="  -121.3603"  unit="cm" />
          <rotation  name="rot_2"     x="   140.2677"  y="     0.0000"  z="     0.0000"  unit="degree" />
       </subtraction>
 
       <box  lunit="cm" aunit="degree"
-         name="ctubsV_constB_s"
+         name="ctubs_constB_s"
          x="  131.6788"  y="  131.6788"  z="   72.3842" />
 
-      <subtraction name="ctubsV_s" >
-         <first  ref="ctubsV_constA_s" />
-         <second ref="ctubsV_constB_s" />
+      <subtraction name="ctubs_s" >
+         <first  ref="ctubs_constA_s" />
+         <second ref="ctubs_constB_s" />
          <position  name="pos_13"    x="     0.0000"  y="     0.0000"  z="    96.8753"  unit="cm" />
          <rotation  name="rot_1"     x="     5.9061"  y="     0.0000"  z="     0.0000"  unit="degree" />
       </subtraction>
@@ -132,126 +132,126 @@
    </solids>
 
    <structure>
-      <volume name="boxV">
+      <volume name="box">
          <materialref ref="Basic"/>
-         <solidref ref="boxV_s"/>
+         <solidref ref="box_s"/>
       </volume>
 
-      <volume name="consV">
+      <volume name="cons">
          <materialref ref="Basic"/>
-         <solidref ref="consV_s"/>
+         <solidref ref="cons_s"/>
       </volume>
 
-      <volume name="eltuV">
+      <volume name="eltu">
          <materialref ref="Basic"/>
-         <solidref ref="eltuV_s"/>
+         <solidref ref="eltu_s"/>
       </volume>
 
-      <volume name="paraV">
+      <volume name="para">
          <materialref ref="Basic"/>
-         <solidref ref="paraV_s"/>
+         <solidref ref="para_s"/>
       </volume>
 
-      <volume name="pconeV">
+      <volume name="pcone">
          <materialref ref="Basic"/>
-         <solidref ref="pconeV_s"/>
+         <solidref ref="pcone_s"/>
       </volume>
 
-      <volume name="phedraV">
+      <volume name="phedra">
          <materialref ref="Basic"/>
-         <solidref ref="phedraV_s"/>
+         <solidref ref="phedra_s"/>
       </volume>
 
-      <volume name="sphereV1">
+      <volume name="sphere">
          <materialref ref="Basic"/>
-         <solidref ref="sphereV1_s"/>
+         <solidref ref="sphere_s"/>
       </volume>
 
-      <volume name="torusV">
+      <volume name="torus">
          <materialref ref="Basic"/>
-         <solidref ref="torusV_s"/>
+         <solidref ref="torus_s"/>
       </volume>
 
-      <volume name="trapV">
+      <volume name="trap">
          <materialref ref="Basic"/>
-         <solidref ref="trapV_s"/>
+         <solidref ref="trap_s"/>
       </volume>
 
-      <volume name="trdV">
+      <volume name="trd">
          <materialref ref="Basic"/>
-         <solidref ref="trdV_s"/>
+         <solidref ref="trd_s"/>
       </volume>
 
-      <volume name="tubsV">
+      <volume name="tubs">
          <materialref ref="Basic"/>
-         <solidref ref="tubsV_s"/>
+         <solidref ref="tubs_s"/>
       </volume>
 
-      <volume name="ctubsV">
+      <volume name="ctubs">
          <materialref ref="Basic"/>
-         <solidref ref="ctubsV_s"/>
+         <solidref ref="ctubs_s"/>
       </volume>
 
-      <volume name="worldV">
+      <volume name="world">
          <materialref ref="Basic"/>
-         <solidref ref="worldV_s"/>
+         <solidref ref="world_s"/>
          <physvol>
-            <volumeref ref="boxV"/>
+            <volumeref ref="box"/>
                <positionref ref="pos_1"/>
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
-            <volumeref ref="consV"/>
+            <volumeref ref="cons"/>
                <positionref ref="pos_2"/>
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
-            <volumeref ref="eltuV"/>
+            <volumeref ref="eltu"/>
                <positionref ref="pos_3"/>
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
-            <volumeref ref="paraV"/>
+            <volumeref ref="para"/>
                <positionref ref="pos_4"/>
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
-            <volumeref ref="pconeV"/>
+            <volumeref ref="pcone"/>
                <positionref ref="pos_5"/>
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
-            <volumeref ref="phedraV"/>
+            <volumeref ref="phedra"/>
                <positionref ref="pos_6"/>
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
-            <volumeref ref="sphereV1"/>
+            <volumeref ref="sphere"/>
                <positionref ref="pos_7"/>
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
-            <volumeref ref="torusV"/>
+            <volumeref ref="torus"/>
                <positionref ref="pos_8"/>
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
-            <volumeref ref="trapV"/>
+            <volumeref ref="trap"/>
                <positionref ref="pos_9"/>
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
-            <volumeref ref="trdV"/>
+            <volumeref ref="trd"/>
                <positionref ref="pos_10"/>
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
-            <volumeref ref="tubsV"/>
+            <volumeref ref="tubs"/>
                <positionref ref="pos_11"/>
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
-            <volumeref ref="ctubsV"/>
+            <volumeref ref="ctubs"/>
                <positionref ref="pos_12"/>
                <rotationref ref="rot_0"/>
          </physvol>
@@ -260,7 +260,7 @@
    </structure>
 
    <setup name="unit1"   version="1.0">
-      <world ref="worldV"/>
+      <world ref="world"/>
    </setup>
 
 </gdml>

@@ -6,7 +6,7 @@
 <xi:include href="StandardColors.agdd"/>
 
 <materials  version = "Id: AGDDWriter.cxx,v 1.12 2007/01/11 12:20:31 ivana Exp "
-            date    = "2007-01-11"
+            date    = "2007-03-22"
             author  = "VGM AGGD Writer"
             DTD_version="v7"  >
 
@@ -21,9 +21,6 @@
       <addisotope name="H_1"  natoms=" 99" />
       <addisotope name="H_2"  natoms="  0" />
    </element>
-   <element  symbol="Vacuum_e">
-      <atom zeff="1.0000"  aweight="1.0100" />
-   </element>
    <element  symbol="C">
       <addisotope name="C_12"  natoms=" 98" />
       <addisotope name="C_13"  natoms="  1" />
@@ -34,6 +31,9 @@
    <element  symbol="O">
       <atom zeff="8.0000"  aweight="16.0000" />
    </element>
+   <element  symbol="Al">
+      <atom zeff="13.0000"  aweight="26.9800" />
+   </element>
    <element  symbol="U">
       <addisotope name="U_235"  natoms=" 90" />
       <addisotope name="U_238"  natoms=" 10" />
@@ -43,6 +43,9 @@
       <addelement name="N"  natoms=" 0.7000"/>
       <addelement name="O"  natoms=" 0.3000"/>
    </material>
+   <material  name="Basic_mat"  density="  2.7000">
+      <addelement name="Al"  natoms=" 1.0000"/>
+   </material>
    <material  name="Scintillator_mat"  density="  1.0320">
       <addelement name="C"  natoms=" 0.9147"/>
       <addelement name="H"  natoms=" 0.0853"/>
@@ -50,19 +53,21 @@
    <material  name="Uranium_mat"  density=" 13.6100">
       <addelement name="U"  natoms=" 1.0000"/>
    </material>
-   <material  name="Vacuum_mat"  density="  0.0000">
-      <addelement name="Vacuum_e"  natoms=" 1.0000"/>
-   </material>
 
 </materials>
 
 <media  version = "Id: AGDDWriter.cxx,v 1.12 2007/01/11 12:20:31 ivana Exp "
-        date    = "2007-01-11"
+        date    = "2007-03-22"
         author  = "VGM AGGD Writer"
         DTD_version="v7"  >
 
    <medium  name="Air"  
       material="Air_mat"  
+      color="random"
+      sensitive="true"
+      parameters=" 0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000"/>
+   <medium  name="Basic"  
+      material="Basic_mat"  
       color="random"
       sensitive="true"
       parameters=" 0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000"/>
@@ -76,24 +81,19 @@
       color="random"
       sensitive="true"
       parameters=" 0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000"/>
-   <medium  name="Vacuum"  
-      material="Vacuum_mat"  
-      color="random"
-      sensitive="true"
-      parameters=" 0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000"/>
 
 </media>
 
 <section DTD_version = "v7"
-         name        = "worldV"
+         name        = "world"
          version     = "Id: AGDDWriter.cxx,v 1.12 2007/01/11 12:20:31 ivana Exp "
-         date        = "2007-01-11"
+         date        = "2007-03-22"
          author      = "VGM AGGD Writer"
-         top_volume  = "worldV_comp"  >
+         top_volume  = "world_comp"  >
 
-   <box    name="worldV"
-      medium="Vacuum"
-      X_Y_Z="2000.0000; 2000.0000; 2000.0000" />
+   <box    name="world"
+      medium="Basic"
+      X_Y_Z="1200.0000; 200.0000; 1200.0000" />
 
    <box    name="volA"
       medium="Air"
@@ -108,7 +108,7 @@
       X_Y_Z="40.0000;  0.4000; 100.0000" />
 
 
-   <composition name="worldV_comp">
+   <composition name="world_comp">
       <transform    pos="482.9629;   0.0000; 129.4095"
                  matrix=" 0.96593;  0.00000; -0.25882; 
                           0.00000;  1.00000;  0.00000; 

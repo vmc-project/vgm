@@ -30,8 +30,8 @@
 
    <solids>
       <box  lunit="cm" aunit="degree"
-         name="worldV_s"
-         x=" 2000.0000"  y=" 2000.0000"  z=" 2000.0000" />
+         name="world_s"
+         x="  400.0000"  y="  400.0000"  z="  200.0000" />
 
       <cone  lunit="cm" aunit="degree"
          name="CONS_s"
@@ -58,9 +58,9 @@
          <solidref ref="CONS_refl_s"/>
       </volume>
 
-      <volume name="worldV">
+      <volume name="world">
          <materialref ref="Basic"/>
-         <solidref ref="worldV_s"/>
+         <solidref ref="world_s"/>
          <physvol>
             <volumeref ref="CONS"/>
                <positionref ref="pos_1"/>
@@ -86,7 +86,7 @@
    </structure>
 
    <setup name="unit1"   version="1.0">
-      <world ref="worldV"/>
+      <world ref="world"/>
    </setup>
 
 </gdml>
