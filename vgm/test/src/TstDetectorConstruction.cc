@@ -15,7 +15,7 @@
 #include "TstGeometryViaRoot.hh"
 
 const G4String TstDetectorConstruction::fgkTestNameCandidates 
-  = "Solids Placements Reflections Assemblies1 Assemblies2 BooleanSolids1 BooleanSolids2 BooleanSolids3 BooleanSolids4 BooleanSolids5";
+  = "Solids NewSolid Placements Reflections Assemblies1 Assemblies2 BooleanSolids1 BooleanSolids2 BooleanSolids3 BooleanSolids4 BooleanSolids5 Special";
 const G4String TstDetectorConstruction::fgkVisModeCandidates 
   = "Geant4 Root None";
 const G4String TstDetectorConstruction::fgkInputCandidates 
@@ -77,6 +77,10 @@ G4VPhysicalVolume* TstDetectorConstruction::Construct()
     world = fGeometry->TestSolids(fFullAngle);
     std::cout << "TestSolids finished" << std::endl;
   }
+  else if (fSelectedTest == "NewSolid") {
+    world = fGeometry->TestNewSolid();
+    std::cout << "TestNewSolid finished" << std::endl;
+  }
   else if (fSelectedTest == "Placements") {
     world = fGeometry->TestPlacements();
     std::cout << "TestPlacements finished" << std::endl;
@@ -113,6 +117,10 @@ G4VPhysicalVolume* TstDetectorConstruction::Construct()
     world = fGeometry->TestBooleanSolids5();
     std::cout << "TestBooleanSolids5 finished" << std::endl;
   }
+  else if (fSelectedTest == "Special") {
+    world = fGeometry->TestSpecial();
+    std::cout << "TestSpecial finished" << std::endl;
+  }
   
   // Check if geometry was built
   if ( !world) {  
@@ -124,6 +132,7 @@ G4VPhysicalVolume* TstDetectorConstruction::Construct()
   // If native geometry, import it into VGM 
   // and export it into other factory
   //
+
   if (!fInputFactory->Top()) {
     std::cout << "Go to Import" << std::endl;
     // fInputFactory->Import(world);
@@ -135,11 +144,14 @@ G4VPhysicalVolume* TstDetectorConstruction::Construct()
      if (g4InputFactory)
        g4InputFactory->Import(static_cast<G4VPhysicalVolume*>(world));
 
-
      RootGM::Factory* rtInputFactory
        = dynamic_cast<RootGM::Factory*>(fInputFactory);
-     if (rtInputFactory)
+     if ( rtInputFactory ) {
+       G4String fileName = fSelectedTest;
+       fileName += ".root";
+       gGeoManager->Export(fileName);
        rtInputFactory->Import(static_cast<TGeoNode*>(world));
+     }  
     
     std::cout << "Import finished" << std::endl;
   }  
@@ -328,6 +340,7 @@ void TstDetectorConstruction::PrintGeant4Materials() const
 }
 
 #include "TGeoMaterial.h"
+#include "TList.h"
 //_____________________________________________________________________________
 void TstDetectorConstruction::PrintRootMaterials() const
 {

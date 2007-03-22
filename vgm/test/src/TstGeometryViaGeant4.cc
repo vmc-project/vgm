@@ -34,10 +34,10 @@
 #include "G4PVPlacement.hh"
 #include "G4PVDivision.hh"
 #include "G4RotationMatrix.hh"
+#include "G4TwoVector.hh"
 #include "globals.hh"
 
 #include "TstGeometryViaGeant4.hh"
-#include "TstParameters.hh"
 
 #include <math.h>
 
@@ -62,7 +62,7 @@ TstGeometryViaGeant4::~TstGeometryViaGeant4()
 // 
 
 //_____________________________________________________________________________
-G4LogicalVolume* TstGeometryViaGeant4::CreateWorld()
+G4LogicalVolume* TstGeometryViaGeant4::CreateWorld(G4double x, G4double y, G4double z)
 {
 // Create world volume
 // ---
@@ -73,11 +73,19 @@ G4LogicalVolume* TstGeometryViaGeant4::CreateWorld()
     G4cout << "Basic material: " << fBasicMaterial << G4endl;
   }  
 
-  G4double wSize = TstParameters::WorldLength();
-  G4VSolid* worldS
-    = new G4Box("worldS", wSize, wSize, wSize);
+  G4VSolid* worldS = new G4Box("worldS", x, y, z);
 
-  return new G4LogicalVolume(worldS, fBasicMaterial, "worldV");
+  return new G4LogicalVolume(worldS, fBasicMaterial, "world");
+}    
+
+//_____________________________________________________________________________
+G4LogicalVolume* TstGeometryViaGeant4::CreateNewSolid()
+{
+// Create a new solid
+// ---
+
+  // return CreateExtrudedSolid2();
+  return CreateBox();
 }    
 
 //_____________________________________________________________________________
@@ -86,7 +94,7 @@ G4LogicalVolume* TstGeometryViaGeant4::CreateBox()
   G4VSolid* boxS
     = new G4Box("boxS", 20.*cm, 60.*cm, 50.*cm);
   
-  return new G4LogicalVolume(boxS, fBasicMaterial, "boxV");
+  return new G4LogicalVolume(boxS, fBasicMaterial, "box");
 }  
 
 
@@ -97,7 +105,7 @@ G4LogicalVolume* TstGeometryViaGeant4::CreateCons(G4double sphi, G4double dphi)
     = new G4Cons("consS", 10.*cm, 40.*cm, 20.*cm, 60.*cm, 50*cm,
                  sphi, dphi);
   
-  return new G4LogicalVolume(consS, fBasicMaterial, "consV");
+  return new G4LogicalVolume(consS, fBasicMaterial, "cons");
 }
 
 
@@ -107,8 +115,9 @@ G4LogicalVolume* TstGeometryViaGeant4::CreateEllipticalTube()
   G4VSolid* eltuS
     = new G4EllipticalTube("eltuS", 20.* cm, 30.* cm, 50* cm);
   
-  return new G4LogicalVolume(eltuS, fBasicMaterial, "eltuV");
+  return new G4LogicalVolume(eltuS, fBasicMaterial, "eltu");
 }
+
 
 //_____________________________________________________________________________
 G4LogicalVolume* TstGeometryViaGeant4::CreatePara()
@@ -117,7 +126,7 @@ G4LogicalVolume* TstGeometryViaGeant4::CreatePara()
     = new G4Para("paraS", 40.*cm, 60.*cm, 50.*cm, 
                   30.*deg, 30.*deg, 30.*deg);
 
-  return new G4LogicalVolume(paraS, fBasicMaterial, "paraV");
+  return new G4LogicalVolume(paraS, fBasicMaterial, "para");
 }  
 
 //_____________________________________________________________________________
@@ -146,7 +155,7 @@ TstGeometryViaGeant4::CreatePolycone(G4double sphi, G4double dphi)
   G4VSolid* pconeS
     = new G4Polycone("pconeS", sphi, dphi, nofPlanes, z, rin, rout);
   
-  return new G4LogicalVolume(pconeS, fBasicMaterial, "pconeV");
+  return new G4LogicalVolume(pconeS, fBasicMaterial, "pcone");
 }  
 
 //_____________________________________________________________________________
@@ -186,7 +195,7 @@ G4LogicalVolume* TstGeometryViaGeant4::CreatePolyhedra(G4double sphi, G4double d
     = new G4Polyhedra("phedraS", 0., 360.*deg, 
                        nofSides, nofPlanes, z, rin, rout);
 
-  return new G4LogicalVolume(phedraS, fBasicMaterial, "phedraV");
+  return new G4LogicalVolume(phedraS, fBasicMaterial, "phedra");
 }  
 
 //_____________________________________________________________________________
@@ -197,7 +206,7 @@ TstGeometryViaGeant4::CreateSphere(G4double sphi, G4double dphi)
     = new G4Sphere("sphereS", 20.*cm, 60.*cm,
                     sphi, dphi, sphi/2., dphi/2.); 
 			    
-  return new G4LogicalVolume(sphereS1, fBasicMaterial, "sphereV1");
+  return new G4LogicalVolume(sphereS1, fBasicMaterial, "sphere");
 }  
 
 //_____________________________________________________________________________
@@ -208,7 +217,7 @@ TstGeometryViaGeant4::CreateTorus(G4double sphi, G4double dphi)
     = new G4Torus("torusS", 20.*cm, 30.*cm, 40.*cm,
                    sphi, dphi);
 			    
-  return new G4LogicalVolume(torusS, fBasicMaterial, "torusV");  
+  return new G4LogicalVolume(torusS, fBasicMaterial, "torus");  
 }  
 
 //_____________________________________________________________________________
@@ -219,7 +228,7 @@ G4LogicalVolume* TstGeometryViaGeant4::CreateTrap()
 		  20.*cm, 10.*cm, 15.*cm, 0.*deg,
 		  20.*cm, 10.*cm, 15.*cm, 0.*deg);
 
-  return new G4LogicalVolume(trapS, fBasicMaterial, "trapV");
+  return new G4LogicalVolume(trapS, fBasicMaterial, "trap");
 }
 
 //_____________________________________________________________________________
@@ -228,7 +237,7 @@ G4LogicalVolume* TstGeometryViaGeant4::CreateTrd()
   G4VSolid* trdS
     = new G4Trd("trdS", 20.*cm, 30*cm, 40.*cm, 50.*cm, 50.*cm);
 
-  return new G4LogicalVolume(trdS, fBasicMaterial, "trdV");
+  return new G4LogicalVolume(trdS, fBasicMaterial, "trd");
 }  
 
 //_____________________________________________________________________________
@@ -237,10 +246,9 @@ G4LogicalVolume* TstGeometryViaGeant4::CreateTubs(G4double sphi, G4double dphi)
   G4VSolid* tubsS
     = new G4Tubs("tubsS", 20.*cm, 40*cm, 50.*cm, sphi, dphi);
 
-  return new G4LogicalVolume(tubsS, fBasicMaterial, "tubsV");
+  return new G4LogicalVolume(tubsS, fBasicMaterial, "tubs");
 }  
  
-
 //_____________________________________________________________________________
 G4LogicalVolume* TstGeometryViaGeant4::CreateCtubs(G4double /*sphi*/, G4double /*dphi*/)
 {
@@ -318,7 +326,7 @@ G4LogicalVolume* TstGeometryViaGeant4::CreateCtubs(G4double /*sphi*/, G4double /
                                new HepRotation(rotHigh.inverse()),
                                Hep3Vector(0, 0, hz + zposHigh));			
 
-  return new G4LogicalVolume(booleanSolid2, fBasicMaterial, "ctubsV");
+  return new G4LogicalVolume(booleanSolid2, fBasicMaterial, "ctubs");
 }  
  
 
@@ -336,9 +344,9 @@ TstGeometryViaGeant4::PlaceSolids(G4LogicalVolume* mother,
   }  
  
   G4int counter = 0;
-  G4double wSize = TstParameters::WorldLength();
-  G4double dz = wSize/6.;
-  G4double dy = wSize/4.;
+  G4double x0 = -3.5*m;
+  G4double dx =  1.5*m;
+  G4double dy =  1.5*m;
   
   HepGeom::ReflectZ3D reflect3D;
  
@@ -346,12 +354,12 @@ TstGeometryViaGeant4::PlaceSolids(G4LogicalVolume* mother,
   //
   G4LogicalVolume* boxV = CreateBox();
   new G4PVPlacement(
-               HepGeom::Translate3D(-wSize + (counter)*dz,  -dy, zpos),
+               HepGeom::Translate3D(x0 + (counter)*dx,  -dy, zpos),
 	       boxV, "box", mother, false, 0);
 
   if (reflect) {
     G4ReflectionFactory::Instance()
-      ->Place(HepGeom::Translate3D(-wSize + (counter)*dz,  -dy, -zpos) * reflect3D,
+      ->Place(HepGeom::Translate3D(x0 + (counter)*dx,  -dy, -zpos) * reflect3D,
 	      "box", boxV, mother, false, 0);
   }	      
 
@@ -359,12 +367,12 @@ TstGeometryViaGeant4::PlaceSolids(G4LogicalVolume* mother,
   //
   G4LogicalVolume* consV = CreateCons(sphi, dphi);
   new G4PVPlacement(
-               HepGeom::Translate3D(-wSize + (counter)*dz, dy, zpos),
+               HepGeom::Translate3D(x0 + (counter)*dx, dy, zpos),
 	       consV, "cons", mother, false, 0);
 
   if (reflect) {
     G4ReflectionFactory::Instance()
-      ->Place(HepGeom::Translate3D(-wSize + (counter)*dz, dy, -zpos) * reflect3D,
+      ->Place(HepGeom::Translate3D(x0 + (counter)*dx, dy, -zpos) * reflect3D,
 	      "cons", consV, mother, false, 0);
   }	      
 
@@ -372,25 +380,25 @@ TstGeometryViaGeant4::PlaceSolids(G4LogicalVolume* mother,
   //
   G4LogicalVolume* eltuV = CreateEllipticalTube();
   new G4PVPlacement(
-               HepGeom::Translate3D(-wSize + (++counter)*dz, -dy, zpos),
-	       eltuV, "cons", mother, false, 0);
+               HepGeom::Translate3D(x0 + (++counter)*dx, -dy, zpos),
+	       eltuV, "eltu", mother, false, 0);
 
   if (reflect) {
     G4ReflectionFactory::Instance()
-      ->Place(HepGeom::Translate3D(-wSize + (counter)*dz, -dy, -zpos) * reflect3D,
-	      "cons", eltuV, mother, false, 0);
+      ->Place(HepGeom::Translate3D(x0 + (counter)*dx, -dy, -zpos) * reflect3D,
+	      "eltu", eltuV, mother, false, 0);
   }	      
 
   // Para
   //
   G4LogicalVolume* paraV = CreatePara();
   new G4PVPlacement( 
-               HepGeom::Translate3D(-wSize + (counter)*dz,  dy, zpos),
+               HepGeom::Translate3D(x0 + (counter)*dx,  dy, zpos),
 	       paraV, "para", mother, false, 0);
 
   if (reflect) {
     G4ReflectionFactory::Instance()
-      ->Place(HepGeom::Translate3D(-wSize + (counter)*dz,  dy, -zpos) * reflect3D,
+      ->Place(HepGeom::Translate3D(x0 + (counter)*dx,  dy, -zpos) * reflect3D,
 	      "para", paraV, mother, false, 0);
   }	      
   
@@ -398,12 +406,12 @@ TstGeometryViaGeant4::PlaceSolids(G4LogicalVolume* mother,
   //
   G4LogicalVolume* pconeV = CreatePolycone(sphi, dphi);
   new G4PVPlacement( 
-               HepGeom::Translate3D(-wSize + (++counter)*dz, -dy, zpos),
+               HepGeom::Translate3D(x0 + (++counter)*dx, -dy, zpos),
 	       pconeV, "pcone", mother, false, 0);
 
   if (reflect) {
     G4ReflectionFactory::Instance()
-      ->Place(HepGeom::Translate3D(-wSize + (counter)*dz, -dy, -zpos) * reflect3D,
+      ->Place(HepGeom::Translate3D(x0 + (counter)*dx, -dy, -zpos) * reflect3D,
 	      "pcone", pconeV, mother, false, 0);
   }	      
 
@@ -411,12 +419,12 @@ TstGeometryViaGeant4::PlaceSolids(G4LogicalVolume* mother,
   //
   G4LogicalVolume* phedraV = CreatePolyhedra(sphi, dphi);
   new G4PVPlacement( 
-               HepGeom::Translate3D(-wSize + (counter)*dz,  dy, zpos),
+               HepGeom::Translate3D(x0 + (counter)*dx,  dy, zpos),
 	       phedraV, "phedra", mother, false, 0);
 
   if (reflect) {
     G4ReflectionFactory::Instance()
-      ->Place(HepGeom::Translate3D(-wSize + (counter)*dz,  dy, -zpos) * reflect3D,
+      ->Place(HepGeom::Translate3D(x0 + (counter)*dx,  dy, -zpos) * reflect3D,
 	      "phedra", phedraV, mother, false, 0);
   }	      
 
@@ -424,12 +432,12 @@ TstGeometryViaGeant4::PlaceSolids(G4LogicalVolume* mother,
   //
   G4LogicalVolume* sphereV = CreateSphere(sphi, dphi);
   new G4PVPlacement(
-               HepGeom::Translate3D(-wSize + (++counter)*dz, -dy, zpos),
+               HepGeom::Translate3D(x0 + (++counter)*dx, -dy, zpos),
 	       sphereV, "sphere", mother, false, 0);
 	       
   if (reflect) {
     G4ReflectionFactory::Instance()
-      ->Place(HepGeom::Translate3D(-wSize + (counter)*dz, -dy, -zpos) * reflect3D,
+      ->Place(HepGeom::Translate3D(x0 + (counter)*dx, -dy, -zpos) * reflect3D,
 	      "sphere", sphereV, mother, false, 0);
   }	      
 
@@ -437,12 +445,12 @@ TstGeometryViaGeant4::PlaceSolids(G4LogicalVolume* mother,
   //
   G4LogicalVolume* torusV = CreateTorus(sphi, dphi);
   new G4PVPlacement( 
-               HepGeom::Translate3D(-wSize + (counter)*dz,  dy, zpos),
+               HepGeom::Translate3D(x0 + (counter)*dx,  dy, zpos),
 	       torusV, "torus", mother, false, 0);
 
   if (reflect) {
     G4ReflectionFactory::Instance()
-      ->Place(HepGeom::Translate3D(-wSize + (counter)*dz,  dy, -zpos) * reflect3D,
+      ->Place(HepGeom::Translate3D(x0 + (counter)*dx,  dy, -zpos) * reflect3D,
 	      "torus", torusV, mother, false, 0);
   }	      
 
@@ -450,12 +458,12 @@ TstGeometryViaGeant4::PlaceSolids(G4LogicalVolume* mother,
   //
   G4LogicalVolume* trapV = CreateTrap();
   new G4PVPlacement( 
-               HepGeom::Translate3D(-wSize + (++counter)*dz, -dy, zpos),
+               HepGeom::Translate3D(x0 + (++counter)*dx, -dy, zpos),
 	       trapV, "trap", mother, false, 0);
 
   if (reflect) {
     G4ReflectionFactory::Instance()
-      ->Place(HepGeom::Translate3D(-wSize + (counter)*dz, -dy, -zpos) * reflect3D,
+      ->Place(HepGeom::Translate3D(x0 + (counter)*dx, -dy, -zpos) * reflect3D,
 	      "trap", trapV, mother, false, 0);
   }	      
 
@@ -463,12 +471,12 @@ TstGeometryViaGeant4::PlaceSolids(G4LogicalVolume* mother,
   //
   G4LogicalVolume* trdV = CreateTrd();
   new G4PVPlacement( 
-               HepGeom::Translate3D(-wSize + (counter)*dz,  dy, zpos),
+               HepGeom::Translate3D(x0 + (counter)*dx,  dy, zpos),
 	       trdV, "trd", mother, false, 0);
 
   if (reflect) {
     G4ReflectionFactory::Instance()
-      ->Place(HepGeom::Translate3D(-wSize + (counter)*dz,  dy, -zpos) * reflect3D,
+      ->Place(HepGeom::Translate3D(x0 + (counter)*dx,  dy, -zpos) * reflect3D,
 	      "trd", trdV, mother, false, 0);
   }	      
  
@@ -476,12 +484,12 @@ TstGeometryViaGeant4::PlaceSolids(G4LogicalVolume* mother,
   //
   G4LogicalVolume* tubsV = CreateTubs(sphi, dphi);
   new G4PVPlacement(
-               HepGeom::Translate3D(-wSize + (++counter)*dz, -dy, zpos),
+               HepGeom::Translate3D(x0 + (++counter)*dx, -dy, zpos),
 	       tubsV, "tubs", mother, false, 0);
 
   if (reflect) {
     G4ReflectionFactory::Instance()
-      ->Place(HepGeom::Translate3D(-wSize + (counter)*dz, -dy, -zpos) * reflect3D,
+      ->Place(HepGeom::Translate3D(x0 + (counter)*dx, -dy, -zpos) * reflect3D,
 	      "tubs", tubsV, mother, false, 0);
   }	      
 
@@ -489,12 +497,12 @@ TstGeometryViaGeant4::PlaceSolids(G4LogicalVolume* mother,
   //
   G4LogicalVolume* ctubsV = CreateCtubs(sphi, dphi);
   new G4PVPlacement(
-               HepGeom::Translate3D(-wSize + (counter)*dz, dy, zpos),
+               HepGeom::Translate3D(x0 + (counter)*dx, dy, zpos),
 	       ctubsV, "ctubs", mother, false, 0);
 
   if (reflect) {
     G4ReflectionFactory::Instance()
-      ->Place(HepGeom::Translate3D(-wSize + (counter)*dz, dy, -zpos) * reflect3D,
+      ->Place(HepGeom::Translate3D(x0 + (counter)*dx, dy, -zpos) * reflect3D,
 	      "ctubs", ctubsV, mother, false, 0);
   }	      
 
@@ -564,7 +572,8 @@ void  TstGeometryViaGeant4::DefineMaterials()
 //_____________________________________________________________________________
 void* TstGeometryViaGeant4::TestSolids(G4bool fullPhi)
 {
-  G4LogicalVolume* worldV = CreateWorld();
+
+  G4LogicalVolume* worldV = CreateWorld(5.*m, 3.*m, 2.*m);
   G4VPhysicalVolume* world
     = new G4PVPlacement(0, CLHEP::Hep3Vector(), worldV, "world", 0, false, 0); 
   
@@ -573,12 +582,32 @@ void* TstGeometryViaGeant4::TestSolids(G4bool fullPhi)
   return (void*) world;
  }
 
+#include "G4VisAttributes.hh"
+//_____________________________________________________________________________
+void* TstGeometryViaGeant4::TestNewSolid()
+{
+  G4LogicalVolume* worldV = CreateWorld(2.*m, 2.*m, 2.*m);
+  G4VPhysicalVolume* world
+    = new G4PVPlacement(0, CLHEP::Hep3Vector(), 
+                        worldV, worldV->GetName(), 0, false, 0); 
+  worldV->SetVisAttributes (G4VisAttributes::Invisible);
+      
+  G4LogicalVolume* solidV = CreateNewSolid();
+  
+  if (solidV) {
+      new G4PVPlacement(0, CLHEP::Hep3Vector(), 
+                        solidV, solidV->GetName(), worldV, false, 0);
+  }               
+
+  return (void*) world;
+}
+
 //_____________________________________________________________________________
 void* TstGeometryViaGeant4::TestPlacements()
 {
   // World
   //
-  G4LogicalVolume* worldV = CreateWorld();
+  G4LogicalVolume* worldV = CreateWorld(6.*m, 1.*m, 6.*m);
   G4VPhysicalVolume* world
     = new G4PVPlacement(0, CLHEP::Hep3Vector(), worldV, "world", 0, false, 0); 
     
@@ -656,7 +685,7 @@ void* TstGeometryViaGeant4::TestReflections(G4bool fullPhi)
 
   // World
   //
-  G4LogicalVolume* worldV = CreateWorld();
+  G4LogicalVolume* worldV = CreateWorld(5.*m, 3.*m, 3.*m);
   G4VPhysicalVolume* world
     = new G4PVPlacement(0, CLHEP::Hep3Vector(), worldV, "world", 0, false, 0); 
   
@@ -670,20 +699,9 @@ void* TstGeometryViaGeant4::TestAssemblies()
 {
 // Example for assemblies from Root tutorial
 
-  // Get medium
-  //
-  if (!fBasicMaterial) {
-    fBasicMaterial = G4Material::GetMaterial("Basic");
-    G4cout << "Basic material: " << fBasicMaterial << G4endl;
-  }  
-
   // World
   //
-  G4double wSize = 1000.*cm;
-  G4VSolid* worldS
-    = new G4Box("worldS", wSize, wSize, wSize);
-  G4LogicalVolume* worldV
-    = new G4LogicalVolume(worldS, fBasicMaterial, "worldV");
+  G4LogicalVolume* worldV = CreateWorld(10.*m, 10.*m, 1.*m);
   G4VPhysicalVolume* world
     = new G4PVPlacement(0, G4ThreeVector(), worldV, "world", 0, false, 0); 
    
@@ -794,20 +812,9 @@ void* TstGeometryViaGeant4::TestAssemblies2()
 {
 // Example for assemblies with reflections
 
-  // Get medium
-  //
-  if (!fBasicMaterial) {
-    fBasicMaterial = G4Material::GetMaterial("Basic");
-    G4cout << "Basic material: " << fBasicMaterial << G4endl;
-  }  
-
   // World
   //
-  G4double wSize = 1000.*cm;
-  G4VSolid* worldS
-    = new G4Box("worldS", wSize, wSize, wSize);
-  G4LogicalVolume* worldV
-    = new G4LogicalVolume(worldS, fBasicMaterial, "worldV");
+  G4LogicalVolume* worldV = CreateWorld(2.*m, 2.*m, 1.*m);
   G4VPhysicalVolume* world
     = new G4PVPlacement(0, G4ThreeVector(), worldV, "world", 0, false, 0); 
    
@@ -872,11 +879,9 @@ void* TstGeometryViaGeant4::TestBooleanSolids1()
 {
 // Only translation in solid displacement
 
-  G4double wSize = TstParameters::WorldLength();
-
   // World
   //
-  G4LogicalVolume* worldV = CreateWorld();
+  G4LogicalVolume* worldV = CreateWorld(4.*m, 1.*m, 4.*m);
   G4VPhysicalVolume* world
     = new G4PVPlacement(0, CLHEP::Hep3Vector(), worldV, "world", 0, false, 0); 
   
@@ -891,12 +896,12 @@ void* TstGeometryViaGeant4::TestBooleanSolids1()
   //
   G4LogicalVolume* volume1
     = new G4LogicalVolume(solid1, fBasicMaterial, "volume1");
-  new G4PVPlacement(0, CLHEP::Hep3Vector(-wSize/8., 0., -2.*m),
+  new G4PVPlacement(0, CLHEP::Hep3Vector(-1.25*m, 0., -2.*m),
 		    volume1, "solid1", worldV, false, 0);
 
   G4LogicalVolume* volume2
     = new G4LogicalVolume(solid2, fBasicMaterial, "volume2");
-  new G4PVPlacement(0, CLHEP::Hep3Vector( wSize/8., 0., -2.*m),
+  new G4PVPlacement(0, CLHEP::Hep3Vector( 1.25*m, 0., -2.*m),
                     volume2, "solid2", worldV, false, 0);
 
 
@@ -907,9 +912,9 @@ void* TstGeometryViaGeant4::TestBooleanSolids1()
                   "solid1Isolid2S", solid1, solid2, 0, 
 		  CLHEP::Hep3Vector(20.*cm, 0., 0.)); 
   G4LogicalVolume* intersectionV
-    = new G4LogicalVolume(intersectionS, fBasicMaterial, "solid1Isolid2V");
+    = new G4LogicalVolume(intersectionS, fBasicMaterial, "solid1Isolid2");
 
-  new G4PVPlacement(0, CLHEP::Hep3Vector(-wSize/4., 0., 2.*m),
+  new G4PVPlacement(0, CLHEP::Hep3Vector(-2.5*m, 0., 2.*m),
                     intersectionV, "solid1Isolid2", worldV, false, 0); 
   
   // Subtraction
@@ -919,7 +924,7 @@ void* TstGeometryViaGeant4::TestBooleanSolids1()
                   "solid1Ssolid2S", solid1, solid2, 0, 
 		  CLHEP::Hep3Vector(20.*cm, 0., 0.)); 
   G4LogicalVolume* subtractionV
-    = new G4LogicalVolume(subtractionS, fBasicMaterial, "solid1Ssolid2V");
+    = new G4LogicalVolume(subtractionS, fBasicMaterial, "solid1Ssolid2");
 
   new G4PVPlacement(0, CLHEP::Hep3Vector(0., 0., 2.*m), 
                    subtractionV, "solid1Ssolid2", worldV, false, 0);
@@ -931,9 +936,9 @@ void* TstGeometryViaGeant4::TestBooleanSolids1()
                   "solid1Usolid2S", solid1, solid2, 0, 
 		  CLHEP::Hep3Vector(20.*cm, 0., 0.)); 
   G4LogicalVolume* unionV
-    = new G4LogicalVolume(unionS, fBasicMaterial, "solid1Usolid2V");
+    = new G4LogicalVolume(unionS, fBasicMaterial, "solid1Usolid2");
 
-  new G4PVPlacement(0, CLHEP::Hep3Vector( wSize/4., 0., 2.*m),
+  new G4PVPlacement(0, CLHEP::Hep3Vector( 2.5*m, 0., 2.*m),
                     unionV, "solid1Usolid2", worldV, false, 0);
   
   return (void*) world;
@@ -945,11 +950,9 @@ void* TstGeometryViaGeant4::TestBooleanSolids2()
 {
 // Translation + rotation in solid displacement
 
-  G4double wSize = TstParameters::WorldLength();
-
   // World
   //
-  G4LogicalVolume* worldV = CreateWorld();
+  G4LogicalVolume* worldV = CreateWorld(4.*m, 1.*m, 4.*m);
   G4VPhysicalVolume* world
     = new G4PVPlacement(0, CLHEP::Hep3Vector(), worldV, "world", 0, false, 0); 
   
@@ -963,13 +966,13 @@ void* TstGeometryViaGeant4::TestBooleanSolids2()
   // Simple solids placed for a control
   //
   G4LogicalVolume* volume1
-    = new G4LogicalVolume(solid1, fBasicMaterial, "volume1");
-  new G4PVPlacement(0, CLHEP::Hep3Vector(-wSize/8., 0., -2.*m),
+    = new G4LogicalVolume(solid1, fBasicMaterial, "solid1");
+  new G4PVPlacement(0, CLHEP::Hep3Vector(-1.25*m, 0., -2.*m),
 		    volume1, "solid1", worldV, false, 0);
 
   G4LogicalVolume* volume2
-    = new G4LogicalVolume(solid2, fBasicMaterial, "volume2");
-  new G4PVPlacement(0, CLHEP::Hep3Vector( wSize/8., 0., -2.*m),
+    = new G4LogicalVolume(solid2, fBasicMaterial, "solid2");
+  new G4PVPlacement(0, CLHEP::Hep3Vector( 1.25*m, 0., -2.*m),
                     volume2, "solid2", worldV, false, 0);
 
 
@@ -993,9 +996,9 @@ void* TstGeometryViaGeant4::TestBooleanSolids2()
     = new G4IntersectionSolid(
                   "solid1Isolid2S", solid1, solid2, rot2, tr2); 
   G4LogicalVolume* intersectionV
-    = new G4LogicalVolume(intersectionS, fBasicMaterial, "solid1Isolid2V");
+    = new G4LogicalVolume(intersectionS, fBasicMaterial, "solid1Isolid2");
 
-  new G4PVPlacement(rot1, CLHEP::Hep3Vector(-wSize/4., 0., 2.*m),
+  new G4PVPlacement(rot1, CLHEP::Hep3Vector(-2.5*m, 0., 2.*m),
                     intersectionV, "solid1Isolid2", worldV, false, 0); 
   
   // Subtraction
@@ -1004,7 +1007,7 @@ void* TstGeometryViaGeant4::TestBooleanSolids2()
     = new G4SubtractionSolid(
                   "solid1Ssolid2S", solid1, solid2, rot2, tr2); 
   G4LogicalVolume* subtractionV
-    = new G4LogicalVolume(subtractionS, fBasicMaterial, "solid1Ssolid2V");
+    = new G4LogicalVolume(subtractionS, fBasicMaterial, "solid1Ssolid2");
 
   new G4PVPlacement(rot1, CLHEP::Hep3Vector(0., 0., 2.*m), 
                    subtractionV, "solid1Ssolid2", worldV, false, 0);
@@ -1015,9 +1018,9 @@ void* TstGeometryViaGeant4::TestBooleanSolids2()
     = new G4UnionSolid(
                   "solid1Usolid2S", solid1, solid2, rot2, tr2); 
   G4LogicalVolume* unionV
-    = new G4LogicalVolume(unionS, fBasicMaterial, "solid1Usolid2V");
+    = new G4LogicalVolume(unionS, fBasicMaterial, "solid1Usolid2");
 
-  new G4PVPlacement(rot1, CLHEP::Hep3Vector( wSize/4., 0., 2.*m),
+  new G4PVPlacement(rot1, CLHEP::Hep3Vector( 2.5*m, 0., 2.*m),
                     unionV, "solid1Usolid2", worldV, false, 0);
   
   return (void*) world;

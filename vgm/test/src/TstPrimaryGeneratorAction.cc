@@ -7,37 +7,41 @@
 // Author: Ivana Hrivnacova; IPN Orsay
 
 #include "G4Event.hh"
+#include "G4GeneralParticleSource.hh"
 #include "G4ParticleGun.hh"
 #include "G4ParticleTable.hh"
 #include "G4ParticleDefinition.hh"
 #include "globals.hh"
 
 #include "TstPrimaryGeneratorAction.hh"
-#include "TstParameters.hh"
 
 TstPrimaryGeneratorAction::TstPrimaryGeneratorAction()
   : G4VUserPrimaryGeneratorAction(),
-    fParticleGun(0)
+    fMessenger(this),
+    fGunType(kGPS),
+    fParticleGun(0),
+    fGPSGun(0)
 {
   fParticleGun = new G4ParticleGun(1);
-
-  G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
-  fParticleGun->SetParticleDefinition(
-                   particleTable->FindParticle("geantino"));
-  fParticleGun->SetParticleEnergy(1.0*GeV);
-  fParticleGun->SetParticlePosition(
-                   G4ThreeVector(0.0, 0.0, - TstParameters::WorldLength()));
+  fGPSGun = new G4GeneralParticleSource();
 }
 
 TstPrimaryGeneratorAction::~TstPrimaryGeneratorAction()
 {
   delete fParticleGun;
+  delete fGPSGun;
 }
 
 void TstPrimaryGeneratorAction::GeneratePrimaries(G4Event* event)
 {
-  fParticleGun->SetParticleMomentumDirection(G4ThreeVector(0.0, 0.0, 1.0));
-  fParticleGun->GeneratePrimaryVertex(event);
+  switch ( fGunType ) {
+    case kGun:
+     fParticleGun->GeneratePrimaryVertex(event);
+     break;
+    case kGPS:
+     fGPSGun->GeneratePrimaryVertex(event);
+     break;
+  }   
 }
 
 
