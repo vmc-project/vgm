@@ -12,6 +12,8 @@
 
 #include <string>
 
+#include "G4ReflectionFactory.hh"
+
 #include "BaseVGM/volumes/VFactory.h"
 
 class G4VSolid;
@@ -101,7 +103,7 @@ namespace Geant4GM {
                                  const std::string& name, 
                                  double rin, double rout, double hz, 
 			         double sphi, double dphi);
-
+     
       // Boolean solids			       
       // 
       virtual VGM::ISolid*  CreateIntersectionSolid(
@@ -167,13 +169,9 @@ namespace Geant4GM {
       void          ImportDaughters(G4LogicalVolume* lv);
       void          ImportPositions();
       void          ImportPositions(G4LogicalVolume* lv);
-    
-      virtual VGM::IPlacement* CreateSimplePlacement(
-                                 const std::string& name, 
-                                 int copyNo,
-                                 VGM::IVolume* volume, 
-			         VGM::IVolume* motherVolume,
-                                 const VGM::Transform& transform);
+      VGM::IPlacement* ImportPVPair(VGM::IVolume* volume, 
+			            VGM::IVolume* motherVolume,
+                                    G4PhysicalVolumesPair pvPair);
 
       // import/export
       //

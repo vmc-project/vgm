@@ -6,7 +6,7 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include "G4ReflectionFactory.hh"
+#include "G4PVDivisionFactory.hh"
 #include "G4ReflectedSolid.hh"
 #include "G4VPhysicalVolume.hh"
 #include "G4LogicalVolume.hh"
@@ -27,6 +27,7 @@
 #include "G4Tubs.hh"
 
 #include "ClhepVGM/transform.h"
+#include "ClhepVGM/Units.h"
 #include "BaseVGM/common/utilities.h"
 
 #include "Geant4GM/volumes/Factory.h"
@@ -425,6 +426,82 @@ void Geant4GM::Factory::ImportPositions(G4LogicalVolume* lv)
 }
 
 //_____________________________________________________________________________
+VGM::IPlacement*          
+Geant4GM::Factory::ImportPVPair(VGM::IVolume* volume, 
+			        VGM::IVolume* motherVolume,
+                                G4PhysicalVolumesPair pvPair)
+{
+  G4ReflectionFactory* g4ReflectionFactory = G4ReflectionFactory::Instance();
+
+  // Get info about created PV
+  G4VPhysicalVolume* pv1 = pvPair.first;
+  G4LogicalVolume*   lv1 = pv1->GetLogicalVolume();
+  VGM::IVolume* iv1 = Geant4GM::VolumeMap::Instance()->GetVolume(lv1);
+  if (!iv1) {
+     // a new logical volume has been created by G4 reflection factory
+     // has to be imported into VGM
+     iv1 = ImportLV(lv1, volume->MediumName());
+     ImportDaughters(lv1);
+     ImportPositions(lv1);
+  }    			
+  VGM::IPlacement* placement1 
+    = new Geant4GM::Placement(iv1, motherVolume, pv1);
+  // Register physical volume in the map
+  Geant4GM::PlacementMap::Instance()->AddPlacement(placement1, pv1); 
+
+  G4VPhysicalVolume* pv2 = pvPair.second;
+  if (pv2) {
+    G4LogicalVolume* g4MotherLV 
+      = Geant4GM::VolumeMap::Instance()->GetVolume(motherVolume);
+    
+    // mother volume is the other volume in the pair
+    // constituen/reflected mother lv
+    G4LogicalVolume* mlv2 = 0;
+    if ( g4ReflectionFactory->IsReflected(g4MotherLV) )   
+      mlv2 = g4ReflectionFactory->GetConstituentLV(g4MotherLV);
+    if ( g4ReflectionFactory->IsConstituent(g4MotherLV) ) 
+      mlv2 = g4ReflectionFactory->GetReflectedLV(g4MotherLV);
+    if (!mlv2) {
+      // should not happen
+      std::cerr << "    Geant4GM::Factory::CreatePlacement: " << std::endl;
+      std::cerr << "    Misundersood G4ReflectionFactory behavior " <<std::endl; 
+      std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+      exit(1);
+    }
+    else {
+      VGM::IVolume* miv2 = Geant4GM::VolumeMap::Instance()->GetVolume(mlv2);
+      if (!miv2) {
+        // should not happen
+        std::cerr << "    Geant4GM::Factory::CreatePlacement: " << std::endl;
+        std::cerr << "    Missing mapping of existing LV to VGM" <<std::endl; 
+        std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+        exit(1);
+      }
+      
+      G4LogicalVolume* lv2 = pv2->GetLogicalVolume();
+      VGM::IVolume* iv2 = Geant4GM::VolumeMap::Instance()->GetVolume(lv2);
+      if (!iv2) {
+        // a new logical volume has been created by G4 reflection factory
+        // has to be imported into VGM
+        iv2 = ImportLV(lv2, volume->MediumName());
+        ImportDaughters(lv2);
+	ImportPositions(lv2);
+      }
+      VGM::IPlacement* placement2 = new Geant4GM::Placement(iv2, miv2, pv2);
+      // Register physical volume in the map
+      Geant4GM::PlacementMap::Instance()->AddPlacement(placement2, pv2); 
+    }
+  }    			
+
+  // Register physical volume in the map
+  Geant4GM::PlacementMap::Instance()->AddPlacement(placement1, pv1); 
+  
+  return placement1;
+     // should allow to return a list of placements
+}
+
+
+//_____________________________________________________________________________
 bool Geant4GM::Factory::Import(void* topVolume)
 {
 /// Import native geometry
@@ -435,39 +512,6 @@ bool Geant4GM::Factory::Import(void* topVolume)
   return Import(worldPV);
 
 }			      
-
-//_____________________________________________________________________________
-VGM::IPlacement* 
-Geant4GM::Factory::CreateSimplePlacement(
-                               const std::string& name, 
-                               int copyNo,
-                               VGM::IVolume* volume, 
-			       VGM::IVolume* motherVolume,
-                               const VGM::Transform& transform)
-{
-//
-
-  VGM::IPlacement* placement
-    = new Geant4GM::Placement(
-            name, 
-            copyNo, 
-	    volume, motherVolume, 
-            new CLHEP::HepRotation(ClhepVGM::Rotation(transform).inverse()), 
-	    ClhepVGM::Translation(transform));
-  			      
-  // Top volume
-  if (!motherVolume) 
-    if (!fTop)
-      fTop = placement;
-    else {
-      std::cerr << "    Geant4GM::Factory::CreatePlacement:" << std::endl; 
-      std::cerr << "    Top volume defined twice!" << std::endl;
-      std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
-      exit(1);
-    }		  
-  
-  return placement;
-}			  			       
 
 //
 // public functions
@@ -778,10 +822,11 @@ Geant4GM::Factory::CreatePlacement(
                                const VGM::Transform& transform)
 {
 //
+/*
   if (!ClhepVGM::HasReflection(transform)) {
     return CreateSimplePlacement(name, copyNo, volume, motherVolume, transform);
   }			   
-
+*/
   // Get logical volumes from the volumes map
   G4LogicalVolume* g4LV 
     = Geant4GM::VolumeMap::Instance()->GetVolume(volume);
@@ -798,65 +843,8 @@ Geant4GM::Factory::CreatePlacement(
         ->Place(ClhepVGM::Transform(transform),  
 	        name, g4LV, g4MotherLV, false, copyNo);
 	
-  // Get info about created PV
-  G4VPhysicalVolume* pv1 = pvPair.first;
-  G4LogicalVolume*   lv1 = pv1->GetLogicalVolume();
-  VGM::IVolume* iv1 = Geant4GM::VolumeMap::Instance()->GetVolume(lv1);
-  if (!iv1) {
-     // a new logical volume has been created by G4 reflection factory
-     // has to be imported into VGM
-     iv1 = ImportLV(lv1, volume->MediumName());
-     ImportDaughters(lv1);
-     ImportPositions(lv1);
-  }    			
-  VGM::IPlacement* placement1 
-    = new Geant4GM::Placement(iv1, motherVolume, pv1);
-  // Register physical volume in the map
-  Geant4GM::PlacementMap::Instance()->AddPlacement(placement1, pv1); 
-
-  G4VPhysicalVolume* pv2 = pvPair.second;
-  if (pv2) {
-    // mother volume is the other volume in the pair
-    // constituen/reflected mother lv
-    G4LogicalVolume* mlv2 = 0;
-    if (g4ReflectionFactory->IsReflected(g4MotherLV))   
-      mlv2 = g4ReflectionFactory->GetConstituentLV(g4MotherLV);
-    if (g4ReflectionFactory->IsConstituent(g4MotherLV)) 
-      mlv2 = g4ReflectionFactory->GetReflectedLV(g4MotherLV);
-    if (!mlv2) {
-      // should not happen
-      std::cerr << "    Geant4GM::Factory::CreatePlacement: " << std::endl;
-      std::cerr << "    Misundersood G4ReflectionFactory behavior " <<std::endl; 
-      std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
-      exit(1);
-    }
-    else {
-      VGM::IVolume* miv2 = Geant4GM::VolumeMap::Instance()->GetVolume(mlv2);
-      if (!miv2) {
-        // should not happen
-        std::cerr << "    Geant4GM::Factory::CreatePlacement: " << std::endl;
-        std::cerr << "    Missing mapping of existing LV to VGM" <<std::endl; 
-        std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
-        exit(1);
-      }
-      
-      G4LogicalVolume* lv2 = pv2->GetLogicalVolume();
-      VGM::IVolume* iv2 = Geant4GM::VolumeMap::Instance()->GetVolume(lv2);
-      if (!iv2) {
-        // a new logical volume has been created by G4 reflection factory
-        // has to be imported into VGM
-        iv2 = ImportLV(lv2, volume->MediumName());
-        ImportDaughters(lv2);
-	ImportPositions(lv2);
-      }
-      VGM::IPlacement* placement2 = new Geant4GM::Placement(iv2, miv2, pv2);
-      // Register physical volume in the map
-      Geant4GM::PlacementMap::Instance()->AddPlacement(placement2, pv2); 
-    }
-  }    			
-
-  // Register physical volume in the map
-  Geant4GM::PlacementMap::Instance()->AddPlacement(placement1, pv1); 
+  // Import volumes created via G4 reflection factory
+  VGM::IPlacement* placement1 = ImportPVPair(volume, motherVolume, pvPair);
 
   // Top volume
   if (!motherVolume) 
@@ -870,7 +858,7 @@ Geant4GM::Factory::CreatePlacement(
     }		  
   
   return placement1;
-     // should allow to retour a list of placements
+     // should allow to return a list of placements
 }			  			       
 
 //_____________________________________________________________________________
@@ -894,11 +882,37 @@ Geant4GM::Factory::CreateMultiplePlacement(
     exit(1);	      
   }		  
   
-  VGM::IPlacement* placement
-    = new Geant4GM::Placement(name, volume, motherVolume, 
-                       axis, nofItems, width, offset);
+  // Get logical volumes from the volumes map
+  G4LogicalVolume* g4LV 
+    = Geant4GM::VolumeMap::Instance()->GetVolume(volume);
+    
+  G4LogicalVolume* g4MotherLV 
+    = Geant4GM::VolumeMap::Instance()->GetVolume(motherVolume);
+        
+  // Apply units
+  width  /= ClhepVGM::Units::AxisUnit(axis);
+  offset /= ClhepVGM::Units::AxisUnit(axis);
 
-  return placement;
+  // Update offset if it goes beyond mother dhi
+  if ( axis == VGM::kPhi &&
+       offset + nofItems * width > 2 * CLHEP::pi ) 
+    offset = offset - 2 * CLHEP::pi;   
+
+  // Create PV division 
+  // for a general transformation we have to use G4 reflection factory
+  G4PVDivisionFactory::GetInstance();
+  G4ReflectionFactory* g4ReflectionFactory = G4ReflectionFactory::Instance();
+
+  G4PhysicalVolumesPair pvPair
+    = g4ReflectionFactory
+        ->Divide(name, g4LV, g4MotherLV,
+                 Geant4GM::Placement::GetAxis(axis), nofItems, width, offset );
+
+  // Import volumes created via G4 reflection factory
+  VGM::IPlacement* placement1 = ImportPVPair(volume, motherVolume, pvPair);
+
+  return placement1;
+     // should allow to return a list of placements
 }			  			       
 
 //_____________________________________________________________________________

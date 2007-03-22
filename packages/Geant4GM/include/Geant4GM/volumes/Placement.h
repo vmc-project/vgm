@@ -26,21 +26,15 @@ namespace Geant4GM {
   class Placement : public BaseVGM::VPlacement
   {
     public:
-      Placement(const std::string& name, 
-                int copyNo,
-                VGM::IVolume* volume, 
-		VGM::IVolume* motherVolume,
-                CLHEP::HepRotation* rotation, 
-		const CLHEP::Hep3Vector& translation);
-      Placement(const std::string& name,
-                VGM::IVolume* volume, 
-		VGM::IVolume* motherVolume,
-                VGM::Axis axis, int nofItems, double  width, double offset);
       Placement(VGM::IVolume* volume, 
                 VGM::IVolume* motherVolume,
                 G4VPhysicalVolume* pv);
       virtual ~Placement();
     
+      // static methods
+      static EAxis GetAxis(VGM::Axis axis);
+      static VGM::Axis GetAxis(EAxis axis);
+
       // methods
       virtual VGM::PlacementType Type() const;
       virtual std::string        Name() const;
@@ -58,9 +52,6 @@ namespace Geant4GM {
       Placement(const Placement& rhs);
       
     private:
-      EAxis GetAxis(VGM::Axis axis) const;
-      VGM::Axis GetAxis(EAxis axis) const;
-  
       G4VPhysicalVolume*  fPhysicalVolume;
   };
 
