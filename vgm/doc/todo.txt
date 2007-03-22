@@ -1,8 +1,6 @@
 - Root: define Boolean solids via pointers to objects
   and not via expressions
   (now available in Root)    
-- Geant4: use G4ReflectionFactory for divisions
-  (now available in Geant4)    
 - replace maps with a template class
 - make maps not singletons but data members of factories
   (as the factories are not singleton)
