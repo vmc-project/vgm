@@ -1,6 +1,6 @@
 
 *************************************************************
- Geant4 version Name: geant4-08-02    (15-December-2006)
+ Geant4 version Name: geant4-08-02-patch-01    (23-February-2007)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -15,51 +15,51 @@ VGM info:   Importing isotope:
 VGM info:    Isotope:     C   Z =  6   N =  12   A =  12.00 g/mole
 VGM info:   Importing isotope: 
 VGM info:    Isotope:     C   Z =  6   N =  13   A =  13.00 g/mole
-VGM info:   Importing LV: boxV_refl
+VGM info:   Importing LV: box_refl
 VGM info:   Importing solid: boxS_refl
-VGM info:   ImportDaughters for boxV_refl
-VGM info:   ImportPositions for lv boxV_refl nofDaughters: 0
-VGM info:   Importing LV: consV_refl
+VGM info:   ImportDaughters for box_refl
+VGM info:   ImportPositions for lv box_refl nofDaughters: 0
+VGM info:   Importing LV: cons_refl
 VGM info:   Importing solid: consS_refl
-VGM info:   ImportDaughters for consV_refl
-VGM info:   ImportPositions for lv consV_refl nofDaughters: 0
-VGM info:   Importing LV: eltuV_refl
+VGM info:   ImportDaughters for cons_refl
+VGM info:   ImportPositions for lv cons_refl nofDaughters: 0
+VGM info:   Importing LV: eltu_refl
 VGM info:   Importing solid: eltuS_refl
-VGM info:   ImportDaughters for eltuV_refl
-VGM info:   ImportPositions for lv eltuV_refl nofDaughters: 0
-VGM info:   Importing LV: paraV_refl
+VGM info:   ImportDaughters for eltu_refl
+VGM info:   ImportPositions for lv eltu_refl nofDaughters: 0
+VGM info:   Importing LV: para_refl
 VGM info:   Importing solid: paraS_refl
-VGM info:   ImportDaughters for paraV_refl
-VGM info:   ImportPositions for lv paraV_refl nofDaughters: 0
-VGM info:   Importing LV: pconeV_refl
+VGM info:   ImportDaughters for para_refl
+VGM info:   ImportPositions for lv para_refl nofDaughters: 0
+VGM info:   Importing LV: pcone_refl
 VGM info:   Importing solid: pconeS_refl
-VGM info:   ImportDaughters for pconeV_refl
-VGM info:   ImportPositions for lv pconeV_refl nofDaughters: 0
-VGM info:   Importing LV: phedraV_refl
+VGM info:   ImportDaughters for pcone_refl
+VGM info:   ImportPositions for lv pcone_refl nofDaughters: 0
+VGM info:   Importing LV: phedra_refl
 VGM info:   Importing solid: phedraS_refl
-VGM info:   ImportDaughters for phedraV_refl
-VGM info:   ImportPositions for lv phedraV_refl nofDaughters: 0
-VGM info:   Importing LV: sphereV1_refl
+VGM info:   ImportDaughters for phedra_refl
+VGM info:   ImportPositions for lv phedra_refl nofDaughters: 0
+VGM info:   Importing LV: sphere_refl
 VGM info:   Importing solid: sphereS_refl
-VGM info:   ImportDaughters for sphereV1_refl
-VGM info:   ImportPositions for lv sphereV1_refl nofDaughters: 0
-VGM info:   Importing LV: torusV_refl
+VGM info:   ImportDaughters for sphere_refl
+VGM info:   ImportPositions for lv sphere_refl nofDaughters: 0
+VGM info:   Importing LV: torus_refl
 VGM info:   Importing solid: torusS_refl
-VGM info:   ImportDaughters for torusV_refl
-VGM info:   ImportPositions for lv torusV_refl nofDaughters: 0
-VGM info:   Importing LV: trapV_refl
+VGM info:   ImportDaughters for torus_refl
+VGM info:   ImportPositions for lv torus_refl nofDaughters: 0
+VGM info:   Importing LV: trap_refl
 VGM info:   Importing solid: trapS_refl
-VGM info:   ImportDaughters for trapV_refl
-VGM info:   ImportPositions for lv trapV_refl nofDaughters: 0
-VGM info:   Importing LV: trdV_refl
+VGM info:   ImportDaughters for trap_refl
+VGM info:   ImportPositions for lv trap_refl nofDaughters: 0
+VGM info:   Importing LV: trd_refl
 VGM info:   Importing solid: trdS_refl
-VGM info:   ImportDaughters for trdV_refl
-VGM info:   ImportPositions for lv trdV_refl nofDaughters: 0
-VGM info:   Importing LV: tubsV_refl
+VGM info:   ImportDaughters for trd_refl
+VGM info:   ImportPositions for lv trd_refl nofDaughters: 0
+VGM info:   Importing LV: tubs_refl
 VGM info:   Importing solid: tubsS_refl
-VGM info:   ImportDaughters for tubsV_refl
-VGM info:   ImportPositions for lv tubsV_refl nofDaughters: 0
-VGM info:   Importing LV: ctubsV_refl
+VGM info:   ImportDaughters for tubs_refl
+VGM info:   ImportPositions for lv tubs_refl nofDaughters: 0
+VGM info:   Importing LV: ctubs_refl
 VGM info:   Importing solid: ctubsS_refl
 VGM info:   Importing solid: boolean
 VGM info:   Importing solid: tubs
@@ -81,6 +81,6 @@ VGM info:   Boolean  "ctubsS"  Subtraction:
   ConstituentB = Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
   Displacement translation (object):  ( 0,  0,  968.753) mm 
   Displacement rotation (object):  (-5.90614,  -0,  0) deg    no reflectionZ
-VGM info:   ImportDaughters for ctubsV_refl
-VGM info:   ImportPositions for lv ctubsV_refl nofDaughters: 0
+VGM info:   ImportDaughters for ctubs_refl
+VGM info:   ImportPositions for lv ctubs_refl nofDaughters: 0
 TestReflections finished
