@@ -27,6 +27,7 @@ class TstGeometryViaRoot : public TstVGeometry
     virtual void  DefineMaterials();
 
     virtual void* TestSolids(Bool_t fullPhi);
+    virtual void* TestNewSolid();
     virtual void* TestPlacements();
     virtual void* TestReflections(Bool_t fullPhi);
     virtual void* TestAssemblies();
@@ -36,9 +37,11 @@ class TstGeometryViaRoot : public TstVGeometry
     virtual void* TestBooleanSolids3();
     virtual void* TestBooleanSolids4();
     virtual void* TestBooleanSolids5();
+    virtual void* TestSpecial();
 
   private:
-    TGeoVolume* CreateWorld();
+    TGeoVolume* CreateWorld(Double_t x, Double_t y, Double_t z);
+    TGeoVolume* CreateNewSolid();
     TGeoVolume* CreateBox();
     TGeoVolume* CreateCons(Double_t sphi, Double_t dphi);
     TGeoVolume* CreateEllipticalTube();

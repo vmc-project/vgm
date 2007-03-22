@@ -31,7 +31,6 @@
 #include "TGeoTube.h"
 
 #include "TstGeometryViaRoot.hh"
-#include "TstParameters.hh"
 
 //_____________________________________________________________________________
 TstGeometryViaRoot::TstGeometryViaRoot()
@@ -53,7 +52,7 @@ TstGeometryViaRoot::~TstGeometryViaRoot()
 // 
 
 //_____________________________________________________________________________
-TGeoVolume* TstGeometryViaRoot::CreateWorld()
+TGeoVolume* TstGeometryViaRoot::CreateWorld(Double_t x, Double_t y, Double_t z)
 {
 // Create world volume
 // ---
@@ -61,12 +60,11 @@ TGeoVolume* TstGeometryViaRoot::CreateWorld()
   if (!fBasicMedium)
     fBasicMedium =  fGeoManager->GetMedium("Basic"); 
 
-  Double_t wSize = TstParameters::WorldLength()/10.;
   TGeoShape* worldS
-    = new TGeoBBox("worldS", wSize, wSize, wSize);
+    = new TGeoBBox("worldS", x, y, z);
 
   TGeoVolume* worldV
-    = new TGeoVolume("worldV", worldS, fBasicMedium);
+    = new TGeoVolume("world", worldS, fBasicMedium);
   
   fGeoManager->SetTopVolume(worldV);
   
@@ -74,12 +72,20 @@ TGeoVolume* TstGeometryViaRoot::CreateWorld()
 }    
 
 //_____________________________________________________________________________
+TGeoVolume* TstGeometryViaRoot::CreateNewSolid()
+{
+  // return CreateExtrudedSolid2();
+  return CreateBox();
+}  
+
+
+//_____________________________________________________________________________
 TGeoVolume* TstGeometryViaRoot::CreateBox()
 {
   TGeoShape* boxS
     = new TGeoBBox("boxS", 20., 60., 50.);
   
-  return new TGeoVolume("boxV", boxS, fBasicMedium);
+  return new TGeoVolume("box", boxS, fBasicMedium);
 }  
 
 
@@ -89,26 +95,25 @@ TGeoVolume* TstGeometryViaRoot::CreateCons(Double_t sphi, Double_t dphi)
   TGeoShape* consS
     = new TGeoConeSeg("consS", 50., 10., 40., 20., 60., sphi, sphi+dphi);
   
-  return new TGeoVolume("consV", consS, fBasicMedium);
+  return new TGeoVolume("cons", consS, fBasicMedium);
 }
 
 //_____________________________________________________________________________
 TGeoVolume* TstGeometryViaRoot::CreateEllipticalTube()
 {
   TGeoShape* eltuS
-    = new TGeoEltu("eltuS", 20., 50., 50.);
+    = new TGeoEltu("eltuS", 20., 30., 50.);
   
-  return new TGeoVolume("eltuV", eltuS, fBasicMedium);
+  return new TGeoVolume("eltu", eltuS, fBasicMedium);
 }  
-
-
+ 
 //_____________________________________________________________________________
 TGeoVolume* TstGeometryViaRoot::CreatePara()
 {
   TGeoShape* paraS
     = new TGeoPara("paraS", 40., 60., 50., 30., 30., 30.);
 
-  return new TGeoVolume("paraV", paraS, fBasicMedium);
+  return new TGeoVolume("para", paraS, fBasicMedium);
 }  
 
 //_____________________________________________________________________________
@@ -152,7 +157,7 @@ TGeoVolume* TstGeometryViaRoot::CreatePolycone(Double_t sphi, Double_t dphi)
   
   delete [] param; 
   
-  return new TGeoVolume("pconeV", pconeS, fBasicMedium);
+  return new TGeoVolume("pcone", pconeS, fBasicMedium);
 }  
 
 //_____________________________________________________________________________
@@ -198,17 +203,17 @@ TGeoVolume* TstGeometryViaRoot::CreatePolyhedra(Double_t sphi, Double_t dphi)
 
   delete [] param;
 
-  return new TGeoVolume("phedraV", phedraS, fBasicMedium);
+  return new TGeoVolume("phedra", phedraS, fBasicMedium);
 }  
 
 //_____________________________________________________________________________
 TGeoVolume* TstGeometryViaRoot::CreateSphere(Double_t sphi, Double_t dphi)
 {
-  TGeoShape* sphereS1
+  TGeoShape* sphereS
     = new TGeoSphere("sphereS", 20., 60., 
                       sphi/2., sphi/2.+ dphi/2., sphi, sphi + dphi); 
 			    
-  return new TGeoVolume("sphereV1", sphereS1, fBasicMedium);
+  return new TGeoVolume("sphere", sphereS, fBasicMedium);
 }  
 
 //_____________________________________________________________________________
@@ -217,7 +222,7 @@ TGeoVolume* TstGeometryViaRoot::CreateTorus(Double_t sphi, Double_t dphi)
   TGeoShape* torusS
     = new TGeoTorus("torusS", 40., 20., 30., sphi, dphi);
 			    
-  return new TGeoVolume("torusV", torusS, fBasicMedium);  
+  return new TGeoVolume("torus", torusS, fBasicMedium);  
 }  
 
 //_____________________________________________________________________________
@@ -227,7 +232,7 @@ TGeoVolume* TstGeometryViaRoot::CreateTrap()
     = new TGeoTrap("trapS", 30., 25., 35.,
 		    20., 10., 15., 0.,
 		    20., 10., 15., 0.);
-  return new TGeoVolume("trapV", trapS, fBasicMedium);
+  return new TGeoVolume("trap", trapS, fBasicMedium);
 }
 
 //_____________________________________________________________________________
@@ -236,7 +241,7 @@ TGeoVolume* TstGeometryViaRoot::CreateTrd()
   TGeoShape* trdS
     = new TGeoTrd2("trdS", 20., 30, 40., 50., 50.);
 
-  return new TGeoVolume("trdV", trdS, fBasicMedium);
+  return new TGeoVolume("trd", trdS, fBasicMedium);
 }  
 
 //_____________________________________________________________________________
@@ -245,7 +250,7 @@ TGeoVolume* TstGeometryViaRoot::CreateTubs(Double_t sphi, Double_t dphi)
   TGeoShape* tubsS
     = new TGeoTubeSeg("tubsS", 20., 40, 50., sphi, sphi + dphi);
 
-  return new TGeoVolume("tubsV", tubsS, fBasicMedium);
+  return new TGeoVolume("tubs", tubsS, fBasicMedium);
 }  
  
 //_____________________________________________________________________________
@@ -258,14 +263,13 @@ TGeoVolume* TstGeometryViaRoot::CreateCtubs(Double_t /*sphi*/, Double_t /*dphi*/
     = new TGeoCtub("ctubsS", 20., 30, 60.49, 330., 610.,
                    0.00, 0.64, -0.77, 0.00, 0.09, 0.87);
 
-  return new TGeoVolume("tubsV", tubsS, fBasicMedium);
+  return new TGeoVolume("ctubs", tubsS, fBasicMedium);
 }  
  
 //_____________________________________________________________________________
 TGeoVolume* TstGeometryViaRoot::PlaceSolids(TGeoVolume* mother,
                                      Bool_t fullPhi, Bool_t reflect, Double_t zpos)
 {
-
   Double_t sphi =   0.;
   Double_t dphi = 360.;
   if (!fullPhi) {
@@ -274,9 +278,9 @@ TGeoVolume* TstGeometryViaRoot::PlaceSolids(TGeoVolume* mother,
   }  
  
   int counter = 0;
-  Double_t wSize = TstParameters::WorldLength()/10.;
-  Double_t dz = wSize/6.;
-  Double_t dy = wSize/4.;
+  Double_t x0 = -350.;
+  Double_t dx =  150.;
+  Double_t dy =  150.;
   
   TGeoRotation* reflect3D = new TGeoRotation();
   // how to simply apply reflection ???
@@ -290,109 +294,109 @@ TGeoVolume* TstGeometryViaRoot::PlaceSolids(TGeoVolume* mother,
   //
   TGeoVolume* boxV = CreateBox();
   mother->AddNode(boxV, 0, 
-                  new TGeoTranslation(-wSize + (counter)*dz,  -dy, zpos)); 
+                  new TGeoTranslation(x0 + (counter)*dx,  -dy, zpos)); 
   if (reflect)
     mother->AddNode(boxV, 1,
-                  new TGeoCombiTrans(-wSize + (counter)*dz,  -dy, -zpos, reflect3D)); 
+                  new TGeoCombiTrans(x0 + (counter)*dx,  -dy, -zpos, reflect3D)); 
 
   // Cons 
   //
   TGeoVolume* consV = CreateCons(sphi, dphi);
   mother->AddNode(consV, 0, 
-                  new TGeoTranslation(-wSize + (counter)*dz, dy, zpos));
+                  new TGeoTranslation(x0 + (counter)*dx, dy, zpos));
   if (reflect)
     mother->AddNode(consV, 1,
-                  new TGeoCombiTrans(-wSize + (counter)*dz, dy, -zpos, reflect3D));
+                  new TGeoCombiTrans(x0 + (counter)*dx, dy, -zpos, reflect3D));
 
   // Elliptical tube 
   //
   TGeoVolume* eltuV = CreateEllipticalTube();
   mother->AddNode(eltuV, 0, 
-                  new TGeoTranslation(-wSize + (++counter)*dz, -dy, zpos));
+                  new TGeoTranslation(x0 + (++counter)*dx, -dy, zpos));
   if (reflect)
     mother->AddNode(eltuV, 1,
-                  new TGeoCombiTrans(-wSize + (counter)*dz, -dy, -zpos, reflect3D));
+                  new TGeoCombiTrans(x0 + (counter)*dx, -dy, -zpos, reflect3D));
 
   // Para
   //
   TGeoVolume* paraV = CreatePara();
   mother->AddNode(paraV, 0, 
-                  new TGeoTranslation(-wSize + (counter)*dz,  dy, zpos));
+                  new TGeoTranslation(x0 + (counter)*dx,  dy, zpos));
   if (reflect)
     mother->AddNode(paraV, 1, 
-                  new TGeoCombiTrans(-wSize + (counter)*dz,  dy, -zpos, reflect3D));
+                  new TGeoCombiTrans(x0 + (counter)*dx,  dy, -zpos, reflect3D));
 
   // Polycone
   //
   TGeoVolume* pconeV = CreatePolycone(sphi, dphi);
   mother->AddNode(pconeV, 0,
-                  new TGeoTranslation(-wSize + (++counter)*dz, -dy, zpos));
+                  new TGeoTranslation(x0 + (++counter)*dx, -dy, zpos));
   if (reflect)
     mother->AddNode(pconeV, 1, 
-                  new TGeoCombiTrans(-wSize + (counter)*dz, -dy, -zpos, reflect3D));
+                  new TGeoCombiTrans(x0 + (counter)*dx, -dy, -zpos, reflect3D));
 
   // Polyhedra
   //
   TGeoVolume* phedraV = CreatePolyhedra(sphi, dphi);
   mother->AddNode(phedraV, 0, 
-                  new TGeoTranslation(-wSize + (counter)*dz,  dy, zpos));
+                  new TGeoTranslation(x0 + (counter)*dx,  dy, zpos));
   if (reflect)
     mother->AddNode(phedraV, 1,
-                  new TGeoCombiTrans(-wSize + (counter)*dz,  dy, -zpos, reflect3D));
+                  new TGeoCombiTrans(x0 + (counter)*dx,  dy, -zpos, reflect3D));
 
   // Sphere 
   //
   TGeoVolume* sphereV = CreateSphere(sphi, dphi);
   mother->AddNode(sphereV, 0, 
-                  new TGeoTranslation(-wSize + (++counter)*dz, -dy, zpos));
+                  new TGeoTranslation(x0 + (++counter)*dx, -dy, zpos));
   if (reflect)
     mother->AddNode(sphereV, 1,
-                  new TGeoCombiTrans(-wSize + (counter)*dz, -dy, -zpos, reflect3D));
+                  new TGeoCombiTrans(x0 + (counter)*dx, -dy, -zpos, reflect3D));
 
   // Torus
   //
   TGeoVolume* torusV = CreateTorus(sphi, dphi);
   mother->AddNode(torusV, 0, 
-                  new TGeoTranslation(-wSize + (counter)*dz,  dy, zpos));
+                  new TGeoTranslation(x0 + (counter)*dx,  dy, zpos));
   if (reflect)
     mother->AddNode(torusV, 1,
-                  new TGeoCombiTrans(-wSize + (counter)*dz,  dy, -zpos, reflect3D));
+                  new TGeoCombiTrans(x0 + (counter)*dx,  dy, -zpos, reflect3D));
 
   // Trap 
   //
   TGeoVolume* trapV = CreateTrap();
   mother->AddNode(trapV, 0, 
-                  new TGeoTranslation(-wSize + (++counter)*dz, -dy, zpos));
+                  new TGeoTranslation(x0 + (++counter)*dx, -dy, zpos));
   if (reflect)
     mother->AddNode(trapV, 1,
-                  new TGeoCombiTrans(-wSize + (counter)*dz, -dy, -zpos, reflect3D));
+                  new TGeoCombiTrans(x0 + (counter)*dx, -dy, -zpos, reflect3D));
 
   // Trd
   //
   TGeoVolume* trdV = CreateTrd();
   mother->AddNode(trdV, 0, 
-                  new TGeoTranslation(-wSize + (counter)*dz,  dy, zpos));
+                  new TGeoTranslation(x0 + (counter)*dx,  dy, zpos));
   if (reflect)
     mother->AddNode(trdV, 1, 
-                  new TGeoCombiTrans(-wSize + (counter)*dz,  dy, -zpos, reflect3D));
+                  new TGeoCombiTrans(x0 + (counter)*dx,  dy, -zpos, reflect3D));
  
   // Tube
   //
   TGeoVolume* tubsV = CreateTubs(sphi, dphi);
   mother->AddNode(tubsV, 0, 
-                  new TGeoTranslation(-wSize + (++counter)*dz, -dy, zpos));
+                  new TGeoTranslation(x0 + (++counter)*dx, -dy, zpos));
   if (reflect)
     mother->AddNode(tubsV, 1,
-                  new TGeoCombiTrans(-wSize + (counter)*dz, -dy, -zpos, reflect3D));
+                  new TGeoCombiTrans(x0 + (counter)*dx, -dy, -zpos, reflect3D));
 
    // Ctubs
   //
   TGeoVolume* ctubsV = CreateCtubs(sphi, dphi);
   mother->AddNode(ctubsV, 0, 
-                  new TGeoTranslation(-wSize + (counter)*dz, dy, zpos));
+                  new TGeoTranslation(x0 + (counter)*dx, dy, zpos));
   if (reflect)
     mother->AddNode(ctubsV, 1,
-                  new TGeoCombiTrans(-wSize + (counter)*dz, dy, -zpos, reflect3D));
+                  new TGeoCombiTrans(x0 + (counter)*dx, dy, -zpos, reflect3D));
 
   return mother;   		  
 }
@@ -454,12 +458,35 @@ void  TstGeometryViaRoot::DefineMaterials()
 //_____________________________________________________________________________
 void* TstGeometryViaRoot::TestSolids(Bool_t fullPhi)
 {
-  TGeoVolume* worldV = CreateWorld();
+  TGeoVolume* worldV = CreateWorld(500., 300., 200.);
   
   PlaceSolids(worldV, fullPhi, false, 0.);
   
-  //gGeoManager->Export("Solids.gdml");
+  return (void*) gGeoManager->GetTopNode();
+ }
 
+//_____________________________________________________________________________
+void* TstGeometryViaRoot::TestNewSolid()
+{
+  TGeoVolume* worldV = CreateWorld(200., 200., 200.);
+ 
+  TGeoVolume* newSolidV = CreateNewSolid();
+  if ( newSolidV ) {
+    worldV->AddNode(newSolidV, 0, new TGeoTranslation()); 
+  }  
+
+/*  
+  TGeoShape* boxS
+    = new TGeoBBox("boxS", 1., 1., 1.);
+
+  TGeoVolume* boxV = new TGeoVolume("boxV", boxS, fBasicMedium);
+  worldV->AddNode(boxV, 0, new TGeoTranslation(-3.92, 1.26, 39.7));
+  worldV->AddNode(boxV, 0, new TGeoTranslation(-0.999, 4.75, 26.8));
+  worldV->AddNode(boxV, 0, new TGeoTranslation( 2.8, 9.28, 10.0));
+  worldV->AddNode(boxV, 0, new TGeoTranslation(4.56, 11.4, 2.23));
+  worldV->AddNode(boxV, 0, new TGeoTranslation(6.06, 13.2, -4.38));
+  worldV->AddNode(boxV, 0, new TGeoTranslation(14.1, 22.8, -40.0));
+*/  
   return (void*) gGeoManager->GetTopNode();
  }
 
@@ -469,7 +496,7 @@ void* TstGeometryViaRoot::TestPlacements()
 
   // World
   //
-  TGeoVolume* worldV = CreateWorld();
+  TGeoVolume* worldV = CreateWorld(600., 100., 600.);
     
   // Get materials via names
   TGeoMedium* air = gGeoManager->GetMedium("Air");
@@ -485,15 +512,15 @@ void* TstGeometryViaRoot::TestPlacements()
   TGeoShape* boxA
     = new TGeoBBox("boxA", 20., 60., 50.);
   TGeoVolume* volA
-    = new TGeoVolume("volA", boxA, air);
+    = new TGeoVolume("layerA", boxA, air);
   
   // Thick layer B (in A)
   // Place layers B  (division) 
   //
-  //TGeoVolume* volB = volA->Divide("volB", 2, 6, -6., 2.); 
+  //TGeoVolume* volB = volA->Divide("layerB", 2, 6, -6., 2.); 
   //           // division in the whole mother
         
-  TGeoVolume* volB = volA->Divide("volB", 2, 3, 0., 20.); 
+  TGeoVolume* volB = volA->Divide("layerB", 2, 3, 0., 20.); 
   volB->SetMedium(uranium); 
              // division with offset
 
@@ -502,7 +529,7 @@ void* TstGeometryViaRoot::TestPlacements()
   TGeoShape* boxC
     = new TGeoBBox("boxC", 20., 0.2, 50.);
   TGeoVolume* volC
-    = new TGeoVolume("volC", boxC, scintillator);
+    = new TGeoVolume("layerC", boxC, scintillator);
 
   // Place layers C
   //
@@ -528,8 +555,6 @@ void* TstGeometryViaRoot::TestPlacements()
      TGeoCombiTrans* combi= new TGeoCombiTrans( x, y0, z, rot);
      worldV->AddNode(volA, i+1, combi);
    }
-   
-  //gGeoManager->Export("Placements.gdml");
 
   return (void*) gGeoManager->GetTopNode();
 }
@@ -538,11 +563,9 @@ void* TstGeometryViaRoot::TestPlacements()
 void* TstGeometryViaRoot::TestReflections(Bool_t fullPhi)
 {
 
-  TGeoVolume* worldV = CreateWorld();
+  TGeoVolume* worldV = CreateWorld(500., 300., 300.);
   
   PlaceSolids(worldV, fullPhi, true, 100.);
-
-  //gGeoManager->Export("Reflections.gdml");
 
   return (void*) gGeoManager->GetTopNode();
 }
@@ -552,16 +575,9 @@ void* TstGeometryViaRoot::TestAssemblies()
 {
 // Example for assemblies from Root tutorial
 
-  // Get medium
-  //
-  if (!fBasicMedium)
-    fBasicMedium =  fGeoManager->GetMedium("Basic"); 
-
   // World
   //
-  TGeoVolume *top 
-    = fGeoManager->MakeBox("TOP", fBasicMedium, 1000., 1000., 100.);
-  fGeoManager->SetTopVolume(top);  
+  TGeoVolume* top = CreateWorld(1000., 1000., 100.);
    
   // Make the elementary assembly of the whole structure
   TGeoVolume *tplate = new TGeoVolumeAssembly("TOOTHPLATE");
@@ -627,8 +643,6 @@ void* TstGeometryViaRoot::TestAssemblies()
     top->AddNode(row, nrows-i4, new TGeoTranslation(-xrow,-yrow,0));
   }        
   
-  //gGeoManager->Export("Assemblies1.gdml");
-  
   return (void*) gGeoManager->GetTopNode();
 }
 
@@ -637,16 +651,9 @@ void* TstGeometryViaRoot::TestAssemblies2()
 {
 // Example for assemblies with reflections
 
-  // Get medium
-  //
-  if (!fBasicMedium)
-    fBasicMedium =  fGeoManager->GetMedium("Basic"); 
-
   // World
   //
-  TGeoVolume* top 
-    = fGeoManager->MakeBox("TOP", fBasicMedium, 1000., 1000., 1000.);
-  fGeoManager->SetTopVolume(top);  
+  TGeoVolume* top = CreateWorld(200., 200., 100.);
    
   // Assembly
   //
@@ -708,8 +715,6 @@ void* TstGeometryViaRoot::TestAssemblies2()
   assembly->AddNode(consV, 4, combi4);
   top->AddNode(assembly, 1);
 
-  //gGeoManager->Export("Assemblies2.gdml");
-
   return (void*) gGeoManager->GetTopNode();
  }
 
@@ -718,28 +723,26 @@ void* TstGeometryViaRoot::TestBooleanSolids1()
 {
 // Only translation in solid displacement
 
-  Double_t wSize = TstParameters::WorldLength()/10.;
+  TGeoVolume* worldV = CreateWorld(400., 100., 400.);
 
-  TGeoVolume* worldV = CreateWorld();
-  
   // Create solids
   TGeoShape* solid1 
     = new TGeoBBox("boxS", 50., 50., 50.);
 
   TGeoShape* solid2 
-    = new TGeoConeSeg("tubsS", 100., 10., 30., 20., 50., 0., 360.) ;
+    = new TGeoConeSeg("tubsS", 100., 10., 30., 20., 40., 0., 360.) ;
  
   // Simple solids placed for a control
   //
   TGeoVolume* volume1
-    = new TGeoVolume("volume1", solid1, fBasicMedium);
+    = new TGeoVolume("solid1", solid1, fBasicMedium);
   worldV->AddNode(volume1, 1, 
-                  new TGeoTranslation(-wSize/8., 0., -200.));
+                  new TGeoTranslation(-125., 0., -200.));
 
   TGeoVolume* volume2
-    = new TGeoVolume("volume2", solid2, fBasicMedium);
+    = new TGeoVolume("solid2", solid2, fBasicMedium);
   worldV->AddNode(volume2, 1, 
-                  new TGeoTranslation( wSize/8., 0., -200.));
+                  new TGeoTranslation( 125., 0., -200.));
 
 
   // Define displacement transformations
@@ -756,16 +759,16 @@ void* TstGeometryViaRoot::TestBooleanSolids1()
   TGeoShape* intersectionS
     = new TGeoCompositeShape("solid1Isolid2S", "boxS*tubsS:tr2"); 
   TGeoVolume* intersectionV
-    = new TGeoVolume("solid1Isolid2V", intersectionS, fBasicMedium);
+    = new TGeoVolume("solid1Isolid2", intersectionS, fBasicMedium);
   worldV->AddNode(intersectionV, 1, 
-                  new TGeoTranslation(- wSize/4., 0., 200.));
+                  new TGeoTranslation(-250., 0., 200.));
   
   // Subtraction
   //
   TGeoShape* subtractionS
     = new TGeoCompositeShape("solid1Ssolid2S", "boxS-tubsS:tr2"); 
   TGeoVolume* subtractionV
-    = new TGeoVolume("solid1Ssolid2V", subtractionS, fBasicMedium);
+    = new TGeoVolume("solid1Ssolid2", subtractionS, fBasicMedium);
   worldV->AddNode(subtractionV, 1, 
                   new TGeoTranslation(0., 0., 200.));
   
@@ -774,12 +777,10 @@ void* TstGeometryViaRoot::TestBooleanSolids1()
   TGeoShape* unionS
     = new TGeoCompositeShape("solid1Ssolid2S", "boxS+tubsS:tr2"); 
   TGeoVolume* unionV
-    = new TGeoVolume("solid1Usolid2V", unionS, fBasicMedium);
+    = new TGeoVolume("solid1Usolid2", unionS, fBasicMedium);
   worldV->AddNode(unionV, 1, 
-                  new TGeoTranslation(wSize/4., 0., 200.));
+                  new TGeoTranslation(250., 0., 200.));
   
-  //gGeoManager->Export("BooleanSolids1.gdml");
-
   return (void*) gGeoManager->GetTopNode();
 }
 
@@ -788,10 +789,8 @@ void* TstGeometryViaRoot::TestBooleanSolids2()
 {
 // Translation + rotation in solid displacement
 
-  Double_t wSize = TstParameters::WorldLength()/10.;
+  TGeoVolume* worldV = CreateWorld(400., 100., 400.);
 
-  TGeoVolume* worldV = CreateWorld();
-  
   // Create solids
   TGeoShape* solid1 
     = new TGeoBBox("boxS", 50., 50., 50.);
@@ -802,14 +801,14 @@ void* TstGeometryViaRoot::TestBooleanSolids2()
   // Simple solids placed for a control
   //
   TGeoVolume* volume1
-    = new TGeoVolume("volume1", solid1, fBasicMedium);
+    = new TGeoVolume("solid1", solid1, fBasicMedium);
   worldV->AddNode(volume1, 1, 
-                  new TGeoTranslation(-wSize/8., 0., -200.));
+                  new TGeoTranslation(-125., 0., -200.));
 
   TGeoVolume* volume2
-    = new TGeoVolume("volume2", solid2, fBasicMedium);
+    = new TGeoVolume("solid2", solid2, fBasicMedium);
   worldV->AddNode(volume2, 1, 
-                  new TGeoTranslation( wSize/8., 0., -200.));
+                  new TGeoTranslation( 125., 0., -200.));
 
   // Define displacement transformations
   //
@@ -824,27 +823,42 @@ void* TstGeometryViaRoot::TestBooleanSolids2()
  
   // Translate + Rotate solid2  
   //
+/*
   TGeoRotation* rot2 = new TGeoRotation();
   rot2->RotateX(30.);
   TGeoCombiTrans* tr2 = new TGeoCombiTrans(20., 0., 0., rot2);
   tr2->SetName("tr2");
   tr2->RegisterYourself();
+*/  
+  TGeoRotation* rot2 = new TGeoRotation();
+  rot2->RotateX(30.);
   
+  TGeoTranslation* trans = new TGeoTranslation(20., 0., 0.);
+  TGeoHMatrix mrot1(*rot1);
+  TGeoHMatrix mtrans(*trans);
+  TGeoHMatrix mtransT = mrot1 * mtrans * mrot1.Inverse();
+  const Double_t* transT = mtransT.GetTranslation();
+  cout << transT[0] << " "  << transT[1] << " "  << transT[2] << endl; 
+  TGeoCombiTrans* tr2 = new TGeoCombiTrans(transT[0], transT[1], transT[2], rot2);
+  tr2->SetName("tr2");
+  tr2->RegisterYourself();
+  //tr2->Print();
+
   // Intersection
   //
   TGeoShape* intersectionS
     = new TGeoCompositeShape("solid1Isolid2S", "boxS:tr1*tubsS:tr2"); 
   TGeoVolume* intersectionV
-    = new TGeoVolume("solid1Isolid2V", intersectionS, fBasicMedium);
+    = new TGeoVolume("solid1Isolid2", intersectionS, fBasicMedium);
   worldV->AddNode(intersectionV, 1, 
-                  new TGeoTranslation(- wSize/4., 0., 200.));
+                  new TGeoTranslation(-250., 0., 200.));
 
   // Subtraction
   //
   TGeoShape* subtractionS
     = new TGeoCompositeShape("solid1Ssolid2S", "boxS:tr1-tubsS:tr2"); 
   TGeoVolume* subtractionV
-    = new TGeoVolume("solid1Ssolid2V", subtractionS, fBasicMedium);
+    = new TGeoVolume("solid1Ssolid2", subtractionS, fBasicMedium);
   worldV->AddNode(subtractionV, 1, 
                   new TGeoTranslation(0., 0., 200.));
   
@@ -853,12 +867,10 @@ void* TstGeometryViaRoot::TestBooleanSolids2()
   TGeoShape* unionS
     = new TGeoCompositeShape("solid1Ssolid2S", "boxS:tr1+tubsS:tr2"); 
   TGeoVolume* unionV
-    = new TGeoVolume("solid1Usolid2V", unionS, fBasicMedium);
+    = new TGeoVolume("solid1Usolid2", unionS, fBasicMedium);
   worldV->AddNode(unionV, 1, 
-                  new TGeoTranslation(wSize/4., 0., 200.));
+                  new TGeoTranslation(250., 0., 200.));
   
-  //gGeoManager->Export("BooleanSolids2.gdml");
-
   return (void*) gGeoManager->GetTopNode();
 }
 
@@ -867,9 +879,7 @@ void* TstGeometryViaRoot::TestBooleanSolids3()
 {
 // Translation + reflection in solid displacement
 
-  Double_t wSize = TstParameters::WorldLength()/10.;
-
-  TGeoVolume* worldV = CreateWorld();
+  TGeoVolume* worldV = CreateWorld(400., 100., 400.);
   
   // Create solids
   TGeoShape* solid1 
@@ -881,14 +891,14 @@ void* TstGeometryViaRoot::TestBooleanSolids3()
   // Simple solids placed for a control
   //
   TGeoVolume* volume1
-    = new TGeoVolume("volume1", solid1, fBasicMedium);
+    = new TGeoVolume("solid1", solid1, fBasicMedium);
   worldV->AddNode(volume1, 1, 
-                  new TGeoTranslation(-wSize/8., 0., -200.));
+                  new TGeoTranslation(-125., 0., -200.));
 
   TGeoVolume* volume2
-    = new TGeoVolume("volume2", solid2, fBasicMedium);
+    = new TGeoVolume("solid2", solid2, fBasicMedium);
   worldV->AddNode(volume2, 1, 
-                  new TGeoTranslation( wSize/8., 0., -200.));
+                  new TGeoTranslation( 125., 0., -200.));
 
 
   // Define displacement transformations
@@ -921,16 +931,16 @@ void* TstGeometryViaRoot::TestBooleanSolids3()
   TGeoShape* intersectionS
     = new TGeoCompositeShape("solid1Isolid2S", "boxS:tr1*tubsS:tr2"); 
   TGeoVolume* intersectionV
-    = new TGeoVolume("solid1Isolid2V", intersectionS, fBasicMedium);
+    = new TGeoVolume("solid1Isolid2", intersectionS, fBasicMedium);
   worldV->AddNode(intersectionV, 1, 
-                  new TGeoTranslation(- wSize/4., 0., 200.));
+                  new TGeoTranslation(-250., 0., 200.));
   
   // Subtraction
   //
   TGeoShape* subtractionS
     = new TGeoCompositeShape("solid1Ssolid2S", "boxS:tr1-tubsS:tr2"); 
   TGeoVolume* subtractionV
-    = new TGeoVolume("solid1Ssolid2V", subtractionS, fBasicMedium);
+    = new TGeoVolume("solid1Ssolid2", subtractionS, fBasicMedium);
   worldV->AddNode(subtractionV, 1, 
                   new TGeoTranslation(0., 0., 200.));
   
@@ -939,12 +949,10 @@ void* TstGeometryViaRoot::TestBooleanSolids3()
   TGeoShape* unionS
     = new TGeoCompositeShape("solid1Ssolid2S", "boxS:tr1+tubsS:tr2"); 
   TGeoVolume* unionV
-    = new TGeoVolume("solid1Usolid2V", unionS, fBasicMedium);
+    = new TGeoVolume("solid1Usolid2", unionS, fBasicMedium);
   worldV->AddNode(unionV, 1, 
-                  new TGeoTranslation(wSize/4., 0., 200.));
+                  new TGeoTranslation(250., 0., 200.));
   
-  //gGeoManager->Export("BooleanSolids3.gdml");
-
   return (void*) gGeoManager->GetTopNode();
 }
 
@@ -952,14 +960,9 @@ void* TstGeometryViaRoot::TestBooleanSolids3()
 void* TstGeometryViaRoot::TestBooleanSolids4()
 {
 // Example for composite shape from Root User's guide
-// ---
 
-  if (!fBasicMedium)
-    fBasicMedium =  fGeoManager->GetMedium("Basic"); 
-
+  TGeoVolume* top = CreateWorld(100., 250., 250.);
   const Double_t sq2 = TMath::Sqrt(2.);
-  TGeoVolume* top = gGeoManager->MakeBox("TOP", fBasicMedium, 100., 250., 250.);
-  gGeoManager->SetTopVolume(top);  
   
   // Make shape components
   //
@@ -998,8 +1001,6 @@ void* TstGeometryViaRoot::TestBooleanSolids4()
 
   top->AddNode(comp, 1); 
 
-  //gGeoManager->Export("BooleanSolids4.gdml");
-
   return (void*) gGeoManager->GetTopNode();
 }
 
@@ -1010,10 +1011,7 @@ void* TstGeometryViaRoot::TestBooleanSolids5()
 // performed on the left constituent solids.
 // ---
 
-  if (!fBasicMedium)
-    fBasicMedium =  fGeoManager->GetMedium("Basic"); 
-
-  TGeoVolume* top = gGeoManager->MakeBox("TOP", fBasicMedium, 500., 500., 500.);
+  TGeoVolume* top = CreateWorld(500., 500., 500.);
   gGeoManager->SetTopVolume(top);  
 
   // Add a small box in the middle
@@ -1074,8 +1072,18 @@ void* TstGeometryViaRoot::TestBooleanSolids5()
 
   top->AddNode(comp, 1, new TGeoTranslation(0, 0, 150.)); 
 
-  //gGeoManager->Export("BooleanSolids5.gdml");
+  return (void*) gGeoManager->GetTopNode();
+}
+
+//_____________________________________________________________________________
+void* TstGeometryViaRoot::TestSpecial()
+{
+// Special test, geomeytry is loaded from geometry.root file.
+// ---
+
+  gGeoManager->Import("geometry.root");
 
   return (void*) gGeoManager->GetTopNode();
 }
+  
 

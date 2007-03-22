@@ -24,6 +24,7 @@ class TstGeometryViaVGM : public TstVGeometry
     virtual void  DefineMaterials();
     
     virtual void* TestSolids(bool fullPhi);
+    virtual void* TestNewSolid();
     virtual void* TestPlacements();
     virtual void* TestReflections(bool fullPhi);
     virtual void* TestAssemblies();
@@ -34,7 +35,8 @@ class TstGeometryViaVGM : public TstVGeometry
 
   private:
     // methods
-    VGM::IVolume* CreateWorld();
+    VGM::IVolume* CreateWorld(double x, double y, double z);
+    VGM::IVolume* CreateNewSolid();
     VGM::IVolume* CreateBox();
     VGM::IVolume* CreateCons(double sphi, double dphi);
     VGM::IVolume* CreateEllipticalTube();

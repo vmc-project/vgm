@@ -24,6 +24,7 @@ class TstGeometryViaGeant4 : public TstVGeometry
     virtual void  DefineMaterials();
 
     virtual void* TestSolids(G4bool fullPhi);
+    virtual void* TestNewSolid();
     virtual void* TestPlacements();
     virtual void* TestReflections(G4bool fullPhi);
     virtual void* TestAssemblies();
@@ -33,7 +34,8 @@ class TstGeometryViaGeant4 : public TstVGeometry
     virtual void* TestBooleanSolids3();
 
   private:
-    G4LogicalVolume* CreateWorld();
+    G4LogicalVolume* CreateWorld(G4double x, G4double y, G4double z);
+    G4LogicalVolume* CreateNewSolid();
     G4LogicalVolume* CreateBox();
     G4LogicalVolume* CreateCons(G4double sphi, G4double dphi);
     G4LogicalVolume* CreateEllipticalTube();

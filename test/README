@@ -12,6 +12,7 @@
  The test program includes several geometry definitions,
  each one concentrated on particular geometry features:
    Solids          -  builds all VGM supported solids 
+   NewSolid        -  builds selected solid individually
    Placements      -  test for placements via translation and rotation
    Reflections     -  test positions with reflection for all solids               
    AssembliesN     -  test volume assemblies
@@ -23,6 +24,9 @@
 		            translation and rotation
                       M=3 - Boolean solids with displacement including
 		            reflection
+   Special         -  loads foreign geometry from geometry.root file;
+                      can be run only with input = Root
+                               
  (See TstVGeometry class)			    
 			    
  For each test, the geometry definition is provided in three ways:
@@ -49,6 +53,8 @@
 //         openAngle     = if specified, solids like tubs, cons etc. are built
 //                         with open azimuthal angle
 //         noVis         = no visualisation
+//         run           = run with the generator defined in macro/den_selectedTest.mac
+//         rootNavig     = use navigation via G4Root
 
  Eg.
  vgm_test VGM Geant4 Root noXML Solids

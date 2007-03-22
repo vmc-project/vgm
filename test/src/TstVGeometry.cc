@@ -41,3 +41,12 @@ void* TstVGeometry::TestBooleanSolids5()
             << std::endl;
   exit(1);
 }  
+
+//_____________________________________________________________________________
+void* TstVGeometry::TestSpecial()
+{
+//
+  std::cerr << "TstVGeometry::TestSpecial is not implemented." 
+            << std::endl;
+  exit(1);
+}  
