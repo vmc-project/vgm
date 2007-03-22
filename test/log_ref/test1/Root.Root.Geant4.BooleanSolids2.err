@@ -1,4 +1,5 @@
 Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometry created
 Warning in <TGeoManager::Init>: Deleting previous geometry: VGM Root geometry/VGM Root geometry
 Info in <TGeoManager::TGeoManager>: Geometry Test, Test geometry via Root created
-Info in <TGeoManager::SetTopVolume>: Top volume is worldV. Master volume is worldV
+Info in <TGeoManager::SetTopVolume>: Top volume is world. Master volume is world
+Info in <TGeoManager::Export>: Exporting Test Test geometry via Root as root file. Optimizations streamed.

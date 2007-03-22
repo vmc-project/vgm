@@ -1,6 +1,6 @@
 
 *************************************************************
- Geant4 version Name: geant4-08-02    (15-December-2006)
+ Geant4 version Name: geant4-08-02-patch-01    (23-February-2007)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -41,9 +41,9 @@ VGM info:   Importing medium:
 VGM info:   OBJ: TGeoMedium	Uranium	
 VGM info:   Importing medium: 
 VGM info:   OBJ: TGeoMedium	Vacuum	
-VGM info:   Importing volume: TOP
-VGM info:   Importing shape: TGeoBBox
-VGM info:   ImportDaughters for TOP
+VGM info:   Importing volume: world
+VGM info:   Importing shape: worldS
+VGM info:   ImportDaughters for world
 VGM info:   Importing volume: Assembly
 VGM info:   Importing shape: TGeoShapeAssembly
 VGM info:   ImportDaughters for Assembly
@@ -51,7 +51,7 @@ VGM info:   Importing volume: CONS
 VGM info:   Importing shape: TGeoConeSeg
 VGM info:   ImportDaughters for CONS
 VGM info:   Import positions: 
-VGM info:   0th volume: TOP  
+VGM info:   0th volume: world  
 VGM info:      0th daughter  rtVol = AssemblyVGM info:      0th assembly daughter  rtVol = CONS vgmVol = CONS
 VGM info:      1th assembly daughter  rtVol = CONS vgmVol = CONS
 VGM info:      2th assembly daughter  rtVol = CONS vgmVol = CONS
@@ -59,10 +59,10 @@ VGM info:      3th assembly daughter  rtVol = CONS vgmVol = CONS
 VGM info:   2th volume: CONS  
 VGM info:   
 Root_GM_Factory factory solids store: 
-   0th solid: Box  "TGeoBBox"  hx = 10000mm  hy = 10000mm  hz = 10000mm
+   0th solid: Box  "worldS"  hx = 2000mm  hy = 2000mm  hz = 1000mm
    1th solid: Cons  "TGeoConeSeg"  rin1 = 100mm  rout1 = 400mm  rin2 = 200mm  rout2 = 600mm  hz = 500mm  sphi = 0deg  dphi = 360deg
 Root_GM_Factory factory volumes store: 
-   0th: Volume: "TOP" material "Basic" solid "Box"  4 daughters: "CONS"  "CONS"  "CONS"  "CONS"  
+   0th: Volume: "world" material "Basic" solid "Box"  4 daughters: "CONS"  "CONS"  "CONS"  "CONS"  
    1th: Volume: "CONS" material "Basic" solid "Cons"  0 daughters: 
 VGM info:   RootGM::Factory::Import finished.
 Import finished
@@ -110,12 +110,12 @@ VGM info:   Exporting medium:
 VGM info:   Medium: "Vacuum"  material Vacuum g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
 VGM info:   Exporting volume store: 
 VGM info:   Exporting solid: 
-VGM info:      Box  "TGeoBBox"  hx = 10000mm  hy = 10000mm  hz = 10000mm
-VGM info:      0th volume: TOP   material: Basic
+VGM info:      Box  "worldS"  hx = 2000mm  hy = 2000mm  hz = 1000mm
+VGM info:      0th volume: world   material: Basic
 VGM info:   Exporting solid: 
 VGM info:      Cons  "TGeoConeSeg"  rin1 = 100mm  rout1 = 400mm  rin2 = 200mm  rout2 = 600mm  hz = 500mm  sphi = 0deg  dphi = 360deg
 VGM info:      1th volume: CONS   material: Basic
-VGM info:   ExportPlacements for 0th volume TOP
+VGM info:   ExportPlacements for 0th volume world
 VGM info:      0th daughter vol = CONS  simple placement: CONS
 VGM info:      1th daughter vol = CONS  simple placement: CONS
 VGM info:   Importing LV: CONS_refl

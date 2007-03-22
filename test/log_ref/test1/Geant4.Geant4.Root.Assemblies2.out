@@ -1,6 +1,6 @@
 
 *************************************************************
- Geant4 version Name: geant4-08-02    (15-December-2006)
+ Geant4 version Name: geant4-08-02-patch-01    (23-February-2007)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -67,9 +67,9 @@ VGM info:    Material:  Uranium     density: 13.610 g/cm3   temperature: 273.15 
 VGM info:   Importing material: 
 VGM info:    Material:   Vacuum     density:  0.000 mg/cm3  temperature:   2.73 K  pressure:   0.00 atm  RadLength: 204727576.737 pc 
    --->  Element: Vacuum ( )   Z =  1.0   N =   1.0   A =   1.01 g/mole  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
-VGM info:   Importing LV: worldV
+VGM info:   Importing LV: world
 VGM info:   Importing solid: worldS
-VGM info:   ImportDaughters for worldV
+VGM info:   ImportDaughters for world
 VGM info:   Importing LV: CONS
 VGM info:   Importing solid: consS
 VGM info:   ImportDaughters for CONS
@@ -77,7 +77,7 @@ VGM info:   Importing LV: CONS_refl
 VGM info:   Importing solid: consS_refl
 VGM info:   ImportDaughters for CONS_refl
 VGM info:   Import positions: 
-VGM info:   0th volume: worldV  
+VGM info:   0th volume: world  
 VGM info:      0th daughter  lv=CONS vgmVol=CONS
 VGM info:      1th daughter  lv=CONS_refl vgmVol=CONS_refl
 VGM info:      2th daughter  lv=CONS vgmVol=CONS
@@ -86,11 +86,11 @@ VGM info:   1th volume: CONS
 VGM info:   2th volume: CONS_refl  
 VGM info:   
 Geant4_GM_Factory factory solids store: 
-   0th solid: Box  "worldS"  hx = 10000mm  hy = 10000mm  hz = 10000mm
+   0th solid: Box  "worldS"  hx = 2000mm  hy = 2000mm  hz = 1000mm
    1th solid: Cons  "consS"  rin1 = 100mm  rout1 = 400mm  rin2 = 200mm  rout2 = 600mm  hz = 500mm  sphi = 0deg  dphi = 360deg
    2th solid: Cons  "consS"  rin1 = 200mm  rout1 = 600mm  rin2 = 100mm  rout2 = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
 Geant4_GM_Factory factory volumes store: 
-   0th: Volume: "worldV" material "Basic" solid "Box"  4 daughters: "av_1_impr_1_CONS_pv_0"  "av_1_impr_1_CONS_pv_1"  "av_1_impr_1_CONS_pv_2"  "av_1_impr_1_CONS_pv_3"  
+   0th: Volume: "world" material "Basic" solid "Box"  4 daughters: "av_1_impr_1_CONS_pv_0"  "av_1_impr_1_CONS_pv_1"  "av_1_impr_1_CONS_pv_2"  "av_1_impr_1_CONS_pv_3"  
    1th: Volume: "CONS" material "Basic" solid "Cons"  0 daughters: 
    2th: Volume: "CONS_refl" material "Basic" solid "Cons"  0 daughters: 
 VGM info:   Geant4GM::Factory::Import finished.
@@ -176,15 +176,15 @@ VGM info:   Material: "Vacuum"  density 1e-25 g/cm3  radlen 6.31723e+26 cm  intl
    0th element: Element: "Vacuum"  " "  Z = 1  N = 1.01  A = 1.01 g/mole  Elm mass fraction: 100 %
 VGM info:   Exporting volume store: 
 VGM info:   Exporting solid: 
-VGM info:      Box  "worldS"  hx = 10000mm  hy = 10000mm  hz = 10000mm
-VGM info:      0th volume: worldV   material: Basic
+VGM info:      Box  "worldS"  hx = 2000mm  hy = 2000mm  hz = 1000mm
+VGM info:      0th volume: world   material: Basic
 VGM info:   Exporting solid: 
 VGM info:      Cons  "consS"  rin1 = 100mm  rout1 = 400mm  rin2 = 200mm  rout2 = 600mm  hz = 500mm  sphi = 0deg  dphi = 360deg
 VGM info:      1th volume: CONS   material: Basic
 VGM info:   Exporting solid: 
 VGM info:      Cons  "consS"  rin1 = 200mm  rout1 = 600mm  rin2 = 100mm  rout2 = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
 VGM info:      2th volume: CONS_refl   material: Basic
-VGM info:   ExportPlacements for 0th volume worldV
+VGM info:   ExportPlacements for 0th volume world
 VGM info:      0th daughter vol = av_1_impr_1_CONS_pv_0  simple placement: av_1_impr_1_CONS_pv_0
 VGM info:      1th daughter vol = av_1_impr_1_CONS_pv_1  simple placement: av_1_impr_1_CONS_pv_1
 VGM info:      2th daughter vol = av_1_impr_1_CONS_pv_2  simple placement: av_1_impr_1_CONS_pv_2

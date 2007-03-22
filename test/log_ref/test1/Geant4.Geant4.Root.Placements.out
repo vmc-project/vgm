@@ -1,6 +1,6 @@
 
 *************************************************************
- Geant4 version Name: geant4-08-02    (15-December-2006)
+ Geant4 version Name: geant4-08-02-patch-01    (23-February-2007)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -67,9 +67,9 @@ VGM info:    Material:  Uranium     density: 13.610 g/cm3   temperature: 273.15 
 VGM info:   Importing material: 
 VGM info:    Material:   Vacuum     density:  0.000 mg/cm3  temperature:   2.73 K  pressure:   0.00 atm  RadLength: 204727576.737 pc 
    --->  Element: Vacuum ( )   Z =  1.0   N =   1.0   A =   1.01 g/mole  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
-VGM info:   Importing LV: worldV
+VGM info:   Importing LV: world
 VGM info:   Importing solid: worldS
-VGM info:   ImportDaughters for worldV
+VGM info:   ImportDaughters for world
 VGM info:   Importing LV: volA
 VGM info:   Importing solid: boxA
 VGM info:   ImportDaughters for volA
@@ -80,7 +80,7 @@ VGM info:   Importing LV: volC
 VGM info:   Importing solid: boxC
 VGM info:   ImportDaughters for volC
 VGM info:   Import positions: 
-VGM info:   0th volume: worldV  
+VGM info:   0th volume: world  
 VGM info:      0th daughter  lv=volA vgmVol=volA
 VGM info:      1th daughter  lv=volA vgmVol=volA
 VGM info:      2th daughter  lv=volA vgmVol=volA
@@ -113,12 +113,12 @@ VGM info:      1th daughter  lv=volC vgmVol=volC
 VGM info:   3th volume: volC  
 VGM info:   
 Geant4_GM_Factory factory solids store: 
-   0th solid: Box  "worldS"  hx = 10000mm  hy = 10000mm  hz = 10000mm
+   0th solid: Box  "worldS"  hx = 6000mm  hy = 1000mm  hz = 6000mm
    1th solid: Box  "boxA"  hx = 200mm  hy = 600mm  hz = 500mm
    2th solid: Box  "boxB"  hx = 200mm  hy = 100mm  hz = 500mm
    3th solid: Box  "boxC"  hx = 200mm  hy = 2mm  hz = 500mm
 Geant4_GM_Factory factory volumes store: 
-   0th: Volume: "worldV" material "Vacuum" solid "Box"  24 daughters: "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  
+   0th: Volume: "world" material "Vacuum" solid "Box"  24 daughters: "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  
    1th: Volume: "volA" material "Air" solid "Box"  1 daughters: "layerB"  
    2th: Volume: "volB" material "Uranium" solid "Box"  2 daughters: "layerC"  "layerC"  
    3th: Volume: "volC" material "Scintillator" solid "Box"  0 daughters: 
@@ -205,8 +205,8 @@ VGM info:   Material: "Vacuum"  density 1e-25 g/cm3  radlen 6.31723e+26 cm  intl
    0th element: Element: "Vacuum"  " "  Z = 1  N = 1.01  A = 1.01 g/mole  Elm mass fraction: 100 %
 VGM info:   Exporting volume store: 
 VGM info:   Exporting solid: 
-VGM info:      Box  "worldS"  hx = 10000mm  hy = 10000mm  hz = 10000mm
-VGM info:      0th volume: worldV   material: Vacuum
+VGM info:      Box  "worldS"  hx = 6000mm  hy = 1000mm  hz = 6000mm
+VGM info:      0th volume: world   material: Vacuum
 VGM info:   Exporting solid: 
 VGM info:      Box  "boxA"  hx = 200mm  hy = 600mm  hz = 500mm
 VGM info:      1th volume: volA   material: Air
@@ -216,7 +216,7 @@ VGM info:      2th volume: volB   material: Uranium
 VGM info:   Exporting solid: 
 VGM info:      Box  "boxC"  hx = 200mm  hy = 2mm  hz = 500mm
 VGM info:      3th volume: volC   material: Scintillator
-VGM info:   ExportPlacements for 0th volume worldV
+VGM info:   ExportPlacements for 0th volume world
 VGM info:      0th daughter vol = layerA  simple placement: layerA
 VGM info:      1th daughter vol = layerA  simple placement: layerA
 VGM info:      2th daughter vol = layerA  simple placement: layerA

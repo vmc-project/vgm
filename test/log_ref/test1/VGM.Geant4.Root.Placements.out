@@ -1,6 +1,6 @@
 
 *************************************************************
- Geant4 version Name: geant4-08-02    (15-December-2006)
+ Geant4 version Name: geant4-08-02-patch-01    (23-February-2007)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -84,8 +84,8 @@ VGM info:   Exporting medium:
 VGM info:   Medium: "Vacuum"  material Vacuum g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
 VGM info:   Exporting volume store: 
 VGM info:   Exporting solid: 
-VGM info:      Box  "worldS"  hx = 10000mm  hy = 10000mm  hz = 10000mm
-VGM info:      0th volume: worldV   material: Vacuum
+VGM info:      Box  "worldS"  hx = 6000mm  hy = 1000mm  hz = 6000mm
+VGM info:      0th volume: world   material: Basic
 VGM info:   Exporting solid: 
 VGM info:      Box  "boxA"  hx = 200mm  hy = 600mm  hz = 500mm
 VGM info:      1th volume: volA   material: Air
@@ -95,7 +95,7 @@ VGM info:      2th volume: volB   material: Uranium
 VGM info:   Exporting solid: 
 VGM info:      Box  "boxC"  hx = 200mm  hy = 2mm  hz = 500mm
 VGM info:      3th volume: volC   material: Scintillator
-VGM info:   ExportPlacements for 0th volume worldV
+VGM info:   ExportPlacements for 0th volume world
 VGM info:      0th daughter vol = layerA  simple placement: layerA
 VGM info:      1th daughter vol = layerA  simple placement: layerA
 VGM info:      2th daughter vol = layerA  simple placement: layerA

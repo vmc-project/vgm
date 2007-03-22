@@ -1,6 +1,6 @@
 
 *************************************************************
- Geant4 version Name: geant4-08-02    (15-December-2006)
+ Geant4 version Name: geant4-08-02-patch-01    (23-February-2007)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -67,43 +67,43 @@ VGM info:    Material:  Uranium     density: 13.610 g/cm3   temperature: 273.15 
 VGM info:   Importing material: 
 VGM info:    Material:   Vacuum     density:  0.000 mg/cm3  temperature:   2.73 K  pressure:   0.00 atm  RadLength: 204727576.737 pc 
    --->  Element: Vacuum ( )   Z =  1.0   N =   1.0   A =   1.01 g/mole  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
-VGM info:   Importing LV: worldV
+VGM info:   Importing LV: world
 VGM info:   Importing solid: worldS
-VGM info:   ImportDaughters for worldV
-VGM info:   Importing LV: boxV
+VGM info:   ImportDaughters for world
+VGM info:   Importing LV: box
 VGM info:   Importing solid: boxS
-VGM info:   ImportDaughters for boxV
-VGM info:   Importing LV: consV
+VGM info:   ImportDaughters for box
+VGM info:   Importing LV: cons
 VGM info:   Importing solid: consS
-VGM info:   ImportDaughters for consV
-VGM info:   Importing LV: eltuV
+VGM info:   ImportDaughters for cons
+VGM info:   Importing LV: eltu
 VGM info:   Importing solid: eltuS
-VGM info:   ImportDaughters for eltuV
-VGM info:   Importing LV: paraV
+VGM info:   ImportDaughters for eltu
+VGM info:   Importing LV: para
 VGM info:   Importing solid: paraS
-VGM info:   ImportDaughters for paraV
-VGM info:   Importing LV: pconeV
+VGM info:   ImportDaughters for para
+VGM info:   Importing LV: pcone
 VGM info:   Importing solid: pconeS
-VGM info:   ImportDaughters for pconeV
-VGM info:   Importing LV: phedraV
+VGM info:   ImportDaughters for pcone
+VGM info:   Importing LV: phedra
 VGM info:   Importing solid: phedraS
-VGM info:   ImportDaughters for phedraV
-VGM info:   Importing LV: sphereV1
+VGM info:   ImportDaughters for phedra
+VGM info:   Importing LV: sphere
 VGM info:   Importing solid: sphereS
-VGM info:   ImportDaughters for sphereV1
-VGM info:   Importing LV: torusV
+VGM info:   ImportDaughters for sphere
+VGM info:   Importing LV: torus
 VGM info:   Importing solid: torusS
-VGM info:   ImportDaughters for torusV
-VGM info:   Importing LV: trapV
+VGM info:   ImportDaughters for torus
+VGM info:   Importing LV: trap
 VGM info:   Importing solid: trapS
-VGM info:   ImportDaughters for trapV
-VGM info:   Importing LV: trdV
+VGM info:   ImportDaughters for trap
+VGM info:   Importing LV: trd
 VGM info:   Importing solid: trdS
-VGM info:   ImportDaughters for trdV
-VGM info:   Importing LV: tubsV
+VGM info:   ImportDaughters for trd
+VGM info:   Importing LV: tubs
 VGM info:   Importing solid: tubsS
-VGM info:   ImportDaughters for tubsV
-VGM info:   Importing LV: ctubsV
+VGM info:   ImportDaughters for tubs
+VGM info:   Importing LV: ctubs
 VGM info:   Importing solid: ctubs2
 VGM info:   Importing solid: ctubs1
 VGM info:   Importing solid: tubs
@@ -125,36 +125,36 @@ VGM info:   Boolean  "ctubs2"  Subtraction:
   ConstituentB = Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
   Displacement translation (object):  ( 0,  0,  968.753) mm 
   Displacement rotation (object):  (-5.90614,  -0,  0) deg    no reflectionZ
-VGM info:   ImportDaughters for ctubsV
+VGM info:   ImportDaughters for ctubs
 VGM info:   Import positions: 
-VGM info:   0th volume: worldV  
-VGM info:      0th daughter  lv=boxV vgmVol=boxV
-VGM info:      1th daughter  lv=consV vgmVol=consV
-VGM info:      2th daughter  lv=eltuV vgmVol=eltuV
-VGM info:      3th daughter  lv=paraV vgmVol=paraV
-VGM info:      4th daughter  lv=pconeV vgmVol=pconeV
-VGM info:      5th daughter  lv=phedraV vgmVol=phedraV
-VGM info:      6th daughter  lv=sphereV1 vgmVol=sphereV1
-VGM info:      7th daughter  lv=torusV vgmVol=torusV
-VGM info:      8th daughter  lv=trapV vgmVol=trapV
-VGM info:      9th daughter  lv=trdV vgmVol=trdV
-VGM info:      10th daughter  lv=tubsV vgmVol=tubsV
-VGM info:      11th daughter  lv=ctubsV vgmVol=ctubsV
-VGM info:   1th volume: boxV  
-VGM info:   2th volume: consV  
-VGM info:   3th volume: eltuV  
-VGM info:   4th volume: paraV  
-VGM info:   5th volume: pconeV  
-VGM info:   6th volume: phedraV  
-VGM info:   7th volume: sphereV1  
-VGM info:   8th volume: torusV  
-VGM info:   9th volume: trapV  
-VGM info:   10th volume: trdV  
-VGM info:   11th volume: tubsV  
-VGM info:   12th volume: ctubsV  
+VGM info:   0th volume: world  
+VGM info:      0th daughter  lv=box vgmVol=box
+VGM info:      1th daughter  lv=cons vgmVol=cons
+VGM info:      2th daughter  lv=eltu vgmVol=eltu
+VGM info:      3th daughter  lv=para vgmVol=para
+VGM info:      4th daughter  lv=pcone vgmVol=pcone
+VGM info:      5th daughter  lv=phedra vgmVol=phedra
+VGM info:      6th daughter  lv=sphere vgmVol=sphere
+VGM info:      7th daughter  lv=torus vgmVol=torus
+VGM info:      8th daughter  lv=trap vgmVol=trap
+VGM info:      9th daughter  lv=trd vgmVol=trd
+VGM info:      10th daughter  lv=tubs vgmVol=tubs
+VGM info:      11th daughter  lv=ctubs vgmVol=ctubs
+VGM info:   1th volume: box  
+VGM info:   2th volume: cons  
+VGM info:   3th volume: eltu  
+VGM info:   4th volume: para  
+VGM info:   5th volume: pcone  
+VGM info:   6th volume: phedra  
+VGM info:   7th volume: sphere  
+VGM info:   8th volume: torus  
+VGM info:   9th volume: trap  
+VGM info:   10th volume: trd  
+VGM info:   11th volume: tubs  
+VGM info:   12th volume: ctubs  
 VGM info:   
 Geant4_GM_Factory factory solids store: 
-   0th solid: Box  "worldS"  hx = 10000mm  hy = 10000mm  hz = 10000mm
+   0th solid: Box  "worldS"  hx = 5000mm  hy = 3000mm  hz = 2000mm
    1th solid: Box  "boxS"  hx = 200mm  hy = 600mm  hz = 500mm
    2th solid: Cons  "consS"  rin1 = 100mm  rout1 = 400mm  rin2 = 200mm  rout2 = 600mm  hz = 500mm  sphi = 0deg  dphi = 360deg
    3th solid: Eltu  "eltuS"  dx = 200mm  dy = 300mm  hz = 500mm
@@ -190,19 +190,19 @@ Geant4_GM_Factory factory solids store:
   Displacement translation (object):  ( 0,  0,  968.753) mm 
   Displacement rotation (object):  (-5.90614,  -0,  0) deg    no reflectionZ
 Geant4_GM_Factory factory volumes store: 
-   0th: Volume: "worldV" material "Basic" solid "Box"  12 daughters: "box"  "cons"  "cons"  "para"  "pcone"  "phedra"  "sphere"  "torus"  "trap"  "trd"  "tubs"  "ctubs"  
-   1th: Volume: "boxV" material "Basic" solid "Box"  0 daughters: 
-   2th: Volume: "consV" material "Basic" solid "Cons"  0 daughters: 
-   3th: Volume: "eltuV" material "Basic" solid "Eltu"  0 daughters: 
-   4th: Volume: "paraV" material "Basic" solid "Para"  0 daughters: 
-   5th: Volume: "pconeV" material "Basic" solid "Polycone"  0 daughters: 
-   6th: Volume: "phedraV" material "Basic" solid "Polygone"  0 daughters: 
-   7th: Volume: "sphereV1" material "Basic" solid "Sphere"  0 daughters: 
-   8th: Volume: "torusV" material "Basic" solid "Torus"  0 daughters: 
-   9th: Volume: "trapV" material "Basic" solid "Trap"  0 daughters: 
-   10th: Volume: "trdV" material "Basic" solid "Trd"  0 daughters: 
-   11th: Volume: "tubsV" material "Basic" solid "Tubs"  0 daughters: 
-   12th: Volume: "ctubsV" material "Basic" solid "Boolean"  0 daughters: 
+   0th: Volume: "world" material "Basic" solid "Box"  12 daughters: "box"  "cons"  "eltu"  "para"  "pcone"  "phedra"  "sphere"  "torus"  "trap"  "trd"  "tubs"  "ctubs"  
+   1th: Volume: "box" material "Basic" solid "Box"  0 daughters: 
+   2th: Volume: "cons" material "Basic" solid "Cons"  0 daughters: 
+   3th: Volume: "eltu" material "Basic" solid "Eltu"  0 daughters: 
+   4th: Volume: "para" material "Basic" solid "Para"  0 daughters: 
+   5th: Volume: "pcone" material "Basic" solid "Polycone"  0 daughters: 
+   6th: Volume: "phedra" material "Basic" solid "Polygone"  0 daughters: 
+   7th: Volume: "sphere" material "Basic" solid "Sphere"  0 daughters: 
+   8th: Volume: "torus" material "Basic" solid "Torus"  0 daughters: 
+   9th: Volume: "trap" material "Basic" solid "Trap"  0 daughters: 
+   10th: Volume: "trd" material "Basic" solid "Trd"  0 daughters: 
+   11th: Volume: "tubs" material "Basic" solid "Tubs"  0 daughters: 
+   12th: Volume: "ctubs" material "Basic" solid "Boolean"  0 daughters: 
 VGM info:   Geant4GM::Factory::Import finished.
 Import finished
 Go to export
@@ -286,47 +286,47 @@ VGM info:   Material: "Vacuum"  density 1e-25 g/cm3  radlen 6.31723e+26 cm  intl
    0th element: Element: "Vacuum"  " "  Z = 1  N = 1.01  A = 1.01 g/mole  Elm mass fraction: 100 %
 VGM info:   Exporting volume store: 
 VGM info:   Exporting solid: 
-VGM info:      Box  "worldS"  hx = 10000mm  hy = 10000mm  hz = 10000mm
-VGM info:      0th volume: worldV   material: Basic
+VGM info:      Box  "worldS"  hx = 5000mm  hy = 3000mm  hz = 2000mm
+VGM info:      0th volume: world   material: Basic
 VGM info:   Exporting solid: 
 VGM info:      Box  "boxS"  hx = 200mm  hy = 600mm  hz = 500mm
-VGM info:      1th volume: boxV   material: Basic
+VGM info:      1th volume: box   material: Basic
 VGM info:   Exporting solid: 
 VGM info:      Cons  "consS"  rin1 = 100mm  rout1 = 400mm  rin2 = 200mm  rout2 = 600mm  hz = 500mm  sphi = 0deg  dphi = 360deg
-VGM info:      2th volume: consV   material: Basic
+VGM info:      2th volume: cons   material: Basic
 VGM info:   Exporting solid: 
 VGM info:      Eltu  "eltuS"  dx = 200mm  dy = 300mm  hz = 500mm
-VGM info:      3th volume: eltuV   material: Basic
+VGM info:      3th volume: eltu   material: Basic
 VGM info:   Exporting solid: 
 VGM info:      Para  "paraS"  hx = 400mm  hy = 600mm  hz = 500mm  alpha = 30deg  theta = 30deg  phi = 30deg
-VGM info:      4th volume: paraV   material: Basic
+VGM info:      4th volume: para   material: Basic
 VGM info:   Exporting solid: 
 VGM info:      Polycone  "pconeS"  sphi = 0deg  dphi = 360deg  nz = 3
    0th plane:  z = -500mm rin = 100mm rout = 500mm
    1th plane:  z = 100mm rin = 200mm rout = 300mm
    2th plane:  z = 400mm rin = 300mm rout = 600mm
-VGM info:      5th volume: pconeV   material: Basic
+VGM info:      5th volume: pcone   material: Basic
 VGM info:   Exporting solid: 
 VGM info:      Polygone  "phedraS"  sphi = 0deg  dphi = 360deg  nsides = 4  nz = 3
    0th plane:  z = -500mm rin = 100mm rout = 400mm
    1th plane:  z = 100mm rin = 200mm rout = 200mm
    2th plane:  z = 400mm rin = 300mm rout = 500mm
-VGM info:      6th volume: phedraV   material: Basic
+VGM info:      6th volume: phedra   material: Basic
 VGM info:   Exporting solid: 
 VGM info:      Sphere  "sphereS"  rin = 200mm  rout = 600mm  sphi = 0deg  dphi = 360deg  stheta = 0deg  dtheta = 180deg
-VGM info:      7th volume: sphereV1   material: Basic
+VGM info:      7th volume: sphere   material: Basic
 VGM info:   Exporting solid: 
 VGM info:      Torus  "torusS"  rin = 200mm  rout = 300mm  rtor = 400mm  sphi = 0deg  dphi = 360deg
-VGM info:      8th volume: torusV   material: Basic
+VGM info:      8th volume: torus   material: Basic
 VGM info:   Exporting solid: 
 VGM info:      Trap  "trapS"  hz = 300mm  theta = 25deg  phi = 35deg  hy1 = 200mm  hx1 = 100mm  hx2 = 150mm  alpha1 = 0deg  hy2 = 200mm  hx3 = 100mm  hx4 = 150mm  alpha2 = 0deg
-VGM info:      9th volume: trapV   material: Basic
+VGM info:      9th volume: trap   material: Basic
 VGM info:   Exporting solid: 
 VGM info:      Trd  "trdS"  hx1 = 200mm  hx2 = 300mm  hy1 = 400mm  hy2 = 500mm  hz = 500mm
-VGM info:      10th volume: trdV   material: Basic
+VGM info:      10th volume: trd   material: Basic
 VGM info:   Exporting solid: 
 VGM info:      Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
-VGM info:      11th volume: tubsV   material: Basic
+VGM info:      11th volume: tubs   material: Basic
 VGM info:   Exporting solid: 
 VGM info:      Boolean  "ctubs2"  Subtraction: 
   ConstituentA = Boolean  "ctubs1"  Subtraction: 
@@ -349,11 +349,11 @@ VGM info:   Exporting solid:
 VGM info:      Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
 VGM info:   Exporting solid: 
 VGM info:      Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
-VGM info:      12th volume: ctubsV   material: Basic
-VGM info:   ExportPlacements for 0th volume worldV
+VGM info:      12th volume: ctubs   material: Basic
+VGM info:   ExportPlacements for 0th volume world
 VGM info:      0th daughter vol = box  simple placement: box
 VGM info:      1th daughter vol = cons  simple placement: cons
-VGM info:      2th daughter vol = cons  simple placement: cons
+VGM info:      2th daughter vol = eltu  simple placement: eltu
 VGM info:      3th daughter vol = para  simple placement: para
 VGM info:      4th daughter vol = pcone  simple placement: pcone
 VGM info:      5th daughter vol = phedra  simple placement: phedra
@@ -363,16 +363,16 @@ VGM info:      8th daughter vol = trap  simple placement: trap
 VGM info:      9th daughter vol = trd  simple placement: trd
 VGM info:      10th daughter vol = tubs  simple placement: tubs
 VGM info:      11th daughter vol = ctubs  simple placement: ctubs
-VGM info:   ExportPlacements for 1th volume boxV
-VGM info:   ExportPlacements for 2th volume consV
-VGM info:   ExportPlacements for 3th volume eltuV
-VGM info:   ExportPlacements for 4th volume paraV
-VGM info:   ExportPlacements for 5th volume pconeV
-VGM info:   ExportPlacements for 6th volume phedraV
-VGM info:   ExportPlacements for 7th volume sphereV1
-VGM info:   ExportPlacements for 8th volume torusV
-VGM info:   ExportPlacements for 9th volume trapV
-VGM info:   ExportPlacements for 10th volume trdV
-VGM info:   ExportPlacements for 11th volume tubsV
-VGM info:   ExportPlacements for 12th volume ctubsV
+VGM info:   ExportPlacements for 1th volume box
+VGM info:   ExportPlacements for 2th volume cons
+VGM info:   ExportPlacements for 3th volume eltu
+VGM info:   ExportPlacements for 4th volume para
+VGM info:   ExportPlacements for 5th volume pcone
+VGM info:   ExportPlacements for 6th volume phedra
+VGM info:   ExportPlacements for 7th volume sphere
+VGM info:   ExportPlacements for 8th volume torus
+VGM info:   ExportPlacements for 9th volume trap
+VGM info:   ExportPlacements for 10th volume trd
+VGM info:   ExportPlacements for 11th volume tubs
+VGM info:   ExportPlacements for 12th volume ctubs
 Export finished
