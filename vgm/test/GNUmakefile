@@ -15,7 +15,7 @@ endif
 all: lib bin
 
 CPPFLAGS += -I$(ROOTSYS)/include
-EXTRALIBS = $(shell root-config --glibs) -lGeomPainter -lGeom
+EXTRALIBS = $(shell root-config --glibs) -lGeomPainter -lGeom -lG4root
 
 CPPFLAGS  += -I$(VGM_INSTALL)/packages/VGM/include
 CPPFLAGS  += -I$(VGM_INSTALL)/packages/ClhepVGM/include
