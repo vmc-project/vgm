@@ -1,34 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<AGDD DTD_version = "v6">
+<AGDD DTD_version = "v7"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
 
-<!-- materials are not yet generated --> 
+<xi:include href="StandardColors.agdd"/>
 
-<section DTD_version = "v6"
+<materials  version = "Id: AGDDWriter.cxx,v 1.12 2007/01/11 12:20:31 ivana Exp "
+            date    = "2007-03-23"
+            author  = "VGM AGGD Writer"
+            DTD_version="v7"  >
+
+
+   <element  symbol="Galactic_e">
+      <atom zeff="1.0000"  aweight="1.0100" />
+   </element>
+   <element  symbol="liquidArgon_e">
+      <atom zeff="18.0000"  aweight="39.9500" />
+   </element>
+   <element  symbol="Lead_e">
+      <atom zeff="82.0000"  aweight="207.1900" />
+   </element>
+
+   <material  name="Galactic_mat"  density="  0.0000">
+      <addelement name="Galactic_e"  natoms=" 1.0000"/>
+   </material>
+   <material  name="Lead_mat"  density=" 11.3500">
+      <addelement name="Lead_e"  natoms=" 1.0000"/>
+   </material>
+   <material  name="liquidArgon_mat"  density="  1.3900">
+      <addelement name="liquidArgon_e"  natoms=" 1.0000"/>
+   </material>
+
+</materials>
+
+<media  version = "Id: AGDDWriter.cxx,v 1.12 2007/01/11 12:20:31 ivana Exp "
+        date    = "2007-03-23"
+        author  = "VGM AGGD Writer"
+        DTD_version="v7"  >
+
+   <medium  name="Galactic"  
+      material="Galactic_mat"  
+      color="random"
+      sensitive="true"
+      parameters=""/>
+   <medium  name="Lead"  
+      material="Lead_mat"  
+      color="random"
+      sensitive="true"
+      parameters=""/>
+   <medium  name="liquidArgon"  
+      material="liquidArgon_mat"  
+      color="random"
+      sensitive="true"
+      parameters=""/>
+
+</media>
+
+<section DTD_version = "v7"
          name        = "World"
-         version     = "Id: AGDDWriter.cxx,v 1.11 2006/07/05 11:00:27 ivana Exp "
-         date        = "Undefined"
+         version     = "Id: AGDDWriter.cxx,v 1.12 2007/01/11 12:20:31 ivana Exp "
+         date        = "2007-03-23"
          author      = "VGM AGGD Writer"
          top_volume  = "World_comp"  >
 
    <box    name="World"
-      material="Galactic"
+      medium="Galactic"
       X_Y_Z="18.0000; 12.0000; 12.0000" />
 
    <box    name="Calorimeter"
-      material="Galactic"
+      medium="Galactic"
       X_Y_Z="15.0000; 10.0000; 10.0000" />
 
    <box    name="Layer"
-      material="Galactic"
+      medium="Galactic"
       X_Y_Z=" 1.5000; 10.0000; 10.0000" />
 
    <box    name="Absorber"
-      material="Lead"
+      medium="Lead"
       X_Y_Z=" 1.0000; 10.0000; 10.0000" />
 
    <box    name="Gap"
-      material="liquidArgon"
+      medium="liquidArgon"
       X_Y_Z=" 0.5000; 10.0000; 10.0000" />
 
 
