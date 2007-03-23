@@ -1,49 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gdml xmlns:gdml="http://cern.ch/2001/Schemas/GDML"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="gdml_1.0.xsd">
+      xsi:noNamespaceSchemaLocation="gdml.xsd">
 
    <define>
-      <position  name=   "pos_0"  x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
-      <position  name=   "pos_1"  x="  -150.0000"  y="  -150.0000"  z="     0.0000"  unit="cm" />
-      <position  name=   "pos_2"  x="     0.0000"  y="     0.0000"  z="  -100.0000"  unit="cm" />
-      <position  name=   "pos_3"  x="    85.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
-      <position  name=   "pos_4"  x="    20.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
-      <position  name=   "pos_5"  x="    10.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
-      <position  name=   "pos_6"  x="    10.0000"  y="    20.0000"  z="     0.0000"  unit="cm" />
-      <position  name=   "pos_7"  x="     5.0000"  y="    10.0000"  z="     0.0000"  unit="cm" />
-      <position  name=   "pos_8"  x="    35.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
-      <position  name=   "pos_9"  x="    -5.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
-      <position  name=  "pos_10"  x="     7.5000"  y="     7.5000"  z="     0.0000"  unit="cm" />
-      <position  name=  "pos_11"  x="     7.5000"  y="    -7.5000"  z="     0.0000"  unit="cm" />
-      <position  name=  "pos_12"  x="   -15.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
-      <position  name=  "pos_13"  x="   -65.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
-      <position  name=  "pos_14"  x="     7.5000"  y="    -5.0000"  z="     0.0000"  unit="cm" />
-      <position  name=  "pos_15"  x="     7.5000"  y="    20.0000"  z="     0.0000"  unit="cm" />
-      <position  name=  "pos_16"  x="     0.0000"  y="     0.0000"  z="   100.0000"  unit="cm" />
-      <position  name=  "pos_17"  x="   100.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
-      <position  name=  "pos_18"  x="  -100.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
-      <position  name=  "pos_19"  x="     0.0000"  y="   100.0000"  z="     0.0000"  unit="cm" />
-      <position  name=  "pos_20"  x="     0.0000"  y="  -100.0000"  z="     0.0000"  unit="cm" />
-      <position  name=  "pos_21"  x="   150.0000"  y="  -150.0000"  z="     0.0000"  unit="cm" />
-      <position  name=  "pos_22"  x="   150.0000"  y="   150.0000"  z="     0.0000"  unit="cm" />
-      <position  name=  "pos_23"  x="  -150.0000"  y="   150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_1"     x="  -150.0000"  y="  -150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_2"     x="     0.0000"  y="     0.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_3"     x="    85.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_4"     x="    20.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_5"     x="    10.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_6"     x="    10.0000"  y="    20.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_7"     x="     5.0000"  y="    10.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_8"     x="    35.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_9"     x="    -5.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_10"    x="     7.5000"  y="     7.5000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_11"    x="     7.5000"  y="    -7.5000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_12"    x="   -15.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_13"    x="   -65.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_14"    x="     7.5000"  y="    -5.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_15"    x="     7.5000"  y="    20.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_16"    x="     0.0000"  y="     0.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_17"    x="   100.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_18"    x="  -100.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_19"    x="     0.0000"  y="   100.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_20"    x="     0.0000"  y="  -100.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_21"    x="   150.0000"  y="  -150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_22"    x="   150.0000"  y="   150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_23"    x="  -150.0000"  y="   150.0000"  z="     0.0000"  unit="cm" />
 
-      <rotation  name=   "rot_0"  x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
-      <rotation  name=   "rot_1"  x="   180.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
-      <rotation  name=   "rot_2"  x="   180.0000"  y="     0.0000"  z="   180.0000"  unit="degree" />
-      <rotation  name=   "rot_3"  x="    90.0000"  y="     0.0000"  z="   -90.0000"  unit="degree" />
-      <rotation  name=   "rot_4"  x="    90.0000"  y="     0.0000"  z="    90.0000"  unit="degree" />
-      <rotation  name=   "rot_5"  x="    90.0000"  y="   -90.0000"  z="     0.0000"  unit="degree" />
-      <rotation  name=   "rot_6"  x="   -90.0000"  y="    90.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name="rot_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name="rot_1"     x="   180.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name="rot_2"     x="   180.0000"  y="     0.0000"  z="   180.0000"  unit="degree" />
+      <rotation  name="rot_3"     x="   -90.0000"  y="    90.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name="rot_4"     x="   -90.0000"  y="   -90.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name="rot_5"     x="   -90.0000"  y="     0.0000"  z="   -90.0000"  unit="degree" />
+      <rotation  name="rot_6"     x="    90.0000"  y="     0.0000"  z="   -90.0000"  unit="degree" />
    </define>
 
    <materials>
-      <element  name=   "VACUUM_e"  Z="  0.0000"  N="  1" >
+
+      <element  name="VACUUM_e"  Z="  0.0000"  N="  1" >
          <atom type="A" unit="g/mol" value="  0.0000" />
       </element>
       <element  name="ALUMINIUM_e"  Z=" 13.0000"  N=" 27" >
-         <atom type="A" unit="g/mol" value=" 26.9815" />
+         <atom type="A" unit="g/mol" value=" 26.9800" />
       </element>
 
       <material  name="Al"  >
@@ -60,57 +61,57 @@
    <solids>
       <box  lunit="cm" aunit="degree"
          name="TOP_s"
-         x="  270.0000"  y="  270.0000"  z="  120.0000" />
+         x="  540.0000"  y="  540.0000"  z="  240.0000" />
 
       <box  lunit="cm" aunit="degree"
          name="REPLICA_s"
-         x="  120.0000"  y="  120.0000"  z="  120.0000" />
+         x="  240.0000"  y="  240.0000"  z="  240.0000" />
 
       <box  lunit="cm" aunit="degree"
          name="ROOT_s"
-         x="  110.0000"  y="   50.0000"  z="    5.0000" />
+         x="  220.0000"  y="  100.0000"  z="   10.0000" />
 
       <box  lunit="cm" aunit="degree"
          name="R_s"
-         x="   25.0000"  y="   25.0000"  z="    5.0000" />
+         x="   50.0000"  y="   50.0000"  z="   10.0000" />
 
       <box  lunit="cm" aunit="degree"
          name="bar1_s"
-         x="    5.0000"  y="   25.0000"  z="    5.0000" />
+         x="   10.0000"  y="   50.0000"  z="   10.0000" />
 
       <box  lunit="cm" aunit="degree"
          name="bar2_s"
-         x="    5.0000"  y="    5.0000"  z="    5.0000" />
+         x="   10.0000"  y="   10.0000"  z="   10.0000" />
 
       <tube  lunit="cm" aunit="degree"
          name="tub1_s"
-         rmin="    5.0000"  rmax="   15.0000"  z="    5.0000"
+         rmin="    5.0000"  rmax="   15.0000"  z="   10.0000"
          startphi="   90.0000"  deltaphi="  180.0000" />
 
       <box  lunit="cm" aunit="degree"
          name="O_s"
-         x="   25.0000"  y="   25.0000"  z="    5.0000" />
+         x="   50.0000"  y="   50.0000"  z="   10.0000" />
 
       <box  lunit="cm" aunit="degree"
          name="bar4_s"
-         x="    5.0000"  y="    7.5000"  z="    5.0000" />
+         x="   10.0000"  y="   15.0000"  z="   10.0000" />
 
       <tube  lunit="cm" aunit="degree"
          name="tub2_s"
-         rmin="    7.5000"  rmax="   17.5000"  z="    5.0000"
+         rmin="    7.5000"  rmax="   17.5000"  z="   10.0000"
          startphi="    0.0000"  deltaphi="  180.0000" />
 
       <box  lunit="cm" aunit="degree"
          name="T_s"
-         x="   25.0000"  y="   25.0000"  z="    5.0000" />
+         x="   50.0000"  y="   50.0000"  z="   10.0000" />
 
       <box  lunit="cm" aunit="degree"
          name="bar5_s"
-         x="    5.0000"  y="   20.0000"  z="    5.0000" />
+         x="   10.0000"  y="   40.0000"  z="   10.0000" />
 
       <box  lunit="cm" aunit="degree"
          name="bar6_s"
-         x="   17.5000"  y="    5.0000"  z="    5.0000" />
+         x="   35.0000"  y="   10.0000"  z="   10.0000" />
 
    </solids>
 

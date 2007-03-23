@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gdml xmlns:gdml="http://cern.ch/2001/Schemas/GDML"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="gdml_1.0.xsd">
+      xsi:noNamespaceSchemaLocation="gdml.xsd">
 
    <define>
-      <position  name=   "pos_0"  x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
-      <position  name=   "pos_1"  x="    -0.2500"  y="     0.0000"  z="     0.0000"  unit="cm" />
-      <position  name=   "pos_2"  x="     0.5000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_1"     x="    -0.2500"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_2"     x="     0.5000"  y="     0.0000"  z="     0.0000"  unit="cm" />
 
-      <rotation  name=   "rot_0"  x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name="rot_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
    </define>
 
    <materials>
-      <element  name= "Galactic_e"  Z="  1.0000"  N="  1" >
+
+      <element  name="Galactic_e"  Z="  1.0000"  N="  1" >
          <atom type="A" unit="g/mol" value="  1.0100" />
       </element>
       <element  name="liquidArgon_e"  Z=" 18.0000"  N=" 40" >
          <atom type="A" unit="g/mol" value=" 39.9500" />
       </element>
-      <element  name=     "Lead_e"  Z=" 82.0000"  N="207" >
+      <element  name="Lead_e"  Z=" 82.0000"  N="207" >
          <atom type="A" unit="g/mol" value="207.1900" />
       </element>
 
@@ -40,23 +41,23 @@
    <solids>
       <box  lunit="cm" aunit="degree"
          name="World_s"
-         x="    9.0000"  y="    6.0000"  z="    6.0000" />
+         x="   18.0000"  y="   12.0000"  z="   12.0000" />
 
       <box  lunit="cm" aunit="degree"
          name="Calorimeter_s"
-         x="    7.5000"  y="    5.0000"  z="    5.0000" />
+         x="   15.0000"  y="   10.0000"  z="   10.0000" />
 
       <box  lunit="cm" aunit="degree"
          name="Layer_s"
-         x="    0.7500"  y="    5.0000"  z="    5.0000" />
+         x="    1.5000"  y="   10.0000"  z="   10.0000" />
 
       <box  lunit="cm" aunit="degree"
          name="Absorber_s"
-         x="    0.5000"  y="    5.0000"  z="    5.0000" />
+         x="    1.0000"  y="   10.0000"  z="   10.0000" />
 
       <box  lunit="cm" aunit="degree"
          name="Gap_s"
-         x="    0.2500"  y="    5.0000"  z="    5.0000" />
+         x="    0.5000"  y="   10.0000"  z="   10.0000" />
 
    </solids>
 
