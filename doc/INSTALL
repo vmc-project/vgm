@@ -13,11 +13,18 @@
    In order to VGM with Geant4 and/or Root,
    the environment for these packages has to be set in their 
    standard way.
+
    If G4INSTALL and/or ROOTSYS environment variables are set,
    the Geant4 VGM and/or Root VGM are built automatically.
    User can exclude it from compilation by setting variables:
    VGM_NO_GEANT4 - do not build Geant4 VGM
    VGM_NO_ROOT   - do not build Root VGM
+
+   Note that VGM complete test requires Root built with G4Root
+   option (not by default); building with G4Root can be excluded
+   by setting variable:
+   VGM_NO_G4ROOT   - do not build VGM test with G4Root
+   
 
    Geant4 configuration:
    The VGM requires Geant4 installed with include directory.
@@ -48,6 +55,7 @@
    For launching test suites:
    ./test1_suite.sh  or
    ./test2_suite.sh
+   ./test3_suite.sh
    The output from tests stored in log directory can be then compared
    with the reference output in log_ref directory.
 
