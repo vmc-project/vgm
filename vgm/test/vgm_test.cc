@@ -25,8 +25,10 @@
 
 #include "TApplication.h"
 #include "TGeoManager.h"
-#include "TG4RootNavMgr.h"
 
+#ifdef VGM_WITH_G4ROOT
+#include "TG4RootNavMgr.h"
+#endif
 
 #include "G4RunManager.hh"
 #include "G4UImanager.hh"
@@ -118,6 +120,7 @@ int main(int argc, char** argv)
     // Set mandatory initialization classes
     runManager->SetUserInitialization(detector);
   }
+#ifdef VGM_WITH_G4ROOT
   else {
     G4String fileName = selectedTest;
     fileName += ".root";
@@ -130,7 +133,13 @@ int main(int argc, char** argv)
 
     mgr->ConnectToG4();
   }  
-     
+#else
+  else {
+    std::cerr << "Cannot run with rootNavig." << std::endl;
+    std::cerr << "vgm_test has been compiled without G4Root." << std::endl;
+    exit(1);
+  }  
+#endif     
 
   // Set other mandatory initialization classes
   runManager->SetUserInitialization(new TstPhysicsList());
