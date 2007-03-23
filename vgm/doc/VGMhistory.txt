@@ -2,6 +2,37 @@ $Id$
 
  The Virtual Geometry Model - Versions
 =========================================
+  23/03/2007
+  version 2.09.pre 
+               In VGM
+               - Adding new interfaces for support of chemical elements
+               composed from isotopes 
+               - Adding an interface to create element via Z
+               using a predefined element table of the geometry
+               model (NIST material table in Geant4, its own element
+               table in Root)
+                
+               In Geant4GM:
+               Consistent use of G4 reflection factory for all placements
+               and divisions (Fixes a problem with missing daughters
+               observed on ALICE geometry, got from conversion
+               Root -> Geant4) 
+            
+               In XmlVGM:
+               - Implemented export of media & materials (including elements 
+                 and isotopes)
+               - AGDD: Update to dtdVersion v7
+               - GDML: Exporting full lengths of solid instead of half lenghts
+               
+               In test:
+               Adding test with tracking particles;
+               consolidated test geometries (volume names, worls volume size)
+               and fixed a few differences in geometry definitions. 
+               
+               Tested with CLHEP 2.0.3.1, Root 5.15/04, Geant4 8.2.p01;
+               Linux: gcc 4.1.1 (FC6)
+               To be tested: MacOS Powerbook 10.4.7 gcc 4 
+
   18/12/2006
   version 2.08.04 
                In RootGM:
