@@ -23,24 +23,25 @@ include_dirs
 
 library BaseVGM -group=VGM -s=../packages/BaseVGM/source/ \
  common/utilities.cxx\
+ materials/element.cxx \
+ materials/isotope.cxx \
+ materials/material.cxx \
  materials/VMaterialFactory.cxx \
  materials/VMedium.cxx \
- materials/element.cxx \
- materials/material.cxx \
+ solids/solid.cxx\
+ solids/VBooleanSolid.cxx\
  solids/VBox.cxx\
- solids/VPara.cxx\
- solids/VSphere.cxx\
- solids/VTrd.cxx\
  solids/VCons.cxx\
  solids/VCtubs.cxx \
- solids/VPolycone.cxx\
- solids/VTorus.cxx\
- solids/VTubs.cxx\
- solids/VBooleanSolid.cxx\
  solids/VEllipticalTube.cxx\
+ solids/VPara.cxx\
+ solids/VPolycone.cxx\
  solids/VPolyhedra.cxx\
+ solids/VSphere.cxx\
+ solids/VTorus.cxx\
  solids/VTrap.cxx\
- solids/solid.cxx\
+ solids/VTrd.cxx\
+ solids/VTubs.cxx\
  volumes/VFactory.cxx\
  volumes/VPlacement.cxx\
  volumes/VVolume.cxx
@@ -69,25 +70,27 @@ macro ClhepVGM_linkopts "-L${VGMROOT}/$(Platform_bin) -lClhepVGM" WIN32 "${VGMRO
 
 library Geant4GM -group=VGM -import=Geant4 -s=../packages/Geant4GM/source/ \
  materials/Element.cxx \
+ materials/ElementMap.cxx \
+ materials/Isotope.cxx \
+ materials/IsotopeMap.cxx \
  materials/Material.cxx \
  materials/MaterialMap.cxx \
- materials/ElementMap.cxx \
  materials/MaterialFactory.cxx \
  materials/Medium.cxx \
- solids/Polycone.cxx \
- solids/Sphere.cxx \
- solids/Trd.cxx \
  solids/BooleanSolid.cxx \
+ solids/Box.cxx \
  solids/Cons.cxx \
  solids/Ctubs.cxx \
- solids/Polyhedra.cxx \
- solids/Torus.cxx \
- solids/Tubs.cxx \
- solids/Box.cxx \
  solids/EllipticalTube.cxx \
  solids/Para.cxx \
+ solids/Polycone.cxx \
+ solids/Polyhedra.cxx \
  solids/SolidMap.cxx \
+ solids/Sphere.cxx \
+ solids/Torus.cxx \
  solids/Trap.cxx \
+ solids/Trd.cxx \
+ solids/Tubs.cxx \
  volumes/Factory.cxx \
  volumes/Placement.cxx \
  volumes/PlacementMap.cxx \
@@ -110,13 +113,14 @@ library RootGM -group=VGM -import=ROOT -s=../packages/RootGM/source/ \
  common/axis.cxx\
  common/transform.cxx\
  materials/Element.cxx \
- materials/ElementMap.cxx \
+ materials/ElementGeo.cxx \
+ materials/Isotope.cxx \
  materials/Material.cxx \
  materials/MaterialFactory.cxx \
  materials/MaterialMap.cxx \
  materials/Medium.cxx \
- solids/Box.cxx \
  solids/BooleanSolid.cxx \
+ solids/Box.cxx \
  solids/Cons.cxx \
  solids/Ctubs.cxx \
  solids/EllipticalTube.cxx \
@@ -126,9 +130,9 @@ library RootGM -group=VGM -import=ROOT -s=../packages/RootGM/source/ \
  solids/SolidMap.cxx \
  solids/Sphere.cxx \
  solids/Torus.cxx \
+ solids/Trap.cxx \
  solids/Trd.cxx \
  solids/Tubs.cxx \
- solids/Trap.cxx \
  volumes/Factory.cxx \
  volumes/Placement.cxx \
  volumes/PlacementMap.cxx \
@@ -136,7 +140,7 @@ library RootGM -group=VGM -import=ROOT -s=../packages/RootGM/source/ \
  volumes/VolumeMap.cxx
 
 macro RootGM_cppflags "-I$(VGMROOT)/packages/RootGM/include ${BaseVGM_cppflags}"
-macro RootGM_shlibflags "${dld_linkopts} ${ROOT_Geom_linkopts} ${ROOT_Cint_linkopts} ${ROOT_Core_linkopts} ${BaseVGM_linkopts}"
+macro RootGM_shlibflags "${dld_linkopts} ${ROOT_Geom_linkopts} ${ROOT_Cint_linkopts} ${ROOT_Core_linkopts} ${ROOT_Rio_linkopts} ${BaseVGM_linkopts}"
 macro RootGM_linkopts "-L${VGMROOT}/$(Platform_bin) -lRootGM" WIN32 "${VGMROOT}\$(Platform_bin)\RootGM.lib"
 
 
@@ -151,6 +155,7 @@ library XmlVGM -group=VGM -import=CLHEP -s=../packages/XmlVGM/source/ \
  GDMLExporter.cxx \
  GDMLWriter.cxx \
  Maps.cxx \
+ utilities.cxx \
  VExporter.cxx
 
 macro XmlVGM_cppflags "-I$(VGMROOT)/packages/XmlVGM/include ${ClhepVGM_cppflags}"
@@ -168,16 +173,18 @@ library TestVGM -import=Geant4 -import=ROOT -group=cmt_tests -s=../test/src/ \
  TstGeometryViaGeant4.cc\
  TstGeometryViaRoot.cc\
  TstGeometryViaVGM.cc\
- TstParameters.cc\
  TstPhysicsList.cc \
  TstPrimaryGeneratorAction.cc \
+ TstPrimaryGeneratorActionMessenger.cc \
+ TstRunAction.cc \
+ TstTrackingAction.cc \
  TstVGeometry.cc \
  TstVisManager.cc
 
 
-macro TestVGM_cppflags "-I$(VGMROOT)/test/include ${XmlVGM_cppflags} ${RootGM_cppflags} ${Geant4GM_cppflags} ${G4run_incs} ${G4graphics_reps_incs} ${G4particles_use_incs} ${G4processes_use_incs} ${G4particles_incs} ${G4event_incs} ${G4digits_hits_incs} ${G4tracking_incs}"
+macro TestVGM_cppflags "-I$(VGMROOT)/test/include ${XmlVGM_cppflags} ${RootGM_cppflags} ${Geant4GM_cppflags} ${G4run_incs} ${G4graphics_reps_incs} ${G4particles_use_incs} ${G4processes_use_incs} ${G4particles_incs} ${G4event_incs} ${G4digits_hits_incs} ${G4tracking_incs} ${G4intercoms_incs} ${G4track_incs}"
 
-macro TestVGM_shlibflags "${dld_linkopts} ${G4global_linkopts} ${G4materials_linkopts} ${G4geometry_linkopts} ${G4graphics_reps_linkopts} ${ROOT_Geom_linkopts} ${ROOT_Core_linkopts} ${ROOT_Cint_linkopts} ${G4run_linkopts} ${CLHEP_Random_linkopts} ${RootGM_linkopts} ${XmlVGM_linkopts} ${Geant4GM_linkopts} ${CLHEP_Vector_linkopts} ${CLHEP_Geometry_linkopts} ${ClhepVGM_linkopts} ${G4particles_linkopts} ${G4event_linkopts} ${G4intercoms_linkopts} ${G4digits_hits_linkopts} ${G4processes_linkopts} ${G4tracking_linkopts} ${G4track_linkopts}"
+macro TestVGM_shlibflags "${dld_linkopts} ${G4global_linkopts} ${G4materials_linkopts} ${G4geometry_linkopts} ${G4graphics_reps_linkopts} ${ROOT_Geom_linkopts} ${ROOT_Rio_linkopts} ${ROOT_Core_linkopts} ${ROOT_Cint_linkopts} ${G4run_linkopts} ${CLHEP_Random_linkopts} ${RootGM_linkopts} ${XmlVGM_linkopts} ${Geant4GM_linkopts} ${CLHEP_Vector_linkopts} ${CLHEP_Geometry_linkopts} ${ClhepVGM_linkopts} ${G4particles_linkopts} ${G4event_linkopts} ${G4intercoms_linkopts} ${G4digits_hits_linkopts} ${G4processes_linkopts} ${G4tracking_linkopts} ${G4track_linkopts}"
 
 macro TestVGM_linkopts "-L${VGMROOT}/$(Platform_bin) -lTestVGM" WIN32 "${VGMROOT}\$(Platform_bin)\TestVGM.lib"
 
@@ -205,7 +212,7 @@ library E01VGM -group=examples -import=Geant4 -import=ROOT \
 macro E01VGM_cppflags " -I${Geant4_install}/examples/novice/N03/include ${G4run_incs} ${G4intercoms_incs} ${G4graphics_reps_incs} ${Geant4GM_cppflags} ${RootGM_cppflags} ${G4event_incs} ${G4track_incs} ${G4particles_incs} ${G4tracking_incs} ${G4processes_incs} ${G4digits_hits_incs}"
 
 
-macro E01VGM_shlibflags "${dld_linkopts} ${G4global_linkopts} ${G4materials_linkopts} ${G4geometry_linkopts} ${G4volumes_linkopts} ${G4graphics_reps_linkopts} ${ROOT_Geom_linkopts} ${ROOT_Core_linkopts} ${ROOT_Cint_linkopts} ${G4run_linkopts} ${CLHEP_Random_linkopts} ${RootGM_linkopts} ${BaseVGM_linkopts} ${XmlVGM_linkopts} ${Geant4GM_linkopts} ${CLHEP_Vector_linkopts} ${CLHEP_Geometry_linkopts} ${ClhepVGM_linkopts} ${G4particles_linkopts} ${G4event_linkopts} ${G4intercoms_linkopts} ${G4digits_hits_linkopts} ${G4processes_linkopts} ${G4tracking_linkopts} ${G4track_linkopts}"
+macro E01VGM_shlibflags "${dld_linkopts} ${G4global_linkopts} ${G4materials_linkopts} ${G4geometry_linkopts} ${G4volumes_linkopts} ${G4graphics_reps_linkopts} ${ROOT_Geom_linkopts} ${ROOT_Rio_linkopts} ${ROOT_Core_linkopts} ${ROOT_Cint_linkopts} ${G4run_linkopts} ${CLHEP_Random_linkopts} ${RootGM_linkopts} ${BaseVGM_linkopts} ${XmlVGM_linkopts} ${Geant4GM_linkopts} ${CLHEP_Vector_linkopts} ${CLHEP_Geometry_linkopts} ${ClhepVGM_linkopts} ${G4particles_linkopts} ${G4event_linkopts} ${G4intercoms_linkopts} ${G4digits_hits_linkopts} ${G4processes_linkopts} ${G4tracking_linkopts} ${G4track_linkopts}"
 #p'etre un peut gros...
 
 macro E01VGM_linkopts "-L${VGMROOT}/$(Platform_bin) -lE01VGM" WIN32 "${VGMROOT}\$(Platform_bin)\E01VGM.lib"
@@ -272,7 +279,7 @@ application vgm_e03 ${Geant4_install}/examples/novice/N03/exampleN03.cc -import=
 #//          Ex4                                 //
 #//////////////////////////////////////////////////
 
-application vgm_e04 ../examples/E04/rootgeom.cxx -group=examples -import=ROOT use_cppflags='"${ROOT_cppflags} ${RootGM_cppflags} -I$(VGMROOT)/packages/XmlVGM/include "' use_linkopts='"${BaseVGM_linkopts} ${XmlVGM_linkopts} ${RootGM_linkopts} ${ClhepVGM_linkopts} ${ROOT_Geom_linkopts} ${ROOT_Core_linkopts} ${ROOT_Cint_linkopts}"'
+application vgm_e04 ../examples/E04/rootgeom.cxx -group=examples -import=ROOT use_cppflags='"${ROOT_cppflags} ${RootGM_cppflags} -I$(VGMROOT)/packages/XmlVGM/include "' use_linkopts='"${BaseVGM_linkopts} ${XmlVGM_linkopts} ${RootGM_linkopts} ${ClhepVGM_linkopts} ${CLHEP_Vector_linkopts} ${CLHEP_Geometry_linkopts} ${ROOT_Geom_linkopts} ${ROOT_Core_linkopts} ${ROOT_Rio_linkopts} ${ROOT_Cint_linkopts}"'
 
 
 
@@ -314,4 +321,3 @@ path_append DYLD_LIBRARY_PATH "" Darwin "${VGMROOT}/$(Platform_bin)" WIN32 ""
 path_append VGM_INSTALL "${VGMROOT}"
 path_remove PATH "" WIN32 "\VGM\"
 path_append PATH "${VGMROOT}/$(Platform_bin)/" WIN32 "${VGMROOT}\$(Platform_bin)"
-
