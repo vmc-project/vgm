@@ -1,0 +1,12 @@
+2007-04-05  Brett Viren  <bv@bnl.gov>
+
+	* v0.1 released
+
+	* Allows disabling RootGM or Geant4GM subpackages.  If disabled,
+	ROOT or Geant4 won't be required, respectively.
+
+	* Remove mention of Xerces-c for now.  It's only needed once
+	AgddGM comes in.
+
+	* Bug fixes.
+	
