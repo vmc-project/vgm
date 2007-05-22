@@ -1,0 +1,66 @@
+ $Id$ 
+
+------------------------------------------------------------------------
+ The documentation file for the Virtual Geometry Model
+ Copyright (C) 2007, Brett Viren               
+ All rights reserved. 
+           
+ For the licensing terms see vgm/LICENSE.
+ Contact: bv@bnl.gov
+------------------------------------------------------------------------
+
+ The Virtual Geometry Model - Installation with autoconf
+========================================================
+ 
+
+The package vgm/autoconf will build VGM using autotools.
+It should build and install VGM like a normal autoconf'ed package.
+Namely you can set "--prefix=/install/path".  This will give you
+/install/path/{lib,include}.  Each VGM package is installed to its own
+library and include/Package/ sub directory.
+
+Do "./configure --help" to see what else you might want to set.
+
+------------------------------------------------------------------------
+
+See the generic vgm/autoconf/INSTALL file for generic configure help.  
+The options specific to this build are:
+
+Optionally disable certain VGM subpackages:
+
+  --enable-Geant4GM       Build Geant4GM subpackage [default=yes]
+  --enable-RootGM         Build RootGM subpackage [default=yes]
+  --enable-XmlVGM         Build XmlVGM subpackage [default=yes]
+
+Specify non-standard locations for underlying dependencies.
+
+  --with-clhep            CLHEP package specification (yes,no,path)
+  --with-clhep-include    alternate headers dir (that which holds
+                          "/CLHEP/*/*.h")
+  --with-clhep-libdir     CLHEP alternate library dir
+  --with-geant4           Geant4 package specification (yes,no,path)
+  --with-geant4-system    Geant4 system type
+  --with-geant4-include   alternate headers dir (that which holds "*.hh")
+  --with-geant4-libdir    Geant4 alternate library dir
+  --with-root             ROOT package specification (yes,no,path)
+  --with-rootsys          top of the ROOT installation directory
+
+
+------------------------------------------------------------------------
+
+To be done: as long as vgm-autoconf is distributed separately from
+VGM, proper, it will not try to include any any actual VGM code when a
+"make dist" is invoked.  When/if vgm-autoconf is included into VGM,
+proper, then the
+
+  nodist_*_lib_LTLIBRARIES
+  nodist_*_la_SOURCES
+  nodist_*_HEADERS
+
+in packages/PACKAGE/Makefile.am files should have the "nodist_"
+removed.
+
+------------------------------------------------------------------------
+
+bv@bnl.gov 
+Mon Apr  2 17:56:42 2007
