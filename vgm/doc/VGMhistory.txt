@@ -2,6 +2,12 @@ $Id$
 
  The Virtual Geometry Model - Versions
 =========================================
+  22/05/2007
+  version 2.09
+               Tested with CLHEP 2.0.3.1, Root 5.15/04, Geant4 8.2.p01;
+               Linux: gcc 4.1.1 (FC6)
+               MacOS Powerbook 10.4.7 gcc 4 (CMT version)
+
   23/03/2007
   version 2.09.pre 
                In VGM
