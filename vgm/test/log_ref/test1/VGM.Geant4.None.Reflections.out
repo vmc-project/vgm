@@ -1,6 +1,6 @@
 
 *************************************************************
- Geant4 version Name: geant4-08-02-patch-01    (23-February-2007)
+ Geant4 version Name: geant4-08-03    (5-May-2007)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -83,4 +83,32 @@ VGM info:   Boolean  "ctubsS"  Subtraction:
   Displacement rotation (object):  (-5.90614,  -0,  0) deg    no reflectionZ
 VGM info:   ImportDaughters for ctubs_refl
 VGM info:   ImportPositions for lv ctubs_refl nofDaughters: 0
+VGM info:   Importing LV: xtru1_refl
+VGM info:   Importing solid: xtruS_refl
+VGM info:   ImportDaughters for xtru1_refl
+VGM info:   ImportPositions for lv xtru1_refl nofDaughters: 0
+VGM info:   Importing LV: xtru2_refl
+VGM info:   Importing solid: xtruS_refl
+VGM info:   Importing solid: xtruS
+VGM info:   Importing solid: xtruS
+VGM info:   Imported Boolean solid: 
+VGM info:   Boolean  "xtruS"  Union: 
+  ConstituentA = Extruded  "xtruS"
+Polygon,  8 vertices:
+  (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
+Planes:
+  z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
+  z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
+
+  ConstituentB = Extruded  "xtruS"
+Polygon,  8 vertices:
+  (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
+Planes:
+  z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.7
+  z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
+
+  Displacement translation (object):  ( 0,  0,  0) mm 
+  Displacement rotation (object):  (0,  -0,  0) deg    no reflectionZ
+VGM info:   ImportDaughters for xtru2_refl
+VGM info:   ImportPositions for lv xtru2_refl nofDaughters: 0
 TestReflections finished

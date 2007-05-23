@@ -1,6 +1,6 @@
 
 *************************************************************
- Geant4 version Name: geant4-08-02-patch-01    (23-February-2007)
+ Geant4 version Name: geant4-08-03    (5-May-2007)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -65,7 +65,7 @@ VGM info:    Material:  Uranium     density: 13.610 g/cm3   temperature: 273.15 
    --->  Isotope:  U235   Z = 92   N = 235   A = 235.01 g/mole   abundance:  90.00 %
    --->  Isotope:  U238   Z = 92   N = 238   A = 238.03 g/mole   abundance:  10.00 %  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
 VGM info:   Importing material: 
-VGM info:    Material:   Vacuum     density:  0.000 mg/cm3  temperature:   2.73 K  pressure:   0.00 atm  RadLength: 204727576.737 pc 
+VGM info:    Material:   Vacuum     density:  0.000 kg/m3   temperature:   2.73 K  pressure:   0.00 atm  RadLength: 204727576.737 pc 
    --->  Element: Vacuum ( )   Z =  1.0   N =   1.0   A =   1.01 g/mole  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
 VGM info:   Importing LV: world
 VGM info:   Importing solid: worldS

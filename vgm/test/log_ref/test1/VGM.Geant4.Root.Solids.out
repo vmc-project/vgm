@@ -1,6 +1,6 @@
 
 *************************************************************
- Geant4 version Name: geant4-08-02-patch-01    (23-February-2007)
+ Geant4 version Name: geant4-08-03    (5-May-2007)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -84,7 +84,7 @@ VGM info:   Exporting medium:
 VGM info:   Medium: "Vacuum"  material Vacuum g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
 VGM info:   Exporting volume store: 
 VGM info:   Exporting solid: 
-VGM info:      Box  "worldS"  hx = 5000mm  hy = 3000mm  hz = 2000mm
+VGM info:      Box  "worldS"  hx = 6000mm  hy = 3000mm  hz = 2000mm
 VGM info:      0th volume: world   material: Basic
 VGM info:   Exporting solid: 
 VGM info:      Box  "boxS"  hx = 200mm  hy = 600mm  hz = 500mm
@@ -128,6 +128,28 @@ VGM info:      11th volume: tubs   material: Basic
 VGM info:   Exporting solid: 
 VGM info:      Ctubs  "tubs"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = -30deg  dphi = 280deg  nlow = (0, 0.64, -0.77)  nhigh = (0, 0.09, 0.87)
 VGM info:      12th volume: ctubs   material: Basic
+VGM info:   Exporting solid: 
+VGM info:      Extruded  "xtruS"
+Polygon,  8 vertices:
+  (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
+Planes:
+  z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
+  z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
+  z = 150 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.7
+  z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
+
+VGM info:      13th volume: xtru1   material: Basic
+VGM info:   Exporting solid: 
+VGM info:      Extruded  "xtruS"
+Polygon,  8 vertices:
+  (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
+Planes:
+  z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
+  z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
+  z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.7
+  z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
+
+VGM info:      14th volume: xtru2   material: Basic
 VGM info:   ExportPlacements for 0th volume world
 VGM info:      0th daughter vol = box  simple placement: box
 VGM info:      1th daughter vol = cons  simple placement: cons
@@ -141,6 +163,8 @@ VGM info:      8th daughter vol = trap  simple placement: trap
 VGM info:      9th daughter vol = trd  simple placement: trd
 VGM info:      10th daughter vol = tubs  simple placement: tubs
 VGM info:      11th daughter vol = ctubs  simple placement: ctubs
+VGM info:      12th daughter vol = xtru1  simple placement: xtru1
+VGM info:      13th daughter vol = xtru2  simple placement: xtru2
 VGM info:   ExportPlacements for 1th volume box
 VGM info:   ExportPlacements for 2th volume cons
 VGM info:   ExportPlacements for 3th volume eltu
@@ -153,4 +177,6 @@ VGM info:   ExportPlacements for 9th volume trap
 VGM info:   ExportPlacements for 10th volume trd
 VGM info:   ExportPlacements for 11th volume tubs
 VGM info:   ExportPlacements for 12th volume ctubs
+VGM info:   ExportPlacements for 13th volume xtru1
+VGM info:   ExportPlacements for 14th volume xtru2
 Export finished

@@ -1,6 +1,6 @@
 
 *************************************************************
- Geant4 version Name: geant4-08-02-patch-01    (23-February-2007)
+ Geant4 version Name: geant4-08-03    (5-May-2007)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -80,6 +80,12 @@ VGM info:   ImportDaughters for tubs
 VGM info:   Importing volume: ctubs
 VGM info:   Importing shape: ctubsS
 VGM info:   ImportDaughters for ctubs
+VGM info:   Importing volume: xtru1
+VGM info:   Importing shape: TGeoXtru
+VGM info:   ImportDaughters for xtru1
+VGM info:   Importing volume: xtru2
+VGM info:   Importing shape: TGeoXtru
+VGM info:   ImportDaughters for xtru2
 VGM info:   Import positions: 
 VGM info:   0th volume: world  
 VGM info:      0th daughter  rtVol = box vgmVol = box
@@ -106,6 +112,10 @@ VGM info:      20th daughter  rtVol = tubs vgmVol = tubs
 VGM info:      21th daughter  rtVol = tubs vgmVol = tubs
 VGM info:      22th daughter  rtVol = ctubs vgmVol = ctubs
 VGM info:      23th daughter  rtVol = ctubs vgmVol = ctubs
+VGM info:      24th daughter  rtVol = xtru1 vgmVol = xtru1
+VGM info:      25th daughter  rtVol = xtru1 vgmVol = xtru1
+VGM info:      26th daughter  rtVol = xtru2 vgmVol = xtru2
+VGM info:      27th daughter  rtVol = xtru2 vgmVol = xtru2
 VGM info:   1th volume: box  
 VGM info:   2th volume: cons  
 VGM info:   3th volume: eltu  
@@ -118,9 +128,11 @@ VGM info:   9th volume: trap
 VGM info:   10th volume: trd  
 VGM info:   11th volume: tubs  
 VGM info:   12th volume: ctubs  
+VGM info:   13th volume: xtru1  
+VGM info:   14th volume: xtru2  
 VGM info:   
 Root_GM_Factory factory solids store: 
-   0th solid: Box  "worldS"  hx = 5000mm  hy = 3000mm  hz = 3000mm
+   0th solid: Box  "worldS"  hx = 6000mm  hy = 3000mm  hz = 3000mm
    1th solid: Box  "boxS"  hx = 200mm  hy = 600mm  hz = 500mm
    2th solid: Cons  "consS"  rin1 = 100mm  rout1 = 400mm  rin2 = 200mm  rout2 = 600mm  hz = 500mm  sphi = 0deg  dphi = 360deg
    3th solid: Eltu  "eltuS"  dx = 200mm  dy = 300mm  hz = 500mm
@@ -139,8 +151,26 @@ Root_GM_Factory factory solids store:
    10th solid: Trd  "trdS"  hx1 = 200mm  hx2 = 300mm  hy1 = 400mm  hy2 = 500mm  hz = 500mm
    11th solid: Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
    12th solid: Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = 330deg  dphi = 280deg  nlow = (0, 6.4, -7.7)  nhigh = (0, 0.9, 8.7)
+   13th solid: Extruded  "TGeoXtru"
+Polygon,  8 vertices:
+  (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
+Planes:
+  z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
+  z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
+  z = 150 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.7
+  z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
+
+   14th solid: Extruded  "TGeoXtru"
+Polygon,  8 vertices:
+  (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
+Planes:
+  z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
+  z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
+  z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.7
+  z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
+
 Root_GM_Factory factory volumes store: 
-   0th: Volume: "world" material "Basic" solid "Box"  24 daughters: "box"  "box"  "cons"  "cons"  "eltu"  "eltu"  "para"  "para"  "pcone"  "pcone"  "phedra"  "phedra"  "sphere"  "sphere"  "torus"  "torus"  "trap"  "trap"  "trd"  "trd"  "tubs"  "tubs"  "ctubs"  "ctubs"  
+   0th: Volume: "world" material "Basic" solid "Box"  28 daughters: "box"  "box"  "cons"  "cons"  "eltu"  "eltu"  "para"  "para"  "pcone"  "pcone"  "phedra"  "phedra"  "sphere"  "sphere"  "torus"  "torus"  "trap"  "trap"  "trd"  "trd"  "tubs"  "tubs"  "ctubs"  "ctubs"  "xtru1"  "xtru1"  "xtru2"  "xtru2"  
    1th: Volume: "box" material "Basic" solid "Box"  0 daughters: 
    2th: Volume: "cons" material "Basic" solid "Cons"  0 daughters: 
    3th: Volume: "eltu" material "Basic" solid "Eltu"  0 daughters: 
@@ -153,6 +183,8 @@ Root_GM_Factory factory volumes store:
    10th: Volume: "trd" material "Basic" solid "Trd"  0 daughters: 
    11th: Volume: "tubs" material "Basic" solid "Tubs"  0 daughters: 
    12th: Volume: "ctubs" material "Basic" solid "Ctubs"  0 daughters: 
+   13th: Volume: "xtru1" material "Basic" solid "Extruded"  0 daughters: 
+   14th: Volume: "xtru2" material "Basic" solid "Extruded"  0 daughters: 
 VGM info:   RootGM::Factory::Import finished.
 Import finished
 Go to export
@@ -199,7 +231,7 @@ VGM info:   Exporting medium:
 VGM info:   Medium: "Vacuum"  material Vacuum g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
 VGM info:   Exporting volume store: 
 VGM info:   Exporting solid: 
-VGM info:      Box  "worldS"  hx = 5000mm  hy = 3000mm  hz = 3000mm
+VGM info:      Box  "worldS"  hx = 6000mm  hy = 3000mm  hz = 3000mm
 VGM info:      0th volume: world   material: Basic
 VGM info:   Exporting solid: 
 VGM info:      Box  "boxS"  hx = 200mm  hy = 600mm  hz = 500mm
@@ -243,6 +275,28 @@ VGM info:      11th volume: tubs   material: Basic
 VGM info:   Exporting solid: 
 VGM info:      Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = 330deg  dphi = 280deg  nlow = (0, 6.4, -7.7)  nhigh = (0, 0.9, 8.7)
 VGM info:      12th volume: ctubs   material: Basic
+VGM info:   Exporting solid: 
+VGM info:      Extruded  "TGeoXtru"
+Polygon,  8 vertices:
+  (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
+Planes:
+  z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
+  z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
+  z = 150 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.7
+  z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
+
+VGM info:      13th volume: xtru1   material: Basic
+VGM info:   Exporting solid: 
+VGM info:      Extruded  "TGeoXtru"
+Polygon,  8 vertices:
+  (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
+Planes:
+  z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
+  z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
+  z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.7
+  z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
+
+VGM info:      14th volume: xtru2   material: Basic
 VGM info:   ExportPlacements for 0th volume world
 VGM info:      0th daughter vol = box  simple placement: box
 VGM info:      1th daughter vol = box  simple placement: box
@@ -336,6 +390,38 @@ VGM info:   Boolean  "ctubsS"  Subtraction:
   Displacement rotation (object):  (-5.90614,  -0,  0) deg    no reflectionZ
 VGM info:   ImportDaughters for ctubs_refl
 VGM info:   ImportPositions for lv ctubs_refl nofDaughters: 0
+VGM info:      24th daughter vol = xtru1  simple placement: xtru1
+VGM info:      25th daughter vol = xtru1  simple placement: xtru1
+VGM info:   Importing LV: xtru1_refl
+VGM info:   Importing solid: TGeoXtru_refl
+VGM info:   ImportDaughters for xtru1_refl
+VGM info:   ImportPositions for lv xtru1_refl nofDaughters: 0
+VGM info:      26th daughter vol = xtru2  simple placement: xtru2
+VGM info:      27th daughter vol = xtru2  simple placement: xtru2
+VGM info:   Importing LV: xtru2_refl
+VGM info:   Importing solid: TGeoXtru_refl
+VGM info:   Importing solid: TGeoXtru
+VGM info:   Importing solid: TGeoXtru
+VGM info:   Imported Boolean solid: 
+VGM info:   Boolean  "TGeoXtru"  Union: 
+  ConstituentA = Extruded  "TGeoXtru"
+Polygon,  8 vertices:
+  (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
+Planes:
+  z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
+  z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
+
+  ConstituentB = Extruded  "TGeoXtru"
+Polygon,  8 vertices:
+  (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
+Planes:
+  z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.7
+  z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
+
+  Displacement translation (object):  ( 0,  0,  0) mm 
+  Displacement rotation (object):  (0,  -0,  0) deg    no reflectionZ
+VGM info:   ImportDaughters for xtru2_refl
+VGM info:   ImportPositions for lv xtru2_refl nofDaughters: 0
 VGM info:   ExportPlacements for 1th volume box
 VGM info:   ExportPlacements for 2th volume cons
 VGM info:   ExportPlacements for 3th volume eltu
@@ -348,4 +434,6 @@ VGM info:   ExportPlacements for 9th volume trap
 VGM info:   ExportPlacements for 10th volume trd
 VGM info:   ExportPlacements for 11th volume tubs
 VGM info:   ExportPlacements for 12th volume ctubs
+VGM info:   ExportPlacements for 13th volume xtru1
+VGM info:   ExportPlacements for 14th volume xtru2
 Export finished

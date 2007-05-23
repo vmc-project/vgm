@@ -5,8 +5,8 @@
 
 <xi:include href="StandardColors.agdd"/>
 
-<materials  version = "Id: AGDDWriter.cxx,v 1.12 2007/01/11 12:20:31 ivana Exp "
-            date    = "2007-03-22"
+<materials  version = "Id: AGDDWriter.cxx,v 1.13 2007/05/23 10:31:15 ivana Exp "
+            date    = "2007-05-23"
             author  = "VGM AGGD Writer"
             DTD_version="v7"  >
 
@@ -21,8 +21,8 @@
 
 </materials>
 
-<media  version = "Id: AGDDWriter.cxx,v 1.12 2007/01/11 12:20:31 ivana Exp "
-        date    = "2007-03-22"
+<media  version = "Id: AGDDWriter.cxx,v 1.13 2007/05/23 10:31:15 ivana Exp "
+        date    = "2007-05-23"
         author  = "VGM AGGD Writer"
         DTD_version="v7"  >
 
@@ -36,14 +36,14 @@
 
 <section DTD_version = "v7"
          name        = "world"
-         version     = "Id: AGDDWriter.cxx,v 1.12 2007/01/11 12:20:31 ivana Exp "
-         date        = "2007-03-22"
+         version     = "Id: AGDDWriter.cxx,v 1.13 2007/05/23 10:31:15 ivana Exp "
+         date        = "2007-05-23"
          author      = "VGM AGGD Writer"
          top_volume  = "world_comp"  >
 
    <box    name="world"
       medium="Basic"
-      X_Y_Z="1000.0000; 600.0000; 600.0000" />
+      X_Y_Z="1200.0000; 600.0000; 600.0000" />
 
    <box    name="box"
       medium="Basic"
@@ -116,91 +116,117 @@
       medium="Basic"
       X_Y_Z=" 0.2000;  0.2000;  0.2000" />
 
+   <!-- !!! unsupported shape  !!!  name= "xtru1" -->
+   <!-- dummy box is written instead  -->
+   <box    name="xtru1"
+      medium="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
+   <!-- !!! unsupported shape  !!!  name= "xtru2" -->
+   <!-- dummy box is written instead  -->
+   <box    name="xtru2"
+      medium="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
 
    <composition name="world_comp">
-      <posXYZ   X_Y_Z="-350.0000; -150.0000; 100.0000"> <volume name="box"/>
+      <posXYZ   X_Y_Z="-450.0000; -150.0000; 100.0000"> <volume name="box"/>
       </posXYZ>
-      <transform    pos="-350.0000; -150.0000; -100.0000"
+      <transform    pos="-450.0000; -150.0000; -100.0000"
                  matrix=" 1.00000;  0.00000;  0.00000; 
                           0.00000;  1.00000;  0.00000; 
                           0.00000;  0.00000; -1.00000"> <volume name="box"/>
       </transform>
-      <posXYZ   X_Y_Z="-350.0000; 150.0000; 100.0000"> <volume name="cons"/>
+      <posXYZ   X_Y_Z="-450.0000; 150.0000; 100.0000"> <volume name="cons"/>
       </posXYZ>
-      <transform    pos="-350.0000; 150.0000; -100.0000"
+      <transform    pos="-450.0000; 150.0000; -100.0000"
                  matrix=" 1.00000;  0.00000;  0.00000; 
                           0.00000;  1.00000;  0.00000; 
                           0.00000;  0.00000; -1.00000"> <volume name="cons"/>
       </transform>
-      <posXYZ   X_Y_Z="-200.0000; -150.0000; 100.0000"> <volume name="eltu"/>
+      <posXYZ   X_Y_Z="-300.0000; -150.0000; 100.0000"> <volume name="eltu"/>
       </posXYZ>
-      <transform    pos="-200.0000; -150.0000; -100.0000"
+      <transform    pos="-300.0000; -150.0000; -100.0000"
                  matrix=" 1.00000;  0.00000;  0.00000; 
                           0.00000;  1.00000;  0.00000; 
                           0.00000;  0.00000; -1.00000"> <volume name="eltu"/>
       </transform>
-      <posXYZ   X_Y_Z="-200.0000; 150.0000; 100.0000"> <volume name="para"/>
+      <posXYZ   X_Y_Z="-300.0000; 150.0000; 100.0000"> <volume name="para"/>
       </posXYZ>
-      <transform    pos="-200.0000; 150.0000; -100.0000"
+      <transform    pos="-300.0000; 150.0000; -100.0000"
                  matrix=" 1.00000;  0.00000;  0.00000; 
                           0.00000;  1.00000;  0.00000; 
                           0.00000;  0.00000; -1.00000"> <volume name="para"/>
       </transform>
-      <posXYZ   X_Y_Z="-50.0000; -150.0000; 100.0000"> <volume name="pcone"/>
+      <posXYZ   X_Y_Z="-150.0000; -150.0000; 100.0000"> <volume name="pcone"/>
       </posXYZ>
-      <transform    pos="-50.0000; -150.0000; -100.0000"
+      <transform    pos="-150.0000; -150.0000; -100.0000"
                  matrix=" 1.00000;  0.00000;  0.00000; 
                           0.00000;  1.00000;  0.00000; 
                           0.00000;  0.00000; -1.00000"> <volume name="pcone"/>
       </transform>
-      <posXYZ   X_Y_Z="-50.0000; 150.0000; 100.0000"> <volume name="phedra"/>
+      <posXYZ   X_Y_Z="-150.0000; 150.0000; 100.0000"> <volume name="phedra"/>
       </posXYZ>
-      <transform    pos="-50.0000; 150.0000; -100.0000"
+      <transform    pos="-150.0000; 150.0000; -100.0000"
                  matrix=" 1.00000;  0.00000;  0.00000; 
                           0.00000;  1.00000;  0.00000; 
                           0.00000;  0.00000; -1.00000"> <volume name="phedra"/>
       </transform>
-      <posXYZ   X_Y_Z="100.0000; -150.0000; 100.0000"> <volume name="sphere"/>
+      <posXYZ   X_Y_Z="  0.0000; -150.0000; 100.0000"> <volume name="sphere"/>
       </posXYZ>
-      <transform    pos="100.0000; -150.0000; -100.0000"
+      <transform    pos="  0.0000; -150.0000; -100.0000"
                  matrix=" 1.00000;  0.00000;  0.00000; 
                           0.00000;  1.00000;  0.00000; 
                           0.00000;  0.00000; -1.00000"> <volume name="sphere"/>
       </transform>
-      <posXYZ   X_Y_Z="100.0000; 150.0000; 100.0000"> <volume name="torus"/>
+      <posXYZ   X_Y_Z="  0.0000; 150.0000; 100.0000"> <volume name="torus"/>
       </posXYZ>
-      <transform    pos="100.0000; 150.0000; -100.0000"
+      <transform    pos="  0.0000; 150.0000; -100.0000"
                  matrix=" 1.00000;  0.00000;  0.00000; 
                           0.00000;  1.00000;  0.00000; 
                           0.00000;  0.00000; -1.00000"> <volume name="torus"/>
       </transform>
-      <posXYZ   X_Y_Z="250.0000; -150.0000; 100.0000"> <volume name="trap"/>
+      <posXYZ   X_Y_Z="150.0000; -150.0000; 100.0000"> <volume name="trap"/>
       </posXYZ>
-      <transform    pos="250.0000; -150.0000; -100.0000"
+      <transform    pos="150.0000; -150.0000; -100.0000"
                  matrix=" 1.00000;  0.00000;  0.00000; 
                           0.00000;  1.00000;  0.00000; 
                           0.00000;  0.00000; -1.00000"> <volume name="trap"/>
       </transform>
-      <posXYZ   X_Y_Z="250.0000; 150.0000; 100.0000"> <volume name="trd"/>
+      <posXYZ   X_Y_Z="150.0000; 150.0000; 100.0000"> <volume name="trd"/>
       </posXYZ>
-      <transform    pos="250.0000; 150.0000; -100.0000"
+      <transform    pos="150.0000; 150.0000; -100.0000"
                  matrix=" 1.00000;  0.00000;  0.00000; 
                           0.00000;  1.00000;  0.00000; 
                           0.00000;  0.00000; -1.00000"> <volume name="trd"/>
       </transform>
-      <posXYZ   X_Y_Z="400.0000; -150.0000; 100.0000"> <volume name="tubs"/>
+      <posXYZ   X_Y_Z="300.0000; -150.0000; 100.0000"> <volume name="tubs"/>
       </posXYZ>
-      <transform    pos="400.0000; -150.0000; -100.0000"
+      <transform    pos="300.0000; -150.0000; -100.0000"
                  matrix=" 1.00000;  0.00000;  0.00000; 
                           0.00000;  1.00000;  0.00000; 
                           0.00000;  0.00000; -1.00000"> <volume name="tubs"/>
       </transform>
-      <posXYZ   X_Y_Z="400.0000; 150.0000; 100.0000"> <volume name="ctubs"/>
+      <posXYZ   X_Y_Z="300.0000; 150.0000; 100.0000"> <volume name="ctubs"/>
       </posXYZ>
-      <transform    pos="400.0000; 150.0000; -100.0000"
+      <transform    pos="300.0000; 150.0000; -100.0000"
                  matrix=" 1.00000;  0.00000;  0.00000; 
                           0.00000;  1.00000;  0.00000; 
                           0.00000;  0.00000; -1.00000"> <volume name="ctubs"/>
+      </transform>
+      <posXYZ   X_Y_Z="450.0000; -150.0000; 100.0000"> <volume name="xtru1"/>
+      </posXYZ>
+      <transform    pos="450.0000; -150.0000; -100.0000"
+                 matrix=" 1.00000;  0.00000;  0.00000; 
+                          0.00000;  1.00000;  0.00000; 
+                          0.00000;  0.00000; -1.00000"> <volume name="xtru1"/>
+      </transform>
+      <posXYZ   X_Y_Z="450.0000; 150.0000; 100.0000"> <volume name="xtru2"/>
+      </posXYZ>
+      <transform    pos="450.0000; 150.0000; -100.0000"
+                 matrix=" 1.00000;  0.00000;  0.00000; 
+                          0.00000;  1.00000;  0.00000; 
+                          0.00000;  0.00000; -1.00000"> <volume name="xtru2"/>
       </transform>
    </composition>
 

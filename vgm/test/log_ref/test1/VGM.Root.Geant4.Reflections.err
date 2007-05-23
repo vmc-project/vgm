@@ -12,3 +12,5 @@ Warning in <TGeoVolume::AddNode>: Volume world : added node trap_0 with same nam
 Warning in <TGeoVolume::AddNode>: Volume world : added node trd_0 with same name
 Warning in <TGeoVolume::AddNode>: Volume world : added node tubs_0 with same name
 Warning in <TGeoVolume::AddNode>: Volume world : added node ctubs_0 with same name
+Warning in <TGeoVolume::AddNode>: Volume world : added node xtru1_0 with same name
+Warning in <TGeoVolume::AddNode>: Volume world : added node xtru2_0 with same name
