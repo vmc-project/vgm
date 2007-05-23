@@ -1,4 +1,14 @@
 // $Id$
+
+// -----------------------------------------------------------------------
+// The VGM package of the Virtual Geometry Model
+// Copyright (C) 2007, Ivana Hrivnacova               
+// All rights reserved. 
+//           
+// For the licensing terms see vgm/LICENSE.
+// Contact: ivana@ipno.in2p3.fr
+// -----------------------------------------------------------------------
+
 /// \ingroup VGM_volumes
 //
 /// \class VGM::IFactory
@@ -6,7 +16,7 @@
 /// The VGM interface to geometry factory providing
 /// functions for geometry construction and conversions.
 ///
-/// Author: Ivana Hrivnacova; IPN Orsay
+/// \author Ivana Hrivnacova; IPN Orsay
 
 #ifndef VGM_I_FACTORY_H
 #define VGM_I_FACTORY_H
@@ -16,6 +26,7 @@
 
 #include "VGM/common/Axis.h"
 #include "VGM/common/Transform.h"
+#include "VGM/common/TwoVector.h"
 
 namespace VGM {
 
@@ -23,6 +34,7 @@ namespace VGM {
   class IVolume;
   class IPlacement;
   class IMaterialFactory;
+  class IExtrudedSolid;
 
   typedef std::vector<ISolid*>   SolidStore;
   typedef std::vector<IVolume*>  VolumeStore;
@@ -91,6 +103,17 @@ namespace VGM {
                        ///
       virtual ISolid*  CreateEllipticalTube(const std::string& name, 
                                double dx, double dy, double hz) = 0; 
+
+                       /// Create the extruded solid 
+                       /// \param nz number of z planes
+                       /// \param polygon the outline polygon defined by its
+                       ///        vertices
+                       /// \param zsections the z-sections defined by
+                       ///        z positions, polygon offset in x, y and scale 
+		       ///
+      virtual ISolid*  CreateExtrudedSolid(const std::string& name, 
+                               std::vector< TwoVector > polygon,
+                               std::vector< std::vector<double> > zsections) = 0;
 
                        /// Create the para solid = parallelepiped
 		       /// \param hx half-length along the x axis in mm

@@ -1,7 +1,17 @@
 // $Id$
+
+// -----------------------------------------------------------------------
+// The test program of the Virtual Geometry Model
+// Copyright (C) 2007, Ivana Hrivnacova               
+// All rights reserved. 
+//           
+// For the licensing terms see vgm/LICENSE.
+// Contact: ivana@ipno.in2p3.fr
+// -----------------------------------------------------------------------
+
 //
 // Class TstGeometryViaVGM
-// ---------------
+// ------------------------
 // The test for solids construction
 //
 // Author: Ivana Hrivnacova; IPN Orsay
@@ -72,7 +82,7 @@ IVolume* TstGeometryViaVGM::CreateWorld(double x, double y, double z)
 //_____________________________________________________________________________
 IVolume* TstGeometryViaVGM::CreateNewSolid()
 {
-  return CreateBox();
+  return CreateExtrudedSolid2();
 }  
 
 
@@ -105,6 +115,66 @@ IVolume* TstGeometryViaVGM::CreateEllipticalTube()
   
   return fFactory->CreateVolume("eltu", eltuS, "Basic");
 }
+ 
+//_____________________________________________________________________________
+IVolume* TstGeometryViaVGM::CreateExtrudedSolid1()
+{   
+  std::vector<VGM::TwoVector> polygon;
+  polygon.push_back(VGM::TwoVector(-30.*fCm, -30.*fCm));
+  polygon.push_back(VGM::TwoVector(-30.*fCm,  30.*fCm));
+  polygon.push_back(VGM::TwoVector( 30.*fCm,  30.*fCm));
+  polygon.push_back(VGM::TwoVector( 30.*fCm, -30.*fCm));
+  polygon.push_back(VGM::TwoVector( 15.*fCm, -30.*fCm));
+  polygon.push_back(VGM::TwoVector( 15.*fCm,  15.*fCm));
+  polygon.push_back(VGM::TwoVector(-15.*fCm,  15.*fCm));
+  polygon.push_back(VGM::TwoVector(-15.*fCm, -30.*fCm));
+  
+  double array1[] = { -40.*cm, -20.*cm, 10.*cm, 1.5 }; 
+  double array2[] = {  10.*cm,   0.*cm,  0.*cm, 0.5 }; 
+  double array3[] = {  15.*cm,   0.*cm,  0.*cm, 0.7 }; 
+  double array4[] = {  40.*cm,  20.*cm, 20.*cm, 0.9 }; 
+
+  std::vector< std::vector<double> > zsections;
+  zsections.push_back(std::vector<double>(array1, array1 + 4));
+  zsections.push_back(std::vector<double>(array2, array2 + 4));
+  zsections.push_back(std::vector<double>(array3, array3 + 4));
+  zsections.push_back(std::vector<double>(array4, array4 + 4));
+
+  ISolid* xtruS
+    = fFactory->CreateExtrudedSolid("xtruS",polygon, zsections);
+  
+  return fFactory->CreateVolume("xtru1", xtruS, "Basic");
+}  
+ 
+//_____________________________________________________________________________
+IVolume* TstGeometryViaVGM::CreateExtrudedSolid2()
+{   
+  std::vector<VGM::TwoVector> polygon;
+  polygon.push_back(VGM::TwoVector(-30.*fCm, -30.*fCm));
+  polygon.push_back(VGM::TwoVector(-30.*fCm,  30.*fCm));
+  polygon.push_back(VGM::TwoVector( 30.*fCm,  30.*fCm));
+  polygon.push_back(VGM::TwoVector( 30.*fCm, -30.*fCm));
+  polygon.push_back(VGM::TwoVector( 15.*fCm, -30.*fCm));
+  polygon.push_back(VGM::TwoVector( 15.*fCm,  15.*fCm));
+  polygon.push_back(VGM::TwoVector(-15.*fCm,  15.*fCm));
+  polygon.push_back(VGM::TwoVector(-15.*fCm, -30.*fCm));
+  
+  double array1[] = { -40.*cm, -20.*cm, 10.*cm, 1.5 }; 
+  double array2[] = {  10.*cm,   0.*cm,  0.*cm, 0.5 }; 
+  double array3[] = {  10.*cm,   0.*cm,  0.*cm, 0.7 }; 
+  double array4[] = {  40.*cm,  20.*cm, 20.*cm, 0.9 }; 
+
+  std::vector< std::vector<double> > zsections;
+  zsections.push_back(std::vector<double>(array1, array1 + 4));
+  zsections.push_back(std::vector<double>(array2, array2 + 4));
+  zsections.push_back(std::vector<double>(array3, array3 + 4));
+  zsections.push_back(std::vector<double>(array4, array4 + 4));
+
+  ISolid* xtruS
+    = fFactory->CreateExtrudedSolid("xtruS",polygon, zsections);
+  
+  return fFactory->CreateVolume("xtru2", xtruS, "Basic");
+}  
  
 //_____________________________________________________________________________
 IVolume* TstGeometryViaVGM::CreatePara()
@@ -247,7 +317,7 @@ void* TstGeometryViaVGM::PlaceSolids(IVolume* mother,
   }  
  
   int counter = 0;
-  double x0 = -350.*fCm;
+  double x0 = -450.*fCm;
   double dx = 150.*fCm;
   double dy = 150.*fCm;
   
@@ -385,6 +455,28 @@ void* TstGeometryViaVGM::PlaceSolids(IVolume* mother,
                  ClhepVGM::Transform(
                    HepGeom::Translate3D(x0 + (counter)*dx, dy, -zpos) * reflect3D));
 
+  // Xtru1
+  //
+  IVolume* xtru1V = CreateExtrudedSolid1();
+  fFactory->CreatePlacement("xtru1", 0, xtru1V, mother, 
+               ClhepVGM::Transform(
+                 HepGeom::Translate3D(x0 + (++counter)*dx, -dy, zpos)));
+  if (reflect)
+    fFactory->CreatePlacement("xtru1", 0, xtru1V, mother, 
+                 ClhepVGM::Transform(
+                   HepGeom::Translate3D(x0 + (counter)*dx, -dy, -zpos) * reflect3D));
+
+  // Xtru2
+  //
+  IVolume* xtru2V = CreateExtrudedSolid2();
+  fFactory->CreatePlacement("xtru2", 0, xtru2V, mother, 
+               ClhepVGM::Transform(
+                 HepGeom::Translate3D(x0 + (counter)*dx, dy, zpos)));
+  if (reflect)
+    fFactory->CreatePlacement("xtru2", 0, xtru2V, mother, 
+                 ClhepVGM::Transform(
+                   HepGeom::Translate3D(x0 + (counter)*dx, dy, -zpos) * reflect3D));
+
   return (void*) fFactory->Top();
  }
 
@@ -496,7 +588,7 @@ void  TstGeometryViaVGM::DefineMaterials()
 //_____________________________________________________________________________
 void* TstGeometryViaVGM::TestSolids(bool fullPhi)
 {
-  IVolume* worldV = CreateWorld(500.*fCm, 300.*fCm, 200.*fCm);
+  IVolume* worldV = CreateWorld(600.*fCm, 300.*fCm, 200.*fCm);
   fFactory->CreatePlacement("world", 0, worldV, 0, ClhepVGM::Identity());
   
   PlaceSolids(worldV, fullPhi, false, 0.);
@@ -507,12 +599,13 @@ void* TstGeometryViaVGM::TestSolids(bool fullPhi)
 //_____________________________________________________________________________
 void* TstGeometryViaVGM::TestNewSolid()
 {
-  IVolume* worldV = CreateWorld(100.*fCm, 100.*fCm, 100.*fCm);
+  IVolume* worldV = CreateWorld(200.*fCm, 200.*fCm, 200.*fCm);
   fFactory->CreatePlacement("world", 0, worldV, 0, ClhepVGM::Identity());
   
   IVolume* newSolidV = CreateNewSolid();
   if ( newSolidV ) {
-    fFactory->CreatePlacement("box", 0, newSolidV, worldV, ClhepVGM::Identity());
+    fFactory->CreatePlacement(newSolidV->Name(), 0, newSolidV, worldV, 
+                              ClhepVGM::Identity());
   }   
 
   return (void*) fFactory->Top();
@@ -601,7 +694,7 @@ void* TstGeometryViaVGM::TestPlacements()
 //_____________________________________________________________________________
 void* TstGeometryViaVGM::TestReflections(bool fullPhi)
 {
-  IVolume* worldV = CreateWorld(500.*fCm, 300.*fCm, 300.*fCm);
+  IVolume* worldV = CreateWorld(600.*fCm, 300.*fCm, 300.*fCm);
   fFactory->CreatePlacement("world", 0, worldV, 0, ClhepVGM::Identity());
   
   PlaceSolids(worldV, fullPhi, true, 100.* fCm);

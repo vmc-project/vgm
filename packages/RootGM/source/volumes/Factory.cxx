@@ -1,4 +1,14 @@
 // $Id$
+
+// -----------------------------------------------------------------------
+// The RootGM package of the Virtual Geometry Model
+// Copyright (C) 2007, Ivana Hrivnacova               
+// All rights reserved. 
+//           
+// For the licensing terms see vgm/LICENSE.
+// Contact: ivana@ipno.in2p3.fr
+// -----------------------------------------------------------------------
+
 //
 // Class Factory
 // ---------------
@@ -31,6 +41,7 @@
 #include "RootGM/solids/Cons.h"
 #include "RootGM/solids/Ctubs.h"
 #include "RootGM/solids/EllipticalTube.h"
+#include "RootGM/solids/ExtrudedSolid.h"
 #include "RootGM/solids/Para.h"
 #include "RootGM/solids/Polycone.h"
 #include "RootGM/solids/Polyhedra.h"
@@ -221,6 +232,13 @@ RootGM::Factory::ImportSolid(TGeoShape* shape)
     VGM::ITubs* vgmTubs = new RootGM::Tubs(tube);
     SolidStore().push_back(vgmTubs);
     return vgmTubs; 
+  }
+
+  TGeoXtru* xtru = dynamic_cast<TGeoXtru*>(shape);
+  if (xtru) { 
+    VGM::IExtrudedSolid* vgmXtru = new RootGM::ExtrudedSolid(xtru);
+    SolidStore().push_back(vgmXtru);
+    return vgmXtru; 
   }
 
   TGeoShapeAssembly* assembly = dynamic_cast<TGeoShapeAssembly*>(shape);
@@ -671,6 +689,20 @@ RootGM::Factory::CreateTubs(const std::string& name,
 //
   VGM::ISolid* vgmSolid 
     = new RootGM::Tubs(name, rin, rout, hz, sphi, dphi);
+
+  SolidStore().push_back(vgmSolid);
+  return vgmSolid; 
+}  			     
+			       
+//_____________________________________________________________________________
+VGM::ISolid*  
+RootGM::Factory::CreateExtrudedSolid(const std::string& name, 
+                            std::vector< VGM::TwoVector > polygon,
+                            std::vector< std::vector<double> > zsections)
+{			       
+//
+  VGM::ISolid* vgmSolid 
+    = new RootGM::ExtrudedSolid(name, polygon, zsections);
 
   SolidStore().push_back(vgmSolid);
   return vgmSolid; 

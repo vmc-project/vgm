@@ -1,4 +1,14 @@
 // $Id$
+
+// -----------------------------------------------------------------------
+// The test program of the Virtual Geometry Model
+// Copyright (C) 2007, Ivana Hrivnacova               
+// All rights reserved. 
+//           
+// For the licensing terms see vgm/LICENSE.
+// Contact: ivana@ipno.in2p3.fr
+// -----------------------------------------------------------------------
+
 //
 // Class TstPrimaryGeneratorAction
 // -------------------------------
@@ -39,6 +49,8 @@ class TstGeometryViaGeant4 : public TstVGeometry
     G4LogicalVolume* CreateBox();
     G4LogicalVolume* CreateCons(G4double sphi, G4double dphi);
     G4LogicalVolume* CreateEllipticalTube();
+    G4LogicalVolume* CreateExtrudedSolid1();
+    G4LogicalVolume* CreateExtrudedSolid2();
     G4LogicalVolume* CreatePara();
     G4LogicalVolume* CreatePolycone(G4double sphi, G4double dphi);
     G4LogicalVolume* CreatePolyhedra(G4double sphi, G4double dphi);
