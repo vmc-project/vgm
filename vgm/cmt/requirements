@@ -43,6 +43,7 @@ library BaseVGM -group=VGM -s=../packages/BaseVGM/source/ \
  solids/VCons.cxx\
  solids/VCtubs.cxx \
  solids/VEllipticalTube.cxx\
+ solids/VExtrudedSolid.cxx\
  solids/VPara.cxx\
  solids/VPolycone.cxx\
  solids/VPolyhedra.cxx\
@@ -90,6 +91,7 @@ library Geant4GM -group=VGM -import=Geant4 -s=../packages/Geant4GM/source/ \
  solids/Box.cxx \
  solids/Cons.cxx \
  solids/Ctubs.cxx \
+ solids/ExtrudedSolid.cxx \
  solids/EllipticalTube.cxx \
  solids/Para.cxx \
  solids/Polycone.cxx \
@@ -133,6 +135,7 @@ library RootGM -group=VGM -import=ROOT -s=../packages/RootGM/source/ \
  solids/Cons.cxx \
  solids/Ctubs.cxx \
  solids/EllipticalTube.cxx \
+ solids/ExtrudedSolid.cxx \
  solids/Para.cxx \
  solids/Polycone.cxx \
  solids/Polyhedra.cxx \
