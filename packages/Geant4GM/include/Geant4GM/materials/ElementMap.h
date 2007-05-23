@@ -1,11 +1,21 @@
 // $Id$
+
+// -----------------------------------------------------------------------
+// The Geant4GM package of the Virtual Geometry Model
+// Copyright (C) 2007, Ivana Hrivnacova               
+// All rights reserved. 
+//           
+// For the licensing terms see vgm/LICENSE.
+// Contact: ivana@ipno.in2p3.fr
+// -----------------------------------------------------------------------
+
 /// \ingroup Geant4GM_materials
 //
 /// \class Geant4GM::ElementMap
 ///
 /// The map between VGM and Geant4 elements.
 ///
-/// Author: Ivana Hrivnacova; IPN Orsay
+/// \author Ivana Hrivnacova; IPN Orsay
 
 #ifndef GEANT4_GM_ELEMENT_MAP_H
 #define GEANT4_GM_ELEMENT_MAP_H

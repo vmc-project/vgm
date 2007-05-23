@@ -1,7 +1,16 @@
 # $Id$
-# --------------------------------------------------------------
-# GNUmakefile for particles library.  Gabriele Cosmo, 4/4/97.
-# --------------------------------------------------------------
+
+# -----------------------------------------------------------------------
+# The makefile for a package of the Virtual Geometry Model
+# Copyright (C) 2007, Ivana Hrivnacova               
+# All rights reserved. 
+#           
+# For the licensing terms see vgm/LICENSE.
+# Contact: ivana@ipno.in2p3.fr
+# -----------------------------------------------------------------------
+
+# Based on Geant4 makefiles
+# (GNUmakefile for particles library.  Gabriele Cosmo, 4/4/97 )
 
 name := Geant4GM
 

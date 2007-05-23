@@ -1,4 +1,14 @@
 // $Id$
+
+// -----------------------------------------------------------------------
+// The RootGM package of the Virtual Geometry Model
+// Copyright (C) 2007, Ivana Hrivnacova               
+// All rights reserved. 
+//           
+// For the licensing terms see vgm/LICENSE.
+// Contact: ivana@ipno.in2p3.fr
+// -----------------------------------------------------------------------
+
 /// \ingroup RootGM_common
 //
 /// RootGM transformations
@@ -6,7 +16,7 @@
 /// Utility functions for conversions between Root and VGM
 /// transformtaions.
 ///
-/// Author: Ivana Hrivnacova; IPN Orsay
+/// \author Ivana Hrivnacova; IPN Orsay
 
 #ifndef ROOT_GM_TRANSFORM_H
 #define ROOT_GM_TRANSFORM_H

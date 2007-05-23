@@ -1,4 +1,14 @@
 // $Id$
+
+// -----------------------------------------------------------------------
+// The XmlVGM package of the Virtual Geometry Model
+// Copyright (C) 2007, Ivana Hrivnacova               
+// All rights reserved. 
+//           
+// For the licensing terms see vgm/LICENSE.
+// Contact: ivana@ipno.in2p3.fr
+// -----------------------------------------------------------------------
+
 /// \ingroup XmlVGM
 //
 /// \class XmlVGM::AGDDWriter
@@ -7,7 +17,7 @@
 /// writes VGM geometry objects to XML defined by AGDD.dtd
 /// (ATLAS Generic Detector Description)
 ///
-/// Author: I. Hrivnacova, 16.01.2004 
+/// \author I. Hrivnacova, 16.01.2004 
 
 #ifndef XML_VGM_AGDD_WRITER_H
 #define XML_VGM_AGDD_WRITER_H

@@ -1,5 +1,15 @@
  $Id$ 
 
+------------------------------------------------------------------------
+ The documentation file for the Virtual Geometry Model example
+ Copyright (C) 2007, Ivana Hrivnacova               
+ All rights reserved. 
+           
+ For the licensing terms see vgm/LICENSE.
+ Contact: ivana@ipno.in2p3.fr
+------------------------------------------------------------------------
+
+
  VGM Example E03
  Exporting geometry from Geant4 to XML
  --------------------------------------

@@ -1,4 +1,14 @@
 // $Id$
+
+// -----------------------------------------------------------------------
+// The XmlVGM package of the Virtual Geometry Model
+// Copyright (C) 2007, Ivana Hrivnacova               
+// All rights reserved. 
+//           
+// For the licensing terms see vgm/LICENSE.
+// Contact: ivana@ipno.in2p3.fr
+// -----------------------------------------------------------------------
+
 /// \ingroup XmlVGM
 //
 /// \class XmlVGM::Maps
@@ -6,7 +16,7 @@
 /// Utility class for mapping XML element values to their names
 /// within the XML exporter precision
 ///
-/// Author: I. Hrivnacova, 19.1.2004
+/// \author I. Hrivnacova, 19.1.2004
 
 #ifndef XML_VGM_MAPS_H
 #define XML_VGM_MAPS_H
