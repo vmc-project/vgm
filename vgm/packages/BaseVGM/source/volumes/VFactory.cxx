@@ -1,4 +1,14 @@
 // $Id$
+
+// -----------------------------------------------------------------------
+// The BaseVGM package of the Virtual Geometry Model
+// Copyright (C) 2007, Ivana Hrivnacova               
+// All rights reserved. 
+//           
+// For the licensing terms see vgm/LICENSE.
+// Contact: ivana@ipno.in2p3.fr
+// -----------------------------------------------------------------------
+
 //
 // Class VFactory
 // ---------------
@@ -12,6 +22,7 @@
 #include "VGM/solids/ICons.h"
 #include "VGM/solids/ICtubs.h"
 #include "VGM/solids/IEllipticalTube.h"
+#include "VGM/solids/IExtrudedSolid.h"
 #include "VGM/solids/IPara.h"
 #include "VGM/solids/IPolycone.h"
 #include "VGM/solids/IPolyhedra.h"
@@ -185,6 +196,24 @@ BaseVGM::VFactory::ExportSolid(VGM::ISolid* solid,
                               eltu->Dx(),
 			      eltu->Dy(), 
                               eltu->ZHalfLength());  
+  }
+  else if (solidType == VGM::kExtruded) { 
+    VGM::IExtrudedSolid* xtru = dynamic_cast<VGM::IExtrudedSolid*>(solid);    
+    std::vector<VGM::TwoVector> polygon;
+    for ( int i=0; i<xtru->NofVertices(); ++i ) polygon.push_back(xtru->Vertex(i));
+    std::vector< std::vector<double> > zsections;
+    for ( int i=0; i<xtru->NofZSections(); ++i ) {
+      std::vector<double> zsection;
+      zsection.push_back(xtru->ZPosition(i));
+      zsection.push_back(xtru->Offset(i).first);
+      zsection.push_back(xtru->Offset(i).second);
+      zsection.push_back(xtru->Scale(i));
+      zsections.push_back(zsection);
+    }  
+    return factory->CreateExtrudedSolid(
+                              xtru->Name(), 
+                              polygon,
+                              zsections);
   }
   else if (solidType == VGM::kPara) { 
     VGM::IPara* para = dynamic_cast<VGM::IPara*>(solid); 

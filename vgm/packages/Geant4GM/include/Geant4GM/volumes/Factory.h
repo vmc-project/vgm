@@ -1,11 +1,21 @@
 // $Id$
+
+// -----------------------------------------------------------------------
+// The Geant4GM package of the Virtual Geometry Model
+// Copyright (C) 2007, Ivana Hrivnacova               
+// All rights reserved. 
+//           
+// For the licensing terms see vgm/LICENSE.
+// Contact: ivana@ipno.in2p3.fr
+// -----------------------------------------------------------------------
+
 /// \ingroup Geant4GM_volumes
 //
 /// \class Geant4GM::Factory
 ///
 /// VGM factory for Geant4.
 ///
-/// Author: Ivana Hrivnacova; IPN Orsay
+/// \author Ivana Hrivnacova; IPN Orsay
 
 #ifndef GEANT4_GM_FACTORY_H
 #define GEANT4_GM_FACTORY_H
@@ -24,6 +34,7 @@ class G4BooleanSolid;
 class VGM::ISolid;
 class VGM::IVolume;
 class VGM::IPlacement;
+class VGM::IExtrudedSolid;
 
 namespace Geant4GM {
 
@@ -58,6 +69,10 @@ namespace Geant4GM {
       virtual VGM::ISolid*  CreateEllipticalTube(
                                  const std::string& name, 
                                  double dx, double dy, double hz); 
+
+      virtual VGM::ISolid*  CreateExtrudedSolid(const std::string& name, 
+                                 std::vector< VGM::TwoVector > polygon,
+                                 std::vector< std::vector<double> > zsections);
 
       virtual VGM::ISolid*  CreatePara(
                                  const std::string& name, 

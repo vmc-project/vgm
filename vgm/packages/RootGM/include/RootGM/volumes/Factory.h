@@ -1,11 +1,21 @@
 // $Id$
+
+// -----------------------------------------------------------------------
+// The RootGM package of the Virtual Geometry Model
+// Copyright (C) 2007, Ivana Hrivnacova               
+// All rights reserved. 
+//           
+// For the licensing terms see vgm/LICENSE.
+// Contact: ivana@ipno.in2p3.fr
+// -----------------------------------------------------------------------
+
 /// \ingroup RootGM_volumes
 //
 /// \class RootGM:: Factory
 ///
 /// VGM factory for Root.
 ///
-/// Author: Ivana Hrivnacova; IPN Orsay
+/// \author Ivana Hrivnacova; IPN Orsay
 
 #ifndef ROOT_GM_FACTORY_H
 #define ROOT_GM_FACTORY_H
@@ -22,6 +32,7 @@ class TGeoNode;
 class VGM::ISolid;
 class VGM::IVolume;
 class VGM::IPlacement;
+class VGM::IExtrudedSolid;
 
 namespace RootGM {
 
@@ -56,6 +67,10 @@ namespace RootGM {
       virtual VGM::ISolid*  CreateEllipticalTube(
                                const std::string& name, 
                                double dx, double dy, double hz); 
+
+      virtual VGM::ISolid*  CreateExtrudedSolid(const std::string& name, 
+                               std::vector< VGM::TwoVector > polygon,
+                               std::vector< std::vector<double> > zsections);
 
       virtual VGM::ISolid*  CreatePara(const std::string& name, 
                                double dx, double dy, double dz,

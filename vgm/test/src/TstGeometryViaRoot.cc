@@ -1,13 +1,20 @@
 // $Id$
+
+// -----------------------------------------------------------------------
+// The test program of the Virtual Geometry Model
+// Copyright (C) 2007, Ivana Hrivnacova               
+// All rights reserved. 
+//           
+// For the licensing terms see vgm/LICENSE.
+// Contact: ivana@ipno.in2p3.fr
+// -----------------------------------------------------------------------
+
 //
 // Class TstGeometryViaRoot
 // ------------------------
 // The test for solids construction
 //
 // Author: Ivana Hrivnacova; IPN Orsay
-
-// $Id$
-// GEANT4 tag $Name$
 
 #include <iomanip>
 
@@ -29,6 +36,7 @@
 #include "TGeoTorus.h"
 #include "TGeoTrd2.h"
 #include "TGeoTube.h"
+#include "TGeoXtru.h"
 
 #include "TstGeometryViaRoot.hh"
 
@@ -74,8 +82,7 @@ TGeoVolume* TstGeometryViaRoot::CreateWorld(Double_t x, Double_t y, Double_t z)
 //_____________________________________________________________________________
 TGeoVolume* TstGeometryViaRoot::CreateNewSolid()
 {
-  // return CreateExtrudedSolid2();
-  return CreateBox();
+  return CreateExtrudedSolid2();
 }  
 
 
@@ -105,6 +112,51 @@ TGeoVolume* TstGeometryViaRoot::CreateEllipticalTube()
     = new TGeoEltu("eltuS", 20., 30., 50.);
   
   return new TGeoVolume("eltu", eltuS, fBasicMedium);
+}  
+
+
+//_____________________________________________________________________________
+TGeoVolume* TstGeometryViaRoot::CreateExtrudedSolid1()
+{
+  Int_t nz = 4;
+  TGeoXtru* xtruS = new TGeoXtru(nz);
+
+  Int_t nv = 8;
+  Double_t vx[8] = { -30., -30., 30., 30., 15., 15., -15., -15. };
+  Double_t vy[8] = { -30.,  30., 30.,-30.,-30,  15.,  15., -30. };
+  xtruS->DefinePolygon(nv, vx, vy);
+
+  Double_t vz[4] = { -40., 10., 15., 40. };
+  Double_t xoff[4]  = { -20., 0., 0., 20. };
+  Double_t yoff[4]  = {  10., 0., 0., 20. };
+  Double_t scale[4] = {  1.5, 0.5, 0.7, 0.9 };
+
+  for (Int_t i=0; i<4; i++)
+    xtruS->DefineSection(i, vz[i], xoff[i], yoff[i], scale[i]); 
+
+  return new TGeoVolume("xtru1", xtruS, fBasicMedium);
+}  
+ 
+//_____________________________________________________________________________
+TGeoVolume* TstGeometryViaRoot::CreateExtrudedSolid2()
+{
+  Int_t nz = 4;
+  TGeoXtru* xtruS = new TGeoXtru(nz);
+
+  Int_t nv = 8;
+  Double_t vx[8] = { -30., -30., 30., 30., 15., 15., -15., -15. };
+  Double_t vy[8] = { -30.,  30., 30.,-30.,-30,  15.,  15., -30. };
+  xtruS->DefinePolygon(nv, vx, vy);
+
+  Double_t vz[4] = { -40., 10., 10., 40. };
+  Double_t xoff[4]  = { -20., 0., 0., 20. };
+  Double_t yoff[4]  = {  10., 0., 0., 20. };
+  Double_t scale[4] = {  1.5, 0.5, 0.7, 0.9 };
+
+  for (Int_t i=0; i<4; i++)
+    xtruS->DefineSection(i, vz[i], xoff[i], yoff[i], scale[i]); 
+
+  return new TGeoVolume("xtru2", xtruS, fBasicMedium);
 }  
  
 //_____________________________________________________________________________
@@ -278,7 +330,7 @@ TGeoVolume* TstGeometryViaRoot::PlaceSolids(TGeoVolume* mother,
   }  
  
   int counter = 0;
-  Double_t x0 = -350.;
+  Double_t x0 = -450.;
   Double_t dx =  150.;
   Double_t dy =  150.;
   
@@ -398,6 +450,24 @@ TGeoVolume* TstGeometryViaRoot::PlaceSolids(TGeoVolume* mother,
     mother->AddNode(ctubsV, 1,
                   new TGeoCombiTrans(x0 + (counter)*dx, dy, -zpos, reflect3D));
 
+  // Xtru1
+  //
+  TGeoVolume* xtru1V = CreateExtrudedSolid1();
+  mother->AddNode(xtru1V, 0, 
+                  new TGeoTranslation(x0 + (++counter)*dx, -dy, zpos));
+  if (reflect)
+    mother->AddNode(xtru1V, 1,
+                  new TGeoCombiTrans(x0 + (counter)*dx, -dy, -zpos, reflect3D));
+
+   // Xtru2
+  //
+  TGeoVolume* xtru2V = CreateExtrudedSolid2();
+  mother->AddNode(xtru2V, 0, 
+                  new TGeoTranslation(x0 + (counter)*dx, dy, zpos));
+  if (reflect)
+    mother->AddNode(xtru2V, 1,
+                  new TGeoCombiTrans(x0 + (counter)*dx, dy, -zpos, reflect3D));
+
   return mother;   		  
 }
 
@@ -458,7 +528,7 @@ void  TstGeometryViaRoot::DefineMaterials()
 //_____________________________________________________________________________
 void* TstGeometryViaRoot::TestSolids(Bool_t fullPhi)
 {
-  TGeoVolume* worldV = CreateWorld(500., 300., 200.);
+  TGeoVolume* worldV = CreateWorld(600., 300., 200.);
   
   PlaceSolids(worldV, fullPhi, false, 0.);
   
@@ -563,7 +633,7 @@ void* TstGeometryViaRoot::TestPlacements()
 void* TstGeometryViaRoot::TestReflections(Bool_t fullPhi)
 {
 
-  TGeoVolume* worldV = CreateWorld(500., 300., 300.);
+  TGeoVolume* worldV = CreateWorld(600., 300., 300.);
   
   PlaceSolids(worldV, fullPhi, true, 100.);
 
@@ -1078,11 +1148,22 @@ void* TstGeometryViaRoot::TestBooleanSolids5()
 //_____________________________________________________________________________
 void* TstGeometryViaRoot::TestSpecial()
 {
-// Special test, geomeytry is loaded from geometry.root file.
+// Special test, geometry is loaded from geometry.root file.
 // ---
 
   gGeoManager->Import("geometry.root");
 
+/*
+  TGeoVolume* worldV = gGeoManager->GetTopVolume();
+  TGeoShape* boxS
+    = new TGeoBBox("boxS", 1., 1., 1.);
+
+  TGeoVolume* boxV = new TGeoVolume("boxV", boxS, fBasicMedium);
+  worldV->AddNode(boxV, 0, new TGeoTranslation(6.22, 1.57e+02, 2.51e+02));
+  worldV->AddNode(boxV, 0, new TGeoTranslation(6.60, 1.57e+02, 2.51e+02));
+  worldV->AddNode(boxV, 0, new TGeoTranslation(6.98, 1.58e+02, 2.52e+02));
+  worldV->AddNode(boxV, 0, new TGeoTranslation(11.9, 1.59e+02, 2.6e+02));
+*/
   return (void*) gGeoManager->GetTopNode();
 }
   

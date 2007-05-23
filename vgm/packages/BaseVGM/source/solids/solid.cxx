@@ -1,4 +1,14 @@
 // $Id$
+
+// -----------------------------------------------------------------------
+// The BaseVGM package of the Virtual Geometry Model
+// Copyright (C) 2007, Ivana Hrivnacova               
+// All rights reserved. 
+//           
+// For the licensing terms see vgm/LICENSE.
+// Contact: ivana@ipno.in2p3.fr
+// -----------------------------------------------------------------------
+
 //
 // VGM::ISolid output stream and utility function
 //
@@ -23,6 +33,7 @@ std::string VGM::SolidTypeName(VGM::SolidType typeId)
     case kCons:         return "Cons";      break;
     case kCtubs:        return "Ctubs";     break;
     case kEltu:         return "Eltu";      break;
+    case kExtruded:     return "Extruded";  break;
     case kPara:         return "Para";      break;
     case kPolycone:     return "Polycone";  break;
     case kPolyhedra:    return "Polygone";  break;

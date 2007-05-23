@@ -1,4 +1,14 @@
 // $Id$
+
+// -----------------------------------------------------------------------
+// The test program of the Virtual Geometry Model
+// Copyright (C) 2007, Ivana Hrivnacova               
+// All rights reserved. 
+//           
+// For the licensing terms see vgm/LICENSE.
+// Contact: ivana@ipno.in2p3.fr
+// -----------------------------------------------------------------------
+
 //
 // Class TstGeometryViaGeant4
 // ---------------
@@ -23,6 +33,7 @@
 #include "G4Box.hh"
 #include "G4Cons.hh"
 #include "G4EllipticalTube.hh"
+#include "G4ExtrudedSolid.hh"
 #include "G4Para.hh"
 #include "G4Polycone.hh"
 #include "G4Polyhedra.hh"
@@ -84,8 +95,7 @@ G4LogicalVolume* TstGeometryViaGeant4::CreateNewSolid()
 // Create a new solid
 // ---
 
-  // return CreateExtrudedSolid2();
-  return CreateBox();
+  return CreateExtrudedSolid2();
 }    
 
 //_____________________________________________________________________________
@@ -118,7 +128,70 @@ G4LogicalVolume* TstGeometryViaGeant4::CreateEllipticalTube()
   return new G4LogicalVolume(eltuS, fBasicMaterial, "eltu");
 }
 
+//_____________________________________________________________________________
+G4LogicalVolume* TstGeometryViaGeant4::CreateExtrudedSolid1()
+{   
+  std::vector<G4TwoVector> polygon;
+  polygon.push_back(G4TwoVector(-30.*cm, -30.*cm));
+  polygon.push_back(G4TwoVector(-30.*cm,  30.*cm));
+  polygon.push_back(G4TwoVector( 30.*cm,  30.*cm));
+  polygon.push_back(G4TwoVector( 30.*cm, -30.*cm));
+  polygon.push_back(G4TwoVector( 15.*cm, -30.*cm));
+  polygon.push_back(G4TwoVector( 15.*cm,  15.*cm));
+  polygon.push_back(G4TwoVector(-15.*cm,  15.*cm));
+  polygon.push_back(G4TwoVector(-15.*cm, -30.*cm));
+  
+  std::vector<G4ExtrudedSolid::ZSection> zsections;
+  zsections.push_back(G4ExtrudedSolid::ZSection(-40.*cm, G4TwoVector(-20.*cm, 10.*cm), 1.5));
+  zsections.push_back(G4ExtrudedSolid::ZSection( 10.*cm, G4TwoVector(  0.*cm,  0.*cm), 0.5));
+  zsections.push_back(G4ExtrudedSolid::ZSection( 15.*cm, G4TwoVector(  0.*cm,  0.*cm), 0.7));
+  zsections.push_back(G4ExtrudedSolid::ZSection( 40.*cm, G4TwoVector( 20.*cm, 20.*cm), 0.9));
 
+  G4ExtrudedSolid* xtruS 
+    = new G4ExtrudedSolid("XtruS", polygon, zsections);
+
+  G4LogicalVolume* xtruV 
+    = new G4LogicalVolume(xtruS, fBasicMaterial, "xtru1");
+
+  return xtruV;  
+}  
+ 
+//_____________________________________________________________________________
+G4LogicalVolume* TstGeometryViaGeant4::CreateExtrudedSolid2()
+{   
+  std::vector<G4TwoVector> polygon;
+  polygon.push_back(G4TwoVector(-30.*cm, -30.*cm));
+  polygon.push_back(G4TwoVector(-30.*cm,  30.*cm));
+  polygon.push_back(G4TwoVector( 30.*cm,  30.*cm));
+  polygon.push_back(G4TwoVector( 30.*cm, -30.*cm));
+  polygon.push_back(G4TwoVector( 15.*cm, -30.*cm));
+  polygon.push_back(G4TwoVector( 15.*cm,  15.*cm));
+  polygon.push_back(G4TwoVector(-15.*cm,  15.*cm));
+  polygon.push_back(G4TwoVector(-15.*cm, -30.*cm));
+  
+  std::vector<G4ExtrudedSolid::ZSection> zsections1;
+  zsections1.push_back(G4ExtrudedSolid::ZSection(-40.*cm, G4TwoVector(-20.*cm, 10.*cm), 1.5));
+  zsections1.push_back(G4ExtrudedSolid::ZSection( 10.*cm, G4TwoVector(  0.*cm,  0.*cm), 0.5));
+
+  G4ExtrudedSolid* xtruS1 
+    = new G4ExtrudedSolid("XtruS1", polygon, zsections1);
+
+  std::vector<G4ExtrudedSolid::ZSection> zsections2;
+  zsections2.push_back(G4ExtrudedSolid::ZSection( 10.*cm, G4TwoVector(  0.*cm,  0.*cm), 0.7));
+  zsections2.push_back(G4ExtrudedSolid::ZSection( 40.*cm, G4TwoVector( 20.*cm, 20.*cm), 0.9));
+
+  G4ExtrudedSolid* xtruS2 
+    = new G4ExtrudedSolid("XtruS1", polygon, zsections2);
+
+  G4UnionSolid* unionS
+    = new G4UnionSolid("xtruU", xtruS1, xtruS2, 0, G4ThreeVector());
+
+  G4LogicalVolume* xtruV 
+    = new G4LogicalVolume(unionS, fBasicMaterial, "xtru2");
+
+  return xtruV;  
+}  
+ 
 //_____________________________________________________________________________
 G4LogicalVolume* TstGeometryViaGeant4::CreatePara()
 {
@@ -344,7 +417,7 @@ TstGeometryViaGeant4::PlaceSolids(G4LogicalVolume* mother,
   }  
  
   G4int counter = 0;
-  G4double x0 = -3.5*m;
+  G4double x0 = -4.5*m;
   G4double dx =  1.5*m;
   G4double dy =  1.5*m;
   
@@ -507,6 +580,33 @@ TstGeometryViaGeant4::PlaceSolids(G4LogicalVolume* mother,
   }	      
 
  
+  // Xtru1
+  //
+  G4LogicalVolume* xtru1V = CreateExtrudedSolid1();
+  new G4PVPlacement(
+               HepGeom::Translate3D(x0 + (++counter)*dx, -dy, zpos),
+	       xtru1V, "xtru1", mother, false, 0);
+
+  if (reflect) {
+    G4ReflectionFactory::Instance()
+      ->Place(HepGeom::Translate3D(x0 + (counter)*dx, -dy, -zpos) * reflect3D,
+	      "xtru1", xtru1V, mother, false, 0);
+  }	      
+
+  // CTubs
+  //
+  G4LogicalVolume* xtru2V = CreateExtrudedSolid2();
+  new G4PVPlacement(
+               HepGeom::Translate3D(x0 + (counter)*dx, dy, zpos),
+	       xtru2V, "xtru2", mother, false, 0);
+
+  if (reflect) {
+    G4ReflectionFactory::Instance()
+      ->Place(HepGeom::Translate3D(x0 + (counter)*dx, dy, -zpos) * reflect3D,
+	      "xtru2", xtru2V, mother, false, 0);
+  }	      
+
+ 
   return mother;
   
  }
@@ -573,7 +673,7 @@ void  TstGeometryViaGeant4::DefineMaterials()
 void* TstGeometryViaGeant4::TestSolids(G4bool fullPhi)
 {
 
-  G4LogicalVolume* worldV = CreateWorld(5.*m, 3.*m, 2.*m);
+  G4LogicalVolume* worldV = CreateWorld(6.*m, 3.*m, 2.*m);
   G4VPhysicalVolume* world
     = new G4PVPlacement(0, CLHEP::Hep3Vector(), worldV, "world", 0, false, 0); 
   
@@ -685,7 +785,7 @@ void* TstGeometryViaGeant4::TestReflections(G4bool fullPhi)
 
   // World
   //
-  G4LogicalVolume* worldV = CreateWorld(5.*m, 3.*m, 3.*m);
+  G4LogicalVolume* worldV = CreateWorld(6.*m, 3.*m, 3.*m);
   G4VPhysicalVolume* world
     = new G4PVPlacement(0, CLHEP::Hep3Vector(), worldV, "world", 0, false, 0); 
   

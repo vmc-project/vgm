@@ -1,4 +1,14 @@
 // $Id$
+
+// -----------------------------------------------------------------------
+// The Geant4GM package of the Virtual Geometry Model
+// Copyright (C) 2007, Ivana Hrivnacova               
+// All rights reserved. 
+//           
+// For the licensing terms see vgm/LICENSE.
+// Contact: ivana@ipno.in2p3.fr
+// -----------------------------------------------------------------------
+
 //
 // Class Factory
 // ---------------
@@ -25,6 +35,7 @@
 #include "G4Trap.hh"
 #include "G4Trd.hh"
 #include "G4Tubs.hh"
+#include "G4ExtrudedSolid.hh"
 
 #include "ClhepVGM/transform.h"
 #include "ClhepVGM/Units.h"
@@ -44,6 +55,7 @@
 #include "Geant4GM/solids/Cons.h"
 #include "Geant4GM/solids/Ctubs.h"
 #include "Geant4GM/solids/EllipticalTube.h"
+#include "Geant4GM/solids/ExtrudedSolid.h"
 #include "Geant4GM/solids/Para.h"
 #include "Geant4GM/solids/Polycone.h"
 #include "Geant4GM/solids/Polyhedra.h"
@@ -149,6 +161,13 @@ Geant4GM::Factory::ImportSolid(G4VSolid* solid)
     VGM::IEllipticalTube* vgmEltu = new Geant4GM::EllipticalTube(eltu, reflSolid);
     SolidStore().push_back(vgmEltu);
     return vgmEltu; 
+  }
+
+  G4ExtrudedSolid* xtru = dynamic_cast<G4ExtrudedSolid*>(consSolid);
+  if (xtru) { 
+    VGM::IExtrudedSolid* vgmXtru = new Geant4GM::ExtrudedSolid(xtru, reflSolid);
+    SolidStore().push_back(vgmXtru);
+    return vgmXtru; 
   }
 
   G4Para* para = dynamic_cast<G4Para*>(consSolid);
@@ -692,6 +711,20 @@ Geant4GM::Factory::CreateTubs(const std::string& name,
 //
   VGM::ISolid* vgmSolid 
     = new Geant4GM::Tubs(name, rin, rout, hz, sphi, dphi);
+
+  SolidStore().push_back(vgmSolid);
+  return vgmSolid; 
+}  			     
+			       
+//_____________________________________________________________________________
+VGM::ISolid*  
+Geant4GM::Factory::CreateExtrudedSolid(const std::string& name, 
+                               std::vector< VGM::TwoVector > polygon,
+                               std::vector< std::vector<double> > zsections)
+{			       
+//
+  VGM::ISolid* vgmSolid 
+    = new Geant4GM::ExtrudedSolid(name, polygon, zsections);
 
   SolidStore().push_back(vgmSolid);
   return vgmSolid; 

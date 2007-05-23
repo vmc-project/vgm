@@ -1,4 +1,14 @@
 // $Id$
+
+// -----------------------------------------------------------------------
+// The test program of the Virtual Geometry Model
+// Copyright (C) 2007, Ivana Hrivnacova               
+// All rights reserved. 
+//           
+// For the licensing terms see vgm/LICENSE.
+// Contact: ivana@ipno.in2p3.fr
+// -----------------------------------------------------------------------
+
 //
 // Class TstPrimaryGeneratorAction
 // -------------------------------
@@ -40,6 +50,8 @@ class TstGeometryViaVGM : public TstVGeometry
     VGM::IVolume* CreateBox();
     VGM::IVolume* CreateCons(double sphi, double dphi);
     VGM::IVolume* CreateEllipticalTube();
+    VGM::IVolume* CreateExtrudedSolid1();
+    VGM::IVolume* CreateExtrudedSolid2();
     VGM::IVolume* CreatePara();
     VGM::IVolume* CreatePolycone(double sphi, double dphi);
     VGM::IVolume* CreatePolyhedra(double sphi, double dphi);
