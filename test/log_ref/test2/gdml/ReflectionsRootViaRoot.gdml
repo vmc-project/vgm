@@ -5,30 +5,34 @@
 
    <define>
       <position  name="pos_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
-      <position  name="pos_1"     x="  -350.0000"  y="  -150.0000"  z="   100.0000"  unit="cm" />
-      <position  name="pos_2"     x="  -350.0000"  y="  -150.0000"  z="  -100.0000"  unit="cm" />
-      <position  name="pos_3"     x="  -350.0000"  y="   150.0000"  z="   100.0000"  unit="cm" />
-      <position  name="pos_4"     x="  -350.0000"  y="   150.0000"  z="  -100.0000"  unit="cm" />
-      <position  name="pos_5"     x="  -200.0000"  y="  -150.0000"  z="   100.0000"  unit="cm" />
-      <position  name="pos_6"     x="  -200.0000"  y="  -150.0000"  z="  -100.0000"  unit="cm" />
-      <position  name="pos_7"     x="  -200.0000"  y="   150.0000"  z="   100.0000"  unit="cm" />
-      <position  name="pos_8"     x="  -200.0000"  y="   150.0000"  z="  -100.0000"  unit="cm" />
-      <position  name="pos_9"     x="   -50.0000"  y="  -150.0000"  z="   100.0000"  unit="cm" />
-      <position  name="pos_10"    x="   -50.0000"  y="  -150.0000"  z="  -100.0000"  unit="cm" />
-      <position  name="pos_11"    x="   -50.0000"  y="   150.0000"  z="   100.0000"  unit="cm" />
-      <position  name="pos_12"    x="   -50.0000"  y="   150.0000"  z="  -100.0000"  unit="cm" />
-      <position  name="pos_13"    x="   100.0000"  y="  -150.0000"  z="   100.0000"  unit="cm" />
-      <position  name="pos_14"    x="   100.0000"  y="  -150.0000"  z="  -100.0000"  unit="cm" />
-      <position  name="pos_15"    x="   100.0000"  y="   150.0000"  z="   100.0000"  unit="cm" />
-      <position  name="pos_16"    x="   100.0000"  y="   150.0000"  z="  -100.0000"  unit="cm" />
-      <position  name="pos_17"    x="   250.0000"  y="  -150.0000"  z="   100.0000"  unit="cm" />
-      <position  name="pos_18"    x="   250.0000"  y="  -150.0000"  z="  -100.0000"  unit="cm" />
-      <position  name="pos_19"    x="   250.0000"  y="   150.0000"  z="   100.0000"  unit="cm" />
-      <position  name="pos_20"    x="   250.0000"  y="   150.0000"  z="  -100.0000"  unit="cm" />
-      <position  name="pos_21"    x="   400.0000"  y="  -150.0000"  z="   100.0000"  unit="cm" />
-      <position  name="pos_22"    x="   400.0000"  y="  -150.0000"  z="  -100.0000"  unit="cm" />
-      <position  name="pos_23"    x="   400.0000"  y="   150.0000"  z="   100.0000"  unit="cm" />
-      <position  name="pos_24"    x="   400.0000"  y="   150.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_1"     x="  -450.0000"  y="  -150.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_2"     x="  -450.0000"  y="  -150.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_3"     x="  -450.0000"  y="   150.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_4"     x="  -450.0000"  y="   150.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_5"     x="  -300.0000"  y="  -150.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_6"     x="  -300.0000"  y="  -150.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_7"     x="  -300.0000"  y="   150.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_8"     x="  -300.0000"  y="   150.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_9"     x="  -150.0000"  y="  -150.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_10"    x="  -150.0000"  y="  -150.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_11"    x="  -150.0000"  y="   150.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_12"    x="  -150.0000"  y="   150.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_13"    x="     0.0000"  y="  -150.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_14"    x="     0.0000"  y="  -150.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_15"    x="     0.0000"  y="   150.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_16"    x="     0.0000"  y="   150.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_17"    x="   150.0000"  y="  -150.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_18"    x="   150.0000"  y="  -150.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_19"    x="   150.0000"  y="   150.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_20"    x="   150.0000"  y="   150.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_21"    x="   300.0000"  y="  -150.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_22"    x="   300.0000"  y="  -150.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_23"    x="   300.0000"  y="   150.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_24"    x="   300.0000"  y="   150.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_25"    x="   450.0000"  y="  -150.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_26"    x="   450.0000"  y="  -150.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_27"    x="   450.0000"  y="   150.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_28"    x="   450.0000"  y="   150.0000"  z="  -100.0000"  unit="cm" />
 
       <rotation  name="rot_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
    </define>
@@ -49,7 +53,7 @@
    <solids>
       <box  lunit="cm" aunit="degree"
          name="world_s"
-         x=" 1000.0000"  y="  600.0000"  z="  600.0000" />
+         x=" 1200.0000"  y="  600.0000"  z="  600.0000" />
 
       <box  lunit="cm" aunit="degree"
          name="box_s"
@@ -120,6 +124,18 @@
          name="ctubs_s"
          x="    0.2000"  y="    0.2000"  z="    0.2000" />
 
+      <!-- !!! unsupported shape  !!!  name= "xtru1_s" -->
+      <!-- dummy box is written instead  -->
+      <box  lunit="cm" aunit="degree"
+         name="xtru1_s"
+         x="    0.2000"  y="    0.2000"  z="    0.2000" />
+
+      <!-- !!! unsupported shape  !!!  name= "xtru2_s" -->
+      <!-- dummy box is written instead  -->
+      <box  lunit="cm" aunit="degree"
+         name="xtru2_s"
+         x="    0.2000"  y="    0.2000"  z="    0.2000" />
+
    </solids>
 
    <structure>
@@ -183,6 +199,16 @@
          <solidref ref="ctubs_s"/>
       </volume>
 
+      <volume name="xtru1">
+         <materialref ref="Basic"/>
+         <solidref ref="xtru1_s"/>
+      </volume>
+
+      <volume name="xtru2">
+         <materialref ref="Basic"/>
+         <solidref ref="xtru2_s"/>
+      </volume>
+
       <volume name="world">
          <materialref ref="Basic"/>
          <solidref ref="world_s"/>
@@ -244,6 +270,16 @@
          <physvol>
             <volumeref ref="ctubs"/>
                <positionref ref="pos_23"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="xtru1"/>
+               <positionref ref="pos_25"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="xtru2"/>
+               <positionref ref="pos_27"/>
                <rotationref ref="rot_0"/>
          </physvol>
       </volume>
