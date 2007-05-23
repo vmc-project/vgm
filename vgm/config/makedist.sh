@@ -1,5 +1,15 @@
 #!/bin/sh
 # $Id$
+
+# -----------------------------------------------------------------------
+# The source distribution script for the Virtual Geometry Model
+# Copyright (C) 2007, Ivana Hrivnacova               
+# All rights reserved. 
+#           
+# For the licensing terms see vgm/LICENSE.
+# Contact: ivana@ipno.in2p3.fr
+# -----------------------------------------------------------------------
+
 #
 # Script to produce the source distribution of VGM.
 # Should be run from the VGM istallation parent directory.
