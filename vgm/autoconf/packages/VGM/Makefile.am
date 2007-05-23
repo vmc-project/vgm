@@ -33,6 +33,7 @@ nodist_vgmsolinc_HEADERS = \
 	$(vgminc)/solids/ICons.h \
 	$(vgminc)/solids/ICtubs.h \
 	$(vgminc)/solids/IEllipticalTube.h \
+	$(vgminc)/solids/IExtrudedSolid.h \
 	$(vgminc)/solids/IPara.h \
 	$(vgminc)/solids/IPolycone.h \
 	$(vgminc)/solids/IPolyhedra.h \

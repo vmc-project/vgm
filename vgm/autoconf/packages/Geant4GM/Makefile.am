@@ -32,6 +32,7 @@ nodist_libGeant4GM_la_SOURCES =                        \
 	$(geant4gmsrc)/solids/Cons.cxx \
 	$(geant4gmsrc)/solids/Ctubs.cxx \
 	$(geant4gmsrc)/solids/EllipticalTube.cxx \
+	$(geant4gmsrc)/solids/ExtrudedSolid.cxx \
 	$(geant4gmsrc)/solids/Para.cxx \
 	$(geant4gmsrc)/solids/Polycone.cxx \
 	$(geant4gmsrc)/solids/Polyhedra.cxx \
@@ -68,6 +69,7 @@ nodist_geant4gmsolinc_HEADERS = \
 	$(geant4gminc)/solids/Cons.h \
 	$(geant4gminc)/solids/Ctubs.h \
 	$(geant4gminc)/solids/EllipticalTube.h \
+	$(geant4gminc)/solids/ExtrudedSolid.h \
 	$(geant4gminc)/solids/Para.h \
 	$(geant4gminc)/solids/Polycone.h \
 	$(geant4gminc)/solids/Polyhedra.h \

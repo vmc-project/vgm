@@ -28,6 +28,7 @@ nodist_libBaseVGM_la_SOURCES =                        \
 	$(basevgmsrc)/solids/VCons.cxx \
 	$(basevgmsrc)/solids/VCtubs.cxx \
 	$(basevgmsrc)/solids/VEllipticalTube.cxx \
+	$(basevgmsrc)/solids/VExtrudedSolid.cxx \
 	$(basevgmsrc)/solids/VPara.cxx \
 	$(basevgmsrc)/solids/VPolycone.cxx \
 	$(basevgmsrc)/solids/VPolyhedra.cxx \
@@ -60,6 +61,7 @@ nodist_basevgmsolinc_HEADERS = \
 	$(basevgminc)/solids/VCons.h \
 	$(basevgminc)/solids/VCtubs.h \
 	$(basevgminc)/solids/VEllipticalTube.h \
+	$(basevgminc)/solids/VExtrudedSolid.h \
 	$(basevgminc)/solids/VPara.h \
 	$(basevgminc)/solids/VPolycone.h \
 	$(basevgminc)/solids/VPolyhedra.h \
