@@ -1,3 +1,14 @@
+// $Id$
+
+// -----------------------------------------------------------------------
+// The example program of the Virtual Geometry Model
+// Copyright (C) 2007, Ivana Hrivnacova               
+// All rights reserved. 
+//           
+// For the licensing terms see vgm/LICENSE.
+// Contact: ivana@ipno.in2p3.fr
+// -----------------------------------------------------------------------
+
 #include "RootGM/volumes/Factory.h"
 #include "XmlVGM/AGDDExporter.h"
 #include "XmlVGM/GDMLExporter.h"

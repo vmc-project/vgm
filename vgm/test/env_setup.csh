@@ -1,4 +1,14 @@
 # $Id$
+
+# -----------------------------------------------------------------------
+# The script for environment setting for the Virtual Geometry Model test
+# Copyright (C) 2007, Ivana Hrivnacova               
+# All rights reserved. 
+#           
+# For the licensing terms see vgm/LICENSE.
+# Contact: ivana@ipno.in2p3.fr
+# -----------------------------------------------------------------------
+
 # The environment setting for the VGM test G4 application 
 #
 # by I. Hrivnacova, IPN Orsay

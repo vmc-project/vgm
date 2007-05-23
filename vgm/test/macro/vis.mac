@@ -1,6 +1,14 @@
-#
-# Macro file for the initialization phase of "exampleN03.cc"
-# when running in interactive mode
+# $Id$
+
+# -----------------------------------------------------------------------
+# The macro for the Virtual Geometry Model test
+# Copyright (C) 2007, Ivana Hrivnacova               
+# All rights reserved. 
+#           
+# For the licensing terms see vgm/LICENSE.
+# Contact: ivana@ipno.in2p3.fr
+# -----------------------------------------------------------------------
+
 #
 # Sets some default verbose
 #

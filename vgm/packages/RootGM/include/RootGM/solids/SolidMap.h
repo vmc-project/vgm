@@ -1,11 +1,21 @@
 // $Id$
+
+// -----------------------------------------------------------------------
+// The RootGM package of the Virtual Geometry Model
+// Copyright (C) 2007, Ivana Hrivnacova               
+// All rights reserved. 
+//           
+// For the licensing terms see vgm/LICENSE.
+// Contact: ivana@ipno.in2p3.fr
+// -----------------------------------------------------------------------
+
 /// \ingroup RootGM_solids
 //
 /// \class RootGM:: SolidMap
 ///
 /// The map between VGM and Root solids.
 ///
-/// Author: Ivana Hrivnacova; IPN Orsay
+/// \author Ivana Hrivnacova; IPN Orsay
 
 #ifndef ROOT_GM_SOLID_MAP_H
 #define ROOT_GM_SOLID_MAP_H

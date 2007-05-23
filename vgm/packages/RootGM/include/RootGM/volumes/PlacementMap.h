@@ -1,11 +1,21 @@
 // $Id$
+
+// -----------------------------------------------------------------------
+// The RootGM package of the Virtual Geometry Model
+// Copyright (C) 2007, Ivana Hrivnacova               
+// All rights reserved. 
+//           
+// For the licensing terms see vgm/LICENSE.
+// Contact: ivana@ipno.in2p3.fr
+// -----------------------------------------------------------------------
+
 /// \ingroup RootGM_volumes
 //
 /// \class RootGM:: PlacementMap
 ///
 /// The map between VGM and Root placements.
 ///
-/// Author: Ivana Hrivnacova; IPN Orsay
+/// \author Ivana Hrivnacova; IPN Orsay
 
 #ifndef ROOT_GM_PLACEMENT_MAP_H
 #define ROOT_GM_PLACEMENT_MAP_H

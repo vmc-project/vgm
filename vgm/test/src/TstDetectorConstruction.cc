@@ -1,4 +1,14 @@
 // $Id$
+
+// -----------------------------------------------------------------------
+// The test program of the Virtual Geometry Model
+// Copyright (C) 2007, Ivana Hrivnacova               
+// All rights reserved. 
+//           
+// For the licensing terms see vgm/LICENSE.
+// Contact: ivana@ipno.in2p3.fr
+// -----------------------------------------------------------------------
+
 //
 // Class TstPrimaryGeneratorAction
 // -------------------------------
@@ -141,8 +151,10 @@ G4VPhysicalVolume* TstDetectorConstruction::Construct()
 
      Geant4GM::Factory* g4InputFactory
        = dynamic_cast<Geant4GM::Factory*>(fInputFactory);
-     if (g4InputFactory)
+     if (g4InputFactory) {
+       // return static_cast<G4VPhysicalVolume*>(world);
        g4InputFactory->Import(static_cast<G4VPhysicalVolume*>(world));
+     }  
 
      RootGM::Factory* rtInputFactory
        = dynamic_cast<RootGM::Factory*>(fInputFactory);

@@ -1,11 +1,21 @@
 // $Id$
+
+// -----------------------------------------------------------------------
+// The ClhepVGM package of the Virtual Geometry Model
+// Copyright (C) 2007, Ivana Hrivnacova               
+// All rights reserved. 
+//           
+// For the licensing terms see vgm/LICENSE.
+// Contact: ivana@ipno.in2p3.fr
+// -----------------------------------------------------------------------
+
 /// \ingroup ClhepVGM
 //
 /// ClhepVGM utilities
 ///
 /// Utility functions 
 ///
-/// Author: Ivana Hrivnacova; IPN Orsay
+/// \author Ivana Hrivnacova; IPN Orsay
 
 #ifndef CLHEP_VGM_TRANSFORM_H
 #define CLHEP_VGM_TRANSFORM_H

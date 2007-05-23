@@ -1,3 +1,15 @@
+// $Id$
+
+// -----------------------------------------------------------------------
+// The example program of the Virtual Geometry Model
+// Copyright (C) 2007, Ivana Hrivnacova               
+// All rights reserved. 
+//           
+// For the licensing terms see vgm/LICENSE.
+// Contact: ivana@ipno.in2p3.fr
+// -----------------------------------------------------------------------
+
+// Modified Geant4 N03 example
 //
 // ********************************************************************
 // * License and Disclaimer                                           *
@@ -24,10 +36,9 @@
 // ********************************************************************
 //
 //
-// $Id$
-// GEANT4 tag $Name$
+// Id: ExN03PrimaryGeneratorAction.cc,v 1.8 2006/06/29 17:49:07 gunter Exp
+// GEANT4 tag Name: geant4-08-02 
 //
-// 
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

@@ -1,9 +1,19 @@
 // $Id$
+
+// -----------------------------------------------------------------------
+// The VGM package of the Virtual Geometry Model
+// Copyright (C) 2007, Ivana Hrivnacova               
+// All rights reserved. 
+//           
+// For the licensing terms see vgm/LICENSE.
+// Contact: ivana@ipno.in2p3.fr
+// -----------------------------------------------------------------------
+
 /// \ingroup VGM_common
 ///
 /// Definition of <math> constant M_PI not available on Win32
 ///
-/// Author: Ivana Hrivnacova; IPN Orsay
+/// \author Ivana Hrivnacova; IPN Orsay
 
 #ifndef VGM_MATH_H
 #define VGM_MATH_H

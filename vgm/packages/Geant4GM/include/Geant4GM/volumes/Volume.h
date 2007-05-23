@@ -1,11 +1,21 @@
 // $Id$
+
+// -----------------------------------------------------------------------
+// The Geant4GM package of the Virtual Geometry Model
+// Copyright (C) 2007, Ivana Hrivnacova               
+// All rights reserved. 
+//           
+// For the licensing terms see vgm/LICENSE.
+// Contact: ivana@ipno.in2p3.fr
+// -----------------------------------------------------------------------
+
 /// \ingroup Geant4GM_volumes
 //
 /// \class Geant4GM::Volume
 ///
 /// VGM implementation for Geant4 volume.
 ///
-/// Author: Ivana Hrivnacova; IPN Orsay
+/// \author Ivana Hrivnacova; IPN Orsay
 
 #ifndef GEANT4_GM_VOLUME_H
 #define GEANT4_GM_VOLUME_H

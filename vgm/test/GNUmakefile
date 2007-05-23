@@ -1,5 +1,16 @@
 # $Id$
+
+# -----------------------------------------------------------------------
+# The makefile for the Virtual Geometry Model test
+# Copyright (C) 2007, Ivana Hrivnacova               
+# All rights reserved. 
+#           
+# For the licensing terms see vgm/LICENSE.
+# Contact: ivana@ipno.in2p3.fr
+# -----------------------------------------------------------------------
+
 # --------------------------------------------------------------
+# Based on Geant4 makefiles
 # GNUmakefile for examples module.  Gabriele Cosmo, 06/04/98.
 # --------------------------------------------------------------
 

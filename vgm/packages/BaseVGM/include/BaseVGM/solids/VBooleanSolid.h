@@ -1,11 +1,21 @@
 // $Id$
+
+// -----------------------------------------------------------------------
+// The BaseVGM package of the Virtual Geometry Model
+// Copyright (C) 2007, Ivana Hrivnacova               
+// All rights reserved. 
+//           
+// For the licensing terms see vgm/LICENSE.
+// Contact: ivana@ipno.in2p3.fr
+// -----------------------------------------------------------------------
+
 /// \ingroup BaseVGM_solids
 //
 /// \class BaseVGM::VBooleanSolid
 ///
 /// The ABC for Boolean solids.
 ///
-/// Author: Ivana Hrivnacova; IPN Orsay
+/// \author Ivana Hrivnacova; IPN Orsay
 
 #ifndef BASE_VGM_V_BOOLEAN_SOLID_H
 #define BASE_VGM_V_BOOLEAN_SOLID_H

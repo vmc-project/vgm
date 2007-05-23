@@ -1,4 +1,14 @@
 // $Id$
+
+// -----------------------------------------------------------------------
+// The BaseVGM package of the Virtual Geometry Model
+// Copyright (C) 2007, Ivana Hrivnacova               
+// All rights reserved. 
+//           
+// For the licensing terms see vgm/LICENSE.
+// Contact: ivana@ipno.in2p3.fr
+// -----------------------------------------------------------------------
+
 /// \ingroup BaseVGM_materials
 //
 /// \class BaseVGM::VMaterialFactory
@@ -7,7 +17,7 @@
 /// It owns the material stores and implements the export 
 /// to other factory. 
 ///
-/// Author: Ivana Hrivnacova; IPN Orsay
+/// \author Ivana Hrivnacova; IPN Orsay
 
 #ifndef BASE_VGM_V_MATERIAL_FACTORY_H
 #define BASE_VGM_V_MATERIAL_FACTORY_H

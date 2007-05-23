@@ -1,4 +1,14 @@
 // $Id$
+
+// -----------------------------------------------------------------------
+// The XmlVGM package of the Virtual Geometry Model
+// Copyright (C) 2007, Ivana Hrivnacova               
+// All rights reserved. 
+//           
+// For the licensing terms see vgm/LICENSE.
+// Contact: ivana@ipno.in2p3.fr
+// -----------------------------------------------------------------------
+
 /// \ingroup XmlVGM
 //
 /// \class XmlVGM::VExporter
@@ -8,7 +18,7 @@
 /// It has one abstract method for processing the volume tree
 /// that has to be provided by derived classes.
 ///
-/// Author: I. Hrivnacova, 19.1.2004
+/// \author I. Hrivnacova, 19.1.2004
 
 #ifndef XML_VGM_V_EXPORTER_H
 #define XML_VGM_V_EXPORTER_H

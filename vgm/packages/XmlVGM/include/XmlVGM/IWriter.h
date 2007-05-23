@@ -1,4 +1,14 @@
 // $Id$
+
+// -----------------------------------------------------------------------
+// The XmlVGM package of the Virtual Geometry Model
+// Copyright (C) 2007, Ivana Hrivnacova               
+// All rights reserved. 
+//           
+// For the licensing terms see vgm/LICENSE.
+// Contact: ivana@ipno.in2p3.fr
+// -----------------------------------------------------------------------
+
 /// \ingroup XmlVGM
 //
 /// \class XmlVGM::IWriter
@@ -6,7 +16,7 @@
 /// The interface for the XML writer that
 /// writes VGM geometry objects to XML:
 ///
-/// Author: I. Hrivnacova, 16.01.2004 
+/// \author I. Hrivnacova, 16.01.2004 
 
 #ifndef XML_VGM_WRITER_H
 #define XML_VGM_WRITER_H

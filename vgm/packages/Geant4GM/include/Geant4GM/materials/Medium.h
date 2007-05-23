@@ -1,4 +1,14 @@
 // $Id$
+
+// -----------------------------------------------------------------------
+// The Geant4GM package of the Virtual Geometry Model
+// Copyright (C) 2007, Ivana Hrivnacova               
+// All rights reserved. 
+//           
+// For the licensing terms see vgm/LICENSE.
+// Contact: ivana@ipno.in2p3.fr
+// -----------------------------------------------------------------------
+
 /// \ingroup Geant4GM_materials
 //
 /// \class Geant4GM::Medium
@@ -7,7 +17,7 @@
 /// As there is no equivalent object in Geant4, the tracking medium
 /// parameters are store in data members of this class.
 ///
-/// Author: Ivana Hrivnacova; IPN Orsay
+/// \author Ivana Hrivnacova; IPN Orsay
 
 #ifndef GEANT4_GM_MEDIUM_H
 #define GEANT4_GM_MEDIUM_H
