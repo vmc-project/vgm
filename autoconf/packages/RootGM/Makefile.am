@@ -33,6 +33,7 @@ nodist_libRootGM_la_SOURCES =                        \
 	$(rootgmsrc)/solids/Cons.cxx \
 	$(rootgmsrc)/solids/Ctubs.cxx \
 	$(rootgmsrc)/solids/EllipticalTube.cxx \
+	$(rootgmsrc)/solids/ExtrudedSolid.cxx \
 	$(rootgmsrc)/solids/Para.cxx \
 	$(rootgmsrc)/solids/Polycone.cxx \
 	$(rootgmsrc)/solids/Polyhedra.cxx \
@@ -73,6 +74,7 @@ nodist_rootgmsolinc_HEADERS = \
 	$(rootgminc)/solids/Cons.h \
 	$(rootgminc)/solids/Ctubs.h \
 	$(rootgminc)/solids/EllipticalTube.h \
+	$(rootgminc)/solids/ExtrudedSolid.h \
 	$(rootgminc)/solids/Para.h \
 	$(rootgminc)/solids/Polycone.h \
 	$(rootgminc)/solids/Polyhedra.h \
