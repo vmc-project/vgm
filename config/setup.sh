@@ -1,4 +1,14 @@
 # $Id$
+
+# -----------------------------------------------------------------------
+# The script for environment setting for the Virtual Geometry Model
+# Copyright (C) 2007, Ivana Hrivnacova               
+# All rights reserved. 
+#           
+# For the licensing terms see vgm/LICENSE.
+# Contact: ivana@ipno.in2p3.fr
+# -----------------------------------------------------------------------
+
 # The default environment setting for VGM
 #
 # by I. Hrivnacova, IPN Orsay
