@@ -1,3 +1,12 @@
+#------------------------------------------------------------------------
+# The CMT requirements file for the Virtual Geometry Model
+# Copyright (C) 2007, Laurent Garnier               
+# All rights reserved. 
+#           
+# For the licensing terms see vgm/LICENSE.
+# Contact: garnier@lal.in2p3.fr
+#------------------------------------------------------------------------
+
 package VGM
 version v1r2p07
 
