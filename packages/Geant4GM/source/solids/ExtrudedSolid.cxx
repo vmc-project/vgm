@@ -85,8 +85,8 @@ Geant4GM::ExtrudedSolid::ExtrudedSolid(const std::string& name,
     
     if ( toBreak.find(iz) != toBreak.end() ) {   
       // Create G4ExtrudedSolid   
-      G4cout << "Go to create constituent with " << g4Zsections.size()
-             << " z-sections" << G4endl;
+      //G4cout << "Go to create constituent with " << g4Zsections.size()
+      //       << " z-sections" << G4endl;
                             
       G4ExtrudedSolid* xtru 
         = new G4ExtrudedSolid(fName, g4Polygon, g4Zsections);
