@@ -11,8 +11,14 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.61)
-AC_INIT(vgm-autoconf, 2.10.pre, bv@bnl.gov)
-AM_INIT_AUTOMAKE(vgm-autoconf, 2.10.pre)
+AC_INIT(vgm-autoconf, 0.2, bv@bnl.gov)
+AM_INIT_AUTOMAKE(vgm-autoconf, 0.2)
+## ^
+## |
+## +-> note: until these autoconf macros cause "make dist" to tar up
+##     vgm proper instead of just the autoconf area, don't use 
+##     VGM version strings here.
+
 
 AC_CONFIG_SRCDIR([Makefile.am])
 AM_CONFIG_HEADER(config.h)
@@ -28,9 +34,6 @@ AC_PROG_LIBTOOL
 # This is set in acinclude.m4.
 VGM_SETUP
 
-#LIBAGDD_SETUP
-#XERCESC_SETUP
-
 CLHEP_SETUP
 
 if test x$VGM_ENABLE_GEANT4GM = xyes ; then
@@ -40,6 +43,13 @@ fi
 if test x$VGM_ENABLE_ROOTGM = xyes ; then
 ROOT_SETUP
 fi
+
+if test x$VGM_ENABLE_AGDDGM = xyes ; then
+AGDD_SETUP
+XERCESC_SETUP
+fi
+
+
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_HEADER_STDBOOL
@@ -57,5 +67,6 @@ AC_CONFIG_FILES([Makefile
                  packages/RootGM/Makefile
                  packages/Geant4GM/Makefile
                  packages/XmlVGM/Makefile
+                 packages/AgddGM/Makefile
                 ])
 AC_OUTPUT

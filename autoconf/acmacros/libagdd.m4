@@ -9,78 +9,112 @@
 # Contact: bv@bnl.gov
 
 dnl
-dnl Macros to let one build against libagdd
+dnl Macros to build against libagdd
+dnl
+dnl It is assumed that either libagdd files match this directory
+dnl structure:
+dnl
+dnl AGDD_PREFIX/lib
+dnl AGDD_PREFIX/include
+dnl 
+dnl or that they can be specified explicitly with --with-* flags
+dnl 
+dnl
+dnl Calling AGDD_SETUP will result in these definitions:
+dnl
+dnl AGDD_ENABLE - "yes" or "no".  If no, the following are garbage:
+dnl AGDD_LINK - holding the link statement (-L... -l...)
+dnl AGDD_INCLUDE - holding the includes (-I...)
 dnl
 
-# macro that calls all the AGDD setup macros in sequence
-AC_DEFUN([LIBAGDD_SETUP], [
+AC_DEFUN([AGDD_SETUP], [
 
-LIBAGDD_WITH
-LIBAGDD_WITH_INCLUDE
-LIBAGDD_WITH_LIB
-LIBAGDD_SUBST
 
-])
+dnl
+dnl Basic checking to use Libagdd or not and if an 
+dnl installation area is specified
+dnl
 
-AC_DEFUN([LIBAGDD_WITH], [
+libagdd_enable=""
+libagdd_prefix=""
 
-AC_MSG_CHECKING(for libagdd installation location)
+AC_MSG_CHECKING(for libagdd)
 
 AC_ARG_WITH(libagdd,
-	AC_HELP_STRING([--with-libagdd=<path>],
-		[libagdd installation location [[/usr]] ]),
-	[libagdd_prefix=$with_libagdd],
-	[libagdd_prefix=/usr])
+	AC_HELP_STRING([--with-libagdd],
+		       [libagdd package specification (yes,no,path)]),
+	[
+if test x$with_libagdd = xyes ; then
+	libagdd_enable=yes
+	libagdd_prefix=/usr
+elif test x$with_libagdd = xno ; then
+	libagdd_enable=no
+else
+	libagdd_enable=yes
+	libagdd_prefix=$with_libagdd
+fi
+],[
+	libagdd_enable=yes
+	libagdd_prefix=/usr
+])
 
-AC_MSG_RESULT([$libagdd_prefix])
+AC_MSG_RESULT([$libagdd_enable $libagdd_prefix])
+AGDD_ENABLE=$libagdd_enable
+AC_SUBST(AGDD_ENABLE)
 
-UTIL_CHECK_PKG_DIR([$libagdd_prefix], [libagdd])
+dnl
+dnl Set/find the compile time include flags
+dnl
 
-LIBAGDD_INCLUDE="-I$libagdd_prefix/include"
-LIBAGDD_LIB="-L$libagdd_prefix/lib -lagdd"
+AC_ARG_WITH([libagdd-include],
+	AC_HELP_STRING([--with-libagdd-include],
+                       [alternate headers dir (that which holds "*.h")]),
+	[libagdd_incdir=$with_libagdd_include],[libagdd_incdir=""])
+
+if test x"$libagdd_enable" = xyes ; then
+if test x"$libagdd_incdir" = x ; then
+    for try in "$libagdd_prefix/include"  ;
+    do
+        if ! test -f "$try/AGDD/AGDD_Model.hh" ; then continue; fi
+        libagdd_incdir="$try"
+        break;
+    done
+fi
+if test x"$libagdd_incdir" != x ; then
+	AGDD_INCLUDE="-I$libagdd_incdir"
+fi
+
+UTIL_CHECK_PKG_DIR([$libagdd_incdir],[libagdd],[AGDD/AGDD_Model.hh])
+AC_SUBST(AGDD_INCLUDE)
+
+fi
+
+dnl
+dnl Set/find the link time library flags
+dnl
+
+AC_ARG_WITH([libagdd-libdir],
+	AC_HELP_STRING([--with-libagdd-libdir], 
+                       [libagdd alternate library dir]),
+	[libagdd_libdir=$with_libagdd_libdir],[libagdd_libdir=""])
+
+if test x"$libagdd_enable" = xyes ; then
+
+if test x"$libagdd_libdir" = x ; then
+    for try in "$libagdd_prefix/lib"
+    do
+        if ! test -f "${try}/libagdd.so"; then continue; fi
+        libagdd_libdir=$try
+        break
+   done
+fi
+
+UTIL_CHECK_PKG_DIR([$libagdd_libdir],[libagdd],[libagdd.so])
+
+AGDD_LINK="-L$libagdd_libdir -lagdd"
+AC_SUBST(AGDD_LINK)
+
+fi
 
 ])
 
-AC_DEFUN([LIBAGDD_WITH_INCLUDE], [
-
-AC_MSG_CHECKING(for libagdd include directory)
-
-AC_ARG_WITH(libagdd-include,
-	AC_HELP_STRING([--with-libagdd-include=<path>],
-		[libagdd alternate include directory ]),
-	[libagdd_include=$with_libagdd_include],
-	[libagdd_include=$libagdd_prefix/include])
-
-AC_MSG_RESULT([$libagdd_include])
-
-UTIL_CHECK_PKG_DIR([$libagdd_include], [libagdd], [AGDD/AGDD_Model.hh])
-
-LIBAGDD_INCLUDE="-I$libagdd_include"
-
-])
-
-AC_DEFUN([LIBAGDD_WITH_LIB], [
-
-AC_MSG_CHECKING(for libagdd lib directory)
-
-AC_ARG_WITH(libagdd-lib,
-	AC_HELP_STRING([--with-libagdd-lib=<path>],
-		[libagdd alternate lib directory ]),
-	[libagdd_libdir=$with_libagdd_lib],
-	[libagdd_libdir=$libagdd_prefix/lib])
-
-AC_MSG_RESULT([$libagdd_lib])
-
-UTIL_CHECK_PKG_DIR([$libagdd_libdir], [libagdd], [libagdd.la])
-
-LIBAGDD_LIB="-L$libagdd_libdir -lagdd"
-
-])
-
-AC_DEFUN([LIBAGDD_SUBST], [
-
-AC_SUBST(LIBAGDD_PREFIX)
-AC_SUBST(LIBAGDD_INCLUDE)
-AC_SUBST(LIBAGDD_LIB)
-
-])

@@ -9,20 +9,20 @@
 # Contact: bv@bnl.gov
 
 INCLUDES = ${CLHEP_INCLUDE} \
-         -I$(VGM_SOURCE)/packages/VGM/include \
-         -I$(VGM_SOURCE)/packages/ClhepVGM/include 
+         -I../../../packages/VGM/include \
+         -I../../../packages/ClhepVGM/include 
 
-clhepvgmsrc=$(VGM_SOURCE)/packages/ClhepVGM/source
+clhepvgmsrc=../../../packages/ClhepVGM/source
 
 lib_LTLIBRARIES = libClhepVGM.la
 
-nodist_libClhepVGM_la_SOURCES =                        \
+libClhepVGM_la_SOURCES =                        \
 	$(clhepvgmsrc)/Units.cxx \
 	$(clhepvgmsrc)/transform.cxx
 
-clhepvgminc=$(VGM_SOURCE)/packages/ClhepVGM/include/ClhepVGM
+clhepvgminc=../../../packages/ClhepVGM/include/ClhepVGM
 clhepvgmincdir = $(includedir)/ClhepVGM
-nodist_clhepvgminc_HEADERS = \
+clhepvgminc_HEADERS = \
 	$(clhepvgminc)/Units.h \
 	$(clhepvgminc)/transform.h
 

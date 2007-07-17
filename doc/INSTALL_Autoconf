@@ -13,54 +13,51 @@
 ========================================================
  
 
-The package vgm/autoconf will build VGM using autotools.
-It should build and install VGM like a normal autoconf'ed package.
-Namely you can set "--prefix=/install/path".  This will give you
-/install/path/{lib,include}.  Each VGM package is installed to its own
-library and include/Package/ sub directory.
+The package vgm/autoconf will build VGM using autotools.  It will
+build and install VGM like a typical autoconf'ed package. See the
+vgm/autoconf/INSTALL file for generic configure help if you are new to
+building using a "configure" script.
 
-Do "./configure --help" to see what else you might want to set.
+Run "./configure --help" to show all options.  The options specific to
+this build are:
 
-------------------------------------------------------------------------
+  --prefix		where to install the VGM products
 
-See the generic vgm/autoconf/INSTALL file for generic configure help.  
-The options specific to this build are:
+Optionally enable/disable certain VGM subpackages:
 
-Optionally disable certain VGM subpackages:
+  --enable-PackageName    Build PackageName subpackage [default=yes]
 
-  --enable-Geant4GM       Build Geant4GM subpackage [default=yes]
-  --enable-RootGM         Build RootGM subpackage [default=yes]
-  --enable-XmlVGM         Build XmlVGM subpackage [default=yes]
+Specify non-standard locations for 3rd party packages.
 
-Specify non-standard locations for underlying dependencies.
+ --with-package		path to base dir for 3rd party "package"
+ --with-package-include	path to include dir for "package"
+ --with-package-libdir	path to library dir for "package"
 
-  --with-clhep            CLHEP package specification (yes,no,path)
-  --with-clhep-include    alternate headers dir (that which holds
-                          "/CLHEP/*/*.h")
-  --with-clhep-libdir     CLHEP alternate library dir
-  --with-geant4           Geant4 package specification (yes,no,path)
-  --with-geant4-system    Geant4 system type
-  --with-geant4-include   alternate headers dir (that which holds "*.hh")
-  --with-geant4-libdir    Geant4 alternate library dir
-  --with-root             ROOT package specification (yes,no,path)
-  --with-rootsys          top of the ROOT installation directory
-
+Other 3rd party packages have additional options that may be useful to
+specify.  Again, run "./configure --help" to see.
 
 ------------------------------------------------------------------------
 
-To be done: as long as vgm-autoconf is distributed separately from
-VGM, proper, it will not try to include any any actual VGM code when a
-"make dist" is invoked.  When/if vgm-autoconf is included into VGM,
-proper, then the
+Building as a developer.  If you add anything that requires rebuilding
+Makefile.in or configure you can regenerate things by running the
+commands:
 
-  nodist_*_lib_LTLIBRARIES
-  nodist_*_la_SOURCES
-  nodist_*_HEADERS
+  aclocal
+  libtoolize --force --copy
+  autoheader
+  automake --add-missing --copy
+  autoconf
 
-in packages/PACKAGE/Makefile.am files should have the "nodist_"
-removed.
+These is typically put in a "bootstrap.sh" script.  
+
+To rebuild the Makefile's from Makefile.am's you can run the configure
+script, or if ran before you can reuse the result and run
+confif.status.
+
+NOTE: currently "make dist" does not package the entire VGM
+distribution, but only the autoconf part.  Patches welcome!
 
 ------------------------------------------------------------------------
 
 bv@bnl.gov 
-Mon Apr  2 17:56:42 2007
+Fri Jun 15 15:15:09 EDT 2007

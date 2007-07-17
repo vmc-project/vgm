@@ -9,15 +9,15 @@
 # Contact: bv@bnl.gov
 
 INCLUDES = ${CLHEP_INCLUDE} \
-         -I$(VGM_SOURCE)/packages/VGM/include \
-         -I$(VGM_SOURCE)/packages/ClhepVGM/include \
-         -I$(VGM_SOURCE)/packages/XmlVGM/include
+         -I../../../packages/VGM/include \
+         -I../../../packages/ClhepVGM/include \
+         -I../../../packages/XmlVGM/include
 
-xmlvgmsrc=$(VGM_SOURCE)/packages/XmlVGM/source
+xmlvgmsrc=../../../packages/XmlVGM/source
 
 lib_LTLIBRARIES = libXmlVGM.la
 
-nodist_libXmlVGM_la_SOURCES =                        \
+libXmlVGM_la_SOURCES =                        \
 	$(xmlvgmsrc)/AGDDExporter.cxx \
 	$(xmlvgmsrc)/AGDDWriter.cxx \
 	$(xmlvgmsrc)/GDMLExporter.cxx \
@@ -26,9 +26,9 @@ nodist_libXmlVGM_la_SOURCES =                        \
 	$(xmlvgmsrc)/VExporter.cxx \
 	$(xmlvgmsrc)/utilities.cxx
 
-xmlvgminc=$(VGM_SOURCE)/packages/XmlVGM/include/XmlVGM
+xmlvgminc=../../../packages/XmlVGM/include/XmlVGM
 xmlvgmincdir = $(includedir)/XmlVGM
-nodist_xmlvgminc_HEADERS = \
+xmlvgminc_HEADERS = \
 	$(xmlvgminc)/AGDDExporter.h \
 	$(xmlvgminc)/AGDDWriter.h \
 	$(xmlvgminc)/GDMLExporter.h \

@@ -11,7 +11,7 @@
 m4_include(acmacros/util.m4)
 m4_include(acmacros/libagdd.m4)
 m4_include(acmacros/clhep.m4)
-dnl m4_include(acmacros/xerces.m4)
+m4_include(acmacros/xerces.m4)
 m4_include(acmacros/geant4.m4)
 m4_include(acmacros/root.m4)
 m4_include(acmacros/vgm_build.m4)

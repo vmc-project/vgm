@@ -9,16 +9,16 @@
 # Contact: bv@bnl.gov
 
 INCLUDES = ${CLHEP_INCLUDE} ${GEANT4_INCLUDE} \
-         -I$(VGM_SOURCE)/packages/VGM/include \
-         -I$(VGM_SOURCE)/packages/BaseVGM/include \
-         -I$(VGM_SOURCE)/packages/ClhepVGM/include \
-         -I$(VGM_SOURCE)/packages/Geant4GM/include 
+         -I../../../packages/VGM/include \
+         -I../../../packages/BaseVGM/include \
+         -I../../../packages/ClhepVGM/include \
+         -I../../../packages/Geant4GM/include 
 
-geant4gmsrc=$(VGM_SOURCE)/packages/Geant4GM/source
+geant4gmsrc=../../../packages/Geant4GM/source
 
 lib_LTLIBRARIES = libGeant4GM.la
 
-nodist_libGeant4GM_la_SOURCES =                        \
+libGeant4GM_la_SOURCES =                        \
 	$(geant4gmsrc)/materials/Element.cxx \
 	$(geant4gmsrc)/materials/ElementMap.cxx \
 	$(geant4gmsrc)/materials/Isotope.cxx \
@@ -48,10 +48,10 @@ nodist_libGeant4GM_la_SOURCES =                        \
 	$(geant4gmsrc)/volumes/Volume.cxx \
 	$(geant4gmsrc)/volumes/VolumeMap.cxx
 
-geant4gminc=$(VGM_SOURCE)/packages/Geant4GM/include/Geant4GM
+geant4gminc=../../../packages/Geant4GM/include/Geant4GM
 
 geant4gmmatincdir = $(includedir)/Geant4GM/materials
-nodist_geant4gmmatinc_HEADERS = \
+geant4gmmatinc_HEADERS = \
 	$(geant4gminc)/materials/Element.h \
 	$(geant4gminc)/materials/ElementMap.h \
 	$(geant4gminc)/materials/Isotope.h \
@@ -63,7 +63,7 @@ nodist_geant4gmmatinc_HEADERS = \
 
 
 geant4gmsolincdir = $(includedir)/Geant4GM/solids
-nodist_geant4gmsolinc_HEADERS = \
+geant4gmsolinc_HEADERS = \
 	$(geant4gminc)/solids/BooleanSolid.h \
 	$(geant4gminc)/solids/Box.h \
 	$(geant4gminc)/solids/Cons.h \
@@ -81,7 +81,7 @@ nodist_geant4gmsolinc_HEADERS = \
 	$(geant4gminc)/solids/Tubs.h
 
 geant4gmvolincdir = $(includedir)/Geant4GM/volumes
-nodist_geant4gmvolinc_HEADERS = \
+geant4gmvolinc_HEADERS = \
 	$(geant4gminc)/volumes/Factory.h \
 	$(geant4gminc)/volumes/Placement.h \
 	$(geant4gminc)/volumes/PlacementMap.h \
