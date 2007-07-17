@@ -12,32 +12,9 @@ dnl
 dnl m4 macros for setting up VGM
 dnl
 
-# Macro to define VGM_SOURCE, used for building VGM, not building
-# against VGM.
-
 AC_DEFUN([VGM_SETUP], [
 
-VGM_WITH_SOURCE
 VGM_ENABLES
-
-])
-
-AC_DEFUN([VGM_WITH_SOURCE], [
-
-AC_MSG_CHECKING(for VGM source location)
-
-AC_ARG_WITH(vgm-source,
-	AC_HELP_STRING([--with-vgm-source=<path>],
-		[VGM source location, absolute path ]),
-	[VGM_SOURCE=$with_vgm_source],
-	[VGM_SOURCE="`pwd`/.."])
-
-AC_MSG_RESULT([$VGM_SOURCE])
-
-UTIL_CHECK_PKG_DIR([$VGM_SOURCE], [VGM], 
-                   [packages/VGM/include/VGM/volumes/IFactory.h])
-
-AC_SUBST(VGM_SOURCE)
 
 ])
 
@@ -77,7 +54,6 @@ if test x$VGM_ENABLE_ROOTGM = xyes ; then
     VGM_PACKAGES="$VGM_PACKAGES RootGM"
 fi
 
-
 # XmlVGM
 AC_MSG_CHECKING(to build XmlVGM VGM package)
 
@@ -94,17 +70,17 @@ fi
 
 
 # AgddGM (uncomment when included) 
-#AC_MSG_CHECKING(to build AgddGM VGM package)
-#
-#AC_ARG_ENABLE(AgddGM, 
-#	AC_HELP_STRING([--enable-AgddGM],[Build AgddGM subpackage [[default=yes]] ]),
-#	[VGM_ENABLE_AGDDGM=$enable_AGDDGM],
-#	[VGM_ENABLE_AGDDGM=yes])
-#
-#AC_MSG_RESULT([$VGM_ENABLE_AGDDGM])
-#if test x$VGM_ENABLE_AGDDGM = xyes ; then
-#    VGM_PACKAGES="$VGM_PACKAGES AgddGM"
-#fi
+AC_MSG_CHECKING(to build AgddGM VGM package)
+
+AC_ARG_ENABLE(AgddGM, 
+	AC_HELP_STRING([--enable-AgddGM],[Build AgddGM subpackage [[default=yes]] ]),
+	[VGM_ENABLE_AGDDGM=$enable_AGDDGM],
+	[VGM_ENABLE_AGDDGM=yes])
+
+AC_MSG_RESULT([$VGM_ENABLE_AGDDGM])
+if test x$VGM_ENABLE_AGDDGM = xyes ; then
+    VGM_PACKAGES="$VGM_PACKAGES AgddGM"
+fi
 
 AC_SUBST(VGM_PACKAGES)
 

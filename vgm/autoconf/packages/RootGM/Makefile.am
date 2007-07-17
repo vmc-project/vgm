@@ -9,15 +9,15 @@
 # Contact: bv@bnl.gov
 
 INCLUDES = ${ROOT_INCLUDE} \
-         -I$(VGM_SOURCE)/packages/VGM/include \
-         -I$(VGM_SOURCE)/packages/BaseVGM/include \
-         -I$(VGM_SOURCE)/packages/RootGM/include 
+         -I../../../packages/VGM/include \
+         -I../../../packages/BaseVGM/include \
+         -I../../../packages/RootGM/include 
 
-rootgmsrc=$(VGM_SOURCE)/packages/RootGM/source
+rootgmsrc=../../../packages/RootGM/source
 
 lib_LTLIBRARIES = libRootGM.la
 
-nodist_libRootGM_la_SOURCES =                        \
+libRootGM_la_SOURCES =                        \
 	$(rootgmsrc)/common/Units.cxx \
 	$(rootgmsrc)/common/axis.cxx \
 	$(rootgmsrc)/common/transform.cxx \
@@ -49,16 +49,16 @@ nodist_libRootGM_la_SOURCES =                        \
 	$(rootgmsrc)/volumes/Volume.cxx \
 	$(rootgmsrc)/volumes/VolumeMap.cxx
 
-rootgminc=$(VGM_SOURCE)/packages/RootGM/include/RootGM
+rootgminc=../../../packages/RootGM/include/RootGM
 
 rootgmcomincdir = $(includedir)/RootGM/common
-nodist_rootgmcominc_HEADERS = \
+rootgmcominc_HEADERS = \
 	$(rootgminc)/common/Units.h \
 	$(rootgminc)/common/axis.h \
 	$(rootgminc)/common/transform.h
 
 rootgmmatincdir = $(includedir)/RootGM/materials
-nodist_rootgmmatinc_HEADERS = \
+rootgmmatinc_HEADERS = \
 	$(rootgminc)/materials/Element.h \
 	$(rootgminc)/materials/ElementGeo.h \
 	$(rootgminc)/materials/Isotope.h \
@@ -68,7 +68,7 @@ nodist_rootgmmatinc_HEADERS = \
 	$(rootgminc)/materials/Medium.h
 
 rootgmsolincdir = $(includedir)/RootGM/solids
-nodist_rootgmsolinc_HEADERS = \
+rootgmsolinc_HEADERS = \
 	$(rootgminc)/solids/BooleanSolid.h \
 	$(rootgminc)/solids/Box.h \
 	$(rootgminc)/solids/Cons.h \
@@ -87,7 +87,7 @@ nodist_rootgmsolinc_HEADERS = \
 
 
 rootgmvolincdir = $(includedir)/RootGM/volumes
-nodist_rootgmvolinc_HEADERS = \
+rootgmvolinc_HEADERS = \
 	$(rootgminc)/volumes/Factory.h \
 	$(rootgminc)/volumes/Placement.h \
 	$(rootgminc)/volumes/PlacementMap.h \

@@ -1,4 +1,4 @@
-// $Id: $
+// $Id$
 
 // -----------------------------------------------------------------------
 // The AgddGM package of the Virtual Geometry Model

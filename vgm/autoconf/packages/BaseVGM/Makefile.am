@@ -9,14 +9,14 @@
 # Contact: bv@bnl.gov
 
 INCLUDES = ${CLHEP_INCLUDE} \
-         -I$(VGM_SOURCE)/packages/VGM/include \
-         -I$(VGM_SOURCE)/packages/BaseVGM/include 
+         -I../../../packages/VGM/include \
+         -I../../../packages/BaseVGM/include 
 
-basevgmsrc=$(VGM_SOURCE)/packages/BaseVGM/source
+basevgmsrc=../../../packages/BaseVGM/source
 
 lib_LTLIBRARIES = libBaseVGM.la
 
-nodist_libBaseVGM_la_SOURCES =                        \
+libBaseVGM_la_SOURCES =                        \
 	$(basevgmsrc)/common/utilities.cxx \
 	$(basevgmsrc)/materials/VMaterialFactory.cxx \
 	$(basevgmsrc)/materials/VMedium.cxx \
@@ -42,20 +42,20 @@ nodist_libBaseVGM_la_SOURCES =                        \
 	$(basevgmsrc)/volumes/VPlacement.cxx \
 	$(basevgmsrc)/volumes/VVolume.cxx 
 
-basevgminc=$(VGM_SOURCE)/packages/BaseVGM/include/BaseVGM
+basevgminc=../../../packages/BaseVGM/include/BaseVGM
 
 
 basevgmcomincdir = $(includedir)/BaseVGM/common
-nodist_basevgmcominc_HEADERS = \
+basevgmcominc_HEADERS = \
 	$(basevgminc)/common/utilities.h
 
 basevgmmatincdir = $(includedir)/BaseVGM/materials
-nodist_basevgmmatinc_HEADERS = \
+basevgmmatinc_HEADERS = \
 	$(basevgminc)/materials/VMaterialFactory.h \
 	$(basevgminc)/materials/VMedium.h
 
 basevgmsolincdir = $(includedir)/BaseVGM/solids
-nodist_basevgmsolinc_HEADERS = \
+basevgmsolinc_HEADERS = \
 	$(basevgminc)/solids/VBooleanSolid.h \
 	$(basevgminc)/solids/VBox.h \
 	$(basevgminc)/solids/VCons.h \
@@ -72,7 +72,7 @@ nodist_basevgmsolinc_HEADERS = \
 	$(basevgminc)/solids/VTubs.h
 
 basevgmvolincdir = $(includedir)/BaseVGM/volumes
-nodist_basevgmvolinc_HEADERS = \
+basevgmvolinc_HEADERS = \
 	$(basevgminc)/volumes/VFactory.h \
 	$(basevgminc)/volumes/VPlacement.h \
 	$(basevgminc)/volumes/VVolume.h

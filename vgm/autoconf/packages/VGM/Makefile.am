@@ -8,17 +8,17 @@
 # For the licensing terms see vgm/LICENSE.
 # Contact: bv@bnl.gov
 
-vgminc=$(VGM_SOURCE)/packages/VGM/include/VGM
+vgminc=../../../packages/VGM/include/VGM
 
 
 vgmcomincdir = $(includedir)/VGM/common
-nodist_vgmcominc_HEADERS = \
+vgmcominc_HEADERS = \
 	$(vgminc)/common/Axis.h \
 	$(vgminc)/common/Math.h \
 	$(vgminc)/common/Transform.h 
 
 vgmmatincdir = $(includedir)/VGM/materials
-nodist_vgmmatinc_HEADERS = \
+vgmmatinc_HEADERS = \
 	$(vgminc)/materials/IElement.h \
 	$(vgminc)/materials/IIsotope.h \
 	$(vgminc)/materials/IMaterial.h \
@@ -27,7 +27,7 @@ nodist_vgmmatinc_HEADERS = \
 
 
 vgmsolincdir = $(includedir)/VGM/solids
-nodist_vgmsolinc_HEADERS = \
+vgmsolinc_HEADERS = \
 	$(vgminc)/solids/IBooleanSolid.h \
 	$(vgminc)/solids/IBox.h \
 	$(vgminc)/solids/ICons.h \
@@ -45,7 +45,7 @@ nodist_vgmsolinc_HEADERS = \
 	$(vgminc)/solids/ITubs.h
 
 vgmvolincdir = $(includedir)/VGM/volumes
-nodist_vgmvolinc_HEADERS = \
+vgmvolinc_HEADERS = \
 	$(vgminc)/volumes/IFactory.h \
 	$(vgminc)/volumes/IPlacement.h \
 	$(vgminc)/volumes/IVolume.h
