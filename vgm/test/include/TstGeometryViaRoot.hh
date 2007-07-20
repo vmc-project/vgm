@@ -10,9 +10,9 @@
 // -----------------------------------------------------------------------
 
 //
-// Class TstPrimaryGeneratorAction
+// Class TstGeometryViaRoot
 // -------------------------------
-// The test detector construction
+// Class for building geometry via Root
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 

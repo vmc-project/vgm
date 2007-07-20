@@ -1,0 +1,15 @@
+<materials  version = "Id: AGDDWriter.cxx 544 2007-05-23 10:39:11Z ivana "
+            date    = "2007-07-19"
+            author  = "VGM AGGD Writer"
+            DTD_version="v6"  >
+
+
+   <element  symbol="AL">
+      <atom zeff="13.0000"  aweight="26.9800" />
+   </element>
+
+   <material  name="Basic"  density="  2.7000">
+      <addelement name="AL"  natoms=" 1.0000"/>
+   </material>
+
+</materials>

@@ -11,8 +11,8 @@
 
 //
 // Class TstVGeometry
-// ---------------
-// The test for solids construction
+// --------------------------
+// The interface to test geometry builders
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 

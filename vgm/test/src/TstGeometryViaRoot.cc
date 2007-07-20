@@ -11,8 +11,8 @@
 
 //
 // Class TstGeometryViaRoot
-// ------------------------
-// The test for solids construction
+// -------------------------------
+// Class for building geometry via Root
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
