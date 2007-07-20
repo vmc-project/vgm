@@ -16,8 +16,8 @@
 // vgm_test inputType inputFactory outputFactory selectedTest 
 //         [debug] [openAngle] [noVis]
 //
-//         inputType     = VGM, Geant4, Root
-//         inputFactory  = Geant4, Root
+//         inputType     = VGM, AGDD, Geant4, Root
+//         inputFactory  = AGDD, Geant4, Root
 //         outputFactory = Geant4, Root, None
 //         outputXML = AGDD, GDML, None
 //         selectedTest  = Solids, Placements, Reflections, 
@@ -65,8 +65,8 @@ int main(int argc, char** argv)
     std::cerr << " vgm_test inputType inputFactory outputFactory outputXML selectedTest " 
               << std::endl;
     std::cerr << "          [debug] [openAngle] [noVis] {run] [rootNavig]" << std::endl;
-    std::cerr << "          inputType     = VGM, Geant4, Root" << std::endl;
-    std::cerr << "          inputFactory  = Geant4, Root" << std::endl;
+    std::cerr << "          inputType     = VGM, AGDD, Geant4, Root" << std::endl;
+    std::cerr << "          inputFactory  = AGDD, Geant4, Root" << std::endl;
     std::cerr << "          outputFactory = Geant4, Root, None" << std::endl;
     std::cerr << "          outputXML     = AGDD, GDML, noXML" << std::endl;
     std::cerr << "          selectedTest  = Solids, NewSolid, Placements, Reflections, Assemblies," << std::endl;
