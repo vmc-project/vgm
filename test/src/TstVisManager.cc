@@ -26,7 +26,6 @@
 // Not needing external packages or libraries...
 #include "G4ASCIITree.hh"
 #include "G4DAWNFILE.hh"
-#include "G4GAGTree.hh"
 #include "G4HepRepFile.hh"
 #include "G4HepRep.hh"
 #include "G4RayTracer.hh"
@@ -83,7 +82,6 @@ void TstVisManager::RegisterGraphicsSystems () {
   // Graphics Systems not needing external packages or libraries...
   RegisterGraphicsSystem (new G4ASCIITree);
   RegisterGraphicsSystem (new G4DAWNFILE);
-  RegisterGraphicsSystem (new G4GAGTree);
   RegisterGraphicsSystem (new G4HepRepFile);
   RegisterGraphicsSystem (new G4HepRep);
   RegisterGraphicsSystem (new G4RayTracer);
