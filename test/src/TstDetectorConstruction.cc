@@ -10,7 +10,7 @@
 // -----------------------------------------------------------------------
 
 //
-// Class TstPrimaryGeneratorAction
+// Class TstDetectorConstruction
 // -------------------------------
 // The test detector construction
 //
@@ -21,6 +21,7 @@
 
 #include "TstDetectorConstruction.hh"
 #include "TstGeometryViaVGM.hh"
+#include "TstGeometryViaAgdd.hh"
 #include "TstGeometryViaGeant4.hh"
 #include "TstGeometryViaRoot.hh"
 
@@ -29,9 +30,9 @@ const G4String TstDetectorConstruction::fgkTestNameCandidates
 const G4String TstDetectorConstruction::fgkVisModeCandidates 
   = "Geant4 Root None";
 const G4String TstDetectorConstruction::fgkInputCandidates 
-  = "VGM Geant4 Root";
+  = "VGM AGDD Geant4 Root";
 const G4String TstDetectorConstruction::fgkFactoryCandidates 
-  = "Geant4 Root None";
+  = "AGDD Geant4 Root None";
 const G4String TstDetectorConstruction::fgkOutputXMLCandidates 
   = "AGDD GDML noXML";
 
@@ -46,6 +47,7 @@ TstDetectorConstruction::TstDetectorConstruction(const G4String& inputType,
     fFullAngle(true),
     fInputFactory(0),
     fOutputFactory(0),
+    fAgddFactory(0),
     fGeant4Factory(0),
     fRootFactory(0),
     fXMLExporter(0),
@@ -148,6 +150,13 @@ G4VPhysicalVolume* TstDetectorConstruction::Construct()
     // fInputFactory->Import(world);
             // Now VGM::IFactory::Import(void*) is not public
 	    // We have to use the concrete factory Import function 
+
+     AgddGM::Factory* agddInputFactory
+       = dynamic_cast<AgddGM::Factory*>(fInputFactory);
+     if (agddInputFactory) {
+       // return static_cast<G4VPhysicalVolume*>(world);
+       agddInputFactory->Import(static_cast<agdd::AGDD*>(world));
+     }  
 
      Geant4GM::Factory* g4InputFactory
        = dynamic_cast<Geant4GM::Factory*>(fInputFactory);
@@ -406,9 +415,17 @@ void TstDetectorConstruction::SelectChannels(const G4String& inputType,
     fRootFactory  = new RootGM::Factory();
   }  
 
+  if (inputFactory == "AGDD" || outputFactory == "AGDD") {
+    fAgddFactory  = new AgddGM::Factory();
+  }  
+
   // Select factories
   //
-  if  (inputFactory == "Geant4") {    
+  if  (inputFactory == "AGDD") {    
+    fInputFactory = fAgddFactory;
+    fXMLFileName = "Agdd";
+  }  
+  else if  (inputFactory == "Geant4") {    
     fInputFactory = fGeant4Factory;
     fXMLFileName = "G4";
   }  
@@ -417,7 +434,10 @@ void TstDetectorConstruction::SelectChannels(const G4String& inputType,
     fXMLFileName = "Root";
   }  
      
-  if  (outputFactory == "Geant4") { 
+  if  (outputFactory == "AGDD") { 
+    fOutputFactory  = fAgddFactory; 
+  }  
+  else if  (outputFactory == "Geant4") { 
     fOutputFactory  = fGeant4Factory; 
   }  
   else if (outputFactory == "Root") {
@@ -433,6 +453,10 @@ void TstDetectorConstruction::SelectChannels(const G4String& inputType,
     fGeometry = new TstGeometryViaVGM(fInputFactory);
     fXMLFileName += "ViaVGM";
   }  				      
+  else if (inputType == "AGDD" ) {
+    fGeometry = new TstGeometryViaAgdd();
+    fXMLFileName += "ViaAgdd";
+  }  
   else if (inputType == "Geant4" ) {
     fGeometry = new TstGeometryViaGeant4();
     fXMLFileName += "ViaG4";

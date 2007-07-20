@@ -10,9 +10,9 @@
 // -----------------------------------------------------------------------
 
 //
-// Class TstPrimaryGeneratorAction
+// Class TstGeometryViaVGM
 // -------------------------------
-// The test detector construction
+// Class for building geometry vis VGM
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 

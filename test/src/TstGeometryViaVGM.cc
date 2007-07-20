@@ -11,8 +11,8 @@
 
 //
 // Class TstGeometryViaVGM
-// ------------------------
-// The test for solids construction
+// -------------------------------
+// Class for building geometry vis VGM
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 

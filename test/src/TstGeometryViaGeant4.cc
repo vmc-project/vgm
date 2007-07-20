@@ -11,8 +11,8 @@
 
 //
 // Class TstGeometryViaGeant4
-// ---------------
-// The test for solids construction
+// -------------------------------
+// Class for building geometry via Geant4
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 

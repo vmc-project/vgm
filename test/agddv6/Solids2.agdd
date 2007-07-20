@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE AGDD SYSTEM "AGDD.dtd" [
+<!ENTITY Materials SYSTEM "Materials.agdd"> 
+]>
+
+<AGDD DTD_version="v6">
+
+&Materials;
+
+
+<section DTD_version = "v6"
+         name        = "world"
+         version     = "Id: AGDDWriter.cxx 544 2007-05-23 10:39:11Z ivana "
+         date        = "2007-07-19"
+         author      = "VGM AGGD Writer"
+         top_volume  = "world_comp"  >
+
+   <box    name="world"
+      material="Basic"
+      X_Y_Z="1200.0000; 600.0000; 400.0000" />
+
+   <box    name="box"
+      material="Basic"
+      X_Y_Z="40.0000; 120.0000; 100.0000" />
+
+   <cons   name="cons"
+      material="Basic"
+      profile=" 45.0000; 90.0000"
+      Rio1_Rio2_Z  ="10.0000; 20.0000; 40.0000; 60.0000; 100.0000" />
+
+   <!-- !!! unsupported shape  !!!  name= "eltu" -->
+   <!-- dummy box is written instead  -->
+   <box    name="eltu"
+      material="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
+   <!-- !!! unsupported shape v6  !!!  name= "para" -->
+   <!-- dummy box is written instead  -->
+   <box    name="para"
+      material="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+ 
+   <pcon   name="pcone"
+      material="Basic"
+      profile=" 45.0000; 90.0000" >
+      <polyplane Rio_Z="10.0000; 50.0000; -50.0000" />
+      <polyplane Rio_Z="20.0000; 30.0000; 10.0000" />
+      <polyplane Rio_Z="30.0000; 60.0000; 40.0000" />
+   </pcon>
+
+   <!-- !!! unsupported shape v6  !!!  name= "phedra" -->
+   <!-- dummy box is written instead  -->
+   <box    name="phedra"
+      material="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
+   <sphere    name="sphere"
+      material="Basic"
+      Rio="20.0000; 60.0000"       
+      profile=" 45.0000; 90.0000"
+      slice=" 22.5000; 45.0000" />
+
+   <torus    name="torus"
+      material="Basic"
+      Rio_R="20.0000; 30.0000; 40.000"       
+      profile=" 45.0000; 90.0000" />
+
+   <!-- !!! unsupported shape v6  !!!  name= "trap" -->
+   <!-- dummy box is written instead  -->
+   <box    name="trap"
+      material="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
+   <trd    name="trd"
+      material="Basic"
+      Xmp_Ymp_Z="40.0000; 60.0000; 80.0000; 100.0000; 100.0000" />
+
+   <tubs   name="tubs"
+      material="Basic"
+      profile=" 45.0000; 90.0000"
+      Rio_Z  ="20.0000; 40.0000; 100.0000" />
+
+   <!-- !!! unsupported shape  !!!  name= "ctubs" -->
+   <!-- dummy box is written instead  -->
+   <box    name="ctubs"
+      material="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
+   <!-- !!! unsupported shape  !!!  name= "xtru1" -->
+   <!-- dummy box is written instead  -->
+   <box    name="xtru1"
+      material="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
+   <!-- !!! unsupported shape  !!!  name= "xtru2" -->
+   <!-- dummy box is written instead  -->
+   <box    name="xtru2"
+      material="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
+
+   <composition name="world_comp" envelope="world">
+      <posXYZ   X_Y_Z="-450.0000; -150.0000;   0.0000"> <volume name="box"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-450.0000; 150.0000;   0.0000"> <volume name="cons"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-300.0000; -150.0000;   0.0000"> <volume name="eltu"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-300.0000; 150.0000;   0.0000"> <volume name="para"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-150.0000; -150.0000;   0.0000"> <volume name="pcone"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-150.0000; 150.0000;   0.0000"> <volume name="phedra"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="  0.0000; -150.0000;   0.0000"> <volume name="sphere"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="  0.0000; 150.0000;   0.0000"> <volume name="torus"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="150.0000; -150.0000;   0.0000"> <volume name="trap"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="150.0000; 150.0000;   0.0000"> <volume name="trd"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="300.0000; -150.0000;   0.0000"> <volume name="tubs"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="300.0000; 150.0000;   0.0000"> <volume name="ctubs"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="450.0000; -150.0000;   0.0000"> <volume name="xtru1"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="450.0000; 150.0000;   0.0000"> <volume name="xtru2"/>
+      </posXYZ>
+   </composition>
+
+
+</section>
+
+</AGDD>
