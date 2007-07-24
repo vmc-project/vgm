@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE AGDD SYSTEM "AGDD.dtd" [
+<!ENTITY Materials SYSTEM "Materials.agdd"> 
+]>
+
+<AGDD DTD_version="v6">
+
+&Materials;
+
+
+<section DTD_version = "v6"
+         name        = "world"
+         version     = "Id: AGDDWriter.cxx 544 2007-05-23 10:39:11Z ivana "
+         date        = "2007-07-24"
+         author      = "VGM AGGD Writer"
+         top_volume  = "world_comp"  >
+
+   <box    name="world"
+      material="Basic_mat"
+      X_Y_Z="800.0000; 200.0000; 800.0000" />
+
+   <box    name="volume1"
+      material="Basic_mat"
+      X_Y_Z="100.0000; 100.0000; 100.0000" />
+
+   <cons   name="volume2"
+      material="Basic_mat"
+      profile=" 0.0000; 360.0000"
+      Rio1_Rio2_Z  ="10.0000; 20.0000; 30.0000; 40.0000; 200.0000" />
+
+   <intersection name="solid1Isolid2">
+      <posXYZ X_Y_Z=" 0.0000; 0.0000; 0.0000" rot="0.0000; -45.0000; 0.0000">
+	<volume name="volume1"/> 
+      </posXYZ>
+      <posXYZ X_Y_Z="20.0000; 0.0000; 0.0000" rot="-30.0000; 0.0000; 0.0000">
+	<volume name="volume2"/> 
+      </posXYZ>
+   </intersection>
+
+   <subtraction name="solid1Ssolid2">
+      <posXYZ X_Y_Z=" 0.0000; 0.0000; 0.0000" rot="0.0000; -45.0000; 0.0000">
+ 	<volume name="volume1"/> 
+      </posXYZ>
+      <posXYZ X_Y_Z="20.0000; 0.0000; 0.0000" rot="-30.0000; 0.0000; 0.0000">
+	<volume name="volume2"/> 
+      </posXYZ>
+   </subtraction>
+
+   <union name="solid1Usolid2">
+      <posXYZ X_Y_Z=" 0.0000; 0.0000; 0.0000" rot="0.0000; -45.0000; 0.0000">
+	<volume name="volume1"/> 
+      </posXYZ>
+      <posXYZ X_Y_Z="20.0000; 0.0000; 0.0000" rot="-30.0000; 0.0000; 0.0000">
+ 	<volume name="volume2"/> 
+      </posXYZ>
+   </union>
+
+   <composition name="world_comp" envelope="world">
+      <posXYZ   X_Y_Z="-125.0000;   0.0000; -200.0000"> <volume name="volume1"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="125.0000;   0.0000; -200.0000"> <volume name="volume2"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-250.0000;   0.0000; 200.0000"> <volume name="solid1Isolid2"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="  0.0000;   0.0000; 200.0000"> <volume name="solid1Ssolid2"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="250.0000;   0.0000; 200.0000"> <volume name="solid1Usolid2"/>
+      </posXYZ>
+   </composition>
+
+
+</section>
+
+</AGDD>
