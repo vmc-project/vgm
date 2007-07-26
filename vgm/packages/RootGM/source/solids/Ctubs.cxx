@@ -142,36 +142,36 @@ double RootGM::Ctubs::DeltaPhi() const
 //_____________________________________________________________________________
 double RootGM::Ctubs::NxLow() const
 {
-  return fCtubs->GetNlow()[0] * RootGM::Units::Length();
+  return fCtubs->GetNlow()[0];
 }  
 
 //_____________________________________________________________________________
 double RootGM::Ctubs::NyLow() const
 {
-  return fCtubs->GetNlow()[1] * RootGM::Units::Length();
+  return fCtubs->GetNlow()[1];
 }  
 
 //_____________________________________________________________________________
 double RootGM::Ctubs::NzLow() const
 {
-  return fCtubs->GetNlow()[2] * RootGM::Units::Length();
+  return fCtubs->GetNlow()[2];
 }  
 
 //_____________________________________________________________________________
 double RootGM::Ctubs::NxHigh() const
 {
-  return fCtubs->GetNhigh()[0] * RootGM::Units::Length();
+  return fCtubs->GetNhigh()[0];
 }  
 
 //_____________________________________________________________________________
 double RootGM::Ctubs::NyHigh() const
 {
-  return fCtubs->GetNhigh()[1] * RootGM::Units::Length();
+  return fCtubs->GetNhigh()[1];
 }  
 
 //_____________________________________________________________________________
 double RootGM::Ctubs::NzHigh() const
 {
-  return fCtubs->GetNhigh()[2] * RootGM::Units::Length();
+  return fCtubs->GetNhigh()[2];
 }  
 
