@@ -29,7 +29,9 @@
 #include "VGM/solids/IBooleanSolid.h"
 #include "VGM/solids/IBox.h"
 #include "VGM/solids/ICons.h"
+#include "VGM/solids/ICtubs.h"
 #include "VGM/solids/IEllipticalTube.h"
+#include "VGM/solids/IExtrudedSolid.h"
 #include "VGM/solids/IPara.h"
 #include "VGM/solids/IPolycone.h"
 #include "VGM/solids/IPolyhedra.h"
@@ -154,7 +156,9 @@ namespace XmlVGM {
                      double hx, double hy, double hz);
       void WriteBox (std::string name, const VGM::IBox*  box);  
       void WriteCons(std::string name, const VGM::ICons* cons); 
+      void WriteCtubs(std::string name, const VGM::ICtubs* ctubs); 
       void WriteEllipticalTube(std::string name, const VGM::IEllipticalTube* eltu); 
+      void WriteExtrudedSolid(std::string name, const VGM::IExtrudedSolid* extruded); 
       void WritePara(std::string name, const VGM::IPara* para); 
       void WritePolycone(std::string name, const VGM::IPolycone* polycone); 
       void WritePolyhedra(std::string name, const VGM::IPolyhedra* polyhedra); 

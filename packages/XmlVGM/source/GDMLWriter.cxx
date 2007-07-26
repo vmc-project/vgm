@@ -291,6 +291,68 @@ void XmlVGM::GDMLWriter::WriteCons(
 }  
 
 //_____________________________________________________________________________
+void XmlVGM::GDMLWriter::WriteCtubs(
+                              std::string name, 
+			      const VGM::ICtubs* ctubs)
+{
+/// Write ctubs solid
+
+  // get parameters
+  double rmin = ctubs->InnerRadius()/LengthUnit();
+  double rmax = ctubs->OuterRadius()/LengthUnit();
+  double hz   = ctubs->ZHalfLength()/LengthUnit()*2.;
+  double sphi = ctubs->StartPhi()/AngleUnit();
+  double dphi = ctubs->DeltaPhi()/AngleUnit();
+  double nxl  = ctubs->NxLow();
+  double nyl  = ctubs->NyLow();
+  double nzl  = ctubs->NzLow();
+  double nxh  = ctubs->NxHigh();
+  double nyh  = ctubs->NyHigh();
+  double nzh  = ctubs->NzHigh();
+
+  // compose element string template
+  std::string quota = "\"";
+  std::string element1  = "<cutTube  lunit=\"cm\" aunit=\"degree\"";
+  std::string element2  = "name=\"" + name + quota;
+  std::string element3  = "z=\"";
+  std::string element4  = "rmin=\"";
+  std::string element5  = "rmax=\"";
+  std::string element6  = "startphi=\"";
+  std::string element7  = "deltaphi=\"";
+  std::string element8  = "lowX=\"";
+  std::string element9  = "lowY=\"";
+  std::string element10 = "lowZ=\"";
+  std::string element11 = "highX=\"";
+  std::string element12 = "highY=\"";
+  std::string element13 = "highZ=\"";
+  std::string element14 = "\" />";
+  std::string indention = fIndention + fkBasicIndention;
+  
+  // write element
+  fOutFile << fIndention << element1 << std::endl
+	   << indention  << element2 << std::endl
+	   << indention        
+	   << element4 << std::setw(fNW) << std::setprecision(fNP) << rmin << quota << "  "
+	   << element5 << std::setw(fNW) << std::setprecision(fNP) << rmax << quota << "  " 
+	   << element3 << std::setw(fNW) << std::setprecision(fNP) << hz << quota
+	   << std::endl
+	   << indention        
+	   << element6 << std::setw(fNW) << std::setprecision(fNP) << sphi << quota << "  "
+	   << element7 << std::setw(fNW) << std::setprecision(fNP) << dphi << quota
+	   << std::endl
+	   << indention        
+           << element8  << std::setw(fNW) << std::setprecision(fNP) << nxl << quota << "  "         
+           << element9  << std::setw(fNW) << std::setprecision(fNP) << nyl << quota << "  "         
+           << element10 << std::setw(fNW) << std::setprecision(fNP) << nzl << quota         
+	   << std::endl
+	   << indention        
+           << element11 << std::setw(fNW) << std::setprecision(fNP) << nxh << quota << "  "         
+           << element12 << std::setw(fNW) << std::setprecision(fNP) << nyh << quota << "  "         
+           << element13 << std::setw(fNW) << std::setprecision(fNP) << nzh         
+	   << element14 << std::endl << std::endl;
+}  
+
+//_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteEllipticalTube(
                               std::string name, const VGM::IEllipticalTube* eltu) 
 {
@@ -302,10 +364,11 @@ void XmlVGM::GDMLWriter::WriteEllipticalTube(
   double hz = eltu->ZHalfLength()/LengthUnit();
 
   // convert half lengths to full lengths
+/*
   if (fFullLengths) {
     hz *= 2.;
   }  
-
+*/
   // compose element string template
   std::string quota = "\"";
   std::string element1 = "<eltube  lunit=\"cm\" aunit=\"degree\"";
@@ -327,6 +390,90 @@ void XmlVGM::GDMLWriter::WriteEllipticalTube(
 }  
 
 //_____________________________________________________________________________
+void XmlVGM::GDMLWriter::WriteExtrudedSolid(
+                             std::string name, 
+			     const VGM::IExtrudedSolid* extruded)
+{
+/// Write VGM::IExtrudedSolid solid
+
+  // get vertices
+  int nofVertices = extruded->NofVertices();
+  double* xvertArray = new double[nofVertices];
+  double* yvertArray = new double[nofVertices];
+  for (int i=0; i<nofVertices; i++) {
+    xvertArray[i] = extruded->Vertex(i).first/LengthUnit();
+    yvertArray[i] = extruded->Vertex(i).second/LengthUnit();
+  }    
+
+  // get Z sections parameters
+  int nofZSections = extruded->NofZSections();
+  double* zArray = new double[nofZSections];
+  double* xoffsetArray = new double[nofZSections];
+  double* yoffsetArray = new double[nofZSections];
+  double* scaleArray = new double[nofZSections];
+  for (int i=0; i<nofZSections; i++) {
+    zArray[i]    = extruded->ZPosition(i)/LengthUnit();
+    xoffsetArray[i] = extruded->Offset(i).first/LengthUnit();
+    yoffsetArray[i] = extruded->Offset(i).second/LengthUnit();
+    scaleArray[i] = extruded->Scale(i);
+  }  
+    
+  // compose element string template
+  std::string quota = "\"";
+  std::string element1 = "<xtru  lunit=\"cm\" aunit=\"degree\"";
+  std::string element2 = "name=\"" + name + quota;
+  std::string element3 = " >";
+  std::string element4 = "<twoDimVertex  x=\"";
+  std::string element5 = "y=\"";
+  std::string element6 = "\" />";
+  std::string element7 = "<section  zPosition=\"";
+  std::string element8 = "zOrder=\"";
+  std::string element9 = "xOffset=\"";
+  std::string element10 = "yOffset=\"";
+  std::string element11 = "scalingFactor=\"";
+  std::string element12 = "</xtru>";
+  std::string indention = fIndention + fkBasicIndention;
+  
+  // write xtru element
+  fOutFile << fIndention << element1 << std::endl
+	   << indention  << element2 << element3 << std::endl;
+           
+  // write vertices
+  for (int i=0; i<nofVertices; i++) {
+    fOutFile << indention 
+             << element4 << std::setw(fNW) << std::setprecision(fNP) << xvertArray[i] << quota << "  "
+             << element5 << std::setw(fNW) << std::setprecision(fNP) << yvertArray[i]
+	     << element6
+	     << std::endl;
+  }           
+             
+           
+  // write polyplane elements
+  for (int i=0; i<nofZSections; i++) {
+    fOutFile << indention 
+             << element7  << std::setw(fNW) << std::setprecision(fNP) << zArray[i] << quota << "  "
+	     << element8  << std::setw(3)   << i << quota << "  "
+	     << element9  << std::setw(fNW) << std::setprecision(fNP) << xoffsetArray[i] << quota << "  " 
+	     << element10 << std::setw(fNW) << std::setprecision(fNP) << yoffsetArray[i] << quota << "  " 
+	     << element11 << std::setw(fNW) << std::setprecision(fNP) << scaleArray[i] 
+	     << element6
+	     << std::endl;
+  }
+  
+  // close pcon element
+  fOutFile << fIndention
+           << element12 << std::endl << std::endl;  	     
+
+  delete [] xvertArray;			      
+  delete [] yvertArray;			      
+  delete [] zArray;			      
+  delete [] xoffsetArray;			      
+  delete [] yoffsetArray;			      
+  delete [] scaleArray;			      
+}  
+
+
+//_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WritePara(
                               std::string name, 
 			      const VGM::IPara* para)
@@ -341,13 +488,14 @@ void XmlVGM::GDMLWriter::WritePara(
   double theta = UpdateAngle(para->Theta())/AngleUnit();
   double phi   = UpdateAngle(para->Phi())/AngleUnit();
 
+/*
   // convert half lengths to full lengths
   if (fFullLengths) {
     dx *= 2.;
     dy *= 2.;
     dz *= 2.;
   }  
-
+*/
   // compose element string template
   std::string quota = "\"";
   std::string element1 = "<para  lunit=\"cm\" aunit=\"degree\"";
@@ -395,11 +543,6 @@ void XmlVGM::GDMLWriter::WritePolycone(
     rminArray[i] = polycone->InnerRadiusValues()[i]/LengthUnit();
     rmaxArray[i] = polycone->OuterRadiusValues()[i]/LengthUnit();
     zArray[i]    = polycone->ZValues()[i]/LengthUnit();
-    
-    // convert half lengths to full lengths
-    if (fFullLengths) {
-      zArray[i] *= 2.;
-    }  
   }  
     
   // compose element string template
@@ -456,7 +599,6 @@ void XmlVGM::GDMLWriter::WritePolyhedra(
   // get profile parameters
   double sphi = UpdateAngle(polyhedra->StartPhi())/AngleUnit();
   double dphi = UpdateAngle(polyhedra->DeltaPhi())/AngleUnit();
-  double phi = sphi + dphi;
   
   // get polyhedra Z planes parameters
   int nofZPlanes = polyhedra->NofZPlanes();
@@ -468,11 +610,6 @@ void XmlVGM::GDMLWriter::WritePolyhedra(
     rminArray[i] = polyhedra->InnerRadiusValues()[i]/LengthUnit();
     rmaxArray[i] = polyhedra->OuterRadiusValues()[i]/LengthUnit();
     zArray[i]    = polyhedra->ZValues()[i]/LengthUnit();
-
-    // convert half lengths to full lengths
-    if (fFullLengths) {
-      zArray[i] *= 2.;
-    }  
   }  
     
   // compose element string template
@@ -481,7 +618,7 @@ void XmlVGM::GDMLWriter::WritePolyhedra(
   std::string element2 = "name=\"" + name + quota;
   std::string element3 = "numsides=\"";
   std::string element4 = "startphi=\"";
-  std::string element5 = "totalphi=\"";
+  std::string element5 = "deltaphi=\"";
   std::string element6 = "\" >";
   std::string element7 = "<zplane  z=\"";
   std::string element8 = "rmin=\"";
@@ -497,7 +634,7 @@ void XmlVGM::GDMLWriter::WritePolyhedra(
 	   << element3 << nofSides << quota << std::endl
 	   << indention  
 	   << element4 << std::setw(fNW) << std::setprecision(fNP) << sphi << quota << "  "
-	   << element5 << std::setw(fNW) << std::setprecision(fNP) << phi
+	   << element5 << std::setw(fNW) << std::setprecision(fNP) << dphi
 	   << element6
 	   << std::endl;
 
@@ -1355,10 +1492,21 @@ void XmlVGM::GDMLWriter::WriteSolid(
     WriteCons(solidName, cons); 
     return;   
   }
+  else if (solidType == VGM::kCtubs) { 
+    const VGM::ICtubs* ctubs = dynamic_cast<const VGM::ICtubs*>(solid); 
+    WriteCtubs(solidName, ctubs); 
+    return;   
+  }
   else if (solidType == VGM::kEltu) { 
     const VGM::IEllipticalTube* eltu 
       = dynamic_cast<const VGM::IEllipticalTube*>(solid); 
     WriteEllipticalTube(solidName, eltu); 
+    return;   
+  }
+  else if (solidType == VGM::kExtruded) { 
+    const VGM::IExtrudedSolid* extruded 
+      = dynamic_cast<const VGM::IExtrudedSolid*>(solid); 
+    WriteExtrudedSolid(solidName, extruded); 
     return;   
   }
   else if (solidType == VGM::kPara) { 
