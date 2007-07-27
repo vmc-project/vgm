@@ -14,7 +14,7 @@
          version     = "Id: AGDDWriter.cxx 544 2007-05-23 10:39:11Z ivana "
          date        = "2007-07-20"
          author      = "VGM AGGD Writer"
-         top_volume  = "world_comp"  >
+         top_volume  = "world"  >
 
    <box    name="world"
       material="Vacuum_mat"

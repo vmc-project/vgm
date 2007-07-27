@@ -1,0 +1,51 @@
+# This file is part of the Autoconf build mechanism for the
+# Virtual Geometry Model
+# Copyright (C) 2007, Brett Viren
+# All rights reserved.
+#
+# For the licensing terms see vgm/LICENSE.
+# Contact: bv@bnl.gov
+
+INCLUDES = ${CLHEP_INCLUDE} ${ROOT_INCLUDE} ${GEANT4_INCLUDE} ${AGDD_INCLUDE} \
+         -I../../packages/VGM/include \
+         -I../..//packages/BaseVGM/include \
+         -I../../packages/ClhepVGM/include \
+         -I../../packages/AgddGM/include   \
+         -I../../packages/XmlVGM/include   \
+         -I../../packages/RootGM/include   \
+         -I../../packages/Geant4GM/include \
+         -I../../test/include
+
+vgm_libs = ../packages/BaseVGM/libBaseVGM.la ../packages/ClhepVGM/libClhepVGM.la \
+           ../packages/RootGM/libRootGM.la ../packages/Geant4GM/libGeant4GM.la \
+           ../packages/XmlVGM/libXmlVGM.la ../packages/AgddGM/libAgddGM.la
+
+ext_links = \
+	$(CLHEP_LINK) $(ROOT_LINK) $(GEANT4_LINK) $(AGDD_LINK) $(XERCES_LINK)
+
+
+check_PROGRAMS = vgm_test agdd2x
+
+
+agdd2x_SOURCES = ../../test/agdd2x.cc
+agdd2x_LDADD = $(vgm_libs)
+agdd2x_LDFLAGS = $(ext_links)
+
+
+vgmtestsrc = ../../test/src
+vgm_test_SOURCES = ../../test/vgm_test.cc \
+	$(vgmtestsrc)/TstDetectorConstruction.cc \
+	$(vgmtestsrc)/TstGeometryViaAgdd.cc \
+	$(vgmtestsrc)/TstGeometryViaGeant4.cc \
+	$(vgmtestsrc)/TstGeometryViaRoot.cc \
+	$(vgmtestsrc)/TstGeometryViaVGM.cc \
+	$(vgmtestsrc)/TstPhysicsList.cc \
+	$(vgmtestsrc)/TstPrimaryGeneratorAction.cc \
+	$(vgmtestsrc)/TstPrimaryGeneratorActionMessenger.cc \
+	$(vgmtestsrc)/TstRunAction.cc \
+	$(vgmtestsrc)/TstTrackingAction.cc \
+	$(vgmtestsrc)/TstVGeometry.cc \
+	$(vgmtestsrc)/TstVisManager.cc
+
+vgm_test_LDADD = $(vgm_libs)
+vgm_test_LDFLAGS = $(ext_links)

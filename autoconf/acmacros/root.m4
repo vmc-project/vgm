@@ -30,17 +30,21 @@ AC_ARG_WITH(root,
 if test x$with_root = xyes ; then
 	root_enable=yes
 	root_prefix=/usr
+	rootbin=/usr/bin
 elif test x$with_root = xno ; then
 	root_enable=no
+	rootbin=""
 else
 	root_enable=yes
 	root_prefix=$with_root
 	ROOTSYS=$with_root
 	export ROOTSYS
+	rootbin=${with_root}/bin
 fi
 ],[
 	root_enable=yes
 	root_prefix=""
+	rootbin=""
 ])
 
 
@@ -53,7 +57,7 @@ if test x"$root_enable" = xyes ; then
 ROOT_PATH($1,
 	[
 	ROOT_INCLUDE="$ROOTCFLAGS"
-	ROOT_LINK="-L$ROOTLIBDIR $ROOTLIBS -lGeom"
+	ROOT_LINK="-Wl,--rpath -Wl,$ROOTLIBDIR -L$ROOTLIBDIR $ROOTLIBS -lGeom"
 	],
 	AC_MSG_ERROR(Your ROOT version is too old or can't be found))
 AC_SUBST(ROOT_INCLUDE)
@@ -103,17 +107,18 @@ dnl
 
 AC_DEFUN([ROOT_PATH],
 [
-  AC_ARG_WITH(rootsys,
-  [  --with-rootsys          top of the ROOT installation directory],
-    user_rootsys=$withval,
-    user_rootsys="none")
-  if test ! x"$user_rootsys" = xnone; then
-    rootbin="$user_rootsys/bin"
-  elif test ! x"$ROOTSYS" = x ; then 
-    rootbin="$ROOTSYS/bin"
-  else 
-   rootbin=$PATH
-  fi
+#  AC_ARG_WITH(rootsys,
+#  [  --with-rootsys          top of the ROOT installation directory],
+#    user_rootsys=$withval,
+#    user_rootsys="none")
+#  if test ! x"$user_rootsys" = xnone; then
+#    rootbin="$user_rootsys/bin"
+#  elif test ! x"$ROOTSYS" = x ; then 
+#    rootbin="$ROOTSYS/bin"
+#  else 
+#   rootbin=$PATH
+#  fi
+
   AC_PATH_PROG(ROOTCONF, root-config , no, $rootbin)
   AC_PATH_PROG(ROOTEXEC, root , no, $rootbin)
   AC_PATH_PROG(ROOTCINT, rootcint , no, $rootbin)
