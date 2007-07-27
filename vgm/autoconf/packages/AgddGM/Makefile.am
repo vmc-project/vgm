@@ -19,6 +19,7 @@ agddgmsrc=../../../packages/AgddGM/source
 lib_LTLIBRARIES = libAgddGM.la
 
 libAgddGM_la_SOURCES =                        \
+	$(agddgmsrc)/materials/Isotope.cxx \
 	$(agddgmsrc)/materials/Element.cxx \
 	$(agddgmsrc)/materials/Material.cxx \
 	$(agddgmsrc)/materials/MaterialFactory.cxx \

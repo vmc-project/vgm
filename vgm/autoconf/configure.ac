@@ -68,5 +68,6 @@ AC_CONFIG_FILES([Makefile
                  packages/Geant4GM/Makefile
                  packages/XmlVGM/Makefile
                  packages/AgddGM/Makefile
+                 test/Makefile
                 ])
 AC_OUTPUT

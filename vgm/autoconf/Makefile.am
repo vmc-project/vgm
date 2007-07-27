@@ -8,6 +8,6 @@
 # For the licensing terms see vgm/LICENSE.
 # Contact: bv@bnl.gov
 
-SUBDIRS = packages
+SUBDIRS = packages test
 
 

@@ -36,6 +36,18 @@ Specify non-standard locations for 3rd party packages.
 Other 3rd party packages have additional options that may be useful to
 specify.  Again, run "./configure --help" to see.
 
+To build:
+
+  make
+
+To install
+
+  make install
+
+To build test program (vgm_test)
+
+  make check
+
 ------------------------------------------------------------------------
 
 Building as a developer.  If you add anything that requires rebuilding

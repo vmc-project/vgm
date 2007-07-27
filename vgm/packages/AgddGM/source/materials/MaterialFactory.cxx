@@ -10,6 +10,7 @@
 // -----------------------------------------------------------------------
 
 #include <AgddGM/materials/MaterialFactory.h>
+#include <AgddGM/materials/Isotope.h>
 #include <AgddGM/materials/Element.h>
 #include <AgddGM/materials/Material.h>
 #include <AGDD/AGDD_Material_Model.hh>
@@ -34,6 +35,14 @@ bool AgddGM::MaterialFactory::Import()
         agdd::AGDD_Materials* mats = fMatVec[imat];
 
 
+        {
+            agdd::AGDD_Materials::IsotopeMap::iterator it,
+                done = mats->m_isotopes.end();
+            for (it=mats->m_isotopes.begin(); it != done; ++it) {
+                VGM::IIsotope* vgm_iso = new AgddGM::Isotope(it->second);
+                IsotopeStore().push_back(vgm_iso);
+            }
+        }
         {
             agdd::AGDD_Materials::ElementMap::iterator it,
                 done= mats->m_elements.end();
