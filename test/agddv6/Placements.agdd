@@ -6,193 +6,60 @@
 
 <AGDD DTD_version="v6">
 
-&Materials;
+  &Materials;
 
 
-<section DTD_version = "v6"
-         name        = "world"
-         version     = "Id: AGDDWriter.cxx 544 2007-05-23 10:39:11Z ivana "
-         date        = "2007-07-20"
-         author      = "VGM AGGD Writer"
-         top_volume  = "world"  >
+  <section DTD_version = "v6"
+    name        = "world"
+    version     = "Id: AGDDWriter.cxx 544 2007-05-23 10:39:11Z ivana "
+    date        = "2007-07-20"
+    author      = "VGM AGGD Writer"
+    top_volume  = "world"  >
 
-   <box    name="world"
+    <box    name="world"
       material="Vacuum_mat"
       X_Y_Z="1200.0000; 200.0000; 1200.0000" />
 
-   <box    name="volA"
+    <box    name="volA"
       material="Air_mat"
       X_Y_Z="40.0000; 120.0000; 100.0000" />
 
-   <box    name="volB"
+    <box    name="volB"
       material="Uranium_mat"
       X_Y_Z="40.0000; 20.0000; 100.0000" />
 
-   <box    name="volC"
+    <box    name="volC"
       material="Scintillator_mat"
       X_Y_Z="40.0000;  0.4000; 100.0000" />
+    
+    <composition name="world_comp" envelope="world">
+      <posXYZ rot="90;0;0">
+	<volume name="wheel"/>
+      </posXYZ>
+    </composition>
 
+    <composition name="wheel">
+      <mposPhi  rot="90;0;0" ncopy="24" R_Z="500;0" impliedRot="true">
+	<volume name="volA"/>
+      </mposPhi>
+    </composition>
 
-   <composition name="world_comp" envelope="world">
-      <posXYZ   X_Y_Z="482.9629;   0.0000; 129.4095" 
-                rot="0.0000; 15.0000; 0.0000"> <volume name="volA"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="482.9629;   0.0000; 129.4095" 
-                rot="0.0000; 15.0000; 0.0000"> <volume name="volA_comp"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="433.0127;   0.0000; 250.0000"
-                rot="0.0000; 30.0000; 0.0000"> <volume name="volA"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="433.0127;   0.0000; 250.0000"
-                rot="0.0000; 30.0000; 0.0000"> <volume name="volA_comp"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="353.5534;   0.0000; 353.5534"
-                rot="0.0000; 45.0000; 0.0000"> <volume name="volA"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="353.5534;   0.0000; 353.5534"
-                rot="0.0000; 45.0000; 0.0000"> <volume name="volA_comp"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="250.0000;   0.0000; 433.0127"
-                rot="0.0000; 60.0000; 0.0000"> <volume name="volA"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="250.0000;   0.0000; 433.0127"
-                rot="0.0000; 60.0000; 0.0000"> <volume name="volA_comp"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="129.4095;   0.0000; 482.9629"
-                rot="0.0000; 75.0000; 0.0000"> <volume name="volA"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="129.4095;   0.0000; 482.9629"
-                rot="0.0000; 75.0000; 0.0000"> <volume name="volA_comp"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="  0.0000;   0.0000; 500.0000"
-                rot="0.0000; 90.0000; 0.0000"> <volume name="volA"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="  0.0000;   0.0000; 500.0000"
-                rot="0.0000; 90.0000; 0.0000"> <volume name="volA_comp"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="-129.4095;   0.0000; 482.9629"
-                rot="0.0000; 105.0000; 0.0000"> <volume name="volA"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="-129.4095;   0.0000; 482.9629"
-                rot="0.0000; 105.0000; 0.0000"> <volume name="volA_comp"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="-250.0000;   0.0000; 433.0127"
-                rot="0.0000; 120.0000; 0.0000"> <volume name="volA"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="-250.0000;   0.0000; 433.0127"
-                rot="0.0000; 120.0000; 0.0000"> <volume name="volA_comp"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="-353.5534;   0.0000; 353.5534"
-                rot="0.0000; 135.0000; 0.0000"> <volume name="volA"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="-353.5534;   0.0000; 353.5534"
-                rot="0.0000; 135.0000; 0.0000"> <volume name="volA_comp"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="-433.0127;   0.0000; 250.0000"
-                rot="0.0000; 150.0000; 0.0000"> <volume name="volA"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="-433.0127;   0.0000; 250.0000"
-                rot="0.0000; 150.0000; 0.0000"> <volume name="volA_comp"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="-482.9629;   0.0000; 129.4095"
-                rot="0.0000; 165.0000; 0.0000"> <volume name="volA"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="-482.9629;   0.0000; 129.4095"
-                rot="0.0000; 165.0000; 0.0000"> <volume name="volA_comp"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="-500.0000;   0.0000;   0.0000"
-                rot="0.0000; 180.0000; 0.0000"> <volume name="volA"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="-500.0000;   0.0000;   0.0000"
-                rot="0.0000; 180.0000; 0.0000"> <volume name="volA_comp"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="-482.9629;   0.0000; -129.4095"
-                rot="0.0000; 195.0000; 0.0000"> <volume name="volA"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="-482.9629;   0.0000; -129.4095"
-                rot="0.0000; 195.0000; 0.0000"> <volume name="volA_comp"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="-433.0127;   0.0000; -250.0000"
-                rot="0.0000; 210.0000; 0.0000"> <volume name="volA"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="-433.0127;   0.0000; -250.0000"
-                rot="0.0000; 210.0000; 0.0000"> <volume name="volA_comp"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="-353.5534;   0.0000; -353.5534"
-                rot="0.0000; 225.0000; 0.0000"> <volume name="volA"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="-353.5534;   0.0000; -353.5534"
-                rot="0.0000; 225.0000; 0.0000"> <volume name="volA_comp"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="-250.0000;   0.0000; -433.0127"
-                rot="0.0000; 240.0000; 0.0000"> <volume name="volA"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="-250.0000;   0.0000; -433.0127"
-                rot="0.0000; 240.0000; 0.0000"> <volume name="volA_comp"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="-129.4095;   0.0000; -482.9629"
-                rot="0.0000; 255.0000; 0.0000"> <volume name="volA"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="-129.4095;   0.0000; -482.9629"
-                rot="0.0000; 255.0000; 0.0000"> <volume name="volA_comp"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="  0.0000;   0.0000; -500.0000"
-                rot="0.0000; 270.0000; 0.0000"> <volume name="volA"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="  0.0000;   0.0000; -500.0000"
-                rot="0.0000; 270.0000; 0.0000"> <volume name="volA_comp"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="129.4095;   0.0000; -482.9629"
-                rot="0.0000; 285.0000; 0.0000"> <volume name="volA"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="129.4095;   0.0000; -482.9629"
-                rot="0.0000; 285.0000; 0.0000"> <volume name="volA_comp"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="250.0000;   0.0000; -433.0127"
-                rot="0.0000; 300.0000; 0.0000"> <volume name="volA"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="250.0000;   0.0000; -433.0127"
-                rot="0.0000; 300.0000; 0.0000"> <volume name="volA_comp"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="353.5534;   0.0000; -353.5534"
-                rot="0.0000; 315.0000; 0.0000"> <volume name="volA"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="353.5534;   0.0000; -353.5534"
-                rot="0.0000; 315.0000; 0.0000"> <volume name="volA_comp"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="433.0127;   0.0000; -250.0000"
-                rot="0.0000; 330.0000; 0.0000"> <volume name="volA"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="433.0127;   0.0000; -250.0000"
-                rot="0.0000; 330.0000; 0.0000"> <volume name="volA_comp"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="482.9629;   0.0000; -129.4095"
-                rot="0.0000; 345.0000; 0.0000"> <volume name="volA"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="482.9629;   0.0000; -129.4095"
-                rot="0.0000; 345.0000; 0.0000"> <volume name="volA_comp"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="500.0000;   0.0000;   0.0000"> <volume name="volA"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="500.0000;   0.0000;   0.0000"> <volume name="volA_comp"/>
-      </posXYZ>
-   </composition>
-
-   <composition name="volA_comp">
-      <mposY ncopy="   3"  Y0=" 40.0000"  dY=" 20.0000"> <volume name="volB"/>
+    <composition name="volA_comp" envelope="volA">
+      <mposY ncopy="   3"  Y0=" 40.0000"  dY=" 20.0000"> 
+	<volume name="volB"/>
       </mposY>
-      <mposY ncopy="   3"  Y0=" 40.0000"  dY=" 20.0000"> <volume name="volB_comp"/>
-      </mposY>
-   </composition>
+    </composition>
 
-   <composition name="volB_comp">
-      <posXYZ   X_Y_Z="  0.0000;   9.8000;   0.0000"> <volume name="volC"/>
+    <composition name="volB_comp" envelope="volB">
+      <posXYZ  X_Y_Z="  0.0000;   9.8000;   0.0000"> 
+	<volume name="volC"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="  0.0000;  -9.8000;   0.0000"> <volume name="volC"/>
+      <posXYZ  X_Y_Z="  0.0000;  -9.8000;   0.0000"> 
+	<volume name="volC"/>
       </posXYZ>
-   </composition>
+    </composition>
 
 
-</section>
+  </section>
 
 </AGDD>

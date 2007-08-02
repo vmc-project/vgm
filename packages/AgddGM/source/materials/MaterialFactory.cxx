@@ -69,9 +69,9 @@ bool AgddGM::MaterialFactory::Import()
                         const_cast<VGM::IElement*>(Element(name));
                     eles.push_back(vgm_ele);
 
-                    VGM::IMaterial* vgm_mat = new AgddGM::Material(mat,eles);
-                    MaterialStore().push_back(vgm_mat);
                 }
+                VGM::IMaterial* vgm_mat = new AgddGM::Material(mat,eles);
+                MaterialStore().push_back(vgm_mat);
             }
         }
     } // loop over materials
