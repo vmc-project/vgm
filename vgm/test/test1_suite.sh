@@ -26,9 +26,9 @@ then
   mkdir -p $OUTDIR 
 fi
 
-for inputType in VGM Geant4 Root
+for inputType in VGM AGDD Geant4 Root
 do
-  for inputFactory in Geant4 Root
+  for inputFactory in AGDD Geant4 Root
   do
     for outputFactory in None Geant4 Root
     do
@@ -44,18 +44,23 @@ do
 	then
 	  DUMMY=0
 	else 
- 	  if [ $inputType != "VGM" -a "$outputFactory" = "None" ]
+ 	  if [ $inputType = "VGM" -a "$inputFactory" = "AGDD" ]
 	  then
 	    DUMMY=0
 	  else 
-  	    if [ "$inputFactory" = "$outputFactory" ]
+ 	    if [ $inputType != "VGM" -a "$outputFactory" = "None" ]
 	    then
-  	      DUMMY=0
+	      DUMMY=0
 	    else 
-              echo "Testing configuration: $inputType $inputFactory $outputFactory $selectedTest"
-	      vgm_test $inputType $inputFactory $outputFactory $NOXML $selectedTest $NOVIS debug \
-	        > $OUTDIR/"$inputType.$inputFactory.$outputFactory.$selectedTest.out"   \
-	        2> $OUTDIR/"$inputType.$inputFactory.$outputFactory.$selectedTest.err"
+  	      if [ "$inputFactory" = "$outputFactory" ]
+	      then
+  	        DUMMY=0
+	      else 
+                echo "Testing configuration: $inputType $inputFactory $outputFactory $selectedTest"
+	        vgm_test $inputType $inputFactory $outputFactory $NOXML $selectedTest $NOVIS debug \
+	          > $OUTDIR/"$inputType.$inputFactory.$outputFactory.$selectedTest.out"   \
+	          2> $OUTDIR/"$inputType.$inputFactory.$outputFactory.$selectedTest.err"
+              fi      
             fi
 	  fi    
         fi

@@ -36,9 +36,9 @@ do
     mkdir -p $OUTDIR/$EXT 
   fi
 
-  for inputType in VGM Geant4 Root
+  for inputType in VGM AGDD Geant4 Root
   do
-    for inputFactory in Geant4 Root
+    for inputFactory in AGDD Geant4 Root
     do
       for selectedTest in Solids Placements Reflections Assemblies1 Assemblies2 BooleanSolids2 
       #for selectedTest in Placements 
@@ -52,20 +52,40 @@ do
 	then
 	  DUMMY=0
 	else 
- 	  if [ $inputType = "VGM" -a "$selectedTest" = "Assemblies1" ]
+ 	  if [ $inputType = "VGM" -a "$inputFactory" = "AGDD" ]
 	  then
 	    DUMMY=0
 	  else 
-	    if [ $inputType = "VGM" -a "$selectedTest" = "Assemblies2" ]
-	    then 
+ 	    if [ $inputType = "VGM" -a "$selectedTest" = "Assemblies1" ]
+	    then
 	      DUMMY=0
 	    else 
-              echo "Testing configuration: $inputType $inputFactory $outputXML $selectedTest"
-	      vgm_test $inputType $inputFactory "None" $outputXML $selectedTest $NOVIS \
-	        > /dev/null 2> /dev/null
+	      if [ $inputType = "VGM" -a "$selectedTest" = "Assemblies2" ]
+	      then 
+	        DUMMY=0
+	      else 
+	        if [ $inputType = "AGDD" -a "$selectedTest" = "Reflections" ]
+	        then 
+	          DUMMY=0
+	        else 
+	          if [ $inputType = "AGDD" -a "$selectedTest" = "Assemblies1" ]
+	          then 
+	            DUMMY=0
+	          else 
+	            if [ $inputType = "AGDD" -a "$selectedTest" = "Assemblies2" ]
+	            then 
+	              DUMMY=0
+	            else 
+                      echo "Testing configuration: $inputType $inputFactory $outputXML $selectedTest"
+	              vgm_test $inputType $inputFactory "None" $outputXML $selectedTest $NOVIS \
+	                > /dev/null 2> /dev/null
   
-	      # copy file to output dir
-	      mv *.$EXT  $OUTDIR/$EXT
+	              # copy file to output dir
+	              mv *.$EXT  $OUTDIR/$EXT
+                    fi
+                  fi
+                fi                        
+              fi  
 	    fi
 	  fi    
         fi
