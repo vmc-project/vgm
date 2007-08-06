@@ -23,6 +23,7 @@
 #include <VGM/materials/IElement.h>
 #include <VGM/materials/IIsotope.h>
 #include <string>
+#include <map>
 
 namespace agdd {
     class AGDD_Element;
@@ -33,7 +34,9 @@ namespace AgddGM {
 class Element : public virtual VGM::IElement
 {
 public:
-    Element(agdd::AGDD_Element* element);		
+    typedef std::map<std::string,VGM::IIsotope*> IsotopeMap;
+
+    Element(agdd::AGDD_Element* element, const IsotopeMap& isomap);
     virtual ~Element() {}
     
     // methods
@@ -54,6 +57,7 @@ protected:
 private:
   
     agdd::AGDD_Element* fElement;
+    IsotopeMap fIsoMap;
 };
 
 }
