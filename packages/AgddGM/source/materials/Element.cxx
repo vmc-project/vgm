@@ -1,3 +1,14 @@
+// $Id$
+
+// -----------------------------------------------------------------------
+// The AgddGM package of the Virtual Geometry Model
+// Copyright (C) 2007, Brett Viren              
+// All rights reserved. 
+//           
+// For the licensing terms see vgm/LICENSE.
+// Contact: bv@bnl.gov
+// -----------------------------------------------------------------------
+
 #include <AgddGM/materials/Element.h>
 #include <AGDD/AGDD_Material_Model.hh>
 

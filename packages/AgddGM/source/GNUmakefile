@@ -1,4 +1,4 @@
-# $Id: GNUmakefile,v 1.3 2007/05/23 10:31:14 ivana Exp $
+# $Id$
 
 # -----------------------------------------------------------------------
 # The makefile for a package of the Virtual Geometry Model
