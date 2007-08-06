@@ -17,20 +17,20 @@
     top_volume  = "world"  >
 
     <box    name="world"
-      material="Vacuum_mat"
-      X_Y_Z="1200.0000; 200.0000; 1200.0000" />
+      material="Vacuum"
+      X_Y_Z="12000.000; 2000.000; 12000.000" />
 
-    <box    name="volA"
-      material="Air_mat"
-      X_Y_Z="40.0000; 120.0000; 100.0000" />
+    <box    name="layerA"
+      material="Air"
+      X_Y_Z="400.000; 1200.000; 1000.000" />
 
-    <box    name="volB"
-      material="Uranium_mat"
-      X_Y_Z="40.0000; 20.0000; 100.0000" />
+    <box    name="layerB"
+      material="Uranium"
+      X_Y_Z="400.000; 200.000; 1000.000" />
 
-    <box    name="volC"
-      material="Scintillator_mat"
-      X_Y_Z="40.0000;  0.4000; 100.0000" />
+    <box    name="layerC"
+      material="Scintillator"
+      X_Y_Z="400.000;  4.000; 1000.000" />
     
     <composition name="world_comp" envelope="world">
       <posXYZ rot="90;0;0">
@@ -39,23 +39,23 @@
     </composition>
 
     <composition name="wheel">
-      <mposPhi  rot="90;0;0" ncopy="24" R_Z="500;0" impliedRot="true">
-	<volume name="volA"/>
+      <mposPhi  rot="90;0;0" ncopy="24" R_Z="5000;0" impliedRot="true">
+	<volume name="layerA"/>
       </mposPhi>
     </composition>
 
-    <composition name="volA_comp" envelope="volA">
-      <mposY ncopy="   3"  Y0=" 40.0000"  dY=" 20.0000"> 
-	<volume name="volB"/>
+    <composition name="layerA_comp" envelope="layerA">
+      <mposY ncopy="   3"  Y0=" 100.000"  dY=" 200.000"> 
+	<volume name="layerB"/>
       </mposY>
     </composition>
 
-    <composition name="volB_comp" envelope="volB">
-      <posXYZ  X_Y_Z="  0.0000;   9.8000;   0.0000"> 
-	<volume name="volC"/>
+    <composition name="layerB_comp" envelope="layerB">
+      <posXYZ  X_Y_Z="  0.000;   98.000;   0.0000"> 
+	<volume name="layerC"/>
       </posXYZ>
-      <posXYZ  X_Y_Z="  0.0000;  -9.8000;   0.0000"> 
-	<volume name="volC"/>
+      <posXYZ  X_Y_Z="  0.000;  -98.000;   0.0000"> 
+	<volume name="layerC"/>
       </posXYZ>
     </composition>
 
