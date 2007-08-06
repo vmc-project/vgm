@@ -16,8 +16,8 @@ AgddGM::Element::Element() : fElement(0)
 {
 }
 
-AgddGM::Element::Element(agdd::AGDD_Element* element)
-    : fElement(element)
+AgddGM::Element::Element(agdd::AGDD_Element* element, const IsotopeMap& isomap)
+    : fElement(element), fIsoMap(isomap)
 {
 }
     
@@ -72,22 +72,33 @@ double  AgddGM::Element::A() const
 
 int AgddGM::Element::NofIsotopes() const
 {
-    // FIXME: implement
-    //return fElement->m_addisotopes.size();
-    return 0;
+    return fIsoMap.size();
 }
 
-VGM::IIsotope*  AgddGM::Element::Isotope(int i) const
+VGM::IIsotope*  AgddGM::Element::Isotope(int index) const
 {
-    //agdd::AGDD_Isotope* iso = fElement->m_addisotopes[ind]->m_isotope;
-    // FIXME: implement
-    return 0;
+    std::string name = fElement->m_addisotopes[index]->m_isotope_name;
+    IsotopeMap::const_iterator it = fIsoMap.find(name);
+    if (it == fIsoMap.end()) return 0;
+    VGM::IIsotope* iso = it->second;
+    return iso;
 }
 
-double AgddGM::Element::RelAbundance(int i) const
+double AgddGM::Element::RelAbundance(int index) const
 {
-    // FIXME: implement
-    return 0.0;
+    if (fElement->m_atom) return 1;
+
+    size_t siz = fElement->m_addisotopes.size();
+    if (index >= siz) return 0;
+
+    int totatoms = 0;
+    double tota = 0;
+    for (size_t ind=0; ind<siz; ++ind) {
+	int natoms = fElement->m_addisotopes[ind]->m_natoms;
+	totatoms += natoms;
+    }
+
+    return fElement->m_addisotopes[index]->m_natoms / ((double)totatoms);
 }
 
 

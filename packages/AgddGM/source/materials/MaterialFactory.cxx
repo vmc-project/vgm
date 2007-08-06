@@ -41,13 +41,24 @@ bool AgddGM::MaterialFactory::Import()
             for (it=mats->m_isotopes.begin(); it != done; ++it) {
                 VGM::IIsotope* vgm_iso = new AgddGM::Isotope(it->second);
                 IsotopeStore().push_back(vgm_iso);
+                fIsoMap[it->second->m_name] = vgm_iso;
             }
         }
         {
             agdd::AGDD_Materials::ElementMap::iterator it,
                 done= mats->m_elements.end();
             for (it=mats->m_elements.begin(); it!=done; ++it) {
-                VGM::IElement* vgm_ele = new AgddGM::Element(it->second);
+                agdd::AGDD_Element* agdd_elem = it->second;
+
+                Element::IsotopeMap isomap;
+                vector <agdd::AGDD_AddIsotope*>& 
+                    iso_vec = agdd_elem->m_addisotopes;
+                for (int iiso=0; iiso<iso_vec.size(); ++iiso) {
+                    std::string name = iso_vec[iiso]->m_isotope_name;
+                    isomap[name] = fIsoMap[name];
+                }
+
+                VGM::IElement* vgm_ele = new AgddGM::Element(agdd_elem,isomap);
                 ElementStore().push_back(vgm_ele);
             }
         }

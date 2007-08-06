@@ -14,6 +14,8 @@
 
 #include <BaseVGM/materials/VMaterialFactory.h>
 #include <vector>
+#include <map>
+#include <string>
 
 namespace agdd {
     class AGDD_Materials;
@@ -92,7 +94,7 @@ public:
 private:
 
     std::vector<agdd::AGDD_Materials*> fMatVec;
-
+    std::map<std::string,VGM::IIsotope*> fIsoMap;
 };
 
 }
