@@ -398,7 +398,8 @@ void TstDetectorConstruction::SelectChannels(const G4String& inputType,
       fgkFactoryCandidates.find(outputFactory) == std::string::npos ||
       fgkOutputXMLCandidates.find(outputXML) == std::string::npos ||     
       inputFactory == "None" ||
-      outputFactory == inputFactory) {
+      outputFactory == inputFactory ||
+      inputType != inputFactory && inputType != "VGM") {
       
       G4Exception("TstDetectorConstruction::SelectChannels",
                   "IllegalConstruct", FatalException,
