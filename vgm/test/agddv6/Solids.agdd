@@ -17,118 +17,90 @@
          top_volume  = "world_comp"  >
 
    <box    name="world"
-      material="Basic_mat"
-      X_Y_Z="1200.0000; 600.0000; 400.0000" />
+      material="Basic"
+      X_Y_Z="12000.000; 6000.000; 4000.000" />
 
    <box    name="box"
-      material="Basic_mat"
-      X_Y_Z="40.0000; 120.0000; 100.0000" />
+      material="Basic"
+      X_Y_Z="400.000; 1200.000; 1000.000" />
 
    <cons   name="cons"
-      material="Basic_mat"
+      material="Basic"
       profile=" 0.0000; 360.0000"
-      Rio1_Rio2_Z  ="10.0000; 20.0000; 40.0000; 60.0000; 100.0000" />
+      Rio1_Rio2_Z  ="100.000; 400.000; 200.000; 600.000; 1000.000" />
 
    <!-- !!! unsupported shape  !!!  name= "eltu" -->
-   <!-- dummy box is written instead  -->
-   <box    name="eltu"
-      material="Basic_mat"
-      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
 
    <!-- !!! unsupported shape v6  !!!  name= "para" -->
-   <!-- dummy box is written instead  -->
-   <box    name="para"
-      material="Basic_mat"
-      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
  
    <pcon   name="pcone"
-      material="Basic_mat"
+      material="Basic"
       profile=" 0.0000; 360.0000" >
-      <polyplane Rio_Z="10.0000; 50.0000; -50.0000" />
-      <polyplane Rio_Z="20.0000; 30.0000; 10.0000" />
-      <polyplane Rio_Z="30.0000; 60.0000; 40.0000" />
+      <polyplane Rio_Z="100.000; 500.000; -500.000" />
+      <polyplane Rio_Z="200.000; 300.000; 100.000" />
+      <polyplane Rio_Z="300.000; 600.000; 400.000" />
    </pcon>
 
    <!-- !!! unsupported shape v6  !!!  name= "phedra" -->
-   <!-- dummy box is written instead  -->
-   <box    name="phedra"
-      material="Basic_mat"
-      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
 
    <sphere    name="sphere"
-      material="Basic_mat"
-      Rio="20.0000; 60.0000"       
+      material="Basic"
+      Rio="200.000; 600.000"       
       profile=" 0.0000; 360.0000"
       slice=" 0.0000; 180.0000" />
 
    <torus    name="torus"
-      material="Basic_mat"
-      Rio_R="20.0000; 30.0000; 40.000"       
+      material="Basic"
+      Rio_R="200.000; 300.000; 400.000"       
       profile=" 0.0000; 360.0000" />
 
    <!-- !!! unsupported shape v6  !!!  name= "trap" -->
-   <!-- dummy box is written instead  -->
-   <box    name="trap"
-      material="Basic_mat"
-      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
 
    <trd    name="trd"
-      material="Basic_mat"
-      Xmp_Ymp_Z="40.0000; 60.0000; 80.0000; 100.0000; 100.0000" />
+      material="Basic"
+      Xmp_Ymp_Z="400.000; 600.000; 800.000; 1000.000; 1000.000" />
 
    <tubs   name="tubs"
-      material="Basic_mat"
+      material="Basic"
       profile=" 0.0000; 360.0000"
-      Rio_Z  ="20.0000; 40.0000; 100.0000" />
+      Rio_Z  ="200.000; 400.000; 1000.000" />
 
    <!-- !!! unsupported shape  !!!  name= "ctubs" -->
-   <!-- dummy box is written instead  -->
-   <box    name="ctubs"
-      material="Basic_mat"
-      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
 
    <!-- !!! unsupported shape  !!!  name= "xtru1" -->
-   <!-- dummy box is written instead  -->
-   <box    name="xtru1"
-      material="Basic_mat"
-      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
 
    <!-- !!! unsupported shape  !!!  name= "xtru2" -->
-   <!-- dummy box is written instead  -->
-   <box    name="xtru2"
-      material="Basic_mat"
-      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
 
 
    <composition name="world_comp" envelope="world">
-      <posXYZ   X_Y_Z="-450.0000; -150.0000;   0.0000"> <volume name="box"/>
+      <posXYZ   X_Y_Z="-4500.000; -1500.000;   0.000"> <volume name="box"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="-450.0000; 150.0000;   0.0000"> <volume name="cons"/>
+      <posXYZ   X_Y_Z="-4500.000;  1500.000;   0.000"> <volume name="cons"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="-300.0000; -150.0000;   0.0000"> <volume name="eltu"/>
+      <!-- posXYZ   X_Y_Z="-3000.000; -1500.000;   0.000"> <volume name="eltu"/>
+      </posXYZ -->
+      <!-- posXYZ   X_Y_Z="-3000.000; 1500.000;   0.000"> <volume name="para"/>
+      </posXYZ -->
+      <posXYZ   X_Y_Z="-1500.000; -1500.000;   0.000"> <volume name="pcone"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="-300.0000; 150.0000;   0.0000"> <volume name="para"/>
+      <!-- posXYZ   X_Y_Z="-1500.000; 1500.000;   0.000"> <volume name="phedra"/>
+      </posXYZ -->
+      <posXYZ   X_Y_Z="  00.000; -1500.000;   0.000"> <volume name="sphere"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="-150.0000; -150.0000;   0.0000"> <volume name="pcone"/>
+      <posXYZ   X_Y_Z="  00.000; 1500.000;   0.000"> <volume name="torus"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="-150.0000; 150.0000;   0.0000"> <volume name="phedra"/>
+      <!-- posXYZ   X_Y_Z="1500.000; -1500.000;   0.000"> <volume name="trap"/>
+      </posXYZ -->
+      <posXYZ   X_Y_Z="1500.000; 1500.000;   0.000"> <volume name="trd"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="  0.0000; -150.0000;   0.0000"> <volume name="sphere"/>
+      <posXYZ   X_Y_Z="3000.000; -1500.000;   0.000"> <volume name="tubs"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="  0.0000; 150.0000;   0.0000"> <volume name="torus"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="150.0000; -150.0000;   0.0000"> <volume name="trap"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="150.0000; 150.0000;   0.0000"> <volume name="trd"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="300.0000; -150.0000;   0.0000"> <volume name="tubs"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="300.0000; 150.0000;   0.0000"> <volume name="ctubs"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="450.0000; -150.0000;   0.0000"> <volume name="xtru1"/>
-      </posXYZ>
-      <posXYZ   X_Y_Z="450.0000; 150.0000;   0.0000"> <volume name="xtru2"/>
-      </posXYZ>
+      <!-- posXYZ   X_Y_Z="3000.000; 1500.000;   0.000"> <volume name="ctubs"/>
+      </posXYZ -->
+      <!-- posXYZ   X_Y_Z="4500.000; -1500.000;   0.000"> <volume name="xtru1"/>
+      </posXYZ -->
+      <!-- posXYZ   X_Y_Z="4500.000; 1500.000;   0.000"> <volume name="xtru2"/>
+      </posXYZ -->
    </composition>
 
 
