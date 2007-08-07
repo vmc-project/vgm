@@ -156,13 +156,14 @@ bool AgddGM::Factory::ImportSection(AGDD_Section* sec)
 	    continue;
 	}
 	if (!comp->m_envelope) {
-	    WARN << "ImportSection: skipping composition \""
-		 << vol->getName() << "\" w/out envelope\n";
+            // This isn't really an error, so keep quiet.
+	    //WARN << "ImportSection: skipping composition \""
+            //     << vol->getName() << "\" w/out envelope\n";
 	    continue;
 	}
 
-	WARN << "ImportSection: importing AGDD_composition \""
-	     << vol->getName() << "\"\n";
+	DEBUG << "ImportSection: importing AGDD_composition \""
+              << vol->getName() << "\"\n";
 
 	this->ImportComposition(comp,transform,top_vol);
     }
