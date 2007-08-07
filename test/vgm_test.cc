@@ -115,18 +115,19 @@ int main(int argc, char** argv)
       std::cerr << " Argument " << argv[i] << " not recognized." << std::endl;
   }   
   
+  // Create detector conctruction and let it check selected channels
+  TstDetectorConstruction* detector
+    = new TstDetectorConstruction(inputType, inputFactory, outputFactory, 
+                                  outputXML);
+  detector->SetDebug(debugMode);
+  detector->SelectTest(selectedTest, fullAngle);  
+  detector->SelectVisualization(visMode);  
+    
   G4RunManager* runManager; 
   if ( ! rootNavig ) {
     // Construct the default run manager
     runManager = new G4RunManager();
 
-    TstDetectorConstruction* detector
-      = new TstDetectorConstruction(inputType, inputFactory, outputFactory, 
-                                    outputXML);
-    detector->SetDebug(debugMode);
-    detector->SelectTest(selectedTest, fullAngle);  
-    detector->SelectVisualization(visMode);  
-    
     // Set mandatory initialization classes
     runManager->SetUserInitialization(detector);
   }
