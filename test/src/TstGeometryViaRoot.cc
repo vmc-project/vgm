@@ -686,7 +686,7 @@ void* TstGeometryViaRoot::TestAssemblies()
     Double_t xp = dshift*TMath::Sin(phirad);
     Double_t yp = -dshift*TMath::Cos(phirad);
     rot = new TGeoRotation(*rot1);
-    rot->RotateZ(phi);     
+    rot->RotateZ(phi);   
     cell->AddNode(tplate,i2+1,new TGeoCombiTrans(xp,yp,0,rot));
   }   
   //top->AddNode(cell, 1, new TGeoTranslation());
@@ -827,27 +827,27 @@ void* TstGeometryViaRoot::TestBooleanSolids1()
   // Intersection
   //
   TGeoShape* intersectionS
-    = new TGeoCompositeShape("solid1Isolid2S", "boxS*tubsS:tr2"); 
+    = new TGeoCompositeShape("intersection_solid1_solid2_S", "boxS*tubsS:tr2"); 
   TGeoVolume* intersectionV
-    = new TGeoVolume("solid1Isolid2", intersectionS, fBasicMedium);
+    = new TGeoVolume("intersection_solid1_solid2", intersectionS, fBasicMedium);
   worldV->AddNode(intersectionV, 1, 
                   new TGeoTranslation(-250., 0., 200.));
   
   // Subtraction
   //
   TGeoShape* subtractionS
-    = new TGeoCompositeShape("solid1Ssolid2S", "boxS-tubsS:tr2"); 
+    = new TGeoCompositeShape("subtraction_solid1_solid2_S", "boxS-tubsS:tr2"); 
   TGeoVolume* subtractionV
-    = new TGeoVolume("solid1Ssolid2", subtractionS, fBasicMedium);
+    = new TGeoVolume("subtraction_solid1_solid2", subtractionS, fBasicMedium);
   worldV->AddNode(subtractionV, 1, 
                   new TGeoTranslation(0., 0., 200.));
   
   // Union
   //
   TGeoShape* unionS
-    = new TGeoCompositeShape("solid1Ssolid2S", "boxS+tubsS:tr2"); 
+    = new TGeoCompositeShape("union_solid1_solid2_S", "boxS+tubsS:tr2"); 
   TGeoVolume* unionV
-    = new TGeoVolume("solid1Usolid2", unionS, fBasicMedium);
+    = new TGeoVolume("union_solid1_solid2", unionS, fBasicMedium);
   worldV->AddNode(unionV, 1, 
                   new TGeoTranslation(250., 0., 200.));
   
@@ -908,7 +908,6 @@ void* TstGeometryViaRoot::TestBooleanSolids2()
   TGeoHMatrix mtrans(*trans);
   TGeoHMatrix mtransT = mrot1 * mtrans * mrot1.Inverse();
   const Double_t* transT = mtransT.GetTranslation();
-  cout << transT[0] << " "  << transT[1] << " "  << transT[2] << endl; 
   TGeoCombiTrans* tr2 = new TGeoCombiTrans(transT[0], transT[1], transT[2], rot2);
   tr2->SetName("tr2");
   tr2->RegisterYourself();
@@ -917,27 +916,27 @@ void* TstGeometryViaRoot::TestBooleanSolids2()
   // Intersection
   //
   TGeoShape* intersectionS
-    = new TGeoCompositeShape("solid1Isolid2S", "boxS:tr1*tubsS:tr2"); 
+    = new TGeoCompositeShape("intersection_solid1_solid2_S", "boxS:tr1*tubsS:tr2"); 
   TGeoVolume* intersectionV
-    = new TGeoVolume("solid1Isolid2", intersectionS, fBasicMedium);
+    = new TGeoVolume("intersection_solid1_solid2", intersectionS, fBasicMedium);
   worldV->AddNode(intersectionV, 1, 
                   new TGeoTranslation(-250., 0., 200.));
 
   // Subtraction
   //
   TGeoShape* subtractionS
-    = new TGeoCompositeShape("solid1Ssolid2S", "boxS:tr1-tubsS:tr2"); 
+    = new TGeoCompositeShape("subtraction_solid1_solid2_S", "boxS:tr1-tubsS:tr2"); 
   TGeoVolume* subtractionV
-    = new TGeoVolume("solid1Ssolid2", subtractionS, fBasicMedium);
+    = new TGeoVolume("subtraction_solid1_solid2", subtractionS, fBasicMedium);
   worldV->AddNode(subtractionV, 1, 
                   new TGeoTranslation(0., 0., 200.));
   
   // Union
   //
   TGeoShape* unionS
-    = new TGeoCompositeShape("solid1Ssolid2S", "boxS:tr1+tubsS:tr2"); 
+    = new TGeoCompositeShape("union_solid1_solid2_S", "boxS:tr1+tubsS:tr2"); 
   TGeoVolume* unionV
-    = new TGeoVolume("solid1Usolid2", unionS, fBasicMedium);
+    = new TGeoVolume("union_solid1_solid2", unionS, fBasicMedium);
   worldV->AddNode(unionV, 1, 
                   new TGeoTranslation(250., 0., 200.));
   
@@ -999,27 +998,27 @@ void* TstGeometryViaRoot::TestBooleanSolids3()
   // Intersection
   //
   TGeoShape* intersectionS
-    = new TGeoCompositeShape("solid1Isolid2S", "boxS:tr1*tubsS:tr2"); 
+    = new TGeoCompositeShape("intersection_solid1_solid2_S", "boxS:tr1*tubsS:tr2"); 
   TGeoVolume* intersectionV
-    = new TGeoVolume("solid1Isolid2", intersectionS, fBasicMedium);
+    = new TGeoVolume("intersection_solid1_solid2", intersectionS, fBasicMedium);
   worldV->AddNode(intersectionV, 1, 
                   new TGeoTranslation(-250., 0., 200.));
   
   // Subtraction
   //
   TGeoShape* subtractionS
-    = new TGeoCompositeShape("solid1Ssolid2S", "boxS:tr1-tubsS:tr2"); 
+    = new TGeoCompositeShape("subtraction_solid1_solid2S", "boxS:tr1-tubsS:tr2"); 
   TGeoVolume* subtractionV
-    = new TGeoVolume("solid1Ssolid2", subtractionS, fBasicMedium);
+    = new TGeoVolume("subtraction_solid1_solid2", subtractionS, fBasicMedium);
   worldV->AddNode(subtractionV, 1, 
                   new TGeoTranslation(0., 0., 200.));
   
   // Union
   //
   TGeoShape* unionS
-    = new TGeoCompositeShape("solid1Ssolid2S", "boxS:tr1+tubsS:tr2"); 
+    = new TGeoCompositeShape("subtraction_solid1_solid2S", "boxS:tr1+tubsS:tr2"); 
   TGeoVolume* unionV
-    = new TGeoVolume("solid1Usolid2", unionS, fBasicMedium);
+    = new TGeoVolume("union_solid1_solid2", unionS, fBasicMedium);
   worldV->AddNode(unionV, 1, 
                   new TGeoTranslation(250., 0., 200.));
   
