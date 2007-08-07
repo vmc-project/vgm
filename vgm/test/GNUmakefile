@@ -15,7 +15,7 @@
 # --------------------------------------------------------------
 
 name := vgm_test
-#name := agdd_test
+#name := agdd2x
 G4TARGET := $(name)
 G4EXLIB := true
 
