@@ -190,6 +190,13 @@ G4VPhysicalVolume* TstDetectorConstruction::Construct()
   if (fSelectedVisMode == "Root") 
     DrawRootGeometry(fSelectedTest.find("Boolean") != std::string::npos);
 
+  // Save Root geometry
+  if ( fRootFactory ) {
+    std::cout << "Go to save Root geometry" << std::endl;
+    gGeoManager->CloseGeometry();
+    SaveRootGeometry();
+  }  
+  
   // Print materials 
   //
 /*
@@ -322,7 +329,7 @@ void TstDetectorConstruction::DrawRootGeometry(bool withRayTrace) const
 
   // Save Root geometry
   gGeoManager->CloseGeometry();
-  SaveRootGeometry();
+  // SaveRootGeometry();
   
   // Draw Root geometry
   //
