@@ -32,6 +32,22 @@
 using namespace std;
 using namespace agdd;
 
+// This machinery might be best moved into BaseVGM
+#include "BaseVGM/common/utilities.h"
+static ostream& debug()
+{
+    BaseVGM::DebugInfo();
+    return cout;                // should match what is used in DebugInfo!
+}
+static ostream& warn() { return cerr << "VGM warning:  "; }
+#define DEBUG \
+    if(! Debug()) {;}\
+    else debug()
+bool Warn () { return true; }   // always
+#define WARN \
+    if (! Warn()) {;}\
+    else warn()
+
 
 // import/export
 //
@@ -83,7 +99,7 @@ will become the world volume.
 bool AgddGM::Factory::ImportSection(AGDD_Section* sec)
 {
     if (fTop) {
-	cerr << "Already imported a section\n";
+	WARN << "already imported a section, whill not import another.\n";
 	return false;
     }
 
@@ -98,17 +114,17 @@ bool AgddGM::Factory::ImportSection(AGDD_Section* sec)
     }
 
     if (!top) {
-	cerr << "Top volume of first section must either be a solid or a composition with a solid envelope\n";
+	WARN << "top volume of first section must either be a solid or a composition with a solid envelope\n";
 	return false;
     }
 
 
     AgddGM::Volume* top_vol = this->ImportSolid(top);
     if (!top_vol) {
-	cerr << "Failed to import a top volume!\n";
+	cerr << "Error: failed to import a top volume!\n";
 	return false;
     }
-    cerr << "Top volume is " << top_vol->Name() << endl;
+    DEBUG << "Top volume is " << top_vol->Name() << endl;
 
     HepGeom::Transform3D transform;
     transform.setIdentity();
@@ -135,17 +151,17 @@ bool AgddGM::Factory::ImportSection(AGDD_Section* sec)
 
 	AGDD_Composition* comp = dynamic_cast<AGDD_Composition*>(vol);
 	if (!comp) {
-	    cerr << "ImportSection: skipping non composition \""
+	    WARN << "ImportSection: skipping non composition \""
 		 << vol->getName() << "\"\n";
 	    continue;
 	}
 	if (!comp->m_envelope) {
-	    cerr << "ImportSection: skipping composition \""
+	    WARN << "ImportSection: skipping composition \""
 		 << vol->getName() << "\" w/out envelope\n";
 	    continue;
 	}
 
-	cerr << "ImportSection: importing AGDD_composition \""
+	WARN << "ImportSection: importing AGDD_composition \""
 	     << vol->getName() << "\"\n";
 
 	this->ImportComposition(comp,transform,top_vol);
@@ -182,11 +198,11 @@ AgddGM::Factory::ImportComposition(AGDD_Composition* comp,
     AGDD_Solid* envelope_sol =
 	dynamic_cast<AGDD_Solid*>(comp->m_envelope);
     if (!parent_vol && !envelope_sol) {
-	cerr << "ImportComposition \"" << comp->getName()
+	WARN << "ImportComposition \"" << comp->getName()
 	     << "\" neither parent nor envelope given\n";
 	return 0;
     }
-    cerr << "ImportComposition \"" << comp->getName() << "\"\n";
+    DEBUG << "ImportComposition \"" << comp->getName() << "\"\n";
     
     HepGeom::Transform3D transform = pretrans;
     if (envelope_sol) {
@@ -209,7 +225,7 @@ AgddGM::Volume* AgddGM::Factory::ImportStack(AGDD_Stack* stk,
 					     AgddGM::Volume* parent_vol)
 {
     if (!parent_vol) {
-	cerr << "ImportStack \"" << stk->getName() << "\" not given a parent\n";
+	WARN << "ImportStack \"" << stk->getName() << "\" not given a parent\n";
 	return 0;
     }
     
@@ -315,7 +331,7 @@ AgddGM::Factory::ImportBoolean(AGDD_BooleanVolume* bol)
 	AGDD_SinglePosition* pos = bol->m_positions[ind];
 	AGDD_Volume* vol = pos->m_volume.m_ref;
 	if (!dynamic_cast<AGDD_Solid*>(vol)) {
-	    cerr << "ImportBoolean: no support for non-solid volume, can't import \""
+	    WARN << "ImportBoolean: no support for non-solid volume, can't import \""
 		 << vol->getName() << "\"\n";
 	    return 0;
 	}
@@ -353,7 +369,7 @@ int AgddGM::Factory::ImportPosition(const AGDD_Position* pos,
 
     int npos = fP2C[pos];
     if (npos) {
-	cerr << "ImportPosition already imported pos " << (void*)pos << " volume \""
+	WARN << "ImportPosition already imported pos " << (void*)pos << " volume \""
 	     << name << "\" cardinality=" << npos << endl;
 	return npos;
     }
@@ -366,7 +382,7 @@ int AgddGM::Factory::ImportPosition(const AGDD_Position* pos,
      * if composition it either has an envelope or it doesn't
      */
 
-    cerr << "ImportPosition "<<(void*)pos<<" volume \""
+    DEBUG << "ImportPosition "<<(void*)pos<<" volume \""
 	 << name << "\" cardinality " << npos
 	 << " parent \"" << (parent?parent->Name():"TOP") << "\"\n";
 
@@ -379,7 +395,7 @@ int AgddGM::Factory::ImportPosition(const AGDD_Position* pos,
 
 	if (!vgm_vol || vgm_vol == parent) continue;
 
-	cerr << "ImportingPosition with volume \""
+	DEBUG << "ImportingPosition with volume \""
 	     << vgm_vol->Name() << "\" (\""<< name << "\") trans="
 	     << dump(trans)
 	     << "\n";
@@ -500,7 +516,7 @@ AgddGM::Volume* AgddGM::Factory::ImportSolid(AGDD_Solid* sol)
 
     VGM::ISolid* vgm_sol = MakeSolid(sol);
     if (!vgm_sol) {
-	cerr << "Can not import AGDD_Solid \"" << sol->getName() << "\"\n";
+	WARN << "Can not import AGDD_Solid \"" << sol->getName() << "\"\n";
 	return 0;
     }
     vgm_vol = new AgddGM::Volume(vgm_sol,sol);

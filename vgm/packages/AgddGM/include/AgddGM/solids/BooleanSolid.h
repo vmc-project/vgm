@@ -9,6 +9,14 @@
 // Contact: bv@bnl.gov
 // -----------------------------------------------------------------------
 
+/// \ingroup AgddGM_solids
+//
+/// \class AgddGM::BooleanSolid
+///
+/// VGM implementation of VBooleanSolid for AgddGM
+///
+/// \author: bv@bnl.gov
+
 #ifndef AGDD_GM_BOOLEANSOLID_H
 #define AGDD_GM_BOOLEANSOLID_H
 

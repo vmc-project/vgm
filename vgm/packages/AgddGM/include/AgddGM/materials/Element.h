@@ -15,7 +15,7 @@
 ///
 /// VGM implementation for AGDD_Element.
 ///
-/// Author: bv@bnl.gov
+/// \author: bv@bnl.gov
 
 #ifndef AGDD_GM_ELEMENT_H
 #define AGDD_GM_ELEMENT_H

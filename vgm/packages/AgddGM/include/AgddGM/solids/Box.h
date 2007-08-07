@@ -9,6 +9,14 @@
 // Contact: bv@bnl.gov
 // -----------------------------------------------------------------------
 
+/// \ingroup AgddGM_solids
+//
+/// \class AgddGM::Box
+///
+/// VGM implementation of VBox for AgddGM
+///
+/// \author: bv@bnl.gov
+
 #ifndef AGDD_GM_BOX_H
 #define AGDD_GM_BOX_H
 

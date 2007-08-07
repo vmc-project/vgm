@@ -15,7 +15,7 @@
 AgddGM::Volume::Volume(VGM::ISolid* solid, agdd::AGDD_Solid* agdd_sol)
     : BaseVGM::VVolume(solid), fSol(agdd_sol)
 {
-    fName = fSol->getName() + "_vol";
+    fName = fSol->getName();
 }
 AgddGM::Volume::~Volume() 
 {

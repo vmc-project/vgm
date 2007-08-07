@@ -9,6 +9,14 @@
 // Contact: bv@bnl.gov
 // -----------------------------------------------------------------------
 
+/// \ingroup AgddGM_solids
+//
+/// \class AgddGM::Torus
+///
+/// VGM implementation of VTorus for AgddGM
+///
+/// \author: bv@bnl.gov
+
 #ifndef AGDD_GM_TORUS_H
 #define AGDD_GM_TORUS_H
 

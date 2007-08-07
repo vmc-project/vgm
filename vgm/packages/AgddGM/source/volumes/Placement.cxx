@@ -47,6 +47,7 @@ AgddGM::Placement::Placement(const std::string& name,
     // fixme: stacks need this too?
 
 
+#if 0
     cerr << "Place \"" << name << "\" #" << fCopyNo
 	 << " of volume \"" << volume->Name() << "\" at "
 	 << (void*)volume << " in parent \""
@@ -57,6 +58,7 @@ AgddGM::Placement::Placement(const std::string& name,
 	comma = ",";
     }
     cerr << "]\n";
+#endif
 }
 
 VGM::PlacementType AgddGM::Placement::Type() const

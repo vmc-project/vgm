@@ -9,6 +9,14 @@
 // Contact: bv@bnl.gov
 // -----------------------------------------------------------------------
 
+/// \ingroup AgddGM_materials
+//
+/// \class AgddGM::Material
+///
+/// VGM implementation of IMaterial for AgddGM.
+///
+/// \author: bv@bnl.gov
+
 #ifndef AGDD_GM_MATERIAL_H
 #define AGDD_GM_MATERIAL_H
 

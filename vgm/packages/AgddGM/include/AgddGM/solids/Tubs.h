@@ -9,6 +9,14 @@
 // Contact: bv@bnl.gov
 // -----------------------------------------------------------------------
 
+/// \ingroup AgddGM_solids
+//
+/// \class AgddGM::Tubs
+///
+/// VGM implementation of VTubs for AgddGM
+///
+/// \author: bv@bnl.gov
+
 #ifndef AGDD_GM_TUBS_H
 #define AGDD_GM_TUBS_H
 
