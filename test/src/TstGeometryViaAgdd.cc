@@ -95,7 +95,7 @@ void* TstGeometryViaAgdd::TestPlacements()
 }
 
 //_____________________________________________________________________________
-void* TstGeometryViaAgdd::TestReflections(bool fullPhi)
+void* TstGeometryViaAgdd::TestReflections(bool /*fullPhi*/)
 {
 /*
   if ( fullPhi )
