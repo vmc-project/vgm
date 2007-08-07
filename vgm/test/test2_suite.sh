@@ -68,21 +68,16 @@ do
 	        then 
 	          DUMMY=0
 	        else 
-	          if [ $inputType = "AGDD" -a "$selectedTest" = "Assemblies1" ]
+	          if [ $inputType = "AGDD" -a "$selectedTest" = "Assemblies2" ]
 	          then 
 	            DUMMY=0
 	          else 
-	            if [ $inputType = "AGDD" -a "$selectedTest" = "Assemblies2" ]
-	            then 
-	              DUMMY=0
-	            else 
-                      echo "Testing configuration: $inputType $inputFactory $outputXML $selectedTest"
-	              vgm_test $inputType $inputFactory "None" $outputXML $selectedTest $NOVIS \
-	                > /dev/null 2> /dev/null
+                    echo "Testing configuration: $inputType $inputFactory $outputXML $selectedTest"
+	            vgm_test $inputType $inputFactory "None" $outputXML $selectedTest $NOVIS \
+	              > /dev/null 2> /dev/null
   
-	              # copy file to output dir
-	              mv *.$EXT  $OUTDIR/$EXT
-                    fi
+	            # copy file to output dir
+	            mv *.$EXT  $OUTDIR/$EXT
                   fi
                 fi                        
               fi  
