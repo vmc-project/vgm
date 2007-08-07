@@ -57,6 +57,8 @@ class TstGeometryViaAgdd : public TstVGeometry
     static const std::string fgkPlacementsFileName;
     static const std::string fgkReflectionsFileName;
     static const std::string fgkReflections2FileName;
+    static const std::string fgkAssemblies1FileName;
+    static const std::string fgkAssemblies2FileName;
     static const std::string fgkBooleanSolids1FileName;
     static const std::string fgkBooleanSolids2FileName;
     static const std::string fgkBooleanSolids3FileName;
