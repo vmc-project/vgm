@@ -79,10 +79,8 @@ G4LogicalVolume* TstGeometryViaGeant4::CreateWorld(G4double x, G4double y, G4dou
 // ---
   
   // Get material from G4
-  if (!fBasicMaterial) {
+  if (!fBasicMaterial)
     fBasicMaterial = G4Material::GetMaterial("Basic");
-    G4cout << "Basic material: " << fBasicMaterial << G4endl;
-  }  
 
   G4VSolid* worldS = new G4Box("worldS", x, y, z);
 
@@ -725,21 +723,21 @@ void* TstGeometryViaGeant4::TestPlacements()
   G4VSolid * boxA
     = new G4Box("boxA", 20.*cm, 60.*cm, 50.*cm);
   G4LogicalVolume* volA
-    = new G4LogicalVolume(boxA, air, "volA");
+    = new G4LogicalVolume(boxA, air, "layerA");
   
   // Thick layer B (in A)
   //
   G4VSolid * boxB
     = new G4Box("boxB", 20.*cm, 10.*cm, 50.*cm);
   G4LogicalVolume * volB
-    = new G4LogicalVolume(boxB, uranium, "volB");
+    = new G4LogicalVolume(boxB, uranium, "layerB");
 
   // Thin layer C (in B)
   //
   G4VSolid * boxC
     = new G4Box("boxC", 20.*cm, 0.2*cm, 50.*cm);
   G4LogicalVolume * volC
-    = new G4LogicalVolume(boxC, scintillator, "volC");
+    = new G4LogicalVolume(boxC, scintillator, "layerC");
 
   // Place layers C
   //

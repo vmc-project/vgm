@@ -624,21 +624,21 @@ void* TstGeometryViaVGM::TestPlacements()
   ISolid * boxA
     = fFactory->CreateBox("boxA", 20.* fCm, 60.* fCm, 50.* fCm);
   IVolume* volA
-    = fFactory->CreateVolume("volA", boxA, "Air");
+    = fFactory->CreateVolume("layerA", boxA, "Air");
   
   // Thick layer B (in A)
   //
   ISolid * boxB
     = fFactory->CreateBox("boxB", 20.* fCm, 10.* fCm, 50.* fCm);
   IVolume * volB
-    = fFactory->CreateVolume("volB", boxB, "Uranium");
+    = fFactory->CreateVolume("layerB", boxB, "Uranium");
 
   // Thin layer C (in B)
   //
   ISolid * boxC
     = fFactory->CreateBox("boxC", 20.* fCm, 0.2* fCm, 50.* fCm);
   IVolume * volC
-    = fFactory->CreateVolume("volC", boxC, "Scintillator");
+    = fFactory->CreateVolume("layerC", boxC, "Scintillator");
 
   // Place layers B   
   //
