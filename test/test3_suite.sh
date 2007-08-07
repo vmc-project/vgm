@@ -50,18 +50,26 @@ do
 	  then
 	    DUMMY=0
 	  else 
-  	    if [ "$inputFactory" = "$outputFactory" ]
+ 	    if [ $inputType = "AGDD" -a "$inputFactory" = "AGDD" -a  "$outputFactory" = "None" ]
 	    then
-  	      DUMMY=0
-  	    else 
-	      NAVIG=""
-	      if [ $inputFactory = "Root" -a "$outputFactory" = "None" ]
+	      DUMMY=0
+	    else 
+  	      if [ "$inputFactory" = "$outputFactory" ]
 	      then
-                NAVIG=rootNavig
-	      fi        
-              echo "Testing configuration: $inputType $inputFactory $outputFactory $selectedTest $NAVIG"
-	      vgm_test $inputType $inputFactory $outputFactory $NOXML $selectedTest $NOVIS run $NAVIG \
-	        >& $OUTDIR/"$inputType.$inputFactory.$outputFactory.$selectedTest.out" 
+  	        DUMMY=0
+  	      else 
+	        NAVIG=""
+	        if [ $inputFactory = "Root" -a "$outputFactory" = "None" ]
+	        then
+                  NAVIG=rootNavig
+                  echo "... Regenerating Root geometry file: $selectedTest"
+	          vgm_test $inputType $inputFactory $outputFactory $NOXML $selectedTest $NOVIS \
+	            >& $OUTDIR/tmp.out
+	        fi        
+                echo "Testing configuration: $inputType $inputFactory $outputFactory $selectedTest $NAVIG"
+	        vgm_test $inputType $inputFactory $outputFactory $NOXML $selectedTest $NOVIS run $NAVIG \
+	          >& $OUTDIR/"$inputType.$inputFactory.$outputFactory.$selectedTest.out"
+              fi                   
             fi    
           fi
         fi
@@ -78,9 +86,12 @@ do
     # Use the line below for performance tests (G4 navigator)/G4Root navigator)
     # for outputFactory in None
     do
-      for selectedTest in Solids Placements Reflections Assemblies1 Assemblies2 BooleanSolids1 BooleanSolids2
+      for selectedTest in Solids Placements Assemblies1 BooleanSolids1 BooleanSolids2
       do
  	NAVIG=rootNavig
+        echo "... Regenerating Root geometry file: $selectedTest"
+	vgm_test $inputType $inputFactory $outputFactory $NOXML $selectedTest $NOVIS \
+          >& $OUTDIR/tmp.out
         echo "Testing configuration: $inputType $inputFactory $outputFactory $selectedTest $NAVIG"
 	vgm_test $inputType $inputFactory $outputFactory $NOXML $selectedTest $NOVIS run $NAVIG \
 	  >& $OUTDIR/"$inputType.$inputFactory.$outputFactory.$selectedTest.out" 
@@ -88,3 +99,5 @@ do
     done
   done  
 done  
+
+rm $OUTDIR/tmp.out
