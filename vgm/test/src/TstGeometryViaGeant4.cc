@@ -1009,37 +1009,37 @@ void* TstGeometryViaGeant4::TestBooleanSolids1()
   //
   G4VSolid* intersectionS
     = new G4IntersectionSolid(
-                  "solid1Isolid2S", solid1, solid2, 0, 
+                  "intersection_solid1_solid2_S", solid1, solid2, 0, 
 		  CLHEP::Hep3Vector(20.*cm, 0., 0.)); 
   G4LogicalVolume* intersectionV
-    = new G4LogicalVolume(intersectionS, fBasicMaterial, "solid1Isolid2");
+    = new G4LogicalVolume(intersectionS, fBasicMaterial, "intersection_solid1_solid2");
 
   new G4PVPlacement(0, CLHEP::Hep3Vector(-2.5*m, 0., 2.*m),
-                    intersectionV, "solid1Isolid2", worldV, false, 0); 
+                    intersectionV, "intersection_solid1_solid2", worldV, false, 0); 
   
   // Subtraction
   //
   G4VSolid* subtractionS
     = new G4SubtractionSolid(
-                  "solid1Ssolid2S", solid1, solid2, 0, 
+                  "subtraction_solid1_solid2_S", solid1, solid2, 0, 
 		  CLHEP::Hep3Vector(20.*cm, 0., 0.)); 
   G4LogicalVolume* subtractionV
-    = new G4LogicalVolume(subtractionS, fBasicMaterial, "solid1Ssolid2");
+    = new G4LogicalVolume(subtractionS, fBasicMaterial, "subtraction_solid1_solid2");
 
   new G4PVPlacement(0, CLHEP::Hep3Vector(0., 0., 2.*m), 
-                   subtractionV, "solid1Ssolid2", worldV, false, 0);
+                   subtractionV, "subtraction_solid1_solid2", worldV, false, 0);
   
   // Union
   //
   G4VSolid* unionS
     = new G4UnionSolid(
-                  "solid1Usolid2S", solid1, solid2, 0, 
+                  "union_solid1_solid2_S", solid1, solid2, 0, 
 		  CLHEP::Hep3Vector(20.*cm, 0., 0.)); 
   G4LogicalVolume* unionV
-    = new G4LogicalVolume(unionS, fBasicMaterial, "solid1Usolid2");
+    = new G4LogicalVolume(unionS, fBasicMaterial, "union_solid1_solid2");
 
   new G4PVPlacement(0, CLHEP::Hep3Vector( 2.5*m, 0., 2.*m),
-                    unionV, "solid1Usolid2", worldV, false, 0);
+                    unionV, "union_solid1_solid2", worldV, false, 0);
   
   return (void*) world;
 }
@@ -1094,34 +1094,34 @@ void* TstGeometryViaGeant4::TestBooleanSolids2()
   //
   G4VSolid* intersectionS
     = new G4IntersectionSolid(
-                  "solid1Isolid2S", solid1, solid2, rot2, tr2); 
+                  "intersection_solid1_solid2_S", solid1, solid2, rot2, tr2); 
   G4LogicalVolume* intersectionV
-    = new G4LogicalVolume(intersectionS, fBasicMaterial, "solid1Isolid2");
+    = new G4LogicalVolume(intersectionS, fBasicMaterial, "intersection_solid1_solid2");
 
   new G4PVPlacement(rot1, CLHEP::Hep3Vector(-2.5*m, 0., 2.*m),
-                    intersectionV, "solid1Isolid2", worldV, false, 0); 
+                    intersectionV, "intersection_solid1_solid2", worldV, false, 0); 
   
   // Subtraction
   //
   G4VSolid* subtractionS
     = new G4SubtractionSolid(
-                  "solid1Ssolid2S", solid1, solid2, rot2, tr2); 
+                  "subtraction_solid1_solid2_S", solid1, solid2, rot2, tr2); 
   G4LogicalVolume* subtractionV
-    = new G4LogicalVolume(subtractionS, fBasicMaterial, "solid1Ssolid2");
+    = new G4LogicalVolume(subtractionS, fBasicMaterial, "subtraction_solid1_solid2");
 
   new G4PVPlacement(rot1, CLHEP::Hep3Vector(0., 0., 2.*m), 
-                   subtractionV, "solid1Ssolid2", worldV, false, 0);
+                   subtractionV, "subtraction_solid1_solid2", worldV, false, 0);
   
   // Union
   //
   G4VSolid* unionS
     = new G4UnionSolid(
-                  "solid1Usolid2S", solid1, solid2, rot2, tr2); 
+                  "union_solid1_solid2_S", solid1, solid2, rot2, tr2); 
   G4LogicalVolume* unionV
-    = new G4LogicalVolume(unionS, fBasicMaterial, "solid1Usolid2");
+    = new G4LogicalVolume(unionS, fBasicMaterial, "union_solid1_solid2");
 
   new G4PVPlacement(rot1, CLHEP::Hep3Vector( 2.5*m, 0., 2.*m),
-                    unionV, "solid1Usolid2", worldV, false, 0);
+                    unionV, "union_solid1_solid2", worldV, false, 0);
   
   return (void*) world;
 }

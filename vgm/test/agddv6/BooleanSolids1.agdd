@@ -29,7 +29,7 @@
       profile=" 0.0000; 360.0000"
       Rio1_Rio2_Z  ="100.0000; 300.0000; 200.0000; 400.0000; 2000.0000" />
 
-   <intersection name="solid1Isolid2">
+   <intersection name="intersection_solid1_solid2">
       <posXYZ X_Y_Z=" 0.0000; 0.0000; 0.0000">
 	<volume name="solid1"/> 
       </posXYZ>
@@ -38,7 +38,7 @@
       </posXYZ>
    </intersection>
 
-   <subtraction name="solid1Ssolid2">
+   <subtraction name="subtraction_solid1_solid2">
       <posXYZ X_Y_Z=" 0.0000; 0.0000; 0.0000">
 	<volume name="solid1"/> 
       </posXYZ>
@@ -47,7 +47,7 @@
       </posXYZ>
    </subtraction>
 
-   <union name="solid1Usolid2">
+   <union name="union_solid1_solid2">
       <posXYZ X_Y_Z=" 0.0000; 0.0000; 0.0000">
 	<volume name="solid1"/> 
       </posXYZ>
@@ -61,11 +61,11 @@
       </posXYZ>
       <posXYZ   X_Y_Z=" 1250.0000;   0.0000; -2000.0000"> <volume name="solid2"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="-2500.0000;   0.0000;  2000.0000"> <volume name="solid1Isolid2"/>
+      <posXYZ   X_Y_Z="-2500.0000;   0.0000;  2000.0000"> <volume name="intersection_solid1_solid2"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="    0.0000;   0.0000;  2000.0000"> <volume name="solid1Ssolid2"/>
+      <posXYZ   X_Y_Z="    0.0000;   0.0000;  2000.0000"> <volume name="subtraction_solid1_solid2"/>
       </posXYZ>
-      <posXYZ   X_Y_Z=" 2500.0000;   0.0000;  2000.0000"> <volume name="solid1Usolid2"/>
+      <posXYZ   X_Y_Z=" 2500.0000;   0.0000;  2000.0000"> <volume name="union_solid1_solid2"/>
       </posXYZ>
    </composition>
 

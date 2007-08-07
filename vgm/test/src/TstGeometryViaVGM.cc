@@ -756,15 +756,15 @@ void* TstGeometryViaVGM::TestBooleanSolids1()
   //
   ISolid* intersectionS
     = fFactory->CreateIntersectionSolid(
-                  "solid1Isolid2S", solid1, solid2, 
+                  "intersection_solid1_solid2_S", solid1, solid2, 
 		   ClhepVGM::Transform(
 		     CLHEP::HepRotation(),
 		     CLHEP::Hep3Vector(20.* fCm, 0., 0.))); 
 
   IVolume* intersectionV
-    = fFactory->CreateVolume("solid1Isolid2", intersectionS, "Basic");
+    = fFactory->CreateVolume("intersection_solid1_solid2", intersectionS, "Basic");
 
-  fFactory->CreatePlacement("solid1Isolid2", 0, intersectionV, worldV, 
+  fFactory->CreatePlacement("intersection_solid1_solid2", 0, intersectionV, worldV, 
 		   ClhepVGM::Transform(
 		     CLHEP::HepRotation(), 
 		     CLHEP::Hep3Vector(-250.*fCm, 0., 200.* fCm)));
@@ -773,15 +773,15 @@ void* TstGeometryViaVGM::TestBooleanSolids1()
   //
   ISolid* subtractionS
     = fFactory->CreateSubtractionSolid(
-                  "solid1Ssolid2S", solid1, solid2, 
+                  "subtraction_solid1_solid2_S", solid1, solid2, 
                    ClhepVGM::Transform(
 		     CLHEP::HepRotation(), 
 		     CLHEP::Hep3Vector(20.* fCm, 0., 0.))); 
 				       
   IVolume* subtractionV
-    = fFactory->CreateVolume("solid1Ssolid2", subtractionS, "Basic");
+    = fFactory->CreateVolume("subtraction_solid1_solid2", subtractionS, "Basic");
 
-  fFactory->CreatePlacement("solid1Ssolid2", 0, subtractionV, worldV, 
+  fFactory->CreatePlacement("subtraction_solid1_solid2", 0, subtractionV, worldV, 
                    ClhepVGM::Transform(
 		     CLHEP::HepRotation(), 
 		     CLHEP::Hep3Vector(0., 0., 200.* fCm)));
@@ -790,14 +790,14 @@ void* TstGeometryViaVGM::TestBooleanSolids1()
   //
   ISolid* unionS
     = fFactory->CreateUnionSolid(
-                  "solid1Usolid2S", solid1, solid2, 
+                  "union_solid1_solid2_S", solid1, solid2, 
                    ClhepVGM::Transform(
 		     CLHEP::HepRotation(), 
 		     CLHEP::Hep3Vector(20.* fCm, 0., 0.))); 
   IVolume* unionV
-    = fFactory->CreateVolume("solid1Usolid2", unionS, "Basic");
+    = fFactory->CreateVolume("union_solid1_solid2", unionS, "Basic");
 
-  fFactory->CreatePlacement("solid1Usolid2", 0, unionV, worldV, 
+  fFactory->CreatePlacement("union_solid1_solid2", 0, unionV, worldV, 
                    ClhepVGM::Transform(
 		     CLHEP::HepRotation(), 
 		     CLHEP::Hep3Vector( 250.*fCm, 0., 200.* fCm)));
@@ -857,12 +857,12 @@ void* TstGeometryViaVGM::TestBooleanSolids2()
   //
   ISolid* intersectionS
     = fFactory->CreateIntersectionSolid(
-                  "solid1Isolid2S", solid1, solid2, 
+                  "intersection_solid1_solid2_S", solid1, solid2, 
 		  ClhepVGM::Transform(rot2,tr2)); 
   IVolume* intersectionV
-    = fFactory->CreateVolume("solid1Isolid2", intersectionS, "Basic");
+    = fFactory->CreateVolume("intersection_solid1_solid2", intersectionS, "Basic");
 
-  fFactory->CreatePlacement("solid1Isolid2", 0, intersectionV, worldV, 
+  fFactory->CreatePlacement("intersection_solid1_solid2", 0, intersectionV, worldV, 
                             ClhepVGM::Transform(
 			      rot1, CLHEP::Hep3Vector(-250.*fCm, 0., 200.* fCm)));
   
@@ -870,12 +870,12 @@ void* TstGeometryViaVGM::TestBooleanSolids2()
   //
   ISolid* subtractionS
     = fFactory->CreateSubtractionSolid(
-                  "solid1Ssolid2S", solid1, solid2, 
+                  "subtraction_solid1_solid2_S", solid1, solid2, 
 		  ClhepVGM::Transform(rot2, tr2)); 
   IVolume* subtractionV
-    = fFactory->CreateVolume("solid1Ssolid2", subtractionS, "Basic");
+    = fFactory->CreateVolume("subtraction_solid1_solid2", subtractionS, "Basic");
 
-  fFactory->CreatePlacement("solid1Ssolid2", 0, subtractionV, worldV, 
+  fFactory->CreatePlacement("subtraction_solid1_solid2", 0, subtractionV, worldV, 
                             ClhepVGM::Transform(
 			      rot1, CLHEP::Hep3Vector(0., 0., 200.* fCm)));
   
@@ -883,12 +883,12 @@ void* TstGeometryViaVGM::TestBooleanSolids2()
   //
   ISolid* unionS
     = fFactory->CreateUnionSolid(
-                  "solid1Usolid2S", solid1, solid2, 
+                  "union_solid1_solid2_S", solid1, solid2, 
 		  ClhepVGM::Transform(rot2, tr2)); 
   IVolume* unionV
-    = fFactory->CreateVolume("solid1Usolid2", unionS, "Basic");
+    = fFactory->CreateVolume("union_solid1_solid2", unionS, "Basic");
 
-  fFactory->CreatePlacement("solid1Usolid2", 0, unionV, worldV, 
+  fFactory->CreatePlacement("union_solid1_solid2", 0, unionV, worldV, 
                             ClhepVGM::Transform(
 			      rot1, CLHEP::Hep3Vector( 250.*fCm, 0., 200.* fCm)));
   
@@ -947,12 +947,12 @@ void* TstGeometryViaVGM::TestBooleanSolids3()
   //
   ISolid* intersectionS
     = fFactory->CreateIntersectionSolid(
-                  "solid1Isolid2S", solid1, solid2, 
+                  "intersection_solid1_solid2_S", solid1, solid2, 
 		  ClhepVGM::Transform(transform2)); 
   IVolume* intersectionV
-    = fFactory->CreateVolume("solid1Isolid2", intersectionS, "Basic");
+    = fFactory->CreateVolume("intersection_solid1_solid2", intersectionS, "Basic");
 
-  fFactory->CreatePlacement("solid1Isolid2", 0, intersectionV, worldV, 
+  fFactory->CreatePlacement("intersection_solid1_solid2", 0, intersectionV, worldV, 
                             ClhepVGM::Transform(
 			      rot1, CLHEP::Hep3Vector(-250.*fCm, 0., 200.* fCm)));
   
@@ -960,12 +960,12 @@ void* TstGeometryViaVGM::TestBooleanSolids3()
   //
   ISolid* subtractionS
     = fFactory->CreateSubtractionSolid(
-                  "solid1Ssolid2S", solid1, solid2, 
+                  "subtraction_solid1_solid2_S", solid1, solid2, 
 		  ClhepVGM::Transform(transform2)); 
   IVolume* subtractionV
-    = fFactory->CreateVolume("solid1Ssolid2", subtractionS, "Basic");
+    = fFactory->CreateVolume("subtraction_solid1_solid2", subtractionS, "Basic");
 
-  fFactory->CreatePlacement("solid1Ssolid2", 0, subtractionV, worldV, 
+  fFactory->CreatePlacement("subtraction_solid1_solid2", 0, subtractionV, worldV, 
                             ClhepVGM::Transform(
 			      rot1, CLHEP::Hep3Vector(0., 0., 200.* fCm)));
   
@@ -973,13 +973,13 @@ void* TstGeometryViaVGM::TestBooleanSolids3()
   //
   ISolid* unionS
     = fFactory->CreateUnionSolid(
-                  "solid1Usolid2S", solid1, solid2, 
+                  "union_solid1_solid2_S", solid1, solid2, 
 		  ClhepVGM::Transform(transform2)); 
 
   IVolume* unionV
-    = fFactory->CreateVolume("solid1Usolid2", unionS, "Basic");
+    = fFactory->CreateVolume("union_solid1_solid2", unionS, "Basic");
 
-  fFactory->CreatePlacement("solid1Usolid2", 0, unionV, worldV, 
+  fFactory->CreatePlacement("union_solid1_solid2", 0, unionV, worldV, 
                             ClhepVGM::Transform(
 			      rot1, CLHEP::Hep3Vector( 250.*fCm, 0., 200.* fCm)));
   
