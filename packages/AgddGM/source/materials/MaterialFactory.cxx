@@ -1,4 +1,4 @@
-// $Id: $
+// $Id$
 
 // -----------------------------------------------------------------------
 // The AgddGM package of the Virtual Geometry Model
@@ -53,7 +53,7 @@ bool AgddGM::MaterialFactory::Import()
                 Element::IsotopeMap isomap;
                 vector <agdd::AGDD_AddIsotope*>& 
                     iso_vec = agdd_elem->m_addisotopes;
-                for (int iiso=0; iiso<iso_vec.size(); ++iiso) {
+                for (unsigned int iiso=0; iiso<iso_vec.size(); ++iiso) {
                     std::string name = iso_vec[iiso]->m_isotope_name;
                     isomap[name] = fIsoMap[name];
                 }
@@ -90,8 +90,8 @@ bool AgddGM::MaterialFactory::Import()
 }
 
 VGM::IIsotope* 
-AgddGM::MaterialFactory::CreateIsotope(const std::string& name,
-                                       int z, int n, double a )
+AgddGM::MaterialFactory::CreateIsotope(const std::string& /*name*/,
+                                       int /*z*/, int /*n*/, double /*a*/ )
 {
     // FIXME
     assert(0); 
@@ -101,9 +101,9 @@ AgddGM::MaterialFactory::CreateIsotope(const std::string& name,
 
 
 VGM::IElement*  
-AgddGM::MaterialFactory::CreateElement(const std::string& name,
-				       const std::string& symbol,
-				       double z, double a)
+AgddGM::MaterialFactory::CreateElement(const std::string& /*name*/,
+				       const std::string& /*symbol*/,
+				       double /*z*/, double /*a*/)
 {
     // FIXME
     assert(0); 
@@ -111,10 +111,10 @@ AgddGM::MaterialFactory::CreateElement(const std::string& name,
 }
 
 VGM::IElement* 
-AgddGM::MaterialFactory::CreateElement(const std::string& name,      
-                                       const std::string& symbol,      
-                                       const VGM::IsotopeVector& isotopes,
-                                       const VGM::RelAbundanceVector& relAbundances)
+AgddGM::MaterialFactory::CreateElement(const std::string& /*name*/,      
+                                       const std::string& /*symbol*/,      
+                                       const VGM::IsotopeVector& /*isotopes*/,
+                                       const VGM::RelAbundanceVector& /*relAbundances*/)
 {
     // FIXME
     assert(0); 
@@ -122,7 +122,7 @@ AgddGM::MaterialFactory::CreateElement(const std::string& name,
 }                                       
 
 VGM::IElement* 
-AgddGM::MaterialFactory::CreateElement(int z, bool isotopes)
+AgddGM::MaterialFactory::CreateElement(int /*z*/, bool /*isotopes*/)
 {
     // FIXME
     assert(0); 
@@ -131,10 +131,10 @@ AgddGM::MaterialFactory::CreateElement(int z, bool isotopes)
 
 
 VGM::IMaterial* 
-AgddGM::MaterialFactory::CreateMaterial(const std::string& name,
-					double density,
-					VGM::IElement* element,
-					double radlen, double intlen)
+AgddGM::MaterialFactory::CreateMaterial(const std::string& /*name*/,
+					double /*density*/,
+					VGM::IElement* /*element*/,
+					double /*radlen*/, double /*intlen*/)
 {
     // FIXME
     assert(0); 
@@ -143,12 +143,12 @@ AgddGM::MaterialFactory::CreateMaterial(const std::string& name,
 
 
 VGM::IMaterial* 
-AgddGM::MaterialFactory::CreateMaterial(const std::string& name,
-					double density,
-					VGM::IElement* element,
-					double radlen, double intlen,
-					VGM::MaterialState state,
-					double temperature, double pressure)
+AgddGM::MaterialFactory::CreateMaterial(const std::string& /*name*/,
+					double /*density*/,
+					VGM::IElement* /*element*/,
+					double /*radlen*/, double /*intlen*/,
+					VGM::MaterialState /*state*/,
+					double /*temperature*/, double /*pressure*/)
 {
     // FIXME
     assert(0); 
@@ -156,10 +156,10 @@ AgddGM::MaterialFactory::CreateMaterial(const std::string& name,
 }
 
 VGM::IMaterial* 
-AgddGM::MaterialFactory::CreateMaterial(const std::string& name,
-					double density,
-					const VGM::ElementVector& elements,
-					const VGM::MassFractionVector& fractions)
+AgddGM::MaterialFactory::CreateMaterial(const std::string& /*name*/,
+					double /*density*/,
+					const VGM::ElementVector& /*elements*/,
+					const VGM::MassFractionVector& /*fractions*/)
 {
     // FIXME
     assert(0); 
@@ -167,10 +167,10 @@ AgddGM::MaterialFactory::CreateMaterial(const std::string& name,
 }
 
 VGM::IMaterial*  
-AgddGM::MaterialFactory::CreateMaterial(const std::string& name, 
-                                        double density,
-                                        const VGM::ElementVector& elements,
-                                        const VGM::AtomCountVector& atomCounts)
+AgddGM::MaterialFactory::CreateMaterial(const std::string& /*name*/, 
+                                        double /*density*/,
+                                        const VGM::ElementVector& /*elements*/,
+                                        const VGM::AtomCountVector& /*atomCounts*/)
 {
     // FIXME
     assert(0); 
@@ -178,12 +178,12 @@ AgddGM::MaterialFactory::CreateMaterial(const std::string& name,
 }
 
 VGM::IMaterial* 
-AgddGM::MaterialFactory::CreateMaterial(const std::string& name,
-					double density,
-					const VGM::ElementVector& elements,
-					const VGM::MassFractionVector& fractions,
-					VGM::MaterialState state,
-					double temperature, double pressure)
+AgddGM::MaterialFactory::CreateMaterial(const std::string& /*name*/,
+					double /*density*/,
+					const VGM::ElementVector& /*elements*/,
+					const VGM::MassFractionVector& /*fractions*/,
+					VGM::MaterialState /*state*/,
+					double /*temperature*/, double /*pressure*/)
 {
     // FIXME
     assert(0); 
@@ -192,12 +192,12 @@ AgddGM::MaterialFactory::CreateMaterial(const std::string& name,
 
 
 VGM::IMaterial*  
-AgddGM::MaterialFactory::CreateMaterial(const std::string& name, 
-                                        double density,
-                                        const VGM::ElementVector& elements,
-                                        const VGM::AtomCountVector& atomCounts,
-                                        VGM::MaterialState state,
-                                        double temperature, double pressure)
+AgddGM::MaterialFactory::CreateMaterial(const std::string& /*name*/, 
+                                        double /*density*/,
+                                        const VGM::ElementVector& /*elements*/,
+                                        const VGM::AtomCountVector& /*atomCounts*/,
+                                        VGM::MaterialState /*state*/,
+                                        double /*temperature*/, double /*pressure*/)
 {
     // FIXME
     assert(0); 
@@ -205,11 +205,11 @@ AgddGM::MaterialFactory::CreateMaterial(const std::string& name,
 }
 
 VGM::IMedium*   
-AgddGM::MaterialFactory::CreateMedium(const std::string& name,
-				      int mediumId,
-				      VGM::IMaterial* material,
-				      int nofParameters,
-				      double* parameters)
+AgddGM::MaterialFactory::CreateMedium(const std::string& /*name*/,
+				      int /*mediumId*/,
+				      VGM::IMaterial* /*material*/,
+				      int /*nofParameters*/,
+				      double* /*parameters*/)
 {
     // FIXME
     assert(0); 

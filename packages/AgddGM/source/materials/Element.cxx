@@ -89,10 +89,9 @@ double AgddGM::Element::RelAbundance(int index) const
     if (fElement->m_atom) return 1;
 
     size_t siz = fElement->m_addisotopes.size();
-    if (index >= siz) return 0;
+    if (index >= int(siz)) return 0;
 
     int totatoms = 0;
-    double tota = 0;
     for (size_t ind=0; ind<siz; ++ind) {
 	int natoms = fElement->m_addisotopes[ind]->m_natoms;
 	totatoms += natoms;
