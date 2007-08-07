@@ -31,7 +31,9 @@ const std::string TstGeometryViaAgdd::fgkSolids2FileName = "Solids2.agdd";
 const std::string TstGeometryViaAgdd::fgkNewSolidFileName = "NewSolid.agdd";
 const std::string TstGeometryViaAgdd::fgkPlacementsFileName = "Placements.agdd";
 const std::string TstGeometryViaAgdd::fgkReflectionsFileName = "Reflections.agdd";
-const std::string TstGeometryViaAgdd::fgkReflections2FileName = "Reflections.agdd";
+const std::string TstGeometryViaAgdd::fgkReflections2FileName = "Reflections2.agdd";
+const std::string TstGeometryViaAgdd::fgkAssemblies1FileName = "Assemblies1.agdd";
+const std::string TstGeometryViaAgdd::fgkAssemblies2FileName = "Assemblies2.agdd";
 const std::string TstGeometryViaAgdd::fgkBooleanSolids1FileName = "BooleanSolids1.agdd";
 const std::string TstGeometryViaAgdd::fgkBooleanSolids2FileName = "BooleanSolids2.agdd";
 const std::string TstGeometryViaAgdd::fgkBooleanSolids3FileName = "BooleanSolids3.agdd";
@@ -110,9 +112,7 @@ void* TstGeometryViaAgdd::TestReflections(bool fullPhi)
 //_____________________________________________________________________________
 void* TstGeometryViaAgdd::TestAssemblies()
 {
-  std::cout << "TestAssemblies: not available via AGDD" << std::endl;
-
-  return 0;
+  return LoadFile(fgkAssemblies1FileName);
 }
 
 //_____________________________________________________________________________
