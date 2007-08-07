@@ -163,6 +163,93 @@ bool  XmlVGM::AGDDWriter::IsIdentity(const ThreeVector& rotation) const
 }               
 
 //_____________________________________________________________________________
+void XmlVGM::AGDDWriter::WriteBooleanSolid(
+                              std::string volumeName, 
+                              const VGM::IBooleanSolid* booleanSolid,
+                              std::string mediumName)
+{
+/// Write Boolean solid
+			      
+  // Get constituent solids
+  VGM::ISolid* solidA = booleanSolid->ConstituentSolidA();
+  VGM::ISolid* solidB = booleanSolid->ConstituentSolidB();
+  
+  // Write constituent solids
+  std::string nameA = volumeName + "_constA";
+  std::string nameB = volumeName + "_constB";
+  WriteSolid(nameA, solidA, mediumName); 
+  WriteSolid(nameB, solidB, mediumName); 
+  
+  // Zero position
+  ThreeVector position0(3);
+  position0[0] = 0.0;
+  position0[1] = 0.0;
+  position0[2] = 0.0;
+
+  // Get displacement
+  VGM::Transform transform = booleanSolid->Displacement();
+	
+  // position
+  ThreeVector position(3);
+  position[0] = transform[VGM::kDx];
+  position[1] = transform[VGM::kDy];
+  position[2] = transform[VGM::kDz];
+    
+  // rotation
+  ThreeVector rotation(3);
+  rotation[0] = transform[VGM::kAngleX];
+  rotation[1] = transform[VGM::kAngleY];
+  rotation[2] = transform[VGM::kAngleZ];
+
+  // Get boolean type
+  VGM::BooleanType boolType = booleanSolid->BoolType();
+  
+  // compose element string template
+  //
+  std::string element1;
+  std::string element3;
+  switch (boolType) {
+    case VGM::kIntersection:
+      element1 = "<intersection name=\"";
+      element3 = "</intersection>";
+      break;
+    case VGM::kSubtraction:
+      element1 = "<subtraction name=\"";
+      element3 = "</subtraction>";
+      break;
+    case VGM::kUnion:
+      element1 = "<union name=\"";
+      element3 = "</union>";
+      break;
+    case VGM::kUnknownBoolean:
+      break;
+  }    
+  std::string element2 = "\" >";
+  std::string indention = fIndention;
+  
+  // write element
+  fOutFile << fIndention << element1 << volumeName  
+           << element2   << std::endl;
+
+  // write first constituent
+  fIndention = fIndention + fkBasicIndention;
+  WritePlacement(nameA, position0);
+
+  // write second constituent
+  if ( ClhepVGM::HasReflection(transform) ) 
+    WritePlacementWithRotationAndReflection(nameB, position, rotation);
+  else
+    if (IsIdentity(rotation))
+      WritePlacement(nameB, position);
+    else 
+      WritePlacementWithRotation(nameB, position, rotation);
+
+  fIndention = indention;
+
+  fOutFile << fIndention << element3 << std::endl << std::endl;
+}
+
+//_____________________________________________________________________________
 void XmlVGM::AGDDWriter::WriteBox(
                               std::string volumeName, 
                               double hx, double hy, double hz,  
@@ -1329,13 +1416,11 @@ void XmlVGM::AGDDWriter::WriteSolid(
     WriteTubs(volumeName, tubs, UpdateName(mediumName)); 
     return;   
   }
-/*
   else if (solidType == VGM::kBoolean) { 
-    VGM::IBooleanSolid* boolean = dynamic_cast<VGM::IBooleanSolid*>(solid);
-    WriteBoolean(volumeName, boolean, UpdateName(mediumName)); 
+    const VGM::IBooleanSolid* boolean = dynamic_cast<const VGM::IBooleanSolid*>(solid);
+    WriteBooleanSolid(volumeName, boolean, UpdateName(mediumName)); 
     return;   
   }
-*/
 
   // Not supported solid
   WriteNotSupportedSolid(volumeName, UpdateName(mediumName));

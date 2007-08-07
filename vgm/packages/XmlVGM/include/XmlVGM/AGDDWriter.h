@@ -28,6 +28,7 @@
 #include <set>
 
 #include "VGM/solids/ISolid.h"
+#include "VGM/solids/IBooleanSolid.h"
 #include "VGM/solids/IBox.h"
 #include "VGM/solids/IBox.h"
 #include "VGM/solids/ITubs.h"
@@ -148,6 +149,10 @@ namespace XmlVGM {
    
       // Writing solids
       //
+      void WriteBooleanSolid (std::string lvName, 
+                   const VGM::IBooleanSolid* booleanSolid,  
+                   std::string mediumName); 
+		   
       void WriteBox (std::string lvName, 
                    double hx, double hy, double hz,  
                    std::string mediumName); 
