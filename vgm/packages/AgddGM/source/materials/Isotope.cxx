@@ -16,7 +16,6 @@
 AgddGM::Isotope::Isotope(agdd::AGDD_Isotope* iso)
     : fIsotope(iso)
 {
-    *iso;
 }
 
 AgddGM::Isotope::~Isotope() 
