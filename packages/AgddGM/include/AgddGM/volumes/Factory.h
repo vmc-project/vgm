@@ -15,7 +15,7 @@
 ///
 /// VGM factory for AGDD.
 ///
-/// Author: bv@bnl.gov
+/// \author: bv@bnl.gov
 
 #ifndef AGDD_GM_FACTORY_H
 #define AGDD_GM_FACTORY_H

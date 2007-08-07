@@ -9,6 +9,14 @@
 // Contact: bv@bnl.gov
 // -----------------------------------------------------------------------
 
+/// \ingroup AgddGM_volumes
+//
+/// \class AgddGM::Placement
+///
+/// VGM implementation of VPlacement for AgddGM
+///
+/// \author: bv@bnl.gov
+
 #ifndef AGDD_GM_PLACEMENT_H
 #define AGDD_GM_PLACEMENT_H
 

@@ -15,7 +15,7 @@
 ///
 /// VGM implementation for AGDD_Isotope.
 ///
-/// Author: bv@bnl.gov
+/// \author: bv@bnl.gov
 
 #ifndef AGDD_GM_ISOTOPE_H
 #define AGDD_GM_ISOTOPE_H

@@ -9,6 +9,15 @@
 // Contact: bv@bnl.gov
 // -----------------------------------------------------------------------
 
+/// \ingroup AgddGM_materials
+//
+/// \class AgddGM::MaterialFactory
+///
+/// VGM implementation of VMaterialFactory for AgddGM
+///
+/// \author: bv@bnl.gov
+
+
 #ifndef AGDD_GM_MATERIALFACTORY_H
 #define AGDD_GM_MATERIALFACTORY_H
 

@@ -9,6 +9,14 @@
 // Contact: bv@bnl.gov
 // -----------------------------------------------------------------------
 
+/// \ingroup AgddGM_solids
+//
+/// \class AgddGM::Cons
+///
+/// VGM implementation of VCons for AgddGM
+///
+/// \author: bv@bnl.gov
+
 #ifndef AGDD_GM_CONS_H
 #define AGDD_GM_CONS_H
 

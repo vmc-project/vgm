@@ -9,6 +9,14 @@
 // Contact: bv@bnl.gov
 // -----------------------------------------------------------------------
 
+/// \ingroup AgddGM_solids
+//
+/// \class AgddGM::Trap
+///
+/// VGM implementation of VTrap for AgddGM
+///
+/// \author: bv@bnl.gov
+
 #ifndef AGDD_GM_TRAP_H
 #define AGDD_GM_TRAP_H
 

@@ -9,6 +9,14 @@
 // Contact: bv@bnl.gov
 // -----------------------------------------------------------------------
 
+/// \ingroup AgddGM_solids
+//
+/// \class AgddGM::Polycone
+///
+/// VGM implementation of VPolycone for AgddGM
+///
+/// \author: bv@bnl.gov
+
 #ifndef AGDD_GM_POLYCONE_H
 #define AGDD_GM_POLYCONE_H
 

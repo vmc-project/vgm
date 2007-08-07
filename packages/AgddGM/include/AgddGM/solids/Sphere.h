@@ -9,6 +9,14 @@
 // Contact: bv@bnl.gov
 // -----------------------------------------------------------------------
 
+/// \ingroup AgddGM_solids
+//
+/// \class AgddGM::Sphere
+///
+/// VGM implementation of VSphere for AgddGM
+///
+/// \author: bv@bnl.gov
+
 #ifndef AGDD_GM_SPHERE_H
 #define AGDD_GM_SPHERE_H
 

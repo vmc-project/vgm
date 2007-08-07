@@ -9,6 +9,14 @@
 // Contact: bv@bnl.gov
 // -----------------------------------------------------------------------
 
+/// \ingroup AgddGM_volumes
+//
+/// \class AgddGM::Volume
+///
+/// VGM implementation of VVolume for AgddGM
+///
+/// \author: bv@bnl.gov
+
 #ifndef AGDD_GM_VOLUME_H
 #define AGDD_GM_VOLUME_H
 

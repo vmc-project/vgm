@@ -9,6 +9,14 @@
 // Contact: bv@bnl.gov
 // -----------------------------------------------------------------------
 
+/// \ingroup AgddGM_solids
+//
+/// \class AgddGM::Trd
+///
+/// VGM implementation of VTrd for AgddGM
+///
+/// \author: bv@bnl.gov
+
 #ifndef AGDD_GM_TRD_H
 #define AGDD_GM_TRD_H
 
