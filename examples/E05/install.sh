@@ -27,7 +27,7 @@ g++ -I$AGDD_INSTALL/include \
     -L$VGM_INSTALL/lib/$VGM_SYSTEM -lAgddGM -lRootGM -lBaseVGM -lClhepVGM \
     -L$CLHEP_BASE_DIR/lib -lCLHEP \
     -L${AGDD_INSTALL}/lib -lagdd \
-    -L/opt/packages/xerces-c-src_2_7_0/lib -lxerces-c \
+    -L${XERCESC_INSTALL}/lib -lxerces-c \
     `root-config --glibs` -lGeomPainter -lGeom agdd2root.cxx \
     -o agdd2root
 
