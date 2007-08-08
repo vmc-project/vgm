@@ -35,7 +35,7 @@ endif
 
 CPPFLAGS += -I${AGDD_INSTALL}/include
 EXTRALIBS += -L${AGDD_INSTALL}/lib -lagdd
-EXTRALIBS += -L/opt/packages/xerces-c-src_2_7_0/lib -lxerces-c
+EXTRALIBS += -L${XERCESC_INSTALL}/lib -lxerces-c
 
 CPPFLAGS  += -I$(VGM_INSTALL)/packages/VGM/include
 CPPFLAGS  += -I$(VGM_INSTALL)/packages/ClhepVGM/include
