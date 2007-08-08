@@ -26,5 +26,7 @@ cd $CURDIR/E03
 cd $CURDIR/E04
 ./install.sh
 
+cd $CURDIR/E05
+./install.sh
 
 cd $CURDIR
