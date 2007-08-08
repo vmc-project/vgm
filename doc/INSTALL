@@ -20,21 +20,26 @@
    VGM_SYSTEM      - platform (Linux-g++, SunOS, DEC-cxx, HP-aCC)
    CLHEP_BASE_DIR  - path to the CLHEP installation
 
-   In order to VGM with Geant4 and/or Root,
+   In order to build VGM with Geant4 and/or Root,
    the environment for these packages has to be set in their 
    standard way.
 
-   If G4INSTALL and/or ROOTSYS environment variables are set,
+   To build VGM with AGDD, the followin environment variable
+   have to be set by user:
+   AGDD_INSTALL    - path to the libagdd installation
+   XERCESC_INSTALL - path to Xerces-C installation      
+
+   If G4INSTALL, ROOTSYS and/or AGDD environment variables are set,
    the Geant4 VGM and/or Root VGM are built automatically.
    User can exclude it from compilation by setting variables:
-   VGM_NO_GEANT4 - do not build Geant4 VGM
-   VGM_NO_ROOT   - do not build Root VGM
+   VGM_NO_AGDD   - do not build AgddGM
+   VGM_NO_GEANT4 - do not build Geant4GM
+   VGM_NO_ROOT   - do not build RootGM
 
    Note that VGM complete test requires Root built with G4Root
    option (not by default); building with G4Root can be excluded
    by setting variable:
    VGM_NO_G4ROOT   - do not build VGM test with G4Root
-   
 
    Geant4 configuration:
    The VGM requires Geant4 installed with include directory.
