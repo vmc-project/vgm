@@ -1,0 +1,38 @@
+ $Id: README 544 2007-05-23 10:39:11Z ivana $ 
+
+------------------------------------------------------------------------
+ The documentation file for the Virtual Geometry Model example
+ Copyright (C) 2007, Ivana Hrivnacova, Brett Viren               
+ All rights reserved. 
+           
+ For the licensing terms see vgm/LICENSE.
+ Contact: ivana@ipno.in2p3.fr, bv@bnl.gov
+------------------------------------------------------------------------
+
+
+ VGM Example E05
+ Converting geometry from AGDD to Root
+ --------------------------------------
+ 
+ Source: The AGDD test file for solids
+         Main program agdd2root.cxx
+         
+ 1. The provided installation script (E05/install.sh)
+    will install rootgeom.cxx main program:
+    ./install.sh
+    
+    This step is not necessary if you installed all examples
+    at once from up directory.
+  
+ 2. Your environment for VGM has to be set first, see doc/INSTALL)
+    
+ 3. Run example
+    ./agdd2root
+ 
+ 4. Open and view the generated Root file 
+    root
+    root [0] new TGeoManager("AGDD test", "AGDD test for solids");
+    root [1] gGeoManager->Import("geometry.root");
+    root [2] gGeoManager->GetTopVolume()->Draw();
+
+                
