@@ -29,6 +29,11 @@ AC_PROG_CXX
 AC_PROG_INSTALL
 AC_PROG_LIBTOOL
 
+# Let's be strict.
+AX_CFLAGS_GCC_OPTION([-pedantic],CXXFLAGS)
+AX_CFLAGS_GCC_OPTION([-ansi],CXXFLAGS)
+# Well, not so strict that we can't use ROOT
+AX_CFLAGS_GCC_OPTION([-Wno-long-long],CXXFLAGS)
 
 # This should be from acmacros/vgm_build.m4 *not* acmacros/vgm.m4.
 # This is set in acinclude.m4.
