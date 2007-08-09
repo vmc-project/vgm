@@ -10,7 +10,7 @@
 
 # Process this file with autoconf to produce a configure script.
 
-AC_PREREQ(2.61)
+AC_PREREQ(2.59)
 AC_INIT(vgm-autoconf, 0.2, bv@bnl.gov)
 AM_INIT_AUTOMAKE(vgm-autoconf, 0.2)
 ## ^
