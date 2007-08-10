@@ -8,7 +8,7 @@
 # For the licensing terms see vgm/LICENSE.
 # Contact: bv@bnl.gov
 
-INCLUDES = ${AGDD_INCLUDE} \
+INCLUDES = ${CLHEP_INCLUDE} ${AGDD_INCLUDE} \
          -I../../../packages/VGM/include \
          -I../../..//packages/BaseVGM/include \
          -I../../../packages/ClhepVGM/include \
