@@ -52,9 +52,9 @@ $Id$
  The implementation of the VGM for a concrete geometry model represents
  a layer between the VGM and the particular native geometry.
  At present  this implementation is provided for the 
- <a href="http://wwwasd.web.cern.ch/wwwasd/geant4/geant4.html"> Geant4 </a> 
- and the 
- <a href="http://root.cern.ch"> Root TGeo </a>
+ <a href="http://wwwasd.web.cern.ch/wwwasd/geant4/geant4.html"> Geant4 </a>, 
+ <a href="http://root.cern.ch"> Root TGeo </a> and, since the version 3.0,
+ <a href="http://www.phy.bnl.gov/~bviren/agdd/"> AGDD </a> 
  geometry models.
 
  <p>
@@ -74,33 +74,40 @@ $Id$
  <h2> Download </h2>
 
  <p> 
- Distribution tar file:
  
- <table cellspacing="0" width="100%">
- <tbody>
-     </td><td width="20%"> 
-         <i> version 2.09 </i>
-     </td><td width="20%"> 
-         <a href="http://ivana.home.cern.ch/ivana/vgm.2.09.tar.gz"> vgm.2.09.tar.gz </a>
-     </td><td width="60%"> 
-         <i> Tested with CLHEP 2.0.3.1, <br> 
-	     Geant4 8.2.p01, Root 5.15/04 <br>
-	     </i>
- </td></tr></tbody></table>  
-
+ The VGM is distributed at 
+ <a href="http://sourceforge.net/projects/vgm/"> SourceForge </a> .
+ 
  <p>
- See allso a description of changes in the 
+ To download the last tagged version (2.09): <br>
+ <font color="#ff0000" face="Bookman Old Style">
+ svn co https://vgm.svn.sourceforge.net/svnroot/vgm/tags/v3-00/vgm vgm.3.00
+ </font><br>
+ <i> Tested with CLHEP 2.0.3.1, Geant4 9.0, Root 5.16/00, libagdd 0.6. </i>
+ 
+ <p>
+ To download the development version:<br>
+ <font color="#ff0000" face="Bookman Old Style">
+ svn co https://vgm.svn.sourceforge.net/svnroot/vgm/trunk/vgm vgm
+ </font><br>
+ <i> Tested with CLHEP 2.0.3.1, Geant4 8.2.p01, Root 5.15/04. </i>
+ 
+ <p>
+ See also a description of changes in the 
  <a href="VGMhistory.txt"> history </a>  
  file, previous version(s) are available from the 
- <a href="VGMversions.html"> old downloads page </a>.
+ <a href="http://sourceforge.net/svn/?group_id=200007"> SourceForge SVN page </a>.
 
  <a name="Installation"></a> 
  <h2> Installation, Examples </h2>
  
  <p>
- The installation and testing procedures are described in detail
- in vgm/doc/INSTALL and in vgm/doc/INSTALL_CMT for 
- <a href=http://www.cmtsite.org/> CMT </a> users.
+ Three independent building systems are available: provided GNUmakefiles, 
+ <a href="http://www.cmtsite.org/"> CMT </a> and 
+ <a href="http://www.gnu.org/software/autoconf/"> Autoconf </a>.
+ The installation and testing procedures for each system are described 
+ in detail in vgm/doc/INSTALL, vgm/doc/INSTALL_CMT and
+ vgm/doc/INSTALL_Autoconf. 
 
  <p>
  As the test program (being written for the purpose of testing of all
@@ -276,7 +283,8 @@ Contact: <br>
 Ivana Hrivnacova, IPN Orsay <a href="mailto:ivana@ipno.in2p3.fr"> ivana@ipno.in2p3.fr </a> <br>
 Laurent Garnier, LAL Orsay <a href="mailto:garnier@lal.in2p3.fr">garnier@lal.in2p3.fr </a> - CMT configuration, 
 MacOS & Windows platforms <br> 
+Brett Viren, BNL <a href="mailto:bv@bnl.gov">bv@bnl.gov</a> - AGDD, Autoconf configuration.
 
-<i> Last update: 23/03/2007 </i>
+<i> Last update: 07/08/2007 </i>
 
 </p></body></html>

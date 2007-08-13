@@ -46,8 +46,8 @@ $Id$
  
  The implementation of the VGM for a concrete geometry model represents
  a layer between the VGM and the particular native geometry.
- At the present time this implementation is provided for the Geant4 and
- the Root TGeo geometry models.
+ At present  this implementation is provided for the Geant4,
+ Root TGeo and, since the version 3.0, AGDD geometry models.
 
  Using the VGM factory, geometry can first be defined independently from
  a concrete geometry model, and then built by choosing a concrete
@@ -63,8 +63,11 @@ $Id$
  2. Installation, Examples
  -------------------------
  
- The installation and testing procedures are described in detail
- in vgm/doc/INSTALL and in vgm/doc/INSTALL_CMT for CMT users.
+ Three independent building systems are available: 
+ provided GNUmakefiles, CMT and Autoconf. The installation and testing 
+ procedures for each system are described in detail in 
+ vgm/doc/INSTALL, vgm/doc/INSTALL_CMT and vgm/doc/INSTALL_Autoconf. 
+
  As the test program (being written for the purpose of testing of all
  features) is too complex, four simple examples demonstrating use
  of VGM for converting native geometries are provided in vgm/examples.
@@ -201,6 +204,8 @@ $Id$
 
  8. Files
  ---------
+   autoconf - autoconf configuration files
+   cmt      - CMT configuration files
    config   - general makefiles (not use by cmt)
               setup.(c)sh - script for setting environment (not use by cmt)
    doc      - documents:
@@ -213,9 +218,11 @@ $Id$
 	      ClhepVGM  - conversion functions between CLHEP and VGM
 	                  transformations
 	      BaseVGM   - common implementation
+	      AgddGM    - VGM implementation for AGDD
 	      Geant4GM  - VGM implementation for Geant4
 	      RootGM    - VGM implementation for Root TGeo
 	      XmlVGM    - XML eporters
    test     - test code
-   include, lib, tmp - generated during compilation 	   
+   include, lib, tmp - generated during compilation if using building
+              system based on GNUmakfiles 	   
   
