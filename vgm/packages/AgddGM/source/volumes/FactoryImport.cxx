@@ -1,4 +1,4 @@
-// $Id: $
+// $Id$
 
 // -----------------------------------------------------------------------
 // The AgddGM package of the Virtual Geometry Model
@@ -370,7 +370,8 @@ int AgddGM::Factory::ImportPosition(const AGDD_Position* pos,
 
     int npos = fP2C[pos];
     if (npos) {
-	WARN << "ImportPosition already imported pos " << (void*)pos << " volume \""
+	//WARN << "ImportPosition already imported pos of " << (void*)pos << " volume \""
+	WARN << "ImportPosition already imported pos of volume \""
 	     << name << "\" cardinality=" << npos << endl;
 	return npos;
     }
@@ -383,7 +384,7 @@ int AgddGM::Factory::ImportPosition(const AGDD_Position* pos,
      * if composition it either has an envelope or it doesn't
      */
 
-    DEBUG << "ImportPosition "<<(void*)pos<<" volume \""
+    DEBUG << "ImportPosition of volume \""
 	 << name << "\" cardinality " << npos
 	 << " parent \"" << (parent?parent->Name():"TOP") << "\"\n";
 
