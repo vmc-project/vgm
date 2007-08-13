@@ -1260,12 +1260,12 @@ void XmlVGM::AGDDWriter::WriteMaterial(const VGM::IMaterial* material)
   fOutFile << std::endl; 
   
   for (int i=0; i<int(material->NofElements()); i++) {
-    double fraction = material->MassFraction(i);
+    double atomCount = material->AtomCount(i);
     std::string elementSymbol= ElementSymbol(material->Element(i));  
 
     fOutFile << indention << element4 << elementSymbol << quota;
     fOutFile << element5;
-    SmartPut(fOutFile, fNW, fNP, fraction, element6);
+    SmartPut(fOutFile, fNW, fNP, atomCount, element6);
     fOutFile << std::endl;
   }  
 

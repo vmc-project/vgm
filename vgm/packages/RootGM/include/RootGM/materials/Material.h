@@ -87,7 +87,7 @@ namespace RootGM {
       virtual int             NofElements() const;
       virtual VGM::IElement*  Element(int iel) const;     
       virtual double          MassFraction(int iel) const;
-      virtual int             AtomCount(int iel) const;
+      virtual double          AtomCount(int iel) const;
 
     protected:  
       Material(); 
