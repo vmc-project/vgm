@@ -11,6 +11,26 @@ $Id$
 
  The Virtual Geometry Model - Versions
 =========================================
+  13/08/2007
+  version 3.00
+               New packages: AgddGM, autoconf.
+               
+               In XmlVGM:
+               - Updated GDML exporter with new GDML version
+               - Adding export of Boolean solids in AGDD.
+               
+               All:
+               - Adding GPL licence and copyright.
+               - Added ExtrudedSolid
+               - IMaterial::AtomsCount(int) now returns double (was int);
+                 Corrected Material::AtomCount in eant4GM, RootGM to be 
+                 consistent with AgddGM
+               
+               Tested with CLHEP 2.0.3.1, Root 5.16/00, Geant4 9.0,
+                           libagdd 0.6, Xerces-C 2.7.0 
+               Linux: gcc 4.1.1 (FC6)
+               To be tested: MacOS Powerbook 10.4.7 gcc 4 (CMT version)
+
   22/05/2007
   version 2.09
                Tested with CLHEP 2.0.3.1, Root 5.15/04, Geant4 8.2.p01;
