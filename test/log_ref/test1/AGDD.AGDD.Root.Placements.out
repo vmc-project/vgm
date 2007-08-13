@@ -9,33 +9,12 @@ AGDD geometry will be defined via AGDD and exported to Root
 
 TestPlacements finished
 Go to Import
-natoms got: 0.7271
-natoms got: 0.2729
-mass fraction: 0.699967
-mass fraction: 0.300033
-atom count cal: 0.7271
-atom count cal: 0.2729
-natoms got: 1
-mass fraction: 1
-atom count cal: 1
-natoms got: 0.4737
-natoms got: 0.5263
-mass fraction: 0.915324
-mass fraction: 0.0846756
-atom count cal: 0.4737
-atom count cal: 0.5263
-natoms got: 1
-mass fraction: 1
-atom count cal: 1
-natoms got: 1
-mass fraction: 1
-atom count cal: 1
 VGM info:   Top volume is world
 VGM info:   ImportSection: importing AGDD_composition "world_comp"
 VGM info:   ImportComposition "world_comp"
-VGM info:   ImportPosition 0xa1d1798 volume "wheel" cardinality 1 parent "world"
+VGM info:   ImportPosition of volume "wheel" cardinality 1 parent "world"
 VGM info:   ImportComposition "wheel"
-VGM info:   ImportPosition 0xa1d97c0 volume "layerA" cardinality 24 parent "world"
+VGM info:   ImportPosition of volume "layerA" cardinality 24 parent "world"
 VGM info:   ImportingPosition with volume "layerA" ("layerA") trans=[5000,0,0]->(0,-0,0)
 VGM info:   ImportingPosition with volume "layerA" ("layerA") trans=[4829.63,7.92379e-14,-1294.1]->(2.15997e-18,0.261799,1.64066e-17)
 VGM info:   ImportingPosition with volume "layerA" ("layerA") trans=[4330.13,1.53076e-13,-2500]->(9.47236e-18,0.523599,3.53513e-17)
@@ -62,15 +41,15 @@ VGM info:   ImportingPosition with volume "layerA" ("layerA") trans=[4330.13,-1.
 VGM info:   ImportingPosition with volume "layerA" ("layerA") trans=[4829.63,-7.92379e-14,1294.1]->(2.15997e-18,-0.261799,-1.64066e-17)
 VGM info:   ImportSection: importing AGDD_composition "layerA_comp"
 VGM info:   ImportComposition "layerA_comp"
-VGM info:   ImportPosition 0xa1d0e30 volume "layerB" cardinality 3 parent "layerA"
+VGM info:   ImportPosition of volume "layerB" cardinality 3 parent "layerA"
 VGM info:   ImportingPosition with volume "layerB" ("layerB") trans=[0,100,0]->(0,-0,0)
 VGM info:   ImportingPosition with volume "layerB" ("layerB") trans=[0,300,0]->(0,-0,0)
 VGM info:   ImportingPosition with volume "layerB" ("layerB") trans=[0,500,0]->(0,-0,0)
 VGM info:   ImportSection: importing AGDD_composition "layerB_comp"
 VGM info:   ImportComposition "layerB_comp"
-VGM info:   ImportPosition 0xa1d9940 volume "layerC" cardinality 1 parent "layerB"
+VGM info:   ImportPosition of volume "layerC" cardinality 1 parent "layerB"
 VGM info:   ImportingPosition with volume "layerC" ("layerC") trans=[0,98,0]->(0,-0,0)
-VGM info:   ImportPosition 0xa1da100 volume "layerC" cardinality 1 parent "layerB"
+VGM info:   ImportPosition of volume "layerC" cardinality 1 parent "layerB"
 VGM info:   ImportingPosition with volume "layerC" ("layerC") trans=[0,-98,0]->(0,-0,0)
 Import finished
 Go to export
