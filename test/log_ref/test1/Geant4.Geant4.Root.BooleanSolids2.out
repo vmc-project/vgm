@@ -1,14 +1,12 @@
+Geant4 geometry will be defined via Geant4 and exported to Root
 
 *************************************************************
- Geant4 version Name: geant4-08-03    (5-May-2007)
+ Geant4 version Name: geant4-09-00    (29-June-2007)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
 *************************************************************
 
-Geant4 geometry will be defined via Geant4 and exported to Root
-Basic material:  Material:    Basic     density:  2.700 g/cm3   temperature: 273.15 K  pressure:   1.00 atm  RadLength:   8.893 cm 
-   --->  Element: Basic ( )   Z = 13.0   N =  27.0   A =  26.98 g/mole  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
 TestBooleanSolids2 finished
 Go to Import
 VGM info:   Geant4GM::Factory::Import started ...
@@ -76,72 +74,72 @@ VGM info:   ImportDaughters for solid1
 VGM info:   Importing LV: solid2
 VGM info:   Importing solid: consS
 VGM info:   ImportDaughters for solid2
-VGM info:   Importing LV: solid1Isolid2
-VGM info:   Importing solid: solid1Isolid2S
+VGM info:   Importing LV: intersection_solid1_solid2
+VGM info:   Importing solid: intersection_solid1_solid2_S
 VGM info:   Imported Boolean solid: 
-VGM info:   Boolean  "solid1Isolid2S"  Intersection: 
+VGM info:   Boolean  "intersection_solid1_solid2_S"  Intersection: 
   ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
   ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
   Displacement translation (object):  ( 200,  0,  0) mm 
   Displacement rotation (object):  (30,  -45,  0) deg    no reflectionZ
-VGM info:   ImportDaughters for solid1Isolid2
-VGM info:   Importing LV: solid1Ssolid2
-VGM info:   Importing solid: solid1Ssolid2S
+VGM info:   ImportDaughters for intersection_solid1_solid2
+VGM info:   Importing LV: subtraction_solid1_solid2
+VGM info:   Importing solid: subtraction_solid1_solid2_S
 VGM info:   Imported Boolean solid: 
-VGM info:   Boolean  "solid1Ssolid2S"  Subtraction: 
+VGM info:   Boolean  "subtraction_solid1_solid2_S"  Subtraction: 
   ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
   ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
   Displacement translation (object):  ( 200,  0,  0) mm 
   Displacement rotation (object):  (30,  -45,  0) deg    no reflectionZ
-VGM info:   ImportDaughters for solid1Ssolid2
-VGM info:   Importing LV: solid1Usolid2
-VGM info:   Importing solid: solid1Usolid2S
+VGM info:   ImportDaughters for subtraction_solid1_solid2
+VGM info:   Importing LV: union_solid1_solid2
+VGM info:   Importing solid: union_solid1_solid2_S
 VGM info:   Imported Boolean solid: 
-VGM info:   Boolean  "solid1Usolid2S"  Union: 
+VGM info:   Boolean  "union_solid1_solid2_S"  Union: 
   ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
   ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
   Displacement translation (object):  ( 200,  0,  0) mm 
   Displacement rotation (object):  (30,  -45,  0) deg    no reflectionZ
-VGM info:   ImportDaughters for solid1Usolid2
+VGM info:   ImportDaughters for union_solid1_solid2
 VGM info:   Import positions: 
 VGM info:   0th volume: world  
 VGM info:      0th daughter  lv=solid1 vgmVol=solid1
 VGM info:      1th daughter  lv=solid2 vgmVol=solid2
-VGM info:      2th daughter  lv=solid1Isolid2 vgmVol=solid1Isolid2
-VGM info:      3th daughter  lv=solid1Ssolid2 vgmVol=solid1Ssolid2
-VGM info:      4th daughter  lv=solid1Usolid2 vgmVol=solid1Usolid2
+VGM info:      2th daughter  lv=intersection_solid1_solid2 vgmVol=intersection_solid1_solid2
+VGM info:      3th daughter  lv=subtraction_solid1_solid2 vgmVol=subtraction_solid1_solid2
+VGM info:      4th daughter  lv=union_solid1_solid2 vgmVol=union_solid1_solid2
 VGM info:   1th volume: solid1  
 VGM info:   2th volume: solid2  
-VGM info:   3th volume: solid1Isolid2  
-VGM info:   4th volume: solid1Ssolid2  
-VGM info:   5th volume: solid1Usolid2  
+VGM info:   3th volume: intersection_solid1_solid2  
+VGM info:   4th volume: subtraction_solid1_solid2  
+VGM info:   5th volume: union_solid1_solid2  
 VGM info:   
 Geant4_GM_Factory factory solids store: 
    0th solid: Box  "worldS"  hx = 4000mm  hy = 1000mm  hz = 4000mm
    1th solid: Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
    2th solid: Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
-   3th solid: Boolean  "solid1Isolid2S"  Intersection: 
+   3th solid: Boolean  "intersection_solid1_solid2_S"  Intersection: 
   ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
   ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
   Displacement translation (object):  ( 200,  0,  0) mm 
   Displacement rotation (object):  (30,  -45,  0) deg    no reflectionZ
-   4th solid: Boolean  "solid1Ssolid2S"  Subtraction: 
+   4th solid: Boolean  "subtraction_solid1_solid2_S"  Subtraction: 
   ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
   ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
   Displacement translation (object):  ( 200,  0,  0) mm 
   Displacement rotation (object):  (30,  -45,  0) deg    no reflectionZ
-   5th solid: Boolean  "solid1Usolid2S"  Union: 
+   5th solid: Boolean  "union_solid1_solid2_S"  Union: 
   ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
   ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
   Displacement translation (object):  ( 200,  0,  0) mm 
   Displacement rotation (object):  (30,  -45,  0) deg    no reflectionZ
 Geant4_GM_Factory factory volumes store: 
-   0th: Volume: "world" material "Basic" solid "Box"  5 daughters: "solid1"  "solid2"  "solid1Isolid2"  "solid1Ssolid2"  "solid1Usolid2"  
+   0th: Volume: "world" material "Basic" solid "Box"  5 daughters: "solid1"  "solid2"  "intersection_solid1_solid2"  "subtraction_solid1_solid2"  "union_solid1_solid2"  
    1th: Volume: "solid1" material "Basic" solid "Box"  0 daughters: 
    2th: Volume: "solid2" material "Basic" solid "Cons"  0 daughters: 
-   3th: Volume: "solid1Isolid2" material "Basic" solid "Boolean"  0 daughters: 
-   4th: Volume: "solid1Ssolid2" material "Basic" solid "Boolean"  0 daughters: 
-   5th: Volume: "solid1Usolid2" material "Basic" solid "Boolean"  0 daughters: 
+   3th: Volume: "intersection_solid1_solid2" material "Basic" solid "Boolean"  0 daughters: 
+   4th: Volume: "subtraction_solid1_solid2" material "Basic" solid "Boolean"  0 daughters: 
+   5th: Volume: "union_solid1_solid2" material "Basic" solid "Boolean"  0 daughters: 
 VGM info:   Geant4GM::Factory::Import finished.
 Import finished
 Go to export
@@ -234,7 +232,7 @@ VGM info:   Exporting solid:
 VGM info:      Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
 VGM info:      2th volume: solid2   material: Basic
 VGM info:   Exporting solid: 
-VGM info:      Boolean  "solid1Isolid2S"  Intersection: 
+VGM info:      Boolean  "intersection_solid1_solid2_S"  Intersection: 
   ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
   ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
   Displacement translation (object):  ( 200,  0,  0) mm 
@@ -243,9 +241,9 @@ VGM info:   Exporting solid:
 VGM info:      Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
 VGM info:   Exporting solid: 
 VGM info:      Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
-VGM info:      3th volume: solid1Isolid2   material: Basic
+VGM info:      3th volume: intersection_solid1_solid2   material: Basic
 VGM info:   Exporting solid: 
-VGM info:      Boolean  "solid1Ssolid2S"  Subtraction: 
+VGM info:      Boolean  "subtraction_solid1_solid2_S"  Subtraction: 
   ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
   ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
   Displacement translation (object):  ( 200,  0,  0) mm 
@@ -254,9 +252,9 @@ VGM info:   Exporting solid:
 VGM info:      Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
 VGM info:   Exporting solid: 
 VGM info:      Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
-VGM info:      4th volume: solid1Ssolid2   material: Basic
+VGM info:      4th volume: subtraction_solid1_solid2   material: Basic
 VGM info:   Exporting solid: 
-VGM info:      Boolean  "solid1Usolid2S"  Union: 
+VGM info:      Boolean  "union_solid1_solid2_S"  Union: 
   ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
   ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
   Displacement translation (object):  ( 200,  0,  0) mm 
@@ -265,16 +263,17 @@ VGM info:   Exporting solid:
 VGM info:      Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
 VGM info:   Exporting solid: 
 VGM info:      Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
-VGM info:      5th volume: solid1Usolid2   material: Basic
+VGM info:      5th volume: union_solid1_solid2   material: Basic
 VGM info:   ExportPlacements for 0th volume world
 VGM info:      0th daughter vol = solid1  simple placement: solid1
 VGM info:      1th daughter vol = solid2  simple placement: solid2
-VGM info:      2th daughter vol = solid1Isolid2  simple placement: solid1Isolid2
-VGM info:      3th daughter vol = solid1Ssolid2  simple placement: solid1Ssolid2
-VGM info:      4th daughter vol = solid1Usolid2  simple placement: solid1Usolid2
+VGM info:      2th daughter vol = intersection_solid1_solid2  simple placement: intersection_solid1_solid2
+VGM info:      3th daughter vol = subtraction_solid1_solid2  simple placement: subtraction_solid1_solid2
+VGM info:      4th daughter vol = union_solid1_solid2  simple placement: union_solid1_solid2
 VGM info:   ExportPlacements for 1th volume solid1
 VGM info:   ExportPlacements for 2th volume solid2
-VGM info:   ExportPlacements for 3th volume solid1Isolid2
-VGM info:   ExportPlacements for 4th volume solid1Ssolid2
-VGM info:   ExportPlacements for 5th volume solid1Usolid2
+VGM info:   ExportPlacements for 3th volume intersection_solid1_solid2
+VGM info:   ExportPlacements for 4th volume subtraction_solid1_solid2
+VGM info:   ExportPlacements for 5th volume union_solid1_solid2
 Export finished
+Go to save Root geometry

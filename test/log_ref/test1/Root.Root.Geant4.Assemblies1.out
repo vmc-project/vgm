@@ -1,12 +1,12 @@
+Root geometry will be defined via Root and exported to Geant4
 
 *************************************************************
- Geant4 version Name: geant4-08-03    (5-May-2007)
+ Geant4 version Name: geant4-09-00    (29-June-2007)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
 *************************************************************
 
-Root geometry will be defined via Root and exported to Geant4
 TestAssemblies finished
 Go to Import
 VGM info:   RootGM::Factory::Import started ...
@@ -15451,3 +15451,4 @@ VGM info:      6599th daughter vol = TOOTH  simple placement: TOOTH
 VGM info:   ExportPlacements for 1th volume PLATE
 VGM info:   ExportPlacements for 2th volume TOOTH
 Export finished
+Go to save Root geometry

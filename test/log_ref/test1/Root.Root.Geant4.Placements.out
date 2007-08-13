@@ -1,12 +1,12 @@
+Root geometry will be defined via Root and exported to Geant4
 
 *************************************************************
- Geant4 version Name: geant4-08-03    (5-May-2007)
+ Geant4 version Name: geant4-09-00    (29-June-2007)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
 *************************************************************
 
-Root geometry will be defined via Root and exported to Geant4
 TestPlacements finished
 Go to Import
 VGM info:   RootGM::Factory::Import started ...
@@ -185,3 +185,4 @@ VGM info:      0th daughter vol = layerC  simple placement: layerC
 VGM info:      1th daughter vol = layerC  simple placement: layerC
 VGM info:   ExportPlacements for 3th volume layerC
 Export finished
+Go to save Root geometry

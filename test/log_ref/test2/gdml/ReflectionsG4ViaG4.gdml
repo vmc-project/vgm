@@ -77,54 +77,54 @@
 
       <eltube  lunit="cm" aunit="degree"
          name="eltu_s"
-         dx="   20.0000"  dy="   30.0000"  dz="  100.0000" />
+         dx="   20.0000"  dy="   30.0000"  dz="   50.0000" />
 
       <eltube  lunit="cm" aunit="degree"
          name="eltu_refl_s"
-         dx="   20.0000"  dy="   30.0000"  dz="  100.0000" />
+         dx="   20.0000"  dy="   30.0000"  dz="   50.0000" />
 
       <para  lunit="cm" aunit="degree"
          name="para_s"
-         x="   80.0000"  y="  120.0000"  z="  100.0000"
+         x="   40.0000"  y="   60.0000"  z="   50.0000"
          alpha="   30.0000"  theta="   30.0000"  phi="   30.0000" />
 
       <para  lunit="cm" aunit="degree"
          name="para_refl_s"
-         x="   80.0000"  y="  120.0000"  z="  100.0000"
+         x="   40.0000"  y="   60.0000"  z="   50.0000"
          alpha="   30.0000"  theta="  150.0000"  phi="   30.0000" />
 
       <polycone  lunit="cm" aunit="degree"
          name="pcone_s"
          startphi="    0.0000"  deltaphi="  360.0000" >
-         <zplane  z=" -100.0000"  rmin="   10.0000"  rmax="   50.0000" />
-         <zplane  z="   20.0000"  rmin="   20.0000"  rmax="   30.0000" />
-         <zplane  z="   80.0000"  rmin="   30.0000"  rmax="   60.0000" />
+         <zplane  z="  -50.0000"  rmin="   10.0000"  rmax="   50.0000" />
+         <zplane  z="   10.0000"  rmin="   20.0000"  rmax="   30.0000" />
+         <zplane  z="   40.0000"  rmin="   30.0000"  rmax="   60.0000" />
       </polycone>
 
       <polycone  lunit="cm" aunit="degree"
          name="pcone_refl_s"
          startphi="    0.0000"  deltaphi="  360.0000" >
-         <zplane  z="  100.0000"  rmin="   10.0000"  rmax="   50.0000" />
-         <zplane  z="  -20.0000"  rmin="   20.0000"  rmax="   30.0000" />
-         <zplane  z="  -80.0000"  rmin="   30.0000"  rmax="   60.0000" />
+         <zplane  z="   50.0000"  rmin="   10.0000"  rmax="   50.0000" />
+         <zplane  z="  -10.0000"  rmin="   20.0000"  rmax="   30.0000" />
+         <zplane  z="  -40.0000"  rmin="   30.0000"  rmax="   60.0000" />
       </polycone>
 
       <polyhedra  lunit="cm" aunit="degree"
          name="phedra_s"
          numsides="4"
-         startphi="    0.0000"  totalphi="  360.0000" >
-         <zplane  z=" -100.0000"  rmin="   10.0000"  rmax="   40.0000" />
-         <zplane  z="   20.0000"  rmin="   20.0000"  rmax="   20.0000" />
-         <zplane  z="   80.0000"  rmin="   30.0000"  rmax="   50.0000" />
+         startphi="    0.0000"  deltaphi="  360.0000" >
+         <zplane  z="  -50.0000"  rmin="   10.0000"  rmax="   40.0000" />
+         <zplane  z="   10.0000"  rmin="   20.0000"  rmax="   20.0000" />
+         <zplane  z="   40.0000"  rmin="   30.0000"  rmax="   50.0000" />
       </polyhedra>
 
       <polyhedra  lunit="cm" aunit="degree"
          name="phedra_refl_s"
          numsides="4"
-         startphi="    0.0000"  totalphi="  360.0000" >
-         <zplane  z="  100.0000"  rmin="   10.0000"  rmax="   40.0000" />
-         <zplane  z="  -20.0000"  rmin="   20.0000"  rmax="   20.0000" />
-         <zplane  z="  -80.0000"  rmin="   30.0000"  rmax="   50.0000" />
+         startphi="    0.0000"  deltaphi="  360.0000" >
+         <zplane  z="   50.0000"  rmin="   10.0000"  rmax="   40.0000" />
+         <zplane  z="  -10.0000"  rmin="   20.0000"  rmax="   20.0000" />
+         <zplane  z="  -40.0000"  rmin="   30.0000"  rmax="   50.0000" />
       </polyhedra>
 
       <sphere  lunit="cm" aunit="degree"
@@ -235,29 +235,65 @@
          <rotation  name="rot_1"     x="     5.9061"  y="     0.0000"  z="     0.0000"  unit="degree" />
       </subtraction>
 
-      <!-- !!! unsupported shape  !!!  name= "xtru1_s" -->
-      <!-- dummy box is written instead  -->
-      <box  lunit="cm" aunit="degree"
-         name="xtru1_s"
-         x="    0.2000"  y="    0.2000"  z="    0.2000" />
+      <xtru  lunit="cm" aunit="degree"
+         name="xtru1_s" >
+         <twoDimVertex  x="  -30.0000"  y="  -30.0000" />
+         <twoDimVertex  x="  -30.0000"  y="   30.0000" />
+         <twoDimVertex  x="   30.0000"  y="   30.0000" />
+         <twoDimVertex  x="   30.0000"  y="  -30.0000" />
+         <twoDimVertex  x="   15.0000"  y="  -30.0000" />
+         <twoDimVertex  x="   15.0000"  y="   15.0000" />
+         <twoDimVertex  x="  -15.0000"  y="   15.0000" />
+         <twoDimVertex  x="  -15.0000"  y="  -30.0000" />
+         <section  zPosition="  -40.0000"  zOrder="  0"  xOffset="  -20.0000"  yOffset="   10.0000"  scalingFactor="    1.5000" />
+         <section  zPosition="   10.0000"  zOrder="  1"  xOffset="    0.0000"  yOffset="    0.0000"  scalingFactor="    0.5000" />
+         <section  zPosition="   15.0000"  zOrder="  2"  xOffset="    0.0000"  yOffset="    0.0000"  scalingFactor="    0.7000" />
+         <section  zPosition="   40.0000"  zOrder="  3"  xOffset="   20.0000"  yOffset="   20.0000"  scalingFactor="    0.9000" />
+      </xtru>
 
-      <!-- !!! unsupported shape  !!!  name= "xtru1_refl_s" -->
-      <!-- dummy box is written instead  -->
-      <box  lunit="cm" aunit="degree"
-         name="xtru1_refl_s"
-         x="    0.2000"  y="    0.2000"  z="    0.2000" />
+      <xtru  lunit="cm" aunit="degree"
+         name="xtru1_refl_s" >
+         <twoDimVertex  x="  -30.0000"  y="  -30.0000" />
+         <twoDimVertex  x="  -30.0000"  y="   30.0000" />
+         <twoDimVertex  x="   30.0000"  y="   30.0000" />
+         <twoDimVertex  x="   30.0000"  y="  -30.0000" />
+         <twoDimVertex  x="   15.0000"  y="  -30.0000" />
+         <twoDimVertex  x="   15.0000"  y="   15.0000" />
+         <twoDimVertex  x="  -15.0000"  y="   15.0000" />
+         <twoDimVertex  x="  -15.0000"  y="  -30.0000" />
+         <section  zPosition="  -40.0000"  zOrder="  0"  xOffset="   20.0000"  yOffset="   20.0000"  scalingFactor="    0.9000" />
+         <section  zPosition="  -15.0000"  zOrder="  1"  xOffset="    0.0000"  yOffset="    0.0000"  scalingFactor="    0.7000" />
+         <section  zPosition="  -10.0000"  zOrder="  2"  xOffset="    0.0000"  yOffset="    0.0000"  scalingFactor="    0.5000" />
+         <section  zPosition="   40.0000"  zOrder="  3"  xOffset="  -20.0000"  yOffset="   10.0000"  scalingFactor="    1.5000" />
+      </xtru>
 
-      <!-- !!! unsupported shape  !!!  name= "xtru2_constA_s" -->
-      <!-- dummy box is written instead  -->
-      <box  lunit="cm" aunit="degree"
-         name="xtru2_constA_s"
-         x="    0.2000"  y="    0.2000"  z="    0.2000" />
+      <xtru  lunit="cm" aunit="degree"
+         name="xtru2_constA_s" >
+         <twoDimVertex  x="  -30.0000"  y="  -30.0000" />
+         <twoDimVertex  x="  -30.0000"  y="   30.0000" />
+         <twoDimVertex  x="   30.0000"  y="   30.0000" />
+         <twoDimVertex  x="   30.0000"  y="  -30.0000" />
+         <twoDimVertex  x="   15.0000"  y="  -30.0000" />
+         <twoDimVertex  x="   15.0000"  y="   15.0000" />
+         <twoDimVertex  x="  -15.0000"  y="   15.0000" />
+         <twoDimVertex  x="  -15.0000"  y="  -30.0000" />
+         <section  zPosition="  -40.0000"  zOrder="  0"  xOffset="  -20.0000"  yOffset="   10.0000"  scalingFactor="    1.5000" />
+         <section  zPosition="   10.0000"  zOrder="  1"  xOffset="    0.0000"  yOffset="    0.0000"  scalingFactor="    0.5000" />
+      </xtru>
 
-      <!-- !!! unsupported shape  !!!  name= "xtru2_constB_s" -->
-      <!-- dummy box is written instead  -->
-      <box  lunit="cm" aunit="degree"
-         name="xtru2_constB_s"
-         x="    0.2000"  y="    0.2000"  z="    0.2000" />
+      <xtru  lunit="cm" aunit="degree"
+         name="xtru2_constB_s" >
+         <twoDimVertex  x="  -30.0000"  y="  -30.0000" />
+         <twoDimVertex  x="  -30.0000"  y="   30.0000" />
+         <twoDimVertex  x="   30.0000"  y="   30.0000" />
+         <twoDimVertex  x="   30.0000"  y="  -30.0000" />
+         <twoDimVertex  x="   15.0000"  y="  -30.0000" />
+         <twoDimVertex  x="   15.0000"  y="   15.0000" />
+         <twoDimVertex  x="  -15.0000"  y="   15.0000" />
+         <twoDimVertex  x="  -15.0000"  y="  -30.0000" />
+         <section  zPosition="   10.0000"  zOrder="  0"  xOffset="    0.0000"  yOffset="    0.0000"  scalingFactor="    0.7000" />
+         <section  zPosition="   40.0000"  zOrder="  1"  xOffset="   20.0000"  yOffset="   20.0000"  scalingFactor="    0.9000" />
+      </xtru>
 
       <union name="xtru2_s" >
          <first  ref="xtru2_constA_s" />
@@ -266,17 +302,33 @@
          <rotation  name="rot_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
       </union>
 
-      <!-- !!! unsupported shape  !!!  name= "xtru2_refl_constA_s" -->
-      <!-- dummy box is written instead  -->
-      <box  lunit="cm" aunit="degree"
-         name="xtru2_refl_constA_s"
-         x="    0.2000"  y="    0.2000"  z="    0.2000" />
+      <xtru  lunit="cm" aunit="degree"
+         name="xtru2_refl_constA_s" >
+         <twoDimVertex  x="  -30.0000"  y="  -30.0000" />
+         <twoDimVertex  x="  -30.0000"  y="   30.0000" />
+         <twoDimVertex  x="   30.0000"  y="   30.0000" />
+         <twoDimVertex  x="   30.0000"  y="  -30.0000" />
+         <twoDimVertex  x="   15.0000"  y="  -30.0000" />
+         <twoDimVertex  x="   15.0000"  y="   15.0000" />
+         <twoDimVertex  x="  -15.0000"  y="   15.0000" />
+         <twoDimVertex  x="  -15.0000"  y="  -30.0000" />
+         <section  zPosition="  -40.0000"  zOrder="  0"  xOffset="  -20.0000"  yOffset="   10.0000"  scalingFactor="    1.5000" />
+         <section  zPosition="   10.0000"  zOrder="  1"  xOffset="    0.0000"  yOffset="    0.0000"  scalingFactor="    0.5000" />
+      </xtru>
 
-      <!-- !!! unsupported shape  !!!  name= "xtru2_refl_constB_s" -->
-      <!-- dummy box is written instead  -->
-      <box  lunit="cm" aunit="degree"
-         name="xtru2_refl_constB_s"
-         x="    0.2000"  y="    0.2000"  z="    0.2000" />
+      <xtru  lunit="cm" aunit="degree"
+         name="xtru2_refl_constB_s" >
+         <twoDimVertex  x="  -30.0000"  y="  -30.0000" />
+         <twoDimVertex  x="  -30.0000"  y="   30.0000" />
+         <twoDimVertex  x="   30.0000"  y="   30.0000" />
+         <twoDimVertex  x="   30.0000"  y="  -30.0000" />
+         <twoDimVertex  x="   15.0000"  y="  -30.0000" />
+         <twoDimVertex  x="   15.0000"  y="   15.0000" />
+         <twoDimVertex  x="  -15.0000"  y="   15.0000" />
+         <twoDimVertex  x="  -15.0000"  y="  -30.0000" />
+         <section  zPosition="   10.0000"  zOrder="  0"  xOffset="    0.0000"  yOffset="    0.0000"  scalingFactor="    0.7000" />
+         <section  zPosition="   40.0000"  zOrder="  1"  xOffset="   20.0000"  yOffset="   20.0000"  scalingFactor="    0.9000" />
+      </xtru>
 
       <union name="xtru2_refl_s" >
          <first  ref="xtru2_refl_constA_s" />

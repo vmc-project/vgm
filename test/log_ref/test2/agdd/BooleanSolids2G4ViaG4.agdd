@@ -5,8 +5,8 @@
 
 <xi:include href="StandardColors.agdd"/>
 
-<materials  version = "Id: AGDDWriter.cxx,v 1.13 2007/05/23 10:31:15 ivana Exp "
-            date    = "2007-05-23"
+<materials  version = "Id: AGDDWriter.cxx 578 2007-08-07 11:34:01Z ihrivnac "
+            date    = "2007-08-13"
             author  = "VGM AGGD Writer"
             DTD_version="v7"  >
 
@@ -21,8 +21,8 @@
 
 </materials>
 
-<media  version = "Id: AGDDWriter.cxx,v 1.13 2007/05/23 10:31:15 ivana Exp "
-        date    = "2007-05-23"
+<media  version = "Id: AGDDWriter.cxx 578 2007-08-07 11:34:01Z ihrivnac "
+        date    = "2007-08-13"
         author  = "VGM AGGD Writer"
         DTD_version="v7"  >
 
@@ -36,8 +36,8 @@
 
 <section DTD_version = "v7"
          name        = "world"
-         version     = "Id: AGDDWriter.cxx,v 1.13 2007/05/23 10:31:15 ivana Exp "
-         date        = "2007-05-23"
+         version     = "Id: AGDDWriter.cxx 578 2007-08-07 11:34:01Z ihrivnac "
+         date        = "2007-08-13"
          author      = "VGM AGGD Writer"
          top_volume  = "world_comp"  >
 
@@ -54,23 +54,62 @@
       profile=" 0.0000; 360.0000"
       Rio1_Rio2_Z  ="10.0000; 20.0000; 30.0000; 40.0000; 200.0000" />
 
-   <!-- !!! unsupported shape  !!!  name= "solid1Isolid2" -->
-   <!-- dummy box is written instead  -->
-   <box    name="solid1Isolid2"
+   <box    name="intersection_solid1_solid2_constA"
       medium="Basic"
-      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+      X_Y_Z="100.0000; 100.0000; 100.0000" />
 
-   <!-- !!! unsupported shape  !!!  name= "solid1Ssolid2" -->
-   <!-- dummy box is written instead  -->
-   <box    name="solid1Ssolid2"
+   <cons   name="intersection_solid1_solid2_constB"
       medium="Basic"
-      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+      profile=" 0.0000; 360.0000"
+      Rio1_Rio2_Z  ="10.0000; 20.0000; 30.0000; 40.0000; 200.0000" />
 
-   <!-- !!! unsupported shape  !!!  name= "solid1Usolid2" -->
-   <!-- dummy box is written instead  -->
-   <box    name="solid1Usolid2"
+   <intersection name="intersection_solid1_solid2" >
+      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="intersection_solid1_solid2_constA"/>
+      </posXYZ>
+      <transform    pos=" 20.0000;   0.0000;   0.0000"
+                 matrix=" 0.70711; -0.35355; -0.61237; 
+                          0.00000;  0.86603; -0.50000; 
+                          0.70711;  0.35355;  0.61237"> <volume name="intersection_solid1_solid2_constB"/>
+      </transform>
+   </intersection>
+
+   <box    name="subtraction_solid1_solid2_constA"
       medium="Basic"
-      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+      X_Y_Z="100.0000; 100.0000; 100.0000" />
+
+   <cons   name="subtraction_solid1_solid2_constB"
+      medium="Basic"
+      profile=" 0.0000; 360.0000"
+      Rio1_Rio2_Z  ="10.0000; 20.0000; 30.0000; 40.0000; 200.0000" />
+
+   <subtraction name="subtraction_solid1_solid2" >
+      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="subtraction_solid1_solid2_constA"/>
+      </posXYZ>
+      <transform    pos=" 20.0000;   0.0000;   0.0000"
+                 matrix=" 0.70711; -0.35355; -0.61237; 
+                          0.00000;  0.86603; -0.50000; 
+                          0.70711;  0.35355;  0.61237"> <volume name="subtraction_solid1_solid2_constB"/>
+      </transform>
+   </subtraction>
+
+   <box    name="union_solid1_solid2_constA"
+      medium="Basic"
+      X_Y_Z="100.0000; 100.0000; 100.0000" />
+
+   <cons   name="union_solid1_solid2_constB"
+      medium="Basic"
+      profile=" 0.0000; 360.0000"
+      Rio1_Rio2_Z  ="10.0000; 20.0000; 30.0000; 40.0000; 200.0000" />
+
+   <union name="union_solid1_solid2" >
+      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="union_solid1_solid2_constA"/>
+      </posXYZ>
+      <transform    pos=" 20.0000;   0.0000;   0.0000"
+                 matrix=" 0.70711; -0.35355; -0.61237; 
+                          0.00000;  0.86603; -0.50000; 
+                          0.70711;  0.35355;  0.61237"> <volume name="union_solid1_solid2_constB"/>
+      </transform>
+   </union>
 
 
    <composition name="world_comp">
@@ -81,17 +120,17 @@
       <transform    pos="-250.0000;   0.0000; 200.0000"
                  matrix=" 0.70711;  0.00000;  0.70711; 
                           0.00000;  1.00000;  0.00000; 
-                         -0.70711;  0.00000;  0.70711"> <volume name="solid1Isolid2"/>
+                         -0.70711;  0.00000;  0.70711"> <volume name="intersection_solid1_solid2"/>
       </transform>
       <transform    pos="  0.0000;   0.0000; 200.0000"
                  matrix=" 0.70711;  0.00000;  0.70711; 
                           0.00000;  1.00000;  0.00000; 
-                         -0.70711;  0.00000;  0.70711"> <volume name="solid1Ssolid2"/>
+                         -0.70711;  0.00000;  0.70711"> <volume name="subtraction_solid1_solid2"/>
       </transform>
       <transform    pos="250.0000;   0.0000; 200.0000"
                  matrix=" 0.70711;  0.00000;  0.70711; 
                           0.00000;  1.00000;  0.00000; 
-                         -0.70711;  0.00000;  0.70711"> <volume name="solid1Usolid2"/>
+                         -0.70711;  0.00000;  0.70711"> <volume name="union_solid1_solid2"/>
       </transform>
    </composition>
 

@@ -1,12 +1,12 @@
+Root geometry will be defined via VGM and exported to Geant4
 
 *************************************************************
- Geant4 version Name: geant4-08-03    (5-May-2007)
+ Geant4 version Name: geant4-09-00    (29-June-2007)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
 *************************************************************
 
-Root geometry will be defined via VGM and exported to Geant4
 TestReflections finished
 Go to export
 VGM info:   Exporting isotope: 
@@ -102,7 +102,7 @@ VGM info:   Exporting solid:
 VGM info:      Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
 VGM info:      11th volume: tubs   material: Basic
 VGM info:   Exporting solid: 
-VGM info:      Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = 330deg  dphi = 280deg  nlow = (0, 0.64, -0.77)  nhigh = (0, 0.09, 0.87)
+VGM info:      Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = 330deg  dphi = 280deg  nlow = (0, 0.064, -0.077)  nhigh = (0, 0.009, 0.087)
 VGM info:      12th volume: ctubs   material: Basic
 VGM info:   Exporting solid: 
 VGM info:      Extruded  "xtruS"
@@ -266,3 +266,4 @@ VGM info:   ExportPlacements for 12th volume ctubs
 VGM info:   ExportPlacements for 13th volume xtru1
 VGM info:   ExportPlacements for 14th volume xtru2
 Export finished
+Go to save Root geometry
