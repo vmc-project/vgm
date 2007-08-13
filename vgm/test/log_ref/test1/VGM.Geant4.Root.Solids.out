@@ -1,12 +1,12 @@
+Geant4 geometry will be defined via VGM and exported to Root
 
 *************************************************************
- Geant4 version Name: geant4-08-03    (5-May-2007)
+ Geant4 version Name: geant4-09-00    (29-June-2007)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
 *************************************************************
 
-Geant4 geometry will be defined via VGM and exported to Root
 VGM info:   Importing isotope: 
 VGM info:    Isotope:     H   Z =  1   N =   1   A =   1.01 g/mole
 VGM info:   Importing isotope: 
@@ -180,3 +180,4 @@ VGM info:   ExportPlacements for 12th volume ctubs
 VGM info:   ExportPlacements for 13th volume xtru1
 VGM info:   ExportPlacements for 14th volume xtru2
 Export finished
+Go to save Root geometry

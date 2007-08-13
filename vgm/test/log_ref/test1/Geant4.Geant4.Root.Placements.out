@@ -1,14 +1,12 @@
+Geant4 geometry will be defined via Geant4 and exported to Root
 
 *************************************************************
- Geant4 version Name: geant4-08-03    (5-May-2007)
+ Geant4 version Name: geant4-09-00    (29-June-2007)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
 *************************************************************
 
-Geant4 geometry will be defined via Geant4 and exported to Root
-Basic material:  Material:    Basic     density:  2.700 g/cm3   temperature: 273.15 K  pressure:   1.00 atm  RadLength:   8.893 cm 
-   --->  Element: Basic ( )   Z = 13.0   N =  27.0   A =  26.98 g/mole  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
 TestPlacements finished
 Go to Import
 VGM info:   Geant4GM::Factory::Import started ...
@@ -70,47 +68,47 @@ VGM info:    Material:   Vacuum     density:  0.000 kg/m3   temperature:   2.73 
 VGM info:   Importing LV: world
 VGM info:   Importing solid: worldS
 VGM info:   ImportDaughters for world
-VGM info:   Importing LV: volA
+VGM info:   Importing LV: layerA
 VGM info:   Importing solid: boxA
-VGM info:   ImportDaughters for volA
-VGM info:   Importing LV: volB
+VGM info:   ImportDaughters for layerA
+VGM info:   Importing LV: layerB
 VGM info:   Importing solid: boxB
-VGM info:   ImportDaughters for volB
-VGM info:   Importing LV: volC
+VGM info:   ImportDaughters for layerB
+VGM info:   Importing LV: layerC
 VGM info:   Importing solid: boxC
-VGM info:   ImportDaughters for volC
+VGM info:   ImportDaughters for layerC
 VGM info:   Import positions: 
 VGM info:   0th volume: world  
-VGM info:      0th daughter  lv=volA vgmVol=volA
-VGM info:      1th daughter  lv=volA vgmVol=volA
-VGM info:      2th daughter  lv=volA vgmVol=volA
-VGM info:      3th daughter  lv=volA vgmVol=volA
-VGM info:      4th daughter  lv=volA vgmVol=volA
-VGM info:      5th daughter  lv=volA vgmVol=volA
-VGM info:      6th daughter  lv=volA vgmVol=volA
-VGM info:      7th daughter  lv=volA vgmVol=volA
-VGM info:      8th daughter  lv=volA vgmVol=volA
-VGM info:      9th daughter  lv=volA vgmVol=volA
-VGM info:      10th daughter  lv=volA vgmVol=volA
-VGM info:      11th daughter  lv=volA vgmVol=volA
-VGM info:      12th daughter  lv=volA vgmVol=volA
-VGM info:      13th daughter  lv=volA vgmVol=volA
-VGM info:      14th daughter  lv=volA vgmVol=volA
-VGM info:      15th daughter  lv=volA vgmVol=volA
-VGM info:      16th daughter  lv=volA vgmVol=volA
-VGM info:      17th daughter  lv=volA vgmVol=volA
-VGM info:      18th daughter  lv=volA vgmVol=volA
-VGM info:      19th daughter  lv=volA vgmVol=volA
-VGM info:      20th daughter  lv=volA vgmVol=volA
-VGM info:      21th daughter  lv=volA vgmVol=volA
-VGM info:      22th daughter  lv=volA vgmVol=volA
-VGM info:      23th daughter  lv=volA vgmVol=volA
-VGM info:   1th volume: volA  
-VGM info:      0th daughter  lv=volB vgmVol=volB
-VGM info:   2th volume: volB  
-VGM info:      0th daughter  lv=volC vgmVol=volC
-VGM info:      1th daughter  lv=volC vgmVol=volC
-VGM info:   3th volume: volC  
+VGM info:      0th daughter  lv=layerA vgmVol=layerA
+VGM info:      1th daughter  lv=layerA vgmVol=layerA
+VGM info:      2th daughter  lv=layerA vgmVol=layerA
+VGM info:      3th daughter  lv=layerA vgmVol=layerA
+VGM info:      4th daughter  lv=layerA vgmVol=layerA
+VGM info:      5th daughter  lv=layerA vgmVol=layerA
+VGM info:      6th daughter  lv=layerA vgmVol=layerA
+VGM info:      7th daughter  lv=layerA vgmVol=layerA
+VGM info:      8th daughter  lv=layerA vgmVol=layerA
+VGM info:      9th daughter  lv=layerA vgmVol=layerA
+VGM info:      10th daughter  lv=layerA vgmVol=layerA
+VGM info:      11th daughter  lv=layerA vgmVol=layerA
+VGM info:      12th daughter  lv=layerA vgmVol=layerA
+VGM info:      13th daughter  lv=layerA vgmVol=layerA
+VGM info:      14th daughter  lv=layerA vgmVol=layerA
+VGM info:      15th daughter  lv=layerA vgmVol=layerA
+VGM info:      16th daughter  lv=layerA vgmVol=layerA
+VGM info:      17th daughter  lv=layerA vgmVol=layerA
+VGM info:      18th daughter  lv=layerA vgmVol=layerA
+VGM info:      19th daughter  lv=layerA vgmVol=layerA
+VGM info:      20th daughter  lv=layerA vgmVol=layerA
+VGM info:      21th daughter  lv=layerA vgmVol=layerA
+VGM info:      22th daughter  lv=layerA vgmVol=layerA
+VGM info:      23th daughter  lv=layerA vgmVol=layerA
+VGM info:   1th volume: layerA  
+VGM info:      0th daughter  lv=layerB vgmVol=layerB
+VGM info:   2th volume: layerB  
+VGM info:      0th daughter  lv=layerC vgmVol=layerC
+VGM info:      1th daughter  lv=layerC vgmVol=layerC
+VGM info:   3th volume: layerC  
 VGM info:   
 Geant4_GM_Factory factory solids store: 
    0th solid: Box  "worldS"  hx = 6000mm  hy = 1000mm  hz = 6000mm
@@ -119,9 +117,9 @@ Geant4_GM_Factory factory solids store:
    3th solid: Box  "boxC"  hx = 200mm  hy = 2mm  hz = 500mm
 Geant4_GM_Factory factory volumes store: 
    0th: Volume: "world" material "Vacuum" solid "Box"  24 daughters: "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  
-   1th: Volume: "volA" material "Air" solid "Box"  1 daughters: "layerB"  
-   2th: Volume: "volB" material "Uranium" solid "Box"  2 daughters: "layerC"  "layerC"  
-   3th: Volume: "volC" material "Scintillator" solid "Box"  0 daughters: 
+   1th: Volume: "layerA" material "Air" solid "Box"  1 daughters: "layerB"  
+   2th: Volume: "layerB" material "Uranium" solid "Box"  2 daughters: "layerC"  "layerC"  
+   3th: Volume: "layerC" material "Scintillator" solid "Box"  0 daughters: 
 VGM info:   Geant4GM::Factory::Import finished.
 Import finished
 Go to export
@@ -209,13 +207,13 @@ VGM info:      Box  "worldS"  hx = 6000mm  hy = 1000mm  hz = 6000mm
 VGM info:      0th volume: world   material: Vacuum
 VGM info:   Exporting solid: 
 VGM info:      Box  "boxA"  hx = 200mm  hy = 600mm  hz = 500mm
-VGM info:      1th volume: volA   material: Air
+VGM info:      1th volume: layerA   material: Air
 VGM info:   Exporting solid: 
 VGM info:      Box  "boxB"  hx = 200mm  hy = 100mm  hz = 500mm
-VGM info:      2th volume: volB   material: Uranium
+VGM info:      2th volume: layerB   material: Uranium
 VGM info:   Exporting solid: 
 VGM info:      Box  "boxC"  hx = 200mm  hy = 2mm  hz = 500mm
-VGM info:      3th volume: volC   material: Scintillator
+VGM info:      3th volume: layerC   material: Scintillator
 VGM info:   ExportPlacements for 0th volume world
 VGM info:      0th daughter vol = layerA  simple placement: layerA
 VGM info:      1th daughter vol = layerA  simple placement: layerA
@@ -241,10 +239,11 @@ VGM info:      20th daughter vol = layerA  simple placement: layerA
 VGM info:      21th daughter vol = layerA  simple placement: layerA
 VGM info:      22th daughter vol = layerA  simple placement: layerA
 VGM info:      23th daughter vol = layerA  simple placement: layerA
-VGM info:   ExportPlacements for 1th volume volA
+VGM info:   ExportPlacements for 1th volume layerA
 VGM info:      0th daughter vol = layerB  multiple placement - data: 1,  3,  200,  600
-VGM info:   ExportPlacements for 2th volume volB
+VGM info:   ExportPlacements for 2th volume layerB
 VGM info:      0th daughter vol = layerC  simple placement: layerC
 VGM info:      1th daughter vol = layerC  simple placement: layerC
-VGM info:   ExportPlacements for 3th volume volC
+VGM info:   ExportPlacements for 3th volume layerC
 Export finished
+Go to save Root geometry

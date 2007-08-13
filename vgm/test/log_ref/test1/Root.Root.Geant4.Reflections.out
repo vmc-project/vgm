@@ -1,12 +1,12 @@
+Root geometry will be defined via Root and exported to Geant4
 
 *************************************************************
- Geant4 version Name: geant4-08-03    (5-May-2007)
+ Geant4 version Name: geant4-09-00    (29-June-2007)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
 *************************************************************
 
-Root geometry will be defined via Root and exported to Geant4
 TestReflections finished
 Go to Import
 VGM info:   RootGM::Factory::Import started ...
@@ -150,7 +150,7 @@ Root_GM_Factory factory solids store:
    9th solid: Trap  "trapS"  hz = 300mm  theta = 25deg  phi = 35deg  hy1 = 200mm  hx1 = 100mm  hx2 = 150mm  alpha1 = 0deg  hy2 = 200mm  hx3 = 100mm  hx4 = 150mm  alpha2 = 0deg
    10th solid: Trd  "trdS"  hx1 = 200mm  hx2 = 300mm  hy1 = 400mm  hy2 = 500mm  hz = 500mm
    11th solid: Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
-   12th solid: Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = 330deg  dphi = 280deg  nlow = (0, 6.4, -7.7)  nhigh = (0, 0.9, 8.7)
+   12th solid: Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = 330deg  dphi = 280deg  nlow = (0, 0.64, -0.77)  nhigh = (0, 0.09, 0.87)
    13th solid: Extruded  "TGeoXtru"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
@@ -273,7 +273,7 @@ VGM info:   Exporting solid:
 VGM info:      Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
 VGM info:      11th volume: tubs   material: Basic
 VGM info:   Exporting solid: 
-VGM info:      Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = 330deg  dphi = 280deg  nlow = (0, 6.4, -7.7)  nhigh = (0, 0.9, 8.7)
+VGM info:      Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = 330deg  dphi = 280deg  nlow = (0, 0.64, -0.77)  nhigh = (0, 0.09, 0.87)
 VGM info:      12th volume: ctubs   material: Basic
 VGM info:   Exporting solid: 
 VGM info:      Extruded  "TGeoXtru"
@@ -437,3 +437,4 @@ VGM info:   ExportPlacements for 12th volume ctubs
 VGM info:   ExportPlacements for 13th volume xtru1
 VGM info:   ExportPlacements for 14th volume xtru2
 Export finished
+Go to save Root geometry

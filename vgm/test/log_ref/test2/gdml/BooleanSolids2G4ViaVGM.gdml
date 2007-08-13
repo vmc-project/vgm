@@ -44,52 +44,52 @@
          startphi="    0.0000"  deltaphi="  360.0000" />
 
       <box  lunit="cm" aunit="degree"
-         name="solid1Isolid2_constA_s"
+         name="intersection_constA_s"
          x="  100.0000"  y="  100.0000"  z="  100.0000" />
 
       <cone  lunit="cm" aunit="degree"
-         name="solid1Isolid2_constB_s"
+         name="intersection_constB_s"
          rmin1="   10.0000"  rmin2="   20.0000"  rmax1="   30.0000"  rmax2="   40.0000"
          z="  200.0000"
          startphi="    0.0000"  deltaphi="  360.0000" />
 
-      <intersection name="solid1Isolid2_s" >
-         <first  ref="solid1Isolid2_constA_s" />
-         <second ref="solid1Isolid2_constB_s" />
+      <intersection name="intersection_solid1_solid2_s" >
+         <first  ref="intersection_constA_s" />
+         <second ref="intersection_constB_s" />
          <position  name="pos_4"     x="    20.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
          <rotation  name="rot_2"     x="   -39.2315"  y="    37.7612"  z="   -26.5651"  unit="degree" />
       </intersection>
 
       <box  lunit="cm" aunit="degree"
-         name="solid1Ssolid2_constA_s"
+         name="subtraction_constA_s"
          x="  100.0000"  y="  100.0000"  z="  100.0000" />
 
       <cone  lunit="cm" aunit="degree"
-         name="solid1Ssolid2_constB_s"
+         name="subtraction_constB_s"
          rmin1="   10.0000"  rmin2="   20.0000"  rmax1="   30.0000"  rmax2="   40.0000"
          z="  200.0000"
          startphi="    0.0000"  deltaphi="  360.0000" />
 
-      <subtraction name="solid1Ssolid2_s" >
-         <first  ref="solid1Ssolid2_constA_s" />
-         <second ref="solid1Ssolid2_constB_s" />
+      <subtraction name="subtraction_solid1_solid2_s" >
+         <first  ref="subtraction_constA_s" />
+         <second ref="subtraction_constB_s" />
          <position  name="pos_4"     x="    20.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
          <rotation  name="rot_2"     x="   -39.2315"  y="    37.7612"  z="   -26.5651"  unit="degree" />
       </subtraction>
 
       <box  lunit="cm" aunit="degree"
-         name="solid1Usolid2_constA_s"
+         name="union_constA_s"
          x="  100.0000"  y="  100.0000"  z="  100.0000" />
 
       <cone  lunit="cm" aunit="degree"
-         name="solid1Usolid2_constB_s"
+         name="union_constB_s"
          rmin1="   10.0000"  rmin2="   20.0000"  rmax1="   30.0000"  rmax2="   40.0000"
          z="  200.0000"
          startphi="    0.0000"  deltaphi="  360.0000" />
 
-      <union name="solid1Usolid2_s" >
-         <first  ref="solid1Usolid2_constA_s" />
-         <second ref="solid1Usolid2_constB_s" />
+      <union name="union_solid1_solid2_s" >
+         <first  ref="union_constA_s" />
+         <second ref="union_constB_s" />
          <position  name="pos_4"     x="    20.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
          <rotation  name="rot_2"     x="   -39.2315"  y="    37.7612"  z="   -26.5651"  unit="degree" />
       </union>
@@ -107,19 +107,19 @@
          <solidref ref="solid2_s"/>
       </volume>
 
-      <volume name="solid1Isolid2">
+      <volume name="intersection_solid1_solid2">
          <materialref ref="Basic"/>
-         <solidref ref="solid1Isolid2_s"/>
+         <solidref ref="intersection_solid1_solid2_s"/>
       </volume>
 
-      <volume name="solid1Ssolid2">
+      <volume name="subtraction_solid1_solid2">
          <materialref ref="Basic"/>
-         <solidref ref="solid1Ssolid2_s"/>
+         <solidref ref="subtraction_solid1_solid2_s"/>
       </volume>
 
-      <volume name="solid1Usolid2">
+      <volume name="union_solid1_solid2">
          <materialref ref="Basic"/>
-         <solidref ref="solid1Usolid2_s"/>
+         <solidref ref="union_solid1_solid2_s"/>
       </volume>
 
       <volume name="world">
@@ -136,17 +136,17 @@
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
-            <volumeref ref="solid1Isolid2"/>
+            <volumeref ref="intersection_solid1_solid2"/>
                <positionref ref="pos_3"/>
                <rotationref ref="rot_1"/>
          </physvol>
          <physvol>
-            <volumeref ref="solid1Ssolid2"/>
+            <volumeref ref="subtraction_solid1_solid2"/>
                <positionref ref="pos_5"/>
                <rotationref ref="rot_1"/>
          </physvol>
          <physvol>
-            <volumeref ref="solid1Usolid2"/>
+            <volumeref ref="union_solid1_solid2"/>
                <positionref ref="pos_6"/>
                <rotationref ref="rot_1"/>
          </physvol>

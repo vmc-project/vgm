@@ -1,14 +1,12 @@
+Geant4 geometry will be defined via Geant4 and exported to Root
 
 *************************************************************
- Geant4 version Name: geant4-08-03    (5-May-2007)
+ Geant4 version Name: geant4-09-00    (29-June-2007)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
 *************************************************************
 
-Geant4 geometry will be defined via Geant4 and exported to Root
-Basic material:  Material:    Basic     density:  2.700 g/cm3   temperature: 273.15 K  pressure:   1.00 atm  RadLength:   8.893 cm 
-   --->  Element: Basic ( )   Z = 13.0   N =  27.0   A =  26.98 g/mole  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
 TestReflections finished
 Go to Import
 VGM info:   Geant4GM::Factory::Import started ...
@@ -798,3 +796,4 @@ VGM info:   ExportPlacements for 26th volume xtru1_refl
 VGM info:   ExportPlacements for 27th volume xtru2
 VGM info:   ExportPlacements for 28th volume xtru2_refl
 Export finished
+Go to save Root geometry

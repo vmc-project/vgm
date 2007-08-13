@@ -1,14 +1,12 @@
+Geant4 geometry will be defined via Geant4
 
 *************************************************************
- Geant4 version Name: geant4-08-03    (5-May-2007)
+ Geant4 version Name: geant4-09-00    (29-June-2007)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
 *************************************************************
 
-Geant4 geometry will be defined via Geant4
-Basic material:  Material:    Basic     density:  2.700 g/cm3   temperature: 273.15 K  pressure:   1.00 atm  RadLength:   8.893 cm 
-   --->  Element: Basic ( )   Z = 13.0   N =  27.0   A =  26.98 g/mole  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
 TestBooleanSolids1 finished
 Go to Import
 Import finished
@@ -44,7 +42,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -2.33e+03     7.94 2.88e+03         1        0        0         0       world initStep
-    1 -2.2e+03      315  2.5e+03         1        0      507       507 solid1Isolid2 Transportation
+    1 -2.2e+03      315  2.5e+03         1        0      507       507 intersection_solid1_solid2 Transportation
     2 -2.18e+03      354 2.45e+03         1        0     64.3       572       world Transportation
     3 -1.91e+03    1e+03 1.64e+03         1        0 1.07e+03  1.64e+03  OutOfWorld Transportation
 
@@ -118,9 +116,9 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      636      318 3.37e+03         1        0        0         0       world initStep
-    1      250     -156  2.5e+03         1        0 1.06e+03  1.06e+03 solid1Ssolid2 Transportation
+    1      250     -156  2.5e+03         1        0 1.06e+03  1.06e+03 subtraction_solid1_solid2 Transportation
     2      239     -169 2.47e+03         1        0     30.5   1.1e+03       world Transportation
-    3       98     -343 2.16e+03         1        0      390  1.49e+03 solid1Ssolid2 Transportation
+    3       98     -343 2.16e+03         1        0      390  1.49e+03 subtraction_solid1_solid2 Transportation
     4    -29.8     -500 1.87e+03         1        0      353  1.84e+03       world Transportation
     5     -437   -1e+03      947         1        0 1.12e+03  2.96e+03  OutOfWorld Transportation
 
@@ -188,7 +186,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 1.92e+03     -113 2.02e+03         1        0        0         0       world initStep
-    1    2e+03     -268 2.12e+03         1        0      200       200 solid1Usolid2 Transportation
+    1    2e+03     -268 2.12e+03         1        0      200       200 union_solid1_solid2 Transportation
     2 2.12e+03     -500 2.27e+03         1        0      300       499       world Transportation
     3 2.38e+03   -1e+03 2.58e+03         1        0      645  1.14e+03  OutOfWorld Transportation
 
@@ -302,7 +300,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -1.46e+03      571 1.25e+03         1        0        0         0       world initStep
-    1 -2.08e+03     -123  1.5e+03         1        0      961       961 solid1Isolid2 Transportation
+    1 -2.08e+03     -123  1.5e+03         1        0      961       961 intersection_solid1_solid2 Transportation
     2 -2.26e+03     -326 1.57e+03         1        0      282  1.24e+03       world Transportation
     3 -2.86e+03   -1e+03 1.81e+03         1        0      934  2.18e+03  OutOfWorld Transportation
 
@@ -319,7 +317,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 *********************************************************************************************************
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
-    0 2.79e+03      243 1.78e+03         1        0        0         0 solid1Usolid2 initStep
+    0 2.79e+03      243 1.78e+03         1        0        0         0 union_solid1_solid2 initStep
     1 2.49e+03      500 1.92e+03         1        0      415       415       world Transportation
     2 1.93e+03    1e+03  2.2e+03         1        0      808  1.22e+03  OutOfWorld Transportation
 
@@ -427,7 +425,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 2.84e+03     -553 1.78e+03         1        0        0         0       world initStep
-    1 2.86e+03     -500 1.73e+03         1        0     80.3      80.3 solid1Usolid2 Transportation
+    1 2.86e+03     -500 1.73e+03         1        0     80.3      80.3 union_solid1_solid2 Transportation
     2 2.94e+03     -291  1.5e+03         1        0      318       399       world Transportation
     3 3.43e+03    1e+03      107         1        0 1.96e+03  2.36e+03  OutOfWorld Transportation
 
@@ -444,7 +442,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 *********************************************************************************************************
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
-    0     -368     76.8 2.08e+03         1        0        0         0 solid1Ssolid2 initStep
+    0     -368     76.8 2.08e+03         1        0        0         0 subtraction_solid1_solid2 initStep
     1     -500      161 2.01e+03         1        0      173       173       world Transportation
     2 -1.81e+03    1e+03 1.29e+03         1        0 1.72e+03  1.89e+03  OutOfWorld Transportation
 
@@ -562,9 +560,9 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -966     -681  1.8e+03         1        0        0         0       world initStep
-    1 -2.01e+03     -183 1.88e+03         1        0 1.16e+03  1.16e+03 solid1Isolid2 Transportation
+    1 -2.01e+03     -183 1.88e+03         1        0 1.16e+03  1.16e+03 intersection_solid1_solid2 Transportation
     2 -2.19e+03    -95.7 1.89e+03         1        0      203  1.36e+03       world Transportation
-    3 -2.44e+03     24.4 1.91e+03         1        0      280  1.64e+03 solid1Isolid2 Transportation
+    3 -2.44e+03     24.4 1.91e+03         1        0      280  1.64e+03 intersection_solid1_solid2 Transportation
     4 -2.63e+03      112 1.92e+03         1        0      204  1.85e+03       world Transportation
     5   -4e+03      767 2.03e+03         1        0 1.52e+03  3.37e+03  OutOfWorld Transportation
 
@@ -607,7 +605,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -432     -112  3.8e+03         1        0        0         0       world initStep
-    1      190     -2.4  2.5e+03         1        0 1.44e+03  1.44e+03 solid1Ssolid2 Transportation
+    1      190     -2.4  2.5e+03         1        0 1.44e+03  1.44e+03 subtraction_solid1_solid2 Transportation
     2      355     26.6 2.15e+03         1        0      384  1.83e+03       world Transportation
     3  3.3e+03      545   -4e+03         1        0 6.84e+03  8.67e+03  OutOfWorld Transportation
 
@@ -860,7 +858,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 1.21e+03      684 2.13e+03         1        0        0         0       world initStep
-    1    2e+03     81.4 1.64e+03         1        0 1.11e+03  1.11e+03 solid1Usolid2 Transportation
+    1    2e+03     81.4 1.64e+03         1        0 1.11e+03  1.11e+03 union_solid1_solid2 Transportation
     2 2.22e+03    -82.4  1.5e+03         1        0      303  1.42e+03       world Transportation
     3 3.43e+03   -1e+03      742         1        0  1.7e+03  3.11e+03  OutOfWorld Transportation
 
@@ -943,9 +941,9 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 *********************************************************************************************************
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
-    0      187     -150 2.45e+03         1        0        0         0 solid1Ssolid2 initStep
+    0      187     -150 2.45e+03         1        0        0         0 subtraction_solid1_solid2 initStep
     1     40.5     42.3  2.3e+03         1        0      283       283       world Transportation
-    2      -89      212 2.17e+03         1        0      251       534 solid1Ssolid2 Transportation
+    2      -89      212 2.17e+03         1        0      251       534 subtraction_solid1_solid2 Transportation
     3     -309      500 1.95e+03         1        0      425       959       world Transportation
     4     -690    1e+03 1.56e+03         1        0      738   1.7e+03  OutOfWorld Transportation
 
@@ -1165,7 +1163,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0  1.2e+03      852 3.15e+03         1        0        0         0       world initStep
-    1 2.63e+03      500  2.2e+03         1        0 1.75e+03  1.75e+03 solid1Usolid2 Transportation
+    1 2.63e+03      500  2.2e+03         1        0 1.75e+03  1.75e+03 union_solid1_solid2 Transportation
     2    3e+03      409 1.96e+03         1        0      450   2.2e+03       world Transportation
     3    4e+03      163 1.29e+03         1        0 1.23e+03  3.43e+03  OutOfWorld Transportation
 
@@ -1263,7 +1261,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 3.78e+03      309  2.2e+03         1        0        0         0       world initStep
-    1 3.08e+03    -32.4 2.55e+03         1        0      861       861 solid1Usolid2 Transportation
+    1 3.08e+03    -32.4 2.55e+03         1        0      861       861 union_solid1_solid2 Transportation
     2 2.48e+03     -321 2.84e+03         1        0      730  1.59e+03       world Transportation
     3 1.06e+03   -1e+03 3.54e+03         1        0 1.71e+03  3.31e+03  OutOfWorld Transportation
 
@@ -1366,7 +1364,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     26.3      918 3.48e+03         1        0        0         0       world initStep
-    1     -388      124  2.5e+03         1        0 1.33e+03  1.33e+03 solid1Ssolid2 Transportation
+    1     -388      124  2.5e+03         1        0 1.33e+03  1.33e+03 subtraction_solid1_solid2 Transportation
     2     -500      -91 2.24e+03         1        0      359  1.69e+03       world Transportation
     3     -974   -1e+03 1.12e+03         1        0 1.52e+03   3.2e+03  OutOfWorld Transportation
 
@@ -1400,9 +1398,9 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -371     -165 3.83e+03         1        0        0         0       world initStep
-    1     89.5     82.1  2.5e+03         1        0 1.43e+03  1.43e+03 solid1Ssolid2 Transportation
+    1     89.5     82.1  2.5e+03         1        0 1.43e+03  1.43e+03 subtraction_solid1_solid2 Transportation
     2      224      154 2.11e+03         1        0      415  1.84e+03       world Transportation
-    3      410      254 1.58e+03         1        0      575  2.42e+03 solid1Ssolid2 Transportation
+    3      410      254 1.58e+03         1        0      575  2.42e+03 subtraction_solid1_solid2 Transportation
     4      437      268  1.5e+03         1        0     84.9   2.5e+03       world Transportation
     5  1.8e+03    1e+03 -2.43e+03         1        0 4.23e+03  6.73e+03  OutOfWorld Transportation
 
@@ -1451,7 +1449,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 *********************************************************************************************************
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
-    0 2.61e+03     25.1 1.92e+03         1        0        0         0 solid1Usolid2 initStep
+    0 2.61e+03     25.1 1.92e+03         1        0        0         0 union_solid1_solid2 initStep
     1    3e+03      390 1.66e+03         1        0      593       593       world Transportation
     2 3.65e+03    1e+03 1.23e+03         1        0      991  1.58e+03  OutOfWorld Transportation
 
@@ -1548,7 +1546,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 *********************************************************************************************************
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
-    0      137     35.3 2.49e+03         1        0        0         0 solid1Ssolid2 initStep
+    0      137     35.3 2.49e+03         1        0        0         0 subtraction_solid1_solid2 initStep
     1      134     39.9  2.5e+03         1        0      9.9       9.9       world Transportation
     2     -368      879    4e+03         1        0 1.79e+03   1.8e+03  OutOfWorld Transportation
 
@@ -1702,7 +1700,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 2.12e+03    -94.2 1.22e+03         1        0        0         0       world initStep
-    1      450      448  1.5e+03         1        0 1.78e+03  1.78e+03 solid1Ssolid2 Transportation
+    1      450      448  1.5e+03         1        0 1.78e+03  1.78e+03 subtraction_solid1_solid2 Transportation
     2      290      500 1.53e+03         1        0      171  1.95e+03       world Transportation
     3 -1.25e+03    1e+03 1.79e+03         1        0 1.64e+03  3.58e+03  OutOfWorld Transportation
 
@@ -1848,7 +1846,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 3.69e+03     -104 -1.09e+03         1        0        0         0       world initStep
-    1 2.97e+03      216  1.5e+03         1        0 2.71e+03  2.71e+03 solid1Usolid2 Transportation
+    1 2.97e+03      216  1.5e+03         1        0 2.71e+03  2.71e+03 union_solid1_solid2 Transportation
     2  2.6e+03      378 2.81e+03         1        0 1.37e+03  4.08e+03       world Transportation
     3 2.27e+03      525    4e+03         1        0 1.25e+03  5.32e+03  OutOfWorld Transportation
 
@@ -1970,7 +1968,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 2.25e+03     -271  2.5e+03         1        0        0         0       world initStep
-    1 2.24e+03     -274  2.5e+03         1        0       10        10 solid1Usolid2 Transportation
+    1 2.24e+03     -274  2.5e+03         1        0       10        10 union_solid1_solid2 Transportation
     2    2e+03     -335 2.44e+03         1        0      252       262       world Transportation
     3     -590   -1e+03 1.84e+03         1        0 2.74e+03     3e+03  OutOfWorld Transportation
 
@@ -2171,7 +2169,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 *********************************************************************************************************
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
-    0 2.92e+03     -288 1.97e+03         1        0        0         0 solid1Usolid2 initStep
+    0 2.92e+03     -288 1.97e+03         1        0        0         0 union_solid1_solid2 initStep
     1  2.8e+03      500 2.02e+03         1        0      798       798       world Transportation
     2 2.73e+03    1e+03 2.06e+03         1        0      506   1.3e+03  OutOfWorld Transportation
 
@@ -2440,7 +2438,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 *********************************************************************************************************
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
-    0 2.95e+03      415 2.06e+03         1        0        0         0 solid1Usolid2 initStep
+    0 2.95e+03      415 2.06e+03         1        0        0         0 union_solid1_solid2 initStep
     1    2e+03      458 2.47e+03         1        0 1.03e+03  1.03e+03       world Transportation
     2 -1.48e+03      615    4e+03         1        0 3.81e+03  4.84e+03  OutOfWorld Transportation
 
@@ -2524,9 +2522,9 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -2.65e+03     -329 1.88e+03         1        0        0         0       world initStep
-    1 -2.53e+03     -255 1.82e+03         1        0      158       158 solid1Isolid2 Transportation
+    1 -2.53e+03     -255 1.82e+03         1        0      158       158 intersection_solid1_solid2 Transportation
     2 -2.32e+03     -133 1.71e+03         1        0      259       417       world Transportation
-    3 -2.18e+03    -44.8 1.64e+03         1        0      189       606 solid1Isolid2 Transportation
+    3 -2.18e+03    -44.8 1.64e+03         1        0      189       606 intersection_solid1_solid2 Transportation
     4   -2e+03     60.7 1.54e+03         1        0      225       831       world Transportation
     5     -432    1e+03      725         1        0    2e+03  2.83e+03  OutOfWorld Transportation
 
@@ -2544,7 +2542,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -2.37e+03    -53.7     -175         1        0        0         0       world initStep
-    1 -2.21e+03     -291  1.5e+03         1        0  1.7e+03   1.7e+03 solid1Isolid2 Transportation
+    1 -2.21e+03     -291  1.5e+03         1        0  1.7e+03   1.7e+03 intersection_solid1_solid2 Transportation
     2 -2.19e+03     -316 1.67e+03         1        0      174  1.87e+03       world Transportation
     3 -1.97e+03     -646    4e+03         1        0 2.36e+03  4.24e+03  OutOfWorld Transportation
 
@@ -2603,7 +2601,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      516      280 1.33e+03         1        0        0         0       world initStep
-    1      353      439  1.5e+03         1        0      282       282 solid1Ssolid2 Transportation
+    1      353      439  1.5e+03         1        0      282       282 subtraction_solid1_solid2 Transportation
     2      290      500 1.56e+03         1        0      108       390       world Transportation
     3     -224    1e+03 2.08e+03         1        0      886  1.28e+03  OutOfWorld Transportation
 
@@ -2811,7 +2809,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -2.18e+03     -394 2.33e+03         1        0        0         0       world initStep
-    1 -2.29e+03     -361 2.23e+03         1        0      154       154 solid1Isolid2 Transportation
+    1 -2.29e+03     -361 2.23e+03         1        0      154       154 intersection_solid1_solid2 Transportation
     2 -2.47e+03     -312 2.08e+03         1        0      235       389       world Transportation
     3   -4e+03      122      789         1        0 2.05e+03  2.44e+03  OutOfWorld Transportation
 
@@ -2877,7 +2875,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -1.66e+03     -126     -770         1        0        0         0       world initStep
-    1     79.7     -488  1.5e+03         1        0 2.88e+03  2.88e+03 solid1Ssolid2 Transportation
+    1     79.7     -488  1.5e+03         1        0 2.88e+03  2.88e+03 subtraction_solid1_solid2 Transportation
     2      139     -500 1.58e+03         1        0       98  2.98e+03       world Transportation
     3 1.99e+03     -886    4e+03         1        0 3.07e+03  6.05e+03  OutOfWorld Transportation
 
@@ -3030,7 +3028,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 *********************************************************************************************************
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
-    0    -14.6      371 1.59e+03         1        0        0         0 solid1Ssolid2 initStep
+    0    -14.6      371 1.59e+03         1        0        0         0 subtraction_solid1_solid2 initStep
     1      115      500 1.86e+03         1        0      326       326       world Transportation
     2      618    1e+03  2.9e+03         1        0 1.26e+03  1.59e+03  OutOfWorld Transportation
 
@@ -3039,7 +3037,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 *********************************************************************************************************
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
-    0 2.44e+03      166 1.28e+03         1        0        0         0 solid1Usolid2 initStep
+    0 2.44e+03      166 1.28e+03         1        0        0         0 union_solid1_solid2 initStep
     1 2.43e+03      163 1.28e+03         1        0     10.6      10.6       world Transportation
     2 -1.73e+03   -1e+03 1.21e+03         1        0 4.32e+03  4.33e+03  OutOfWorld Transportation
 
@@ -3338,7 +3336,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 *********************************************************************************************************
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
-    0     -268     -157 1.52e+03         1        0        0         0 solid1Ssolid2 initStep
+    0     -268     -157 1.52e+03         1        0        0         0 subtraction_solid1_solid2 initStep
     1     -250     -164  1.5e+03         1        0     31.6      31.6       world Transportation
     2 1.69e+03   -1e+03 -1.11e+03         1        0 3.36e+03  3.39e+03  OutOfWorld Transportation
 
@@ -3406,9 +3404,9 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -293     -430      933         1        0        0         0       world initStep
-    1     -119     -239  1.5e+03         1        0      623       623 solid1Ssolid2 Transportation
+    1     -119     -239  1.5e+03         1        0      623       623 subtraction_solid1_solid2 Transportation
     2    -73.6     -189 1.65e+03         1        0      163       786       world Transportation
-    3     54.5    -48.1 2.07e+03         1        0      458  1.24e+03 solid1Ssolid2 Transportation
+    3     54.5    -48.1 2.07e+03         1        0      458  1.24e+03 subtraction_solid1_solid2 Transportation
     4      188     98.6  2.5e+03         1        0      478  1.72e+03       world Transportation
     5      649      605    4e+03         1        0 1.65e+03  3.37e+03  OutOfWorld Transportation
 
@@ -3514,7 +3512,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -3.43e+03     -739      213         1        0        0         0       world initStep
-    1 -2.58e+03     -203 1.88e+03         1        0 1.95e+03  1.95e+03 solid1Isolid2 Transportation
+    1 -2.58e+03     -203 1.88e+03         1        0 1.95e+03  1.95e+03 intersection_solid1_solid2 Transportation
     2 -2.42e+03     -104 2.19e+03         1        0      360  2.31e+03       world Transportation
     3 -1.5e+03      478    4e+03         1        0 2.12e+03  4.42e+03  OutOfWorld Transportation
 
@@ -3622,7 +3620,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 2.88e+03    -18.1 2.68e+03         1        0        0         0       world initStep
-    1 2.82e+03     -129 2.54e+03         1        0      185       185 solid1Usolid2 Transportation
+    1 2.82e+03     -129 2.54e+03         1        0      185       185 union_solid1_solid2 Transportation
     2 2.63e+03     -500 2.09e+03         1        0      615       801       world Transportation
     3 2.36e+03   -1e+03 1.48e+03         1        0      831  1.63e+03  OutOfWorld Transportation
 
@@ -3738,9 +3736,9 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -2.13e+03      366 1.59e+03         1        0        0         0       world initStep
-    1 -2.15e+03      294 1.58e+03         1        0     76.6      76.6 solid1Isolid2 Transportation
+    1 -2.15e+03      294 1.58e+03         1        0     76.6      76.6 intersection_solid1_solid2 Transportation
     2 -2.22e+03     97.8 1.54e+03         1        0      210       286       world Transportation
-    3 -2.29e+03     -125  1.5e+03         1        0      238       525 solid1Isolid2 Transportation
+    3 -2.29e+03     -125  1.5e+03         1        0      238       525 intersection_solid1_solid2 Transportation
     4 -2.3e+03     -152  1.5e+03         1        0     29.1       554       world Transportation
     5 -2.59e+03   -1e+03 1.35e+03         1        0      907  1.46e+03  OutOfWorld Transportation
 
@@ -3871,7 +3869,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0  3.5e+03     -374 2.71e+03         1        0        0         0       world initStep
-    1 3.04e+03     -139 2.29e+03         1        0      673       673 solid1Usolid2 Transportation
+    1 3.04e+03     -139 2.29e+03         1        0      673       673 union_solid1_solid2 Transportation
     2 2.19e+03      290  1.5e+03         1        0 1.23e+03   1.9e+03       world Transportation
     3      798    1e+03      203         1        0 2.03e+03  3.94e+03  OutOfWorld Transportation
 
@@ -4035,7 +4033,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 1.06e+03     -225 1.17e+03         1        0        0         0       world initStep
-    1    2e+03     -441 1.54e+03         1        0 1.03e+03  1.03e+03 solid1Usolid2 Transportation
+    1    2e+03     -441 1.54e+03         1        0 1.03e+03  1.03e+03 union_solid1_solid2 Transportation
     2 2.25e+03     -500 1.64e+03         1        0      281  1.31e+03       world Transportation
     3    4e+03     -904 2.33e+03         1        0 1.92e+03  3.23e+03  OutOfWorld Transportation
 
@@ -4145,7 +4143,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 3.88e+03    -9.22 1.55e+03         1        0        0         0       world initStep
-    1    3e+03     -314  1.7e+03         1        0      939       939 solid1Usolid2 Transportation
+    1    3e+03     -314  1.7e+03         1        0      939       939 union_solid1_solid2 Transportation
     2 2.47e+03     -500 1.79e+03         1        0      573  1.51e+03       world Transportation
     3 1.03e+03   -1e+03 2.03e+03         1        0 1.54e+03  3.05e+03  OutOfWorld Transportation
 
@@ -4273,7 +4271,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      512     -639  2.8e+03         1        0        0         0       world initStep
-    1      353     -500 2.36e+03         1        0      484       484 solid1Ssolid2 Transportation
+    1      353     -500 2.36e+03         1        0      484       484 subtraction_solid1_solid2 Transportation
     2      174     -343 1.87e+03         1        0      547  1.03e+03       world Transportation
     3 -1.36e+03    1e+03 -2.33e+03         1        0 4.67e+03   5.7e+03  OutOfWorld Transportation
 
@@ -4282,9 +4280,9 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 *********************************************************************************************************
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
-    0     -176      193 2.09e+03         1        0        0         0 solid1Ssolid2 initStep
+    0     -176      193 2.09e+03         1        0        0         0 subtraction_solid1_solid2 initStep
     1     -106      187 2.17e+03         1        0      105       105       world Transportation
-    2      153      166 2.45e+03         1        0      383       488 solid1Ssolid2 Transportation
+    2      153      166 2.45e+03         1        0      383       488 subtraction_solid1_solid2 Transportation
     3      201      162  2.5e+03         1        0     71.8       559       world Transportation
     4 1.58e+03     49.3    4e+03         1        0 2.04e+03   2.6e+03  OutOfWorld Transportation
 
@@ -4439,7 +4437,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0  3.4e+03       11 1.26e+03         1        0        0         0       world initStep
-    1    3e+03      148 1.55e+03         1        0      509       509 solid1Usolid2 Transportation
+    1    3e+03      148 1.55e+03         1        0      509       509 union_solid1_solid2 Transportation
     2    2e+03      493 2.26e+03         1        0 1.28e+03  1.78e+03       world Transportation
     3      525    1e+03 3.31e+03         1        0 1.88e+03  3.67e+03  OutOfWorld Transportation
 
@@ -4520,7 +4518,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 *********************************************************************************************************
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
-    0 2.63e+03     -227 1.96e+03         1        0        0         0 solid1Usolid2 initStep
+    0 2.63e+03     -227 1.96e+03         1        0        0         0 union_solid1_solid2 initStep
     1 2.36e+03     -492  1.5e+03         1        0      599       599       world Transportation
     2 1.84e+03   -1e+03      609         1        0 1.15e+03  1.75e+03  OutOfWorld Transportation
 
@@ -4545,9 +4543,9 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 *********************************************************************************************************
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
-    0      282      -70 2.12e+03         1        0        0         0 solid1Ssolid2 initStep
+    0      282      -70 2.12e+03         1        0        0         0 subtraction_solid1_solid2 initStep
     1     51.9    -57.2 2.17e+03         1        0      237       237       world Transportation
-    2     -159    -45.5 2.23e+03         1        0      218       455 solid1Ssolid2 Transportation
+    2     -159    -45.5 2.23e+03         1        0      218       455 subtraction_solid1_solid2 Transportation
     3     -500    -26.4 2.32e+03         1        0      353       808       world Transportation
     4   -4e+03      169 3.21e+03         1        0 3.62e+03  4.43e+03  OutOfWorld Transportation
 
@@ -4647,7 +4645,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      666      496 2.67e+03         1        0        0         0       world initStep
-    1 2.46e+03     -180 1.02e+03         1        0 2.53e+03  2.53e+03 solid1Usolid2 Transportation
+    1 2.46e+03     -180 1.02e+03         1        0 2.53e+03  2.53e+03 union_solid1_solid2 Transportation
     2 2.48e+03     -187    1e+03         1        0       26  2.55e+03       world Transportation
     3    4e+03     -761     -400         1        0 2.15e+03   4.7e+03  OutOfWorld Transportation
 
@@ -4697,9 +4695,9 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 1.82e+03     -231  1.4e+03         1        0        0         0       world initStep
-    1    2e+03     -216 1.77e+03         1        0      407       407 solid1Usolid2 Transportation
+    1    2e+03     -216 1.77e+03         1        0      407       407 union_solid1_solid2 Transportation
     2 2.36e+03     -186  2.5e+03         1        0      815  1.22e+03       world Transportation
-    3 2.37e+03     -185 2.53e+03         1        0     29.2  1.25e+03 solid1Usolid2 Transportation
+    3 2.37e+03     -185 2.53e+03         1        0     29.2  1.25e+03 union_solid1_solid2 Transportation
     4 2.59e+03     -167 2.97e+03         1        0      499  1.75e+03       world Transportation
     5  3.1e+03     -126    4e+03         1        0 1.14e+03  2.89e+03  OutOfWorld Transportation
 
@@ -4791,7 +4789,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      502      924 1.65e+03         1        0        0         0       world initStep
-    1    2e+03      -43 1.69e+03         1        0 1.78e+03  1.78e+03 solid1Usolid2 Transportation
+    1    2e+03      -43 1.69e+03         1        0 1.78e+03  1.78e+03 union_solid1_solid2 Transportation
     2 2.71e+03     -500 1.71e+03         1        0      843  2.63e+03       world Transportation
     3 3.48e+03   -1e+03 1.74e+03         1        0      922  3.55e+03  OutOfWorld Transportation
 
@@ -4850,9 +4848,9 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 *********************************************************************************************************
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
-    0    -87.3      198 1.92e+03         1        0        0         0 solid1Ssolid2 initStep
+    0    -87.3      198 1.92e+03         1        0        0         0 subtraction_solid1_solid2 initStep
     1    -86.6      194 1.92e+03         1        0     5.05      5.05       world Transportation
-    2     9.83     -316 2.38e+03         1        0      690       695 solid1Ssolid2 Transportation
+    2     9.83     -316 2.38e+03         1        0      690       695 subtraction_solid1_solid2 Transportation
     3     36.1     -455  2.5e+03         1        0      188       883       world Transportation
     4      139   -1e+03 2.99e+03         1        0      738  1.62e+03  OutOfWorld Transportation
 
@@ -4996,7 +4994,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -2.45e+03     -335 2.11e+03         1        0        0         0       world initStep
-    1 -2.44e+03     -328  2.1e+03         1        0     15.7      15.7 solid1Isolid2 Transportation
+    1 -2.44e+03     -328  2.1e+03         1        0     15.7      15.7 intersection_solid1_solid2 Transportation
     2   -2e+03    -36.1  1.8e+03         1        0      607       622       world Transportation
     3     -448    1e+03      716         1        0 2.16e+03  2.78e+03  OutOfWorld Transportation
 
@@ -5192,7 +5190,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      833      841 1.36e+03         1        0        0         0       world initStep
-    1    2e+03     -467 2.29e+03         1        0 1.99e+03  1.99e+03 solid1Usolid2 Transportation
+    1    2e+03     -467 2.29e+03         1        0 1.99e+03  1.99e+03 union_solid1_solid2 Transportation
     2 2.03e+03     -500 2.31e+03         1        0     49.7  2.03e+03       world Transportation
     3 2.48e+03   -1e+03 2.67e+03         1        0      759  2.79e+03  OutOfWorld Transportation
 
@@ -5463,7 +5461,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      354     -326 2.49e+03         1        0        0         0       world initStep
-    1      358     -340  2.5e+03         1        0     14.5      14.5 solid1Ssolid2 Transportation
+    1      358     -340  2.5e+03         1        0     14.5      14.5 subtraction_solid1_solid2 Transportation
     2      373     -394  2.5e+03         1        0     56.4      70.9       world Transportation
     3      545   -1e+03 2.55e+03         1        0      632       703  OutOfWorld Transportation
 
@@ -5569,7 +5567,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -162     -458 2.54e+03         1        0        0         0       world initStep
-    1     -205     -438  2.5e+03         1        0     60.8      60.8 solid1Ssolid2 Transportation
+    1     -205     -438  2.5e+03         1        0     60.8      60.8 subtraction_solid1_solid2 Transportation
     2     -500     -301 2.23e+03         1        0      424       485       world Transportation
     3 -3.3e+03    1e+03     -344         1        0 4.02e+03   4.5e+03  OutOfWorld Transportation
 
@@ -5698,7 +5696,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 *********************************************************************************************************
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
-    0     -373      101 2.28e+03         1        0        0         0 solid1Ssolid2 initStep
+    0     -373      101 2.28e+03         1        0        0         0 subtraction_solid1_solid2 initStep
     1     -285      261  2.5e+03         1        0      286       286       world Transportation
     2      118    1e+03 3.51e+03         1        0 1.31e+03   1.6e+03  OutOfWorld Transportation
 
@@ -5748,7 +5746,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      189     -485 1.25e+03         1        0        0         0       world initStep
-    1    -68.5     -373  1.5e+03         1        0      376       376 solid1Ssolid2 Transportation
+    1    -68.5     -373  1.5e+03         1        0      376       376 subtraction_solid1_solid2 Transportation
     2     -500     -185 1.92e+03         1        0      631  1.01e+03       world Transportation
     3 -2.64e+03      745    4e+03         1        0 3.12e+03  4.13e+03  OutOfWorld Transportation
 
@@ -5982,7 +5980,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      133      262 2.66e+03         1        0        0         0       world initStep
-    1     -167    -73.8 2.49e+03         1        0      481       481 solid1Ssolid2 Transportation
+    1     -167    -73.8 2.49e+03         1        0      481       481 subtraction_solid1_solid2 Transportation
     2     -500     -445 2.31e+03         1        0      532  1.01e+03       world Transportation
     3     -997   -1e+03 2.03e+03         1        0      795  1.81e+03  OutOfWorld Transportation
 
@@ -6049,7 +6047,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 2.56e+03       77     -203         1        0        0         0       world initStep
-    1 -2.46e+03       41  1.5e+03         1        0  5.3e+03   5.3e+03 solid1Isolid2 Transportation
+    1 -2.46e+03       41  1.5e+03         1        0  5.3e+03   5.3e+03 intersection_solid1_solid2 Transportation
     2 -2.63e+03     39.8 1.56e+03         1        0      174  5.48e+03       world Transportation
     3   -4e+03     29.9 2.02e+03         1        0 1.45e+03  6.93e+03  OutOfWorld Transportation
 
@@ -6074,7 +6072,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 *********************************************************************************************************
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
-    0 2.39e+03     -158 2.98e+03         1        0        0         0 solid1Usolid2 initStep
+    0 2.39e+03     -158 2.98e+03         1        0        0         0 union_solid1_solid2 initStep
     1 2.35e+03     -190 2.95e+03         1        0       61        61       world Transportation
     2 1.25e+03   -1e+03 2.27e+03         1        0 1.52e+03  1.58e+03  OutOfWorld Transportation
 
@@ -6116,7 +6114,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -624     -560      165         1        0        0         0       world initStep
-    1      380      274 1.55e+03         1        0  1.9e+03   1.9e+03 solid1Ssolid2 Transportation
+    1      380      274 1.55e+03         1        0  1.9e+03   1.9e+03 subtraction_solid1_solid2 Transportation
     2      500      373 1.72e+03         1        0      227  2.13e+03       world Transportation
     3 1.26e+03    1e+03 2.76e+03         1        0 1.43e+03  3.56e+03  OutOfWorld Transportation
 
@@ -6262,7 +6260,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 2.28e+03      835 2.12e+03         1        0        0         0       world initStep
-    1 2.36e+03      500 2.16e+03         1        0      348       348 solid1Usolid2 Transportation
+    1 2.36e+03      500 2.16e+03         1        0      348       348 union_solid1_solid2 Transportation
     2 2.61e+03     -500 2.27e+03         1        0 1.04e+03  1.39e+03       world Transportation
     3 2.74e+03   -1e+03 2.33e+03         1        0      519   1.9e+03  OutOfWorld Transportation
 
@@ -6279,7 +6277,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 *********************************************************************************************************
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
-    0 2.25e+03    -29.5 2.28e+03         1        0        0         0 solid1Usolid2 initStep
+    0 2.25e+03    -29.5 2.28e+03         1        0        0         0 union_solid1_solid2 initStep
     1 2.41e+03      500 2.18e+03         1        0      563       563       world Transportation
     2 2.57e+03    1e+03 2.09e+03         1        0      532   1.1e+03  OutOfWorld Transportation
 
@@ -6337,9 +6335,9 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 2.95e+03     -347 1.32e+03         1        0        0         0       world initStep
-    1 2.87e+03     -265 1.31e+03         1        0      114       114 solid1Usolid2 Transportation
+    1 2.87e+03     -265 1.31e+03         1        0      114       114 union_solid1_solid2 Transportation
     2 2.73e+03     -111 1.28e+03         1        0      213       327       world Transportation
-    3 2.59e+03     32.7 1.25e+03         1        0      199       526 solid1Usolid2 Transportation
+    3 2.59e+03     32.7 1.25e+03         1        0      199       526 union_solid1_solid2 Transportation
     4 2.45e+03      185 1.22e+03         1        0      210       736       world Transportation
     5 1.69e+03    1e+03 1.07e+03         1        0 1.13e+03  1.86e+03  OutOfWorld Transportation
 
@@ -6365,7 +6363,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 1.33e+03      394 -1.86e+03         1        0        0         0       world initStep
-    1 2.42e+03     -162 1.42e+03         1        0 3.51e+03  3.51e+03 solid1Usolid2 Transportation
+    1 2.42e+03     -162 1.42e+03         1        0 3.51e+03  3.51e+03 union_solid1_solid2 Transportation
     2 2.82e+03     -362  2.6e+03         1        0 1.26e+03  4.77e+03       world Transportation
     3 3.28e+03     -599    4e+03         1        0 1.49e+03  6.26e+03  OutOfWorld Transportation
 
@@ -6551,7 +6549,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      520     -897      642         1        0        0         0       world initStep
-    1      226     -500 1.77e+03         1        0 1.23e+03  1.23e+03 solid1Ssolid2 Transportation
+    1      226     -500 1.77e+03         1        0 1.23e+03  1.23e+03 subtraction_solid1_solid2 Transportation
     2      114     -350  2.2e+03         1        0      467   1.7e+03       world Transportation
     3     -354      283    4e+03         1        0 1.96e+03  3.67e+03  OutOfWorld Transportation
 
@@ -6568,7 +6566,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 *********************************************************************************************************
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
-    0 2.57e+03      235  1.8e+03         1        0        0         0 solid1Usolid2 initStep
+    0 2.57e+03      235  1.8e+03         1        0        0         0 union_solid1_solid2 initStep
     1 2.51e+03      500 1.58e+03         1        0      344       344       world Transportation
     2 2.39e+03    1e+03 1.19e+03         1        0      649       994  OutOfWorld Transportation
 
@@ -6683,7 +6681,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 *********************************************************************************************************
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
-    0 2.38e+03      378 2.44e+03         1        0        0         0 solid1Usolid2 initStep
+    0 2.38e+03      378 2.44e+03         1        0        0         0 union_solid1_solid2 initStep
     1    2e+03      360 2.46e+03         1        0      384       384       world Transportation
     2   -4e+03     76.4 2.74e+03         1        0 6.01e+03   6.4e+03  OutOfWorld Transportation
 
@@ -6733,9 +6731,9 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -933     -406  1.7e+03         1        0        0         0       world initStep
-    1     -500     -412 1.72e+03         1        0      433       433 solid1Ssolid2 Transportation
+    1     -500     -412 1.72e+03         1        0      433       433 subtraction_solid1_solid2 Transportation
     2      500     -428 1.76e+03         1        0    1e+03  1.43e+03       world Transportation
-    3    2e+03     -451 1.82e+03         1        0  1.5e+03  2.94e+03 solid1Usolid2 Transportation
+    3    2e+03     -451 1.82e+03         1        0  1.5e+03  2.94e+03 union_solid1_solid2 Transportation
     4    3e+03     -466 1.86e+03         1        0    1e+03  3.94e+03       world Transportation
     5    4e+03     -481  1.9e+03         1        0    1e+03  4.94e+03  OutOfWorld Transportation
 
@@ -6764,7 +6762,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 *********************************************************************************************************
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
-    0     -183    -13.4 1.72e+03         1        0        0         0 solid1Ssolid2 initStep
+    0     -183    -13.4 1.72e+03         1        0        0         0 subtraction_solid1_solid2 initStep
     1     -133      124  1.5e+03         1        0      267       267       world Transportation
     2      186    1e+03     70.1         1        0 1.71e+03  1.97e+03  OutOfWorld Transportation
 
@@ -6846,7 +6844,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -157      187 3.23e+03         1        0        0         0       world initStep
-    1      114      360 2.41e+03         1        0      887       887 solid1Ssolid2 Transportation
+    1      114      360 2.41e+03         1        0      887       887 subtraction_solid1_solid2 Transportation
     2      332      500 1.74e+03         1        0      717   1.6e+03       world Transportation
     3 1.11e+03    1e+03     -652         1        0 2.56e+03  4.17e+03  OutOfWorld Transportation
 
@@ -7121,7 +7119,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 1.71e+03     -610  1.9e+03         1        0        0         0       world initStep
-    1    2e+03     -485 1.85e+03         1        0      317       317 solid1Usolid2 Transportation
+    1    2e+03     -485 1.85e+03         1        0      317       317 union_solid1_solid2 Transportation
     2 3.03e+03    -31.4 1.65e+03         1        0 1.14e+03  1.46e+03       world Transportation
     3    4e+03      395 1.47e+03         1        0 1.07e+03  2.53e+03  OutOfWorld Transportation
 
@@ -7286,7 +7284,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      297     -764 3.89e+03         1        0        0         0       world initStep
-    1     -267     -500 2.09e+03         1        0  1.9e+03   1.9e+03 solid1Ssolid2 Transportation
+    1     -267     -500 2.09e+03         1        0  1.9e+03   1.9e+03 subtraction_solid1_solid2 Transportation
     2     -453     -413  1.5e+03         1        0      629  2.53e+03       world Transportation
     3 -1.39e+03     27.2 -1.5e+03         1        0 3.17e+03  5.71e+03      solid1 Transportation
     4 -1.71e+03      174 -2.5e+03         1        0 1.06e+03  6.76e+03       world Transportation
@@ -7404,7 +7402,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 3.36e+03      388 3.28e+03         1        0        0         0       world initStep
-    1    3e+03     -327 1.81e+03         1        0 1.67e+03  1.67e+03 solid1Usolid2 Transportation
+    1    3e+03     -327 1.81e+03         1        0 1.67e+03  1.67e+03 union_solid1_solid2 Transportation
     2 2.92e+03     -481  1.5e+03         1        0      358  2.03e+03       world Transportation
     3 2.66e+03   -1e+03      439         1        0 1.21e+03  3.24e+03  OutOfWorld Transportation
 
@@ -7446,11 +7444,11 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      303     -226 2.17e+03         1        0        0         0       world initStep
-    1     -107     -184 2.16e+03         1        0      412       412 solid1Ssolid2 Transportation
+    1     -107     -184 2.16e+03         1        0      412       412 subtraction_solid1_solid2 Transportation
     2     -500     -144 2.15e+03         1        0      395       807       world Transportation
-    3   -2e+03      8.3 2.12e+03         1        0 1.51e+03  2.32e+03 solid1Isolid2 Transportation
+    3   -2e+03      8.3 2.12e+03         1        0 1.51e+03  2.32e+03 intersection_solid1_solid2 Transportation
     4 -2.15e+03     23.2 2.11e+03         1        0      147  2.46e+03       world Transportation
-    5 -2.45e+03     53.6 2.11e+03         1        0      301  2.76e+03 solid1Isolid2 Transportation
+    5 -2.45e+03     53.6 2.11e+03         1        0      301  2.76e+03 intersection_solid1_solid2 Transportation
     6 -2.65e+03     74.1  2.1e+03         1        0      203  2.97e+03       world Transportation
     7   -4e+03      212 2.07e+03         1        0 1.36e+03  4.33e+03  OutOfWorld Transportation
 
@@ -7516,7 +7514,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 2.62e+03     80.7 2.82e+03         1        0        0         0       world initStep
-    1 2.57e+03      143 2.89e+03         1        0      109       109 solid1Usolid2 Transportation
+    1 2.57e+03      143 2.89e+03         1        0      109       109 union_solid1_solid2 Transportation
     2  2.5e+03      231    3e+03         1        0      155       263       world Transportation
     3  1.9e+03    1e+03 3.92e+03         1        0 1.34e+03  1.61e+03  OutOfWorld Transportation
 
@@ -7534,7 +7532,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 2.99e+03     -381 2.82e+03         1        0        0         0       world initStep
-    1 2.94e+03     -312 2.89e+03         1        0      114       114 solid1Usolid2 Transportation
+    1 2.94e+03     -312 2.89e+03         1        0      114       114 union_solid1_solid2 Transportation
     2 2.88e+03     -218    3e+03         1        0      155       268       world Transportation
     3  2.3e+03      665    4e+03         1        0 1.45e+03  1.72e+03  OutOfWorld Transportation
 
@@ -7932,9 +7930,9 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      279      559 2.95e+03         1        0        0         0       world initStep
-    1     68.9      356  2.5e+03         1        0      536       536 solid1Ssolid2 Transportation
+    1     68.9      356  2.5e+03         1        0      536       536 subtraction_solid1_solid2 Transportation
     2     59.5      347 2.48e+03         1        0     23.9       560       world Transportation
-    3     -101      192 2.14e+03         1        0      408       968 solid1Ssolid2 Transportation
+    3     -101      192 2.14e+03         1        0      408       968 subtraction_solid1_solid2 Transportation
     4     -400    -96.5  1.5e+03         1        0      761  1.73e+03       world Transportation
     5 -1.34e+03   -1e+03     -498         1        0 2.38e+03  4.11e+03  OutOfWorld Transportation
 
@@ -7944,7 +7942,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 3.22e+03     38.7 2.79e+03         1        0        0         0       world initStep
-    1    3e+03      298 2.35e+03         1        0      554       554 solid1Usolid2 Transportation
+    1    3e+03      298 2.35e+03         1        0      554       554 union_solid1_solid2 Transportation
     2 2.83e+03      500 2.01e+03         1        0      432       986       world Transportation
     3 2.42e+03    1e+03 1.16e+03         1        0 1.07e+03  2.05e+03  OutOfWorld Transportation
 
@@ -8305,5 +8303,5 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -1.52e+03      382 3.52e+03         1        0        0         0       world initStep
     1 -2.53e+03   -1e+03 2.53e+03         1        0 1.97e+03  1.97e+03  OutOfWorld Transportation
-number of event = 1000 User=0.05s Real=0.1s Sys=0.05s
-Execution time: R: 0.099 s  C: 0.099 s 
+number of event = 1000 User=0.07000000000000001s Real=0.1s Sys=0.03s
+Execution time: R: 0.102 s  C: 0.102 s 

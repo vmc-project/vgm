@@ -1,17 +1,27 @@
+Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometry created
+Root geometry will be defined via VGM and exported to Geant4
 
 *************************************************************
- Geant4 version Name: geant4-08-03    (5-May-2007)
+ Geant4 version Name: geant4-09-00    (29-June-2007)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
 *************************************************************
 
-Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometry created
-Root geometry will be defined via VGM and exported to Geant4
 Info in <TGeoManager::SetTopVolume>: Top volume is world. Master volume is world
 TestPlacements finished
 Go to export
 Export finished
+Go to save Root geometry
+Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
+Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
+Info in <TGeoManager::CloseGeometry>: Counting nodes...
+Info in <TGeoManager::Voxelize>: Voxelizing...
+Info in <TGeoManager::CloseGeometry>: Building cache...
+Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+Info in <TGeoManager::CloseGeometry>: 241 nodes/ 4 volume UID's in VGM Root geometry
+Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+Info in <TGeoManager::Export>: Exporting VGM Root geometry VGM Root geometry as root file. Optimizations streamed.
 
 ----- HepJamesRandom engine status -----
  Initial seed = 9876
@@ -8706,5 +8716,5 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -2.28e+03      382 5.27e+03         1        0        0         0       world initStep
     1 -3.29e+03   -1e+03 4.29e+03         1        0 1.97e+03  1.97e+03  OutOfWorld Transportation
-number of event = 1000 User=0.08s Real=0.11s Sys=0.03s
-Execution time: R: 0.11 s  C: 0.11 s 
+number of event = 1000 User=0.08s Real=0.11s Sys=0.04s
+Execution time: R: 0.117 s  C: 0.117 s 
