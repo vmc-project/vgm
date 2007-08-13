@@ -1,3 +1,7 @@
+- Return const pointers to objects when accessing to
+  a compound lements (eg. isotope from elements)
+- Improve debug printing messages 
+  (see Brett's code in AgddGM/*/FactoryImport.cxx)  
 - Root: define Boolean solids via pointers to objects
   and not via expressions
   (now available in Root)    
