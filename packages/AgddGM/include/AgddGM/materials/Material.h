@@ -1,4 +1,4 @@
-// $Id: Element.h,v 1.1 2007-01-25 21:57:12 bviren Exp $
+// $Id$
 
 // -----------------------------------------------------------------------
 // The AgddGM package of the Virtual Geometry Model
@@ -50,7 +50,7 @@ public:
     int     NofElements() const;
     VGM::IElement*  Element(int iel) const;
     double  MassFraction(int iel) const;
-    int AtomCount(int iel) const;
+    double  AtomCount(int iel) const;
 
 private:
 

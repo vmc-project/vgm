@@ -80,7 +80,7 @@ namespace VGM {
 			  ///
                           /// Return the atom count of the i-th element 
 			  /// constituing this material
-      virtual int        AtomCount(int iel) const = 0 ;
+      virtual double     AtomCount(int iel) const = 0 ;
   };
 }  
 

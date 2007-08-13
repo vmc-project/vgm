@@ -40,12 +40,12 @@
       <addelement name="AL"  natoms=" 1.0000"/>
    </material>
    <material  name="Air"  density="  0.0013">
-      <addelement name="N"  natoms=" 0.7000"/>
-      <addelement name="O"  natoms=" 0.3000"/>
+      <addelement name="N"  natoms=" 0.7271"/>
+      <addelement name="O"  natoms=" 0.2729"/>
    </material>
    <material  name="Scintillator"  density="  1.0320">
-      <addelement name="C"  natoms=" 0.9147"/>
-      <addelement name="H"  natoms=" 0.0853"/>
+      <addelement name="C"  natoms=" 0.4737"/>
+      <addelement name="H"  natoms=" 0.5263"/>
    </material>
    <material  name="Uranium"  density=" 13.6100">
       <addelement name="U"  natoms=" 1.0000"/>

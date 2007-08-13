@@ -79,8 +79,7 @@ double  AgddGM::Material::MassFraction(int iel) const
     return fMassFrac[iel];
 }
 
-int AgddGM::Material::AtomCount(int /*iel*/) const
+double AgddGM::Material::AtomCount(int iel) const
 {
-    // FIXME: implement
-    return 0;
+  return fMat->m_addelements[iel]->m_natoms;
 } 

@@ -530,14 +530,16 @@ double  RootGM::Material::MassFraction(int iel) const
 }
 
 //_____________________________________________________________________________
-int  RootGM::Material::AtomCount(int iel) const
+double  RootGM::Material::AtomCount(int iel) const
 {
   CheckIndex(iel);
   
-  if (!fMaterial->IsMixture())
-    return 1;
-  else  
-    return ((TGeoMixture*)fMaterial)->GetNmixt()[iel];
+  if ( NofElements() == 1 ) return 1.0;
+  
+  // return ((TGeoMixture*)fMaterial)->GetNmixt()[iel];
+                 // Temporarily excluded as Root breaks
+  std::cerr << "RootGM::Material::AtomCount is not implemented" << std::endl;
+  return 0;                 
 }
 
 

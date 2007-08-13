@@ -393,7 +393,8 @@ void Geant4GM::Material::CheckIndex(int iel) const
 {
   if (iel<0 || iel >= NofElements()) {  
     std::cerr << "    Geant4GM::Material::CheckIndex: " << std::endl;
-    std::cerr << "    Index of element outside limits." << std::endl;
+    std::cerr << "    In material: " << Name() << std::endl;
+    std::cerr << "    Index of element " << iel << " outside limits." << std::endl;
     std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
     exit(1);
   }  
@@ -499,11 +500,13 @@ double  Geant4GM::Material::MassFraction(int iel) const
 }
 
 //_____________________________________________________________________________
-int  Geant4GM::Material::AtomCount(int iel) const
+double  Geant4GM::Material::AtomCount(int iel) const
 {
   CheckIndex(iel);
   
-  return fMaterial->GetAtomsVector()[iel];
+  if ( NofElements() == 1 ) return 1.0;
+  
+  return fMaterial->GetVecNbOfAtomsPerVolume()[iel]/fMaterial->GetTotNbOfAtomsPerVolume();
 }
 
 
