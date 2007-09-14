@@ -103,13 +103,13 @@ if test x"$libagdd_enable" = xyes ; then
 if test x"$libagdd_libdir" = x ; then
     for try in "$libagdd_prefix/lib"
     do
-        if ! test -f "${try}/libagdd.so"; then continue; fi
+	if ! test -f "${try}/libagdd$shrext_cmds"; then continue; fi
         libagdd_libdir=$try
         break
    done
 fi
 
-UTIL_CHECK_PKG_DIR([$libagdd_libdir],[libagdd],[libagdd.so])
+UTIL_CHECK_PKG_DIR([$libagdd_libdir],[libagdd],[libagdd$shrext_cmds])
 
 AGDD_LINK="-Wl,--rpath -Wl,$libagdd_libdir -L$libagdd_libdir -lagdd"
 AC_SUBST(AGDD_LINK)
