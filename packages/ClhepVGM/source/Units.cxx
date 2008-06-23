@@ -17,6 +17,7 @@
 // Author: Ivana Hrivnacova; IPN Orsay
 
 #include <iostream>
+#include <cstdlib>
 
 #include "CLHEP/Units/SystemOfUnits.h" 
 
