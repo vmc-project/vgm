@@ -37,6 +37,7 @@
 #include "BaseVGM/volumes/VFactory.h"
 #include "BaseVGM/common/utilities.h"
 
+#include <cstdlib>
 //_____________________________________________________________________________
 BaseVGM::VFactory::VFactory(const std::string& name,
                            VGM::IMaterialFactory* materialFactory)
