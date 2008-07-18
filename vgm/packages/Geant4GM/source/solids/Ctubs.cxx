@@ -29,9 +29,12 @@
 #include "G4Tubs.hh"
 #include "G4SubtractionSolid.hh"
 
+#include <cmath>
+
 using CLHEP::Hep3Vector;
 using CLHEP::HepRotation;
 
+const double Geant4GM::Ctubs::fgkTolerance = 1e-9;
 //_____________________________________________________________________________
 Geant4GM::Ctubs::Ctubs(const std::string& name, 
                      double rin, double rout, double hz, 
@@ -61,7 +64,9 @@ Geant4GM::Ctubs::Ctubs(const std::string& name,
 /// \param nyhigh Y-component of the normal unit vector to the cut plane in +z
 /// \param nzhigh Z-component of the normal unit vector to the cut plane in +z
 
-  /// \todo add checks for normals
+  /// checks for normals
+  bool isCutLow  = ( fabs(nxlow)  > fgkTolerance || fabs(nylow)  > fgkTolerance ); 
+  bool isCutHigh = ( fabs(nxhigh) > fgkTolerance || fabs(nyhigh) > fgkTolerance ); 
 
   // Get angles 
   double thetaLow = fNLow.theta();
@@ -108,9 +113,17 @@ Geant4GM::Ctubs::Ctubs(const std::string& name,
   //std::cout << "hxLow= "  << hxLow << std::endl;
   //std::cout << "hxHigh= " << hxHigh << std::endl;
  
+  G4VSolid* boxLow = 0;  
+  if (isCutLow) {
+    boxLow = new G4Box("boxLow", hxLow, hxLow, hzLow); 
+    // std::cout << "boxLow: " << *boxLow << std::endl; 
+  }  
 
-  G4VSolid* boxLow = new G4Box("boxLow", hxLow, hxLow, hzLow);  
-  G4VSolid* boxHigh = new G4Box("boxHigh", hxHigh, hxHigh, hzHigh);  
+  G4VSolid* boxHigh = 0;  
+  if (isCutHigh) {
+    boxHigh = new G4Box("boxHigh", hxHigh, hxHigh, hzHigh);  
+    // std::cout << "boxHigh: " << *boxHigh << std::endl;
+  }  
 
   
   // Define rotations of boxes
@@ -139,15 +152,23 @@ Geant4GM::Ctubs::Ctubs(const std::string& name,
 
 
   // Subtract boxes from tube
-  G4VSolid* booleanSolid
-     = new G4SubtractionSolid("boolean", fTubs, boxLow,
+  G4VSolid* booleanSolid;
+  if ( isCutLow )
+    booleanSolid = new G4SubtractionSolid("boolean", fTubs, boxLow,
                                new HepRotation(rotLow.inverse()),
-                               Hep3Vector(0, 0, - (hz + zposLow)));			
+                               Hep3Vector(0, 0, - (hz + zposLow)));
+  else
+    booleanSolid = fTubs;                               			
 
-  fBooleanSolid
-     = new G4SubtractionSolid(name, booleanSolid, boxHigh,
+  if ( isCutHigh)
+    fBooleanSolid
+       = new G4SubtractionSolid(name, booleanSolid, boxHigh,
                                new HepRotation(rotHigh.inverse()),
-                               Hep3Vector(0, 0, hz + zposHigh));			
+                               Hep3Vector(0, 0, hz + zposHigh));
+  else
+    fBooleanSolid = booleanSolid;
+    
+  // std::cout << *fBooleanSolid << std::endl;   
 		     
   Geant4GM::SolidMap::Instance()->AddSolid(this, fBooleanSolid); 
 }
