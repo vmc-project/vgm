@@ -265,8 +265,9 @@ RootGM::Factory::ImportSolid(TGeoShape* shape)
   }
 
   std::cerr << "    RootGM::Factory::ImportSolid: " << std::endl; 
-  std::cerr << "    Unsupported solid type (solid \'" 
-            << shape->GetName() << "\")" 
+  std::cerr << "    Unsupported solid type (solid \"" 
+            << shape->GetName() << "\"" 
+            << "   type \"" << shape->ClassName() << "\")"
 	    << std::endl;
 	    
   if ( Ignore() ) {
@@ -274,6 +275,7 @@ RootGM::Factory::ImportSolid(TGeoShape* shape)
     VGM::IBox* vgmBox 
       = new RootGM::Box(shape->GetName(), 1., 1., 1.);
     SolidStore().push_back(vgmBox);
+    RootGM::SolidMap::Instance()->AddSolid(vgmBox, shape); 
     return vgmBox; 
   }
   else {	    

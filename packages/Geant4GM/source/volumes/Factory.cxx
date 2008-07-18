@@ -254,7 +254,7 @@ Geant4GM::Factory::ImportSolid(G4VSolid* solid)
   }
 
   std::cerr << "Geant4GM::Factory::ImportSolid: " << std::endl; 
-  std::cerr << "Unsupported solid type (solid \'" 
+  std::cerr << "Unsupported solid type (solid \"" 
             << solid->GetName() << "\"" 
 	    << "   type \"" << solid->GetEntityType() << "\")" 
 	    << std::endl;
@@ -264,6 +264,7 @@ Geant4GM::Factory::ImportSolid(G4VSolid* solid)
     VGM::IBox* vgmBox 
       = new Geant4GM::Box(solid->GetName(), 1.*mm, 1.*mm, 1.*mm);
     SolidStore().push_back(vgmBox);
+    Geant4GM::SolidMap::Instance()->AddSolid(vgmBox, solid); 
     return vgmBox; 
   }
   else {	    
