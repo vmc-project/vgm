@@ -60,6 +60,8 @@ namespace Geant4GM {
       Ctubs(const Ctubs& rhs);
 
     private:
+      static const double fgkTolerance;
+    
       G4Tubs*   fTubs;
       G4VSolid* fBooleanSolid;
       G4double  fHz;
