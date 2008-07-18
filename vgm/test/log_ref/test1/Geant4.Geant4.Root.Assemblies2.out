@@ -1,7 +1,7 @@
 Geant4 geometry will be defined via Geant4 and exported to Root
 
 *************************************************************
- Geant4 version Name: geant4-09-01-patch-01    (25-January-2008)
+ Geant4 version Name: geant4-09-01-patch-02    (9-May-2008)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -63,7 +63,7 @@ VGM info:    Material:  Uranium     density: 13.610 g/cm3   RadL:   4.358 mm   I
    --->  Isotope:  U235   Z = 92   N = 235   A = 235.01 g/mole   abundance:  90.00 %
    --->  Isotope:  U238   Z = 92   N = 238   A = 238.03 g/mole   abundance:  10.00 %  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
 VGM info:   Importing material: 
-VGM info:    Material:   Vacuum     density:  0.000 mg/cm3  RadL: 204727576.737 pc   Imean:  21.800 eV   temperature:   2.73 K  pressure:   0.00 atm
+VGM info:    Material:   Vacuum     density:  0.000 kg/m3   RadL: 204727576.737 pc   Imean:  21.800 eV   temperature:   2.73 K  pressure:   0.00 atm
    --->  Element: Vacuum ( )   Z =  1.0   N =   1.0   A =   1.01 g/mole  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
 VGM info:   Importing LV: world
 VGM info:   Importing solid: worldS
