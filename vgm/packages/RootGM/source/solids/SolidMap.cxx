@@ -45,13 +45,12 @@ RootGM::SolidMap::SolidMap()
 RootGM::SolidMap::SolidMap(const SolidMap&)
 {
 /// Protected copy constructor
-
-  fgInstance = 0;
 }
 
 //_____________________________________________________________________________
 RootGM::SolidMap::~SolidMap() {
 //
+  fgInstance = 0;
 }    
 
 //_____________________________________________________________________________
