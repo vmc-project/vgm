@@ -10,7 +10,7 @@ Info in <TG4RootNavMgr::SetNavigator>: TG4RootNavigator created and registered t
 Info: TGeoManager::Import : Reading geometry from file: Placements.root
 
 *************************************************************
- Geant4 version Name: geant4-09-01-patch-01    (25-January-2008)
+ Geant4 version Name: geant4-09-01-patch-02    (9-May-2008)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -457,7 +457,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 4.26e+03     -553 2.67e+03         1        0        0         0      layerA initStep
-    1 4.47e+03        0 2.08e+03         1        0      840       840      layerC Transportation
+    1 4.47e+03 -2.57e-14 2.08e+03         1        0      840       840      layerC Transportation
     2 4.47e+03        4 2.07e+03         1        0     6.08       846      layerB Transportation
     3 4.49e+03     56.2 2.02e+03         1        0     79.4       926       world Transportation
     4 4.59e+03      306 1.75e+03         1        0      380  1.31e+03      layerB Transportation
@@ -1488,7 +1488,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -557     -165 5.74e+03         1        0        0         0       world initStep
     1     -370    -64.4  5.2e+03         1        0      579       579      layerB Transportation
-    2     -250        0 4.85e+03         1        0      372       951      layerC Transportation
+    2     -250 -2.28e-15 4.85e+03         1        0      372       951      layerC Transportation
     3     -242        4 4.83e+03         1        0     23.1       974      layerB Transportation
     4     -231     10.1  4.8e+03         1        0     35.2  1.01e+03       world Transportation
     5 1.62e+03    1e+03     -519         1        0 5.72e+03  6.73e+03  OutOfWorld Transportation
@@ -1642,7 +1642,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     4 -4.87e+03      200     -386         1        0     6.86       651      layerC Transportation
     5 -4.87e+03      196     -381         1        0     6.86       658      layerB Transportation
     6 -4.88e+03        4     -113         1        0      329       988      layerC Transportation
-    7 -4.88e+03 -9.33e-15     -108         1        0     6.86       994      layerA Transportation
+    7 -4.88e+03 -1.01e-14     -108         1        0     6.86       994      layerA Transportation
     8 -4.89e+03     -436      500         1        0      748  1.74e+03       world Transportation
     9 -4.91e+03   -1e+03 1.29e+03         1        0      967  2.71e+03  OutOfWorld Transportation
 
@@ -1869,7 +1869,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     7 -2.61e+03      200 -4.31e+03         1        0     4.39       793      layerC Transportation
     8 -2.61e+03      196 -4.31e+03         1        0     4.39       797      layerB Transportation
     9 -2.56e+03        4 -4.38e+03         1        0      211  1.01e+03      layerC Transportation
-   10 -2.56e+03 2.22e-15 -4.38e+03         1        0     4.39  1.01e+03      layerA Transportation
+   10 -2.56e+03 2.27e-15 -4.38e+03         1        0     4.39  1.01e+03      layerA Transportation
    11 -2.38e+03     -600 -4.59e+03         1        0      659  1.67e+03       world Transportation
    12 -2.27e+03   -1e+03 -4.73e+03         1        0      439  2.11e+03  OutOfWorld Transportation
 
@@ -2380,7 +2380,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     0 1.23e+03      164 5.84e+03         1        0        0         0       world initStep
     1      500     26.8 5.17e+03         1        0 1.01e+03  1.01e+03      layerB Transportation
     2      378        4 5.06e+03         1        0      167  1.17e+03      layerC Transportation
-    3      357 -7.55e-15 5.04e+03         1        0     29.3   1.2e+03      layerA Transportation
+    3      357 -7.46e-15 5.04e+03         1        0     29.3   1.2e+03      layerA Transportation
     4       96    -48.8  4.8e+03         1        0      357  1.56e+03       world Transportation
     5 -4.99e+03   -1e+03      131         1        0 6.97e+03  8.53e+03  OutOfWorld Transportation
 
@@ -2773,7 +2773,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -3.69e+03     -988 -1.72e+03         1        0        0         0       world initStep
     1 -4.8e+03     -168     74.7         1        0 2.26e+03  2.26e+03      layerB Transportation
-    2 -5.03e+03 -5.68e-14      442         1        0      464  2.73e+03      layerC Transportation
+    2 -5.03e+03 -6.08e-14      442         1        0      464  2.73e+03      layerC Transportation
     3 -5.03e+03        4      451         1        0       11  2.74e+03      layerB Transportation
     4 -5.06e+03     26.6      500         1        0     62.3   2.8e+03       world Transportation
     5   -6e+03      715    2e+03         1        0  1.9e+03   4.7e+03  OutOfWorld Transportation
@@ -2986,7 +2986,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     1 -3.47e+03     -336 3.32e+03         1        0      276       276      layerA Transportation
     2 -3.77e+03     -251 3.06e+03         1        0      401       677       world Transportation
     3 -3.99e+03     -189 2.88e+03         1        0      291       968      layerB Transportation
-    4 -4.66e+03 5.68e-14 2.32e+03         1        0      897  1.86e+03      layerC Transportation
+    4 -4.66e+03 6.18e-14 2.32e+03         1        0      897  1.86e+03      layerC Transportation
     5 -4.67e+03        4  2.3e+03         1        0     18.9  1.88e+03      layerB Transportation
     6 -4.68e+03     4.97  2.3e+03         1        0     4.59  1.89e+03       world Transportation
     7   -6e+03      379 1.18e+03         1        0 1.77e+03  3.66e+03  OutOfWorld Transportation
@@ -3068,7 +3068,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     3 -2.28e+03      200 -4.67e+03         1        0     4.14       167      layerC Transportation
     4 -2.28e+03      196 -4.67e+03         1        0     4.14       171      layerB Transportation
     5 -2.23e+03        4 -4.65e+03         1        0      199       370      layerC Transportation
-    6 -2.23e+03 -8.93e-14 -4.65e+03         1        0     4.14       374      layerA Transportation
+    6 -2.23e+03 -8.94e-14 -4.65e+03         1        0     4.14       374      layerA Transportation
     7 -2.08e+03     -564 -4.61e+03         1        0      584       958       world Transportation
     8 -1.97e+03   -1e+03 -4.57e+03         1        0      452  1.41e+03  OutOfWorld Transportation
 
@@ -3431,7 +3431,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -3.51e+03     -846 -2.15e+03         1        0        0         0       world initStep
     1 -4.01e+03     -247 -2.66e+03         1        0      929       929      layerA Transportation
-    2 -4.21e+03 -1.14e-13 -2.87e+03         1        0      382  1.31e+03      layerC Transportation
+    2 -4.21e+03 -3.83e-14 -2.87e+03         1        0      382  1.31e+03      layerC Transportation
     3 -4.22e+03        4 -2.87e+03         1        0      6.2  1.32e+03      layerB Transportation
     4 -4.3e+03      105 -2.96e+03         1        0      156  1.47e+03       world Transportation
     5 -5.04e+03    1e+03 -3.72e+03         1        0 1.39e+03  2.86e+03  OutOfWorld Transportation
@@ -3602,7 +3602,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 4.64e+03     -161 -1.27e+03         1        0        0         0      layerB initStep
-    1  4.7e+03 -2.84e-14 -1.12e+03         1        0      225       225      layerC Transportation
+    1  4.7e+03 -1.64e-14 -1.12e+03         1        0      225       225      layerC Transportation
     2  4.7e+03        4 -1.11e+03         1        0      5.6       231      layerB Transportation
     3 4.77e+03      196     -938         1        0      269       500      layerC Transportation
     4 4.77e+03      200     -934         1        0      5.6       505      layerC Transportation
@@ -4037,7 +4037,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 1.48e+03     -437 -5.14e+03         1        0        0         0       world initStep
     1 1.46e+03     -102 -4.99e+03         1        0      366       366      layerB Transportation
-    2 1.46e+03        0 -4.95e+03         1        0      111       477      layerC Transportation
+    2 1.46e+03 9.54e-15 -4.95e+03         1        0      111       477      layerC Transportation
     3 1.46e+03        4 -4.95e+03         1        0     4.37       482      layerB Transportation
     4 1.45e+03      196 -4.86e+03         1        0      210       691      layerC Transportation
     5 1.45e+03      200 -4.86e+03         1        0     4.37       696      layerC Transportation
@@ -4175,7 +4175,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     0 4.75e+03      762 2.25e+03         1        0        0         0       world initStep
     1  4.8e+03      139  1.8e+03         1        0      767       767      layerB Transportation
     2 4.81e+03        4 1.71e+03         1        0      166       933      layerC Transportation
-    3 4.81e+03 -7.99e-15 1.71e+03         1        0     4.92       938      layerA Transportation
+    3 4.81e+03 -7.11e-15 1.71e+03         1        0     4.92       938      layerA Transportation
     4 4.86e+03     -600 1.28e+03         1        0      739  1.68e+03       world Transportation
     5  4.9e+03   -1e+03      992         1        0      492  2.17e+03  OutOfWorld Transportation
 
@@ -4785,7 +4785,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 3.03e+03     -388  4.2e+03         1        0        0         0       world initStep
     1  2.9e+03     -101 4.03e+03         1        0      359       359      layerB Transportation
-    2 2.86e+03        0 3.97e+03         1        0      126       485      layerC Transportation
+    2 2.86e+03 -1.19e-14 3.97e+03         1        0      126       485      layerC Transportation
     3 2.85e+03        4 3.96e+03         1        0        5       490      layerB Transportation
     4 2.82e+03     84.8 3.92e+03         1        0      101       591       world Transportation
     5 2.41e+03    1e+03 3.37e+03         1        0 1.14e+03  1.73e+03  OutOfWorld Transportation
@@ -4947,7 +4947,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -4.9e+03    -77.5     -380         1        0        0         0      layerB initStep
-    1 -5.01e+03 2.84e-14     -228         1        0      202       202      layerC Transportation
+    1 -5.01e+03 2.14e-14     -228         1        0      202       202      layerC Transportation
     2 -5.02e+03        4     -220         1        0     10.4       213      layerB Transportation
     3 -5.2e+03      133     31.6         1        0      337       550       world Transportation
     4   -6e+03      699 1.14e+03         1        0 1.48e+03  2.03e+03  OutOfWorld Transportation
@@ -5234,7 +5234,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      321     -297 -4.6e+03         1        0        0         0       world initStep
     1 2.24e+03    -49.4 -4.25e+03         1        0 1.97e+03  1.97e+03      layerB Transportation
-    2 2.62e+03        0 -4.18e+03         1        0      391  2.36e+03      layerC Transportation
+    2 2.62e+03 -1.27e-14 -4.18e+03         1        0      391  2.36e+03      layerC Transportation
     3 2.65e+03        4 -4.17e+03         1        0     31.7  2.39e+03      layerB Transportation
     4 2.96e+03     43.1 -4.12e+03         1        0      310   2.7e+03       world Transportation
     5    6e+03      437 -3.57e+03         1        0 3.12e+03  5.82e+03  OutOfWorld Transportation
@@ -6049,7 +6049,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0    1e+03     -317 -5.75e+03         1        0        0         0       world initStep
     1  1.2e+03    -49.4 -5.06e+03         1        0      763       763      layerB Transportation
-    2 1.23e+03 7.11e-15 -4.94e+03         1        0      141       903      layerC Transportation
+    2 1.23e+03 -1.8e-15 -4.94e+03         1        0      141       903      layerC Transportation
     3 1.24e+03        4 -4.93e+03         1        0     11.4       914      layerB Transportation
     4 1.32e+03      125 -4.61e+03         1        0      345  1.26e+03       world Transportation
     5 1.96e+03    1e+03 -2.37e+03         1        0 2.49e+03  3.75e+03  OutOfWorld Transportation
@@ -6101,7 +6101,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 3.61e+03     -133 -3.29e+03         1        0        0         0      layerB initStep
-    1 3.72e+03        0 -3.27e+03         1        0      172       172      layerC Transportation
+    1 3.72e+03 -9.44e-15 -3.27e+03         1        0      172       172      layerC Transportation
     2 3.72e+03        4 -3.27e+03         1        0     5.18       177      layerB Transportation
     3 3.88e+03      196 -3.25e+03         1        0      249       425      layerC Transportation
     4 3.88e+03      200 -3.25e+03         1        0     5.18       431      layerC Transportation
@@ -6348,7 +6348,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     0 1.72e+03      251 5.49e+03         1        0        0         0       world initStep
     1 1.69e+03     26.4 4.93e+03         1        0      603       603      layerB Transportation
     2 1.68e+03        4 4.88e+03         1        0     60.2       663      layerC Transportation
-    3 1.68e+03 -7.11e-15 4.87e+03         1        0     10.8       674      layerA Transportation
+    3 1.68e+03 -7.1e-15 4.87e+03         1        0     10.8       674      layerA Transportation
     4 1.66e+03     -137 4.52e+03         1        0      368  1.04e+03       world Transportation
     5 1.52e+03   -1e+03 2.38e+03         1        0 2.32e+03  3.36e+03  OutOfWorld Transportation
 
@@ -6572,7 +6572,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     1 -4.96e+03     -431 -1.57e+03         1        0      492       492      layerA Transportation
     2 -4.85e+03     -310 -1.82e+03         1        0      300       793       world Transportation
     3 -4.7e+03     -155 -2.14e+03         1        0      385  1.18e+03      layerB Transportation
-    4 -4.55e+03 5.68e-14 -2.46e+03         1        0      386  1.56e+03      layerC Transportation
+    4 -4.55e+03 6.75e-14 -2.46e+03         1        0      386  1.56e+03      layerC Transportation
     5 -4.55e+03        4 -2.47e+03         1        0     9.93  1.57e+03      layerB Transportation
     6 -4.42e+03      138 -2.74e+03         1        0      334  1.91e+03       world Transportation
     7 -3.6e+03    1e+03 -4.52e+03         1        0 2.14e+03  4.05e+03  OutOfWorld Transportation
@@ -6588,7 +6588,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     3 3.58e+03      200 3.25e+03         1        0     4.15       659      layerC Transportation
     4 3.58e+03      196 3.25e+03         1        0     4.15       663      layerB Transportation
     5 3.62e+03        4 3.27e+03         1        0      199       863      layerC Transportation
-    6 3.63e+03 -7.99e-15 3.27e+03         1        0     4.15       867      layerA Transportation
+    6 3.63e+03 -7.62e-15 3.27e+03         1        0     4.15       867      layerA Transportation
     7 3.78e+03     -600 3.34e+03         1        0      622  1.49e+03       world Transportation
     8 3.88e+03   -1e+03 3.39e+03         1        0      415   1.9e+03  OutOfWorld Transportation
 
@@ -6607,7 +6607,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 3.38e+03    -29.5 3.42e+03         1        0        0         0      layerB initStep
-    1 3.39e+03 -7.11e-15 3.42e+03         1        0     31.3      31.3      layerC Transportation
+    1 3.39e+03 -6.97e-15 3.42e+03         1        0     31.3      31.3      layerC Transportation
     2 3.39e+03        4 3.42e+03         1        0     4.26      35.6      layerB Transportation
     3 3.45e+03      196 3.38e+03         1        0      204       240      layerC Transportation
     4 3.45e+03      200 3.38e+03         1        0     4.26       244      layerC Transportation
@@ -7477,7 +7477,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     0 3.66e+03     80.1 4.61e+03         1        0        0         0       world initStep
     1 2.61e+03     7.94  4.5e+03         1        0 1.06e+03  1.06e+03      layerB Transportation
     2 2.55e+03        4 4.49e+03         1        0     57.7  1.11e+03      layerC Transportation
-    3 2.49e+03 -8.44e-15 4.49e+03         1        0     58.5  1.17e+03      layerA Transportation
+    3 2.49e+03 -7.78e-15 4.49e+03         1        0     58.5  1.17e+03      layerA Transportation
     4 1.98e+03    -35.3 4.43e+03         1        0      516  1.69e+03       world Transportation
     5 -2.8e+03     -364 3.93e+03         1        0 4.82e+03  6.51e+03      layerA Transportation
     6 -2.84e+03     -367 3.92e+03         1        0     43.1  6.55e+03       world Transportation
@@ -7733,7 +7733,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 2.13e+03     -710 -2.32e+03         1        0        0         0       world initStep
     1 4.54e+03    -26.3 -1.61e+03         1        0 2.61e+03  2.61e+03      layerB Transportation
-    2 4.63e+03        0 -1.58e+03         1        0      100  2.71e+03      layerC Transportation
+    2 4.63e+03 3.47e-15 -1.58e+03         1        0      100  2.71e+03      layerC Transportation
     3 4.65e+03        4 -1.57e+03         1        0     15.3  2.72e+03      layerB Transportation
     4 4.99e+03      101 -1.47e+03         1        0      371  3.09e+03       world Transportation
     5    6e+03      388 -1.17e+03         1        0 1.09e+03  4.19e+03  OutOfWorld Transportation
@@ -7885,7 +7885,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      167      149 5.01e+03         1        0        0         0      layerB initStep
     1      248        4 5.14e+03         1        0      212       212      layerC Transportation
-    2      250 -7.55e-15 5.14e+03         1        0     5.83       217      layerA Transportation
+    2      250 -7.49e-15 5.14e+03         1        0     5.83       217      layerA Transportation
     3      287    -65.5  5.2e+03         1        0     95.4       313       world Transportation
     4      784     -955    6e+03         1        0  1.3e+03  1.61e+03  OutOfWorld Transportation
 
@@ -8055,7 +8055,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     95.4     -541 4.79e+03         1        0        0         0       world initStep
     1      101     -531  4.8e+03         1        0     12.5      12.5      layerA Transportation
-    2      434 1.14e-13  5.1e+03         1        0      693       705      layerC Transportation
+    2      434 5.86e-14  5.1e+03         1        0      693       705      layerC Transportation
     3      436        4  5.1e+03         1        0     5.22       711      layerB Transportation
     4      500      106 5.15e+03         1        0      133       844       world Transportation
     5 1.06e+03    1e+03 5.65e+03         1        0 1.17e+03  2.01e+03  OutOfWorld Transportation
@@ -8399,7 +8399,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     4 4.93e+03     34.7      500         1        0    1e+03  2.72e+03       world Transportation
     5 4.93e+03     23.1      805         1        0      305  3.03e+03      layerB Transportation
     6 4.94e+03        4 1.31e+03         1        0      501  3.53e+03      layerC Transportation
-    7 4.94e+03 -7.11e-15 1.41e+03         1        0      105  3.63e+03      layerA Transportation
+    7 4.94e+03 -7.66e-15 1.41e+03         1        0      105  3.63e+03      layerA Transportation
     8 4.95e+03    -8.42 1.63e+03         1        0      221  3.85e+03       world Transportation
     9 5.01e+03     -175    6e+03         1        0 4.37e+03  8.23e+03  OutOfWorld Transportation
 
@@ -8728,5 +8728,5 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -2.28e+03      382 5.27e+03         1        0        0         0       world initStep
     1 -3.29e+03   -1e+03 4.29e+03         1        0 1.97e+03  1.97e+03  OutOfWorld Transportation
-number of event = 1000 User=0.14s Real=0.2s Sys=0.06s
-Execution time: R: 0.193 s  C: 0.193 s 
+number of event = 1000 User=0.07000000000000001s Real=0.14s Sys=0.05s
+Execution time: R: 0.137 s  C: 0.137 s 

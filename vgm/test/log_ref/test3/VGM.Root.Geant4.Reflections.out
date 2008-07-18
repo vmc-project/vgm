@@ -2,7 +2,7 @@ Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometr
 Root geometry will be defined via VGM and exported to Geant4
 
 *************************************************************
- Geant4 version Name: geant4-09-01-patch-01    (25-January-2008)
+ Geant4 version Name: geant4-09-01-patch-02    (9-May-2008)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -2035,10 +2035,8 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     3 3.19e+03 1.57e+03      502         1        0      393   1.5e+03       ctubs Transportation
     4 3.29e+03 1.58e+03      519         1        0      103   1.6e+03       world Transportation
     5 3.86e+03 1.63e+03      614         1        0      585  2.19e+03       xtru2 Transportation
-    6 4.11e+03 1.65e+03      656         1        0      254  2.44e+03       world Transportation
-    7 4.54e+03 1.69e+03      727         1        0      431  2.87e+03       xtru2 Transportation
-    8 4.72e+03 1.71e+03      757         1        0      184  3.06e+03       world Transportation
-    9    6e+03 1.83e+03      970         1        0  1.3e+03  4.36e+03  OutOfWorld Transportation
+    6 4.72e+03 1.71e+03      757         1        0      870  3.06e+03       world Transportation
+    7    6e+03 1.83e+03      970         1        0  1.3e+03  4.36e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -2125,8 +2123,10 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      227 2.47e+03 -2.77e+03         1        0        0         0       world initStep
     1 4.34e+03  1.4e+03 -1.21e+03         1        0 4.53e+03  4.53e+03       xtru2 Transportation
-    2 4.64e+03 1.32e+03 -1.1e+03         1        0      326  4.86e+03       world Transportation
-    3    6e+03      965     -584         1        0  1.5e+03  6.35e+03  OutOfWorld Transportation
+    2 4.44e+03 1.37e+03 -1.18e+03         1        0      105  4.63e+03       world Transportation
+    3 4.61e+03 1.33e+03 -1.11e+03         1        0      192  4.83e+03       xtru2 Transportation
+    4 4.64e+03 1.32e+03 -1.1e+03         1        0     28.5  4.86e+03       world Transportation
+    5    6e+03      965     -584         1        0  1.5e+03  6.35e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -8573,5 +8573,5 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -1.9e+03 1.15e+03 2.64e+03         1        0        0         0       world initStep
     1 -4.92e+03   -3e+03     -309         1        0 5.91e+03  5.91e+03  OutOfWorld Transportation
-number of event = 1000 User=0.28s Real=0.39s Sys=0.05s
-Execution time: R: 0.389 s  C: 0.389 s 
+number of event = 1000 User=0.08s Real=0.13s Sys=0.04s
+Execution time: R: 0.129 s  C: 0.129 s 
