@@ -11,6 +11,16 @@ $Id$
 
  The Virtual Geometry Model - Versions
 =========================================
+  18/07/2008
+  version 3.01
+               Fixes in Geant4GM::Ctubs, RootGM::SolidMap
+               + a few more minor fixes.
+               Ported to gcc4.3.1 (Thanks to Florian Uhlig.)
+
+               Tested with CLHEP 2.0.3.2, Root 5.20/00, Geant4 9.1.p01;
+               Linux: gcc 4.1.1 (FC6)
+
+
   16/08/2007
   version 3.00
                New packages: AgddGM, autoconf.
