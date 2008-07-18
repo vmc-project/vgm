@@ -1,7 +1,7 @@
 Root geometry will be defined via Root and exported to Geant4
 
 *************************************************************
- Geant4 version Name: geant4-09-00    (29-June-2007)
+ Geant4 version Name: geant4-09-01-patch-01    (25-January-2008)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -48,7 +48,7 @@ VGM info:   Importing volume: Assembly
 VGM info:   Importing shape: TGeoShapeAssembly
 VGM info:   ImportDaughters for Assembly
 VGM info:   Importing volume: CONS
-VGM info:   Importing shape: TGeoConeSeg
+VGM info:   Importing shape: CONS
 VGM info:   ImportDaughters for CONS
 VGM info:   Import positions: 
 VGM info:   0th volume: world  
@@ -60,7 +60,7 @@ VGM info:   2th volume: CONS
 VGM info:   
 Root_GM_Factory factory solids store: 
    0th solid: Box  "worldS"  hx = 2000mm  hy = 2000mm  hz = 1000mm
-   1th solid: Cons  "TGeoConeSeg"  rin1 = 100mm  rout1 = 400mm  rin2 = 200mm  rout2 = 600mm  hz = 500mm  sphi = 0deg  dphi = 360deg
+   1th solid: Cons  "CONS"  rin1 = 100mm  rout1 = 400mm  rin2 = 200mm  rout2 = 600mm  hz = 500mm  sphi = 0deg  dphi = 360deg
 Root_GM_Factory factory volumes store: 
    0th: Volume: "world" material "Basic" solid "Box"  4 daughters: "CONS"  "CONS"  "CONS"  "CONS"  
    1th: Volume: "CONS" material "Basic" solid "Cons"  0 daughters: 
@@ -113,13 +113,13 @@ VGM info:   Exporting solid:
 VGM info:      Box  "worldS"  hx = 2000mm  hy = 2000mm  hz = 1000mm
 VGM info:      0th volume: world   material: Basic
 VGM info:   Exporting solid: 
-VGM info:      Cons  "TGeoConeSeg"  rin1 = 100mm  rout1 = 400mm  rin2 = 200mm  rout2 = 600mm  hz = 500mm  sphi = 0deg  dphi = 360deg
+VGM info:      Cons  "CONS"  rin1 = 100mm  rout1 = 400mm  rin2 = 200mm  rout2 = 600mm  hz = 500mm  sphi = 0deg  dphi = 360deg
 VGM info:      1th volume: CONS   material: Basic
 VGM info:   ExportPlacements for 0th volume world
 VGM info:      0th daughter vol = CONS  simple placement: CONS
 VGM info:      1th daughter vol = CONS  simple placement: CONS
 VGM info:   Importing LV: CONS_refl
-VGM info:   Importing solid: TGeoConeSeg_refl
+VGM info:   Importing solid: CONS_refl
 VGM info:   ImportDaughters for CONS_refl
 VGM info:   ImportPositions for lv CONS_refl nofDaughters: 0
 VGM info:      2th daughter vol = CONS  simple placement: CONS

@@ -6,7 +6,7 @@
 <xi:include href="StandardColors.agdd"/>
 
 <materials  version = "Id: AGDDWriter.cxx 594 2007-08-13 14:37:44Z ihrivnac "
-            date    = "2007-08-13"
+            date    = "2008-07-18"
             author  = "VGM AGGD Writer"
             DTD_version="v7"  >
 
@@ -57,7 +57,7 @@
 </materials>
 
 <media  version = "Id: AGDDWriter.cxx 594 2007-08-13 14:37:44Z ihrivnac "
-        date    = "2007-08-13"
+        date    = "2008-07-18"
         author  = "VGM AGGD Writer"
         DTD_version="v7"  >
 
@@ -87,7 +87,7 @@
 <section DTD_version = "v7"
          name        = "world"
          version     = "Id: AGDDWriter.cxx 594 2007-08-13 14:37:44Z ihrivnac "
-         date        = "2007-08-13"
+         date        = "2008-07-18"
          author      = "VGM AGGD Writer"
          top_volume  = "world_comp"  >
 
