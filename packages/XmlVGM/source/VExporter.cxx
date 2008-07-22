@@ -144,6 +144,7 @@ void XmlVGM::VExporter::ProcessPositions(VGM::IVolume* volume)
   	  fWriter->WritePosition(name, transform);
       }	
 
+/*
       // Displacemnt positions in Boolean solids
       //
       VGM::ISolid* dSolid = dPlacement->Volume()->Solid();
@@ -151,7 +152,7 @@ void XmlVGM::VExporter::ProcessPositions(VGM::IVolume* volume)
       
 	ProcessPositionsInBoolean(dSolid);  
       }	
-
+*/
       std::string dVolumeName = dPlacement->Volume()->Name();
       if (fVolumeNames.find(dVolumeName) == fVolumeNames.end()) {
         // process volumed only if it was not yet processed
@@ -214,6 +215,7 @@ void XmlVGM::VExporter::ProcessRotations(VGM::IVolume* volume)
   	  fWriter->WriteRotation(name, transform);
       }	
 
+/*
       // Displacemnt rotations in Boolean solids
       //
       VGM::ISolid* dSolid = dPlacement->Volume()->Solid();
@@ -221,7 +223,7 @@ void XmlVGM::VExporter::ProcessRotations(VGM::IVolume* volume)
       
 	ProcessRotationsInBoolean(dSolid);  
       }	
-
+*/
       std::string dVolumeName = dPlacement->Volume()->Name();
       if (fVolumeNames.find(dVolumeName) == fVolumeNames.end()) {
         // process volumed only if it was not yet processed
@@ -423,6 +425,11 @@ void XmlVGM::VExporter::GenerateRotations(VGM::IVolume* volume)
   ProcessRotations(volume);
   ClearVolumeNames();
 
+  // Write scale
+  fWriter->WriteEmptyLine();
+  std::string name0 = "scale_0";
+  fWriter->WriteScale(name0);
+  
   // Close section
   fWriter->CloseRotations();
   fWriter->WriteEmptyLine();

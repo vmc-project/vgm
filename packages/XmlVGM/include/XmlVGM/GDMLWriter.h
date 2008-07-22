@@ -108,6 +108,9 @@ namespace XmlVGM {
                             const std::string& name, 
                             const VGM::Transform& transform); 
 
+      virtual void WriteScale(
+                            const std::string& name); 
+
       virtual void WritePlacement(
                             const VGM::IPlacement& placement); 
 
@@ -174,7 +177,8 @@ namespace XmlVGM {
       virtual void WriteSimplePlacement(
                             const std::string& lvName, 
 			    const std::string& positionRef,
-			    const std::string& rotationRef);
+			    const std::string& rotationRef,
+                            bool isReflection);
 			     
       virtual void WriteMultiplePlacement(
                             const std::string& lvName,

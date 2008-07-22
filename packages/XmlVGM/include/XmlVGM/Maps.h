@@ -65,6 +65,8 @@ namespace XmlVGM {
       // methods
       std::string AddPosition(const VGM::Transform& transform);
       std::string AddRotation(const VGM::Transform& transform);
+      std::string AddBooleanPosition();
+      std::string AddBooleanRotation();
       const VGM::IIsotope*  AddIsotope(const VGM::IIsotope* isotope);
       const VGM::IElement*  AddElement(const VGM::IElement* element);
       const VGM::IMaterial* AddMaterial(const VGM::IMaterial* material);
@@ -109,6 +111,8 @@ namespace XmlVGM {
       ElementMap         fElements;  //map of elements
       MaterialMap        fMaterials; //map of materials
       MediumMap          fMedia;     //map of media
+      int                fNofBoolPositions; // number of positions in Boolean solids
+      int                fNofBoolRotations; // number of rotations in Boolean solids
   };
 
 }

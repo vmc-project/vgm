@@ -103,6 +103,7 @@ namespace XmlVGM {
                             const VGM::Transform& /*position*/) {} 
       virtual void WriteRotation(const std::string& /*name*/, 
                             const VGM::Transform& /*rotation*/) {} 
+      virtual void WriteScale(const std::string& /*name*/)      {} 
 
               void WritePlacement(const std::string& lvName, 
                             const ThreeVector& position); 

@@ -142,8 +142,9 @@ void XmlVGM::GDMLWriter::WriteBooleanSolid(
   
   // Get displacement
   VGM::Transform transform = booleanSolid->Displacement();
-  std::string positionName = fMaps->FindPositionName(transform);
-  std::string rotationName = fMaps->FindRotationName(transform);
+  VGM::Transform invTransform = ClhepVGM::Inverse(transform);
+  std::string positionName = fMaps->AddBooleanPosition();
+  std::string rotationName = fMaps->AddBooleanRotation();
 	
   // Get boolean type
   VGM::BooleanType boolType = booleanSolid->BoolType();
@@ -184,7 +185,7 @@ void XmlVGM::GDMLWriter::WriteBooleanSolid(
   WritePosition(positionName, transform);
 
   fOutFile << fkBasicIndention;
-  WriteRotation(rotationName, transform);         
+  WriteRotation(rotationName, invTransform);         
 
   fOutFile << fIndention << element6 << std::endl << std::endl;
 }
@@ -928,7 +929,8 @@ void XmlVGM::GDMLWriter::WriteNotSupportedSolid(
 void XmlVGM::GDMLWriter::WriteSimplePlacement(
                               const std::string& volumeName, 
 			      const std::string& positionRef,
-			      const std::string& rotationRef)
+			      const std::string& rotationRef,
+                              bool isReflection)
 {
 /// Write position with rotation with a given volume name
 
@@ -951,8 +953,12 @@ void XmlVGM::GDMLWriter::WriteSimplePlacement(
   std::string element4 = "<rotationref ref=\"";
   element4.append(rotationRef);
   element4.append(element0);
+  
+  std::string element5 = "<scaleref    ref=\"";
+  element5.append(std::string("scale_0"));
+  element5.append(element0);
 
-  std::string element5 = "</physvol>";
+  std::string element6 = "</physvol>";
   
   std::string indention1 = fIndention + fkBasicIndention;
   std::string indention2 = fIndention + fkBasicIndention + fkBasicIndention;
@@ -961,77 +967,77 @@ void XmlVGM::GDMLWriter::WriteSimplePlacement(
   fOutFile << fIndention << element1 << std::endl
            << indention1 << element2 << std::endl
            << indention2 << element3 << std::endl
-           << indention2 << element4 << std::endl
-	   << fIndention << element5 << std::endl;
+           << indention2 << element4 << std::endl;
+           
+  if ( isReflection )           
+    fOutFile << indention2 << element5 << std::endl;
+  
+  fOutFile << fIndention << element6 << std::endl;
 }  
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteMultiplePlacement(
-                              const std::string& /*volumeName*/,
-                              VGM::Axis /*axis*/, 
-			      int /*nofReplicas*/,
-			      double /*width*/, 
-			      double /*offset*/)			       
+                              const std::string& volumeName,
+                              VGM::Axis axis, 
+			      int   nofReplicas,
+			      double width, 
+			      double offset)			       
 {
-/// Not yet available in GDML
+/// Write multiple position
 
-/*
-  // get parameters
-  VGM::Axis axis;
-  int nReplicas;
-  double width;
-  double offset;
-  bool consuming;
-  pvr->GetReplicationData(axis, nReplicas, width, offset, consuming);
-  
-  std::string tag;
+  std::string axisName;
   switch (axis) {
-    case kXAxis: tag = "X"; break;
-    case kYAxis: tag = "Y"; break;
-    case kZAxis: tag = "Z"; break;
-    case kRho:   tag = "R"; break;
-    case kPhi:   tag = "Phi"; break;
-    case kRadial3D:  tag = "R3D"; break; // CHECK
-    case kUndefined: tag = "Undefined"; break;
+    case VGM::kXAxis: axisName = "kXAxis";  break;
+    case VGM::kYAxis: axisName = "kYAxis"; break;
+    case VGM::kZAxis: axisName = "kZAxis"; break;
+    case VGM::kRho:   axisName = "kRho"; break;
+    case VGM::kPhi:         axisName = "kPhi"; break;
+    case VGM::kRadial3D:    axisName = "Undefined"; break; // ADD WARNING HERE
+    case VGM::kSphTheta:    axisName = "Undefined"; break; 
+    case VGM::kUnknownAxis: axisName = "Undefined"; break;
   }  
 
   // set units
-  double value0 = - width*(nReplicas-1)*0.5 + offset;
-  double dValue = width;
-  if (axis != kPhi) {
-    value0 = value0/LengthUnit();
-    dValue = dValue/LengthUnit();
+  double width2;
+  double offset2;
+  std::string unit;
+  if ( axis != VGM::kPhi && axis != VGM::kSphTheta ) {
+    width2 = width/LengthUnit();
+    offset2 = offset/LengthUnit();
+    unit = "cm";
   }  
   else  {
-    value0 = value0/AngleUnit();
-    dValue = dValue/AngleUnit();
+    width2 = width/AngleUnit();
+    offset2 = offset/AngleUnit();
+    unit = "degree";
   }  
   
-  // set tag and attributes names
-  std::string a0 = "mpos"; a0 = a0 + tag;
-  std::string a1 = tag;  a1 = a1 + "0";
-  std::string a2 = "d";  a2 = a2 + tag; 
-
+  // Compose element strings
+  //
   // compose element string template
-  std::string element1 = "<" + a0 + "      volume=\"#####################   ncopy=\"";
-  std::string element2 = "\"   " + a1 + "=\"";
-  std::string element3 = "\"   " + a2 + "=\"";
-  std::string element4 = "\" />";
+  std::string quota = "\"";
+  std::string element1 = "<divisionvol unit=\"";
+  std::string element2 = "axis=\"";
+  std::string element3 = "number=\"";
+  std::string element4 = "offset=\"";
+  std::string element5 = "width=\"";
+  std::string element6 =  "\">";
   
-  // put solid name
-  PutName(element1, volumeName, "#");
-  
+  std::string element7 = "<volumeref ref=\"";
+  std::string element8 =  "\"/>";
+  std::string element9 = "</divisionvol>";
+
+  std::string indention1 = fIndention + fkBasicIndention;
+
   // write element
-  fOutFile << fIndention
-           << element1
-           << std::setw(fNW+1) << std::setprecision(fNP) << nReplicas
-	   << element2
-           << std::setw(fNW+1) << std::setprecision(fNP) << value0
-	   << element3	   
-           << std::setw(fNW+1) << std::setprecision(fNP) << dValue
-	   << element4
-	   << std::endl;
-*/
+  fOutFile << fIndention  << element1 << unit << quota << std::endl 
+           << indention1  << element2 << axisName + quota  << "  "
+           << element3 << nofReplicas << quota << "  "
+	   << element4 << std::setw(fNW+1) << std::setprecision(fNP) << offset2  << quota << "  "
+	   << element5 << std::setw(fNW+1) << std::setprecision(fNP) << width2 
+           << element6 << std::endl
+           << indention1 << element7 << volumeName << element8 << std::endl
+           << fIndention << element9 << std::endl;
 }  
 
 //
@@ -1063,11 +1069,9 @@ void XmlVGM::GDMLWriter::OpenDocument()
 			 
   fOutFile << "<?xml version=\"1.0\" encoding=\"UTF-8\"\?>" 
            << std::endl
-           << "<gdml xmlns:gdml=\"http://cern.ch/2001/Schemas/GDML\"" 
-	   << std::endl
 	   << "      xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"" 
 	   << std::endl
-	   << "      xsi:noNamespaceSchemaLocation=\"gdml.xsd\">" 
+	   << "      xsi:noNamespaceSchemaLocation=\"http://service-spi.web.cern.ch/service-spi/app/releases/GDML/GDML_2_10_0/src/GDMLSchema/\">" 
 	   << std::endl;
 }  
 
@@ -1629,6 +1633,38 @@ void XmlVGM::GDMLWriter::WriteRotation(
 }  
 
 //_____________________________________________________________________________
+void XmlVGM::GDMLWriter::WriteScale(
+                              const std::string& name)
+{
+// Write scale element with a given name with reflectionZ
+
+  // Get parameters
+  double scaleX =  1.0;
+  double scaleY =  1.0;
+  double scaleZ = -1.0;
+
+  // Compose element string template
+  std::string quota1 = "\"";
+  std::string quota2 = "\"  ";
+  std::string element1 = "<scale     name=";
+  std::string rotName = AppendName(quota1 + name + quota1, 12);
+
+  std::string element2 = "x=\"";
+  std::string element3 = "y=\"";
+  std::string element4 = "z=\"";
+  std::string element5 = "\"  />";
+  
+  // Write element
+  fOutFile << fIndention << element1 << rotName;
+
+  SmartPut(fOutFile, fNW+1, fNP, element2, scaleX, quota2);
+  SmartPut(fOutFile, fNW+1, fNP, element3, scaleY, quota2);
+  SmartPut(fOutFile, fNW+1, fNP, element4, scaleZ, "");
+
+  fOutFile << element5 << std::endl;
+}  
+
+//_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WritePlacement(
                               const VGM::IPlacement& placement)
 {			       
@@ -1646,26 +1682,31 @@ void XmlVGM::GDMLWriter::WritePlacement(
     // Get rotation
     std::string rotationRef = fMaps->FindRotationName(transform);
 	
-    // Reflection is not supported by GDML
-    if  (ClhepVGM::HasReflection(transform)) {
-      std::cerr << "+++ Warning  +++" << std::endl; 
-      std::cerr << "    XmlVGM::GDMLExporter::ProcessVolume: " << std::endl;
-      std::cerr << "    Placement with reflection is not yet supported in GDML." 
-	        << std::endl;
-      std::cerr << "    Volume \"" << placement.Name() 
-	        << "\" was not converted."  << std::endl; 
-    }		    
-    else   
-      WriteSimplePlacement(placement.Volume()->Name(), positionRef, rotationRef);
+    // If boolean solid that have to be reflected
+    // set reflection to the transformation
+    VGM::IBooleanSolid* booleanSolid 
+      = dynamic_cast<VGM::IBooleanSolid*>(placement.Volume()->Solid());
+    if ( booleanSolid && booleanSolid->ToBeReflected() )
+       transform[VGM::kReflZ] = 1;
+        
+    // Get info about reflection
+    bool isReflection = ClhepVGM::HasReflection(transform);
+
+    WriteSimplePlacement(placement.Volume()->Name(), 
+                         positionRef, rotationRef, isReflection);
   }
   else if (placementType == VGM::kMultiplePlacement) {
-    // not yet supported in GDML
-    std::cerr << "+++ Warning  +++" << std::endl; 
-    std::cerr << "    XmlVGM::GDMLExporter::ProcessVolume: " << std::endl;
-    std::cerr << "    Multiple placement is not yet supported in GDML." 
-	          << std::endl;
-    std::cerr << "    Volume \"" << placement.Name() 
-	          << "\" was not converted." << std::endl; 
+
+    // get parameters
+    VGM::Axis axis;
+    int nReplicas;
+    double width;
+    double offset;
+    placement.MultiplePlacementData(axis, nReplicas, width, offset);
+	    
+    // write multiple position
+    WriteMultiplePlacement(placement.Volume()->Name(),
+                           axis, nReplicas, width, offset);
      
   }
   else {

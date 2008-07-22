@@ -85,6 +85,7 @@ namespace XmlVGM {
       //
       void GeneratePositions(VGM::IVolume* volume);
       void GenerateRotations(VGM::IVolume* volume);
+      void GenerateScale();
       void GenerateMaterials(VGM::IVolume* volume);
       void GenerateMedia(VGM::IVolume* volume);
       void GenerateSolids(VGM::IVolume* volume);
