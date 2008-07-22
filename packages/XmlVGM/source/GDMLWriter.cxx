@@ -1069,9 +1069,9 @@ void XmlVGM::GDMLWriter::OpenDocument()
 			 
   fOutFile << "<?xml version=\"1.0\" encoding=\"UTF-8\"\?>" 
            << std::endl
-	   << "      xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"" 
+	   << "<gdml xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"" 
 	   << std::endl
-	   << "      xsi:noNamespaceSchemaLocation=\"http://service-spi.web.cern.ch/service-spi/app/releases/GDML/GDML_2_10_0/src/GDMLSchema/\">" 
+	   << "      xsi:noNamespaceSchemaLocation=\"http://service-spi.web.cern.ch/service-spi/app/releases/GDML/GDML_2_10_0/src/GDMLSchema/gdml.xsd\">" 
 	   << std::endl;
 }  
 
