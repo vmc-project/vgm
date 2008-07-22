@@ -1471,6 +1471,13 @@ void XmlVGM::AGDDWriter::WritePlacement(
   if (placementType == VGM::kSimplePlacement) {
     
     VGM::Transform transform = placement.Transformation();
+    
+    // If boolean solid that have to be reflected
+    // set reflection to the transformation
+    VGM::IBooleanSolid* booleanSolid 
+      = dynamic_cast<VGM::IBooleanSolid*>(placement.Volume()->Solid());
+    if ( booleanSolid && booleanSolid->ToBeReflected() )
+       transform[VGM::kReflZ] = 1;
 
     // position
     ThreeVector position(3);

@@ -41,7 +41,9 @@ XmlVGM::Maps::Maps(double numPrecision,
     fIsotopes(),
     fElements(),
     fMaterials(),
-    fMedia()
+    fMedia(),
+    fNofBoolPositions(0),
+    fNofBoolRotations(0)
 {
 /// Standard constructor
 /// \param numPrecision fixed format number precision
@@ -56,7 +58,9 @@ XmlVGM::Maps::Maps()
     fIsotopes(),
     fElements(),
     fMaterials(),
-    fMedia()
+    fMedia(),
+    fNofBoolPositions(0),
+    fNofBoolRotations(0)
 {
 /// Protected default constructor
  
@@ -72,7 +76,9 @@ XmlVGM::Maps::Maps(const Maps& /*right*/)
     fRotations(),
     fIsotopes(),
     fElements(),
-    fMaterials()
+    fMaterials(),
+    fNofBoolPositions(0),
+    fNofBoolRotations(0)
 {
 /// Protected copy constructor
 
@@ -228,6 +234,35 @@ XmlVGM::Maps::AddRotation(const VGM::Transform& transform)
   
   return name;
 }    
+
+//_____________________________________________________________________________
+std::string
+XmlVGM::Maps::AddBooleanPosition()
+{
+/// Increase Boolean position counter and generate position name
+
+  std::string name("posBool_");
+  std::ostringstream tmpStream;
+  tmpStream << fNofBoolPositions++;  
+  name.append(tmpStream.str());
+
+  return name;
+}    
+
+//_____________________________________________________________________________
+std::string
+XmlVGM::Maps::AddBooleanRotation()
+{
+/// Increase Boolean position counter and generate position name
+
+  std::string name("rotBool_");
+  std::ostringstream tmpStream;
+  tmpStream << fNofBoolRotations++;  
+  name.append(tmpStream.str());
+
+  return name;
+}    
+
 
 //_____________________________________________________________________________
 const VGM::IIsotope* 

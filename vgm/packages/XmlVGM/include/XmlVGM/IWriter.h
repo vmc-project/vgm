@@ -140,6 +140,9 @@ namespace XmlVGM {
       virtual void WriteRotation(const std::string& name, 
                             const VGM::Transform& rotation) = 0; 
 		    ///
+                    /// Write scale (from VGM transformation)
+      virtual void WriteScale(const std::string& name) = 0; 
+		    ///
                     /// Write VGM placement
       virtual void WritePlacement(
                             const VGM::IPlacement& placement) = 0; 
