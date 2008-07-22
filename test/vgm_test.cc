@@ -44,10 +44,7 @@
 #include "G4UImanager.hh"
 #include "G4UIterminal.hh"
 #include "G4UItcsh.hh"
-
-#ifdef G4VIS_USE
-#include "TstVisManager.hh"
-#endif
+#include "G4VisExecutive.hh"
 
 #include "TstDetectorConstruction.hh"
 #include "TstPhysicsList.hh"
@@ -152,6 +149,9 @@ int main(int argc, char** argv)
   }  
 #endif     
 
+  // Vis manager
+  G4VisManager* visManager = new G4VisExecutive;
+    
   // Set other mandatory initialization classes
   runManager->SetUserInitialization(new TstPhysicsList());
 
@@ -164,15 +164,6 @@ int main(int argc, char** argv)
 #endif
   }
   
-#ifdef G4VIS_USE
-  G4VisManager* visManager = 0;
-  if (visMode == "Geant4") {
-    // Visualization manager
-    visManager = new TstVisManager();
-    visManager->Initialize();
-  }  
-#endif
-    
   // Set user action classes
   runManager->SetUserAction(new TstPrimaryGeneratorAction());
   //runManager->SetUserAction(new TstTrackingAction());
@@ -180,6 +171,7 @@ int main(int argc, char** argv)
   
   // Initialize G4 kernel
   runManager->Initialize();
+  visManager->Initialize();
     
   // Get the pointer to the User Interface manager 
   G4UImanager* UI = G4UImanager::GetUIpointer();  
@@ -199,9 +191,7 @@ int main(int argc, char** argv)
   }        
 
   // job termination
-#ifdef G4VIS_USE
   delete visManager;
-#endif
   delete runManager;
 
   return 0;

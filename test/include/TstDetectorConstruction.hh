@@ -30,6 +30,7 @@
 #include "XmlVGM/VExporter.h"
 
 class TstVGeometry;
+class G4GDMLParser;
 
 class TstDetectorConstruction : public G4VUserDetectorConstruction
 {
@@ -76,6 +77,7 @@ class TstDetectorConstruction : public G4VUserDetectorConstruction
     Geant4GM::Factory* fGeant4Factory;
     RootGM::Factory*   fRootFactory;
     XmlVGM::VExporter* fXMLExporter;
+    G4GDMLParser*      fG4GDMLExporter;
     G4String           fXMLFileName;
     TstVGeometry*      fGeometry;
 };

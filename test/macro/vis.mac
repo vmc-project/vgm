@@ -25,7 +25,8 @@
 # (Edit the next line(s) to choose another graphic system)
 #
 #/vis/open DAWNFILE
-/vis/open OGLSXm
+#/vis/open OGLSXm
+/vis/open OIX
 #/vis/open RayTracer
 /vis/viewer/set/projection perspective
 

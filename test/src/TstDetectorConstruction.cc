@@ -25,6 +25,8 @@
 #include "TstGeometryViaGeant4.hh"
 #include "TstGeometryViaRoot.hh"
 
+#include "G4GDMLParser.hh"
+
 const G4String TstDetectorConstruction::fgkTestNameCandidates 
   = "Solids NewSolid Placements Reflections Assemblies1 Assemblies2 BooleanSolids1 BooleanSolids2 BooleanSolids3 BooleanSolids4 BooleanSolids5 Special";
 const G4String TstDetectorConstruction::fgkVisModeCandidates 
@@ -34,7 +36,7 @@ const G4String TstDetectorConstruction::fgkInputCandidates
 const G4String TstDetectorConstruction::fgkFactoryCandidates 
   = "AGDD Geant4 Root None";
 const G4String TstDetectorConstruction::fgkOutputXMLCandidates 
-  = "AGDD GDML noXML";
+  = "AGDD GDML G4GDML noXML";
 
 //_____________________________________________________________________________
 TstDetectorConstruction::TstDetectorConstruction(const G4String& inputType, 
@@ -51,6 +53,7 @@ TstDetectorConstruction::TstDetectorConstruction(const G4String& inputType,
     fGeant4Factory(0),
     fRootFactory(0),
     fXMLExporter(0),
+    fG4GDMLExporter(0),
     fXMLFileName(""),
     fGeometry(0)
 {
@@ -382,14 +385,28 @@ void TstDetectorConstruction::PrintRootMaterials() const
 //_____________________________________________________________________________
 void TstDetectorConstruction::GenerateXML() const
 {
-  if (!fXMLExporter) return;
 
-  // File name
-  std::string xmlFileName = fSelectedTest; 
-  xmlFileName += fXMLFileName;
+  if ( ! fXMLExporter && ! fG4GDMLExporter ) return;
+
+  if ( fXMLExporter ) {
+    // File name
+    std::string xmlFileName = fSelectedTest; 
+    xmlFileName += fXMLFileName;
   
-  fXMLExporter->SetFileName(xmlFileName);
-  fXMLExporter->GenerateXMLGeometry();
+    fXMLExporter->SetFileName(xmlFileName);
+    fXMLExporter->GenerateXMLGeometry();
+  }
+  else if ( fG4GDMLExporter ) {
+    if (!IsGeant4Geometry()) return;
+
+    // File name
+    std::string xmlFileName = "g4"; 
+    xmlFileName += fSelectedTest; 
+    xmlFileName += fXMLFileName;
+  
+    G4VPhysicalVolume* world = fGeant4Factory->World();
+    fG4GDMLExporter->Write(xmlFileName, world);
+  } 
 }
 
 
@@ -481,6 +498,10 @@ void TstDetectorConstruction::SelectChannels(const G4String& inputType,
   }  
   else if (outputXML == "GDML") { 
     fXMLExporter = new XmlVGM::GDMLExporter(fInputFactory);
+    fXMLFileName += ".gdml";
+  }  
+  else if (outputXML == "G4GDML") { 
+    fG4GDMLExporter = new G4GDMLParser();
     fXMLFileName += ".gdml";
   }  
 
