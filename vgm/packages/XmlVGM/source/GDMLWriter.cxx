@@ -627,7 +627,7 @@ void XmlVGM::GDMLWriter::WritePolyhedra(
   std::string element11 = "</polyhedra>";
   std::string indention = fIndention + fkBasicIndention;
   
-  // write pcon element
+  // write polyhedra element
   fOutFile << fIndention << element1 << std::endl
 	   << indention  << element2 << std::endl
 	   << indention  
