@@ -45,7 +45,7 @@ BaseVGM::VPolyhedra::~VPolyhedra() {
 double BaseVGM::VPolyhedra::ConvertRadiusFactor() const
 {
 // 
-  double phiTotal = DeltaPhi();
+  double phiTotal = DeltaPhi()/180.*M_PI;
   if ( (phiTotal <=0) || (phiTotal >= 2*M_PI*(1-1e-16)) )
     phiTotal = 2*M_PI;
   
