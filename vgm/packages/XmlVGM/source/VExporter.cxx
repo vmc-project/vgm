@@ -564,3 +564,21 @@ void XmlVGM::VExporter::GenerateXMLGeometry(const std::string& volumeName)
   std::cerr << "   XmlVGM::VExporter::GenerateXMLGeometry:" << std::endl; 
   std::cerr << "   Logical volume " << volumeName << " does not exist." << std::endl;
 }  
+
+//_____________________________________________________________________________
+void XmlVGM::VExporter::SetNumWidth(int width)
+{
+/// Set fixed format number width 
+
+  fWriter->SetNumWidth(width);
+}  
+
+//_____________________________________________________________________________
+void XmlVGM::VExporter::SetNumPrecision(int precision)
+{
+/// Set fixed format number precision
+
+  fWriter->SetNumPrecision(precision);
+  fMaps.SetNumPrecision(precision);
+}  
+
