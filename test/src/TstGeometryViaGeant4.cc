@@ -252,18 +252,8 @@ G4LogicalVolume* TstGeometryViaGeant4::CreatePolyhedra(G4double sphi, G4double d
   rin[2] = 30.*cm;
   rout[2] = 50.*cm;
   
-
-  if (sphi != 0.*deg || dphi != 360.*deg) {
-    std::cerr << "TstGeometryViaGeant4::CreatePolyhedra: " << std::endl
-              << "   The sphi, dphi parameteres were ignored" << std::endl
-	      << "   (to avoid G4Exception from G4Polyhedra.) " << std::endl;  
-  }	      
-
-  //G4VSolid* phedraS
-  //  = new G4Polyhedra("phedraS", sphi, dphi, 
-  //                     nofSides, nofPlanes, z, rin, rout);
   G4VSolid* phedraS
-    = new G4Polyhedra("phedraS", 0., 360.*deg, 
+    = new G4Polyhedra("phedraS", sphi, dphi, 
                        nofSides, nofPlanes, z, rin, rout);
 
   return new G4LogicalVolume(phedraS, fBasicMaterial, "phedra");
