@@ -52,7 +52,7 @@ namespace XmlVGM {
 
   // date
   const char         fgkCharReplacement  = '_';   //replacement for ' ' in names 
-  const std::string  fgkNotAllowedChars  = " +-*/&<>%^";  //not allowed characters in XML
+  const std::string  fgkNotAllowedChars  = " +-*/&<>%^$()"; //not allowed characters in XML
   const std::string  fgkNotAllowedChars1 = "0123456789";  //not allowed first characters
 }
 

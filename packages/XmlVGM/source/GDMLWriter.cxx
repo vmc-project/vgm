@@ -489,14 +489,13 @@ void XmlVGM::GDMLWriter::WritePara(
   double theta = UpdateAngle(para->Theta())/AngleUnit();
   double phi   = UpdateAngle(para->Phi())/AngleUnit();
 
-/*
   // convert half lengths to full lengths
   if (fFullLengths) {
     dx *= 2.;
     dy *= 2.;
     dz *= 2.;
   }  
-*/
+
   // compose element string template
   std::string quota = "\"";
   std::string element1 = "<para  lunit=\"cm\" aunit=\"degree\"";

@@ -83,6 +83,8 @@ namespace XmlVGM {
       void WriteAllMedia(IWriter* writer);
       void WriteAllMediaFromMaterials(IWriter* writer);
 
+      void SetNumPrecision(double precision);
+
       void ClearAllMaps();
 
     protected:
@@ -116,6 +118,11 @@ namespace XmlVGM {
   };
 
 }
+
+inline void XmlVGM::Maps::SetNumPrecision(double precision)
+{ /// Set numerical precision
+  fNumPrecision = precision; }
+
 
 #endif //XML_VGM_MAPS_H
 

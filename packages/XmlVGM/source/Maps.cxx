@@ -241,7 +241,7 @@ XmlVGM::Maps::AddBooleanPosition()
 {
 /// Increase Boolean position counter and generate position name
 
-  std::string name("posBool_");
+  std::string name("posB_");
   std::ostringstream tmpStream;
   tmpStream << fNofBoolPositions++;  
   name.append(tmpStream.str());
@@ -255,7 +255,7 @@ XmlVGM::Maps::AddBooleanRotation()
 {
 /// Increase Boolean position counter and generate position name
 
-  std::string name("rotBool_");
+  std::string name("rotB_");
   std::ostringstream tmpStream;
   tmpStream << fNofBoolRotations++;  
   name.append(tmpStream.str());

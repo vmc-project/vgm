@@ -62,6 +62,8 @@ namespace XmlVGM {
       // set methods
       void SetFileName(const std::string& fileName);
       void SetDebug(int debug);
+      void SetNumWidth(int width);
+      void SetNumPrecision(int precision);
 
       // get methods
       std::string FileName() const;
