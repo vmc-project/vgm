@@ -230,6 +230,54 @@ void XmlVGM::GDMLWriter::WriteBox(
 }
  
 //_____________________________________________________________________________
+void XmlVGM::GDMLWriter::WriteArb8(
+                              std::string name, 
+			      const VGM::IArb8* arb8)
+{
+/// Write VGM::ITessellatedSolid solid
+
+  // get parameters
+  double hz = arb8->ZHalfLength() / LengthUnit();
+  
+  // convert half lengths to full lengths
+  if (fFullLengths) {
+    hz *= 2.;
+  } 
+
+  // compose element string template
+  std::string quota = "\"";
+  std::string element1 = "<arb8  lunit=\"cm\"";
+  std::string element2 = "name=\"" + name + quota;
+  std::string element3 = "dz=\"";
+  std::string element4 = "v";
+  std::string element5 = "x=\"";
+  std::string element6 = "y=\"";
+  std::string element7 = "  />";
+  std::string indention = fIndention + fkBasicIndention;
+  
+  // write openning element
+  fOutFile << fIndention << element1 << std::endl
+           << indention << element2 << std::endl
+           << indention << element3
+           << std::setw(fNW) << std::setprecision(fNP) << hz << quota;
+  
+  // write vertices
+  for (int i=0; i<arb8->NofVertices(); ++i) {
+    VGM::TwoVector vertex = arb8->Vertex(i);
+    double dx = vertex.first / LengthUnit();
+    double dy = vertex.second / LengthUnit();
+    
+    fOutFile << std::endl
+             << indention
+             << element4 << std::setw(1) << i+1 << element5 
+             << std::setw(fNW) << std::setprecision(fNP) << dx << quota << "  "
+             << element4 << std::setw(1) << i+1 << element6 
+             << std::setw(fNW) << std::setprecision(fNP) << dy << quota;
+  }
+  fOutFile << element7 << std::endl << std::endl;
+}  
+
+//_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteBox(
                               std::string name, 
 			      const VGM::IBox* box) 
@@ -701,6 +749,51 @@ void XmlVGM::GDMLWriter::WriteSphere(
 	   << element9 << std::endl << std::endl;
 }
  
+//_____________________________________________________________________________
+void XmlVGM::GDMLWriter::WriteTessellatedSolid(
+                              std::string name, 
+			      const VGM::ITessellatedSolid* tessellated)
+{
+/// Write VGM::ITessellatedSolid solid
+
+  // compose element string template
+  std::string quota = "\"";
+  std::string element1 = "<tessellated name=\"" + name + "\">";
+  std::string element2 = "<triangular   ";
+  std::string element3 = "<quadrangular ";
+  std::string element4 = "  vertex";
+  std::string element5 = "=\"";
+  std::string element6 = "/>";
+  std::string element8 = "</tessellated>";
+  std::string indention = fIndention + fkBasicIndention;
+  
+  // write openning element
+  fOutFile << fIndention << element1 << std::endl;
+  
+  // write triangular facets
+  for (int i=0; i<tessellated->NofFacets(); ++i) {
+     int nofVertices = tessellated->NofVertices(i);
+     if ( nofVertices == 3 )
+        fOutFile << indention  << element2;
+     else   
+        fOutFile << indention  << element3;
+      
+     for (int j=0; j<nofVertices; ++j) {
+        // Vertex position
+        VGM::ThreeVector vertex = tessellated->Vertex(i,j);
+        std::string positionRef = fMaps->FindPositionName(vertex);
+      
+        fOutFile << element4
+                 << std::setw(1) << j+1 << element5 << positionRef << quota; 
+    }
+    fOutFile << element6 << std::endl;
+   
+  }              
+
+  // write closing element
+  fOutFile << fIndention << element8 << std::endl << std::endl;
+}  
+
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteTorus(
                               std::string name, 
@@ -1485,7 +1578,12 @@ void XmlVGM::GDMLWriter::WriteSolid(
   RegisterName(solidName);
   
   VGM::SolidType solidType = solid->Type();
-  if (solidType == VGM::kBox) { 
+  if (solidType == VGM::kArb8) { 
+    const VGM::IArb8* arb8 = dynamic_cast<const VGM::IArb8*>(solid); 
+    WriteArb8(solidName, arb8); 
+    return;   
+  }
+  else if (solidType == VGM::kBox) { 
     const VGM::IBox* box = dynamic_cast<const VGM::IBox*>(solid); 
     WriteBox(solidName, box); 
     return;   
@@ -1530,6 +1628,12 @@ void XmlVGM::GDMLWriter::WriteSolid(
   else if (solidType == VGM::kSphere) { 
     const VGM::ISphere* sphere = dynamic_cast<const VGM::ISphere*>(solid); 
     WriteSphere(solidName, sphere); 
+    return;   
+  }
+  else if (solidType == VGM::kTessellated) { 
+    const VGM::ITessellatedSolid* tessellated 
+      = dynamic_cast<const VGM::ITessellatedSolid*>(solid); 
+    WriteTessellatedSolid(solidName, tessellated); 
     return;   
   }
   else if (solidType == VGM::kTorus) { 

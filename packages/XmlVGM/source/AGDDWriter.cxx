@@ -144,11 +144,11 @@ double XmlVGM::AGDDWriter::Round2(double number) const
 }
 
 //_____________________________________________________________________________
-bool  XmlVGM::AGDDWriter::IsIdentity(const ThreeVector& rotation) const
+bool  XmlVGM::AGDDWriter::IsIdentity(const VGM::ThreeVector& rotation) const
 {
 /// Return true if roatation is identity within the converter precision.
 
-  ThreeVector roundedRotation(3);
+  VGM::ThreeVector roundedRotation(3);
   roundedRotation[0] = Round2(rotation[0]/ AngleUnit());
   roundedRotation[1] = Round2(rotation[1]/ AngleUnit());
   roundedRotation[2] = Round2(rotation[2]/ AngleUnit());
@@ -181,7 +181,7 @@ void XmlVGM::AGDDWriter::WriteBooleanSolid(
   WriteSolid(nameB, solidB, mediumName); 
   
   // Zero position
-  ThreeVector position0(3);
+  VGM::ThreeVector position0(3);
   position0[0] = 0.0;
   position0[1] = 0.0;
   position0[2] = 0.0;
@@ -190,13 +190,13 @@ void XmlVGM::AGDDWriter::WriteBooleanSolid(
   VGM::Transform transform = booleanSolid->Displacement();
 	
   // position
-  ThreeVector position(3);
+  VGM::ThreeVector position(3);
   position[0] = transform[VGM::kDx];
   position[1] = transform[VGM::kDy];
   position[2] = transform[VGM::kDz];
     
   // rotation
-  ThreeVector rotation(3);
+  VGM::ThreeVector rotation(3);
   rotation[0] = transform[VGM::kAngleX];
   rotation[1] = transform[VGM::kAngleY];
   rotation[2] = transform[VGM::kAngleZ];
@@ -674,8 +674,8 @@ void XmlVGM::AGDDWriter::WriteNotSupportedSolid(
 //_____________________________________________________________________________
 void XmlVGM::AGDDWriter::WritePlacementWithRotation(
                               std::string volumeName, 
-			      const ThreeVector& position, 
-			      const ThreeVector& rotation)
+			      const VGM::ThreeVector& position, 
+			      const VGM::ThreeVector& rotation)
 {
 /// Write position with a rotation with a given volume name 
 
@@ -744,8 +744,8 @@ void XmlVGM::AGDDWriter::WritePlacementWithRotation(
 //_____________________________________________________________________________
 void XmlVGM::AGDDWriter::WritePlacementWithRotationAndReflection(
                               std::string volumeName, 
-			      const ThreeVector& position, 
-			      const ThreeVector& rotation)
+			      const VGM::ThreeVector& position, 
+			      const VGM::ThreeVector& rotation)
 {
 // Write position with rotation and reflection with a given volume name 
 
@@ -1429,7 +1429,7 @@ void XmlVGM::AGDDWriter::WriteSolid(
 //_____________________________________________________________________________
 void XmlVGM::AGDDWriter::WritePlacement(
                               const std::string& volumeName, 
-                              const ThreeVector& position) 
+                              const VGM::ThreeVector& position) 
 {
 /// Write position without rotation with a given volume name 
 
@@ -1480,13 +1480,13 @@ void XmlVGM::AGDDWriter::WritePlacement(
        transform[VGM::kReflZ] = 1;
 
     // position
-    ThreeVector position(3);
+    VGM::ThreeVector position(3);
     position[0] = transform[VGM::kDx];
     position[1] = transform[VGM::kDy];
     position[2] = transform[VGM::kDz];
       
     // rotation
-    ThreeVector rotation(3);
+    VGM::ThreeVector rotation(3);
     rotation[0] = transform[VGM::kAngleX];
     rotation[1] = transform[VGM::kAngleY];
     rotation[2] = transform[VGM::kAngleZ];

@@ -139,20 +139,20 @@ double XmlVGM::Maps::Round2(double number) const
 
 
 //_____________________________________________________________________________
-XmlVGM::ThreeVector  
-XmlVGM::Maps::PurifyAngles(const ThreeVector& rotation) const
+VGM::ThreeVector  
+XmlVGM::Maps::PurifyAngles(const VGM::ThreeVector& rotation) const
 {
 /// Invert angle sign if angle.is within the maps precision
 /// equal - M_PI.
 
   double roundedPI = Round2(M_PI/fAngleUnit);
 
-  ThreeVector roundedRotation(3);
+  VGM::ThreeVector roundedRotation(3);
   roundedRotation[0] = Round2(rotation[0]/ fAngleUnit);
   roundedRotation[1] = Round2(rotation[1]/ fAngleUnit);
   roundedRotation[2] = Round2(rotation[2]/ fAngleUnit);
   
-  ThreeVector rotation2(3);
+  VGM::ThreeVector rotation2(3);
   rotation2[0] = rotation[0];
   rotation2[1] = rotation[1];
   rotation2[2] = rotation[2];
@@ -175,12 +175,12 @@ XmlVGM::Maps::AddPosition(const VGM::Transform& transform)
 /// Check if the specified position is not yet present (within the maps 
 /// precision), add it to the map and return its generated name
 
-  ThreeVector position(3);
+  VGM::ThreeVector position(3);
   position[0] = transform[VGM::kDx]; 
   position[1] = transform[VGM::kDy]; 
   position[2] = transform[VGM::kDz]; 
 
-  ThreeVector roundedPosition(3);
+  VGM::ThreeVector roundedPosition(3);
   roundedPosition[0] = Round2(position[0]/ fLengthUnit);
   roundedPosition[1] = Round2(position[1]/ fLengthUnit);
   roundedPosition[2] = Round2(position[2]/ fLengthUnit);
@@ -200,7 +200,6 @@ XmlVGM::Maps::AddPosition(const VGM::Transform& transform)
   return name;
 }    
 
-
 //_____________________________________________________________________________
 std::string
 XmlVGM::Maps::AddRotation(const VGM::Transform& transform)
@@ -209,13 +208,13 @@ XmlVGM::Maps::AddRotation(const VGM::Transform& transform)
 /// add it to the map and return its generated name
 
   // Get rotation
-  ThreeVector rotation(3);
+  VGM::ThreeVector rotation(3);
   rotation[0] = transform[VGM::kAngleX]; 
   rotation[1] = transform[VGM::kAngleY]; 
   rotation[2] = transform[VGM::kAngleZ]; 
-  ThreeVector rotation2 = PurifyAngles(rotation);
+  VGM::ThreeVector rotation2 = PurifyAngles(rotation);
       
-  ThreeVector roundedRotation(3);
+  VGM::ThreeVector roundedRotation(3);
   roundedRotation[0] = Round2(rotation2[0]/ fAngleUnit);
   roundedRotation[1] = Round2(rotation2[1]/ fAngleUnit);
   roundedRotation[2] = Round2(rotation2[2]/ fAngleUnit);
@@ -272,7 +271,7 @@ XmlVGM::Maps::AddIsotope(const VGM::IIsotope* isotope)
 /// precision) and add it to the map.
 /// Return the isotope (if added) or 0.
 
-  ThreeVector roundedValues(3);
+  VGM::ThreeVector roundedValues(3);
   roundedValues[0] = Round2(isotope->Z());
   roundedValues[1] = Round2(isotope->N());
   roundedValues[2] = Round2(isotope->A());
@@ -299,7 +298,7 @@ XmlVGM::Maps::AddElement(const VGM::IElement* element)
 /// precision) and add it to the map.
 /// Return the element (if added) or 0.
 
-  ThreeVector roundedValues(3);
+  VGM::ThreeVector roundedValues(3);
   roundedValues[0] = Round2(element->Z());
   roundedValues[1] = Round2(element->N());
   roundedValues[2] = Round2(element->A());
@@ -365,12 +364,12 @@ XmlVGM::Maps::FindPositionName(const VGM::Transform& transform) const
 /// precision) and return its xml name.
 /// Return an empty string if not found.
 
-  ThreeVector position(3);
+  VGM::ThreeVector position(3);
   position[0] = transform[VGM::kDx];
   position[1] = transform[VGM::kDy];
   position[2] = transform[VGM::kDz];
       
-  ThreeVector roundedPosition(3);
+  VGM::ThreeVector roundedPosition(3);
   roundedPosition[0] = Round2(position[0]/ fLengthUnit);
   roundedPosition[1] = Round2(position[1]/ fLengthUnit);
   roundedPosition[2] = Round2(position[2]/ fLengthUnit);
@@ -391,14 +390,14 @@ XmlVGM::Maps::FindRotationName(const VGM::Transform& transform) const
 /// Return an empty string if not found.
 
   // rotation
-  ThreeVector rotation(3);
+  VGM::ThreeVector rotation(3);
   rotation[0] = transform[VGM::kAngleX];
   rotation[1] = transform[VGM::kAngleY];
   rotation[2] = transform[VGM::kAngleZ];
 
-  ThreeVector rotation2 = PurifyAngles(rotation);
+  VGM::ThreeVector rotation2 = PurifyAngles(rotation);
 
-  ThreeVector roundedRotation(3);
+  VGM::ThreeVector roundedRotation(3);
   roundedRotation[0] = Round2(rotation2[0]/ fAngleUnit);
   roundedRotation[1] = Round2(rotation2[1]/ fAngleUnit);
   roundedRotation[2] = Round2(rotation2[2]/ fAngleUnit);

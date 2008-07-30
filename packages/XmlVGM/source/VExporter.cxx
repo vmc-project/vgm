@@ -25,6 +25,7 @@
 #include "VGM/materials/IMaterialFactory.h"
 #include "VGM/solids/ISolid.h"
 #include "VGM/solids/IBooleanSolid.h"
+#include "VGM/solids/ITessellatedSolid.h"
 #include "VGM/volumes/IFactory.h"
 #include "VGM/volumes/IPlacement.h"
 
@@ -144,6 +145,13 @@ void XmlVGM::VExporter::ProcessPositions(VGM::IVolume* volume)
   	  fWriter->WritePosition(name, transform);
       }	
 
+      // Positions in tessellated solids
+      //
+      VGM::ISolid* dSolid = dPlacement->Volume()->Solid();
+      if ( dSolid->Type() == VGM::kTessellated ) {
+      
+	ProcessPositionsInTessellated(dSolid);  
+      }	
 /*
       // Displacemnt positions in Boolean solids
       //
@@ -153,6 +161,7 @@ void XmlVGM::VExporter::ProcessPositions(VGM::IVolume* volume)
 	ProcessPositionsInBoolean(dSolid);  
       }	
 */
+
       std::string dVolumeName = dPlacement->Volume()->Name();
       if (fVolumeNames.find(dVolumeName) == fVolumeNames.end()) {
         // process volumed only if it was not yet processed
@@ -185,6 +194,29 @@ void XmlVGM::VExporter::ProcessPositionsInBoolean(VGM::ISolid* solid)
    
    if (solidA->Type() == VGM::kBoolean) ProcessPositionsInBoolean(solidA);
    if (solidB->Type() == VGM::kBoolean) ProcessPositionsInBoolean(solidB);
+}  
+
+//_____________________________________________________________________________
+void XmlVGM::VExporter::ProcessPositionsInTessellated(VGM::ISolid* solid) 
+{
+/// Write all positions in the Boolean solid and its constituents
+/// (if Booleans too) 
+
+   if ( solid->Type() != VGM::kTessellated )  return;
+      
+   VGM::ITessellatedSolid* tessellatedSolid
+     = dynamic_cast<VGM::ITessellatedSolid*>(solid);
+     
+   for (int i=0; i<tessellatedSolid->NofFacets(); ++i) {
+     for (int j=0; j<tessellatedSolid->NofVertices(i); ++j) {
+     
+       VGM::ThreeVector vertex = tessellatedSolid->Vertex(i,j);
+       std::string name = fMaps.AddPosition(vertex);
+	
+       if (name != "")
+         fWriter->WritePosition(name, vertex);
+     }
+   }      
 }  
 
 //_____________________________________________________________________________
