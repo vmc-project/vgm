@@ -27,6 +27,7 @@
 #include "VGM/common/Axis.h"
 #include "VGM/common/Transform.h"
 #include "VGM/common/TwoVector.h"
+#include "VGM/common/ThreeVector.h"
 
 namespace VGM {
 
@@ -48,6 +49,32 @@ namespace VGM {
       // solids
       //
       
+                       /// Create the arbitrary trapezoid with 8 vertices standing on
+                       /// two paralel planes perpendicular to Z axis
+                       /// \param hz half-length along the z axis in mm
+                       /// \param vertices vector of (x,y) coordinates of vertices
+                       /// - first four points are the (x,y) 
+                       ///   coordinates of the vertices sitting on the -dz plane;
+                       /// - last four points are the (x,y) 
+                       ///   coordinates of the vertices sitting on the +dz plane;
+                       ///
+                       /// The order of defining the vertices of an arb8 is the following:
+                       /// - point 0 is connected with points 1,3,4
+                       /// - point 1 is connected with points 0,2,5
+                       /// - point 2 is connected with points 1,3,6
+                       /// - point 3 is connected with points 0,2,7
+                       /// - point 4 is connected with points 0,5,7
+                       /// - point 5 is connected with points 1,4,6
+                       /// - point 6 is connected with points 2,5,7
+                       /// - point 7 is connected with points 3,4,6
+                       ///
+                       /// Points can be identical in order to create shapes with less than 
+                       /// vertices.
+                       ///
+      virtual ISolid*  CreateArb8(const std::string& name, 
+                               double hz, 
+                               std::vector<VGM::TwoVector> vertices ) = 0;
+
                        /// Create the box solid
 		       /// \param hx half-length along the x axis in mm
 		       /// \param hy half-length along the y axis in mm
@@ -174,6 +201,14 @@ namespace VGM {
                                double rin, double rout, 
 			       double sphi, double dphi, 
 	                       double stheta, double dtheta) = 0;
+
+                       /// Create tessellated solid = solid composed from
+                       /// triangular and rectangular facets
+                       /// \param facets the vector of facets defined as a vector of
+                       ///        three vectors representing the facet points in mm
+                       ///
+      virtual ISolid*  CreateTessellatedSolid(const std::string& name, 
+                               std::vector< std::vector<VGM::ThreeVector> > facets) = 0;
 
                        /// Create the torus solid = phi segment of a torus
 		       /// \param rin inside radius of the torus in mm

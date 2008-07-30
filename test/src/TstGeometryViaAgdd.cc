@@ -83,9 +83,23 @@ void* TstGeometryViaAgdd::TestSolids(bool fullPhi)
 }
 
 //_____________________________________________________________________________
+void* TstGeometryViaAgdd::TestExtraSolid(VGM::SolidType /*solidType*/)
+{
+  std::cout << "TestExtraSolids: not available in AGDD v6" << std::endl;
+  return 0;
+}
+
+//_____________________________________________________________________________
 void* TstGeometryViaAgdd::TestNewSolid()
 {
   return LoadFile(fgkNewSolidFileName);
+}
+
+//_____________________________________________________________________________
+void* TstGeometryViaAgdd::TestNewSolid2()
+{
+  std::cout << "TestExtraSolids: not available in AGDD v6" << std::endl;
+  return 0;
 }
 
 //_____________________________________________________________________________

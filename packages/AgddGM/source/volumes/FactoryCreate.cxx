@@ -17,6 +17,10 @@
 // solids
 //
 VGM::ISolid*  
+AgddGM::Factory::CreateArb8(const std::string& /*name*/, double /*hz*/, 
+                            std::vector<VGM::TwoVector> /*vertices*/ ){assert(0); return 0;}
+
+VGM::ISolid*  
 AgddGM::Factory::CreateBox(const std::string& /*name*/, 
 			    double /*hx*/, double /*hy*/, double /*hz*/){assert(0); return 0;}
 
@@ -63,6 +67,10 @@ AgddGM::Factory::CreateSphere(const std::string& /*name*/,
 			       double /*sphi*/, double /*dphi*/, 
 			       double /*stheta*/, double /*dtheta*/){assert(0); return 0;}
 			       
+VGM::ISolid*  
+AgddGM::Factory::CreateTessellatedSolid(const std::string& /*name*/, 
+                              std::vector< std::vector<VGM::ThreeVector> > /*facets*/){assert(0); return 0;}
+
 VGM::ISolid*
 AgddGM::Factory::CreateTorus(const std::string& /*name*/, 
 			      double /*rin*/, double /*rout*/, double /*rax*/, 

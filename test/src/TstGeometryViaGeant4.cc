@@ -38,6 +38,9 @@
 #include "G4Polycone.hh"
 #include "G4Polyhedra.hh"
 #include "G4Sphere.hh"
+#include "G4TessellatedSolid.hh"
+#include "G4TriangularFacet.hh"
+#include "G4QuadrangularFacet.hh"
 #include "G4Torus.hh"
 #include "G4Trap.hh"
 #include "G4Trd.hh"
@@ -268,6 +271,62 @@ TstGeometryViaGeant4::CreateSphere(G4double sphi, G4double dphi)
                     sphi, dphi, sphi/2., dphi/2.); 
 			    
   return new G4LogicalVolume(sphereS1, fBasicMaterial, "sphere");
+}  
+
+//_____________________________________________________________________________
+G4LogicalVolume* 
+TstGeometryViaGeant4::CreateTessellatedSolid()
+{
+  // First declare a tessellated solid
+  //
+  G4TessellatedSolid* tessellatedS 
+    = new G4TessellatedSolid("tessellatedS");
+
+  G4double targetSize = 100*cm ;
+  G4TriangularFacet *facet1 
+    = new G4TriangularFacet(
+            G4ThreeVector(-targetSize,-targetSize,        0.0),
+            G4ThreeVector(+targetSize,-targetSize,        0.0),
+            G4ThreeVector(        0.0,        0.0,+targetSize),
+            ABSOLUTE);
+
+  G4TriangularFacet *facet2 
+    = new G4TriangularFacet (
+            G4ThreeVector(+targetSize,-targetSize,        0.0),
+            G4ThreeVector(+targetSize,+targetSize,        0.0),
+            G4ThreeVector(        0.0,        0.0,+targetSize),
+            ABSOLUTE);
+
+  G4TriangularFacet *facet3 
+    = new G4TriangularFacet (
+            G4ThreeVector(+targetSize,+targetSize,        0.0),
+            G4ThreeVector(-targetSize,+targetSize,        0.0),
+            G4ThreeVector(        0.0,        0.0,+targetSize),
+            ABSOLUTE);
+
+  G4TriangularFacet *facet4 
+    = new G4TriangularFacet (
+            G4ThreeVector(-targetSize,+targetSize,        0.0),
+            G4ThreeVector(-targetSize,-targetSize,        0.0),
+            G4ThreeVector(        0.0,        0.0,+targetSize),
+            ABSOLUTE);
+
+  G4QuadrangularFacet *facet5 
+    = new G4QuadrangularFacet (
+            G4ThreeVector(-targetSize,-targetSize,        0.0),
+            G4ThreeVector(-targetSize,+targetSize,        0.0),
+            G4ThreeVector(+targetSize,+targetSize,        0.0),
+            G4ThreeVector(+targetSize,-targetSize,        0.0),
+            ABSOLUTE);
+
+  tessellatedS->AddFacet((G4VFacet*) facet1);
+  tessellatedS->AddFacet((G4VFacet*) facet2);
+  tessellatedS->AddFacet((G4VFacet*) facet3);
+  tessellatedS->AddFacet((G4VFacet*) facet4);
+  tessellatedS->AddFacet((G4VFacet*) facet5);
+  tessellatedS->SetSolidClosed(true);
+			    
+  return new G4LogicalVolume(tessellatedS, fBasicMaterial, "tessellated");  
 }  
 
 //_____________________________________________________________________________
@@ -599,6 +658,36 @@ TstGeometryViaGeant4::PlaceSolids(G4LogicalVolume* mother,
   
  }
 
+//_____________________________________________________________________________
+void  TstGeometryViaGeant4::PlaceExtraSolid(VGM::SolidType solidType, 
+                                            G4LogicalVolume* mother)
+{
+
+  // Arb8 
+  //
+  G4LogicalVolume* lv = 0;
+  G4String lvName;
+ 
+  if ( solidType == VGM::kTessellated ) {
+    lv = CreateTessellatedSolid();
+    lvName = "tessellated";
+  }    
+    
+  if ( ! lv )  return;
+
+  G4double zpos =  1.0*m;
+  HepGeom::ReflectZ3D reflect3D;
+ 
+  new G4PVPlacement(
+          HepGeom::Translate3D(0, 0, zpos), 
+          lv, lvName, mother, false, 0);
+
+  G4ReflectionFactory::Instance()
+    ->Place(HepGeom::Translate3D(0, 0, -zpos) * reflect3D,
+          lvName, lv, mother, false, 0);
+
+}
+
 //
 // public methods
 // 
@@ -670,6 +759,19 @@ void* TstGeometryViaGeant4::TestSolids(G4bool fullPhi)
   return (void*) world;
  }
 
+//_____________________________________________________________________________
+void* TstGeometryViaGeant4::TestExtraSolid(VGM::SolidType solidType)
+{
+
+  G4LogicalVolume* worldV = CreateWorld(6.*m, 3.*m, 2.*m);
+  G4VPhysicalVolume* world
+    = new G4PVPlacement(0, CLHEP::Hep3Vector(), worldV, "world", 0, false, 0); 
+  
+  PlaceExtraSolid(solidType, worldV);
+
+  return (void*) world;
+ }
+
 #include "G4VisAttributes.hh"
 //_____________________________________________________________________________
 void* TstGeometryViaGeant4::TestNewSolid()
@@ -686,6 +788,22 @@ void* TstGeometryViaGeant4::TestNewSolid()
       new G4PVPlacement(0, CLHEP::Hep3Vector(), 
                         solidV, solidV->GetName(), worldV, false, 0);
   }               
+
+  return (void*) world;
+}
+
+//_____________________________________________________________________________
+void* TstGeometryViaGeant4::TestNewSolid2()
+{
+  G4LogicalVolume* worldV = CreateWorld(2.*m, 2.*m, 2.*m);
+  G4VPhysicalVolume* world
+    = new G4PVPlacement(0, CLHEP::Hep3Vector(), 
+                        worldV, worldV->GetName(), 0, false, 0); 
+  worldV->SetVisAttributes (G4VisAttributes::Invisible);
+      
+  std::cerr << "TstGeometryViaGeant4::TestNewSolid2: not yet implemented." 
+            << std::endl;
+  exit(1);          
 
   return (void*) world;
 }

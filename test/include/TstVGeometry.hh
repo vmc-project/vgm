@@ -20,6 +20,8 @@
 #ifndef TST_V_GEOMETRY_H
 #define TST_V_GEOMETRY_H
 
+#include "VGM/solids/ISolid.h"
+
 class TstVGeometry 
 {
   public:
@@ -29,7 +31,9 @@ class TstVGeometry
     virtual void  DefineMaterials() = 0;
     
     virtual void* TestSolids(bool fullPhi = true) = 0;
+    virtual void* TestExtraSolid(VGM::SolidType solidType) = 0;
     virtual void* TestNewSolid() = 0;
+    virtual void* TestNewSolid2() = 0;
     virtual void* TestPlacements() = 0;
     virtual void* TestReflections(bool fullPhi = true) = 0;
     virtual void* TestAssemblies() = 0;

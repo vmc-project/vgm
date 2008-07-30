@@ -35,7 +35,9 @@ class TstGeometryViaAgdd : public TstVGeometry
     virtual void  DefineMaterials() {}
 
     virtual void* TestSolids(bool fullPhi);
+    virtual void* TestExtraSolid(VGM::SolidType solidType);
     virtual void* TestNewSolid();
+    virtual void* TestNewSolid2();
     virtual void* TestPlacements();
     virtual void* TestReflections(bool fullPhi);
     virtual void* TestAssemblies();
