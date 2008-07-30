@@ -18,6 +18,7 @@
 
 #include "VGM/materials/IMaterialFactory.h"
 #include "VGM/solids/IBooleanSolid.h"
+#include "VGM/solids/IArb8.h"
 #include "VGM/solids/IBox.h"
 #include "VGM/solids/ICons.h"
 #include "VGM/solids/ICtubs.h"
@@ -27,6 +28,7 @@
 #include "VGM/solids/IPolycone.h"
 #include "VGM/solids/IPolyhedra.h"
 #include "VGM/solids/ISphere.h"
+#include "VGM/solids/ITessellatedSolid.h"
 #include "VGM/solids/ITorus.h"
 #include "VGM/solids/ITrap.h"
 #include "VGM/solids/ITrd.h"
@@ -158,7 +160,15 @@ BaseVGM::VFactory::ExportSolid(VGM::ISolid* solid,
   }	      
 
   VGM::SolidType solidType = solid->Type();
-  if (solidType == VGM::kBox) { 
+  if (solidType == VGM::kArb8) { 
+    VGM::IArb8* arb8 = dynamic_cast<VGM::IArb8*>(solid); 
+    std::vector<VGM::TwoVector> vertices;
+    for ( int i=0; i<arb8->NofVertices(); ++i ) vertices.push_back(arb8->Vertex(i));
+    return factory->CreateArb8(arb8->Name(), 
+                               arb8->ZHalfLength(),
+                               vertices);  
+  }
+  else if (solidType == VGM::kBox) { 
     VGM::IBox* box = dynamic_cast<VGM::IBox*>(solid); 
     return factory->CreateBox(box->Name(), 
                               box->XHalfLength(), 
@@ -256,6 +266,20 @@ BaseVGM::VFactory::ExportSolid(VGM::ISolid* solid,
                               sphere->DeltaPhi(),
                               sphere->StartTheta(),
                               sphere->DeltaTheta());
+  }
+  else if (solidType == VGM::kTessellated) { 
+    VGM::ITessellatedSolid* tessellated 
+      = dynamic_cast<VGM::ITessellatedSolid*>(solid); 
+
+    std::vector< std::vector<VGM::ThreeVector> > facets;
+    for ( int i=0; i<tessellated->NofFacets(); ++i ) {
+      std::vector<VGM::ThreeVector> facet;
+      for ( int j=0; j<tessellated->NofVertices(i); ++j ) {
+        facet.push_back(tessellated->Vertex(i,j));
+      }  
+      facets.push_back(facet);
+    }        
+    return factory->CreateTessellatedSolid(tessellated->Name(), facets); 
   }
   else if (solidType == VGM::kTorus) { 
     VGM::ITorus* torus = dynamic_cast<VGM::ITorus*>(solid); 

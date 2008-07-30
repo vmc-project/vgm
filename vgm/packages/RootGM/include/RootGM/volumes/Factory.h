@@ -48,6 +48,10 @@ namespace RootGM {
     
       // solids
       //
+      virtual VGM::ISolid*  CreateArb8(const std::string& name, 
+                               double hz, 
+                               std::vector<VGM::TwoVector> vertices );
+
       virtual VGM::ISolid*  CreateBox(
                                const std::string& name, 
                                double hx, double hy, double hz);
@@ -91,6 +95,9 @@ namespace RootGM {
 			       double sphi, double dphi, 
 	                       double stheta, double dtheta);
 			       
+      virtual VGM::ISolid*  CreateTessellatedSolid(const std::string& name, 
+                               std::vector< std::vector<VGM::ThreeVector> > facets);
+
       virtual VGM::ISolid*  CreateTorus(const std::string& name, 
                                double rin, double rout, double rax, 
 			       double sphi, double dphi);

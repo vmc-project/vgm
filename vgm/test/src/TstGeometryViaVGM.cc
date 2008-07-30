@@ -87,6 +87,151 @@ IVolume* TstGeometryViaVGM::CreateNewSolid()
 
 
 //_____________________________________________________________________________
+IVolume* TstGeometryViaVGM::CreateArb8()
+{   
+  std::vector<VGM::TwoVector> vertices;
+  vertices.push_back(VGM::TwoVector( 45.*fCm, -15.*fCm));
+  vertices.push_back(VGM::TwoVector(  0.*fCm, -75.*fCm));
+  vertices.push_back(VGM::TwoVector(-30.*fCm, -75.*fCm));
+  vertices.push_back(VGM::TwoVector( 15.*fCm, -15.*fCm));
+  vertices.push_back(VGM::TwoVector( 45.*fCm, -15.*fCm));
+  vertices.push_back(VGM::TwoVector(  0.*fCm, -75.*fCm));
+  vertices.push_back(VGM::TwoVector(-30.*fCm, -75.*fCm));
+  vertices.push_back(VGM::TwoVector( 15.*fCm, -15.*fCm));
+
+  ISolid* arb8S
+    = fFactory->CreateArb8("arb8S", 75.*fCm, vertices);
+  
+  return fFactory->CreateVolume("arb8", arb8S, "Basic");
+}  
+ 
+//_____________________________________________________________________________
+void TstGeometryViaVGM::CreateArb8Solids(std::vector<VGM::IVolume*>& volumes)
+{
+  // 1 down vertex: 0=1=2=3
+  std::vector<VGM::TwoVector> vertices1;
+  vertices1.push_back(VGM::TwoVector( 45.*fCm, -15.*fCm));
+  vertices1.push_back(VGM::TwoVector( 45.*fCm, -15.*fCm));
+  vertices1.push_back(VGM::TwoVector( 45.*fCm, -15.*fCm));
+  vertices1.push_back(VGM::TwoVector( 45.*fCm, -15.*fCm));
+  vertices1.push_back(VGM::TwoVector( 45.*fCm, -15.*fCm));
+  vertices1.push_back(VGM::TwoVector(  0.*fCm, -75.*fCm));
+  vertices1.push_back(VGM::TwoVector(-30.*fCm, -75.*fCm));
+  vertices1.push_back(VGM::TwoVector( 15.*fCm, -15.*fCm));
+  ISolid* arbS1 = fFactory->CreateArb8("arbS1", 75.*fCm, vertices1);
+  volumes.push_back(fFactory->CreateVolume("arb1", arbS1, "Basic"));
+
+  // 2 down vertices: 0=1 2=3
+  std::vector<VGM::TwoVector> vertices2;
+  vertices2.push_back(VGM::TwoVector(  0.*fCm, -75.*fCm));
+  vertices2.push_back(VGM::TwoVector(  0.*fCm, -75.*fCm));
+  vertices2.push_back(VGM::TwoVector(-30.*fCm, -75.*fCm));
+  vertices2.push_back(VGM::TwoVector(-30.*fCm, -75.*fCm));
+  vertices2.push_back(VGM::TwoVector( 45.*fCm, -15.*fCm));
+  vertices2.push_back(VGM::TwoVector(  0.*fCm, -75.*fCm));
+  vertices2.push_back(VGM::TwoVector(-30.*fCm, -75.*fCm));
+  vertices2.push_back(VGM::TwoVector( 15.*fCm, -15.*fCm));
+  ISolid* arbS2 = fFactory->CreateArb8("arbS2", 75.*fCm, vertices2);
+  volumes.push_back(fFactory->CreateVolume("arb2", arbS2, "Basic"));
+
+  // 1 up vertex: 4=5=6=7
+  std::vector<VGM::TwoVector> vertices3;
+  vertices3.push_back(VGM::TwoVector( 45.*fCm, -15.*fCm));
+  vertices3.push_back(VGM::TwoVector(  0.*fCm, -75.*fCm));
+  vertices3.push_back(VGM::TwoVector(-30.*fCm, -75.*fCm));
+  vertices3.push_back(VGM::TwoVector( 15.*fCm, -15.*fCm));
+  vertices3.push_back(VGM::TwoVector( 45.*fCm, -15.*fCm));
+  vertices3.push_back(VGM::TwoVector( 45.*fCm, -15.*fCm));
+  vertices3.push_back(VGM::TwoVector( 45.*fCm, -15.*fCm));
+  vertices3.push_back(VGM::TwoVector( 45.*fCm, -15.*fCm));
+  ISolid* arbS3 = fFactory->CreateArb8("arbS3", 75.*fCm, vertices3);
+  volumes.push_back(fFactory->CreateVolume("arb3", arbS3, "Basic"));
+ 
+  // 2 up vertices: 4=5 6=7
+  std::vector<VGM::TwoVector> vertices4;
+  vertices4.push_back(VGM::TwoVector( 45.*fCm, -15.*fCm));
+  vertices4.push_back(VGM::TwoVector(  0.*fCm, -75.*fCm));
+  vertices4.push_back(VGM::TwoVector(-30.*fCm, -75.*fCm));
+  vertices4.push_back(VGM::TwoVector( 15.*fCm, -15.*fCm));
+  vertices4.push_back(VGM::TwoVector(  0.*fCm, -75.*fCm));
+  vertices4.push_back(VGM::TwoVector(  0.*fCm, -75.*fCm));
+  vertices4.push_back(VGM::TwoVector(-30.*fCm, -75.*fCm));
+  vertices4.push_back(VGM::TwoVector(-30.*fCm, -75.*fCm));
+  ISolid* arbS4 = fFactory->CreateArb8("arbS4", 75.*fCm, vertices4);
+  volumes.push_back(fFactory->CreateVolume("arb4", arbS4, "Basic"));
+
+  // 1 down vertex: 0=1=2=3
+  // 3 up vertices: 4=5
+  std::vector<VGM::TwoVector> vertices5;
+  vertices5.push_back(VGM::TwoVector( 45.*fCm, -15.*fCm));
+  vertices5.push_back(VGM::TwoVector( 45.*fCm, -15.*fCm));
+  vertices5.push_back(VGM::TwoVector( 45.*fCm, -15.*fCm));
+  vertices5.push_back(VGM::TwoVector( 45.*fCm, -15.*fCm));
+  vertices5.push_back(VGM::TwoVector( 45.*fCm, -15.*fCm));
+  vertices5.push_back(VGM::TwoVector(  0.*fCm, -75.*fCm));
+  vertices5.push_back(VGM::TwoVector(  0.*fCm, -75.*fCm));
+  vertices5.push_back(VGM::TwoVector(-30.*fCm, -75.*fCm));
+  vertices5.push_back(VGM::TwoVector( 15.*fCm, -15.*fCm));
+  ISolid* arbS5 = fFactory->CreateArb8("arbS5", 75.*fCm, vertices5);
+  volumes.push_back(fFactory->CreateVolume("arb5", arbS5, "Basic"));
+
+  // 3 down vertices: 0=1 
+  // 1 up vertex: 4=5=6=7
+  std::vector<VGM::TwoVector> vertices6;
+  vertices6.push_back(VGM::TwoVector( 45.*fCm, -15.*fCm));
+  vertices6.push_back(VGM::TwoVector( 45.*fCm, -15.*fCm));
+  vertices6.push_back(VGM::TwoVector(-30.*fCm, -75.*fCm));
+  vertices6.push_back(VGM::TwoVector( 15.*fCm, -15.*fCm));
+  vertices6.push_back(VGM::TwoVector( 45.*fCm, -15.*fCm));
+  vertices6.push_back(VGM::TwoVector( 45.*fCm, -15.*fCm));
+  vertices6.push_back(VGM::TwoVector( 45.*fCm, -15.*fCm));
+  vertices6.push_back(VGM::TwoVector( 45.*fCm, -15.*fCm));
+  ISolid* arbS6 = fFactory->CreateArb8("arbS6", 75.*fCm, vertices6);
+  volumes.push_back(fFactory->CreateVolume("arb6", arbS6, "Basic"));
+
+  // all up & down vertices different
+  std::vector<VGM::TwoVector> vertices7;
+  vertices7.push_back(VGM::TwoVector( 45.*fCm, -15.*fCm));
+  vertices7.push_back(VGM::TwoVector(  0.*fCm, -75.*fCm));
+  vertices7.push_back(VGM::TwoVector(-30.*fCm, -75.*fCm));
+  vertices7.push_back(VGM::TwoVector( 15.*fCm, -15.*fCm));
+  vertices7.push_back(VGM::TwoVector( 45.*fCm, -15.*fCm));
+  vertices7.push_back(VGM::TwoVector(  0.*fCm, -75.*fCm));
+  vertices7.push_back(VGM::TwoVector(-30.*fCm, -75.*fCm));
+  vertices7.push_back(VGM::TwoVector( 15.*fCm, -15.*fCm));
+  ISolid* arbS7 = fFactory->CreateArb8("arbS7", 75.*fCm, vertices7);
+  volumes.push_back(fFactory->CreateVolume("arb7", arbS7, "Basic"));
+
+/*
+  // 3 down vertices: 0=1 (twisted )
+  std::vector<VGM::TwoVector> vertices8;
+  vertices8.push_back(VGM::TwoVector( 45.*fCm, -15.*fCm));
+  vertices8.push_back(VGM::TwoVector( 45.*fCm, -15.*fCm));
+  vertices8.push_back(VGM::TwoVector(-30.*fCm, -75.*fCm));
+  vertices8.push_back(VGM::TwoVector( 15.*fCm, -15.*fCm));
+  vertices8.push_back(VGM::TwoVector( 45.*fCm, -15.*fCm));
+  vertices8.push_back(VGM::TwoVector(  0.*fCm, -75.*fCm));
+  vertices8.push_back(VGM::TwoVector(-30.*fCm, -75.*fCm));
+  vertices8.push_back(VGM::TwoVector( 15.*fCm, -15.*fCm));
+  ISolid* arbS8 = fFactory->CreateArb8("arbS8", 75.*fCm, vertices8);
+  volumes.push_back(fFactory->CreateVolume("arb8", arbS8, "Basic"));
+
+  // 3 up vertices: 4=5 (twisted )
+  std::vector<VGM::TwoVector> vertices9;
+  vertices9.push_back(VGM::TwoVector( 45.*fCm, -15.*fCm));
+  vertices9.push_back(VGM::TwoVector(  0.*fCm, -75.*fCm));
+  vertices9.push_back(VGM::TwoVector(-30.*fCm, -75.*fCm));
+  vertices9.push_back(VGM::TwoVector( 15.*fCm, -15.*fCm));
+  vertices9.push_back(VGM::TwoVector(  0.*fCm, -75.*fCm));
+  vertices9.push_back(VGM::TwoVector(  0.*fCm, -75.*fCm));
+  vertices9.push_back(VGM::TwoVector(-30.*fCm, -75.*fCm));
+  vertices9.push_back(VGM::TwoVector( 15.*fCm, -15.*fCm));
+  ISolid* arbS9 = fFactory->CreateArb8("arbS9", 75.*fCm, vertices9);
+  volumes.push_back(fFactory->CreateVolume("arb9", arbS9, "Basic"));
+*/
+}
+ 
+//_____________________________________________________________________________
 IVolume* TstGeometryViaVGM::CreateBox()
 {
   ISolid* boxS
@@ -253,6 +398,68 @@ IVolume* TstGeometryViaVGM::CreateSphere(double sphi, double dphi)
                             sphi, dphi, sphi/2., dphi/2.); 
 			    
   return fFactory->CreateVolume("sphere", sphereS, "Basic");
+}  
+
+//_____________________________________________________________________________
+IVolume* TstGeometryViaVGM::CreateTessellatedSolid()
+{
+  double targetSize = 100.*fCm ;
+
+  VGM::ThreeVector vertex;
+  std::vector <VGM::ThreeVector> facet1;
+  VGM::ThreeVector vertex1(3), vertex2(3), vertex3(3), vertex4(3);
+  vertex1[0] = -targetSize; vertex1[1] = -targetSize; vertex1[2] = 0.0;
+  vertex2[0] = +targetSize; vertex2[1] = -targetSize; vertex2[2] = 0.0;
+  vertex3[0] = 0.0;         vertex3[1] =  0.0;        vertex3[2] = +targetSize;
+  facet1.push_back(vertex1);
+  facet1.push_back(vertex2);
+  facet1.push_back(vertex3);
+  
+  std::vector <VGM::ThreeVector> facet2;
+  vertex1[0] = +targetSize; vertex1[1] = -targetSize; vertex1[2] = 0.0;
+  vertex2[0] = +targetSize; vertex2[1] = +targetSize; vertex2[2] = 0.0;
+  vertex3[0] = 0.0;         vertex3[1] =  0.0;        vertex3[2] = +targetSize;
+  facet2.push_back(vertex1);
+  facet2.push_back(vertex2);
+  facet2.push_back(vertex3);
+  
+  std::vector <VGM::ThreeVector> facet3;
+  vertex1[0] = +targetSize; vertex1[1] = +targetSize; vertex1[2] = 0.0;
+  vertex2[0] = -targetSize; vertex2[1] = +targetSize; vertex2[2] = 0.0;
+  vertex3[0] = 0.0;         vertex3[1] =  0.0;        vertex3[2] = +targetSize;
+  facet3.push_back(vertex1);
+  facet3.push_back(vertex2);
+  facet3.push_back(vertex3);
+  
+  std::vector <VGM::ThreeVector> facet4;
+  vertex1[0] = -targetSize; vertex1[1] = +targetSize; vertex1[2] = 0.0;
+  vertex2[0] = -targetSize; vertex2[1] = -targetSize; vertex2[2] = 0.0;
+  vertex3[0] = 0.0;         vertex3[1] =  0.0;        vertex3[2] = +targetSize;
+  facet4.push_back(vertex1);
+  facet4.push_back(vertex2);
+  facet4.push_back(vertex3);
+  
+  std::vector <VGM::ThreeVector> facet5;
+  vertex1[0] = -targetSize; vertex1[1] = -targetSize; vertex1[2] = 0.0;
+  vertex2[0] = -targetSize; vertex2[1] = +targetSize; vertex2[2] = 0.0;
+  vertex3[0] = +targetSize; vertex3[1] = +targetSize; vertex3[2] = 0.0;
+  vertex4[0] = +targetSize; vertex4[1] = -targetSize; vertex4[2] = 0.0;
+  facet5.push_back(vertex1);
+  facet5.push_back(vertex2);
+  facet5.push_back(vertex3);
+  facet5.push_back(vertex4);
+
+  std::vector<std::vector <VGM::ThreeVector> > facets;
+  facets.push_back(facet1);
+  facets.push_back(facet2);
+  facets.push_back(facet3);
+  facets.push_back(facet4);
+  facets.push_back(facet5);
+
+  ISolid* tessellatedS
+    = fFactory->CreateTessellatedSolid("tessellatedS", facets);
+			    
+  return fFactory->CreateVolume("tessellated", tessellatedS, "Basic");  
 }  
 
 //_____________________________________________________________________________
@@ -480,6 +687,60 @@ void* TstGeometryViaVGM::PlaceSolids(IVolume* mother,
   return (void*) fFactory->Top();
  }
 
+//_____________________________________________________________________________
+void TstGeometryViaVGM::PlaceSolids(const std::vector<VGM::IVolume*>& volumes,
+                                    VGM::IVolume* mother)
+{
+  // Place volumes defined in the vector 
+
+  double x0 = -450.*fCm;
+  double dx =  150.*fCm;
+  double zpos = 100.*fCm;
+  
+  HepGeom::ReflectZ3D reflect3D;
+ 
+  for ( unsigned int i=0; i<volumes.size(); ++i) {
+    fFactory->CreatePlacement("box", 0, volumes[i], mother, 
+                ClhepVGM::Transform(
+	          HepGeom::Translate3D(x0 + i*dx,  0, zpos))); 
+    fFactory->CreatePlacement("box", 0, volumes[i], mother, 
+                ClhepVGM::Transform(
+                  HepGeom::Translate3D(x0 + i*dx,  0, -zpos) * reflect3D)); 
+  }                  
+}
+
+
+//_____________________________________________________________________________
+void TstGeometryViaVGM::PlaceExtraSolid(VGM::SolidType solidType,
+                                        IVolume* mother)
+{
+  IVolume* vol = 0;
+  std::string volName;
+ 
+  if ( solidType == VGM::kArb8 ) {
+    vol = CreateArb8();
+    volName = "arb8";
+  }    
+
+  if ( solidType == VGM::kTessellated ) {
+    vol = CreateTessellatedSolid();
+    volName = "tessellated";
+  }    
+    
+  if ( ! vol )  return;
+
+  double zpos = 100.*fCm;
+  HepGeom::ReflectZ3D reflect3D;
+ 
+  fFactory->CreatePlacement(volName, 0, vol, mother, 
+              ClhepVGM::Transform(
+	        HepGeom::Translate3D(0, 0, zpos))); 
+  
+  fFactory->CreatePlacement(volName, 0, vol, mother, 
+              ClhepVGM::Transform(
+                HepGeom::Translate3D(0, 0, -zpos) * reflect3D)); 
+ }
+
 //
 // public methods
 // 
@@ -597,6 +858,17 @@ void* TstGeometryViaVGM::TestSolids(bool fullPhi)
  }
 
 //_____________________________________________________________________________
+void* TstGeometryViaVGM::TestExtraSolid(VGM::SolidType solidType)
+{
+  IVolume* worldV = CreateWorld(600.*fCm, 300.*fCm, 200.*fCm);
+  fFactory->CreatePlacement("world", 0, worldV, 0, ClhepVGM::Identity());
+  
+  PlaceExtraSolid(solidType, worldV);
+
+  return (void*) fFactory->Top();
+ }
+
+//_____________________________________________________________________________
 void* TstGeometryViaVGM::TestNewSolid()
 {
   IVolume* worldV = CreateWorld(200.*fCm, 200.*fCm, 200.*fCm);
@@ -607,6 +879,19 @@ void* TstGeometryViaVGM::TestNewSolid()
     fFactory->CreatePlacement(newSolidV->Name(), 0, newSolidV, worldV, 
                               ClhepVGM::Identity());
   }   
+
+  return (void*) fFactory->Top();
+ }
+
+//_____________________________________________________________________________
+void* TstGeometryViaVGM::TestNewSolid2()
+{
+  IVolume* worldV = CreateWorld(200.*fCm, 200.*fCm, 200.*fCm);
+  fFactory->CreatePlacement("world", 0, worldV, 0, ClhepVGM::Identity());
+  
+  std::vector<IVolume*> volumes;
+  CreateArb8Solids(volumes);
+  PlaceSolids(volumes, worldV);
 
   return (void*) fFactory->Top();
  }

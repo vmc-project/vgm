@@ -37,6 +37,7 @@
 #include "RootGM/materials/MaterialFactory.h"
 #include "RootGM/solids/SolidMap.h"
 #include "RootGM/solids/BooleanSolid.h"
+#include "RootGM/solids/Arb8.h"
 #include "RootGM/solids/Box.h"
 #include "RootGM/solids/Cons.h"
 #include "RootGM/solids/Ctubs.h"
@@ -196,9 +197,6 @@ RootGM::Factory::ImportSolid(TGeoShape* shape)
     return vgmTrap; 
   }
 
- // TGeoArb8* arb8 = dynamic_cast<const TGeoArb8*>(shape);
- // not supported
-
   TGeoTrd1* trd1 = dynamic_cast<TGeoTrd1*>(shape);
   if (trd1) { 
     VGM::ITrd* vgmTrd = new RootGM::Trd(trd1);
@@ -211,6 +209,13 @@ RootGM::Factory::ImportSolid(TGeoShape* shape)
     VGM::ITrd* vgmTrd = new RootGM::Trd(trd2);
     SolidStore().push_back(vgmTrd);
     return vgmTrd; 
+  }
+
+  TGeoArb8* arb8 = dynamic_cast<TGeoArb8*>(shape);
+  if (arb8) { 
+    VGM::IArb8* vgmArb8 = new RootGM::Arb8(arb8);
+    SolidStore().push_back(vgmArb8);
+    return vgmArb8; 
   }
 
   TGeoCtub* ctubs = dynamic_cast<TGeoCtub*>(shape);
@@ -519,6 +524,20 @@ bool RootGM::Factory::IsDivided(const TGeoVolume* volume) const
 
 //_____________________________________________________________________________
 VGM::ISolid* 
+RootGM::Factory::CreateArb8(const std::string& name, 
+                            double hz, 
+                            std::vector<VGM::TwoVector> vertices)
+{
+//
+  VGM::ISolid* vgmSolid 
+    = new RootGM::Arb8(name, hz, vertices);
+    
+  SolidStore().push_back(vgmSolid);
+  return vgmSolid; 
+}  			     
+
+//_____________________________________________________________________________
+VGM::ISolid* 
 RootGM::Factory::CreateBox(const std::string& name, 
                            double hx, double hy, double hz)
 {
@@ -636,6 +655,28 @@ RootGM::Factory::CreateSphere(const std::string& name,
   return vgmSolid; 
 }  			     
 			       
+//_____________________________________________________________________________
+VGM::ISolid*  
+RootGM::Factory::CreateTessellatedSolid(const std::string& name, 
+                               std::vector< std::vector<VGM::ThreeVector> > /*facets*/)
+{
+// Not supported solid in Root
+
+  std::cerr << "*** Error: Cannot create Tessellated solid in Root ***" << std::endl; 
+  if ( Ignore() ) {
+    std::cerr << "*** Warning: Using a box instead  ***" << std::endl; 
+    std::cerr << std::endl; 
+    VGM::IBox* vgmBox 
+      = new RootGM::Box(name, 1., 1., 1.);
+    SolidStore().push_back(vgmBox);
+    return vgmBox; 
+  }
+  else {	    
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    exit(1);
+  }  
+}                               
+
 //_____________________________________________________________________________
 VGM::ISolid*  
 RootGM::Factory::CreateTorus(const std::string& name, 

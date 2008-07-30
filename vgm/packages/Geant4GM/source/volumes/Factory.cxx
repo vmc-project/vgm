@@ -51,6 +51,7 @@
 #include "Geant4GM/materials/Material.h"
 #include "Geant4GM/solids/SolidMap.h"
 #include "Geant4GM/solids/BooleanSolid.h"
+#include "Geant4GM/solids/Arb8.h"
 #include "Geant4GM/solids/Box.h"
 #include "Geant4GM/solids/Cons.h"
 #include "Geant4GM/solids/Ctubs.h"
@@ -60,6 +61,7 @@
 #include "Geant4GM/solids/Polycone.h"
 #include "Geant4GM/solids/Polyhedra.h"
 #include "Geant4GM/solids/Sphere.h"
+#include "Geant4GM/solids/TessellatedSolid.h"
 #include "Geant4GM/solids/Torus.h"
 #include "Geant4GM/solids/Trap.h"
 #include "Geant4GM/solids/Trd.h"
@@ -198,6 +200,13 @@ Geant4GM::Factory::ImportSolid(G4VSolid* solid)
     VGM::ISphere* vgmSphere = new Geant4GM::Sphere(sphere, reflSolid);
     SolidStore().push_back(vgmSphere);
     return vgmSphere; 
+  }
+
+  G4TessellatedSolid* tessel = dynamic_cast<G4TessellatedSolid*>(consSolid);
+  if (tessel) { 
+    VGM::ITessellatedSolid* vgmTessel = new Geant4GM::TessellatedSolid(tessel, reflSolid);
+    SolidStore().push_back(vgmTessel);
+    return vgmTessel; 
   }
 
   G4Torus* torus = dynamic_cast<G4Torus*>(consSolid);
@@ -539,6 +548,35 @@ bool Geant4GM::Factory::Import(void* topVolume)
 
 //_____________________________________________________________________________
 VGM::ISolid* 
+Geant4GM::Factory::CreateArb8(const std::string& name, 
+                              double hz, 
+                              std::vector<VGM::TwoVector> vertices)
+{
+//
+  if ( Geant4GM::Arb8::IsTwisted(vertices) ) {
+    std::cerr << "*** Error: Cannot create Twisted Arb8 solid in Geant4 ***" << std::endl; 
+    if ( Ignore() ) {
+      std::cerr << "*** Warning: Using a box instead  ***" << std::endl; 
+      VGM::IBox* vgmBox 
+        = new Geant4GM::Box(name, 1., 1., 1.);
+      SolidStore().push_back(vgmBox);
+      return vgmBox; 
+    }
+    else {	    
+      std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+      exit(1);
+    }
+  }    
+
+  VGM::ISolid* vgmSolid 
+    = new Geant4GM::Arb8(name, hz, vertices);
+    
+  SolidStore().push_back(vgmSolid);
+  return vgmSolid; 
+}  			     
+
+//_____________________________________________________________________________
+VGM::ISolid* 
 Geant4GM::Factory::CreateBox(const std::string& name, 
                              double hx, double hy, double hz)
 {
@@ -657,6 +695,19 @@ Geant4GM::Factory::CreateSphere(const std::string& name,
   return vgmSolid; 
 }  			     
 			       
+//_____________________________________________________________________________
+VGM::ISolid*  
+Geant4GM::Factory::CreateTessellatedSolid(const std::string& name, 
+                               std::vector< std::vector<VGM::ThreeVector> > facets)
+{
+//
+  VGM::ISolid* vgmSolid 
+    = new Geant4GM::TessellatedSolid(name, facets);
+
+  SolidStore().push_back(vgmSolid);
+  return vgmSolid; 
+}                               
+
 //_____________________________________________________________________________
 VGM::ISolid*  
 Geant4GM::Factory::CreateTorus(const std::string& name, 

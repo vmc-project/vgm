@@ -26,6 +26,7 @@
 namespace VGM {
 
   enum SolidType {
+    kArb8,
     kBox,
     kCons,
     kCtubs,
@@ -35,6 +36,7 @@ namespace VGM {
     kPolycone,
     kPolyhedra,
     kSphere,
+    kTessellated,
     kTorus,
     kTrap,
     kTrd,

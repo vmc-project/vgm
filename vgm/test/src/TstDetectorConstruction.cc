@@ -28,7 +28,7 @@
 #include "G4GDMLParser.hh"
 
 const G4String TstDetectorConstruction::fgkTestNameCandidates 
-  = "Solids NewSolid Placements Reflections Assemblies1 Assemblies2 BooleanSolids1 BooleanSolids2 BooleanSolids3 BooleanSolids4 BooleanSolids5 Special";
+  = "Solids NewSolid NewSolid2 ExtraSolid Placements Reflections Assemblies1 Assemblies2 BooleanSolids1 BooleanSolids2 BooleanSolids3 BooleanSolids4 BooleanSolids5 Special";
 const G4String TstDetectorConstruction::fgkVisModeCandidates 
   = "Geant4 Root None";
 const G4String TstDetectorConstruction::fgkInputCandidates 
@@ -95,6 +95,15 @@ G4VPhysicalVolume* TstDetectorConstruction::Construct()
   else if (fSelectedTest == "NewSolid") {
     world = fGeometry->TestNewSolid();
     std::cout << "TestNewSolid finished" << std::endl;
+  }
+  else if (fSelectedTest == "NewSolid2") {
+    world = fGeometry->TestNewSolid2();
+    std::cout << "TestNewSolid2 finished" << std::endl;
+  }
+  else if (fSelectedTest == "ExtraSolid") {
+    world = fGeometry->TestExtraSolid(VGM::kArb8);
+    //world = fGeometry->TestExtraSolid(VGM::kTessellated);
+    std::cout << "TestExtraSolid finished" << std::endl;
   }
   else if (fSelectedTest == "Placements") {
     world = fGeometry->TestPlacements();
@@ -504,6 +513,10 @@ void TstDetectorConstruction::SelectChannels(const G4String& inputType,
     fG4GDMLExporter = new G4GDMLParser();
     fXMLFileName += ".gdml";
   }  
+  
+  // Set ignore
+  if (fGeant4Factory) fGeant4Factory->SetIgnore(true);
+  if (fRootFactory) fRootFactory->SetIgnore(true);
 
   // Print info
   //

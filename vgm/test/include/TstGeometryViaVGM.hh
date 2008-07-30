@@ -34,7 +34,9 @@ class TstGeometryViaVGM : public TstVGeometry
     virtual void  DefineMaterials();
     
     virtual void* TestSolids(bool fullPhi);
+    virtual void* TestExtraSolid(VGM::SolidType solidType);
     virtual void* TestNewSolid();
+    virtual void* TestNewSolid2();
     virtual void* TestPlacements();
     virtual void* TestReflections(bool fullPhi);
     virtual void* TestAssemblies();
@@ -47,6 +49,8 @@ class TstGeometryViaVGM : public TstVGeometry
     // methods
     VGM::IVolume* CreateWorld(double x, double y, double z);
     VGM::IVolume* CreateNewSolid();
+    VGM::IVolume* CreateArb8();
+    void          CreateArb8Solids(std::vector<VGM::IVolume*>& volumes);
     VGM::IVolume* CreateBox();
     VGM::IVolume* CreateCons(double sphi, double dphi);
     VGM::IVolume* CreateEllipticalTube();
@@ -56,6 +60,7 @@ class TstGeometryViaVGM : public TstVGeometry
     VGM::IVolume* CreatePolycone(double sphi, double dphi);
     VGM::IVolume* CreatePolyhedra(double sphi, double dphi);
     VGM::IVolume* CreateSphere(double sphi, double dphi);
+    VGM::IVolume* CreateTessellatedSolid();
     VGM::IVolume* CreateTorus(double sphi, double dphi);
     VGM::IVolume* CreateTrap();
     VGM::IVolume* CreateTrd();
@@ -63,6 +68,10 @@ class TstGeometryViaVGM : public TstVGeometry
     VGM::IVolume* CreateCtubs(double sphi, double dphi);
     void* PlaceSolids(VGM::IVolume* mother,
                       bool fullPhi, bool reflect, double zpos);
+    void  PlaceSolids(const std::vector<VGM::IVolume*>& volumes,
+                      VGM::IVolume* mother);
+    void  PlaceExtraSolid(VGM::SolidType solidType, 
+                      VGM::IVolume* motherVGM);
  
     // data members
     VGM::IFactory*  fFactory;

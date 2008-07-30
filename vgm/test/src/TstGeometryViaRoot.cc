@@ -17,6 +17,7 @@
 // Author: Ivana Hrivnacova; IPN Orsay
 
 #include <iomanip>
+#include <vector>
 
 #include "Riostream.h"
 #include "TMath.h"
@@ -87,6 +88,140 @@ TGeoVolume* TstGeometryViaRoot::CreateNewSolid()
 
 
 //_____________________________________________________________________________
+TGeoVolume* TstGeometryViaRoot::CreateArb8()
+{
+  TGeoArb8* arb8S = new TGeoArb8("arb8S", 75.0);
+  arb8S->SetVertex(0,  45., -15.);
+  arb8S->SetVertex(1,   0., -75.);
+  arb8S->SetVertex(2, -30., -75.);
+  arb8S->SetVertex(3,  15., -15.);
+  arb8S->SetVertex(4,  45., -15.);
+  arb8S->SetVertex(5,   0., -75.);
+  arb8S->SetVertex(6, -30., -75.);
+  arb8S->SetVertex(7,  15., -15.);
+
+  std::cout << "Is twisted: " << arb8S->IsTwisted() << std::endl;
+  return new TGeoVolume("arb8", arb8S, fBasicMedium);
+}  
+
+//_____________________________________________________________________________
+void TstGeometryViaRoot::CreateArb8Solids(std::vector<TGeoVolume*>& volumes)
+{
+  // 1 down vertex: 0=1=2=3
+  TGeoArb8* arbS1 = new TGeoArb8("arbS1", 75.0);
+  arbS1->SetVertex(0,  45., -15.);
+  arbS1->SetVertex(1,  45., -15.);
+  arbS1->SetVertex(2,  45., -15.);
+  arbS1->SetVertex(3,  45., -15.);
+  arbS1->SetVertex(4,  45., -15.);
+  arbS1->SetVertex(5,   0., -75.);
+  arbS1->SetVertex(6, -30., -75.);
+  arbS1->SetVertex(7,  15., -15.);
+  volumes.push_back(new TGeoVolume("arb1", arbS1, fBasicMedium));
+
+  // 2 down vertices: 0=1 2=3
+  TGeoArb8* arbS2 = new TGeoArb8("arbS2", 75.0);
+  arbS2->SetVertex(0,   0., -75.);
+  arbS2->SetVertex(1,   0., -75.);
+  arbS2->SetVertex(2, -30., -75.);
+  arbS2->SetVertex(3, -30., -75.);
+  arbS2->SetVertex(4,  45., -15.);
+  arbS2->SetVertex(5,   0., -75.);
+  arbS2->SetVertex(6, -30., -75.);
+  arbS2->SetVertex(7,  15., -15.);
+  volumes.push_back(new TGeoVolume("arb2", arbS2, fBasicMedium));
+
+  // 1 up vertex: 4=5=6=7
+  TGeoArb8* arbS3 = new TGeoArb8("arbS3", 75.0);
+  arbS3->SetVertex(0,  45., -15.);
+  arbS3->SetVertex(1,   0., -75.);
+  arbS3->SetVertex(2, -30., -75.);
+  arbS3->SetVertex(3,  15., -15.);
+  arbS3->SetVertex(4,  45., -15.);
+  arbS3->SetVertex(5,  45., -15.);
+  arbS3->SetVertex(6,  45., -15.);
+  arbS3->SetVertex(7,  45., -15.);
+  volumes.push_back(new TGeoVolume("arb3", arbS3, fBasicMedium));
+ 
+  // 2 up vertices: 4=5 6=7
+  TGeoArb8* arbS4 = new TGeoArb8("arbS4", 75.0);
+  arbS4->SetVertex(0,  45., -15.);
+  arbS4->SetVertex(1,   0., -75.);
+  arbS4->SetVertex(2, -30., -75.);
+  arbS4->SetVertex(3,  15., -15.);
+  arbS4->SetVertex(4,   0., -75.);
+  arbS4->SetVertex(5,   0., -75.);
+  arbS4->SetVertex(6, -30., -75.);
+  arbS4->SetVertex(7, -30., -75.);
+  volumes.push_back(new TGeoVolume("arb4", arbS4, fBasicMedium));
+
+  // 1 down vertex: 0=1=2=3
+  // 3 up vertices: 4=5
+  TGeoArb8* arbS5 = new TGeoArb8("arbS5", 75.0);
+  arbS5->SetVertex(0,  45., -15.);
+  arbS5->SetVertex(1,  45., -15.);
+  arbS5->SetVertex(2,  45., -15.);
+  arbS5->SetVertex(3,  45., -15.);
+  arbS5->SetVertex(4,  45., -15.);
+  arbS5->SetVertex(4,   0., -75.);
+  arbS5->SetVertex(5,   0., -75.);
+  arbS5->SetVertex(6, -30., -75.);
+  arbS5->SetVertex(7,  15., -15.);
+  volumes.push_back(new TGeoVolume("arb5", arbS5, fBasicMedium));
+
+  // 3 down vertices: 0=1 
+  // 1 up vertex: 4=5=6=7
+  TGeoArb8* arbS6 = new TGeoArb8("arbS6", 75.0);
+  arbS6->SetVertex(0,  45., -15.);
+  arbS6->SetVertex(1,  45., -15.);
+  arbS6->SetVertex(2, -30., -75.);
+  arbS6->SetVertex(3,  15., -15.);
+  arbS6->SetVertex(4,  45., -15.);
+  arbS6->SetVertex(5,  45., -15.);
+  arbS6->SetVertex(6,  45., -15.);
+  arbS6->SetVertex(7,  45., -15.);
+  volumes.push_back(new TGeoVolume("arb6", arbS6, fBasicMedium));
+
+  // all up & down vertices different
+  TGeoArb8* arbS7 = new TGeoArb8("arbS7", 75.0);
+  arbS7->SetVertex(0,  45., -15.);
+  arbS7->SetVertex(1,   0., -75.);
+  arbS7->SetVertex(2, -30., -75.);
+  arbS7->SetVertex(3,  15., -15.);
+  arbS7->SetVertex(4,  45., -15.);
+  arbS7->SetVertex(5,   0., -75.);
+  arbS7->SetVertex(6, -30., -75.);
+  arbS7->SetVertex(7,  15., -15.);
+  volumes.push_back(new TGeoVolume("arb7", arbS7, fBasicMedium));
+
+/*
+  // 3 down vertices: 0=1 (twisted )
+  TGeoArb8* arbS3 = new TGeoArb8("arbS3", 75.0);
+  arbS3->SetVertex(0,  45., -15.);
+  arbS3->SetVertex(1,  45., -15.);
+  arbS3->SetVertex(2, -30., -75.);
+  arbS3->SetVertex(3,  15., -15.);
+  arbS3->SetVertex(4,  45., -15.);
+  arbS3->SetVertex(5,   0., -75.);
+  arbS3->SetVertex(6, -30., -75.);
+  arbS3->SetVertex(7,  15., -15.);
+  volumes.push_back(new TGeoVolume("arb3", arbS3, fBasicMedium));
+
+  // 3 up vertices: 4=5 (twisted )
+  TGeoArb8* arbS6 = new TGeoArb8("arbS6", 75.0);
+  arbS6->SetVertex(0,  45., -15.);
+  arbS6->SetVertex(1,   0., -75.);
+  arbS6->SetVertex(2, -30., -75.);
+  arbS6->SetVertex(3,  15., -15.);
+  arbS6->SetVertex(4,   0., -75.);
+  arbS6->SetVertex(5,   0., -75.);
+  arbS6->SetVertex(6, -30., -75.);
+  arbS6->SetVertex(7,  15., -15.);
+  volumes.push_back(new TGeoVolume("arb3", arbS3, fBasicMedium));
+*/
+}
+
+//_____________________________________________________________________________
 TGeoVolume* TstGeometryViaRoot::CreateBox()
 {
   TGeoShape* boxS
@@ -140,6 +275,7 @@ TGeoVolume* TstGeometryViaRoot::CreateExtrudedSolid1()
 //_____________________________________________________________________________
 TGeoVolume* TstGeometryViaRoot::CreateExtrudedSolid2()
 {
+/*
   Int_t nz = 4;
   TGeoXtru* xtruS = new TGeoXtru(nz);
 
@@ -157,6 +293,114 @@ TGeoVolume* TstGeometryViaRoot::CreateExtrudedSolid2()
     xtruS->DefineSection(i, vz[i], xoff[i], yoff[i], scale[i]); 
 
   return new TGeoVolume("xtru2", xtruS, fBasicMedium);
+
+  // Wrong conversion
+
+  Int_t nz = 2;
+  TGeoXtru* xtruS = new TGeoXtru(nz);
+
+  Int_t nv = 12;
+  Double_t vx[12];
+  Double_t vy[12];
+  vx[0] =    -0.70000;  vy[0] =    -0.30000;
+  vx[1] =    -0.70000;  vy[1] =     6.55000;
+  vx[2] =     0.10000;  vy[2] =     6.55000;
+  vx[3] =     0.10000;  vy[3] =     5.90000;
+  vx[4] =     5.40000;  vy[4] =     5.90000;
+  vx[5] =     5.40000;  vy[5] =     6.55000;
+  vx[6] =     6.20000;  vy[6] =     6.55000;
+  vx[7] =     6.20000;  vy[7] =    -0.30000;
+  vx[8] =     2.65000;  vy[8] =    -0.30000;
+  vx[9] =     2.65000;  vy[9] =    -1.00000;
+  vx[10] =     1.85000;  vy[10] =    -1.00000;
+  vx[11] =     1.85000;  vy[11] =    -0.30000;
+  xtruS->DefinePolygon(nv, vx, vy);
+
+  Double_t vz[2] = { -0.025, 0.025 };
+  Double_t xoff[2]  = { 0., 0., };
+  Double_t yoff[2]  = { 0., 0., };
+  Double_t scale[2] = { 1.0, 1.0 };
+
+  for (Int_t i=0; i<2; i++)
+    xtruS->DefineSection(i, vz[i], xoff[i], yoff[i], scale[i]); 
+
+  return new TGeoVolume("xtru2", xtruS, fBasicMedium);
+*/
+  // Wrong conversion
+
+  Int_t nz = 2;
+  TGeoXtru* xtruS = new TGeoXtru(nz);
+
+  Int_t nv = 12;
+  Double_t vx[12] = { -5, -5, -4, -4, 4, 4, 5, 5, 1, 1, -1, -1 };
+  Double_t vy[12] = {  1,  5,  5,  4, 4, 5, 5, 1, 1, 0,  0,  1 };
+  xtruS->DefinePolygon(nv, vx, vy);
+
+  Double_t vz[2] = { -1, 1 };
+  Double_t xoff[2]  = { 0., 0., };
+  Double_t yoff[2]  = { 0., 0., };
+  Double_t scale[2] = { 1.0, 1.0 };
+
+  for (Int_t i=0; i<2; i++)
+    xtruS->DefineSection(i, vz[i], xoff[i], yoff[i], scale[i]); 
+
+  return new TGeoVolume("xtru2", xtruS, fBasicMedium);
+
+/*
+  Int_t nz = 2;
+  TGeoXtru* xtruS = new TGeoXtru(nz);
+
+  Int_t nv = 36;
+  Double_t vx[36];
+  Double_t vy[36];
+  vx[0] = 0.1*1.25;       vy[0] = 0.1*0;  
+  vx[1] = 0.1*1.25;       vy[1] = -0.1*1.25;  
+  vx[2] = -0.1*1.25;      vy[2] = -0.1*1.25;  
+  vx[3] = -0.1*1.25;      vy[3] = 0.1*1.25;  
+  vx[4] = 0.1*1.25;       vy[4] = 0.1*1.25;  
+  vx[5] = 0.1*1.25;       vy[5] = 0.1*0;  
+  vx[6] = 0.1*1.22268;    vy[6] = 0.1*0.25989;  
+  vx[7] = 0.1*1.14193;    vy[7] = 0.1*0.508421;  
+  vx[8] = 0.1*1.01127;    vy[8] = 0.1*0.734732;  
+  vx[9] = 0.1*0.836413;   vy[9] = 0.1*0.928931;  
+  vx[10] = 0.1*0.625;      vy[10] = 0.1*1.08253;  
+  vx[11] = 0.1*0.386271;  vy[11] = 0.1*1.18882; 
+  vx[12] = 0.1*0.130661;  vy[12] = 0.1*1.24315;  
+  vx[13] = -0.1*0.130661; vy[13] = 0.1*1.24315;  
+  vx[14] = -0.1*0.386271; vy[14] = 0.1*1.18882;  
+  vx[15] = -0.1*0.625;    vy[15] = 0.1*1.08253; 
+  vx[16] = -0.1*0.836413; vy[16] = 0.1*0.928931;  
+  vx[17] = -0.1*1.01127;  vy[17] = 0.1*0.734732;  
+  vx[18] = -0.1*1.14193;  vy[18] = 0.1*0.508421;  
+  vx[19] = -0.1*1.22268;  vy[19] = 0.1*0.25989;  
+  vx[20] = -0.1*1.25;     vy[20] = 0.1*1.53076e-16;  
+  vx[21] = -0.1*1.22268;  vy[21] = -0.1*0.25989;  
+  vx[22] = -0.1*1.14193;  vy[22] = -0.1*0.508421;  
+  vx[23] = -0.1*1.01127;  vy[23] = -0.1*0.734732;  
+  vx[24] = -0.1*0.836413; vy[24] = -0.1*0.928931;  
+  vx[25] = -0.1*0.625;    vy[25] = -0.1*1.08253;  
+  vx[26] = -0.1*0.386271; vy[26] = -0.1*1.18882;  
+  vx[27] = -0.1*0.130661; vy[27] = -0.1*1.24315;  
+  vx[28] = 0.1*0.130661;  vy[28] = -0.1*1.24315;  
+  vx[29] = 0.1*0.386271;  vy[29] = -0.1*1.18882;  
+  vx[30] = 0.1*0.625;     vy[30] = -0.1*1.08253;  
+  vx[31] = 0.1*0.836413;  vy[31] = -0.1*0.928931;  
+  vx[32] = 0.1*1.01127;   vy[32] = -0.1*0.734732;  
+  vx[33] = 0.1*1.14193;   vy[33] = -0.1*0.508421;  
+  vx[34] = 0.1*1.22268;   vy[34] = -0.1*0.25989; 
+  vx[35] = 0.1*1.25;      vy[35] = -0.1*3.06152e-16;
+  xtruS->DefinePolygon(nv, vx, vy);
+
+  Double_t vz[2] = { -0.025, 0.025 };
+  Double_t xoff[2]  = { 0., 0., };
+  Double_t yoff[2]  = { 0., 0., };
+  Double_t scale[2] = { 1.0, 1.0 };
+
+  for (Int_t i=0; i<2; i++)
+    xtruS->DefineSection(i, vz[i], xoff[i], yoff[i], scale[i]); 
+
+  return new TGeoVolume("xtru2", xtruS, fBasicMedium);
+*/
 }  
  
 //_____________________________________________________________________________
@@ -471,6 +715,68 @@ TGeoVolume* TstGeometryViaRoot::PlaceSolids(TGeoVolume* mother,
   return mother;   		  
 }
 
+//_____________________________________________________________________________
+void TstGeometryViaRoot::PlaceExtraSolid(VGM::SolidType solidType,
+                                         TGeoVolume* mother)
+{
+  Double_t zpos = 100.;
+  
+  TGeoRotation* reflect3D = new TGeoRotation();
+  // how to simply apply reflection ???
+  Double_t* matrix = new Double_t[9];
+  matrix[0] = 1; matrix[1] = 0; matrix[2] = 0;
+  matrix[3] = 0; matrix[4] = 1; matrix[5] = 0;
+  matrix[6] = 0; matrix[7] = 0; matrix[8] = -1;
+  reflect3D->SetMatrix(matrix);
+ 
+  // Arb8 
+  //
+  TGeoVolume* vol = 0;
+  //TString volName;
+ 
+  if ( solidType == VGM::kArb8 ) {
+    vol = CreateArb8();
+    //volName = "arb8";
+  }    
+    
+  if ( ! vol )  return;
+
+  mother->AddNode(vol, 0, 
+                  new TGeoTranslation(0, 0, zpos)); 
+
+  mother->AddNode(vol, 1,
+                  new TGeoCombiTrans(0, 0, -zpos, reflect3D)); 
+
+}
+
+//_____________________________________________________________________________
+void TstGeometryViaRoot::PlaceSolids(const std::vector<TGeoVolume*>& volumes,
+                                     TGeoVolume* mother)
+{
+  // Place volumes defined in the vector 
+
+  Double_t x0 = -450.;
+  Double_t dx =  150.;
+  Double_t zpos = 100.;
+  
+  
+  TGeoRotation* reflect3D = new TGeoRotation();
+  // how to simply apply reflection ???
+  Double_t* matrix = new Double_t[9];
+  matrix[0] = 1; matrix[1] = 0; matrix[2] = 0;
+  matrix[3] = 0; matrix[4] = 1; matrix[5] = 0;
+  matrix[6] = 0; matrix[7] = 0; matrix[8] = -1;
+  reflect3D->SetMatrix(matrix);
+ 
+  for ( UInt_t i=0; i<volumes.size(); ++i) {
+    mother->AddNode(volumes[i], 0, 
+                    new TGeoTranslation(x0 + i*dx, 0, zpos)); 
+    mother->AddNode(volumes[i], 1,
+                    new TGeoCombiTrans(x0 + i*dx, 0, -zpos, reflect3D)); 
+  }                  
+}
+
+
 //
 // public methods
 // 
@@ -536,6 +842,16 @@ void* TstGeometryViaRoot::TestSolids(Bool_t fullPhi)
  }
 
 //_____________________________________________________________________________
+void* TstGeometryViaRoot::TestExtraSolid(VGM::SolidType solidType)
+{
+  TGeoVolume* worldV = CreateWorld(600., 300., 200.);
+  
+  PlaceExtraSolid(solidType, worldV);
+  
+  return (void*) gGeoManager->GetTopNode();
+ }
+
+//_____________________________________________________________________________
 void* TstGeometryViaRoot::TestNewSolid()
 {
   TGeoVolume* worldV = CreateWorld(200., 200., 200.);
@@ -557,6 +873,18 @@ void* TstGeometryViaRoot::TestNewSolid()
   worldV->AddNode(boxV, 0, new TGeoTranslation(6.06, 13.2, -4.38));
   worldV->AddNode(boxV, 0, new TGeoTranslation(14.1, 22.8, -40.0));
 */  
+  return (void*) gGeoManager->GetTopNode();
+ }
+
+//_____________________________________________________________________________
+void* TstGeometryViaRoot::TestNewSolid2()
+{
+  TGeoVolume* worldV = CreateWorld(600., 300., 200.);
+  
+  std::vector<TGeoVolume*> volumes;
+  CreateArb8Solids(volumes);
+  PlaceSolids(volumes, worldV);
+  
   return (void*) gGeoManager->GetTopNode();
  }
 
