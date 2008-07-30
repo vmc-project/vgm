@@ -27,6 +27,7 @@
 
 #include "VGM/solids/ISolid.h"
 #include "VGM/solids/IBooleanSolid.h"
+#include "VGM/solids/IArb8.h"
 #include "VGM/solids/IBox.h"
 #include "VGM/solids/ICons.h"
 #include "VGM/solids/ICtubs.h"
@@ -36,6 +37,7 @@
 #include "VGM/solids/IPolycone.h"
 #include "VGM/solids/IPolyhedra.h"
 #include "VGM/solids/ISphere.h"
+#include "VGM/solids/ITessellatedSolid.h"
 #include "VGM/solids/ITorus.h"
 #include "VGM/solids/ITrap.h"
 #include "VGM/solids/ITrd.h"
@@ -157,15 +159,20 @@ namespace XmlVGM {
                      std::string name, const VGM::IBooleanSolid* solid);  
       void WriteBox (std::string lvName, 
                      double hx, double hy, double hz);
+      void WriteArb8(std::string name, const VGM::IArb8* arb8);  
       void WriteBox (std::string name, const VGM::IBox*  box);  
       void WriteCons(std::string name, const VGM::ICons* cons); 
       void WriteCtubs(std::string name, const VGM::ICtubs* ctubs); 
-      void WriteEllipticalTube(std::string name, const VGM::IEllipticalTube* eltu); 
-      void WriteExtrudedSolid(std::string name, const VGM::IExtrudedSolid* extruded); 
+      void WriteEllipticalTube(std::string name, 
+                     const VGM::IEllipticalTube* eltu); 
+      void WriteExtrudedSolid(std::string name, 
+                     const VGM::IExtrudedSolid* extruded); 
       void WritePara(std::string name, const VGM::IPara* para); 
       void WritePolycone(std::string name, const VGM::IPolycone* polycone); 
       void WritePolyhedra(std::string name, const VGM::IPolyhedra* polyhedra); 
       void WriteSphere(std::string name, const VGM::ISphere* sphere); 
+      void WriteTessellatedSolid(std::string name, 
+                     const VGM::ITessellatedSolid* tessellated); 
       void WriteTorus(std::string name, const VGM::ITorus* torus); 
       void WriteTrap(std::string name, const VGM::ITrap* trap); 
       void WriteTrd (std::string name, const VGM::ITrd*  trd);  

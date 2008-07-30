@@ -111,6 +111,7 @@ namespace XmlVGM {
       //
       void ProcessPositions(VGM::IVolume* volume); 
       void ProcessPositionsInBoolean(VGM::ISolid* solid); 
+      void ProcessPositionsInTessellated(VGM::ISolid* solid); 
 
       void ProcessRotations(VGM::IVolume* volume); 
       void ProcessRotationsInBoolean(VGM::ISolid* solid); 

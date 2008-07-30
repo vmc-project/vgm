@@ -28,25 +28,24 @@
 #include "VGM/materials/IMaterial.h"
 #include "VGM/materials/IMedium.h"
 #include "VGM/common/Transform.h"
+#include "VGM/common/ThreeVector.h"
 
 namespace XmlVGM {
 
   class IWriter;
 
-  typedef std::vector<double> ThreeVector;
-
   class Maps
   {
     public:
-      typedef std::map <ThreeVector, 
+      typedef std::map <VGM::ThreeVector, 
                         std::string, 
-                        std::less<ThreeVector> >  ThreeVectorMap; 
-      typedef std::multimap <ThreeVector, 
+                        std::less<VGM::ThreeVector> >  ThreeVectorMap; 
+      typedef std::multimap <VGM::ThreeVector, 
                         const VGM::IIsotope*, 
-                        std::less<ThreeVector> >  IsotopeMap; 
-      typedef std::multimap <ThreeVector, 
+                        std::less<VGM::ThreeVector> >  IsotopeMap; 
+      typedef std::multimap <VGM::ThreeVector, 
                         const VGM::IElement*, 
-                        std::less<ThreeVector> >  ElementMap; 
+                        std::less<VGM::ThreeVector> >  ElementMap; 
       typedef std::map <std::string, 
                         const VGM::IMaterial*, 
                         std::less<std::string> >  MaterialMap; 
@@ -97,9 +96,9 @@ namespace XmlVGM {
     private:
       // methods
       //
-      void         CutName(std::string& name) const;
-      double       Round2(double number) const;
-      ThreeVector  PurifyAngles(const ThreeVector& rotation) const;
+      void    CutName(std::string& name) const;
+      double  Round2(double number) const;
+      VGM::ThreeVector  PurifyAngles(const VGM::ThreeVector& rotation) const;
  
       // data members
       //

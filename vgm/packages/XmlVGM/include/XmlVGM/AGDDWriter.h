@@ -38,9 +38,11 @@
 #include "VGM/solids/IPara.h"
 #include "VGM/solids/IPolycone.h"
 #include "VGM/solids/IPolyhedra.h"
+#include "VGM/common/ThreeVector.h"
 
 #include "XmlVGM/IWriter.h"
 #include "XmlVGM/Maps.h"
+
 
 class VGM::IMaterial;
 class VGM::IElement;
@@ -106,7 +108,7 @@ namespace XmlVGM {
       virtual void WriteScale(const std::string& /*name*/)      {} 
 
               void WritePlacement(const std::string& lvName, 
-                            const ThreeVector& position); 
+                            const VGM::ThreeVector& position); 
       virtual void WritePlacement(
                             const VGM::IPlacement& placement); 
 
@@ -146,7 +148,7 @@ namespace XmlVGM {
       std::string ElementSymbol(const VGM::IElement* element) const;                       
       void RegisterName(const std::string& name, bool warning = true);
       double  Round2(double number) const;
-      bool    IsIdentity(const ThreeVector& rotation) const;
+      bool    IsIdentity(const VGM::ThreeVector& rotation) const;
    
       // Writing solids
       //
@@ -188,18 +190,18 @@ namespace XmlVGM {
       //
       virtual void WritePlacementWithRotation(
                             std::string lvName, 
-			    const ThreeVector& position,
-   			    const ThreeVector& rotation);
+			    const VGM::ThreeVector& position,
+   			    const VGM::ThreeVector& rotation);
 			    
       virtual void WritePlacementWithRotationAndReflection(
                             std::string lvName, 
-			    const ThreeVector& position,
-                            const ThreeVector& rotation); 
+                            const VGM::ThreeVector& position,
+                            const VGM::ThreeVector& rotation); 
 			    
       virtual void WriteMultiplePlacement(
                             const std::string& lvName,
                             VGM::Axis axis, int nofReplicas, 
-			    double width, double offset);			       
+                            double width, double offset);			       
 
       // static data members
       //
