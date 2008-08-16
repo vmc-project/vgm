@@ -16,6 +16,8 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
+#include <cstdlib>
+
 #include "TGeoCompositeShape.h"
 #include "TGeoBoolNode.h"
 #include "TGeoMatrix.h"

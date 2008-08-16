@@ -28,6 +28,7 @@
 #include <math.h>
 #include <sstream>
 #include <time.h>
+#include <cstdlib>
 
 #include <VGM/materials/IElement.h>
 #include <VGM/materials/IMaterial.h>

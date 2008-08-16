@@ -16,6 +16,8 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
+#include <cstdlib>
+
 #include "TGeoMaterial.h"
 
 #include "VGM/materials/IMaterial.h"

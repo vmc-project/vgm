@@ -18,6 +18,7 @@
 
 #include <iostream>
 #include <math.h>
+#include <cstdlib>
 
 #include "RootGM/solids/ExtrudedSolid.h"
 #include "RootGM/solids/SolidMap.h"
