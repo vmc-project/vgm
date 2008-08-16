@@ -16,6 +16,8 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
+#include <cstdlib>
+
 #include "RootGM/materials/Material.h"
 #include "RootGM/materials/MaterialMap.h"
 #include "RootGM/materials/Element.h"

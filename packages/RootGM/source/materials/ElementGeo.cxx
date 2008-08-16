@@ -17,6 +17,7 @@
 // Author: Ivana Hrivnacova; IPN Orsay
 
 #include <math.h>
+#include <cstdlib>
 
 #include "TGeoElement.h"
 #include "TGeoManager.h"

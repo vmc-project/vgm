@@ -21,6 +21,7 @@
 #include <math.h>
 #include <sstream>
 #include <float.h>
+#include <cstdlib>
 
 #include "VGM/materials/IMaterial.h"
 #include "VGM/materials/IElement.h"
