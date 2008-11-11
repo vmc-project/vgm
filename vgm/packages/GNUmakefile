@@ -7,19 +7,22 @@
 #           
 # For the licensing terms see vgm/LICENSE.
 # Contact: ivana@ipno.in2p3.fr
-# -----------------------------------------------------------------------
+# ----------------------------o-------------------------------------------
 
 # Based on Geant4 makefiles
 
 MAKEFLAGS= --no-print-directory
 
-SUBDIR = BaseVGM/source XmlVGM/source
+SUBDIR = BaseVGM/source
 
 ifeq ($(VGM_NO_CLHEP),)
 ifneq ($(CLHEP_BASE_DIR),)
 SUBDIR += ClhepVGM/source
 endif
 endif
+
+# because it needs BaseVGM and ClhepVGM
+SUBDIR += XmlVGM/source
 
 ifeq ($(VGM_NO_GEANT4),)
 ifneq ($(G4INSTALL),)

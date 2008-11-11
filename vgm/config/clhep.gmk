@@ -9,15 +9,13 @@
 # Contact: ivana@ipno.in2p3.fr
 # -----------------------------------------------------------------------
 
+# Based on Geant4 makefiles:
+
 ifndef VGM_LIBDIR
   VGM_LIBDIR := $(VGM_LIB)/$(VGM_SYSTEM)
 endif
 
-INTYLIBS += -L$(VGM_LIBDIR) -lBaseVGM -L$(ROOTSYS)/lib -lGeom -lCore -lCint
+INTYLIBS += -L$(VGM_LIBDIR) -lClhepVGM -lBaseVGM 
 
-CPPFLAGS += -I$(ROOTSYS)/include
-
-ifeq ($(VGM_SYSTEM),Linux-g++)
-  CXXFLAGS := $(filter-out -pedantic,$(CXXFLAGS))
-endif  
+CPPFLAGS += -I$(VGM_BASE)/ClhepVGM/include
 
