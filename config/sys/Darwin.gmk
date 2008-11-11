@@ -43,7 +43,7 @@ ifeq ($(VGM_SYSTEM),Darwin)
   X11FLAGS  := -I/usr/include/X11/extensions -I/usr/include/X11
   X11LIBS   := -L/usr/X11R6/lib  -lXmu -lXt -lXext -lX11 -lSM -lICE
   XMFLAGS   := -I/usr/X11R6/include
-  XMLIBS    := -lXm -lXpm
+  XMLIBS    := -L/sw/lib -lXm -lXpm
   DLDLIBS   := -ldl
   ifndef OGLFLAGS
     ifneq ($(OGLHOME), /usr) 
@@ -81,7 +81,7 @@ ifdef VGM_MACOSX_TWO_LEVEL_NAMESPACE
     @libdir=`(cd $(@D);/bin/pwd)`; \
      cd $(VGM_TMPDIR); \
      g++ -dynamiclib -twolevel_namespace -undefined error -dynamic \
-         -single_module -o $$libdir/$(@F) \
+         -single_module -o $$libdir/$(@F) *.o\
          $(foreach dir,$(SUBLIBS),$(dir)/*.o) \
          $(patsubst lib%,-l%,$(patsubst %.lib,%,$(GLOBLIBS))) \
          -L$(CLHEP_BASE_DIR)/lib -lCLHEP $(INTYLIBS)

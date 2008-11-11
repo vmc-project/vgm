@@ -16,6 +16,7 @@ name := Geant4GM
 
 # Added for reading INTYLIBS (needed on MacOS)
 include $(VGM_INSTALL)/config/architecture.gmk
+include $(VGM_INSTALL)/config/clhep.gmk
 include $(VGM_INSTALL)/config/geant4.gmk
 
 SUBDIRS = materials solids volumes
