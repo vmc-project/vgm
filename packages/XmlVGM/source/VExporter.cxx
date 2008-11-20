@@ -17,22 +17,25 @@
 //
 // Author: I. Hrivnacova, 19.1.2004
 
-#include <iomanip>
-#include <vector>
-#include <stdlib.h>
-#include <sstream>
-
+#include "VGM/materials/IElement.h"
+#include "VGM/materials/IMaterial.h"
 #include "VGM/materials/IMaterialFactory.h"
 #include "VGM/solids/ISolid.h"
 #include "VGM/solids/IBooleanSolid.h"
 #include "VGM/solids/ITessellatedSolid.h"
 #include "VGM/volumes/IFactory.h"
 #include "VGM/volumes/IPlacement.h"
+#include "VGM/volumes/IVolume.h"
 
 #include "ClhepVGM/transform.h"
 
 #include "XmlVGM/VExporter.h"
 #include "XmlVGM/IWriter.h"
+
+#include <iomanip>
+#include <vector>
+#include <stdlib.h>
+#include <sstream>
 
 const std::string XmlVGM::VExporter::fgkUndefinedFileName = "Undefined";
 

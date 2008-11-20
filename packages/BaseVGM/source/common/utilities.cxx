@@ -15,10 +15,10 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
+#include "BaseVGM/common/utilities.h"
+
 #include <iostream>
 #include <math.h>
-
-#include "BaseVGM/common/utilities.h"
 
 //_____________________________________________________________________________
 void  BaseVGM::DebugInfo()

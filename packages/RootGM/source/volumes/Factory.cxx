@@ -16,15 +16,6 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include <algorithm>
-
-#include <TGeoManager.h>
-#include <TGeoShape.h>
-#include <TGeoShapeAssembly.h>
-#include <TGeoCompositeShape.h>
-#include <TGeoVolume.h>
-#include <TObjArray.h>
-
 #include "BaseVGM/common/utilities.h"
 
 #include "RootGM/volumes/Factory.h"
@@ -51,6 +42,26 @@
 #include "RootGM/solids/Trap.h"
 #include "RootGM/solids/Trd.h"
 #include "RootGM/solids/Tubs.h"
+
+#include "TGeoManager.h"
+#include "TGeoShape.h"
+#include "TGeoShapeAssembly.h"
+#include "TGeoCompositeShape.h"
+#include "TGeoArb8.h"
+#include "TGeoCone.h"
+#include "TGeoEltu.h"
+#include "TGeoPara.h"
+#include "TGeoPcon.h"
+#include "TGeoPgon.h"
+#include "TGeoSphere.h"
+#include "TGeoTorus.h"
+#include "TGeoTrd1.h"
+#include "TGeoTrd2.h"
+#include "TGeoXtru.h"
+#include "TGeoVolume.h"
+#include "TObjArray.h"
+
+#include <algorithm>
 
 //_____________________________________________________________________________
 RootGM::Factory::Factory()
@@ -840,7 +851,7 @@ RootGM::Factory::CreatePlacement(
 		       CreateTransform(transform)); 
 		       
   // Top volume
-  if (!motherVolume) 
+  if (!motherVolume) {
     if (!fTop)
       fTop = placement;
     else {
@@ -849,6 +860,7 @@ RootGM::Factory::CreatePlacement(
       std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
       exit(1);
     }		  
+  }
   
   return placement;
 }			  			       

@@ -22,17 +22,19 @@
 #ifndef BASE_VGM_V_FACTORY_H
 #define BASE_VGM_V_FACTORY_H
 
+#include "VGM/volumes/IFactory.h"
+
 #include <map>
 
-#include "VGM/volumes/IFactory.h"
-#include "VGM/solids/ISolid.h"
-#include "VGM/solids/IBooleanSolid.h"
+namespace VGM {
+  class ISolid;
+  class IBooleanSolid;
+  class IVolume;
+  class IPlacement;
+  class IMaterialFactory;
+}
 
 namespace BaseVGM {
-
-  class VGM::IVolume;
-  class VGM::IPlacement;
-  class VGM::IMaterialFactory;
 
   class VFactory : public virtual VGM::IFactory
   {

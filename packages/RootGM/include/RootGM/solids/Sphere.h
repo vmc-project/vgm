@@ -20,11 +20,11 @@
 #ifndef ROOT_GM_SPHERE_H
 #define ROOT_GM_SPHERE_H
 
+#include "BaseVGM/solids/VSphere.h"
+
 #include <string>
 
-#include "TGeoSphere.h"
-
-#include "BaseVGM/solids/VSphere.h"
+class TGeoSphere;
 
 namespace RootGM {
 

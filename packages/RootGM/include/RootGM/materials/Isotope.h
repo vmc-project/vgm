@@ -20,9 +20,9 @@
 #ifndef ROOT_GM_ISOTOPE_H
 #define ROOT_GM_ISOTOPE_H
 
-#include <string>
-
 #include "VGM/materials/IIsotope.h"
+
+#include <string>
 
 namespace RootGM {
 

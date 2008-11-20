@@ -9,8 +9,11 @@
 // Contact: bv@bnl.gov
 // -----------------------------------------------------------------------
 
-#include <AgddGM/materials/Element.h>
-#include <AGDD/AGDD_Material_Model.hh>
+#include "VGM/materials/IIsotope.h"
+
+#include "AgddGM/materials/Element.h"
+
+#include "AGDD/AGDD_Material_Model.hh"
 
 AgddGM::Element::Element() : fElement(0)
 {

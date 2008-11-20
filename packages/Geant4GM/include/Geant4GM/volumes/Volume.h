@@ -20,13 +20,15 @@
 #ifndef GEANT4_GM_VOLUME_H
 #define GEANT4_GM_VOLUME_H
 
-#include <string>
-
-#include "G4LogicalVolume.hh"
-
 #include "BaseVGM/volumes/VVolume.h"
 
-class VGM::ISolid;
+#include <string>
+
+class G4LogicalVolume;
+
+namespace VGM {
+  class ISolid;
+}
 
 namespace Geant4GM {
 

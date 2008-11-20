@@ -16,14 +16,14 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include "G4Element.hh"
-
 #include "ClhepVGM/Units.h"
 
 #include "Geant4GM/materials/Element.h"
 #include "Geant4GM/materials/ElementMap.h"
 #include "Geant4GM/materials/Isotope.h"
 #include "Geant4GM/materials/IsotopeMap.h"
+
+#include "G4Element.hh"
 
 //_____________________________________________________________________________
 Geant4GM::Element::Element(const std::string& name, 

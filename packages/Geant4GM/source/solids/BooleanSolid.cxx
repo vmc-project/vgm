@@ -16,17 +16,17 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
+#include "ClhepVGM/transform.h"
+
+#include "Geant4GM/solids/BooleanSolid.h"
+#include "Geant4GM/solids/SolidMap.h"
+
 #include "G4BooleanSolid.hh"
 #include "G4DisplacedSolid.hh"
 #include "G4IntersectionSolid.hh"
 #include "G4SubtractionSolid.hh"
 #include "G4UnionSolid.hh"
 #include "G4ReflectedSolid.hh"
-
-#include "ClhepVGM/transform.h"
-
-#include "Geant4GM/solids/BooleanSolid.h"
-#include "Geant4GM/solids/SolidMap.h"
 
 //_____________________________________________________________________________
 Geant4GM::BooleanSolid::BooleanSolid(

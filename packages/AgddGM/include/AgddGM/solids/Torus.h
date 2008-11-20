@@ -1,4 +1,4 @@
-// $Id: $
+// $Id$
 
 // -----------------------------------------------------------------------
 // The AgddGM package of the Virtual Geometry Model
@@ -20,13 +20,16 @@
 #ifndef AGDD_GM_TORUS_H
 #define AGDD_GM_TORUS_H
 
-#include <BaseVGM/solids/VTorus.h>
+#include "BaseVGM/solids/VTorus.h"
 
 #include <string>
 
-namespace agdd { class AGDD_Torus; }
+namespace agdd { 
+  class AGDD_Torus; 
+}
 
 namespace AgddGM {
+
 class Torus : public BaseVGM::VTorus
 {
 public:

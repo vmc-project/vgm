@@ -16,7 +16,11 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
+#include "VGM/materials/IElement.h"
+
 #include "Geant4GM/materials/ElementMap.h"
+
+#include "G4Element.hh"
 
 Geant4GM::ElementMap*  Geant4GM::ElementMap::fgInstance = 0;
 

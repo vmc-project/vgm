@@ -20,9 +20,9 @@
 #ifndef BASE_VGM_V_EXTRUDED_SOLID_H
 #define BASE_VGM_V_EXTRUDED_SOLID_H
 
-#include <iostream>
-
 #include "VGM/solids/IExtrudedSolid.h"
+
+#include <iostream>
 
 namespace BaseVGM {
 

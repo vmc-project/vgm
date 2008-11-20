@@ -20,11 +20,11 @@
 #ifndef ROOT_GM_POLYCONE_H
 #define ROOT_GM_POLYCONE_H
 
+#include "BaseVGM/solids/VPolycone.h"
+
 #include <string>
 
-#include "TGeoPcon.h"
-
-#include "BaseVGM/solids/VPolycone.h"
+class TGeoPcon;
 
 namespace RootGM {
 

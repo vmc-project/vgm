@@ -20,11 +20,11 @@
 #ifndef ROOT_GM_MATERIAL_H
 #define ROOT_GM_MATERIAL_H
 
-#include <string>
+#include "VGM/materials/IMaterial.h"
 
 #include "TGeoMaterial.h"
 
-#include "VGM/materials/IMaterial.h"
+#include <string>
 
 namespace RootGM {
 

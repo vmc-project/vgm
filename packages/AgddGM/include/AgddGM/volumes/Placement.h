@@ -1,4 +1,4 @@
-// $Id: $
+// $Id$
 
 // -----------------------------------------------------------------------
 // The AgddGM package of the Virtual Geometry Model
@@ -20,11 +20,14 @@
 #ifndef AGDD_GM_PLACEMENT_H
 #define AGDD_GM_PLACEMENT_H
 
-#include <BaseVGM/volumes/VPlacement.h>
+#include "BaseVGM/volumes/VPlacement.h"
 
 #include <string>
 
-namespace HepGeom { class Transform3D; }
+namespace HepGeom { 
+  class Transform3D; 
+}
+
 namespace AgddGM {
 
 class Volume;

@@ -16,11 +16,13 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include <iostream>
-
 #include "RootGM/solids/Polycone.h"
 #include "RootGM/solids/SolidMap.h"
 #include "RootGM/common/Units.h"
+
+#include "TGeoPcon.h"
+
+#include <iostream>
 
 const int RootGM::Polycone::fgkMaxNofZPlanes = 50;
 double*   RootGM::Polycone::fgZBuffer = 0;

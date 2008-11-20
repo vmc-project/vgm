@@ -20,11 +20,11 @@
 #ifndef GEANT4_GM_ELEMENT_H
 #define GEANT4_GM_ELEMENT_H
 
+#include "VGM/materials/IElement.h"
+
 #include <string>
 
-#include "G4Element.hh"
-
-#include "VGM/materials/IElement.h"
+class G4Element;
 
 namespace Geant4GM {
 

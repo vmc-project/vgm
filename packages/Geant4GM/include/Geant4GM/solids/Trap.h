@@ -20,12 +20,12 @@
 #ifndef GEANT4_GM_TRAP_H
 #define GEANT4_GM_TRAP_H
 
+#include "BaseVGM/solids/VTrap.h"
+
 #include <string>
 
-#include "G4Trap.hh"
-#include "G4ReflectedSolid.hh"
-
-#include "BaseVGM/solids/VTrap.h"
+class G4Trap;
+class G4ReflectedSolid;
 
 namespace Geant4GM {
 

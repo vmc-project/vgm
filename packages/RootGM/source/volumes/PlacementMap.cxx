@@ -16,7 +16,11 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
+#include "VGM/volumes/IPlacement.h"
+
 #include "RootGM/volumes/PlacementMap.h"
+
+#include "TGeoNode.h"
 
 RootGM::PlacementMap*  RootGM::PlacementMap::fgInstance = 0;
 

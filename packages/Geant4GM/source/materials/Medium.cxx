@@ -18,12 +18,12 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include "G4Material.hh"
-
 #include "VGM/materials/IMaterial.h"
 
 #include "Geant4GM/materials/Medium.h"
 #include "Geant4GM/materials/MaterialMap.h"
+
+#include "G4Material.hh"
 
 const int Geant4GM::Medium::fgkParamSize = 20;  
 

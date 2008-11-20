@@ -22,12 +22,16 @@
 #ifndef GEANT4_GM_CTUBS_H
 #define GEANT4_GM_CTUBS_H
 
+#include "BaseVGM/solids/VCtubs.h"
+
+#include "globals.hh"
+#include "G4ThreeVector.hh"
+
 #include <string>
 
-#include "G4Tubs.hh"
-#include "G4ReflectedSolid.hh"
-
-#include "BaseVGM/solids/VCtubs.h"
+class G4Tubs;
+class G4VSolid;
+class G4ReflectedSolid;
 
 namespace Geant4GM {
 

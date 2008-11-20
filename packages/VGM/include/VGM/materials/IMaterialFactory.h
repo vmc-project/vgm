@@ -21,10 +21,10 @@
 #ifndef VGM_I_MATERIAL_FACTORY_H
 #define VGM_I_MATERIAL_FACTORY_H
 
-#include <vector>
-
 #include "VGM/materials/IElement.h"
 #include "VGM/materials/IMaterial.h"
+
+#include <vector>
 
 namespace VGM {
 

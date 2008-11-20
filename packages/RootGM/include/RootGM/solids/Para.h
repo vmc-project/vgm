@@ -20,11 +20,11 @@
 #ifndef ROOT_GM_PARA_H
 #define ROOT_GM_PARA_H
 
+#include "BaseVGM/solids/VPara.h"
+
 #include <string>
 
-#include "TGeoPara.h"
-
-#include "BaseVGM/solids/VPara.h"
+class TGeoPara;
 
 namespace RootGM {
 

@@ -16,12 +16,12 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include "G4Isotope.hh"
-
 #include "ClhepVGM/Units.h"
 
 #include "Geant4GM/materials/Isotope.h"
 #include "Geant4GM/materials/IsotopeMap.h"
+
+#include "G4Isotope.hh"
 
 //_____________________________________________________________________________
 Geant4GM::Isotope::Isotope(const std::string& name, 

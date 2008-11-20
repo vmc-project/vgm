@@ -20,11 +20,11 @@
 #ifndef ROOT_GM_CONS_H
 #define ROOT_GM_CONS_H
 
+#include "BaseVGM/solids/VCons.h"
+
 #include <string>
 
-#include "TGeoCone.h"
-
-#include "BaseVGM/solids/VCons.h"
+class TGeoCone;
 
 namespace RootGM {
 

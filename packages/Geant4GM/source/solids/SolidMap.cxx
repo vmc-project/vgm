@@ -16,7 +16,11 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
+#include "VGM/solids/ISolid.h"
+
 #include "Geant4GM/solids/SolidMap.h"
+
+#include "G4VSolid.hh"
 
 Geant4GM::SolidMap*  Geant4GM::SolidMap::fgInstance = 0;
 

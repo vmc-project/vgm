@@ -22,10 +22,10 @@
 #ifndef BASE_VGM_V_MATERIAL_FACTORY_H
 #define BASE_VGM_V_MATERIAL_FACTORY_H
 
+#include "VGM/materials/IMaterialFactory.h"
+
 #include <string>
 #include <map>
-
-#include "VGM/materials/IMaterialFactory.h"
 
 namespace BaseVGM {
 

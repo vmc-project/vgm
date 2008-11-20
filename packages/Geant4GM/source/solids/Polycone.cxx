@@ -26,6 +26,9 @@
 #include "Geant4GM/solids/Polycone.h"
 #include "Geant4GM/solids/SolidMap.h"
 
+#include "G4Polycone.hh"
+#include "G4ReflectedSolid.hh"
+
 const int Geant4GM::Polycone::fgkMaxNofZPlanes = 50;
 double*   Geant4GM::Polycone::fgZBuffer = 0;
 double*   Geant4GM::Polycone::fgRinBuffer = 0;

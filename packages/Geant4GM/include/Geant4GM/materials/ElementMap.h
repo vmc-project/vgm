@@ -22,9 +22,11 @@
 
 #include <map>
 
-#include "G4Element.hh"
+class G4Element;
 
-#include "VGM/materials/IElement.h"
+namespace VGM {
+  class IElement;
+}  
 
 namespace Geant4GM {
 

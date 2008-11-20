@@ -20,16 +20,19 @@
 #ifndef GEANT4_GM_PLACEMENT_H
 #define GEANT4_GM_PLACEMENT_H
 
-#include <string>
-
-#include "G4VPhysicalVolume.hh"
-#include "geomdefs.hh"
-
 #include "VGM/common/Transform.h"
 
 #include "BaseVGM/volumes/VPlacement.h"
 
-class VGM::IVolume;
+#include "geomdefs.hh"
+
+#include <string>
+
+class G4VPhysicalVolume;
+
+namespace VGM {
+  class IVolume;
+}
 
 namespace Geant4GM {
 

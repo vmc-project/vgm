@@ -20,12 +20,12 @@
 #ifndef GEANT4_GM_SPHERE_H
 #define GEANT4_GM_SPHERE_H
 
+#include "BaseVGM/solids/VSphere.h"
+
 #include <string>
 
-#include "G4Sphere.hh"
-#include "G4ReflectedSolid.hh"
-
-#include "BaseVGM/solids/VSphere.h"
+class G4Sphere;
+class G4ReflectedSolid;
 
 namespace Geant4GM {
 

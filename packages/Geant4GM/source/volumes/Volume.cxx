@@ -16,12 +16,15 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include "G4VSolid.hh"
-#include "G4Material.hh"
+#include "VGM/solids/ISolid.h"
 
 #include "Geant4GM/volumes/Volume.h"
 #include "Geant4GM/volumes/VolumeMap.h"
 #include "Geant4GM/solids/SolidMap.h"
+
+#include "G4VSolid.hh"
+#include "G4Material.hh"
+#include "G4LogicalVolume.hh"
 
 #include <iostream>
 

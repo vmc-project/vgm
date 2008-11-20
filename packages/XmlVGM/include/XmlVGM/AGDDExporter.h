@@ -23,8 +23,10 @@
 
 #include "XmlVGM/VExporter.h"
 
-class VGM::IFactory;
-class VGM::IVolume;
+namespace VGM {
+  class IFactory;
+  class IVolume;
+}  
 
 namespace XmlVGM {
 

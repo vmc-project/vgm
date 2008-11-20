@@ -20,7 +20,8 @@
 #ifndef AGDD_GM_MATERIAL_H
 #define AGDD_GM_MATERIAL_H
 
-#include <VGM/materials/IMaterial.h>
+#include "VGM/materials/IMaterial.h"
+
 #include <string>
 
 namespace agdd {
@@ -28,7 +29,9 @@ namespace agdd {
 }
 
 namespace AgddGM {
+
 class MaterialFactory;
+
 class Material : public VGM::IMaterial {
 
 public:

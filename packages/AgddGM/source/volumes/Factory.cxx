@@ -1,4 +1,4 @@
-// $Id: $
+// $Id$
 
 // -----------------------------------------------------------------------
 // The AgddGM package of the Virtual Geometry Model
@@ -9,8 +9,8 @@
 // Contact: bv@bnl.gov
 // -----------------------------------------------------------------------
 
-#include <AgddGM/volumes/Factory.h>
-#include <AgddGM/materials/MaterialFactory.h>
+#include "AgddGM/volumes/Factory.h"
+#include "AgddGM/materials/MaterialFactory.h"
 
 
 AgddGM::Factory::Factory()

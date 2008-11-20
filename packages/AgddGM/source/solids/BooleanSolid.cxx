@@ -1,4 +1,4 @@
-// $Id: $
+// $Id$
 
 // -----------------------------------------------------------------------
 // The AgddGM package of the Virtual Geometry Model
@@ -9,9 +9,11 @@
 // Contact: bv@bnl.gov
 // -----------------------------------------------------------------------
 
-#include <AgddGM/solids/BooleanSolid.h>
-#include <CLHEP/Geometry/Transform3D.h>
-#include <ClhepVGM/transform.h>
+#include "ClhepVGM/transform.h"
+
+#include "AgddGM/solids/BooleanSolid.h"
+
+#include "CLHEP/Geometry/Transform3D.h"
 
 using namespace std;
 

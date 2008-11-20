@@ -21,6 +21,9 @@
 #include "Geant4GM/solids/Tubs.h"
 #include "Geant4GM/solids/SolidMap.h"
 
+#include "G4Tubs.hh"
+#include "G4ReflectedSolid.hh"
+
 //_____________________________________________________________________________
 Geant4GM::Tubs::Tubs(const std::string& name, 
                      double rin, double rout, double hz, 

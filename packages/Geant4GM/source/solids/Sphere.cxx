@@ -28,6 +28,9 @@
 #include "Geant4GM/solids/Sphere.h"
 #include "Geant4GM/solids/SolidMap.h"
 
+#include "G4Sphere.hh"
+#include "G4ReflectedSolid.hh"
+
 //_____________________________________________________________________________
 Geant4GM::Sphere::Sphere(const std::string& name, 
                          double rin, double rout, double sphi, double dphi, 

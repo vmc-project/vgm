@@ -16,7 +16,11 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
+#include "VGM/materials/IMaterial.h"
+
 #include "RootGM/materials/MaterialMap.h"
+
+#include "TGeoMaterial.h"
 
 RootGM::MaterialMap*  RootGM::MaterialMap::fgInstance = 0;
 

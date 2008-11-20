@@ -20,9 +20,9 @@
 #ifndef VGM_I_TORUS_H
 #define VGM_I_TORUS_H
 
-#include <iostream>
-
 #include "VGM/solids/ISolid.h"
+
+#include <iostream>
 
 namespace VGM {
 

@@ -28,6 +28,7 @@
 #include "G4Box.hh"
 #include "G4Tubs.hh"
 #include "G4SubtractionSolid.hh"
+#include "G4ReflectedSolid.hh"
 
 #include <cmath>
 

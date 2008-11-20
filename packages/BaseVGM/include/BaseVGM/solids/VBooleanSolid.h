@@ -20,9 +20,9 @@
 #ifndef BASE_VGM_V_BOOLEAN_SOLID_H
 #define BASE_VGM_V_BOOLEAN_SOLID_H
 
-#include <iostream>
-
 #include "VGM/solids/IBooleanSolid.h"
+
+#include <iostream>
 
 namespace BaseVGM {
 

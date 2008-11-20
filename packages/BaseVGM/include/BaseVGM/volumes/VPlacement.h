@@ -22,9 +22,11 @@
 
 #include "VGM/volumes/IPlacement.h"
 
-namespace BaseVGM {
+namespace VGM {
+  class IVolume;
+}
 
-  class VGM::IVolume;
+namespace BaseVGM {
 
   class VPlacement : public virtual VGM::IPlacement
   {

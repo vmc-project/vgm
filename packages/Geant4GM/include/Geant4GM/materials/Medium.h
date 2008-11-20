@@ -22,9 +22,13 @@
 #ifndef GEANT4_GM_MEDIUM_H
 #define GEANT4_GM_MEDIUM_H
 
+#include "BaseVGM/materials/VMedium.h"
+
+#include "globals.hh"
+
 #include <string>
 
-#include "BaseVGM/materials/VMedium.h"
+class G4Material;
 
 namespace Geant4GM {
 

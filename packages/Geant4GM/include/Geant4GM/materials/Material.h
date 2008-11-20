@@ -20,11 +20,11 @@
 #ifndef GEANT4_GM_MATERIAL_H
 #define GEANT4_GM_MATERIAL_H
 
-#include <string>
+#include "VGM/materials/IMaterial.h"
 
 #include "G4Material.hh"
 
-#include "VGM/materials/IMaterial.h"
+#include <string>
 
 namespace Geant4GM {
 

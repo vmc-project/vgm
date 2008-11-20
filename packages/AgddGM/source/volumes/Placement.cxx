@@ -1,4 +1,4 @@
-// $Id: $
+// $Id$
 
 // -----------------------------------------------------------------------
 // The AgddGM package of the Virtual Geometry Model
@@ -9,16 +9,19 @@
 // Contact: bv@bnl.gov
 // -----------------------------------------------------------------------
 
-#include <AgddGM/volumes/Placement.h>
-#include <AgddGM/volumes/Volume.h>
-#include <AgddGM/solids/BooleanSolid.h>
+#include "VGM/volumes/IVolume.h"
 
-#include <ClhepVGM/transform.h>
-#include <VGM/volumes/IVolume.h>
+#include "ClhepVGM/transform.h"
 
-#include <CLHEP/Geometry/Transform3D.h>
+#include "AgddGM/volumes/Placement.h"
+#include "AgddGM/volumes/Volume.h"
+#include "AgddGM/solids/BooleanSolid.h"
+
+#include "CLHEP/Geometry/Transform3D.h"
+
 #include <cassert>
 #include <iostream>
+
 using namespace std;
 
 AgddGM::Placement::Placement(const std::string& name, 

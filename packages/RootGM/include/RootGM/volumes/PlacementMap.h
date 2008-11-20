@@ -22,9 +22,11 @@
 
 #include <map>
 
-#include "TGeoNode.h"
+class TGeoNode;
 
-#include "VGM/volumes/IPlacement.h"
+namespace VGM {
+  class IPlacement;
+}
 
 namespace RootGM {
 

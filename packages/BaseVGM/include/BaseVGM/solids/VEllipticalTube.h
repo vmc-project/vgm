@@ -20,9 +20,9 @@
 #ifndef BASE_VGM_V_ELLIPTICAL_TUBE_H
 #define BASE_VGM_V_ELLIPTICAL_TUBE_H
 
-#include <iostream>
-
 #include "VGM/solids/IEllipticalTube.h"
+
+#include <iostream>
 
 namespace BaseVGM {
  

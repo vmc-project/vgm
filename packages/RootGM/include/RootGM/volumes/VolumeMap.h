@@ -22,9 +22,11 @@
 
 #include <map>
 
-#include "TGeoVolume.h"
+class TGeoVolume;
 
-#include "VGM/volumes/IVolume.h"
+namespace VGM {
+  class IVolume;
+}
 
 namespace RootGM {
 

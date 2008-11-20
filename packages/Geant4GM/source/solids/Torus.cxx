@@ -21,6 +21,9 @@
 #include "Geant4GM/solids/Torus.h"
 #include "Geant4GM/solids/SolidMap.h"
 
+#include "G4Torus.hh"
+#include "G4ReflectedSolid.hh"
+
 //_____________________________________________________________________________
 Geant4GM::Torus::Torus(const std::string& name, 
                        double rin, double rout, double rax, 

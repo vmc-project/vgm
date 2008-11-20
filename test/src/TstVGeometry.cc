@@ -16,9 +16,10 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include <iostream>
-
 #include "TstVGeometry.hh"
+
+#include <iostream>
+#include <cstdlib>
 
 //_____________________________________________________________________________
 TstVGeometry::TstVGeometry()

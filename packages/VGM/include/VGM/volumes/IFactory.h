@@ -21,13 +21,13 @@
 #ifndef VGM_I_FACTORY_H
 #define VGM_I_FACTORY_H
 
-#include <string>
-#include <vector>
-
 #include "VGM/common/Axis.h"
 #include "VGM/common/Transform.h"
 #include "VGM/common/TwoVector.h"
 #include "VGM/common/ThreeVector.h"
+
+#include <string>
+#include <vector>
 
 namespace VGM {
 

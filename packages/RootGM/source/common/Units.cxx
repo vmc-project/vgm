@@ -16,10 +16,10 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
+#include "RootGM/common/Units.h"
+
 #include <iostream>
 #include <cstdlib>
-
-#include "RootGM/common/Units.h"
 
 //
 // static const data members

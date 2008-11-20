@@ -16,14 +16,14 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include <cstdlib>
-
-#include "TGeoMaterial.h"
-
 #include "VGM/materials/IMaterial.h"
 
 #include "RootGM/materials/Medium.h"
 #include "RootGM/materials/MaterialMap.h"
+
+#include "TGeoMedium.h"
+
+#include <cstdlib>
 
 const int RootGM::Medium::fgkParamSize = 20;  
 

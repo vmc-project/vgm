@@ -26,6 +26,9 @@
 #include "Geant4GM/solids/Cons.h"
 #include "Geant4GM/solids/SolidMap.h"
 
+#include "G4Cons.hh"
+#include "G4ReflectedSolid.hh"
+
 //_____________________________________________________________________________
 Geant4GM::Cons::Cons(const std::string& name, 
                      double rin1, double rout1, double rin2, double rout2,

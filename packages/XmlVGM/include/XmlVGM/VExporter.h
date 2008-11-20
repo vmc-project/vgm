@@ -23,17 +23,20 @@
 #ifndef XML_VGM_V_EXPORTER_H
 #define XML_VGM_V_EXPORTER_H
 
+#include "XmlVGM/Maps.h"
+
 #include <fstream>
 #include <string>
 #include <set>
 #include <map>
 
-#include "VGM/materials/IElement.h"
-#include "VGM/materials/IMaterial.h"
-#include "VGM/volumes/IFactory.h"
-#include "VGM/volumes/IVolume.h"
-
-#include "XmlVGM/Maps.h"
+namespace VGM {
+  class IElement;
+  class IMaterial;
+  class ISolid;
+  class IFactory;
+  class IVolume;
+}
 
 namespace XmlVGM {
 

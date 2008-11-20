@@ -20,9 +20,9 @@
 #ifndef BASE_VGM_V_TESSELLATED_SOLID_H
 #define BASE_VGM_V_TESSELLATED__SOLID_H
 
-#include <iostream>
-
 #include "VGM/solids/ITessellatedSolid.h"
+
+#include <iostream>
 
 namespace BaseVGM {
 

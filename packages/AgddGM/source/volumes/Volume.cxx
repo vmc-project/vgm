@@ -1,4 +1,4 @@
-// $Id: $
+// $Id$
 
 // -----------------------------------------------------------------------
 // The AgddGM package of the Virtual Geometry Model
@@ -9,8 +9,9 @@
 // Contact: bv@bnl.gov
 // -----------------------------------------------------------------------
 
-#include <AgddGM/volumes/Volume.h>
-#include <AGDD/AGDD_Model.hh>
+#include "AgddGM/volumes/Volume.h"
+
+#include "AGDD/AGDD_Model.hh"
 
 AgddGM::Volume::Volume(VGM::ISolid* solid, agdd::AGDD_Solid* agdd_sol)
     : BaseVGM::VVolume(solid), fSol(agdd_sol)

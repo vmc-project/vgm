@@ -16,10 +16,10 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include <math.h>
-
 #include "BaseVGM/common/utilities.h"
 #include "BaseVGM/solids/VBooleanSolid.h"
+
+#include <math.h>
 
 //_____________________________________________________________________________
 std::ostream& operator<<(std::ostream& out, const VGM::IBooleanSolid& boolean)

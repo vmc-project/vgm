@@ -17,17 +17,21 @@
 //
 // Author: I. Hrivnacova, 19.1.2004
 
-#include <iomanip>
-#include <vector>
-#include <stdlib.h>
-#include <sstream>
-
 #include "VGM/common/Math.h"
+#include "VGM/materials/IElement.h"
+#include "VGM/materials/IIsotope.h"
+#include "VGM/materials/IMaterial.h"
+#include "VGM/materials/IMedium.h"
 
 #include "ClhepVGM/transform.h"
 
 #include "XmlVGM/Maps.h"
 #include "XmlVGM/IWriter.h"
+
+#include <iomanip>
+#include <vector>
+#include <stdlib.h>
+#include <sstream>
 
 //_____________________________________________________________________________
 XmlVGM::Maps::Maps(double numPrecision,

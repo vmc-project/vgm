@@ -16,9 +16,9 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include "BaseVGM/solids/VTessellatedSolid.h"
-
 #include "VGM/common/Transform.h"
+
+#include "BaseVGM/solids/VTessellatedSolid.h"
 
 //_____________________________________________________________________________
 std::ostream& operator<<(std::ostream& out, const VGM::ITessellatedSolid& xtru)

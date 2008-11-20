@@ -20,15 +20,17 @@
 #ifndef BASE_VGM_V_VOLUME_H
 #define BASE_VGM_V_VOLUME_H
 
+#include "VGM/volumes/IVolume.h"
+
 #include <string>
 #include <vector>
 
-#include "VGM/volumes/IVolume.h"
+namespace VGM {
+  class ISolid;
+  class IPlacement;
+}
 
 namespace BaseVGM {
-
-  class VGM::ISolid;
-  class VGM::IPlacement;
 
   class VVolume : public virtual VGM::IVolume
   {

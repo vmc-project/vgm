@@ -1,4 +1,4 @@
-// $Id: $
+// $Id$
 
 // -----------------------------------------------------------------------
 // The AgddGM package of the Virtual Geometry Model
@@ -20,10 +20,11 @@
 #ifndef AGDD_GM_TRAP_H
 #define AGDD_GM_TRAP_H
 
-#include <BaseVGM/solids/VTrap.h>
+#include "BaseVGM/solids/VTrap.h"
 
-namespace agdd { class AGDD_GeneralTrapezoid; }
-
+namespace agdd { 
+  class AGDD_GeneralTrapezoid; 
+}
 
 namespace AgddGM {
 
@@ -49,6 +50,7 @@ private:
     agdd::AGDD_GeneralTrapezoid* fTrap;
 
 };
+
 }
 
 

@@ -1,4 +1,4 @@
-// $Id: $
+// $Id$
 
 // -----------------------------------------------------------------------
 // The AgddGM package of the Virtual Geometry Model
@@ -20,7 +20,7 @@
 #ifndef AGDD_GM_VOLUME_H
 #define AGDD_GM_VOLUME_H
 
-#include <BaseVGM/volumes/VVolume.h>
+#include "BaseVGM/volumes/VVolume.h"
 
 #include <string>
 #include <map>
@@ -30,6 +30,7 @@ namespace agdd {
 }
 
 namespace AgddGM {
+
 class Volume : public BaseVGM::VVolume {
 public:
     Volume(VGM::ISolid* solid, agdd::AGDD_Solid* agdd_sol);
@@ -50,5 +51,6 @@ private:
 
     DaughterNameCount fNameCount;
 };
+
 }
 #endif  // AGDD_GM_VOLUME_H

@@ -20,9 +20,9 @@
 #ifndef BASE_VGM_V_POLYHEDRA_H
 #define BASE_VGM_V_POLYHEDRA_H
 
-#include <iostream>
-
 #include "VGM/solids/IPolyhedra.h"
+
+#include <iostream>
 
 namespace BaseVGM {
 

@@ -20,12 +20,12 @@
 #ifndef GEANT4_GM_TRD_H
 #define GEANT4_GM_TRD_H
 
+#include "BaseVGM/solids/VTrd.h"
+
 #include <string>
 
-#include "G4Trd.hh"
-#include "G4ReflectedSolid.hh"
-
-#include "BaseVGM/solids/VTrd.h"
+class G4Trd;
+class G4ReflectedSolid;
 
 namespace Geant4GM {
 

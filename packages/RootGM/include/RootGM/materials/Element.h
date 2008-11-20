@@ -20,9 +20,9 @@
 #ifndef ROOT_GM_ELEMENT_H
 #define ROOT_GM_ELEMENT_H
 
-#include <string>
-
 #include "VGM/materials/IElement.h"
+
+#include <string>
 
 namespace RootGM {
 

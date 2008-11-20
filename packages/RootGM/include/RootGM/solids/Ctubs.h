@@ -20,11 +20,11 @@
 #ifndef ROOT_GM_CTUBS_H
 #define ROOT_GM_CTUBS_H
 
+#include "BaseVGM/solids/VCtubs.h"
+
 #include <string>
 
-#include "TGeoTube.h"
-
-#include "BaseVGM/solids/VCtubs.h"
+class TGeoCtub;
 
 namespace RootGM {
 

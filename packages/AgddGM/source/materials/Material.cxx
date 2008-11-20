@@ -9,12 +9,14 @@
 // Contact: bv@bnl.gov
 // -----------------------------------------------------------------------
 
-#include <VGM/materials/IElement.h>
-#include <AgddGM/materials/Material.h>
+#include "VGM/materials/IElement.h"
 
-#include <AGDD/AGDD_Material_Model.hh>
+#include "AgddGM/materials/Material.h"
+
+#include "AGDD/AGDD_Material_Model.hh"
 
 #include <string>
+
 using namespace std;
 
 AgddGM::Material::Material(agdd::AGDD_Material* mat,

@@ -20,12 +20,12 @@
 #ifndef GEANT4_GM_TORUS_H
 #define GEANT4_GM_TORUS_H
 
+#include "BaseVGM/solids/VTorus.h"
+
 #include <string>
 
-#include "G4Torus.hh"
-#include "G4ReflectedSolid.hh"
-
-#include "BaseVGM/solids/VTorus.h"
+class G4Torus;
+class G4ReflectedSolid;
 
 namespace Geant4GM {
 

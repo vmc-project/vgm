@@ -20,11 +20,11 @@
 #ifndef ROOT_GM_ELLIPTICAL_TUBE_H
 #define ROOT_GM_ELLIPTICAL_TUBE_H
 
+#include "BaseVGM/solids/VEllipticalTube.h"
+
 #include <string>
 
-#include "TGeoEltu.h"
-
-#include "BaseVGM/solids/VEllipticalTube.h"
+class TGeoEltu;
 
 namespace RootGM {
 

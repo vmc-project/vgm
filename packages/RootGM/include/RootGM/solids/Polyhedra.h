@@ -20,11 +20,11 @@
 #ifndef ROOT_GM_POLYHEDRA_H
 #define ROOT_GM_POLYHEDRA_H
 
+#include "BaseVGM/solids/VPolyhedra.h"
+
 #include <string>
 
-#include "TGeoPgon.h"
-
-#include "BaseVGM/solids/VPolyhedra.h"
+class TGeoPgon;
 
 namespace RootGM {
 

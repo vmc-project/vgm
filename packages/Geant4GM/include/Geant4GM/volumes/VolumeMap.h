@@ -22,9 +22,11 @@
 
 #include <map>
 
-#include "G4LogicalVolume.hh"
+class G4LogicalVolume;
 
-#include "VGM/volumes/IVolume.h"
+namespace VGM {
+  class IVolume;
+}
 
 namespace Geant4GM {
 

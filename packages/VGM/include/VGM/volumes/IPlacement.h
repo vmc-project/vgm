@@ -20,10 +20,10 @@
 #ifndef VGM_I_PLACEMENT_H
 #define VGM_I_PLACEMENT_H
 
-#include <string>
-
 #include "VGM/common/Axis.h"
 #include "VGM/common/Transform.h"
+
+#include <string>
 
 namespace VGM {
 

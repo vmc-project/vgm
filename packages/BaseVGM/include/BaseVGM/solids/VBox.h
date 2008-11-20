@@ -20,9 +20,9 @@
 #ifndef BASE_VGM_V_BOX_H
 #define BASE_VGM_V_BOX_H
 
-#include <iostream>
-
 #include "VGM/solids/IBox.h"
+
+#include <iostream>
 
 namespace BaseVGM {
 

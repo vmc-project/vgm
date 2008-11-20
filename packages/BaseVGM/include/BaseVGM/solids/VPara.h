@@ -20,9 +20,9 @@
 #ifndef BASE_VGM_V_PARA_H
 #define BASE_VGM_V_PARA_H
 
-#include <iostream>
-
 #include "VGM/solids/IPara.h"
+
+#include <iostream>
 
 namespace BaseVGM {
 

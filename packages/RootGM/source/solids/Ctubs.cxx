@@ -20,6 +20,8 @@
 #include "RootGM/solids/SolidMap.h"
 #include "RootGM/common/Units.h"
 
+#include "TGeoTube.h"
+
 //_____________________________________________________________________________
 RootGM::Ctubs::Ctubs(const std::string& name, 
                    double rin, double rout, double hz,

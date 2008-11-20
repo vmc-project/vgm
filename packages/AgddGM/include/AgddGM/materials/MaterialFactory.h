@@ -1,4 +1,4 @@
-// $Id: Element.h,v 1.1 2007-01-25 21:57:12 bviren Exp $
+// $Id$
 
 // -----------------------------------------------------------------------
 // The AgddGM package of the Virtual Geometry Model
@@ -21,7 +21,8 @@
 #ifndef AGDD_GM_MATERIALFACTORY_H
 #define AGDD_GM_MATERIALFACTORY_H
 
-#include <BaseVGM/materials/VMaterialFactory.h>
+#include "BaseVGM/materials/VMaterialFactory.h"
+
 #include <vector>
 #include <map>
 #include <string>

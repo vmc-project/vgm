@@ -21,32 +21,36 @@
 #ifndef XML_VGM_GDML_WRITER_H
 #define XML_VGM_GDML_WRITER_H
 
+#include "XmlVGM/IWriter.h"
+
 #include <fstream>
 #include <vector>
 #include <set>
 
-#include "VGM/solids/ISolid.h"
-#include "VGM/solids/IBooleanSolid.h"
-#include "VGM/solids/IArb8.h"
-#include "VGM/solids/IBox.h"
-#include "VGM/solids/ICons.h"
-#include "VGM/solids/ICtubs.h"
-#include "VGM/solids/IEllipticalTube.h"
-#include "VGM/solids/IExtrudedSolid.h"
-#include "VGM/solids/IPara.h"
-#include "VGM/solids/IPolycone.h"
-#include "VGM/solids/IPolyhedra.h"
-#include "VGM/solids/ISphere.h"
-#include "VGM/solids/ITessellatedSolid.h"
-#include "VGM/solids/ITorus.h"
-#include "VGM/solids/ITrap.h"
-#include "VGM/solids/ITrd.h"
-#include "VGM/solids/ITubs.h"
-
-#include "XmlVGM/IWriter.h"
-
-class VGM::IMaterial;
-class VGM::IElement;
+namespace VGM {
+  class ISolid;
+  class IBooleanSolid;
+  class IArb8;
+  class IBox;
+  class IBox;
+  class ICons;
+  class ICtubs;
+  class IEllipticalTube;
+  class IExtrudedSolid;
+  class IPara;
+  class IPolycone;
+  class IPolyhedra;
+  class ISphere;
+  class ITessellatedSolid;
+  class ITorus;
+  class ITrap;
+  class ITrd;
+  class ITubs;
+  class IMaterial;
+  class IElement;
+  class IVolume;
+  class IPlacement;
+}  
 
 namespace XmlVGM {
 

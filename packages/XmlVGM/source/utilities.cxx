@@ -18,15 +18,14 @@
 
 #include "XmlVGM/utilities.h"
 
-#include <iostream>
-#include <iomanip>
-#include <sstream>
-#include <time.h>
-
 #include <VGM/materials/IIsotope.h>
 
 #include <ClhepVGM/transform.h>
 
+#include <iostream>
+#include <iomanip>
+#include <sstream>
+#include <time.h>
 
 //_____________________________________________________________________________
 std::string 

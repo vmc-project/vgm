@@ -29,6 +29,9 @@
 #include "Geant4GM/solids/Trap.h"
 #include "Geant4GM/solids/SolidMap.h"
 
+#include "G4Trap.hh"
+#include "G4ReflectedSolid.hh"
+
 //_____________________________________________________________________________
 Geant4GM::Trap::Trap(const std::string& name, 
                      double hz, double theta, double phi,

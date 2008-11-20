@@ -18,24 +18,13 @@
 //
 // Author: I. Hrivnacova, 16.01.2004 
 
-#include "CLHEP/Vector/Rotation.h"
-#include "CLHEP/Vector/ThreeVector.h"
-#include "CLHEP/Geometry/Transform3D.h"
-#include "CLHEP/Units/SystemOfUnits.h"
-
-#include <iostream>
-#include <iomanip>
-#include <math.h>
-#include <sstream>
-#include <time.h>
-#include <cstdlib>
-
 #include <VGM/materials/IElement.h>
 #include <VGM/materials/IMaterial.h>
 #include <VGM/materials/IMedium.h>
 #include <VGM/volumes/IPlacement.h>
 #include <VGM/volumes/IVolume.h>
 #include <VGM/solids/ISolid.h>
+#include <VGM/solids/IBooleanSolid.h>
 #include <VGM/solids/IBox.h>
 #include <VGM/solids/ICons.h>
 #include <VGM/solids/IPara.h>
@@ -50,6 +39,18 @@
 
 #include "XmlVGM/AGDDWriter.h"
 #include "XmlVGM/utilities.h"
+
+#include "CLHEP/Vector/Rotation.h"
+#include "CLHEP/Vector/ThreeVector.h"
+#include "CLHEP/Geometry/Transform3D.h"
+#include "CLHEP/Units/SystemOfUnits.h"
+
+#include <iostream>
+#include <iomanip>
+#include <math.h>
+#include <sstream>
+#include <time.h>
+#include <cstdlib>
 
 using CLHEP::deg;
 

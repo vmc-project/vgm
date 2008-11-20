@@ -9,31 +9,32 @@
 // Contact: bv@bnl.gov
 // -----------------------------------------------------------------------
 
-#include <AgddGM/volumes/Factory.h>
-#include <AgddGM/volumes/Placement.h>
-#include <AgddGM/volumes/Volume.h>
-#include <AgddGM/materials/MaterialFactory.h>
-#include <AGDD/AGDD_Material_Model.hh>
-#include <AGDD/AGDD_Model.hh>
+#include "BaseVGM/common/utilities.h"
 
-#include <AgddGM/solids/Torus.h>
-#include <AgddGM/solids/Sphere.h>
-#include <AgddGM/solids/Box.h>
-#include <AgddGM/solids/Cons.h>
-#include <AgddGM/solids/Polycone.h>
-#include <AgddGM/solids/Trap.h>
-#include <AgddGM/solids/Trd.h>
-#include <AgddGM/solids/Tubs.h>
-#include <AgddGM/solids/BooleanSolid.h>
+#include "AgddGM/materials/MaterialFactory.h"
+#include "AgddGM/solids/Torus.h"
+#include "AgddGM/solids/Sphere.h"
+#include "AgddGM/solids/Box.h"
+#include "AgddGM/solids/Cons.h"
+#include "AgddGM/solids/Polycone.h"
+#include "AgddGM/solids/Trap.h"
+#include "AgddGM/solids/Trd.h"
+#include "AgddGM/solids/Tubs.h"
+#include "AgddGM/solids/BooleanSolid.h"
+#include "AgddGM/volumes/Factory.h"
+#include "AgddGM/volumes/Placement.h"
+#include "AgddGM/volumes/Volume.h"
 
+#include "AGDD/AGDD_Material_Model.hh"
+#include "AGDD/AGDD_Model.hh"
 
 #include <iostream>
 #include <sstream>
+
 using namespace std;
 using namespace agdd;
 
 // This machinery might be best moved into BaseVGM
-#include "BaseVGM/common/utilities.h"
 static ostream& debug()
 {
     BaseVGM::DebugInfo();

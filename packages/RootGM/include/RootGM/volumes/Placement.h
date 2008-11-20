@@ -20,19 +20,21 @@
 #ifndef ROOT_GM_PLACEMENT_H
 #define ROOT_GM_PLACEMENT_H
 
-#include <string>
-#include <vector>
-
-#include <TGeoMatrix.h>
-#include <TGeoNode.h>
-
 #include "VGM/common/Transform.h"
 
 #include "BaseVGM/volumes/VPlacement.h"
 
-class TGeoPatternFinder;
+#include <string>
+#include <vector>
 
-class VGM::IVolume;
+class TGeoPatternFinder;
+class TGeoMatrix;
+class TGeoNode;
+
+
+namespace VGM {
+  class IVolume;
+}
 
 namespace RootGM {
 

@@ -20,12 +20,12 @@
 #ifndef ROOT_GM_TRD_H
 #define ROOT_GM_TRD_H
 
+#include "BaseVGM/solids/VTrd.h"
+
 #include <string>
 
-#include "TGeoTrd1.h"
-#include "TGeoTrd2.h"
-
-#include "BaseVGM/solids/VTrd.h"
+class TGeoTrd1;
+class TGeoTrd2;
 
 namespace RootGM {
 
