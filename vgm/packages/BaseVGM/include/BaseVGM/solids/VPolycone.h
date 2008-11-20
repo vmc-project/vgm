@@ -20,9 +20,9 @@
 #ifndef BASE_VGM_V_POLYCONE_H
 #define BASE_VGM_V_POLYCONE_H
 
-#include <iostream>
-
 #include "VGM/solids/IPolycone.h"
+
+#include <iostream>
 
 namespace BaseVGM {
 

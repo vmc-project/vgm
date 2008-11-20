@@ -22,10 +22,10 @@
 
 #include "BaseVGM/solids/VArb8.h"
 
-#include "TGeoArb8.h"
-
 #include <string>
 #include <vector>
+
+class TGeoArb8;
 
 namespace RootGM {
 

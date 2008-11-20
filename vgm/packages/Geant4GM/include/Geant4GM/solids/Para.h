@@ -20,12 +20,12 @@
 #ifndef GEANT4_GM_PARA_H
 #define GEANT4_GM_PARA_H
 
+#include "BaseVGM/solids/VPara.h"
+
 #include <string>
 
-#include "G4Para.hh"
-#include "G4ReflectedSolid.hh"
-
-#include "BaseVGM/solids/VPara.h"
+class G4Para;
+class G4ReflectedSolid;
 
 namespace Geant4GM {
 

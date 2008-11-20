@@ -20,6 +20,8 @@
 #include "RootGM/solids/SolidMap.h"
 #include "RootGM/common/Units.h"
 
+#include "TGeoArb8.h"
+
 //_____________________________________________________________________________
 RootGM::Trap::Trap(const std::string& name, 
                    double hz, double theta, double phi,

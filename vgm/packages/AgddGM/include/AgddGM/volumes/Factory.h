@@ -20,39 +20,43 @@
 #ifndef AGDD_GM_FACTORY_H
 #define AGDD_GM_FACTORY_H
 
+#include "BaseVGM/volumes/VFactory.h"
+
 #include <string>
 #include <map>
 
-#include <BaseVGM/volumes/VFactory.h>
-
-namespace HepGeom { class Transform3D; }
-class VGM::ISolid;
-class VGM::IVolume;
-class VGM::IPlacement;
-class VGM::IExtrudedSolid;
+namespace VGM { 
+  class ISolid;
+  class IVolume;
+  class IPlacement;
+  class IExtrudedSolid;
+}
 
 namespace agdd {
+  // User doesn't strictly need to know these...
+  // from AGDD_Material_Model.hh
+  class AGDD_Materials;
 
-    // User doesn't strictly need to know these...
-    // from AGDD_Material_Model.hh
-    class AGDD_Materials;
-
-    // from AGDD_Model.hh
-    class AGDD;
-    class AGDD_Section;
-    class AGDD_Materials;
-    class AGDD_Section;
-    class AGDD_Volume;
-    class AGDD_Solid;
-    class AGDD_Position;
-    class AGDD_SinglePosition;
-    class AGDD_MultiplePosition;
-    class AGDD_RelativePositoin;
-    class AGDD_MPosWedge;
-    class AGDD_Composition;
-    class AGDD_Stack;
-    class AGDD_BooleanVolume;
+  // from AGDD_Model.hh
+  class AGDD;
+  class AGDD_Section;
+  class AGDD_Materials;
+  class AGDD_Section;
+  class AGDD_Volume;
+  class AGDD_Solid;
+  class AGDD_Position;
+  class AGDD_SinglePosition;
+  class AGDD_MultiplePosition;
+  class AGDD_RelativePositoin;
+  class AGDD_MPosWedge;
+  class AGDD_Composition;
+  class AGDD_Stack;
+  class AGDD_BooleanVolume;
 } // namespace agdd
+
+namespace HepGeom { 
+  class Transform3D; 
+}
 
 namespace AgddGM {
 

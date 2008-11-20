@@ -20,13 +20,15 @@
 #ifndef GEANT4_GM_BOOLEAN_SOLID_H
 #define GEANT4_GM_BOOLEAN_SOLID_H
 
-#include <iostream>
-
 #include "VGM/common/Transform.h"
 
 #include "BaseVGM/solids/VBooleanSolid.h"
 
+#include <iostream>
+
+class G4VSolid;
 class G4BooleanSolid;
+class G4DisplacedSolid;
 class G4ReflectedSolid;
 
 namespace Geant4GM {

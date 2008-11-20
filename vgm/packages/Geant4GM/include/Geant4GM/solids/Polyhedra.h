@@ -20,12 +20,12 @@
 #ifndef GEANT4_GM_POLYHEDRA_H
 #define GEANT4_GM_POLYHEDRA_H
 
+#include "BaseVGM/solids/VPolyhedra.h"
+
 #include <string>
 
-#include "G4Polyhedra.hh"
-#include "G4ReflectedSolid.hh"
-
-#include "BaseVGM/solids/VPolyhedra.h"
+class G4Polyhedra;
+class G4ReflectedSolid;
 
 namespace Geant4GM {
 

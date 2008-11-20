@@ -17,6 +17,7 @@
 // Author: Ivana Hrivnacova; IPN Orsay
 
 #include "VGM/materials/IMaterialFactory.h"
+#include "VGM/solids/ISolid.h"
 #include "VGM/solids/IBooleanSolid.h"
 #include "VGM/solids/IArb8.h"
 #include "VGM/solids/IBox.h"
@@ -40,6 +41,7 @@
 #include "BaseVGM/common/utilities.h"
 
 #include <cstdlib>
+
 //_____________________________________________________________________________
 BaseVGM::VFactory::VFactory(const std::string& name,
                            VGM::IMaterialFactory* materialFactory)

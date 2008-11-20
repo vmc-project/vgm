@@ -20,6 +20,8 @@
 #include "RootGM/solids/SolidMap.h"
 #include "RootGM/common/Units.h"
 
+#include "TGeoTorus.h"
+
 //_____________________________________________________________________________
 RootGM::Torus::Torus(const std::string& name, 
                      double rin, double rout, double rax, 

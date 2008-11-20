@@ -20,12 +20,12 @@
 #ifndef GEANT4_GM_CONS_H
 #define GEANT4_GM_CONS_H
 
+#include "BaseVGM/solids/VCons.h"
+
 #include <string>
 
-#include "G4Cons.hh"
-#include "G4ReflectedSolid.hh"
-
-#include "BaseVGM/solids/VCons.h"
+class G4Cons;
+class G4ReflectedSolid;
 
 namespace Geant4GM {
 

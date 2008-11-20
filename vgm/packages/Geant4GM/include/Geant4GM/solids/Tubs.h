@@ -20,12 +20,15 @@
 #ifndef GEANT4_GM_TUBS_H
 #define GEANT4_GM_TUBS_H
 
+#include "BaseVGM/solids/VTubs.h"
+
 #include <string>
 
-#include "G4Tubs.hh"
-#include "G4ReflectedSolid.hh"
+class G4Tubs;
+class G4ReflectedSolid;
 
-#include "BaseVGM/solids/VTubs.h"
+class G4Tubs;
+class G4ReflectedSolid;
 
 namespace Geant4GM {
 

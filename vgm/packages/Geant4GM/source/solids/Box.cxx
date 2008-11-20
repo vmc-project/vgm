@@ -21,6 +21,9 @@
 #include "Geant4GM/solids/Box.h"
 #include "Geant4GM/solids/SolidMap.h"
 
+#include "G4Box.hh"
+#include "G4ReflectedSolid.hh"
+
 //_____________________________________________________________________________
 Geant4GM::Box::Box(const std::string& name, 
                    double hx, double hy, double hz)

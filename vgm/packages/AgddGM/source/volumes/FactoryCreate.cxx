@@ -9,7 +9,8 @@
 // Contact: bv@bnl.gov
 // -----------------------------------------------------------------------
 
-#include <AgddGM/volumes/Factory.h>
+#include "AgddGM/volumes/Factory.h"
+
 #include <cassert>
 
 // FIXME: need to fill this in....

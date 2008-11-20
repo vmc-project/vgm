@@ -20,11 +20,11 @@
 #ifndef ROOT_GM_TRAP_H
 #define ROOT_GM_TRAP_H
 
+#include "BaseVGM/solids/VTrap.h"
+
 #include <string>
 
-#include "TGeoArb8.h"
-
-#include "BaseVGM/solids/VTrap.h"
+class TGeoTrap;
 
 namespace RootGM {
 

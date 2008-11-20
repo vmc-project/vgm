@@ -1,4 +1,4 @@
-// $Id: $
+// $Id$
 
 // -----------------------------------------------------------------------
 // The AgddGM package of the Virtual Geometry Model
@@ -9,9 +9,11 @@
 // Contact: bv@bnl.gov
 // -----------------------------------------------------------------------
 
-#include <AgddGM/solids/Cons.h>
-#include <AGDD/AGDD_Model.hh>
-#include <CLHEP/Units/SystemOfUnits.h>
+#include "AgddGM/solids/Cons.h"
+
+#include "AGDD/AGDD_Model.hh"
+
+#include "CLHEP/Units/SystemOfUnits.h"
 
 AgddGM::Cons::Cons(agdd::AGDD_Cone* cone)
     : fCone(cone)

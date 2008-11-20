@@ -21,6 +21,10 @@
 #include "Geant4GM/solids/EllipticalTube.h"
 #include "Geant4GM/solids/SolidMap.h"
 
+#include "G4EllipticalTube.hh"
+#include "G4ReflectedSolid.hh"
+
+#
 //_____________________________________________________________________________
 Geant4GM::EllipticalTube::EllipticalTube(const std::string& name, 
                                          double dx, double dy, double hz)

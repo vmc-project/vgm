@@ -20,10 +20,10 @@
 #ifndef VGM_I_TESSELLATED_SOLID_H
 #define VGM_I_TESSELLATED_SOLID_H
 
-#include <iostream>
-
 #include "VGM/common/ThreeVector.h"
 #include "VGM/solids/ISolid.h"
+
+#include <iostream>
 
 namespace VGM {
 

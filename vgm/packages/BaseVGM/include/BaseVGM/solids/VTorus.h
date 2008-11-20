@@ -20,9 +20,9 @@
 #ifndef BASE_VGM_V_TORUS_H
 #define BASE_VGM_V_TORUS_H
 
-#include <iostream>
-
 #include "VGM/solids/ITorus.h"
+
+#include <iostream>
 
 namespace BaseVGM {
 

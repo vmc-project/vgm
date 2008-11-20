@@ -22,10 +22,10 @@
 
 #include "BaseVGM/solids/VExtrudedSolid.h"
 
-#include "TGeoXtru.h"
-
 #include <string>
 #include <vector>
+
+class TGeoXtru;
 
 namespace RootGM {
 

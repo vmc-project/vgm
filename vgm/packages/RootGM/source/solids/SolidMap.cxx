@@ -16,7 +16,11 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
+#include "VGM/solids/ISolid.h"
+
 #include "RootGM/solids/SolidMap.h"
+
+#include "TGeoShape.h"
 
 RootGM::SolidMap*  RootGM::SolidMap::fgInstance = 0;
 

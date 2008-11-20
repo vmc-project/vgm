@@ -16,7 +16,11 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
+#include "VGM/volumes/IVolume.h"
+
 #include "Geant4GM/volumes/VolumeMap.h"
+
+#include "G4LogicalVolume.hh"
 
 Geant4GM::VolumeMap*  Geant4GM::VolumeMap::fgInstance = 0;
 

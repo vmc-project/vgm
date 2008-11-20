@@ -16,17 +16,17 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include <cstdlib>
-
-#include "TGeoCompositeShape.h"
-#include "TGeoBoolNode.h"
-#include "TGeoMatrix.h"
-
 #include "BaseVGM/common/utilities.h"
 
 #include "RootGM/solids/BooleanSolid.h"
 #include "RootGM/solids/SolidMap.h"
 #include "RootGM/common/transform.h"
+
+#include "TGeoCompositeShape.h"
+#include "TGeoBoolNode.h"
+#include "TGeoMatrix.h"
+
+#include <cstdlib>
 
 const char RootGM::BooleanSolid::fgkIntersectionChar = '*'; 
 const char RootGM::BooleanSolid::fgkSubtractionChar = '-'; 

@@ -16,7 +16,11 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
+#include "VGM/materials/IIsotope.h"
+
 #include "Geant4GM/materials/IsotopeMap.h"
+
+#include "G4Isotope.hh"
 
 Geant4GM::IsotopeMap*  Geant4GM::IsotopeMap::fgInstance = 0;
 

@@ -20,9 +20,9 @@
 #ifndef BASE_VGM_V_CTUBS_H
 #define BASE_VGM_V_CTUBS_H
 
-#include <iostream>
-
 #include "VGM/solids/ICtubs.h"
+
+#include <iostream>
 
 namespace BaseVGM {
  

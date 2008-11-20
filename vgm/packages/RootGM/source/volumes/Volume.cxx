@@ -16,15 +16,15 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include <iostream>
+#include "RootGM/volumes/Volume.h"
+#include "RootGM/volumes/VolumeMap.h"
+#include "RootGM/solids/SolidMap.h"
 
 #include "TGeoManager.h"
 #include "TGeoShape.h"
 #include "TGeoMedium.h"
 
-#include "RootGM/volumes/Volume.h"
-#include "RootGM/volumes/VolumeMap.h"
-#include "RootGM/solids/SolidMap.h"
+#include <iostream>
 
 //_____________________________________________________________________________
 RootGM::Volume::Volume(const std::string& name,
@@ -109,8 +109,8 @@ std::string  RootGM::Volume::MaterialName() const
 //
   // Root volumes may not have medium
   //
-  if (!fGeoVolume->GetMedium() ||
-       fGeoVolume->GetMedium() && ! fGeoVolume->GetMedium()->GetMaterial() )
+  if (! fGeoVolume->GetMedium() ||
+      ( fGeoVolume->GetMedium() && ! fGeoVolume->GetMedium()->GetMaterial() ) )
     return "None";
 
   return std::string(fGeoVolume->GetMedium()->GetMaterial()->GetName());

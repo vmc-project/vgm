@@ -27,6 +27,9 @@
 #include "Geant4GM/solids/Polyhedra.h"
 #include "Geant4GM/solids/SolidMap.h"
 
+#include "G4Polyhedra.hh"
+#include "G4ReflectedSolid.hh"
+
 const int Geant4GM::Polyhedra::fgkMaxNofZPlanes = 50;
 double*   Geant4GM::Polyhedra::fgZBuffer = 0;
 double*   Geant4GM::Polyhedra::fgRinBuffer = 0;

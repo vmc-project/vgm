@@ -16,19 +16,20 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include <iostream>
-#include <math.h>
-
 #include "RootGM/solids/Polyhedra.h"
 #include "RootGM/solids/SolidMap.h"
 #include "RootGM/common/Units.h"
+
+#include "TGeoPgon.h"
+
+#include <iostream>
+#include <math.h>
 
 const int RootGM::Polyhedra::fgkMaxNofZPlanes = 50;
 double*   RootGM::Polyhedra::fgZBuffer = 0;
 double*   RootGM::Polyhedra::fgRinBuffer = 0;
 double*   RootGM::Polyhedra::fgRoutBuffer = 0;
 
-#include "TGeoManager.h"
 //_____________________________________________________________________________
 RootGM::Polyhedra::Polyhedra(
                        const std::string& name, 

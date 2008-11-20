@@ -16,14 +16,14 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include <iostream>
-#include <float.h>
-
-#include <TGeoMatrix.h>
-#include <TGeoPatternFinder.h>
-
 #include "RootGM/common/axis.h"
 #include "RootGM/common/Units.h"
+
+#include "TGeoMatrix.h"
+#include "TGeoPatternFinder.h"
+
+#include <iostream>
+#include <float.h>
 
 //
 // Root -> VGM

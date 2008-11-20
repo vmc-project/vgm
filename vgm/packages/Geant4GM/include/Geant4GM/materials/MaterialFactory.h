@@ -20,8 +20,6 @@
 #ifndef GEANT4_GM_MATERIAL_FACTORY_H
 #define GEANT4_GM_MATERIAL_FACTORY_H
 
-#include "VGM/materials/IMaterial.h"
-
 #include "BaseVGM/materials/VMaterialFactory.h"
 
 #include <set>
@@ -29,6 +27,10 @@
 class G4Isotope;
 class G4Element;
 class G4Material;
+
+namespace VGM {
+  class IMaterial;
+}  
 
 namespace Geant4GM {
 

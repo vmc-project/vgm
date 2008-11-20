@@ -20,11 +20,11 @@
 #ifndef ROOT_GM_BOX_H
 #define ROOT_GM_BOX_H
 
+#include "BaseVGM/solids/VBox.h"
+
 #include <string>
 
-#include "TGeoBBox.h"
-
-#include "BaseVGM/solids/VBox.h"
+class TGeoBBox;
 
 namespace RootGM {
 

@@ -1,4 +1,4 @@
-// $Id: $
+// $Id$
 
 // -----------------------------------------------------------------------
 // The AgddGM package of the Virtual Geometry Model
@@ -21,7 +21,7 @@
 #define AGDD_GM_ISOTOPE_H
 
 
-#include <VGM/materials/IIsotope.h>
+#include "VGM/materials/IIsotope.h"
 
 namespace agdd {
     class AGDD_Isotope;

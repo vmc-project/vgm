@@ -16,7 +16,11 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
+#include "VGM/volumes/IPlacement.h"
+
 #include "Geant4GM/volumes/PlacementMap.h"
+
+#include "G4VPhysicalVolume.hh"
 
 Geant4GM::PlacementMap*  Geant4GM::PlacementMap::fgInstance = 0;
 

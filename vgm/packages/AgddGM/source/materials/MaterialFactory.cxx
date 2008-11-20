@@ -9,13 +9,16 @@
 // Contact: bv@bnl.gov
 // -----------------------------------------------------------------------
 
-#include <AgddGM/materials/MaterialFactory.h>
-#include <AgddGM/materials/Isotope.h>
-#include <AgddGM/materials/Element.h>
-#include <AgddGM/materials/Material.h>
-#include <AGDD/AGDD_Material_Model.hh>
+#include "AgddGM/materials/MaterialFactory.h"
+#include "AgddGM/materials/Isotope.h"
+#include "AgddGM/materials/Element.h"
+#include "AgddGM/materials/Material.h"
+
+#include "AGDD/AGDD_Material_Model.hh"
+
 #include <cassert>
 #include <string>
+
 using namespace std;
 
 AgddGM::MaterialFactory::MaterialFactory()

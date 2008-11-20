@@ -1,4 +1,4 @@
-// $Id: $
+// $Id$
 
 // -----------------------------------------------------------------------
 // The AgddGM package of the Virtual Geometry Model
@@ -20,13 +20,16 @@
 #ifndef AGDD_GM_BOX_H
 #define AGDD_GM_BOX_H
 
-#include <BaseVGM/solids/VBox.h>
+#include "BaseVGM/solids/VBox.h"
 
 #include <string>
 
-namespace agdd { class AGDD_Box; }
+namespace agdd { 
+  class AGDD_Box; 
+}
 
 namespace AgddGM {
+
 class Box : public BaseVGM::VBox
 {
 public:

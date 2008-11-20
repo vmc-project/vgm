@@ -22,9 +22,12 @@
 
 #include <map>
 
-#include "TGeoMaterial.h"
+class TGeoMaterial;
 
-#include "VGM/materials/IMaterial.h"
+namespace VGM {
+  class IMaterial;
+}
+
 
 namespace RootGM {
 

@@ -1,4 +1,4 @@
-// $Id: Element.h,v 1.1 2007-01-25 21:57:12 bviren Exp $
+// $Id$
 
 // -----------------------------------------------------------------------
 // The AgddGM package of the Virtual Geometry Model
@@ -20,10 +20,14 @@
 #ifndef AGDD_GM_ELEMENT_H
 #define AGDD_GM_ELEMENT_H
 
-#include <VGM/materials/IElement.h>
-#include <VGM/materials/IIsotope.h>
+#include "VGM/materials/IElement.h"
+
 #include <string>
 #include <map>
+
+namespace VGM {
+    class IIsotope;
+}
 
 namespace agdd {
     class AGDD_Element;

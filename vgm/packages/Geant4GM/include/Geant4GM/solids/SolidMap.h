@@ -22,9 +22,11 @@
 
 #include <map>
 
-#include "G4VSolid.hh"
+class G4VSolid;
 
-#include "VGM/solids/ISolid.h"
+namespace VGM {
+  class ISolid;
+}  
 
 namespace Geant4GM {
 

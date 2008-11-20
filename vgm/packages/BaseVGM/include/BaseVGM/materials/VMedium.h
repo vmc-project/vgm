@@ -20,11 +20,14 @@
 #ifndef BASE_VGM_V_MEDIUM_H
 #define BASE_VGM_V_MEDIUM_H
 
+#include "VGM/materials/IMedium.h"
+
 #include <string>
 #include <iostream>
 
-#include "VGM/materials/IMedium.h"
-#include "VGM/materials/IMaterial.h"
+namespace VGM {
+  class IMaterial;
+}  
 
 namespace BaseVGM {
 

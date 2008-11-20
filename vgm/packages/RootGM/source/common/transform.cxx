@@ -16,18 +16,18 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include <iostream>
-#include <float.h>
-#include <math.h>
-
-#include <TGeoMatrix.h>
-#include <TGeoPatternFinder.h>
-#include <TMath.h>
-
 #include "BaseVGM/common/utilities.h"
 
 #include "RootGM/common/transform.h"
 #include "RootGM/common/Units.h"
+
+#include "TGeoMatrix.h"
+#include "TGeoPatternFinder.h"
+#include "TMath.h"
+
+#include <iostream>
+#include <float.h>
+#include <math.h>
 
 //
 // Root -> VGM

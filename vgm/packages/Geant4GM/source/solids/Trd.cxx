@@ -25,6 +25,9 @@
 #include "Geant4GM/solids/Trd.h"
 #include "Geant4GM/solids/SolidMap.h"
 
+#include "G4Trd.hh"
+#include "G4ReflectedSolid.hh"
+
 //_____________________________________________________________________________
 Geant4GM::Trd::Trd(const std::string& name, 
                    double hx1, double hx2, double hy1, double hy2, double hz)

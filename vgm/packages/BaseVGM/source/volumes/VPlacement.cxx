@@ -34,10 +34,10 @@ BaseVGM::VPlacement::VPlacement(VGM::IVolume* volume,
   // Update mother volume 
   if (motherVolume)
     motherVolume->AddDaughter(this);
-  else
+  else {
     // check if top volume not yet set and
     // set top volume here  
-    ;
+  }  
 }
 
 //_____________________________________________________________________________

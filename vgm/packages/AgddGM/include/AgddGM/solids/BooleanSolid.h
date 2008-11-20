@@ -1,4 +1,4 @@
-// $Id: Element.h,v 1.1 2007-01-25 21:57:12 bviren Exp $
+// $Id$
 
 // -----------------------------------------------------------------------
 // The AgddGM package of the Virtual Geometry Model
@@ -20,15 +20,18 @@
 #ifndef AGDD_GM_BOOLEANSOLID_H
 #define AGDD_GM_BOOLEANSOLID_H
 
-#include <BaseVGM/solids/VBooleanSolid.h>
+#include "BaseVGM/solids/VBooleanSolid.h"
 
-#include <CLHEP/Geometry/Transform3D.h>
+#include "CLHEP/Geometry/Transform3D.h"
 
 #include <string>
 
-namespace HepGeom { class Transform3D; }
+namespace HepGeom { 
+  class Transform3D; 
+}
 
 namespace AgddGM {
+
 class BooleanSolid : public BaseVGM::VBooleanSolid
 {
 public:

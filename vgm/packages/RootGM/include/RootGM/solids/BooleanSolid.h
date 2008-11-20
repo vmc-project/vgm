@@ -20,15 +20,13 @@
 #ifndef ROOT_GM_BOOLEAN_SOLID_H
 #define ROOT_GM_BOOLEAN_SOLID_H
 
-#include <iostream>
-
-#include <TGeoMatrix.h>
-
 #include "VGM/common/Transform.h"
 
 #include "BaseVGM/solids/VBooleanSolid.h"
 
+class TGeoShape;
 class TGeoCompositeShape;
+class TGeoMatrix;
 
 namespace RootGM {
 

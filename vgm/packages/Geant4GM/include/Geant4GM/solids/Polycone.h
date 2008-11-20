@@ -20,12 +20,12 @@
 #ifndef GEANT4_GM_POLYCONE_H
 #define GEANT4_GM_POLYCONE_H
 
+#include "BaseVGM/solids/VPolycone.h"
+
 #include <string>
 
-#include "G4Polycone.hh"
-#include "G4ReflectedSolid.hh"
-
-#include "BaseVGM/solids/VPolycone.h"
+class G4Polycone;
+class G4ReflectedSolid;
 
 namespace Geant4GM {
 

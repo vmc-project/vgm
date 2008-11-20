@@ -22,9 +22,11 @@
 
 #include <map>
 
-#include "TGeoShape.h"
+class TGeoShape;
 
-#include "VGM/solids/ISolid.h"
+namespace VGM {
+  class ISolid;
+}  
 
 namespace RootGM {
 

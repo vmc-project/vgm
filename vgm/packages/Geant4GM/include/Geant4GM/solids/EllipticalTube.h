@@ -20,12 +20,12 @@
 #ifndef GEANT4_GM_ELLIPTICAL_TUBE_H
 #define GEANT4_GM_ELLIPTICAL_TUBE_H
 
+#include "BaseVGM/solids/VEllipticalTube.h"
+
 #include <string>
 
-#include "G4EllipticalTube.hh"
-#include "G4ReflectedSolid.hh"
-
-#include "BaseVGM/solids/VEllipticalTube.h"
+class G4EllipticalTube;
+class G4ReflectedSolid;
 
 namespace Geant4GM {
 

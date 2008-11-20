@@ -20,12 +20,12 @@
 #ifndef GEANT4_GM_BOX_H
 #define GEANT4_GM_BOX_H
 
+#include "BaseVGM/solids/VBox.h"
+
 #include <string>
 
-#include "G4Box.hh"
-#include "G4ReflectedSolid.hh"
-
-#include "BaseVGM/solids/VBox.h"
+class G4Box;
+class G4ReflectedSolid;
 
 namespace Geant4GM {
 

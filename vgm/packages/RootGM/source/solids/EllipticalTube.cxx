@@ -20,6 +20,9 @@
 #include "RootGM/solids/SolidMap.h"
 #include "RootGM/common/Units.h"
 
+#include "TGeoEltu.h"
+
+
 //_____________________________________________________________________________
 RootGM::EllipticalTube::EllipticalTube(const std::string& name, 
                                        double dx, double dy, double hz)

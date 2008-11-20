@@ -20,9 +20,9 @@
 #ifndef BASE_VGM_V_CONS_H
 #define BASE_VGM_V_CONS_H
 
-#include <iostream>
-
 #include "VGM/solids/ICons.h"
+
+#include <iostream>
 
 namespace BaseVGM {
 

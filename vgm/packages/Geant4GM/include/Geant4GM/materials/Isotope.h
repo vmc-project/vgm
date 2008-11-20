@@ -20,11 +20,11 @@
 #ifndef GEANT4_GM_ISOTOPE_H
 #define GEANT4_GM_ISOTOPE_H
 
+#include "VGM/materials/IIsotope.h"
+
 #include <string>
 
-#include "G4Isotope.hh"
-
-#include "VGM/materials/IIsotope.h"
+class G4Isotope;
 
 namespace Geant4GM {
 

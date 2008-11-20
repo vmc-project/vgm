@@ -20,21 +20,23 @@
 #ifndef GEANT4_GM_FACTORY_H
 #define GEANT4_GM_FACTORY_H
 
-#include <string>
+#include "BaseVGM/volumes/VFactory.h"
 
 #include "G4ReflectionFactory.hh"
 
-#include "BaseVGM/volumes/VFactory.h"
+#include <string>
 
 class G4VSolid;
 class G4LogicalVolume;
 class G4VPhysicalVolume;
 class G4BooleanSolid;
 
-class VGM::ISolid;
-class VGM::IVolume;
-class VGM::IPlacement;
-class VGM::IExtrudedSolid;
+namespace VGM {
+  class ISolid;
+  class IVolume;
+  class IPlacement;
+  class IExtrudedSolid;
+}
 
 namespace Geant4GM {
 

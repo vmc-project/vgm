@@ -20,6 +20,8 @@
 #include "RootGM/solids/SolidMap.h"
 #include "RootGM/common/Units.h"
 
+#include "TGeoSphere.h"
+
 //_____________________________________________________________________________
 RootGM::Sphere::Sphere(const std::string& name, 
                        double rin, double rout, 

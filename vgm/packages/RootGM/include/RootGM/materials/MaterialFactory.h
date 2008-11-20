@@ -20,14 +20,16 @@
 #ifndef ROOT_GM_MATERIAL_FACTORY_H
 #define ROOT_GM_MATERIAL_FACTORY_H
 
-#include "VGM/materials/IMaterial.h"
-#include "VGM/materials/IIsotope.h"
-
 #include "BaseVGM/materials/VMaterialFactory.h"
 
 class TGeoElement;
 class TGeoMaterial;
 class TGeoMedium;
+
+namespace VGM {
+  class IMaterial;
+  class IIsotope;
+}
 
 namespace RootGM {
 

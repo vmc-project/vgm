@@ -20,11 +20,11 @@
 #ifndef CLHEP_VGM_TRANSFORM_H
 #define CLHEP_VGM_TRANSFORM_H
 
+#include "VGM/common/Transform.h"
+
 #include "CLHEP/Vector/Rotation.h"
 #include "CLHEP/Vector/ThreeVector.h"
 #include "CLHEP/Geometry/Transform3D.h"
-
-#include "VGM/common/Transform.h"
 
 namespace ClhepVGM {
 

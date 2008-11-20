@@ -1,4 +1,4 @@
-// $Id: $
+// $Id$
 
 // -----------------------------------------------------------------------
 // The AgddGM package of the Virtual Geometry Model
@@ -20,11 +20,14 @@
 #ifndef AGDD_GM_CONS_H
 #define AGDD_GM_CONS_H
 
-#include <BaseVGM/solids/VCons.h>
+#include "BaseVGM/solids/VCons.h"
 
-namespace agdd { class AGDD_Cone; }
+namespace agdd { 
+  class AGDD_Cone; 
+}
 
 namespace AgddGM {
+
 class Cons : public BaseVGM::VCons {
 public:
     Cons(agdd::AGDD_Cone* cone);

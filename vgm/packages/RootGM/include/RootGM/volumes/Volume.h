@@ -20,14 +20,15 @@
 #ifndef ROOT_GM_VOLUME_H
 #define ROOT_GM_VOLUME_H
 
+#include "BaseVGM/volumes/VVolume.h"
+
 #include <string>
 
-#include "TGeoVolume.h"
+class TGeoVolume;
 
-#include "BaseVGM/volumes/VVolume.h"
-#include "RootGM/volumes/VolumeMap.h"
-
-class VGM::ISolid;
+namespace VGM {
+  class ISolid;
+}
 
 namespace RootGM {
 

@@ -20,19 +20,21 @@
 #ifndef ROOT_GM_FACTORY_H
 #define ROOT_GM_FACTORY_H
 
-#include <string>
-
 #include "BaseVGM/volumes/VFactory.h"
+
+#include <string>
 
 class TGeoShape;
 class TGeoVolume;
 class TGeoCompositeShape;
 class TGeoNode;
 
-class VGM::ISolid;
-class VGM::IVolume;
-class VGM::IPlacement;
-class VGM::IExtrudedSolid;
+namespace VGM {
+  class ISolid;
+  class IVolume;
+  class IPlacement;
+  class IExtrudedSolid;
+}
 
 namespace RootGM {
 

@@ -16,7 +16,11 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
+#include "VGM/volumes/IVolume.h"
+
 #include "RootGM/volumes/VolumeMap.h"
+
+#include "TGeoVolume.h"
 
 RootGM::VolumeMap*  RootGM::VolumeMap::fgInstance = 0;
 

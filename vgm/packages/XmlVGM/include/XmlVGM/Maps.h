@@ -21,14 +21,18 @@
 #ifndef XML_VGM_MAPS_H
 #define XML_VGM_MAPS_H
 
+#include "VGM/common/Transform.h"
+#include "VGM/common/ThreeVector.h"
+
 #include <string>
 #include <map>
 
-#include "VGM/materials/IElement.h"
-#include "VGM/materials/IMaterial.h"
-#include "VGM/materials/IMedium.h"
-#include "VGM/common/Transform.h"
-#include "VGM/common/ThreeVector.h"
+namespace VGM {
+  class IElement;
+  class IIsotope;
+  class IMaterial;
+  class IMedium;
+}
 
 namespace XmlVGM {
 

@@ -20,11 +20,15 @@
 #ifndef GEANT4_GM_PLACEMENT_MAP_H
 #define GEANT4_GM_PLACEMENT_MAP_H
 
+#include "VGM/volumes/IPlacement.h"
+
 #include <map>
 
-#include "G4VPhysicalVolume.hh"
+class G4VPhysicalVolume;
 
-#include "VGM/volumes/IPlacement.h"
+namespace VGM {
+  class IPlacement;
+}
 
 namespace Geant4GM {
 

@@ -16,12 +16,14 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include <cstdlib>
-
 #include "RootGM/materials/Material.h"
 #include "RootGM/materials/MaterialMap.h"
 #include "RootGM/materials/Element.h"
 #include "RootGM/common/Units.h"
+
+#include "TGeoMaterial.h"
+
+#include <cstdlib>
 
 const double  RootGM::Material::fgkVacuumDensity = 1.e-25;       // g/cm3
 const double  RootGM::Material::fgkVacuumTemperature = 2.73;     // kelvin

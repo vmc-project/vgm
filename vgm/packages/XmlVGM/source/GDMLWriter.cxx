@@ -16,22 +16,40 @@
 // ----------------------
 // See the class description in the header file.
 
-#include <iostream>
-#include <iomanip>
-#include <math.h>
-#include <sstream>
-#include <float.h>
-#include <cstdlib>
-
+#include "VGM/solids/ISolid.h"
+#include "VGM/solids/IBooleanSolid.h"
+#include "VGM/solids/IArb8.h"
+#include "VGM/solids/IBox.h"
+#include "VGM/solids/ICons.h"
+#include "VGM/solids/ICtubs.h"
+#include "VGM/solids/IEllipticalTube.h"
+#include "VGM/solids/IExtrudedSolid.h"
+#include "VGM/solids/IPara.h"
+#include "VGM/solids/IPolycone.h"
+#include "VGM/solids/IPolyhedra.h"
+#include "VGM/solids/ISphere.h"
+#include "VGM/solids/ITessellatedSolid.h"
+#include "VGM/solids/ITorus.h"
+#include "VGM/solids/ITrap.h"
+#include "VGM/solids/ITrd.h"
+#include "VGM/solids/ITubs.h"
 #include "VGM/materials/IMaterial.h"
 #include "VGM/materials/IElement.h"
 #include "VGM/volumes/IVolume.h"
+#include "VGM/volumes/IPlacement.h"
 
 #include "ClhepVGM/transform.h"
 
 #include "XmlVGM/GDMLWriter.h"
 #include "XmlVGM/Maps.h"
 #include "XmlVGM/utilities.h"
+
+#include <iostream>
+#include <iomanip>
+#include <math.h>
+#include <sstream>
+#include <float.h>
+#include <cstdlib>
 
 const int         XmlVGM::GDMLWriter::fgkDefaultNumWidth = 10;
 const int         XmlVGM::GDMLWriter::fgkDefaultNumPrecision = 4;

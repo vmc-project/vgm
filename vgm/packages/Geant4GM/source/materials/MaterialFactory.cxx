@@ -16,9 +16,7 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include "G4Material.hh"
-#include "G4Element.hh"
-#include "G4NistManager.hh"
+#include "VGM/materials/IMaterial.h"
 
 #include "ClhepVGM/Units.h"
 
@@ -32,6 +30,10 @@
 #include "Geant4GM/materials/MaterialMap.h"
 #include "Geant4GM/materials/Material.h"
 #include "Geant4GM/materials/Medium.h"
+
+#include "G4Material.hh"
+#include "G4Element.hh"
+#include "G4NistManager.hh"
 
 //_____________________________________________________________________________
 Geant4GM::MaterialFactory::MaterialFactory()

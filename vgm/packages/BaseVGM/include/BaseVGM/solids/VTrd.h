@@ -20,9 +20,9 @@
 #ifndef BASE_VGM_V_TRD_H
 #define BASE_VGM_V_TRD_H
 
-#include <iostream>
-
 #include "VGM/solids/ITrd.h"
+
+#include <iostream>
 
 namespace BaseVGM {
 

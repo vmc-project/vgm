@@ -16,9 +16,13 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
+#include "VGM/materials/IMaterial.h"
+
 #include "Geant4GM/materials/MaterialMap.h"
 
 Geant4GM::MaterialMap*  Geant4GM::MaterialMap::fgInstance = 0;
+
+#include "G4Material.hh"
 
 //_____________________________________________________________________________
 Geant4GM::MaterialMap* 

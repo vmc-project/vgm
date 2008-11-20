@@ -1,4 +1,4 @@
-// $Id: $
+// $Id$
 
 // -----------------------------------------------------------------------
 // The AgddGM package of the Virtual Geometry Model
@@ -9,11 +9,11 @@
 // Contact: bv@bnl.gov
 // -----------------------------------------------------------------------
 
-#include <AgddGM/solids/Sphere.h>
+#include "AgddGM/solids/Sphere.h"
 
-#include <AGDD/AGDD_Model.hh>
+#include "AGDD/AGDD_Model.hh"
 
-#include <CLHEP/Units/SystemOfUnits.h>
+#include "CLHEP/Units/SystemOfUnits.h"
 
 
 AgddGM::Sphere::Sphere(agdd::AGDD_Sphere* sphere)

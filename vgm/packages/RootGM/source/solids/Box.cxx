@@ -20,6 +20,8 @@
 #include "RootGM/solids/SolidMap.h"
 #include "RootGM/common/Units.h"
 
+#include "TGeoBBox.h"
+
 //_____________________________________________________________________________
 RootGM::Box::Box(const std::string& name, 
                  double hx, double hy, double hz)

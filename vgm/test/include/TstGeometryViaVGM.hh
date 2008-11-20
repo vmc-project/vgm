@@ -22,8 +22,10 @@
 
 #include "TstVGeometry.hh"
 
-class VGM::IFactory;
-class VGM::IVolume;
+namespace VGM {
+  class IFactory;
+  class IVolume;
+}
 
 class TstGeometryViaVGM : public TstVGeometry 
 {

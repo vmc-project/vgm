@@ -20,11 +20,11 @@
 #ifndef ROOT_GM_MEDIUM_H
 #define ROOT_GM_MEDIUM_H
 
+#include "BaseVGM/materials/VMedium.h"
+
 #include <string>
 
-#include "TGeoMedium.h"
-
-#include "BaseVGM/materials/VMedium.h"
+class TGeoMedium;
 
 namespace RootGM {
 

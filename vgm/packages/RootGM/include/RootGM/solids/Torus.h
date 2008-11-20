@@ -20,11 +20,11 @@
 #ifndef ROOT_GM_TORUS_H
 #define ROOT_GM_TORUS_H
 
+#include "BaseVGM/solids/VTorus.h"
+
 #include <string>
 
-#include "TGeoTorus.h"
-
-#include "BaseVGM/solids/VTorus.h"
+class TGeoTorus;
 
 namespace RootGM {
 

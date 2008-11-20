@@ -20,9 +20,9 @@
 #ifndef BASE_VGM_V_ARB8_H
 #define BASE_VGM_V_ARB8_H
 
-#include <iostream>
-
 #include "VGM/solids/IArb8.h"
+
+#include <iostream>
 
 namespace BaseVGM {
 

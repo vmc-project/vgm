@@ -9,8 +9,9 @@
 // Contact: bv@bnl.gov
 // -----------------------------------------------------------------------
 
-#include <AgddGM/materials/Isotope.h>
-#include <AGDD/AGDD_Material_Model.hh>
+#include "AgddGM/materials/Isotope.h"
+
+#include "AGDD/AGDD_Material_Model.hh"
 
 
 AgddGM::Isotope::Isotope(agdd::AGDD_Isotope* iso)

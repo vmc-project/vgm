@@ -16,12 +16,8 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include <math.h>
-
-#include "TGeoManager.h"
-#include "TGeoMaterial.h"
-#include "TGeoElement.h"
-#include "TList.h"
+#include "VGM/materials/IMaterial.h"
+#include "VGM/materials/IIsotope.h"
 
 #include "BaseVGM/common/utilities.h"
 
@@ -32,6 +28,13 @@
 #include "RootGM/materials/Material.h"
 #include "RootGM/materials/MaterialMap.h"
 #include "RootGM/materials/Medium.h"
+
+#include "TGeoManager.h"
+#include "TGeoMaterial.h"
+#include "TGeoElement.h"
+#include "TList.h"
+
+#include <math.h>
 
 const double RootGM::MaterialFactory::fgkTolerance = 1e-09; 
 

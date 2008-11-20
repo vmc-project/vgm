@@ -21,19 +21,21 @@
 #ifndef XML_VGM_WRITER_H
 #define XML_VGM_WRITER_H
 
-#include <string>
-
 #include "VGM/common/Axis.h"
 #include "VGM/common/Transform.h"
-#include "VGM/materials/IIsotope.h"
-#include "VGM/materials/IElement.h"
-#include "VGM/materials/IMaterial.h"
-#include "VGM/materials/IMedium.h"
-#include "VGM/solids/ISolid.h"
-#include "VGM/volumes/IPlacement.h"
 
-class VGM::IElement;
-class VGM::IMaterial;
+#include <string>
+
+namespace VGM {
+  class IElement;
+  class IMaterial;
+  class IIsotope;
+  class IElement;
+  class IMaterial;
+  class IMedium;
+  class ISolid;
+  class IPlacement;
+}
 
 namespace XmlVGM {
 

@@ -20,6 +20,8 @@
 #include "RootGM/solids/SolidMap.h"
 #include "RootGM/common/Units.h"
 
+#include "TGeoPara.h"
+
 //_____________________________________________________________________________
 RootGM::Para::Para(const std::string& name,
                    double dx, double dy, double dz,

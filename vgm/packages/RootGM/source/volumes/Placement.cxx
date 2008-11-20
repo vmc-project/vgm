@@ -16,11 +16,7 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include "TGeoManager.h"
-#include "TGeoMatrix.h"
-#include "TGeoVolume.h"
-#include "TGeoCompositeShape.h"
-#include "TGeoBoolNode.h"
+#include "VGM/volumes/IVolume.h"
 
 #include "BaseVGM/common/utilities.h"
 
@@ -30,6 +26,13 @@
 #include "RootGM/common/Units.h"
 #include "RootGM/common/transform.h"
 #include "RootGM/common/axis.h"
+
+#include "TGeoManager.h"
+#include "TGeoMatrix.h"
+#include "TGeoVolume.h"
+#include "TGeoNode.h"
+#include "TGeoCompositeShape.h"
+#include "TGeoBoolNode.h"
 
 //_____________________________________________________________________________
 RootGM::Placement::Placement(

@@ -1,4 +1,4 @@
-// $Id: $
+// $Id$
 
 // -----------------------------------------------------------------------
 // The AgddGM package of the Virtual Geometry Model
@@ -20,7 +20,8 @@
 #ifndef AGDD_GM_TRD_H
 #define AGDD_GM_TRD_H
 
-#include <BaseVGM/solids/VTrd.h>
+#include "BaseVGM/solids/VTrd.h"
+
 #include <string>
 
 namespace agdd { class AGDD_Trapezoid; }
@@ -43,6 +44,7 @@ private:
     agdd::AGDD_Trapezoid* fTrd;
 
 };
+
 }
 
 

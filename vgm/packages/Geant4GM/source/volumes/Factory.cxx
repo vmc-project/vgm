@@ -16,27 +16,6 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include "G4PVDivisionFactory.hh"
-#include "G4ReflectedSolid.hh"
-#include "G4VPhysicalVolume.hh"
-#include "G4LogicalVolume.hh"
-#include "G4LogicalVolumeStore.hh"
-#include "G4VSolid.hh"
-#include "G4BooleanSolid.hh"
-#include "G4DisplacedSolid.hh"
-#include "G4Box.hh"
-#include "G4Cons.hh"
-#include "G4EllipticalTube.hh"
-#include "G4Para.hh"
-#include "G4Polycone.hh"
-#include "G4Polyhedra.hh"
-#include "G4Sphere.hh"
-#include "G4Torus.hh"
-#include "G4Trap.hh"
-#include "G4Trd.hh"
-#include "G4Tubs.hh"
-#include "G4ExtrudedSolid.hh"
-
 #include "ClhepVGM/transform.h"
 #include "ClhepVGM/Units.h"
 #include "BaseVGM/common/utilities.h"
@@ -66,6 +45,27 @@
 #include "Geant4GM/solids/Trap.h"
 #include "Geant4GM/solids/Trd.h"
 #include "Geant4GM/solids/Tubs.h"
+
+#include "G4PVDivisionFactory.hh"
+#include "G4ReflectedSolid.hh"
+#include "G4VPhysicalVolume.hh"
+#include "G4LogicalVolume.hh"
+#include "G4LogicalVolumeStore.hh"
+#include "G4VSolid.hh"
+#include "G4BooleanSolid.hh"
+#include "G4DisplacedSolid.hh"
+#include "G4Box.hh"
+#include "G4Cons.hh"
+#include "G4EllipticalTube.hh"
+#include "G4Para.hh"
+#include "G4Polycone.hh"
+#include "G4Polyhedra.hh"
+#include "G4Sphere.hh"
+#include "G4Torus.hh"
+#include "G4Trap.hh"
+#include "G4Trd.hh"
+#include "G4Tubs.hh"
+#include "G4ExtrudedSolid.hh"
 
 //_____________________________________________________________________________
 Geant4GM::Factory::Factory()
@@ -932,8 +932,8 @@ Geant4GM::Factory::CreatePlacement(
   VGM::IPlacement* placement1 = ImportPVPair(volume, motherVolume, pvPair);
 
   // Top volume
-  if (!motherVolume) 
-    if (!fTop)
+  if ( ! motherVolume ) {  
+    if ( ! fTop )
       fTop = placement1;
     else {
       std::cerr << "    Geant4GM::Factory::CreatePlacement:" << std::endl;
@@ -941,6 +941,7 @@ Geant4GM::Factory::CreatePlacement(
       std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
       exit(1);
     }		  
+  }  
   
   return placement1;
      // should allow to return a list of placements

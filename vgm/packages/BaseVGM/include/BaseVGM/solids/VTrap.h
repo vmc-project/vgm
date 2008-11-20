@@ -20,9 +20,9 @@
 #ifndef BASE_VGM_V_TRAP_H
 #define BASE_VGM_V_TRAP_H
 
-#include <iostream>
-
 #include "VGM/solids/ITrap.h"
+
+#include <iostream>
 
 namespace BaseVGM {
 

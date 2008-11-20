@@ -16,17 +16,12 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include "G4PVPlacement.hh"
-#include "G4PVReplica.hh"
-#include "G4PVDivision.hh"
-#include "G4VDivisionParameterisation.hh"
-#include "G4ReflectionFactory.hh"
-
 #include "VGM/common/Axis.h"
 #include "VGM/solids/ICons.h"
 #include "VGM/solids/IPolycone.h"
 #include "VGM/solids/IPolyhedra.h"
 #include "VGM/solids/ITubs.h"
+#include "VGM/volumes/IVolume.h"
 
 #include "ClhepVGM/transform.h"
 #include "ClhepVGM/Units.h"
@@ -34,6 +29,13 @@
 #include "Geant4GM/volumes/Placement.h"
 #include "Geant4GM/volumes/VolumeMap.h"
 #include "Geant4GM/volumes/PlacementMap.h"
+
+#include "G4VPhysicalVolume.hh"
+#include "G4PVPlacement.hh"
+#include "G4PVReplica.hh"
+#include "G4PVDivision.hh"
+#include "G4VDivisionParameterisation.hh"
+#include "G4ReflectionFactory.hh"
 
 //_____________________________________________________________________________
 Geant4GM::Placement::Placement(      

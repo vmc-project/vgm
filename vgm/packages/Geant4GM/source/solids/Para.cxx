@@ -28,6 +28,9 @@
 #include "Geant4GM/solids/Para.h"
 #include "Geant4GM/solids/SolidMap.h"
 
+#include "G4Para.hh"
+#include "G4ReflectedSolid.hh"
+
 //_____________________________________________________________________________
 Geant4GM::Para::Para(const std::string& name,
                      double dx, double dy, double dz,

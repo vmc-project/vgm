@@ -20,6 +20,9 @@
 #include "RootGM/solids/SolidMap.h"
 #include "RootGM/common/Units.h"
 
+#include "TGeoTrd1.h"
+#include "TGeoTrd2.h"
+
 //_____________________________________________________________________________
 RootGM::Trd::Trd(const std::string& name, 
                  double hx1, double hx2, double hy1, double hy2, double hz)

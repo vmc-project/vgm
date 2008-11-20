@@ -22,9 +22,11 @@
 
 #include <map>
 
-#include "G4Isotope.hh"
+class G4Isotope;
 
-#include "VGM/materials/IIsotope.h"
+namespace VGM {
+  class IIsotope;
+}  
 
 namespace Geant4GM {
 

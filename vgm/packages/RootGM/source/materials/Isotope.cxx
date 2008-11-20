@@ -16,10 +16,10 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include <math.h>
-
 #include "RootGM/materials/Isotope.h"
 #include "RootGM/common/Units.h"
+
+#include <math.h>
 
 //_____________________________________________________________________________
 RootGM::Isotope::Isotope(const std::string& name,

@@ -16,11 +16,12 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include "TGeoShape.h"
-
 #include "RootGM/solids/Cons.h"
 #include "RootGM/solids/SolidMap.h"
 #include "RootGM/common/Units.h"
+
+#include "TGeoShape.h"
+#include "TGeoCone.h"
 
 //_____________________________________________________________________________
 RootGM::Cons::Cons(const std::string& name, 

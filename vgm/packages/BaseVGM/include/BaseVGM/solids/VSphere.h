@@ -20,9 +20,9 @@
 #ifndef BASE_VGM_V_SPHERE_H
 #define BASE_VGM_V_SPHERE_H
 
-#include <iostream>
-
 #include "VGM/solids/ISphere.h"
+
+#include <iostream>
 
 namespace BaseVGM {
 

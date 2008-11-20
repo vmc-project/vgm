@@ -16,12 +16,15 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include <iostream>
-#include <math.h>
-
 #include "RootGM/solids/Arb8.h"
 #include "RootGM/solids/SolidMap.h"
 #include "RootGM/common/Units.h"
+
+#include "TGeoArb8.h"
+
+#include <iostream>
+#include <math.h>
+#include <cstdlib>
 
 const int RootGM::Arb8::Arb8::fgkNofVertices = 8;
 

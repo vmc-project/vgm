@@ -1,4 +1,4 @@
-// $Id: $
+// $Id$
 
 // -----------------------------------------------------------------------
 // The AgddGM package of the Virtual Geometry Model
@@ -20,10 +20,13 @@
 #ifndef AGDD_GM_POLYCONE_H
 #define AGDD_GM_POLYCONE_H
 
-#include <BaseVGM/solids/VPolycone.h>
+#include "BaseVGM/solids/VPolycone.h"
+
 #include <string>
 
-namespace agdd { class AGDD_Pcon; }
+namespace agdd { 
+  class AGDD_Pcon; 
+}
 
 namespace AgddGM {
 

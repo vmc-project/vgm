@@ -1,4 +1,4 @@
-// $Id: $
+// $Id$
 
 // -----------------------------------------------------------------------
 // The AgddGM package of the Virtual Geometry Model
@@ -20,9 +20,11 @@
 #ifndef AGDD_GM_TUBS_H
 #define AGDD_GM_TUBS_H
 
-#include <BaseVGM/solids/VTubs.h>
+#include "BaseVGM/solids/VTubs.h"
 
-namespace agdd { class AGDD_Tube; }
+namespace agdd { 
+  class AGDD_Tube; 
+}
 
 namespace AgddGM {
 

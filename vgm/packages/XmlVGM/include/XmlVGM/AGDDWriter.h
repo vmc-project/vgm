@@ -22,34 +22,36 @@
 #ifndef XML_VGM_AGDD_WRITER_H
 #define XML_VGM_AGDD_WRITER_H
 
+#include "VGM/common/ThreeVector.h"
+
+#include "XmlVGM/IWriter.h"
+
 #include <fstream>
 #include <vector>
 #include <string>
 #include <set>
 
-#include "VGM/solids/ISolid.h"
-#include "VGM/solids/IBooleanSolid.h"
-#include "VGM/solids/IBox.h"
-#include "VGM/solids/IBox.h"
-#include "VGM/solids/ITubs.h"
-#include "VGM/solids/ICons.h"
-#include "VGM/solids/ITrd.h"
-#include "VGM/solids/ITrap.h"
-#include "VGM/solids/IPara.h"
-#include "VGM/solids/IPolycone.h"
-#include "VGM/solids/IPolyhedra.h"
-#include "VGM/common/ThreeVector.h"
-
-#include "XmlVGM/IWriter.h"
-#include "XmlVGM/Maps.h"
-
-
-class VGM::IMaterial;
-class VGM::IElement;
-class VGM::IVolume;
-class VGM::IPlacement;
+namespace VGM {
+  class ISolid;
+  class IBooleanSolid;
+  class IBox;
+  class IBox;
+  class ITubs;
+  class ICons;
+  class ITrd;
+  class ITrap;
+  class IPara;
+  class IPolycone;
+  class IPolyhedra;
+  class IMaterial;
+  class IElement;
+  class IVolume;
+  class IPlacement;
+}  
 
 namespace XmlVGM {
+
+  class Maps;
 
   class AGDDWriter : public virtual IWriter
   {
