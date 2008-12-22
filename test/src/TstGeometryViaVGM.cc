@@ -806,9 +806,9 @@ void  TstGeometryViaVGM::DefineMaterials()
   // material using isotopes
   int iz, n;
   IIsotope* isoU5 
-    = materialFactory->CreateIsotope("U235", iz=92, n=235, a=235.01*g/mole);
+    = materialFactory->CreateIsotope("U235", iz=92, n=235, a=235.01*fGmole);
   IIsotope* isoU8 
-    = materialFactory->CreateIsotope("U238", iz=92, n=238, a=238.03*g/mole);
+    = materialFactory->CreateIsotope("U238", iz=92, n=238, a=238.03*fGmole);
  
   IsotopeVector isotopes;
   isotopes.push_back(isoU5);
