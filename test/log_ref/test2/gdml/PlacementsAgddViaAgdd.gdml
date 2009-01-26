@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gdml xmlns:gdml="http://cern.ch/2001/Schemas/GDML"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="gdml.xsd">
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/GDML_2_10_0/src/GDMLSchema/gdml.xsd">
 
    <define>
       <position  name="pos_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
@@ -59,6 +58,8 @@
       <rotation  name="rot_21"    x="     0.0000"  y="    45.0000"  z="     0.0000"  unit="degree" />
       <rotation  name="rot_22"    x="     0.0000"  y="    30.0000"  z="     0.0000"  unit="degree" />
       <rotation  name="rot_23"    x="     0.0000"  y="    15.0000"  z="     0.0000"  unit="degree" />
+
+      <scale     name="scale_0"   x="     1.0000"  y="     1.0000"  z="    -1.0000"  />
    </define>
 
    <materials>

@@ -1,12 +1,13 @@
 Geant4 geometry will be defined via VGM
 
 *************************************************************
- Geant4 version Name: geant4-09-01-patch-02    (9-May-2008)
+ Geant4 version Name: geant4-09-02    (19-December-2008)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
 *************************************************************
 
+Visualization Manager instantiating...
 TestAssemblies2: not available via VGM
 TestAssemblies2 finished
 No geometry is built.

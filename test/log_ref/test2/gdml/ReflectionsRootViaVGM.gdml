@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gdml xmlns:gdml="http://cern.ch/2001/Schemas/GDML"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="gdml.xsd">
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/GDML_2_10_0/src/GDMLSchema/gdml.xsd">
 
    <define>
       <position  name="pos_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
@@ -35,6 +34,8 @@
       <position  name="pos_28"    x="   450.0000"  y="   150.0000"  z="  -100.0000"  unit="cm" />
 
       <rotation  name="rot_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
+
+      <scale     name="scale_0"   x="     1.0000"  y="     1.0000"  z="    -1.0000"  />
    </define>
 
    <materials>
@@ -71,7 +72,7 @@
 
       <para  lunit="cm" aunit="degree"
          name="para_s"
-         x="   40.0000"  y="   60.0000"  z="   50.0000"
+         x="   80.0000"  y="  120.0000"  z="  100.0000"
          alpha="   30.0000"  theta="   30.0000"  phi="   30.0000" />
 
       <polycone  lunit="cm" aunit="degree"
@@ -239,9 +240,21 @@
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
+            <volumeref ref="box"/>
+               <positionref ref="pos_2"/>
+               <rotationref ref="rot_0"/>
+               <scaleref    ref="scale_0"/>
+         </physvol>
+         <physvol>
             <volumeref ref="cons"/>
                <positionref ref="pos_3"/>
                <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="cons"/>
+               <positionref ref="pos_4"/>
+               <rotationref ref="rot_0"/>
+               <scaleref    ref="scale_0"/>
          </physvol>
          <physvol>
             <volumeref ref="eltu"/>
@@ -249,9 +262,21 @@
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
+            <volumeref ref="eltu"/>
+               <positionref ref="pos_6"/>
+               <rotationref ref="rot_0"/>
+               <scaleref    ref="scale_0"/>
+         </physvol>
+         <physvol>
             <volumeref ref="para"/>
                <positionref ref="pos_7"/>
                <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="para"/>
+               <positionref ref="pos_8"/>
+               <rotationref ref="rot_0"/>
+               <scaleref    ref="scale_0"/>
          </physvol>
          <physvol>
             <volumeref ref="pcone"/>
@@ -259,9 +284,21 @@
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
+            <volumeref ref="pcone"/>
+               <positionref ref="pos_10"/>
+               <rotationref ref="rot_0"/>
+               <scaleref    ref="scale_0"/>
+         </physvol>
+         <physvol>
             <volumeref ref="phedra"/>
                <positionref ref="pos_11"/>
                <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="phedra"/>
+               <positionref ref="pos_12"/>
+               <rotationref ref="rot_0"/>
+               <scaleref    ref="scale_0"/>
          </physvol>
          <physvol>
             <volumeref ref="sphere"/>
@@ -269,9 +306,21 @@
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
+            <volumeref ref="sphere"/>
+               <positionref ref="pos_14"/>
+               <rotationref ref="rot_0"/>
+               <scaleref    ref="scale_0"/>
+         </physvol>
+         <physvol>
             <volumeref ref="torus"/>
                <positionref ref="pos_15"/>
                <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="torus"/>
+               <positionref ref="pos_16"/>
+               <rotationref ref="rot_0"/>
+               <scaleref    ref="scale_0"/>
          </physvol>
          <physvol>
             <volumeref ref="trap"/>
@@ -279,9 +328,21 @@
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
+            <volumeref ref="trap"/>
+               <positionref ref="pos_18"/>
+               <rotationref ref="rot_0"/>
+               <scaleref    ref="scale_0"/>
+         </physvol>
+         <physvol>
             <volumeref ref="trd"/>
                <positionref ref="pos_19"/>
                <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="trd"/>
+               <positionref ref="pos_20"/>
+               <rotationref ref="rot_0"/>
+               <scaleref    ref="scale_0"/>
          </physvol>
          <physvol>
             <volumeref ref="tubs"/>
@@ -289,9 +350,21 @@
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
+            <volumeref ref="tubs"/>
+               <positionref ref="pos_22"/>
+               <rotationref ref="rot_0"/>
+               <scaleref    ref="scale_0"/>
+         </physvol>
+         <physvol>
             <volumeref ref="ctubs"/>
                <positionref ref="pos_23"/>
                <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="ctubs"/>
+               <positionref ref="pos_24"/>
+               <rotationref ref="rot_0"/>
+               <scaleref    ref="scale_0"/>
          </physvol>
          <physvol>
             <volumeref ref="xtru1"/>
@@ -299,9 +372,21 @@
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
+            <volumeref ref="xtru1"/>
+               <positionref ref="pos_26"/>
+               <rotationref ref="rot_0"/>
+               <scaleref    ref="scale_0"/>
+         </physvol>
+         <physvol>
             <volumeref ref="xtru2"/>
                <positionref ref="pos_27"/>
                <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="xtru2"/>
+               <positionref ref="pos_28"/>
+               <rotationref ref="rot_0"/>
+               <scaleref    ref="scale_0"/>
          </physvol>
       </volume>
 

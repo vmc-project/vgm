@@ -1,20 +1,21 @@
 Geant4 geometry will be defined via VGM
 
 *************************************************************
- Geant4 version Name: geant4-09-01-patch-02    (9-May-2008)
+ Geant4 version Name: geant4-09-02    (19-December-2008)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
 *************************************************************
 
+Visualization Manager instantiating...
 VGM info:   Importing isotope: 
-VGM info:    Isotope:     H   Z =  1   N =   1   A =   1.01 g/mole
+VGM info:    Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole
 VGM info:   Importing isotope: 
-VGM info:    Isotope:     H   Z =  1   N =   2   A =   2.01 g/mole
+VGM info:    Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole
 VGM info:   Importing isotope: 
-VGM info:    Isotope:     C   Z =  6   N =  12   A =  12.00 g/mole
+VGM info:    Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole
 VGM info:   Importing isotope: 
-VGM info:    Isotope:     C   Z =  6   N =  13   A =  13.00 g/mole
+VGM info:    Isotope:   C13   Z =  6   N =  13   A =  13.00 g/mole
 TestAssemblies: not available via VGM
 TestAssemblies finished
 No geometry is built.

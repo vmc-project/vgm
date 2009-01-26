@@ -5,8 +5,8 @@
 
 <xi:include href="StandardColors.agdd"/>
 
-<materials  version = "Id: AGDDWriter.cxx 594 2007-08-13 14:37:44Z ihrivnac "
-            date    = "2008-07-18"
+<materials  version = "Id: AGDDWriter.cxx 634 2008-11-20 13:28:44Z ihrivnac "
+            date    = "2009-01-26"
             author  = "VGM AGGD Writer"
             DTD_version="v7"  >
 
@@ -21,8 +21,8 @@
 
 </materials>
 
-<media  version = "Id: AGDDWriter.cxx 594 2007-08-13 14:37:44Z ihrivnac "
-        date    = "2008-07-18"
+<media  version = "Id: AGDDWriter.cxx 634 2008-11-20 13:28:44Z ihrivnac "
+        date    = "2009-01-26"
         author  = "VGM AGGD Writer"
         DTD_version="v7"  >
 
@@ -36,8 +36,8 @@
 
 <section DTD_version = "v7"
          name        = "world"
-         version     = "Id: AGDDWriter.cxx 594 2007-08-13 14:37:44Z ihrivnac "
-         date        = "2008-07-18"
+         version     = "Id: AGDDWriter.cxx 634 2008-11-20 13:28:44Z ihrivnac "
+         date        = "2009-01-26"
          author      = "VGM AGGD Writer"
          top_volume  = "world_comp"  >
 
@@ -299,16 +299,22 @@
       </posXYZ>
       <posXYZ   X_Y_Z="300.0000; 150.0000; 100.0000"> <volume name="ctubs"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="300.0000; 150.0000; -100.0000"> <volume name="ctubs_refl"/>
-      </posXYZ>
+      <transform    pos="300.0000; 150.0000; -100.0000"
+                 matrix=" 1.00000;  0.00000;  0.00000; 
+                          0.00000;  1.00000;  0.00000; 
+                          0.00000;  0.00000; -1.00000"> <volume name="ctubs_refl"/>
+      </transform>
       <posXYZ   X_Y_Z="450.0000; -150.0000; 100.0000"> <volume name="xtru1"/>
       </posXYZ>
       <posXYZ   X_Y_Z="450.0000; -150.0000; -100.0000"> <volume name="xtru1_refl"/>
       </posXYZ>
       <posXYZ   X_Y_Z="450.0000; 150.0000; 100.0000"> <volume name="xtru2"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="450.0000; 150.0000; -100.0000"> <volume name="xtru2_refl"/>
-      </posXYZ>
+      <transform    pos="450.0000; 150.0000; -100.0000"
+                 matrix=" 1.00000;  0.00000;  0.00000; 
+                          0.00000;  1.00000;  0.00000; 
+                          0.00000;  0.00000; -1.00000"> <volume name="xtru2_refl"/>
+      </transform>
    </composition>
 
 

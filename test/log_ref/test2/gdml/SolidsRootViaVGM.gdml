@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gdml xmlns:gdml="http://cern.ch/2001/Schemas/GDML"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="gdml.xsd">
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/GDML_2_10_0/src/GDMLSchema/gdml.xsd">
 
    <define>
       <position  name="pos_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
@@ -21,6 +20,8 @@
       <position  name="pos_14"    x="   450.0000"  y="   150.0000"  z="     0.0000"  unit="cm" />
 
       <rotation  name="rot_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
+
+      <scale     name="scale_0"   x="     1.0000"  y="     1.0000"  z="    -1.0000"  />
    </define>
 
    <materials>
@@ -57,7 +58,7 @@
 
       <para  lunit="cm" aunit="degree"
          name="para_s"
-         x="   40.0000"  y="   60.0000"  z="   50.0000"
+         x="   80.0000"  y="  120.0000"  z="  100.0000"
          alpha="   30.0000"  theta="   30.0000"  phi="   30.0000" />
 
       <polycone  lunit="cm" aunit="degree"

@@ -1,12 +1,13 @@
 Root geometry will be defined via Root and exported to Geant4
 
 *************************************************************
- Geant4 version Name: geant4-09-01-patch-02    (9-May-2008)
+ Geant4 version Name: geant4-09-02    (19-December-2008)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
 *************************************************************
 
+Visualization Manager instantiating...
 TestAssemblies2 finished
 Go to Import
 VGM info:   RootGM::Factory::Import started ...
@@ -62,7 +63,7 @@ Root_GM_Factory factory solids store:
    0th solid: Box  "worldS"  hx = 2000mm  hy = 2000mm  hz = 1000mm
    1th solid: Cons  "CONS"  rin1 = 100mm  rout1 = 400mm  rin2 = 200mm  rout2 = 600mm  hz = 500mm  sphi = 0deg  dphi = 360deg
 Root_GM_Factory factory volumes store: 
-   0th: Volume: "world" material "Basic" solid "Box"  4 daughters: "CONS"  "CONS"  "CONS"  "CONS"  
+   0th: Volume: "world" material "Basic" solid "Box"  4 daughters: "Assembly_1%CONS"  "Assembly_1%CONS"  "Assembly_1%CONS"  "Assembly_1%CONS"  
    1th: Volume: "CONS" material "Basic" solid "Cons"  0 daughters: 
 VGM info:   RootGM::Factory::Import finished.
 Import finished
@@ -116,14 +117,53 @@ VGM info:   Exporting solid:
 VGM info:      Cons  "CONS"  rin1 = 100mm  rout1 = 400mm  rin2 = 200mm  rout2 = 600mm  hz = 500mm  sphi = 0deg  dphi = 360deg
 VGM info:      1th volume: CONS   material: Basic
 VGM info:   ExportPlacements for 0th volume world
-VGM info:      0th daughter vol = CONS  simple placement: CONS
-VGM info:      1th daughter vol = CONS  simple placement: CONS
+VGM info:      0th daughter vol = CONS  simple placement: Assembly_1%CONS
+VGM info:      1th daughter vol = CONS  simple placement: Assembly_1%CONS
 VGM info:   Importing LV: CONS_refl
 VGM info:   Importing solid: CONS_refl
 VGM info:   ImportDaughters for CONS_refl
 VGM info:   ImportPositions for lv CONS_refl nofDaughters: 0
-VGM info:      2th daughter vol = CONS  simple placement: CONS
-VGM info:      3th daughter vol = CONS  simple placement: CONS
+VGM info:      2th daughter vol = CONS  simple placement: Assembly_1%CONS
+VGM info:      3th daughter vol = CONS  simple placement: Assembly_1%CONS
 VGM info:   ExportPlacements for 1th volume CONS
 Export finished
 Go to save Root geometry
+Visualization Manager initialising...
+Registering graphics systems...
+
+You have successfully registered the following graphics systems.
+Current available graphics systems are:
+  ASCIITree (ATree)
+  DAWNFILE (DAWNFILE)
+  G4HepRep (HepRepXML)
+  G4HepRepFile (HepRepFile)
+  RayTracer (RayTracer)
+  VRML1FILE (VRML1FILE)
+  VRML2FILE (VRML2FILE)
+  FukuiRenderer (DAWN)
+  OpenGLImmediateX (OGLIX)
+  OpenGLStoredX (OGLSX)
+  OpenGLImmediateXm (OGLIXm)
+  OpenGLStoredXm (OGLSXm)
+  OpenInventorXt (OIX)
+  VRML1 (VRML1)
+  VRML2 (VRML2)
+
+Registering model factories...
+
+You have successfully registered the following model factories.
+Registered model factories:
+  generic
+  drawByCharge
+  drawByParticleID
+  drawByOriginVolume
+  drawByAttribute
+
+Registered filter factories:
+  chargeFilter
+  particleFilter
+  originVolumeFilter
+  attributeFilter
+
+Graphics systems deleted.
+Visualization Manager deleting...
