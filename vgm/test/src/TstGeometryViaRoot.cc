@@ -1480,6 +1480,7 @@ void* TstGeometryViaRoot::TestSpecial()
 // ---
 
   gGeoManager->Import("geometry.root");
+  fGeoManager = gGeoManager;
 
 /*
   TGeoVolume* worldV = gGeoManager->GetTopVolume();
