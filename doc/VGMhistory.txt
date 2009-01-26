@@ -11,6 +11,26 @@ $Id$
 
  The Virtual Geometry Model - Versions
 =========================================
+  26/01/2009
+  version 3.02
+             - Added new solids: Arb8 and TessellatedSolid.
+             - Porting code to gcc 4.3.2; fixes for leopard macosx
+             In BaseVGM:
+              - Fix in VPolyhedra::ConvertRadiusFactor: the angle DeltaPhi() has to be 
+                converted from deg in rads. (This affected converting polyhedra solids
+                from Geant4 to other geometries.)
+
+              In XmlVGM: 
+               In GDML exporter:
+               - Implemented multiple placements, reflections 
+               - Write inverse rotation in boolean solid displacement
+               In both AGDD, GDML exporters:
+               - Adding setters for number width & precision (in VExporterm Maps):
+               - Take into account aventual reflection of Boolean solid
+
+               Tested with CLHEP 2.0.4.2, Root 5.22/00, Geant4 9.2;
+               Linux: gcc 4.3.2 (FC10)
+
   18/07/2008
   version 3.01
                Fixes in Geant4GM::Ctubs, RootGM::SolidMap
@@ -19,7 +39,6 @@ $Id$
 
                Tested with CLHEP 2.0.3.2, Root 5.20/00, Geant4 9.1.p02;
                Linux: gcc 4.1.1 (FC6)
-
 
   16/08/2007
   version 3.00
