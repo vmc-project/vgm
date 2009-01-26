@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gdml xmlns:gdml="http://cern.ch/2001/Schemas/GDML"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="gdml.xsd">
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/GDML_2_10_0/src/GDMLSchema/gdml.xsd">
 
    <define>
       <position  name="pos_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
@@ -56,6 +55,8 @@
       <rotation  name="rot_21"    x="     0.0000"  y="   -45.0000"  z="     0.0000"  unit="degree" />
       <rotation  name="rot_22"    x="     0.0000"  y="   -30.0000"  z="     0.0000"  unit="degree" />
       <rotation  name="rot_23"    x="     0.0000"  y="   -15.0000"  z="     0.0000"  unit="degree" />
+
+      <scale     name="scale_0"   x="     1.0000"  y="     1.0000"  z="    -1.0000"  />
    </define>
 
    <materials>
@@ -72,10 +73,10 @@
          <atom type="A" unit="g/mol" value=" 13.0034" />
       </isotope>
       <isotope  name="U_235_i"   Z=" 92.0000"  N="235" >
-         <atom type="A" unit="g/mol" value="1466816410390727319617536.0000" />
+         <atom type="A" unit="g/mol" value="235.0100" />
       </isotope>
       <isotope  name="U_238_i"   Z=" 92.0000"  N="238" >
-         <atom type="A" unit="g/mol" value="1485665759607271307870208.0000" />
+         <atom type="A" unit="g/mol" value="238.0300" />
       </isotope>
 
       <element  name="H_e"  >
@@ -164,6 +165,10 @@
       <volume name="layerA">
          <materialref ref="Air"/>
          <solidref ref="layerA_s"/>
+         <divisionvol unit="cm"
+            axis="kYAxis"  number="3"  offset="    60.0000"  width="    20.0000">
+            <volumeref ref="layerB"/>
+         </divisionvol>
       </volume>
 
       <volume name="world">

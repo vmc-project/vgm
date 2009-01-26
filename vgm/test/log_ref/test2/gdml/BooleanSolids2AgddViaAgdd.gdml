@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gdml xmlns:gdml="http://cern.ch/2001/Schemas/GDML"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="gdml.xsd">
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/GDML_2_10_0/src/GDMLSchema/gdml.xsd">
 
    <define>
       <position  name="pos_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
       <position  name="pos_1"     x="  -125.0000"  y="     0.0000"  z="  -200.0000"  unit="cm" />
       <position  name="pos_2"     x="   125.0000"  y="     0.0000"  z="  -200.0000"  unit="cm" />
       <position  name="pos_3"     x="  -250.0000"  y="     0.0000"  z="   200.0000"  unit="cm" />
-      <position  name="pos_5"     x="     0.0000"  y="     0.0000"  z="   200.0000"  unit="cm" />
-      <position  name="pos_6"     x="   250.0000"  y="     0.0000"  z="   200.0000"  unit="cm" />
+      <position  name="pos_4"     x="     0.0000"  y="     0.0000"  z="   200.0000"  unit="cm" />
+      <position  name="pos_5"     x="   250.0000"  y="     0.0000"  z="   200.0000"  unit="cm" />
 
       <rotation  name="rot_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
       <rotation  name="rot_1"     x="     0.0000"  y="   -45.0000"  z="     0.0000"  unit="degree" />
+
+      <scale     name="scale_0"   x="     1.0000"  y="     1.0000"  z="    -1.0000"  />
    </define>
 
    <materials>
@@ -56,8 +57,8 @@
       <intersection name="intersection_solid1_solid2_s" >
          <first  ref="intersection_constA_s" />
          <second ref="intersection_constB_s" />
-         <position  name="pos_4"     x="    19.9999"  y="     0.0000"  z="     0.0000"  unit="cm" />
-         <rotation  name="rot_2"     x="   -39.2315"  y="    37.7612"  z="   -26.5651"  unit="degree" />
+         <position  name="posB_0"    x="    19.9999"  y="     0.0000"  z="     0.0000"  unit="cm" />
+         <rotation  name="rotB_0"    x="    30.0000"  y="   -45.0000"  z="     0.0000"  unit="degree" />
       </intersection>
 
       <box  lunit="cm" aunit="degree"
@@ -73,8 +74,8 @@
       <subtraction name="subtraction_solid1_solid2_s" >
          <first  ref="subtraction_constA_s" />
          <second ref="subtraction_constB_s" />
-         <position  name="pos_4"     x="    19.9999"  y="     0.0000"  z="     0.0000"  unit="cm" />
-         <rotation  name="rot_2"     x="   -39.2315"  y="    37.7612"  z="   -26.5651"  unit="degree" />
+         <position  name="posB_1"    x="    19.9999"  y="     0.0000"  z="     0.0000"  unit="cm" />
+         <rotation  name="rotB_1"    x="    30.0000"  y="   -45.0000"  z="     0.0000"  unit="degree" />
       </subtraction>
 
       <box  lunit="cm" aunit="degree"
@@ -90,8 +91,8 @@
       <union name="union_solid1_solid2_s" >
          <first  ref="union_constA_s" />
          <second ref="union_constB_s" />
-         <position  name="pos_4"     x="    19.9999"  y="     0.0000"  z="     0.0000"  unit="cm" />
-         <rotation  name="rot_2"     x="   -39.2315"  y="    37.7612"  z="   -26.5651"  unit="degree" />
+         <position  name="posB_2"    x="    19.9999"  y="     0.0000"  z="     0.0000"  unit="cm" />
+         <rotation  name="rotB_2"    x="    30.0000"  y="   -45.0000"  z="     0.0000"  unit="degree" />
       </union>
 
    </solids>
@@ -142,12 +143,12 @@
          </physvol>
          <physvol>
             <volumeref ref="subtraction_solid1_solid2"/>
-               <positionref ref="pos_5"/>
+               <positionref ref="pos_4"/>
                <rotationref ref="rot_1"/>
          </physvol>
          <physvol>
             <volumeref ref="union_solid1_solid2"/>
-               <positionref ref="pos_6"/>
+               <positionref ref="pos_5"/>
                <rotationref ref="rot_1"/>
          </physvol>
       </volume>
