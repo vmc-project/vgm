@@ -46,6 +46,8 @@
 #include "G4UItcsh.hh"
 #include "G4VisExecutive.hh"
 
+#include "RootGM/volumes/Placement.h"
+
 #include "TstDetectorConstruction.hh"
 #include "TstPhysicsList.hh"
 #include "TstPrimaryGeneratorAction.hh"
@@ -169,6 +171,11 @@ int main(int argc, char** argv)
   //runManager->SetUserAction(new TstTrackingAction());
   runManager->SetUserAction(new TstRunAction());
   
+  if ( run ) {
+    // Do not expand names of assemblies in names of placements
+    RootGM::Placement::SetIncludeAssembliesInNames(false);
+  }
+
   // Initialize G4 kernel
   runManager->Initialize();
   visManager->Initialize();
