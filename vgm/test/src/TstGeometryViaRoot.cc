@@ -275,7 +275,7 @@ TGeoVolume* TstGeometryViaRoot::CreateExtrudedSolid1()
 //_____________________________________________________________________________
 TGeoVolume* TstGeometryViaRoot::CreateExtrudedSolid2()
 {
-/*
+
   Int_t nz = 4;
   TGeoXtru* xtruS = new TGeoXtru(nz);
 
@@ -294,7 +294,8 @@ TGeoVolume* TstGeometryViaRoot::CreateExtrudedSolid2()
 
   return new TGeoVolume("xtru2", xtruS, fBasicMedium);
 
-  // Wrong conversion
+/*
+  // Test case with wrong conversion (now ok)
 
   Int_t nz = 2;
   TGeoXtru* xtruS = new TGeoXtru(nz);
@@ -325,8 +326,8 @@ TGeoVolume* TstGeometryViaRoot::CreateExtrudedSolid2()
     xtruS->DefineSection(i, vz[i], xoff[i], yoff[i], scale[i]); 
 
   return new TGeoVolume("xtru2", xtruS, fBasicMedium);
-*/
-  // Wrong conversion
+
+  // Test case with wrong conversion (now ok)
 
   Int_t nz = 2;
   TGeoXtru* xtruS = new TGeoXtru(nz);
@@ -346,7 +347,7 @@ TGeoVolume* TstGeometryViaRoot::CreateExtrudedSolid2()
 
   return new TGeoVolume("xtru2", xtruS, fBasicMedium);
 
-/*
+
   Int_t nz = 2;
   TGeoXtru* xtruS = new TGeoXtru(nz);
 
