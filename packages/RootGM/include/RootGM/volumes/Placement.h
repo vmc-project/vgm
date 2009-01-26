@@ -58,6 +58,13 @@ namespace RootGM {
          TGeoNode* node, std::vector<const TGeoNode*> assemblyNodes);
       virtual ~Placement();
     
+      // static methods
+      static void SetIncludeAssembliesInNames(bool includeAssembliesInNames);
+      static bool GetIncludeAssembliesInNames();
+
+      static void SetNameSeparator(char nameSeparator);
+      static char GetNameSeparator();
+
       // methods
       virtual VGM::PlacementType Type() const;
       virtual std::string        Name() const;
@@ -75,6 +82,10 @@ namespace RootGM {
       Placement(const Placement& rhs);
 
     private:
+      // static data members
+      static bool fgIncludeAssembliesInNames; 
+      static char fgNameSeparator; 
+    
       // data members
       std::string  fName;
       TGeoNode*    fGeoNode;

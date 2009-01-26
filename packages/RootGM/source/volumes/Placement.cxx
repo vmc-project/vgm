@@ -34,6 +34,43 @@
 #include "TGeoCompositeShape.h"
 #include "TGeoBoolNode.h"
 
+bool RootGM::Placement::fgIncludeAssembliesInNames = true; 
+char RootGM::Placement::fgNameSeparator = '%'; 
+
+//_____________________________________________________________________________
+void RootGM::Placement::SetIncludeAssembliesInNames(bool includeAssembliesInNames)
+{
+/// Set the option to include assemblies names in the name of
+/// placement 
+
+ fgIncludeAssembliesInNames = includeAssembliesInNames;
+}  
+
+//_____________________________________________________________________________
+bool RootGM::Placement::GetIncludeAssembliesInNames()
+{
+/// Return the option to include assemblies names in the name of
+/// placement 
+
+  return fgIncludeAssembliesInNames;
+}  
+
+//_____________________________________________________________________________
+void RootGM::Placement::SetNameSeparator(char nameSeparator)
+{
+/// Set the separator for assemblies names
+
+  fgNameSeparator = nameSeparator;
+}  
+
+//_____________________________________________________________________________
+char RootGM::Placement::GetNameSeparator()
+{
+/// Return the separator for assemblies names
+
+  return fgNameSeparator;
+}  
+
 //_____________________________________________________________________________
 RootGM::Placement::Placement(
                       const std::string& name, 
@@ -214,7 +251,16 @@ VGM::PlacementType RootGM::Placement::Type() const
 std::string  RootGM::Placement::Name() const
 {
 //
-  return fName;
+  TString name; 
+  if ( fgIncludeAssembliesInNames ) {
+    for ( unsigned i=0; i<fAssemblyNodes.size(); i++ ) {
+      name += fAssemblyNodes[i]->GetName();
+      name += fgNameSeparator;
+    }  
+  }
+  name += fName.c_str();
+  
+  return name.Data();
 }  
 
 //_____________________________________________________________________________

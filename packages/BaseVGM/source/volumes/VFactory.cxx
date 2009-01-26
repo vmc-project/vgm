@@ -486,7 +486,7 @@ void BaseVGM::VFactory::ExportPlacements(
         BaseVGM::DebugInfo();
         std::cout << "   " << id << "th daughter vol = ";  
         if (Debug()>1) std::cout << daughter->Volume() << "  ";
-	std::cout << daughter->Name();
+	std::cout << daughter->Volume()->Name();
       }		  
 
 
