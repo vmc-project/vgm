@@ -17,7 +17,7 @@
  -----------
    The following environment variables have to be set by user:
    VGM_INSTALL     - path to the VGM installation
-   VGM_SYSTEM      - platform (Linux-g++, SunOS, DEC-cxx, HP-aCC)
+   VGM_SYSTEM      - platform (Linux-g++, Darwin, SunOS, DEC-cxx, HP-aCC)
    CLHEP_BASE_DIR  - path to the CLHEP installation
 
    In order to build VGM with Geant4 and/or Root,
@@ -86,7 +86,7 @@
  
  Tested platform:
  -----------------
-   Linux FC5, gcc 4.1.1
+   Linux FC10, gcc 4.3.2
    MacOS Powerbook 10.4.7 gcc 4
   
 
