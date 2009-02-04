@@ -13,9 +13,9 @@ ifndef VGM_LIBDIR
   VGM_LIBDIR := $(VGM_LIB)/$(VGM_SYSTEM)
 endif
 
-INTYLIBS += -L$(VGM_LIBDIR) -lBaseVGM -L$(ROOTSYS)/lib -lGeom -lCore -lCint
+INTYLIBS += -L$(VGM_LIBDIR) -lBaseVGM -L$(shell root-config --libdir) -lGeom -lCore -lCint
 
-CPPFLAGS += -I$(ROOTSYS)/include
+CPPFLAGS += -I$(shell root-config --incdir)
 
 ifeq ($(VGM_SYSTEM),Linux-g++)
   CXXFLAGS := $(filter-out -pedantic,$(CXXFLAGS))

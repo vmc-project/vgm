@@ -27,6 +27,7 @@ libGeant4GM_la_SOURCES =                        \
 	$(geant4gmsrc)/materials/MaterialFactory.cxx \
 	$(geant4gmsrc)/materials/MaterialMap.cxx \
 	$(geant4gmsrc)/materials/Medium.cxx \
+	$(geant4gmsrc)/solids/Arb8.cxx \
 	$(geant4gmsrc)/solids/BooleanSolid.cxx \
 	$(geant4gmsrc)/solids/Box.cxx \
 	$(geant4gmsrc)/solids/Cons.cxx \
@@ -38,6 +39,7 @@ libGeant4GM_la_SOURCES =                        \
 	$(geant4gmsrc)/solids/Polyhedra.cxx \
 	$(geant4gmsrc)/solids/SolidMap.cxx \
 	$(geant4gmsrc)/solids/Sphere.cxx \
+	$(geant4gmsrc)/solids/TessellatedSolid.cxx \
 	$(geant4gmsrc)/solids/Torus.cxx \
 	$(geant4gmsrc)/solids/Trap.cxx \
 	$(geant4gmsrc)/solids/Trd.cxx \
@@ -64,6 +66,7 @@ geant4gmmatinc_HEADERS = \
 
 geant4gmsolincdir = $(includedir)/Geant4GM/solids
 geant4gmsolinc_HEADERS = \
+	$(geant4gminc)/solids/Arb8.h \
 	$(geant4gminc)/solids/BooleanSolid.h \
 	$(geant4gminc)/solids/Box.h \
 	$(geant4gminc)/solids/Cons.h \
@@ -75,6 +78,7 @@ geant4gmsolinc_HEADERS = \
 	$(geant4gminc)/solids/Polyhedra.h \
 	$(geant4gminc)/solids/SolidMap.h \
 	$(geant4gminc)/solids/Sphere.h \
+	$(geant4gminc)/solids/TessellatedSolid.h \
 	$(geant4gminc)/solids/Torus.h \
 	$(geant4gminc)/solids/Trap.h \
 	$(geant4gminc)/solids/Trd.h \

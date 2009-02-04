@@ -44,8 +44,7 @@ vgm_test_SOURCES = ../../test/vgm_test.cc \
 	$(vgmtestsrc)/TstPrimaryGeneratorActionMessenger.cc \
 	$(vgmtestsrc)/TstRunAction.cc \
 	$(vgmtestsrc)/TstTrackingAction.cc \
-	$(vgmtestsrc)/TstVGeometry.cc \
-	$(vgmtestsrc)/TstVisManager.cc
+	$(vgmtestsrc)/TstVGeometry.cc
 
 vgm_test_LDADD = $(vgm_libs)
 vgm_test_LDFLAGS = $(ext_links)

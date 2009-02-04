@@ -51,7 +51,12 @@ ifeq ($(VGM_SYSTEM),Darwin)
     endif  
   endif
   ifndef OGLLIBS
-    OGLLIBS   := -L$(OGLHOME)/lib -lGLU -lGL
+    ifeq ($(shell uname -r | sed 's/\([0-9]*\).[0-9]*.[0-9]*/\1/'),9)
+      # the following lines are for building on MacOSX 10.5 "Leopard"
+      OGLLIBS   := $(shell test -f /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGL.dylib && echo "-L/usr/X11R6/lib -lGLU -lGL -Wl,-dylib_file,/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGL.dylib:/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGL.dylib")
+    else
+      OGLLIBS   := -L$(OGLHOME)/lib -lGLU -lGL
+    endif
   endif
   OIVFLAGS  += -I$(OIHOME)/include 
   VGM_USE_STD_NAMESPACE := yes
