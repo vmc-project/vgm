@@ -28,6 +28,7 @@ libRootGM_la_SOURCES =                        \
 	$(rootgmsrc)/materials/MaterialFactory.cxx \
 	$(rootgmsrc)/materials/MaterialMap.cxx \
 	$(rootgmsrc)/materials/Medium.cxx \
+	$(rootgmsrc)/solids/Arb8.cxx \
 	$(rootgmsrc)/solids/BooleanSolid.cxx \
 	$(rootgmsrc)/solids/Box.cxx \
 	$(rootgmsrc)/solids/Cons.cxx \
@@ -69,6 +70,7 @@ rootgmmatinc_HEADERS = \
 
 rootgmsolincdir = $(includedir)/RootGM/solids
 rootgmsolinc_HEADERS = \
+	$(rootgminc)/solids/Arb8.h \
 	$(rootgminc)/solids/BooleanSolid.h \
 	$(rootgminc)/solids/Box.h \
 	$(rootgminc)/solids/Cons.h \

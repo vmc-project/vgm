@@ -15,6 +15,7 @@ vgmcomincdir = $(includedir)/VGM/common
 vgmcominc_HEADERS = \
 	$(vgminc)/common/Axis.h \
 	$(vgminc)/common/Math.h \
+	$(vgminc)/common/ThreeVector.h \
 	$(vgminc)/common/Transform.h 
 
 vgmmatincdir = $(includedir)/VGM/materials
@@ -28,6 +29,7 @@ vgmmatinc_HEADERS = \
 
 vgmsolincdir = $(includedir)/VGM/solids
 vgmsolinc_HEADERS = \
+	$(vgminc)/solids/IArb8.h \
 	$(vgminc)/solids/IBooleanSolid.h \
 	$(vgminc)/solids/IBox.h \
 	$(vgminc)/solids/ICons.h \
@@ -39,6 +41,7 @@ vgmsolinc_HEADERS = \
 	$(vgminc)/solids/IPolyhedra.h \
 	$(vgminc)/solids/ISolid.h \
 	$(vgminc)/solids/ISphere.h \
+	$(vgminc)/solids/ITessellatedSolid.h \
 	$(vgminc)/solids/ITorus.h \
 	$(vgminc)/solids/ITrap.h \
 	$(vgminc)/solids/ITrd.h \

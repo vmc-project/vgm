@@ -116,10 +116,6 @@ FLIB_PATT := $(LIB_PATT)
 #
 CPPFLAGS += -I$(CLHEP_BASE_DIR)/include
 
-# ROOT includes
-#
-CPPFLAGS += -I$(ROOTSYS)/include -I.
-
 # Positional qualifiers in action...
 #
 LOADLIBS  += -lm

@@ -23,6 +23,7 @@ libBaseVGM_la_SOURCES =                        \
 	$(basevgmsrc)/materials/element.cxx \
 	$(basevgmsrc)/materials/isotope.cxx \
 	$(basevgmsrc)/materials/material.cxx \
+	$(basevgmsrc)/solids/VArb8.cxx \
 	$(basevgmsrc)/solids/VBooleanSolid.cxx \
 	$(basevgmsrc)/solids/VBox.cxx \
 	$(basevgmsrc)/solids/VCons.cxx \
@@ -33,6 +34,7 @@ libBaseVGM_la_SOURCES =                        \
 	$(basevgmsrc)/solids/VPolycone.cxx \
 	$(basevgmsrc)/solids/VPolyhedra.cxx \
 	$(basevgmsrc)/solids/VSphere.cxx \
+	$(basevgmsrc)/solids/VTessellatedSolid.cxx \
 	$(basevgmsrc)/solids/VTorus.cxx \
 	$(basevgmsrc)/solids/VTrap.cxx \
 	$(basevgmsrc)/solids/VTrd.cxx \
@@ -56,6 +58,7 @@ basevgmmatinc_HEADERS = \
 
 basevgmsolincdir = $(includedir)/BaseVGM/solids
 basevgmsolinc_HEADERS = \
+	$(basevgminc)/solids/VArb8.h \
 	$(basevgminc)/solids/VBooleanSolid.h \
 	$(basevgminc)/solids/VBox.h \
 	$(basevgminc)/solids/VCons.h \
@@ -66,6 +69,7 @@ basevgmsolinc_HEADERS = \
 	$(basevgminc)/solids/VPolycone.h \
 	$(basevgminc)/solids/VPolyhedra.h \
 	$(basevgminc)/solids/VSphere.h \
+	$(basevgminc)/solids/VTessellatedSolid.h \
 	$(basevgminc)/solids/VTorus.h \
 	$(basevgminc)/solids/VTrap.h \
 	$(basevgminc)/solids/VTrd.h \
