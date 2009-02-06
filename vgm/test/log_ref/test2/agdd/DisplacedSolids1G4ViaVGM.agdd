@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<AGDD DTD_version = "v7"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+<xi:include href="StandardColors.agdd"/>
+
+<materials  version = "Id: AGDDWriter.cxx 634 2008-11-20 13:28:44Z ihrivnac "
+            date    = "2009-02-06"
+            author  = "VGM AGGD Writer"
+            DTD_version="v7"  >
+
+
+   <element  symbol="Al">
+      <atom zeff="13.0000"  aweight="26.9800" />
+   </element>
+
+   <material  name="Basic_mat"  density="  2.7000">
+      <addelement name="Al"  natoms=" 1.0000"/>
+   </material>
+
+</materials>
+
+<media  version = "Id: AGDDWriter.cxx 634 2008-11-20 13:28:44Z ihrivnac "
+        date    = "2009-02-06"
+        author  = "VGM AGGD Writer"
+        DTD_version="v7"  >
+
+   <medium  name="Basic"  
+      material="Basic_mat"  
+      color="random"
+      sensitive="true"
+      parameters=" 0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000"/>
+
+</media>
+
+<section DTD_version = "v7"
+         name        = "world"
+         version     = "Id: AGDDWriter.cxx 634 2008-11-20 13:28:44Z ihrivnac "
+         date        = "2009-02-06"
+         author      = "VGM AGGD Writer"
+         top_volume  = "world_comp"  >
+
+   <box    name="world"
+      medium="Basic"
+      X_Y_Z="120.0000; 120.0000; 320.0000" />
+
+   <box    name="volume1"
+      medium="Basic"
+      X_Y_Z="100.0000; 100.0000; 100.0000" />
+
+   <box    name="volume4"
+      medium="Basic"
+      X_Y_Z="40.0000; 40.0000; 20.0000" />
+
+   <!-- !!! unsupported shape  !!!  name= "volume2C" -->
+   <!-- dummy box is written instead  -->
+   <box    name="volume2C"
+      medium="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
+   <box    name="volume3"
+      medium="Basic"
+      X_Y_Z="40.0000; 40.0000; 40.0000" />
+
+   <!-- !!! unsupported shape  !!!  name= "volume5A" -->
+   <!-- dummy box is written instead  -->
+   <box    name="volume5A"
+      medium="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
+
+   <composition name="world_comp">
+      <posXYZ   X_Y_Z="  0.0000;   0.0000; -100.0000"> <volume name="volume1"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="  0.0000;   0.0000; -100.0000"> <volume name="volume1_comp"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="  0.0000;   0.0000; -100.0000"> <volume name="volume2C"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="  0.0000;   0.0000; -100.0000"> <volume name="volume2C_comp"/>
+      </posXYZ>
+   </composition>
+
+   <composition name="volume1_comp">
+      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="volume4"/>
+      </posXYZ>
+   </composition>
+
+   <composition name="volume2C_comp">
+      <posXYZ   X_Y_Z="  0.0000;   0.0000; 150.0000"> <volume name="volume3"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="  0.0000;   0.0000; 150.0000"> <volume name="volume5A"/>
+      </posXYZ>
+   </composition>
+
+
+</section>
+
+</AGDD>

@@ -34,6 +34,24 @@ TstVGeometry::~TstVGeometry()
 }
 
 //_____________________________________________________________________________
+void* TstVGeometry::TestAssemblies()
+{
+//
+  std::cerr << "TstVGeometry::TestAssemblies is not implemented." 
+            << std::endl;
+  exit(1);
+}  
+  
+//_____________________________________________________________________________
+void* TstVGeometry::TestAssemblies2()
+{
+//
+  std::cerr << "TstVGeometry::TestAssemblies2 is not implemented." 
+            << std::endl;
+  exit(1);
+}  
+  
+//_____________________________________________________________________________
 void* TstVGeometry::TestBooleanSolids4()
 {
 //
@@ -49,6 +67,24 @@ void* TstVGeometry::TestBooleanSolids5()
 {
 //
   std::cerr << "TstVGeometry::TestBooleanSolids5 is not implemented." 
+            << std::endl;
+  exit(1);
+}  
+
+//_____________________________________________________________________________
+void* TstVGeometry::TestDisplacedSolids1()
+{
+//
+  std::cerr << "TstVGeometry::TestDisplacedSolids is not implemented." 
+            << std::endl;
+  exit(1);
+}  
+
+//_____________________________________________________________________________
+void* TstVGeometry::TestDisplacedSolids2()
+{
+//
+  std::cerr << "TstVGeometry::TestDisplacedSolids is not implemented." 
             << std::endl;
   exit(1);
 }  

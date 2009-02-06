@@ -16,6 +16,7 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
+#include "VGM/solids/IDisplacedSolid.h"
 #include "BaseVGM/common/utilities.h"
 
 #include "RootGM/solids/BooleanSolid.h"
@@ -51,25 +52,53 @@ RootGM::BooleanSolid::BooleanSolid(
 /// \param displacementB the Root 3D transformation that defines the
 ///        displacement of the solidB with respect to solidA
 
-  // Get solids from the volumes map
-  TGeoShape* rootSolidA = RootGM::SolidMap::Instance()->GetSolid(solidA);
-  TGeoShape* rootSolidB = RootGM::SolidMap::Instance()->GetSolid(solidB);
+  // Get solid displacement, if present, and update transformation
+  // which will be used in Root node
+  //  
+  TGeoHMatrix matrixA;
+  VGM::ISolid* constSolidA = solidA;
+  if ( constSolidA->Type() == VGM::kDisplaced ) { 
+    VGM::IDisplacedSolid* displacedSolid
+      = dynamic_cast<VGM::IDisplacedSolid*>(constSolidA);
+    TGeoHMatrix displacement(*RootGM::CreateTransform(displacedSolid->Displacement()));   
+    matrixA = matrixA * displacement;    
+    constSolidA = displacedSolid->ConstituentSolid();
+  } 
 
-  // Register TGeo matrix
-  displacementB->SetName(name.data());
-  displacementB->RegisterYourself();
-  
-  // Expression
-  // Requires unique solid names in geometry 
-  std::string solidNameA = rootSolidA->GetName();
-  std::string solidNameB = rootSolidB->GetName();
-  std::string matrixNameB = displacementB->GetName();
-  
-  char sign;
+  TGeoHMatrix matrixB;
+  VGM::ISolid* constSolidB = solidB;
+  if ( constSolidB->Type() == VGM::kDisplaced ) { 
+    VGM::IDisplacedSolid* displacedSolid
+      = dynamic_cast<VGM::IDisplacedSolid*>(constSolidB);
+    TGeoHMatrix displacement(*RootGM::CreateTransform(displacedSolid->Displacement()));   
+    matrixB = matrixB * displacement;    
+    constSolidB = displacedSolid->ConstituentSolid();
+  }  
+
+  // Get solids from the volumes map
+  TGeoShape* rootSolidA = RootGM::SolidMap::Instance()->GetSolid(constSolidA);
+  TGeoShape* rootSolidB = RootGM::SolidMap::Instance()->GetSolid(constSolidB);
+
+  // Create new TGeo matrices
+  TGeoMatrix* newMatrixA = 0;
+  if ( ! matrixA.IsIdentity() )  
+    newMatrixA = new TGeoHMatrix(matrixA);
+
+  TGeoMatrix* newMatrixB = displacementB;
+  if ( ! matrixB.IsIdentity() )  
+    newMatrixB = new TGeoHMatrix(TGeoHMatrix(*displacementB) * matrixB);
+ 
+  TGeoBoolNode* boolNode = 0;
   switch (boolType) {
-    case VGM::kIntersection:  sign = fgkIntersectionChar; break;					 
-    case VGM::kSubtraction:   sign = fgkSubtractionChar;  break;
-    case VGM::kUnion:         sign = fgkUnionChar;        break;
+    case VGM::kIntersection:  
+      boolNode = new TGeoIntersection(rootSolidA, rootSolidB, newMatrixA, newMatrixB); 
+      break;					 
+    case VGM::kSubtraction:
+      boolNode = new TGeoSubtraction(rootSolidA, rootSolidB, newMatrixA, newMatrixB); 
+      break;
+    case VGM::kUnion:         
+      boolNode = new TGeoUnion(rootSolidA, rootSolidB, newMatrixA, newMatrixB); 
+      break;
     case VGM::kUnknownBoolean:
     default:
       std::cerr << "    RootGM::BooleanSolid::BooleanSolid: "<< std::endl;
@@ -78,14 +107,7 @@ RootGM::BooleanSolid::BooleanSolid(
       exit(1);
   }  
   
-  std::string expression 
-    = solidNameA + sign + solidNameB + fgkSeparator + matrixNameB;   		
-
-  //std::cout << "RootGM::BooleanSolid::BooleanSolid with expression: "
-  //          << expression << std::endl;
-
-  // Create composite shape
-  fCompositeShape = new TGeoCompositeShape(name.data(), expression.data());
+  fCompositeShape = new TGeoCompositeShape(name.data(), boolNode);
 
   RootGM::SolidMap::Instance()->AddSolid(this, fCompositeShape); 
 }

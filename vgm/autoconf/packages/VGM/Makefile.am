@@ -34,6 +34,7 @@ vgmsolinc_HEADERS = \
 	$(vgminc)/solids/IBox.h \
 	$(vgminc)/solids/ICons.h \
 	$(vgminc)/solids/ICtubs.h \
+	$(vgminc)/solids/IDisplacedSolid.h \
 	$(vgminc)/solids/IEllipticalTube.h \
 	$(vgminc)/solids/IExtrudedSolid.h \
 	$(vgminc)/solids/IPara.h \

@@ -30,6 +30,7 @@
 #include "Geant4GM/materials/Material.h"
 #include "Geant4GM/solids/SolidMap.h"
 #include "Geant4GM/solids/BooleanSolid.h"
+#include "Geant4GM/solids/DisplacedSolid.h"
 #include "Geant4GM/solids/Arb8.h"
 #include "Geant4GM/solids/Box.h"
 #include "Geant4GM/solids/Cons.h"
@@ -239,8 +240,10 @@ Geant4GM::Factory::ImportSolid(G4VSolid* solid)
 
   G4DisplacedSolid* displaced = dynamic_cast<G4DisplacedSolid*>(consSolid);
   if (displaced) {
-    // Only constituent solid is imported in VGM
-    return ImportSolid(displaced->GetConstituentMovedSolid());
+    ImportSolid(displaced->GetConstituentMovedSolid());
+    VGM::IDisplacedSolid* vgmDisplaced = new Geant4GM::DisplacedSolid(displaced, reflSolid);
+    SolidStore().push_back(vgmDisplaced);
+    return vgmDisplaced;
   }  
 
   G4BooleanSolid* boolean = dynamic_cast<G4BooleanSolid*>(consSolid);
@@ -860,6 +863,33 @@ Geant4GM::Factory::CreateUnionSolid(
             name, 
 	    VGM::kUnion, 
 	    solidA, solidB, 
+            new CLHEP::HepRotation(ClhepVGM::Rotation(transform).inverse()), 
+	    ClhepVGM::Translation(transform));
+    
+  SolidStore().push_back(vgmSolid);
+  return vgmSolid; 
+}  			     
+
+//_____________________________________________________________________________
+VGM::ISolid*  
+Geant4GM::Factory::CreateDisplacedSolid(
+                               const std::string& name, 
+                               VGM::ISolid* solid,
+                               const VGM::Transform& transform)
+{
+//
+  if ( ClhepVGM::HasReflection(transform )) {
+    std::cerr << "    Geant4GM::Factory::CreateDisplacedSolid:" << std::endl;
+    std::cerr << "    Reflection in Displaced solid not supported in Geant4."
+              << std::endl; 
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    exit(1);
+  }  	      
+               
+  VGM::ISolid* vgmSolid 
+    = new Geant4GM::DisplacedSolid(
+            name, 
+	    solid,
             new CLHEP::HepRotation(ClhepVGM::Rotation(transform).inverse()), 
 	    ClhepVGM::Translation(transform));
     

@@ -17,6 +17,7 @@
 // Author: Ivana Hrivnacova; IPN Orsay
 
 #include "VGM/volumes/IVolume.h"
+#include "VGM/solids/IDisplacedSolid.h"
 
 #include "BaseVGM/common/utilities.h"
 
@@ -36,6 +37,10 @@
 
 bool RootGM::Placement::fgIncludeAssembliesInNames = true; 
 char RootGM::Placement::fgNameSeparator = '%'; 
+
+//
+// static methods
+//
 
 //_____________________________________________________________________________
 void RootGM::Placement::SetIncludeAssembliesInNames(bool includeAssembliesInNames)
@@ -71,6 +76,10 @@ char RootGM::Placement::GetNameSeparator()
   return fgNameSeparator;
 }  
 
+//
+// ctors, dtor
+//
+
 //_____________________________________________________________________________
 RootGM::Placement::Placement(
                       const std::string& name, 
@@ -81,6 +90,7 @@ RootGM::Placement::Placement(
     BaseVGM::VPlacement(volume, motherVolume),
     fName(name),       
     fGeoNode(0),
+    fVGMMatrix(transformation),
     fAssemblyNodes()
 {
 /// Standard constructor to define a simple placement via parameters
@@ -90,7 +100,7 @@ RootGM::Placement::Placement(
 /// \param transformation the 3D transformation of the volume 
 ///	   with respect to its mother
   
-  if (!motherVolume) {
+  if ( ! motherVolume ) {
 
     // Set top volume to TGeo
     gGeoManager
@@ -101,6 +111,18 @@ RootGM::Placement::Placement(
   }  
   else {  
 
+    // Get solid displacement, if present, and update transformation
+    // which will be used in Root node
+    //  
+    TGeoMatrix* totalMatrix = transformation;
+    if ( volume->Solid()->Type() == VGM::kDisplaced ||
+         motherVolume->Solid()->Type() == VGM::kDisplaced) { 
+
+      totalMatrix = ComposeMatrix(volume, motherVolume, transformation);
+      totalMatrix->SetName(name.data());
+      totalMatrix->RegisterYourself();
+    }  
+
     // Get TGeo volumes from the volumes map
     TGeoVolume* geoVolume 
       = RootGM::VolumeMap::Instance()->GetVolume(volume);
@@ -109,7 +131,7 @@ RootGM::Placement::Placement(
       = RootGM::VolumeMap::Instance()->GetVolume(motherVolume);
 
     // Create TGeo node
-    geoMotherVolume->AddNode(geoVolume, copyNo, transformation);
+    geoMotherVolume->AddNode(geoVolume, copyNo, totalMatrix);
   
     // Retrieve the node created
     fGeoNode = geoMotherVolume->GetNode(geoMotherVolume->GetNdaughters()-1);
@@ -129,6 +151,7 @@ RootGM::Placement::Placement(
     BaseVGM::VPlacement(volume, motherVolume),
     fName(name), 
     fGeoNode(0),
+    fVGMMatrix(0),
     fAssemblyNodes()
 {
 /// Standard constructor to define a multiple placement via parameters
@@ -172,7 +195,8 @@ RootGM::Placement::Placement(
   : VGM::IPlacement(),
     BaseVGM::VPlacement(volume, motherVolume),
     fName(),       
-    fGeoNode(node),
+    fGeoNode(node),    
+    fVGMMatrix(0),
     fAssemblyNodes()
 {
 /// Standard constructor to define a multiple placement via Root object
@@ -180,6 +204,8 @@ RootGM::Placement::Placement(
   if (volume) fName = volume->Name();
       // Root nodes have not own name; 
       // use the volume name in this case
+
+  fVGMMatrix = node->GetMatrix();
       
   // Register physical volume in the map
   RootGM::PlacementMap::Instance()->AddPlacement(this, fGeoNode); 
@@ -194,6 +220,7 @@ RootGM::Placement::Placement(
     BaseVGM::VPlacement(volume, motherVolume),
     fName(),       
     fGeoNode(node),
+    fVGMMatrix(0),
     fAssemblyNodes(assemblyNodes)
 {
 /// Standard constructor to define a multiple placement via Root object
@@ -202,6 +229,8 @@ RootGM::Placement::Placement(
       // Root nodes have not own name; 
       // use the volume name in this case 
 
+  fVGMMatrix = node->GetMatrix();
+      
   // Register physical volume in the map
   RootGM::PlacementMap::Instance()->AddPlacement(this, fGeoNode); 
 }
@@ -228,16 +257,59 @@ RootGM::Placement::~Placement() {
 }
 
 //
+// private functions
+//
+
+
+//_____________________________________________________________________________
+TGeoMatrix*
+RootGM::Placement::ComposeMatrix(VGM::IVolume* volume, VGM::IVolume* motherVolume,
+		                 TGeoMatrix* transformation) const
+{
+/// Get composed matrix by taking into account solid displacements. 
+
+  TGeoHMatrix motherTransform;
+  VGM::ISolid* mConstSolid = motherVolume->Solid();
+  while ( mConstSolid->Type() == VGM::kDisplaced ) {
+    VGM::IDisplacedSolid* displacedSolid 
+      = dynamic_cast<VGM::IDisplacedSolid*>(mConstSolid);
+    TGeoHMatrix displacement(*RootGM::CreateTransform(displacedSolid->Displacement()));   
+    motherTransform = motherTransform * displacement;
+
+    mConstSolid = displacedSolid->ConstituentSolid();
+  }      
+
+  TGeoHMatrix solidTransform;
+  VGM::ISolid* constSolid = volume->Solid();
+  while ( constSolid->Type() == VGM::kDisplaced ) {
+    VGM::IDisplacedSolid* displacedSolid 
+      = dynamic_cast<VGM::IDisplacedSolid*>(constSolid);
+    TGeoHMatrix displacement(*RootGM::CreateTransform(displacedSolid->Displacement()));   
+    solidTransform = solidTransform * displacement;
+
+    constSolid = displacedSolid->ConstituentSolid();
+  }      
+
+  TGeoHMatrix totalTransform
+    = motherTransform.Inverse() * TGeoHMatrix(*transformation) * solidTransform;
+
+  return new TGeoHMatrix(totalTransform);
+}  
+
+//
 // public functions
 //
 
 //_____________________________________________________________________________
 VGM::PlacementType RootGM::Placement::Type() const 
 {
+  // Top volume has not mother
+  if ( ! Mother() ) return VGM::kSimplePlacement;
+
   // Check if division is present
   const TGeoPatternFinder* finder 
     = fGeoNode->GetMotherVolume()->GetFinder();    
-  if (!finder) return VGM::kSimplePlacement;;
+  if (!finder) return VGM::kSimplePlacement;
     
   // Get division axis
   VGM::Axis axis = RootGM::Axis(finder);
@@ -275,6 +347,7 @@ VGM::Transform
 RootGM::Placement::Transformation() const
 {
 //
+  // Boolean solids
   TGeoHMatrix transform3D;
   if (fGeoNode->GetVolume()->GetShape()->IsComposite()) 
   {
@@ -311,7 +384,15 @@ RootGM::Placement::Transformation() const
   else {
     transform3D = fGeoNode->GetMatrix();
   }
+ 
+  // Displaced solids
+  if ( Volume()->Solid()->Type() == VGM::kDisplaced ||
+       ( Mother() && Mother()->Solid()->Type() == VGM::kDisplaced ) ) { 
+  
+    transform3D = TGeoHMatrix(*fVGMMatrix);
+  }   
 
+  // Assemblies
   for (unsigned i=fAssemblyNodes.size(); i>0; i-- ) {
     TGeoMatrix* matrixAN =fAssemblyNodes[i-1]->GetMatrix();
     TGeoHMatrix transformAN(*matrixAN);

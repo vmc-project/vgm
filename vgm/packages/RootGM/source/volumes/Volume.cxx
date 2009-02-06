@@ -16,6 +16,8 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
+#include "VGM/solids/IDisplacedSolid.h"
+
 #include "RootGM/volumes/Volume.h"
 #include "RootGM/volumes/VolumeMap.h"
 #include "RootGM/solids/SolidMap.h"
@@ -40,8 +42,14 @@ RootGM::Volume::Volume(const std::string& name,
 
 
   // Get solid from the solid map
-  TGeoShape* geoSolid = RootGM::SolidMap::Instance()->GetSolid(solid);
+  // If displaced solid, get its constituent solid
+  VGM::ISolid* constSolid = solid;
+  while ( constSolid->Type() == VGM::kDisplaced ) {
+    VGM::IDisplacedSolid* displacedSolid = dynamic_cast<VGM::IDisplacedSolid*>(constSolid);
+    constSolid =  displacedSolid->ConstituentSolid();
+  }  
   
+  TGeoShape* geoSolid = RootGM::SolidMap::Instance()->GetSolid(constSolid);
   // Get medium from Root
   TGeoMedium* geoMedium = gGeoManager->GetMedium(mediumName.data());
   

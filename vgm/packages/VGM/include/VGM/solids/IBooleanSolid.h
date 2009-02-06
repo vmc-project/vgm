@@ -70,6 +70,6 @@ namespace VGM {
 
 }  
 
-std::ostream& operator << (std::ostream& out, const VGM::IBooleanSolid& box);
+std::ostream& operator << (std::ostream& out, const VGM::IBooleanSolid& solid);
 
 #endif //VGM_I_BOOLEAN_SOLID_H

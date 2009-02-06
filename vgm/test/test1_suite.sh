@@ -32,39 +32,33 @@ do
   do
     for outputFactory in None Geant4 Root
     do
-      for selectedTest in Solids Placements Reflections Assemblies1 Assemblies2 BooleanSolids2 
+      for selectedTest in Solids Placements Reflections Assemblies1 Assemblies2 BooleanSolids2 DisplacedSolids1 DisplacedSolids2 
       #for selectedTest in Placements 
       do
-        #
+        DOIT="1"
+
         # exclude wrong combinations
-	# (could be done in a more intelligent way
-	#  if we learn more shell scripting ...)   
-	#
-	if [ $inputType != "VGM" -a "$inputFactory" != "$inputType" ]
-	then
-	  DUMMY=0
-	else 
- 	  if [ $inputType = "VGM" -a "$inputFactory" = "AGDD" ]
-	  then
-	    DUMMY=0
-	  else 
- 	    if [ $inputType != "VGM" -a "$outputFactory" = "None" ]
-	    then
-	      DUMMY=0
-	    else 
-  	      if [ "$inputFactory" = "$outputFactory" ]
-	      then
-  	        DUMMY=0
-	      else 
-                echo "Testing configuration: $inputType $inputFactory $outputFactory $selectedTest"
-	        vgm_test $inputType $inputFactory $outputFactory $NOXML $selectedTest $NOVIS debug \
-	          > $OUTDIR/"$inputType.$inputFactory.$outputFactory.$selectedTest.out"   \
-	          2> $OUTDIR/"$inputType.$inputFactory.$outputFactory.$selectedTest.err"
-              fi      
-            fi
-	  fi    
-        fi
+	if [ $inputType != "VGM" -a $inputFactory != $inputType ];  then DOIT="0"; fi 
+ 	if [ $inputType  = "VGM" -a $inputFactory  = "AGDD" ];      then DOIT="0"; fi 
+ 	if [ $inputType  = "VGM" -a $outputFactory = "None" ];      then DOIT="0"; fi 
+  	if [ $inputFactory = $outputFactory ]; then DOIT="0";  fi 
+
+        # exclude non existing tests
+  	if [ $inputType  = "VGM"  -a $selectedTest  = "Assemblies1" ]; then DOIT="0";  fi 
+  	if [ $inputType  = "VGM"  -a $selectedTest  = "Assemblies2" ]; then DOIT="0";  fi 
+  	if [ $inputType  = "AGDD" -a $selectedTest  = "Reflections" ]; then DOIT="0";  fi 
+  	if [ $inputType  = "AGDD" -a $selectedTest  = "Assemblies2" ]; then DOIT="0";  fi 
+  	if [ $inputType  = "AGDD" -a $selectedTest  = "DisplacedSolids1" ]; then DOIT="0";  fi 
+  	if [ $inputType  = "AGDD" -a $selectedTest  = "DisplacedSolids2" ]; then DOIT="0";  fi 
+  	if [ $inputType  = "Root" -a $selectedTest  = "DisplacedSolids2" ]; then DOIT="0";  fi 
+
+        if [ $DOIT = "1" ]; then
+          # run test
+          echo "Testing configuration: $inputType $inputFactory $outputFactory $selectedTest"
+          vgm_test $inputType $inputFactory $outputFactory $NOXML $selectedTest $NOVIS debug \
+            >& $OUTDIR/"$inputType.$inputFactory.$outputFactory.$selectedTest.out"
+        fi    
       done 	
     done
   done  
-done  
+done

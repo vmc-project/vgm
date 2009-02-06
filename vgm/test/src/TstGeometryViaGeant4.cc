@@ -29,6 +29,7 @@
 #include "G4IntersectionSolid.hh"
 #include "G4SubtractionSolid.hh"
 #include "G4UnionSolid.hh"
+#include "G4DisplacedSolid.hh"
 #include "G4VSolid.hh"
 #include "G4Box.hh"
 #include "G4Cons.hh"
@@ -776,6 +777,7 @@ void* TstGeometryViaGeant4::TestExtraSolid(VGM::SolidType solidType)
 //_____________________________________________________________________________
 void* TstGeometryViaGeant4::TestNewSolid()
 {
+
   G4LogicalVolume* worldV = CreateWorld(2.*m, 2.*m, 2.*m);
   G4VPhysicalVolume* world
     = new G4PVPlacement(0, CLHEP::Hep3Vector(), 
@@ -1241,4 +1243,181 @@ void* TstGeometryViaGeant4::TestBooleanSolids3()
   exit(1);
 }
 
+//_____________________________________________________________________________
+void* TstGeometryViaGeant4::TestDisplacedSolids1()
+{
+// Test solid displacement
 
+  // World
+  //
+  G4LogicalVolume* worldV = CreateWorld(60.*cm, 60.*cm, 160.*cm);
+  G4VPhysicalVolume* world
+    = new G4PVPlacement(0, CLHEP::Hep3Vector(), worldV, "world", 0, false, 0); 
+  
+  // Create solids
+  
+  // Normal solid
+  //
+  G4VSolid* solid1 
+    = new G4Box("boxS1", 50.*cm, 50.*cm, 50.*cm);
+
+  G4LogicalVolume* volume1
+    = new G4LogicalVolume(solid1, fBasicMaterial, "volume1");
+
+  // Chained displaced solids
+  //
+  G4VSolid* solid2 
+    = new G4Box("boxS2", 50.*cm, 50.*cm, 50.*cm);
+
+  G4DisplacedSolid* solid2A 
+    = new G4DisplacedSolid("boxS2A", solid2, 0, G4ThreeVector(0., 0., 50.*cm));
+ 
+  G4DisplacedSolid* solid2B 
+    = new G4DisplacedSolid("boxS2B", solid2A, 0, G4ThreeVector(0., 0., 50.*cm));
+ 
+  G4DisplacedSolid* solid2C 
+    = new G4DisplacedSolid("boxS2C", solid2B, 0, G4ThreeVector(0., 0., 50.*cm));
+ 
+  G4LogicalVolume* volume2C
+    = new G4LogicalVolume(solid2C, fBasicMaterial, "volume2C");
+
+  // Daughter to be placed in displaced solid
+  //
+  G4VSolid* solid3 
+    = new G4Box("boxS3", 20.*cm, 20.*cm, 20.*cm);
+
+  G4LogicalVolume* volume3
+    = new G4LogicalVolume(solid3, fBasicMaterial, "volume3");
+
+  
+  // Daughter to be placed in normal solid
+  //
+  G4VSolid* solid4 
+    = new G4Box("boxS4", 20.*cm, 20.*cm, 10.*cm);
+
+  G4LogicalVolume* volume4
+    = new G4LogicalVolume(solid4, fBasicMaterial, "volume4");
+
+  // Daughter with displaced solid to be placed in displaced solid
+  //
+  G4VSolid* solid5 
+    = new G4Box("boxS5", 20.*cm, 20.*cm, 5.*cm);
+
+  G4VSolid* solid5A 
+    = new G4DisplacedSolid("boxS5A", solid5, G4ThreeVector(0., 0., 40.*cm));
+
+  G4LogicalVolume* volume5A
+    = new G4LogicalVolume(solid5A, fBasicMaterial, "volume3");
+
+  
+  // Make placements
+  //
+   new G4PVPlacement(0, CLHEP::Hep3Vector(0., 0., -100.*cm),
+		    volume1, "volume1", worldV, false, 1);
+
+  new G4PVPlacement(0, CLHEP::Hep3Vector(0., 0., -100.*cm),
+		    volume2C, "volume2C", worldV, false, 2);
+
+  new G4PVPlacement(0, CLHEP::Hep3Vector( 0., 0., 150.*cm),
+                    volume3, "volume3", volume2C, false, 1);
+  
+  new G4PVPlacement(0, CLHEP::Hep3Vector( 0.*cm, 0.*cm, 0.),
+                    volume4, "volume4", volume1, false, 1);
+
+  new G4PVPlacement(0, CLHEP::Hep3Vector( 0.*cm, 0.*cm, 150.*cm),
+                    volume5A, "volume5A", volume2C, false, 2);
+
+  return (void*) world;
+}  
+
+//_____________________________________________________________________________
+void* TstGeometryViaGeant4::TestDisplacedSolids2()
+{
+// Test BooleanSolids2 where displacement is defined via
+// Displaced solid
+
+  // World
+  //
+  G4LogicalVolume* worldV = CreateWorld(4.*m, 1.*m, 4.*m);
+  G4VPhysicalVolume* world
+    = new G4PVPlacement(0, CLHEP::Hep3Vector(), worldV, "world", 0, false, 0); 
+  
+  // Create solids
+  G4VSolid* solid1 
+    = new G4Box("boxS", 50.*cm, 50.*cm, 50.*cm);
+
+  G4VSolid* solid2 
+    = new G4Cons("consS", 10.*cm, 30.*cm, 20.*cm, 40.*cm, 100.*cm, 0., 360.*deg) ;
+ 
+  // Simple solids placed for a control
+  //
+  G4LogicalVolume* volume1
+    = new G4LogicalVolume(solid1, fBasicMaterial, "volume1");
+  new G4PVPlacement(0, CLHEP::Hep3Vector(-1.25*m, 0., -2.*m),
+		    volume1, "solid1", worldV, false, 0);
+
+  G4LogicalVolume* volume2
+    = new G4LogicalVolume(solid2, fBasicMaterial, "volume2");
+  new G4PVPlacement(0, CLHEP::Hep3Vector( 1.25*m, 0., -2.*m),
+                    volume2, "solid2", worldV, false, 0);
+
+
+   // Rotate solid1 
+   // 
+  CLHEP::HepRotation* rot1 = new CLHEP::HepRotation();
+  rot1->rotateY(-45.*deg);
+  CLHEP::Hep3Vector  tr1 = CLHEP::Hep3Vector();
+
+  // Rotate + translate solid2
+  //
+  CLHEP::HepRotation* rot2 = new CLHEP::HepRotation();
+  //rot2->rotateY( 45.*deg); 
+  rot2->rotateX(-30.*deg);
+  CLHEP::Hep3Vector  tr2 = CLHEP::Hep3Vector(20.*cm, 0., 0.);
+  
+  // Displaced solids
+  //
+  G4DisplacedSolid* dsolid1
+    = new G4DisplacedSolid("dboxS", solid1, rot1, tr1);
+
+  G4DisplacedSolid* dsolid2
+    = new G4DisplacedSolid("dconsS", solid2, rot2, tr2);
+
+  // Intersection
+  //
+  G4VSolid* intersectionS
+    = new G4IntersectionSolid(
+                  "intersection_dsolid1_dsolid2_S", dsolid1, dsolid2, 0, 
+		  CLHEP::Hep3Vector()); 
+  G4LogicalVolume* intersectionV
+    = new G4LogicalVolume(intersectionS, fBasicMaterial, "intersection_solid1_solid2");
+
+  new G4PVPlacement(0, CLHEP::Hep3Vector(-2.5*m, 0., 2.*m),
+                    intersectionV, "intersection_solid1_solid2", worldV, false, 0); 
+  
+  // Subtraction
+  //
+  G4VSolid* subtractionS
+    = new G4SubtractionSolid(
+                  "subtraction_dsolid1_dsolid2_S", dsolid1, dsolid2, 0, 
+		  CLHEP::Hep3Vector()); 
+  G4LogicalVolume* subtractionV
+    = new G4LogicalVolume(subtractionS, fBasicMaterial, "subtraction_solid1_solid2");
+
+  new G4PVPlacement(0, CLHEP::Hep3Vector(0., 0., 2.*m), 
+                   subtractionV, "subtraction_solid1_solid2", worldV, false, 0);
+  
+  // Union
+  //
+  G4VSolid* unionS
+    = new G4UnionSolid(
+                  "union_dsolid1_dsolid2_S", dsolid1, dsolid2, 0, 
+		  CLHEP::Hep3Vector()); 
+  G4LogicalVolume* unionV
+    = new G4LogicalVolume(unionS, fBasicMaterial, "union_solid1_solid2");
+
+  new G4PVPlacement(0, CLHEP::Hep3Vector( 2.5*m, 0., 2.*m),
+                    unionV, "union_solid1_solid2", worldV, false, 0);
+  
+  return (void*) world;
+ }  

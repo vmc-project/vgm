@@ -24,6 +24,7 @@
 #include "VGM/common/Transform.h"
 
 #include <string>
+#include <iostream>
 
 namespace VGM {
 
@@ -33,6 +34,8 @@ namespace VGM {
     //kParameterised,
     kUnknownPlacement
   };  
+
+  std::string PlacementTypeName(VGM::PlacementType typeId);
 
   class IVolume;
 
@@ -72,8 +75,14 @@ namespace VGM {
                            int&        nofItems,
                            double&     width,
                            double&     offset) const = 0;
+
+                            /// Put the printing of the placement parameters
+			    /// in the out stream
+      virtual std::ostream& Put(std::ostream& out) const = 0;
   };
 
 }
+
+std::ostream& operator << (std::ostream& out, const VGM::IPlacement& placement);
 
 #endif //VGM_I_PLACEMENT_H

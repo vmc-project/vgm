@@ -36,13 +36,15 @@ class TstVGeometry
     virtual void* TestNewSolid2() = 0;
     virtual void* TestPlacements() = 0;
     virtual void* TestReflections(bool fullPhi = true) = 0;
-    virtual void* TestAssemblies() = 0;
-    virtual void* TestAssemblies2() = 0;
+    virtual void* TestAssemblies();
+    virtual void* TestAssemblies2();
     virtual void* TestBooleanSolids1() = 0;
     virtual void* TestBooleanSolids2() = 0;
     virtual void* TestBooleanSolids3() = 0;
     virtual void* TestBooleanSolids4();
     virtual void* TestBooleanSolids5();
+    virtual void* TestDisplacedSolids1();
+    virtual void* TestDisplacedSolids2();
     virtual void* TestSpecial();
 };
 

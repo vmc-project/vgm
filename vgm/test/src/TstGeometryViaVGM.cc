@@ -988,22 +988,6 @@ void* TstGeometryViaVGM::TestReflections(bool fullPhi)
  }
 
 //_____________________________________________________________________________
-void* TstGeometryViaVGM::TestAssemblies()
-{
-  std::cout << "TestAssemblies: not available via VGM" << std::endl;
-
-  return 0;
- }
-
-//_____________________________________________________________________________
-void* TstGeometryViaVGM::TestAssemblies2()
-{
-  std::cout << "TestAssemblies2: not available via VGM" << std::endl;
-
-  return 0;
- }
-
-//_____________________________________________________________________________
 void* TstGeometryViaVGM::TestBooleanSolids1()
 {
 // Only translation in solid displacement
@@ -1183,7 +1167,7 @@ void* TstGeometryViaVGM::TestBooleanSolids2()
 //_____________________________________________________________________________
 void* TstGeometryViaVGM::TestBooleanSolids3()
 {
-// Translation + rotation in solid displacement
+// Translation + rotation + reflection in solid displacement
 
   IVolume* worldV = CreateWorld(400.*fCm, 100.*fCm, 400.*fCm);
   fFactory->CreatePlacement("world", 0, worldV, 0, ClhepVGM::Identity());
@@ -1271,3 +1255,211 @@ void* TstGeometryViaVGM::TestBooleanSolids3()
   return (void*) fFactory->Top();
   return 0;
 }
+
+//_____________________________________________________________________________
+void* TstGeometryViaVGM::TestDisplacedSolids1()
+{
+// Test solid displacement
+
+  // World
+  //
+  IVolume* worldV = CreateWorld(60.*fCm, 60.*fCm, 160.*fCm);
+  fFactory->CreatePlacement("world", 0, worldV, 0, ClhepVGM::Identity());
+  
+  // Create solids
+  
+  // Normal solid
+  //
+  ISolid* solid1 
+    = fFactory->CreateBox("boxS1", 50.* fCm, 50.* fCm, 50.* fCm);
+
+  IVolume* volume1
+    = fFactory->CreateVolume("volume1", solid1, "Basic");
+
+  // Chained displaced solids
+  //
+  ISolid* solid2 
+    = fFactory->CreateBox("boxS2", 50.* fCm, 50.* fCm, 50.* fCm);
+
+  ISolid* solid2A 
+    = fFactory->CreateDisplacedSolid("boxS2A", solid2, 
+                                     ClhepVGM::Transform(
+                                       CLHEP::HepRotation(),
+                                       CLHEP::Hep3Vector( 0., 0., 50.* fCm)));
+
+  ISolid* solid2B 
+    = fFactory->CreateDisplacedSolid("boxS2B", solid2A, 
+                                     ClhepVGM::Transform(
+                                       CLHEP::HepRotation(),
+                                       CLHEP::Hep3Vector( 0., 0., 50.* fCm)));
+  ISolid* solid2C 
+    = fFactory->CreateDisplacedSolid("boxS2C", solid2B, 
+                                     ClhepVGM::Transform(
+                                       CLHEP::HepRotation(),
+                                       CLHEP::Hep3Vector( 0., 0., 50.* fCm)));
+  IVolume* volume2C
+    = fFactory->CreateVolume("volume2C", solid2C, "Basic");
+
+  // Daughter to be placed in displaced solid
+  //
+  ISolid* solid3 
+    = fFactory->CreateBox("boxS3", 20.* fCm, 20.* fCm, 20.* fCm);
+
+  IVolume* volume3
+    = fFactory->CreateVolume("volume3", solid3, "Basic");
+
+  
+  // Daughter to be placed in normal solid
+  //
+  ISolid* solid4
+    = fFactory->CreateBox("boxS4", 20.* fCm, 20.* fCm, 10.* fCm);
+
+  IVolume* volume4
+    = fFactory->CreateVolume("volume4", solid4, "Basic");
+
+  // Daughter with displaced solid to be placed in displaced solid
+  //
+  ISolid* solid5
+    = fFactory->CreateBox("boxS5", 20.* fCm, 20.* fCm, 5.* fCm);
+
+  ISolid* solid5A 
+    = fFactory->CreateDisplacedSolid("boxS5A", solid5, 
+                                     ClhepVGM::Transform(
+                                       CLHEP::HepRotation(),
+                                       CLHEP::Hep3Vector( 0., 0., 40.* fCm)));
+  IVolume* volume5A
+    = fFactory->CreateVolume("volume5A", solid5A, "Basic");
+
+
+  // Make placements
+  //
+  
+  fFactory->CreatePlacement("volume1", 1, volume1, worldV, 
+                            ClhepVGM::Transform(
+			      CLHEP::HepRotation(), 
+                              CLHEP::Hep3Vector(0., 0., -100.*fCm)));
+
+  fFactory->CreatePlacement("volume2C", 2, volume2C, worldV, 
+                            ClhepVGM::Transform(
+			      CLHEP::HepRotation(), 
+                              CLHEP::Hep3Vector(0., 0., -100.*fCm)));
+
+  fFactory->CreatePlacement("volume3", 1, volume3, volume2C, 
+                            ClhepVGM::Transform(
+			      CLHEP::HepRotation(), 
+                              CLHEP::Hep3Vector(0., 0., 150.*fCm)));
+
+  fFactory->CreatePlacement("volume4", 1, volume4, volume1, 
+                            ClhepVGM::Transform(
+			      CLHEP::HepRotation(), CLHEP::Hep3Vector()));
+
+  fFactory->CreatePlacement("volume5A", 2, volume5A, volume2C, 
+                            ClhepVGM::Transform(
+			      CLHEP::HepRotation(), 
+                              CLHEP::Hep3Vector(0., 0., 150.*fCm)));
+
+  return (void*) fFactory->Top();
+}  
+
+//_____________________________________________________________________________
+void* TstGeometryViaVGM::TestDisplacedSolids2()
+{
+// Test BooleanSolids2 where displacement is defined via
+// Displaced solid
+
+  IVolume* worldV = CreateWorld(400.*fCm, 100.*fCm, 400.*fCm);
+  fFactory->CreatePlacement("world", 0, worldV, 0, ClhepVGM::Identity());
+  
+  // Create solids
+  ISolid* solid1 
+    = fFactory->CreateBox("boxS", 50.* fCm, 50.* fCm, 50.* fCm);
+
+  ISolid* solid2 
+    = fFactory->CreateCons("consS", 
+                         10.* fCm, 30.* fCm, 20.* fCm, 40.* fCm, 100.* fCm, 
+			 0., 360.* fDeg) ;
+    
+  // Simple solids placed for a control
+  //
+  IVolume* volume1
+    = fFactory->CreateVolume("solid1", solid1, "Basic");
+  fFactory->CreatePlacement("solid1", 0, volume1, worldV,
+                            ClhepVGM::Transform(
+			      CLHEP::HepRotation(), 
+			      CLHEP::Hep3Vector(-125.*fCm, 0., -200.* fCm)));
+
+  IVolume* volume2
+    = fFactory->CreateVolume("solid2", solid2, "Basic");
+  fFactory->CreatePlacement("solid2", 0, volume2, worldV, 
+                            ClhepVGM::Transform(
+			      CLHEP::HepRotation(), 
+			      CLHEP::Hep3Vector( 125.*fCm, 0., -200.* fCm)));
+
+
+  // Rotate solid1  
+  //
+  CLHEP::HepRotation rot1;
+  rot1.rotateY(45.* deg);
+  CLHEP::Hep3Vector  tr1 = CLHEP::Hep3Vector();
+
+  // Rotate + translate solid2
+  //
+  CLHEP::HepRotation rot2;
+  rot2.rotateX( 30.* deg);
+  // rot2.rotateY(-45.* deg); 
+  CLHEP::Hep3Vector tr2 = CLHEP::Hep3Vector(20.* fCm, 0., 0.);
+  
+  // Displaced solids
+  //
+  ISolid* dsolid1 
+    = fFactory->CreateDisplacedSolid("dboxS", solid1, 
+                                     ClhepVGM::Transform(rot1, tr1));
+
+  ISolid* dsolid2 
+    = fFactory->CreateDisplacedSolid("dconsS", solid2, 
+                                     ClhepVGM::Transform(rot2, tr2));
+  // Intersection
+  //
+  ISolid* intersectionS
+    = fFactory->CreateIntersectionSolid(
+                  "intersection_dsolid1_dsolid2_S", dsolid1, dsolid2, 
+		  ClhepVGM::Transform(CLHEP::HepRotation(), CLHEP::Hep3Vector())); 
+  IVolume* intersectionV
+    = fFactory->CreateVolume("intersection_solid1_solid2", intersectionS, "Basic");
+
+  fFactory->CreatePlacement("intersection_solid1_solid2", 0, intersectionV, worldV, 
+                            ClhepVGM::Transform(
+			    CLHEP::HepRotation(), 
+                            CLHEP::Hep3Vector(-250.*fCm, 0., 200.* fCm)));
+  
+  // Subtraction
+  //
+  ISolid* subtractionS
+    = fFactory->CreateSubtractionSolid(
+                  "subtraction_dsolid1_dsolid2_S", dsolid1, dsolid2, 
+		  ClhepVGM::Transform(CLHEP::HepRotation(), CLHEP::Hep3Vector())); 
+  IVolume* subtractionV
+    = fFactory->CreateVolume("subtraction_solid1_solid2", subtractionS, "Basic");
+
+  fFactory->CreatePlacement("subtraction_solid1_solid2", 0, subtractionV, worldV, 
+                            ClhepVGM::Transform(
+			    CLHEP::HepRotation(), 
+                            CLHEP::Hep3Vector(0., 0., 200.* fCm)));
+  
+  // Union
+  //
+  ISolid* unionS
+    = fFactory->CreateUnionSolid(
+                  "union_dsolid1_dsolid2_S", dsolid1, dsolid2, 
+		  ClhepVGM::Transform(CLHEP::HepRotation(), CLHEP::Hep3Vector())); 
+  IVolume* unionV
+    = fFactory->CreateVolume("union_solid1_solid2", unionS, "Basic");
+
+  fFactory->CreatePlacement("union_solid1_solid2", 0, unionV, worldV, 
+                            ClhepVGM::Transform(
+			    CLHEP::HepRotation(),  
+                            CLHEP::Hep3Vector( 250.*fCm, 0., 200.* fCm)));
+  
+  return (void*) fFactory->Top();
+}
+

@@ -43,6 +43,7 @@ std::string VGM::SolidTypeName(VGM::SolidType typeId)
     case kTrd:          return "Trd";       break;
     case kTubs:         return "Tubs";      break;
     case kBoolean:      return "Boolean";   break;
+    case kDisplaced:    return "Displaced"; break;
     case kUnknownSolid: return "Unknown";   break;
     default:            return "Undefined"; break;
   };

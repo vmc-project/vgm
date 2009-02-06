@@ -133,6 +133,11 @@ namespace RootGM {
                                VGM::ISolid* solidA, VGM::ISolid* solidB, 
                                const VGM::Transform& transform); 
 			       
+      virtual VGM::ISolid*  CreateDisplacedSolid(
+                                 const std::string& name, 
+                                 VGM::ISolid* solid,
+                                 const VGM::Transform& transform);
+
       // volumes
       //
       virtual VGM::IVolume* CreateVolume(

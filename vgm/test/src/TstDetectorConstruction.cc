@@ -28,7 +28,7 @@
 #include "G4GDMLParser.hh"
 
 const G4String TstDetectorConstruction::fgkTestNameCandidates 
-  = "Solids NewSolid NewSolid2 ExtraSolid Placements Reflections Assemblies1 Assemblies2 BooleanSolids1 BooleanSolids2 BooleanSolids3 BooleanSolids4 BooleanSolids5 Special";
+  = "Solids NewSolid NewSolid2 ExtraSolid Placements Reflections Assemblies1 Assemblies2 BooleanSolids1 BooleanSolids2 BooleanSolids3 BooleanSolids4 BooleanSolids5 Special DisplacedSolids1 DisplacedSolids2 Special";
 const G4String TstDetectorConstruction::fgkVisModeCandidates 
   = "Geant4 Root None";
 const G4String TstDetectorConstruction::fgkInputCandidates 
@@ -55,10 +55,12 @@ TstDetectorConstruction::TstDetectorConstruction(const G4String& inputType,
     fXMLExporter(0),
     fG4GDMLExporter(0),
     fXMLFileName(""),
-    fGeometry(0)
+    fGeometry(0),
+    fColours()
 {
 //
   SelectChannels(inputType, inputFactory, outputFactory, outputXML);
+  DefineColours();
 }
 
 //_____________________________________________________________________________
@@ -141,6 +143,14 @@ G4VPhysicalVolume* TstDetectorConstruction::Construct()
     world = fGeometry->TestBooleanSolids5();
     std::cout << "TestBooleanSolids5 finished" << std::endl;
   }
+  else if (fSelectedTest == "DisplacedSolids1") {
+    world = fGeometry->TestDisplacedSolids1();
+    std::cout << "TestDisplacedSolids1 finished" << std::endl;
+  }
+  else if (fSelectedTest == "DisplacedSolids2") {
+    world = fGeometry->TestDisplacedSolids2();
+    std::cout << "TestDisplacedSolids2 finished" << std::endl;
+  }
   else if (fSelectedTest == "Special") {
     world = fGeometry->TestSpecial();
     std::cout << "TestSpecial finished" << std::endl;
@@ -200,7 +210,7 @@ G4VPhysicalVolume* TstDetectorConstruction::Construct()
   if (fSelectedVisMode == "Geant4")
     SetG4VisAttributes();
   if (fSelectedVisMode == "Root") 
-    DrawRootGeometry(fSelectedTest.find("Boolean") != std::string::npos);
+    DrawRootGeometry();
 
   // Save Root geometry
   if ( fRootFactory ) {
@@ -301,10 +311,8 @@ void TstDetectorConstruction::SetG4VisAttributes() const
   G4LogicalVolumeStore* lvStore = G4LogicalVolumeStore::GetInstance();
   for (G4int i=0; i<G4int(lvStore->size()); i++) {
     G4LogicalVolume* lv = (*lvStore)[i];
-    G4VisAttributes* visAtt
-      = new G4VisAttributes(G4Colour(0.2 + G4UniformRand()/2., 
-                                     0.2 + G4UniformRand()/2., 
-				     0.2 + G4UniformRand()/2.));
+    G4Colour colour = fColours[(i+1)%fColours.size()];
+    G4VisAttributes* visAtt = new G4VisAttributes(colour);
     visAtt->SetVisibility(true);
     lv->SetVisAttributes(visAtt);
   }  
@@ -322,20 +330,16 @@ void TstDetectorConstruction::SetG4VisAttributes() const
 #include "TPad.h"
 #include "TGeoManager.h"
 //_____________________________________________________________________________
-void TstDetectorConstruction::DrawRootGeometry(bool withRayTrace) const
+void TstDetectorConstruction::DrawRootGeometry() const
 { 
   if (!IsRootGeometry()) return;
 
-  TGeoVolume* topVolume = gGeoManager->GetTopVolume();
-
   // Set visualization attributes
   //
-  for (Int_t i=0; i<topVolume->GetNdaughters(); i++) {
-    TGeoNode* dNode = topVolume->GetNode(i);
-    TGeoVolume* daughter = dNode->GetVolume();
-    Int_t colourNo = i+1;
-    if (colourNo > 9) colourNo -= 9;
-    daughter->SetLineColor(colourNo);    
+  TObjArray* volumes = gGeoManager->GetListOfVolumes();
+  for (Int_t i=0; i<volumes->GetEntriesFast(); i++) {
+    TGeoVolume* daughter = (TGeoVolume*)volumes->At(i);
+    daughter->SetLineColor((i+1)%fColours.size());    
        // How to set a RBG colour ??
   }  
 
@@ -347,13 +351,10 @@ void TstDetectorConstruction::DrawRootGeometry(bool withRayTrace) const
   //
   gGeoManager->SetVisLevel(4);
   gGeoManager->SetVisOption(0);
+  gGeoManager->GetTopVolume()->SetVisContainers(kTRUE);
   new TBrowser();
 
-  if (withRayTrace)
-    gGeoManager->GetTopVolume()->Raytrace();
-  else {
-    gGeoManager->GetTopVolume()->Draw();
-  } 
+  gGeoManager->GetTopVolume()->Draw("ogl");
   gApplication->Run();
 
   std::cout << "TstDetectorConstruction::DrawRootGeometry() finished" << std::endl;
@@ -527,3 +528,19 @@ void TstDetectorConstruction::SelectChannels(const G4String& inputType,
     G4cout << " and exported to " << outputFactory;
   G4cout << G4endl;  
 }  		  
+
+//_____________________________________________________________________________
+void TstDetectorConstruction::DefineColours()
+{
+/// Store prefeined colours 
+
+  fColours.push_back(G4Colour::White());
+  fColours.push_back(G4Colour::Gray());
+  fColours.push_back(G4Colour::Red());
+  fColours.push_back(G4Colour::Green());
+  fColours.push_back(G4Colour::Blue()); 
+  fColours.push_back(G4Colour::Yellow());
+  fColours.push_back(G4Colour::Magenta());
+  fColours.push_back(G4Colour::Cyan());
+  fColours.push_back(G4Colour(0.3, .8, 0.4)); // blue-green
+}

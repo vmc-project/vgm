@@ -1,0 +1,117 @@
+Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometry created
+Warning in <TGeoManager::Init>: Deleting previous geometry: VGM Root geometry/VGM Root geometry
+Info in <TGeoManager::TGeoManager>: Geometry Test, Test geometry via Root created
+Root geometry will be defined via Root
+
+*************************************************************
+ Geant4 version Name: geant4-09-02    (19-December-2008)
+                      Copyright : Geant4 Collaboration
+                      Reference : NIM A 506 (2003), 250-303
+                            WWW : http://cern.ch/geant4
+*************************************************************
+
+Visualization Manager instantiating...
+Info in <TGeoManager::SetTopVolume>: Top volume is world. Master volume is world
+TestPlacements finished
+Go to Import
+Info in <TGeoManager::Export>: Exporting Test Test geometry via Root as root file. Optimizations streamed.
+VGM info:   RootGM::Factory::Import started ...
+VGM info:   Importing material: 
+VGM info:   Material Basic    A=26.98 Z=13 rho=2.7 radlen=8.8751 index=0
+VGM info:   Importing element: ALUMINIUM AL from material
+VGM info:   Importing material: 
+VGM info:   Mixture Air    Aeff=14.607 Zeff=7.3 rho=0.00129 radlen=28405.7 index=1
+   Element #0 : N  Z=  7.00 A= 14.01 w= 0.700
+   Element #1 : O  Z=  8.00 A= 16.00 w= 0.300
+VGM info:   Importing element: NITROGEN N from material
+VGM info:   Importing element: OXYGEN O from material
+VGM info:   Importing material: 
+VGM info:   Mixture Scintillator    Aeff=11.0723 Zeff=5.57354 rho=1.032 radlen=42.132 index=2
+   Element #0 : C  Z=  6.00 A= 12.01 w= 0.915 natoms=9
+   Element #1 : H  Z=  1.00 A=  1.01 w= 0.085 natoms=10
+VGM info:   Importing element: CARBON C from TGeoTable
+VGM info:   Importing element: HYDROGEN H from TGeoTable
+VGM info:   Importing material: 
+VGM info:   Material Uranium    A=235.31 Z=92 rho=13.61 radlen=0.436285 index=3
+VGM info:   Importing element: URANIUM U from material
+VGM info:   Importing material: 
+VGM info:   Material Vacuum    A=0 Z=0 rho=0 radlen=0 index=4
+VGM info:   Importing element: VACUUM VACUUM from TGeoTable
+VGM info:   Importing medium: 
+VGM info:   OBJ: TGeoMedium	Basic	
+VGM info:   Importing medium: 
+VGM info:   OBJ: TGeoMedium	Air	
+VGM info:   Importing medium: 
+VGM info:   OBJ: TGeoMedium	Scintillator	
+VGM info:   Importing medium: 
+VGM info:   OBJ: TGeoMedium	Uranium	
+VGM info:   Importing medium: 
+VGM info:   OBJ: TGeoMedium	Vacuum	
+VGM info:   Importing volume: world
+VGM info:   Importing shape: worldS
+VGM info:   ImportDaughters for world
+VGM info:   Importing volume: layerA
+VGM info:   Importing shape: boxA
+VGM info:   ImportDaughters for layerA
+VGM info:   Importing volume: layerB
+VGM info:   Importing shape: TGeoBBox
+VGM info:   ImportDaughters for layerB
+VGM info:   Importing volume: layerC
+VGM info:   Importing shape: boxC
+VGM info:   ImportDaughters for layerC
+VGM info:   Import positions: 
+VGM info:   0th volume: world  
+VGM info:      0th daughter  rtVol = layerA vgmVol = layerA
+VGM info:      1th daughter  rtVol = layerA vgmVol = layerA
+VGM info:      2th daughter  rtVol = layerA vgmVol = layerA
+VGM info:      3th daughter  rtVol = layerA vgmVol = layerA
+VGM info:      4th daughter  rtVol = layerA vgmVol = layerA
+VGM info:      5th daughter  rtVol = layerA vgmVol = layerA
+VGM info:      6th daughter  rtVol = layerA vgmVol = layerA
+VGM info:      7th daughter  rtVol = layerA vgmVol = layerA
+VGM info:      8th daughter  rtVol = layerA vgmVol = layerA
+VGM info:      9th daughter  rtVol = layerA vgmVol = layerA
+VGM info:      10th daughter  rtVol = layerA vgmVol = layerA
+VGM info:      11th daughter  rtVol = layerA vgmVol = layerA
+VGM info:      12th daughter  rtVol = layerA vgmVol = layerA
+VGM info:      13th daughter  rtVol = layerA vgmVol = layerA
+VGM info:      14th daughter  rtVol = layerA vgmVol = layerA
+VGM info:      15th daughter  rtVol = layerA vgmVol = layerA
+VGM info:      16th daughter  rtVol = layerA vgmVol = layerA
+VGM info:      17th daughter  rtVol = layerA vgmVol = layerA
+VGM info:      18th daughter  rtVol = layerA vgmVol = layerA
+VGM info:      19th daughter  rtVol = layerA vgmVol = layerA
+VGM info:      20th daughter  rtVol = layerA vgmVol = layerA
+VGM info:      21th daughter  rtVol = layerA vgmVol = layerA
+VGM info:      22th daughter  rtVol = layerA vgmVol = layerA
+VGM info:      23th daughter  rtVol = layerA vgmVol = layerA
+VGM info:   1th volume: layerA  
+VGM info:      0th daughter (division) rtVol = layerB vgmVol = layerB
+VGM info:   2th volume: layerB  
+VGM info:      0th daughter  rtVol = layerC vgmVol = layerC
+VGM info:      1th daughter  rtVol = layerC vgmVol = layerC
+VGM info:   3th volume: layerC  
+VGM info:   
+Root_GM_Factory factory solids store: 
+   0th solid: Box  "worldS"  hx = 6000mm  hy = 1000mm  hz = 6000mm
+   1th solid: Box  "boxA"  hx = 200mm  hy = 600mm  hz = 500mm
+   2th solid: Box  "TGeoBBox"  hx = 200mm  hy = 100mm  hz = 500mm
+   3th solid: Box  "boxC"  hx = 200mm  hy = 2mm  hz = 500mm
+Root_GM_Factory factory volumes store: 
+   0th: Volume: "world" material "Vacuum" solid "Box"  24 daughters: "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  "layerA"  
+   1th: Volume: "layerA" material "Air" solid "Box"  1 daughters: "layerB"  
+   2th: Volume: "layerB" material "Uranium" solid "Box"  2 daughters: "layerC"  "layerC"  
+   3th: Volume: "layerC" material "Scintillator" solid "Box"  0 daughters: 
+VGM info:   RootGM::Factory::Import finished.
+Import finished
+Go to save Root geometry
+Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
+Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
+Info in <TGeoManager::CloseGeometry>: Counting nodes...
+Info in <TGeoManager::Voxelize>: Voxelizing...
+Info in <TGeoManager::CloseGeometry>: Building cache...
+Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+Info in <TGeoManager::CloseGeometry>: 241 nodes/ 4 volume UID's in Test geometry via Root
+Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+Info in <TGeoManager::Export>: Exporting Test Test geometry via Root as root file. Optimizations streamed.
+No Geant4 geometry is built.

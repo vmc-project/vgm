@@ -1,3 +1,4 @@
+Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometry created
 Geant4 geometry will be defined via Geant4 and exported to Root
 
 *************************************************************
@@ -246,8 +247,18 @@ VGM info:   ExportPlacements for 2th volume layerB
 VGM info:      0th daughter vol = layerC  simple placement: layerC
 VGM info:      1th daughter vol = layerC  simple placement: layerC
 VGM info:   ExportPlacements for 3th volume layerC
+Info in <TGeoManager::SetTopVolume>: Top volume is world. Master volume is world
 Export finished
 Go to save Root geometry
+Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
+Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
+Info in <TGeoManager::CloseGeometry>: Counting nodes...
+Info in <TGeoManager::Voxelize>: Voxelizing...
+Info in <TGeoManager::CloseGeometry>: Building cache...
+Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+Info in <TGeoManager::CloseGeometry>: 241 nodes/ 4 volume UID's in VGM Root geometry
+Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+Info in <TGeoManager::Export>: Exporting VGM Root geometry VGM Root geometry as root file. Optimizations streamed.
 Visualization Manager initialising...
 Registering graphics systems...
 

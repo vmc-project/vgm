@@ -28,6 +28,7 @@
 #include "RootGM/materials/MaterialFactory.h"
 #include "RootGM/solids/SolidMap.h"
 #include "RootGM/solids/BooleanSolid.h"
+#include "RootGM/solids/DisplacedSolid.h"
 #include "RootGM/solids/Arb8.h"
 #include "RootGM/solids/Box.h"
 #include "RootGM/solids/Cons.h"
@@ -137,11 +138,23 @@ RootGM::Factory::ImportSolid(TGeoShape* shape)
 
   TGeoBBox* box = dynamic_cast<TGeoBBox*>(shape);
   if (box && 
-     std::string(shape->ClassName()) == std::string("TGeoBBox")) { 
+      std::string(shape->ClassName()) == std::string("TGeoBBox")) { 
      
+    // Import box itself
     VGM::IBox* vgmBox = new RootGM::Box(box);
     SolidStore().push_back(vgmBox);
-    return vgmBox; 
+
+    // Return box if it has not offset defined
+    const Double_t* origin = box->GetOrigin();
+    if ( ! origin ||
+         ( origin[0] == 0.0 && origin[1]== 0.0 && origin[2] == 0.0 ) ) 
+      return vgmBox;
+  
+    // Import offset via displaced solid
+    VGM::IDisplacedSolid* vgmDisplacedSolid = new RootGM::DisplacedSolid(box);
+    SolidStore().push_back(vgmDisplacedSolid);
+    
+    return vgmDisplacedSolid; 
   }
 
   TGeoConeSeg* cons = dynamic_cast<TGeoConeSeg*>(shape);
@@ -813,6 +826,24 @@ RootGM::Factory::CreateUnionSolid(
                          name, 
 			 VGM::kUnion, 
 			 solidA, solidB, 
+                         CreateTransform(transform));
+    
+  SolidStore().push_back(vgmSolid);
+  return vgmSolid; 
+}  			     
+
+//_____________________________________________________________________________
+VGM::ISolid*  
+RootGM::Factory::CreateDisplacedSolid(
+                             const std::string& name, 
+                             VGM::ISolid* solid, 
+                             const VGM::Transform& transform)
+{
+//
+  VGM::ISolid* vgmSolid 
+    = new RootGM::DisplacedSolid(
+                         name, 
+			 solid, 
                          CreateTransform(transform));
     
   SolidStore().push_back(vgmSolid);

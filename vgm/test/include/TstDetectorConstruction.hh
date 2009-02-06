@@ -20,6 +20,8 @@
 #ifndef TST_DETECTOR_CONSTRUCTION_H
 #define TST_DETECTOR_CONSTRUCTION_H
 
+#include <vector>
+
 #include "G4VUserDetectorConstruction.hh"
 #include "globals.hh"
 
@@ -31,6 +33,7 @@
 
 class TstVGeometry;
 class G4GDMLParser;
+class G4Colour;
 
 class TstDetectorConstruction : public G4VUserDetectorConstruction
 {
@@ -54,11 +57,12 @@ class TstDetectorConstruction : public G4VUserDetectorConstruction
                         const G4String& outputFactory,
 			const G4String& outputXML);
     void SetG4VisAttributes() const;
-    void DrawRootGeometry(bool withRayTrace) const;
+    void DrawRootGeometry() const;
     void SaveRootGeometry() const;
     void PrintGeant4Materials() const;
     void PrintRootMaterials() const;
     void GenerateXML() const;
+    void DefineColours();
 
     // static data members
     static const G4String  fgkTestNameCandidates;
@@ -80,6 +84,7 @@ class TstDetectorConstruction : public G4VUserDetectorConstruction
     G4GDMLParser*      fG4GDMLExporter;
     G4String           fXMLFileName;
     TstVGeometry*      fGeometry;
+    std::vector<G4Colour>  fColours;
 };
 
 #endif //TST_V_DETECTOR_CONSTRUCTION_H

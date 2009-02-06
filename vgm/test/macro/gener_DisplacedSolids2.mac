@@ -1,0 +1,29 @@
+# $Id: gener_BooleanSolids2.mac 544 2007-05-23 10:39:11Z ivana $
+
+# -----------------------------------------------------------------------
+# The macro for the Virtual Geometry Model test
+# Copyright (C) 2007, Ivana Hrivnacova               
+# All rights reserved. 
+#           
+# For the licensing terms see vgm/LICENSE.
+# Contact: ivana@ipno.in2p3.fr
+# -----------------------------------------------------------------------
+
+/random/resetEngineFrom startRun.rdm
+
+/gps/particle geantino
+
+/gps/pos/type Volume
+/gps/pos/shape Para
+/gps/pos/centre 0. 0. 0. cm
+/gps/pos/halfx 4 m
+/gps/pos/halfy 1 m
+/gps/pos/halfz 4 m
+
+/gps/ang/type iso
+
+#/gps/ene/type Pow
+#/gps/ene/min 2. MeV
+#/gps/ene/max 10. MeV
+#/gps/alpha -2.
+
