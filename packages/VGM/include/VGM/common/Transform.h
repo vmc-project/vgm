@@ -33,6 +33,7 @@
 #define VGM_TRANSFORM_H
 
 #include <vector>
+#include <iostream>
 
 namespace VGM {
 
@@ -48,6 +49,9 @@ namespace VGM {
     kReflZ,
     kSize
   };  
+
 }
+
+std::ostream& operator << (std::ostream& out, const VGM::Transform& transform);
 
 #endif //VGM_TRANSFORM_H

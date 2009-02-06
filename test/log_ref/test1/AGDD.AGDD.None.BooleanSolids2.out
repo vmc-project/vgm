@@ -1,0 +1,27 @@
+AGDD geometry will be defined via AGDD
+
+*************************************************************
+ Geant4 version Name: geant4-09-02    (19-December-2008)
+                      Copyright : Geant4 Collaboration
+                      Reference : NIM A 506 (2003), 250-303
+                            WWW : http://cern.ch/geant4
+*************************************************************
+
+Visualization Manager instantiating...
+TestBooleanSolids2 finished
+Go to Import
+VGM info:   Top volume is world
+VGM info:   ImportSection: importing AGDD_composition "world_comp"
+VGM info:   ImportComposition "world_comp"
+VGM info:   ImportPosition of volume "solid1" cardinality 1 parent "world"
+VGM info:   ImportingPosition with volume "solid1" ("solid1") trans=[-1250,0,-2000]->(0,-0,0)
+VGM info:   ImportPosition of volume "solid2" cardinality 1 parent "world"
+VGM info:   ImportingPosition with volume "solid2" ("solid2") trans=[1250,0,-2000]->(0,-0,0)
+VGM info:   ImportPosition of volume "intersection_solid1_solid2" cardinality 1 parent "world"
+VGM info:   ImportingPosition with volume "intersection_solid1_solid2" ("intersection_solid1_solid2") trans=[-2500,0,2000]->(0,-0,0)
+VGM info:   ImportPosition of volume "subtraction_solid1_solid2" cardinality 1 parent "world"
+VGM info:   ImportingPosition with volume "subtraction_solid1_solid2" ("subtraction_solid1_solid2") trans=[0,0,2000]->(0,-0,0)
+VGM info:   ImportPosition of volume "union_solid1_solid2" cardinality 1 parent "world"
+VGM info:   ImportingPosition with volume "union_solid1_solid2" ("union_solid1_solid2") trans=[2500,0,2000]->(0,-0,0)
+Import finished
+No Geant4 geometry is built.

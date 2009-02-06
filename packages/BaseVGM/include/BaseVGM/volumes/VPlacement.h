@@ -49,6 +49,10 @@ namespace BaseVGM {
                              double&  width,
                              double&  offset) const = 0;
 
+                            /// Put the printing of the placement parameters
+			    /// in the out stream
+      virtual std::ostream& Put(std::ostream& out) const;
+
       void SetVolume(VGM::IVolume* volume);			       
  
     protected:

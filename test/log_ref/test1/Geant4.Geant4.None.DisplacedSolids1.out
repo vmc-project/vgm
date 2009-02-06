@@ -1,0 +1,162 @@
+Geant4 geometry will be defined via Geant4
+
+*************************************************************
+ Geant4 version Name: geant4-09-02    (19-December-2008)
+                      Copyright : Geant4 Collaboration
+                      Reference : NIM A 506 (2003), 250-303
+                            WWW : http://cern.ch/geant4
+*************************************************************
+
+Visualization Manager instantiating...
+TestDisplacedSolids1 finished
+Go to Import
+VGM info:   Geant4GM::Factory::Import started ...
+VGM info:   Importing isotope: 
+VGM info:    Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   C13   Z =  6   N =  13   A =  13.00 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:  U235   Z = 92   N = 235   A = 235.01 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:  U238   Z = 92   N = 238   A = 238.03 g/mole
+VGM info:   Importing element: 
+VGM info:    Element: Basic ( )   Z = 13.0   N =  27.0   A =  26.98 g/mole
+VGM info:   Importing element: 
+VGM info:    Element: Nitrogen (N)   Z =  7.0   N =  14.0   A =  14.01 g/mole
+VGM info:   Importing element: 
+VGM info:    Element: Oxygen (O)   Z =  8.0   N =  16.0   A =  16.00 g/mole
+VGM info:   Importing element: 
+VGM info:    Element: H (H)   Z =  1.0   N =   1.0   A =   1.01 g/mole
+   --->  Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
+   --->  Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %
+VGM info:   Importing element: 
+VGM info:    Element: C (C)   Z =  6.0   N =  12.0   A =  12.01 g/mole
+   --->  Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole   abundance:  98.93 %
+   --->  Isotope:   C13   Z =  6   N =  13   A =  13.00 g/mole   abundance:   1.07 %
+VGM info:   Importing element: 
+VGM info:    Element: enriched Uranium (U)   Z = 92.0   N = 235.3   A = 235.31 g/mole
+   --->  Isotope:  U235   Z = 92   N = 235   A = 235.01 g/mole   abundance:  90.00 %
+   --->  Isotope:  U238   Z = 92   N = 238   A = 238.03 g/mole   abundance:  10.00 %
+VGM info:   Importing element: 
+VGM info:    Element: Vacuum ( )   Z =  1.0   N =   1.0   A =   1.01 g/mole
+VGM info:   Importing material: 
+VGM info:    Material:    Basic     density:  2.700 g/cm3   RadL:   8.893 cm   Nucl.Int.Length:  38.879 cm   Imean: 166.400 eV 
+   --->  Element: Basic ( )   Z = 13.0   N =  27.0   A =  26.98 g/mole  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
+VGM info:   Importing material: 
+VGM info:    Material:      Air     density:  1.290 mg/cm3  RadL: 285.161 m    Nucl.Int.Length: 662.680 m    Imean:  85.684 eV   temperature: 273.15 K  pressure:   1.00 atm
+   --->  Element: Nitrogen (N)   Z =  7.0   N =  14.0   A =  14.01 g/mole  ElmMassFraction:  70.00 %  ElmAbundance  72.71 %
+   --->  Element: Oxygen (O)   Z =  8.0   N =  16.0   A =  16.00 g/mole  ElmMassFraction:  30.00 %  ElmAbundance  27.29 %
+VGM info:   Importing material: 
+VGM info:    Material: Scintillator     density:  1.032 g/cm3   RadL:  42.544 cm   Nucl.Int.Length:  70.066 cm   Imean:  63.913 eV 
+   --->  Element: C (C)   Z =  6.0   N =  12.0   A =  12.01 g/mole
+   --->  Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole   abundance:  98.93 %
+   --->  Isotope:   C13   Z =  6   N =  13   A =  13.00 g/mole   abundance:   1.07 %  ElmMassFraction:  91.47 %  ElmAbundance  47.37 %
+   --->  Element: H (H)   Z =  1.0   N =   1.0   A =   1.01 g/mole
+   --->  Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
+   --->  Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %  ElmMassFraction:   8.53 %  ElmAbundance  52.63 %
+VGM info:   Importing material: 
+VGM info:    Material:  Uranium     density: 13.610 g/cm3   RadL:   4.358 mm   Nucl.Int.Length:  15.877 cm   Imean: 892.400 eV 
+   --->  Element: enriched Uranium (U)   Z = 92.0   N = 235.3   A = 235.31 g/mole
+   --->  Isotope:  U235   Z = 92   N = 235   A = 235.01 g/mole   abundance:  90.00 %
+   --->  Isotope:  U238   Z = 92   N = 238   A = 238.03 g/mole   abundance:  10.00 %  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
+VGM info:   Importing material: 
+VGM info:    Material:   Vacuum     density:  0.000 kg/m3   RadL: 204727512.315 pc   Nucl.Int.Length: 113804112.800 pc   Imean:  21.800 eV   temperature:   2.73 K  pressure:   0.00 atm
+   --->  Element: Vacuum ( )   Z =  1.0   N =   1.0   A =   1.01 g/mole  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
+VGM info:   Importing LV: world
+VGM info:   Importing solid: worldS
+VGM info:   ImportDaughters for world
+VGM info:   Importing LV: volume1
+VGM info:   Importing solid: boxS1
+VGM info:   ImportDaughters for volume1
+VGM info:   Importing LV: volume4
+VGM info:   Importing solid: boxS4
+VGM info:   ImportDaughters for volume4
+VGM info:   Importing LV: volume2C
+VGM info:   Importing solid: boxS2C
+VGM info:   Importing solid: boxS2B
+VGM info:   Importing solid: boxS2A
+VGM info:   Importing solid: boxS2
+VGM info:   ImportDaughters for volume2C
+VGM info:   Importing LV: volume3
+VGM info:   Importing solid: boxS3
+VGM info:   ImportDaughters for volume3
+VGM info:   Importing LV: volume3
+VGM info:   Importing solid: boxS5A
+VGM info:   Importing solid: boxS5
+VGM info:   ImportDaughters for volume3
+VGM info:   Import positions: 
+VGM info:   0th volume: world  
+VGM info:      0th daughter  lv=volume1 vgmVol=volume1
+VGM info:      1th daughter  lv=volume2C vgmVol=volume2C
+VGM info:   1th volume: volume1  
+VGM info:      0th daughter  lv=volume4 vgmVol=volume4
+VGM info:   2th volume: volume4  
+VGM info:   3th volume: volume2C  
+VGM info:      0th daughter  lv=volume3 vgmVol=volume3
+VGM info:      1th daughter  lv=volume3 vgmVol=volume3
+VGM info:   4th volume: volume3  
+VGM info:   5th volume: volume3  
+VGM info:   
+Geant4_GM_Factory factory solids store: 
+   0th solid: Box  "worldS"  hx = 600mm  hy = 600mm  hz = 1600mm
+   1th solid: Box  "boxS1"  hx = 500mm  hy = 500mm  hz = 500mm
+   2th solid: Box  "boxS4"  hx = 200mm  hy = 200mm  hz = 100mm
+   3th solid: Box  "boxS2"  hx = 500mm  hy = 500mm  hz = 500mm
+   4th solid: Displaced  "boxS2A"  Const. = "boxS2"  Displacement = ( 0, 0, 500)mm ( 0, -0, 0)deg   noReflZ
+   5th solid: Displaced  "boxS2B"  Const. = "boxS2A"  Displacement = ( 0, 0, 500)mm ( 0, -0, 0)deg   noReflZ
+   6th solid: Displaced  "boxS2C"  Const. = "boxS2B"  Displacement = ( 0, 0, 500)mm ( 0, -0, 0)deg   noReflZ
+   7th solid: Box  "boxS3"  hx = 200mm  hy = 200mm  hz = 200mm
+   8th solid: Box  "boxS5"  hx = 200mm  hy = 200mm  hz = 50mm
+   9th solid: Displaced  "boxS5A"  Const. = "boxS5"  Displacement = ( 0, 0, 400)mm ( 0, -0, 0)deg   noReflZ
+Geant4_GM_Factory factory volumes store: 
+   0th: Volume: "world" material "Basic" solid "Box"  2 daughters: "volume1"  "volume2C"  
+   1th: Volume: "volume1" material "Basic" solid "Box"  1 daughters: "volume4"  
+   2th: Volume: "volume4" material "Basic" solid "Box"  0 daughters: 
+   3th: Volume: "volume2C" material "Basic" solid "Displaced"  2 daughters: "volume3"  "volume5A"  
+   4th: Volume: "volume3" material "Basic" solid "Box"  0 daughters: 
+   5th: Volume: "volume3" material "Basic" solid "Displaced"  0 daughters: 
+VGM info:   Geant4GM::Factory::Import finished.
+Import finished
+Visualization Manager initialising...
+Registering graphics systems...
+
+You have successfully registered the following graphics systems.
+Current available graphics systems are:
+  ASCIITree (ATree)
+  DAWNFILE (DAWNFILE)
+  G4HepRep (HepRepXML)
+  G4HepRepFile (HepRepFile)
+  RayTracer (RayTracer)
+  VRML1FILE (VRML1FILE)
+  VRML2FILE (VRML2FILE)
+  FukuiRenderer (DAWN)
+  OpenGLImmediateX (OGLIX)
+  OpenGLStoredX (OGLSX)
+  OpenGLImmediateXm (OGLIXm)
+  OpenGLStoredXm (OGLSXm)
+  OpenInventorXt (OIX)
+  VRML1 (VRML1)
+  VRML2 (VRML2)
+
+Registering model factories...
+
+You have successfully registered the following model factories.
+Registered model factories:
+  generic
+  drawByCharge
+  drawByParticleID
+  drawByOriginVolume
+  drawByAttribute
+
+Registered filter factories:
+  chargeFilter
+  particleFilter
+  originVolumeFilter
+  attributeFilter
+
+Graphics systems deleted.
+Visualization Manager deleting...

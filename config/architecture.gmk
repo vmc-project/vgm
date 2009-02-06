@@ -97,6 +97,8 @@ else
   endif
 endif
 
+#CPPFLAGS += -DNEW_DEBUG
+
 # Toggle variables (positional qualifiers) between WIN32-VC and UNIX...
 #
 OUT_OBJ := -o 

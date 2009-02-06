@@ -27,6 +27,8 @@
 #ifndef VGM_AXIS_H
 #define VGM_AXIS_H
 
+#include <string>
+
 namespace VGM {
   enum Axis {
     kXAxis,
@@ -38,6 +40,8 @@ namespace VGM {
     kSphTheta,
     kUnknownAxis
   };
+
+  std::string AxisTypeName(VGM::Axis typeId);
 }
 
 #endif //VGM_AXIS_H

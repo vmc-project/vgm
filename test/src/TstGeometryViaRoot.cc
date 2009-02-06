@@ -1474,6 +1474,71 @@ void* TstGeometryViaRoot::TestBooleanSolids5()
 }
 
 //_____________________________________________________________________________
+void* TstGeometryViaRoot::TestDisplacedSolids1()
+{
+// Test solid displacement, only offset in box
+
+  // World
+  //
+  TGeoVolume* worldV = CreateWorld(60., 60., 160.);
+  
+  // Create solids
+  
+  // Normal solid
+  //
+  TGeoShape* solid1 
+    = new TGeoBBox("boxS1", 50., 50., 50.);
+
+  TGeoVolume* volume1
+    = new TGeoVolume("volume1", solid1, fBasicMedium);
+
+  // Box with offset 
+  //
+  Double_t origin[3] = { 0., 0., 150. };
+  TGeoShape* solid2 
+    = new TGeoBBox("boxS2", 50., 50., 50., origin);
+ 
+  TGeoVolume* volume2C
+    = new TGeoVolume("volume2C", solid2, fBasicMedium);
+
+  // Daughter to be placed in displaced solid
+  //
+  TGeoShape* solid3 
+    = new TGeoBBox("boxS3", 20., 20., 20.);
+
+  TGeoVolume* volume3
+    = new TGeoVolume("volume3", solid3, fBasicMedium);
+
+  
+  // Daughter to be placed in normal solid
+  //
+  TGeoShape* solid4 
+    = new TGeoBBox("boxS4", 20., 20., 10.);
+
+  TGeoVolume* volume4
+    = new TGeoVolume("volume4", solid4, fBasicMedium);
+
+  // Daughter with displaced solid to be placed in displaced solid
+  //
+  Double_t origin2[3] = { 0., 0., 40. };
+  TGeoShape* solid5A 
+    = new TGeoBBox("boxS5A", 20., 20., 5., origin2 );
+
+  TGeoVolume* volume5A
+    = new TGeoVolume("volume5A", solid5A, fBasicMedium);
+
+  
+  // Make placements
+  //
+  worldV  ->AddNode(volume1,  1, new TGeoTranslation(0., 0., -100.));
+  worldV  ->AddNode(volume2C, 2, new TGeoTranslation(0., 0., -100.));
+  volume2C->AddNode(volume3,  1, new TGeoTranslation(0., 0., 150.));
+  volume1 ->AddNode(volume4,  1, new TGeoTranslation(0., 0., 0.));
+  volume2C->AddNode(volume5A, 2, new TGeoTranslation(0., 0., 150.));
+
+  return (void*) gGeoManager->GetTopNode();
+}  
+//_____________________________________________________________________________
 void* TstGeometryViaRoot::TestSpecial()
 {
 // Special test, geometry is loaded from geometry.root file.

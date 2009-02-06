@@ -309,6 +309,14 @@ namespace VGM {
                                VGM::ISolid* solidA, VGM::ISolid* solidB, 
                                const VGM::Transform& transform) = 0;
 
+                       /// Create displaced solid
+		       /// \param solid  constituent solids
+		       /// \param transform 3D displacement of the solidB 
+		       ///        with respect to solid A
+      virtual ISolid*  CreateDisplacedSolid(
+                               const std::string& /*name*/, 
+                               VGM::ISolid* /*solid*/,
+                               const VGM::Transform& /*transform*/) { return 0; } 
 
       //
       // volumes

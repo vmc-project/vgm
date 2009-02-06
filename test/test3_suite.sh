@@ -35,45 +35,43 @@ do
     # Use the line below for performance tests (G4 navigator)/G4Root navigator)
     # for outputFactory in None
     do
-      for selectedTest in Solids Placements Reflections Assemblies1 Assemblies2 BooleanSolids1 BooleanSolids2
+      for selectedTest in Solids Placements Reflections Assemblies1 Assemblies2 BooleanSolids1 BooleanSolids2 DisplacedSolids1 DisplacedSolids2
       do
-        #
+        DOIT="1"
+
         # exclude wrong combinations
-	# (could be done in a more intelligent way
-	#  if we learn more shell scripting ...)   
-	#
-	if [ $inputType != "VGM" -a "$inputFactory" != "$inputType" ]
-	then
-	  DUMMY=0
-	else 
- 	  if [ $inputType = "VGM" -a "$inputFactory" = "AGDD" ]
+	if [ $inputType != "VGM"  -a $inputFactory != $inputType ];  then DOIT="0"; fi 
+ 	if [ $inputType  = "VGM"  -a $inputFactory  = "AGDD" ];      then DOIT="0"; fi 
+        if [ $inputType  = "AGDD" -a $inputFactory  = "AGDD" -a  $outputFactory = "None" ]; then DOIT="0"; fi 
+  	if [ $inputFactory = $outputFactory ]; then DOIT="0";  fi 
+
+        # exclude non existing tests
+  	if [ $inputType = "VGM"  -a $selectedTest = "Assemblies1" ]; then DOIT="0";  fi 
+  	if [ $inputType = "VGM"  -a $selectedTest = "Assemblies2" ]; then DOIT="0";  fi 
+  	if [ $inputType = "AGDD" -a $selectedTest = "Reflections" ]; then DOIT="0";  fi 
+  	if [ $inputType = "AGDD" -a $selectedTest = "Assemblies2" ]; then DOIT="0";  fi 
+  	if [ $inputType = "AGDD" -a $selectedTest = "DisplacedSolids1" ]; then DOIT="0";  fi 
+  	if [ $inputType = "AGDD" -a $selectedTest = "DisplacedSolids2" ]; then DOIT="0";  fi 
+  	if [ $inputType = "Root" -a $selectedTest = "DisplacedSolids2" ]; then DOIT="0";  fi 
+	
+        
+        if [ $DOIT = "1" ]; then
+          # generate Root geometry file for test with rootNavig
+          NAVIG=""
+  	  if [ $inputFactory = "Root" -a "$outputFactory" = "None" ]
 	  then
-	    DUMMY=0
-	  else 
- 	    if [ $inputType = "AGDD" -a "$inputFactory" = "AGDD" -a  "$outputFactory" = "None" ]
-	    then
-	      DUMMY=0
-	    else 
-  	      if [ "$inputFactory" = "$outputFactory" ]
-	      then
-  	        DUMMY=0
-  	      else 
-	        NAVIG=""
-	        if [ $inputFactory = "Root" -a "$outputFactory" = "None" ]
-	        then
-                  NAVIG=rootNavig
-                  echo "... Regenerating Root geometry file: $selectedTest"
-	          vgm_test $inputType $inputFactory $outputFactory $NOXML $selectedTest $NOVIS \
-	            >& $OUTDIR/tmp.out
-	        fi        
-                echo "Testing configuration: $inputType $inputFactory $outputFactory $selectedTest $NAVIG"
-	        vgm_test $inputType $inputFactory $outputFactory $NOXML $selectedTest $NOVIS run $NAVIG \
-	          >& $OUTDIR/"$inputType.$inputFactory.$outputFactory.$selectedTest.out"
-              fi                   
-            fi    
-          fi
-        fi
-      done 	
+            NAVIG=rootNavig
+            #echo "... Regenerating Root geometry file: $selectedTest"
+	    vgm_test $inputType $inputFactory $outputFactory $NOXML $selectedTest $NOVIS \
+	      >& $OUTDIR/tmp.out
+	  fi        
+        
+          # run test
+          echo "Testing configuration: $inputType $inputFactory $outputFactory $selectedTest $NAVIG"
+	  vgm_test $inputType $inputFactory $outputFactory $NOXML $selectedTest $NOVIS run $NAVIG \
+	     >& $OUTDIR/"$inputType.$inputFactory.$outputFactory.$selectedTest.out"
+        fi  	
+      done 
     done
   done  
 done  
@@ -89,7 +87,7 @@ do
       for selectedTest in Solids Placements Assemblies1 BooleanSolids1 BooleanSolids2
       do
  	NAVIG=rootNavig
-        echo "... Regenerating Root geometry file: $selectedTest"
+        #echo "... Regenerating Root geometry file: $selectedTest"
 	vgm_test $inputType $inputFactory $outputFactory $NOXML $selectedTest $NOVIS \
           >& $OUTDIR/tmp.out
         echo "Testing configuration: $inputType $inputFactory $outputFactory $selectedTest $NAVIG"

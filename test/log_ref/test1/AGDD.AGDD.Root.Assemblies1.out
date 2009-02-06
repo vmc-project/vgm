@@ -1,3 +1,4 @@
+Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometry created
 AGDD geometry will be defined via AGDD and exported to Root
 
 *************************************************************
@@ -22526,6 +22527,16 @@ VGM info:      6598th daughter vol = TOOTH  simple placement: TOOTH
 VGM info:      6599th daughter vol = TOOTH  simple placement: TOOTH
 VGM info:   ExportPlacements for 1th volume PLATE
 VGM info:   ExportPlacements for 2th volume TOOTH
+Info in <TGeoManager::SetTopVolume>: Top volume is world. Master volume is world
 Export finished
 Go to save Root geometry
+Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
+Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
+Info in <TGeoManager::CloseGeometry>: Counting nodes...
+Info in <TGeoManager::Voxelize>: Voxelizing...
+Info in <TGeoManager::CloseGeometry>: Building cache...
+Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+Info in <TGeoManager::CloseGeometry>: 6601 nodes/ 3 volume UID's in VGM Root geometry
+Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+Info in <TGeoManager::Export>: Exporting VGM Root geometry VGM Root geometry as root file. Optimizations streamed.
 No Geant4 geometry is built.

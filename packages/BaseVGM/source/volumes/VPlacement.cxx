@@ -17,6 +17,7 @@
 // Author: Ivana Hrivnacova; IPN Orsay
 
 #include "VGM/volumes/IVolume.h"
+#include "VGM/common/Transform.h"
 
 #include "BaseVGM/volumes/VPlacement.h"
 
@@ -74,6 +75,44 @@ VGM::IVolume* BaseVGM::VPlacement::Mother() const
 }  
 
 //_____________________________________________________________________________
+std::ostream& BaseVGM::VPlacement::Put(std::ostream& out) const
+{
+  out << "\"" << Name() << "\"";
+  
+  if ( Volume() )
+      out << "  volume: \"" << Volume()->Name() << "\"";
+  else    
+      out << "  volume: \"-\"";
+      
+  if ( Mother() )    
+      out << "  mother: \"" << Mother()->Name() << "\"";
+  else    
+      out << "  mother: \"-\"";
+            
+  out << "  type:  \"" << VGM::PlacementTypeName(Type()) << "\"";
+
+  if ( Type() == VGM::kSimplePlacement ) {
+     out << "  copyNo: " << CopyNo() 
+         << "  transform: " << Transformation();
+  }     
+  
+  if ( Type() == VGM::kMultiplePlacement ) {
+     VGM::Axis axis;
+     int nofItems;
+     double width;
+     double offset;
+     MultiplePlacementData(axis, nofItems, width, offset);
+
+     out << "  axis: \"" << VGM::AxisTypeName(axis) << "\""
+         << "  ndiv: "   << nofItems
+         << "  width: "  << width
+         << "  offset: " << offset;
+  }     
+
+  return out; 
+}
+
+//_____________________________________________________________________________
 void BaseVGM::VPlacement::SetVolume(VGM::IVolume* volume)
 {
 /// Set the associated volume 
@@ -83,3 +122,22 @@ void BaseVGM::VPlacement::SetVolume(VGM::IVolume* volume)
 
   fVolume = volume;
 }   			       
+
+//_____________________________________________________________________________
+std::string VGM::PlacementTypeName(VGM::PlacementType typeId)
+{
+  // Returns the placement type name for specified typeId
+  switch (typeId) {
+    case kSimplePlacement:   return "Simple";    break;
+    case kMultiplePlacement: return "Multiple";  break;
+    //case kParameterised: return "Parameterised";  break;
+    default:            return "Undefined"; break;
+  };
+}   
+
+//_____________________________________________________________________________
+std::ostream& operator<<(std::ostream& out, const VGM::IPlacement& placement)
+{
+  return placement.Put(out); 
+}
+

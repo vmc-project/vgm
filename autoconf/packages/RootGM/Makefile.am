@@ -33,6 +33,7 @@ libRootGM_la_SOURCES =                        \
 	$(rootgmsrc)/solids/Box.cxx \
 	$(rootgmsrc)/solids/Cons.cxx \
 	$(rootgmsrc)/solids/Ctubs.cxx \
+	$(rootgmsrc)/solids/DisplacedSolid.cxx \
 	$(rootgmsrc)/solids/EllipticalTube.cxx \
 	$(rootgmsrc)/solids/ExtrudedSolid.cxx \
 	$(rootgmsrc)/solids/Para.cxx \
@@ -75,6 +76,7 @@ rootgmsolinc_HEADERS = \
 	$(rootgminc)/solids/Box.h \
 	$(rootgminc)/solids/Cons.h \
 	$(rootgminc)/solids/Ctubs.h \
+	$(rootgminc)/solids/DisplacedSolid.h \
 	$(rootgminc)/solids/EllipticalTube.h \
 	$(rootgminc)/solids/ExtrudedSolid.h \
 	$(rootgminc)/solids/Para.h \

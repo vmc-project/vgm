@@ -19,6 +19,7 @@
 #include "VGM/materials/IMaterialFactory.h"
 #include "VGM/solids/ISolid.h"
 #include "VGM/solids/IBooleanSolid.h"
+#include "VGM/solids/IDisplacedSolid.h"
 #include "VGM/solids/IArb8.h"
 #include "VGM/solids/IBox.h"
 #include "VGM/solids/ICons.h"
@@ -95,6 +96,32 @@ BaseVGM::VFactory::~VFactory()
 //
 // private functions
 //
+
+//_____________________________________________________________________________
+VGM::ISolid*  
+BaseVGM::VFactory::ExportDisplacedSolid(VGM::IDisplacedSolid* solid,
+                                        VGM::IFactory* factory) const
+
+{
+// Exports specified Boolean solid to given factory
+// ---
+
+  // Export constituent solids first
+  VGM::ISolid* constituentSolid = ExportSolid(solid->ConstituentSolid(), factory);
+        // Can lead to a duplication of solids in case
+	// the solid has been already exported
+	// Should not harm, but will be better to be avoided	
+
+
+  VGM::Transform transform =  solid->Displacement();
+
+  VGM::ISolid* newSolid 
+    = factory->CreateDisplacedSolid(
+                               solid->Name(), 
+                               constituentSolid,
+			       transform);
+  return newSolid;
+}  
 
 //_____________________________________________________________________________
 VGM::ISolid*  
@@ -325,6 +352,10 @@ BaseVGM::VFactory::ExportSolid(VGM::ISolid* solid,
 			      tubs->StartPhi(),
 			      tubs->DeltaPhi());  
   }
+  else if (solidType == VGM::kDisplaced) { 
+    VGM::IDisplacedSolid* displaced = dynamic_cast<VGM::IDisplacedSolid*>(solid);
+    return ExportDisplacedSolid(displaced, factory);
+  }
   else if (solidType == VGM::kBoolean) { 
     VGM::IBooleanSolid* boolean = dynamic_cast<VGM::IBooleanSolid*>(solid);
     return ExportBooleanSolid(boolean, factory);
@@ -393,10 +424,12 @@ BaseVGM::VFactory::ExportSimplePlacement(
 // Export simple placement.
 // ---
 
+#ifndef NEW_DEBUG
   if (Debug()>0) {
     std::cout << "  simple placement: " 
               << placement->Name() << std::endl;
   }	      
+#endif
 
   VGM::IVolume* newVolume = (*volumeMap)[placement->Volume()];
   VGM::IVolume* newMother = (*volumeMap)[placement->Mother()];
@@ -438,12 +471,14 @@ BaseVGM::VFactory::ExportMultiplePlacement(
   double width;
   double offset;
   placement->MultiplePlacementData(axis, nofItems, width, offset);
-  
+ 
+#ifndef NEW_DEBUG
   if (Debug()>0) {
     std::cout << "  multiple placement - data: "
 	      << axis  << ",  " << nofItems << ",  " 
 	      << width << ",  " << offset << std::endl;
   }	      
+#endif
   
   VGM::IPlacement* newPlacement
     = factory->CreateMultiplePlacement(
@@ -466,10 +501,18 @@ void BaseVGM::VFactory::ExportPlacements(
 // Exports all placements.
 // ---
 
+#ifdef NEW_DEBUG
+  if (Debug()>0) {
+    BaseVGM::DebugInfo();
+    std::cout << "Exporting placements:" << std::endl;
+  }           
+#endif
+
   for (unsigned int i=0; i<Volumes().size(); i++) {
   
     VGM::IVolume* volume = Volumes()[i];
     
+#ifndef NEW_DEBUG
     if (Debug()>0) {
       BaseVGM::DebugInfo();
       std::cout << "ExportPlacements for "
@@ -477,18 +520,31 @@ void BaseVGM::VFactory::ExportPlacements(
       if (Debug()>1) std::cout << volume << "  ";
       std::cout << volume->Name() << std::endl;
     }		
+#endif
 
     for (int id=0; id<volume->NofDaughters(); id++) {
      
       VGM::IPlacement* daughter = volume->Daughter(id);
 
+#ifndef NEW_DEBUG
       if (Debug()>0) {
         BaseVGM::DebugInfo();
         std::cout << "   " << id << "th daughter vol = ";  
         if (Debug()>1) std::cout << daughter->Volume() << "  ";
 	std::cout << daughter->Volume()->Name();
       }		  
+#endif
 
+#ifdef NEW_DEBUG
+      if (Debug()>0) {
+        BaseVGM::DebugInfo();
+        std::cout << "Exporting placement: ";   
+        if (Debug()>1) std::cout << daughter;
+        std::cout << std::endl;    
+        BaseVGM::DebugInfo();
+        std::cout << "   " << *daughter << std::endl;
+      }		
+#endif
 
       if (daughter->Type() == VGM::kSimplePlacement) {
         ExportSimplePlacement(daughter, factory, volumeMap);

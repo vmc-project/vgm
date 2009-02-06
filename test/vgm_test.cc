@@ -21,7 +21,7 @@
 //         outputFactory = Geant4, Root, None
 //         outputXML = AGDD, GDML, None
 //         selectedTest  = Solids, Placements, Reflections, 
-//                         AssembliesN, BooleanSolidsM
+//                         AssembliesN, BooleanSolidsM, Special, DisplacedSolidsN
 //                             where N = 1, 2; M = 1, 2, 3
 //         debug         = if specified the factories operate in debug mode
 //         openAngle     = if specified, solids like tubs, cons etc. are built
@@ -69,7 +69,7 @@ int main(int argc, char** argv)
     std::cerr << "          outputFactory = Geant4, Root, None" << std::endl;
     std::cerr << "          outputXML     = AGDD, GDML, noXML" << std::endl;
     std::cerr << "          selectedTest  = Solids, NewSolid, Placements, Reflections, Assemblies," << std::endl;
-    std::cerr << "                          AssembliesN, BooleanSolidsM, Special " << std::endl;
+    std::cerr << "                          AssembliesN, BooleanSolidsM, Special, DisplacedSolidN " << std::endl;
     std::cerr << "                               where N = 1, 2; M = 1, 2, 3" << std::endl;
     std::cerr << "          debug         = if specified the factories operate in debug mode"  << std::endl;
     std::cerr << "          openAngle     = if specified, solids like tubs, cons etc. are built" << std::endl;

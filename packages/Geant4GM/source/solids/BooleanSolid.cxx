@@ -227,6 +227,7 @@ Geant4GM::BooleanSolid::GetConstituentSolid(
 // ---
 
   G4VSolid* consSolid = booleanSolid->GetConstituentSolid(index);
+  if ( index == 0 ) return consSolid;
 
   G4DisplacedSolid* displacedSolid = consSolid->GetDisplacedSolidPtr();
   if (displacedSolid) consSolid = displacedSolid->GetConstituentMovedSolid();

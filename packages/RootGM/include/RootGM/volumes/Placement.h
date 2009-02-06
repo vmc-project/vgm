@@ -82,6 +82,10 @@ namespace RootGM {
       Placement(const Placement& rhs);
 
     private:
+      // methods
+      TGeoMatrix*  ComposeMatrix(VGM::IVolume* volume, VGM::IVolume* motherVolume,
+		                 TGeoMatrix* transformation) const;
+      
       // static data members
       static bool fgIncludeAssembliesInNames; 
       static char fgNameSeparator; 
@@ -89,6 +93,7 @@ namespace RootGM {
       // data members
       std::string  fName;
       TGeoNode*    fGeoNode;
+      TGeoMatrix*  fVGMMatrix;
       std::vector<const TGeoNode*>  fAssemblyNodes;
   };
 
