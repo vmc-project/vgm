@@ -35,7 +35,9 @@ libGeant4GM_la_SOURCES =                        \
 	$(geant4gmsrc)/solids/DisplacedSolid.cxx \
 	$(geant4gmsrc)/solids/EllipticalTube.cxx \
 	$(geant4gmsrc)/solids/ExtrudedSolid.cxx \
+	$(geant4gmsrc)/solids/Hype.cxx \
 	$(geant4gmsrc)/solids/Para.cxx \
+	$(geant4gmsrc)/solids/Paraboloid.cxx \
 	$(geant4gmsrc)/solids/Polycone.cxx \
 	$(geant4gmsrc)/solids/Polyhedra.cxx \
 	$(geant4gmsrc)/solids/SolidMap.cxx \
@@ -75,7 +77,9 @@ geant4gmsolinc_HEADERS = \
 	$(geant4gminc)/solids/DisplacedSolid.h \
 	$(geant4gminc)/solids/EllipticalTube.h \
 	$(geant4gminc)/solids/ExtrudedSolid.h \
+	$(geant4gminc)/solids/Hype.h \
 	$(geant4gminc)/solids/Para.h \
+	$(geant4gminc)/solids/Paraboloid.h \
 	$(geant4gminc)/solids/Polycone.h \
 	$(geant4gminc)/solids/Polyhedra.h \
 	$(geant4gminc)/solids/SolidMap.h \

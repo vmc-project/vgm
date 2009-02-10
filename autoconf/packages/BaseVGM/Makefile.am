@@ -31,7 +31,9 @@ libBaseVGM_la_SOURCES =                        \
 	$(basevgmsrc)/solids/VDisplacedSolid.cxx \
 	$(basevgmsrc)/solids/VEllipticalTube.cxx \
 	$(basevgmsrc)/solids/VExtrudedSolid.cxx \
+	$(basevgmsrc)/solids/VHype.cxx \
 	$(basevgmsrc)/solids/VPara.cxx \
+	$(basevgmsrc)/solids/VParaboloid.cxx \
 	$(basevgmsrc)/solids/VPolycone.cxx \
 	$(basevgmsrc)/solids/VPolyhedra.cxx \
 	$(basevgmsrc)/solids/VSphere.cxx \
@@ -67,7 +69,9 @@ basevgmsolinc_HEADERS = \
 	$(basevgminc)/solids/VDisplacedSolid.h \
 	$(basevgminc)/solids/VEllipticalTube.h \
 	$(basevgminc)/solids/VExtrudedSolid.h \
+	$(basevgminc)/solids/VHype.h \
 	$(basevgminc)/solids/VPara.h \
+	$(basevgminc)/solids/VParaboloid.h \
 	$(basevgminc)/solids/VPolycone.h \
 	$(basevgminc)/solids/VPolyhedra.h \
 	$(basevgminc)/solids/VSphere.h \

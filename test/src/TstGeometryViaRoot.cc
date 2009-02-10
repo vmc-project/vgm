@@ -30,7 +30,9 @@
 #include "TGeoBBox.h"
 #include "TGeoCone.h"
 #include "TGeoEltu.h"
+#include "TGeoHype.h"
 #include "TGeoPara.h"
+#include "TGeoParaboloid.h"
 #include "TGeoPcon.h"
 #include "TGeoPgon.h"
 #include "TGeoSphere.h"
@@ -83,7 +85,7 @@ TGeoVolume* TstGeometryViaRoot::CreateWorld(Double_t x, Double_t y, Double_t z)
 //_____________________________________________________________________________
 TGeoVolume* TstGeometryViaRoot::CreateNewSolid()
 {
-  return CreateExtrudedSolid2();
+  return CreateHype();
 }  
 
 
@@ -405,12 +407,30 @@ TGeoVolume* TstGeometryViaRoot::CreateExtrudedSolid2()
 }  
  
 //_____________________________________________________________________________
+TGeoVolume* TstGeometryViaRoot::CreateHype()
+{
+  TGeoShape* hypeS
+    = new TGeoHype("paraS", 20., 30., 30., 40., 50.);
+
+  return new TGeoVolume("hype", hypeS, fBasicMedium);
+}  
+
+//_____________________________________________________________________________
 TGeoVolume* TstGeometryViaRoot::CreatePara()
 {
   TGeoShape* paraS
     = new TGeoPara("paraS", 40., 60., 50., 30., 30., 30.);
 
   return new TGeoVolume("para", paraS, fBasicMedium);
+}  
+
+//_____________________________________________________________________________
+TGeoVolume* TstGeometryViaRoot::CreateParaboloid()
+{
+  TGeoShape* paraboloidS
+    = new TGeoParaboloid("paraboloidS", 20., 45., 50.);
+
+  return new TGeoVolume("paraboloid", paraboloidS, fBasicMedium);
 }  
 
 //_____________________________________________________________________________
@@ -575,7 +595,7 @@ TGeoVolume* TstGeometryViaRoot::PlaceSolids(TGeoVolume* mother,
   }  
  
   int counter = 0;
-  Double_t x0 = -450.;
+  Double_t x0 = -500.;
   Double_t dx =  150.;
   Double_t dy =  150.;
   
@@ -713,6 +733,24 @@ TGeoVolume* TstGeometryViaRoot::PlaceSolids(TGeoVolume* mother,
     mother->AddNode(xtru2V, 1,
                   new TGeoCombiTrans(x0 + (counter)*dx, dy, -zpos, reflect3D));
 
+  // Hype
+  //
+  TGeoVolume* hypeV = CreateHype();
+  mother->AddNode(hypeV, 0, 
+                  new TGeoTranslation(x0 + (++counter)*dx, -dy, zpos));
+  if (reflect)
+    mother->AddNode(hypeV, 1,
+                  new TGeoCombiTrans(x0 + (counter)*dx, -dy, -zpos, reflect3D));
+
+  // Paraboloid 
+  //
+  TGeoVolume* paraboloidV = CreateParaboloid();
+  mother->AddNode(paraboloidV, 0, 
+                  new TGeoTranslation(x0 + (counter)*dx, dy, zpos));
+  if (reflect)
+    mother->AddNode(paraboloidV, 1,
+                  new TGeoCombiTrans(x0 + (counter)*dx, dy, -zpos, reflect3D));
+
   return mother;   		  
 }
 
@@ -756,7 +794,7 @@ void TstGeometryViaRoot::PlaceSolids(const std::vector<TGeoVolume*>& volumes,
 {
   // Place volumes defined in the vector 
 
-  Double_t x0 = -450.;
+  Double_t x0 = -500.;
   Double_t dx =  150.;
   Double_t zpos = 100.;
   
@@ -835,7 +873,7 @@ void  TstGeometryViaRoot::DefineMaterials()
 //_____________________________________________________________________________
 void* TstGeometryViaRoot::TestSolids(Bool_t fullPhi)
 {
-  TGeoVolume* worldV = CreateWorld(600., 300., 200.);
+  TGeoVolume* worldV = CreateWorld(620., 300., 200.);
   
   PlaceSolids(worldV, fullPhi, false, 0.);
   
@@ -845,7 +883,7 @@ void* TstGeometryViaRoot::TestSolids(Bool_t fullPhi)
 //_____________________________________________________________________________
 void* TstGeometryViaRoot::TestExtraSolid(VGM::SolidType solidType)
 {
-  TGeoVolume* worldV = CreateWorld(600., 300., 200.);
+  TGeoVolume* worldV = CreateWorld(620., 300., 200.);
   
   PlaceExtraSolid(solidType, worldV);
   
@@ -880,7 +918,7 @@ void* TstGeometryViaRoot::TestNewSolid()
 //_____________________________________________________________________________
 void* TstGeometryViaRoot::TestNewSolid2()
 {
-  TGeoVolume* worldV = CreateWorld(600., 300., 200.);
+  TGeoVolume* worldV = CreateWorld(620., 300., 200.);
   
   std::vector<TGeoVolume*> volumes;
   CreateArb8Solids(volumes);
@@ -962,7 +1000,7 @@ void* TstGeometryViaRoot::TestPlacements()
 void* TstGeometryViaRoot::TestReflections(Bool_t fullPhi)
 {
 
-  TGeoVolume* worldV = CreateWorld(600., 300., 300.);
+  TGeoVolume* worldV = CreateWorld(620., 300., 300.);
   
   PlaceSolids(worldV, fullPhi, true, 100.);
 

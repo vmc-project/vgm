@@ -55,7 +55,9 @@ class TstGeometryViaGeant4 : public TstVGeometry
     G4LogicalVolume* CreateEllipticalTube();
     G4LogicalVolume* CreateExtrudedSolid1();
     G4LogicalVolume* CreateExtrudedSolid2();
+    G4LogicalVolume* CreateHype();
     G4LogicalVolume* CreatePara();
+    G4LogicalVolume* CreateParaboloid();
     G4LogicalVolume* CreatePolycone(G4double sphi, G4double dphi);
     G4LogicalVolume* CreatePolyhedra(G4double sphi, G4double dphi);
     G4LogicalVolume* CreateSphere(G4double sphi, G4double dphi);

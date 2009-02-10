@@ -4,20 +4,22 @@
 
    <define>
       <position  name="pos_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
-      <position  name="pos_1"     x="  -450.0000"  y="  -150.0000"  z="     0.0000"  unit="cm" />
-      <position  name="pos_2"     x="  -450.0000"  y="   150.0000"  z="     0.0000"  unit="cm" />
-      <position  name="pos_3"     x="  -300.0000"  y="  -150.0000"  z="     0.0000"  unit="cm" />
-      <position  name="pos_4"     x="  -300.0000"  y="   150.0000"  z="     0.0000"  unit="cm" />
-      <position  name="pos_5"     x="  -150.0000"  y="  -150.0000"  z="     0.0000"  unit="cm" />
-      <position  name="pos_6"     x="  -150.0000"  y="   150.0000"  z="     0.0000"  unit="cm" />
-      <position  name="pos_7"     x="     0.0000"  y="  -150.0000"  z="     0.0000"  unit="cm" />
-      <position  name="pos_8"     x="     0.0000"  y="   150.0000"  z="     0.0000"  unit="cm" />
-      <position  name="pos_9"     x="   150.0000"  y="  -150.0000"  z="     0.0000"  unit="cm" />
-      <position  name="pos_10"    x="   150.0000"  y="   150.0000"  z="     0.0000"  unit="cm" />
-      <position  name="pos_11"    x="   300.0000"  y="  -150.0000"  z="     0.0000"  unit="cm" />
-      <position  name="pos_12"    x="   300.0000"  y="   150.0000"  z="     0.0000"  unit="cm" />
-      <position  name="pos_13"    x="   450.0000"  y="  -150.0000"  z="     0.0000"  unit="cm" />
-      <position  name="pos_14"    x="   450.0000"  y="   150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_1"     x="  -500.0000"  y="  -150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_2"     x="  -500.0000"  y="   150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_3"     x="  -350.0000"  y="  -150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_4"     x="  -350.0000"  y="   150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_5"     x="  -200.0000"  y="  -150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_6"     x="  -200.0000"  y="   150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_7"     x="   -50.0000"  y="  -150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_8"     x="   -50.0000"  y="   150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_9"     x="   100.0000"  y="  -150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_10"    x="   100.0000"  y="   150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_11"    x="   250.0000"  y="  -150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_12"    x="   250.0000"  y="   150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_13"    x="   400.0000"  y="  -150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_14"    x="   400.0000"  y="   150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_15"    x="   550.0000"  y="  -150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_16"    x="   550.0000"  y="   150.0000"  z="     0.0000"  unit="cm" />
 
       <rotation  name="rot_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
 
@@ -40,7 +42,7 @@
    <solids>
       <box  lunit="cm" aunit="degree"
          name="world_s"
-         x=" 1200.0000"  y="  600.0000"  z="  400.0000" />
+         x=" 1240.0000"  y="  600.0000"  z="  400.0000" />
 
       <box  lunit="cm" aunit="degree"
          name="box_s"
@@ -183,6 +185,16 @@
          <rotation  name="rotB_2"    x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
       </union>
 
+      <hype  lunit="cm" aunit="degree"
+         name="hype_s"
+         rmin="   20.0000"  rmax="   30.0000"
+         inst="   30.0000"  outst="   40.0000"
+         z="  100.0000" />
+
+      <paraboloid  lunit="cm" aunit="degree"
+         name="paraboloid_s"
+         rlo="   20.0000"  rhi="   45.0000"  dz="   50.0000" />
+
    </solids>
 
    <structure>
@@ -256,6 +268,16 @@
          <solidref ref="xtru2_s"/>
       </volume>
 
+      <volume name="hype">
+         <materialref ref="Basic"/>
+         <solidref ref="hype_s"/>
+      </volume>
+
+      <volume name="paraboloid">
+         <materialref ref="Basic"/>
+         <solidref ref="paraboloid_s"/>
+      </volume>
+
       <volume name="world">
          <materialref ref="Basic"/>
          <solidref ref="world_s"/>
@@ -327,6 +349,16 @@
          <physvol>
             <volumeref ref="xtru2"/>
                <positionref ref="pos_14"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="hype"/>
+               <positionref ref="pos_15"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="paraboloid"/>
+               <positionref ref="pos_16"/>
                <rotationref ref="rot_0"/>
          </physvol>
       </volume>

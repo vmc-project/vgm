@@ -35,7 +35,9 @@
 #include "RootGM/solids/Ctubs.h"
 #include "RootGM/solids/EllipticalTube.h"
 #include "RootGM/solids/ExtrudedSolid.h"
+#include "RootGM/solids/Hype.h"
 #include "RootGM/solids/Para.h"
+#include "RootGM/solids/Paraboloid.h"
 #include "RootGM/solids/Polycone.h"
 #include "RootGM/solids/Polyhedra.h"
 #include "RootGM/solids/Sphere.h"
@@ -52,6 +54,8 @@
 #include "TGeoCone.h"
 #include "TGeoEltu.h"
 #include "TGeoPara.h"
+#include "TGeoHype.h"
+#include "TGeoParaboloid.h"
 #include "TGeoPcon.h"
 #include "TGeoPgon.h"
 #include "TGeoSphere.h"
@@ -179,11 +183,25 @@ RootGM::Factory::ImportSolid(TGeoShape* shape)
     return vgmCons; 
   }
 
+  TGeoHype* hype = dynamic_cast<TGeoHype*>(shape);
+  if (hype) { 
+    VGM::IHype* vgmHype = new RootGM::Hype(hype);
+    SolidStore().push_back(vgmHype);
+    return vgmHype; 
+  }
+
   TGeoPara* para = dynamic_cast<TGeoPara*>(shape);
   if (para) { 
     VGM::IPara* vgmPara = new RootGM::Para(para);
     SolidStore().push_back(vgmPara);
     return vgmPara; 
+  }
+
+  TGeoParaboloid* paraboloid = dynamic_cast<TGeoParaboloid*>(shape);
+  if (paraboloid) { 
+    VGM::IParaboloid* vgmParaboloid = new RootGM::Paraboloid(paraboloid);
+    SolidStore().push_back(vgmParaboloid);
+    return vgmParaboloid; 
   }
 
   TGeoPgon* polyhedra = dynamic_cast<TGeoPgon*>(shape);
@@ -620,6 +638,20 @@ RootGM::Factory::CreateEllipticalTube(const std::string& name,
 			       
 //_____________________________________________________________________________
 VGM::ISolid*  
+RootGM::Factory::CreateHype(const std::string& name, 
+                            double r1, double r2, double stereo1, double stereo2,
+                            double hz)
+{			       
+//
+  VGM::ISolid* vgmSolid 
+    = new RootGM::Hype(name, r1, r2, stereo1, stereo2, hz);
+
+  SolidStore().push_back(vgmSolid);
+  return vgmSolid; 
+}  			     
+			       
+//_____________________________________________________________________________
+VGM::ISolid*  
 RootGM::Factory::CreatePara(const std::string& name, 
                             double dx, double dy, double dz,
 	                    double alpha, double theta, double phi)
@@ -627,6 +659,19 @@ RootGM::Factory::CreatePara(const std::string& name,
 //
   VGM::ISolid* vgmSolid 
     = new RootGM::Para(name, dx, dy, dz, alpha, theta, phi);
+
+  SolidStore().push_back(vgmSolid);
+  return vgmSolid; 
+}  			     
+			       
+//_____________________________________________________________________________
+VGM::ISolid*  
+RootGM::Factory::CreateParaboloid(const std::string& name, 
+                            double r1, double r2, double hz)
+{			       
+//
+  VGM::ISolid* vgmSolid 
+    = new RootGM::Paraboloid(name, r1, r2, hz);
 
   SolidStore().push_back(vgmSolid);
   return vgmSolid; 

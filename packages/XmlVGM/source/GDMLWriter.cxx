@@ -24,7 +24,9 @@
 #include "VGM/solids/ICtubs.h"
 #include "VGM/solids/IEllipticalTube.h"
 #include "VGM/solids/IExtrudedSolid.h"
+#include "VGM/solids/IHype.h"
 #include "VGM/solids/IPara.h"
+#include "VGM/solids/IParaboloid.h"
 #include "VGM/solids/IPolycone.h"
 #include "VGM/solids/IPolyhedra.h"
 #include "VGM/solids/ISphere.h"
@@ -540,6 +542,51 @@ void XmlVGM::GDMLWriter::WriteExtrudedSolid(
   delete [] scaleArray;			      
 }  
 
+//_____________________________________________________________________________
+void XmlVGM::GDMLWriter::WriteHype(
+                              std::string name, 
+			      const VGM::IHype* hype)
+{
+/// Write VGM::IPara solid
+
+  // get parameters
+  double rin  = hype->InnerRadius()/LengthUnit();
+  double rout = hype->OuterRadius()/LengthUnit();
+  double dz   = hype->ZHalfLength()/LengthUnit();
+  double stereoin  = hype->InnerStereoAngle()/AngleUnit();
+  double stereoout = hype->OuterStereoAngle()/AngleUnit();
+
+  // convert half lengths to full lengths
+  if (fFullLengths) {
+    dz *= 2.;
+  }  
+
+  // compose element string template
+  std::string quota = "\"";
+  std::string element1 = "<hype  lunit=\"cm\" aunit=\"degree\"";
+  std::string element2 = "name=\"" + name + quota;
+  std::string element3 = "rmin=\"";
+  std::string element4 = "rmax=\"";
+  std::string element5 = "inst=\"";
+  std::string element6 = "outst=\"";
+  std::string element7 = "z=\"";
+  std::string element8 = "\" />";
+  std::string indention = fIndention + fkBasicIndention;
+  
+  // write element
+  fOutFile << fIndention << element1 << std::endl  
+           << indention  << element2 << std::endl
+	   << indention        
+	   << element3 << std::setw(fNW) << std::setprecision(fNP) << rin << quota << "  "
+	   << element4 << std::setw(fNW) << std::setprecision(fNP) << rout << quota  << std::endl
+	   << indention        
+	   << element5 << std::setw(fNW) << std::setprecision(fNP) << stereoin << quota  << "  "
+	   << element6 << std::setw(fNW) << std::setprecision(fNP) << stereoout << quota << std::endl
+	   << indention        
+	   << element7 << std::setw(fNW) << std::setprecision(fNP) << dz << element8 
+           << std::endl << std::endl;
+}
+ 
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WritePara(
@@ -588,6 +635,51 @@ void XmlVGM::GDMLWriter::WritePara(
 	   << element7 << std::setw(fNW) << std::setprecision(fNP) << theta << quota << "  "
 	   << element8 << std::setw(fNW) << std::setprecision(fNP) << phi 
 	   << element9 << std::endl << std::endl;
+}
+ 
+//_____________________________________________________________________________
+void XmlVGM::GDMLWriter::WriteParaboloid(
+                              std::string name, 
+			      const VGM::IParaboloid* paraboloid)
+{
+/// Write VGM::IPara solid
+
+  // get parameters
+  double rlo = paraboloid->RadiusMinusZ()/LengthUnit();
+  double rhi = paraboloid->RadiusPlusZ()/LengthUnit();
+  double dz  = paraboloid->ZHalfLength()/LengthUnit();
+
+  // switch rlo, rhi if rhi < rlo
+  // to make sure that GDML can be loaded by Geant4, which does not allow rhi < rlo
+  if ( rhi < rlo ) {
+    double tmp = rlo;
+    rlo = rhi;
+    rhi = tmp;
+  }  
+
+  // convert half lengths to full lengths
+  // if (fFullLengths) {
+  //  dz *= 2.;
+  //}  
+  
+  // compose element string template
+  std::string quota = "\"";
+  std::string element1 = "<paraboloid  lunit=\"cm\" aunit=\"degree\"";
+  std::string element2 = "name=\"" + name + quota;
+  std::string element3 = "rlo=\"";
+  std::string element4 = "rhi=\"";
+  std::string element5 = "dz=\"";
+  std::string element6 = "\" />";
+  std::string indention = fIndention + fkBasicIndention;
+  
+  // write element
+  fOutFile << fIndention << element1 << std::endl  
+           << indention  << element2 << std::endl
+	   << indention        
+	   << element3 << std::setw(fNW) << std::setprecision(fNP) << rlo << quota << "  "
+	   << element4 << std::setw(fNW) << std::setprecision(fNP) << rhi << quota << "  "
+	   << element5 << std::setw(fNW) << std::setprecision(fNP) << dz << element6 
+           << std::endl << std::endl;
 }
  
 //_____________________________________________________________________________
@@ -1629,9 +1721,19 @@ void XmlVGM::GDMLWriter::WriteSolid(
     WriteExtrudedSolid(solidName, extruded); 
     return;   
   }
+  else if (solidType == VGM::kHype) { 
+    const VGM::IHype* hype = dynamic_cast<const VGM::IHype*>(solid); 
+    WriteHype(solidName, hype); 
+    return;   
+  }
   else if (solidType == VGM::kPara) { 
     const VGM::IPara* para = dynamic_cast<const VGM::IPara*>(solid); 
     WritePara(solidName, para); 
+    return;   
+  }
+  else if (solidType == VGM::kParaboloid) { 
+    const VGM::IParaboloid* paraboloid = dynamic_cast<const VGM::IParaboloid*>(solid); 
+    WriteParaboloid(solidName, paraboloid); 
     return;   
   }
   else if (solidType == VGM::kPolycone) { 
@@ -1811,6 +1913,13 @@ void XmlVGM::GDMLWriter::WritePlacement(
     if ( booleanSolid && booleanSolid->ToBeReflected() )
        transform[VGM::kReflZ] = 1;
         
+    // If paraboloid that have to be reflected,
+    // set reflection to the transformation
+    VGM::IParaboloid* paraboloid 
+      = dynamic_cast<VGM::IParaboloid*>(placement.Volume()->Solid());
+    if ( paraboloid && paraboloid->RadiusPlusZ() <=  paraboloid->RadiusMinusZ() )
+       transform[VGM::kReflZ] = 1;
+
     // Get info about reflection
     bool isReflection = ClhepVGM::HasReflection(transform);
 

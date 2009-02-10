@@ -34,7 +34,9 @@ std::string VGM::SolidTypeName(VGM::SolidType typeId)
     case kCtubs:        return "Ctubs";     break;
     case kEltu:         return "Eltu";      break;
     case kExtruded:     return "Extruded";  break;
+    case kHype:         return "Hype";      break;
     case kPara:         return "Para";      break;
+    case kParaboloid:   return "Paraboloid";break;
     case kPolycone:     return "Polycone";  break;
     case kPolyhedra:    return "Polygone";  break;
     case kSphere:       return "Sphere";    break;

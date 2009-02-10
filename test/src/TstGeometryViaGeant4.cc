@@ -35,7 +35,9 @@
 #include "G4Cons.hh"
 #include "G4EllipticalTube.hh"
 #include "G4ExtrudedSolid.hh"
+#include "G4Hype.hh"
 #include "G4Para.hh"
+#include "G4Paraboloid.hh"
 #include "G4Polycone.hh"
 #include "G4Polyhedra.hh"
 #include "G4Sphere.hh"
@@ -97,7 +99,7 @@ G4LogicalVolume* TstGeometryViaGeant4::CreateNewSolid()
 // Create a new solid
 // ---
 
-  return CreateExtrudedSolid2();
+  return CreateHype();
 }    
 
 //_____________________________________________________________________________
@@ -195,6 +197,15 @@ G4LogicalVolume* TstGeometryViaGeant4::CreateExtrudedSolid2()
 }  
  
 //_____________________________________________________________________________
+G4LogicalVolume* TstGeometryViaGeant4::CreateHype()
+{
+  G4VSolid* hypeS
+    = new G4Hype("hypeS", 20.*cm, 30.*cm, 30.0*deg, 40.0*deg, 50.*cm);
+
+  return new G4LogicalVolume(hypeS, fBasicMaterial, "hype");
+}  
+
+//_____________________________________________________________________________
 G4LogicalVolume* TstGeometryViaGeant4::CreatePara()
 {
   G4VSolid* paraS
@@ -202,6 +213,15 @@ G4LogicalVolume* TstGeometryViaGeant4::CreatePara()
                   30.*deg, 30.*deg, 30.*deg);
 
   return new G4LogicalVolume(paraS, fBasicMaterial, "para");
+}  
+
+//_____________________________________________________________________________
+G4LogicalVolume* TstGeometryViaGeant4::CreateParaboloid()
+{
+  G4VSolid* paraboloidS
+    = new G4Paraboloid("paraboloidS", 50.*cm, 20.*cm, 45.*cm);
+
+  return new G4LogicalVolume(paraboloidS, fBasicMaterial, "paraboloid");
 }  
 
 //_____________________________________________________________________________
@@ -465,7 +485,7 @@ TstGeometryViaGeant4::PlaceSolids(G4LogicalVolume* mother,
   }  
  
   G4int counter = 0;
-  G4double x0 = -4.5*m;
+  G4double x0 = -5.0*m;
   G4double dx =  1.5*m;
   G4double dy =  1.5*m;
   
@@ -641,7 +661,7 @@ TstGeometryViaGeant4::PlaceSolids(G4LogicalVolume* mother,
 	      "xtru1", xtru1V, mother, false, 0);
   }	      
 
-  // CTubs
+  // Xtru2
   //
   G4LogicalVolume* xtru2V = CreateExtrudedSolid2();
   new G4PVPlacement(
@@ -652,6 +672,32 @@ TstGeometryViaGeant4::PlaceSolids(G4LogicalVolume* mother,
     G4ReflectionFactory::Instance()
       ->Place(HepGeom::Translate3D(x0 + (counter)*dx, dy, -zpos) * reflect3D,
 	      "xtru2", xtru2V, mother, false, 0);
+  }	      
+
+  // Hype
+  //
+  G4LogicalVolume* hypeV = CreateHype();
+  new G4PVPlacement(
+               HepGeom::Translate3D(x0 + (++counter)*dx, -dy, zpos),
+	       hypeV, "hype", mother, false, 0);
+
+  if (reflect) {
+    G4ReflectionFactory::Instance()
+      ->Place(HepGeom::Translate3D(x0 + (counter)*dx, -dy, -zpos) * reflect3D,
+	      "hype", hypeV, mother, false, 0);
+  }	      
+
+  // Paraboloid
+  //
+  G4LogicalVolume* paraboloidV = CreateParaboloid();
+  new G4PVPlacement(
+               HepGeom::Translate3D(x0 + (counter)*dx, dy, zpos),
+	       paraboloidV, "paraboloid", mother, false, 0);
+
+  if (reflect) {
+    G4ReflectionFactory::Instance()
+      ->Place(HepGeom::Translate3D(x0 + (counter)*dx, dy, -zpos) * reflect3D,
+	      "paraboloid", paraboloidV, mother, false, 0);
   }	      
 
  
@@ -751,7 +797,7 @@ void  TstGeometryViaGeant4::DefineMaterials()
 void* TstGeometryViaGeant4::TestSolids(G4bool fullPhi)
 {
 
-  G4LogicalVolume* worldV = CreateWorld(6.*m, 3.*m, 2.*m);
+  G4LogicalVolume* worldV = CreateWorld(6.2*m, 3.*m, 2.*m);
   G4VPhysicalVolume* world
     = new G4PVPlacement(0, CLHEP::Hep3Vector(), worldV, "world", 0, false, 0); 
   
@@ -764,7 +810,7 @@ void* TstGeometryViaGeant4::TestSolids(G4bool fullPhi)
 void* TstGeometryViaGeant4::TestExtraSolid(VGM::SolidType solidType)
 {
 
-  G4LogicalVolume* worldV = CreateWorld(6.*m, 3.*m, 2.*m);
+  G4LogicalVolume* worldV = CreateWorld(6.2*m, 3.*m, 2.*m);
   G4VPhysicalVolume* world
     = new G4PVPlacement(0, CLHEP::Hep3Vector(), worldV, "world", 0, false, 0); 
   
@@ -893,7 +939,7 @@ void* TstGeometryViaGeant4::TestReflections(G4bool fullPhi)
 
   // World
   //
-  G4LogicalVolume* worldV = CreateWorld(6.*m, 3.*m, 3.*m);
+  G4LogicalVolume* worldV = CreateWorld(6.2*m, 3.*m, 3.*m);
   G4VPhysicalVolume* world
     = new G4PVPlacement(0, CLHEP::Hep3Vector(), worldV, "world", 0, false, 0); 
   

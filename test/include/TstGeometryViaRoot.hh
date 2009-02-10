@@ -62,7 +62,9 @@ class TstGeometryViaRoot : public TstVGeometry
     TGeoVolume* CreateEllipticalTube();
     TGeoVolume* CreateExtrudedSolid1();
     TGeoVolume* CreateExtrudedSolid2();
+    TGeoVolume* CreateHype();
     TGeoVolume* CreatePara();
+    TGeoVolume* CreateParaboloid();
     TGeoVolume* CreatePolycone(Double_t sphi, Double_t dphi);
     TGeoVolume* CreatePolyhedra(Double_t sphi, Double_t dphi);
     TGeoVolume* CreateSphere(Double_t sphi, Double_t dphi);

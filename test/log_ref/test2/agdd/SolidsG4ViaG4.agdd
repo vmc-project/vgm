@@ -6,7 +6,7 @@
 <xi:include href="StandardColors.agdd"/>
 
 <materials  version = "Id: AGDDWriter.cxx 634 2008-11-20 13:28:44Z ihrivnac "
-            date    = "2009-02-06"
+            date    = "2009-02-10"
             author  = "VGM AGGD Writer"
             DTD_version="v7"  >
 
@@ -22,7 +22,7 @@
 </materials>
 
 <media  version = "Id: AGDDWriter.cxx 634 2008-11-20 13:28:44Z ihrivnac "
-        date    = "2009-02-06"
+        date    = "2009-02-10"
         author  = "VGM AGGD Writer"
         DTD_version="v7"  >
 
@@ -37,13 +37,13 @@
 <section DTD_version = "v7"
          name        = "world"
          version     = "Id: AGDDWriter.cxx 634 2008-11-20 13:28:44Z ihrivnac "
-         date        = "2009-02-06"
+         date        = "2009-02-10"
          author      = "VGM AGGD Writer"
          top_volume  = "world_comp"  >
 
    <box    name="world"
       medium="Basic"
-      X_Y_Z="1200.0000; 600.0000; 400.0000" />
+      X_Y_Z="1240.0000; 600.0000; 400.0000" />
 
    <box    name="box"
       medium="Basic"
@@ -168,35 +168,51 @@
       </posXYZ>
    </union>
 
+   <!-- !!! unsupported shape  !!!  name= "hype" -->
+   <!-- dummy box is written instead  -->
+   <box    name="hype"
+      medium="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
+   <!-- !!! unsupported shape  !!!  name= "paraboloid" -->
+   <!-- dummy box is written instead  -->
+   <box    name="paraboloid"
+      medium="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
 
    <composition name="world_comp">
-      <posXYZ   X_Y_Z="-450.0000; -150.0000;   0.0000"> <volume name="box"/>
+      <posXYZ   X_Y_Z="-500.0000; -150.0000;   0.0000"> <volume name="box"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="-450.0000; 150.0000;   0.0000"> <volume name="cons"/>
+      <posXYZ   X_Y_Z="-500.0000; 150.0000;   0.0000"> <volume name="cons"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="-300.0000; -150.0000;   0.0000"> <volume name="eltu"/>
+      <posXYZ   X_Y_Z="-350.0000; -150.0000;   0.0000"> <volume name="eltu"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="-300.0000; 150.0000;   0.0000"> <volume name="para"/>
+      <posXYZ   X_Y_Z="-350.0000; 150.0000;   0.0000"> <volume name="para"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="-150.0000; -150.0000;   0.0000"> <volume name="pcone"/>
+      <posXYZ   X_Y_Z="-200.0000; -150.0000;   0.0000"> <volume name="pcone"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="-150.0000; 150.0000;   0.0000"> <volume name="phedra"/>
+      <posXYZ   X_Y_Z="-200.0000; 150.0000;   0.0000"> <volume name="phedra"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="  0.0000; -150.0000;   0.0000"> <volume name="sphere"/>
+      <posXYZ   X_Y_Z="-50.0000; -150.0000;   0.0000"> <volume name="sphere"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="  0.0000; 150.0000;   0.0000"> <volume name="torus"/>
+      <posXYZ   X_Y_Z="-50.0000; 150.0000;   0.0000"> <volume name="torus"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="150.0000; -150.0000;   0.0000"> <volume name="trap"/>
+      <posXYZ   X_Y_Z="100.0000; -150.0000;   0.0000"> <volume name="trap"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="150.0000; 150.0000;   0.0000"> <volume name="trd"/>
+      <posXYZ   X_Y_Z="100.0000; 150.0000;   0.0000"> <volume name="trd"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="300.0000; -150.0000;   0.0000"> <volume name="tubs"/>
+      <posXYZ   X_Y_Z="250.0000; -150.0000;   0.0000"> <volume name="tubs"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="300.0000; 150.0000;   0.0000"> <volume name="ctubs"/>
+      <posXYZ   X_Y_Z="250.0000; 150.0000;   0.0000"> <volume name="ctubs"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="450.0000; -150.0000;   0.0000"> <volume name="xtru1"/>
+      <posXYZ   X_Y_Z="400.0000; -150.0000;   0.0000"> <volume name="xtru1"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="450.0000; 150.0000;   0.0000"> <volume name="xtru2"/>
+      <posXYZ   X_Y_Z="400.0000; 150.0000;   0.0000"> <volume name="xtru2"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="550.0000; -150.0000;   0.0000"> <volume name="hype"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="550.0000; 150.0000;   0.0000"> <volume name="paraboloid"/>
       </posXYZ>
    </composition>
 
