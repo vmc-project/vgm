@@ -82,7 +82,7 @@ IVolume* TstGeometryViaVGM::CreateWorld(double x, double y, double z)
 //_____________________________________________________________________________
 IVolume* TstGeometryViaVGM::CreateNewSolid()
 {
-  return CreateExtrudedSolid2();
+  return CreateHype();
 }  
 
 
@@ -322,6 +322,16 @@ IVolume* TstGeometryViaVGM::CreateExtrudedSolid2()
 }  
  
 //_____________________________________________________________________________
+IVolume* TstGeometryViaVGM::CreateHype()
+{
+  ISolid* hypeS
+    = fFactory->CreateHype("hypeS", 20.* fCm, 30.* fCm, 30.* fDeg, 
+                           40.* fDeg, 50.*fCm);
+
+  return fFactory->CreateVolume("hype", hypeS, "Basic");
+}  
+
+//_____________________________________________________________________________
 IVolume* TstGeometryViaVGM::CreatePara()
 {
   ISolid* paraS
@@ -329,6 +339,15 @@ IVolume* TstGeometryViaVGM::CreatePara()
                            30.* fDeg, 30.* fDeg, 30.* fDeg);
 
   return fFactory->CreateVolume("para", paraS, "Basic");
+}  
+
+//_____________________________________________________________________________
+IVolume* TstGeometryViaVGM::CreateParaboloid()
+{
+  ISolid* paraboloidS
+    = fFactory->CreateParaboloid("paraboloidS", 20.* fCm, 45.* fCm, 50.* fCm);
+
+  return fFactory->CreateVolume("paraboloid", paraboloidS, "Basic");
 }  
 
 //_____________________________________________________________________________
@@ -524,7 +543,7 @@ void* TstGeometryViaVGM::PlaceSolids(IVolume* mother,
   }  
  
   int counter = 0;
-  double x0 = -450.*fCm;
+  double x0 = -500.*fCm;
   double dx = 150.*fCm;
   double dy = 150.*fCm;
   
@@ -684,6 +703,28 @@ void* TstGeometryViaVGM::PlaceSolids(IVolume* mother,
                  ClhepVGM::Transform(
                    HepGeom::Translate3D(x0 + (counter)*dx, dy, -zpos) * reflect3D));
 
+  // Hype
+  //
+  IVolume* hypeV = CreateHype();
+  fFactory->CreatePlacement("hype", 0, hypeV, mother, 
+               ClhepVGM::Transform(
+                 HepGeom::Translate3D(x0 + (++counter)*dx, -dy, zpos)));
+  if (reflect)
+    fFactory->CreatePlacement("hype", 0, hypeV, mother, 
+                 ClhepVGM::Transform(
+                   HepGeom::Translate3D(x0 + (counter)*dx, -dy, -zpos) * reflect3D));
+
+  // Paraboloid
+  //
+  IVolume* paraboloidV = CreateParaboloid();
+  fFactory->CreatePlacement("paraboloid", 0, paraboloidV, mother, 
+               ClhepVGM::Transform(
+                 HepGeom::Translate3D(x0 + (counter)*dx, dy, zpos)));
+  if (reflect)
+    fFactory->CreatePlacement("paraboloid", 0, paraboloidV, mother, 
+                 ClhepVGM::Transform(
+                   HepGeom::Translate3D(x0 + (counter)*dx, dy, -zpos) * reflect3D));
+
   return (void*) fFactory->Top();
  }
 
@@ -693,7 +734,7 @@ void TstGeometryViaVGM::PlaceSolids(const std::vector<VGM::IVolume*>& volumes,
 {
   // Place volumes defined in the vector 
 
-  double x0 = -450.*fCm;
+  double x0 = -500.*fCm;
   double dx =  150.*fCm;
   double zpos = 100.*fCm;
   
@@ -849,7 +890,7 @@ void  TstGeometryViaVGM::DefineMaterials()
 //_____________________________________________________________________________
 void* TstGeometryViaVGM::TestSolids(bool fullPhi)
 {
-  IVolume* worldV = CreateWorld(600.*fCm, 300.*fCm, 200.*fCm);
+  IVolume* worldV = CreateWorld(620.*fCm, 300.*fCm, 200.*fCm);
   fFactory->CreatePlacement("world", 0, worldV, 0, ClhepVGM::Identity());
   
   PlaceSolids(worldV, fullPhi, false, 0.);
@@ -860,7 +901,7 @@ void* TstGeometryViaVGM::TestSolids(bool fullPhi)
 //_____________________________________________________________________________
 void* TstGeometryViaVGM::TestExtraSolid(VGM::SolidType solidType)
 {
-  IVolume* worldV = CreateWorld(600.*fCm, 300.*fCm, 200.*fCm);
+  IVolume* worldV = CreateWorld(620.*fCm, 300.*fCm, 200.*fCm);
   fFactory->CreatePlacement("world", 0, worldV, 0, ClhepVGM::Identity());
   
   PlaceExtraSolid(solidType, worldV);
@@ -979,7 +1020,7 @@ void* TstGeometryViaVGM::TestPlacements()
 //_____________________________________________________________________________
 void* TstGeometryViaVGM::TestReflections(bool fullPhi)
 {
-  IVolume* worldV = CreateWorld(600.*fCm, 300.*fCm, 300.*fCm);
+  IVolume* worldV = CreateWorld(620.*fCm, 300.*fCm, 300.*fCm);
   fFactory->CreatePlacement("world", 0, worldV, 0, ClhepVGM::Identity());
   
   PlaceSolids(worldV, fullPhi, true, 100.* fCm);

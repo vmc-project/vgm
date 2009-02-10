@@ -221,6 +221,18 @@ Planes:
   Displacement translation (object):  ( 0,  0,  0) mm 
   Displacement rotation (object):  (0,  -0,  0) deg    no reflectionZ
 VGM info:   ImportDaughters for xtru2_refl
+VGM info:   Importing LV: hype
+VGM info:   Importing solid: hypeS
+VGM info:   ImportDaughters for hype
+VGM info:   Importing LV: hype_refl
+VGM info:   Importing solid: hypeS_refl
+VGM info:   ImportDaughters for hype_refl
+VGM info:   Importing LV: paraboloid
+VGM info:   Importing solid: paraboloidS
+VGM info:   ImportDaughters for paraboloid
+VGM info:   Importing LV: paraboloid_refl
+VGM info:   Importing solid: paraboloidS_refl
+VGM info:   ImportDaughters for paraboloid_refl
 VGM info:   Import positions: 
 VGM info:   0th volume: world  
 VGM info:      0th daughter  lv=box vgmVol=box
@@ -251,6 +263,10 @@ VGM info:      24th daughter  lv=xtru1 vgmVol=xtru1
 VGM info:      25th daughter  lv=xtru1_refl vgmVol=xtru1_refl
 VGM info:      26th daughter  lv=xtru2 vgmVol=xtru2
 VGM info:      27th daughter  lv=xtru2_refl vgmVol=xtru2_refl
+VGM info:      28th daughter  lv=hype vgmVol=hype
+VGM info:      29th daughter  lv=hype_refl vgmVol=hype_refl
+VGM info:      30th daughter  lv=paraboloid vgmVol=paraboloid
+VGM info:      31th daughter  lv=paraboloid_refl vgmVol=paraboloid_refl
 VGM info:   1th volume: box  
 VGM info:   2th volume: box_refl  
 VGM info:   3th volume: cons  
@@ -279,9 +295,13 @@ VGM info:   25th volume: xtru1
 VGM info:   26th volume: xtru1_refl  
 VGM info:   27th volume: xtru2  
 VGM info:   28th volume: xtru2_refl  
+VGM info:   29th volume: hype  
+VGM info:   30th volume: hype_refl  
+VGM info:   31th volume: paraboloid  
+VGM info:   32th volume: paraboloid_refl  
 VGM info:   
 Geant4_GM_Factory factory solids store: 
-   0th solid: Box  "worldS"  hx = 6000mm  hy = 3000mm  hz = 3000mm
+   0th solid: Box  "worldS"  hx = 6200mm  hy = 3000mm  hz = 3000mm
    1th solid: Box  "boxS"  hx = 200mm  hy = 600mm  hz = 500mm
    2th solid: Box  "boxS"  hx = 200mm  hy = 600mm  hz = 500mm
    3th solid: Cons  "consS"  rin1 = 100mm  rout1 = 400mm  rin2 = 200mm  rout2 = 600mm  hz = 500mm  sphi = 0deg  dphi = 360deg
@@ -408,8 +428,12 @@ Planes:
 
   Displacement translation (object):  ( 0,  0,  0) mm 
   Displacement rotation (object):  (0,  -0,  0) deg    no reflectionZ
+   35th solid: Hype  "hypeS"  r1 = 200mm  stereo1 = 30deg  r2 = 300mm  stereo1 = 40deg  hz = 500mm
+   36th solid: Hype  "hypeS"  r1 = 200mm  stereo1 = 30deg  r2 = 300mm  stereo1 = 40deg  hz = 500mm
+   37th solid: Paraboloid  "paraboloidS"  r1 = 200mm  r2 = 450mm  hz = 500mm
+   38th solid: Paraboloid  "paraboloidS"  r1 = 450mm  r2 = 200mm  hz = 500mm
 Geant4_GM_Factory factory volumes store: 
-   0th: Volume: "world" material "Basic" solid "Box"  28 daughters: "box"  "box"  "cons"  "cons"  "eltu"  "eltu"  "para"  "para"  "pcone"  "pcone"  "phedra"  "phedra"  "sphere"  "sphere"  "torus"  "torus"  "trap"  "trap"  "trd"  "trd"  "tubs"  "tubs"  "ctubs"  "ctubs"  "xtru1"  "xtru1"  "xtru2"  "xtru2"  
+   0th: Volume: "world" material "Basic" solid "Box"  32 daughters: "box"  "box"  "cons"  "cons"  "eltu"  "eltu"  "para"  "para"  "pcone"  "pcone"  "phedra"  "phedra"  "sphere"  "sphere"  "torus"  "torus"  "trap"  "trap"  "trd"  "trd"  "tubs"  "tubs"  "ctubs"  "ctubs"  "xtru1"  "xtru1"  "xtru2"  "xtru2"  "hype"  "hype"  "paraboloid"  "paraboloid"  
    1th: Volume: "box" material "Basic" solid "Box"  0 daughters: 
    2th: Volume: "box_refl" material "Basic" solid "Box"  0 daughters: 
    3th: Volume: "cons" material "Basic" solid "Cons"  0 daughters: 
@@ -438,6 +462,10 @@ Geant4_GM_Factory factory volumes store:
    26th: Volume: "xtru1_refl" material "Basic" solid "Extruded"  0 daughters: 
    27th: Volume: "xtru2" material "Basic" solid "Boolean"  0 daughters: 
    28th: Volume: "xtru2_refl" material "Basic" solid "Boolean"  0 daughters: 
+   29th: Volume: "hype" material "Basic" solid "Hype"  0 daughters: 
+   30th: Volume: "hype_refl" material "Basic" solid "Hype"  0 daughters: 
+   31th: Volume: "paraboloid" material "Basic" solid "Paraboloid"  0 daughters: 
+   32th: Volume: "paraboloid_refl" material "Basic" solid "Paraboloid"  0 daughters: 
 VGM info:   Geant4GM::Factory::Import finished.
 Import finished
 Visualization Manager initialising...

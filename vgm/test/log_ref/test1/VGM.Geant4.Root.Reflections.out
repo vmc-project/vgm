@@ -113,6 +113,14 @@ Planes:
   Displacement rotation (object):  (0,  -0,  0) deg    no reflectionZ
 VGM info:   ImportDaughters for xtru2_refl
 VGM info:   ImportPositions for lv xtru2_refl nofDaughters: 0
+VGM info:   Importing LV: hype_refl
+VGM info:   Importing solid: hypeS_refl
+VGM info:   ImportDaughters for hype_refl
+VGM info:   ImportPositions for lv hype_refl nofDaughters: 0
+VGM info:   Importing LV: paraboloid_refl
+VGM info:   Importing solid: paraboloidS_refl
+VGM info:   ImportDaughters for paraboloid_refl
+VGM info:   ImportPositions for lv paraboloid_refl nofDaughters: 0
 TestReflections finished
 Go to export
 VGM info:   Exporting isotope: 
@@ -182,7 +190,7 @@ VGM info:   Exporting medium:
 VGM info:   Medium: "Vacuum"  material Vacuum g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
 VGM info:   Exporting volume store: 
 VGM info:   Exporting solid: 
-VGM info:      Box  "worldS"  hx = 6000mm  hy = 3000mm  hz = 3000mm
+VGM info:      Box  "worldS"  hx = 6200mm  hy = 3000mm  hz = 3000mm
 VGM info:      0th volume: world   material: Basic
 VGM info:   Exporting solid: 
 VGM info:      Box  "boxS"  hx = 200mm  hy = 600mm  hz = 500mm
@@ -356,6 +364,18 @@ Planes:
   z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
 
 VGM info:      28th volume: xtru2_refl   material: Basic
+VGM info:   Exporting solid: 
+VGM info:      Hype  "hypeS"  r1 = 200mm  stereo1 = 30deg  r2 = 300mm  stereo1 = 40deg  hz = 500mm
+VGM info:      29th volume: hype   material: Basic
+VGM info:   Exporting solid: 
+VGM info:      Hype  "hypeS"  r1 = 200mm  stereo1 = 30deg  r2 = 300mm  stereo1 = 40deg  hz = 500mm
+VGM info:      30th volume: hype_refl   material: Basic
+VGM info:   Exporting solid: 
+VGM info:      Paraboloid  "paraboloidS"  r1 = 200mm  r2 = 450mm  hz = 500mm
+VGM info:      31th volume: paraboloid   material: Basic
+VGM info:   Exporting solid: 
+VGM info:      Paraboloid  "paraboloidS"  r1 = 450mm  r2 = 200mm  hz = 500mm
+VGM info:      32th volume: paraboloid_refl   material: Basic
 VGM info:   ExportPlacements for 0th volume world
 VGM info:      0th daughter vol = box  simple placement: box
 VGM info:      1th daughter vol = box_refl  simple placement: box
@@ -385,6 +405,10 @@ VGM info:      24th daughter vol = xtru1  simple placement: xtru1
 VGM info:      25th daughter vol = xtru1_refl  simple placement: xtru1
 VGM info:      26th daughter vol = xtru2  simple placement: xtru2
 VGM info:      27th daughter vol = xtru2_refl  simple placement: xtru2
+VGM info:      28th daughter vol = hype  simple placement: hype
+VGM info:      29th daughter vol = hype_refl  simple placement: hype
+VGM info:      30th daughter vol = paraboloid  simple placement: paraboloid
+VGM info:      31th daughter vol = paraboloid_refl  simple placement: paraboloid
 VGM info:   ExportPlacements for 1th volume box
 VGM info:   ExportPlacements for 2th volume box_refl
 VGM info:   ExportPlacements for 3th volume cons
@@ -413,6 +437,10 @@ VGM info:   ExportPlacements for 25th volume xtru1
 VGM info:   ExportPlacements for 26th volume xtru1_refl
 VGM info:   ExportPlacements for 27th volume xtru2
 VGM info:   ExportPlacements for 28th volume xtru2_refl
+VGM info:   ExportPlacements for 29th volume hype
+VGM info:   ExportPlacements for 30th volume hype_refl
+VGM info:   ExportPlacements for 31th volume paraboloid
+VGM info:   ExportPlacements for 32th volume paraboloid_refl
 Info in <TGeoManager::SetTopVolume>: Top volume is world. Master volume is world
 Export finished
 Go to save Root geometry
@@ -422,7 +450,7 @@ Info in <TGeoManager::CloseGeometry>: Counting nodes...
 Info in <TGeoManager::Voxelize>: Voxelizing...
 Info in <TGeoManager::CloseGeometry>: Building cache...
 Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
-Info in <TGeoManager::CloseGeometry>: 29 nodes/ 29 volume UID's in VGM Root geometry
+Info in <TGeoManager::CloseGeometry>: 33 nodes/ 33 volume UID's in VGM Root geometry
 Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
 Info in <TGeoManager::Export>: Exporting VGM Root geometry VGM Root geometry as root file. Optimizations streamed.
 Visualization Manager initialising...

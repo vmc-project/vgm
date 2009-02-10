@@ -142,6 +142,17 @@ namespace VGM {
                                std::vector< TwoVector > polygon,
                                std::vector< std::vector<double> > zsections) = 0;
 
+                       /// Create the hyperboloid solid
+                       /// \param r1 radius of the inner hyperbolic surface in mm
+                       /// \param r2 radius of the outer hyperbolic surface in mm
+                       /// \param stereo1 stereo angle for the inner hyperbolic surface in deg
+                       /// \param stereo2 stereo angle for the outer hyperbolic surface in deg
+                       /// \param hz half-length along the z axis in mm
+                       ///
+      virtual ISolid*  CreateHype(const std::string& name, 
+                               double r1, double r2, double stereo1, double stereo2, 
+                               double hz) = 0;
+
                        /// Create the para solid = parallelepiped
 		       /// \param hx half-length along the x axis in mm
 		       /// \param hy half-length along the y axis in mm
@@ -154,9 +165,17 @@ namespace VGM {
 		       /// \param phi azimuthal angle of the line joining the centres
  		       ///        of the faces at -hz and +hz in deg
                        ///
-     virtual ISolid*  CreatePara(const std::string& name, 
+      virtual ISolid*  CreatePara(const std::string& name, 
                                double hx, double hy, double hz,
 	                       double alpha, double theta, double phi) = 0;
+
+                       /// Create the paraboloid solid
+                       /// \param r1 radius at -hz in mm
+                       /// \param r2 radius at +hz in mm
+                       /// \param hz half-length along the z axis in mm
+                       ///
+      virtual ISolid*  CreateParaboloid(const std::string& name, 
+                               double r1, double r2, double hz) = 0;
 
                        /// Create the polycone solid = phi segment of a polycone
 		       /// \param sphi starting angle of the segment in deg
@@ -314,9 +333,9 @@ namespace VGM {
 		       /// \param transform 3D displacement of the solidB 
 		       ///        with respect to solid A
       virtual ISolid*  CreateDisplacedSolid(
-                               const std::string& /*name*/, 
-                               VGM::ISolid* /*solid*/,
-                               const VGM::Transform& /*transform*/) { return 0; } 
+                               const std::string& name, 
+                               VGM::ISolid* solid,
+                               const VGM::Transform& transform) = 0; 
 
       //
       // volumes

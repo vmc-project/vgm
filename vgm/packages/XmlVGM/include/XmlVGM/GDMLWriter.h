@@ -37,7 +37,9 @@ namespace VGM {
   class ICtubs;
   class IEllipticalTube;
   class IExtrudedSolid;
+  class IHype;
   class IPara;
+  class IParaboloid;
   class IPolycone;
   class IPolyhedra;
   class ISphere;
@@ -171,7 +173,9 @@ namespace XmlVGM {
                      const VGM::IEllipticalTube* eltu); 
       void WriteExtrudedSolid(std::string name, 
                      const VGM::IExtrudedSolid* extruded); 
+      void WriteHype(std::string name, const VGM::IHype* hype); 
       void WritePara(std::string name, const VGM::IPara* para); 
+      void WriteParaboloid(std::string name, const VGM::IParaboloid* paraboloid); 
       void WritePolycone(std::string name, const VGM::IPolycone* polycone); 
       void WritePolyhedra(std::string name, const VGM::IPolyhedra* polyhedra); 
       void WriteSphere(std::string name, const VGM::ISphere* sphere); 

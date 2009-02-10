@@ -46,11 +46,19 @@ VGM::ISolid*
 AgddGM::Factory::CreateExtrudedSolid(const std::string& /*name*/, 
                                      std::vector< VGM::TwoVector > /*polygon*/,
                                      std::vector< std::vector<double> > /*zsections*/){assert(0); return 0;}
+VGM::ISolid*
+AgddGM::Factory::CreateHype(const std::string& /*name*/, 
+                            double /*r1*/, double /*r2*/, double /*stereo1*/, double /*stereo2*/, 
+                            double /*hz*/) {assert(0); return 0;}
+
 VGM::ISolid*  
 AgddGM::Factory::CreatePara(const std::string& /*name*/, 
 			     double /*dx*/, double /*dy*/, double /*dz*/,
 			     double /*alpha*/, double /*theta*/, double /*phi*/){assert(0); return 0;}
 			       
+VGM::ISolid*  
+AgddGM::Factory::CreateParaboloid(const std::string& /*name*/, double /*r1*/, double /*r2*/, double /*hz*/)
+                                  {assert(0); return 0;} 
 VGM::ISolid*  
 AgddGM::Factory::CreatePolycone(const std::string& /*name*/, 
 				 double /*sphi*/, double /*dphi*/, int /*nofZplanes*/,
@@ -112,6 +120,10 @@ AgddGM::Factory::CreateUnionSolid(const std::string& /*name*/,
 				   VGM::ISolid* /*solidA*/, VGM::ISolid* /*solidB*/, 
 				   const VGM::Transform& /*transform*/){assert(0); return 0;}
 
+VGM::ISolid*  
+AgddGM::Factory::CreateDisplacedSolid(const std::string& /*name*/, 
+                                      VGM::ISolid* /*solid*/,
+                                      const VGM::Transform& /*transform*/){assert(0); return 0;}
 
 // volumes
 //

@@ -36,7 +36,9 @@ libRootGM_la_SOURCES =                        \
 	$(rootgmsrc)/solids/DisplacedSolid.cxx \
 	$(rootgmsrc)/solids/EllipticalTube.cxx \
 	$(rootgmsrc)/solids/ExtrudedSolid.cxx \
+	$(rootgmsrc)/solids/Hype.cxx \
 	$(rootgmsrc)/solids/Para.cxx \
+	$(rootgmsrc)/solids/Paraboloid.cxx \
 	$(rootgmsrc)/solids/Polycone.cxx \
 	$(rootgmsrc)/solids/Polyhedra.cxx \
 	$(rootgmsrc)/solids/SolidMap.cxx \
@@ -79,7 +81,9 @@ rootgmsolinc_HEADERS = \
 	$(rootgminc)/solids/DisplacedSolid.h \
 	$(rootgminc)/solids/EllipticalTube.h \
 	$(rootgminc)/solids/ExtrudedSolid.h \
+	$(rootgminc)/solids/Hype.h \
 	$(rootgminc)/solids/Para.h \
+	$(rootgminc)/solids/Paraboloid.h \
 	$(rootgminc)/solids/Polycone.h \
 	$(rootgminc)/solids/Polyhedra.h \
 	$(rootgminc)/solids/SolidMap.h \

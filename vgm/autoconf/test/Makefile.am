@@ -43,6 +43,7 @@ vgm_test_SOURCES = ../../test/vgm_test.cc \
 	$(vgmtestsrc)/TstPrimaryGeneratorAction.cc \
 	$(vgmtestsrc)/TstPrimaryGeneratorActionMessenger.cc \
 	$(vgmtestsrc)/TstRunAction.cc \
+	$(vgmtestsrc)/TstSteppingAction.cc \
 	$(vgmtestsrc)/TstTrackingAction.cc \
 	$(vgmtestsrc)/TstVGeometry.cc
 

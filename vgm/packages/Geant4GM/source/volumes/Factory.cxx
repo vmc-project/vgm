@@ -37,7 +37,9 @@
 #include "Geant4GM/solids/Ctubs.h"
 #include "Geant4GM/solids/EllipticalTube.h"
 #include "Geant4GM/solids/ExtrudedSolid.h"
+#include "Geant4GM/solids/Hype.h"
 #include "Geant4GM/solids/Para.h"
+#include "Geant4GM/solids/Paraboloid.h"
 #include "Geant4GM/solids/Polycone.h"
 #include "Geant4GM/solids/Polyhedra.h"
 #include "Geant4GM/solids/Sphere.h"
@@ -58,7 +60,9 @@
 #include "G4Box.hh"
 #include "G4Cons.hh"
 #include "G4EllipticalTube.hh"
+#include "G4Hype.hh"
 #include "G4Para.hh"
+#include "G4Paraboloid.hh"
 #include "G4Polycone.hh"
 #include "G4Polyhedra.hh"
 #include "G4Sphere.hh"
@@ -173,11 +177,25 @@ Geant4GM::Factory::ImportSolid(G4VSolid* solid)
     return vgmXtru; 
   }
 
+  G4Hype* hype = dynamic_cast<G4Hype*>(consSolid);
+  if (hype) { 
+    VGM::IHype* vgmHype = new Geant4GM::Hype(hype, reflSolid);
+    SolidStore().push_back(vgmHype);
+    return vgmHype; 
+  }
+
   G4Para* para = dynamic_cast<G4Para*>(consSolid);
   if (para) { 
     VGM::IPara* vgmPara = new Geant4GM::Para(para, reflSolid);
     SolidStore().push_back(vgmPara);
     return vgmPara; 
+  }
+
+  G4Paraboloid* paraboloid = dynamic_cast<G4Paraboloid*>(consSolid);
+  if (paraboloid) { 
+    VGM::IParaboloid* vgmParaboloid = new Geant4GM::Paraboloid(paraboloid, reflSolid);
+    SolidStore().push_back(vgmParaboloid);
+    return vgmParaboloid; 
   }
 
   G4Polycone* polycone = dynamic_cast<G4Polycone*>(consSolid);
@@ -638,6 +656,20 @@ Geant4GM::Factory::CreateEllipticalTube(const std::string& name,
 			       
 //_____________________________________________________________________________
 VGM::ISolid*  
+Geant4GM::Factory::CreateHype(const std::string& name, 
+                              double r1, double r2, double stereo1, double stereo2,
+                              double hz)
+{			       
+//
+  VGM::ISolid* vgmSolid 
+    = new Geant4GM::Hype(name, r1, r2, stereo1, stereo2, hz);
+
+  SolidStore().push_back(vgmSolid);
+  return vgmSolid; 
+}  			     
+			       
+//_____________________________________________________________________________
+VGM::ISolid*  
 Geant4GM::Factory::CreatePara(const std::string& name, 
                               double dx, double dy, double dz,
 	                      double alpha, double theta, double phi)
@@ -645,6 +677,19 @@ Geant4GM::Factory::CreatePara(const std::string& name,
 //
   VGM::ISolid* vgmSolid 
     = new Geant4GM::Para(name, dx, dy, dz, alpha, theta, phi);
+
+  SolidStore().push_back(vgmSolid);
+  return vgmSolid; 
+}  			     
+			       
+//_____________________________________________________________________________
+VGM::ISolid*  
+Geant4GM::Factory::CreateParaboloid(const std::string& name, 
+                              double r1, double r2, double hz)
+{			       
+//
+  VGM::ISolid* vgmSolid 
+    = new Geant4GM::Paraboloid(name, r1, r2, hz);
 
   SolidStore().push_back(vgmSolid);
   return vgmSolid; 

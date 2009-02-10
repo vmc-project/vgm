@@ -37,7 +37,9 @@ vgmsolinc_HEADERS = \
 	$(vgminc)/solids/IDisplacedSolid.h \
 	$(vgminc)/solids/IEllipticalTube.h \
 	$(vgminc)/solids/IExtrudedSolid.h \
+	$(vgminc)/solids/IHype.h \
 	$(vgminc)/solids/IPara.h \
+	$(vgminc)/solids/IParaboloid.h \
 	$(vgminc)/solids/IPolycone.h \
 	$(vgminc)/solids/IPolyhedra.h \
 	$(vgminc)/solids/ISolid.h \

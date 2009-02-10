@@ -86,7 +86,7 @@ VGM info:   Exporting medium:
 VGM info:   Medium: "Vacuum"  material Vacuum g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
 VGM info:   Exporting volume store: 
 VGM info:   Exporting solid: 
-VGM info:      Box  "worldS"  hx = 6000mm  hy = 3000mm  hz = 2000mm
+VGM info:      Box  "worldS"  hx = 6200mm  hy = 3000mm  hz = 2000mm
 VGM info:      0th volume: world   material: Basic
 VGM info:   Exporting solid: 
 VGM info:      Box  "boxS"  hx = 200mm  hy = 600mm  hz = 500mm
@@ -152,6 +152,12 @@ Planes:
   z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
 
 VGM info:      14th volume: xtru2   material: Basic
+VGM info:   Exporting solid: 
+VGM info:      Hype  "hypeS"  r1 = 200mm  stereo1 = 30deg  r2 = 300mm  stereo1 = 40deg  hz = 500mm
+VGM info:      15th volume: hype   material: Basic
+VGM info:   Exporting solid: 
+VGM info:      Paraboloid  "paraboloidS"  r1 = 200mm  r2 = 450mm  hz = 500mm
+VGM info:      16th volume: paraboloid   material: Basic
 VGM info:   ExportPlacements for 0th volume world
 VGM info:      0th daughter vol = box  simple placement: box
 VGM info:      1th daughter vol = cons  simple placement: cons
@@ -167,6 +173,8 @@ VGM info:      10th daughter vol = tubs  simple placement: tubs
 VGM info:      11th daughter vol = ctubs  simple placement: ctubs
 VGM info:      12th daughter vol = xtru1  simple placement: xtru1
 VGM info:      13th daughter vol = xtru2  simple placement: xtru2
+VGM info:      14th daughter vol = hype  simple placement: hype
+VGM info:      15th daughter vol = paraboloid  simple placement: paraboloid
 VGM info:   ExportPlacements for 1th volume box
 VGM info:   ExportPlacements for 2th volume cons
 VGM info:   ExportPlacements for 3th volume eltu
@@ -181,6 +189,8 @@ VGM info:   ExportPlacements for 11th volume tubs
 VGM info:   ExportPlacements for 12th volume ctubs
 VGM info:   ExportPlacements for 13th volume xtru1
 VGM info:   ExportPlacements for 14th volume xtru2
+VGM info:   ExportPlacements for 15th volume hype
+VGM info:   ExportPlacements for 16th volume paraboloid
 Info in <TGeoManager::SetTopVolume>: Top volume is world. Master volume is world
 Export finished
 Go to save Root geometry
@@ -190,7 +200,7 @@ Info in <TGeoManager::CloseGeometry>: Counting nodes...
 Info in <TGeoManager::Voxelize>: Voxelizing...
 Info in <TGeoManager::CloseGeometry>: Building cache...
 Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
-Info in <TGeoManager::CloseGeometry>: 15 nodes/ 15 volume UID's in VGM Root geometry
+Info in <TGeoManager::CloseGeometry>: 17 nodes/ 17 volume UID's in VGM Root geometry
 Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
 Info in <TGeoManager::Export>: Exporting VGM Root geometry VGM Root geometry as root file. Optimizations streamed.
 Visualization Manager initialising...

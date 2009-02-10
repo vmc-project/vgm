@@ -45,6 +45,7 @@ To install
   make install
 
 To build test program (vgm_test)
+- the executable is created in vgm/autoconf/test directory
 
   make check
 

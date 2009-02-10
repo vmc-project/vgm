@@ -80,11 +80,18 @@ namespace Geant4GM {
                                  std::vector< VGM::TwoVector > polygon,
                                  std::vector< std::vector<double> > zsections);
 
+      virtual VGM::ISolid*  CreateHype(const std::string& name, 
+                                 double r1, double r2, double stereo1, double stereo2, 
+                                 double hz);
+
       virtual VGM::ISolid*  CreatePara(
                                  const std::string& name, 
                                  double dx, double dy, double dz,
 	                         double alpha, double theta, double phi);
 			       
+      virtual VGM::ISolid*  CreateParaboloid(const std::string& name, 
+                                 double r1, double r2, double hz);
+                                 
       virtual VGM::ISolid*  CreatePolycone(
                                  const std::string& name, 
                                  double sphi, double dphi, int nofZplanes,

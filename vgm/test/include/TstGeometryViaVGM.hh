@@ -58,7 +58,9 @@ class TstGeometryViaVGM : public TstVGeometry
     VGM::IVolume* CreateEllipticalTube();
     VGM::IVolume* CreateExtrudedSolid1();
     VGM::IVolume* CreateExtrudedSolid2();
+    VGM::IVolume* CreateHype();
     VGM::IVolume* CreatePara();
+    VGM::IVolume* CreateParaboloid();
     VGM::IVolume* CreatePolycone(double sphi, double dphi);
     VGM::IVolume* CreatePolyhedra(double sphi, double dphi);
     VGM::IVolume* CreateSphere(double sphi, double dphi);

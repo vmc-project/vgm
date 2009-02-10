@@ -26,7 +26,9 @@
 #include "VGM/solids/ICtubs.h"
 #include "VGM/solids/IEllipticalTube.h"
 #include "VGM/solids/IExtrudedSolid.h"
+#include "VGM/solids/IHype.h"
 #include "VGM/solids/IPara.h"
+#include "VGM/solids/IParaboloid.h"
 #include "VGM/solids/IPolycone.h"
 #include "VGM/solids/IPolyhedra.h"
 #include "VGM/solids/ISphere.h"
@@ -255,6 +257,15 @@ BaseVGM::VFactory::ExportSolid(VGM::ISolid* solid,
                               polygon,
                               zsections);
   }
+  else if (solidType == VGM::kHype) { 
+    VGM::IHype* hype = dynamic_cast<VGM::IHype*>(solid); 
+    return factory->CreateHype(hype->Name(), 
+                              hype->InnerRadius(),
+                              hype->OuterRadius(), 
+                              hype->InnerStereoAngle(),
+                              hype->OuterStereoAngle(), 
+			      hype->ZHalfLength());  
+  }
   else if (solidType == VGM::kPara) { 
     VGM::IPara* para = dynamic_cast<VGM::IPara*>(solid); 
     return factory->CreatePara(para->Name(), 
@@ -264,6 +275,13 @@ BaseVGM::VFactory::ExportSolid(VGM::ISolid* solid,
                               para->Alpha(), 
 			      para->Theta(), 
 			      para->Phi());  
+  }
+  else if (solidType == VGM::kParaboloid) { 
+    VGM::IParaboloid* paraboloid = dynamic_cast<VGM::IParaboloid*>(solid); 
+    return factory->CreateParaboloid(paraboloid->Name(), 
+                              paraboloid->RadiusMinusZ(), 
+	  		      paraboloid->RadiusPlusZ(), 
+			      paraboloid->ZHalfLength());  
   }
   else if (solidType == VGM::kPolycone) { 
     VGM::IPolycone* polycone = dynamic_cast<VGM::IPolycone*>(solid); 

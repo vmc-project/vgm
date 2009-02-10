@@ -92,6 +92,12 @@ VGM info:   ImportDaughters for xtru1
 VGM info:   Importing volume: xtru2
 VGM info:   Importing shape: TGeoXtru
 VGM info:   ImportDaughters for xtru2
+VGM info:   Importing volume: hype
+VGM info:   Importing shape: paraS
+VGM info:   ImportDaughters for hype
+VGM info:   Importing volume: paraboloid
+VGM info:   Importing shape: paraboloidS
+VGM info:   ImportDaughters for paraboloid
 VGM info:   Import positions: 
 VGM info:   0th volume: world  
 VGM info:      0th daughter  rtVol = box vgmVol = box
@@ -122,6 +128,10 @@ VGM info:      24th daughter  rtVol = xtru1 vgmVol = xtru1
 VGM info:      25th daughter  rtVol = xtru1 vgmVol = xtru1
 VGM info:      26th daughter  rtVol = xtru2 vgmVol = xtru2
 VGM info:      27th daughter  rtVol = xtru2 vgmVol = xtru2
+VGM info:      28th daughter  rtVol = hype vgmVol = hype
+VGM info:      29th daughter  rtVol = hype vgmVol = hype
+VGM info:      30th daughter  rtVol = paraboloid vgmVol = paraboloid
+VGM info:      31th daughter  rtVol = paraboloid vgmVol = paraboloid
 VGM info:   1th volume: box  
 VGM info:   2th volume: cons  
 VGM info:   3th volume: eltu  
@@ -136,9 +146,11 @@ VGM info:   11th volume: tubs
 VGM info:   12th volume: ctubs  
 VGM info:   13th volume: xtru1  
 VGM info:   14th volume: xtru2  
+VGM info:   15th volume: hype  
+VGM info:   16th volume: paraboloid  
 VGM info:   
 Root_GM_Factory factory solids store: 
-   0th solid: Box  "worldS"  hx = 6000mm  hy = 3000mm  hz = 3000mm
+   0th solid: Box  "worldS"  hx = 6200mm  hy = 3000mm  hz = 3000mm
    1th solid: Box  "boxS"  hx = 200mm  hy = 600mm  hz = 500mm
    2th solid: Cons  "consS"  rin1 = 100mm  rout1 = 400mm  rin2 = 200mm  rout2 = 600mm  hz = 500mm  sphi = 0deg  dphi = 360deg
    3th solid: Eltu  "eltuS"  dx = 200mm  dy = 300mm  hz = 500mm
@@ -175,8 +187,10 @@ Planes:
   z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.7
   z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
 
+   15th solid: Hype  "paraS"  r1 = 200mm  stereo1 = 30deg  r2 = 300mm  stereo1 = 40deg  hz = 500mm
+   16th solid: Paraboloid  "paraboloidS"  r1 = 200mm  r2 = 450mm  hz = 500mm
 Root_GM_Factory factory volumes store: 
-   0th: Volume: "world" material "Basic" solid "Box"  28 daughters: "box"  "box"  "cons"  "cons"  "eltu"  "eltu"  "para"  "para"  "pcone"  "pcone"  "phedra"  "phedra"  "sphere"  "sphere"  "torus"  "torus"  "trap"  "trap"  "trd"  "trd"  "tubs"  "tubs"  "ctubs"  "ctubs"  "xtru1"  "xtru1"  "xtru2"  "xtru2"  
+   0th: Volume: "world" material "Basic" solid "Box"  32 daughters: "box"  "box"  "cons"  "cons"  "eltu"  "eltu"  "para"  "para"  "pcone"  "pcone"  "phedra"  "phedra"  "sphere"  "sphere"  "torus"  "torus"  "trap"  "trap"  "trd"  "trd"  "tubs"  "tubs"  "ctubs"  "ctubs"  "xtru1"  "xtru1"  "xtru2"  "xtru2"  "hype"  "hype"  "paraboloid"  "paraboloid"  
    1th: Volume: "box" material "Basic" solid "Box"  0 daughters: 
    2th: Volume: "cons" material "Basic" solid "Cons"  0 daughters: 
    3th: Volume: "eltu" material "Basic" solid "Eltu"  0 daughters: 
@@ -191,6 +205,8 @@ Root_GM_Factory factory volumes store:
    12th: Volume: "ctubs" material "Basic" solid "Ctubs"  0 daughters: 
    13th: Volume: "xtru1" material "Basic" solid "Extruded"  0 daughters: 
    14th: Volume: "xtru2" material "Basic" solid "Extruded"  0 daughters: 
+   15th: Volume: "hype" material "Basic" solid "Hype"  0 daughters: 
+   16th: Volume: "paraboloid" material "Basic" solid "Paraboloid"  0 daughters: 
 VGM info:   RootGM::Factory::Import finished.
 Import finished
 Go to export
@@ -237,7 +253,7 @@ VGM info:   Exporting medium:
 VGM info:   Medium: "Vacuum"  material Vacuum g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
 VGM info:   Exporting volume store: 
 VGM info:   Exporting solid: 
-VGM info:      Box  "worldS"  hx = 6000mm  hy = 3000mm  hz = 3000mm
+VGM info:      Box  "worldS"  hx = 6200mm  hy = 3000mm  hz = 3000mm
 VGM info:      0th volume: world   material: Basic
 VGM info:   Exporting solid: 
 VGM info:      Box  "boxS"  hx = 200mm  hy = 600mm  hz = 500mm
@@ -303,6 +319,12 @@ Planes:
   z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
 
 VGM info:      14th volume: xtru2   material: Basic
+VGM info:   Exporting solid: 
+VGM info:      Hype  "paraS"  r1 = 200mm  stereo1 = 30deg  r2 = 300mm  stereo1 = 40deg  hz = 500mm
+VGM info:      15th volume: hype   material: Basic
+VGM info:   Exporting solid: 
+VGM info:      Paraboloid  "paraboloidS"  r1 = 200mm  r2 = 450mm  hz = 500mm
+VGM info:      16th volume: paraboloid   material: Basic
 VGM info:   ExportPlacements for 0th volume world
 VGM info:      0th daughter vol = box  simple placement: box
 VGM info:      1th daughter vol = box  simple placement: box
@@ -428,6 +450,18 @@ Planes:
   Displacement rotation (object):  (0,  -0,  0) deg    no reflectionZ
 VGM info:   ImportDaughters for xtru2_refl
 VGM info:   ImportPositions for lv xtru2_refl nofDaughters: 0
+VGM info:      28th daughter vol = hype  simple placement: hype
+VGM info:      29th daughter vol = hype  simple placement: hype
+VGM info:   Importing LV: hype_refl
+VGM info:   Importing solid: paraS_refl
+VGM info:   ImportDaughters for hype_refl
+VGM info:   ImportPositions for lv hype_refl nofDaughters: 0
+VGM info:      30th daughter vol = paraboloid  simple placement: paraboloid
+VGM info:      31th daughter vol = paraboloid  simple placement: paraboloid
+VGM info:   Importing LV: paraboloid_refl
+VGM info:   Importing solid: paraboloidS_refl
+VGM info:   ImportDaughters for paraboloid_refl
+VGM info:   ImportPositions for lv paraboloid_refl nofDaughters: 0
 VGM info:   ExportPlacements for 1th volume box
 VGM info:   ExportPlacements for 2th volume cons
 VGM info:   ExportPlacements for 3th volume eltu
@@ -442,6 +476,8 @@ VGM info:   ExportPlacements for 11th volume tubs
 VGM info:   ExportPlacements for 12th volume ctubs
 VGM info:   ExportPlacements for 13th volume xtru1
 VGM info:   ExportPlacements for 14th volume xtru2
+VGM info:   ExportPlacements for 15th volume hype
+VGM info:   ExportPlacements for 16th volume paraboloid
 Export finished
 Go to save Root geometry
 Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
@@ -450,7 +486,7 @@ Info in <TGeoManager::CloseGeometry>: Counting nodes...
 Info in <TGeoManager::Voxelize>: Voxelizing...
 Info in <TGeoManager::CloseGeometry>: Building cache...
 Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
-Info in <TGeoManager::CloseGeometry>: 29 nodes/ 15 volume UID's in Test geometry via Root
+Info in <TGeoManager::CloseGeometry>: 33 nodes/ 17 volume UID's in Test geometry via Root
 Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
 Info in <TGeoManager::Export>: Exporting Test Test geometry via Root as root file. Optimizations streamed.
 Visualization Manager initialising...

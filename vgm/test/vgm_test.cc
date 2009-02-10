@@ -52,6 +52,7 @@
 #include "TstPhysicsList.hh"
 #include "TstPrimaryGeneratorAction.hh"
 #include "TstTrackingAction.hh"
+#include "TstSteppingAction.hh"
 #include "TstRunAction.hh"
 
 int main(int argc, char** argv) 
@@ -169,6 +170,7 @@ int main(int argc, char** argv)
   // Set user action classes
   runManager->SetUserAction(new TstPrimaryGeneratorAction());
   //runManager->SetUserAction(new TstTrackingAction());
+  runManager->SetUserAction(new TstSteppingAction());
   runManager->SetUserAction(new TstRunAction());
   
   if ( run ) {
