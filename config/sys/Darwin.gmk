@@ -83,7 +83,7 @@ VGM_MACOSX_TWO_LEVEL_NAMESPACE = 1
 
 ifdef VGM_MACOSX_TWO_LEVEL_NAMESPACE
   define build-granular-shared-lib
-    @libdir=`(cd $(@D);/bin/pwd)`; \
+    libdir=`(cd $(@D);/bin/pwd)`; \
      cd $(VGM_TMPDIR); \
      g++ -dynamiclib -twolevel_namespace -undefined error -dynamic \
          -single_module -o $$libdir/$(@F) *.o\

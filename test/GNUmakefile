@@ -26,7 +26,7 @@ endif
 .PHONY: all
 all: lib bin
 
-CPPFLAGS += -I$(ROOTSYS)/include
+CPPFLAGS += -I$(shell root-config --incdir) 
 EXTRALIBS = $(shell root-config --glibs) -lGeomPainter -lGeom
 ifndef VGM_NO_G4ROOT
   CPPFLAGS += -DVGM_WITH_G4ROOT

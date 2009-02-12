@@ -40,16 +40,21 @@ library BaseVGM -group=VGM -s=../packages/BaseVGM/source/ \
  materials/VMaterialFactory.cxx \
  materials/VMedium.cxx \
  solids/solid.cxx\
+ solids/VArb8.cxx\
  solids/VBooleanSolid.cxx\
  solids/VBox.cxx\
  solids/VCons.cxx\
  solids/VCtubs.cxx \
+ solids/VDisplacedSolid.cxx \
  solids/VEllipticalTube.cxx\
  solids/VExtrudedSolid.cxx\
+ solids/VHype.cxx\
  solids/VPara.cxx\
+ solids/VParaboloid.cxx\
  solids/VPolycone.cxx\
  solids/VPolyhedra.cxx\
  solids/VSphere.cxx\
+ solids/VTessellatedSolid.cxx\
  solids/VTorus.cxx\
  solids/VTrap.cxx\
  solids/VTrd.cxx\
@@ -101,7 +106,7 @@ library AgddGM -group=VGM -import=AGDD -import=CLHEP -s=../packages/AgddGM/sourc
  volumes/Volume.cxx
 
 macro AgddGM_cppflags "-I$(VGMROOT)/packages/AgddGM/include ${ClhepVGM_cppflags} ${BaseVGM_cppflags}"
-macro AgddGM_shlibflags " ${dld_linkopts} ${ClhepVGM_linkopts} ${CLHEP_linkopts} ${BaseVGM_linkopts}"
+macro AgddGM_shlibflags " ${dld_linkopts} ${ClhepVGM_linkopts} ${AGDD_linkopts} ${CLHEP_linkopts} ${BaseVGM_linkopts}"
 macro AgddGM_linkopts "-L${VGMROOT}/$(Platform_bin) -lAgddGM" WIN32 "${VGMROOT}\$(Platform_bin)\AgddGM.lib"
 
 
@@ -118,17 +123,22 @@ library Geant4GM -group=VGM -import=Geant4 -s=../packages/Geant4GM/source/ \
  materials/MaterialMap.cxx \
  materials/MaterialFactory.cxx \
  materials/Medium.cxx \
+ solids/Arb8.cxx\
  solids/BooleanSolid.cxx \
  solids/Box.cxx \
  solids/Cons.cxx \
  solids/Ctubs.cxx \
- solids/ExtrudedSolid.cxx \
+ solids/DisplacedSolid.cxx \
  solids/EllipticalTube.cxx \
+ solids/ExtrudedSolid.cxx \
+ solids/Hype.cxx \
  solids/Para.cxx \
+ solids/Paraboloid.cxx\
  solids/Polycone.cxx \
  solids/Polyhedra.cxx \
  solids/SolidMap.cxx \
  solids/Sphere.cxx \
+ solids/TessellatedSolid.cxx\
  solids/Torus.cxx \
  solids/Trap.cxx \
  solids/Trd.cxx \
@@ -139,7 +149,7 @@ library Geant4GM -group=VGM -import=Geant4 -s=../packages/Geant4GM/source/ \
  volumes/Volume.cxx \
  volumes/VolumeMap.cxx
 
-macro Geant4GM_cppflags "-I$(VGMROOT)/packages/Geant4GM/include ${G4materials_incs} ${G4global_incs} ${G4graphics_reps_incs} ${G4geometry_incs} ${ClhepVGM_cppflags} ${BaseVGM_cppflags}"
+macro Geant4GM_cppflags "-I$(VGMROOT)/packages/Geant4GM/include   ${G4materials_incs}    ${G4global_incs}     ${G4graphics_reps_incs}     ${G4geometry_incs} ${ClhepVGM_cppflags} ${BaseVGM_cppflags}"
 
 macro Geant4GM_shlibflags " ${dld_linkopts} ${ClhepVGM_linkopts} ${CLHEP_linkopts} ${BaseVGM_linkopts} ${G4geometry_linkopts} ${G4materials_linkopts} ${G4global_linkopts} ${G4graphics_reps_linkopts} ${G4intercoms_linkopts}"
 macro Geant4GM_linkopts "-L${VGMROOT}/$(Platform_bin) -lGeant4GM" WIN32 "${VGMROOT}\$(Platform_bin)\Geant4GM.lib"
@@ -161,13 +171,17 @@ library RootGM -group=VGM -import=ROOT -s=../packages/RootGM/source/ \
  materials/MaterialFactory.cxx \
  materials/MaterialMap.cxx \
  materials/Medium.cxx \
+ solids/Arb8.cxx\
  solids/BooleanSolid.cxx \
  solids/Box.cxx \
  solids/Cons.cxx \
  solids/Ctubs.cxx \
+ solids/DisplacedSolid.cxx \
  solids/EllipticalTube.cxx \
  solids/ExtrudedSolid.cxx \
+ solids/Hype.cxx \
  solids/Para.cxx \
+ solids/Paraboloid.cxx\
  solids/Polycone.cxx \
  solids/Polyhedra.cxx \
  solids/SolidMap.cxx \
@@ -221,18 +235,23 @@ library TestVGM -import=Geant4 -import=ROOT -import=AGDD -import=XERCESC -group=
  TstPrimaryGeneratorAction.cc \
  TstPrimaryGeneratorActionMessenger.cc \
  TstRunAction.cc \
+ TstSteppingAction.cc \
  TstTrackingAction.cc \
- TstVGeometry.cc \
- TstVisManager.cc
+ TstVGeometry.cc
 
 
-macro TestVGM_cppflags "-I$(VGMROOT)/test/include ${XmlVGM_cppflags} ${RootGM_cppflags} ${Geant4GM_cppflags} ${AgddGM_cppflags} ${G4run_incs} ${G4graphics_reps_incs} ${G4particles_use_incs} ${G4processes_use_incs} ${G4particles_incs} ${G4event_incs} ${G4digits_hits_incs} ${G4tracking_incs} ${G4intercoms_incs} ${G4track_incs}"
+macro TestVGM_cppflags "-I$(VGMROOT)/test/include ${XmlVGM_cppflags} ${RootGM_cppflags} ${Geant4GM_cppflags} ${AgddGM_cppflags} ${G4run_incs} ${G4graphics_reps_incs} ${G4particles_use_incs} ${G4persistency_incs} ${G4processes_use_incs} ${G4particles_incs} ${G4event_incs} ${G4digits_hits_incs} ${G4tracking_incs} ${G4intercoms_incs} ${G4track_incs}"
 
-macro TestVGM_shlibflags "${dld_linkopts} ${G4global_linkopts} ${G4materials_linkopts} ${G4geometry_linkopts} ${G4graphics_reps_linkopts} ${ROOT_Geom_linkopts} ${ROOT_Rio_linkopts} ${ROOT_Core_linkopts} ${ROOT_Cint_linkopts} ${G4run_linkopts} ${CLHEP_Random_linkopts} ${RootGM_linkopts} ${XmlVGM_linkopts} ${Geant4GM_linkopts} ${CLHEP_Vector_linkopts} ${CLHEP_Geometry_linkopts} ${ClhepVGM_linkopts} ${G4particles_linkopts} ${G4event_linkopts} ${G4intercoms_linkopts} ${G4digits_hits_linkopts} ${G4processes_linkopts} ${G4tracking_linkopts} ${G4track_linkopts}"
+macro TestVGM_shlibflags "${dld_linkopts} ${G4global_linkopts} ${G4materials_linkopts} ${G4geometry_linkopts} ${G4graphics_reps_linkopts} ${ROOT_Geom_linkopts} ${ROOT_Rio_linkopts} ${ROOT_Core_linkopts} ${ROOT_Cint_linkopts} ${G4run_linkopts} ${CLHEP_Random_linkopts} ${RootGM_linkopts} ${XmlVGM_linkopts} ${Geant4GM_linkopts} ${AgddGM_linkopts} ${CLHEP_Vector_linkopts} ${CLHEP_Geometry_linkopts} ${ClhepVGM_linkopts} ${G4particles_linkopts} ${G4event_linkopts} ${G4intercoms_linkopts} ${G4digits_hits_linkopts} ${G4processes_linkopts} ${G4tracking_linkopts} ${G4track_linkopts} ${XERCESC_linkopts} ${AGDD_linkopts} ${G4gdml_granular_libs}"
 
 macro TestVGM_linkopts "-L${VGMROOT}/$(Platform_bin) -lTestVGM" WIN32 "${VGMROOT}\$(Platform_bin)\TestVGM.lib"
 
-application vgm_test ../test/vgm_test.cc -import=Geant4 -import=ROOT import=AGDD -group=cmt_tests use_cppflags='"${TestVGM_cppflags} ${ROOT_cppflags} ${AGDD_cppflags} ${G4global_incs} ${CLHEP_cppflags} ${G4track_incs} ${G4geometry_incs} ${G4materials_incs} ${G4intercoms_incs} ${G4interfaces_incs}"' use_linkopts='"${G4run_linkopts} ${G4global_linkopts} ${G4intercoms_linkopts} ${G4interfaces_linkopts} ${ROOT_Core_linkopts} ${G4digits_hits_linkopts} ${G4event_linkopts} ${G4processes_linkopts} ${G4particles_linkopts} ${G4tracking_linkopts} ${G4geometry_linkopts} ${G4graphics_reps_linkopts} ${ROOT_Cint_linkopts} ${G4track_linkopts} ${G4materials_linkopts} ${CLHEP_linkopts} ${AGDD_linkopts} ${XERCESC_linkopts} ${BaseVGM_linkopts} ${RootGM_linkopts} ${Geant4GM_linkopts} ${AgddGM_linkopts} ${XmlVGM_linkopts} ${TestVGM_linkopts} ${ClhepVGM_linkopts}"'
+application vgm_test ../test/vgm_test.cc -import=Geant4 \
+-import=ROOT \
+-import=AGDD \
+-group=cmt_tests \
+use_cppflags='"${TestVGM_cppflags} ${ROOT_cppflags} ${AGDD_cppflags} ${G4global_incs} ${CLHEP_cppflags} ${G4track_incs} ${G4geometry_incs} ${G4materials_incs} ${G4intercoms_incs} ${G4interfaces_incs} ${G4visualization_incs}"' \
+use_linkopts='"${G4run_linkopts} ${G4global_linkopts} ${G4intercoms_linkopts} ${G4interfaces_linkopts} ${ROOT_Core_linkopts} ${G4digits_hits_linkopts} ${G4event_linkopts} ${G4processes_linkopts} ${G4particles_linkopts} ${G4tracking_linkopts} ${G4geometry_linkopts} ${G4graphics_reps_linkopts} ${G4Vis_linkopts} ${ROOT_Cint_linkopts} ${G4track_linkopts} ${G4materials_linkopts} ${AGDD_linkopts} ${BaseVGM_linkopts} ${RootGM_linkopts} ${Geant4GM_linkopts} ${AgddGM_linkopts} ${XmlVGM_linkopts} ${TestVGM_linkopts} ${ClhepVGM_linkopts}"'
 
 action tests "cmt make cmt_tests;cd ${VGMROOT}/$(Platform_bin); rm -rf *_deps tests *GM vgm_test vgm_e01 vgm_e02 vgm_e03 vgm_e04;rm *.make *.stamp *.shstamp; ln -sf vgm_test.exe vgm_test " CYGWIN "" WIN32 "" # Darwin "" 
 

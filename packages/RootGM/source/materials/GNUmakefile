@@ -22,6 +22,7 @@ include $(VGM_INSTALL)/config/architecture.gmk
 CPPFLAGS += -I$(VGM_BASE)/VGM/include
 CPPFLAGS += -I$(VGM_BASE)/BaseVGM/include
 CPPFLAGS += -I$(VGM_BASE)/RootGM/include
+INTYLIBS += -lRootGM_common
 
 include $(VGM_INSTALL)/config/root.gmk
 
