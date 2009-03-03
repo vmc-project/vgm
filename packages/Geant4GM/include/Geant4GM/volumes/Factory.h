@@ -46,6 +46,10 @@ namespace Geant4GM {
       Factory();
       virtual ~Factory();
     
+      // static methods
+      static void SetSurfCheck(bool surfCheck);
+      static bool GetSurfCheck();
+
       //
       // methods
       //
@@ -207,10 +211,16 @@ namespace Geant4GM {
       VGM::IPlacement* ImportPVPair(VGM::IVolume* volume, 
 			            VGM::IVolume* motherVolume,
                                     G4PhysicalVolumesPair pvPair);
-
+      bool          SwitchSolid(VGM::IVolume* volume,
+                                G4LogicalVolume* g4LV,
+                                G4LogicalVolume* g4Mother);
+                                
       // import/export
       //
       virtual bool Import(void* topVolume);
+
+      // static data members
+      static bool  fgSurfCheck;
 
       // data members
       VGM::IPlacement*  fTop; 

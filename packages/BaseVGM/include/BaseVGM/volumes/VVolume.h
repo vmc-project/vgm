@@ -48,6 +48,8 @@ namespace BaseVGM {
       virtual VGM::IPlacement*  Daughter(int i) const;
     
       virtual void  AddDaughter(VGM::IPlacement* daughter);
+      
+      virtual void  ResetSolid(VGM::ISolid* solid);
     
     protected:   
       VVolume();

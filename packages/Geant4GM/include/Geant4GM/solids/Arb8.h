@@ -60,6 +60,8 @@ namespace Geant4GM {
       
     private:   
       // methods
+      void ReorderVertices(std::vector<G4ThreeVector>& vertices);
+      
       G4VFacet* MakeDownFacet(std::vector<G4ThreeVector> fromVertices, 
                               int ind1, int ind2, int ind3) const;
       G4VFacet* MakeUpFacet(std::vector<G4ThreeVector> fromVertices, 

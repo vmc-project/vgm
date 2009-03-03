@@ -108,6 +108,14 @@ Geant4GM::Arb8::Arb8(const std::string& name,
     upVertices.push_back(G4ThreeVector(vertices[i].first  / ClhepVGM::Units::Length(),
                                          vertices[i].second / ClhepVGM::Units::Length(),
                                          hz / ClhepVGM::Units::Length()));
+                                         
+  // Reorder vertices if they are not ordered anti-clock wise
+  G4ThreeVector cross 
+    = (downVertices[1]-downVertices[0]).cross(downVertices[2]-downVertices[1]);
+  if ( cross.z() > 0.0 ) {
+     ReorderVertices(downVertices);
+     ReorderVertices(upVertices);
+  }       
     
   fTessellatedSolid = new G4TessellatedSolid(name);
   
@@ -118,10 +126,10 @@ Geant4GM::Arb8::Arb8(const std::string& name,
   facet = MakeDownFacet(downVertices, 0, 2, 3);
   if (facet) fTessellatedSolid->AddFacet( facet );
   
-  facet = MakeUpFacet(upVertices, 0, 1, 2);
+  facet = MakeUpFacet(upVertices, 0, 2, 1);
   if (facet) fTessellatedSolid->AddFacet( facet );
   
-  facet = MakeUpFacet(upVertices, 0, 2, 3);
+  facet = MakeUpFacet(upVertices, 0, 3, 2);
   if (facet) fTessellatedSolid->AddFacet( facet );
 
   // The quadrangular sides
@@ -129,7 +137,7 @@ Geant4GM::Arb8::Arb8(const std::string& name,
     G4int j = (i+1) % nv;
     facet = MakeSideFacet(downVertices[j], downVertices[i], 
                           upVertices[i], upVertices[j]);
-                           
+
     if ( facet ) fTessellatedSolid->AddFacet( facet );                           
   }  
 
@@ -170,6 +178,20 @@ Geant4GM::Arb8::~Arb8() {
 }    
 
 //_____________________________________________________________________________
+void 
+Geant4GM::Arb8::ReorderVertices(std::vector<G4ThreeVector>& vertices)
+{
+// Reorder the vector of vertices
+
+  std::vector<G4ThreeVector> oldVertices(vertices);
+  
+  for ( unsigned int i=0; i<oldVertices.size(); ++i ) {
+    vertices[i] = oldVertices[oldVertices.size()-1-i];
+  }  
+}  
+  
+
+//_____________________________________________________________________________
 G4VFacet*
 Geant4GM::Arb8::MakeDownFacet(std::vector<G4ThreeVector> fromVertices, 
                               int ind1, int ind2, int ind3) const
@@ -192,16 +214,13 @@ Geant4GM::Arb8::MakeDownFacet(std::vector<G4ThreeVector> fromVertices,
   G4ThreeVector cross 
     = (vertices[1]-vertices[0]).cross(vertices[2]-vertices[1]);
   
-  if ( cross.z() > 0.0 )
-  {
-    // vertices ardered clock wise has to be reordered
-
-    // G4cout << "G4ExtrudedSolid::MakeDownFacet: reordering vertices " 
-    //        << ind1 << ", " << ind2 << ", " << ind3 << G4endl; 
-
-    G4ThreeVector tmp = vertices[1];
-    vertices[1] = vertices[2];
-    vertices[2] = tmp;
+  if ( cross.z() > 0.0 ) {
+    // Should not happen, as vertices should have been reordered
+    // at this stage
+    std::cerr << "    Geant4GM::Arb8::MakeDownFacet:" << std::endl;
+    std::cerr << "    Vertices in wrong order." << std::endl; 
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    exit(1);
   }
   
   return new G4TriangularFacet(vertices[0], vertices[1],
@@ -211,7 +230,7 @@ Geant4GM::Arb8::MakeDownFacet(std::vector<G4ThreeVector> fromVertices,
 //_____________________________________________________________________________
 G4VFacet*
 Geant4GM::Arb8::MakeUpFacet(std::vector<G4ThreeVector> fromVertices, 
-                             int ind1, int ind2, int ind3) const      
+                             int ind1, int ind2, int ind3) const     
 {
   // Creates a triangular facet from the polygon points given by indices
   // forming the upper side ( z>0 )
@@ -231,16 +250,13 @@ Geant4GM::Arb8::MakeUpFacet(std::vector<G4ThreeVector> fromVertices,
   G4ThreeVector cross 
     = (vertices[1]-vertices[0]).cross(vertices[2]-vertices[1]);
   
-  if ( cross.z() < 0.0 )
-  {
-    // vertices ordered clock wise has to be reordered
-
-    // G4cout << "G4ExtrudedSolid::MakeUpFacet: reordering vertices " 
-    //        << ind1 << ", " << ind2 << ", " << ind3 << G4endl; 
-
-    G4ThreeVector tmp = vertices[1];
-    vertices[1] = vertices[2];
-    vertices[2] = tmp;
+  if ( cross.z() < 0.0 ) {
+    // Should not happen, as vertices should have been reordered
+    // at this stage
+    std::cerr << "    Geant4GM::Arb8::MakeUpFacet:" << std::endl;
+    std::cerr << "    Vertices in wrong order." << std::endl; 
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    exit(1);
   }
   
   return new G4TriangularFacet(vertices[0], vertices[1],
