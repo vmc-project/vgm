@@ -95,3 +95,8 @@ void  BaseVGM::VVolume::AddDaughter(VGM::IPlacement* daughter)
   fDaughters.push_back(daughter);
 }  
   
+//_____________________________________________________________________________
+void  BaseVGM::VVolume::ResetSolid(VGM::ISolid* solid)
+{
+  fSolid = solid;
+}  

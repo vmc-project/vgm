@@ -72,6 +72,33 @@
 #include "G4Tubs.hh"
 #include "G4ExtrudedSolid.hh"
 
+bool Geant4GM::Factory::fgSurfCheck = false;
+
+//
+// static methods
+//
+
+//_____________________________________________________________________________
+void Geant4GM::Factory::SetSurfCheck(bool surfCheck)
+{
+/// Set the option to activate geometry checking: 
+/// set pSurfChk=true for all G4PVPlacement objects 
+
+ fgSurfCheck = surfCheck;
+}  
+
+//_____________________________________________________________________________
+bool Geant4GM::Factory::GetSurfCheck()
+{
+/// Return the option to activate geometry checking
+
+  return fgSurfCheck;
+}  
+
+//
+// ctors, dtor
+//
+
 //_____________________________________________________________________________
 Geant4GM::Factory::Factory()
   : VGM::IFactory(),
@@ -116,8 +143,16 @@ void Geant4GM::Factory::ImportConstituentSolid(int index,
   G4VSolid* consSolid 
     = Geant4GM::BooleanSolid::GetConstituentSolid(index, solid);
 
-  if (!Geant4GM::SolidMap::Instance()->GetSolid(consSolid))
-    ImportSolid(consSolid);
+  if (!Geant4GM::SolidMap::Instance()->GetSolid(consSolid)) {
+    VGM::ISolid* vgmSolid = ImportSolid(consSolid);
+    if (Debug()) {
+      BaseVGM::DebugInfo();
+      if ( vgmSolid )
+        std::cout << "   Imported solid: " << *vgmSolid << std::endl;
+      else
+        std::cout << "   Imported solid: " << "0x0" << std::endl;
+    }
+  }  
 }
 
 //_____________________________________________________________________________
@@ -316,6 +351,14 @@ Geant4GM::Factory::ImportLV(G4LogicalVolume* lv)
 
   // Import solid
   VGM::ISolid* solid = ImportSolid(lv->GetSolid());
+  
+  if (Debug()) {
+    BaseVGM::DebugInfo();
+    if ( solid )
+      std::cout << "   Imported solid: " << *solid << std::endl;
+    else
+      std::cout << "   Imported solid: " << "0x0" << std::endl;
+  }  
     
   // Create vgm volume 
   VGM::IVolume* volume 
@@ -402,19 +445,30 @@ void Geant4GM::Factory::ImportPositions()
     
       G4VPhysicalVolume* dPV = lv->GetDaughter(id);
       G4LogicalVolume* dLV = dPV->GetLogicalVolume();
-      VGM::IVolume* dVolume= Geant4GM::VolumeMap::Instance()->GetVolume(dLV);
 
       if (Debug()>0) {
         BaseVGM::DebugInfo();
-        std::cout << "   " << id << "th daughter  lv=";
-	if (Debug()>1) std::cout << dLV << "  ";
-	std::cout << dLV->GetName() << " vgmVol="; 
-	if (Debug()>1) std::cout << dVolume << "  "; 
-        std::cout << dVolume->Name() << std::endl;
-      }
+        std::cout << "   " << id << "th daughter  pv = ";
+        if (Debug()>1) std::cout << dPV << "  "; 
+        std::cout << dPV->GetName()<< "  lv = "; 
+        if (Debug()>1) std::cout << dLV << "  "; 
+        std::cout << dLV->GetName();    
+      }	    
+
+      VGM::IVolume* dVolume
+        = Geant4GM::VolumeMap::Instance()->GetVolume(dLV);
       	    
       // Create placement
-      new Geant4GM::Placement(dVolume, volume, dPV);
+      VGM::IPlacement* dPlacement 
+        = new Geant4GM::Placement(dVolume, volume, dPV);
+
+      if (Debug()>0) {
+        std::cout << " vgmPl = "; 
+        if (Debug()>1) std::cout << dPlacement << "  "; 
+        std::cout << dPlacement->Name() << " vgmVol = "; 
+        if (Debug()>1) std::cout << dVolume << "  "; 
+        std::cout << dVolume->Name() << std::endl;
+      }	    
     }
   }    	
 }
@@ -550,6 +604,39 @@ Geant4GM::Factory::ImportPVPair(VGM::IVolume* volume,
      // should allow to return a list of placements
 }
 
+//_____________________________________________________________________________
+bool  Geant4GM::Factory::SwitchSolid(VGM::IVolume* volume,
+                                     G4LogicalVolume* g4LV,
+                                     G4LogicalVolume* g4MotherLV)
+{
+/// Replace g4LV solid with an equivalent solid of the
+/// same type as g4Mother solid as it is required for G4PVDivision.
+/// Implemented cases:
+/// - G4Cons -> G4Polycone
+/// - G4Tubs -> G4Polycone
+
+  if ( g4LV->GetSolid()->GetEntityType() == "G4Cons" && 
+       g4MotherLV->GetSolid()->GetEntityType() == "G4Polycone" ) {
+
+    G4Cons* cons = static_cast<G4Cons*>(g4LV->GetSolid());
+    VGM::ISolid* vgmSolid = new Geant4GM::Polycone(cons);
+    dynamic_cast<Geant4GM::Volume*>(volume)->ResetSolid(vgmSolid);
+    
+    return true;
+  }  
+   
+  if ( g4LV->GetSolid()->GetEntityType() == "G4Tubs" && 
+       g4MotherLV->GetSolid()->GetEntityType() == "G4Polycone" ) {
+
+    G4Tubs* tubs = static_cast<G4Tubs*>(g4LV->GetSolid());
+    VGM::ISolid* vgmSolid = new Geant4GM::Polycone(tubs);
+    dynamic_cast<Geant4GM::Volume*>(volume)->ResetSolid(vgmSolid);
+    
+    return true;
+  }  
+   
+  return false;
+}        
 
 //_____________________________________________________________________________
 bool Geant4GM::Factory::Import(void* topVolume)
@@ -1001,7 +1088,7 @@ Geant4GM::Factory::CreatePlacement(
   G4PhysicalVolumesPair pvPair
     = g4ReflectionFactory
         ->Place(ClhepVGM::Transform(transform),  
-	        name, g4LV, g4MotherLV, false, copyNo);
+	        name, g4LV, g4MotherLV, false, copyNo, fgSurfCheck);
 	
   // Import volumes created via G4 reflection factory
   VGM::IPlacement* placement1 = ImportPVPair(volume, motherVolume, pvPair);
@@ -1049,6 +1136,18 @@ Geant4GM::Factory::CreateMultiplePlacement(
     
   G4LogicalVolume* g4MotherLV 
     = Geant4GM::VolumeMap::Instance()->GetVolume(motherVolume);
+  
+  // Geant4 requires the same type of solid in both
+  // volume and mother volume
+  if ( volume->Solid()->Type() != motherVolume->Solid()->Type() ) { 
+    bool result = SwitchSolid(volume, g4LV, g4MotherLV); 
+    if ( ! result ) {
+      std::cerr << "    Geant4GM::Factory::CreateMultiplePlacement: " << std::endl
+                << "    Different solid types in volume and mother!" << std::endl
+                << "*** Error: Aborting execution  ***" << std::endl; 
+      exit(1);
+    }  	      
+  }		  
         
   // Apply units
   width  /= ClhepVGM::Units::AxisUnit(axis);

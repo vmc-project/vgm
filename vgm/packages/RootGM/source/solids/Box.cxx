@@ -43,7 +43,7 @@ RootGM::Box::Box(const std::string& name,
 
 
 //_____________________________________________________________________________
-RootGM::Box::Box(TGeoBBox* box)
+RootGM::Box::Box(TGeoBBox* box, bool registrate)
   : VGM::ISolid(),
     VGM::IBox(),
     BaseVGM::VBox(),
@@ -51,7 +51,8 @@ RootGM::Box::Box(TGeoBBox* box)
 {    
 /// Standard constructor to define box from Root object
 
-  RootGM::SolidMap::Instance()->AddSolid(this, fBox); 
+  if ( registrate )
+    RootGM::SolidMap::Instance()->AddSolid(this, fBox); 
 }
 
 //_____________________________________________________________________________

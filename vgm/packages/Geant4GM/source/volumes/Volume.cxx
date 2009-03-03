@@ -124,3 +124,12 @@ std::string  Geant4GM::Volume::MediumName() const
 //
   return fMediumName;
 }
+
+//_____________________________________________________________________________
+void  Geant4GM::Volume::ResetSolid(VGM::ISolid* solid)
+{
+  BaseVGM::VVolume::ResetSolid(solid);
+  
+  G4VSolid* g4Solid = Geant4GM::SolidMap::Instance()->GetSolid(solid);
+  fLogicalVolume->SetSolid(g4Solid);
+}

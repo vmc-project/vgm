@@ -48,6 +48,8 @@ namespace Geant4GM {
       virtual std::string  Name() const;
       virtual std::string  MaterialName() const;
       virtual std::string  MediumName() const;
+      
+      virtual void  ResetSolid(VGM::ISolid* solid);
     
     protected:    
       Volume();

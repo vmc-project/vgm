@@ -20,6 +20,7 @@
 
 #include "RootGM/solids/DisplacedSolid.h"
 #include "RootGM/solids/SolidMap.h"
+#include "RootGM/solids/Box.h"
 #include "RootGM/common/transform.h"
 
 #include "TGeoCompositeShape.h"
@@ -40,7 +41,8 @@ RootGM::DisplacedSolid::DisplacedSolid(
   : VGM::ISolid(),
     VGM::IDisplacedSolid(),
     BaseVGM::VDisplacedSolid(),
-    fCompositeShape(0) 
+    fCompositeShape(0),
+    fConstituentSolid(solid) 
 {
 /// Standard constructor to define Displaced solids via constituents
 /// \param boolType type of Displaced operation (kIntersection, kSubtraction,
@@ -73,7 +75,8 @@ RootGM::DisplacedSolid:: DisplacedSolid(TGeoBBox* box)
   : VGM::ISolid(),
     VGM::IDisplacedSolid(),
     BaseVGM::VDisplacedSolid(),
-    fCompositeShape(0) 
+    fCompositeShape(0),
+    fConstituentSolid(0) 
 {
 /// Standard constructor to define Displaced solid via Root object.
 /// Only TGeoBBox can include displacement in its definition.
@@ -91,6 +94,9 @@ RootGM::DisplacedSolid:: DisplacedSolid(TGeoBBox* box)
   
   // Define new name  
   std::string newName = std::string(box->GetName()) + fgkNameExtension ;
+  
+  // Create VGM box for constituent solid not registered in solid map
+  fConstituentSolid = new RootGM::Box(box, false);
   
   // Create and register TGeo matrix
   TGeoMatrix* displacement 
@@ -150,12 +156,7 @@ RootGM::DisplacedSolid::ConstituentSolid() const
 // Returns the second constituent solid.
 // ---
 
-  TGeoBoolNode* boolNode = fCompositeShape->GetBoolNode();
-
-  TGeoShape* rootSolidB = boolNode->GetLeftShape();
-  VGM::ISolid* solidB = RootGM::SolidMap::Instance()->GetSolid(rootSolidB);
- 
-  return solidB;
+  return fConstituentSolid;
 } 
 
 //_____________________________________________________________________________

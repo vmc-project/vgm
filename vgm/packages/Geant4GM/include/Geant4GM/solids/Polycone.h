@@ -24,7 +24,9 @@
 
 #include <string>
 
+class G4Cons;
 class G4Polycone;
+class G4Tubs;
 class G4ReflectedSolid;
 
 namespace Geant4GM {
@@ -37,6 +39,8 @@ namespace Geant4GM {
                double* z, double* rin, double* rout);
       Polycone(G4Polycone* polycone, 
                G4ReflectedSolid* reflPolycone = 0);
+      Polycone(G4Cons* cons);
+      Polycone(G4Tubs* tubs);
       virtual ~Polycone();
 
       // methods

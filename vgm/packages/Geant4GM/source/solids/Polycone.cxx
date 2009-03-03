@@ -26,7 +26,9 @@
 #include "Geant4GM/solids/Polycone.h"
 #include "Geant4GM/solids/SolidMap.h"
 
+#include "G4Cons.hh"
 #include "G4Polycone.hh"
+#include "G4Tubs.hh"
 #include "G4ReflectedSolid.hh"
 
 const int Geant4GM::Polycone::fgkMaxNofZPlanes = 50;
@@ -95,7 +97,7 @@ Geant4GM::Polycone::Polycone(
     fZValuesRefl(0),
     fPolycone(polycone)
 {    
-/// Standard constructor to define polycone from G4 object
+/// Standard constructor to define polycone from G4Polycone object
 
   if (reflPolycone) {
     int     nofZplanes = polycone->GetOriginalParameters()->Num_z_planes;
@@ -110,6 +112,66 @@ Geant4GM::Polycone::Polycone(
     Geant4GM::SolidMap::Instance()->AddSolid(this, polycone); 
 
   CreateBuffers();
+}
+
+//_____________________________________________________________________________
+Geant4GM::Polycone::Polycone(G4Cons* cons)
+  : VGM::ISolid(),
+    VGM::IPolycone(),
+    BaseVGM::VPolycone(),
+    fIsReflected(false),
+    fZValuesRefl(0),
+    fPolycone(0)
+{    
+/// Standard constructor to define polycone from G4Cons object
+
+  // Get parameters
+  double* z    = new double[2];
+  double* rin  = new double[2];
+  double* rout = new double[2];
+  z[0]    = - cons->GetZHalfLength();
+  z[1]    = cons->GetZHalfLength();
+  rin[0]  = cons->GetInnerRadiusMinusZ();
+  rin[1]  = cons->GetInnerRadiusPlusZ();
+  rout[0] = cons->GetOuterRadiusMinusZ();
+  rout[1] = cons->GetOuterRadiusPlusZ();
+  
+  fPolycone = new G4Polycone(cons->GetName(),     
+                             cons->GetStartPhiAngle(), 
+                             cons->GetDeltaPhiAngle(), 
+                             2, z, rin, rout);
+  
+  Geant4GM::SolidMap::Instance()->AddSolid(this, fPolycone); 
+}
+
+//_____________________________________________________________________________
+Geant4GM::Polycone::Polycone(G4Tubs* tubs)
+  : VGM::ISolid(),
+    VGM::IPolycone(),
+    BaseVGM::VPolycone(),
+    fIsReflected(false),
+    fZValuesRefl(0),
+    fPolycone(0)
+{    
+/// Standard constructor to define polycone from G4Tubs object
+
+  // Get parameters
+  double* z    = new double[2];
+  double* rin  = new double[2];
+  double* rout = new double[2];
+  z[0]    = - tubs->GetZHalfLength();
+  z[1]    = tubs->GetZHalfLength();
+  rin[0]  = tubs->GetInnerRadius();
+  rin[1]  = tubs->GetInnerRadius();
+  rout[0] = tubs->GetOuterRadius();
+  rout[1] = tubs->GetOuterRadius();
+  
+  fPolycone = new G4Polycone(tubs->GetName(),     
+                             tubs->GetStartPhiAngle(), 
+                             tubs->GetDeltaPhiAngle(), 
+                             2, z, rin, rout);
+  
+  Geant4GM::SolidMap::Instance()->AddSolid(this, fPolycone); 
 }
 
 //_____________________________________________________________________________

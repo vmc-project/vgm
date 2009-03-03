@@ -183,7 +183,7 @@ BaseVGM::VFactory::ExportSolid(VGM::ISolid* solid,
 
   if (Debug()>0) {
     BaseVGM::DebugInfo();
-    std::cout << "Exporting solid: ";
+    std::cout << "   Exporting solid: ";
     if (Debug()>1) std::cout << solid;
     std::cout << std::endl;    
     BaseVGM::DebugInfo();
@@ -421,10 +421,10 @@ BaseVGM::VFactory::ExportVolumeStore(VGM::IFactory* factory) const
     //
     if (Debug()>0) {
       BaseVGM::DebugInfo();
-      std::cout << "   " << i << "th volume: " << volume->Name();
-      std::cout << "   " << "material: " << volume->MaterialName();
+      std::cout << "Exporting volume:  " << i << "th  \"" << volume->Name();
+      std::cout << "\"  " << "material: \"" << volume->MaterialName() << "\"";
       if (Debug()>1)
-        std::cout << "   " << " oldVGM=" << volume << " newVGM=" << newVolume;
+        std::cout << "  " << " oldVGM=" << volume << " newVGM=" << newVolume;
       std::cout << std::endl;
     }		
   } 

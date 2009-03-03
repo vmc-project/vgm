@@ -117,8 +117,16 @@ void RootGM::Factory::ImportConstituentSolid(
   TGeoShape* consSolid 
     = RootGM::BooleanSolid::GetConstituentSolid(index, solid);
 
-  if (!RootGM::SolidMap::Instance()->GetSolid(consSolid))
-    ImportSolid(consSolid);
+  if (!RootGM::SolidMap::Instance()->GetSolid(consSolid)) {
+    VGM::ISolid* vgmSolid = ImportSolid(consSolid);
+    if (Debug()) {
+      BaseVGM::DebugInfo();
+      if ( vgmSolid )
+        std::cout << "   Imported solid: " << *vgmSolid << std::endl;
+      else
+        std::cout << "   Imported solid: " << "0x0" << std::endl;
+    }
+  }    
 }
 
 //_____________________________________________________________________________
@@ -144,20 +152,20 @@ RootGM::Factory::ImportSolid(TGeoShape* shape)
   if (box && 
       std::string(shape->ClassName()) == std::string("TGeoBBox")) { 
      
-    // Import box itself
-    VGM::IBox* vgmBox = new RootGM::Box(box);
-    SolidStore().push_back(vgmBox);
-
-    // Return box if it has not offset defined
+    // Import box if it has not offset defined
     const Double_t* origin = box->GetOrigin();
     if ( ! origin ||
-         ( origin[0] == 0.0 && origin[1]== 0.0 && origin[2] == 0.0 ) ) 
+         ( origin[0] == 0.0 && origin[1]== 0.0 && origin[2] == 0.0 ) ) {
+
+      // Import box itself
+      VGM::IBox* vgmBox = new RootGM::Box(box);
+      SolidStore().push_back(vgmBox);
       return vgmBox;
+    }  
   
-    // Import offset via displaced solid
+    // Import box with offset via displaced solid
     VGM::IDisplacedSolid* vgmDisplacedSolid = new RootGM::DisplacedSolid(box);
     SolidStore().push_back(vgmDisplacedSolid);
-    
     return vgmDisplacedSolid; 
   }
 
@@ -343,6 +351,14 @@ RootGM::Factory::ImportVolume(TGeoVolume* rootVolume)
   // Import solid
   VGM::ISolid* solid = ImportSolid(rootVolume->GetShape());
   
+  if (Debug()) {
+    BaseVGM::DebugInfo();
+    if ( solid )
+      std::cout << "   Imported solid: " << *solid << std::endl;
+    else
+      std::cout << "   Imported solid: " << "0x0" << std::endl;
+  }  
+
   // Do not import assembly volumes
   if (dynamic_cast<TGeoVolumeAssembly*>(rootVolume) ) return 0;
     
@@ -439,7 +455,9 @@ void RootGM::Factory::ImportPlacements(const TGeoVolume* rootVolume,
     
     if (Debug()>0) {
       BaseVGM::DebugInfo();
-      std::cout << "   " << i << "th daughter  rtVol = ";
+      std::cout << "   " << i << "th daughter  rtNode = ";
+      if (Debug()>1) std::cout << dNode << "  "; 
+      std::cout << dNode ->GetName()<< "  rtVol = "; 
       if (Debug()>1) std::cout << dRootVolume << "  "; 
       std::cout << dRootVolume->GetName();    
     }	    
@@ -448,14 +466,18 @@ void RootGM::Factory::ImportPlacements(const TGeoVolume* rootVolume,
     
       VGM::IVolume* dVolume= RootGM::VolumeMap::Instance()->GetVolume(dRootVolume);
       
+      // Create placement
+      VGM::IPlacement* dPlacement 
+        = new RootGM::Placement(dVolume, volume, dNode);
+
       if (Debug()>0) {
-        std::cout << " vgmVol = "; 
+        std::cout << " vgmPl = "; 
+        if (Debug()>1) std::cout << dPlacement << "  "; 
+        std::cout << dPlacement->Name() << " vgmVol = "; 
         if (Debug()>1) std::cout << dVolume << "  "; 
         std::cout << dVolume->Name() << std::endl;
       }	    
 	    
-      // Create placement
-      new RootGM::Placement(dVolume, volume, dNode);
     }
     else {
       std::vector<const TGeoNode*> assemblyNodes;
@@ -480,15 +502,23 @@ void RootGM::Factory::ImportDivision(const TGeoVolume* rootVolume,
       
   if (Debug()>0) {
     BaseVGM::DebugInfo();
-    std::cout << "   " << "0th daughter (division) rtVol = ";
+    std::cout << "   " << "0th daughter (division) rtNode = ";
+    if (Debug()>1) std::cout << dNode << "  "; 
+    std::cout << dNode ->GetName()<< "  rtVol = "; 
     if (Debug()>1) std::cout << dRootVolume << "  "; 
-    std::cout << dRootVolume->GetName() << " vgmVol = "; 
-    if (Debug()>1) std::cout << dVolume << "  "; 
-    std::cout << dVolume->Name() << std::endl;
+    std::cout << dRootVolume->GetName();    
   }	    
 	    
   // Create placement
-  new RootGM::Placement(dVolume, volume, dNode);
+  VGM::IPlacement* placement = new RootGM::Placement(dVolume, volume, dNode);
+
+  if (Debug()>0) {
+    std::cout << " vgmPl = "; 
+    if (Debug()>1) std::cout << placement << "  "; 
+    std::cout << placement->Name() << " vgmVol = "; 
+    if (Debug()>1) std::cout << volume << "  "; 
+    std::cout << volume->Name() << std::endl;
+  }     
 }
 
 //_____________________________________________________________________________

@@ -54,6 +54,7 @@ namespace RootGM {
       static const std::string fgkNameExtension; 
 
       TGeoCompositeShape* fCompositeShape;
+      VGM::ISolid*  fConstituentSolid;
   };
 
 }
