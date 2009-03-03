@@ -1467,3 +1467,22 @@ void* TstGeometryViaGeant4::TestDisplacedSolids2()
   
   return (void*) world;
  }  
+
+//#include "MyDetectorConstruction.hh"
+
+//_____________________________________________________________________________
+void* TstGeometryViaGeant4::TestSpecial()
+{
+// Geometry defined via external user code
+
+/*
+  MyDetectorConstruction* myDetector = new MyDetectorConstruction();
+
+  G4VPhysicalVolume* world = myDetector->Construct();
+  
+  return (void*) world;
+*/
+
+  return 0;
+}  
+ 

@@ -46,6 +46,7 @@ class TstGeometryViaGeant4 : public TstVGeometry
     virtual void* TestBooleanSolids3();
     virtual void* TestDisplacedSolids1();
     virtual void* TestDisplacedSolids2();
+    virtual void* TestSpecial();
 
   private:
     G4LogicalVolume* CreateWorld(G4double x, G4double y, G4double z);
