@@ -23,7 +23,7 @@
 #include "G4Track.hh"
 #include "G4ios.hh"
  
-const G4int TstSteppingAction::fgkMaxStepNumber = 100;
+const G4int TstSteppingAction::fgkMaxStepNumber = 1000;
 
 TstSteppingAction::TstSteppingAction()
 {}

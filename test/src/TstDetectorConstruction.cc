@@ -83,6 +83,8 @@ G4VPhysicalVolume* TstDetectorConstruction::Construct()
 //  exports it in Geant4 and in XML.
 // ---
 
+  Geant4GM::Factory::SetSurfCheck(false);
+
   // Define materials first
   fGeometry->DefineMaterials();
 
