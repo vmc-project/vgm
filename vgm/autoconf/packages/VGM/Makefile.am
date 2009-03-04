@@ -16,7 +16,8 @@ vgmcominc_HEADERS = \
 	$(vgminc)/common/Axis.h \
 	$(vgminc)/common/Math.h \
 	$(vgminc)/common/ThreeVector.h \
-	$(vgminc)/common/Transform.h 
+	$(vgminc)/common/Transform.h \ 
+	$(vgminc)/common/TwoVector.h
 
 vgmmatincdir = $(includedir)/VGM/materials
 vgmmatinc_HEADERS = \
