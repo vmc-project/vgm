@@ -36,8 +36,7 @@
  
  4. Open and view the generated Root file 
     root
-    root [0] new TGeoManager("N03", "Geant4 novice example N03");
-    root [1] gGeoManager->Import("N03Example.root");
-    root [2] gGeoManager->GetTopVolume()->Draw();
+    root [0] TGeoManager::Import("N03Example.root");
+    root [1] gGeoManager->GetTopVolume()->Draw();
 
                 

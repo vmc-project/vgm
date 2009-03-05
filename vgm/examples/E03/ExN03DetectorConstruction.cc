@@ -1,3 +1,5 @@
+// $Id$
+//
 // -----------------------------------------------------------------------
 // The example program of the Virtual Geometry Model
 // Copyright (C) 2007, Ivana Hrivnacova               
@@ -8,6 +10,7 @@
 // -----------------------------------------------------------------------
 
 // Modified Geant4 N03 example
+//
 //
 // ********************************************************************
 // * License and Disclaimer                                           *
@@ -34,8 +37,8 @@
 // ********************************************************************
 //
 //
-// Id: ExN03DetectorConstruction.hh,v 1.7 2006/06/29 17:48:32 gunter Exp
-// GEANT4 tag Name: geant4-08-02 
+// $Id$
+// GEANT4 tag $Name: geant4-09-02-ref-00 $
 //
 // 
 
@@ -199,7 +202,7 @@ Aerog->AddElement (C   , fractionmass= 0.1*perCent);
 //
 
 G4Material* CO2 = 
-new G4Material("CarbonicGas", density= 27.*mg/cm3, ncomponents=2,
+new G4Material("CarbonicGas", density= 1.842*mg/cm3, ncomponents=2,
                               kStateGas, 325.*kelvin, 50.*atmosphere);
 CO2->AddElement(C, natoms=1);
 CO2->AddElement(O, natoms=2);
@@ -320,17 +323,7 @@ G4VPhysicalVolume* ExN03DetectorConstruction::ConstructCalorimeter()
                           
       logicAbsorber = new G4LogicalVolume(solidAbsorber,    //its solid
       			                  AbsorberMaterial, //its material
-      			                  //AbsorberMaterial->GetName()); //name
-      			                 "Absorber"); //name
-      			                  
-		     // The name of logical volume has been changed
-		     // to be different from the name of material
- 		     // In VGM GDML exporter, there are automatically
-		     // added extensions to make different names of similar entities
-		     // (eg elements and materials, solids and volumes);
-		     // however	there were not supposed to get clash
-		     // from material x volume names
-		     // TO DO : to take care of this in future 		 
+      			                  AbsorberMaterial->GetName()); //name
       			                  
       physiAbsorber = new G4PVPlacement(0,		   //no rotation
       		    G4ThreeVector(-GapThickness/2,0.,0.),  //its position
@@ -353,11 +346,7 @@ G4VPhysicalVolume* ExN03DetectorConstruction::ConstructCalorimeter()
     			   
       logicGap = new G4LogicalVolume(solidGap,
       				     GapMaterial,
-      				     //GapMaterial->GetName());
-      				     "Gap");
-
- 		     // The name of logical volume has been changed
-		     // to be different from the name of material
+      				     GapMaterial->GetName());
       				     
       physiGap = new G4PVPlacement(0,                      //no rotation
                G4ThreeVector(AbsorberThickness/2,0.,0.),   //its position
@@ -401,6 +390,10 @@ G4VPhysicalVolume* ExN03DetectorConstruction::ConstructCalorimeter()
   logicGap->SetVisAttributes(atb);}
   */
 
+  //
+  //always return the physical World
+  //
+ 
   // ---------------------------------------------------------------------------
   // VGM demo 
   //
@@ -409,7 +402,7 @@ G4VPhysicalVolume* ExN03DetectorConstruction::ConstructCalorimeter()
   // Export geometry in XML (both AGDD, GDML formats)
   //
 
-   // Import Geant4 geometry to VGM
+  // Import Geant4 geometry to VGM
   //
   Geant4GM::Factory factory;
   factory.Import(physiWorld);
@@ -432,12 +425,7 @@ G4VPhysicalVolume* ExN03DetectorConstruction::ConstructCalorimeter()
   // end VGM demo
   //---------------------------------------------------------------------------
 
-
-
-  //
-  //always return the physical World
-  //
-  return physiWorld;
+ return physiWorld;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
