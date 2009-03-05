@@ -1,0 +1,9 @@
+
+${CONSTITUENT} :: ${bin}${TO}
+
+${bin}${TO} :: ${FROM}
+	cp ${FROM} ${bin}${TO}
+
+${CONSTITUENT}clean ::
+	/bin/rm -f ${bin}${TO}
+

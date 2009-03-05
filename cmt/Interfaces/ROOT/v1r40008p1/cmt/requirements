@@ -1,0 +1,70 @@
+package ROOT
+version v1r40008p1
+
+build_strategy no_prototypes
+include_path none
+
+macro ROOT_native_version "5.22.00"
+
+macro ROOT_home "${ROOTSYS}" WIN32 "C:\usr\local\ROOT\$(ROOT_native_version)\root" CERN "/afs/cern.ch/sw/lcg/external/root/$(ROOT_native_version)/$(CMTCONFIG)"
+
+macro ROOT_include "$(ROOT_home)/include" WIN32 "$(ROOT_home)\include" CERN "$(ROOT_home)/include"
+macro ROOT_lib "$(ROOT_home)/lib" WIN32 "$(ROOT_home)\lib" CERN "$(ROOT_home)/lib"
+
+macro ROOT_cppflags "-I$(ROOT_include)" WIN32 "/I $(ROOT_include)"
+
+macro ROOT_Cint_linkopts "-L$(ROOT_lib) -lCint" WIN32 "$(ROOT_lib)\libCint.lib"
+macro ROOT_Core_linkopts "-L$(ROOT_lib) -lCore -lMathCore -lRIO" WIN32 "$(ROOT_lib)\libCore.lib"
+macro ROOT_Matrix_linkopts "-L$(ROOT_lib) -lMatrix" WIN32 "$(ROOT_lib)\libMatrix.lib"
+macro ROOT_Tree_linkopts "-L$(ROOT_lib) -lTree" WIN32 "$(ROOT_lib)\libTree.lib"
+
+macro_append ROOT_Tree_linkopts "" Darwin " -u _G__cpp_setup_initializerG__Tree"
+
+macro ROOT_Hist_linkopts "-L$(ROOT_lib) -lHist" WIN32 "$(ROOT_lib)\libHist.lib"
+macro ROOT_Graf_linkopts "-L$(ROOT_lib) -lGraf" WIN32 "$(ROOT_lib)\libGraf.lib"
+macro ROOT_Graf3d_linkopts "-L$(ROOT_lib) -lGraf3d" WIN32 "$(ROOT_lib)\libGraf3d.lib"
+
+macro ROOT_Geom_linkopts "-L$(ROOT_lib) -lGeom" WIN32 "$(ROOT_lib)\libGeom.lib"
+macro ROOT_Gui_linkopts "-L$(ROOT_lib) -lGui" WIN32 "$(ROOT_lib)\libGui.lib"
+
+macro ROOT_freetype_linkopts "-L$(ROOT_lib) -lfreetype" WIN32 "$(ROOT_lib)\libfreetype.lib"
+
+macro ROOT_Gpad_linkopts "-L$(ROOT_lib) -lGpad" WIN32 "$(ROOT_lib)\libGpad.lib"
+macro ROOT_Rint_linkopts "-L$(ROOT_lib) -lRint" WIN32 "$(ROOT_lib)\libRint.lib"
+macro ROOT_Other_linkopts "-L$(ROOT_lib) -pthread -lm -ldl -rdynamic 
+
+# Win :
+macro ROOT_Win32_linkopts "" WIN32 "$(ROOT_lib)\libWin32.lib"
+
+# BNL ROOT Qt :
+macro ROOT_GQt_linkopts "-L$(ROOT_lib) -lGQt" WIN32 "$(ROOT_lib)\libGQt.lib"
+macro ROOT_QtGui_linkopts "-L$(ROOT_lib) -lQtGui" WIN32 "$(ROOT_lib)\libQtGui.lib"
+
+macro dict "../$(Platform_bin)/dict/"
+macro rootcint '"$(ROOT_home)/bin/rootcint"' WIN32 '"$(ROOT_home)\bin\rootcint.exe"' 
+make_fragment rootcint -header=rootcint_header -trailer=rootcint_trailer
+
+#//////////////////////////////////////////////////
+#/// Run time /////////////////////////////////////
+#//////////////////////////////////////////////////
+
+#set ROOTSYS "$(ROOT_home)"
+
+path_remove LD_LIBRARY_PATH "/ROOT/" WIN32 "" Darwin ""
+path_append LD_LIBRARY_PATH "$(ROOT_lib)" WIN32 "" Darwin ""
+
+path_remove DYLD_LIBRARY_PATH "" Darwin "/ROOT/"
+path_append DYLD_LIBRARY_PATH "" Darwin "$(ROOT_lib)"
+
+path_remove PATH "/ROOT/" WIN32 "\ROOT\"
+path_append PATH "$(ROOT_home)/bin" WIN32 "$(ROOT_home)\bin"
+
+# Python :
+#macro ROOT_use_Python "Python v3r* Interfaces -no_auto_imports"
+#private
+#use $(ROOT_use_Python)
+#use thread v1r* Interfaces -no_auto_imports
+#public
+#path_remove PYTHONPATH "/ROOT/" WIN32 "\ROOT\"
+#path_append PYTHONPATH "$(ROOT_lib)"
+

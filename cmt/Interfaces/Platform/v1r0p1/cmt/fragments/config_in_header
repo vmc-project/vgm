@@ -1,0 +1,14 @@
+
+${CONSTITUENT} :: ${TO}
+
+${TO} :: ${FROM}
+	cp ${FROM} ${TO}
+	echo ${top_srcdir}
+	sed -e 's|@top_srcdir@|${top_srcdir}|g' ${TO} > tmp;mv tmp ${TO}
+	sed -e 's|@top_buildir@|${top_srcdir}|g' ${TO} > tmp;mv tmp ${TO}
+	sed -e 's|@PACKAGE@|${PACKAGE}|g' ${TO} > tmp;mv tmp ${TO}
+	sed -e 's|@VERSION@|${VERSION}|g' ${TO} > tmp;mv tmp ${TO}
+
+${CONSTITUENT}clean ::
+	/bin/rm -f ${TO}
+

@@ -290,15 +290,15 @@ application vgm_e01 ${Geant4_install}/examples/novice/N03/exampleN03.cc -import=
 
 library E02VGM -group=examples -import=Geant4 -import=ROOT \
  ../examples/E02/ExN03DetectorConstruction.cc\
- ../examples/E02/ExN03PrimaryGeneratorAction.cc\
- ../examples/E02/ExN03SteppingAction.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03EventAction.cc\
+ ${Geant4_install}/examples/novice/N03/src/ExN03DetectorMessenger.cc \
+ ${Geant4_install}/examples/novice/N03/src/ExN03EventAction.cc\ 
  ${Geant4_install}/examples/novice/N03/src/ExN03EventActionMessenger.cc\
  ${Geant4_install}/examples/novice/N03/src/ExN03PhysicsList.cc\
+ ${Geant4_install}/examples/novice/N03/src/ExN03PrimaryGeneratorAction.cc\
  ${Geant4_install}/examples/novice/N03/src/ExN03PrimaryGeneratorMessenger.cc\
  ${Geant4_install}/examples/novice/N03/src/ExN03RunAction.cc\
+ ${Geant4_install}/examples/novice/N03/src/ExN03SteppingAction.cc\
  ${Geant4_install}/examples/novice/N03/src/ExN03SteppingVerbose.cc
-
 
 macro E02VGM_cppflags "-I$(VGMROOT)/examples/E02 -I${Geant4_install}/examples/novice/N03/include ${G4run_incs} ${G4intercoms_incs} ${G4graphics_reps_incs} ${Geant4GM_cppflags} ${RootGM_cppflags} ${G4event_incs} ${G4track_incs} ${G4particles_incs} ${G4tracking_incs} ${G4processes_incs} ${G4digits_hits_incs}"
 
@@ -342,7 +342,7 @@ application vgm_e03 ${Geant4_install}/examples/novice/N03/exampleN03.cc -import=
 #//          Ex4                                 //
 #//////////////////////////////////////////////////
 
-application vgm_e04 ../examples/E04/rootgeom.cxx -group=examples -import=ROOT use_cppflags='"${ROOT_cppflags} ${RootGM_cppflags} -I$(VGMROOT)/packages/XmlVGM/include "' use_linkopts='"${BaseVGM_linkopts} ${XmlVGM_linkopts} ${RootGM_linkopts} ${ClhepVGM_linkopts} ${CLHEP_Vector_linkopts} ${CLHEP_Geometry_linkopts} ${ROOT_Geom_linkopts} ${ROOT_Core_linkopts} ${ROOT_Rio_linkopts} ${ROOT_Cint_linkopts}"'
+application vgm_e04 ../examples/E04/rootgeom.cxx -group=examples -import=ROOT use_cppflags='"${ROOT_cppflags} ${RootGM_cppflags} -I$(VGMROOT)/packages/XmlVGM/include "' use_linkopts='"${BaseVGM_linkopts} ${XmlVGM_linkopts} ${RootGM_linkopts} ${ClhepVGM_linkopts} ${CLHEP_Vector_linkopts} ${CLHEP_Geometry_linkopts} ${ROOT_Geom_linkopts} ${ROOT_Core_linkopts} ${ROOT_Rio_linkopts} ${ROOT_Cint_linkopts} ${ROOT_Other_linkopts}"'
 
 
 
@@ -350,7 +350,7 @@ application vgm_e04 ../examples/E04/rootgeom.cxx -group=examples -import=ROOT us
 #//          Ex5                                 //
 #//////////////////////////////////////////////////
 
-application vgm_e05 ../examples/E05/agdd2root.cxx -group=examples -import=ROOT -import=AGDD -import=XERCESC use_cppflags='"${CLHEP_cppflags} ${ROOT_cppflags} ${AGDD_cppflags} ${RootGM_cppflags} ${AgddGM_cppflags}"' use_linkopts='"${BaseVGM_linkopts} ${AgddGM_linkopts} ${RootGM_linkopts} ${ClhepVGM_linkopts} ${CLHEP_Vector_linkopts} ${CLHEP_Geometry_linkopts} ${ROOT_Geom_linkopts} ${ROOT_Core_linkopts} ${ROOT_Rio_linkopts} ${ROOT_Cint_linkopts} ${AGDD_linkopts} ${XERCESC_linkopts}"'
+application vgm_e05 ../examples/E05/agdd2root.cxx -group=examples -import=ROOT -import=AGDD -import=XERCESC use_cppflags='"${CLHEP_cppflags} ${ROOT_cppflags} ${AGDD_cppflags} ${RootGM_cppflags} ${AgddGM_cppflags}"' use_linkopts='"${BaseVGM_linkopts} ${AgddGM_linkopts} ${RootGM_linkopts} ${ClhepVGM_linkopts} ${CLHEP_Vector_linkopts} ${CLHEP_Geometry_linkopts}  ${CLHEP_Evaluator_linkopts} ${ROOT_Geom_linkopts} ${ROOT_Core_linkopts} ${ROOT_Rio_linkopts} ${ROOT_Cint_linkopts}  ${ROOT_Other_linkopts} ${AGDD_linkopts} ${XERCESC_linkopts}"'
 
 
 

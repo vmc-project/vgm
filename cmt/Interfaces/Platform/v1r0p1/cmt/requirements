@@ -1,0 +1,85 @@
+package Platform
+version v1r0p1
+
+build_strategy no_prototypes
+include_path none
+
+tag RedHat7  Linux
+
+action make "gmake $(cmt_args)" Darwin "make $(cmt_args)" CYGWIN "make $(cmt_args)" WIN32 "nmake /f nmake $(cmt_args)"
+
+# Platform_bin is used in all OpenScientist packages.
+macro Platform_bin "${CMTCONFIG}"\
+           RedHat7 "${tag}"\
+         Linux_KCC "Linux_KCC"\
+        CERN_WIN32 "win32_vc71"\
+             WIN32 "VisualC"\
+           profile "profile"
+
+set PLATFORMBIN "${Platform_bin}"
+
+# At LAL :
+#macro Platform_use_KCC "" LAL "KCC v1r0 Interfaces"
+macro Platform_use_KCC ""
+use $(Platform_use_KCC)
+
+#  Building shared libs with "cxx" (and not ld) with default
+# libcxxstd induces application crashes.
+
+macro_remove cflags  "" alpha "-std1"
+macro_append cflags  "" alpha " -std strict_ansi -timplicit_local"
+
+macro_remove cppflags  "" alpha "-nocompress -std arm -msg_quiet"
+macro_append cppflags  "" alpha " -std strict_ansi -timplicit_local"
+
+# WARNING : MacOSX gl.h does not compile with gcc -ansi !!!
+#  There are some // comments in it.
+#macro_append cflags "" Darwin " -pipe -ansi -pedantic -W -Wall"
+
+macro_append cppflags "" Darwin " -pipe -ansi -pedantic -W -Wall -Wno-long-long "
+# to compile "long long" with g++-3.4.x
+macro_append cppflags "" Linux " -Wno-long-long"
+
+# for 64 bits :
+macro_append cppflags "" Linux " -fPIC"
+
+macro_append cflags  "" profile " -pg"
+macro_append cppflags  "" profile " -pg"
+macro_append cpplinkflags  "" profile " -pg"
+
+macro_remove shlibbuilder  "" OSF1 "ld"
+macro_append shlibbuilder  "" OSF1 "cxx -v"
+macro_remove shlibflags    "" OSF1 "-shared -expect_unresolved '*'"
+macro_append shlibflags    "" OSF1 " -shared -nocxxstd"
+
+# Darwin : building .dylib with -single_module permits
+#  to solve the "mutex hanging in constructor of static objects" problem.
+#  In particular it permits to avoid the "bind_at_load" that
+#  slows down the startup of applications.
+macro shlibflags "$(shlibflags)" Darwin "-dynamiclib -twolevel_namespace -undefined error"
+macro_append shlibflags    "" Darwin " -dynamic -single_module"
+# Darwin : options in order to pass the install_name_tool on 
+# .dylib, .bundle and .exe in order to build the .app 
+# (see for exam OnX/<version>/tools/mak_OnX_ons_app script).
+# 800 = 1024 in hexa.
+macro_append shlibflags "" Darwin " -Wl,-headerpad_max_install_names -Wl,-headerpad,800"
+
+# Darwin : to have twolevel_namespace.
+macro make_shlib "$(make_shlib)" Darwin "${PLATFORMROOT}/cmt/cmt_make_shlib_common.sh extract"
+
+#  For UNIXes, to rename a <app>.exe to <app>
+make_fragment copy_exe -header=copy_exe_header
+make_fragment copy_app -header=copy_app_header
+
+# On Darwin, to build a .app bundle :
+make_fragment darwin_app -header=darwin_app_header
+
+# To have something similar than configure.
+# This fragment take a <file>.in and produce a <file>
+# by replacing @top_srcdir@ and @top_builddir@ with <PACKAGE>ROOT.
+make_fragment config_in -header=config_in_header
+
+# To build doc with Doxygen
+make_fragment doxygen -header=doxygen_header
+
+macro cmt_install_area_command "cp " WIN32 "xcopy /S /E /Y "
