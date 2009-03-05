@@ -1,0 +1,18 @@
+
+${CONSTITUENT} :: ${TO}
+
+${TO} :: ${FROM}
+	@if [ ! -d ${TO} ]; then \
+	mkdir ${TO};\
+	fi;\
+	echo ${PLATFORMROOT}/cmt/Doxyfile;\
+        if [ -f ${TO}/Doxyfile ];then\
+          echo "file Doxyfile already exists";\
+        else\
+	  cp ${PLATFORMROOT}/cmt/Doxyfile ${TO};\
+	fi ;\
+	cd ${TO};\
+	doxygen;
+
+${CONSTITUENT}clean ::
+

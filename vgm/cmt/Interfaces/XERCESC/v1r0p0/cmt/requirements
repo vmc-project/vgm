@@ -1,0 +1,22 @@
+package XERCESC
+version v1r0p0
+
+build_strategy no_prototypes
+include_path none
+
+
+macro XERCESC_home "${XERCESC_INSTALL}" WIN32 ""
+
+macro XERCESC_cppflags "-I${XERCESC_home}/include/xercesc" WIN32 "/I ${XERCESC_home}\include"
+
+macro XERCESC_linkopts "-L${XERCESC_home}/lib -lxerces-c" WIN32 "${XERCESC_home}\lib\XERCESC.lib"
+
+path_remove LD_LIBRARY_PATH "/XERCESC/" WIN32 "" Darwin ""
+path_append LD_LIBRARY_PATH "${XERCESC_home}/lib" WIN32 "" Darwin ""
+
+path_remove DYLD_LIBRARY_PATH "" Darwin "/XERCESC/"
+path_append DYLD_LIBRARY_PATH "" Darwin "${XERCESC_home}/lib"
+
+path_remove PATH "" WIN32 "\XERCESC\"
+path_append PATH "" WIN32 "${XERCESC_home}\lib"
+

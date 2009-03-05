@@ -1,0 +1,129 @@
+
+${CONSTITUENT} :: ${bin}${TO}.app
+
+# see for details : http://developer.apple.com/documentation/DeveloperTools/Conceptual/DynamicLibraries/Articles/DynamicLibraryUsageGuidelines.html
+# first, look in LD_LIBRARY_PATH
+# second, look in DYLD_LIBARY_PATH
+# third look in current directory
+# fourth look in $DYLD_FALLBACK_LIBRARY_PATH
+${bin}${TO}.app :: 
+	@/bin/rm -R -f ${bin}${TO}.app; \
+	if test -d  `dirname ${TO}` ; then \
+            mkdir -p `dirname ${TO}` ; \
+	fi ;\
+	mkdir -p ${bin}${TO}.app/Contents/MacOS; \
+	cp ${bin}${FROM}.exe ${bin}${TO}.app/Contents/MacOS/`basename ${TO}`; \
+	mkdir -p ${bin}${TO}.app/Contents/Resources; \
+	if test ! "${FROM_NIB}" = "" ; then \
+	  if test -d  ${FROM_NIB} ; then \
+            mkdir -p ${bin}${TO}.app/Contents/Resources/${TO_NIB} ; \
+	    cp -R ${FROM_NIB} ${bin}${TO}.app/Contents/Resources/${TO_NIB} ; \
+	  fi ;\
+	fi ;\
+	if test ! "${FROM_IMAGE}" = "" ; then \
+	  if test -f  ${FROM_IMAGE} ; then \
+	    cp ${FROM_IMAGE} ${bin}${TO}.app/Contents/Resources/${TO_IMAGE} ; \
+	  fi; \
+	fi; \
+        unscan_libs="/usr/X11R6;/usr/lib";\
+        if [ -f tmp_file ];then\
+          rm darwin_app_tmp_file;\
+        fi ;\
+        echo $${unscan_libs} | sed -e 's#;#|#g' -e 's#/#\\/#g' >darwin_app_tmp_file;\
+        read unscan_libs_regexp <darwin_app_tmp_file;\
+        if [ -f darwin_app_tmp_file ];then\
+          rm darwin_app_tmp_file;\
+        fi ;\
+        if [ -f darwin_app_libs ];then\
+          rm darwin_app_libs;\
+        fi ;\
+	mkdir -p ${bin}${TO}.app/Contents/Frameworks; \
+	otool -L ../Darwin/${bin}${TO}.app/Contents/MacOS/`basename ${TO}` |  sed -e 's/^\([[:blank:]]*\)\(.*\)\( (.*\)/\2/'> darwin_app_libs; \
+        sed -e '/^@executable_path/d' darwin_app_libs | sed -e '/dylib:/d' | egrep -v '^('$${unscan_libs_regexp}')' > darwin_app_tmp_file;\
+	cp darwin_app_tmp_file darwin_app_libs;\
+        if [ -f darwin_app_tmp_file ];then\
+          rm darwin_app_tmp_file;\
+        fi ;\
+        end_loop_libs=0; \
+        while [ $${end_loop_libs} -eq 0 ] ; do \
+	  for my_dylib in `grep "dylib" darwin_app_libs` ; do \
+            echo "look for dylib $${my_dylib}"; \
+	    found=0; \
+            my_dylib_name=`basename $${my_dylib}`; \
+            if [ `dirname $${my_dylib}` != "." ]; then \
+              echo "   ...found $${my_dylib}"; \
+              cp $${my_dylib} ${bin}${TO}.app/Contents/Frameworks/.; \
+	      install_name_tool -change $${my_dylib} @executable_path/../Frameworks/$${my_dylib_name} ${bin}${TO}.app/Contents/MacOS/`basename ${TO}`; \
+	      install_name_tool  -id @executable_path/../Frameworks/$${my_dylib_name} ${bin}${TO}.app/Contents/Frameworks/$${my_dylib_name}; \
+	      found=1; \
+            fi; \
+	    if [ $${found} -ne 1 ]; then \
+	      for search_lib_dir in `echo "LD_LIBRARY_PATH DYLD_LIBRARY_PATH . DYLD_FALLBACK_LIBRARY_PATH"` ; do \
+	        inv_paths="";\
+	        for dylib_paths in `printenv $${search_lib_dir} | sed -e 's/:/ /g'` ; do \
+	          inv_paths=$${dylib_paths}":"$${inv_paths};\
+	        done;\
+	        for dylib_paths in `echo $${inv_paths} | sed -e 's/:/ /g'` ; do \
+	          if [ -f $${dylib_paths}/$${my_dylib_name} ]; then \
+                    echo "   ...found $${my_dylib} in $${dylib_paths}"; \
+		    cp $${dylib_paths}/$${my_dylib_name} ${bin}${TO}.app/Contents/Frameworks/.; \
+		    install_name_tool -change $${my_dylib} @executable_path/../Frameworks/$${my_dylib_name} ${bin}${TO}.app/Contents/MacOS/`basename ${TO}`; \
+		    install_name_tool  -id @executable_path/../Frameworks/$${my_dylib_name} ${bin}${TO}.app/Contents/Frameworks/$${my_dylib_name}; \
+		    found=1; \
+		    break 2; \
+	          fi; \
+	        done; \
+	      done; \
+            fi; \
+	    if [ $${found} -eq 1 ]; then \
+              for dylib_change in `ls -1 ${bin}${TO}.app/Contents/Frameworks/` ; do \
+	        if [  $${dylib_change} != $${my_dylib_name} ]; then \
+		  install_name_tool -change $${my_dylib} @executable_path/../Frameworks/$${my_dylib_name} ${bin}${TO}.app/Contents/Frameworks/$${dylib_change}; \
+	        fi; \
+	      done; \
+	    else \
+              echo "     impossible to find $${dylib_change} in the following path : LD_LIBRARY_PATH:DYLD_LIBRARY_PATH:.:DYLD_FALLBACK_LIBRARY_PATH"; \
+              echo "    CMT setup is probably not done"; \
+              exit;\
+	    fi; \
+	  done; \
+          if [ -f darwin_app_libs ];then\
+            rm darwin_app_libs;\
+          fi ;\
+          if [ -f darwin_app_tmp_file ];then\
+            rm darwin_app_tmp_file;\
+          fi ;\
+	  if [ $${found} -eq 1 ]; then \
+            libs_to_change=0; \
+            echo " ";\
+            echo "check for others libraries to move in ${bin}${TO}.app/Contents/Frameworks/";\
+            for libs in `ls -1 ${bin}${TO}.app/Contents/Frameworks/` ; do \
+	      otool -L ${bin}${TO}.app/Contents/Frameworks/$${libs} | sed -e 's/^\([[:blank:]]*\)\(.*\)\( (.*\)/\2/'>> darwin_app_libs; \
+            done; \
+            sed -e '/^@executable_path/d' darwin_app_libs | sed -e '/dylib:/d' | egrep -v '^('$${unscan_libs_regexp}')' > darwin_app_tmp_file;\
+	    cp darwin_app_tmp_file darwin_app_libs;\
+            libs_to_change=`grep -c "dylib" darwin_app_libs`; \
+	  fi; \
+ 	  if [ $${found} -eq 0 ]; then \
+            end_loop_libs=1;\
+          fi; \
+	  if [ $${libs_to_change} -eq 0 ]; then \
+            end_loop_libs=1;\
+          fi; \
+        done; \
+        if [ -f darwin_app_libs ];then\
+          rm darwin_app_libs;\
+        fi ;\
+        if [ -f darwin_app_tmp_file ];then\
+          rm darwin_app_tmp_file;\
+        fi ;\
+	if [ $${found} -eq 0 ]; then \
+	  echo "   Impossible to generate ${TO}.app";\
+	fi; \
+	if [ $${found} -eq 1 ]; then \
+	  echo "   The executable file ${TO}.app has been generated ";\
+	fi;
+	
+${CONSTITUENT}clean ::
+	/bin/rm -R -f ${bin}${TO}.app
+

@@ -1,0 +1,9 @@
+
+${CONSTITUENT} :: ${bin}${TO}
+
+${bin}${TO} :: ${bin}${FROM}.exe
+	cp ${bin}${FROM}.exe ${bin}${TO}
+
+${CONSTITUENT}clean ::
+	/bin/rm -f ${bin}${TO}
+
