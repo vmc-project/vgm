@@ -11,6 +11,7 @@
 
 // Modified Geant4 N03 example
 //
+//
 // ********************************************************************
 // * License and Disclaimer                                           *
 // *                                                                  *
@@ -36,8 +37,8 @@
 // ********************************************************************
 //
 //
-// Id: ExN03DetectorConstruction.cc,v 1.23 2006/06/29 17:48:54 gunter Exp 
-// GEANT4 tag Name: geant4-08-02 
+// Id: ExN03DetectorConstruction.cc,v 1.24 2008/08/12 20:00:03 gum Exp 
+// GEANT4 tag Name: geant4-09-02-ref-00 
 //
 // 
 
@@ -67,7 +68,6 @@
 #include "RootGM/volumes/Factory.h"
 #include "TGeoManager.h"
 // end VGM demo
-
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
@@ -202,7 +202,7 @@ Aerog->AddElement (C   , fractionmass= 0.1*perCent);
 //
 
 G4Material* CO2 = 
-new G4Material("CarbonicGas", density= 27.*mg/cm3, ncomponents=2,
+new G4Material("CarbonicGas", density= 1.842*mg/cm3, ncomponents=2,
                               kStateGas, 325.*kelvin, 50.*atmosphere);
 CO2->AddElement(C, natoms=1);
 CO2->AddElement(O, natoms=2);
@@ -389,6 +389,7 @@ G4VPhysicalVolume* ExN03DetectorConstruction::ConstructCalorimeter()
   atb->SetForceSolid(true);
   logicGap->SetVisAttributes(atb);}
   */
+
 
   // ---------------------------------------------------------------------------
   // VGM demo 

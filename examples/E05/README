@@ -31,8 +31,7 @@
  
  4. Open and view the generated Root file 
     root
-    root [0] new TGeoManager("AGDD test", "AGDD test for solids");
-    root [1] gGeoManager->Import("geometry.root");
-    root [2] gGeoManager->GetTopVolume()->Draw();
+    root [0] TGeoManager::Import("geometry.root");
+    root [1] gGeoManager->GetTopVolume()->Draw();
 
                 

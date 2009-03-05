@@ -36,8 +36,8 @@
 // ********************************************************************
 //
 //
-// Id: ExN03DetectorConstruction.cc,v 1.23 2006/06/29 17:48:54 gunter Exp 
-// GEANT4 tag Name: geant4-08-02 
+// $Id$
+// GEANT4 tag Name: geant4-09-02-ref-00
 //
 // 
 
@@ -45,6 +45,7 @@
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 #include "ExN03DetectorConstruction.hh"
+#include "ExN03DetectorMessenger.hh"
 
 #include "G4Material.hh"
 #include "G4Box.hh"
@@ -67,21 +68,38 @@
 #include "TGeoManager.h"
 // end VGM demo
 
-
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 ExN03DetectorConstruction::ExN03DetectorConstruction()
-  : logicWorld(0),
-    logicCalor(0),
-    logicLayer(0),
-    logicAbsorber(0),
-    logicGap (0)
-{}
+:AbsorberMaterial(0),GapMaterial(0),defaultMaterial(0),
+ solidWorld(0),logicWorld(0),physiWorld(0),
+ solidCalor(0),logicCalor(0),physiCalor(0),
+ solidLayer(0),logicLayer(0),physiLayer(0),
+ solidAbsorber(0),logicAbsorber(0),physiAbsorber(0),
+ solidGap (0),logicGap (0),physiGap (0),
+ magField(0)
+{
+  // default parameter values of the calorimeter
+  AbsorberThickness = 10.*mm;
+  GapThickness      =  5.*mm;
+  NbOfLayers        = 10;
+  CalorSizeYZ       = 10.*cm;
+  ComputeCalorParameters();
+  
+  // materials
+  DefineMaterials();
+  SetAbsorberMaterial("Lead");
+  SetGapMaterial("liquidArgon");
+  
+  // create commands for interactive definition of the calorimeter
+  detectorMessenger = new ExN03DetectorMessenger(this);
+}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 ExN03DetectorConstruction::~ExN03DetectorConstruction()
-{}
+{ delete detectorMessenger;}
+
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
@@ -91,8 +109,7 @@ ExN03DetectorConstruction::~ExN03DetectorConstruction()
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-G4LogicalVolume*  
-ExN03DetectorConstruction::FindVolume(const G4String& name) const
+G4LogicalVolume* FindVolume(const G4String& name)
 {
   G4LogicalVolumeStore* lvStore = G4LogicalVolumeStore::GetInstance();
   
@@ -151,6 +168,118 @@ G4VPhysicalVolume* ExN03DetectorConstruction::Construct()
   return world;
 }
 
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
+void ExN03DetectorConstruction::DefineMaterials()
+{ 
+// Dummy, as materials are imported via VGM
+}
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
+G4VPhysicalVolume* ExN03DetectorConstruction::ConstructCalorimeter()
+{
+// Dummy, as geometry is imported via VGM
+
+  return 0;
+}
+
   //
   // end VGM demo
   //---------------------------------------------------------------------------
+
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
+void ExN03DetectorConstruction::PrintCalorParameters()
+{
+  G4cout << "\n------------------------------------------------------------"
+         << "\n---> The calorimeter is " << NbOfLayers << " layers of: [ "
+         << AbsorberThickness/mm << "mm of " << AbsorberMaterial->GetName() 
+         << " + "
+         << GapThickness/mm << "mm of " << GapMaterial->GetName() << " ] " 
+         << "\n------------------------------------------------------------\n";
+}
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
+void ExN03DetectorConstruction::SetAbsorberMaterial(G4String materialChoice)
+{
+  // search the material by its name   
+  G4Material* pttoMaterial = G4Material::GetMaterial(materialChoice);     
+  if (pttoMaterial) AbsorberMaterial = pttoMaterial;
+}
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
+void ExN03DetectorConstruction::SetGapMaterial(G4String materialChoice)
+{
+  // search the material by its name
+  G4Material* pttoMaterial = G4Material::GetMaterial(materialChoice);
+  if (pttoMaterial) GapMaterial = pttoMaterial;
+}
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
+void ExN03DetectorConstruction::SetAbsorberThickness(G4double val)
+{
+  // change Absorber thickness and recompute the calorimeter parameters
+  AbsorberThickness = val;
+}
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
+void ExN03DetectorConstruction::SetGapThickness(G4double val)
+{
+  // change Gap thickness and recompute the calorimeter parameters
+  GapThickness = val;
+}
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
+void ExN03DetectorConstruction::SetCalorSizeYZ(G4double val)
+{
+  // change the transverse size and recompute the calorimeter parameters
+  CalorSizeYZ = val;
+}
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
+void ExN03DetectorConstruction::SetNbOfLayers(G4int val)
+{
+  NbOfLayers = val;
+}
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
+#include "G4FieldManager.hh"
+#include "G4TransportationManager.hh"
+
+void ExN03DetectorConstruction::SetMagField(G4double fieldValue)
+{
+  //apply a global uniform magnetic field along Z axis
+  G4FieldManager* fieldMgr
+   = G4TransportationManager::GetTransportationManager()->GetFieldManager();
+
+  if(magField) delete magField;		//delete the existing magn field
+
+  if(fieldValue!=0.)			// create a new one if non nul
+  { magField = new G4UniformMagField(G4ThreeVector(0.,0.,fieldValue));
+    fieldMgr->SetDetectorField(magField);
+    fieldMgr->CreateChordFinder(magField);
+  } else {
+    magField = 0;
+    fieldMgr->SetDetectorField(magField);
+  }
+}
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
+#include "G4RunManager.hh"
+
+void ExN03DetectorConstruction::UpdateGeometry()
+{
+  G4RunManager::GetRunManager()->DefineWorldVolume(ConstructCalorimeter());
+}
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

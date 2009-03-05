@@ -88,7 +88,7 @@ void rootgeom()
    arb->SetVertex(5, 0., -25.);
    arb->SetVertex(6, -10., -25.);
    arb->SetVertex(7, 5., -5.);
-   // R->AddNode(bar3, 1, gGeoIdentity);
+   R->AddNode(bar3, 1, gGeoIdentity);
                 // Not available in VGM
    
    //--- make letter 'O'
