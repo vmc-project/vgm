@@ -45,7 +45,7 @@ AC_MSG_CHECKING(to build RootGM VGM package)
 
 AC_ARG_ENABLE(RootGM, 
 	AC_HELP_STRING([--enable-RootGM],[Build RootGM subpackage [[default=yes]] ]),
-	[VGM_ENABLE_ROOTGM=$enable_ROOTGM],
+	[VGM_ENABLE_ROOTGM=$enable_RootGM],
 	[VGM_ENABLE_ROOTGM=yes])
 
 AC_MSG_RESULT([$VGM_ENABLE_ROOTGM])
@@ -59,7 +59,7 @@ AC_MSG_CHECKING(to build XmlVGM VGM package)
 
 AC_ARG_ENABLE(XmlVGM, 
 	AC_HELP_STRING([--enable-XmlVGM],[Build XmlVGM subpackage [[default=yes]] ]),
-	[VGM_ENABLE_XMLVGM=$enable_XMLVGM],
+	[VGM_ENABLE_XMLVGM=$enable_XmlVGM],
 	[VGM_ENABLE_XMLVGM=yes])
 
 AC_MSG_RESULT([$VGM_ENABLE_XMLVGM])
@@ -74,7 +74,7 @@ AC_MSG_CHECKING(to build AgddGM VGM package)
 
 AC_ARG_ENABLE(AgddGM, 
 	AC_HELP_STRING([--enable-AgddGM],[Build AgddGM subpackage [[default=yes]] ]),
-	[VGM_ENABLE_AGDDGM=$enable_AGDDGM],
+	[VGM_ENABLE_AGDDGM=$enable_AgddGM],
 	[VGM_ENABLE_AGDDGM=yes])
 
 AC_MSG_RESULT([$VGM_ENABLE_AGDDGM])
