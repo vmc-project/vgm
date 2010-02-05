@@ -123,9 +123,20 @@ namespace VGM {
 			       double nxlow, double nylow, double nzlow,
 			       double nxhigh, double nyhigh, double nzhigh) = 0;
 
+                       /// Create the ellipsoid solid
+                       /// \param dx the semi-axis of the ellipse along x in mm
+                       /// \param dy the semi-axis of the ellipse along y in mm
+                       /// \param dz the semi-axis of the ellipse along z in mm
+                       /// \param zBottomCut the bottom cut along the z axis in mm
+                       /// \param zTopCut the top cut along the z axis in mm
+                       ///
+      virtual ISolid*  CreateEllipsoid(const std::string& name, 
+                               double dx, double dy, double dz,
+                               double zBottomCut, double zTopCut) = 0; 
+
                        /// Create the elliptical tube solid
                        /// \param dx the semi-axis of the ellipse along x in mm
-                       /// \param dx the semi-axis of the ellipse along y in mm
+                       /// \param dy the semi-axis of the ellipse along y in mm
                        /// \param hz half-length along the z axis in mm
                        ///
       virtual ISolid*  CreateEllipticalTube(const std::string& name, 

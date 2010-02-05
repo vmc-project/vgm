@@ -33,6 +33,7 @@
 #include "RootGM/solids/Box.h"
 #include "RootGM/solids/Cons.h"
 #include "RootGM/solids/Ctubs.h"
+#include "RootGM/solids/Ellipsoid.h"
 #include "RootGM/solids/EllipticalTube.h"
 #include "RootGM/solids/ExtrudedSolid.h"
 #include "RootGM/solids/Hype.h"
@@ -50,6 +51,7 @@
 #include "TGeoShape.h"
 #include "TGeoShapeAssembly.h"
 #include "TGeoCompositeShape.h"
+#include "TGeoScaledShape.h"
 #include "TGeoArb8.h"
 #include "TGeoCone.h"
 #include "TGeoEltu.h"
@@ -318,6 +320,23 @@ RootGM::Factory::ImportSolid(TGeoShape* shape)
     }		
     return vgmBoolean; 
   }
+
+  TGeoScaledShape* scaled = dynamic_cast<TGeoScaledShape*>(shape);
+  if ( scaled  &&
+       dynamic_cast<TGeoSphere*>(scaled->GetShape()) ) { 
+    // only scaled sphere is supported in order to be able to 
+    // import ellipsoid exported in Root
+    
+    TGeoSphere* sphere = dynamic_cast<TGeoSphere*>(scaled->GetShape());
+    if ( sphere->GetRmin() == 0. &&
+         sphere->GetTheta1() == 0. && sphere->GetTheta2() == 180. &&
+         sphere->GetPhi1() == 0. && sphere->GetPhi2() == 360. ) {
+         
+      VGM::IEllipsoid* vgmEllipsoid = new RootGM::Ellipsoid(scaled);
+      SolidStore().push_back(vgmEllipsoid);
+      return vgmEllipsoid; 
+    }
+  }  
 
   std::cerr << "    RootGM::Factory::ImportSolid: " << std::endl; 
   std::cerr << "    Unsupported solid type (solid \"" 
@@ -650,6 +669,21 @@ RootGM::Factory::CreateCtubs(const std::string& name,
                         nxlow, nylow, nzlow, nxhigh, nyhigh, nzhigh);
 
   SolidStore().push_back(vgmSolid);
+  return vgmSolid; 
+}  			     
+			       
+//_____________________________________________________________________________
+VGM::ISolid*  
+RootGM::Factory::CreateEllipsoid(const std::string& name, 
+                              double dx, double dy, double dz,
+                              double zBottomCut, double zTopCut)
+{			       
+//
+  VGM::ISolid* vgmSolid 
+    = new RootGM::Ellipsoid(name, dx, dy, dz, zBottomCut, zTopCut);
+
+  SolidStore().push_back(vgmSolid);
+  
   return vgmSolid; 
 }  			     
 			       

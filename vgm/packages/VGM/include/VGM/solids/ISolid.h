@@ -30,6 +30,7 @@ namespace VGM {
     kBox,
     kCons,
     kCtubs,
+    kEllipsoid,
     kEltu,
     kExtruded,
     kHype,

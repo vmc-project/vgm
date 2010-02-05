@@ -55,6 +55,7 @@ class TstGeometryViaVGM : public TstVGeometry
     void          CreateArb8Solids(std::vector<VGM::IVolume*>& volumes);
     VGM::IVolume* CreateBox();
     VGM::IVolume* CreateCons(double sphi, double dphi);
+    VGM::IVolume* CreateEllipsoid();
     VGM::IVolume* CreateEllipticalTube();
     VGM::IVolume* CreateExtrudedSolid1();
     VGM::IVolume* CreateExtrudedSolid2();

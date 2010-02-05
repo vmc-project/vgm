@@ -35,6 +35,7 @@
 #include "Geant4GM/solids/Box.h"
 #include "Geant4GM/solids/Cons.h"
 #include "Geant4GM/solids/Ctubs.h"
+#include "Geant4GM/solids/Ellipsoid.h"
 #include "Geant4GM/solids/EllipticalTube.h"
 #include "Geant4GM/solids/ExtrudedSolid.h"
 #include "Geant4GM/solids/Hype.h"
@@ -59,6 +60,7 @@
 #include "G4DisplacedSolid.hh"
 #include "G4Box.hh"
 #include "G4Cons.hh"
+#include "G4Ellipsoid.hh"
 #include "G4EllipticalTube.hh"
 #include "G4Hype.hh"
 #include "G4Para.hh"
@@ -196,6 +198,13 @@ Geant4GM::Factory::ImportSolid(G4VSolid* solid)
     VGM::ICons* vgmCons = new Geant4GM::Cons(cons, reflSolid);
     SolidStore().push_back(vgmCons);
     return vgmCons; 
+  }
+
+  G4Ellipsoid* ellipsoid = dynamic_cast<G4Ellipsoid*>(consSolid);
+  if (ellipsoid) { 
+    VGM::IEllipsoid* vgmEllipsoid = new Geant4GM::Ellipsoid(ellipsoid, reflSolid);
+    SolidStore().push_back(vgmEllipsoid);
+    return vgmEllipsoid; 
   }
 
   G4EllipticalTube* eltu = dynamic_cast<G4EllipticalTube*>(consSolid);
@@ -723,6 +732,20 @@ Geant4GM::Factory::CreateCtubs(const std::string& name,
   VGM::ISolid* vgmSolid 
     = new Geant4GM::Ctubs(name, rin, rout, hz, sphi, dphi,
                           nxlow, nylow, nzlow, nxhigh, nyhigh, nzhigh);
+
+  SolidStore().push_back(vgmSolid);
+  return vgmSolid; 
+}  			     
+			       
+//_____________________________________________________________________________
+VGM::ISolid*  
+Geant4GM::Factory::CreateEllipsoid(const std::string& name, 
+                              double dx, double dy, double dz,
+                              double zBottomCut, double zTopCut)
+{			       
+//
+  VGM::ISolid* vgmSolid 
+    = new Geant4GM::Ellipsoid(name, dx, dy, dz, zBottomCut, zTopCut);
 
   SolidStore().push_back(vgmSolid);
   return vgmSolid; 

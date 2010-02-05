@@ -23,8 +23,9 @@
 
 #include "VGM/common/Transform.h"
 
-class TGeoMatrix;
-class TGeoPatternFinder;
+#include "TGeoMatrix.h"
+
+class TGeoShape;
 
 namespace RootGM {
 
@@ -37,6 +38,9 @@ namespace RootGM {
     // VGM -> Root
     TGeoMatrix*     CreateTransform(const VGM::Transform& transform);
     bool            HasReflection(const VGM::Transform& transform);
+    
+    // Root special
+    TGeoHMatrix     Displacement(TGeoShape* shape);
 }
 
 #endif //ROOT_GM_TRANSFORM_H

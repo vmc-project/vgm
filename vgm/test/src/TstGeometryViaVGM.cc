@@ -82,7 +82,7 @@ IVolume* TstGeometryViaVGM::CreateWorld(double x, double y, double z)
 //_____________________________________________________________________________
 IVolume* TstGeometryViaVGM::CreateNewSolid()
 {
-  return CreateHype();
+  return CreateEllipsoid();
 }  
 
 
@@ -252,6 +252,16 @@ IVolume* TstGeometryViaVGM::CreateCons(double sphi, double dphi)
   return fFactory->CreateVolume("cons", consS, "Basic");
 }
 
+//_____________________________________________________________________________
+IVolume* TstGeometryViaVGM::CreateEllipsoid()
+{
+  ISolid* ellipsoidS
+    = fFactory->CreateEllipsoid("ellipsoidS",  
+                           10.* fCm, 20.* fCm, 50* fCm, -10.*fCm, 60.*fCm);
+    
+  return fFactory->CreateVolume("ellipsoid", ellipsoidS, "Basic");
+}
+ 
 //_____________________________________________________________________________
 IVolume* TstGeometryViaVGM::CreateEllipticalTube()
 {
@@ -763,6 +773,11 @@ void TstGeometryViaVGM::PlaceExtraSolid(VGM::SolidType solidType,
     volName = "arb8";
   }    
 
+  if ( solidType == VGM::kEllipsoid ) {
+    vol = CreateEllipsoid();
+    volName = "ellipsoid";
+  }    
+    
   if ( solidType == VGM::kTessellated ) {
     vol = CreateTessellatedSolid();
     volName = "tessellated";

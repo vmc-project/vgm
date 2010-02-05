@@ -22,6 +22,7 @@
 #include "VGM/solids/IBox.h"
 #include "VGM/solids/ICons.h"
 #include "VGM/solids/ICtubs.h"
+#include "VGM/solids/IEllipsoid.h"
 #include "VGM/solids/IEllipticalTube.h"
 #include "VGM/solids/IExtrudedSolid.h"
 #include "VGM/solids/IHype.h"
@@ -420,6 +421,43 @@ void XmlVGM::GDMLWriter::WriteCtubs(
            << element12 << std::setw(fNW) << std::setprecision(fNP) << nyh << quota << "  "         
            << element13 << std::setw(fNW) << std::setprecision(fNP) << nzh         
 	   << element14 << std::endl << std::endl;
+}  
+
+//_____________________________________________________________________________
+void XmlVGM::GDMLWriter::WriteEllipsoid(
+                              std::string name, const VGM::IEllipsoid* ellipsoid) 
+{
+/// Write elliptical tube solid
+
+  // get parameters
+  double dx = ellipsoid->XSemiAxis()/LengthUnit();
+  double dy = ellipsoid->YSemiAxis()/LengthUnit();
+  double dz = ellipsoid->ZSemiAxis()/LengthUnit();
+  double zbCut = ellipsoid->ZBottomCut()/LengthUnit();
+  double ztCut = ellipsoid->ZTopCut()/LengthUnit();
+
+  // compose element string template
+  std::string quota = "\"";
+  std::string element1 = "<ellipsoid  lunit=\"cm\" aunit=\"degree\"";
+  std::string element2 = "name=\"" + name + quota;
+  std::string element3 = "ax=\"";
+  std::string element4 = "by=\"";
+  std::string element5 = "cz=\"";
+  std::string element6 = "zcut1=\"";
+  std::string element7 = "zcut2=\"";
+  std::string element8 = "\" />";
+  std::string indention = fIndention + fkBasicIndention;
+  
+  // write element
+  fOutFile << fIndention << element1 << std::endl
+	   << indention  << element2 << std::endl
+	   << indention        
+	   << element3 << std::setw(fNW) << std::setprecision(fNP) << dx << quota << "  "
+	   << element4 << std::setw(fNW) << std::setprecision(fNP) << dy << quota << "  " 
+	   << element5 << std::setw(fNW) << std::setprecision(fNP) << dz << quota << "  "
+	   << element6 << std::setw(fNW) << std::setprecision(fNP) << zbCut << quota << "  " 
+	   << element7 << std::setw(fNW) << std::setprecision(fNP) << ztCut
+	   << element8 << std::endl << std::endl;
 }  
 
 //_____________________________________________________________________________
@@ -1707,6 +1745,12 @@ void XmlVGM::GDMLWriter::WriteSolid(
   else if (solidType == VGM::kCtubs) { 
     const VGM::ICtubs* ctubs = dynamic_cast<const VGM::ICtubs*>(solid); 
     WriteCtubs(solidName, ctubs); 
+    return;   
+  }
+  else if (solidType == VGM::kEllipsoid) { 
+    const VGM::IEllipsoid* ellipsoid 
+      = dynamic_cast<const VGM::IEllipsoid*>(solid); 
+    WriteEllipsoid(solidName, ellipsoid); 
     return;   
   }
   else if (solidType == VGM::kEltu) { 
