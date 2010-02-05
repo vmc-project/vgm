@@ -21,8 +21,8 @@
 #include "RootGM/common/transform.h"
 #include "RootGM/common/Units.h"
 
-#include "TGeoMatrix.h"
 #include "TGeoPatternFinder.h"
+#include "TGeoBBox.h"
 #include "TMath.h"
 
 #include <iostream>
@@ -173,4 +173,21 @@ bool RootGM::HasReflection(const VGM::Transform& transform)
 {
   return BaseVGM::Round(transform[VGM::kReflZ]) == 1.;
 }  
+
+//
+// Root special
+//
+
+//_____________________________________________________________________________
+TGeoHMatrix  RootGM::Displacement(TGeoShape* shape)
+{
+  TGeoBBox* box = dynamic_cast<TGeoBBox*>(shape);
+  if ( ! box ) return TGeoHMatrix();
+  
+  const Double_t* origin = box->GetOrigin();
+  if ( ! origin ) return TGeoHMatrix();
+  
+  return  TGeoHMatrix(TGeoTranslation(origin[0], origin[1], origin[2]));;
+}  
+  
 

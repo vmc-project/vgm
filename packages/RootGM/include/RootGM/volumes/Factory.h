@@ -70,6 +70,10 @@ namespace RootGM {
 			       double nxlow, double nylow, double nzlow,
 			       double nxhigh, double nyhigh, double nzhigh);
 			       
+      virtual VGM::ISolid*  CreateEllipsoid(const std::string& name, 
+                                 double dx, double dy, double dz,
+                                 double zBottomCut, double zTopCut); 
+
       virtual VGM::ISolid*  CreateEllipticalTube(
                                const std::string& name, 
                                double dx, double dy, double hz); 

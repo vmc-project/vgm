@@ -53,6 +53,7 @@ class TstGeometryViaGeant4 : public TstVGeometry
     G4LogicalVolume* CreateNewSolid();
     G4LogicalVolume* CreateBox();
     G4LogicalVolume* CreateCons(G4double sphi, G4double dphi);
+    G4LogicalVolume* CreateEllipsoid();
     G4LogicalVolume* CreateEllipticalTube();
     G4LogicalVolume* CreateExtrudedSolid1();
     G4LogicalVolume* CreateExtrudedSolid2();

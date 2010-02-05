@@ -32,6 +32,7 @@ std::string VGM::SolidTypeName(VGM::SolidType typeId)
     case kBox:          return "Box";       break;
     case kCons:         return "Cons";      break;
     case kCtubs:        return "Ctubs";     break;
+    case kEllipsoid:    return "Ellipsoid"; break;
     case kEltu:         return "Eltu";      break;
     case kExtruded:     return "Extruded";  break;
     case kHype:         return "Hype";      break;

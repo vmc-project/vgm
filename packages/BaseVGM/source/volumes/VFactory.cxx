@@ -24,6 +24,7 @@
 #include "VGM/solids/IBox.h"
 #include "VGM/solids/ICons.h"
 #include "VGM/solids/ICtubs.h"
+#include "VGM/solids/IEllipsoid.h"
 #include "VGM/solids/IEllipticalTube.h"
 #include "VGM/solids/IExtrudedSolid.h"
 #include "VGM/solids/IHype.h"
@@ -231,6 +232,15 @@ BaseVGM::VFactory::ExportSolid(VGM::ISolid* solid,
 			      ctubs->NxHigh(),
 			      ctubs->NyHigh(),
 			      ctubs->NzHigh());  
+  }
+  else if (solidType == VGM::kEllipsoid) { 
+    VGM::IEllipsoid* ellipsoid = dynamic_cast<VGM::IEllipsoid*>(solid); 
+    return factory->CreateEllipsoid(ellipsoid->Name(), 
+                              ellipsoid->XSemiAxis(),
+                              ellipsoid->YSemiAxis(),
+                              ellipsoid->ZSemiAxis(),
+                              ellipsoid->ZBottomCut(),
+                              ellipsoid->ZTopCut());  
   }
   else if (solidType == VGM::kEltu) { 
     VGM::IEllipticalTube* eltu = dynamic_cast<VGM::IEllipticalTube*>(solid); 

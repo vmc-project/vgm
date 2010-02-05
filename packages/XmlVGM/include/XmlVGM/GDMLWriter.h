@@ -35,6 +35,7 @@ namespace VGM {
   class IBox;
   class ICons;
   class ICtubs;
+  class IEllipsoid;
   class IEllipticalTube;
   class IExtrudedSolid;
   class IHype;
@@ -169,6 +170,8 @@ namespace XmlVGM {
       void WriteBox (std::string name, const VGM::IBox*  box);  
       void WriteCons(std::string name, const VGM::ICons* cons); 
       void WriteCtubs(std::string name, const VGM::ICtubs* ctubs); 
+      void WriteEllipsoid(std::string name, 
+                     const VGM::IEllipsoid* ellipsoid); 
       void WriteEllipticalTube(std::string name, 
                      const VGM::IEllipticalTube* eltu); 
       void WriteExtrudedSolid(std::string name, 

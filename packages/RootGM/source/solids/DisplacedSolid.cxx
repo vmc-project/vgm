@@ -97,7 +97,8 @@ RootGM::DisplacedSolid:: DisplacedSolid(TGeoBBox* box)
   
   // Create VGM box for constituent solid not registered in solid map
   fConstituentSolid = new RootGM::Box(box, false);
-  
+  // RootGM::SolidMap::Instance()->AddSolid(fConstituentSolid, box); 
+
   // Create and register TGeo matrix
   TGeoMatrix* displacement 
     = new TGeoTranslation(origin[0], origin[1], origin[2]);

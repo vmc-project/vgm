@@ -39,6 +39,11 @@ AgddGM::Factory::CreateCtubs(const std::string& /*name*/,
 			      double /*nxhigh*/, double /*nyhigh*/, double /*nzhigh*/){assert(0); return 0;}
 			       
 VGM::ISolid*  
+AgddGM::Factory::CreateEllipsoid(const std::string& /*name*/, 
+                                 double /*dx*/, double /*dy*/, double /*dz*/,
+                                 double /*zBottomCut*/, double /*zTopCut*/){assert(0); return 0;} 
+
+VGM::ISolid*  
 AgddGM::Factory::CreateEllipticalTube(const std::string& /*name*/, 
 				       double /*dx*/, double /*dy*/, double /*hz*/){assert(0); return 0;} 
 

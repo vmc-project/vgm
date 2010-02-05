@@ -33,6 +33,7 @@
 #include "G4VSolid.hh"
 #include "G4Box.hh"
 #include "G4Cons.hh"
+#include "G4Ellipsoid.hh"
 #include "G4EllipticalTube.hh"
 #include "G4ExtrudedSolid.hh"
 #include "G4Hype.hh"
@@ -99,7 +100,7 @@ G4LogicalVolume* TstGeometryViaGeant4::CreateNewSolid()
 // Create a new solid
 // ---
 
-  return CreateHype();
+  return CreateEllipsoid();
 }    
 
 //_____________________________________________________________________________
@@ -122,6 +123,15 @@ G4LogicalVolume* TstGeometryViaGeant4::CreateCons(G4double sphi, G4double dphi)
   return new G4LogicalVolume(consS, fBasicMaterial, "cons");
 }
 
+
+//_____________________________________________________________________________
+G4LogicalVolume* TstGeometryViaGeant4::CreateEllipsoid()
+{
+  G4VSolid* ellipsoidS
+    = new G4Ellipsoid("ellipsiodS", 10.* cm, 20.* cm, 50* cm, -10.*cm, 40.*cm);
+  
+  return new G4LogicalVolume(ellipsoidS, fBasicMaterial, "ellipsoid");
+}
 
 //_____________________________________________________________________________
 G4LogicalVolume* TstGeometryViaGeant4::CreateEllipticalTube()
@@ -715,6 +725,11 @@ void  TstGeometryViaGeant4::PlaceExtraSolid(VGM::SolidType solidType,
   G4LogicalVolume* lv = 0;
   G4String lvName;
  
+  if ( solidType == VGM::kEllipsoid ) {
+    lv = CreateEllipsoid();
+    lvName = "ellipsoid";
+  }    
+    
   if ( solidType == VGM::kTessellated ) {
     lv = CreateTessellatedSolid();
     lvName = "tessellated";
@@ -1358,8 +1373,8 @@ void* TstGeometryViaGeant4::TestDisplacedSolids1()
   
   // Make placements
   //
-   new G4PVPlacement(0, CLHEP::Hep3Vector(0., 0., -100.*cm),
-		    volume1, "volume1", worldV, false, 1);
+  new G4PVPlacement(0, CLHEP::Hep3Vector(0., 0., -100.*cm),
+                    volume1, "volume1", worldV, false, 1);
 
   new G4PVPlacement(0, CLHEP::Hep3Vector(0., 0., -100.*cm),
 		    volume2C, "volume2C", worldV, false, 2);

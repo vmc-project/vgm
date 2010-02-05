@@ -105,7 +105,8 @@ G4VPhysicalVolume* TstDetectorConstruction::Construct()
     std::cout << "TestNewSolid2 finished" << std::endl;
   }
   else if (fSelectedTest == "ExtraSolid") {
-    world = fGeometry->TestExtraSolid(VGM::kArb8);
+    //world = fGeometry->TestExtraSolid(VGM::kArb8);
+    world = fGeometry->TestExtraSolid(VGM::kEllipsoid);
     //world = fGeometry->TestExtraSolid(VGM::kTessellated);
     std::cout << "TestExtraSolid finished" << std::endl;
   }
