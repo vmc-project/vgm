@@ -33,6 +33,7 @@ libGeant4GM_la_SOURCES =                        \
 	$(geant4gmsrc)/solids/Cons.cxx \
 	$(geant4gmsrc)/solids/Ctubs.cxx \
 	$(geant4gmsrc)/solids/DisplacedSolid.cxx \
+	$(geant4gmsrc)/solids/Ellipsoid.cxx \
 	$(geant4gmsrc)/solids/EllipticalTube.cxx \
 	$(geant4gmsrc)/solids/ExtrudedSolid.cxx \
 	$(geant4gmsrc)/solids/Hype.cxx \
@@ -75,6 +76,7 @@ geant4gmsolinc_HEADERS = \
 	$(geant4gminc)/solids/Cons.h \
 	$(geant4gminc)/solids/Ctubs.h \
 	$(geant4gminc)/solids/DisplacedSolid.h \
+	$(geant4gminc)/solids/Ellipsoid.h \
 	$(geant4gminc)/solids/EllipticalTube.h \
 	$(geant4gminc)/solids/ExtrudedSolid.h \
 	$(geant4gminc)/solids/Hype.h \

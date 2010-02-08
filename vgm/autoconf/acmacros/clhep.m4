@@ -95,7 +95,7 @@ AC_ARG_WITH([clhep-libdir],
 	if test "$clhep_libdir" = "/usr" ; then
 		CLHEP_LINK="-lCLHEP"
 	else
-		CLHEP_LINK="-Wl,--rpath -Wl,$clhep_libdir -L$clhep_libdir -lCLHEP"
+		CLHEP_LINK="-Wl,-rpath -Wl,$clhep_libdir -L$clhep_libdir -lCLHEP"
 	fi
 	])
 

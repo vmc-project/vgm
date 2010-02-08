@@ -122,7 +122,7 @@ fi
 
 UTIL_CHECK_PKG_DIR([$geant4_libdir],[Geant4],[liblist])
 
-GEANT4_LINK="-Wl,--rpath -Wl,$geant4_libdir -L$geant4_libdir `$geant4_libdir/liblist -m $geant4_libdir < $geant4_libdir/libname.map`"
+GEANT4_LINK="-Wl,-rpath -Wl,$geant4_libdir -L$geant4_libdir `$geant4_libdir/liblist -m $geant4_libdir < $geant4_libdir/libname.map`"
 AC_SUBST(GEANT4_LINK)
 
 fi

@@ -111,7 +111,7 @@ fi
 
 UTIL_CHECK_PKG_DIR([$libagdd_libdir],[libagdd],[libagdd$shrext_cmds])
 
-AGDD_LINK="-Wl,--rpath -Wl,$libagdd_libdir -L$libagdd_libdir -lagdd"
+AGDD_LINK="-Wl,-rpath -Wl,$libagdd_libdir -L$libagdd_libdir -lagdd"
 AC_SUBST(AGDD_LINK)
 
 fi
