@@ -75,7 +75,7 @@ AC_ARG_WITH([xerces-libdir],
                        [Xerces-C alternate library dir]),
 	[
 	xerces_libdir=$with_xerces_libdir
-	XERCES_LINK="-Wl,--rpath -Wl,$xerces_libdir -L$xerces_libdir -lxerces-c"
+	XERCES_LINK="-Wl,-rpath -Wl,$xerces_libdir -L$xerces_libdir -lxerces-c"
 	],[
 	xerces_libdir="$xerces_prefix/lib"
 	XERCES_LINK="-lxerces-c"

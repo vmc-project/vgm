@@ -29,6 +29,7 @@ libBaseVGM_la_SOURCES =                        \
 	$(basevgmsrc)/solids/VCons.cxx \
 	$(basevgmsrc)/solids/VCtubs.cxx \
 	$(basevgmsrc)/solids/VDisplacedSolid.cxx \
+	$(basevgmsrc)/solids/VEllipsoid.cxx \
 	$(basevgmsrc)/solids/VEllipticalTube.cxx \
 	$(basevgmsrc)/solids/VExtrudedSolid.cxx \
 	$(basevgmsrc)/solids/VHype.cxx \
@@ -67,6 +68,7 @@ basevgmsolinc_HEADERS = \
 	$(basevgminc)/solids/VCons.h \
 	$(basevgminc)/solids/VCtubs.h \
 	$(basevgminc)/solids/VDisplacedSolid.h \
+	$(basevgminc)/solids/VEllipsoid.h \
 	$(basevgminc)/solids/VEllipticalTube.h \
 	$(basevgminc)/solids/VExtrudedSolid.h \
 	$(basevgminc)/solids/VHype.h \

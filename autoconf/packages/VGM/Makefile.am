@@ -16,7 +16,7 @@ vgmcominc_HEADERS = \
 	$(vgminc)/common/Axis.h \
 	$(vgminc)/common/Math.h \
 	$(vgminc)/common/ThreeVector.h \
-	$(vgminc)/common/Transform.h \ 
+	$(vgminc)/common/Transform.h \
 	$(vgminc)/common/TwoVector.h
 
 vgmmatincdir = $(includedir)/VGM/materials
@@ -36,6 +36,7 @@ vgmsolinc_HEADERS = \
 	$(vgminc)/solids/ICons.h \
 	$(vgminc)/solids/ICtubs.h \
 	$(vgminc)/solids/IDisplacedSolid.h \
+	$(vgminc)/solids/IEllipsoid.h \
 	$(vgminc)/solids/IEllipticalTube.h \
 	$(vgminc)/solids/IExtrudedSolid.h \
 	$(vgminc)/solids/IHype.h \
