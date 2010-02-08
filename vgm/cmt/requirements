@@ -46,6 +46,7 @@ library BaseVGM -group=VGM -s=../packages/BaseVGM/source/ \
  solids/VCons.cxx\
  solids/VCtubs.cxx \
  solids/VDisplacedSolid.cxx \
+ solids/VEllipsoid.cxx\
  solids/VEllipticalTube.cxx\
  solids/VExtrudedSolid.cxx\
  solids/VHype.cxx\
@@ -129,6 +130,7 @@ library Geant4GM -group=VGM -import=Geant4 -s=../packages/Geant4GM/source/ \
  solids/Cons.cxx \
  solids/Ctubs.cxx \
  solids/DisplacedSolid.cxx \
+ solids/Ellipsoid.cxx \
  solids/EllipticalTube.cxx \
  solids/ExtrudedSolid.cxx \
  solids/Hype.cxx \
@@ -177,6 +179,7 @@ library RootGM -group=VGM -import=ROOT -s=../packages/RootGM/source/ \
  solids/Cons.cxx \
  solids/Ctubs.cxx \
  solids/DisplacedSolid.cxx \
+ solids/Ellipsoid.cxx \
  solids/EllipticalTube.cxx \
  solids/ExtrudedSolid.cxx \
  solids/Hype.cxx \
