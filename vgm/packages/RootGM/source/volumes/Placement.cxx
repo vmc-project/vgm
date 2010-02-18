@@ -37,6 +37,7 @@
 
 bool RootGM::Placement::fgIncludeAssembliesInNames = true; 
 char RootGM::Placement::fgNameSeparator = '%'; 
+char RootGM::Placement::fgNamePrefix = '&'; 
 
 //
 // static methods
@@ -69,11 +70,27 @@ void RootGM::Placement::SetNameSeparator(char nameSeparator)
 }  
 
 //_____________________________________________________________________________
+void RootGM::Placement::SetNamePrefix(char namePrefix)
+{
+/// Set the prefix for assemblies names
+
+  fgNamePrefix = namePrefix;
+}  
+
+//_____________________________________________________________________________
 char RootGM::Placement::GetNameSeparator()
 {
 /// Return the separator for assemblies names
 
   return fgNameSeparator;
+}  
+
+//_____________________________________________________________________________
+char RootGM::Placement::GetNamePrefix()
+{
+/// Return the prefix for assemblies names
+
+  return fgNamePrefix;
 }  
 
 //
@@ -326,6 +343,7 @@ std::string  RootGM::Placement::Name() const
   TString name; 
   if ( fgIncludeAssembliesInNames ) {
     for ( unsigned i=0; i<fAssemblyNodes.size(); i++ ) {
+      if ( i == 0 ) name += fgNamePrefix;
       name += fAssemblyNodes[i]->GetName();
       name += fgNameSeparator;
     }  

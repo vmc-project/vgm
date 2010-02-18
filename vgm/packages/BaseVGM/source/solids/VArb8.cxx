@@ -49,7 +49,12 @@ std::ostream& BaseVGM::VArb8::Put(std::ostream& out) const
         << Vertex(i).first  << ", " 
         << Vertex(i).second << ")";
   }
-  out << " mm" << std::endl;               
+  out << " mm" << std::endl;
+  out << "  twist angles:";
+  for (int i=0; i< 4; i++ ) {
+    out << "  " << TwistAngle(i);
+  }
+  out << " rad" << std::endl;
   out << "  hz = " << ZHalfLength() << "mm" << std::endl; 
       
   return out; 

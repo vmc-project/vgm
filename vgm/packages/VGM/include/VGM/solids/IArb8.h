@@ -43,6 +43,9 @@ namespace VGM {
 		           /// 
 		           /// Return the index-th vertex 
       virtual TwoVector  Vertex(int index) const = 0;
+		           /// 
+		           /// Return the index-th twist angle
+      virtual double     TwistAngle(int index) const = 0;
 		           ///
 		           /// Return the half-length along the z axis in mm
       virtual double     ZHalfLength() const = 0;

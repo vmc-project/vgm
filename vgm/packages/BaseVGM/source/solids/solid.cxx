@@ -29,6 +29,7 @@ std::string VGM::SolidTypeName(VGM::SolidType typeId)
 {
   // Returns the solid type name for specified typeId
   switch (typeId) {
+    case kArb8:         return "Arb8";      break;
     case kBox:          return "Box";       break;
     case kCons:         return "Cons";      break;
     case kCtubs:        return "Ctubs";     break;
