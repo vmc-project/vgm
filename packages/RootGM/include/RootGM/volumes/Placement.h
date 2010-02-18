@@ -63,7 +63,9 @@ namespace RootGM {
       static bool GetIncludeAssembliesInNames();
 
       static void SetNameSeparator(char nameSeparator);
+      static void SetNamePrefix(char namePrefix);
       static char GetNameSeparator();
+      static char GetNamePrefix();
 
       // methods
       virtual VGM::PlacementType Type() const;
@@ -89,6 +91,7 @@ namespace RootGM {
       // static data members
       static bool fgIncludeAssembliesInNames; 
       static char fgNameSeparator; 
+      static char fgNamePrefix; 
     
       // data members
       std::string  fName;

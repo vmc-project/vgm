@@ -21,6 +21,7 @@
 #include "RootGM/common/Units.h"
 
 #include "TGeoArb8.h"
+#include "TMath.h"
 
 #include <iostream>
 #include <math.h>
@@ -141,6 +142,21 @@ VGM::TwoVector  RootGM::Arb8::Vertex(int index) const
   return VGM::TwoVector(
                  xy[2*index] * RootGM::Units::Length(),
                  xy[2*index+1] * RootGM::Units::Length());
+}           
+
+//_____________________________________________________________________________
+double  RootGM::Arb8::TwistAngle(int index) const
+{
+  if ( index < 0 || index >= 4  ) {
+    std::cerr << "+++ Error  +++" << std::endl; 
+    std::cerr << "    Wrong twist angle index: " << index << std::endl;
+    exit(1);
+  }  
+  
+  Double_t twistAngle 
+    = TMath::ATan(fArb8->GetTwist(index)) * TMath::RadToDeg();
+
+  return  twistAngle * RootGM::Units::Angle();
 }           
 
 //_____________________________________________________________________________

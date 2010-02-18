@@ -51,7 +51,8 @@ namespace Geant4GM {
       // methods
       virtual std::string     Name() const;
       virtual int             NofVertices() const;
-      inline  VGM::TwoVector  Vertex(int index) const;
+      virtual VGM::TwoVector  Vertex(int index) const;
+      virtual double          TwistAngle(int index) const;
       virtual double          ZHalfLength() const;
 
     protected:

@@ -143,7 +143,8 @@ Geant4GM::Arb8::Arb8(const std::string& name,
 
   fTessellatedSolid->SetSolidClosed(true);
   
-  // G4cout << *fTessellatedSolid << G4endl;
+  //G4cout << "Arb8 solid " <<  Name() <<  G4endl;
+  //G4cout << *fTessellatedSolid << G4endl;
 
   Geant4GM::SolidMap::Instance()->AddSolid(this, fTessellatedSolid);
 }
@@ -311,6 +312,20 @@ VGM::TwoVector  Geant4GM::Arb8::Vertex(int index) const
   }  
  
   return fVertices[index];
+}           
+
+//_____________________________________________________________________________
+double Geant4GM::Arb8::TwistAngle(int index) const
+{
+// Just return 0, as twisted arb8 are not supported
+
+  if ( index < 0 || index >= 4  ) {
+    std::cerr << "+++ Error  +++" << std::endl; 
+    std::cerr << "    Wrong twist angle index: " << index << std::endl;
+    exit(1);
+  }  
+ 
+  return 0;  
 }           
 
 //_____________________________________________________________________________
