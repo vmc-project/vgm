@@ -32,7 +32,7 @@ namespace RootGM {
   {
     public:
       Box(const std::string& name, double hx, double hy, double hz);
-      Box(TGeoBBox* box, bool registrate = true);
+      Box(TGeoBBox* box, bool addInMap = true);
       virtual ~Box();
 
       // methods

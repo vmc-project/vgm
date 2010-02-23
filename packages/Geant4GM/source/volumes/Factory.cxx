@@ -1162,11 +1162,18 @@ Geant4GM::Factory::CreateMultiplePlacement(
   
   // Geant4 requires the same type of solid in both
   // volume and mother volume
-  if ( volume->Solid()->Type() != motherVolume->Solid()->Type() ) { 
+  VGM::SolidType solidType = volume->Solid()->Type();
+  VGM::SolidType motherSolidType = motherVolume->Solid()->Type();
+  if ( solidType != motherSolidType ) { 
     bool result = SwitchSolid(volume, g4LV, g4MotherLV); 
     if ( ! result ) {
       std::cerr << "    Geant4GM::Factory::CreateMultiplePlacement: " << std::endl
                 << "    Different solid types in volume and mother!" << std::endl
+                << "    volume: " << volume->Name() 
+                << "  " << VGM::SolidTypeName(solidType)
+                << " mother: " << motherVolume->Name() 
+                << "  " << VGM::SolidTypeName(motherSolidType)
+                << std::endl
                 << "*** Error: Aborting execution  ***" << std::endl; 
       exit(1);
     }  	      

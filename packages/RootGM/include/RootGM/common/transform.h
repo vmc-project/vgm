@@ -41,6 +41,8 @@ namespace RootGM {
     
     // Root special
     TGeoHMatrix     Displacement(TGeoShape* shape);
+
+    void  fromToRotation(double from[3], double to[3], double mtx[3][3]); 
 }
 
 #endif //ROOT_GM_TRANSFORM_H

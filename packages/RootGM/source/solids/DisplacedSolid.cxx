@@ -26,6 +26,7 @@
 #include "TGeoCompositeShape.h"
 #include "TGeoBoolNode.h"
 #include "TGeoBBox.h"
+#include "TGeoHalfSpace.h"
 #include "TGeoMatrix.h"
 #include "TString.h"
 
@@ -80,7 +81,6 @@ RootGM::DisplacedSolid:: DisplacedSolid(TGeoBBox* box)
 {
 /// Standard constructor to define Displaced solid via Root object.
 /// Only TGeoBBox can include displacement in its definition.
-/// If
 
   // Give exception if box does not include offset
   const Double_t* origin = box->GetOrigin();
@@ -110,7 +110,70 @@ RootGM::DisplacedSolid:: DisplacedSolid(TGeoBBox* box)
     
   fCompositeShape = new TGeoCompositeShape(newName.data(), boolNode);
  
-  RootGM::SolidMap::Instance()->AddSolid(this, fCompositeShape); 
+  RootGM::SolidMap::Instance()->AddSolidInRootMapOnly(this, fCompositeShape); 
+  RootGM::SolidMap::Instance()->AddSolidInVGMMapOnly(this, box); 
+}
+
+//_____________________________________________________________________________
+RootGM::DisplacedSolid:: DisplacedSolid(TGeoHalfSpace* halfSpace)
+  : VGM::ISolid(),
+    VGM::IDisplacedSolid(),
+    BaseVGM::VDisplacedSolid(),
+    fCompositeShape(0),
+    fConstituentSolid(0) 
+{
+/// Standard constructor to define Displaced solid via Root object.
+/// Only TGeoBBox can include displacement in its definition.
+/// If
+
+  // Define new name  
+  std::string newName = std::string(halfSpace->GetName()) + fgkNameExtension ;
+  
+  // Create a big box for constituent solid not registered in solid map
+  double size = 1.0e03; // 100 m 
+     // when set 1.0e05 the test fails
+  TGeoBBox* box = new TGeoBBox("bigBox", size, size, size);
+  fConstituentSolid = new RootGM::Box(box, false);
+  RootGM::SolidMap::Instance()->AddSolid(fConstituentSolid, halfSpace); 
+  
+  // Get half space parameters
+  Double_t* point = halfSpace->GetPoint();
+  Double_t* norm = halfSpace->GetNorm(); 
+  
+  // Rotate box to get the norm of the z+ side (0,0,1)
+  // in the norm direction
+  Double_t mtx[3][3];
+  Double_t from[3]; 
+  from[0] = 0.; from[1] = 0.;from[2] = 1.0;
+  RootGM::fromToRotation(from, norm, mtx);
+
+  Double_t rot[9];
+  rot[0] = mtx[0][0]; rot[1] = mtx[0][1]; rot[2] = mtx[0][2];
+  rot[3] = mtx[1][0]; rot[4] = mtx[1][1]; rot[5] = mtx[1][2];
+  rot[6] = mtx[2][0]; rot[7] = mtx[2][1]; rot[8] = mtx[2][2];
+  TGeoRotation* rotation = new TGeoRotation();
+  rotation->SetMatrix(rot);
+  
+  // Transform the box origin
+  Double_t origin[3];
+  origin[0] = 0; origin[1] = 0; origin[2] = - size; 
+  Double_t newOrigin[3];
+  rotation->LocalToMaster(origin, newOrigin);
+  for (Int_t i=0; i<3; i++) newOrigin[i] = newOrigin[i] + point[i];
+
+  // Create and register TGeo matrix
+  TGeoMatrix* displacement 
+    = new TGeoCombiTrans(newOrigin[0], newOrigin[1], newOrigin[2], rotation);
+  displacement->SetName(newName.data());
+  displacement->RegisterYourself();
+
+  TGeoBoolNode* boolNode 
+    = new TGeoUnion(box, box, displacement, 0); 
+    
+  fCompositeShape = new TGeoCompositeShape(newName.data(), boolNode);
+ 
+  RootGM::SolidMap::Instance()->AddSolidInRootMapOnly(this, fCompositeShape); 
+  RootGM::SolidMap::Instance()->AddSolidInVGMMapOnly(this, halfSpace); 
 }
 
 //_____________________________________________________________________________

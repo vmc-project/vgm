@@ -61,9 +61,27 @@ RootGM::SolidMap::~SolidMap() {
 void  RootGM::SolidMap::AddSolid(VGM::ISolid* iSolid, 
                                  TGeoShape* rootSolid)
 {
-/// Adds the specified pair in the map
+/// Adds the specified pair in both maps
 
   fRootSolids[iSolid] = rootSolid;
+  fVgmSolids[rootSolid] = iSolid;
+}  
+
+//_____________________________________________________________________________
+void  RootGM::SolidMap::AddSolidInRootMapOnly(VGM::ISolid* iSolid, 
+                                 TGeoShape* rootSolid)
+{
+/// Adds the specified pair in the Root map only
+
+  fRootSolids[iSolid] = rootSolid;
+}  
+
+//_____________________________________________________________________________
+void  RootGM::SolidMap::AddSolidInVGMMapOnly(VGM::ISolid* iSolid, 
+                                 TGeoShape* rootSolid)
+{
+/// Adds the specified pair in the VGM map only
+
   fVgmSolids[rootSolid] = iSolid;
 }  
 

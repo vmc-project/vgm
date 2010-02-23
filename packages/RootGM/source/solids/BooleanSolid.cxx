@@ -237,7 +237,7 @@ RootGM::BooleanSolid::Displacement() const
   TGeoShape* shapeA = boolNode->GetLeftShape();
 
   // Take into account shifted origin
-  totalTransformA = totalTransformA * RootGM::Displacement(shapeA);
+  // totalTransformA = totalTransformA * RootGM::Displacement(shapeA);
   
   while (shapeA->IsComposite()) { 
       
@@ -253,7 +253,7 @@ RootGM::BooleanSolid::Displacement() const
      totalTransformA = totalTransformA * transformAC;
      
      // Take into account shifted origin
-     totalTransformA = totalTransformA * RootGM::Displacement(shapeAC);
+     // totalTransformA = totalTransformA * RootGM::Displacement(shapeAC);
 
      shapeA = shapeAC;
   }
@@ -261,7 +261,7 @@ RootGM::BooleanSolid::Displacement() const
   TGeoHMatrix totalTransformB(transformB);
   TGeoShape* shapeB = boolNode->GetRightShape();
   // Take into account shifted origin
-  totalTransformB = totalTransformB * RootGM::Displacement(shapeB);
+  //totalTransformB = totalTransformB * RootGM::Displacement(shapeB);
   
   while (shapeB->IsComposite()) { 
       
@@ -277,7 +277,7 @@ RootGM::BooleanSolid::Displacement() const
      totalTransformB = totalTransformB * transformBC;
      
      // Take into account shifted origin
-     totalTransformB = totalTransformB * RootGM::Displacement(shapeBC);
+     // totalTransformB = totalTransformB * RootGM::Displacement(shapeBC);
 
      shapeB = shapeBC;
   }

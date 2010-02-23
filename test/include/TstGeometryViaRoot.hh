@@ -49,6 +49,8 @@ class TstGeometryViaRoot : public TstVGeometry
     virtual void* TestBooleanSolids3();
     virtual void* TestBooleanSolids4();
     virtual void* TestBooleanSolids5();
+    virtual void* TestBooleanSolids6();
+    virtual void* TestBooleanSolids7();
     virtual void* TestDisplacedSolids1();
     virtual void* TestSpecial();
 

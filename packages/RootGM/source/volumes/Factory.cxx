@@ -56,6 +56,7 @@
 #include "TGeoCone.h"
 #include "TGeoEltu.h"
 #include "TGeoPara.h"
+#include "TGeoHalfSpace.h"
 #include "TGeoHype.h"
 #include "TGeoParaboloid.h"
 #include "TGeoPcon.h"
@@ -191,6 +192,13 @@ RootGM::Factory::ImportSolid(TGeoShape* shape)
     VGM::ICons* vgmCons = new RootGM::Cons(cone);
     SolidStore().push_back(vgmCons);
     return vgmCons; 
+  }
+
+  TGeoHalfSpace* halfSpace = dynamic_cast<TGeoHalfSpace*>(shape);
+  if (halfSpace) { 
+    VGM::IDisplacedSolid* vgmDisplacedSolid = new RootGM::DisplacedSolid(halfSpace);
+    SolidStore().push_back(vgmDisplacedSolid);
+    return vgmDisplacedSolid; 
   }
 
   TGeoHype* hype = dynamic_cast<TGeoHype*>(shape);

@@ -27,6 +27,7 @@
 class TGeoCompositeShape;
 class TGeoMatrix;
 class TGeoBBox;
+class TGeoHalfSpace;
 
 namespace RootGM {
 
@@ -36,7 +37,9 @@ namespace RootGM {
       DisplacedSolid(const std::string& name, 
                      VGM::ISolid* solid, 
                      TGeoMatrix* displacement);
+
       DisplacedSolid(TGeoBBox* box);
+      DisplacedSolid(TGeoHalfSpace* halfSpace);
       virtual ~DisplacedSolid();
 
       // methods
