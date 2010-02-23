@@ -30,6 +30,7 @@
 #include "TGeoBBox.h"
 #include "TGeoCone.h"
 #include "TGeoEltu.h"
+#include "TGeoHalfSpace.h"
 #include "TGeoHype.h"
 #include "TGeoPara.h"
 #include "TGeoParaboloid.h"
@@ -1158,7 +1159,7 @@ void* TstGeometryViaRoot::TestAssemblies2()
 //_____________________________________________________________________________
 void* TstGeometryViaRoot::TestBooleanSolids1()
 {
-// Only translation in solid displacement
+// Only translation in solid displacement.
 
   TGeoVolume* worldV = CreateWorld(400., 100., 400.);
 
@@ -1208,7 +1209,7 @@ void* TstGeometryViaRoot::TestBooleanSolids1()
     = new TGeoVolume("subtraction_solid1_solid2", subtractionS, fBasicMedium);
   worldV->AddNode(subtractionV, 1, 
                   new TGeoTranslation(0., 0., 200.));
-  
+
   // Union
   //
   TGeoShape* unionS
@@ -1508,6 +1509,146 @@ void* TstGeometryViaRoot::TestBooleanSolids5()
 
   top->AddNode(comp, 1, new TGeoTranslation(0, 0, 150.)); 
 
+  return (void*) gGeoManager->GetTopNode();
+}
+
+//_____________________________________________________________________________
+void* TstGeometryViaRoot::TestBooleanSolids6()
+{
+// TestBooleanSolids1 with a half space instead of box.
+// Root geometry requires visialization with ray tracer.
+
+  TGeoVolume* worldV = CreateWorld(400., 400., 400.);
+
+  // Create solids
+  Double_t p[3];
+  p[0]=50; p[1]=0; p[2]= 0.0;
+  Double_t n[3];
+  n[0]=1.0; n[1]=0.5; n[2]=0.0;
+  new TGeoHalfSpace("halfSpaceS", p, n);
+
+  TGeoShape* solid2 
+    = new TGeoConeSeg("tubsS", 100., 10., 100., 20., 40., 0., 360.) ;
+ 
+  // Simple solids placed for a control
+  //
+  // the half space solid cannot be placed in geometry
+
+  TGeoVolume* volume2
+    = new TGeoVolume("solid2", solid2, fBasicMedium);
+  worldV->AddNode(volume2, 1, 
+                  new TGeoTranslation( 0., 0., 200.));
+
+
+  // Define displacement transformations
+  //
+  
+  // Translate solid2  
+  //
+  TGeoTranslation* tr2 = new TGeoTranslation(20., 0., 0.);
+  tr2->SetName("tr2");
+  tr2->RegisterYourself();
+  
+  // Intersection
+  //
+  TGeoShape* intersectionS
+    = new TGeoCompositeShape("intersection_solid1_solid2_S", "halfSpaceS*tubsS"); 
+  TGeoVolume* intersectionV
+    = new TGeoVolume("intersection_solid1_solid2", intersectionS, fBasicMedium);
+  worldV->AddNode(intersectionV, 1, 
+                  new TGeoTranslation(-125., 0., -200.));
+  
+  // Subtraction
+  //
+  TGeoShape* subtractionS
+    = new TGeoCompositeShape("subtraction_solid1_solid2_S", "tubsS-halfSpaceS"); 
+  TGeoVolume* subtractionV
+    = new TGeoVolume("subtraction_solid1_solid2", subtractionS, fBasicMedium);
+  worldV->AddNode(subtractionV, 1, 
+                  new TGeoTranslation(+125., 0., -200.));
+
+  // Union
+  //
+  // Half space cannot be used in union
+
+  return (void*) gGeoManager->GetTopNode();
+}
+
+//_____________________________________________________________________________
+void* TstGeometryViaRoot::TestBooleanSolids7()
+{
+// TestBooleanSolids1 with a box with shifted origin.
+
+// Only translation in solid displacement.
+
+  TGeoVolume* worldV = CreateWorld(400., 400., 400.);
+
+  // Create solids
+  Double_t orig[3];
+  orig[0] = 0; orig[1]=0; orig[2]=50;
+  TGeoShape* solid1 
+    = new TGeoBBox("boxS", 50., 50., 50.,orig);
+  // TGeoShape* solid1 
+  //  = new TGeoBBox("boxS", 50., 50., 50.);
+ 
+  TGeoShape* solid2 
+    = new TGeoConeSeg("tubsS", 100., 10., 100., 20., 40., 0., 360.) ;
+ 
+  // Simple solids placed for a control
+  //
+  TGeoVolume* volume1
+    = new TGeoVolume("solid1", solid1, fBasicMedium);
+  worldV->AddNode(volume1, 1, 
+                  new TGeoTranslation(-125., 0., -200.));
+
+  TGeoVolume* volume2
+    = new TGeoVolume("solid2", solid2, fBasicMedium);
+  worldV->AddNode(volume2, 1, 
+                  new TGeoTranslation( 125., 0., -200.));
+
+
+  // Define displacement transformations
+  //
+  
+  // Translate solid2  
+  //
+  TGeoTranslation* tr2 = new TGeoTranslation(20., 0., 0.);
+  tr2->SetName("tr2");
+  tr2->RegisterYourself();
+  
+  // Intersection
+  //
+  //TGeoShape* intersectionS
+  //  = new TGeoCompositeShape("intersection_solid1_solid2_S", "boxS*tubsS:tr2"); 
+  TGeoShape* intersectionS
+    = new TGeoCompositeShape("intersection_solid1_solid2_S", "boxS*tubsS"); 
+  TGeoVolume* intersectionV
+    = new TGeoVolume("intersection_solid1_solid2", intersectionS, fBasicMedium);
+  worldV->AddNode(intersectionV, 1, 
+                  new TGeoTranslation(-250., 0., 200.));
+  
+  // Subtraction
+  //
+  //TGeoShape* subtractionS
+  //  = new TGeoCompositeShape("subtraction_solid1_solid2_S", "boxS-tubsS:tr2"); 
+  TGeoShape* subtractionS
+    = new TGeoCompositeShape("subtraction_solid1_solid2_S", "tubsS-boxS"); 
+  TGeoVolume* subtractionV
+    = new TGeoVolume("subtraction_solid1_solid2", subtractionS, fBasicMedium);
+  worldV->AddNode(subtractionV, 1, 
+                  new TGeoTranslation(0., 0., 200.));
+
+  // Union
+  //
+  //TGeoShape* unionS
+  //  = new TGeoCompositeShape("union_solid1_solid2_S", "boxS+tubsS:tr2"); 
+  TGeoShape* unionS
+    = new TGeoCompositeShape("union_solid1_solid2_S", "boxS+tubsS"); 
+  TGeoVolume* unionV
+    = new TGeoVolume("union_solid1_solid2", unionS, fBasicMedium);
+  worldV->AddNode(unionV, 1, 
+                  new TGeoTranslation(250., 0., 200.));
+ 
   return (void*) gGeoManager->GetTopNode();
 }
 

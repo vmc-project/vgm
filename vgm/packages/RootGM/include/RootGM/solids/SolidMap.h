@@ -50,6 +50,8 @@ namespace RootGM {
 
       // methods
       void  AddSolid(VGM::ISolid*, TGeoShape*); 
+      void  AddSolidInRootMapOnly(VGM::ISolid*, TGeoShape*); 
+      void  AddSolidInVGMMapOnly(VGM::ISolid*, TGeoShape*); 
 
       // get methods
       TGeoShape*    GetSolid(VGM::ISolid* iSolid) const;

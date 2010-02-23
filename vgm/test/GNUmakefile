@@ -30,8 +30,11 @@ CPPFLAGS += -I$(shell root-config --incdir)
 EXTRALIBS = $(shell root-config --glibs) -lGeomPainter -lGeom
 ifndef VGM_NO_G4ROOT
   CPPFLAGS += -DVGM_WITH_G4ROOT
-  EXTRALIBS += -lG4root
 endif
+
+#G4ROOT
+CPPFLAGS += -I${G4VMC}/include/g4root
+EXTRALIBS += -L${G4VMC}/lib/tgt_linux -lg4root
 
 CPPFLAGS += -I${AGDD_INSTALL}/include
 EXTRALIBS += -L${AGDD_INSTALL}/lib -lagdd

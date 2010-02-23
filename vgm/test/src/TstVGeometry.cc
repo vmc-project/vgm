@@ -72,6 +72,24 @@ void* TstVGeometry::TestBooleanSolids5()
 }  
 
 //_____________________________________________________________________________
+void* TstVGeometry::TestBooleanSolids6()
+{
+//
+  std::cerr << "TstVGeometry::TestBooleanSolids6 is not implemented." 
+            << std::endl;
+  exit(1);
+}  
+
+//_____________________________________________________________________________
+void* TstVGeometry::TestBooleanSolids7()
+{
+//
+  std::cerr << "TstVGeometry::TestBooleanSolids7 is not implemented." 
+            << std::endl;
+  exit(1);
+}  
+
+//_____________________________________________________________________________
 void* TstVGeometry::TestDisplacedSolids1()
 {
 //

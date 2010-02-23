@@ -28,7 +28,7 @@
 #include "G4GDMLParser.hh"
 
 const G4String TstDetectorConstruction::fgkTestNameCandidates 
-  = "Solids NewSolid NewSolid2 ExtraSolid Placements Reflections Assemblies1 Assemblies2 BooleanSolids1 BooleanSolids2 BooleanSolids3 BooleanSolids4 BooleanSolids5 Special DisplacedSolids1 DisplacedSolids2 Special";
+  = "Solids NewSolid NewSolid2 ExtraSolid Placements Reflections Assemblies1 Assemblies2 BooleanSolids1 BooleanSolids2 BooleanSolids3 BooleanSolids4 BooleanSolids5 BooleanSolids6 BooleanSolids7 Special DisplacedSolids1 DisplacedSolids2 Special";
 const G4String TstDetectorConstruction::fgkVisModeCandidates 
   = "Geant4 Root None";
 const G4String TstDetectorConstruction::fgkInputCandidates 
@@ -144,6 +144,14 @@ G4VPhysicalVolume* TstDetectorConstruction::Construct()
   }
   else if (fSelectedTest == "BooleanSolids5") {
     world = fGeometry->TestBooleanSolids5();
+    std::cout << "TestBooleanSolids5 finished" << std::endl;
+  }
+  else if (fSelectedTest == "BooleanSolids6") {
+    world = fGeometry->TestBooleanSolids6();
+    std::cout << "TestBooleanSolids5 finished" << std::endl;
+  }
+  else if (fSelectedTest == "BooleanSolids7") {
+    world = fGeometry->TestBooleanSolids7();
     std::cout << "TestBooleanSolids5 finished" << std::endl;
   }
   else if (fSelectedTest == "DisplacedSolids1") {
@@ -358,6 +366,7 @@ void TstDetectorConstruction::DrawRootGeometry() const
   new TBrowser();
 
   gGeoManager->GetTopVolume()->Draw("ogl");
+  //gGeoManager->GetTopVolume()->Raytrace();
   gApplication->Run();
 
   std::cout << "TstDetectorConstruction::DrawRootGeometry() finished" << std::endl;

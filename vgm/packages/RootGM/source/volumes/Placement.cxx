@@ -223,6 +223,17 @@ RootGM::Placement::Placement(
       // use the volume name in this case
 
   fVGMMatrix = node->GetMatrix();
+  
+  // print warning if node includes overlaps
+  Int_t novlp;
+  node->GetOverlaps(novlp);
+  if ( novlp ) {
+    std::cerr << "*** Warning: node with overlaps ***" << std::endl 
+              << "*** Overlaps may not be supported in exported geometry!!! ***" << std::endl
+              << "    Volume: " << volume->Name()
+              << "  in mother: " << motherVolume->Name()
+              << "  (TGeoNode name: " << node->GetName() <<  ")" << std::endl;
+  }     
       
   // Register physical volume in the map
   RootGM::PlacementMap::Instance()->AddPlacement(this, fGeoNode); 
