@@ -36,12 +36,6 @@ SUBDIR += RootGM/source
 endif
 endif
 
-ifeq ($(VGM_NO_AGDD),)
-ifneq ($(AGDD_INSTALL),)
-SUBDIR += AgddGM/source 
-endif
-endif
-
 ifndef VGM_INSTALL
   VGM_INSTALL = ..
 endif

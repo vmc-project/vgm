@@ -43,17 +43,12 @@ CLHEP_SETUP
 
 if test x$VGM_ENABLE_GEANT4GM = xyes ; then
 GEANT4_SETUP
+XERCESC_SETUP
 fi
 
 if test x$VGM_ENABLE_ROOTGM = xyes ; then
 ROOT_SETUP
 fi
-
-if test x$VGM_ENABLE_AGDDGM = xyes ; then
-AGDD_SETUP
-XERCESC_SETUP
-fi
-
 
 
 # Checks for typedefs, structures, and compiler characteristics.
@@ -72,7 +67,6 @@ AC_CONFIG_FILES([Makefile
                  packages/RootGM/Makefile
                  packages/Geant4GM/Makefile
                  packages/XmlVGM/Makefile
-                 packages/AgddGM/Makefile
                  test/Makefile
                 ])
 AC_OUTPUT

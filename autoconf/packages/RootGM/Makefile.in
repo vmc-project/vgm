@@ -51,9 +51,7 @@ DIST_COMMON = $(rootgmcominc_HEADERS) $(rootgmmatinc_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/acinclude.m4 \
-	$(top_srcdir)/acmacros/util.m4 \
-	$(top_srcdir)/acmacros/libagdd.m4 \
-	$(top_srcdir)/acmacros/clhep.m4 \
+	$(top_srcdir)/acmacros/util.m4 $(top_srcdir)/acmacros/clhep.m4 \
 	$(top_srcdir)/acmacros/xerces.m4 \
 	$(top_srcdir)/acmacros/geant4.m4 \
 	$(top_srcdir)/acmacros/root.m4 \
@@ -121,9 +119,6 @@ ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
-AGDD_ENABLE = @AGDD_ENABLE@
-AGDD_INCLUDE = @AGDD_INCLUDE@
-AGDD_LINK = @AGDD_LINK@
 AMTAR = @AMTAR@
 AR = @AR@
 AUTOCONF = @AUTOCONF@

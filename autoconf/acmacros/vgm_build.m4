@@ -69,19 +69,6 @@ if test x$VGM_ENABLE_XMLVGM = xyes ; then
 fi
 
 
-# AgddGM (uncomment when included) 
-AC_MSG_CHECKING(to build AgddGM VGM package)
-
-AC_ARG_ENABLE(AgddGM, 
-	AC_HELP_STRING([--enable-AgddGM],[Build AgddGM subpackage [[default=yes]] ]),
-	[VGM_ENABLE_AGDDGM=$enable_AgddGM],
-	[VGM_ENABLE_AGDDGM=yes])
-
-AC_MSG_RESULT([$VGM_ENABLE_AGDDGM])
-if test x$VGM_ENABLE_AGDDGM = xyes ; then
-    VGM_PACKAGES="$VGM_PACKAGES AgddGM"
-fi
-
 AC_SUBST(VGM_PACKAGES)
 
 

@@ -46,8 +46,8 @@ $Id$
  
  The implementation of the VGM for a concrete geometry model represents
  a layer between the VGM and the particular native geometry.
- At present  this implementation is provided for the Geant4,
- Root TGeo and, since the version 3.0, AGDD geometry models.
+ At present  this implementation is provided for the Geant4 and
+ Root TGeo.
 
  Using the VGM factory, geometry can first be defined independently from
  a concrete geometry model, and then built by choosing a concrete
@@ -218,7 +218,6 @@ $Id$
 	      ClhepVGM  - conversion functions between CLHEP and VGM
 	                  transformations
 	      BaseVGM   - common implementation
-	      AgddGM    - VGM implementation for AGDD
 	      Geant4GM  - VGM implementation for Geant4
 	      RootGM    - VGM implementation for Root TGeo
 	      XmlVGM    - XML eporters

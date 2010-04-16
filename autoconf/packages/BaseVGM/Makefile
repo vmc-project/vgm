@@ -51,9 +51,7 @@ DIST_COMMON = $(basevgmcominc_HEADERS) $(basevgmmatinc_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/acinclude.m4 \
-	$(top_srcdir)/acmacros/util.m4 \
-	$(top_srcdir)/acmacros/libagdd.m4 \
-	$(top_srcdir)/acmacros/clhep.m4 \
+	$(top_srcdir)/acmacros/util.m4 $(top_srcdir)/acmacros/clhep.m4 \
 	$(top_srcdir)/acmacros/xerces.m4 \
 	$(top_srcdir)/acmacros/geant4.m4 \
 	$(top_srcdir)/acmacros/root.m4 \
@@ -122,9 +120,6 @@ ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = ${SHELL} /work/projects/vgm/new/vgm/autoconf/missing --run aclocal-1.11
-AGDD_ENABLE = yes
-AGDD_INCLUDE = -I/work/projects/vgm/new/agdd/include
-AGDD_LINK = -Wl,-rpath -Wl,/work/projects/vgm/new/agdd/lib -L/work/projects/vgm/new/agdd/lib -lagdd
 AMTAR = ${SHELL} /work/projects/vgm/new/vgm/autoconf/missing --run tar
 AR = ar
 AUTOCONF = ${SHELL} /work/projects/vgm/new/vgm/autoconf/missing --run autoconf
@@ -193,8 +188,8 @@ ROOTINCDIR = /work/projects/vgm/new/root/include
 ROOTLIBDIR = /work/projects/vgm/new/root/lib
 ROOTLIBS = -lCore -lCint -lRIO -lNet -lHist -lGraf -lGraf3d -lGpad -lTree -lRint -lPostscript -lMatrix -lPhysics -lMathCore -lThread
 ROOTRPATH = /work/projects/vgm/new/root/lib
-ROOTSOVERSION = 5.26
-ROOTVERSION = 5.26/00
+ROOTSOVERSION = 5.27
+ROOTVERSION = 5.27/01
 ROOT_ENABLE = yes
 ROOT_INCLUDE = -I/work/projects/vgm/new/root/include
 ROOT_LINK = -Wl,--rpath -Wl,/work/projects/vgm/new/root/lib -L/work/projects/vgm/new/root/lib -lCore -lCint -lRIO -lNet -lHist -lGraf -lGraf3d -lGpad -lTree -lRint -lPostscript -lMatrix -lPhysics -lMathCore -lThread -lGeom
@@ -203,7 +198,7 @@ SET_MAKE =
 SHELL = /bin/sh
 STRIP = strip
 VERSION = 0.2
-VGM_PACKAGES = VGM ClhepVGM BaseVGM Geant4GM RootGM XmlVGM AgddGM
+VGM_PACKAGES = VGM ClhepVGM BaseVGM Geant4GM RootGM XmlVGM
 XERCES_ENABLE = yes
 XERCES_INCLUDE = 
 XERCES_LINK = -lxerces-c
