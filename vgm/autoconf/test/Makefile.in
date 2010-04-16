@@ -41,14 +41,12 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-check_PROGRAMS = vgm_test$(EXEEXT) agdd2x$(EXEEXT)
+check_PROGRAMS = vgm_test$(EXEEXT)
 subdir = test
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/acinclude.m4 \
-	$(top_srcdir)/acmacros/util.m4 \
-	$(top_srcdir)/acmacros/libagdd.m4 \
-	$(top_srcdir)/acmacros/clhep.m4 \
+	$(top_srcdir)/acmacros/util.m4 $(top_srcdir)/acmacros/clhep.m4 \
 	$(top_srcdir)/acmacros/xerces.m4 \
 	$(top_srcdir)/acmacros/geant4.m4 \
 	$(top_srcdir)/acmacros/root.m4 \
@@ -60,14 +58,8 @@ mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
-am_agdd2x_OBJECTS = agdd2x.$(OBJEXT)
-agdd2x_OBJECTS = $(am_agdd2x_OBJECTS)
-agdd2x_DEPENDENCIES = $(vgm_libs)
-agdd2x_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
-	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) \
-	$(agdd2x_LDFLAGS) $(LDFLAGS) -o $@
 am_vgm_test_OBJECTS = vgm_test.$(OBJEXT) \
-	TstDetectorConstruction.$(OBJEXT) TstGeometryViaAgdd.$(OBJEXT) \
+	TstDetectorConstruction.$(OBJEXT) \
 	TstGeometryViaGeant4.$(OBJEXT) TstGeometryViaRoot.$(OBJEXT) \
 	TstGeometryViaVGM.$(OBJEXT) TstPhysicsList.$(OBJEXT) \
 	TstPrimaryGeneratorAction.$(OBJEXT) \
@@ -92,15 +84,12 @@ CXXLD = $(CXX)
 CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(agdd2x_SOURCES) $(vgm_test_SOURCES)
-DIST_SOURCES = $(agdd2x_SOURCES) $(vgm_test_SOURCES)
+SOURCES = $(vgm_test_SOURCES)
+DIST_SOURCES = $(vgm_test_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
-AGDD_ENABLE = @AGDD_ENABLE@
-AGDD_INCLUDE = @AGDD_INCLUDE@
-AGDD_LINK = @AGDD_LINK@
 AMTAR = @AMTAR@
 AR = @AR@
 AUTOCONF = @AUTOCONF@
@@ -235,11 +224,10 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-INCLUDES = ${CLHEP_INCLUDE} ${ROOT_INCLUDE} ${GEANT4_INCLUDE} ${AGDD_INCLUDE} \
+INCLUDES = ${CLHEP_INCLUDE} ${ROOT_INCLUDE} ${GEANT4_INCLUDE} \
          -I../../packages/VGM/include \
          -I../..//packages/BaseVGM/include \
          -I../../packages/ClhepVGM/include \
-         -I../../packages/AgddGM/include   \
          -I../../packages/XmlVGM/include   \
          -I../../packages/RootGM/include   \
          -I../../packages/Geant4GM/include \
@@ -247,18 +235,14 @@ INCLUDES = ${CLHEP_INCLUDE} ${ROOT_INCLUDE} ${GEANT4_INCLUDE} ${AGDD_INCLUDE} \
 
 vgm_libs = ../packages/BaseVGM/libBaseVGM.la ../packages/ClhepVGM/libClhepVGM.la \
            ../packages/RootGM/libRootGM.la ../packages/Geant4GM/libGeant4GM.la \
-           ../packages/XmlVGM/libXmlVGM.la ../packages/AgddGM/libAgddGM.la
+           ../packages/XmlVGM/libXmlVGM.la
 
 ext_links = \
-	$(CLHEP_LINK) $(ROOT_LINK) $(GEANT4_LINK) $(AGDD_LINK) $(XERCES_LINK)
+	$(CLHEP_LINK) $(ROOT_LINK) $(GEANT4_LINK) $(XERCES_LINK)
 
-agdd2x_SOURCES = ../../test/agdd2x.cc
-agdd2x_LDADD = $(vgm_libs)
-agdd2x_LDFLAGS = $(ext_links)
 vgmtestsrc = ../../test/src
 vgm_test_SOURCES = ../../test/vgm_test.cc \
 	$(vgmtestsrc)/TstDetectorConstruction.cc \
-	$(vgmtestsrc)/TstGeometryViaAgdd.cc \
 	$(vgmtestsrc)/TstGeometryViaGeant4.cc \
 	$(vgmtestsrc)/TstGeometryViaRoot.cc \
 	$(vgmtestsrc)/TstGeometryViaVGM.cc \
@@ -315,9 +299,6 @@ clean-checkPROGRAMS:
 	list=`for p in $$list; do echo "$$p"; done | sed 's/$(EXEEXT)$$//'`; \
 	echo " rm -f" $$list; \
 	rm -f $$list
-agdd2x$(EXEEXT): $(agdd2x_OBJECTS) $(agdd2x_DEPENDENCIES) 
-	@rm -f agdd2x$(EXEEXT)
-	$(agdd2x_LINK) $(agdd2x_OBJECTS) $(agdd2x_LDADD) $(LIBS)
 vgm_test$(EXEEXT): $(vgm_test_OBJECTS) $(vgm_test_DEPENDENCIES) 
 	@rm -f vgm_test$(EXEEXT)
 	$(vgm_test_LINK) $(vgm_test_OBJECTS) $(vgm_test_LDADD) $(LIBS)
@@ -329,7 +310,6 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/TstDetectorConstruction.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/TstGeometryViaAgdd.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/TstGeometryViaGeant4.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/TstGeometryViaRoot.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/TstGeometryViaVGM.Po@am__quote@
@@ -340,7 +320,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/TstSteppingAction.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/TstTrackingAction.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/TstVGeometry.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/agdd2x.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/vgm_test.Po@am__quote@
 
 .cc.o:
@@ -363,20 +342,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
-
-agdd2x.o: ../../test/agdd2x.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT agdd2x.o -MD -MP -MF $(DEPDIR)/agdd2x.Tpo -c -o agdd2x.o `test -f '../../test/agdd2x.cc' || echo '$(srcdir)/'`../../test/agdd2x.cc
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/agdd2x.Tpo $(DEPDIR)/agdd2x.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../../test/agdd2x.cc' object='agdd2x.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o agdd2x.o `test -f '../../test/agdd2x.cc' || echo '$(srcdir)/'`../../test/agdd2x.cc
-
-agdd2x.obj: ../../test/agdd2x.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT agdd2x.obj -MD -MP -MF $(DEPDIR)/agdd2x.Tpo -c -o agdd2x.obj `if test -f '../../test/agdd2x.cc'; then $(CYGPATH_W) '../../test/agdd2x.cc'; else $(CYGPATH_W) '$(srcdir)/../../test/agdd2x.cc'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/agdd2x.Tpo $(DEPDIR)/agdd2x.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../../test/agdd2x.cc' object='agdd2x.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o agdd2x.obj `if test -f '../../test/agdd2x.cc'; then $(CYGPATH_W) '../../test/agdd2x.cc'; else $(CYGPATH_W) '$(srcdir)/../../test/agdd2x.cc'; fi`
 
 vgm_test.o: ../../test/vgm_test.cc
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT vgm_test.o -MD -MP -MF $(DEPDIR)/vgm_test.Tpo -c -o vgm_test.o `test -f '../../test/vgm_test.cc' || echo '$(srcdir)/'`../../test/vgm_test.cc
@@ -405,20 +370,6 @@ TstDetectorConstruction.obj: $(vgmtestsrc)/TstDetectorConstruction.cc
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(vgmtestsrc)/TstDetectorConstruction.cc' object='TstDetectorConstruction.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o TstDetectorConstruction.obj `if test -f '$(vgmtestsrc)/TstDetectorConstruction.cc'; then $(CYGPATH_W) '$(vgmtestsrc)/TstDetectorConstruction.cc'; else $(CYGPATH_W) '$(srcdir)/$(vgmtestsrc)/TstDetectorConstruction.cc'; fi`
-
-TstGeometryViaAgdd.o: $(vgmtestsrc)/TstGeometryViaAgdd.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT TstGeometryViaAgdd.o -MD -MP -MF $(DEPDIR)/TstGeometryViaAgdd.Tpo -c -o TstGeometryViaAgdd.o `test -f '$(vgmtestsrc)/TstGeometryViaAgdd.cc' || echo '$(srcdir)/'`$(vgmtestsrc)/TstGeometryViaAgdd.cc
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/TstGeometryViaAgdd.Tpo $(DEPDIR)/TstGeometryViaAgdd.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(vgmtestsrc)/TstGeometryViaAgdd.cc' object='TstGeometryViaAgdd.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o TstGeometryViaAgdd.o `test -f '$(vgmtestsrc)/TstGeometryViaAgdd.cc' || echo '$(srcdir)/'`$(vgmtestsrc)/TstGeometryViaAgdd.cc
-
-TstGeometryViaAgdd.obj: $(vgmtestsrc)/TstGeometryViaAgdd.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT TstGeometryViaAgdd.obj -MD -MP -MF $(DEPDIR)/TstGeometryViaAgdd.Tpo -c -o TstGeometryViaAgdd.obj `if test -f '$(vgmtestsrc)/TstGeometryViaAgdd.cc'; then $(CYGPATH_W) '$(vgmtestsrc)/TstGeometryViaAgdd.cc'; else $(CYGPATH_W) '$(srcdir)/$(vgmtestsrc)/TstGeometryViaAgdd.cc'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/TstGeometryViaAgdd.Tpo $(DEPDIR)/TstGeometryViaAgdd.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(vgmtestsrc)/TstGeometryViaAgdd.cc' object='TstGeometryViaAgdd.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o TstGeometryViaAgdd.obj `if test -f '$(vgmtestsrc)/TstGeometryViaAgdd.cc'; then $(CYGPATH_W) '$(vgmtestsrc)/TstGeometryViaAgdd.cc'; else $(CYGPATH_W) '$(srcdir)/$(vgmtestsrc)/TstGeometryViaAgdd.cc'; fi`
 
 TstGeometryViaGeant4.o: $(vgmtestsrc)/TstGeometryViaGeant4.cc
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT TstGeometryViaGeant4.o -MD -MP -MF $(DEPDIR)/TstGeometryViaGeant4.Tpo -c -o TstGeometryViaGeant4.o `test -f '$(vgmtestsrc)/TstGeometryViaGeant4.cc' || echo '$(srcdir)/'`$(vgmtestsrc)/TstGeometryViaGeant4.cc

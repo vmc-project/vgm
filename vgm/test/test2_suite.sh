@@ -36,9 +36,9 @@ do
     mkdir -p $OUTDIR/$EXT 
   fi
 
-  for inputType in VGM AGDD Geant4 Root
+  for inputType in VGM Geant4 Root
   do
-    for inputFactory in AGDD Geant4 Root
+    for inputFactory in Geant4 Root
     do
       for selectedTest in Solids Placements Reflections Assemblies1 Assemblies2 BooleanSolids2 DisplacedSolids1 DisplacedSolids2
       #for selectedTest in Placements 
@@ -47,15 +47,10 @@ do
 
         # exclude wrong combinations
 	if [ $inputType != "VGM"  -a $inputFactory != $inputType ];  then DOIT="0";  fi 
- 	if [ $inputType  = "VGM"  -a $inputFactory  = "AGDD" ];      then DOIT="0";  fi 
 
         # exclude non existing tests
  	if [ $inputType  = "VGM"  -a $selectedTest  = "Assemblies1" ]; then DOIT="0";  fi 
 	if [ $inputType  = "VGM"  -a $selectedTest  = "Assemblies2" ]; then DOIT="0";  fi 
-	if [ $inputType  = "AGDD" -a $selectedTest  = "Reflections" ]; then DOIT="0";  fi 
-	if [ $inputType  = "AGDD" -a $selectedTest  = "Assemblies2" ]; then DOIT="0";  fi 
-  	if [ $inputType  = "AGDD" -a $selectedTest  = "DisplacedSolids1" ]; then DOIT="0";  fi 
-  	if [ $inputType  = "AGDD" -a $selectedTest  = "DisplacedSolids2" ]; then DOIT="0";  fi 
   	if [ $inputType  = "Root" -a $selectedTest  = "DisplacedSolids2" ]; then DOIT="0";  fi 
 
         if [ $DOIT = "1" ]; then

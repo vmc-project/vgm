@@ -19,5 +19,4 @@
             --with-xerces=/usr \
             --with-clhep=/work/packages/clhep/2.0.4.5 \
             --with-geant4=/work/projects/vgm/new/geant4 \
-            --with-root=/work/projects/vgm/new/root \
-            --with-libagdd=/work/projects/vgm/new/agdd
+            --with-root=/work/projects/vgm/new/root

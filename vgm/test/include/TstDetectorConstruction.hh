@@ -26,7 +26,6 @@
 #include "globals.hh"
 
 #include "VGM/volumes/IFactory.h"
-#include "AgddGM/volumes/Factory.h"
 #include "Geant4GM/volumes/Factory.h"
 #include "RootGM/volumes/Factory.h"
 #include "XmlVGM/VExporter.h"
@@ -77,7 +76,6 @@ class TstDetectorConstruction : public G4VUserDetectorConstruction
     G4bool             fFullAngle;
     VGM::IFactory*     fInputFactory;
     VGM::IFactory*     fOutputFactory;
-    AgddGM::Factory*   fAgddFactory;
     Geant4GM::Factory* fGeant4Factory;
     RootGM::Factory*   fRootFactory;
     XmlVGM::VExporter* fXMLExporter;

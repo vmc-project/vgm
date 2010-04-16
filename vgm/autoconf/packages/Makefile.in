@@ -47,9 +47,7 @@ subdir = packages
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/acinclude.m4 \
-	$(top_srcdir)/acmacros/util.m4 \
-	$(top_srcdir)/acmacros/libagdd.m4 \
-	$(top_srcdir)/acmacros/clhep.m4 \
+	$(top_srcdir)/acmacros/util.m4 $(top_srcdir)/acmacros/clhep.m4 \
 	$(top_srcdir)/acmacros/xerces.m4 \
 	$(top_srcdir)/acmacros/geant4.m4 \
 	$(top_srcdir)/acmacros/root.m4 \
@@ -105,9 +103,6 @@ am__relativize = \
   done; \
   reldir="$$dir2"
 ACLOCAL = @ACLOCAL@
-AGDD_ENABLE = @AGDD_ENABLE@
-AGDD_INCLUDE = @AGDD_INCLUDE@
-AGDD_LINK = @AGDD_LINK@
 AMTAR = @AMTAR@
 AR = @AR@
 AUTOCONF = @AUTOCONF@

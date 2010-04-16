@@ -9,7 +9,7 @@
 # Contact: bv@bnl.gov
 
 dnl
-dnl macros for AGDD build system
+dnl macros for VGM Autoconf build system
 dnl
 
 # macro to check whether a test file exists

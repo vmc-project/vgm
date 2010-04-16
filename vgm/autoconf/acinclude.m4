@@ -9,7 +9,6 @@
 # Contact: bv@bnl.gov
 
 m4_include(acmacros/util.m4)
-m4_include(acmacros/libagdd.m4)
 m4_include(acmacros/clhep.m4)
 m4_include(acmacros/xerces.m4)
 m4_include(acmacros/geant4.m4)

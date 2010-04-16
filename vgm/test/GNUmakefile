@@ -15,7 +15,6 @@
 # --------------------------------------------------------------
 
 name := vgm_test
-#name := agdd2x
 G4TARGET := $(name)
 G4EXLIB := true
 
@@ -36,19 +35,14 @@ endif
 CPPFLAGS += -I${G4VMC}/include/g4root
 EXTRALIBS += -L${G4VMC}/lib/tgt_linux -lg4root
 
-CPPFLAGS += -I${AGDD_INSTALL}/include
-EXTRALIBS += -L${AGDD_INSTALL}/lib -lagdd
-EXTRALIBS += -L${XERCESC_INSTALL}/lib -lxerces-c
-
 CPPFLAGS  += -I$(VGM_INSTALL)/packages/VGM/include
 CPPFLAGS  += -I$(VGM_INSTALL)/packages/ClhepVGM/include
 CPPFLAGS  += -I$(VGM_INSTALL)/packages/BaseVGM/include
-CPPFLAGS  += -I$(VGM_INSTALL)/packages/AgddGM/include
 CPPFLAGS  += -I$(VGM_INSTALL)/packages/Geant4GM/include
 CPPFLAGS  += -I$(VGM_INSTALL)/packages/RootGM/include
 CPPFLAGS  += -I$(VGM_INSTALL)/packages/XmlVGM/include
 EXTRALIBS += -L$(VGM_INSTALL)/lib/$(VGM_SYSTEM)
-EXTRALIBS += -lAgddGM -lGeant4GM -lRootGM  -lBaseVGM -lClhepVGM -lXmlVGM
+EXTRALIBS += -lGeant4GM -lRootGM  -lBaseVGM -lClhepVGM -lXmlVGM
 
 include $(G4INSTALL)/config/binmake.gmk
 
