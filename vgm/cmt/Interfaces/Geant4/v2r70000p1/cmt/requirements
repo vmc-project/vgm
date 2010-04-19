@@ -12,7 +12,7 @@ use CLHEP v1r* $(Geant4_CLHEP_from)
 #///// Site specific macros //////////////////////////////////////////
 #/////////////////////////////////////////////////////////////////////
 
-macro Geant4_native_version "9.2"
+macro Geant4_native_version "9.3"
 
 #macro Geant4_tag "geant4.7.0"
 #macro Geant4_tag "geant4-07-00-ref-01"
@@ -88,7 +88,7 @@ macro G4parameterisations_incs "-I${Geant4_source}/parameterisations/include"
 macro G4persistency_incs "-I${Geant4_source}/persistency/gdml/include -I${Geant4_source}/persistency/mctruth/include -I${Geant4_source}/persistency/ascii/include"
 macro G4readout_incs "-I${Geant4_source}/readout/include"
 macro G4interfaces_incs "-I${Geant4_source}/interfaces/basic/include -I${Geant4_source}/interfaces/common/include -I${Geant4_source}/interfaces/GAG/include -I${Geant4_source}/interfaces/XVT/include"
-macro G4visualization_incs "-I${Geant4_source}/visualization/FukuiRenderer/include -I${Geant4_source}/visualization/HepRep/include -I${Geant4_source}/visualization/HepRep/include/zipios++ -I${Geant4_source}/visualization/HepRep/include/zlib -I${Geant4_source}/visualization/HepRep/include/ref -I${Geant4_source}/visualization/management/include -I${Geant4_source}/visualization/modeling/include -I${Geant4_source}/visualization/OpenGL/include -I${Geant4_source}/visualization/OpenInventor/include -I${Geant4_source}/visualization/RayTracer/include -I${Geant4_source}/visualization/Tree/include -I${Geant4_source}/visualization/VRML/include -I${Geant4_source}/visualization/XXX/include"
+macro G4visualization_incs "-I${Geant4_source}/visualization/FukuiRenderer/include -I${Geant4_source}/visualization/gMocren/include -I${Geant4_source}/visualization/HepRep/include -I${Geant4_source}/visualization/HepRep/include/zipios++ -I${Geant4_source}/visualization/HepRep/include/zlib -I${Geant4_source}/visualization/HepRep/include/ref -I${Geant4_source}/visualization/management/include -I${Geant4_source}/visualization/modeling/include -I${Geant4_source}/visualization/OpenGL/include -I${Geant4_source}/visualization/OpenInventor/include -I${Geant4_source}/visualization/RayTracer/include -I${Geant4_source}/visualization/Tree/include -I${Geant4_source}/visualization/VRML/include -I${Geant4_source}/visualization/XXX/include"
 
 macro Geant4_cppflags "-DG4USE_STL -DG4USE_STD_NAMESPACE -DG4VERBOSE -DG4_STORE_TRAJECTORY" WIN32 "/DG4USE_STL /DG4USE_STD_NAMESPACE /DG4VERBOSE /DG4_STORE_TRAJECTORY /DXPNET"
 
@@ -169,6 +169,7 @@ apply_pattern G4granular_libs name=hadronic_bert_cascade lib=hadronic_bert_casca
 apply_pattern G4granular_libs name=hadronic_binary lib=hadronic_binary
 apply_pattern G4granular_libs name=hadronic_body_ci lib=hadronic_body_ci
 apply_pattern G4granular_libs name=hadronic_coherent_elastic lib=hadronic_coherent_elastic
+apply_pattern G4granular_libs name=hadronic_crosec_ci lib=hadronic_crosec_ci
 apply_pattern G4granular_libs name=hadronic_deex_evaporation lib=hadronic_deex_evaporation
 apply_pattern G4granular_libs name=hadronic_deex_fermi_breakup lib=hadronic_deex_fermi_breakup
 apply_pattern G4granular_libs name=hadronic_deex_fission lib=hadronic_deex_fission
@@ -179,6 +180,7 @@ apply_pattern G4granular_libs name=hadronic_deex_multifragmentation lib=hadronic
 apply_pattern G4granular_libs name=hadronic_deex_photon_evaporation lib=hadronic_deex_photon_evaporation
 apply_pattern G4granular_libs name=hadronic_deex_util lib=hadronic_deex_util
 apply_pattern G4granular_libs name=hadronic_em_dissociation lib=hadronic_em_dissociation
+apply_pattern G4granular_libs name=hadronic_fragm_ci lib=hadronic_fragm_ci
 apply_pattern G4granular_libs name=hadronic_HE lib=hadronic_HE
 apply_pattern G4granular_libs name=hadronic_hetcpp_evaporation lib=hadronic_hetcpp_evaporation
 apply_pattern G4granular_libs name=hadronic_hetcpp_utils lib=hadronic_hetcpp_utils
@@ -188,6 +190,7 @@ apply_pattern G4granular_libs name=hadronic_leading_particle lib=hadronic_leadin
 apply_pattern G4granular_libs name=hadronic_LE lib=hadronic_LE
 apply_pattern G4granular_libs name=hadronic_mgt lib=hadronic_mgt
 apply_pattern G4granular_libs name=hadronic_proc lib=hadronic_proc
+apply_pattern G4granular_libs name=hadronic_proc_ci lib=hadronic_proc_ci
 apply_pattern G4granular_libs name=hadronic_qgstring lib=hadronic_qgstring
 apply_pattern G4granular_libs name=hadronic_radioactivedecay lib=hadronic_radioactivedecay
 apply_pattern G4granular_libs name=hadronic_stop lib=hadronic_stop
@@ -225,6 +228,7 @@ apply_pattern G4granular_libs name=UIbasic lib=UIbasic
 apply_pattern G4granular_libs name=UIcommon lib=UIcommon
 apply_pattern G4granular_libs name=UIGAG lib=UIGAG
 apply_pattern G4granular_libs name=visHepRep lib=visHepRep
+apply_pattern G4granular_libs name=GMocren lib=GMocren
 apply_pattern G4granular_libs name=vis lib=visnagement.so
 apply_pattern G4granular_libs name=visXXX lib=visXXX
 apply_pattern G4granular_libs name=volumes lib=volumes
@@ -250,7 +254,7 @@ macro G4geometry_granular_libs "-L${Geant4_lib} -lG4volumes -lG4navigation -lG4g
 macro G4global_granular_libs "-L${Geant4_lib} -lG4hepnumerics -lG4globman"
 macro G4interfaces_granular_libs "-L${Geant4_lib} -lG4UIGAG -lG4UIbasic -lG4UIcommon "
 macro G4particles_granular_libs "-L${Geant4_lib} -lG4bosons -lG4leptons -lG4shortlived -lG4mesons -lG4baryons -lG4ions -lG4partutils -lG4partman"
-macro G4processes_granular_libs "-L${Geant4_lib} -lG4optical -lG4decay -lG4transportation -lG4parameterisation -lG4muons -lG4emstandard -lG4emutils -lG4xrays -lG4emhighenergy -lG4hadronic_abrasion -lG4hadronic_mgt -lG4hadronic_proc -lG4hadronic_xsect  -lG4hadronic_stop -lG4hadronic_binary -lG4hadronic_coherent_elastic -lG4hadronic_HE -lG4had_im_r_matrix -lG4hadronic_iso -lG4hadronic_leading_particle -lG4hadronic_LE -lG4had_neu_hp -lG4hadronic_radioactivedecay -lG4had_theo_max -lG4hadronic_bert_cascade -lG4hadronic_hetcpp_evaporation -lG4hadronic_hetcpp_utils -lG4hadronic_body_ci -lG4hadronic_interface_ci -lG4hadronic_deex_handler -lG4hadronic_deex_multifragmentation -lG4hadronic_deex_photon_evaporation -lG4emlowenergy -lG4hadronic_ablation -lG4hadronic_em_dissociation -lG4hadronic_deex_evaporation -lG4hadronic_deex_gem_evaporation -lG4hadronic_deex_fission -lG4hadronic_deex_fermi_breakup -lG4hadronic_deex_management -lG4hadronic_deex_util -lG4had_preequ_exciton -lG4had_muon_nuclear -lG4had_string_diff -lG4had_string_frag -lG4hadronic_qgstring -lG4had_string_man -lG4had_mod_util -lG4had_mod_man -lG4hadronic_util -lG4cuts -lG4procman -lG4scoring"
+macro G4processes_granular_libs "-L${Geant4_lib} -lG4optical -lG4decay -lG4transportation -lG4parameterisation -lG4muons -lG4emstandard -lG4emutils -lG4xrays -lG4emhighenergy -lG4hadronic_abrasion -lG4hadronic_mgt -lG4hadronic_fragm_ci -lG4hadronic_proc -lG4hadronic_xsect  -lG4hadronic_stop -lG4hadronic_binary -lG4hadronic_coherent_elastic -lG4hadronic_HE -lG4had_im_r_matrix -lG4hadronic_iso -lG4hadronic_leading_particle -lG4hadronic_LE -lG4had_neu_hp -lG4hadronic_radioactivedecay -lG4had_theo_max -lG4hadronic_bert_cascade -lG4hadronic_hetcpp_evaporation -lG4hadronic_hetcpp_utils -lG4hadronic_body_ci -lG4hadronic_interface_ci -lG4hadronic_proc_ci -lG4hadronic_deex_handler -lG4hadronic_deex_multifragmentation -lG4hadronic_deex_photon_evaporation -lG4emlowenergy -lG4hadronic_ablation -lG4hadronic_crosec_ci -lG4hadronic_em_dissociation -lG4hadronic_deex_evaporation -lG4hadronic_deex_gem_evaporation -lG4hadronic_deex_fission -lG4hadronic_deex_fermi_breakup -lG4hadronic_deex_management -lG4hadronic_deex_util -lG4had_preequ_exciton -lG4had_muon_nuclear -lG4had_string_diff -lG4had_string_frag -lG4hadronic_qgstring -lG4had_string_man -lG4had_mod_util -lG4had_mod_man -lG4hadronic_util -lG4cuts -lG4procman -lG4scoring"
 
 
 
@@ -262,7 +266,7 @@ macro G4processes_granular_libs "-L${Geant4_lib} -lG4optical -lG4decay -lG4trans
 macro Geant4Vis_global_linkopts "-L${Geant4_lib} -lG4visualization"
 
 # Granular libs :
-macro Geant4Vis_granular_linkopts "-L${Geant4_lib} -lG4vis_management -lG4modeling -lG4VRML -lG4FR -lG4RayTracer -lG4Tree -lG4visHepRep"
+macro Geant4Vis_granular_linkopts "-L${Geant4_lib} -lG4vis_management -lG4modeling -lG4VRML -lG4FR -lG4RayTracer -lG4Tree -lG4visHepRep -lG4GMocren"
 #macro_append Geant4Vis_linkopts " -L${Geant4_lib} -lG4OpenGL"
 #macro_append Geant4Vis_linkopts " -L${Geant4_lib} -lG4OpenInventor"
 
