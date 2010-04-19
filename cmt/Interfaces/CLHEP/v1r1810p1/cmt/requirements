@@ -4,7 +4,7 @@ version v1r1810p1
 build_strategy no_prototypes
 include_path none
 
-macro CLHEP_native_version "2.0.4.2"
+macro CLHEP_native_version "2.0.4.5"
 
 # SLC3 : Geant4-7.0 needs 
 #macro CLHEP_native_version "1.9.1.2"
