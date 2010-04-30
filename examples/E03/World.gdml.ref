@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gdml xmlns:gdml="http://cern.ch/2001/Schemas/GDML"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="gdml.xsd">
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/GDML_2_10_0/src/GDMLSchema/gdml.xsd">
 
    <define>
       <position  name="pos_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
@@ -9,6 +8,8 @@
       <position  name="pos_2"     x="     0.5000"  y="     0.0000"  z="     0.0000"  unit="cm" />
 
       <rotation  name="rot_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
+
+      <scale     name="scale_0"   x="     1.0000"  y="     1.0000"  z="    -1.0000"  />
    </define>
 
    <materials>
@@ -52,36 +53,36 @@
          x="    1.5000"  y="   10.0000"  z="   10.0000" />
 
       <box  lunit="cm" aunit="degree"
-         name="Absorber_s"
+         name="Lead_s"
          x="    1.0000"  y="   10.0000"  z="   10.0000" />
 
       <box  lunit="cm" aunit="degree"
-         name="Gap_s"
+         name="liquidArgon_s"
          x="    0.5000"  y="   10.0000"  z="   10.0000" />
 
    </solids>
 
    <structure>
-      <volume name="Absorber">
+      <volume name="Lead">
          <materialref ref="Lead"/>
-         <solidref ref="Absorber_s"/>
+         <solidref ref="Lead_s"/>
       </volume>
 
-      <volume name="Gap">
+      <volume name="liquidArgon">
          <materialref ref="liquidArgon"/>
-         <solidref ref="Gap_s"/>
+         <solidref ref="liquidArgon_s"/>
       </volume>
 
       <volume name="Layer">
          <materialref ref="Galactic"/>
          <solidref ref="Layer_s"/>
          <physvol>
-            <volumeref ref="Absorber"/>
+            <volumeref ref="Lead"/>
                <positionref ref="pos_1"/>
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
-            <volumeref ref="Gap"/>
+            <volumeref ref="liquidArgon"/>
                <positionref ref="pos_2"/>
                <rotationref ref="rot_0"/>
          </physvol>
@@ -90,6 +91,10 @@
       <volume name="Calorimeter">
          <materialref ref="Galactic"/>
          <solidref ref="Calorimeter_s"/>
+         <divisionvol unit="cm"
+            axis="kXAxis"  number="10"  offset="     0.0000"  width="     1.5000">
+            <volumeref ref="Layer"/>
+         </divisionvol>
       </volume>
 
       <volume name="World">

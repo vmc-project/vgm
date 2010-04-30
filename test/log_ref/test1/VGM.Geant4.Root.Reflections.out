@@ -2,7 +2,7 @@ Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometr
 Geant4 geometry will be defined via VGM and exported to Root
 
 *************************************************************
- Geant4 version Name: geant4-09-02    (19-December-2008)
+ Geant4 version Name: geant4-09-03-patch-01    (9-April-2010)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -65,14 +65,22 @@ VGM info:   Importing LV: ctubs_refl
 VGM info:   Importing solid: ctubsS_refl
 VGM info:   Importing solid: boolean
 VGM info:   Importing solid: tubs
+VGM info:      Imported solid: Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
 VGM info:   Importing solid: boxLow
+VGM info:      Imported solid: Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
 VGM info:   Imported Boolean solid: 
 VGM info:   Boolean  "boolean"  Subtraction: 
   ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
   ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
   Displacement translation (object):  ( 0,  0,  -1213.6) mm 
   Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
+VGM info:      Imported solid: Boolean  "boolean"  Subtraction: 
+  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
+  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
+  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
+  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
 VGM info:   Importing solid: boxHigh
+VGM info:      Imported solid: Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
 VGM info:   Imported Boolean solid: 
 VGM info:   Boolean  "ctubsS"  Subtraction: 
   ConstituentA = Boolean  "boolean"  Subtraction: 
@@ -92,7 +100,21 @@ VGM info:   ImportPositions for lv xtru1_refl nofDaughters: 0
 VGM info:   Importing LV: xtru2_refl
 VGM info:   Importing solid: xtruS_refl
 VGM info:   Importing solid: xtruS
+VGM info:      Imported solid: Extruded  "xtruS"
+Polygon,  8 vertices:
+  (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
+Planes:
+  z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
+  z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
+
 VGM info:   Importing solid: xtruS
+VGM info:      Imported solid: Extruded  "xtruS"
+Polygon,  8 vertices:
+  (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
+Planes:
+  z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.7
+  z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
+
 VGM info:   Imported Boolean solid: 
 VGM info:   Boolean  "xtruS"  Union: 
   ConstituentA = Extruded  "xtruS"
@@ -189,91 +211,91 @@ VGM info:   Medium: "Uranium"  material Uranium g/cm3  parameters:  0  0  0  0  
 VGM info:   Exporting medium: 
 VGM info:   Medium: "Vacuum"  material Vacuum g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
 VGM info:   Exporting volume store: 
-VGM info:   Exporting solid: 
+VGM info:      Exporting solid: 
 VGM info:      Box  "worldS"  hx = 6200mm  hy = 3000mm  hz = 3000mm
-VGM info:      0th volume: world   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  0th  "world"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Box  "boxS"  hx = 200mm  hy = 600mm  hz = 500mm
-VGM info:      1th volume: box   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  1th  "box"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Box  "boxS"  hx = 200mm  hy = 600mm  hz = 500mm
-VGM info:      2th volume: box_refl   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  2th  "box_refl"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Cons  "consS"  rin1 = 100mm  rout1 = 400mm  rin2 = 200mm  rout2 = 600mm  hz = 500mm  sphi = 0deg  dphi = 360deg
-VGM info:      3th volume: cons   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  3th  "cons"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Cons  "consS"  rin1 = 200mm  rout1 = 600mm  rin2 = 100mm  rout2 = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
-VGM info:      4th volume: cons_refl   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  4th  "cons_refl"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Eltu  "eltuS"  dx = 200mm  dy = 300mm  hz = 500mm
-VGM info:      5th volume: eltu   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  5th  "eltu"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Eltu  "eltuS"  dx = 200mm  dy = 300mm  hz = 500mm
-VGM info:      6th volume: eltu_refl   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  6th  "eltu_refl"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Para  "paraS"  hx = 400mm  hy = 600mm  hz = 500mm  alpha = 30deg  theta = 30deg  phi = 30deg
-VGM info:      7th volume: para   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  7th  "para"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Para  "paraS"  hx = 400mm  hy = 600mm  hz = 500mm  alpha = 30deg  theta = 150deg  phi = 30deg
-VGM info:      8th volume: para_refl   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  8th  "para_refl"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Polycone  "pconeS"  sphi = 0deg  dphi = 360deg  nz = 3
    0th plane:  z = -500mm rin = 100mm rout = 500mm
    1th plane:  z = 100mm rin = 200mm rout = 300mm
    2th plane:  z = 400mm rin = 300mm rout = 600mm
-VGM info:      9th volume: pcone   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  9th  "pcone"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Polycone  "pconeS"  sphi = 0deg  dphi = 360deg  nz = 3
    0th plane:  z = 500mm rin = 100mm rout = 500mm
    1th plane:  z = -100mm rin = 200mm rout = 300mm
    2th plane:  z = -400mm rin = 300mm rout = 600mm
-VGM info:      10th volume: pcone_refl   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  10th  "pcone_refl"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Polygone  "phedraS"  sphi = 0deg  dphi = 360deg  nsides = 4  nz = 3
    0th plane:  z = -500mm rin = 100mm rout = 400mm
    1th plane:  z = 100mm rin = 200mm rout = 200mm
    2th plane:  z = 400mm rin = 300mm rout = 500mm
-VGM info:      11th volume: phedra   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  11th  "phedra"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Polygone  "phedraS"  sphi = 0deg  dphi = 360deg  nsides = 4  nz = 3
    0th plane:  z = 500mm rin = 100mm rout = 400mm
    1th plane:  z = -100mm rin = 200mm rout = 200mm
    2th plane:  z = -400mm rin = 300mm rout = 500mm
-VGM info:      12th volume: phedra_refl   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  12th  "phedra_refl"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Sphere  "sphereS"  rin = 200mm  rout = 600mm  sphi = 0deg  dphi = 360deg  stheta = 0deg  dtheta = 180deg
-VGM info:      13th volume: sphere   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  13th  "sphere"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Sphere  "sphereS"  rin = 200mm  rout = 600mm  sphi = 0deg  dphi = 360deg  stheta = 0deg  dtheta = 180deg
-VGM info:      14th volume: sphere_refl   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  14th  "sphere_refl"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Torus  "torusS"  rin = 200mm  rout = 300mm  rtor = 400mm  sphi = 0deg  dphi = 360deg
-VGM info:      15th volume: torus   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  15th  "torus"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Torus  "torusS"  rin = 200mm  rout = 300mm  rtor = 400mm  sphi = 0deg  dphi = 360deg
-VGM info:      16th volume: torus_refl   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  16th  "torus_refl"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Trap  "trapS"  hz = 300mm  theta = 25deg  phi = 35deg  hy1 = 200mm  hx1 = 100mm  hx2 = 150mm  alpha1 = 0deg  hy2 = 200mm  hx3 = 100mm  hx4 = 150mm  alpha2 = 0deg
-VGM info:      17th volume: trap   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  17th  "trap"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Trap  "trapS"  hz = 300mm  theta = -25deg  phi = -35deg  hy1 = 200mm  hx1 = 100mm  hx2 = 150mm  alpha1 = 0deg  hy2 = 200mm  hx3 = 100mm  hx4 = 150mm  alpha2 = 0deg
-VGM info:      18th volume: trap_refl   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  18th  "trap_refl"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Trd  "trdS"  hx1 = 200mm  hx2 = 300mm  hy1 = 400mm  hy2 = 500mm  hz = 500mm
-VGM info:      19th volume: trd   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  19th  "trd"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Trd  "trdS"  hx1 = 300mm  hx2 = 200mm  hy1 = 500mm  hy2 = 400mm  hz = 500mm
-VGM info:      20th volume: trd_refl   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  20th  "trd_refl"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
-VGM info:      21th volume: tubs   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  21th  "tubs"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
-VGM info:      22th volume: tubs_refl   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  22th  "tubs_refl"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Ctubs  "tubs"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = -30deg  dphi = 280deg  nlow = (0, 0.64, -0.77)  nhigh = (0, 0.09, 0.87)
-VGM info:      23th volume: ctubs   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  23th  "ctubs"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Boolean  "ctubsS"  Subtraction: 
   ConstituentA = Boolean  "boolean"  Subtraction: 
   ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
@@ -283,20 +305,20 @@ VGM info:      Boolean  "ctubsS"  Subtraction:
   ConstituentB = Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
   Displacement translation (object):  ( 0,  0,  968.753) mm 
   Displacement rotation (object):  (-5.90614,  -0,  0) deg    no reflectionZ
-VGM info:   Exporting solid: 
+VGM info:      Exporting solid: 
 VGM info:      Boolean  "boolean"  Subtraction: 
   ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
   ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
   Displacement translation (object):  ( 0,  0,  -1213.6) mm 
   Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
-VGM info:   Exporting solid: 
+VGM info:      Exporting solid: 
 VGM info:      Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
-VGM info:   Exporting solid: 
+VGM info:      Exporting solid: 
 VGM info:      Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
-VGM info:   Exporting solid: 
+VGM info:      Exporting solid: 
 VGM info:      Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
-VGM info:      24th volume: ctubs_refl   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  24th  "ctubs_refl"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Extruded  "xtruS"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
@@ -306,8 +328,8 @@ Planes:
   z = 150 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.7
   z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
 
-VGM info:      25th volume: xtru1   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  25th  "xtru1"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Extruded  "xtruS"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
@@ -317,8 +339,8 @@ Planes:
   z = -100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
   z = 400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
 
-VGM info:      26th volume: xtru1_refl   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  26th  "xtru1_refl"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Extruded  "xtruS"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
@@ -328,8 +350,8 @@ Planes:
   z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.7
   z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
 
-VGM info:      27th volume: xtru2   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  27th  "xtru2"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Boolean  "xtruS"  Union: 
   ConstituentA = Extruded  "xtruS"
 Polygon,  8 vertices:
@@ -347,7 +369,7 @@ Planes:
 
   Displacement translation (object):  ( 0,  0,  0) mm 
   Displacement rotation (object):  (0,  -0,  0) deg    no reflectionZ
-VGM info:   Exporting solid: 
+VGM info:      Exporting solid: 
 VGM info:      Extruded  "xtruS"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
@@ -355,7 +377,7 @@ Planes:
   z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
   z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
 
-VGM info:   Exporting solid: 
+VGM info:      Exporting solid: 
 VGM info:      Extruded  "xtruS"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
@@ -363,19 +385,19 @@ Planes:
   z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.7
   z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
 
-VGM info:      28th volume: xtru2_refl   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  28th  "xtru2_refl"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Hype  "hypeS"  r1 = 200mm  stereo1 = 30deg  r2 = 300mm  stereo1 = 40deg  hz = 500mm
-VGM info:      29th volume: hype   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  29th  "hype"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Hype  "hypeS"  r1 = 200mm  stereo1 = 30deg  r2 = 300mm  stereo1 = 40deg  hz = 500mm
-VGM info:      30th volume: hype_refl   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  30th  "hype_refl"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Paraboloid  "paraboloidS"  r1 = 200mm  r2 = 450mm  hz = 500mm
-VGM info:      31th volume: paraboloid   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  31th  "paraboloid"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Paraboloid  "paraboloidS"  r1 = 450mm  r2 = 200mm  hz = 500mm
-VGM info:      32th volume: paraboloid_refl   material: Basic
+VGM info:   Exporting volume:  32th  "paraboloid_refl"  material: "Basic"
 VGM info:   ExportPlacements for 0th volume world
 VGM info:      0th daughter vol = box  simple placement: box
 VGM info:      1th daughter vol = box_refl  simple placement: box
@@ -465,6 +487,7 @@ Current available graphics systems are:
   RayTracer (RayTracer)
   VRML1FILE (VRML1FILE)
   VRML2FILE (VRML2FILE)
+  gMocrenFile (gMocrenFile)
   FukuiRenderer (DAWN)
   OpenGLImmediateX (OGLIX)
   OpenGLStoredX (OGLSX)

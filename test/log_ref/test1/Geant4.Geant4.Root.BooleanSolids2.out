@@ -2,7 +2,7 @@ Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometr
 Geant4 geometry will be defined via Geant4 and exported to Root
 
 *************************************************************
- Geant4 version Name: geant4-09-02    (19-December-2008)
+ Geant4 version Name: geant4-09-03-patch-01    (9-April-2010)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -69,17 +69,25 @@ VGM info:    Material:   Vacuum     density:  0.000 kg/m3   RadL: 204727512.315 
    --->  Element: Vacuum ( )   Z =  1.0   N =   1.0   A =   1.01 g/mole  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
 VGM info:   Importing LV: world
 VGM info:   Importing solid: worldS
+VGM info:      Imported solid: Box  "worldS"  hx = 4000mm  hy = 1000mm  hz = 4000mm
 VGM info:   ImportDaughters for world
 VGM info:   Importing LV: solid1
 VGM info:   Importing solid: boxS
+VGM info:      Imported solid: Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
 VGM info:   ImportDaughters for solid1
 VGM info:   Importing LV: solid2
 VGM info:   Importing solid: consS
+VGM info:      Imported solid: Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
 VGM info:   ImportDaughters for solid2
 VGM info:   Importing LV: intersection_solid1_solid2
 VGM info:   Importing solid: intersection_solid1_solid2_S
 VGM info:   Imported Boolean solid: 
 VGM info:   Boolean  "intersection_solid1_solid2_S"  Intersection: 
+  ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
+  ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
+  Displacement translation (object):  ( 200,  0,  0) mm 
+  Displacement rotation (object):  (30,  -45,  0) deg    no reflectionZ
+VGM info:      Imported solid: Boolean  "intersection_solid1_solid2_S"  Intersection: 
   ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
   ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
   Displacement translation (object):  ( 200,  0,  0) mm 
@@ -93,6 +101,11 @@ VGM info:   Boolean  "subtraction_solid1_solid2_S"  Subtraction:
   ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
   Displacement translation (object):  ( 200,  0,  0) mm 
   Displacement rotation (object):  (30,  -45,  0) deg    no reflectionZ
+VGM info:      Imported solid: Boolean  "subtraction_solid1_solid2_S"  Subtraction: 
+  ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
+  ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
+  Displacement translation (object):  ( 200,  0,  0) mm 
+  Displacement rotation (object):  (30,  -45,  0) deg    no reflectionZ
 VGM info:   ImportDaughters for subtraction_solid1_solid2
 VGM info:   Importing LV: union_solid1_solid2
 VGM info:   Importing solid: union_solid1_solid2_S
@@ -102,14 +115,19 @@ VGM info:   Boolean  "union_solid1_solid2_S"  Union:
   ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
   Displacement translation (object):  ( 200,  0,  0) mm 
   Displacement rotation (object):  (30,  -45,  0) deg    no reflectionZ
+VGM info:      Imported solid: Boolean  "union_solid1_solid2_S"  Union: 
+  ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
+  ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
+  Displacement translation (object):  ( 200,  0,  0) mm 
+  Displacement rotation (object):  (30,  -45,  0) deg    no reflectionZ
 VGM info:   ImportDaughters for union_solid1_solid2
 VGM info:   Import positions: 
 VGM info:   0th volume: world  
-VGM info:      0th daughter  lv=solid1 vgmVol=solid1
-VGM info:      1th daughter  lv=solid2 vgmVol=solid2
-VGM info:      2th daughter  lv=intersection_solid1_solid2 vgmVol=intersection_solid1_solid2
-VGM info:      3th daughter  lv=subtraction_solid1_solid2 vgmVol=subtraction_solid1_solid2
-VGM info:      4th daughter  lv=union_solid1_solid2 vgmVol=union_solid1_solid2
+VGM info:      0th daughter  pv = solid1  lv = solid1 vgmPl = solid1 vgmVol = solid1
+VGM info:      1th daughter  pv = solid2  lv = solid2 vgmPl = solid2 vgmVol = solid2
+VGM info:      2th daughter  pv = intersection_solid1_solid2  lv = intersection_solid1_solid2 vgmPl = intersection_solid1_solid2 vgmVol = intersection_solid1_solid2
+VGM info:      3th daughter  pv = subtraction_solid1_solid2  lv = subtraction_solid1_solid2 vgmPl = subtraction_solid1_solid2 vgmVol = subtraction_solid1_solid2
+VGM info:      4th daughter  pv = union_solid1_solid2  lv = union_solid1_solid2 vgmPl = union_solid1_solid2 vgmVol = union_solid1_solid2
 VGM info:   1th volume: solid1  
 VGM info:   2th volume: solid2  
 VGM info:   3th volume: intersection_solid1_solid2  
@@ -224,48 +242,48 @@ VGM info:   Generation medium for material:
 VGM info:   Material: "Vacuum"  density 1e-25 g/cm3  radlen 6.31723e+26 cm  intlen 3.51163e+26 cm  state "Gas"  temperature 2.73 kelvin  pressure 2.96077e-23 atm
    0th element: Element: "Vacuum"  " "  Z = 1  N = 1.01  A = 1.01 g/mole  Elm mass fraction: 100 %
 VGM info:   Exporting volume store: 
-VGM info:   Exporting solid: 
+VGM info:      Exporting solid: 
 VGM info:      Box  "worldS"  hx = 4000mm  hy = 1000mm  hz = 4000mm
-VGM info:      0th volume: world   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  0th  "world"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
-VGM info:      1th volume: solid1   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  1th  "solid1"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
-VGM info:      2th volume: solid2   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  2th  "solid2"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Boolean  "intersection_solid1_solid2_S"  Intersection: 
   ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
   ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
   Displacement translation (object):  ( 200,  0,  0) mm 
   Displacement rotation (object):  (30,  -45,  0) deg    no reflectionZ
-VGM info:   Exporting solid: 
+VGM info:      Exporting solid: 
 VGM info:      Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
-VGM info:   Exporting solid: 
+VGM info:      Exporting solid: 
 VGM info:      Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
-VGM info:      3th volume: intersection_solid1_solid2   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  3th  "intersection_solid1_solid2"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Boolean  "subtraction_solid1_solid2_S"  Subtraction: 
   ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
   ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
   Displacement translation (object):  ( 200,  0,  0) mm 
   Displacement rotation (object):  (30,  -45,  0) deg    no reflectionZ
-VGM info:   Exporting solid: 
+VGM info:      Exporting solid: 
 VGM info:      Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
-VGM info:   Exporting solid: 
+VGM info:      Exporting solid: 
 VGM info:      Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
-VGM info:      4th volume: subtraction_solid1_solid2   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  4th  "subtraction_solid1_solid2"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Boolean  "union_solid1_solid2_S"  Union: 
   ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
   ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
   Displacement translation (object):  ( 200,  0,  0) mm 
   Displacement rotation (object):  (30,  -45,  0) deg    no reflectionZ
-VGM info:   Exporting solid: 
+VGM info:      Exporting solid: 
 VGM info:      Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
-VGM info:   Exporting solid: 
+VGM info:      Exporting solid: 
 VGM info:      Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
-VGM info:      5th volume: union_solid1_solid2   material: Basic
+VGM info:   Exporting volume:  5th  "union_solid1_solid2"  material: "Basic"
 VGM info:   ExportPlacements for 0th volume world
 VGM info:      0th daughter vol = solid1  simple placement: solid1
 VGM info:      1th daughter vol = solid2  simple placement: solid2
@@ -301,6 +319,7 @@ Current available graphics systems are:
   RayTracer (RayTracer)
   VRML1FILE (VRML1FILE)
   VRML2FILE (VRML2FILE)
+  gMocrenFile (gMocrenFile)
   FukuiRenderer (DAWN)
   OpenGLImmediateX (OGLIX)
   OpenGLStoredX (OGLSX)

@@ -66,9 +66,4 @@
  ---------
    cd vgm/cmt
    cmt make examples
- 
- Tested platform:
- -----------------
-   Linux FC10, gcc 4.3.2
-   MacOS Powerbook 10.4.8 gcc 4.0.1
 

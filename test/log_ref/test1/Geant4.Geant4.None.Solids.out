@@ -1,7 +1,7 @@
 Geant4 geometry will be defined via Geant4
 
 *************************************************************
- Geant4 version Name: geant4-09-02    (19-December-2008)
+ Geant4 version Name: geant4-09-03-patch-01    (9-April-2010)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -68,54 +68,89 @@ VGM info:    Material:   Vacuum     density:  0.000 kg/m3   RadL: 204727512.315 
    --->  Element: Vacuum ( )   Z =  1.0   N =   1.0   A =   1.01 g/mole  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
 VGM info:   Importing LV: world
 VGM info:   Importing solid: worldS
+VGM info:      Imported solid: Box  "worldS"  hx = 6200mm  hy = 3000mm  hz = 2000mm
 VGM info:   ImportDaughters for world
 VGM info:   Importing LV: box
 VGM info:   Importing solid: boxS
+VGM info:      Imported solid: Box  "boxS"  hx = 200mm  hy = 600mm  hz = 500mm
 VGM info:   ImportDaughters for box
 VGM info:   Importing LV: cons
 VGM info:   Importing solid: consS
+VGM info:      Imported solid: Cons  "consS"  rin1 = 100mm  rout1 = 400mm  rin2 = 200mm  rout2 = 600mm  hz = 500mm  sphi = 0deg  dphi = 360deg
 VGM info:   ImportDaughters for cons
 VGM info:   Importing LV: eltu
 VGM info:   Importing solid: eltuS
+VGM info:      Imported solid: Eltu  "eltuS"  dx = 200mm  dy = 300mm  hz = 500mm
 VGM info:   ImportDaughters for eltu
 VGM info:   Importing LV: para
 VGM info:   Importing solid: paraS
+VGM info:      Imported solid: Para  "paraS"  hx = 400mm  hy = 600mm  hz = 500mm  alpha = 30deg  theta = 30deg  phi = 30deg
 VGM info:   ImportDaughters for para
 VGM info:   Importing LV: pcone
 VGM info:   Importing solid: pconeS
+VGM info:      Imported solid: Polycone  "pconeS"  sphi = 0deg  dphi = 360deg  nz = 3
+   0th plane:  z = -500mm rin = 100mm rout = 500mm
+   1th plane:  z = 100mm rin = 200mm rout = 300mm
+   2th plane:  z = 400mm rin = 300mm rout = 600mm
 VGM info:   ImportDaughters for pcone
 VGM info:   Importing LV: phedra
 VGM info:   Importing solid: phedraS
+VGM info:      Imported solid: Polygone  "phedraS"  sphi = 0deg  dphi = 360deg  nsides = 4  nz = 3
+   0th plane:  z = -500mm rin = 100mm rout = 400mm
+   1th plane:  z = 100mm rin = 200mm rout = 200mm
+   2th plane:  z = 400mm rin = 300mm rout = 500mm
 VGM info:   ImportDaughters for phedra
 VGM info:   Importing LV: sphere
 VGM info:   Importing solid: sphereS
+VGM info:      Imported solid: Sphere  "sphereS"  rin = 200mm  rout = 600mm  sphi = 0deg  dphi = 360deg  stheta = 0deg  dtheta = 180deg
 VGM info:   ImportDaughters for sphere
 VGM info:   Importing LV: torus
 VGM info:   Importing solid: torusS
+VGM info:      Imported solid: Torus  "torusS"  rin = 200mm  rout = 300mm  rtor = 400mm  sphi = 0deg  dphi = 360deg
 VGM info:   ImportDaughters for torus
 VGM info:   Importing LV: trap
 VGM info:   Importing solid: trapS
+VGM info:      Imported solid: Trap  "trapS"  hz = 300mm  theta = 25deg  phi = 35deg  hy1 = 200mm  hx1 = 100mm  hx2 = 150mm  alpha1 = 0deg  hy2 = 200mm  hx3 = 100mm  hx4 = 150mm  alpha2 = 0deg
 VGM info:   ImportDaughters for trap
 VGM info:   Importing LV: trd
 VGM info:   Importing solid: trdS
+VGM info:      Imported solid: Trd  "trdS"  hx1 = 200mm  hx2 = 300mm  hy1 = 400mm  hy2 = 500mm  hz = 500mm
 VGM info:   ImportDaughters for trd
 VGM info:   Importing LV: tubs
 VGM info:   Importing solid: tubsS
+VGM info:      Imported solid: Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
 VGM info:   ImportDaughters for tubs
 VGM info:   Importing LV: ctubs
 VGM info:   Importing solid: ctubs2
 VGM info:   Importing solid: ctubs1
 VGM info:   Importing solid: tubs
+VGM info:      Imported solid: Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
 VGM info:   Importing solid: boxLow
+VGM info:      Imported solid: Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
 VGM info:   Imported Boolean solid: 
 VGM info:   Boolean  "ctubs1"  Subtraction: 
   ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
   ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
   Displacement translation (object):  ( 0,  0,  -1213.6) mm 
   Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
+VGM info:      Imported solid: Boolean  "ctubs1"  Subtraction: 
+  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
+  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
+  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
+  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
 VGM info:   Importing solid: boxHigh
+VGM info:      Imported solid: Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
 VGM info:   Imported Boolean solid: 
 VGM info:   Boolean  "ctubs2"  Subtraction: 
+  ConstituentA = Boolean  "ctubs1"  Subtraction: 
+  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
+  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
+  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
+  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
+  ConstituentB = Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
+  Displacement translation (object):  ( 0,  0,  968.753) mm 
+  Displacement rotation (object):  (-5.90614,  -0,  0) deg    no reflectionZ
+VGM info:      Imported solid: Boolean  "ctubs2"  Subtraction: 
   ConstituentA = Boolean  "ctubs1"  Subtraction: 
   ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
   ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
@@ -127,13 +162,53 @@ VGM info:   Boolean  "ctubs2"  Subtraction:
 VGM info:   ImportDaughters for ctubs
 VGM info:   Importing LV: xtru1
 VGM info:   Importing solid: XtruS
+VGM info:      Imported solid: Extruded  "XtruS"
+Polygon,  8 vertices:
+  (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
+Planes:
+  z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
+  z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
+  z = 150 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.7
+  z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
+
 VGM info:   ImportDaughters for xtru1
 VGM info:   Importing LV: xtru2
 VGM info:   Importing solid: xtruU
 VGM info:   Importing solid: XtruS1
+VGM info:      Imported solid: Extruded  "XtruS1"
+Polygon,  8 vertices:
+  (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
+Planes:
+  z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
+  z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
+
 VGM info:   Importing solid: XtruS1
+VGM info:      Imported solid: Extruded  "XtruS1"
+Polygon,  8 vertices:
+  (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
+Planes:
+  z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.7
+  z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
+
 VGM info:   Imported Boolean solid: 
 VGM info:   Boolean  "xtruU"  Union: 
+  ConstituentA = Extruded  "XtruS1"
+Polygon,  8 vertices:
+  (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
+Planes:
+  z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
+  z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
+
+  ConstituentB = Extruded  "XtruS1"
+Polygon,  8 vertices:
+  (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
+Planes:
+  z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.7
+  z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
+
+  Displacement translation (object):  ( 0,  0,  0) mm 
+  Displacement rotation (object):  (0,  -0,  0) deg    no reflectionZ
+VGM info:      Imported solid: Boolean  "xtruU"  Union: 
   ConstituentA = Extruded  "XtruS1"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
@@ -153,28 +228,30 @@ Planes:
 VGM info:   ImportDaughters for xtru2
 VGM info:   Importing LV: hype
 VGM info:   Importing solid: hypeS
+VGM info:      Imported solid: Hype  "hypeS"  r1 = 200mm  stereo1 = 30deg  r2 = 300mm  stereo1 = 40deg  hz = 500mm
 VGM info:   ImportDaughters for hype
 VGM info:   Importing LV: paraboloid
 VGM info:   Importing solid: paraboloidS
+VGM info:      Imported solid: Paraboloid  "paraboloidS"  r1 = 200mm  r2 = 450mm  hz = 500mm
 VGM info:   ImportDaughters for paraboloid
 VGM info:   Import positions: 
 VGM info:   0th volume: world  
-VGM info:      0th daughter  lv=box vgmVol=box
-VGM info:      1th daughter  lv=cons vgmVol=cons
-VGM info:      2th daughter  lv=eltu vgmVol=eltu
-VGM info:      3th daughter  lv=para vgmVol=para
-VGM info:      4th daughter  lv=pcone vgmVol=pcone
-VGM info:      5th daughter  lv=phedra vgmVol=phedra
-VGM info:      6th daughter  lv=sphere vgmVol=sphere
-VGM info:      7th daughter  lv=torus vgmVol=torus
-VGM info:      8th daughter  lv=trap vgmVol=trap
-VGM info:      9th daughter  lv=trd vgmVol=trd
-VGM info:      10th daughter  lv=tubs vgmVol=tubs
-VGM info:      11th daughter  lv=ctubs vgmVol=ctubs
-VGM info:      12th daughter  lv=xtru1 vgmVol=xtru1
-VGM info:      13th daughter  lv=xtru2 vgmVol=xtru2
-VGM info:      14th daughter  lv=hype vgmVol=hype
-VGM info:      15th daughter  lv=paraboloid vgmVol=paraboloid
+VGM info:      0th daughter  pv = box  lv = box vgmPl = box vgmVol = box
+VGM info:      1th daughter  pv = cons  lv = cons vgmPl = cons vgmVol = cons
+VGM info:      2th daughter  pv = eltu  lv = eltu vgmPl = eltu vgmVol = eltu
+VGM info:      3th daughter  pv = para  lv = para vgmPl = para vgmVol = para
+VGM info:      4th daughter  pv = pcone  lv = pcone vgmPl = pcone vgmVol = pcone
+VGM info:      5th daughter  pv = phedra  lv = phedra vgmPl = phedra vgmVol = phedra
+VGM info:      6th daughter  pv = sphere  lv = sphere vgmPl = sphere vgmVol = sphere
+VGM info:      7th daughter  pv = torus  lv = torus vgmPl = torus vgmVol = torus
+VGM info:      8th daughter  pv = trap  lv = trap vgmPl = trap vgmVol = trap
+VGM info:      9th daughter  pv = trd  lv = trd vgmPl = trd vgmVol = trd
+VGM info:      10th daughter  pv = tubs  lv = tubs vgmPl = tubs vgmVol = tubs
+VGM info:      11th daughter  pv = ctubs  lv = ctubs vgmPl = ctubs vgmVol = ctubs
+VGM info:      12th daughter  pv = xtru1  lv = xtru1 vgmPl = xtru1 vgmVol = xtru1
+VGM info:      13th daughter  pv = xtru2  lv = xtru2 vgmPl = xtru2 vgmVol = xtru2
+VGM info:      14th daughter  pv = hype  lv = hype vgmPl = hype vgmVol = hype
+VGM info:      15th daughter  pv = paraboloid  lv = paraboloid vgmPl = paraboloid vgmVol = paraboloid
 VGM info:   1th volume: box  
 VGM info:   2th volume: cons  
 VGM info:   3th volume: eltu  
@@ -302,6 +379,7 @@ Current available graphics systems are:
   RayTracer (RayTracer)
   VRML1FILE (VRML1FILE)
   VRML2FILE (VRML2FILE)
+  gMocrenFile (gMocrenFile)
   FukuiRenderer (DAWN)
   OpenGLImmediateX (OGLIX)
   OpenGLStoredX (OGLSX)

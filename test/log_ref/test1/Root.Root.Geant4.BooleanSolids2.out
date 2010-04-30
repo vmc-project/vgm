@@ -4,7 +4,7 @@ Info in <TGeoManager::TGeoManager>: Geometry Test, Test geometry via Root create
 Root geometry will be defined via Root and exported to Geant4
 
 *************************************************************
- Geant4 version Name: geant4-09-02    (19-December-2008)
+ Geant4 version Name: geant4-09-03-patch-01    (9-April-2010)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -17,25 +17,25 @@ Go to Import
 Info in <TGeoManager::Export>: Exporting Test Test geometry via Root as root file. Optimizations streamed.
 VGM info:   RootGM::Factory::Import started ...
 VGM info:   Importing material: 
-VGM info:   Material Basic    A=26.98 Z=13 rho=2.7 radlen=8.8751 index=0
+VGM info:   Material Basic    A=26.98 Z=13 rho=2.7 radlen=8.8751 intlen=38.8622 index=0
 VGM info:   Importing element: ALUMINIUM AL from material
 VGM info:   Importing material: 
-VGM info:   Mixture Air    Aeff=14.607 Zeff=7.3 rho=0.00129 radlen=28405.7 index=1
+VGM info:   Mixture Air    Aeff=14.607 Zeff=7.3 rho=0.00129 radlen=28405.7 intlen=66278.6 index=1
    Element #0 : N  Z=  7.00 A= 14.01 w= 0.700
    Element #1 : O  Z=  8.00 A= 16.00 w= 0.300
 VGM info:   Importing element: NITROGEN N from material
 VGM info:   Importing element: OXYGEN O from material
 VGM info:   Importing material: 
-VGM info:   Mixture Scintillator    Aeff=11.0723 Zeff=5.57354 rho=1.032 radlen=42.132 index=2
+VGM info:   Mixture Scintillator    Aeff=11.0723 Zeff=5.57354 rho=1.032 radlen=42.132 intlen=70.1007 index=2
    Element #0 : C  Z=  6.00 A= 12.01 w= 0.915 natoms=9
    Element #1 : H  Z=  1.00 A=  1.01 w= 0.085 natoms=10
 VGM info:   Importing element: CARBON C from TGeoTable
 VGM info:   Importing element: HYDROGEN H from TGeoTable
 VGM info:   Importing material: 
-VGM info:   Material Uranium    A=235.31 Z=92 rho=13.61 radlen=0.436285 index=3
+VGM info:   Material Uranium    A=235.31 Z=92 rho=13.61 radlen=0.436285 intlen=15.9387 index=3
 VGM info:   Importing element: URANIUM U from material
 VGM info:   Importing material: 
-VGM info:   Material Vacuum    A=0 Z=0 rho=0 radlen=0 index=4
+VGM info:   Material Vacuum    A=0 Z=0 rho=0 radlen=0 intlen=0 index=4
 VGM info:   Importing element: VACUUM VACUUM from TGeoTable
 VGM info:   Importing medium: 
 VGM info:   OBJ: TGeoMedium	Basic	
@@ -49,17 +49,25 @@ VGM info:   Importing medium:
 VGM info:   OBJ: TGeoMedium	Vacuum	
 VGM info:   Importing volume: world
 VGM info:   Importing shape: worldS
+VGM info:      Imported solid: Box  "worldS"  hx = 4000mm  hy = 1000mm  hz = 4000mm
 VGM info:   ImportDaughters for world
 VGM info:   Importing volume: solid1
 VGM info:   Importing shape: boxS
+VGM info:      Imported solid: Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
 VGM info:   ImportDaughters for solid1
 VGM info:   Importing volume: solid2
 VGM info:   Importing shape: tubsS
+VGM info:      Imported solid: Cons  "tubsS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
 VGM info:   ImportDaughters for solid2
 VGM info:   Importing volume: intersection_solid1_solid2
 VGM info:   Importing shape: intersection_solid1_solid2_S
 VGM info:   Imported Boolean solid: 
 VGM info:   Boolean  "intersection_solid1_solid2_S"  Intersection: 
+  ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
+  ConstituentB = Cons  "tubsS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
+  Displacement translation (object):  ( 200,  0,  -3.13985e-15) mm 
+  Displacement rotation (object):  (30,  -45,  0) deg    no reflectionZ
+VGM info:      Imported solid: Boolean  "intersection_solid1_solid2_S"  Intersection: 
   ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
   ConstituentB = Cons  "tubsS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
   Displacement translation (object):  ( 200,  0,  -3.13985e-15) mm 
@@ -73,6 +81,11 @@ VGM info:   Boolean  "subtraction_solid1_solid2_S"  Subtraction:
   ConstituentB = Cons  "tubsS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
   Displacement translation (object):  ( 200,  0,  -3.13985e-15) mm 
   Displacement rotation (object):  (30,  -45,  0) deg    no reflectionZ
+VGM info:      Imported solid: Boolean  "subtraction_solid1_solid2_S"  Subtraction: 
+  ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
+  ConstituentB = Cons  "tubsS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
+  Displacement translation (object):  ( 200,  0,  -3.13985e-15) mm 
+  Displacement rotation (object):  (30,  -45,  0) deg    no reflectionZ
 VGM info:   ImportDaughters for subtraction_solid1_solid2
 VGM info:   Importing volume: union_solid1_solid2
 VGM info:   Importing shape: union_solid1_solid2_S
@@ -82,14 +95,19 @@ VGM info:   Boolean  "union_solid1_solid2_S"  Union:
   ConstituentB = Cons  "tubsS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
   Displacement translation (object):  ( 200,  0,  -3.13985e-15) mm 
   Displacement rotation (object):  (30,  -45,  0) deg    no reflectionZ
+VGM info:      Imported solid: Boolean  "union_solid1_solid2_S"  Union: 
+  ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
+  ConstituentB = Cons  "tubsS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
+  Displacement translation (object):  ( 200,  0,  -3.13985e-15) mm 
+  Displacement rotation (object):  (30,  -45,  0) deg    no reflectionZ
 VGM info:   ImportDaughters for union_solid1_solid2
 VGM info:   Import positions: 
 VGM info:   0th volume: world  
-VGM info:      0th daughter  rtVol = solid1 vgmVol = solid1
-VGM info:      1th daughter  rtVol = solid2 vgmVol = solid2
-VGM info:      2th daughter  rtVol = intersection_solid1_solid2 vgmVol = intersection_solid1_solid2
-VGM info:      3th daughter  rtVol = subtraction_solid1_solid2 vgmVol = subtraction_solid1_solid2
-VGM info:      4th daughter  rtVol = union_solid1_solid2 vgmVol = union_solid1_solid2
+VGM info:      0th daughter  rtNode = solid1_1  rtVol = solid1 vgmPl = solid1 vgmVol = solid1
+VGM info:      1th daughter  rtNode = solid2_1  rtVol = solid2 vgmPl = solid2 vgmVol = solid2
+VGM info:      2th daughter  rtNode = intersection_solid1_solid2_1  rtVol = intersection_solid1_solid2 vgmPl = intersection_solid1_solid2 vgmVol = intersection_solid1_solid2
+VGM info:      3th daughter  rtNode = subtraction_solid1_solid2_1  rtVol = subtraction_solid1_solid2 vgmPl = subtraction_solid1_solid2 vgmVol = subtraction_solid1_solid2
+VGM info:      4th daughter  rtNode = union_solid1_solid2_1  rtVol = union_solid1_solid2 vgmPl = union_solid1_solid2 vgmVol = union_solid1_solid2
 VGM info:   1th volume: solid1  
 VGM info:   2th volume: solid2  
 VGM info:   3th volume: intersection_solid1_solid2  
@@ -140,18 +158,18 @@ VGM info:   Element: "URANIUM"  "U"  Z = 92  N = 235.31  A = 235.31 g/mole
 VGM info:   Exporting element: 
 VGM info:   Element: "VACUUM"  "VACUUM"  Z = 0  N = 0  A = 0 g/mole
 VGM info:   Exporting material: 
-VGM info:   Material: "Basic"  density 2.7 g/cm3  radlen 8.8751 cm  intlen 0 cm  state "Undefined"  temperature 273.15 kelvin  pressure 1 atm
+VGM info:   Material: "Basic"  density 2.7 g/cm3  radlen 8.8751 cm  intlen 38.8622 cm  state "Undefined"  temperature 273.15 kelvin  pressure 1 atm
    0th element: Element: "ALUMINIUM"  "AL"  Z = 13  N = 26.98  A = 26.98 g/mole  Elm mass fraction: 100 %
 VGM info:   Exporting material: 
-VGM info:   Material: "Air"  density 0.00129 g/cm3  radlen 28405.7 cm  intlen 0 cm  state "Undefined"  temperature 273.15 kelvin  pressure 1 atm
+VGM info:   Material: "Air"  density 0.00129 g/cm3  radlen 28405.7 cm  intlen 66278.6 cm  state "Undefined"  temperature 273.15 kelvin  pressure 1 atm
    0th element: Element: "NITROGEN"  "N"  Z = 7  N = 14.01  A = 14.01 g/mole  Elm mass fraction: 70 %
    1th element: Element: "OXYGEN"  "O"  Z = 8  N = 16  A = 16 g/mole  Elm mass fraction: 30 %
 VGM info:   Exporting material: 
-VGM info:   Material: "Scintillator"  density 1.032 g/cm3  radlen 42.132 cm  intlen 0 cm  state "Undefined"  temperature 273.15 kelvin  pressure 1 atm
+VGM info:   Material: "Scintillator"  density 1.032 g/cm3  radlen 42.132 cm  intlen 70.1007 cm  state "Undefined"  temperature 273.15 kelvin  pressure 1 atm
    0th element: Element: "CARBON"  "C"  Z = 6  N = 12.0107  A = 12.0107 g/mole  Elm mass fraction: 91.4708 %
    1th element: Element: "HYDROGEN"  "H"  Z = 1  N = 1.00794  A = 1.00794 g/mole  Elm mass fraction: 8.52916 %
 VGM info:   Exporting material: 
-VGM info:   Material: "Uranium"  density 13.61 g/cm3  radlen 0.436285 cm  intlen 0 cm  state "Undefined"  temperature 273.15 kelvin  pressure 1 atm
+VGM info:   Material: "Uranium"  density 13.61 g/cm3  radlen 0.436285 cm  intlen 15.9387 cm  state "Undefined"  temperature 273.15 kelvin  pressure 1 atm
    0th element: Element: "URANIUM"  "U"  Z = 92  N = 235.31  A = 235.31 g/mole  Elm mass fraction: 100 %
 VGM info:   Exporting material: 
 VGM info:   Material: "Vacuum"  density 0 g/cm3  radlen 0 cm  intlen 0 cm  state "Gas"  temperature 2.73 kelvin  pressure 2.96077e-23 atm
@@ -167,48 +185,48 @@ VGM info:   Medium: "Uranium"  material Uranium g/cm3  parameters:  0  0  0  0  
 VGM info:   Exporting medium: 
 VGM info:   Medium: "Vacuum"  material Vacuum g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
 VGM info:   Exporting volume store: 
-VGM info:   Exporting solid: 
+VGM info:      Exporting solid: 
 VGM info:      Box  "worldS"  hx = 4000mm  hy = 1000mm  hz = 4000mm
-VGM info:      0th volume: world   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  0th  "world"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
-VGM info:      1th volume: solid1   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  1th  "solid1"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Cons  "tubsS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
-VGM info:      2th volume: solid2   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  2th  "solid2"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Boolean  "intersection_solid1_solid2_S"  Intersection: 
   ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
   ConstituentB = Cons  "tubsS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
   Displacement translation (object):  ( 200,  0,  -3.13985e-15) mm 
   Displacement rotation (object):  (30,  -45,  0) deg    no reflectionZ
-VGM info:   Exporting solid: 
+VGM info:      Exporting solid: 
 VGM info:      Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
-VGM info:   Exporting solid: 
+VGM info:      Exporting solid: 
 VGM info:      Cons  "tubsS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
-VGM info:      3th volume: intersection_solid1_solid2   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  3th  "intersection_solid1_solid2"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Boolean  "subtraction_solid1_solid2_S"  Subtraction: 
   ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
   ConstituentB = Cons  "tubsS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
   Displacement translation (object):  ( 200,  0,  -3.13985e-15) mm 
   Displacement rotation (object):  (30,  -45,  0) deg    no reflectionZ
-VGM info:   Exporting solid: 
+VGM info:      Exporting solid: 
 VGM info:      Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
-VGM info:   Exporting solid: 
+VGM info:      Exporting solid: 
 VGM info:      Cons  "tubsS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
-VGM info:      4th volume: subtraction_solid1_solid2   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  4th  "subtraction_solid1_solid2"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Boolean  "union_solid1_solid2_S"  Union: 
   ConstituentA = Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
   ConstituentB = Cons  "tubsS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
   Displacement translation (object):  ( 200,  0,  -3.13985e-15) mm 
   Displacement rotation (object):  (30,  -45,  0) deg    no reflectionZ
-VGM info:   Exporting solid: 
+VGM info:      Exporting solid: 
 VGM info:      Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
-VGM info:   Exporting solid: 
+VGM info:      Exporting solid: 
 VGM info:      Cons  "tubsS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
-VGM info:      5th volume: union_solid1_solid2   material: Basic
+VGM info:   Exporting volume:  5th  "union_solid1_solid2"  material: "Basic"
 VGM info:   ExportPlacements for 0th volume world
 VGM info:      0th daughter vol = solid1  simple placement: solid1
 VGM info:      1th daughter vol = solid2  simple placement: solid2
@@ -243,6 +261,7 @@ Current available graphics systems are:
   RayTracer (RayTracer)
   VRML1FILE (VRML1FILE)
   VRML2FILE (VRML2FILE)
+  gMocrenFile (gMocrenFile)
   FukuiRenderer (DAWN)
   OpenGLImmediateX (OGLIX)
   OpenGLStoredX (OGLSX)

@@ -2,6 +2,7 @@ Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometr
 Warning in <TGeoManager::Init>: Deleting previous geometry: VGM Root geometry/VGM Root geometry
 Info in <TGeoManager::TGeoManager>: Geometry Test, Test geometry via Root created
 Root geometry will be defined via Root
+Info in <TGeoManager::Import>: Reading geometry from file: BooleanSolids2.root
 Info in <TGeoManager::CloseGeometry>: Geometry loaded from file...
 Info in <TGeoManager::SetTopVolume>: Top volume is world. Master volume is world
 Info in <TGeoManager::CloseGeometry>: Voxelization retrieved from file
@@ -9,10 +10,9 @@ Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
 Info in <TGeoManager::CloseGeometry>: 6 nodes/ 6 volume UID's in Test geometry via Root
 Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
 Info in <TG4RootNavMgr::SetNavigator>: TG4RootNavigator created and registered to G4TransportationManager
-Info: TGeoManager::Import : Reading geometry from file: BooleanSolids2.root
 
 *************************************************************
- Geant4 version Name: geant4-09-02    (19-December-2008)
+ Geant4 version Name: geant4-09-03-patch-01    (9-April-2010)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -37,6 +37,7 @@ Current available graphics systems are:
   RayTracer (RayTracer)
   VRML1FILE (VRML1FILE)
   VRML2FILE (VRML2FILE)
+  gMocrenFile (gMocrenFile)
   FukuiRenderer (DAWN)
   OpenGLImmediateX (OGLIX)
   OpenGLStoredX (OGLSX)
@@ -8347,7 +8348,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -1.52e+03      382 3.52e+03         1        0        0         0       world initStep
     1 -2.53e+03   -1e+03 2.53e+03         1        0 1.97e+03  1.97e+03  OutOfWorld Transportation
-number of event = 1000 User=0.2s Real=0.75s Sys=0.09s
-Execution time: R: 0.756 s  C: 0.756 s 
+number of event = 1000 User=0.32s Real=0.42s Sys=0.1s
+Execution time: R: 0.421 s  C: 0.421 s 
 Graphics systems deleted.
 Visualization Manager deleting...

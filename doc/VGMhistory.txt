@@ -11,6 +11,59 @@ $Id$
 
  The Virtual Geometry Model - Versions
 =========================================
+  30/04/2010
+  version 3.03
+    New features:
+      New solids:
+        Hype, Paraboloid
+        DisplacedSolid
+          implements G4DisplacedSolid and offset in TGeoBBox
+        Ellipsoid:
+          supported in Geant4 and GDML directly;
+          in Root implemented as TGeoScaleShape with TGeoSphere,
+          and the z-sides are cut via TGeoCompositeShape
+
+      In BaseVGM:
+      - New debug output for placements (in BaseVGM)
+
+      In Geant4GM:
+      - Adding an option to activate Geant4 geometry checking:
+        Geant4GM::Factory::SetSurfCheck(bool)
+
+      In RootGM: 
+      - Added support for TGeoHalfSpace pseudo-shape;
+        the shape is imported in VGM as a displaced big box solid.
+      - In Placement:
+        Added a check for nodes with overlaps and printing a warning
+        if such node is processed, as overlaps are not allowed in Geant4
+        geometry  
+      - Added a prefix to composed assemblies names and its getter/setter
+        (the default is &)
+        
+      Removed AgddGM, as its development was stopped.
+
+      In test:
+      - Adding TstGeometryViaGeant4::TestSpecial with commented code
+        building external user detector construction 
+      - Added as a possible case in ExtraSolid test.
+      - Added stepping action to kill eventually looping tracks    
+
+    Fixes:
+      In Geant4GM:
+       - In multiple placement - make solid type identical with mother 
+         solid type (required by G4PVDivision)
+       - In Arb8 - reordering vertices when necessary 
+  
+      In RootGM::
+       - In Boolean solid - fixed cases when volume names include algebraic signs;
+         take into account eventual offset shift of the constituent solids
+       - In importing box solid with offset.
+    
+      Fixes in building systems, consolidated examples
+    
+    Tested with CLHEP 2.0.4.5, Root 5.27/02, Geant4 9.3.p01;
+    Linux: gcc  4.4.2 (FC10)
+      
   26/01/2009
   version 3.02
              - Added new solids: Arb8 and TessellatedSolid.

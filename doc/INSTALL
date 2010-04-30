@@ -82,11 +82,3 @@
    ./install.sh
    
    How to run each example see in their README file.
-   
- 
- Tested platform:
- -----------------
-   Linux FC10, gcc 4.3.2
-   MacOS Powerbook 10.4.7 gcc 4
-  
-

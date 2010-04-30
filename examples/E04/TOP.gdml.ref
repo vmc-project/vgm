@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gdml xmlns:gdml="http://cern.ch/2001/Schemas/GDML"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="gdml.xsd">
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/GDML_2_10_0/src/GDMLSchema/gdml.xsd">
 
    <define>
       <position  name="pos_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
@@ -36,6 +35,8 @@
       <rotation  name="rot_4"     x="   -90.0000"  y="   -90.0000"  z="     0.0000"  unit="degree" />
       <rotation  name="rot_5"     x="   -90.0000"  y="     0.0000"  z="   -90.0000"  unit="degree" />
       <rotation  name="rot_6"     x="    90.0000"  y="     0.0000"  z="   -90.0000"  unit="degree" />
+
+      <scale     name="scale_0"   x="     1.0000"  y="     1.0000"  z="    -1.0000"  />
    </define>
 
    <materials>
@@ -88,6 +89,18 @@
          rmin="    5.0000"  rmax="   15.0000"  z="   10.0000"
          startphi="   90.0000"  deltaphi="  180.0000" />
 
+      <arb8  lunit="cm"
+         name="bar3_s"
+         dz="   10.0000"
+         v1x="   15.0000"  v1y="   -5.0000"
+         v2x="    0.0000"  v2y="  -25.0000"
+         v3x="  -10.0000"  v3y="  -25.0000"
+         v4x="    5.0000"  v4y="   -5.0000"
+         v5x="   15.0000"  v5y="   -5.0000"
+         v6x="    0.0000"  v6y="  -25.0000"
+         v7x="  -10.0000"  v7y="  -25.0000"
+         v8x="    5.0000"  v8y="   -5.0000"  />
+
       <box  lunit="cm" aunit="degree"
          name="O_s"
          x="   50.0000"  y="   50.0000"  z="   10.0000" />
@@ -131,6 +144,11 @@
          <solidref ref="tub1_s"/>
       </volume>
 
+      <volume name="bar3">
+         <materialref ref="Al"/>
+         <solidref ref="bar3_s"/>
+      </volume>
+
       <volume name="R">
          <materialref ref="Vacuum"/>
          <solidref ref="R_s"/>
@@ -152,6 +170,11 @@
          <physvol>
             <volumeref ref="tub1"/>
                <positionref ref="pos_7"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="bar3"/>
+               <positionref ref="pos_0"/>
                <rotationref ref="rot_0"/>
          </physvol>
       </volume>
@@ -183,6 +206,12 @@
             <volumeref ref="tub2"/>
                <positionref ref="pos_10"/>
                <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="tub2"/>
+               <positionref ref="pos_11"/>
+               <rotationref ref="rot_1"/>
+               <scaleref    ref="scale_0"/>
          </physvol>
       </volume>
 

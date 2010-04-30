@@ -1,7 +1,7 @@
 Geant4 geometry will be defined via Geant4
 
 *************************************************************
- Geant4 version Name: geant4-09-02    (19-December-2008)
+ Geant4 version Name: geant4-09-03-patch-01    (9-April-2010)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -68,47 +68,51 @@ VGM info:    Material:   Vacuum     density:  0.000 kg/m3   RadL: 204727512.315 
    --->  Element: Vacuum ( )   Z =  1.0   N =   1.0   A =   1.01 g/mole  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
 VGM info:   Importing LV: world
 VGM info:   Importing solid: worldS
+VGM info:      Imported solid: Box  "worldS"  hx = 6000mm  hy = 1000mm  hz = 6000mm
 VGM info:   ImportDaughters for world
 VGM info:   Importing LV: layerA
 VGM info:   Importing solid: boxA
+VGM info:      Imported solid: Box  "boxA"  hx = 200mm  hy = 600mm  hz = 500mm
 VGM info:   ImportDaughters for layerA
 VGM info:   Importing LV: layerB
 VGM info:   Importing solid: boxB
+VGM info:      Imported solid: Box  "boxB"  hx = 200mm  hy = 100mm  hz = 500mm
 VGM info:   ImportDaughters for layerB
 VGM info:   Importing LV: layerC
 VGM info:   Importing solid: boxC
+VGM info:      Imported solid: Box  "boxC"  hx = 200mm  hy = 2mm  hz = 500mm
 VGM info:   ImportDaughters for layerC
 VGM info:   Import positions: 
 VGM info:   0th volume: world  
-VGM info:      0th daughter  lv=layerA vgmVol=layerA
-VGM info:      1th daughter  lv=layerA vgmVol=layerA
-VGM info:      2th daughter  lv=layerA vgmVol=layerA
-VGM info:      3th daughter  lv=layerA vgmVol=layerA
-VGM info:      4th daughter  lv=layerA vgmVol=layerA
-VGM info:      5th daughter  lv=layerA vgmVol=layerA
-VGM info:      6th daughter  lv=layerA vgmVol=layerA
-VGM info:      7th daughter  lv=layerA vgmVol=layerA
-VGM info:      8th daughter  lv=layerA vgmVol=layerA
-VGM info:      9th daughter  lv=layerA vgmVol=layerA
-VGM info:      10th daughter  lv=layerA vgmVol=layerA
-VGM info:      11th daughter  lv=layerA vgmVol=layerA
-VGM info:      12th daughter  lv=layerA vgmVol=layerA
-VGM info:      13th daughter  lv=layerA vgmVol=layerA
-VGM info:      14th daughter  lv=layerA vgmVol=layerA
-VGM info:      15th daughter  lv=layerA vgmVol=layerA
-VGM info:      16th daughter  lv=layerA vgmVol=layerA
-VGM info:      17th daughter  lv=layerA vgmVol=layerA
-VGM info:      18th daughter  lv=layerA vgmVol=layerA
-VGM info:      19th daughter  lv=layerA vgmVol=layerA
-VGM info:      20th daughter  lv=layerA vgmVol=layerA
-VGM info:      21th daughter  lv=layerA vgmVol=layerA
-VGM info:      22th daughter  lv=layerA vgmVol=layerA
-VGM info:      23th daughter  lv=layerA vgmVol=layerA
+VGM info:      0th daughter  pv = layerA  lv = layerA vgmPl = layerA vgmVol = layerA
+VGM info:      1th daughter  pv = layerA  lv = layerA vgmPl = layerA vgmVol = layerA
+VGM info:      2th daughter  pv = layerA  lv = layerA vgmPl = layerA vgmVol = layerA
+VGM info:      3th daughter  pv = layerA  lv = layerA vgmPl = layerA vgmVol = layerA
+VGM info:      4th daughter  pv = layerA  lv = layerA vgmPl = layerA vgmVol = layerA
+VGM info:      5th daughter  pv = layerA  lv = layerA vgmPl = layerA vgmVol = layerA
+VGM info:      6th daughter  pv = layerA  lv = layerA vgmPl = layerA vgmVol = layerA
+VGM info:      7th daughter  pv = layerA  lv = layerA vgmPl = layerA vgmVol = layerA
+VGM info:      8th daughter  pv = layerA  lv = layerA vgmPl = layerA vgmVol = layerA
+VGM info:      9th daughter  pv = layerA  lv = layerA vgmPl = layerA vgmVol = layerA
+VGM info:      10th daughter  pv = layerA  lv = layerA vgmPl = layerA vgmVol = layerA
+VGM info:      11th daughter  pv = layerA  lv = layerA vgmPl = layerA vgmVol = layerA
+VGM info:      12th daughter  pv = layerA  lv = layerA vgmPl = layerA vgmVol = layerA
+VGM info:      13th daughter  pv = layerA  lv = layerA vgmPl = layerA vgmVol = layerA
+VGM info:      14th daughter  pv = layerA  lv = layerA vgmPl = layerA vgmVol = layerA
+VGM info:      15th daughter  pv = layerA  lv = layerA vgmPl = layerA vgmVol = layerA
+VGM info:      16th daughter  pv = layerA  lv = layerA vgmPl = layerA vgmVol = layerA
+VGM info:      17th daughter  pv = layerA  lv = layerA vgmPl = layerA vgmVol = layerA
+VGM info:      18th daughter  pv = layerA  lv = layerA vgmPl = layerA vgmVol = layerA
+VGM info:      19th daughter  pv = layerA  lv = layerA vgmPl = layerA vgmVol = layerA
+VGM info:      20th daughter  pv = layerA  lv = layerA vgmPl = layerA vgmVol = layerA
+VGM info:      21th daughter  pv = layerA  lv = layerA vgmPl = layerA vgmVol = layerA
+VGM info:      22th daughter  pv = layerA  lv = layerA vgmPl = layerA vgmVol = layerA
+VGM info:      23th daughter  pv = layerA  lv = layerA vgmPl = layerA vgmVol = layerA
 VGM info:   1th volume: layerA  
-VGM info:      0th daughter  lv=layerB vgmVol=layerB
+VGM info:      0th daughter  pv = layerB  lv = layerB vgmPl = layerB vgmVol = layerB
 VGM info:   2th volume: layerB  
-VGM info:      0th daughter  lv=layerC vgmVol=layerC
-VGM info:      1th daughter  lv=layerC vgmVol=layerC
+VGM info:      0th daughter  pv = layerC  lv = layerC vgmPl = layerC vgmVol = layerC
+VGM info:      1th daughter  pv = layerC  lv = layerC vgmPl = layerC vgmVol = layerC
 VGM info:   3th volume: layerC  
 VGM info:   
 Geant4_GM_Factory factory solids store: 
@@ -135,6 +139,7 @@ Current available graphics systems are:
   RayTracer (RayTracer)
   VRML1FILE (VRML1FILE)
   VRML2FILE (VRML2FILE)
+  gMocrenFile (gMocrenFile)
   FukuiRenderer (DAWN)
   OpenGLImmediateX (OGLIX)
   OpenGLStoredX (OGLSX)
