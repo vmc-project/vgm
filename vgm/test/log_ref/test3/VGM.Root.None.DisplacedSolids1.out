@@ -1,5 +1,6 @@
 Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometry created
 Root geometry will be defined via VGM
+Info in <TGeoManager::Import>: Reading geometry from file: DisplacedSolids1.root
 Info in <TGeoManager::CloseGeometry>: Geometry loaded from file...
 Info in <TGeoManager::SetTopVolume>: Top volume is world. Master volume is world
 Info in <TGeoManager::CloseGeometry>: Voxelization retrieved from file
@@ -7,10 +8,9 @@ Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
 Info in <TGeoManager::CloseGeometry>: 6 nodes/ 6 volume UID's in VGM Root geometry
 Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
 Info in <TG4RootNavMgr::SetNavigator>: TG4RootNavigator created and registered to G4TransportationManager
-Info: TGeoManager::Import : Reading geometry from file: DisplacedSolids1.root
 
 *************************************************************
- Geant4 version Name: geant4-09-02    (19-December-2008)
+ Geant4 version Name: geant4-09-03-patch-01    (9-April-2010)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -35,6 +35,7 @@ Current available graphics systems are:
   RayTracer (RayTracer)
   VRML1FILE (VRML1FILE)
   VRML2FILE (VRML2FILE)
+  gMocrenFile (gMocrenFile)
   FukuiRenderer (DAWN)
   OpenGLImmediateX (OGLIX)
   OpenGLStoredX (OGLSX)
@@ -237,7 +238,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -164      323     -243         1        0        0         0       world initStep
-    1     -450      219 1.06e-14         1        0      389       389    volume2C Transportation
+    1     -450      219        0         1        0      389       389    volume2C Transportation
     2     -500      201     42.9         1        0     68.7       458       world Transportation
     3     -600      165      128         1        0      136       594  OutOfWorld Transportation
 
@@ -256,7 +257,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      355     72.8      210         1        0        0         0    volume2C initStep
-    1      346      125 3.69e-15         1        0      217       217       world Transportation
+    1      346      125        0         1        0      217       217       world Transportation
     2      323      249     -500         1        0      516       733     volume1 Transportation
     3      278      497 -1.5e+03         1        0 1.03e+03  1.76e+03       world Transportation
     4      274      522 -1.6e+03         1        0      103  1.87e+03  OutOfWorld Transportation
@@ -275,7 +276,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -375     -469     43.5         1        0        0         0    volume2C initStep
-    1     -397     -489 8.67e-17         1        0     52.9      52.9       world Transportation
+    1     -397     -489        0         1        0     52.9      52.9       world Transportation
     2     -527     -600     -247         1        0      300       353  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -477,7 +478,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      570    -2.81     -207         1        0        0         0       world initStep
-    1      171     -196 -5.9e-15         1        0      489       489    volume2C Transportation
+    1      171     -196        0         1        0      489       489    volume2C Transportation
     2     -458     -500      327         1        0      771  1.26e+03       world Transportation
     3     -600     -569      401         1        0      175  1.43e+03  OutOfWorld Transportation
 
@@ -594,7 +595,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      399      398      168         1        0        0         0    volume2C initStep
-    1      398      497 2.33e-15         1        0      195       195       world Transportation
+    1      398      497        0         1        0      195       195       world Transportation
     2      396      600     -176         1        0      204       400  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -707,7 +708,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      232     -159     -835         1        0        0         0     volume1 initStep
     1    -20.9     -186     -500         1        0      420       420       world Transportation
-    2     -399     -226 -3.49e-14         1        0      628  1.05e+03    volume2C Transportation
+    2     -399     -226 -5.68e-14         1        0      628  1.05e+03    volume2C Transportation
     3     -500     -236      134         1        0      168  1.22e+03       world Transportation
     4     -600     -247      266         1        0      166  1.38e+03  OutOfWorld Transportation
 
@@ -725,7 +726,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     11.4     53.2      286         1        0        0         0    volume2C initStep
-    1     -399      346 -6.13e-15         1        0      580       580       world Transportation
+    1     -399      346        0         1        0      580       580       world Transportation
     2     -600      489     -140         1        0      284       863  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -865,7 +866,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      422     15.4     -819         1        0        0         0     volume1 initStep
     1      352     62.3     -500         1        0      329       329       world Transportation
-    2      242      136 1.52e-13         1        0      517       847    volume2C Transportation
+    2      242      136 1.71e-13         1        0      517       847    volume2C Transportation
     3      176      180      300         1        0      310  1.16e+03     volume3 Transportation
     4      147      200      433         1        0      138  1.29e+03    volume2C Transportation
     5     22.1      284    1e+03         1        0      586  1.88e+03       world Transportation
@@ -911,7 +912,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0    -50.5     -243      150         1        0        0         0    volume2C initStep
-    1     -252     -341 1.17e-14         1        0      269       269       world Transportation
+    1     -252     -341        0         1        0      269       269       world Transportation
     2     -600     -510     -259         1        0      466       735  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -920,7 +921,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      390     -425     -107         1        0        0         0       world initStep
-    1      461     -448 -3.91e-15         1        0      131       131    volume2C Transportation
+    1      461     -448        0         1        0      131       131    volume2C Transportation
     2      500     -460     58.6         1        0     71.5       202       world Transportation
     3      600     -492      209         1        0      184       386  OutOfWorld Transportation
 
@@ -1027,7 +1028,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      174     -113     -186         1        0        0         0       world initStep
-    1      243      243 1.27e-14         1        0      408       408    volume2C Transportation
+    1      243      243        0         1        0      408       408    volume2C Transportation
     2      292      500      135         1        0      295       702       world Transportation
     3      312      600      187         1        0      114       817  OutOfWorld Transportation
 
@@ -1084,7 +1085,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0    -52.8      358 1.12e+03         1        0        0         0       world initStep
     1    -85.9      365    1e+03         1        0      129       129    volume2C Transportation
-    2     -352      429 6.23e-14         1        0 1.04e+03  1.17e+03       world Transportation
+    2     -352      429 1.14e-13         1        0 1.04e+03  1.17e+03       world Transportation
     3     -485      460     -500         1        0      518  1.68e+03     volume1 Transportation
     4     -500      464     -557         1        0     59.6  1.74e+03       world Transportation
     5     -600      487     -934         1        0      390  2.13e+03  OutOfWorld Transportation
@@ -1172,7 +1173,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -588    -49.9     -659         1        0        0         0       world initStep
-    1     -317     37.9 1.82e-14         1        0      718       718    volume2C Transportation
+    1     -317     37.9        0         1        0      718       718    volume2C Transportation
     2     -194     77.9      300         1        0      327  1.04e+03     volume3 Transportation
     3    -29.9      131      700         1        0      436  1.48e+03    volume2C Transportation
     4     31.7      151      850         1        0      163  1.64e+03    volume5A Transportation
@@ -1206,7 +1207,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      564     -372      536         1        0        0         0       world initStep
     1      500     -289      396         1        0      175       175    volume2C Transportation
-    2      319    -57.1 -8.02e-14         1        0      493       668       world Transportation
+    2      319    -57.1 -5.68e-14         1        0      493       668       world Transportation
     3     90.6      236     -500         1        0      623  1.29e+03     volume1 Transportation
     4     -115      500     -949         1        0      559  1.85e+03       world Transportation
     5     -192      600 -1.12e+03         1        0      212  2.06e+03  OutOfWorld Transportation
@@ -1241,7 +1242,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -413      371      520         1        0        0         0    volume2C initStep
-    1     -317      351    5e-15         1        0      529       529       world Transportation
+    1     -317      351        0         1        0      529       529       world Transportation
     2     -224      331     -500         1        0      509  1.04e+03     volume1 Transportation
     3    -38.2      293 -1.5e+03         1        0 1.02e+03  2.06e+03       world Transportation
     4    -19.7      289 -1.6e+03         1        0      102  2.16e+03  OutOfWorld Transportation
@@ -1354,7 +1355,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -428      230     -207         1        0        0         0       world initStep
-    1     -152     -274 -5.43e-15         1        0      611       611    volume2C Transportation
+    1     -152     -274        0         1        0      611       611    volume2C Transportation
     2    -28.1     -500     92.4         1        0      273       884       world Transportation
     3     26.6     -600      133         1        0      121     1e+03  OutOfWorld Transportation
 
@@ -1477,7 +1478,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      243      433 -1.1e+03         1        0        0         0     volume1 initStep
     1    -39.4      136     -500         1        0      728       728       world Transportation
-    2     -274     -111 2.23e-14         1        0      605  1.33e+03    volume2C Transportation
+    2     -274     -111        0         1        0      605  1.33e+03    volume2C Transportation
     3     -500     -348      480         1        0      581  1.91e+03       world Transportation
     4     -600     -453      693         1        0      258  2.17e+03  OutOfWorld Transportation
 
@@ -1523,7 +1524,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -140     -479 1.26e+03         1        0        0         0       world initStep
     1     -106     -433    1e+03         1        0      267       267    volume2C Transportation
-    2     22.2     -257 -9.37e-14         1        0 1.02e+03  1.29e+03       world Transportation
+    2     22.2     -257 -1.14e-13         1        0 1.02e+03  1.29e+03       world Transportation
     3     86.4     -169     -500         1        0      512   1.8e+03     volume1 Transportation
     4      138      -99     -900         1        0      409  2.21e+03     volume4 Transportation
     5      163    -63.9 -1.1e+03         1        0      205  2.42e+03     volume1 Transportation
@@ -1576,7 +1577,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     1      129   -0.077    1e+03         1        0      570       570    volume2C Transportation
     2      146     9.23      950         1        0     53.7       624    volume5A Transportation
     3      181     27.8      850         1        0      107       731    volume2C Transportation
-    4      476      186 -8.81e-14         1        0      914  1.65e+03       world Transportation
+    4      476      186 -1.14e-13         1        0      914  1.65e+03       world Transportation
     5      600      252     -356         1        0      383  2.03e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -1585,7 +1586,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0       43     -309    -1.26         1        0        0         0       world initStep
-    1     43.9     -310 -7.08e-17         1        0     1.81      1.81    volume2C Transportation
+    1     43.9     -310        0         1        0     1.81      1.81    volume2C Transportation
     2      247     -500      267         1        0      386       387       world Transportation
     3      354     -600      407         1        0      203       590  OutOfWorld Transportation
 
@@ -1723,7 +1724,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -486      348     -244         1        0        0         0       world initStep
-    1     -492      173 1.24e-14         1        0      300       300    volume2C Transportation
+    1     -492      173        0         1        0      300       300    volume2C Transportation
     2     -500    -46.9      306         1        0      377       677       world Transportation
     3     -520     -600 1.08e+03         1        0      949  1.63e+03  OutOfWorld Transportation
 
@@ -1786,7 +1787,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -459    -81.7      706         1        0        0         0    volume2C initStep
-    1     -389     -111 -1.88e-14         1        0      710       710       world Transportation
+    1     -389     -111        0         1        0      710       710       world Transportation
     2     -339     -132     -500         1        0      503  1.21e+03     volume1 Transportation
     3     -239     -174 -1.5e+03         1        0 1.01e+03  2.22e+03       world Transportation
     4     -229     -178 -1.6e+03         1        0      101  2.32e+03  OutOfWorld Transportation
@@ -1966,7 +1967,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      145     99.8      172         1        0        0         0    volume2C initStep
-    1     -423    -42.1 -7.16e-15         1        0      610       610       world Transportation
+    1     -423    -42.1        0         1        0      610       610       world Transportation
     2     -600    -86.5    -53.9         1        0      191       800  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -2027,7 +2028,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      207      264     52.1         1        0        0         0    volume2C initStep
-    1      169      356 -4.26e-15         1        0      112       112       world Transportation
+    1      169      356 -7.11e-15         1        0      112       112       world Transportation
     2     68.9      600     -138         1        0      298       410  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -2063,7 +2064,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      554    -62.7     -437         1        0        0         0       world initStep
-    1      431    -8.68 -2.47e-14         1        0      457       457    volume2C Transportation
+    1      431    -8.68        0         1        0      457       457    volume2C Transportation
     2      194     96.4      850         1        0      889  1.35e+03    volume5A Transportation
     3      166      109      950         1        0      105  1.45e+03    volume2C Transportation
     4      152      115    1e+03         1        0     52.3   1.5e+03       world Transportation
@@ -2119,7 +2120,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     14.5     66.4     36.8         1        0        0         0    volume2C initStep
-    1      203      183 -7.74e-16         1        0      225       225       world Transportation
+    1      203      183        0         1        0      225       225       world Transportation
     2      600      429    -77.5         1        0      473       698  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -2172,7 +2173,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      248    -65.5    -69.6         1        0        0         0       world initStep
-    1      335     46.7 4.27e-15         1        0      158       158    volume2C Transportation
+    1      335     46.7        0         1        0      158       158    volume2C Transportation
     2      500      258      131         1        0      298       457       world Transportation
     3      600      386      211         1        0      181       638  OutOfWorld Transportation
 
@@ -2347,7 +2348,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     23.4     36.7     -838         1        0        0         0     volume1 initStep
     1     8.81      -61     -500         1        0      352       352       world Transportation
-    2    -12.9     -206 6.01e-14         1        0      521       873    volume2C Transportation
+    2    -12.9     -206 5.68e-14         1        0      521       873    volume2C Transportation
     3    -56.2     -495    1e+03         1        0 1.04e+03  1.91e+03       world Transportation
     4      -72     -600 1.36e+03         1        0      379  2.29e+03  OutOfWorld Transportation
 
@@ -2357,7 +2358,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      582     -373 -1.12e+03         1        0        0         0       world initStep
-    1      487     -103 -1.83e-14         1        0 1.16e+03  1.16e+03    volume2C Transportation
+    1      487     -103        0         1        0 1.16e+03  1.16e+03    volume2C Transportation
     2      403      137    1e+03         1        0 1.03e+03  2.19e+03       world Transportation
     3      352      281  1.6e+03         1        0      619  2.81e+03  OutOfWorld Transportation
 
@@ -2395,7 +2396,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      427      319 -1.06e+03         1        0        0         0     volume1 initStep
     1      376      146     -500         1        0      590       590       world Transportation
-    2      331    -7.55 5.34e-14         1        0      525  1.12e+03    volume2C Transportation
+    2      331    -7.55        0         1        0      525  1.12e+03    volume2C Transportation
     3      241     -315    1e+03         1        0 1.05e+03  2.17e+03       world Transportation
     4      187     -500  1.6e+03         1        0      630   2.8e+03  OutOfWorld Transportation
 
@@ -2452,7 +2453,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0    -77.8     -526    -69.5         1        0        0         0       world initStep
-    1     -434      152 -3.67e-15         1        0      769       769    volume2C Transportation
+    1     -434      152        0         1        0      769       769    volume2C Transportation
     2     -500      278       13         1        0      144       912       world Transportation
     3     -600      469     32.5         1        0      216  1.13e+03  OutOfWorld Transportation
 
@@ -2462,7 +2463,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      466     63.4      586         1        0        0         0    volume2C initStep
-    1      486     48.9 5.56e-14         1        0      587       587       world Transportation
+    1      486     48.9        0         1        0      587       587       world Transportation
     2      540     9.44 -1.6e+03         1        0  1.6e+03  2.19e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -2480,7 +2481,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     10.8    -52.6     -101         1        0        0         0       world initStep
-    1     -141    -27.3 6.99e-15         1        0      184       184    volume2C Transportation
+    1     -141    -27.3        0         1        0      184       184    volume2C Transportation
     2     -500     32.3      240         1        0      436       620       world Transportation
     3     -600     48.9      306         1        0      121       741  OutOfWorld Transportation
 
@@ -2563,7 +2564,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      182      310     6.29         1        0        0         0    volume2C initStep
-    1      178      325 -7.8e-16         1        0     16.2      16.2       world Transportation
+    1      178      325 -8.88e-16         1        0     16.2      16.2       world Transportation
     2      105      600     -120         1        0      309       325  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -2633,7 +2634,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -292      151  1.1e+03         1        0        0         0       world initStep
     1     -287      161    1e+03         1        0      105       105    volume2C Transportation
-    2     -238      264 8.15e-14         1        0 1.01e+03  1.11e+03       world Transportation
+    2     -238      264 1.14e-13         1        0 1.01e+03  1.11e+03       world Transportation
     3     -213      315     -500         1        0      503  1.61e+03     volume1 Transportation
     4     -164      417 -1.5e+03         1        0 1.01e+03  2.62e+03       world Transportation
     5     -160      428 -1.6e+03         1        0      101  2.72e+03  OutOfWorld Transportation
@@ -2646,7 +2647,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     0      501      389     -976         1        0        0         0       world initStep
     1      500      387     -971         1        0     4.59      4.59     volume1 Transportation
     2      425      149     -500         1        0      534       538       world Transportation
-    3      346     -105 -2.4e-14         1        0      566   1.1e+03    volume2C Transportation
+    3      346     -105        0         1        0      566   1.1e+03    volume2C Transportation
     4      222     -500      781         1        0      884  1.99e+03       world Transportation
     5      191     -600      978         1        0      224  2.21e+03  OutOfWorld Transportation
 
@@ -2810,7 +2811,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -123     -392      393         1        0        0         0    volume2C initStep
-    1     -205     -214 -4.11e-15         1        0      439       439       world Transportation
+    1     -205     -214        0         1        0      439       439       world Transportation
     2     -311     12.7     -500         1        0      559       998     volume1 Transportation
     3     -500      420 -1.4e+03         1        0    1e+03     2e+03       world Transportation
     4     -542      511 -1.6e+03         1        0      225  2.23e+03  OutOfWorld Transportation
@@ -2841,7 +2842,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -355    -32.2    -70.1         1        0        0         0       world initStep
-    1     -348    -42.2 -1.08e-14         1        0     71.1      71.1    volume2C Transportation
+    1     -348    -42.2 -1.42e-14         1        0     71.1      71.1    volume2C Transportation
     2     -254     -184    1e+03         1        0 1.01e+03  1.09e+03       world Transportation
     3     -197     -269  1.6e+03         1        0      609  1.69e+03  OutOfWorld Transportation
 
@@ -2859,7 +2860,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0    -67.5      158     11.1         1        0        0         0    volume2C initStep
-    1      -67      131 -2.78e-17         1        0     29.7      29.7       world Transportation
+    1      -67      131        0         1        0     29.7      29.7       world Transportation
     2    -53.9     -600     -294         1        0      788       817  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -3079,7 +3080,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     54.7     -181      569         1        0        0         0     volume3 initStep
     1      200    -2.94      334         1        0      329       329    volume2C Transportation
-    2      406      250 -1.11e-15         1        0      467       795       world Transportation
+    2      406      250        0         1        0      467       795       world Transportation
     3      600      487     -313         1        0      438  1.23e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -3196,7 +3197,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -248    -75.8     -308         1        0        0         0       world initStep
-    1    -12.8     -125  7.8e-15         1        0      391       391    volume2C Transportation
+    1    -12.8     -125        0         1        0      391       391    volume2C Transportation
     2      500     -232      671         1        0      851  1.24e+03       world Transportation
     3      600     -252      801         1        0      166  1.41e+03  OutOfWorld Transportation
 
@@ -3215,7 +3216,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      264      137     -401         1        0        0         0       world initStep
-    1    -15.2     3.02 -2.81e-14         1        0      506       506    volume2C Transportation
+    1    -15.2     3.02        0         1        0      506       506    volume2C Transportation
     2     -500     -231      697         1        0      880  1.39e+03       world Transportation
     3     -600     -279      840         1        0      182  1.57e+03  OutOfWorld Transportation
 
@@ -3244,7 +3245,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -342     -519     94.4         1        0        0         0       world initStep
     1     -325     -500     73.2         1        0     33.4      33.4    volume2C Transportation
-    2     -265     -434 -1.82e-15         1        0      115       148       world Transportation
+    2     -265     -434        0         1        0      115       148       world Transportation
     3      141     13.3     -500         1        0      785       933     volume1 Transportation
     4      500      408     -941         1        0      692  1.62e+03       world Transportation
     5      600      518 -1.06e+03         1        0      193  1.82e+03  OutOfWorld Transportation
@@ -3322,7 +3323,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -111      290      450         1        0        0         0    volume2C initStep
-    1    -47.6      197 -1.22e-14         1        0      464       464       world Transportation
+    1    -47.6      197        0         1        0      464       464       world Transportation
     2     22.6     92.9     -500         1        0      515       979     volume1 Transportation
     3     78.7     9.82     -900         1        0      412  1.39e+03     volume4 Transportation
     4      107    -31.7 -1.1e+03         1        0      206   1.6e+03     volume1 Transportation
@@ -3336,7 +3337,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0    -29.9     -177     -801         1        0        0         0     volume1 initStep
     1     -105     -241     -500         1        0      316       316       world Transportation
-    2     -230     -348 7.62e-14         1        0      526       843    volume2C Transportation
+    2     -230     -348 5.68e-14         1        0      526       843    volume2C Transportation
     3     -409     -500      713         1        0      750  1.59e+03       world Transportation
     4     -526     -600 1.18e+03         1        0      493  2.09e+03  OutOfWorld Transportation
 
@@ -3466,7 +3467,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -382       80     30.5         1        0        0         0    volume2C initStep
-    1     -387       74 3.03e-15         1        0     31.6      31.6       world Transportation
+    1     -387       74 3.55e-15         1        0     31.6      31.6       world Transportation
     2     -474    -24.8     -500         1        0      517       549     volume1 Transportation
     3     -500    -54.7     -651         1        0      156       705       world Transportation
     4     -600     -169 -1.23e+03         1        0      597   1.3e+03  OutOfWorld Transportation
@@ -3523,7 +3524,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      248    -81.8     9.51         1        0        0         0    volume2C initStep
-    1      250    -72.7 -5.2e-16         1        0     13.2      13.2       world Transportation
+    1      250    -72.7        0         1        0     13.2      13.2       world Transportation
     2      322      404     -500         1        0      695       708     volume1 Transportation
     3      336      500     -601         1        0      140       848       world Transportation
     4      351      600     -705         1        0      146       993  OutOfWorld Transportation
@@ -3719,7 +3720,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0    -40.2      -94      610         1        0        0         0     volume3 initStep
     1      191     -193      300         1        0      399       399    volume2C Transportation
-    2      414     -289 -3.31e-14         1        0      386       785       world Transportation
+    2      414     -289 -5.68e-14         1        0      386       785       world Transportation
     3      600     -369     -249         1        0      321  1.11e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -3746,7 +3747,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -132     20.7      609         1        0        0         0     volume3 initStep
     1     -126     -174      300         1        0      365       365    volume2C Transportation
-    2     -120     -363 -9.66e-15         1        0      355       720       world Transportation
+    2     -120     -363        0         1        0      355       720       world Transportation
     3     -112     -600     -377         1        0      446  1.17e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -3887,7 +3888,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      177      159     -363         1        0        0         0       world initStep
-    1      253     -493 1.28e-14         1        0      750       750    volume2C Transportation
+    1      253     -493        0         1        0      750       750    volume2C Transportation
     2      254     -500     4.16         1        0      8.6       759       world Transportation
     3      266     -600     59.9         1        0      115       874  OutOfWorld Transportation
 
@@ -4007,7 +4008,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -348     -409     -942         1        0        0         0     volume1 initStep
     1     -287     -204     -500         1        0      490       490       world Transportation
-    2     -219     28.1 5.65e-14         1        0      555  1.05e+03    volume2C Transportation
+    2     -219     28.1 5.68e-14         1        0      555  1.05e+03    volume2C Transportation
     3     -177      167      300         1        0      333  1.38e+03     volume3 Transportation
     4     -168      200      370         1        0     78.3  1.46e+03    volume2C Transportation
     5    -81.4      492    1e+03         1        0      699  2.16e+03       world Transportation
@@ -4054,7 +4055,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -241     -306     -802         1        0        0         0     volume1 initStep
     1     -128     -314     -500         1        0      323       323       world Transportation
-    2     57.9     -326 2.69e-14         1        0      534       857    volume2C Transportation
+    2     57.9     -326        0         1        0      534       857    volume2C Transportation
     3      431     -351    1e+03         1        0 1.07e+03  1.92e+03       world Transportation
     4      600     -362 1.45e+03         1        0      485  2.41e+03  OutOfWorld Transportation
 
@@ -4125,7 +4126,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      123     -318     -510         1        0        0         0     volume1 initStep
     1      118     -310     -500         1        0     13.6      13.6       world Transportation
-    2     -119      110 8.06e-14         1        0      695       708    volume2C Transportation
+    2     -119      110 5.68e-14         1        0      695       708    volume2C Transportation
     3     -339      500      465         1        0      646  1.35e+03       world Transportation
     4     -395      600      584         1        0      165  1.52e+03  OutOfWorld Transportation
 
@@ -4500,7 +4501,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -577     -112      247         1        0        0         0       world initStep
     1     -500    -45.6      215         1        0      107       107    volume2C Transportation
-    2     22.5      404 -9.53e-15         1        0      722       829       world Transportation
+    2     22.5      404        0         1        0      722       829       world Transportation
     3      250      600    -93.6         1        0      314  1.14e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -4538,7 +4539,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -115      455     -112         1        0        0         0       world initStep
-    1    -51.8      472 1.05e-14         1        0      130       130    volume2C Transportation
+    1    -51.8      472 1.42e-14         1        0      130       130    volume2C Transportation
     2     49.9      500      181         1        0      209       339       world Transportation
     3      418      600      835         1        0      757   1.1e+03  OutOfWorld Transportation
 
@@ -4549,7 +4550,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -200      548      249         1        0        0         0       world initStep
     1    -52.9      500      127         1        0      197       197    volume2C Transportation
-    2      100      450 5.48e-15         1        0      205       403       world Transportation
+    2      100      450        0         1        0      205       403       world Transportation
     3      600      288     -415         1        0      669  1.07e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -4631,7 +4632,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -302     -207     39.9         1        0        0         0    volume2C initStep
-    1     -454     -241 -3.82e-15         1        0      160       160       world Transportation
+    1     -454     -241 -7.11e-15         1        0      160       160       world Transportation
     2     -600     -274    -38.6         1        0      155       315  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -4711,7 +4712,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -106     -197     -610         1        0        0         0     volume1 initStep
     1    -70.1     -156     -500         1        0      122       122       world Transportation
-    2     91.1     30.5 -3.04e-14         1        0      558       680    volume2C Transportation
+    2     91.1     30.5 -5.68e-14         1        0      558       680    volume2C Transportation
     3      188      143      300         1        0      335  1.01e+03     volume3 Transportation
     4      200      157      338         1        0       42  1.06e+03    volume2C Transportation
     5      414      404    1e+03         1        0      739   1.8e+03       world Transportation
@@ -4736,7 +4737,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     1       33     -345    1e+03         1        0      134       134    volume2C Transportation
     2     -133     -200      546         1        0      505       638     volume3 Transportation
     3     -200     -141      361         1        0      206       844    volume2C Transportation
-    4     -331    -25.6 -3.33e-14         1        0      401  1.24e+03       world Transportation
+    4     -331    -25.6        0         1        0      401  1.24e+03       world Transportation
     5     -600      210     -737         1        0      819  2.06e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -4773,7 +4774,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     62.1      232      111         1        0        0         0    volume2C initStep
-    1     -212      139 -4.97e-15         1        0      310       310       world Transportation
+    1     -212      139        0         1        0      310       310       world Transportation
     2     -600     8.68     -157         1        0      439       748  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -4815,7 +4816,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0    -90.6      201      255         1        0        0         0    volume2C initStep
-    1     -366     -460 4.16e-17         1        0      760       760       world Transportation
+    1     -366     -460        0         1        0      760       760       world Transportation
     2     -425     -600      -54         1        0      161       922  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -4825,7 +4826,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -206     -525      254         1        0        0         0       world initStep
     1     -183     -500      237         1        0     37.8      37.8    volume2C Transportation
-    2      133     -152 -7.24e-15         1        0      527       565       world Transportation
+    2      133     -152        0         1        0      527       565       world Transportation
     3      600      361     -350         1        0      777  1.34e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -4924,7 +4925,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -194     39.2      456         1        0        0         0     volume3 initStep
     1      -86     -111      300         1        0      242       242    volume2C Transportation
-    2      123     -400 -1.58e-14         1        0      466       708       world Transportation
+    2      123     -400        0         1        0      466       708       world Transportation
     3      267     -600     -207         1        0      322  1.03e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -4967,7 +4968,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      142     -580      611         1        0        0         0       world initStep
     1      155     -500      513         1        0      127       127    volume2C Transportation
-    2      225    -83.3 -1.01e-13         1        0      665       792       world Transportation
+    2      225    -83.3        0         1        0      665       792       world Transportation
     3      293      322     -500         1        0      648  1.44e+03     volume1 Transportation
     4      323      500     -719         1        0      283  1.72e+03       world Transportation
     5      340      600     -842         1        0      160  1.88e+03  OutOfWorld Transportation
@@ -5085,7 +5086,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      130      -36     15.9         1        0        0         0    volume2C initStep
-    1      131    -28.5 4.32e-16         1        0     17.6      17.6       world Transportation
+    1      131    -28.5        0         1        0     17.6      17.6       world Transportation
     2      165      207     -500         1        0      554       572     volume1 Transportation
     3      207      500 -1.12e+03         1        0      687  1.26e+03       world Transportation
     4      221      600 -1.33e+03         1        0      235  1.49e+03  OutOfWorld Transportation
@@ -5156,7 +5157,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -256      371      439         1        0        0         0    volume2C initStep
-    1    -98.8      148 -1.47e-14         1        0      516       516       world Transportation
+    1    -98.8      148        0         1        0      516       516       world Transportation
     2     80.4     -106     -500         1        0      589  1.11e+03     volume1 Transportation
     3      358     -500 -1.27e+03         1        0      912  2.02e+03       world Transportation
     4      428     -600 -1.47e+03         1        0      232  2.25e+03  OutOfWorld Transportation
@@ -5175,7 +5176,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0    -82.2      286    -18.7         1        0        0         0       world initStep
-    1    -73.3      290 -1.7e-15         1        0     21.1      21.1    volume2C Transportation
+    1    -73.3      290        0         1        0     21.1      21.1    volume2C Transportation
     2      403      500      997         1        0 1.12e+03  1.15e+03       world Transportation
     3      600      587 1.41e+03         1        0      465  1.61e+03  OutOfWorld Transportation
 
@@ -5211,7 +5212,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     7.32      227     -417         1        0        0         0       world initStep
-    1     -168  -0.0813  1.8e-15         1        0      506       506    volume2C Transportation
+    1     -168  -0.0813        0         1        0      506       506    volume2C Transportation
     2     -500     -430      788         1        0      957  1.46e+03       world Transportation
     3     -600     -559 1.03e+03         1        0      288  1.75e+03  OutOfWorld Transportation
 
@@ -5256,7 +5257,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -188     -231 -1.39e+03         1        0        0         0     volume1 initStep
     1     -292      226     -500         1        0 1.01e+03  1.01e+03       world Transportation
-    2     -350      482 -9.5e-14         1        0      565  1.57e+03    volume2C Transportation
+    2     -350      482 -1.14e-13         1        0      565  1.57e+03    volume2C Transportation
     3     -355      500     35.8         1        0     40.4  1.61e+03       world Transportation
     4     -377      600      231         1        0      221  1.84e+03  OutOfWorld Transportation
 
@@ -5313,7 +5314,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -426     -410      351         1        0        0         0    volume2C initStep
-    1     -270     -309 8.85e-15         1        0      397       397       world Transportation
+    1     -270     -309        0         1        0      397       397       world Transportation
     2    -47.2     -165     -500         1        0      566       963     volume1 Transportation
     3      131    -50.3     -900         1        0      453  1.42e+03     volume4 Transportation
     4      200    -5.61 -1.06e+03         1        0      176  1.59e+03     volume1 Transportation
@@ -5397,7 +5398,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -152     -115      498         1        0        0         0     volume3 initStep
     1     1.02     -110      300         1        0      251       251    volume2C Transportation
-    2      232     -101 -3.88e-14         1        0      379       630       world Transportation
+    2      232     -101 -5.68e-14         1        0      379       630       world Transportation
     3      600    -86.9     -477         1        0      602  1.23e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -5486,7 +5487,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      478     45.2      212         1        0        0         0    volume2C initStep
-    1      288     -161 -1.4e-14         1        0      351       351       world Transportation
+    1      288     -161        0         1        0      351       351       world Transportation
     2     -119     -600     -452         1        0      750   1.1e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -5514,7 +5515,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     0      116      241      397         1        0        0         0    volume2C initStep
     1     70.3      200      332         1        0     90.5      90.5     volume3 Transportation
     2     48.2      180      300         1        0     43.3       134    volume2C Transportation
-    3     -162    -8.73 -3.99e-14         1        0      412       546       world Transportation
+    3     -162    -8.73        0         1        0      412       546       world Transportation
     4     -600     -403     -625         1        0      859  1.41e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -5587,7 +5588,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0    -25.7     -297     -801         1        0        0         0     volume1 initStep
     1      -86    -6.01     -500         1        0      423       423       world Transportation
-    2     -186      478  7.9e-14         1        0      703  1.13e+03    volume2C Transportation
+    2     -186      478 5.68e-14         1        0      703  1.13e+03    volume2C Transportation
     3     -191      500     23.2         1        0     32.6  1.16e+03       world Transportation
     4     -212      600      127         1        0      145   1.3e+03  OutOfWorld Transportation
 
@@ -5599,7 +5600,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     0     -279     62.4      820         1        0        0         0    volume2C initStep
     1     -200      113      617         1        0      224       224     volume3 Transportation
     2    -77.4      191      300         1        0      349       573    volume2C Transportation
-    3     38.7      265 -2.58e-15         1        0      330       903       world Transportation
+    3     38.7      265        0         1        0      330       903       world Transportation
     4      232      388     -500         1        0      550  1.45e+03     volume1 Transportation
     5      407      500     -952         1        0      497  1.95e+03       world Transportation
     6      564      600 -1.36e+03         1        0      446   2.4e+03  OutOfWorld Transportation
@@ -5618,7 +5619,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      114      188    -84.7         1        0        0         0       world initStep
-    1      109      172  1.4e-14         1        0     86.4      86.4    volume2C Transportation
+    1      109      172 1.42e-14         1        0     86.4      86.4    volume2C Transportation
     2     89.4      116      300         1        0      306       392     volume3 Transportation
     3     63.7     41.6      700         1        0      408       800    volume2C Transportation
     4     54.1     13.7      850         1        0      153       953    volume5A Transportation
@@ -5704,7 +5705,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -407     78.3     74.3         1        0        0         0    volume2C initStep
-    1     -329       85 -1.05e-14         1        0      108       108       world Transportation
+    1     -329       85 -1.42e-14         1        0      108       108       world Transportation
     2      199      130     -500         1        0      728       837     volume1 Transportation
     3      500      155     -785         1        0      415  1.25e+03       world Transportation
     4      600      164     -880         1        0      138  1.39e+03  OutOfWorld Transportation
@@ -5795,7 +5796,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      368    -54.7     84.3         1        0        0         0    volume2C initStep
-    1      392     69.2  1.9e-15         1        0      152       152       world Transportation
+    1      392     69.2        0         1        0      152       152       world Transportation
     2      499      600     -361         1        0      651       803  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -5805,7 +5806,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      341     -407 1.19e+03         1        0        0         0       world initStep
     1      302     -399    1e+03         1        0      190       190    volume2C Transportation
-    2     92.3     -353 6.03e-14         1        0 1.02e+03  1.21e+03       world Transportation
+    2     92.3     -353 1.14e-13         1        0 1.02e+03  1.21e+03       world Transportation
     3    -12.5     -330     -500         1        0      511  1.72e+03     volume1 Transportation
     4     -222     -284 -1.5e+03         1        0 1.02e+03  2.75e+03       world Transportation
     5     -243     -279 -1.6e+03         1        0      102  2.85e+03  OutOfWorld Transportation
@@ -5843,7 +5844,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     22.3      342     26.9         1        0        0         0    volume2C initStep
-    1      263      157 -1.96e-15         1        0      305       305       world Transportation
+    1      263      157 -3.55e-15         1        0      305       305       world Transportation
     2      600     -100    -37.6         1        0      425       730  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -5977,7 +5978,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      427      435     29.8         1        0        0         0    volume2C initStep
-    1      442      290 -1.87e-15         1        0      149       149       world Transportation
+    1      442      290        0         1        0      149       149       world Transportation
     2      535     -600     -182         1        0      913  1.06e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -6074,7 +6075,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     0     -333      589     -911         1        0        0         0       world initStep
     1     -360      500     -741         1        0      194       194     volume1 Transportation
     2     -398      374     -500         1        0      275       468       world Transportation
-    3     -478      114 -4.74e-14         1        0      569  1.04e+03    volume2C Transportation
+    3     -478      114        0         1        0      569  1.04e+03    volume2C Transportation
     4     -500     41.8      138         1        0      158   1.2e+03       world Transportation
     5     -600     -286      767         1        0      716  1.91e+03  OutOfWorld Transportation
 
@@ -6210,7 +6211,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     56.6      442     -565         1        0        0         0     volume1 initStep
     1      103      339     -500         1        0      130       130       world Transportation
-    2      462     -445 2.98e-14         1        0      997  1.13e+03    volume2C Transportation
+    2      462     -445 5.68e-14         1        0      997  1.13e+03    volume2C Transportation
     3      488     -500     35.3         1        0     70.5   1.2e+03       world Transportation
     4      534     -600     99.1         1        0      127  1.32e+03  OutOfWorld Transportation
 
@@ -6648,7 +6649,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     0     -212     -193      846         1        0        0         0    volume2C initStep
     1     -193     -115      700         1        0      167       167     volume3 Transportation
     2     -144     98.4      300         1        0      456       623    volume2C Transportation
-    3     -106      258 -2.97e-14         1        0      342       965       world Transportation
+    3     -106      258 -5.68e-14         1        0      342       965       world Transportation
     4    -26.6      600     -640         1        0      730  1.69e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -6678,7 +6679,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     3      132    -96.2      850         1        0      108       663    volume2C Transportation
     4      122     -156      700         1        0      162       825     volume3 Transportation
     5      115     -200      592         1        0      117       942    volume2C Transportation
-    6     75.9     -438 -4.16e-14         1        0      639  1.58e+03       world Transportation
+    6     75.9     -438        0         1        0      639  1.58e+03       world Transportation
     7     49.4     -600     -404         1        0      436  2.02e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -6687,7 +6688,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      384     46.2    -81.3         1        0        0         0       world initStep
-    1      145     44.5 -1.44e-15         1        0      253       253    volume2C Transportation
+    1      145     44.5        0         1        0      253       253    volume2C Transportation
     2     -500     39.9      219         1        0      681       934       world Transportation
     3     -600     39.1      253         1        0      106  1.04e+03  OutOfWorld Transportation
 
@@ -6734,7 +6735,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -208     -252      215         1        0        0         0    volume2C initStep
-    1    -94.3      183 5.73e-15         1        0      498       498       world Transportation
+    1    -94.3      183        0         1        0      498       498       world Transportation
     2     14.9      600     -206         1        0      478       976  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -6751,7 +6752,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     3.29     -193      144         1        0        0         0    volume2C initStep
-    1     -123     -463 -9.76e-15         1        0      332       332       world Transportation
+    1     -123     -463        0         1        0      332       332       world Transportation
     2     -187     -600      -73         1        0      168       499  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -6788,7 +6789,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0    -85.8      221     -161         1        0        0         0       world initStep
-    1      208    -76.1 4.79e-15         1        0      448       448    volume2C Transportation
+    1      208    -76.1        0         1        0      448       448    volume2C Transportation
     2      500     -372      160         1        0      446       894       world Transportation
     3      600     -473      215         1        0      153  1.05e+03  OutOfWorld Transportation
 
@@ -7010,7 +7011,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      330      304      107         1        0        0         0    volume2C initStep
-    1      426     -475 -5.16e-15         1        0      792       792       world Transportation
+    1      426     -475        0         1        0      792       792       world Transportation
     2      442     -600    -17.2         1        0      127       920  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -7028,7 +7029,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      200      237     -745         1        0        0         0     volume1 initStep
     1      281      195     -500         1        0      261       261       world Transportation
-    2      447      110 2.17e-14         1        0      534       795    volume2C Transportation
+    2      447      110        0         1        0      534       795    volume2C Transportation
     3      500     83.4      159         1        0      170       965       world Transportation
     4      600     32.4      460         1        0      321  1.29e+03  OutOfWorld Transportation
 
@@ -7246,7 +7247,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      385     89.1     -331         1        0        0         0       world initStep
-    1    -23.8     -207 -2.26e-14         1        0      604       604    volume2C Transportation
+    1    -23.8     -207        0         1        0      604       604    volume2C Transportation
     2     -427     -500      327         1        0      596   1.2e+03       world Transportation
     3     -565     -600      439         1        0      204   1.4e+03  OutOfWorld Transportation
 
@@ -7406,7 +7407,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -362      350     -594         1        0        0         0     volume1 initStep
     1     -334      349     -500         1        0     97.8      97.8       world Transportation
-    2     -189      343 -6.8e-15         1        0      521       619    volume2C Transportation
+    2     -189      343        0         1        0      521       619    volume2C Transportation
     3      102      332    1e+03         1        0 1.04e+03  1.66e+03       world Transportation
     4      276      325  1.6e+03         1        0      625  2.28e+03  OutOfWorld Transportation
 
@@ -7463,7 +7464,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0    -27.4    -8.01      689         1        0        0         0     volume3 initStep
     1     48.3      200      350         1        0      405       405    volume2C Transportation
-    2      126      415 -3.03e-14         1        0      418       823       world Transportation
+    2      126      415 -5.68e-14         1        0      418       823       world Transportation
     3      194      600     -303         1        0      361  1.18e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -7553,7 +7554,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     1     72.5      174    1e+03         1        0      315       315    volume2C Transportation
     2     88.9      184      950         1        0     53.6       369    volume5A Transportation
     3      114      200      874         1        0       81       450    volume2C Transportation
-    4      400      383 -1.57e-13         1        0      938  1.39e+03       world Transportation
+    4      400      383 -1.14e-13         1        0      938  1.39e+03       world Transportation
     5      600      511     -613         1        0      658  2.05e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -7657,7 +7658,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -280     13.2     -878         1        0        0         0     volume1 initStep
     1     -270     7.88     -500         1        0      378       378       world Transportation
-    2     -257    0.883 -2.71e-14         1        0      500       878    volume2C Transportation
+    2     -257    0.883        0         1        0      500       878    volume2C Transportation
     3     -231    -13.1    1e+03         1        0    1e+03  1.88e+03       world Transportation
     4     -215    -21.5  1.6e+03         1        0      600  2.48e+03  OutOfWorld Transportation
 
@@ -7708,7 +7709,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -157     -199     -357         1        0        0         0       world initStep
-    1     9.14      255 -2.1e-14         1        0      601       601    volume2C Transportation
+    1     9.14      255        0         1        0      601       601    volume2C Transportation
     2     98.8      500      193         1        0      324       925       world Transportation
     3      135      600      271         1        0      132  1.06e+03  OutOfWorld Transportation
 
@@ -7752,7 +7753,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -295     -198     -376         1        0        0         0       world initStep
-    1     -174     -128 -3.29e-14         1        0      401       401    volume2C Transportation
+    1     -174     -128 -5.68e-14         1        0      401       401    volume2C Transportation
     2      -77    -72.6      300         1        0      320       721     volume3 Transportation
     3       52     1.87      700         1        0      427  1.15e+03    volume2C Transportation
     4      100     29.8      850         1        0      160  1.31e+03    volume5A Transportation
@@ -7945,7 +7946,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      406     -287     85.8         1        0        0         0    volume2C initStep
-    1      359     -242 8.17e-15         1        0      108       108       world Transportation
+    1      359     -242 1.42e-14         1        0      108       108       world Transportation
     2     88.2     21.4     -500         1        0      627       734     volume1 Transportation
     3     -404      500 -1.41e+03         1        0 1.14e+03  1.87e+03       world Transportation
     4     -507      600 -1.6e+03         1        0      238  2.11e+03  OutOfWorld Transportation
@@ -8037,7 +8038,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     44.5     -458 1.56e+03         1        0        0         0       world initStep
     1     -130     -377    1e+03         1        0      590       590    volume2C Transportation
-    2     -443     -230 -8.92e-14         1        0 1.06e+03  1.65e+03       world Transportation
+    2     -443     -230 -1.14e-13         1        0 1.06e+03  1.65e+03       world Transportation
     3     -600     -157     -500         1        0      529  2.18e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -8059,7 +8060,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -586     -553 1.27e+03         1        0        0         0       world initStep
     1     -203     -500      689         1        0      697       697    volume2C Transportation
-    2      252     -437 -7.27e-14         1        0      828  1.53e+03       world Transportation
+    2      252     -437 -1.14e-13         1        0      828  1.53e+03       world Transportation
     3      600     -389     -527         1        0      633  2.16e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -8166,7 +8167,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      505      233 1.31e+03         1        0        0         0       world initStep
     1      427     80.8    1e+03         1        0      354       354    volume2C Transportation
-    2      178     -408 -1.84e-13         1        0 1.14e+03  1.49e+03       world Transportation
+    2      178     -408 -2.27e-13         1        0 1.14e+03  1.49e+03       world Transportation
     3       80     -600     -392         1        0      447  1.94e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -8263,7 +8264,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0    -91.8     -461      355         1        0        0         0    volume2C initStep
-    1     -257     -267 -1.85e-14         1        0      437       437       world Transportation
+    1     -257     -267        0         1        0      437       437       world Transportation
     2     -489     6.76     -500         1        0      615  1.05e+03     volume1 Transportation
     3     -500     20.3     -525         1        0     30.5  1.08e+03       world Transportation
     4     -600      138     -740         1        0      265  1.35e+03  OutOfWorld Transportation
@@ -8353,7 +8354,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     0      520     -294     -602         1        0        0         0       world initStep
     1      500     -291     -589         1        0       24        24     volume1 Transportation
     2      362     -268     -500         1        0      166       190       world Transportation
-    3     -414     -138 -4.55e-14         1        0      932  1.12e+03    volume2C Transportation
+    3     -414     -138        0         1        0      932  1.12e+03    volume2C Transportation
     4     -500     -123     55.2         1        0      103  1.23e+03       world Transportation
     5     -600     -107      120         1        0      120  1.35e+03  OutOfWorld Transportation
 
@@ -8363,7 +8364,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      279     88.2    -65.8         1        0        0         0       world initStep
-    1      188      171 4.84e-15         1        0      139       139    volume2C Transportation
+    1      188      171        0         1        0      139       139    volume2C Transportation
     2     -174      500      263         1        0      555       695       world Transportation
     3     -284      600      342         1        0      169       863  OutOfWorld Transportation
 
@@ -8459,7 +8460,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      264    -40.6    -70.4         1        0        0         0       world initStep
-    1      399      100 -1.52e-15         1        0      208       208    volume2C Transportation
+    1      399      100        0         1        0      208       208    volume2C Transportation
     2      500      205     52.5         1        0      155       362       world Transportation
     3      600      309      104         1        0      153       516  OutOfWorld Transportation
 
@@ -8605,7 +8606,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      257      272    -22.8         1        0        0         0       world initStep
-    1      256      275 1.77e-15         1        0     23.1      23.1    volume2C Transportation
+    1      256      275        0         1        0     23.1      23.1    volume2C Transportation
     2      236      422    1e+03         1        0 1.01e+03  1.03e+03       world Transportation
     3      223      510  1.6e+03         1        0      607  1.64e+03  OutOfWorld Transportation
 
@@ -8615,7 +8616,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0    -87.3    -48.8      178         1        0        0         0    volume2C initStep
-    1     -131     -197  1.9e-14         1        0      236       236       world Transportation
+    1     -131     -197 2.84e-14         1        0      236       236       world Transportation
     2     -251     -600     -486         1        0      643       879  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -8690,7 +8691,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      209    -12.1     -133         1        0        0         0       world initStep
-    1      215     60.8 2.64e-16         1        0      152       152    volume2C Transportation
+    1      215     60.8        0         1        0      152       152    volume2C Transportation
     2      251      500      802         1        0      915  1.07e+03       world Transportation
     3      260      600      985         1        0      208  1.28e+03  OutOfWorld Transportation
 
@@ -8784,7 +8785,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      489       83     -592         1        0        0         0     volume1 initStep
     1      490     79.5     -500         1        0     92.2      92.2       world Transportation
-    2      498     60.5   -2e-14         1        0      500       593    volume2C Transportation
+    2      498     60.5        0         1        0      500       593    volume2C Transportation
     3      500     54.3      163         1        0      163       756       world Transportation
     4      521   -0.524  1.6e+03         1        0 1.44e+03  2.19e+03  OutOfWorld Transportation
 
@@ -8862,7 +8863,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      486     -594      416         1        0        0         0       world initStep
     1      350     -500      327         1        0      188       188    volume2C Transportation
-    2     -147     -155 -5.38e-15         1        0      687       875       world Transportation
+    2     -147     -155        0         1        0      687       875       world Transportation
     3     -600      160     -298         1        0      627   1.5e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -8871,7 +8872,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     1.24     -494    -27.3         1        0        0         0       world initStep
-    1    -24.1     -440 8.43e-16         1        0     65.8      65.8    volume2C Transportation
+    1    -24.1     -440        0         1        0     65.8      65.8    volume2C Transportation
     2     -464      500      472         1        0 1.14e+03  1.21e+03       world Transportation
     3     -510      600      523         1        0      121  1.33e+03  OutOfWorld Transportation
 
@@ -8987,7 +8988,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      344     48.8      117         1        0        0         0    volume2C initStep
-    1      228     50.8 -1.9e-14         1        0      164       164       world Transportation
+    1      228     50.8 -1.42e-14         1        0      164       164       world Transportation
     2     -268     59.4     -500         1        0      704       869     volume1 Transportation
     3     -500     63.4     -734         1        0      329   1.2e+03       world Transportation
     4     -600     65.1     -834         1        0      142  1.34e+03  OutOfWorld Transportation
@@ -9059,7 +9060,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      588      196      223         1        0        0         0       world initStep
     1      500      214      187         1        0     97.3      97.3    volume2C Transportation
-    2     42.4      308 -2.18e-14         1        0      503       601       world Transportation
+    2     42.4      308 -2.84e-14         1        0      503       601       world Transportation
     3     -600      440     -263         1        0      707  1.31e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -9090,7 +9091,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     0      281     -557     -979         1        0        0         0       world initStep
     1      215     -500     -725         1        0      268       268     volume1 Transportation
     2      156     -450     -500         1        0      238       506       world Transportation
-    3     25.9     -338 -5.81e-14         1        0      529  1.04e+03    volume2C Transportation
+    3     25.9     -338 -5.68e-14         1        0      529  1.04e+03    volume2C Transportation
     4     -134     -200      615         1        0      650  1.68e+03     volume3 Transportation
     5     -156     -181      700         1        0     90.2  1.78e+03    volume2C Transportation
     6     -196     -147      850         1        0      159  1.93e+03    volume5A Transportation
@@ -9113,7 +9114,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -171     -108 1.35e+03         1        0        0         0       world initStep
     1     -229    -36.1    1e+03         1        0      360       360    volume2C Transportation
-    2     -398      170 6.99e-15         1        0 1.03e+03   1.4e+03       world Transportation
+    2     -398      170        0         1        0 1.03e+03   1.4e+03       world Transportation
     3     -482      273     -500         1        0      517  1.91e+03     volume1 Transportation
     4     -500      294     -605         1        0      109  2.02e+03       world Transportation
     5     -600      416 -1.2e+03         1        0      614  2.63e+03  OutOfWorld Transportation
@@ -9144,7 +9145,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -228      229 1.41e+03         1        0        0         0       world initStep
     1     -600     -282 1.04e+03         1        0      729       729  OutOfWorld Transportation
-number of event = 1000 User=0.13s Real=0.35s Sys=0.05s
-Execution time: R: 0.349 s  C: 0.349 s 
+number of event = 1000 User=0.41s Real=0.52s Sys=0.1s
+Execution time: R: 0.513 s  C: 0.513 s 
 Graphics systems deleted.
 Visualization Manager deleting...

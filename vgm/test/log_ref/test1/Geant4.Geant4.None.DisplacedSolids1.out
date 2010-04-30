@@ -1,7 +1,7 @@
 Geant4 geometry will be defined via Geant4
 
 *************************************************************
- Geant4 version Name: geant4-09-02    (19-December-2008)
+ Geant4 version Name: geant4-09-03-patch-01    (9-April-2010)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -68,36 +68,42 @@ VGM info:    Material:   Vacuum     density:  0.000 kg/m3   RadL: 204727512.315 
    --->  Element: Vacuum ( )   Z =  1.0   N =   1.0   A =   1.01 g/mole  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
 VGM info:   Importing LV: world
 VGM info:   Importing solid: worldS
+VGM info:      Imported solid: Box  "worldS"  hx = 600mm  hy = 600mm  hz = 1600mm
 VGM info:   ImportDaughters for world
 VGM info:   Importing LV: volume1
 VGM info:   Importing solid: boxS1
+VGM info:      Imported solid: Box  "boxS1"  hx = 500mm  hy = 500mm  hz = 500mm
 VGM info:   ImportDaughters for volume1
 VGM info:   Importing LV: volume4
 VGM info:   Importing solid: boxS4
+VGM info:      Imported solid: Box  "boxS4"  hx = 200mm  hy = 200mm  hz = 100mm
 VGM info:   ImportDaughters for volume4
 VGM info:   Importing LV: volume2C
 VGM info:   Importing solid: boxS2C
 VGM info:   Importing solid: boxS2B
 VGM info:   Importing solid: boxS2A
 VGM info:   Importing solid: boxS2
+VGM info:      Imported solid: Displaced  "boxS2C"  Const. = "boxS2B"  Displacement = ( 0, 0, 500)mm ( 0, -0, 0)deg   noReflZ
 VGM info:   ImportDaughters for volume2C
 VGM info:   Importing LV: volume3
 VGM info:   Importing solid: boxS3
+VGM info:      Imported solid: Box  "boxS3"  hx = 200mm  hy = 200mm  hz = 200mm
 VGM info:   ImportDaughters for volume3
 VGM info:   Importing LV: volume3
 VGM info:   Importing solid: boxS5A
 VGM info:   Importing solid: boxS5
+VGM info:      Imported solid: Displaced  "boxS5A"  Const. = "boxS5"  Displacement = ( 0, 0, 400)mm ( 0, -0, 0)deg   noReflZ
 VGM info:   ImportDaughters for volume3
 VGM info:   Import positions: 
 VGM info:   0th volume: world  
-VGM info:      0th daughter  lv=volume1 vgmVol=volume1
-VGM info:      1th daughter  lv=volume2C vgmVol=volume2C
+VGM info:      0th daughter  pv = volume1  lv = volume1 vgmPl = volume1 vgmVol = volume1
+VGM info:      1th daughter  pv = volume2C  lv = volume2C vgmPl = volume2C vgmVol = volume2C
 VGM info:   1th volume: volume1  
-VGM info:      0th daughter  lv=volume4 vgmVol=volume4
+VGM info:      0th daughter  pv = volume4  lv = volume4 vgmPl = volume4 vgmVol = volume4
 VGM info:   2th volume: volume4  
 VGM info:   3th volume: volume2C  
-VGM info:      0th daughter  lv=volume3 vgmVol=volume3
-VGM info:      1th daughter  lv=volume3 vgmVol=volume3
+VGM info:      0th daughter  pv = volume3  lv = volume3 vgmPl = volume3 vgmVol = volume3
+VGM info:      1th daughter  pv = volume5A  lv = volume3 vgmPl = volume5A vgmVol = volume3
 VGM info:   4th volume: volume3  
 VGM info:   5th volume: volume3  
 VGM info:   
@@ -133,6 +139,7 @@ Current available graphics systems are:
   RayTracer (RayTracer)
   VRML1FILE (VRML1FILE)
   VRML2FILE (VRML2FILE)
+  gMocrenFile (gMocrenFile)
   FukuiRenderer (DAWN)
   OpenGLImmediateX (OGLIX)
   OpenGLStoredX (OGLSX)

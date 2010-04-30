@@ -2,7 +2,7 @@ Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometr
 Geant4 geometry will be defined via VGM and exported to Root
 
 *************************************************************
- Geant4 version Name: geant4-09-02    (19-December-2008)
+ Geant4 version Name: geant4-09-03-patch-01    (9-April-2010)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -85,32 +85,32 @@ VGM info:   Medium: "Uranium"  material Uranium g/cm3  parameters:  0  0  0  0  
 VGM info:   Exporting medium: 
 VGM info:   Medium: "Vacuum"  material Vacuum g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
 VGM info:   Exporting volume store: 
-VGM info:   Exporting solid: 
+VGM info:      Exporting solid: 
 VGM info:      Box  "worldS"  hx = 600mm  hy = 600mm  hz = 1600mm
-VGM info:      0th volume: world   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  0th  "world"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Box  "boxS1"  hx = 500mm  hy = 500mm  hz = 500mm
-VGM info:      1th volume: volume1   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  1th  "volume1"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Displaced  "boxS2C"  Const. = "boxS2B"  Displacement = ( 0, 0, 500)mm ( 0, -0, 0)deg   noReflZ
-VGM info:   Exporting solid: 
+VGM info:      Exporting solid: 
 VGM info:      Displaced  "boxS2B"  Const. = "boxS2A"  Displacement = ( 0, 0, 500)mm ( 0, -0, 0)deg   noReflZ
-VGM info:   Exporting solid: 
+VGM info:      Exporting solid: 
 VGM info:      Displaced  "boxS2A"  Const. = "boxS2"  Displacement = ( 0, 0, 500)mm ( 0, -0, 0)deg   noReflZ
-VGM info:   Exporting solid: 
+VGM info:      Exporting solid: 
 VGM info:      Box  "boxS2"  hx = 500mm  hy = 500mm  hz = 500mm
-VGM info:      2th volume: volume2C   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  2th  "volume2C"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Box  "boxS3"  hx = 200mm  hy = 200mm  hz = 200mm
-VGM info:      3th volume: volume3   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  3th  "volume3"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Box  "boxS4"  hx = 200mm  hy = 200mm  hz = 100mm
-VGM info:      4th volume: volume4   material: Basic
-VGM info:   Exporting solid: 
+VGM info:   Exporting volume:  4th  "volume4"  material: "Basic"
+VGM info:      Exporting solid: 
 VGM info:      Displaced  "boxS5A"  Const. = "boxS5"  Displacement = ( 0, 0, 400)mm ( 0, -0, 0)deg   noReflZ
-VGM info:   Exporting solid: 
+VGM info:      Exporting solid: 
 VGM info:      Box  "boxS5"  hx = 200mm  hy = 200mm  hz = 50mm
-VGM info:      5th volume: volume5A   material: Basic
+VGM info:   Exporting volume:  5th  "volume5A"  material: "Basic"
 VGM info:   ExportPlacements for 0th volume world
 VGM info:      0th daughter vol = volume1  simple placement: volume1
 VGM info:      1th daughter vol = volume2C  simple placement: volume2C
@@ -146,6 +146,7 @@ Current available graphics systems are:
   RayTracer (RayTracer)
   VRML1FILE (VRML1FILE)
   VRML2FILE (VRML2FILE)
+  gMocrenFile (gMocrenFile)
   FukuiRenderer (DAWN)
   OpenGLImmediateX (OGLIX)
   OpenGLStoredX (OGLSX)
