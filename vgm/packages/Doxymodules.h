@@ -49,24 +49,6 @@
  */
 /** @} */
 
-/** @defgroup AgddGM_materials AgddGM materials
- *  Category AgddGM materials
- *  @{
- */
-/** @} */
-
-/** @defgroup AgddGM_solids AgddGM solids
- *  Category AgddGM solids
- *  @{
- */
-/** @} */
-
-/** @defgroup AgddGM_volumes AgddGM volumes
- *  Category AgddGM volumes
- *  @{
- */
-/** @} */
-
 /** @defgroup Geant4GM_common Geant4GM common
  *  Category Geant4GM common
  *  @{

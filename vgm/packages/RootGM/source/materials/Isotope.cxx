@@ -18,6 +18,9 @@
 
 #include "RootGM/materials/Isotope.h"
 #include "RootGM/common/Units.h"
+#include "RootGM/materials/IsotopeMap.h"
+
+#include "TGeoElement.h"
 
 #include <math.h>
 
@@ -25,10 +28,8 @@
 RootGM::Isotope::Isotope(const std::string& name,
                          int z, int n, double a) 
   : VGM::IIsotope(),
-    fName(name),
-    fZ(z),
-    fN(n),
-    fA(a)    			       			  
+    fIsotope( new TGeoIsotope(name.data(), z, n, 
+                              a / RootGM::Units::AtomicWeight()) )    			       			  
 {
 /// Standard constructor to define Isotope from parameters 
 /// \param name its name
@@ -37,56 +38,25 @@ RootGM::Isotope::Isotope(const std::string& name,
 /// \param z the effective atomic number
 /// \param a the effective mass of a mole in g/mole 
 
+  // Register Isotope in the map
+  IsotopeMap::Instance()->AddIsotope(this, fIsotope); 
 }
 			   
 //_____________________________________________________________________________
-RootGM::Isotope::Isotope(const Isotope& rhs) 
-  : VGM::IIsotope(rhs), 
-    fName(rhs.fName),
-    fZ(rhs.fZ),
-    fN(rhs.fN),
-    fA(rhs.fA)    			       			  
+RootGM::Isotope::Isotope(TGeoIsotope* tgeoIsotope)
+  : VGM::IIsotope(),
+    fIsotope(tgeoIsotope)
 {
-/// Copy constructor
+/// Standard constructor to define Isotope from the G4 object
+
+  // Register Isotope in the map
+  IsotopeMap::Instance()->AddIsotope(this, fIsotope); 
 }
-
-//_____________________________________________________________________________
-RootGM::Isotope::Isotope() 
-  : VGM::IIsotope(), 
-    fName("Undefined"),
-    fZ(0),
-    fN(0),
-    fA(0)    			       			  
-{
-/// Default constructor
-}  
-
+			   
 //_____________________________________________________________________________
 RootGM::Isotope::~Isotope() {
 //
 }
-
-//
-// operators
-//
-
-//_____________________________________________________________________________
-RootGM::Isotope& 
-RootGM::Isotope::operator = (const Isotope& rhs) 
-{
-/// Assignment operator
- 
-  // check assignment to self
-  if ( this == &rhs ) return *this;
-
-  // assignment operator
-  fName= rhs.fName;
-  fZ = rhs.fZ;
-  fN = rhs.fN;
-  fA = rhs.fA;
-  
-  return *this; 
-}  
 
 //
 // public functions
@@ -95,24 +65,24 @@ RootGM::Isotope::operator = (const Isotope& rhs)
 //_____________________________________________________________________________
 std::string RootGM::Isotope::Name() const
 {
-  return fName;
+  return fIsotope->GetName();
 }  
 
 //_____________________________________________________________________________
 int  RootGM::Isotope::Z() const    
 {
-  return fZ;
+  return fIsotope->GetZ();
 }
 
 //_____________________________________________________________________________
 int  RootGM::Isotope::N() const    
 {
-  return fN;
+  return fIsotope->GetN();
 }
 
 //_____________________________________________________________________________
 double  RootGM::Isotope::A() const    
 {
-  return fA * RootGM::Units::AtomicWeight();
+  return fIsotope->GetA() * RootGM::Units::AtomicWeight();
 }
 

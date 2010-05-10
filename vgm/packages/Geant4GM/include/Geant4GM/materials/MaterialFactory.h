@@ -122,8 +122,15 @@ namespace Geant4GM {
       void  ImportElement(G4Element* element);
       void  ImportMaterial(G4Material* material);
       
+      bool CompareIsotopes(const G4Element* g4Element, 
+                           const VGM::IsotopeVector& isotopes,
+                           const VGM::RelAbundanceVector& relAbundances);
+      
       // data members
       std::set<VGM::IElement*>  fVacuumElements;
+      
+      // data members
+      static const double fgkTolerance; 
   };
 }
 

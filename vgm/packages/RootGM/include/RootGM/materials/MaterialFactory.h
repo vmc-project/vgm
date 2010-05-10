@@ -117,14 +117,20 @@ namespace RootGM {
     
     private:
       // methods
-      VGM::IElement* GetElement(double z, double a) const;
       VGM::IIsotope* GetIsotope(double z, double n) const;
+      VGM::IElement* GetElement(double z, double a) const;
+      VGM::IElement* GetElement(const std::string& name) const;
 
+      bool  CompareIsotopes(const TGeoElement* tgeoElement, 
+                            const VGM::IsotopeVector& isotopes,
+                            const VGM::RelAbundanceVector& relAbundances) const;
+      
+      void  ImportIsotopes(TGeoElement* element);
       void  ImportElements(TGeoMaterial* material,
                            std::vector<VGM::IElement*>& elements);
       void  ImportMaterial(TGeoMaterial* material);
       void  ImportMedium(TGeoMedium* medium);
-      
+
       // data members
       static const double fgkTolerance; 
   };

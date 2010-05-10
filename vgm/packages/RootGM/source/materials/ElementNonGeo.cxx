@@ -2,7 +2,7 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
+// Copyright (C) 2007 - 2010 Ivana Hrivnacova               
 // All rights reserved. 
 //           
 // For the licensing terms see vgm/LICENSE.
@@ -10,13 +10,15 @@
 // -----------------------------------------------------------------------
 
 //
-// Class ElementGeo
-// -----------------
-// VGM implementations for Root element using TGeoElement.
+// Class Element
+// ---------------
+// VGM implementations for Root element which is not represented via TGeoElement
+/// object in Root geometry.
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include "RootGM/materials/ElementGeo.h"
+#include "RootGM/materials/ElementNonGeo.h"
+#include "RootGM/materials/Isotope.h"
 #include "RootGM/common/Units.h"
 
 #include "TGeoElement.h"
@@ -26,17 +28,27 @@
 #include <cstdlib>
 
 //_____________________________________________________________________________
-RootGM::ElementGeo::ElementGeo(TGeoElement* geoElement) 
+RootGM::ElementNonGeo::ElementNonGeo(const std::string& name, 
+                         const std::string& symbol,      
+                         double z, double a) 
   : VGM::IElement(),
-    fElement(geoElement)    			       			  
+    fName(name),
+    fSymbol(symbol),
+    fZ(z),
+    fN(a),
+    fA(a)    			       			  
 {
-/// Standard constructor to define element from TGeoElement 
-/// \param geoElement  TGeoElement
+/// Standard constructor to define element from parameters 
+/// \param name its name
+///	   (must be unique in the factory)
+/// \param symbol its symbol
+/// \param z the effective atomic number
+/// \param a the effective mass of a mole in g/mole 
 
 }
 			   
 //_____________________________________________________________________________
-RootGM::ElementGeo::~ElementGeo() {
+RootGM::ElementNonGeo::~ElementNonGeo() {
 //
 }
 
@@ -45,61 +57,50 @@ RootGM::ElementGeo::~ElementGeo() {
 //
 
 //_____________________________________________________________________________
-std::string RootGM::ElementGeo::Name() const
+std::string RootGM::ElementNonGeo::Name() const
 {
-  return fElement->GetTitle();
+  return fName;
 }  
 
 //_____________________________________________________________________________
-std::string RootGM::ElementGeo::Symbol() const
+std::string RootGM::ElementNonGeo::Symbol() const
 {
-  return fElement->GetName();
+  return fSymbol;
 }  
 
 //_____________________________________________________________________________
-double  RootGM::ElementGeo::Z() const    
+double  RootGM::ElementNonGeo::Z() const    
 {
-  return fElement->Z();
+  return fZ;
 }
 
 //_____________________________________________________________________________
-double  RootGM::ElementGeo::N() const    
+double  RootGM::ElementNonGeo::N() const    
 {
-  return fElement->A();
+  return fN;
 }
 
 //_____________________________________________________________________________
-double  RootGM::ElementGeo::A() const    
+double  RootGM::ElementNonGeo::A() const    
 {
-  return fElement->A() * RootGM::Units::AtomicWeight();
+  return fA * RootGM::Units::AtomicWeight();
 }
 
 //_____________________________________________________________________________
-int RootGM::ElementGeo::NofIsotopes() const 
+int RootGM::ElementNonGeo::NofIsotopes() const 
 {
   return 0;
 }
 
 //_____________________________________________________________________________
-VGM::IIsotope*  RootGM::ElementGeo::Isotope(int /*i*/) const
+VGM::IIsotope*  RootGM::ElementNonGeo::Isotope(int /*i*/) const
 {
-  std::cerr << "    RootGM::Element::Isotope: " << std::endl;
-  std::cerr << "    Element has no istopes defined." << std::endl;
-  std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
-  exit(1);
-
   return 0;
 }  
 
 //_____________________________________________________________________________
-double  RootGM::ElementGeo::RelAbundance(int /*i*/) const 
+double  RootGM::ElementNonGeo::RelAbundance(int /*i*/) const 
 {
-  std::cerr << "    RootGM::Element::Isotope: " << std::endl;
-  std::cerr << "    Element has no istopes defined." << std::endl;
-  std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
-  exit(1);
-
   return 0;
 }  
-
 
