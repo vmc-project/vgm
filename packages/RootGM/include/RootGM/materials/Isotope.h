@@ -11,7 +11,7 @@
 
 /// \ingroup RootGM_materials
 //
-/// \class RootGM:: Isotope
+/// \class RootGM::Isotope
 ///
 /// VGM implementation for Root isotope.
 ///
@@ -24,18 +24,19 @@
 
 #include <string>
 
+class TGeoIsotope;
+
 namespace RootGM {
 
   class Isotope : public virtual VGM::IIsotope
   {
     public:
       Isotope(const std::string& name, int z, int n, double a);
-      Isotope(const Isotope& rhs);
-      Isotope();
+      Isotope(TGeoIsotope* tgeoIsotope);		
       virtual ~Isotope();
       
       // operators
-      Isotope& operator=(const Isotope& rhs);
+      //Isotope& operator=(const Isotope& rhs);
     
       // methods
       virtual std::string Name() const;
@@ -45,10 +46,10 @@ namespace RootGM {
       virtual double  A() const;     
     
     private:
-      std::string   fName;
-      int     fZ;
-      int     fN;
-      double  fA; 
+      Isotope(const Isotope& rhs);
+      Isotope();
+
+      TGeoIsotope*  fIsotope;
   };
   
 }  

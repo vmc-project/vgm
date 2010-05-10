@@ -35,6 +35,8 @@
 #include "G4Element.hh"
 #include "G4NistManager.hh"
 
+const double Geant4GM::MaterialFactory::fgkTolerance = 1e-09; 
+
 //_____________________________________________________________________________
 Geant4GM::MaterialFactory::MaterialFactory()
   : VGM::IMaterialFactory(),
@@ -80,7 +82,10 @@ void Geant4GM::MaterialFactory::ImportIsotope(G4Isotope* isotope)
   if (Debug()>0) {
     BaseVGM::DebugInfo();
     std::cout << "Importing isotope: "; 
-    if (Debug()>1) std::cout << isotope;
+    if (Debug()>1) {
+      void* isotopePtr = (void*)isotope;
+      std::cout << isotopePtr;
+    }  
     std::cout << std::endl;
     BaseVGM::DebugInfo();
     std::cout << *isotope << std::endl;
@@ -98,7 +103,10 @@ void Geant4GM::MaterialFactory::ImportElement(G4Element* element)
   if (Debug()>0) {
     BaseVGM::DebugInfo();
     std::cout << "Importing element: "; 
-    if (Debug()>1) std::cout << element;
+    if (Debug()>1) {
+      void* elementPtr = (void*)element;
+      std::cout << elementPtr;
+    }  
     std::cout << std::endl;
     BaseVGM::DebugInfo();
     std::cout << *element << std::endl;
@@ -116,7 +124,10 @@ void Geant4GM::MaterialFactory::ImportMaterial(G4Material* material)
   if (Debug()>0) {
     BaseVGM::DebugInfo();
     std::cout << "Importing material: "; 
-    if (Debug()>1) std::cout << material;
+    if (Debug()>1) {
+      void* materialPtr = (void*)material;
+      std::cout << materialPtr;
+    }  
     std::cout << std::endl;
     BaseVGM::DebugInfo();
     std::cout << *material << std::endl;
@@ -126,6 +137,39 @@ void Geant4GM::MaterialFactory::ImportMaterial(G4Material* material)
   MaterialStore().push_back(vgmMaterial);
 }
 
+//_____________________________________________________________________________
+bool Geant4GM::MaterialFactory::CompareIsotopes(const G4Element* g4Element, 
+                           const VGM::IsotopeVector& isotopes,
+                           const VGM::RelAbundanceVector& relAbundances)
+{
+/// Compare the VGM isotope vector with the isotope vector in the given g4Element;
+/// return true if the isotope composition is identical within the defined tolerance
+
+  if ( isotopes.size() != g4Element->GetNumberOfIsotopes() ) return false;
+
+  for ( G4int i=0; i<G4int(g4Element->GetNumberOfIsotopes()); ++i ) {
+
+    const G4Isotope* g4Isotope = g4Element->GetIsotope(i);
+    double g4RelAbundance = g4Element->GetRelativeAbundanceVector()[i];
+    G4bool match = false;
+
+    for ( G4int j=0; j<G4int(isotopes.size()); ++j ) {
+      VGM::IIsotope* vgmIsotope = isotopes[j];
+      if ( fabs ( vgmIsotope->Z() - g4Isotope->GetZ() ) < fgkTolerance &&
+           fabs ( vgmIsotope->N() - g4Isotope->GetN() ) < fgkTolerance &&
+           fabs ( vgmIsotope->A() - g4Isotope->GetA()/(g/mole) ) < fgkTolerance &&
+           fabs ( relAbundances[j] - g4RelAbundance ) < fgkTolerance ) {
+        match = true;
+        break;
+      }  
+    }
+    if ( ! match ) return false;         
+  }
+  
+  // All isotopes were matched
+  return true;  
+}                              
+      
 //
 // public functions
 //
@@ -139,6 +183,14 @@ Geant4GM::MaterialFactory::CreateIsotope(
 // Create isotope if isotope with given name does not yet exist
 
   G4Isotope* g4Isotope = G4Isotope::GetIsotope(name, false);
+
+  // Do not take the isotope if its properties do not match
+  if ( g4Isotope &&
+       ( fabs ( g4Isotope->GetZ() - z ) >= fgkTolerance ||
+         fabs ( g4Isotope->GetN() - n  ) >= fgkTolerance ||
+         fabs ( g4Isotope->GetA()/(g/mole) - a ) >= fgkTolerance ) ) {
+     g4Isotope = 0;
+  }           
 
   VGM::IIsotope* vgmIsotope;
   if ( g4Isotope ) {
@@ -164,6 +216,13 @@ Geant4GM::MaterialFactory::CreateElement(
 
   G4Element* g4Element = G4Element::GetElement(name, false);
   
+  // Do not take the element if its properties do not match
+  if ( g4Element &&
+       ( fabs ( g4Element->GetZ() - z ) >= fgkTolerance || 
+         fabs ( g4Element->GetA()/(g/mole) - a ) >= fgkTolerance ) ) { 
+     g4Element = 0;  
+  }     
+  
   VGM::IElement* vgmElement;
   if (g4Element)
     vgmElement = Geant4GM::ElementMap::Instance()->GetElement(g4Element);
@@ -172,8 +231,7 @@ Geant4GM::MaterialFactory::CreateElement(
       // special case (vacuum)
       // in Geant4 vacuum has element with z = 1.0, a = 1.01
       vgmElement 
-       = new Geant4GM::Element(name, symbol, z = 1.0, 
-                               a = 1.01*ClhepVGM::Units::AtomicWeight(g/mole));
+       = new Geant4GM::Element(name, symbol, z = 1.0, a = 1.01*(g/mole));
 
       fVacuumElements.insert(vgmElement);                               
     }
@@ -198,6 +256,12 @@ Geant4GM::MaterialFactory::CreateElement(
 // yet exist
 
   G4Element* g4Element = G4Element::GetElement(name, false);
+  
+  // Do not take the element if its properties do not match
+  if ( g4Element &&
+       ! CompareIsotopes(g4Element, isotopes, relAbundances ) ) {
+     g4Element = 0;  
+  }     
   
   VGM::IElement* vgmElement;
   if (g4Element)

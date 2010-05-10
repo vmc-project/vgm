@@ -2,7 +2,7 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
+// Copyright (C) 2007 - 2010 Ivana Hrivnacova               
 // All rights reserved. 
 //           
 // For the licensing terms see vgm/LICENSE.
@@ -13,39 +13,28 @@
 //
 /// \class RootGM:: Element
 ///
-/// VGM implementation for Root element using TGeoElement object
+/// VGM implementation for Root element which is not represented via TGeoElement
+/// object in Root geometry
 ///
 /// \author Ivana Hrivnacova; IPN Orsay
 
-#ifndef ROOT_GM_ELEMENT_H
-#define ROOT_GM_ELEMENT_H
+#ifndef ROOT_GM_ELEMENT_NON_GEO_H
+#define ROOT_GM_ELEMENT_NON_GEO_H
 
 #include "VGM/materials/IElement.h"
 
 #include <string>
 
-class TGeoElement;
-
 namespace RootGM {
 
-  class Element : public virtual VGM::IElement
+  class ElementNonGeo : public virtual VGM::IElement
   {
     public:
-      Element(const std::string& name, 
+      ElementNonGeo(const std::string& name, 
               const std::string& symbol,      
               double z, double a); 
-
-      Element(const std::string& name, 
-              const std::string& symbol,      
-	      const VGM::IsotopeVector& isotopes,
-              const VGM::RelAbundanceVector& relAbundances);
-              
-      Element(TGeoElement* geoElement);
-      virtual ~Element();
+      virtual ~ElementNonGeo();
       
-      // operators
-      Element& operator=(const Element& rhs);
-    
       // methods
       virtual std::string Name() const;
       virtual std::string Symbol() const;
@@ -59,15 +48,18 @@ namespace RootGM {
       virtual double  RelAbundance(int i) const;
     
     private:
-      // not implemented
-      Element(const Element& rhs);
-      Element();
+      ElementNonGeo(const ElementNonGeo& rhs);
+      ElementNonGeo();
 
       void   CheckIndex(int iel) const;
 
-      TGeoElement* fElement; 
+      std::string   fName;
+      std::string   fSymbol;
+      double  fZ;
+      double  fN;
+      double  fA; 
   };
   
 }  
 
-#endif //ROOT_GM_ELEMENT_H
+#endif //ROOT_GM_ELEMENT_NON_GEO_H

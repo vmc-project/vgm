@@ -17,7 +17,9 @@
 // Author: Ivana Hrivnacova; IPN Orsay
 
 #include "RootGM/materials/Element.h"
+#include "RootGM/materials/ElementMap.h"
 #include "RootGM/materials/Isotope.h"
+#include "RootGM/materials/IsotopeMap.h"
 #include "RootGM/common/Units.h"
 
 #include "TGeoElement.h"
@@ -31,13 +33,8 @@ RootGM::Element::Element(const std::string& name,
                          const std::string& symbol,      
                          double z, double a) 
   : VGM::IElement(),
-    fName(name),
-    fSymbol(symbol),
-    fZ(z),
-    fN(a),
-    fA(a),    			       			  
-    fIsotopes(),
-    fRelAbundances()    			       			  
+    fElement( new TGeoElement(name.data(), symbol.data(), z, 
+                              a / RootGM::Units::AtomicWeight()) )    			       			  
 {
 /// Standard constructor to define element from parameters 
 /// \param name its name
@@ -46,6 +43,9 @@ RootGM::Element::Element(const std::string& name,
 /// \param z the effective atomic number
 /// \param a the effective mass of a mole in g/mole 
 
+
+  // Register element in the map
+  ElementMap::Instance()->AddElement(this, fElement); 
 }
 			   
 //_____________________________________________________________________________
@@ -54,13 +54,7 @@ RootGM::Element::Element(const std::string& name,
                          const VGM::IsotopeVector& isotopes,
                          const VGM::RelAbundanceVector& relAbundances) 
   : VGM::IElement(),
-    fName(name),
-    fSymbol(symbol),
-    fZ(0),
-    fN(0),
-    fA(0),
-    fIsotopes(),
-    fRelAbundances()    			       			  
+    fElement(0)    			       			  
 {
 /// Standard constructor to define element from parameters 
 /// \param name its name
@@ -84,84 +78,37 @@ RootGM::Element::Element(const std::string& name,
     exit(1);
   }
     
-  // Compute Neff, Aeff
-  double wtSum = 0.;
-  fN = 0;
-  fA = 0;
+    
+  // Create element
+  fElement = new TGeoElement(name.data(), symbol.data(), isotopes.size());
+  
+  // Add isotopes
   for ( unsigned int i=0; i<isotopes.size(); i++ ) {
-    fIsotopes.push_back(isotopes[i]);
-    fRelAbundances.push_back(relAbundances[i]);
-    
-    if (fZ == 0 ) fZ = isotopes[i]->Z();
-    if (fZ != 0 && fZ != isotopes[i]->Z() ) {
-      std::cerr << "    RootGM::Element::Element: " << std::endl; 
-      std::cerr << "    Isotopes with different Z not allowed.";
-      std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
-      exit(1);
-    }  
-    
-    fN += relAbundances[i] * isotopes[i]->N();
-    fA += relAbundances[i] * isotopes[i]->A();
-    wtSum +=  relAbundances[i];
+    TGeoIsotope* tgeoIsotope 
+      = IsotopeMap::Instance()->GetIsotope(isotopes[i]);
+    fElement->AddIsotope(tgeoIsotope, relAbundances[i]);    
   }
-  fN /=  wtSum;
-  fA /=  wtSum;
+
+  // Register element in the map
+  ElementMap::Instance()->AddElement(this, fElement); 
 }
 			   
 //_____________________________________________________________________________
-RootGM::Element::Element(const Element& rhs) 
-  : VGM::IElement(rhs), 
-    fName(rhs.fName),
-    fSymbol(rhs.fSymbol),
-    fZ(rhs.fZ),
-    fN(rhs.fN),
-    fA(rhs.fA),    			       			  
-    fIsotopes(rhs.fIsotopes),
-    fRelAbundances(rhs.fRelAbundances)    			       			  
+RootGM::Element::Element(TGeoElement* geoElement) 
+  : VGM::IElement(),
+    fElement(geoElement)    			       			  
 {
-/// Copy constructor
+/// Standard constructor to define element from TGeoElement 
+/// \param geoElement  TGeoElement
+
+  // Register element in the map
+  ElementMap::Instance()->AddElement(this, fElement); 
 }
-
-//_____________________________________________________________________________
-RootGM::Element::Element() 
-  : VGM::IElement(), 
-    fName("Undefined"),
-    fSymbol("Undefined"),
-    fZ(0),
-    fN(0),
-    fA(0),    			       			  
-    fIsotopes(),
-    fRelAbundances()    			       			  
-{
-/// Default constructor
-}  
-
+			   
 //_____________________________________________________________________________
 RootGM::Element::~Element() {
 //
 }
-
-//
-// operators
-//
-
-//_____________________________________________________________________________
-RootGM::Element& 
-RootGM::Element::operator = (const Element& rhs) 
-{
-/// Assignment operator
- 
-  // check assignment to self
-  if ( this == &rhs ) return *this;
-
-  // assignment operator
-  fName= rhs.fName;
-  fSymbol = rhs.fSymbol;
-  fZ = rhs.fZ;
-  fA = rhs.fA;
-  
-  return *this; 
-}  
 
 //
 // private functions
@@ -185,37 +132,37 @@ void RootGM::Element::CheckIndex(int i) const
 //_____________________________________________________________________________
 std::string RootGM::Element::Name() const
 {
-  return fName;
+  return fElement->GetName();
 }  
 
 //_____________________________________________________________________________
 std::string RootGM::Element::Symbol() const
 {
-  return fSymbol;
+  return fElement->GetTitle();
 }  
 
 //_____________________________________________________________________________
 double  RootGM::Element::Z() const    
 {
-  return fZ;
+  return fElement->Z();
 }
 
 //_____________________________________________________________________________
 double  RootGM::Element::N() const    
 {
-  return fN;
+  return fElement->N();
 }
 
 //_____________________________________________________________________________
 double  RootGM::Element::A() const    
 {
-  return fA * RootGM::Units::AtomicWeight();
+  return fElement->A() * RootGM::Units::AtomicWeight();
 }
 
 //_____________________________________________________________________________
 int RootGM::Element::NofIsotopes() const 
 {
-  return fIsotopes.size();
+  return fElement->GetNisotopes();
 }
 
 //_____________________________________________________________________________
@@ -223,7 +170,8 @@ VGM::IIsotope*  RootGM::Element::Isotope(int i) const
 {
   CheckIndex(i);
 
-  return fIsotopes[i];
+  TGeoIsotope* tgeoIsotope = fElement->GetIsotope(i);
+  return IsotopeMap::Instance()->GetIsotope(tgeoIsotope);
 }  
 
 //_____________________________________________________________________________
@@ -231,6 +179,6 @@ double  RootGM::Element::RelAbundance(int i) const
 {
   CheckIndex(i);
 
-  return fRelAbundances[i];
+  return fElement->GetRelativeAbundance(i);
 }  
 

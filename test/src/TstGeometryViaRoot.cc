@@ -850,10 +850,18 @@ void  TstGeometryViaRoot::DefineMaterials()
   material3->AddElement(H, natoms=10);
 
   // material using isotopes 
-  // not supported in Root - using simple material definition
   //
+  Int_t iz, n, ncomponents;
+  Double_t abundance;
+  TGeoIsotope* U5 = new TGeoIsotope("U235", iz=92, n=235, a=235.01);
+  TGeoIsotope* U8 = new TGeoIsotope("U238", iz=92, n=238, a=238.03);
+  TGeoElement* U  
+    = new TGeoElement("enriched Uranium", "U", ncomponents=2);
+  U->AddIsotope(U5, abundance= 0.90);
+  U->AddIsotope(U8, abundance= 0.10);
+
   TGeoMaterial* material4
-    = new TGeoMaterial("Uranium", a=235.31, z=92., density=13.61);
+    = new TGeoMaterial("Uranium", U, density=13.61);
 
   // vacuum
   //
