@@ -22,8 +22,10 @@ libRootGM_la_SOURCES =                        \
 	$(rootgmsrc)/common/axis.cxx \
 	$(rootgmsrc)/common/transform.cxx \
 	$(rootgmsrc)/materials/Element.cxx \
-	$(rootgmsrc)/materials/ElementGeo.cxx \
+	$(rootgmsrc)/materials/ElementMap.cxx \
+	$(rootgmsrc)/materials/ElementNonGeo.cxx \
 	$(rootgmsrc)/materials/Isotope.cxx \
+	$(rootgmsrc)/materials/IsotopeMap.cxx \
 	$(rootgmsrc)/materials/Material.cxx \
 	$(rootgmsrc)/materials/MaterialFactory.cxx \
 	$(rootgmsrc)/materials/MaterialMap.cxx \
