@@ -17,6 +17,6 @@
 
 ./configure --prefix=/work/projects/vgm/autoconf/vgm_built \
             --with-xerces=/usr \
-            --with-clhep=/work/packages/clhep/2.0.4.5 \
+            --with-clhep=/work/packages/clhep/2.1.0.1 \
             --with-geant4=/work/projects/vgm/new/geant4 \
             --with-root=/work/projects/vgm/new/root
