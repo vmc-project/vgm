@@ -11,6 +11,7 @@
 
 // Modified Geant4 N03 example
 //
+//
 // ********************************************************************
 // * License and Disclaimer                                           *
 // *                                                                  *
@@ -36,18 +37,20 @@
 // ********************************************************************
 //
 //
-// $Id$
-// GEANT4 tag Name: geant4-09-02-ref-00
+// $Id: DetectorConstruction.cc,v 1.1 2010/10/18 15:56:17 maire Exp $
+// GEANT4 tag $Name: geant4-09-04 $
 //
 // 
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-#include "ExN03DetectorConstruction.hh"
-#include "ExN03DetectorMessenger.hh"
+#include "DetectorConstruction.hh"
+#include "DetectorMessenger.hh"
 
 #include "G4Material.hh"
+#include "G4NistManager.hh"
+
 #include "G4Box.hh"
 #include "G4LogicalVolume.hh"
 #include "G4PVPlacement.hh"
@@ -70,7 +73,7 @@
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-ExN03DetectorConstruction::ExN03DetectorConstruction()
+DetectorConstruction::DetectorConstruction()
 :AbsorberMaterial(0),GapMaterial(0),defaultMaterial(0),
  solidWorld(0),logicWorld(0),physiWorld(0),
  solidCalor(0),logicCalor(0),physiCalor(0),
@@ -92,12 +95,12 @@ ExN03DetectorConstruction::ExN03DetectorConstruction()
   SetGapMaterial("liquidArgon");
   
   // create commands for interactive definition of the calorimeter
-  detectorMessenger = new ExN03DetectorMessenger(this);
+  detectorMessenger = new DetectorMessenger(this);
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-ExN03DetectorConstruction::~ExN03DetectorConstruction()
+DetectorConstruction::~DetectorConstruction()
 { delete detectorMessenger;}
 
 
@@ -126,7 +129,7 @@ G4LogicalVolume* FindVolume(const G4String& name)
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-G4VPhysicalVolume* ExN03DetectorConstruction::Construct()
+G4VPhysicalVolume* DetectorConstruction::Construct()
 {
   // 
   // Import geometry from Root
@@ -158,7 +161,7 @@ G4VPhysicalVolume* ExN03DetectorConstruction::Construct()
   //
   logicWorld = world->GetLogicalVolume();
   logicWorld->SetVisAttributes (G4VisAttributes::Invisible);
-  G4VisAttributes* simpleBoxVisAtt= new G4VisAttributes(G4Colour(1.0,0.0,0.0));
+  G4VisAttributes* simpleBoxVisAtt= new G4VisAttributes(G4Colour(1.0,1.0,1.0));
   simpleBoxVisAtt->SetVisibility(true);
   if (logicCalor)    logicCalor->SetVisAttributes(simpleBoxVisAtt);
   if (logicLayer)    logicLayer->SetVisAttributes(simpleBoxVisAtt);
@@ -170,14 +173,14 @@ G4VPhysicalVolume* ExN03DetectorConstruction::Construct()
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void ExN03DetectorConstruction::DefineMaterials()
+void DetectorConstruction::DefineMaterials()
 { 
 // Dummy, as materials are imported via VGM
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-G4VPhysicalVolume* ExN03DetectorConstruction::ConstructCalorimeter()
+G4VPhysicalVolume* DetectorConstruction::ConstructCalorimeter()
 {
 // Dummy, as geometry is imported via VGM
 
@@ -191,7 +194,7 @@ G4VPhysicalVolume* ExN03DetectorConstruction::ConstructCalorimeter()
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void ExN03DetectorConstruction::PrintCalorParameters()
+void DetectorConstruction::PrintCalorParameters()
 {
   G4cout << "\n------------------------------------------------------------"
          << "\n---> The calorimeter is " << NbOfLayers << " layers of: [ "
@@ -203,7 +206,7 @@ void ExN03DetectorConstruction::PrintCalorParameters()
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void ExN03DetectorConstruction::SetAbsorberMaterial(G4String materialChoice)
+void DetectorConstruction::SetAbsorberMaterial(G4String materialChoice)
 {
   // search the material by its name   
   G4Material* pttoMaterial = G4Material::GetMaterial(materialChoice);     
@@ -212,7 +215,7 @@ void ExN03DetectorConstruction::SetAbsorberMaterial(G4String materialChoice)
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void ExN03DetectorConstruction::SetGapMaterial(G4String materialChoice)
+void DetectorConstruction::SetGapMaterial(G4String materialChoice)
 {
   // search the material by its name
   G4Material* pttoMaterial = G4Material::GetMaterial(materialChoice);
@@ -221,7 +224,7 @@ void ExN03DetectorConstruction::SetGapMaterial(G4String materialChoice)
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void ExN03DetectorConstruction::SetAbsorberThickness(G4double val)
+void DetectorConstruction::SetAbsorberThickness(G4double val)
 {
   // change Absorber thickness and recompute the calorimeter parameters
   AbsorberThickness = val;
@@ -229,7 +232,7 @@ void ExN03DetectorConstruction::SetAbsorberThickness(G4double val)
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void ExN03DetectorConstruction::SetGapThickness(G4double val)
+void DetectorConstruction::SetGapThickness(G4double val)
 {
   // change Gap thickness and recompute the calorimeter parameters
   GapThickness = val;
@@ -237,7 +240,7 @@ void ExN03DetectorConstruction::SetGapThickness(G4double val)
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void ExN03DetectorConstruction::SetCalorSizeYZ(G4double val)
+void DetectorConstruction::SetCalorSizeYZ(G4double val)
 {
   // change the transverse size and recompute the calorimeter parameters
   CalorSizeYZ = val;
@@ -245,7 +248,7 @@ void ExN03DetectorConstruction::SetCalorSizeYZ(G4double val)
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void ExN03DetectorConstruction::SetNbOfLayers(G4int val)
+void DetectorConstruction::SetNbOfLayers(G4int val)
 {
   NbOfLayers = val;
 }
@@ -255,7 +258,7 @@ void ExN03DetectorConstruction::SetNbOfLayers(G4int val)
 #include "G4FieldManager.hh"
 #include "G4TransportationManager.hh"
 
-void ExN03DetectorConstruction::SetMagField(G4double fieldValue)
+void DetectorConstruction::SetMagField(G4double fieldValue)
 {
   //apply a global uniform magnetic field along Z axis
   G4FieldManager* fieldMgr
@@ -277,7 +280,7 @@ void ExN03DetectorConstruction::SetMagField(G4double fieldValue)
 
 #include "G4RunManager.hh"
 
-void ExN03DetectorConstruction::UpdateGeometry()
+void DetectorConstruction::UpdateGeometry()
 {
   G4RunManager::GetRunManager()->DefineWorldVolume(ConstructCalorimeter());
 }

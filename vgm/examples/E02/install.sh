@@ -19,7 +19,7 @@ CURDIR=`pwd`
 #
 echo "... Installing E02"
 ./install_sources.sh
-. env_setup.sh
+. ./env_setup.sh
 cd N03
 gmake
 echo "... Installing E02 finished"
