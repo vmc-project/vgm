@@ -1,5 +1,5 @@
-// $Id$
-
+// $Id: ExN03DetectorConstruction.cc 656 2009-03-05 10:26:36Z ihrivnac $
+//
 // -----------------------------------------------------------------------
 // The example program of the Virtual Geometry Model
 // Copyright (C) 2007, Ivana Hrivnacova               
@@ -37,18 +37,20 @@
 // ********************************************************************
 //
 //
-// Id: ExN03DetectorConstruction.cc,v 1.24 2008/08/12 20:00:03 gum Exp 
-// GEANT4 tag Name: geant4-09-02-ref-00 
+// $Id: DetectorConstruction.cc,v 1.1 2010/10/18 15:56:17 maire Exp $
+// GEANT4 tag $Name: geant4-09-04 $
 //
 // 
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-#include "ExN03DetectorConstruction.hh"
-#include "ExN03DetectorMessenger.hh"
+#include "DetectorConstruction.hh"
+#include "DetectorMessenger.hh"
 
 #include "G4Material.hh"
+#include "G4NistManager.hh"
+
 #include "G4Box.hh"
 #include "G4LogicalVolume.hh"
 #include "G4PVPlacement.hh"
@@ -65,13 +67,13 @@
 
 // VGM demo
 #include "Geant4GM/volumes/Factory.h"
-#include "RootGM/volumes/Factory.h"
-#include "TGeoManager.h"
+#include "XmlVGM/AGDDExporter.h"
+#include "XmlVGM/GDMLExporter.h"
 // end VGM demo
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-ExN03DetectorConstruction::ExN03DetectorConstruction()
+DetectorConstruction::DetectorConstruction()
 :AbsorberMaterial(0),GapMaterial(0),defaultMaterial(0),
  solidWorld(0),logicWorld(0),physiWorld(0),
  solidCalor(0),logicCalor(0),physiCalor(0),
@@ -93,24 +95,24 @@ ExN03DetectorConstruction::ExN03DetectorConstruction()
   SetGapMaterial("liquidArgon");
   
   // create commands for interactive definition of the calorimeter
-  detectorMessenger = new ExN03DetectorMessenger(this);
+  detectorMessenger = new DetectorMessenger(this);
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-ExN03DetectorConstruction::~ExN03DetectorConstruction()
+DetectorConstruction::~DetectorConstruction()
 { delete detectorMessenger;}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-G4VPhysicalVolume* ExN03DetectorConstruction::Construct()
+G4VPhysicalVolume* DetectorConstruction::Construct()
 {
   return ConstructCalorimeter();
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void ExN03DetectorConstruction::DefineMaterials()
+void DetectorConstruction::DefineMaterials()
 { 
  //This function illustrates the possible ways to define materials
  
@@ -225,6 +227,14 @@ new G4Material("Beam", density= 1.e-5*g/cm3, ncomponents=1,
                        kStateGas, STP_Temperature, 2.e-2*bar);
 beam->AddMaterial(Air, fractionmass=1.);
 
+//
+// or use G4-NIST materials data base
+//
+G4NistManager* man = G4NistManager::Instance();
+man->FindOrBuildMaterial("G4_SODIUM_IODIDE");
+
+// print table
+//
 G4cout << *(G4Material::GetMaterialTable()) << G4endl;
 
 //default materials of the World
@@ -233,7 +243,7 @@ defaultMaterial  = Vacuum;
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-G4VPhysicalVolume* ExN03DetectorConstruction::ConstructCalorimeter()
+G4VPhysicalVolume* DetectorConstruction::ConstructCalorimeter()
 {
 
   // Clean old geometry, if any
@@ -390,46 +400,47 @@ G4VPhysicalVolume* ExN03DetectorConstruction::ConstructCalorimeter()
   logicGap->SetVisAttributes(atb);}
   */
 
-
+  //
+  //always return the physical World
+  //
+ 
   // ---------------------------------------------------------------------------
   // VGM demo 
   //
 
   // 
-  // Export geometry in Root and save it in a file
+  // Export geometry in XML (both AGDD, GDML formats)
   //
 
   // Import Geant4 geometry to VGM
   //
-  Geant4GM::Factory g4Factory;
-  g4Factory.SetDebug(1);
-  g4Factory.Import(physiWorld);
+  Geant4GM::Factory factory;
+  factory.Import(physiWorld);
   
-  // Export VGM geometry to Root
+  // Export VGM geometry in AGDD
   //
-  RootGM::Factory rtFactory;
-  rtFactory.SetDebug(1);
-  g4Factory.Export(&rtFactory);
-  gGeoManager->CloseGeometry();
-  gGeoManager->Export("N03Example.root");
+  XmlVGM::AGDDExporter xmlExporter1(&factory); 
+  xmlExporter1.GenerateXMLGeometry();
+
+  // Export VGM geometry in GDML
+  //
+  XmlVGM::GDMLExporter xmlExporter2(&factory); 
+  xmlExporter2.GenerateXMLGeometry();
 
   //
-  // End of Export geometry in Root
+  // End of Export geometry in xml
   //
 
   //
   // end VGM demo
   //---------------------------------------------------------------------------
 
-  //
-  //always return the physical World
-  //
   return physiWorld;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void ExN03DetectorConstruction::PrintCalorParameters()
+void DetectorConstruction::PrintCalorParameters()
 {
   G4cout << "\n------------------------------------------------------------"
          << "\n---> The calorimeter is " << NbOfLayers << " layers of: [ "
@@ -441,7 +452,7 @@ void ExN03DetectorConstruction::PrintCalorParameters()
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void ExN03DetectorConstruction::SetAbsorberMaterial(G4String materialChoice)
+void DetectorConstruction::SetAbsorberMaterial(G4String materialChoice)
 {
   // search the material by its name   
   G4Material* pttoMaterial = G4Material::GetMaterial(materialChoice);     
@@ -450,7 +461,7 @@ void ExN03DetectorConstruction::SetAbsorberMaterial(G4String materialChoice)
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void ExN03DetectorConstruction::SetGapMaterial(G4String materialChoice)
+void DetectorConstruction::SetGapMaterial(G4String materialChoice)
 {
   // search the material by its name
   G4Material* pttoMaterial = G4Material::GetMaterial(materialChoice);
@@ -459,7 +470,7 @@ void ExN03DetectorConstruction::SetGapMaterial(G4String materialChoice)
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void ExN03DetectorConstruction::SetAbsorberThickness(G4double val)
+void DetectorConstruction::SetAbsorberThickness(G4double val)
 {
   // change Absorber thickness and recompute the calorimeter parameters
   AbsorberThickness = val;
@@ -467,7 +478,7 @@ void ExN03DetectorConstruction::SetAbsorberThickness(G4double val)
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void ExN03DetectorConstruction::SetGapThickness(G4double val)
+void DetectorConstruction::SetGapThickness(G4double val)
 {
   // change Gap thickness and recompute the calorimeter parameters
   GapThickness = val;
@@ -475,7 +486,7 @@ void ExN03DetectorConstruction::SetGapThickness(G4double val)
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void ExN03DetectorConstruction::SetCalorSizeYZ(G4double val)
+void DetectorConstruction::SetCalorSizeYZ(G4double val)
 {
   // change the transverse size and recompute the calorimeter parameters
   CalorSizeYZ = val;
@@ -483,7 +494,7 @@ void ExN03DetectorConstruction::SetCalorSizeYZ(G4double val)
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void ExN03DetectorConstruction::SetNbOfLayers(G4int val)
+void DetectorConstruction::SetNbOfLayers(G4int val)
 {
   NbOfLayers = val;
 }
@@ -493,7 +504,7 @@ void ExN03DetectorConstruction::SetNbOfLayers(G4int val)
 #include "G4FieldManager.hh"
 #include "G4TransportationManager.hh"
 
-void ExN03DetectorConstruction::SetMagField(G4double fieldValue)
+void DetectorConstruction::SetMagField(G4double fieldValue)
 {
   //apply a global uniform magnetic field along Z axis
   G4FieldManager* fieldMgr
@@ -515,7 +526,7 @@ void ExN03DetectorConstruction::SetMagField(G4double fieldValue)
 
 #include "G4RunManager.hh"
 
-void ExN03DetectorConstruction::UpdateGeometry()
+void DetectorConstruction::UpdateGeometry()
 {
   G4RunManager::GetRunManager()->DefineWorldVolume(ConstructCalorimeter());
 }
