@@ -2,13 +2,13 @@ Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometr
 Root geometry will be defined via VGM and exported to Geant4
 
 *************************************************************
- Geant4 version Name: geant4-09-03-patch-01    (9-April-2010)
+ Geant4 version Name: geant4-09-04    (17-December-2010)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
 *************************************************************
 
-Visualization Manager instantiating...
+Visualization Manager instantiating with verbosity "warnings (3)"...
 Info in <TGeoManager::SetTopVolume>: Top volume is world. Master volume is world
 TestPlacements finished
 Go to export
@@ -37,10 +37,14 @@ Current available graphics systems are:
   VRML2FILE (VRML2FILE)
   gMocrenFile (gMocrenFile)
   FukuiRenderer (DAWN)
+  OpenGLStoredX (OGL)
+  OpenGLImmediateX (OGLI)
+  OpenGLStoredX (OGLS)
   OpenGLImmediateX (OGLIX)
   OpenGLStoredX (OGLSX)
   OpenGLImmediateXm (OGLIXm)
   OpenGLStoredXm (OGLSXm)
+  OpenInventorXt (OI)
   OpenInventorXt (OIX)
   VRML1 (VRML1)
   VRML2 (VRML2)
@@ -3464,7 +3468,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -3.51e+03     -846 -2.15e+03         1        0        0         0       world initStep
     1 -4.01e+03     -247 -2.66e+03         1        0      929       929      layerA Transportation
-    2 -4.21e+03 -1.42e-13 -2.87e+03         1        0      382  1.31e+03      layerC Transportation
+    2 -4.21e+03 -1.14e-13 -2.87e+03         1        0      382  1.31e+03      layerC Transportation
     3 -4.22e+03        4 -2.87e+03         1        0      6.2  1.32e+03      layerB Transportation
     4 -4.3e+03      105 -2.96e+03         1        0      156  1.47e+03       world Transportation
     5 -5.04e+03    1e+03 -3.72e+03         1        0 1.39e+03  2.86e+03  OutOfWorld Transportation
@@ -4817,7 +4821,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 3.03e+03     -388  4.2e+03         1        0        0         0       world initStep
     1  2.9e+03     -101 4.03e+03         1        0      359       359      layerA Transportation
-    2 2.86e+03 -1.42e-14 3.97e+03         1        0      126       485      layerC Transportation
+    2 2.86e+03        0 3.97e+03         1        0      126       485      layerC Transportation
     3 2.85e+03        4 3.96e+03         1        0        5       490      layerB Transportation
     4 2.82e+03     84.8 3.92e+03         1        0      101       591       world Transportation
     5 2.41e+03    1e+03 3.37e+03         1        0 1.14e+03  1.73e+03  OutOfWorld Transportation
@@ -6379,7 +6383,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     0 1.72e+03      251 5.49e+03         1        0        0         0       world initStep
     1 1.69e+03     26.4 4.93e+03         1        0      603       603      layerB Transportation
     2 1.68e+03        4 4.88e+03         1        0     60.2       663      layerC Transportation
-    3 1.68e+03        0 4.87e+03         1        0     10.8       674      layerA Transportation
+    3 1.68e+03 4.44e-16 4.87e+03         1        0     10.8       674      layerA Transportation
     4 1.66e+03     -137 4.52e+03         1        0      368  1.04e+03       world Transportation
     5 1.52e+03   -1e+03 2.38e+03         1        0 2.32e+03  3.36e+03  OutOfWorld Transportation
 
@@ -8755,7 +8759,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -2.28e+03      382 5.27e+03         1        0        0         0       world initStep
     1 -3.29e+03   -1e+03 4.29e+03         1        0 1.97e+03  1.97e+03  OutOfWorld Transportation
-number of event = 1000 User=0.37s Real=0.52s Sys=0.15s
-Execution time: R: 0.522 s  C: 0.522 s 
+number of event = 1000 User=0.05s Real=0.06s Sys=0.02s
+Execution time: R: 0.0677 s  C: 0.0677 s 
 Graphics systems deleted.
 Visualization Manager deleting...

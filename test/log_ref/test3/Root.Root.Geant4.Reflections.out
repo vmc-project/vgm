@@ -4,13 +4,13 @@ Info in <TGeoManager::TGeoManager>: Geometry Test, Test geometry via Root create
 Root geometry will be defined via Root and exported to Geant4
 
 *************************************************************
- Geant4 version Name: geant4-09-03-patch-01    (9-April-2010)
+ Geant4 version Name: geant4-09-04    (17-December-2010)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
 *************************************************************
 
-Visualization Manager instantiating...
+Visualization Manager instantiating with verbosity "warnings (3)"...
 Info in <TGeoManager::SetTopVolume>: Top volume is world. Master volume is world
 TestReflections finished
 Go to Import
@@ -42,10 +42,14 @@ Current available graphics systems are:
   VRML2FILE (VRML2FILE)
   gMocrenFile (gMocrenFile)
   FukuiRenderer (DAWN)
+  OpenGLStoredX (OGL)
+  OpenGLImmediateX (OGLI)
+  OpenGLStoredX (OGLS)
   OpenGLImmediateX (OGLIX)
   OpenGLStoredX (OGLSX)
   OpenGLImmediateXm (OGLIXm)
   OpenGLStoredXm (OGLSXm)
+  OpenInventorXt (OI)
   OpenInventorXt (OIX)
   VRML1 (VRML1)
   VRML2 (VRML2)
@@ -1833,91 +1837,19 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     2 4.14e+03 -1.12e+03 -1.31e+03         1        0      119       402       world Transportation
     3 4.33e+03 -1.21e+03 -1.06e+03         1        0      328       731        hype Transportation
     4 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-    5 4.33e+03 -1.21e+03 -1.06e+03         1        0 4.64e-13       731        hype Transportation
+    5 4.33e+03 -1.21e+03 -1.06e+03         1        0 4.73e-13       731        hype Transportation
     6 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-    7 4.33e+03 -1.21e+03 -1.06e+03         1        0 1.92e-13       731        hype Transportation
+    7 4.33e+03 -1.21e+03 -1.06e+03         1        0 1.42e-12       731        hype Transportation
     8 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-    9 4.33e+03 -1.21e+03 -1.06e+03         1        0 1.46e-12       731        hype Transportation
+    9 4.33e+03 -1.21e+03 -1.06e+03         1        0 4.73e-13       731        hype Transportation
    10 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   11 4.33e+03 -1.21e+03 -1.06e+03         1        0 4.01e-13       731        hype Transportation
+   11 4.33e+03 -1.21e+03 -1.06e+03         1        0 4.73e-13       731        hype Transportation
    12 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   13 4.33e+03 -1.21e+03 -1.06e+03         1        0 4.01e-13       731        hype Transportation
+   13 4.33e+03 -1.21e+03 -1.06e+03         1        0 2.37e-12       731        hype Transportation
    14 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   15 4.33e+03 -1.21e+03 -1.06e+03         1        0 4.01e-13       731        hype Transportation
-   16 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   17 4.33e+03 -1.21e+03 -1.06e+03         1        0 1.67e-12       731        hype Transportation
-   18 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   19 4.33e+03 -1.21e+03 -1.06e+03         1        0  6.1e-13       731        hype Transportation
-   20 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   21 4.33e+03 -1.21e+03 -1.06e+03         1        0 1.61e-12       731        hype Transportation
-   22 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   23 4.33e+03 -1.21e+03 -1.06e+03         1        0 5.46e-13       731        hype Transportation
-   24 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   25 4.33e+03 -1.21e+03 -1.06e+03         1        0 2.74e-13       731        hype Transportation
-   26 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   27 4.33e+03 -1.21e+03 -1.06e+03         1        0 1.54e-12       731        hype Transportation
-   28 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   29 4.33e+03 -1.21e+03 -1.06e+03         1        0 4.83e-13       731        hype Transportation
-   30 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   31 4.33e+03 -1.21e+03 -1.06e+03         1        0 2.11e-13       731        hype Transportation
-   32 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   33 4.33e+03 -1.21e+03 -1.06e+03         1        0 1.48e-12       731        hype Transportation
-   34 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   35 4.33e+03 -1.21e+03 -1.06e+03         1        0  4.2e-13       731        hype Transportation
-   36 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   37 4.33e+03 -1.21e+03 -1.06e+03         1        0  4.2e-13       731        hype Transportation
-   38 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   39 4.33e+03 -1.21e+03 -1.06e+03         1        0  4.2e-13       731        hype Transportation
-   40 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   41 4.33e+03 -1.21e+03 -1.06e+03         1        0 1.69e-12       731        hype Transportation
-   42 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   43 4.33e+03 -1.21e+03 -1.06e+03         1        0 6.28e-13       731        hype Transportation
-   44 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   45 4.33e+03 -1.21e+03 -1.06e+03         1        0 1.62e-12       731        hype Transportation
-   46 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   47 4.33e+03 -1.21e+03 -1.06e+03         1        0 5.65e-13       731        hype Transportation
-   48 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   49 4.33e+03 -1.21e+03 -1.06e+03         1        0 2.93e-13       731        hype Transportation
-   50 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   51 4.33e+03 -1.21e+03 -1.06e+03         1        0 1.56e-12       731        hype Transportation
-   52 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   53 4.33e+03 -1.21e+03 -1.06e+03         1        0 5.02e-13       731        hype Transportation
-   54 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   55 4.33e+03 -1.21e+03 -1.06e+03         1        0  2.3e-13       731        hype Transportation
-   56 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   57 4.33e+03 -1.21e+03 -1.06e+03         1        0  1.5e-12       731        hype Transportation
-   58 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   59 4.33e+03 -1.21e+03 -1.06e+03         1        0 4.39e-13       731        hype Transportation
-   60 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   61 4.33e+03 -1.21e+03 -1.06e+03         1        0 4.39e-13       731        hype Transportation
-   62 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   63 4.33e+03 -1.21e+03 -1.06e+03         1        0 4.39e-13       731        hype Transportation
-   64 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   65 4.33e+03 -1.21e+03 -1.06e+03         1        0 1.71e-12       731        hype Transportation
-   66 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   67 4.33e+03 -1.21e+03 -1.06e+03         1        0 6.48e-13       731        hype Transportation
-   68 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   69 4.33e+03 -1.21e+03 -1.06e+03         1        0 1.64e-12       731        hype Transportation
-   70 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   71 4.33e+03 -1.21e+03 -1.06e+03         1        0 5.84e-13       731        hype Transportation
-   72 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   73 4.33e+03 -1.21e+03 -1.06e+03         1        0 1.58e-12       731        hype Transportation
-   74 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   75 4.33e+03 -1.21e+03 -1.06e+03         1        0 5.21e-13       731        hype Transportation
-   76 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   77 4.33e+03 -1.21e+03 -1.06e+03         1        0 2.49e-13       731        hype Transportation
-   78 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   79 4.33e+03 -1.21e+03 -1.06e+03         1        0 1.52e-12       731        hype Transportation
-   80 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   81 4.33e+03 -1.21e+03 -1.06e+03         1        0 4.58e-13       731        hype Transportation
-   82 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   83 4.33e+03 -1.21e+03 -1.06e+03         1        0 4.58e-13       731        hype Transportation
-   84 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   85 4.33e+03 -1.21e+03 -1.06e+03         1        0 2.99e-12       731        hype Transportation
-   86 4.33e+03 -1.21e+03 -1.06e+03         1        0        0       731       world Transportation
-   87 5.65e+03 -1.75e+03      630         1        0 2.21e+03  2.94e+03        hype Transportation
-   88 5.74e+03 -1.79e+03      739         1        0      144  3.08e+03       world Transportation
-   89  6.2e+03 -1.98e+03 1.33e+03         1        0      778  3.86e+03  OutOfWorld Transportation
+   15 5.65e+03 -1.75e+03      630         1        0 2.21e+03  2.94e+03        hype Transportation
+   16 5.74e+03 -1.79e+03      739         1        0      144  3.08e+03       world Transportation
+   17  6.2e+03 -1.98e+03 1.33e+03         1        0      778  3.86e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -6169,8 +6101,8 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 3.73e+03     -398 -1.64e+03         1        0        0         0       world initStep
     1 5.11e+03 1.29e+03 -1.46e+03         1        0 2.19e+03  2.19e+03  paraboloid Transportation
-    2 5.61e+03 1.92e+03 -1.4e+03         1        0      804  2.99e+03       world Transportation
-    3  6.2e+03 2.63e+03 -1.32e+03         1        0      931  3.93e+03  OutOfWorld Transportation
+    2 5.62e+03 1.92e+03 -1.4e+03         1        0      812     3e+03       world Transportation
+    3  6.2e+03 2.63e+03 -1.32e+03         1        0      923  3.93e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -8730,7 +8662,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -2.36e+03 1.15e+03 2.64e+03         1        0        0         0       world initStep
     1 -5.38e+03   -3e+03     -309         1        0 5.91e+03  5.91e+03  OutOfWorld Transportation
-number of event = 1000 User=0.51s Real=0.62s Sys=0.11s
-Execution time: R: 0.626 s  C: 0.626 s 
+number of event = 1000 User=0.05s Real=0.08s Sys=0.03s
+Execution time: R: 0.078 s  C: 0.078 s 
 Graphics systems deleted.
 Visualization Manager deleting...
