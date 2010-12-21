@@ -231,7 +231,7 @@ Geant4GM::MaterialFactory::CreateElement(
       // special case (vacuum)
       // in Geant4 vacuum has element with z = 1.0, a = 1.01
       vgmElement 
-       = new Geant4GM::Element(name, symbol, z = 1.0, a = 1.01*(g/mole));
+       = new Geant4GM::Element(name, symbol, z = 1.0, a = 1.01);
 
       fVacuumElements.insert(vgmElement);                               
     }
