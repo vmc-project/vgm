@@ -232,16 +232,16 @@ action tests "cmt make cmt_tests;cd ${VGMROOT}/$(Platform_bin); rm -rf *_deps te
 
 
 library E01VGM -group=examples -import=Geant4 -import=ROOT \
- ../examples/E01/ExN03DetectorConstruction.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03DetectorMessenger.cc \
- ${Geant4_install}/examples/novice/N03/src/ExN03EventAction.cc\ 
- ${Geant4_install}/examples/novice/N03/src/ExN03EventActionMessenger.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03PhysicsList.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03PrimaryGeneratorAction.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03PrimaryGeneratorMessenger.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03RunAction.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03SteppingAction.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03SteppingVerbose.cc
+ ../examples/E01/DetectorConstruction.cc\
+ ${Geant4_install}/examples/novice/N03/src/DetectorMessenger.cc \
+ ${Geant4_install}/examples/novice/N03/src/EventAction.cc\ 
+ ${Geant4_install}/examples/novice/N03/src/EventActionMessenger.cc\
+ ${Geant4_install}/examples/novice/N03/src/PhysicsList.cc\
+ ${Geant4_install}/examples/novice/N03/src/PrimaryGeneratorAction.cc\
+ ${Geant4_install}/examples/novice/N03/src/PrimaryGeneratorMessenger.cc\
+ ${Geant4_install}/examples/novice/N03/src/RunAction.cc\
+ ${Geant4_install}/examples/novice/N03/src/SteppingAction.cc\
+ ${Geant4_install}/examples/novice/N03/src/SteppingVerbose.cc
 
 macro E01VGM_cppflags " -I${Geant4_install}/examples/novice/N03/include ${G4run_incs} ${G4intercoms_incs} ${G4graphics_reps_incs} ${Geant4GM_cppflags} ${RootGM_cppflags} ${G4event_incs} ${G4track_incs} ${G4particles_incs} ${G4tracking_incs} ${G4processes_incs} ${G4digits_hits_incs}"
 
@@ -260,16 +260,16 @@ application vgm_e01 ${Geant4_install}/examples/novice/N03/exampleN03.cc -import=
 #//////////////////////////////////////////////////
 
 library E02VGM -group=examples -import=Geant4 -import=ROOT \
- ../examples/E02/ExN03DetectorConstruction.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03DetectorMessenger.cc \
- ${Geant4_install}/examples/novice/N03/src/ExN03EventAction.cc\ 
- ${Geant4_install}/examples/novice/N03/src/ExN03EventActionMessenger.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03PhysicsList.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03PrimaryGeneratorAction.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03PrimaryGeneratorMessenger.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03RunAction.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03SteppingAction.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03SteppingVerbose.cc
+ ../examples/E02/DetectorConstruction.cc\
+ ${Geant4_install}/examples/novice/N03/src/DetectorMessenger.cc \
+ ${Geant4_install}/examples/novice/N03/src/EventAction.cc\ 
+ ${Geant4_install}/examples/novice/N03/src/EventActionMessenger.cc\
+ ${Geant4_install}/examples/novice/N03/src/PhysicsList.cc\
+ ${Geant4_install}/examples/novice/N03/src/PrimaryGeneratorAction.cc\
+ ${Geant4_install}/examples/novice/N03/src/PrimaryGeneratorMessenger.cc\
+ ${Geant4_install}/examples/novice/N03/src/RunAction.cc\
+ ${Geant4_install}/examples/novice/N03/src/SteppingAction.cc\
+ ${Geant4_install}/examples/novice/N03/src/SteppingVerbose.cc
 
 macro E02VGM_cppflags "-I$(VGMROOT)/examples/E02 -I${Geant4_install}/examples/novice/N03/include ${G4run_incs} ${G4intercoms_incs} ${G4graphics_reps_incs} ${Geant4GM_cppflags} ${RootGM_cppflags} ${G4event_incs} ${G4track_incs} ${G4particles_incs} ${G4tracking_incs} ${G4processes_incs} ${G4digits_hits_incs}"
 
@@ -287,16 +287,16 @@ application vgm_e02 ${Geant4_install}/examples/novice/N03/exampleN03.cc -import=
 #//////////////////////////////////////////////////
 
 library E03VGM -group=examples -import=Geant4 \
- ../examples/E03/ExN03DetectorConstruction.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03DetectorMessenger.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03EventAction.cc\ 
- ${Geant4_install}/examples/novice/N03/src/ExN03EventActionMessenger.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03PhysicsList.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03PrimaryGeneratorAction.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03PrimaryGeneratorMessenger.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03RunAction.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03SteppingAction.cc\
- ${Geant4_install}/examples/novice/N03/src/ExN03SteppingVerbose.cc
+ ../examples/E03/DetectorConstruction.cc\
+ ${Geant4_install}/examples/novice/N03/src/DetectorMessenger.cc\
+ ${Geant4_install}/examples/novice/N03/src/EventAction.cc\ 
+ ${Geant4_install}/examples/novice/N03/src/EventActionMessenger.cc\
+ ${Geant4_install}/examples/novice/N03/src/PhysicsList.cc\
+ ${Geant4_install}/examples/novice/N03/src/PrimaryGeneratorAction.cc\
+ ${Geant4_install}/examples/novice/N03/src/PrimaryGeneratorMessenger.cc\
+ ${Geant4_install}/examples/novice/N03/src/RunAction.cc\
+ ${Geant4_install}/examples/novice/N03/src/SteppingAction.cc\
+ ${Geant4_install}/examples/novice/N03/src/SteppingVerbose.cc
 
 
 macro E03VGM_cppflags " -I${Geant4_install}/examples/novice/N03/include -I$(VGMROOT)/packages/XmlVGM/include ${G4run_incs} ${G4intercoms_incs} ${G4graphics_reps_incs} ${Geant4GM_cppflags} ${RootGM_cppflags} ${G4event_incs} ${G4track_incs} ${G4particles_incs} ${G4tracking_incs} ${G4processes_incs} ${G4digits_hits_incs}"
