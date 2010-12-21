@@ -67,8 +67,10 @@ rootgmcominc_HEADERS = \
 rootgmmatincdir = $(includedir)/RootGM/materials
 rootgmmatinc_HEADERS = \
 	$(rootgminc)/materials/Element.h \
-	$(rootgminc)/materials/ElementGeo.h \
+	$(rootgminc)/materials/ElementMap.h \
+	$(rootgminc)/materials/ElementNonGeo.h \
 	$(rootgminc)/materials/Isotope.h \
+	$(rootgminc)/materials/IsotopeMap.h \
 	$(rootgminc)/materials/Material.h \
 	$(rootgminc)/materials/MaterialFactory.h \
 	$(rootgminc)/materials/MaterialMap.h \
