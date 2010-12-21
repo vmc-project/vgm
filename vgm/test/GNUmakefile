@@ -33,7 +33,7 @@ endif
 
 #G4ROOT
 CPPFLAGS += -I${G4VMC}/include/g4root
-EXTRALIBS += -L${G4VMC}/lib/tgt_linux -lg4root
+EXTRALIBS += -L${G4VMC}/lib/tgt_linuxx8664gcc -lg4root
 
 CPPFLAGS  += -I$(VGM_INSTALL)/packages/VGM/include
 CPPFLAGS  += -I$(VGM_INSTALL)/packages/ClhepVGM/include
