@@ -137,8 +137,10 @@ library RootGM -group=VGM -import=ROOT -s=../packages/RootGM/source/ \
  common/axis.cxx\
  common/transform.cxx\
  materials/Element.cxx \
- materials/ElementGeo.cxx \
+ materials/ElementMap.cxx \
+ materials/ElementNonGeo.cxx \
  materials/Isotope.cxx \
+ materials/IsotopeMap.cxx \
  materials/Material.cxx \
  materials/MaterialFactory.cxx \
  materials/MaterialMap.cxx \
