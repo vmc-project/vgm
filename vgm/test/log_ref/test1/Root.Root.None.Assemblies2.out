@@ -4,13 +4,13 @@ Info in <TGeoManager::TGeoManager>: Geometry Test, Test geometry via Root create
 Root geometry will be defined via Root
 
 *************************************************************
- Geant4 version Name: geant4-09-03-patch-01    (9-April-2010)
+ Geant4 version Name: geant4-09-04    (17-December-2010)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
 *************************************************************
 
-Visualization Manager instantiating...
+Visualization Manager instantiating with verbosity "warnings (3)"...
 Info in <TGeoManager::SetTopVolume>: Top volume is world. Master volume is world
 TestAssemblies2 finished
 Go to Import
@@ -18,25 +18,40 @@ Info in <TGeoManager::Export>: Exporting Test Test geometry via Root as root fil
 VGM info:   RootGM::Factory::Import started ...
 VGM info:   Importing material: 
 VGM info:   Material Basic    A=26.98 Z=13 rho=2.7 radlen=8.8751 intlen=38.8622 index=0
-VGM info:   Importing element: ALUMINIUM AL from material
+VGM info:   Importing element: from material
+VGM info:   Element: AL      Z=13   N=27.000000   A=26.981538 [g/mole]
 VGM info:   Importing material: 
 VGM info:   Mixture Air    Aeff=14.607 Zeff=7.3 rho=0.00129 radlen=28405.7 intlen=66278.6 index=1
    Element #0 : N  Z=  7.00 A= 14.01 w= 0.700
    Element #1 : O  Z=  8.00 A= 16.00 w= 0.300
-VGM info:   Importing element: NITROGEN N from material
-VGM info:   Importing element: OXYGEN O from material
+VGM info:   Importing element: from material
+VGM info:   Element: N      Z=7   N=14.000000   A=14.006740 [g/mole]
+VGM info:   Importing element: from material
+VGM info:   Element: O      Z=8   N=16.000000   A=15.999400 [g/mole]
 VGM info:   Importing material: 
 VGM info:   Mixture Scintillator    Aeff=11.0723 Zeff=5.57354 rho=1.032 radlen=42.132 intlen=70.1007 index=2
    Element #0 : C  Z=  6.00 A= 12.01 w= 0.915 natoms=9
    Element #1 : H  Z=  1.00 A=  1.01 w= 0.085 natoms=10
-VGM info:   Importing element: CARBON C from TGeoTable
-VGM info:   Importing element: HYDROGEN H from TGeoTable
+VGM info:   Importing element: from element object
+VGM info:   Element: C      Z=6   N=12.000000   A=12.010700 [g/mole]
+VGM info:   Importing element: from element object
+VGM info:   Element: H      Z=1   N=1.000000   A=1.007940 [g/mole]
 VGM info:   Importing material: 
-VGM info:   Material Uranium    A=235.31 Z=92 rho=13.61 radlen=0.436285 intlen=15.9387 index=3
-VGM info:   Importing element: URANIUM U from material
+VGM info:   Material Uranium    A=235.312 Z=92 rho=13.61 radlen=0.436288 intlen=15.8771 index=3
+VGM info:   Importing isotope: 
+VGM info:   Isotope: U235     Z=92   N=235   A=235.010000 [g/mole]
+VGM info:   Importing isotope: 
+VGM info:   Isotope: U238     Z=92   N=238   A=238.030000 [g/mole]
+VGM info:   Importing element: from element object
+VGM info:   Element: enriched Uranium      Z=92   N=235.300000   A=235.312000 [g/mole]
+=>Isotope U235, abundance=0.900000 :
+Isotope: U235     Z=92   N=235   A=235.010000 [g/mole]
+=>Isotope U238, abundance=0.100000 :
+Isotope: U238     Z=92   N=238   A=238.030000 [g/mole]
 VGM info:   Importing material: 
-VGM info:   Material Vacuum    A=0 Z=0 rho=0 radlen=0 intlen=0 index=4
-VGM info:   Importing element: VACUUM VACUUM from TGeoTable
+VGM info:   Material Vacuum    A=0 Z=0 rho=0 radlen=1e+30 intlen=1e+30 index=4
+VGM info:   Importing element: from element object
+VGM info:   Element: VACUUM      Z=0   N=0.000000   A=0.000000 [g/mole]
 VGM info:   Importing medium: 
 VGM info:   OBJ: TGeoMedium	Basic	
 VGM info:   Importing medium: 

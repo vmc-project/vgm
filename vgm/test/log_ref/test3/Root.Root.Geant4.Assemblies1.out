@@ -4,13 +4,13 @@ Info in <TGeoManager::TGeoManager>: Geometry Test, Test geometry via Root create
 Root geometry will be defined via Root and exported to Geant4
 
 *************************************************************
- Geant4 version Name: geant4-09-03-patch-01    (9-April-2010)
+ Geant4 version Name: geant4-09-04    (17-December-2010)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
 *************************************************************
 
-Visualization Manager instantiating...
+Visualization Manager instantiating with verbosity "warnings (3)"...
 Info in <TGeoManager::SetTopVolume>: Top volume is world. Master volume is world
 TestAssemblies finished
 Go to Import
@@ -42,10 +42,14 @@ Current available graphics systems are:
   VRML2FILE (VRML2FILE)
   gMocrenFile (gMocrenFile)
   FukuiRenderer (DAWN)
+  OpenGLStoredX (OGL)
+  OpenGLImmediateX (OGLI)
+  OpenGLStoredX (OGLS)
   OpenGLImmediateX (OGLIX)
   OpenGLStoredX (OGLSX)
   OpenGLImmediateXm (OGLIXm)
   OpenGLStoredXm (OGLSXm)
+  OpenInventorXt (OI)
   OpenInventorXt (OIX)
   VRML1 (VRML1)
   VRML2 (VRML2)
@@ -7455,7 +7459,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 5.99e+03 -1.58e+03      744         1        0        0         0       world initStep
     1 4.78e+03 -2.47e+03    0.974         1        0 1.67e+03  1.67e+03       TOOTH Transportation
-    2 4.78e+03 -2.47e+03 2.22e-16         1        0     2.19  1.67e+03       world Transportation
+    2 4.78e+03 -2.47e+03 1.11e-16         1        0     2.19  1.67e+03       world Transportation
     3 4.75e+03 -2.49e+03    -18.9         1        0     42.5  1.71e+03       TOOTH Transportation
     4 4.71e+03 -2.52e+03    -43.8         1        0     55.8  1.77e+03       world Transportation
     5 4.62e+03 -2.59e+03    -99.1         1        0      124  1.89e+03       TOOTH Transportation
@@ -10151,7 +10155,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     1 -4.65e+03 2.67e+03     58.6         1        0 1.65e+03  1.65e+03       PLATE Transportation
     2 -4.66e+03 2.65e+03     46.1         1        0     25.2  1.67e+03       world Transportation
     3 -5.73e+03 1.18e+03   -1e+03         1        0  2.1e+03  3.77e+03  OutOfWorld Transportation
-number of event = 1000 User=0.66s Real=0.77s Sys=0.12s
-Execution time: R: 0.773 s  C: 0.773 s 
+number of event = 1000 User=0.07000000000000001s Real=0.1s Sys=0.02s
+Execution time: R: 0.1 s  C: 0.1 s 
 Graphics systems deleted.
 Visualization Manager deleting...

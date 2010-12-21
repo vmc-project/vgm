@@ -2,13 +2,13 @@ Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometr
 Root geometry will be defined via VGM and exported to Geant4
 
 *************************************************************
- Geant4 version Name: geant4-09-03-patch-01    (9-April-2010)
+ Geant4 version Name: geant4-09-04    (17-December-2010)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
 *************************************************************
 
-Visualization Manager instantiating...
+Visualization Manager instantiating with verbosity "warnings (3)"...
 Info in <TGeoManager::SetTopVolume>: Top volume is world. Master volume is world
 TestDisplacedSolids1 finished
 Go to export
@@ -17,40 +17,40 @@ VGM info:   Isotope: "U235"    Z = 92  N = 235  A = 235.01 g/mole
 VGM info:   Exporting isotope: 
 VGM info:   Isotope: "U238"    Z = 92  N = 238  A = 238.03 g/mole
 VGM info:   Exporting element: 
-VGM info:   Element: "HYDROGEN"  "H"  Z = 1  N = 1.00794  A = 1.00794 g/mole
+VGM info:   Element: "H"  "HYDROGEN"  Z = 1  N = 1  A = 1.00794 g/mole
 VGM info:   Exporting element: 
-VGM info:   Element: "CARBON"  "C"  Z = 6  N = 12.0107  A = 12.0107 g/mole
+VGM info:   Element: "C"  "CARBON"  Z = 6  N = 12  A = 12.0107 g/mole
 VGM info:   Exporting element: 
-VGM info:   Element: "Vacuum"  "Vacuum_e"  Z = 1  N = 1.01  A = 1.01 g/mole
+VGM info:   Element: "Vacuum"  "Vacuum_e"  Z = 1  N = 1  A = 1.01 g/mole
 VGM info:   Exporting element: 
-VGM info:   Element: "Nitrogen"  "N"  Z = 7  N = 14.01  A = 14.01 g/mole
+VGM info:   Element: "Nitrogen"  "N"  Z = 7  N = 14  A = 14.01 g/mole
 VGM info:   Exporting element: 
 VGM info:   Element: "Oxygen"  "O"  Z = 8  N = 16  A = 16 g/mole
 VGM info:   Exporting element: 
-VGM info:   Element: "Aluminium"  "Al"  Z = 13  N = 26.98  A = 26.98 g/mole
+VGM info:   Element: "Aluminium"  "Al"  Z = 13  N = 26  A = 26.98 g/mole
 VGM info:   Exporting element: 
-VGM info:   Element: "enriched Uranium"  "U"  Z = 92  N = 235.3  A = 235.312 g/mole
+VGM info:   Element: "enriched Uranium"  "U"  Z = 92  N = 235  A = 235.312 g/mole
      0th isotope: Isotope: "U235"    Z = 92  N = 235  A = 235.01 g/mole  abundance: 90%
      1th isotope: Isotope: "U238"    Z = 92  N = 238  A = 238.03 g/mole  abundance: 10%
 VGM info:   Exporting material: 
 VGM info:   Material: "Basic"  density 2.7 g/cm3  radlen 8.8751 cm  intlen 38.8622 cm  state "Undefined"  temperature 273.15 kelvin  pressure 1 atm
-   0th element: Element: "Aluminium"  "Al"  Z = 13  N = 26.98  A = 26.98 g/mole  Elm mass fraction: 100 %
+   0th element: Element: "Aluminium"  "Al"  Z = 13  N = 26  A = 26.98 g/mole  Elm mass fraction: 100 %
 VGM info:   Exporting material: 
 VGM info:   Material: "Air"  density 0.00129 g/cm3  radlen 28405.7 cm  intlen 66278.6 cm  state "Undefined"  temperature 273.15 kelvin  pressure 1 atm
-   0th element: Element: "Nitrogen"  "N"  Z = 7  N = 14.01  A = 14.01 g/mole  Elm mass fraction: 70 %
+   0th element: Element: "Nitrogen"  "N"  Z = 7  N = 14  A = 14.01 g/mole  Elm mass fraction: 70 %
    1th element: Element: "Oxygen"  "O"  Z = 8  N = 16  A = 16 g/mole  Elm mass fraction: 30 %
 VGM info:   Exporting material: 
 VGM info:   Material: "Scintillator"  density 1.032 g/cm3  radlen 42.132 cm  intlen 70.1007 cm  state "Undefined"  temperature 273.15 kelvin  pressure 1 atm
-   0th element: Element: "CARBON"  "C"  Z = 6  N = 12.0107  A = 12.0107 g/mole  Elm mass fraction: 91.4708 %
-   1th element: Element: "HYDROGEN"  "H"  Z = 1  N = 1.00794  A = 1.00794 g/mole  Elm mass fraction: 8.52916 %
+   0th element: Element: "C"  "CARBON"  Z = 6  N = 12  A = 12.0107 g/mole  Elm mass fraction: 91.4708 %
+   1th element: Element: "H"  "HYDROGEN"  Z = 1  N = 1  A = 1.00794 g/mole  Elm mass fraction: 8.52916 %
 VGM info:   Exporting material: 
 VGM info:   Material: "Uranium"  density 13.61 g/cm3  radlen 0.436288 cm  intlen 15.9387 cm  state "Undefined"  temperature 273.15 kelvin  pressure 1 atm
-   0th element: Element: "enriched Uranium"  "U"  Z = 92  N = 235.3  A = 235.312 g/mole
+   0th element: Element: "enriched Uranium"  "U"  Z = 92  N = 235  A = 235.312 g/mole
      0th isotope: Isotope: "U235"    Z = 92  N = 235  A = 235.01 g/mole  abundance: 90%
      1th isotope: Isotope: "U238"    Z = 92  N = 238  A = 238.03 g/mole  abundance: 10%  Elm mass fraction: 100 %
 VGM info:   Exporting material: 
 VGM info:   Material: "Vacuum"  density 1e-25 g/cm3  radlen 5.79553e+26 cm  intlen 3.52778e+26 cm  state "Gas"  temperature 2.73 kelvin  pressure 2.96077e-23 atm
-   0th element: Element: "Vacuum"  "Vacuum_e"  Z = 1  N = 1.01  A = 1.01 g/mole  Elm mass fraction: 100 %
+   0th element: Element: "Vacuum"  "Vacuum_e"  Z = 1  N = 1  A = 1.01 g/mole  Elm mass fraction: 100 %
 VGM info:   Exporting medium: 
 VGM info:   Medium: "Basic"  material Basic g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
 VGM info:   Exporting medium: 
@@ -124,10 +124,14 @@ Current available graphics systems are:
   VRML2FILE (VRML2FILE)
   gMocrenFile (gMocrenFile)
   FukuiRenderer (DAWN)
+  OpenGLStoredX (OGL)
+  OpenGLImmediateX (OGLI)
+  OpenGLStoredX (OGLS)
   OpenGLImmediateX (OGLIX)
   OpenGLStoredX (OGLSX)
   OpenGLImmediateXm (OGLIXm)
   OpenGLStoredXm (OGLSXm)
+  OpenInventorXt (OI)
   OpenInventorXt (OIX)
   VRML1 (VRML1)
   VRML2 (VRML2)

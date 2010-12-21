@@ -67,10 +67,10 @@
          <atom type="A" unit="g/mol" value="238.0300" />
       </isotope>
 
-      <element  name="HYDROGEN_e"  Z="  1.0000"  N="  1" >
+      <element  name="H_e"  Z="  1.0000"  N="  1" >
          <atom type="A" unit="g/mol" value="  1.0079" />
       </element>
-      <element  name="CARBON_e"  Z="  6.0000"  N=" 12" >
+      <element  name="C_e"  Z="  6.0000"  N=" 12" >
          <atom type="A" unit="g/mol" value=" 12.0107" />
       </element>
       <element  name="Nitrogen_e"  Z="  7.0000"  N=" 14" >
@@ -79,7 +79,7 @@
       <element  name="Oxygen_e"  Z="  8.0000"  N=" 16" >
          <atom type="A" unit="g/mol" value=" 16.0000" />
       </element>
-      <element  name="Aluminium_e"  Z=" 13.0000"  N=" 27" >
+      <element  name="Aluminium_e"  Z=" 13.0000"  N=" 26" >
          <atom type="A" unit="g/mol" value=" 26.9800" />
       </element>
       <element  name="enriched_Uranium_e"  >
@@ -98,8 +98,8 @@
       </material>
       <material  name="Scintillator"  >
          <D type="density" unit="g/cm3" value="     1.0320"/>
-         <fraction n="    0.9147"  ref="CARBON_e"/>
-         <fraction n="    0.0853"  ref="HYDROGEN_e"/>
+         <fraction n="    0.9147"  ref="C_e"/>
+         <fraction n="    0.0853"  ref="H_e"/>
       </material>
       <material  name="Uranium"  >
          <D type="density" unit="g/cm3" value="    13.6100"/>

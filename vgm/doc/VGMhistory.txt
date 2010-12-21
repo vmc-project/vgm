@@ -11,6 +11,21 @@ $Id$
 
  The Virtual Geometry Model - Versions
 =========================================
+  22/12/2010
+  version 3.04
+    New features:
+      In RootGM:
+      - Added support for elements composed from isotopes:
+  
+    Fixes:
+      In Geant4GM:
+      - Fixed debug output in MaterialFactory
+      - Fix in importing a vacuum element with z < 1.0
+        (important for the import of geometry from Root in Geant4).
+
+    Tested with CLHEP 2.1.0.1, Root 5.28/00, Geant4 9.4;
+    Linux: gcc 4.5.1 (FC14)
+      
   30/04/2010
   version 3.03
     New features:
