@@ -11,7 +11,7 @@
 
 /// \ingroup RootGM_solids
 //
-/// \class RootGM:: Hype
+/// \class RootGM::Hype
 ///
 /// VGM implementation for Root hyperboloid solid.
 ///

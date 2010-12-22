@@ -11,7 +11,7 @@
 
 /// \ingroup Geant4GM_solids
 //
-/// \class Geant4GM:: ExtrudedSolid
+/// \class Geant4GM::ExtrudedSolid
 ///
 /// VGM implementation for Geant4 xtru solid.
 ///

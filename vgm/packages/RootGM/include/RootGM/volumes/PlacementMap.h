@@ -11,7 +11,7 @@
 
 /// \ingroup RootGM_volumes
 //
-/// \class RootGM:: PlacementMap
+/// \class RootGM::PlacementMap
 ///
 /// The map between VGM and Root placements.
 ///

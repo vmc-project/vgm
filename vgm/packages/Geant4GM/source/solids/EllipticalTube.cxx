@@ -38,7 +38,7 @@ Geant4GM::EllipticalTube::EllipticalTube(const std::string& name,
 {
 /// Standard constructor to define elliptical tube from parameters
 /// \param dx the semi-axis of the ellipse along x in mm
-/// \param dx the semi-axis of the ellipse along y in mm
+/// \param dy the semi-axis of the ellipse along y in mm
 /// \param hz half-length along the z axis in mm
 
   Geant4GM::SolidMap::Instance()->AddSolid(this, fEllipticalTube); 

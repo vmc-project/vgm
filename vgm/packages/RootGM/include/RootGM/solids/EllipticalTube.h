@@ -11,7 +11,7 @@
 
 /// \ingroup RootGM_solids
 //
-/// \class RootGM:: EllipticalTube
+/// \class RootGM::EllipticalTube
 ///
 /// VGM implementation for Root elliptical tube solid.
 ///

@@ -11,7 +11,7 @@
 
 /// \ingroup RootGM_solids
 //
-/// \class RootGM:: Para
+/// \class RootGM::Para
 ///
 /// VGM implementation for Root para solid.
 ///

@@ -11,7 +11,7 @@
 
 /// \ingroup RootGM_solids
 //
-/// \class RootGM:: Cons
+/// \class RootGM::Cons
 ///
 /// VGM implementation for Root cons solid.
 ///

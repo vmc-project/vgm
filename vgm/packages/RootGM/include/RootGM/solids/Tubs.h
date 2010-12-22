@@ -11,7 +11,7 @@
 
 /// \ingroup RootGM_solids
 //
-/// \class RootGM:: Tubs
+/// \class RootGM::Tubs
 ///
 /// VGM implementation for Root tubs solid.
 ///

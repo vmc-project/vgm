@@ -11,7 +11,7 @@
 
 /// \ingroup RootGM_volumes
 //
-/// \class RootGM:: Factory
+/// \class RootGM::Factory
 ///
 /// VGM factory for Root.
 ///

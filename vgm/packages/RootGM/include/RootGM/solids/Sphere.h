@@ -11,7 +11,7 @@
 
 /// \ingroup RootGM_solids
 //
-/// \class RootGM:: Sphere
+/// \class RootGM::Sphere
 ///
 /// VGM implementation for Root sphere solid.
 ///

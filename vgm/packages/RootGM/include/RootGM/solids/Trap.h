@@ -11,7 +11,7 @@
 
 /// \ingroup RootGM_solids
 //
-/// \class RootGM:: Trap
+/// \class RootGM::Trap
 ///
 /// VGM implementation for Root trap solid.
 ///

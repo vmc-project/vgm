@@ -143,7 +143,6 @@ namespace VGM {
                                double dx, double dy, double hz) = 0; 
 
                        /// Create the extruded solid 
-                       /// \param nz number of z planes
                        /// \param polygon the outline polygon defined by its
                        ///        vertices
                        /// \param zsections the z-sections defined by
@@ -273,7 +272,7 @@ namespace VGM {
 		       ///        of the face at +hz in mm
                        /// \param dx4 half-length along x of the side at +hy
 		       ///        of the face at +hz in mm
-                       /// \param alpha1  angle with respect to the y axis from the 
+                       /// \param alpha2  angle with respect to the y axis from the 
 		       ///        centre of the side at -hy to the centre at +hy
 		       ///        of the face at +hz
                        ///
@@ -383,7 +382,7 @@ namespace VGM {
 		          /// \param motherVolume the associated mother volume
 		          /// \param axis the replication axis
 		          /// \param nofItems number of replications
-		          /// \param with the replication width (the unit depends on the axis;
+		          /// \param width the replication width (the unit depends on the axis;
 		          ///        can be mm or deg)
 		          ///  \param offset the replication offset (the unit depends on the axis;
 		          ///        can be mm or deg)
