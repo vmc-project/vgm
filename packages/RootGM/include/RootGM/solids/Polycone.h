@@ -11,7 +11,7 @@
 
 /// \ingroup RootGM_solids
 //
-/// \class RootGM:: Polycone
+/// \class RootGM::Polycone
 ///
 /// VGM implementation for Root polycone solid.
 ///

@@ -11,7 +11,7 @@
 
 /// \ingroup RootGM_volumes
 //
-/// \class RootGM:: Placement
+/// \class RootGM::Placement
 ///
 /// VGM implementation for Root positions of volumes.
 ///

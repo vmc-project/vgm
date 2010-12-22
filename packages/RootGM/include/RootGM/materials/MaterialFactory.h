@@ -11,7 +11,7 @@
 
 /// \ingroup RootGM_materials
 //
-/// \class RootGM:: MaterialFactory
+/// \class RootGM::MaterialFactory
 ///
 /// VGM material factory for Root.
 ///

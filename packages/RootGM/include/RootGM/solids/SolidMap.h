@@ -11,7 +11,7 @@
 
 /// \ingroup RootGM_solids
 //
-/// \class RootGM:: SolidMap
+/// \class RootGM::SolidMap
 ///
 /// The map between VGM and Root solids.
 ///

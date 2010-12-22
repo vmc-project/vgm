@@ -11,7 +11,7 @@
 
 /// \ingroup RootGM_materials
 //
-/// \class RootGM:: Element
+/// \class RootGM::ElementNonGeo
 ///
 /// VGM implementation for Root element which is not represented via TGeoElement
 /// object in Root geometry

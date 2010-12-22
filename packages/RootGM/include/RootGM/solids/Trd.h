@@ -11,7 +11,7 @@
 
 /// \ingroup RootGM_solids
 //
-/// \class RootGM:: Trd
+/// \class RootGM::Trd
 ///
 /// VGM implementation for Root trd solid.
 ///

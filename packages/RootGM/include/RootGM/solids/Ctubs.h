@@ -11,7 +11,7 @@
 
 /// \ingroup RootGM_solids
 //
-/// \class RootGM:: Ctubs
+/// \class RootGM::Ctubs
 ///
 /// VGM implementation for Root cut tubs solid.
 ///

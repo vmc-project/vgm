@@ -11,7 +11,7 @@
 
 /// \ingroup VGM_solids
 ///
-/// \class VGM::IBox
+/// \class VGM::IEllipsoid
 /// 
 /// The VGM interface to ellipsoid solids.
 ///
