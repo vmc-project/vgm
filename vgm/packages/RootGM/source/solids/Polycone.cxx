@@ -43,7 +43,7 @@ RootGM::Polycone::Polycone(
 /// Standard constructor to define polycone from parameters
 /// \param sphi starting angle of the segment in deg
 /// \param dphi opening angle of the segment in deg
-/// \param nofZplanes number of planes perpendicular to the
+/// \param nofZPlanes number of planes perpendicular to the
 ///	   z axis (has to be >= 2)
 /// \param z  array of z positions of the planes in mm 
 /// \param rin array of inside radius of the planes in mm 

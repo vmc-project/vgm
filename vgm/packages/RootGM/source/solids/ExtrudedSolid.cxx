@@ -36,7 +36,6 @@ RootGM::ExtrudedSolid::ExtrudedSolid(const std::string& name,
     fXtru(0)
 {
 /// Standard constructor to define ExtrudedSolid from parameters
-/// \param nz number of z planess
 /// \param polygon the outline polygon
 /// \param zsections the z-sections defined by
 ///        z positions, polygon offset in x, y and scale 

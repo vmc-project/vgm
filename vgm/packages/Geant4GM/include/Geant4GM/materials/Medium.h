@@ -36,7 +36,7 @@ namespace Geant4GM {
   {
     public:
       Medium(const std::string& name, 
-             int id,
+             int mediumId,
              VGM::IMaterial* material,
              int nofParameters, double* parameters);
       virtual ~Medium();

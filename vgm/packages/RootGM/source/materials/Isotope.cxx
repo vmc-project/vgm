@@ -34,9 +34,9 @@ RootGM::Isotope::Isotope(const std::string& name,
 /// Standard constructor to define Isotope from parameters 
 /// \param name its name
 ///	   (must be unique in the factory)
-/// \param symbol its symbol
-/// \param z the effective atomic number
-/// \param a the effective mass of a mole in g/mole 
+/// \param z the atomic number
+/// \param n the number of nucleons
+/// \param a the mass of a mole in g/mole 
 
   // Register Isotope in the map
   IsotopeMap::Instance()->AddIsotope(this, fIsotope); 

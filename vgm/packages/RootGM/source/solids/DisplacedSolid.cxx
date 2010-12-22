@@ -46,8 +46,6 @@ RootGM::DisplacedSolid::DisplacedSolid(
     fConstituentSolid(solid) 
 {
 /// Standard constructor to define Displaced solids via constituents
-/// \param boolType type of Displaced operation (kIntersection, kSubtraction,
-///        kUnion)
 /// \param solid constituent solids
 /// \param displacement the Root 3D transformation that defines the
 ///        displacement of the solid
