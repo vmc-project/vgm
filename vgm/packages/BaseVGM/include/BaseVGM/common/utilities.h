@@ -22,10 +22,10 @@
 
 namespace BaseVGM {
 
-    // Debug printing 
+    /// Debug printing 
     void  DebugInfo();
 
-    // Round number
+    /// Round number
     double Round(double x);
 }
 
