@@ -43,6 +43,8 @@ VGM info:    Element: enriched Uranium (U)   Z = 92.0   N = 235.3   A = 235.31 g
    --->  Isotope:  U238   Z = 92   N = 238   A = 238.03 g/mole   abundance:  10.00 %
 VGM info:   Importing element: 
 VGM info:    Element: Vacuum ( )   Z =  1.0   N =   1.0   A =   1.01 g/mole
+VGM info:   Importing element: 
+VGM info:    Element: Tungsten ( )   Z = 74.0   N = 183.8   A = 183.84 g/mole
 VGM info:   Importing material: 
 VGM info:    Material:    Basic     density:  2.700 g/cm3   RadL:   8.893 cm   Nucl.Int.Length:  38.860 cm   Imean: 166.000 eV 
    --->  Element: Basic ( )   Z = 13.0   N =  27.0   A =  26.98 g/mole  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
@@ -66,6 +68,9 @@ VGM info:    Material:  Uranium     density: 13.610 g/cm3   RadL:   4.358 mm   N
 VGM info:   Importing material: 
 VGM info:    Material:   Vacuum     density:  0.000 kg/m3   RadL: 204727512.315 pc   Nucl.Int.Length: 114561548.020 pc   Imean:  19.200 eV   temperature:   2.73 K  pressure:   0.00 atm
    --->  Element: Vacuum ( )   Z =  1.0   N =   1.0   A =   1.01 g/mole  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
+VGM info:   Importing material: 
+VGM info:    Material: Tungsten     density: 19.250 g/cm3   RadL:   3.513 mm   Nucl.Int.Length:  10.332 cm   Imean: 727.000 eV 
+   --->  Element: Tungsten ( )   Z = 74.0   N = 183.8   A = 183.84 g/mole  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
 VGM info:   Importing LV: world
 VGM info:   Importing solid: worldS
 VGM info:      Imported solid: Box  "worldS"  hx = 6200mm  hy = 3000mm  hz = 2000mm

@@ -806,6 +806,12 @@ void  TstGeometryViaGeant4::DefineMaterials()
   new G4Material("Vacuum", 
                  z=1., a=1.01*g/mole,density= universe_mean_density,
                  kStateGas, 2.73*kelvin, 3.e-18*pascal);
+
+  // simple material (Tungsten)  which caused problem in v3.03
+  //
+  new G4Material("Tungsten", z=74., a=183.84*g/mole, density= 19.25*g/cm3);
+
+
 }
 
 //_____________________________________________________________________________

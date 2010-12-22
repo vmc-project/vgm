@@ -52,6 +52,10 @@ VGM info:   Importing material:
 VGM info:   Material Vacuum    A=0 Z=0 rho=0 radlen=1e+30 intlen=1e+30 index=4
 VGM info:   Importing element: from element object
 VGM info:   Element: VACUUM      Z=0   N=0.000000   A=0.000000 [g/mole]
+VGM info:   Importing material: 
+VGM info:   Material Tungsten    A=183.84 Z=74 rho=19.25 radlen=0.351617 intlen=10.3323 index=5
+VGM info:   Importing element: from element object
+VGM info:   Element: W      Z=74   N=184.000000   A=183.840000 [g/mole]
 VGM info:   Importing medium: 
 VGM info:   OBJ: TGeoMedium	Basic	
 VGM info:   Importing medium: 
@@ -62,6 +66,8 @@ VGM info:   Importing medium:
 VGM info:   OBJ: TGeoMedium	Uranium	
 VGM info:   Importing medium: 
 VGM info:   OBJ: TGeoMedium	Vacuum	
+VGM info:   Importing medium: 
+VGM info:   OBJ: TGeoMedium	Tungsten	
 VGM info:   Importing volume: world
 VGM info:   Importing shape: worldS
 VGM info:      Imported solid: Box  "worldS"  hx = 6200mm  hy = 3000mm  hz = 2000mm
@@ -268,6 +274,8 @@ VGM info:   Element: "enriched Uranium"  "U"  Z = 92  N = 235  A = 235.312 g/mol
      1th isotope: Isotope: "U238"    Z = 92  N = 238  A = 238.03 g/mole  abundance: 10%
 VGM info:   Exporting element: 
 VGM info:   Element: "VACUUM"  "VACUUM"  Z = 0  N = 0  A = 0 g/mole
+VGM info:   Exporting element: 
+VGM info:   Element: "W"  "TUNGSTEN"  Z = 74  N = 184  A = 183.84 g/mole
 VGM info:   Exporting material: 
 VGM info:   Material: "Basic"  density 2.7 g/cm3  radlen 8.8751 cm  intlen 38.8622 cm  state "Undefined"  temperature 273.15 kelvin  pressure 1 atm
    0th element: Element: "ALUMINIUM"  "AL"  Z = 13  N = 26.98  A = 26.98 g/mole  Elm mass fraction: 100 %
@@ -287,6 +295,9 @@ VGM info:   Material: "Uranium"  density 13.61 g/cm3  radlen 0.436288 cm  intlen
 VGM info:   Exporting material: 
 VGM info:   Material: "Vacuum"  density 0 g/cm3  radlen 1e+30 cm  intlen 1e+30 cm  state "Gas"  temperature 2.73 kelvin  pressure 2.96077e-23 atm
    0th element: Element: "VACUUM"  "VACUUM"  Z = 0  N = 0  A = 0 g/mole  Elm mass fraction: 100 %
+VGM info:   Exporting material: 
+VGM info:   Material: "Tungsten"  density 19.25 g/cm3  radlen 0.351617 cm  intlen 10.3323 cm  state "Undefined"  temperature 273.15 kelvin  pressure 1 atm
+   0th element: Element: "W"  "TUNGSTEN"  Z = 74  N = 184  A = 183.84 g/mole  Elm mass fraction: 100 %
 VGM info:   Exporting medium: 
 VGM info:   Medium: "Basic"  material Basic g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
 VGM info:   Exporting medium: 
@@ -297,6 +308,8 @@ VGM info:   Exporting medium:
 VGM info:   Medium: "Uranium"  material Uranium g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
 VGM info:   Exporting medium: 
 VGM info:   Medium: "Vacuum"  material Vacuum g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+VGM info:   Exporting medium: 
+VGM info:   Medium: "Tungsten"  material Tungsten g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
 VGM info:   Exporting volume store: 
 VGM info:      Exporting solid: 
 VGM info:      Box  "worldS"  hx = 6200mm  hy = 3000mm  hz = 2000mm

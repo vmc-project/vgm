@@ -224,8 +224,13 @@ Geant4GM::MaterialFactory::CreateElement(
   }     
   
   VGM::IElement* vgmElement;
-  if (g4Element)
+  if (g4Element) {
     vgmElement = Geant4GM::ElementMap::Instance()->GetElement(g4Element);
+    if ( ! vgmElement ) {
+      vgmElement = new Geant4GM::Element(g4Element);
+      ElementStore().push_back(vgmElement);
+    }  
+  }  
   else  {
     if ( z < 1.0) {
       // special case (vacuum)
