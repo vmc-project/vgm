@@ -15,13 +15,16 @@ $Id$
   version 3.04
     New features:
       In RootGM:
-      - Added support for elements composed from isotopes:
+      - Added support for elements composed from isotopes.
   
     Fixes:
       In Geant4GM:
       - Fixed debug output in MaterialFactory
       - Fix in importing a vacuum element with z < 1.0
         (important for the import of geometry from Root in Geant4).
+      In Geant4GM. Root GM:
+      - Fix in converting materials defined directly via Z, A
+        (which caused break, reported by Filimon Roukoutakis)
 
     Tested with CLHEP 2.1.0.1, Root 5.28/00, Geant4 9.4;
     Linux: gcc 4.5.1 (FC14)
