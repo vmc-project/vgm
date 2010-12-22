@@ -871,12 +871,18 @@ void  TstGeometryViaRoot::DefineMaterials()
                        2.73 /* kelvin*/ , 
                        3.e-18/*pascal*/ * 6.24150e+3 /* MeV/mm3 */); 
 
+  // simple material (Tungsten)  which caused problem in v3.03
+  //
+  TGeoMaterial* material6
+    = new TGeoMaterial("Tungsten", a=183.84, z=74., density= 19.25);
+
   // Tracking medias
   new TGeoMedium("Basic",        1, material1);
   new TGeoMedium("Air",          2, material2);
   new TGeoMedium("Scintillator", 3, material3);
   new TGeoMedium("Uranium",      4, material4);
   new TGeoMedium("Vacuum",       5, material5);
+  new TGeoMedium("Tungsten",     6, material6);
 }
 
 //_____________________________________________________________________________
