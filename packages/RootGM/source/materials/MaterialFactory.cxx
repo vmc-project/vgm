@@ -361,8 +361,13 @@ RootGM::MaterialFactory::CreateElement(
   }     
   
   VGM::IElement* vgmElement;
-  if ( tgeoElement )
+  if ( tgeoElement ) {
     vgmElement = RootGM::ElementMap::Instance()->GetElement(tgeoElement);
+    if ( ! vgmElement ) {
+      vgmElement = new RootGM::Element(tgeoElement);
+      ElementStore().push_back(vgmElement);
+    }
+  }
   else  {
     vgmElement = new RootGM::Element(name, symbol, z, a);
     ElementStore().push_back(vgmElement);
