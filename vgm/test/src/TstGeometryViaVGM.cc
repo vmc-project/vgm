@@ -821,6 +821,8 @@ void  TstGeometryViaVGM::DefineMaterials()
     = materialFactory->CreateElement("Oxygen",    "O",  z=8.,  a=16.00 * fGmole);
   IElement* elAl
     = materialFactory->CreateElement("Aluminium", "Al", z=13., a=26.98 * fGmole);
+  IElement* elW
+    = materialFactory->CreateElement("Tungsten",  "W",  z=74., a=183.84 * fGmole);
 
   // simple material (Al)
   //
@@ -893,6 +895,12 @@ void  TstGeometryViaVGM::DefineMaterials()
       ->CreateMaterial("Vacuum", density, elVacuum, radlen=0., intlen=0.,
                        VGM::kGas, temperature, pressure);
 
+  // simple material (Tungsten)  which caused problem in v3.03
+  //
+  IMaterial* material6 
+    = materialFactory
+      ->CreateMaterial("Tungsten", density=19.25* fGcm3, elW, radlen=0., intlen=0.);
+
   // define tracking media
   // with no parameters specified
   materialFactory->CreateMedium("Basic",        1, material1, 0, 0); 
@@ -900,6 +908,7 @@ void  TstGeometryViaVGM::DefineMaterials()
   materialFactory->CreateMedium("Scintillator", 3, material3, 0, 0); 
   materialFactory->CreateMedium("Uranium",      4, material4, 0, 0); 
   materialFactory->CreateMedium("Vacuum",       5, material5, 0, 0); 
+  materialFactory->CreateMedium("Tungsten",     6, material6, 0, 0); 
 }
 
 //_____________________________________________________________________________

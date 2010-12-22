@@ -52,6 +52,10 @@ VGM info:   Importing material:
 VGM info:   Material Vacuum    A=0 Z=0 rho=0 radlen=1e+30 intlen=1e+30 index=4
 VGM info:   Importing element: from element object
 VGM info:   Element: VACUUM      Z=0   N=0.000000   A=0.000000 [g/mole]
+VGM info:   Importing material: 
+VGM info:   Material Tungsten    A=183.84 Z=74 rho=19.25 radlen=0.351617 intlen=10.3323 index=5
+VGM info:   Importing element: from element object
+VGM info:   Element: W      Z=74   N=184.000000   A=183.840000 [g/mole]
 VGM info:   Importing medium: 
 VGM info:   OBJ: TGeoMedium	Basic	
 VGM info:   Importing medium: 
@@ -62,6 +66,8 @@ VGM info:   Importing medium:
 VGM info:   OBJ: TGeoMedium	Uranium	
 VGM info:   Importing medium: 
 VGM info:   OBJ: TGeoMedium	Vacuum	
+VGM info:   Importing medium: 
+VGM info:   OBJ: TGeoMedium	Tungsten	
 VGM info:   Importing volume: world
 VGM info:   Importing shape: worldS
 VGM info:      Imported solid: Box  "worldS"  hx = 10000mm  hy = 10000mm  hz = 1000mm
