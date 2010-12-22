@@ -11,7 +11,7 @@
 
 /// \ingroup RootGM_volumes
 //
-/// \class RootGM:: Volume
+/// \class RootGM::Volume
 ///
 /// VGM implementation for Root volume.
 ///

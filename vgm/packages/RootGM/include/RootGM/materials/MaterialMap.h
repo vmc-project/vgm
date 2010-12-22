@@ -11,7 +11,7 @@
 
 /// \ingroup RootGM_materials
 //
-/// \class RootGM:: MaterialMap
+/// \class RootGM::MaterialMap
 ///
 /// The map between VGM and Root material.
 ///

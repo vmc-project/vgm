@@ -11,7 +11,7 @@
 
 /// \ingroup RootGM_solids
 //
-/// \class RootGM:: Box
+/// \class RootGM::Box
 ///
 /// VGM implementation for Root box solid.
 ///

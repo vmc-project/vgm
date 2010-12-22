@@ -11,7 +11,7 @@
 
 /// \ingroup RootGM_solids
 //
-/// \class RootGM:: BooleanSolid
+/// \class RootGM::BooleanSolid
 ///
 /// VGM implementation for Root Boolean solid
 ///

@@ -11,7 +11,7 @@
 
 /// \ingroup RootGM_solids
 //
-/// \class RootGM:: Polyhedra
+/// \class RootGM::Polyhedra
 ///
 /// VGM implementation for Root polyhedra solid.
 ///

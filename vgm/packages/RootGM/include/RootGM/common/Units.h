@@ -11,7 +11,7 @@
 
 /// \ingroup RootGM_common
 //
-/// \class RootGM:: Units
+/// \class RootGM::Units
 ///
 /// Conversion from Root physical units to VGM units.
 ///

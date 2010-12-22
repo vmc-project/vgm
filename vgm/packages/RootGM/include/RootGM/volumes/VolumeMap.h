@@ -11,7 +11,7 @@
 
 /// \ingroup RootGM_volumes
 //
-/// \class RootGM:: VolumeMap
+/// \class RootGM::VolumeMap
 ///
 /// The map between VGM and Root volumes.
 ///

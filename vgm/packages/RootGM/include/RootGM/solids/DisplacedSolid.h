@@ -11,7 +11,7 @@
 
 /// \ingroup RootGM_solids
 //
-/// \class RootGM:: DisplacedSolid
+/// \class RootGM::DisplacedSolid
 ///
 /// VGM implementation for Root displaced solid
 ///

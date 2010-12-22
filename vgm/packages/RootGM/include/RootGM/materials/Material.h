@@ -11,7 +11,7 @@
 
 /// \ingroup RootGM_materials
 //
-/// \class RootGM:: Material
+/// \class RootGM::Material
 ///
 /// VGM implementation for Root material.
 ///

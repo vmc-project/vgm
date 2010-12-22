@@ -11,7 +11,7 @@
 
 /// \ingroup RootGM_solids
 //
-/// \class RootGM:: Ellipsoid
+/// \class RootGM::Ellipsoid
 ///
 /// VGM implementation for Root ellipsoid solid.
 ///

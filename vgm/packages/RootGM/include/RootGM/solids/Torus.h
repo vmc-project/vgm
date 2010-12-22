@@ -11,7 +11,7 @@
 
 /// \ingroup RootGM_solids
 //
-/// \class RootGM:: Torus
+/// \class RootGM::Torus
 ///
 /// VGM implementation for Root torus solid.
 ///

@@ -11,7 +11,7 @@
 
 /// \ingroup RootGM_solids
 //
-/// \class RootGM:: Paraboloid
+/// \class RootGM::Paraboloid
 ///
 /// VGM implementation for Root paraboloid solid.
 ///
