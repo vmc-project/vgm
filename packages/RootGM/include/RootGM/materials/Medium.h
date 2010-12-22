@@ -31,7 +31,7 @@ namespace RootGM {
   class Medium : public BaseVGM::VMedium
   {
     public:
-      Medium(const std::string& name, int id,
+      Medium(const std::string& name, int mediumId,
              VGM::IMaterial* material,
              int nofParameters, double* parameters);
       Medium(TGeoMedium* medium);		

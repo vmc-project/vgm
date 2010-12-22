@@ -38,6 +38,7 @@ Geant4GM::Material::Material(const std::string& name,
 ///	   (must be unique in the factory)
 /// \param density in g/cm3
 /// \param element element constituing this material
+/// \param isVacuum the flag for Vacuum material
 
   if ( ! element ) {
     std::cerr << "    Geant4GM::Material::Material: " << std::endl; 
@@ -86,6 +87,10 @@ Geant4GM::Material::Material(const std::string& name,
 ///	   (must be unique in the factory)
 /// \param density in g/cm3
 /// \param element element constituing this material
+/// \param state  the material state
+/// \param temperature the temperature in Kelvin
+/// \param pressure the pressure in atmosphere
+/// \param isVacuum the flag for Vacuum material
 
   if ( ! element ) {
     std::cerr << "    Geant4GM::Material::Material: " << std::endl; 
@@ -197,6 +202,9 @@ Geant4GM::Material::Material(const std::string& name,
 ///	   this material
 /// \param fractions vector of mass fractions of
 ///	   elements constituing this material
+/// \param state  the material state
+/// \param temperature the temperature in Kelvin
+/// \param pressure the pressure in atmosphere
 
 //
 

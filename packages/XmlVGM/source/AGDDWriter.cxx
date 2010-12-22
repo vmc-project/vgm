@@ -76,7 +76,6 @@ XmlVGM::AGDDWriter::AGDDWriter(const std::string& version,
 {
 /// Standard constructor
 /// \param version AGDD file version
-/// \param date    AGDD file generation date
 /// \param author  AGDD file author
 /// \param dtdVersion AGDD DTD version
  

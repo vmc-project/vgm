@@ -176,7 +176,7 @@ RootGM::Placement::Placement(
 /// \param motherVolume the associated mother volume
 /// \param axis the replication axis
 /// \param nofItems number of replications
-/// \param with the replication width (the unit depends on the axis;
+/// \param width the replication width (the unit depends on the axis;
 ///	   can be mm or deg)
 ///  \param offset the replication offset (the unit depends on the axis;
 ///	   can be mm or deg)

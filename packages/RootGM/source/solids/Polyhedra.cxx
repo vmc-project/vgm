@@ -46,7 +46,7 @@ RootGM::Polyhedra::Polyhedra(
 /// \param dphi opening angle of the segment in deg
 /// \param nofSides number of sides of the cross section
 ///	   between the given phi limits
-/// \param nofZplanes number of planes perpendicular to the
+/// \param nofZPlanes number of planes perpendicular to the
 ///	   z axis (has to be >= 2)
 /// \param z  array of z positions of the planes in mm 
 /// \param rin array of inside radius of the planes in mm 

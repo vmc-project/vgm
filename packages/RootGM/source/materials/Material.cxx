@@ -213,6 +213,9 @@ RootGM::Material::Material(const std::string& name,
 ///	   this material
 /// \param fractions vector of mass fractions of
 ///	   elements constituing this material
+/// \param state material state (not defined in Root material)
+/// \param temperature material temperature (not defined in Root material)
+/// \param pressure material pressure (not defined in Root material)
 
   if ( ! elements.size() ) {
     std::cerr << "    RootGM::Material::Material: " << std::endl; 
