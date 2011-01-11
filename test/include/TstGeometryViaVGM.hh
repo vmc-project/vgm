@@ -49,7 +49,8 @@ class TstGeometryViaVGM : public TstVGeometry
 
   private:
     // methods
-    VGM::IVolume* CreateWorld(double x, double y, double z);
+    VGM::IVolume* CreateWorld(double x, double y, double z, 
+                              const std::string& materialName = "Basic");
     VGM::IVolume* CreateNewSolid();
     VGM::IVolume* CreateArb8();
     void          CreateArb8Solids(std::vector<VGM::IVolume*>& volumes);

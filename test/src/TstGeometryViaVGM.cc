@@ -69,14 +69,15 @@ TstGeometryViaVGM::~TstGeometryViaVGM()
 // 
 
 //_____________________________________________________________________________
-IVolume* TstGeometryViaVGM::CreateWorld(double x, double y, double z)
+IVolume* TstGeometryViaVGM::CreateWorld(double x, double y, double z,
+                                        const std::string& materialName)
 {
 // Create world volume
 // ---
   
   ISolid* worldS = fFactory->CreateBox("worldS", x, y, z);
 
-  return fFactory->CreateVolume("world", worldS, "Basic");
+  return fFactory->CreateVolume("world", worldS, materialName);
 }    
 
 //_____________________________________________________________________________
@@ -966,7 +967,7 @@ void* TstGeometryViaVGM::TestPlacements()
 {
   // World
   //
-  IVolume* worldV = CreateWorld(600.*fCm, 100.*fCm, 600.*fCm);
+  IVolume* worldV = CreateWorld(600.*fCm, 100.*fCm, 600.*fCm, "Vacuum");
   fFactory->CreatePlacement("world", 0, worldV, 0, ClhepVGM::Identity());
 
   // Big box A
