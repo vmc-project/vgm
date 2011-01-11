@@ -59,6 +59,8 @@ const int         XmlVGM::AGDDWriter::fgkDefaultNumPrecision   = 4;
 const std::string XmlVGM::AGDDWriter::fgkCompNameExtension     = "_comp";
 const std::string XmlVGM::AGDDWriter::fgkElementNameExtension  = "_e";
 const std::string XmlVGM::AGDDWriter::fgkMaterialNameExtension = "_mat";
+const double      XmlVGM::AGDDWriter::fgkCarTolerance = 1e-10; 
+const double      XmlVGM::AGDDWriter::fgkAngTolerance = 1e-8;
 
 //_____________________________________________________________________________
 XmlVGM::AGDDWriter::AGDDWriter(const std::string& version,
@@ -714,29 +716,29 @@ void XmlVGM::AGDDWriter::WritePlacementWithRotation(
   fOutFile << fIndention
            << element1;
 
-  SmartPut(fOutFile, fNW+1, fNP, x, "; ");	   
-  SmartPut(fOutFile, fNW+1, fNP, y, "; ");	   
-  SmartPut(fOutFile, fNW+1, fNP, z, quota);	   
+  SmartPut(fOutFile, fNW+1, fNP, fgkCarTolerance, x, "; ");	   
+  SmartPut(fOutFile, fNW+1, fNP, fgkCarTolerance, y, "; ");	   
+  SmartPut(fOutFile, fNW+1, fNP, fgkCarTolerance, z, quota);	   
 
   fOutFile << fIndention << element2; 
 	   
-  SmartPut(fOutFile, 8, 5, xx, "; ");	   
-  SmartPut(fOutFile, 8, 5, xy, "; ");	   
-  SmartPut(fOutFile, 8, 5, xz, "; ");	   
+  SmartPut(fOutFile, 8, 5, 0, xx, "; ");	   
+  SmartPut(fOutFile, 8, 5, 0, xy, "; ");	   
+  SmartPut(fOutFile, 8, 5, 0, xz, "; ");	   
 
   fOutFile << std::endl
            << fIndention << element3;
 
-  SmartPut(fOutFile, 8, 5, yx, "; ");	   
-  SmartPut(fOutFile, 8, 5, yy, "; ");	   
-  SmartPut(fOutFile, 8, 5, yz, "; ");	   
+  SmartPut(fOutFile, 8, 5, 0, yx, "; ");	   
+  SmartPut(fOutFile, 8, 5, 0, yy, "; ");	   
+  SmartPut(fOutFile, 8, 5, 0, yz, "; ");	   
 
   fOutFile << std::endl
 	   << fIndention << element3;
 
-  SmartPut(fOutFile, 8, 5, zx, "; ");	   
-  SmartPut(fOutFile, 8, 5, zy, "; ");	   
-  SmartPut(fOutFile, 8, 5, zz, "");	   
+  SmartPut(fOutFile, 8, 5, 0, zx, "; ");	   
+  SmartPut(fOutFile, 8, 5, 0, zy, "; ");	   
+  SmartPut(fOutFile, 8, 5, 0, zz, "");	   
 
   fOutFile << element4 << volumeName << element5 << std::endl
            << fIndention << element6 << std::endl;
@@ -793,29 +795,29 @@ void XmlVGM::AGDDWriter::WritePlacementWithRotationAndReflection(
   fOutFile << fIndention
            << element1;
 
-  SmartPut(fOutFile, fNW+1, fNP, x, "; ");	   
-  SmartPut(fOutFile, fNW+1, fNP, y, "; ");	   
-  SmartPut(fOutFile, fNW+1, fNP, z, quota);	   
+  SmartPut(fOutFile, fNW+1, fNP, fgkCarTolerance, x, "; ");	   
+  SmartPut(fOutFile, fNW+1, fNP, fgkCarTolerance, y, "; ");	   
+  SmartPut(fOutFile, fNW+1, fNP, fgkCarTolerance, z, quota);	   
 
   fOutFile << fIndention << element2; 
 	   
-  SmartPut(fOutFile, 8, 5, xx, "; ");	   
-  SmartPut(fOutFile, 8, 5, xy, "; ");	   
-  SmartPut(fOutFile, 8, 5, xz, "; ");	   
+  SmartPut(fOutFile, 8, 5, 0, xx, "; ");	   
+  SmartPut(fOutFile, 8, 5, 0, xy, "; ");	   
+  SmartPut(fOutFile, 8, 5, 0, xz, "; ");	   
 
   fOutFile << std::endl
            << fIndention << element3;
 
-  SmartPut(fOutFile, 8, 5, yx, "; ");	   
-  SmartPut(fOutFile, 8, 5, yy, "; ");	   
-  SmartPut(fOutFile, 8, 5, yz, "; ");	   
+  SmartPut(fOutFile, 8, 5, 0, yx, "; ");	   
+  SmartPut(fOutFile, 8, 5, 0, yy, "; ");	   
+  SmartPut(fOutFile, 8, 5, 0, yz, "; ");	   
 
   fOutFile << std::endl
 	   << fIndention << element3;
 
-  SmartPut(fOutFile, 8, 5, zx, "; ");	   
-  SmartPut(fOutFile, 8, 5, zy, "; ");	   
-  SmartPut(fOutFile, 8, 5, zz, "");	   
+  SmartPut(fOutFile, 8, 5, 0, zx, "; ");	   
+  SmartPut(fOutFile, 8, 5, 0, zy, "; ");	   
+  SmartPut(fOutFile, 8, 5, 0, zz, "");	   
 
   fOutFile << element4 << volumeName << element5 << std::endl
            << fIndention << element6 << std::endl;
@@ -1218,10 +1220,10 @@ void XmlVGM::AGDDWriter::WriteElement(const VGM::IElement* element)
     std::string element5 = "\" />";
   
     fOutFile << indention << element3;
-    SmartPut(fOutFile, fNW-2, fNP, theZ, quota2);
+    SmartPut(fOutFile, fNW-2, fNP, 0, theZ, quota2);
 
     fOutFile << element4;
-    SmartPut(fOutFile, fNW-2, fNP, theA, element5);
+    SmartPut(fOutFile, fNW-2, fNP, 0, theA, element5);
     fOutFile << std::endl; 
   }  
 
@@ -1257,7 +1259,7 @@ void XmlVGM::AGDDWriter::WriteMaterial(const VGM::IMaterial* material)
   fOutFile  << element1 << materialName << quota;
   
   fOutFile  << element2;
-  SmartPut(fOutFile, fNW+1, fNP, density, element3);
+  SmartPut(fOutFile, fNW+1, fNP, 0, density, element3);
   fOutFile << std::endl; 
   
   for (int i=0; i<int(material->NofElements()); i++) {
@@ -1266,7 +1268,7 @@ void XmlVGM::AGDDWriter::WriteMaterial(const VGM::IMaterial* material)
 
     fOutFile << indention << element4 << elementSymbol << quota;
     fOutFile << element5;
-    SmartPut(fOutFile, fNW, fNP, atomCount, element6);
+    SmartPut(fOutFile, fNW, fNP, 0, atomCount, element6);
     fOutFile << std::endl;
   }  
 
@@ -1310,7 +1312,7 @@ void XmlVGM::AGDDWriter::WriteMedium(const VGM::IMedium* medium)
     double parameter = medium->Parameter(i);
     std::string separator = element6;
     if ( i == medium->NofParameters()-1 ) separator = element7;
-    SmartPut(fOutFile, fNW, fNP, parameter, separator);
+    SmartPut(fOutFile, fNW, fNP, 0, parameter, separator);
   }  
   fOutFile  << std::endl;
 }  
@@ -1448,9 +1450,9 @@ void XmlVGM::AGDDWriter::WritePlacement(
   // write element
   fOutFile << fIndention << element1;
 
-  SmartPut(fOutFile, fNW+1, fNP, x, "; ");
-  SmartPut(fOutFile, fNW+1, fNP, y, "; ");
-  SmartPut(fOutFile, fNW+1, fNP, z, "");
+  SmartPut(fOutFile, fNW+1, fNP, fgkCarTolerance, x, "; ");
+  SmartPut(fOutFile, fNW+1, fNP, fgkCarTolerance, y, "; ");
+  SmartPut(fOutFile, fNW+1, fNP, fgkCarTolerance, z, "");
 
   fOutFile << element2  << volumeName << element3 << std::endl 
            << fIndention << element4 << std::endl;

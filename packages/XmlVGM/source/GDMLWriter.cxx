@@ -62,6 +62,10 @@ const std::string XmlVGM::GDMLWriter::fgkElementNameExtension = "_e";
 const char        XmlVGM::GDMLWriter::fgkCharReplacement = '_'; 
 const std::string XmlVGM::GDMLWriter::fgkNotAllowedChars = " +-*/&<>%^";
 const std::string XmlVGM::GDMLWriter::fgkNotAllowedChars1 = "0123456789"; 
+const double      XmlVGM::GDMLWriter::fgkSTPTemperature = 273.15; // in kelvin                                                     
+const double      XmlVGM::GDMLWriter::fgkSTPPressure = 101325; // in pascal                                                  
+const double      XmlVGM::GDMLWriter::fgkCarTolerance = 1e-10; 
+const double      XmlVGM::GDMLWriter::fgkAngTolerance = 1e-8;
 
 //_____________________________________________________________________________
 XmlVGM::GDMLWriter::GDMLWriter(const std::string& unitName, 
@@ -1589,14 +1593,14 @@ void XmlVGM::GDMLWriter::WriteIsotope(const VGM::IIsotope* isotope)
   fOutFile << fIndention << element1 << name << quota1;
   for ( int i=0; i< 10 - int(name.size()); i++ ) fOutFile << " ";
   
-  SmartPut(fOutFile, fNW-2, fNP, element2, theZ, quota2);
+  SmartPut(fOutFile, fNW-2, fNP, 0, element2, theZ, quota2);
 
   //SmartPut(fOutFile, fNW-2, fNP, element3, theN, "\" >");
   //fOutFile << std::endl; 
   fOutFile << element3 << std::setw(3) << theN << "\" >" << std::endl;
   
   fOutFile << indention;
-  SmartPut(fOutFile, fNW-2, fNP, element4, theA, element5);
+  SmartPut(fOutFile, fNW-2, fNP, 0, element4, theA, element5);
   fOutFile << std::endl; 
 
   fOutFile << fIndention << element6 << std::endl;
@@ -1637,7 +1641,7 @@ void XmlVGM::GDMLWriter::WriteElement(const VGM::IElement* element)
       double natoms = element->RelAbundance(i);
   
       fOutFile << indention;
-      SmartPut(fOutFile, fNW-2, fNP, element3, natoms, quota2);
+      SmartPut(fOutFile, fNW-2, fNP, 0, element3, natoms, quota2);
       fOutFile << element4 << name << element6 << std::endl;
     }  
   }
@@ -1654,13 +1658,13 @@ void XmlVGM::GDMLWriter::WriteElement(const VGM::IElement* element)
     std::string element4 = "N=\"";
     std::string element5 = "<atom type=\"A\" unit=\"g/mol\" value=\"";
 
-    SmartPut(fOutFile, fNW-2, fNP, element3, theZ, quota2);
+    SmartPut(fOutFile, fNW-2, fNP, 0, element3, theZ, quota2);
     //SmartPut(fOutFile, fNW-2, fNP, element3, theN, "\" >");
     //fOutFile << std::endl; 
     fOutFile << element4 << std::setw(3) << theN << "\" >" << std::endl;
   
     fOutFile << indention;
-    SmartPut(fOutFile, fNW-2, fNP, element5, theA, element6);
+    SmartPut(fOutFile, fNW-2, fNP, 0, element5, theA, element6);
     fOutFile << std::endl;
   }   
 
@@ -1677,28 +1681,56 @@ void XmlVGM::GDMLWriter::WriteMaterial(const VGM::IMaterial* material)
 
   // Get parameters
   double density = material->Density()/ MassDensityUnit();
+  std::string state;
+  switch ( material->State() ) {
+    case VGM::kSolid:     state = "solid"; break;
+    case VGM::kLiquid:    state = "liquid"; break;
+    case VGM::kGas:       state = "gas"; break;
+    case VGM::kUndefined:
+    default:              state = "undefined";
+  }  
+  double temperature = material->Temperature()/TemperatureUnit();
+  double pressure = material->Pressure()/PressureUnit(); 
  
   // Compose material string template
   std::string quota = "\"  ";
   std::string element1 = "<material  name=\"";
   element1.append(materialName);
   element1.append(quota);
-  element1.append(">");
   
-  std::string element2 = "<D type=\"density\" unit=\"g/cm3\" value=\"";
-  std::string element3 = "<fraction n=\"";
-  std::string element4 = "ref=\"";
-  std::string element5 = "\"/>";
-  std::string element6 = "</material>";
+  std::string element2 = "state=\"";
+  element2.append(state);
+  element2.append(quota);
+  element2.append(">");
+  
+  std::string element3 = "<D type=\"density\" unit=\"g/cm3\" value=\"";
+  std::string element4 = "<T type=\"temperature\" unit=\"K\" value=\"";
+  std::string element5 = "<P type=\"pressure\" unit=\"pascal\" value=\"";
+  std::string element6 = "<fraction n=\"";
+  std::string element7 = "ref=\"";
+  std::string element8 = "\"/>";
+  std::string element9 = "</material>";
   
   std::string indention = fIndention + fkBasicIndention;
   
   // Write element
-  fOutFile << fIndention << element1 << std::endl;
+  fOutFile << fIndention << element1 << element2 << std::endl;
 
   fOutFile << indention;
-  SmartPut(fOutFile, fNW+1, fNP, element2, density, element5);
+  SmartPut(fOutFile, fNW+1, fNP, 0, element3, density, element8);
   fOutFile << std::endl; 
+  
+  if ( temperature != fgkSTPTemperature ) {
+    fOutFile << indention;
+    SmartPut(fOutFile, fNW+1, fNP, 0, element4, temperature, element8);
+    fOutFile << std::endl; 
+  }  
+  
+  if ( pressure != fgkSTPPressure ) {
+    fOutFile << indention;
+    SmartPut(fOutFile, fNW+1, fNP, 0, element5, pressure, element8);
+    fOutFile << std::endl; 
+  }  
   
   for (int i=0; i<int(material->NofElements()); i++) {
     double fraction
@@ -1707,11 +1739,11 @@ void XmlVGM::GDMLWriter::WriteMaterial(const VGM::IMaterial* material)
       = UpdateName(material->Element(i)->Name(), fgkElementNameExtension);  
 
     fOutFile << indention;
-    SmartPut(fOutFile, fNW, fNP, element3, fraction, quota);
-    fOutFile << element4 << elementName << element5 << std::endl;
+    SmartPut(fOutFile, fNW, fNP, 0, element6, fraction, quota);
+    fOutFile << element7 << elementName << element8 << std::endl;
   }  
 
-  fOutFile << fIndention << element6 << std::endl;
+  fOutFile << fIndention << element9 << std::endl;
  }  
 
 //_____________________________________________________________________________
@@ -1858,9 +1890,9 @@ void XmlVGM::GDMLWriter::WritePosition(
   // write element
   fOutFile << fIndention << element1 << posName;
 
-  SmartPut(fOutFile, fNW+1, fNP, element2, x, quota2);
-  SmartPut(fOutFile, fNW+1, fNP, element3, y, quota2);
-  SmartPut(fOutFile, fNW+1, fNP, element4, z, "");
+  SmartPut(fOutFile, fNW+1, fNP, fgkCarTolerance, element2, x, quota2);
+  SmartPut(fOutFile, fNW+1, fNP, fgkCarTolerance, element3, y, quota2);
+  SmartPut(fOutFile, fNW+1, fNP, fgkCarTolerance, element4, z, "");
 
   fOutFile << element5 << std::endl;
 }  
@@ -1893,9 +1925,9 @@ void XmlVGM::GDMLWriter::WriteRotation(
   // Write element
   fOutFile << fIndention << element1 << rotName;
 
-  SmartPut(fOutFile, fNW+1, fNP, element2, angleX, quota2);
-  SmartPut(fOutFile, fNW+1, fNP, element3, angleY, quota2);
-  SmartPut(fOutFile, fNW+1, fNP, element4, angleZ, "");
+  SmartPut(fOutFile, fNW+1, fNP, fgkAngTolerance, element2, angleX, quota2);
+  SmartPut(fOutFile, fNW+1, fNP, fgkAngTolerance, element3, angleY, quota2);
+  SmartPut(fOutFile, fNW+1, fNP, fgkAngTolerance, element4, angleZ, "");
 
   fOutFile << element5 << std::endl;
 }  
@@ -1925,9 +1957,9 @@ void XmlVGM::GDMLWriter::WriteScale(
   // Write element
   fOutFile << fIndention << element1 << rotName;
 
-  SmartPut(fOutFile, fNW+1, fNP, element2, scaleX, quota2);
-  SmartPut(fOutFile, fNW+1, fNP, element3, scaleY, quota2);
-  SmartPut(fOutFile, fNW+1, fNP, element4, scaleZ, "");
+  SmartPut(fOutFile, fNW+1, fNP, 0, element2, scaleX, quota2);
+  SmartPut(fOutFile, fNW+1, fNP, 0, element3, scaleY, quota2);
+  SmartPut(fOutFile, fNW+1, fNP, 0, element4, scaleZ, "");
 
   fOutFile << element5 << std::endl;
 }  

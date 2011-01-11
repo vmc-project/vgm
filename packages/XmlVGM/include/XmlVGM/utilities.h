@@ -40,11 +40,11 @@ namespace XmlVGM {
   void CutName(std::string& name, int size);
 
   std::ostream& SmartPut(std::ostream& out, 
-                     int size, int precision,
+                     int size, int precision, double tolerance,
                      double number, const std::string& separator);
   
   std::ostream& SmartPut(std::ostream& out,
-		     int size, int precision,
+		     int size, int precision, double tolerance,
 		     const std::string& separator1, 
 		     double number, const std::string& separator2);
 
