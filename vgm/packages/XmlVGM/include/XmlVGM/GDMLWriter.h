@@ -135,6 +135,8 @@ namespace XmlVGM {
       virtual double AngleUnit() const;
       virtual double AtomicWeightUnit() const;
       virtual double MassDensityUnit() const;
+      virtual double TemperatureUnit() const;
+      virtual double PressureUnit() const;
 
       // Set methods
       //
@@ -214,6 +216,10 @@ namespace XmlVGM {
       static const std::string  fgkNotAllowedChars;     //not allowed characters in XML
       static const std::string  fgkNotAllowedChars1;    //not allowed first characters
                                                         //in XML names
+      static const double       fgkSTPTemperature; /// STP temperature                                                        
+      static const double       fgkSTPPressure;    /// STP pressure   
+      static const double       fgkCarTolerance;   /// length tolerance                                                     
+      static const double       fgkAngTolerance;   /// angle tolerance                                                     
 
       // data members
       //
@@ -243,6 +249,12 @@ inline double XmlVGM::GDMLWriter::AtomicWeightUnit() const
 inline double XmlVGM::GDMLWriter::MassDensityUnit() const
 { return  1.; }   // g/cm3
  
+inline double XmlVGM::GDMLWriter::TemperatureUnit() const
+{ return  1.; }   // kelvin
+
+inline double XmlVGM::GDMLWriter::PressureUnit() const
+{ return  1./101325.0; }   // pascal 
+
 inline void XmlVGM::GDMLWriter::SetMaps(Maps* maps)
 { /// Set the name maps
   fMaps = maps; }

@@ -212,6 +212,8 @@ namespace XmlVGM {
       static const std::string  fgkCompNameExtension; //name extension for composition
       static const std::string  fgkElementNameExtension; //element name extension 
       static const std::string  fgkMaterialNameExtension;//material name extension 
+      static const double       fgkCarTolerance;   /// length tolerance                                                     
+      static const double       fgkAngTolerance;   /// angle tolerance                                                     
 
       // data members
       //

@@ -127,19 +127,24 @@ void XmlVGM::CutName(std::string& name, int size)
 //_____________________________________________________________________________
 std::ostream& 
 XmlVGM::SmartPut(std::ostream& out, 
-                 int size, int precision,
+                 int size, int precision, double tolerance,
                  double number, 
 		 const std::string& separator)
 {
 /// Help function to supress - sign in case the number == 0
 /// within the given precision
 
-  if ( ClhepVGM::Round(number*pow(10.,precision))/pow(10.,precision) == 0.0) {
-    number = 0.;
+  if ( fabs(number) < tolerance ) number = 0.0;
+
+  if ( number != 0.0 &&
+       ClhepVGM::Round(number*pow(10.,precision))/pow(10.,precision) == 0.0) {
+    out << std::scientific << std::setw(size) << std::setprecision(precision) 
+        << number << std::fixed << separator;
   }  
-  
-  out << std::setw(size) << std::setprecision(precision) 
-      << number << separator;
+  else {
+    out << std::setw(size) << std::setprecision(precision) 
+        << number << separator;
+  }      
   
   return out;
 }
@@ -147,7 +152,7 @@ XmlVGM::SmartPut(std::ostream& out,
 //_____________________________________________________________________________
 std::ostream& 
 XmlVGM::SmartPut(std::ostream& out, 
-                 int size, int precision,
+                 int size, int precision, double tolerance,
 		 const std::string& separator1,
                  double number, 
 		 const std::string& separator2)
@@ -155,12 +160,19 @@ XmlVGM::SmartPut(std::ostream& out,
 /// Help function to supress - sign in case the number == 0
 /// within the given precision
 
-  if ( ClhepVGM::Round(number*pow(10.,precision))/pow(10.,precision) == 0.0) {
-    number = 0.;
-  }  
-  
   out << separator1;
-  out << std::setw(size) << std::setprecision(precision) << number;
+
+  if ( fabs(number) < tolerance ) number = 0.0;
+
+  if ( number != 0.0 &&
+       ClhepVGM::Round(number*pow(10.,precision))/pow(10.,precision) == 0.0) {
+    out << std::scientific << std::setw(size) << std::setprecision(precision) 
+        << number << std::fixed;
+  }  
+  else {
+    out << std::setw(size) << std::setprecision(precision) << number;
+  }
+  
   out << separator2;
   
   return out;
