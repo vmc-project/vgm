@@ -14818,10 +14818,14 @@ if test x"$geant4_enable" = xyes ; then
 if test x"$geant4_libdir" = x ; then
     for try in "$geant4_prefix/lib/geant4/$geant4_system" "$geant4_prefix/lib/geant4" "$geant4_prefix/lib/$geant4_system" "$geant4_prefix/lib"
     do
-        if ! test -f "${try}/liblist"; then continue; fi
+        if ! test -d "${try}"; then continue; fi
         geant4_libdir=$try
         break
    done
+fi
+
+if test x"$geant4_libdir" = x ; then
+   geant4_libdir="$geant4_prefix/lib/geant4/$geant4_system"
 fi
 
 
@@ -14842,7 +14846,7 @@ fi
 
 # optional test file
 if test -n ${3}; then
-  arg_test_file=liblist
+  arg_test_file=
 fi
 
 # never allow a 'no' choice for core packages
