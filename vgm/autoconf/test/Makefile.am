@@ -20,7 +20,7 @@ vgm_libs = ../packages/BaseVGM/libBaseVGM.la ../packages/ClhepVGM/libClhepVGM.la
            ../packages/XmlVGM/libXmlVGM.la
 
 ext_links = \
-	$(CLHEP_LINK) $(ROOT_LINK) $(GEANT4_LINK) $(XERCES_LINK)
+	$(CLHEP_LINK) $(ROOT_LINK) $(GEANT4_LINK) $(XERCES_LINK) $(EXPAT_LINK)
 
 
 check_PROGRAMS = vgm_test
