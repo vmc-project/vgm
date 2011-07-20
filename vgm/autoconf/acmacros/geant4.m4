@@ -122,13 +122,17 @@ if test x"$geant4_enable" = xyes ; then
 if test x"$geant4_libdir" = x ; then
     for try in "$geant4_prefix/lib/geant4/$geant4_system" "$geant4_prefix/lib/geant4" "$geant4_prefix/lib/$geant4_system" "$geant4_prefix/lib"
     do
-        if ! test -f "${try}/liblist"; then continue; fi
+        if ! test -d "${try}"; then continue; fi
         geant4_libdir=$try
         break
    done
 fi
 
-UTIL_CHECK_PKG_DIR([$geant4_libdir],[Geant4],[liblist])
+if test x"$geant4_libdir" = x ; then
+   geant4_libdir="$geant4_prefix/lib/geant4/$geant4_system"
+fi   
+
+UTIL_CHECK_PKG_DIR([$geant4_libdir],[Geant4])
 
 if test x"$geant4_global_libs" = xyes ; then
     geant4_libs="-lG4interfaces -lG4persistency -lG4error_propagation -lG4readout -lG4physicslists -lG4run -lG4event -lG4tracking -lG4parmodels -lG4processes -lG4digits_hits -lG4track  -lG4particles -lG4geometry -lG4materials -lG4graphics_reps -lG4intercoms -lG4global"
