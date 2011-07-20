@@ -626,6 +626,9 @@ ROOT_ENABLE
 XERCES_LINK
 XERCES_INCLUDE
 XERCES_ENABLE
+EXPAT_LINK
+EXPAT_INCLUDE
+EXPAT_ENABLE
 GEANT4_LINK
 GEANT4_INCLUDE
 GEANT4_ENABLE
@@ -762,8 +765,12 @@ with_clhep_include
 with_clhep_libdir
 with_geant4
 with_geant4_system
+with_geant4_global_libs
 with_geant4_include
 with_geant4_libdir
+with_expat
+with_expat_include
+with_expat_libdir
 with_xerces
 with_xerces_include
 with_xerces_libdir
@@ -1424,8 +1431,13 @@ Optional Packages:
   --with-clhep-libdir     CLHEP alternate library dir
   --with-geant4           Geant4 package specification (yes,no,path)
   --with-geant4-system    Geant4 system type
+  --with-geant4-global-libs
+                          building with geant4 global libraries (yes,no)
   --with-geant4-include   alternate headers dir (that which holds "*.hh")
   --with-geant4-libdir    Geant4 alternate library dir
+  --with-expat            Expat package specification (yes,no,path)
+  --with-expat-include    alternate header dir (that which holds "expat.h")
+  --with-expat-libdir     Expat alternate library dir
   --with-xerces           XERCES package specification (yes,no,path)
   --with-xerces-include   alternate header dir (that which holds
                           "/xercesc/*/*.hpp")
@@ -14673,6 +14685,15 @@ fi
 
 
 
+# Check whether --with-geant4-global-libs was given.
+if test "${with_geant4_global_libs+set}" = set; then :
+  withval=$with_geant4_global_libs; geant4_global_libs=$with_geant4_global_libs
+else
+  geant4_global_libs=no
+fi
+
+
+
 
 # Check whether --with-geant4-include was given.
 if test "${with_geant4_include+set}" = set; then :
@@ -14887,7 +14908,254 @@ fi
 
 
 
-GEANT4_LINK="-Wl,-rpath -Wl,$geant4_libdir -L$geant4_libdir `$geant4_libdir/liblist -m $geant4_libdir < $geant4_libdir/libname.map`"
+if test x"$geant4_global_libs" = xyes ; then
+    geant4_libs="-lG4interfaces -lG4persistency -lG4error_propagation -lG4readout -lG4physicslists -lG4run -lG4event -lG4tracking -lG4parmodels -lG4processes -lG4digits_hits -lG4track  -lG4particles -lG4geometry -lG4materials -lG4graphics_reps -lG4intercoms -lG4global"
+    GEANT4_LINK="-Wl,-rpath -Wl,$geant4_libdir -L$geant4_libdir $geant4_libs"
+
+else
+   GEANT4_LINK="-Wl,-rpath -Wl,$geant4_libdir -L$geant4_libdir `$geant4_libdir/liblist -m $geant4_libdir < $geant4_libdir/libname.map`"
+
+fi
+
+fi
+
+
+
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for Expat" >&5
+$as_echo_n "checking for Expat... " >&6; }
+
+
+# Check whether --with-expat was given.
+if test "${with_expat+set}" = set; then :
+  withval=$with_expat;
+if test x$with_expat = xyes ; then
+	expat_enable=yes
+	expat_prefix=/usr
+elif test x$with_expat = xno ; then
+	expat_enable=no
+else
+	expat_enable=yes
+	expat_prefix=$with_expat
+fi
+
+else
+
+	expat_enable=yes
+	expat_prefix=/usr
+
+fi
+
+
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $expat_prefix" >&5
+$as_echo "$expat_prefix" >&6; }
+EXPAT_ENABLE=$expat_enable
+
+
+
+
+
+# Check whether --with-expat-include was given.
+if test "${with_expat_include+set}" = set; then :
+  withval=$with_expat_include;
+	expat_incdir=$with_expat_include
+	EXPAT_INCLUDE="-I$with_expat_include"
+
+else
+
+	expat_incdir="$expat_prefix/include"
+	EXPAT_INCLUDE=""
+
+fi
+
+
+if test x"$expat_enable" = xyes ; then
+
+
+# pkg name
+if test -z ${2}; then
+  as_fn_error $? "missing mandatory package name" "$LINENO" 5
+else
+  arg_pkg=Expat
+fi
+
+# dir to check
+if test -z $expat_incdir; then
+  as_fn_error $? "${arg_pkg} dir was not specified" "$LINENO" 5
+else
+  arg_dir=$expat_incdir
+fi
+
+# optional test file
+if test -n ${3}; then
+  arg_test_file=expat.h
+fi
+
+# never allow a 'no' choice for core packages
+if test ${arg_dir} = "no"; then
+  as_fn_error $? "'no' is not a valid choice" "$LINENO" 5
+fi
+
+# null arg, i.e. not specified
+if test ${arg_dir} = ""; then
+  as_fn_error $? "${arg_pkg} was not specified" "$LINENO" 5
+fi
+
+# dir does not exist
+if ! test -e ${arg_dir}; then
+  as_fn_error $? "directory ${arg_dir} for package ${arg_pkg} does not exist" "$LINENO" 5
+else
+  # not a directory
+  if ! test -d ${arg_dir}; then
+    as_fn_error $? "$arg_dir is not a directory" "$LINENO" 5
+  fi
+fi
+
+# check test file relative to input path (optional)
+if test -n ${arg_test_file}; then
+
+
+if test -z ${arg_dir}/${arg_test_file} ; then
+  as_fn_error $? "macro requires an argument of file to test" "$LINENO" 5;
+else
+  arg_test_file=${arg_dir}/${arg_test_file}
+fi
+
+as_ac_File=`$as_echo "ac_cv_file_$arg_test_file" | $as_tr_sh`
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $arg_test_file" >&5
+$as_echo_n "checking for $arg_test_file... " >&6; }
+if eval "test \"\${$as_ac_File+set}\"" = set; then :
+  $as_echo_n "(cached) " >&6
+else
+  test "$cross_compiling" = yes &&
+  as_fn_error $? "cannot check for file existence when cross compiling" "$LINENO" 5
+if test -r "$arg_test_file"; then
+  eval "$as_ac_File=yes"
+else
+  eval "$as_ac_File=no"
+fi
+fi
+eval ac_res=\$$as_ac_File
+	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
+$as_echo "$ac_res" >&6; }
+if eval test \"x\$"$as_ac_File"\" = x"yes"; then :
+  okay=yes
+else
+  okay=no
+fi
+
+
+if test $okay = no; then
+  as_fn_error $? "test file ${arg_test_file} was not found" "$LINENO" 5
+fi
+
+
+fi
+
+
+
+fi
+
+
+
+# Check whether --with-expat-libdir was given.
+if test "${with_expat_libdir+set}" = set; then :
+  withval=$with_expat_libdir;
+	expat_libdir=$with_expat_libdir
+	EXPAT_LINK="-Wl,-rpath -Wl,$expat_libdir -L$expat_libdir -lexpat"
+
+else
+
+	expat_libdir="$expat_prefix/lib"
+	EXPAT_LINK="-lexpat"
+
+fi
+
+
+if test x"$expat_enable" = xyes ; then
+
+
+# pkg name
+if test -z ${2}; then
+  as_fn_error $? "missing mandatory package name" "$LINENO" 5
+else
+  arg_pkg=Expat
+fi
+
+# dir to check
+if test -z $expat_libdir; then
+  as_fn_error $? "${arg_pkg} dir was not specified" "$LINENO" 5
+else
+  arg_dir=$expat_libdir
+fi
+
+# optional test file
+if test -n ${3}; then
+  arg_test_file=
+fi
+
+# never allow a 'no' choice for core packages
+if test ${arg_dir} = "no"; then
+  as_fn_error $? "'no' is not a valid choice" "$LINENO" 5
+fi
+
+# null arg, i.e. not specified
+if test ${arg_dir} = ""; then
+  as_fn_error $? "${arg_pkg} was not specified" "$LINENO" 5
+fi
+
+# dir does not exist
+if ! test -e ${arg_dir}; then
+  as_fn_error $? "directory ${arg_dir} for package ${arg_pkg} does not exist" "$LINENO" 5
+else
+  # not a directory
+  if ! test -d ${arg_dir}; then
+    as_fn_error $? "$arg_dir is not a directory" "$LINENO" 5
+  fi
+fi
+
+# check test file relative to input path (optional)
+if test -n ${arg_test_file}; then
+
+
+if test -z ${arg_dir}/${arg_test_file} ; then
+  as_fn_error $? "macro requires an argument of file to test" "$LINENO" 5;
+else
+  arg_test_file=${arg_dir}/${arg_test_file}
+fi
+
+as_ac_File=`$as_echo "ac_cv_file_$arg_test_file" | $as_tr_sh`
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $arg_test_file" >&5
+$as_echo_n "checking for $arg_test_file... " >&6; }
+if eval "test \"\${$as_ac_File+set}\"" = set; then :
+  $as_echo_n "(cached) " >&6
+else
+  test "$cross_compiling" = yes &&
+  as_fn_error $? "cannot check for file existence when cross compiling" "$LINENO" 5
+if test -r "$arg_test_file"; then
+  eval "$as_ac_File=yes"
+else
+  eval "$as_ac_File=no"
+fi
+fi
+eval ac_res=\$$as_ac_File
+	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
+$as_echo "$ac_res" >&6; }
+if eval test \"x\$"$as_ac_File"\" = x"yes"; then :
+  okay=yes
+else
+  okay=no
+fi
+
+
+if test $okay = no; then
+  as_fn_error $? "test file ${arg_test_file} was not found" "$LINENO" 5
+fi
+
+
+fi
+
 
 
 fi

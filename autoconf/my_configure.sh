@@ -11,12 +11,16 @@
 
 # An example of configure options for building VGM
 # with all supported packages
+# To build with Geant4 global libraries, add:
+# --with-geant4-global-libs=yes
 #
 # by I. Hrivnacova, IPN Orsay
 
 
-./configure --prefix=/work/projects/vgm/autoconf/vgm_built \
+./configure --prefix=/work/projects/vgm/autoconf/vgm_build \
             --with-xerces=/usr \
+            --with-expat=/usr \
             --with-clhep=/work/packages/clhep/2.1.0.1 \
             --with-geant4=/work/projects/vgm/new/geant4 \
             --with-root=/work/projects/vgm/new/root
+

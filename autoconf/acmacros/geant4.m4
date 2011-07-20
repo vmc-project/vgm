@@ -72,6 +72,14 @@ AC_ARG_WITH(geant4-system,
 	               [Geant4 system type]),
 	[geant4_system=$with_geant4_system])
 
+dnl
+dnl Set the global libraries flags
+dnl
+
+AC_ARG_WITH([geant4-global-libs],
+	AC_HELP_STRING([--with-geant4-global-libs],
+                       [building with geant4 global libraries (yes,no)]),
+	[geant4_global_libs=$with_geant4_global_libs],[geant4_global_libs=no])
 
 dnl
 dnl Set/find the compile time include flags
@@ -122,8 +130,14 @@ fi
 
 UTIL_CHECK_PKG_DIR([$geant4_libdir],[Geant4],[liblist])
 
-GEANT4_LINK="-Wl,-rpath -Wl,$geant4_libdir -L$geant4_libdir `$geant4_libdir/liblist -m $geant4_libdir < $geant4_libdir/libname.map`"
+if test x"$geant4_global_libs" = xyes ; then
+    geant4_libs="-lG4interfaces -lG4persistency -lG4error_propagation -lG4readout -lG4physicslists -lG4run -lG4event -lG4tracking -lG4parmodels -lG4processes -lG4digits_hits -lG4track  -lG4particles -lG4geometry -lG4materials -lG4graphics_reps -lG4intercoms -lG4global"
+    GEANT4_LINK="-Wl,-rpath -Wl,$geant4_libdir -L$geant4_libdir $geant4_libs"
 AC_SUBST(GEANT4_LINK)
+else
+   GEANT4_LINK="-Wl,-rpath -Wl,$geant4_libdir -L$geant4_libdir `$geant4_libdir/liblist -m $geant4_libdir < $geant4_libdir/libname.map`"
+AC_SUBST(GEANT4_LINK)
+fi
 
 fi
 

@@ -53,6 +53,7 @@ ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/acinclude.m4 \
 	$(top_srcdir)/acmacros/util.m4 $(top_srcdir)/acmacros/clhep.m4 \
 	$(top_srcdir)/acmacros/xerces.m4 \
+	$(top_srcdir)/acmacros/expat.m4 \
 	$(top_srcdir)/acmacros/geant4.m4 \
 	$(top_srcdir)/acmacros/root.m4 \
 	$(top_srcdir)/acmacros/vgm_build.m4 \
@@ -148,6 +149,9 @@ ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 EGREP = @EGREP@
 EXEEXT = @EXEEXT@
+EXPAT_ENABLE = @EXPAT_ENABLE@
+EXPAT_INCLUDE = @EXPAT_INCLUDE@
+EXPAT_LINK = @EXPAT_LINK@
 FGREP = @FGREP@
 GEANT4_ENABLE = @GEANT4_ENABLE@
 GEANT4_INCLUDE = @GEANT4_INCLUDE@

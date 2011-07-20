@@ -53,6 +53,7 @@ ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/acinclude.m4 \
 	$(top_srcdir)/acmacros/util.m4 $(top_srcdir)/acmacros/clhep.m4 \
 	$(top_srcdir)/acmacros/xerces.m4 \
+	$(top_srcdir)/acmacros/expat.m4 \
 	$(top_srcdir)/acmacros/geant4.m4 \
 	$(top_srcdir)/acmacros/root.m4 \
 	$(top_srcdir)/acmacros/vgm_build.m4 \
@@ -148,10 +149,13 @@ ECHO_N = -n
 ECHO_T = 
 EGREP = /bin/grep -E
 EXEEXT = 
+EXPAT_ENABLE = yes
+EXPAT_INCLUDE = 
+EXPAT_LINK = -lexpat
 FGREP = /bin/grep -F
 GEANT4_ENABLE = yes
 GEANT4_INCLUDE = -I/work/projects/vgm/new/geant4/include
-GEANT4_LINK = -Wl,-rpath -Wl,/work/projects/vgm/new/geant4/lib/Linux-g++ -L/work/projects/vgm/new/geant4/lib/Linux-g++ -lG4error_propagation -lG4gdml -lG4mctruth -lG4readout -lG3toG4 -lG4phys_lists -lG4gflash -lG4phys_builders -lG4GMocren -lG4geomtext -lG4biasing -lG4visHepRep -lG4brep -lG4FR -lG4OpenGL -lG4OpenInventor -lG4RayTracer -lG4Tree -lG4VRML -lG4decay -lG4UIbasic -lG4UIGAG -lG4UIcommon -lG4emadjoint -lG4visXXX -lG4empii -lG4emhighenergy -lG4partadj -lG4hadronic_radioactivedecay -lG4vis_management -lG4empolar -lG4hadronic_binary -lG4partutils -lG4emlowenergy -lG4xrays -lG4run -lG4hadronic_coherent_elastic -lG4scoring -lG4hadronic_interface_ci -lG4hadronic_abrasion -lG4hadronic_bert_cascade -lG4hadronic_qmd -lG4hadronic_hetcpp_evaporation -lG4hadronic_proc_ci -lG4had_muon_nuclear -lG4transportation -lG4hadronic_proc -lG4hadronic_em_dissociation -lG4hadronic_stop -lG4hadronic_hetcpp_utils -lG4hadronic_mgt -lG4hadronic_fragm_ci -lG4had_theo_max -lG4hadronic_ablation -lG4hadronic_crosec_ci -lG4hadronic_iso -lG4hadronic_incl_cascade -lG4had_preequ_exciton -lG4optical -lG4hadronic_deex_handler -lG4had_lll_fis -lG4parameterisation -lG4had_neu_hp -lG4hadronic_deex_evaporation -lG4had_string_diff -lG4hadronic_deex_gem_evaporation -lG4muons -lG4hadronic_deex_fission -lG4hadronic_HE -lG4hadronic_deex_photon_evaporation -lG4hadronic_deex_fermi_breakup -lG4had_string_frag -lG4emstandard -lG4hadronic_qgstring -lG4had_string_man -lG4had_im_r_matrix -lG4hadronic_deex_management -lG4hadronic_LE -lG4shortlived -lG4hadronic_RPG -lG4hadronic_deex_util -lG4hadronic_body_ci -lG4hadronic_xsect -lG4hadronic_deex_multifragmentation -lG4had_mod_util -lG4had_mod_man -lG4hadronic_util -lG4modeling -lG4geomBoolean -lG4detutils -lG4geomdivision -lG4mesons -lG4detscorer -lG4event -lG4geombias -lG4tracking -lG4detector -lG4emutils -lG4bosons -lG4ions -lG4baryons -lG4leptons -lG4digits -lG4cuts -lG4procman -lG4navigation -lG4volumes -lG4track -lG4gl2ps -lG4hits -lG4magneticfield -lG4partman -lG4specsolids -lG4csg -lG4hepnumerics -lG4geometrymng -lG4materials -lG4graphics_reps -lG4intercoms -lG4globman 
+GEANT4_LINK = -Wl,-rpath -Wl,/work/projects/vgm/new/geant4/lib/Linux-g++ -L/work/projects/vgm/new/geant4/lib/Linux-g++ -lG4interfaces -lG4persistency -lG4error_propagation -lG4readout -lG4physicslists -lG4run -lG4event -lG4tracking -lG4parmodels -lG4processes -lG4digits_hits -lG4track  -lG4particles -lG4geometry -lG4materials -lG4graphics_reps -lG4intercoms -lG4global
 GREP = /bin/grep
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
@@ -195,7 +199,7 @@ ROOTLIBDIR = /work/projects/vgm/new/root/lib
 ROOTLIBS = -lCore -lCint -lRIO -lNet -lHist -lGraf -lGraf3d -lGpad -lTree -lRint -lPostscript -lMatrix -lPhysics -lMathCore -lThread
 ROOTRPATH = /work/projects/vgm/new/root/lib
 ROOTSOVERSION = 5.28
-ROOTVERSION = 5.28/00
+ROOTVERSION = 5.28/00d
 ROOT_ENABLE = yes
 ROOT_INCLUDE = -I/work/projects/vgm/new/root/include
 ROOT_LINK = -Wl,--rpath -Wl,/work/projects/vgm/new/root/lib -L/work/projects/vgm/new/root/lib -lCore -lCint -lRIO -lNet -lHist -lGraf -lGraf3d -lGpad -lTree -lRint -lPostscript -lMatrix -lPhysics -lMathCore -lThread -lGeom
@@ -249,7 +253,7 @@ mandir = ${datarootdir}/man
 mkdir_p = /bin/mkdir -p
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /work/projects/vgm/autoconf/vgm_built
+prefix = /work/projects/vgm/autoconf/vgm_build
 program_transform_name = s,x,x,
 psdir = ${docdir}
 sbindir = ${exec_prefix}/sbin

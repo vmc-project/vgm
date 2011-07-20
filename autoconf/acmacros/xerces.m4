@@ -10,7 +10,7 @@
 dnl
 dnl Autoconf macros to build against Xerces-C
 dnl
-dnl Calling XERCES_SETUP will produce these macros:
+dnl Calling XERCESC_SETUP will produce these macros:
 dnl 
 dnl XERCES_ENABLE - "yes" or "no", if "no" the following will be garbage:
 dnl XERCES_INCLUDE - compile time include flags
