@@ -11,7 +11,7 @@
 
 /// \ingroup RootGM_materials
 //
-/// \class RootGM:: Element
+/// \class RootGM::Element
 ///
 /// VGM implementation for Root element using TGeoElement object
 ///
