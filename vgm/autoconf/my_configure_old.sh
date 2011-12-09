@@ -10,15 +10,18 @@
 # -----------------------------------------------------------------------
 
 # An example of configure options for building VGM
-# with all supported packages with CLHEP, expat embedded in Geant4
-# (available since Geant4 9.5)
+# with all supported packages.
+# To build with Geant4 global libraries, remove option:
+# --with-geant4-granular-libs=yes
 #
 # by I. Hrivnacova, IPN Orsay
 
 
 ./configure --prefix=/work/projects/vgm/autoconf/vgm_build \
             --with-xerces=/usr \
-            --with-clhep=no \
+            --with-expat=/usr \
+            --with-clhep=/work/packages/clhep/2.1.0.1 \
             --with-geant4=/work/projects/vgm/new/geant4 \
+            --with-geant4-granular-libs \
             --with-root=/work/projects/vgm/new/root
 
