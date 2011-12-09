@@ -4,14 +4,14 @@ Info in <TGeoManager::TGeoManager>: Geometry Test, Test geometry via Root create
 Root geometry will be defined via Root and exported to Geant4
 
 *************************************************************
- Geant4 version Name: geant4-09-04    (17-December-2010)
+ Geant4 version Name: geant4-09-05-ref-00    (2-December-2011)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
 *************************************************************
 
-Visualization Manager instantiating with verbosity "warnings (3)"...
 Info in <TGeoManager::SetTopVolume>: Top volume is world. Master volume is world
+Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
 TestAssemblies2 finished
 Go to Import
 Info in <TGeoManager::Export>: Exporting Test Test geometry via Root as root file. Optimizations streamed.
@@ -112,7 +112,7 @@ VGM info:   Element: "C"  "CARBON"  Z = 6  N = 12  A = 12.0107 g/mole
 VGM info:   Exporting element: 
 VGM info:   Element: "H"  "HYDROGEN"  Z = 1  N = 1  A = 1.00794 g/mole
 VGM info:   Exporting element: 
-VGM info:   Element: "enriched Uranium"  "U"  Z = 92  N = 235  A = 235.312 g/mole
+VGM info:   Element: "enriched Uranium"  "U"  Z = 92  N = 235.3  A = 235.312 g/mole
      0th isotope: Isotope: "U235"    Z = 92  N = 235  A = 235.01 g/mole  abundance: 90%
      1th isotope: Isotope: "U238"    Z = 92  N = 238  A = 238.03 g/mole  abundance: 10%
 VGM info:   Exporting element: 
@@ -132,7 +132,7 @@ VGM info:   Material: "Scintillator"  density 1.032 g/cm3  radlen 42.132 cm  int
    1th element: Element: "H"  "HYDROGEN"  Z = 1  N = 1  A = 1.00794 g/mole  Elm mass fraction: 8.52916 %
 VGM info:   Exporting material: 
 VGM info:   Material: "Uranium"  density 13.61 g/cm3  radlen 0.436288 cm  intlen 15.8771 cm  state "Undefined"  temperature 273.15 kelvin  pressure 1 atm
-   0th element: Element: "enriched Uranium"  "U"  Z = 92  N = 235  A = 235.312 g/mole
+   0th element: Element: "enriched Uranium"  "U"  Z = 92  N = 235.3  A = 235.312 g/mole
      0th isotope: Isotope: "U235"    Z = 92  N = 235  A = 235.01 g/mole  abundance: 90%
      1th isotope: Isotope: "U238"    Z = 92  N = 238  A = 238.03 g/mole  abundance: 10%  Elm mass fraction: 100 %
 VGM info:   Exporting material: 
@@ -177,10 +177,10 @@ Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
 Info in <TGeoManager::CloseGeometry>: Counting nodes...
 Info in <TGeoManager::Voxelize>: Voxelizing...
 Info in <TGeoManager::CloseGeometry>: Building cache...
-Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
 Info in <TGeoManager::CloseGeometry>: 6 nodes/ 3 volume UID's in Test geometry via Root
 Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
 Info in <TGeoManager::Export>: Exporting Test Test geometry via Root as root file. Optimizations streamed.
+Visualization Manager instantiating with verbosity "warnings (3)"...
 Visualization Manager initialising...
 Registering graphics systems...
 
@@ -194,18 +194,12 @@ Current available graphics systems are:
   VRML1FILE (VRML1FILE)
   VRML2FILE (VRML2FILE)
   gMocrenFile (gMocrenFile)
-  FukuiRenderer (DAWN)
   OpenGLStoredX (OGL)
   OpenGLImmediateX (OGLI)
   OpenGLStoredX (OGLS)
   OpenGLImmediateX (OGLIX)
   OpenGLStoredX (OGLSX)
-  OpenGLImmediateXm (OGLIXm)
-  OpenGLStoredXm (OGLSXm)
-  OpenInventorXt (OI)
-  OpenInventorXt (OIX)
-  VRML1 (VRML1)
-  VRML2 (VRML2)
+  RayTracerX (RayTracerX)
 
 Registering model factories...
 
@@ -222,6 +216,10 @@ Registered filter factories:
   particleFilter
   originVolumeFilter
   attributeFilter
+
+Some /vis commands (optionally) take a string to specify colour.
+Available colours:
+  black, blue, cyan, gray, green, grey, magenta, red, white, yellow
 
 Graphics systems deleted.
 Visualization Manager deleting...

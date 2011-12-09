@@ -2,13 +2,12 @@ Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometr
 Geant4 geometry will be defined via VGM and exported to Root
 
 *************************************************************
- Geant4 version Name: geant4-09-04    (17-December-2010)
+ Geant4 version Name: geant4-09-05-ref-00    (2-December-2011)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
 *************************************************************
 
-Visualization Manager instantiating with verbosity "warnings (3)"...
 VGM info:   Importing isotope: 
 VGM info:    Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole
 VGM info:   Importing isotope: 
@@ -94,7 +93,7 @@ VGM info:   Medium: "Tungsten"  material Tungsten g/cm3  parameters:  0  0  0  0
 VGM info:   Exporting volume store: 
 VGM info:      Exporting solid: 
 VGM info:      Box  "worldS"  hx = 6000mm  hy = 1000mm  hz = 6000mm
-VGM info:   Exporting volume:  0th  "world"  material: "Basic"
+VGM info:   Exporting volume:  0th  "world"  material: "Vacuum"
 VGM info:      Exporting solid: 
 VGM info:      Box  "boxA"  hx = 200mm  hy = 600mm  hz = 500mm
 VGM info:   Exporting volume:  1th  "layerA"  material: "Air"
@@ -136,6 +135,7 @@ VGM info:      0th daughter vol = layerC  simple placement: layerC
 VGM info:      1th daughter vol = layerC  simple placement: layerC
 VGM info:   ExportPlacements for 3th volume layerC
 Info in <TGeoManager::SetTopVolume>: Top volume is world. Master volume is world
+Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
 Export finished
 Go to save Root geometry
 Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
@@ -143,10 +143,10 @@ Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
 Info in <TGeoManager::CloseGeometry>: Counting nodes...
 Info in <TGeoManager::Voxelize>: Voxelizing...
 Info in <TGeoManager::CloseGeometry>: Building cache...
-Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
 Info in <TGeoManager::CloseGeometry>: 241 nodes/ 4 volume UID's in VGM Root geometry
 Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
 Info in <TGeoManager::Export>: Exporting VGM Root geometry VGM Root geometry as root file. Optimizations streamed.
+Visualization Manager instantiating with verbosity "warnings (3)"...
 Visualization Manager initialising...
 Registering graphics systems...
 
@@ -160,18 +160,12 @@ Current available graphics systems are:
   VRML1FILE (VRML1FILE)
   VRML2FILE (VRML2FILE)
   gMocrenFile (gMocrenFile)
-  FukuiRenderer (DAWN)
   OpenGLStoredX (OGL)
   OpenGLImmediateX (OGLI)
   OpenGLStoredX (OGLS)
   OpenGLImmediateX (OGLIX)
   OpenGLStoredX (OGLSX)
-  OpenGLImmediateXm (OGLIXm)
-  OpenGLStoredXm (OGLSXm)
-  OpenInventorXt (OI)
-  OpenInventorXt (OIX)
-  VRML1 (VRML1)
-  VRML2 (VRML2)
+  RayTracerX (RayTracerX)
 
 Registering model factories...
 
@@ -188,6 +182,10 @@ Registered filter factories:
   particleFilter
   originVolumeFilter
   attributeFilter
+
+Some /vis commands (optionally) take a string to specify colour.
+Available colours:
+  black, blue, cyan, gray, green, grey, magenta, red, white, yellow
 
 Graphics systems deleted.
 Visualization Manager deleting...
