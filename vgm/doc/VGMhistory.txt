@@ -11,6 +11,17 @@ $Id$
 
  The Virtual Geometry Model - Versions
 =========================================
+  09/12/2011
+  version 3.05
+    New features:
+      In XmlVGM: improved XML output formats
+    Build:  
+      Migration to geant4-config in GNUmake and Autoconf
+
+    Tested with Root 5.32/00, Geant4 9.5 (with embedded CLHEP 2.1.1.0) 
+    and also CLHEP 2.1.0.1, Geant4 9.4.p02 
+    Linux: gcc 4.5.1 (FC14)
+      
   22/12/2010
   version 3.04
     New features:
