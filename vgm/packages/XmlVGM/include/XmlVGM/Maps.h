@@ -12,7 +12,7 @@
 /// \ingroup XmlVGM
 //
 /// \class XmlVGM::Maps
-/// --------------------
+/// 
 /// Utility class for mapping XML element values to their names
 /// within the XML exporter precision
 ///
