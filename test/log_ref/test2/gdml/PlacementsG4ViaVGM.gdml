@@ -83,6 +83,9 @@
          <fraction n="  0.9999"  ref="H_1_i" />
          <fraction n="  0.0001"  ref="H_2_i" />
       </element>
+      <element  name="Vacuum_e"  Z="  1.0000"  N="  1" >
+         <atom type="A" unit="g/mol" value="  1.0100" />
+      </element>
       <element  name="C_e"  >
          <fraction n="  0.9893"  ref="C_12_i" />
          <fraction n="  0.0107"  ref="C_13_i" />
@@ -93,31 +96,30 @@
       <element  name="Oxygen_e"  Z="  8.0000"  N=" 16" >
          <atom type="A" unit="g/mol" value=" 16.0000" />
       </element>
-      <element  name="Aluminium_e"  Z=" 13.0000"  N=" 27" >
-         <atom type="A" unit="g/mol" value=" 26.9800" />
-      </element>
       <element  name="enriched_Uranium_e"  >
          <fraction n="  0.9000"  ref="U_235_i" />
          <fraction n="  0.1000"  ref="U_238_i" />
       </element>
 
-      <material  name="Air"  >
+      <material  name="Air"  state="gas"  >
          <D type="density" unit="g/cm3" value="     0.0013"/>
          <fraction n="    0.7000"  ref="Nitrogen_e"/>
          <fraction n="    0.3000"  ref="Oxygen_e"/>
       </material>
-      <material  name="Basic"  >
-         <D type="density" unit="g/cm3" value="     2.7000"/>
-         <fraction n="    1.0000"  ref="Aluminium_e"/>
-      </material>
-      <material  name="Scintillator"  >
+      <material  name="Scintillator"  state="solid"  >
          <D type="density" unit="g/cm3" value="     1.0320"/>
          <fraction n="    0.9147"  ref="C_e"/>
          <fraction n="    0.0853"  ref="H_e"/>
       </material>
-      <material  name="Uranium"  >
+      <material  name="Uranium"  state="solid"  >
          <D type="density" unit="g/cm3" value="    13.6100"/>
          <fraction n="    1.0000"  ref="enriched_Uranium_e"/>
+      </material>
+      <material  name="Vacuum"  state="gas"  >
+         <D type="density" unit="g/cm3" value=" 1.0000e-25"/>
+         <T type="temperature" unit="K" value="     2.7300"/>
+         <P type="pressure" unit="pascal" value=" 3.0000e-18"/>
+         <fraction n="    1.0000"  ref="Vacuum_e"/>
       </material>
 
    </materials>
@@ -172,7 +174,7 @@
       </volume>
 
       <volume name="world">
-         <materialref ref="Basic"/>
+         <materialref ref="Vacuum"/>
          <solidref ref="world_s"/>
          <physvol>
             <volumeref ref="layerA"/>

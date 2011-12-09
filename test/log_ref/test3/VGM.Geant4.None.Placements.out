@@ -1,14 +1,14 @@
 Geant4 geometry will be defined via VGM
 
 *************************************************************
- Geant4 version Name: geant4-09-04    (17-December-2010)
+ Geant4 version Name: geant4-09-05-ref-00    (2-December-2011)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
 *************************************************************
 
-Visualization Manager instantiating with verbosity "warnings (3)"...
 TestPlacements finished
+Visualization Manager instantiating with verbosity "warnings (3)"...
 Visualization Manager initialising...
 Registering graphics systems...
 
@@ -22,18 +22,12 @@ Current available graphics systems are:
   VRML1FILE (VRML1FILE)
   VRML2FILE (VRML2FILE)
   gMocrenFile (gMocrenFile)
-  FukuiRenderer (DAWN)
   OpenGLStoredX (OGL)
   OpenGLImmediateX (OGLI)
   OpenGLStoredX (OGLS)
   OpenGLImmediateX (OGLIX)
   OpenGLStoredX (OGLSX)
-  OpenGLImmediateXm (OGLIXm)
-  OpenGLStoredXm (OGLSXm)
-  OpenInventorXt (OI)
-  OpenInventorXt (OIX)
-  VRML1 (VRML1)
-  VRML2 (VRML2)
+  RayTracerX (RayTracerX)
 
 Registering model factories...
 
@@ -50,6 +44,10 @@ Registered filter factories:
   particleFilter
   originVolumeFilter
   attributeFilter
+
+Some /vis commands (optionally) take a string to specify colour.
+Available colours:
+  black, blue, cyan, gray, green, grey, magenta, red, white, yellow
 
 
 ----- HepJamesRandom engine status -----
@@ -3011,7 +3009,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     1 -3.47e+03     -336 3.32e+03         1        0      276       276      layerA Transportation
     2 -3.77e+03     -251 3.06e+03         1        0      401       677       world Transportation
     3 -3.99e+03     -189 2.88e+03         1        0      291       968      layerA Transportation
-    4 -4.66e+03 5.68e-14 2.32e+03         1        0      897  1.86e+03      layerC Transportation
+    4 -4.66e+03 8.53e-14 2.32e+03         1        0      897  1.86e+03      layerC Transportation
     5 -4.67e+03        4  2.3e+03         1        0     18.9  1.88e+03      layerB Transportation
     6 -4.68e+03     4.97  2.3e+03         1        0     4.59  1.89e+03       world Transportation
     7   -6e+03      379 1.18e+03         1        0 1.77e+03  3.66e+03  OutOfWorld Transportation
@@ -8746,6 +8744,6 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     0 -2.28e+03      382 5.27e+03         1        0        0         0       world initStep
     1 -3.29e+03   -1e+03 4.29e+03         1        0 1.97e+03  1.97e+03  OutOfWorld Transportation
 number of event = 1000 User=0.05s Real=0.07000000000000001s Sys=0.03s
-Execution time: R: 0.0705 s  C: 0.0705 s 
+Execution time: R: 0.0766 s  C: 0.0766 s 
 Graphics systems deleted.
 Visualization Manager deleting...

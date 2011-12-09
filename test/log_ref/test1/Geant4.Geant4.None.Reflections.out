@@ -1,13 +1,12 @@
 Geant4 geometry will be defined via Geant4
 
 *************************************************************
- Geant4 version Name: geant4-09-04    (17-December-2010)
+ Geant4 version Name: geant4-09-05-ref-00    (2-December-2011)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
 *************************************************************
 
-Visualization Manager instantiating with verbosity "warnings (3)"...
 TestReflections finished
 Go to Import
 VGM info:   Geant4GM::Factory::Import started ...
@@ -46,14 +45,14 @@ VGM info:    Element: Vacuum ( )   Z =  1.0   N =   1.0   A =   1.01 g/mole
 VGM info:   Importing element: 
 VGM info:    Element: Tungsten ( )   Z = 74.0   N = 183.8   A = 183.84 g/mole
 VGM info:   Importing material: 
-VGM info:    Material:    Basic     density:  2.700 g/cm3   RadL:   8.893 cm   Nucl.Int.Length:  38.860 cm   Imean: 166.000 eV 
+VGM info:    Material:    Basic    density:  2.700 g/cm3   RadL:   8.893 cm   Nucl.Int.Length:  38.860 cm   Imean: 166.000 eV 
    --->  Element: Basic ( )   Z = 13.0   N =  27.0   A =  26.98 g/mole  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
 VGM info:   Importing material: 
-VGM info:    Material:      Air     density:  1.290 mg/cm3  RadL: 285.161 m    Nucl.Int.Length: 662.904 m    Imean:  85.703 eV   temperature: 273.15 K  pressure:   1.00 atm
+VGM info:    Material:      Air    density:  1.290 mg/cm3  RadL: 285.161 m    Nucl.Int.Length: 662.904 m    Imean:  85.703 eV   temperature: 273.15 K  pressure:   1.00 atm
    --->  Element: Nitrogen (N)   Z =  7.0   N =  14.0   A =  14.01 g/mole  ElmMassFraction:  70.00 %  ElmAbundance  72.71 %
    --->  Element: Oxygen (O)   Z =  8.0   N =  16.0   A =  16.00 g/mole  ElmMassFraction:  30.00 %  ElmAbundance  27.29 %
 VGM info:   Importing material: 
-VGM info:    Material: Scintillator     density:  1.032 g/cm3   RadL:  42.544 cm   Nucl.Int.Length:  70.101 cm   Imean:  64.684 eV 
+VGM info:    Material: Scintillator    density:  1.032 g/cm3   RadL:  42.544 cm   Nucl.Int.Length:  70.101 cm   Imean:  64.684 eV 
    --->  Element: C (C)   Z =  6.0   N =  12.0   A =  12.01 g/mole
    --->  Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole   abundance:  98.93 %
    --->  Isotope:   C13   Z =  6   N =  13   A =  13.00 g/mole   abundance:   1.07 %  ElmMassFraction:  91.47 %  ElmAbundance  47.37 %
@@ -61,15 +60,15 @@ VGM info:    Material: Scintillator     density:  1.032 g/cm3   RadL:  42.544 cm
    --->  Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
    --->  Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %  ElmMassFraction:   8.53 %  ElmAbundance  52.63 %
 VGM info:   Importing material: 
-VGM info:    Material:  Uranium     density: 13.610 g/cm3   RadL:   4.358 mm   Nucl.Int.Length:  15.891 cm   Imean: 890.000 eV 
+VGM info:    Material:  Uranium    density: 13.610 g/cm3   RadL:   4.358 mm   Nucl.Int.Length:  15.891 cm   Imean: 890.000 eV 
    --->  Element: enriched Uranium (U)   Z = 92.0   N = 235.3   A = 235.31 g/mole
    --->  Isotope:  U235   Z = 92   N = 235   A = 235.01 g/mole   abundance:  90.00 %
    --->  Isotope:  U238   Z = 92   N = 238   A = 238.03 g/mole   abundance:  10.00 %  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
 VGM info:   Importing material: 
-VGM info:    Material:   Vacuum     density:  0.000 kg/m3   RadL: 204727512.315 pc   Nucl.Int.Length: 114561548.020 pc   Imean:  19.200 eV   temperature:   2.73 K  pressure:   0.00 atm
+VGM info:    Material:   Vacuum    density:  0.000 kg/m3   RadL: 204727512.315 pc   Nucl.Int.Length: 114561548.020 pc   Imean:  19.200 eV   temperature:   2.73 K  pressure:   0.00 atm
    --->  Element: Vacuum ( )   Z =  1.0   N =   1.0   A =   1.01 g/mole  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
 VGM info:   Importing material: 
-VGM info:    Material: Tungsten     density: 19.250 g/cm3   RadL:   3.513 mm   Nucl.Int.Length:  10.332 cm   Imean: 727.000 eV 
+VGM info:    Material: Tungsten    density: 19.250 g/cm3   RadL:   3.513 mm   Nucl.Int.Length:  10.332 cm   Imean: 727.000 eV 
    --->  Element: Tungsten ( )   Z = 74.0   N = 183.8   A = 183.84 g/mole  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
 VGM info:   Importing LV: world
 VGM info:   Importing solid: worldS
@@ -604,6 +603,7 @@ Geant4_GM_Factory factory volumes store:
    32th: Volume: "paraboloid_refl" material "Basic" solid "Paraboloid"  0 daughters: 
 VGM info:   Geant4GM::Factory::Import finished.
 Import finished
+Visualization Manager instantiating with verbosity "warnings (3)"...
 Visualization Manager initialising...
 Registering graphics systems...
 
@@ -617,18 +617,12 @@ Current available graphics systems are:
   VRML1FILE (VRML1FILE)
   VRML2FILE (VRML2FILE)
   gMocrenFile (gMocrenFile)
-  FukuiRenderer (DAWN)
   OpenGLStoredX (OGL)
   OpenGLImmediateX (OGLI)
   OpenGLStoredX (OGLS)
   OpenGLImmediateX (OGLIX)
   OpenGLStoredX (OGLSX)
-  OpenGLImmediateXm (OGLIXm)
-  OpenGLStoredXm (OGLSXm)
-  OpenInventorXt (OI)
-  OpenInventorXt (OIX)
-  VRML1 (VRML1)
-  VRML2 (VRML2)
+  RayTracerX (RayTracerX)
 
 Registering model factories...
 
@@ -645,6 +639,10 @@ Registered filter factories:
   particleFilter
   originVolumeFilter
   attributeFilter
+
+Some /vis commands (optionally) take a string to specify colour.
+Available colours:
+  black, blue, cyan, gray, green, grey, magenta, red, white, yellow
 
 Graphics systems deleted.
 Visualization Manager deleting...
