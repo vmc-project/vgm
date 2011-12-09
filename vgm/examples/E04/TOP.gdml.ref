@@ -48,11 +48,11 @@
          <atom type="A" unit="g/mol" value=" 26.9800" />
       </element>
 
-      <material  name="Al"  >
+      <material  name="Al"  state="undefined"  >
          <D type="density" unit="g/cm3" value="     2.7000"/>
          <fraction n="    1.0000"  ref="ALUMINIUM_e"/>
       </material>
-      <material  name="Vacuum"  >
+      <material  name="Vacuum"  state="undefined"  >
          <D type="density" unit="g/cm3" value="     0.0000"/>
          <fraction n="    1.0000"  ref="VACUUM_e"/>
       </material>

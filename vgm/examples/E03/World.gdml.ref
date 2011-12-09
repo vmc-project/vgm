@@ -24,15 +24,17 @@
          <atom type="A" unit="g/mol" value="207.1900" />
       </element>
 
-      <material  name="Galactic"  >
-         <D type="density" unit="g/cm3" value="     0.0000"/>
+      <material  name="Galactic"  state="gas"  >
+         <D type="density" unit="g/cm3" value=" 1.0000e-25"/>
+         <T type="temperature" unit="K" value="     2.7300"/>
+         <P type="pressure" unit="pascal" value=" 3.0000e-18"/>
          <fraction n="    1.0000"  ref="Galactic_e"/>
       </material>
-      <material  name="Lead"  >
+      <material  name="Lead"  state="solid"  >
          <D type="density" unit="g/cm3" value="    11.3500"/>
          <fraction n="    1.0000"  ref="Lead_e"/>
       </material>
-      <material  name="liquidArgon"  >
+      <material  name="liquidArgon"  state="solid"  >
          <D type="density" unit="g/cm3" value="     1.3900"/>
          <fraction n="    1.0000"  ref="liquidArgon_e"/>
       </material>
