@@ -14741,8 +14741,16 @@ fi
 
 
       if test ! x"$GEANT4CONF" = "xno" ; then
+        geant4_cflags=`$GEANT4CONF --cflags`
+        #additional flags - not handled via geant4-config
+        if test -1 > 0; then
+          geant4_cflags=$geant4_cflags" -DG4VIS_USE"
+        fi
+        if test -1 > 0; then
+          geant4_cflags=$geant4_cflags" -DG4UI_USE"
+        fi
         # define variables
-        GEANT4_INCLUDE=`$GEANT4CONF --cflags`
+        GEANT4_INCLUDE=$geant4_cflags
         GEANT4_LINK=`$GEANT4CONF --libs`
 
 
