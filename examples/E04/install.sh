@@ -17,6 +17,16 @@ CURDIR=`pwd`
 
 echo "... Installing E04"
 
+if [ ! "$CLHEP_BASE_DIR" = "" ]; then  
+  LINK_CLHEP="-L$CLHEP_BASE_DIR/lib -lCLHEP"
+else
+  if [ ! "$G4LIB" = "" ]; then  
+    LINK_CLHEP="-L$G4LIB/$G4SYSTEM -lG4clhep"
+  else  
+    LINK_CLHEP=`geant4-config --libs`
+  fi
+fi  
+   
 g++ -I$ROOTSYS/include \
     -I$VGM_INSTALL/packages/VGM/include \
     -I$VGM_INSTALL/packages/BaseVGM/include \
@@ -24,7 +34,7 @@ g++ -I$ROOTSYS/include \
     -I$VGM_INSTALL/packages/XmlVGM/include \
     -I$CLHEP_BASE_DIR/include \
     -L$VGM_INSTALL/lib/$VGM_SYSTEM -lRootGM -lBaseVGM -lXmlVGM -lClhepVGM \
-    -L$CLHEP_BASE_DIR/lib -lCLHEP \
+    $LINK_CLHEP \
     `root-config --glibs` -lGeomPainter -lGeom rootgeom.cxx \
     -o rootgeom
 

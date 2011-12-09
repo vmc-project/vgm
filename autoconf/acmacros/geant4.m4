@@ -1,149 +1,156 @@
 # $Id$
 
-# This file is part of the Autoconf build mechanism for the
-# Virtual Geometry Model
-# Copyright (C) 2007, Brett Viren
-# All rights reserved.
-# 
-# For the licensing terms see vgm/LICENSE.
-# Contact: bv@bnl.gov
+# -*- mode: autoconf -*- 
 
 dnl
-dnl Macros to build against Geant4
+dnl Autoconf macros to build against Geant4.  
+dnl This based on root.m4 as distributed by ROOT.  
+dnl and modified to allow --with-geant4=no to work.
 dnl
-dnl It is assumed that either Geant4 files match this directory
-dnl structure:
 dnl
-dnl GEANT_PREFIX/lib/[geant4]/[GEANT4_SYSTEM]
-dnl GEANT_PREFIX/include/[geant4]
-dnl 
-dnl or that they can be specified explicitly with --with-* flags
-dnl 
+dnl Call GEANT4_SETUP with optional minimum version
 dnl
-dnl Calling GEANT4_SETUP will result in these definitions:
+dnl It will produce:
 dnl
-dnl GEANT4_ENABLE - "yes" or "no".  If no, the following are garbage:
-dnl GEANT4_LINK - holding the link statement (-L... -l...)
-dnl GEANT4_INCLUDE - holding the includes (-I...)
+dnl GEANT4_ENABLE - "yes" or "no", if no, the following are garbage
+dnl GEANT4_INCLUDE - compile time include flags
+dnl GEANT4_LINK - link time library flags
 dnl
 
-AC_DEFUN([GEANT4_SETUP], [
+AC_DEFUN([GEANT4_SETUP],
+[
 
-
-dnl
-dnl Basic checking to use Geant4 or not and if an 
-dnl installation area is specified
-dnl
-
-geant4_enable=""
-geant4_prefix=""
-
-AC_MSG_CHECKING(for Geant4)
-
-AC_ARG_WITH(geant4,
-	AC_HELP_STRING([--with-geant4],
-		       [Geant4 package specification (yes,no,path)]),
-	[
-if test x$with_geant4 = xyes ; then
-	geant4_enable=yes
-	geant4_prefix=/usr
-elif test x$with_geant4 = xno ; then
+  geant4_enable=""
+  AC_ARG_WITH(
+    geant4,
+    AC_HELP_STRING([--with-geant4],
+	           [Geant4 package specification (yes,no,path)]),
+    [ if test x$with_geant4 = xyes ; then
+        geant4_enable=yes
+        geant4_prefix=/usr/local
+        geant4bin=/usr/local/bin
+      elif test x$with_geant4 = xno ; then
 	geant4_enable=no
-else
+	geant4bin=""
+      else
 	geant4_enable=yes
 	geant4_prefix=$with_geant4
-fi
-],[
-	geant4_enable=yes
-	geant4_prefix=/usr
-])
+	geant4bin=${with_geant4}/bin
+      fi 
+    ],
+    [ geant4_enable=yes]
+  )
 
-AC_MSG_RESULT([$geant4_enable $geant4_prefix])
-GEANT4_ENABLE=$geant4_enable
-AC_SUBST(GEANT4_ENABLE)
+  AC_MSG_RESULT([geant4_enable $geant4_enable])
+  GEANT4_ENABLE=$geant4_enable
+  AC_SUBST(GEANT4_ENABLE)
+
+  if test x"$geant4_enable" = xyes ; then
 
 dnl
 dnl Set/guess the "system" name
 dnl
-
-geant4_system=`uname`-${CXX}
-AC_ARG_WITH(geant4-system,
-	AC_HELP_STRING([--with-geant4-system],
-	               [Geant4 system type]),
-	[geant4_system=$with_geant4_system])
-
-dnl
-dnl Set the global libraries flags
-dnl
-
-AC_ARG_WITH([geant4-global-libs],
-	AC_HELP_STRING([--with-geant4-global-libs],
-                       [building with geant4 global libraries (yes,no)]),
-	[geant4_global_libs=$with_geant4_global_libs],[geant4_global_libs=no])
+ 
+    geant4_system=`uname`-${CXX}
+    AC_ARG_WITH(
+      [geant4-system],
+      AC_HELP_STRING([--with-geant4-system],
+                     [Geant4 system type]),
+      [geant4_system=$with_geant4_system]
+    )
 
 dnl
-dnl Set/find the compile time include flags
+dnl Set the granular libraries flags
 dnl
 
-AC_ARG_WITH([geant4-include],
-	AC_HELP_STRING([--with-geant4-include],
-                       [alternate headers dir (that which holds "*.hh")]),
-	[geant4_incdir=$with_geant4_include],[geant4_incdir=""])
-
-if test x"$geant4_enable" = xyes ; then
-if test x"$geant4_incdir" = x ; then
-    for try in "$geant4_prefix/include/geant4" "$geant4_prefix/include" ;
-    do
-        if ! test -f "$try/G4RunManager.hh" ; then continue; fi
-        geant4_incdir="$try"
-        break;
-    done
-fi
-if test x"$geant4_incdir" != x ; then
-	GEANT4_INCLUDE="-I$geant4_incdir"
-fi
-
-UTIL_CHECK_PKG_DIR([$geant4_incdir],[Geant4],[G4RunManager.hh])
-AC_SUBST(GEANT4_INCLUDE)
-
-fi
+    AC_ARG_WITH(
+      [geant4-granular-libs],
+      AC_HELP_STRING([--with-geant4-granular-libs],
+                     [building with geant4 granular libraries (yes,no)]),
+      [ geant4_granular_libs=$with_geant4_granular_libs],
+      [ geant4_granular_libs=no ]
+    )
 
 dnl
-dnl Set/find the link time library flags
+dnl Set/find geant4-config,  
 dnl
 
-AC_ARG_WITH([geant4-libdir],
-	AC_HELP_STRING([--with-geant4-libdir], 
-                       [Geant4 alternate library dir]),
-	[geant4_libdir=$with_geant4_libdir],[geant4_libdir=""])
+    inc_to_be_done=""
+    lib_to_be_done=""
+      AC_PATH_PROG(GEANT4CONF, geant4-config , no, $geant4bin)
+      if test ! x"$GEANT4CONF" = "xno" ; then 
+        # define variables 
+        GEANT4_INCLUDE=`$GEANT4CONF --cflags` 
+        GEANT4_LINK=`$GEANT4CONF --libs`
+        AC_SUBST(GEANT4_INCLUDE)
+        AC_SUBST(GEANT4_LINK)
+      else
+        inc_to_be_done="yes"
+        lib_to_be_done="yes"
+        geant4_incdir=""
+        geant4_libdir=""
+        for try in "$geant4_prefix/include/geant4" "$geant4_prefix/include" ;
+        do
+          if ! test -f "$try/G4RunManager.hh" ; then continue; fi
+          geant4_incdir="$try"
+          break;
+        done
+        for try in "$geant4_prefix/lib/geant4/$geant4_system" "$geant4_prefix/lib/geant4" "$geant4_prefix/lib/$geant4_system" "$geant4_prefix/lib"
+        do
+          if ! test -d "${try}"; then continue; fi
+          geant4_libdir=$try
+          break
+        done
+      fi  
 
-if test x"$geant4_enable" = xyes ; then
+dnl
+dnl Set/find the compile time include flags 
+dnl
 
-if test x"$geant4_libdir" = x ; then
-    for try in "$geant4_prefix/lib/geant4/$geant4_system" "$geant4_prefix/lib/geant4" "$geant4_prefix/lib/$geant4_system" "$geant4_prefix/lib"
-    do
-        if ! test -d "${try}"; then continue; fi
-        geant4_libdir=$try
-        break
-   done
-fi
+    AC_ARG_WITH(
+      [geant4-include],
+      AC_HELP_STRING([--with-geant4-include],
+                     [alternate headers dir (that which holds "*.hh")]),
+      [ geant4_incdir=$with_geant4_include
+        inc_to_be_done="yes"
+      ],
+      []
+    )
 
-if test x"$geant4_libdir" = x ; then
-   geant4_libdir="$geant4_prefix/lib/geant4/$geant4_system"
-fi   
+    if test x"$inc_to_be_done" = x"yes" ; then 
+      GEANT4_INCLUDE="-I$geant4_incdir"
+      #AC_MSG_RESULT(geant4_incdir $geant4_incdir)
+      UTIL_CHECK_PKG_DIR([$geant4_incdir],[Geant4],[G4RunManager.hh])
+      AC_SUBST(GEANT4_INCLUDE)
+    fi    
 
-UTIL_CHECK_PKG_DIR([$geant4_libdir],[Geant4])
+dnl
+dnl Set/find the link time library flags 
+dnl
 
-if test x"$geant4_global_libs" = xyes ; then
-    geant4_libs="-lG4interfaces -lG4persistency -lG4error_propagation -lG4readout -lG4physicslists -lG4run -lG4event -lG4tracking -lG4parmodels -lG4processes -lG4digits_hits -lG4track  -lG4particles -lG4geometry -lG4materials -lG4graphics_reps -lG4intercoms -lG4global"
-    GEANT4_LINK="-Wl,-rpath -Wl,$geant4_libdir -L$geant4_libdir $geant4_libs"
-AC_SUBST(GEANT4_LINK)
-else
-   GEANT4_LINK="-Wl,-rpath -Wl,$geant4_libdir -L$geant4_libdir `$geant4_libdir/liblist -m $geant4_libdir < $geant4_libdir/libname.map`"
-AC_SUBST(GEANT4_LINK)
-fi
+    AC_ARG_WITH(
+      [geant4-libdir],
+      AC_HELP_STRING([--with-geant4-libdir], 
+                     [Geant4 alternate library dir]),
+      [ geant4_libdir=$with_geant4_libdir 
+        lib_to_be_done="yes"
+      ],
+      []
+    )
 
-fi
+    if test x"$lib_to_be_done" = x"yes" ; then 
+      #AC_MSG_RESULT(geant4_libdir $geant4_libdir)
+      UTIL_CHECK_PKG_DIR([$geant4_libdir],[Geant4])
 
+      if test x"$geant4_granular_libs" = xyes ; then
+        GEANT4_LINK="-Wl,-rpath -Wl,$geant4_libdir -L$geant4_libdir `$geant4_libdir/liblist -m $geant4_libdir < $geant4_libdir/libname.map`"
+        AC_SUBST(GEANT4_LINK)
+      else   
+        geant4_libs="-lG4interfaces -lG4persistency -lG4analysis -lG4error_propagation -lG4readout -lG4physicslists -lG4run -lG4event -lG4tracking -lG4parmodels -lG4processes -lG4digits_hits -lG4track -lG4particles -lG4geometry -lG4materials -lG4graphics_reps -lG4intercoms -lG4global -lG4clhep" 
+        GEANT4_LINK="-Wl,-rpath -Wl,$geant4_libdir -L$geant4_libdir $geant4_libs"
+        AC_SUBST(GEANT4_LINK)
+      fi
+    fi
+
+  fi # geant4-enable
 ])
-

@@ -16,24 +16,18 @@ MAKEFLAGS= --no-print-directory
 SUBDIR = BaseVGM/source
 
 ifeq ($(VGM_NO_CLHEP),)
-ifneq ($(CLHEP_BASE_DIR),)
 SUBDIR += ClhepVGM/source
-endif
 endif
 
 # because it needs BaseVGM and ClhepVGM
 SUBDIR += XmlVGM/source
 
 ifeq ($(VGM_NO_GEANT4),)
-ifneq ($(G4INSTALL),)
 SUBDIR += Geant4GM/source
-endif
 endif
 
 ifeq ($(VGM_NO_ROOT),)
-ifneq ($(ROOTSYS),)
 SUBDIR += RootGM/source 
-endif
 endif
 
 ifndef VGM_INSTALL

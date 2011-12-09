@@ -22,7 +22,7 @@ AM_INIT_AUTOMAKE(vgm-autoconf, 0.2)
 
 AC_CONFIG_SRCDIR([Makefile.am])
 AM_CONFIG_HEADER(config.h)
-
+#AC_CONFIG_MACRO_DIR([m4])
 
 # Checks for programs.
 AC_PROG_CXX

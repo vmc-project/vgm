@@ -8,7 +8,7 @@
 # For the licensing terms see vgm/LICENSE.
 # Contact: bv@bnl.gov
 
-INCLUDES = ${CLHEP_INCLUDE} \
+INCLUDES = ${CLHEP_INCLUDE} ${GEANT4_INCLUDE} \
          -I../../../packages/VGM/include \
          -I../../../packages/ClhepVGM/include \
          -I../../../packages/XmlVGM/include

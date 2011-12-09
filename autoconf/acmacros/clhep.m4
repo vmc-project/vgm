@@ -104,4 +104,9 @@ UTIL_CHECK_PKG_DIR([$clhep_libdir],[CLHEP])
 AC_SUBST(CLHEP_LINK)
 fi
 
+if test x"$clhep_enable" = xno ; then
+  CLHEP_INCLUDE=""
+  CLHEP_LINK=""
+fi
+
 ])

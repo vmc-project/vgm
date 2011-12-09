@@ -44,7 +44,9 @@
 #include "G4UImanager.hh"
 #include "G4UIterminal.hh"
 #include "G4UItcsh.hh"
+#ifdef G4VIS_USE
 #include "G4VisExecutive.hh"
+#endif
 
 #include "RootGM/volumes/Placement.h"
 
@@ -152,9 +154,6 @@ int main(int argc, char** argv)
   }  
 #endif     
 
-  // Vis manager
-  G4VisManager* visManager = new G4VisExecutive;
-    
   // Set other mandatory initialization classes
   runManager->SetUserInitialization(new TstPhysicsList());
 
@@ -180,13 +179,20 @@ int main(int argc, char** argv)
 
   // Initialize G4 kernel
   runManager->Initialize();
+
+  // Vis manager
+#ifdef G4VIS_USE
+  G4VisManager* visManager = new G4VisExecutive;
   visManager->Initialize();
+#endif     
     
   // Get the pointer to the User Interface manager 
   G4UImanager* UI = G4UImanager::GetUIpointer();  
 
   if ( session ) {
+#ifdef G4VIS_USE
       UI->ApplyCommand("/control/execute macro/vis.mac");    
+#endif
       session->SessionStart();
       delete session;
   }
@@ -200,7 +206,9 @@ int main(int argc, char** argv)
   }        
 
   // job termination
+#ifdef G4VIS_USE
   delete visManager;
+#endif
   delete runManager;
 
   return 0;

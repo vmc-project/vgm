@@ -19,6 +19,11 @@ endif
 
 include $(VGM_INSTALL)/config/architecture.gmk
 
+# CLHEP with Geant4
+ifeq ($(CLHEP_BASE_DIR),)
+  include $(VGM_INSTALL)/config/geant4.gmk
+endif
+
 CPPFLAGS += -I$(VGM_BASE)/VGM/include
 CPPFLAGS += -I$(VGM_BASE)/ClhepVGM/include
 
