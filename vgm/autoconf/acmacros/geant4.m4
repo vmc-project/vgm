@@ -79,8 +79,16 @@ dnl
     lib_to_be_done=""
       AC_PATH_PROG(GEANT4CONF, geant4-config , no, $geant4bin)
       if test ! x"$GEANT4CONF" = "xno" ; then 
+        geant4_cflags=`$GEANT4CONF --cflags`
+        #additional flags - not handled via geant4-config
+        if test index('G4VIS_USE', $geant4_cflags) > 0; then
+          geant4_cflags=$geant4_cflags" -DG4VIS_USE"
+        fi   
+        if test index('G4UI_USE', $geant4_cflags) > 0; then
+          geant4_cflags=$geant4_cflags" -DG4UI_USE"
+        fi   
         # define variables 
-        GEANT4_INCLUDE=`$GEANT4CONF --cflags` 
+        GEANT4_INCLUDE=$geant4_cflags 
         GEANT4_LINK=`$GEANT4CONF --libs`
         AC_SUBST(GEANT4_INCLUDE)
         AC_SUBST(GEANT4_LINK)
