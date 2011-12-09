@@ -16,9 +16,10 @@
 CURDIR=`pwd`
 
 # Find sources
-echo "... Installing E01 sources"
-DIR="`geant4-config --prefix`"/share/Geant4-"`geant4-config --version`"/examples/novice/N03
-if [ ! -d ${DIR} ]; then 
+echo "... Installing E03 sources"
+if [ ! "`which geant4-config 2> /dev/null`" = "" ]; then
+  DIR="`geant4-config --prefix`"/share/Geant4-"`geant4-config --version`"/examples/novice/N03
+else
   DIR=${G4INSTALL}/examples/novice/N03
 fi
 if [ ! -d ${DIR} ]; then 
@@ -26,7 +27,6 @@ if [ ! -d ${DIR} ]; then
   exit 1
 fi    
 
-echo "... Installing E03 sources"
 cp -r ${DIR} .
 cp GNUmakefile N03
 cp DetectorConstruction.cc N03/src
