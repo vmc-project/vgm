@@ -141,6 +141,7 @@ EXPAT_ENABLE = @EXPAT_ENABLE@
 EXPAT_INCLUDE = @EXPAT_INCLUDE@
 EXPAT_LINK = @EXPAT_LINK@
 FGREP = @FGREP@
+GEANT4CONF = @GEANT4CONF@
 GEANT4_ENABLE = @GEANT4_ENABLE@
 GEANT4_INCLUDE = @GEANT4_INCLUDE@
 GEANT4_LINK = @GEANT4_LINK@
@@ -252,7 +253,7 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-INCLUDES = ${CLHEP_INCLUDE} \
+INCLUDES = ${CLHEP_INCLUDE} ${GEANT4_INCLUDE} \
          -I../../../packages/VGM/include \
          -I../../../packages/ClhepVGM/include 
 

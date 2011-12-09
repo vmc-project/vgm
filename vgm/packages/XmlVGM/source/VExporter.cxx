@@ -566,10 +566,6 @@ void XmlVGM::VExporter::GenerateXMLGeometry()
 {
 /// Generate XML geometry file from the top (world) volume.
 
-  std::cout << fFactory << std::endl;
-  std::cout << fFactory->Top()<< std::endl;
-  std::cout << fFactory->Top()->Volume()<< std::endl;
-
   GenerateGeometry(fFactory->Top()->Volume());
 }  
 

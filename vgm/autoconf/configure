@@ -631,6 +631,7 @@ EXPAT_INCLUDE
 EXPAT_ENABLE
 GEANT4_LINK
 GEANT4_INCLUDE
+GEANT4CONF
 GEANT4_ENABLE
 CLHEP_LINK
 CLHEP_INCLUDE
@@ -765,7 +766,7 @@ with_clhep_include
 with_clhep_libdir
 with_geant4
 with_geant4_system
-with_geant4_global_libs
+with_geant4_granular_libs
 with_geant4_include
 with_geant4_libdir
 with_expat
@@ -1431,8 +1432,8 @@ Optional Packages:
   --with-clhep-libdir     CLHEP alternate library dir
   --with-geant4           Geant4 package specification (yes,no,path)
   --with-geant4-system    Geant4 system type
-  --with-geant4-global-libs
-                          building with geant4 global libraries (yes,no)
+  --with-geant4-granular-libs
+                          building with geant4 granular libraries (yes,no)
   --with-geant4-include   alternate headers dir (that which holds "*.hh")
   --with-geant4-libdir    Geant4 alternate library dir
   --with-expat            Expat package specification (yes,no,path)
@@ -2841,7 +2842,7 @@ am__tar='${AMTAR} chof - "$$tardir"'; am__untar='${AMTAR} xf -'
 
 ac_config_headers="$ac_config_headers config.h"
 
-
+#AC_CONFIG_MACRO_DIR([m4])
 
 # Checks for programs.
 ac_ext=cpp
@@ -14634,88 +14635,149 @@ fi
 
 fi
 
+if test x"$clhep_enable" = xno ; then
+  CLHEP_INCLUDE=""
+  CLHEP_LINK=""
+fi
+
 
 
 if test x$VGM_ENABLE_GEANT4GM = xyes ; then
 
 
-
-
-geant4_enable=""
-geant4_prefix=""
-
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for Geant4" >&5
-$as_echo_n "checking for Geant4... " >&6; }
-
+  geant4_enable=""
 
 # Check whether --with-geant4 was given.
 if test "${with_geant4+set}" = set; then :
-  withval=$with_geant4;
-if test x$with_geant4 = xyes ; then
-	geant4_enable=yes
-	geant4_prefix=/usr
-elif test x$with_geant4 = xno ; then
+  withval=$with_geant4;  if test x$with_geant4 = xyes ; then
+        geant4_enable=yes
+        geant4_prefix=/usr/local
+        geant4bin=/usr/local/bin
+      elif test x$with_geant4 = xno ; then
 	geant4_enable=no
-else
+	geant4bin=""
+      else
 	geant4_enable=yes
 	geant4_prefix=$with_geant4
-fi
+	geant4bin=${with_geant4}/bin
+      fi
 
 else
-
-	geant4_enable=yes
-	geant4_prefix=/usr
+   geant4_enable=yes
 
 fi
 
 
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $geant4_enable $geant4_prefix" >&5
-$as_echo "$geant4_enable $geant4_prefix" >&6; }
-GEANT4_ENABLE=$geant4_enable
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: geant4_enable $geant4_enable" >&5
+$as_echo "geant4_enable $geant4_enable" >&6; }
+  GEANT4_ENABLE=$geant4_enable
 
 
+  if test x"$geant4_enable" = xyes ; then
 
-geant4_system=`uname`-${CXX}
+
+    geant4_system=`uname`-${CXX}
 
 # Check whether --with-geant4-system was given.
 if test "${with_geant4_system+set}" = set; then :
   withval=$with_geant4_system; geant4_system=$with_geant4_system
+
 fi
 
 
 
 
-# Check whether --with-geant4-global-libs was given.
-if test "${with_geant4_global_libs+set}" = set; then :
-  withval=$with_geant4_global_libs; geant4_global_libs=$with_geant4_global_libs
+# Check whether --with-geant4-granular-libs was given.
+if test "${with_geant4_granular_libs+set}" = set; then :
+  withval=$with_geant4_granular_libs;  geant4_granular_libs=$with_geant4_granular_libs
 else
-  geant4_global_libs=no
+   geant4_granular_libs=no
+
 fi
 
+
+
+    inc_to_be_done=""
+    lib_to_be_done=""
+      # Extract the first word of "geant4-config ", so it can be a program name with args.
+set dummy geant4-config ; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if test "${ac_cv_path_GEANT4CONF+set}" = set; then :
+  $as_echo_n "(cached) " >&6
+else
+  case $GEANT4CONF in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_GEANT4CONF="$GEANT4CONF" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $geant4bin
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_path_GEANT4CONF="$as_dir/$ac_word$ac_exec_ext"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  test -z "$ac_cv_path_GEANT4CONF" && ac_cv_path_GEANT4CONF="no"
+  ;;
+esac
+fi
+GEANT4CONF=$ac_cv_path_GEANT4CONF
+if test -n "$GEANT4CONF"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $GEANT4CONF" >&5
+$as_echo "$GEANT4CONF" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+      if test ! x"$GEANT4CONF" = "xno" ; then
+        # define variables
+        GEANT4_INCLUDE=`$GEANT4CONF --cflags`
+        GEANT4_LINK=`$GEANT4CONF --libs`
+
+
+      else
+        inc_to_be_done="yes"
+        lib_to_be_done="yes"
+        geant4_incdir=""
+        geant4_libdir=""
+        for try in "$geant4_prefix/include/geant4" "$geant4_prefix/include" ;
+        do
+          if ! test -f "$try/G4RunManager.hh" ; then continue; fi
+          geant4_incdir="$try"
+          break;
+        done
+        for try in "$geant4_prefix/lib/geant4/$geant4_system" "$geant4_prefix/lib/geant4" "$geant4_prefix/lib/$geant4_system" "$geant4_prefix/lib"
+        do
+          if ! test -d "${try}"; then continue; fi
+          geant4_libdir=$try
+          break
+        done
+      fi
 
 
 
 # Check whether --with-geant4-include was given.
 if test "${with_geant4_include+set}" = set; then :
-  withval=$with_geant4_include; geant4_incdir=$with_geant4_include
-else
-  geant4_incdir=""
+  withval=$with_geant4_include;  geant4_incdir=$with_geant4_include
+        inc_to_be_done="yes"
+
 fi
 
 
-if test x"$geant4_enable" = xyes ; then
-if test x"$geant4_incdir" = x ; then
-    for try in "$geant4_prefix/include/geant4" "$geant4_prefix/include" ;
-    do
-        if ! test -f "$try/G4RunManager.hh" ; then continue; fi
-        geant4_incdir="$try"
-        break;
-    done
-fi
-if test x"$geant4_incdir" != x ; then
-	GEANT4_INCLUDE="-I$geant4_incdir"
-fi
-
+    if test x"$inc_to_be_done" = x"yes" ; then
+      GEANT4_INCLUDE="-I$geant4_incdir"
+      #AC_MSG_RESULT(geant4_incdir $geant4_incdir)
 
 
 # pkg name
@@ -14800,34 +14862,20 @@ fi
 
 
 
-
-fi
+    fi
 
 
 
 # Check whether --with-geant4-libdir was given.
 if test "${with_geant4_libdir+set}" = set; then :
-  withval=$with_geant4_libdir; geant4_libdir=$with_geant4_libdir
-else
-  geant4_libdir=""
+  withval=$with_geant4_libdir;  geant4_libdir=$with_geant4_libdir
+        lib_to_be_done="yes"
+
 fi
 
 
-if test x"$geant4_enable" = xyes ; then
-
-if test x"$geant4_libdir" = x ; then
-    for try in "$geant4_prefix/lib/geant4/$geant4_system" "$geant4_prefix/lib/geant4" "$geant4_prefix/lib/$geant4_system" "$geant4_prefix/lib"
-    do
-        if ! test -d "${try}"; then continue; fi
-        geant4_libdir=$try
-        break
-   done
-fi
-
-if test x"$geant4_libdir" = x ; then
-   geant4_libdir="$geant4_prefix/lib/geant4/$geant4_system"
-fi
-
+    if test x"$lib_to_be_done" = x"yes" ; then
+      #AC_MSG_RESULT(geant4_libdir $geant4_libdir)
 
 
 # pkg name
@@ -14912,17 +14960,17 @@ fi
 
 
 
-if test x"$geant4_global_libs" = xyes ; then
-    geant4_libs="-lG4interfaces -lG4persistency -lG4error_propagation -lG4readout -lG4physicslists -lG4run -lG4event -lG4tracking -lG4parmodels -lG4processes -lG4digits_hits -lG4track  -lG4particles -lG4geometry -lG4materials -lG4graphics_reps -lG4intercoms -lG4global"
-    GEANT4_LINK="-Wl,-rpath -Wl,$geant4_libdir -L$geant4_libdir $geant4_libs"
+      if test x"$geant4_granular_libs" = xyes ; then
+        GEANT4_LINK="-Wl,-rpath -Wl,$geant4_libdir -L$geant4_libdir `$geant4_libdir/liblist -m $geant4_libdir < $geant4_libdir/libname.map`"
 
-else
-   GEANT4_LINK="-Wl,-rpath -Wl,$geant4_libdir -L$geant4_libdir `$geant4_libdir/liblist -m $geant4_libdir < $geant4_libdir/libname.map`"
+      else
+        geant4_libs="-lG4interfaces -lG4persistency -lG4analysis -lG4error_propagation -lG4readout -lG4physicslists -lG4run -lG4event -lG4tracking -lG4parmodels -lG4processes -lG4digits_hits -lG4track -lG4particles -lG4geometry -lG4materials -lG4graphics_reps -lG4intercoms -lG4global -lG4clhep"
+        GEANT4_LINK="-Wl,-rpath -Wl,$geant4_libdir -L$geant4_libdir $geant4_libs"
 
-fi
+      fi
+    fi
 
-fi
-
+  fi # geant4-enable
 
 
 
