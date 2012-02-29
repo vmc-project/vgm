@@ -15,13 +15,18 @@
 
 #---ClhepVGM -------------------------------------------------------------------
       
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+#---Include directories---------------------------------------------------------
+include_directories(
+  ${CLHEP_INCLUDE_DIR}
+  ${VGM_SOURCE_DIR}/packages/VGM/include 
+  ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
 
-#---Add Library-------------------------------------------------------------------
+#---Add Library-----------------------------------------------------------------
 file(GLOB sources source/*.cxx)
 add_library(ClhepVGM SHARED ${sources})
 target_link_libraries(ClhepVGM ${Geant4_LIBRARIES})
 
-#----Installation-----------------------------------------------------------------
+#----Installation---------------------------------------------------------------
 install(DIRECTORY include/ DESTINATION include  PATTERN ".svn" EXCLUDE)
 install(TARGETS ClhepVGM DESTINATION lib)

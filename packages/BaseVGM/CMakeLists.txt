@@ -15,7 +15,12 @@
 
 #---BaseVGM --------------------------------------------------------------------
       
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+#---Include directories---------------------------------------------------------
+include_directories(
+  ${VGM_SOURCE_DIR}/packages/VGM/include 
+  ${VGM_SOURCE_DIR}/packages/ClhepVGM/include 
+  ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
 
 #---Add library-----------------------------------------------------------------
 file(GLOB sources source/*/*.cxx)

@@ -26,6 +26,7 @@ include_directories(
    ${CLHEP_INCLUDE_DIR} 
    ${ROOT_INCLUDE_DIR} 
    ${VGM_SOURCE_DIR}/packages/VGM/include
+   ${VGM_SOURCE_DIR}/packages/BaseVGM/include 
    ${VGM_SOURCE_DIR}/packages/XmlVGM/include
    ${VGM_SOURCE_DIR}/packages/RootGM/include
 )

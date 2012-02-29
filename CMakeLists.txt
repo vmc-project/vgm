@@ -81,15 +81,6 @@ if(WITH_TEST)
 
 endif(WITH_TEST)
 
-#---Common environment----------------------------------------------------------
-# !!! Should not be defined here 
-include_directories( packages/VGM/include 
-                     packages/ClhepVGM/include 
-                     packages/BaseVGM/include 
-                     ${CLHEP_INCLUDE_DIR}
-                     ${ROOT_INCLUDE_DIR} 
-                     ${GEANT4_INCLUDE_DIR} )
-
 #---Add required packages-------------------------------------------------------
 add_subdirectory(packages)
 if(WITH_TEST)

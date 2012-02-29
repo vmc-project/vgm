@@ -28,6 +28,7 @@ include_directories(
    ${GEANT4_INCLUDE_DIR} 
    ${VGM_SOURCE_DIR}/packages/VGM/include
    ${VGM_SOURCE_DIR}/packages/ClhepVGM/include
+   ${VGM_SOURCE_DIR}/packages/BaseVGM/include 
    ${VGM_SOURCE_DIR}/packages/XmlVGM/include
    ${VGM_SOURCE_DIR}/packages/RootGM/include
    ${VGM_SOURCE_DIR}/packages/Geant4GM/include
