@@ -13,10 +13,10 @@
 #
 # Script for installation of sources for E01 examples
 
-CURDIR=`pwd`
+SOURCE_DIR=`dirname $0`
 
 # Find sources
-echo "... Installing E01 sources"
+echo "... Installing E01 sources in ${SOURCE_DIR}"
 if [ ! "`which geant4-config 2> /dev/null`" = "" ]; then
   DIR="`geant4-config --prefix`"/share/Geant4-"`geant4-config --version`"/examples/novice/N03
 else  
@@ -28,8 +28,6 @@ if [ ! -d ${DIR} ]; then
 fi    
 
 # Copy sources
-cp -r ${DIR} .
-cp GNUmakefile N03
-cp DetectorConstruction.cc N03/src
-
-cd $CURDIR
+cp -r ${DIR} ${SOURCE_DIR}
+cp ${SOURCE_DIR}/GNUmakefile ${SOURCE_DIR}/N03
+cp ${SOURCE_DIR}/DetectorConstruction.cc ${SOURCE_DIR}/N03/src
