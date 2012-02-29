@@ -12,16 +12,8 @@
 #
 # Script for installation for all examples
 
-CURDIR=`pwd`
+SOURCE_DIR=`dirname $0`
 
-cd E01
-./install_sources.sh
-
-cd $CURDIR/E02
-./install_sources.sh
-
-cd $CURDIR/E03
-./install_sources.sh
-
-
-cd $CURDIR
+$SOURCE_DIR/E01/install_sources.sh
+$SOURCE_DIR/E02/install_sources.sh
+$SOURCE_DIR/E03/install_sources.sh
