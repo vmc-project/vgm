@@ -15,13 +15,21 @@
 
 #---Geant4GM -------------------------------------------------------------------
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+#---Include directories---------------------------------------------------------
+include_directories(                     
+  ${CLHEP_INCLUDE_DIR}
+  ${GEANT4_INCLUDE_DIR} 
+  ${VGM_SOURCE_DIR}/packages/VGM/include 
+  ${VGM_SOURCE_DIR}/packages/ClhepVGM/include 
+  ${VGM_SOURCE_DIR}/packages/BaseVGM/include 
+  ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
 
-#---Add library-------------------------------------------------------------------
+#---Add library-----------------------------------------------------------------
 file(GLOB sources source/*/*.cxx)
 add_library(Geant4GM SHARED ${sources})
 target_link_libraries(Geant4GM BaseVGM ClhepVGM)
 
-#----Installation-----------------------------------------------------------------
+#----Installation---------------------------------------------------------------
 install(DIRECTORY include/ DESTINATION include  PATTERN ".svn" EXCLUDE)
 install(TARGETS Geant4GM DESTINATION lib)

@@ -15,13 +15,19 @@
 
 #---XmlVGM ---------------------------------------------------------------------
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+#---Include directories---------------------------------------------------------
+include_directories(                     
+  ${CLHEP_INCLUDE_DIR}
+  ${VGM_SOURCE_DIR}/packages/VGM/include 
+  ${VGM_SOURCE_DIR}/packages/ClhepVGM/include 
+  ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
 
-#---Add library-------------------------------------------------------------------
+#---Add library-----------------------------------------------------------------
 file(GLOB sources source/*.cxx)
 add_library(XmlVGM SHARED ${sources})
 target_link_libraries(XmlVGM BaseVGM ClhepVGM ${XERCESC_LIBRARIES} )
 
-#----Installation-----------------------------------------------------------------
+#----Installation---------------------------------------------------------------
 install(DIRECTORY include/ DESTINATION include  PATTERN ".svn" EXCLUDE)
 install(TARGETS XmlVGM DESTINATION lib)
