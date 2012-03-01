@@ -24,7 +24,7 @@ include_directories(
 
 #---Add Library-----------------------------------------------------------------
 file(GLOB sources source/*.cxx)
-add_library(ClhepVGM SHARED ${sources})
+add_library(ClhepVGM ${sources})
 target_link_libraries(ClhepVGM ${Geant4_LIBRARIES})
 
 #----Installation---------------------------------------------------------------

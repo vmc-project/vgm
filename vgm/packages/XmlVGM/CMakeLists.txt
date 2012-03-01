@@ -25,7 +25,7 @@ include_directories(
 
 #---Add library-----------------------------------------------------------------
 file(GLOB sources source/*.cxx)
-add_library(XmlVGM SHARED ${sources})
+add_library(XmlVGM ${sources})
 target_link_libraries(XmlVGM BaseVGM ClhepVGM ${XERCESC_LIBRARIES} )
 
 #----Installation---------------------------------------------------------------

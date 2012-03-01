@@ -27,7 +27,7 @@ include_directories(
 
 #---Add library-----------------------------------------------------------------
 file(GLOB sources source/*/*.cxx)
-add_library(RootGM SHARED ${sources})
+add_library(RootGM ${sources})
 target_link_libraries(RootGM BaseVGM ${ROOT_LIBRARIES} Geom)
 
 #----Installation---------------------------------------------------------------
