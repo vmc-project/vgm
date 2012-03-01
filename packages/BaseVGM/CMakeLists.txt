@@ -24,7 +24,7 @@ include_directories(
 
 #---Add library-----------------------------------------------------------------
 file(GLOB sources source/*/*.cxx)
-add_library(BaseVGM SHARED ${sources})
+add_library(BaseVGM ${sources})
 
 #----Installation---------------------------------------------------------------
 install(DIRECTORY include/ DESTINATION include  PATTERN ".svn" EXCLUDE)
