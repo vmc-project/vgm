@@ -38,6 +38,7 @@ option(BUILD_SHARED_LIBS "Build the dynamic libraries" ON)
 
 # Geant4
 if(WITH_GEANT4)
+  set(Geant4_DIR "" CACHE PATH "Directory where Geant4Config.cmake is installed")
   set(GEANT4_DIR "" CACHE PATH "Directory where Geant4 is installed")
   set(GEANT4_INC_DIR "" CACHE PATH "Alternative directory for Geant4 includes")
   set(GEANT4_LIB_DIR "" CACHE PATH "Alternative directory for Geant4 libraries")

@@ -28,6 +28,7 @@ message(STATUS "Looking for CLHEP ...")
 find_path(CLHEP_INCLUDE_DIR NAMES CLHEP/Evaluator/Evaluator.h PATHS
   ${CLHEP_INC_DIR}
   ${CLHEP_DIR}/include
+  ${Geant4_INCLUDE_DIR}
   ${GEANT4_INCLUDE_DIR}
   $ENV{CLHEP_BASE_DIR}/include
 )
@@ -45,6 +46,7 @@ endif()
 # CLHEP library within Geant4 
 if (NOT CLHEP_LIBRARY_DIR)
   find_path(CLHEP_LIBRARY_DIR NAMES libG4clhep.so libG4clhep.dylib PATHS
+    ${Geant4_DIR}/..
     ${GEANT4_LIBRARY_DIR}
   )
   if (CLHEP_LIBRARY_DIR)
