@@ -31,7 +31,7 @@ option(WITH_ROOT         "Build Root dependent subpackage(RootGM)" ON)
 option(WITH_TEST         "Build test" ON)
 option(WITH_G4ROOT       "Build test with G4Root" OFF)
 option(WITH_XERCESC      "Build test with XercesC" OFF)
-option(WITH_EXAMPLES     "Build examples" ON)
+option(WITH_EXAMPLES     "Build examples" OFF)
 option(BUILD_SHARED_LIBS "Build the dynamic libraries" ON)  
 
 #---Find required packages------------------------------------------------------
