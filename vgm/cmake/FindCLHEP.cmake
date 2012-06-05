@@ -1,4 +1,4 @@
-# $ Id: $
+# $Id$
 #
 # ------------------------------------------------------------------------------
 # The configuration file for CMake build for Virtual Geometry Model
