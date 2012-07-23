@@ -64,12 +64,12 @@ ifeq ($(VGM_SYSTEM),Linux-g++)
   define build-granular-shared-lib
     @libdir=`(cd $(@D);/bin/pwd)`; \
      cd $(VGM_TMPDIR); \
-     $(CXX) -Wl,-soname,$(@F) -shared -o $$libdir/$(@F) *.o
+     $(CXX) -Wl,-soname,$(@F) -Wl,--no-as-needed $(INTYLIBS) -shared -o $$libdir/$(@F) *.o
   endef
   define build-global-shared-lib
     @libdir=`(cd $(@D);/bin/pwd)`; \
      cd $(VGM_TMP)/$(VGM_SYSTEM); \
-     $(CXX) -Wl,-soname,$(@F) -shared -o $$libdir/$(@F) \
+     $(CXX) -Wl,-soname,$(@F) -Wl,--no-as-needed $(INTYLIBS) -shared -o $$libdir/$(@F) \
                     $(foreach dir,$(SUBLIBS),$(dir)/*.o);
   endef
 
