@@ -47,6 +47,9 @@
 #ifdef G4VIS_USE
 #include "G4VisExecutive.hh"
 #endif
+#ifdef G4UI_USE
+#include "G4UIExecutive.hh"
+#endif
 
 #include "RootGM/volumes/Placement.h"
 
@@ -157,15 +160,6 @@ int main(int argc, char** argv)
   // Set other mandatory initialization classes
   runManager->SetUserInitialization(new TstPhysicsList());
 
-  G4UIsession* session = 0; 
-  if (visMode != "None") {
-#ifdef G4UI_USE_TCSH
-    session = new G4UIterminal(new G4UItcsh);      
-#else
-    session = new G4UIterminal();
-#endif
-  }
-  
   // Set user action classes
   runManager->SetUserAction(new TstPrimaryGeneratorAction());
   //runManager->SetUserAction(new TstTrackingAction());
@@ -189,12 +183,18 @@ int main(int argc, char** argv)
   // Get the pointer to the User Interface manager 
   G4UImanager* UI = G4UImanager::GetUIpointer();  
 
-  if ( session ) {
+  if (visMode != "None") {
+#ifdef G4UI_USE
+    //G4UIExecutive* session = new G4UIExecutive(argc, argv, "tcsh");
+    G4UIExecutive* session = new G4UIExecutive(argc, argv);
 #ifdef G4VIS_USE
       UI->ApplyCommand("/control/execute macro/vis.mac");    
 #endif
+      if (session->IsGUI())
+         UI->ApplyCommand("/control/execute macro/icons.mac");
       session->SessionStart();
       delete session;
+#endif
   }
   
   if ( run ) {
