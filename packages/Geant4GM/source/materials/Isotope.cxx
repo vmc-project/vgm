@@ -42,9 +42,9 @@ Geant4GM::Isotope::Isotope(const std::string& name,
 }
 			   
 //_____________________________________________________________________________
-Geant4GM::Isotope::Isotope(G4Isotope* Isotope)
+Geant4GM::Isotope::Isotope(G4Isotope* isotope)
   : VGM::IIsotope(),
-    fIsotope(Isotope)
+    fIsotope(isotope)
 {
 /// Standard constructor to define Isotope from the G4 object
 

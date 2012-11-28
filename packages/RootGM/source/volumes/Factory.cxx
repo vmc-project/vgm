@@ -335,10 +335,10 @@ RootGM::Factory::ImportSolid(TGeoShape* shape)
     // only scaled sphere is supported in order to be able to 
     // import ellipsoid exported in Root
     
-    TGeoSphere* sphere = dynamic_cast<TGeoSphere*>(scaled->GetShape());
-    if ( sphere->GetRmin() == 0. &&
-         sphere->GetTheta1() == 0. && sphere->GetTheta2() == 180. &&
-         sphere->GetPhi1() == 0. && sphere->GetPhi2() == 360. ) {
+    TGeoSphere* scaledSphere = dynamic_cast<TGeoSphere*>(scaled->GetShape());
+    if ( scaledSphere->GetRmin() == 0. &&
+         scaledSphere->GetTheta1() == 0. && scaledSphere->GetTheta2() == 180. &&
+         scaledSphere->GetPhi1() == 0. && scaledSphere->GetPhi2() == 360. ) {
          
       VGM::IEllipsoid* vgmEllipsoid = new RootGM::Ellipsoid(scaled);
       SolidStore().push_back(vgmEllipsoid);
