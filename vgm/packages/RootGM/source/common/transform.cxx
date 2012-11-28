@@ -234,7 +234,7 @@ void RootGM::fromToRotation(double from[3], double to[3], double mtx[3][3]) {
   f = (e < 0)? -e:e;
   if (f > 1.0 - EPSILON)     /* "from" and "to"-vector almost parallel */
   {
-    double u[3], v[3]; /* temporary storage vectors */
+    double utmp[3], vtmp[3]; /* temporary storage vectors */
     double x[3];       /* vector most nearly orthogonal to "from" */
     double c1, c2, c3; /* coefficients for later use */
     int i, j;
@@ -266,18 +266,18 @@ void RootGM::fromToRotation(double from[3], double to[3], double mtx[3][3]) {
       }
     }
 
-    u[0] = x[0] - from[0]; u[1] = x[1] - from[1]; u[2] = x[2] - from[2];
-    v[0] = x[0] - to[0];   v[1] = x[1] - to[1];   v[2] = x[2] - to[2];
+    utmp[0] = x[0] - from[0]; utmp[1] = x[1] - from[1]; utmp[2] = x[2] - from[2];
+    vtmp[0] = x[0] - to[0];   vtmp[1] = x[1] - to[1];   vtmp[2] = x[2] - to[2];
 
-    c1 = 2.0 / DOT(u, u);
-    c2 = 2.0 / DOT(v, v);
-    c3 = c1 * c2  * DOT(u, v);
+    c1 = 2.0 / DOT(utmp, utmp);
+    c2 = 2.0 / DOT(vtmp, vtmp);
+    c3 = c1 * c2  * DOT(utmp, vtmp);
 
     for (i = 0; i < 3; i++) {
       for (j = 0; j < 3; j++) {
-        mtx[i][j] =  - c1 * u[i] * u[j]
-                     - c2 * v[i] * v[j]
-                     + c3 * v[i] * u[j];
+        mtx[i][j] =  - c1 * utmp[i] * utmp[j]
+                     - c2 * vtmp[i] * vtmp[j]
+                     + c3 * vtmp[i] * utmp[j];
       }
       mtx[i][i] += 1.0;
     }

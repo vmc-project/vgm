@@ -254,7 +254,7 @@ void XmlVGM::GDMLWriter::WriteBox(
 	   << element5 << std::setw(fNW) << std::setprecision(fNP) << z 
 	   << element6 << std::endl << std::endl;
 }
- 
+
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteArb8(
                               std::string name, 
@@ -313,7 +313,7 @@ void XmlVGM::GDMLWriter::WriteBox(
   WriteBox(name, 
            box->XHalfLength(), box->YHalfLength(), box->ZHalfLength());
 }
- 
+
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteCons(
                               std::string name, 
@@ -1636,13 +1636,13 @@ void XmlVGM::GDMLWriter::WriteElement(const VGM::IElement* element)
     fOutFile << element2 << std::endl;
     for ( int i=0; i<element->NofIsotopes(); i++ ) {
       VGM::IIsotope* isotope = element->Isotope(i);
-      std::string name = IsotopeName(isotope);
-      name.append(fgkIsotopeNameExtension);
+      std::string name2 = IsotopeName(isotope);
+      name2.append(fgkIsotopeNameExtension);
       double natoms = element->RelAbundance(i);
   
       fOutFile << indention;
       SmartPut(fOutFile, fNW-2, fNP, 0, element3, natoms, quota2);
-      fOutFile << element4 << name << element6 << std::endl;
+      fOutFile << element4 << name2 << element6 << std::endl;
     }  
   }
   else {
