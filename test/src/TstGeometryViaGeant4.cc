@@ -53,7 +53,8 @@
 #include "G4PVDivision.hh"
 #include "G4RotationMatrix.hh"
 #include "G4TwoVector.hh"
-#include "globals.hh"
+#include "G4PhysicalConstants.hh"
+#include "G4SystemOfUnits.hh"
 
 #include "TstGeometryViaGeant4.hh"
 
