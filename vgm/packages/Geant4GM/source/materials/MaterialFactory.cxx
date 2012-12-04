@@ -247,6 +247,18 @@ Geant4GM::MaterialFactory::CreateElement(
 
     ElementStore().push_back(vgmElement);
   }    
+  
+  // Now G4Element exists
+  g4Element = G4Element::GetElement(name, false);
+
+  // Import isotopes if they were created with the G4element
+  for ( unsigned int i=0; i<g4Element->GetNumberOfIsotopes(); ++i ) {
+    G4Isotope* g4Isotope = const_cast<G4Isotope*>(g4Element->GetIsotope(i));
+    VGM::IIsotope* vgmIsotope 
+      = Geant4GM::IsotopeMap::Instance()->GetIsotope(g4Isotope);     
+    if ( ! vgmIsotope )  ImportIsotope(g4Isotope);
+  }    
+
   return vgmElement; 
 }			       
 
