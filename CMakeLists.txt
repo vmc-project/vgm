@@ -79,10 +79,11 @@ if(WITH_TEST)
 
   # G4Root
   if (WITH_ROOT AND WITH_G4ROOT)
-      set(G4ROOT_DIR "" CACHE PATH "Directory where G4ROOT is installed")
-      set(G4ROOT_INC_DIR "" CACHE PATH "Alternative directory for G4ROOT includes")
-      set(G4ROOT_LIB_DIR "" CACHE PATH "Alternative directory for G4ROOT libraries")
-      set(G4ROOT_ARCH "" CACHE PATH "G4ROOT platform specification")
+    set(G4ROOT_DIR "" CACHE PATH "Directory where G4ROOT is installed")
+    set(G4ROOT_INC_DIR "" CACHE PATH "Alternative directory for G4ROOT includes")
+    set(G4ROOT_LIB_DIR "" CACHE PATH "Alternative directory for G4ROOT libraries")
+    set(G4ROOT_ARCH "" CACHE PATH "G4ROOT platform specification")
+    find_package(G4ROOT REQUIRED)      
   endif(WITH_ROOT AND WITH_G4ROOT)
 
 endif(WITH_TEST)
