@@ -116,7 +116,11 @@ FLIB_PATT := $(LIB_PATT)
 
 # Variables for implicit rules, etc., as suggested in GNU Make manual...
 #
-CPPFLAGS += -I$(CLHEP_BASE_DIR)/include
+ifeq ($(CLHEP_BASE_DIR),)
+  CPPFLAGS += $(shell geant4-config --cflags)
+else 
+  CPPFLAGS += -I$(CLHEP_BASE_DIR)/include
+endif  
 
 # Positional qualifiers in action...
 #
