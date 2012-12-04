@@ -16,7 +16,7 @@
 # by I. Hrivnacova, IPN Orsay
 
 
-./configure --prefix=/work/projects/vgm/autoconf/vgm_build \
+./configure --prefix=/work/projects/vgm/new/autoconf/vgm_build \
             --with-xerces=/usr \
             --with-clhep=no \
             --with-geant4=/work/projects/vgm/new/geant4 \
