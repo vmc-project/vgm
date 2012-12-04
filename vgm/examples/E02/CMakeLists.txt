@@ -51,7 +51,7 @@ target_link_libraries(exampleE02 ${ROOT_LIBRARIES} ${CLHEP_LIBRARIES} ${XERCES_L
 #
 
 # macros
-file(GLOB macros N03/*.mac)
+file(GLOB macros N03/*.mac N03Example.root)
 foreach(_macropath ${macros})
   get_filename_component(_macro ${_macropath} NAME)
   # message(STATUS "Macro in list ${_macro}")
