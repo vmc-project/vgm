@@ -62,6 +62,7 @@
 #include "G4Cons.hh"
 #include "G4Ellipsoid.hh"
 #include "G4EllipticalTube.hh"
+#include "G4ExtrudedSolid.hh"
 #include "G4Hype.hh"
 #include "G4Para.hh"
 #include "G4Paraboloid.hh"
@@ -72,7 +73,7 @@
 #include "G4Trap.hh"
 #include "G4Trd.hh"
 #include "G4Tubs.hh"
-#include "G4ExtrudedSolid.hh"
+#include "G4SystemOfUnits.hh"
 
 bool Geant4GM::Factory::fgSurfCheck = false;
 

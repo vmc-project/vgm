@@ -24,6 +24,9 @@
 #include "Geant4GM/materials/Element.h"
 #include "Geant4GM/materials/ElementMap.h"
 
+#include "G4PhysicalConstants.hh"
+#include "G4SystemOfUnits.hh"
+
 //_____________________________________________________________________________
 Geant4GM::Material::Material(const std::string& name, 
                              double density,
