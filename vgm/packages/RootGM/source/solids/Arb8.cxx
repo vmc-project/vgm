@@ -27,7 +27,7 @@
 #include <math.h>
 #include <cstdlib>
 
-const int RootGM::Arb8::Arb8::fgkNofVertices = 8;
+const int RootGM::Arb8::fgkNofVertices = 8;
 
 //_____________________________________________________________________________
 RootGM::Arb8::Arb8(const std::string& name, 
