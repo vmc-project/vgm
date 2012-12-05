@@ -60,8 +60,14 @@
    </define>
 
    <materials>
+      <isotope  name="Vacuum_e_1_i"Z="  1.0000"  N="  1" >
+         <atom type="A" unit="g/mol" value="  1.0078" />
+      </isotope>
       <isotope  name="H_1_i"     Z="  1.0000"  N="  1" >
          <atom type="A" unit="g/mol" value="  1.0078" />
+      </isotope>
+      <isotope  name="Vacuum_e_2_i"Z="  1.0000"  N="  2" >
+         <atom type="A" unit="g/mol" value="  2.0141" />
       </isotope>
       <isotope  name="H_2_i"     Z="  1.0000"  N="  2" >
          <atom type="A" unit="g/mol" value="  2.0141" />
@@ -71,6 +77,21 @@
       </isotope>
       <isotope  name="C_13_i"    Z="  6.0000"  N=" 13" >
          <atom type="A" unit="g/mol" value=" 13.0034" />
+      </isotope>
+      <isotope  name="N_14_i"    Z="  7.0000"  N=" 14" >
+         <atom type="A" unit="g/mol" value=" 14.0031" />
+      </isotope>
+      <isotope  name="N_15_i"    Z="  7.0000"  N=" 15" >
+         <atom type="A" unit="g/mol" value=" 15.0001" />
+      </isotope>
+      <isotope  name="O_16_i"    Z="  8.0000"  N=" 16" >
+         <atom type="A" unit="g/mol" value=" 15.9949" />
+      </isotope>
+      <isotope  name="O_17_i"    Z="  8.0000"  N=" 17" >
+         <atom type="A" unit="g/mol" value=" 16.9991" />
+      </isotope>
+      <isotope  name="O_18_i"    Z="  8.0000"  N=" 18" >
+         <atom type="A" unit="g/mol" value=" 17.9992" />
       </isotope>
       <isotope  name="U_235_i"   Z=" 92.0000"  N="235" >
          <atom type="A" unit="g/mol" value="235.0100" />
@@ -83,18 +104,22 @@
          <fraction n="  0.9999"  ref="H_1_i" />
          <fraction n="  0.0001"  ref="H_2_i" />
       </element>
-      <element  name="Vacuum_e"  Z="  1.0000"  N="  1" >
-         <atom type="A" unit="g/mol" value="  1.0100" />
+      <element  name="Vacuum_e"  >
+         <fraction n="  0.9999"  ref="Vacuum_e_1_i" />
+         <fraction n="  0.0001"  ref="Vacuum_e_2_i" />
       </element>
       <element  name="C_e"  >
          <fraction n="  0.9893"  ref="C_12_i" />
          <fraction n="  0.0107"  ref="C_13_i" />
       </element>
-      <element  name="Nitrogen_e"  Z="  7.0000"  N=" 14" >
-         <atom type="A" unit="g/mol" value=" 14.0100" />
+      <element  name="Nitrogen_e"  >
+         <fraction n="  0.9963"  ref="N_14_i" />
+         <fraction n="  0.0037"  ref="N_15_i" />
       </element>
-      <element  name="Oxygen_e"  Z="  8.0000"  N=" 16" >
-         <atom type="A" unit="g/mol" value=" 16.0000" />
+      <element  name="Oxygen_e"  >
+         <fraction n="  0.9976"  ref="O_16_i" />
+         <fraction n="  0.0004"  ref="O_17_i" />
+         <fraction n="  0.0020"  ref="O_18_i" />
       </element>
       <element  name="enriched_Uranium_e"  >
          <fraction n="  0.9000"  ref="U_235_i" />

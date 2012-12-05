@@ -2,7 +2,7 @@ Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometr
 Geant4 geometry will be defined via Geant4 and exported to Root
 
 *************************************************************
- Geant4 version Name: geant4-09-05-ref-00    (2-December-2011)
+ Geant4 version Name: geant4-09-06-ref-00    (30-November-2012)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -11,6 +11,18 @@ Geant4 geometry will be defined via Geant4 and exported to Root
 TestDisplacedSolids1 finished
 Go to Import
 VGM info:   Geant4GM::Factory::Import started ...
+VGM info:   Importing isotope: 
+VGM info:    Isotope:    27   Z = 13   N =  27   A =  26.98 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   N14   Z =  7   N =  14   A =  14.00 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   N15   Z =  7   N =  15   A =  15.00 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   O16   Z =  8   N =  16   A =  15.99 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   O17   Z =  8   N =  17   A =  17.00 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   O18   Z =  8   N =  18   A =  18.00 g/mole
 VGM info:   Importing isotope: 
 VGM info:    Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole
 VGM info:   Importing isotope: 
@@ -23,54 +35,110 @@ VGM info:   Importing isotope:
 VGM info:    Isotope:  U235   Z = 92   N = 235   A = 235.01 g/mole
 VGM info:   Importing isotope: 
 VGM info:    Isotope:  U238   Z = 92   N = 238   A = 238.03 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:     1   Z =  1   N =   1   A =   1.01 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:     2   Z =  1   N =   2   A =   2.01 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   180   Z = 74   N = 180   A = 179.95 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   182   Z = 74   N = 182   A = 181.95 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   183   Z = 74   N = 183   A = 182.95 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   184   Z = 74   N = 184   A = 183.95 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   186   Z = 74   N = 186   A = 185.95 g/mole
 VGM info:   Importing element: 
 VGM info:    Element: Basic ( )   Z = 13.0   N =  27.0   A =  26.98 g/mole
+         --->  Isotope:    27   Z = 13   N =  27   A =  26.98 g/mole   abundance: 100.00 %
 VGM info:   Importing element: 
 VGM info:    Element: Nitrogen (N)   Z =  7.0   N =  14.0   A =  14.01 g/mole
+         --->  Isotope:   N14   Z =  7   N =  14   A =  14.00 g/mole   abundance:  99.63 %
+         --->  Isotope:   N15   Z =  7   N =  15   A =  15.00 g/mole   abundance:   0.37 %
 VGM info:   Importing element: 
 VGM info:    Element: Oxygen (O)   Z =  8.0   N =  16.0   A =  16.00 g/mole
+         --->  Isotope:   O16   Z =  8   N =  16   A =  15.99 g/mole   abundance:  99.76 %
+         --->  Isotope:   O17   Z =  8   N =  17   A =  17.00 g/mole   abundance:   0.04 %
+         --->  Isotope:   O18   Z =  8   N =  18   A =  18.00 g/mole   abundance:   0.20 %
 VGM info:   Importing element: 
 VGM info:    Element: H (H)   Z =  1.0   N =   1.0   A =   1.01 g/mole
-   --->  Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
-   --->  Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %
+         --->  Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
+         --->  Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %
 VGM info:   Importing element: 
 VGM info:    Element: C (C)   Z =  6.0   N =  12.0   A =  12.01 g/mole
-   --->  Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole   abundance:  98.93 %
-   --->  Isotope:   C13   Z =  6   N =  13   A =  13.00 g/mole   abundance:   1.07 %
+         --->  Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole   abundance:  98.93 %
+         --->  Isotope:   C13   Z =  6   N =  13   A =  13.00 g/mole   abundance:   1.07 %
 VGM info:   Importing element: 
 VGM info:    Element: enriched Uranium (U)   Z = 92.0   N = 235.3   A = 235.31 g/mole
-   --->  Isotope:  U235   Z = 92   N = 235   A = 235.01 g/mole   abundance:  90.00 %
-   --->  Isotope:  U238   Z = 92   N = 238   A = 238.03 g/mole   abundance:  10.00 %
+         --->  Isotope:  U235   Z = 92   N = 235   A = 235.01 g/mole   abundance:  90.00 %
+         --->  Isotope:  U238   Z = 92   N = 238   A = 238.03 g/mole   abundance:  10.00 %
 VGM info:   Importing element: 
 VGM info:    Element: Vacuum ( )   Z =  1.0   N =   1.0   A =   1.01 g/mole
+         --->  Isotope:     1   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
+         --->  Isotope:     2   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %
 VGM info:   Importing element: 
 VGM info:    Element: Tungsten ( )   Z = 74.0   N = 183.8   A = 183.84 g/mole
+         --->  Isotope:   180   Z = 74   N = 180   A = 179.95 g/mole   abundance:   0.12 %
+         --->  Isotope:   182   Z = 74   N = 182   A = 181.95 g/mole   abundance:  26.50 %
+         --->  Isotope:   183   Z = 74   N = 183   A = 182.95 g/mole   abundance:  14.31 %
+         --->  Isotope:   184   Z = 74   N = 184   A = 183.95 g/mole   abundance:  30.64 %
+         --->  Isotope:   186   Z = 74   N = 186   A = 185.95 g/mole   abundance:  28.43 %
 VGM info:   Importing material: 
 VGM info:    Material:    Basic    density:  2.700 g/cm3   RadL:   8.893 cm   Nucl.Int.Length:  38.860 cm   Imean: 166.000 eV 
-   --->  Element: Basic ( )   Z = 13.0   N =  27.0   A =  26.98 g/mole  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
+   --->  Element: Basic ( )   Z = 13.0   N =  27.0   A =  26.98 g/mole
+         --->  Isotope:    27   Z = 13   N =  27   A =  26.98 g/mole   abundance: 100.00 %
+          ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
+
 VGM info:   Importing material: 
 VGM info:    Material:      Air    density:  1.290 mg/cm3  RadL: 285.161 m    Nucl.Int.Length: 662.904 m    Imean:  85.703 eV   temperature: 273.15 K  pressure:   1.00 atm
-   --->  Element: Nitrogen (N)   Z =  7.0   N =  14.0   A =  14.01 g/mole  ElmMassFraction:  70.00 %  ElmAbundance  72.71 %
-   --->  Element: Oxygen (O)   Z =  8.0   N =  16.0   A =  16.00 g/mole  ElmMassFraction:  30.00 %  ElmAbundance  27.29 %
+   --->  Element: Nitrogen (N)   Z =  7.0   N =  14.0   A =  14.01 g/mole
+         --->  Isotope:   N14   Z =  7   N =  14   A =  14.00 g/mole   abundance:  99.63 %
+         --->  Isotope:   N15   Z =  7   N =  15   A =  15.00 g/mole   abundance:   0.37 %
+          ElmMassFraction:  70.00 %  ElmAbundance  72.71 % 
+
+   --->  Element: Oxygen (O)   Z =  8.0   N =  16.0   A =  16.00 g/mole
+         --->  Isotope:   O16   Z =  8   N =  16   A =  15.99 g/mole   abundance:  99.76 %
+         --->  Isotope:   O17   Z =  8   N =  17   A =  17.00 g/mole   abundance:   0.04 %
+         --->  Isotope:   O18   Z =  8   N =  18   A =  18.00 g/mole   abundance:   0.20 %
+          ElmMassFraction:  30.00 %  ElmAbundance  27.29 % 
+
 VGM info:   Importing material: 
 VGM info:    Material: Scintillator    density:  1.032 g/cm3   RadL:  42.544 cm   Nucl.Int.Length:  70.101 cm   Imean:  64.684 eV 
    --->  Element: C (C)   Z =  6.0   N =  12.0   A =  12.01 g/mole
-   --->  Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole   abundance:  98.93 %
-   --->  Isotope:   C13   Z =  6   N =  13   A =  13.00 g/mole   abundance:   1.07 %  ElmMassFraction:  91.47 %  ElmAbundance  47.37 %
+         --->  Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole   abundance:  98.93 %
+         --->  Isotope:   C13   Z =  6   N =  13   A =  13.00 g/mole   abundance:   1.07 %
+          ElmMassFraction:  91.47 %  ElmAbundance  47.37 % 
+
    --->  Element: H (H)   Z =  1.0   N =   1.0   A =   1.01 g/mole
-   --->  Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
-   --->  Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %  ElmMassFraction:   8.53 %  ElmAbundance  52.63 %
+         --->  Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
+         --->  Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %
+          ElmMassFraction:   8.53 %  ElmAbundance  52.63 % 
+
 VGM info:   Importing material: 
 VGM info:    Material:  Uranium    density: 13.610 g/cm3   RadL:   4.358 mm   Nucl.Int.Length:  15.891 cm   Imean: 890.000 eV 
    --->  Element: enriched Uranium (U)   Z = 92.0   N = 235.3   A = 235.31 g/mole
-   --->  Isotope:  U235   Z = 92   N = 235   A = 235.01 g/mole   abundance:  90.00 %
-   --->  Isotope:  U238   Z = 92   N = 238   A = 238.03 g/mole   abundance:  10.00 %  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
+         --->  Isotope:  U235   Z = 92   N = 235   A = 235.01 g/mole   abundance:  90.00 %
+         --->  Isotope:  U238   Z = 92   N = 238   A = 238.03 g/mole   abundance:  10.00 %
+          ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
+
 VGM info:   Importing material: 
 VGM info:    Material:   Vacuum    density:  0.000 kg/m3   RadL: 204727512.315 pc   Nucl.Int.Length: 114561548.020 pc   Imean:  19.200 eV   temperature:   2.73 K  pressure:   0.00 atm
-   --->  Element: Vacuum ( )   Z =  1.0   N =   1.0   A =   1.01 g/mole  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
+   --->  Element: Vacuum ( )   Z =  1.0   N =   1.0   A =   1.01 g/mole
+         --->  Isotope:     1   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
+         --->  Isotope:     2   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %
+          ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
+
 VGM info:   Importing material: 
 VGM info:    Material: Tungsten    density: 19.250 g/cm3   RadL:   3.513 mm   Nucl.Int.Length:  10.332 cm   Imean: 727.000 eV 
-   --->  Element: Tungsten ( )   Z = 74.0   N = 183.8   A = 183.84 g/mole  ElmMassFraction: 100.00 %  ElmAbundance 100.00 %
+   --->  Element: Tungsten ( )   Z = 74.0   N = 183.8   A = 183.84 g/mole
+         --->  Isotope:   180   Z = 74   N = 180   A = 179.95 g/mole   abundance:   0.12 %
+         --->  Isotope:   182   Z = 74   N = 182   A = 181.95 g/mole   abundance:  26.50 %
+         --->  Isotope:   183   Z = 74   N = 183   A = 182.95 g/mole   abundance:  14.31 %
+         --->  Isotope:   184   Z = 74   N = 184   A = 183.95 g/mole   abundance:  30.64 %
+         --->  Isotope:   186   Z = 74   N = 186   A = 185.95 g/mole   abundance:  28.43 %
+          ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
+
 VGM info:   Importing LV: world
 VGM info:   Importing solid: worldS
 VGM info:      Imported solid: Box  "worldS"  hx = 600mm  hy = 600mm  hz = 1600mm
@@ -134,6 +202,18 @@ VGM info:   Geant4GM::Factory::Import finished.
 Import finished
 Go to export
 VGM info:   Exporting isotope: 
+VGM info:   Isotope: " 27"    Z = 13  N = 27  A = 26.9815 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "N14"    Z = 7  N = 14  A = 14.0031 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "N15"    Z = 7  N = 15  A = 15.0001 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "O16"    Z = 8  N = 16  A = 15.9949 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "O17"    Z = 8  N = 17  A = 16.9991 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "O18"    Z = 8  N = 18  A = 17.9992 g/mole
+VGM info:   Exporting isotope: 
 VGM info:   Isotope: "H1"    Z = 1  N = 1  A = 1.00783 g/mole
 VGM info:   Exporting isotope: 
 VGM info:   Isotope: "H2"    Z = 1  N = 2  A = 2.0141 g/mole
@@ -145,12 +225,32 @@ VGM info:   Exporting isotope:
 VGM info:   Isotope: "U235"    Z = 92  N = 235  A = 235.01 g/mole
 VGM info:   Exporting isotope: 
 VGM info:   Isotope: "U238"    Z = 92  N = 238  A = 238.03 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: " 1"    Z = 1  N = 1  A = 1.00783 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: " 2"    Z = 1  N = 2  A = 2.0141 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: " 180"    Z = 74  N = 180  A = 179.947 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: " 182"    Z = 74  N = 182  A = 181.948 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: " 183"    Z = 74  N = 183  A = 182.95 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: " 184"    Z = 74  N = 184  A = 183.951 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: " 186"    Z = 74  N = 186  A = 185.954 g/mole
 VGM info:   Exporting element: 
 VGM info:   Element: "Basic"  " "  Z = 13  N = 26.98  A = 26.98 g/mole
+     0th isotope: Isotope: " 27"    Z = 13  N = 27  A = 26.9815 g/mole  abundance: 100%
 VGM info:   Exporting element: 
 VGM info:   Element: "Nitrogen"  "N"  Z = 7  N = 14.01  A = 14.01 g/mole
+     0th isotope: Isotope: "N14"    Z = 7  N = 14  A = 14.0031 g/mole  abundance: 99.632%
+     1th isotope: Isotope: "N15"    Z = 7  N = 15  A = 15.0001 g/mole  abundance: 0.368%
 VGM info:   Exporting element: 
 VGM info:   Element: "Oxygen"  "O"  Z = 8  N = 16  A = 16 g/mole
+     0th isotope: Isotope: "O16"    Z = 8  N = 16  A = 15.9949 g/mole  abundance: 99.757%
+     1th isotope: Isotope: "O17"    Z = 8  N = 17  A = 16.9991 g/mole  abundance: 0.038%
+     2th isotope: Isotope: "O18"    Z = 8  N = 18  A = 17.9992 g/mole  abundance: 0.205%
 VGM info:   Exporting element: 
 VGM info:   Element: "H"  "H"  Z = 1  N = 1.00012  A = 1.00794 g/mole
      0th isotope: Isotope: "H1"    Z = 1  N = 1  A = 1.00783 g/mole  abundance: 99.9885%
@@ -165,15 +265,28 @@ VGM info:   Element: "enriched Uranium"  "U"  Z = 92  N = 235.3  A = 235.312 g/m
      1th isotope: Isotope: "U238"    Z = 92  N = 238  A = 238.03 g/mole  abundance: 10%
 VGM info:   Exporting element: 
 VGM info:   Element: "Vacuum"  " "  Z = 1  N = 1.01  A = 1.01 g/mole
+     0th isotope: Isotope: " 1"    Z = 1  N = 1  A = 1.00783 g/mole  abundance: 99.9885%
+     1th isotope: Isotope: " 2"    Z = 1  N = 2  A = 2.0141 g/mole  abundance: 0.0115%
 VGM info:   Exporting element: 
 VGM info:   Element: "Tungsten"  " "  Z = 74  N = 183.84  A = 183.84 g/mole
+     0th isotope: Isotope: " 180"    Z = 74  N = 180  A = 179.947 g/mole  abundance: 0.12%
+     1th isotope: Isotope: " 182"    Z = 74  N = 182  A = 181.948 g/mole  abundance: 26.5%
+     2th isotope: Isotope: " 183"    Z = 74  N = 183  A = 182.95 g/mole  abundance: 14.31%
+     3th isotope: Isotope: " 184"    Z = 74  N = 184  A = 183.951 g/mole  abundance: 30.64%
+     4th isotope: Isotope: " 186"    Z = 74  N = 186  A = 185.954 g/mole  abundance: 28.43%
 VGM info:   Exporting material: 
 VGM info:   Material: "Basic"  density 2.7 g/cm3  radlen 8.89253 cm  intlen 38.8601 cm  state "Solid"  temperature 273.15 kelvin  pressure 1 atm
-   0th element: Element: "Basic"  " "  Z = 13  N = 26.98  A = 26.98 g/mole  Elm mass fraction: 100 %
+   0th element: Element: "Basic"  " "  Z = 13  N = 26.98  A = 26.98 g/mole
+     0th isotope: Isotope: " 27"    Z = 13  N = 27  A = 26.9815 g/mole  abundance: 100%  Elm mass fraction: 100 %
 VGM info:   Exporting material: 
 VGM info:   Material: "Air"  density 0.00129 g/cm3  radlen 28516.1 cm  intlen 66290.4 cm  state "Gas"  temperature 273.15 kelvin  pressure 1 atm
-   0th element: Element: "Nitrogen"  "N"  Z = 7  N = 14.01  A = 14.01 g/mole  Elm mass fraction: 70 %
-   1th element: Element: "Oxygen"  "O"  Z = 8  N = 16  A = 16 g/mole  Elm mass fraction: 30 %
+   0th element: Element: "Nitrogen"  "N"  Z = 7  N = 14.01  A = 14.01 g/mole
+     0th isotope: Isotope: "N14"    Z = 7  N = 14  A = 14.0031 g/mole  abundance: 99.632%
+     1th isotope: Isotope: "N15"    Z = 7  N = 15  A = 15.0001 g/mole  abundance: 0.368%  Elm mass fraction: 70 %
+   1th element: Element: "Oxygen"  "O"  Z = 8  N = 16  A = 16 g/mole
+     0th isotope: Isotope: "O16"    Z = 8  N = 16  A = 15.9949 g/mole  abundance: 99.757%
+     1th isotope: Isotope: "O17"    Z = 8  N = 17  A = 16.9991 g/mole  abundance: 0.038%
+     2th isotope: Isotope: "O18"    Z = 8  N = 18  A = 17.9992 g/mole  abundance: 0.205%  Elm mass fraction: 30 %
 VGM info:   Exporting material: 
 VGM info:   Material: "Scintillator"  density 1.032 g/cm3  radlen 42.5442 cm  intlen 70.101 cm  state "Solid"  temperature 273.15 kelvin  pressure 1 atm
    0th element: Element: "C"  "C"  Z = 6  N = 12.0107  A = 12.0107 g/mole
@@ -189,17 +302,30 @@ VGM info:   Material: "Uranium"  density 13.61 g/cm3  radlen 0.435829 cm  intlen
      1th isotope: Isotope: "U238"    Z = 92  N = 238  A = 238.03 g/mole  abundance: 10%  Elm mass fraction: 100 %
 VGM info:   Exporting material: 
 VGM info:   Material: "Vacuum"  density 1e-25 g/cm3  radlen 6.31723e+26 cm  intlen 3.535e+26 cm  state "Gas"  temperature 2.73 kelvin  pressure 2.96077e-23 atm
-   0th element: Element: "Vacuum"  " "  Z = 1  N = 1.01  A = 1.01 g/mole  Elm mass fraction: 100 %
+   0th element: Element: "Vacuum"  " "  Z = 1  N = 1.01  A = 1.01 g/mole
+     0th isotope: Isotope: " 1"    Z = 1  N = 1  A = 1.00783 g/mole  abundance: 99.9885%
+     1th isotope: Isotope: " 2"    Z = 1  N = 2  A = 2.0141 g/mole  abundance: 0.0115%  Elm mass fraction: 100 %
 VGM info:   Exporting material: 
 VGM info:   Material: "Tungsten"  density 19.25 g/cm3  radlen 0.351325 cm  intlen 10.3323 cm  state "Solid"  temperature 273.15 kelvin  pressure 1 atm
-   0th element: Element: "Tungsten"  " "  Z = 74  N = 183.84  A = 183.84 g/mole  Elm mass fraction: 100 %
+   0th element: Element: "Tungsten"  " "  Z = 74  N = 183.84  A = 183.84 g/mole
+     0th isotope: Isotope: " 180"    Z = 74  N = 180  A = 179.947 g/mole  abundance: 0.12%
+     1th isotope: Isotope: " 182"    Z = 74  N = 182  A = 181.948 g/mole  abundance: 26.5%
+     2th isotope: Isotope: " 183"    Z = 74  N = 183  A = 182.95 g/mole  abundance: 14.31%
+     3th isotope: Isotope: " 184"    Z = 74  N = 184  A = 183.951 g/mole  abundance: 30.64%
+     4th isotope: Isotope: " 186"    Z = 74  N = 186  A = 185.954 g/mole  abundance: 28.43%  Elm mass fraction: 100 %
 VGM info:   Generation medium for material: 
 VGM info:   Material: "Basic"  density 2.7 g/cm3  radlen 8.89253 cm  intlen 38.8601 cm  state "Solid"  temperature 273.15 kelvin  pressure 1 atm
-   0th element: Element: "Basic"  " "  Z = 13  N = 26.98  A = 26.98 g/mole  Elm mass fraction: 100 %
+   0th element: Element: "Basic"  " "  Z = 13  N = 26.98  A = 26.98 g/mole
+     0th isotope: Isotope: " 27"    Z = 13  N = 27  A = 26.9815 g/mole  abundance: 100%  Elm mass fraction: 100 %
 VGM info:   Generation medium for material: 
 VGM info:   Material: "Air"  density 0.00129 g/cm3  radlen 28516.1 cm  intlen 66290.4 cm  state "Gas"  temperature 273.15 kelvin  pressure 1 atm
-   0th element: Element: "Nitrogen"  "N"  Z = 7  N = 14.01  A = 14.01 g/mole  Elm mass fraction: 70 %
-   1th element: Element: "Oxygen"  "O"  Z = 8  N = 16  A = 16 g/mole  Elm mass fraction: 30 %
+   0th element: Element: "Nitrogen"  "N"  Z = 7  N = 14.01  A = 14.01 g/mole
+     0th isotope: Isotope: "N14"    Z = 7  N = 14  A = 14.0031 g/mole  abundance: 99.632%
+     1th isotope: Isotope: "N15"    Z = 7  N = 15  A = 15.0001 g/mole  abundance: 0.368%  Elm mass fraction: 70 %
+   1th element: Element: "Oxygen"  "O"  Z = 8  N = 16  A = 16 g/mole
+     0th isotope: Isotope: "O16"    Z = 8  N = 16  A = 15.9949 g/mole  abundance: 99.757%
+     1th isotope: Isotope: "O17"    Z = 8  N = 17  A = 16.9991 g/mole  abundance: 0.038%
+     2th isotope: Isotope: "O18"    Z = 8  N = 18  A = 17.9992 g/mole  abundance: 0.205%  Elm mass fraction: 30 %
 VGM info:   Generation medium for material: 
 VGM info:   Material: "Scintillator"  density 1.032 g/cm3  radlen 42.5442 cm  intlen 70.101 cm  state "Solid"  temperature 273.15 kelvin  pressure 1 atm
    0th element: Element: "C"  "C"  Z = 6  N = 12.0107  A = 12.0107 g/mole
@@ -215,10 +341,17 @@ VGM info:   Material: "Uranium"  density 13.61 g/cm3  radlen 0.435829 cm  intlen
      1th isotope: Isotope: "U238"    Z = 92  N = 238  A = 238.03 g/mole  abundance: 10%  Elm mass fraction: 100 %
 VGM info:   Generation medium for material: 
 VGM info:   Material: "Vacuum"  density 1e-25 g/cm3  radlen 6.31723e+26 cm  intlen 3.535e+26 cm  state "Gas"  temperature 2.73 kelvin  pressure 2.96077e-23 atm
-   0th element: Element: "Vacuum"  " "  Z = 1  N = 1.01  A = 1.01 g/mole  Elm mass fraction: 100 %
+   0th element: Element: "Vacuum"  " "  Z = 1  N = 1.01  A = 1.01 g/mole
+     0th isotope: Isotope: " 1"    Z = 1  N = 1  A = 1.00783 g/mole  abundance: 99.9885%
+     1th isotope: Isotope: " 2"    Z = 1  N = 2  A = 2.0141 g/mole  abundance: 0.0115%  Elm mass fraction: 100 %
 VGM info:   Generation medium for material: 
 VGM info:   Material: "Tungsten"  density 19.25 g/cm3  radlen 0.351325 cm  intlen 10.3323 cm  state "Solid"  temperature 273.15 kelvin  pressure 1 atm
-   0th element: Element: "Tungsten"  " "  Z = 74  N = 183.84  A = 183.84 g/mole  Elm mass fraction: 100 %
+   0th element: Element: "Tungsten"  " "  Z = 74  N = 183.84  A = 183.84 g/mole
+     0th isotope: Isotope: " 180"    Z = 74  N = 180  A = 179.947 g/mole  abundance: 0.12%
+     1th isotope: Isotope: " 182"    Z = 74  N = 182  A = 181.948 g/mole  abundance: 26.5%
+     2th isotope: Isotope: " 183"    Z = 74  N = 183  A = 182.95 g/mole  abundance: 14.31%
+     3th isotope: Isotope: " 184"    Z = 74  N = 184  A = 183.951 g/mole  abundance: 30.64%
+     4th isotope: Isotope: " 186"    Z = 74  N = 186  A = 185.954 g/mole  abundance: 28.43%  Elm mass fraction: 100 %
 VGM info:   Exporting volume store: 
 VGM info:      Exporting solid: 
 VGM info:      Box  "worldS"  hx = 600mm  hy = 600mm  hz = 1600mm
@@ -266,6 +399,7 @@ Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
 Info in <TGeoManager::CloseGeometry>: Counting nodes...
 Info in <TGeoManager::Voxelize>: Voxelizing...
 Info in <TGeoManager::CloseGeometry>: Building cache...
+Info in <TGeoManager::CountLevels>: max level = 2, max placements = 2
 Info in <TGeoManager::CloseGeometry>: 6 nodes/ 5 volume UID's in VGM Root geometry
 Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
 Info in <TGeoManager::Export>: Exporting VGM Root geometry VGM Root geometry as root file. Optimizations streamed.
@@ -279,16 +413,13 @@ Current available graphics systems are:
   DAWNFILE (DAWNFILE)
   G4HepRep (HepRepXML)
   G4HepRepFile (HepRepFile)
+  OpenGLImmediateX (OGLI, OGLIX)
+  OpenGLStoredX (OGL, OGLS, OGLSX)
   RayTracer (RayTracer)
+  RayTracerX (RayTracerX)
   VRML1FILE (VRML1FILE)
   VRML2FILE (VRML2FILE)
   gMocrenFile (gMocrenFile)
-  OpenGLStoredX (OGL)
-  OpenGLImmediateX (OGLI)
-  OpenGLStoredX (OGLS)
-  OpenGLImmediateX (OGLIX)
-  OpenGLStoredX (OGLSX)
-  RayTracerX (RayTracerX)
 
 Registering model factories...
 
@@ -306,9 +437,14 @@ Registered filter factories:
   originVolumeFilter
   attributeFilter
 
+You have successfully registered the following user vis actions.
+Run Duration User Vis Actions: none
+End of Event User Vis Actions: none
+End of Run User Vis Actions: none
+
 Some /vis commands (optionally) take a string to specify colour.
 Available colours:
-  black, blue, cyan, gray, green, grey, magenta, red, white, yellow
+  black, blue, brown, cyan, gray, green, grey, magenta, red, white, yellow
 
 Graphics systems deleted.
 Visualization Manager deleting...

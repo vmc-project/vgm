@@ -4,7 +4,7 @@ Info in <TGeoManager::TGeoManager>: Geometry Test, Test geometry via Root create
 Root geometry will be defined via Root
 
 *************************************************************
- Geant4 version Name: geant4-09-05-ref-00    (2-December-2011)
+ Geant4 version Name: geant4-09-06-ref-00    (30-November-2012)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -259,6 +259,7 @@ Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
 Info in <TGeoManager::CloseGeometry>: Counting nodes...
 Info in <TGeoManager::Voxelize>: Voxelizing...
 Info in <TGeoManager::CloseGeometry>: Building cache...
+Info in <TGeoManager::CountLevels>: max level = 1, max placements = 16
 Info in <TGeoManager::CloseGeometry>: 17 nodes/ 17 volume UID's in Test geometry via Root
 Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
 Info in <TGeoManager::Export>: Exporting Test Test geometry via Root as root file. Optimizations streamed.
