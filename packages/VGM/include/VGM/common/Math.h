@@ -11,7 +11,7 @@
 
 /// \ingroup VGM_common
 ///
-/// Definition of <math> constant M_PI not available on Win32
+/// Definition of math constant M_PI not available on Win32
 ///
 /// \author Ivana Hrivnacova; IPN Orsay
 
