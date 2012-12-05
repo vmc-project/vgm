@@ -43,9 +43,12 @@
    </define>
 
    <materials>
+      <isotope  name="__27_i"    Z=" 13.0000"  N=" 27" >
+         <atom type="A" unit="g/mol" value=" 26.9815" />
+      </isotope>
 
-      <element  name="Basic_e"  Z=" 13.0000"  N=" 27" >
-         <atom type="A" unit="g/mol" value=" 26.9800" />
+      <element  name="Basic_e"  >
+         <fraction n="  1.0000"  ref="__27_i" />
       </element>
 
       <material  name="Basic"  state="solid"  >

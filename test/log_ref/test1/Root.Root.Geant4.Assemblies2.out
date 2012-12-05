@@ -4,7 +4,7 @@ Info in <TGeoManager::TGeoManager>: Geometry Test, Test geometry via Root create
 Root geometry will be defined via Root and exported to Geant4
 
 *************************************************************
- Geant4 version Name: geant4-09-05-ref-00    (2-December-2011)
+ Geant4 version Name: geant4-09-06-ref-00    (30-November-2012)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -103,22 +103,56 @@ VGM info:   Exporting isotope:
 VGM info:   Isotope: "U238"    Z = 92  N = 238  A = 238.03 g/mole
 VGM info:   Exporting element: 
 VGM info:   Element: "ALUMINIUM"  "AL"  Z = 13  N = 26.98  A = 26.98 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:  AL27   Z = 13   N =  27   A =  26.98 g/mole
 VGM info:   Exporting element: 
 VGM info:   Element: "NITROGEN"  "N"  Z = 7  N = 14.01  A = 14.01 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   N14   Z =  7   N =  14   A =  14.00 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   N15   Z =  7   N =  15   A =  15.00 g/mole
 VGM info:   Exporting element: 
 VGM info:   Element: "OXYGEN"  "O"  Z = 8  N = 16  A = 16 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   O16   Z =  8   N =  16   A =  15.99 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   O17   Z =  8   N =  17   A =  17.00 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   O18   Z =  8   N =  18   A =  18.00 g/mole
 VGM info:   Exporting element: 
 VGM info:   Element: "C"  "CARBON"  Z = 6  N = 12  A = 12.0107 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope: CARBON12   Z =  6   N =  12   A =  12.00 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope: CARBON13   Z =  6   N =  13   A =  13.00 g/mole
 VGM info:   Exporting element: 
 VGM info:   Element: "H"  "HYDROGEN"  Z = 1  N = 1  A = 1.00794 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope: HYDROGEN1   Z =  1   N =   1   A =   1.01 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope: HYDROGEN2   Z =  1   N =   2   A =   2.01 g/mole
 VGM info:   Exporting element: 
 VGM info:   Element: "enriched Uranium"  "U"  Z = 92  N = 235.3  A = 235.312 g/mole
      0th isotope: Isotope: "U235"    Z = 92  N = 235  A = 235.01 g/mole  abundance: 90%
      1th isotope: Isotope: "U238"    Z = 92  N = 238  A = 238.03 g/mole  abundance: 10%
 VGM info:   Exporting element: 
 VGM info:   Element: "VACUUM"  "VACUUM"  Z = 0  N = 0  A = 0 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope: VACUUM1   Z =  1   N =   1   A =   1.01 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope: VACUUM2   Z =  1   N =   2   A =   2.01 g/mole
 VGM info:   Exporting element: 
 VGM info:   Element: "W"  "TUNGSTEN"  Z = 74  N = 184  A = 183.84 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope: TUNGSTEN180   Z = 74   N = 180   A = 179.95 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope: TUNGSTEN182   Z = 74   N = 182   A = 181.95 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope: TUNGSTEN183   Z = 74   N = 183   A = 182.95 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope: TUNGSTEN184   Z = 74   N = 184   A = 183.95 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope: TUNGSTEN186   Z = 74   N = 186   A = 185.95 g/mole
 VGM info:   Exporting material: 
 VGM info:   Material: "Basic"  density 2.7 g/cm3  radlen 8.8751 cm  intlen 38.8622 cm  state "Undefined"  temperature 273.15 kelvin  pressure 1 atm
    0th element: Element: "ALUMINIUM"  "AL"  Z = 13  N = 26.98  A = 26.98 g/mole  Elm mass fraction: 100 %
@@ -177,6 +211,7 @@ Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
 Info in <TGeoManager::CloseGeometry>: Counting nodes...
 Info in <TGeoManager::Voxelize>: Voxelizing...
 Info in <TGeoManager::CloseGeometry>: Building cache...
+Info in <TGeoManager::CountLevels>: max level = 2, max placements = 4
 Info in <TGeoManager::CloseGeometry>: 6 nodes/ 3 volume UID's in Test geometry via Root
 Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
 Info in <TGeoManager::Export>: Exporting Test Test geometry via Root as root file. Optimizations streamed.
@@ -190,16 +225,13 @@ Current available graphics systems are:
   DAWNFILE (DAWNFILE)
   G4HepRep (HepRepXML)
   G4HepRepFile (HepRepFile)
+  OpenGLImmediateX (OGLI, OGLIX)
+  OpenGLStoredX (OGL, OGLS, OGLSX)
   RayTracer (RayTracer)
+  RayTracerX (RayTracerX)
   VRML1FILE (VRML1FILE)
   VRML2FILE (VRML2FILE)
   gMocrenFile (gMocrenFile)
-  OpenGLStoredX (OGL)
-  OpenGLImmediateX (OGLI)
-  OpenGLStoredX (OGLS)
-  OpenGLImmediateX (OGLIX)
-  OpenGLStoredX (OGLSX)
-  RayTracerX (RayTracerX)
 
 Registering model factories...
 
@@ -217,9 +249,14 @@ Registered filter factories:
   originVolumeFilter
   attributeFilter
 
+You have successfully registered the following user vis actions.
+Run Duration User Vis Actions: none
+End of Event User Vis Actions: none
+End of Run User Vis Actions: none
+
 Some /vis commands (optionally) take a string to specify colour.
 Available colours:
-  black, blue, cyan, gray, green, grey, magenta, red, white, yellow
+  black, blue, brown, cyan, gray, green, grey, magenta, red, white, yellow
 
 Graphics systems deleted.
 Visualization Manager deleting...
