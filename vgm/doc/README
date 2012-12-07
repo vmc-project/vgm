@@ -205,13 +205,16 @@ $Id$
  8. Files
  ---------
    autoconf - autoconf configuration files
+   cmt      - CMake configuration files
    cmt      - CMT configuration files
-   config   - general makefiles (not use by cmt)
-              setup.(c)sh - script for setting environment (not use by cmt)
+   config   - general makefiles for GNUmake build
+              setup.(c)sh - script for setting environment for GNUmake build
    doc      - documents:
-              INSTALL - this file	
-	      README  - VGM User's guide
-	      history - versions description  
+              INSTALL* - Installation guides (available for GNUmake, CMake,
+                         Autoconf and CMT)	
+	      README   - VGM User's guide (This file)
+	      VGM.html - VGM Web page
+	      VGMhistory.txt  - versions description  
    examples - examples for use of VGM
    packages - source code:
    	      VGM       - interfaces
