@@ -33,6 +33,7 @@ include_directories(
    ${VGM_SOURCE_DIR}/packages/RootGM/include
    ${VGM_SOURCE_DIR}/packages/Geant4GM/include
    ${VGM_SOURCE_DIR}/test/include
+   ${G4ROOT_INCLUDE_DIR} 
 )
 
 #----------------------------------------------------------------------------
@@ -43,10 +44,17 @@ file(GLOB sources src/*.cc)
 file(GLOB headers include/*.hh)
 
 #----------------------------------------------------------------------------
+# Add definitions
+#
+if (WITH_ROOT AND WITH_G4ROOT)
+  add_definitions(-DVGM_WITH_G4ROOT) 
+endif(WITH_ROOT AND WITH_G4ROOT)
+
+#----------------------------------------------------------------------------
 # Add the executable, and link it to the Geant4 libraries
 #
 add_executable(vgm_test vgm_test.cc ${sources} ${headers})
-target_link_libraries(vgm_test ${ROOT_LIBRARIES} ${CLHEP_LIBRARIES} ${XERCES_LIBRARIES} ${GEANT4_LIBRARIES} Geant4GM RootGM BaseVGM ClhepVGM XmlVGM)
+target_link_libraries(vgm_test ${ROOT_LIBRARIES} ${CLHEP_LIBRARIES} ${XERCES_LIBRARIES} ${G4ROOT_LIBRARIES} ${GEANT4_LIBRARIES} Geant4GM RootGM BaseVGM ClhepVGM XmlVGM)
 
 #----------------------------------------------------------------------------
 # Copy all test scripts and macros to the build directory.

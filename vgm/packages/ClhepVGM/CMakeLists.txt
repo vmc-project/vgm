@@ -29,4 +29,4 @@ target_link_libraries(ClhepVGM ${Geant4_LIBRARIES})
 
 #----Installation---------------------------------------------------------------
 install(DIRECTORY include/ DESTINATION include  PATTERN ".svn" EXCLUDE)
-install(TARGETS ClhepVGM DESTINATION lib)
+install(TARGETS ClhepVGM EXPORT VGMTargets DESTINATION lib)

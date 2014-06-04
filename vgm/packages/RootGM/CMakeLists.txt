@@ -32,4 +32,4 @@ target_link_libraries(RootGM BaseVGM ${ROOT_LIBRARIES} Geom)
 
 #----Installation---------------------------------------------------------------
 install(DIRECTORY include/ DESTINATION include  PATTERN ".svn" EXCLUDE)
-install(TARGETS RootGM DESTINATION lib)
+install(TARGETS RootGM EXPORT VGMTargets DESTINATION lib)
