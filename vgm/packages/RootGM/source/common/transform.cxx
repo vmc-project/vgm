@@ -50,11 +50,11 @@ VGM::Transform  RootGM::Transform(const TGeoMatrix& matrix)
   //
   const Double_t* rm = matrix.GetRotationMatrix();
 
-  double xx, xy, xz,     // 3x3  Rotation Matrix
+  double xx, xz,        // 3x3  Rotation Matrix (xy not used)
          yx, yy, yz,
          zx, zy, zz;
 
-  xx = rm[0]; xy = rm[1]; xz = rm[2];
+  xx = rm[0]; xz = rm[2];
   yx = rm[3]; yy = rm[4]; yz = rm[5];
   zx = rm[6]; zy = rm[7]; zz = rm[8];
 
