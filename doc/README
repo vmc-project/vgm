@@ -2,7 +2,7 @@ $Id$
 
 ------------------------------------------------------------------------
  The documentation file for the Virtual Geometry Model
- Copyright (C) 2007, Ivana Hrivnacova               
+ Copyright (C) 2007,2014 Ivana Hrivnacova               
  All rights reserved. 
            
  For the licensing terms see vgm/LICENSE.
@@ -63,10 +63,12 @@ $Id$
  2. Installation, Examples
  -------------------------
  
- Three independent building systems are available: 
- provided GNUmakefiles, CMT and Autoconf. The installation and testing 
- procedures for each system are described in detail in 
- vgm/doc/INSTALL, vgm/doc/INSTALL_CMT and vgm/doc/INSTALL_Autoconf. 
+ Since version 4.0, only CMake build system is supported. 
+ The installation and testing procedures for this system are described in detail 
+ in vgm/doc/INSTALL.
+ 
+ The CMT and Autoconf build systems are removed (for maintenance reasons)
+ and GNUmake build system is temporarily kept.
 
  As the test program (being written for the purpose of testing of all
  features) is too complex, four simple examples demonstrating use
@@ -198,20 +200,16 @@ $Id$
  7. Platforms
  -------------
 
- Tested platforms:
- - Linux FC5, gcc 4.1.1
- - MacOS Powerbook 10.4.7 gcc 4
+ Tested on platforms: 
+ Linux FC19, gcc 4.8.2
 
  8. Files
  ---------
-   autoconf - autoconf configuration files
-   cmt      - CMake configuration files
-   cmt      - CMT configuration files
-   config   - general makefiles for GNUmake build
-              setup.(c)sh - script for setting environment for GNUmake build
+   cmake    - CMake configuration files
    doc      - documents:
-              INSTALL* - Installation guides (available for GNUmake, CMake,
+              INSTALL  - Installation guides (available for GNUmake, CMake,
                          Autoconf and CMT)	
+              INSTALL.GNUmake  - Installation guides for GNUmake (now deprecated)
 	      README   - VGM User's guide (This file)
 	      VGM.html - VGM Web page
 	      VGMhistory.txt  - versions description  
@@ -225,6 +223,7 @@ $Id$
 	      RootGM    - VGM implementation for Root TGeo
 	      XmlVGM    - XML eporters
    test     - test code
-   include, lib, tmp - generated during compilation if using building
-              system based on GNUmakfiles 	   
+   Deprecated:
+   config   - general makefiles for GNUmake build
+              setup.(c)sh - script for setting environment for GNUmake build
   
