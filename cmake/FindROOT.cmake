@@ -21,7 +21,12 @@
 # ROOT_LIBRARIES      Most common libraries
 # ROOT_LIBRARY_DIR    PATH to the library directory 
 
-message(STATUS "Looking for ROOT ...")
+#message(STATUS "Looking for ROOT ...")
+
+# Alternative paths which can be defined by user
+set(ROOT_DIR "" CACHE PATH "Directory where ROOT is installed")
+set(ROOT_INC_DIR "" CACHE PATH "Alternative directory for ROOT includes")
+set(ROOT_LIB_DIR "" CACHE PATH "Alternative directory for ROOT libraries")
 
 set(ROOT_FOUND FALSE)
 

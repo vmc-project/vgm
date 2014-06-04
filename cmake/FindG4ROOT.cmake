@@ -19,9 +19,28 @@
 #  G4ROOT_FOUND       - If G4ROOT is found
 #  G4ROOT_INCLUDE_DIR - the G4ROOT include directory
 #  G4ROOT_LIBRARIES   - The libraries needed to use G4ROOT
-#  G4ROOT_LIBRARY_DIR - PATH to the library directory 
 
-message(STATUS "Looking for G4ROOT ...")
+#message(STATUS "Looking for G4ROOT ...")
+
+set(G4ROOT_DIR "" CACHE PATH "Directory where G4ROOT is installed")
+set(G4ROOT_INC_DIR "" CACHE PATH "Alternative directory for G4ROOT includes")
+set(G4ROOT_LIB_DIR "" CACHE PATH "Alternative directory for G4ROOT libraries")
+set(G4ROOT_ARCH "" CACHE PATH "G4ROOT platform specification")
+
+# First search for Geant4VMCConfig.cmake on the path defined via user setting 
+# Geant4VMC_DIR
+
+if(EXISTS ${Geant4VMC_DIR}/Geant4VMCConfig.cmake)
+  include(${Geant4VMC_DIR}/Geant4VMCConfig.cmake)
+  if (Geant4VMC_USE_G4ROOT)
+    set(G4ROOT_INCLUDE_DIR ${Geant4VMC_INCLUDE_DIRS})
+    set(G4ROOT_LIBRARIES ${Geant4VMC_LIBRARIES})
+    set(G4ROOT_FOUND TRUE)
+    message(STATUS "Found G4Root in Geant4VMC CMake configuration in ${Geant4VMC_DIR}")
+    return()
+  endif(Geant4VMC_USE_G4ROOT)
+endif()
+
 
 find_path(G4ROOT_INCLUDE_DIR NAMES TG4RootNavigator.h PATHS
   ${G4ROOT_INC_DIR}
@@ -39,6 +58,7 @@ endif()
 
 find_path(G4ROOT_LIBRARY_DIR NAMES libg4root.so libg4root.dylib PATHS
   ${G4ROOT_LIB_DIR}
+  ${G4ROOT_DIR}/lib
   ${G4ROOT_DIR}/lib/tgt_${G4ROOT_ARCH}
 )
 
@@ -48,7 +68,7 @@ endif (G4ROOT_INCLUDE_DIR AND G4ROOT_LIBRARY_DIR)
 
 if (G4ROOT_FOUND)
   set(LD_LIBRARY_PATH ${LD_LIBRARY_PATH} ${G4ROOT_LIBRARY_DIR})
-  set(G4ROOT_LIBRARIES "-L${G4ROOT_LIBRARY_DIR} -lG4ROOT")
+  set(G4ROOT_LIBRARIES "-L${G4ROOT_LIBRARY_DIR} -lg4root")
   if (NOT G4ROOT_FIND_QUIETLY)
     message(STATUS "Found G4ROOT in ${G4ROOT_LIBRARY_DIR}")
   endif (NOT G4ROOT_FIND_QUIETLY)
@@ -59,5 +79,5 @@ else (G4ROOT_FOUND)
 endif (G4ROOT_FOUND)
 
 # Make variables changeble to the advanced user
-mark_as_advanced(G4ROOT_INCLUDE_DIR G4ROOT_LIBRARY_DIR G4ROOT_LIBRARIES)
+mark_as_advanced(G4ROOT_INCLUDE_DIR G4ROOT_LIBRARIES)
 

@@ -23,7 +23,13 @@
 #  CLHEP_LIBRARY_NAME - the CLHEP library name 
 
 
-message(STATUS "Looking for CLHEP ...")
+#message(STATUS "Looking for CLHEP ...")
+
+set(CLHEP_DIR "" CACHE PATH "Directory where CLHEP is installed")
+set(CLHEP_INC_DIR "" CACHE PATH "Alternative directory for CLHEP includes")
+set(CLHEP_LIB_DIR "" CACHE PATH "Alternative directory for CLHEP libraries")
+
+set(CLHEP_FOUND FALSE)
 
 find_path(CLHEP_INCLUDE_DIR NAMES CLHEP/Evaluator/Evaluator.h PATHS
   ${CLHEP_INC_DIR}
@@ -34,17 +40,18 @@ find_path(CLHEP_INCLUDE_DIR NAMES CLHEP/Evaluator/Evaluator.h PATHS
 )
 
 # CLHEP library external to Geant4 
-find_path(CLHEP_LIBRARY_DIR NAMES libCLHEP.so libCLHEP.dylib PATHS
+find_path(EXTERNAL_CLHEP_LIBRARY_DIR NAMES libCLHEP.so libCLHEP.dylib PATHS
   ${CLHEP_LIB_DIR}
   ${CLHEP_DIR}/lib
   $ENV{CLHEP_BASE_DIR}/lib
 )
-if (CLHEP_LIBRARY_DIR)
-  set(CLHEP_LIBRARY_NAME CLHEP)
+if (EXTERNAL_CLHEP_LIBRARY_DIR)
+  set(CLHEP_LIBRARY_DIR ${EXTERNAL_CLHEP_LIBRARY_DIR}CLHEP)
+  set(CLHEP_LIBRARY_NAME CLHEP)  
 endif()    
 
 # CLHEP library within Geant4 
-if (NOT CLHEP_LIBRARY_DIR)
+if (NOT EXTERNAL_CLHEP_LIBRARY_DIR)
   find_path(CLHEP_LIBRARY_DIR NAMES libG4clhep.so libG4clhep.dylib PATHS
     ${Geant4_DIR}/..
     ${GEANT4_LIBRARY_DIR}

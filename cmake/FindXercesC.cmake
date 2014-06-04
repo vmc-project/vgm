@@ -20,7 +20,10 @@
 #  XERCES_LIBRARIES - The libraries needed to use XercesC
 #
 
-message(STATUS "Looking for XercesC library ...")
+#message(STATUS "Looking for XercesC library ...")
+
+set(XERCESC_DIR "" CACHE PATH "Directory where Xerces-C is installed")
+set(XERCESC_LIB_DIR "" CACHE PATH "Alternative directory for Xerces-C libraries")
 
 find_path(XERCES_LIBRARY_DIR NAMES libxerces-c.so libxerces-c.dylib PATHS
   ${XERCES_LIB_DIR}
