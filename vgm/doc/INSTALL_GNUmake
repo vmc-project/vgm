@@ -1,0 +1,79 @@
+ $Id$
+
+------------------------------------------------------------------------
+ The documentation file for the Virtual Geometry Model
+ Copyright (C) 2007, Ivana Hrivnacova               
+ All rights reserved. 
+           
+ For the licensing terms see vgm/LICENSE.
+ Contact: ivana@ipno.in2p3.fr
+------------------------------------------------------------------------
+
+
+ The Virtual Geometry Model - Installation
+=================================================
+ 
+ Environment:
+ -----------
+   The following environment variables have to be set by user:
+   VGM_INSTALL     - path to the VGM installation
+   VGM_SYSTEM      - platform (Linux-g++, Darwin, SunOS, DEC-cxx, HP-aCC)
+   CLHEP_BASE_DIR  - path to the CLHEP installation
+                     (if not provided with Geant4 installation)
+   G4VMC           - path to Geant4 VMC installation 
+                     (optional, needed only for test)                  
+
+   In order to build VGM with Geant4 and/or Root,
+   the environment for these packages has to be set in their 
+   standard way.
+
+   User can exclude Geant4 or Root from compilation by setting variables:
+   VGM_NO_GEANT4 - do not build Geant4GM
+   VGM_NO_ROOT   - do not build RootGM
+
+   Note that the VGM complete test requires G4Root provided
+   in Geant4 VMC; building with G4Root can be excluded
+   by setting variable:
+   VGM_NO_G4ROOT   - do not build VGM test with G4Root
+
+   Geant4 configuration:
+   The VGM requires Geant4 installed with include directory.
+
+   The path to VGM libraries $VGM_INSTALL/lib/$VGM_SYSTEM
+   has to be added to the path to shared libraries
+   (LD_LIBRARY_PATH on most systems, SHLIB_PATH on HP-UX).
+   
+   The default environment setting (for VGM only) is provided 
+   in the config/setup.(c)sh script.   
+  
+ Compilation:
+ -----------
+   cd $VGM_INSTALL/packages
+   make  
+
+ Test:
+ -----
+   To build test program:
+   cd $VGM_INSTALL/test
+   . env_setup.sh   or  source env_setup.csh
+   make
+   
+   For different test options, see vgm/test/README file;
+   eg.
+   vgm_test VGM Geant4 Root noXML Solids
+
+   For launching test suites:
+   ./test1_suite.sh  or
+   ./test2_suite.sh
+   ./test3_suite.sh
+   The output from tests stored in log directory can be then compared
+   with the reference output in log_ref directory.
+
+
+ Examples:
+ ---------
+   To build examples:
+   cd $VGM_INSTALL/examples
+   ./install.sh
+   
+   How to run each example see in their README file.
