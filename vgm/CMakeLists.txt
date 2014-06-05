@@ -24,10 +24,10 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
     message(FATAL_ERROR "in-source build detected")
 endif()
 
-#---CMake required version -----------------------------------------------------
+#--- CMake required version ----------------------------------------------------
 cmake_minimum_required(VERSION 2.8.3 FATAL_ERROR)
 
-#---CMake Module Path-----------------------------------------------------------
+#--- CMake Module Path----------------------------------------------------------
 set(CMAKE_MODULE_PATH 
     ${CMAKE_SOURCE_DIR}/cmake
     ${CMAKE_MODULE_PATH}) 
@@ -41,15 +41,18 @@ set(${PROJECT_NAME}_VERSION_PATCH "0")
 set(${PROJECT_NAME}_VERSION
     ${${PROJECT_NAME}_VERSION_MAJOR}.${${PROJECT_NAME}_VERSION_MINOR}.${${PROJECT_NAME}_VERSION_PATCH})
 
-#---Options---------------------------------------------------------------------
+#--- Options -------------------------------------------------------------------
 option(WITH_GEANT4       "Build Geant4 dependent subpackage (Geant4GM)" ON)
 option(WITH_ROOT         "Build Root dependent subpackage(RootGM)" ON)
 option(WITH_TEST         "Build test" ON)
 option(WITH_G4ROOT       "Build test with G4Root" OFF)
 option(BUILD_SHARED_LIBS "Build the dynamic libraries" ON)  
 
-#---Find required packages------------------------------------------------------
+#--- Find required packages ----------------------------------------------------
 include(VGMRequiredPackages)
+
+#--- Utility to defined installation lib directory -----------------------------
+include(VGMInstallLibDir)
 
 #--- Add the packages sources --------------------------------------------------
 add_subdirectory(packages)
