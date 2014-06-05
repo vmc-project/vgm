@@ -17,8 +17,8 @@
 
 #---Include directories---------------------------------------------------------
 include_directories(                     
-  ${CLHEP_INCLUDE_DIR}
-  ${GEANT4_INCLUDE_DIR} 
+  ${CLHEP_INCLUDE_DIRS}
+  ${Geant4_INCLUDE_DIRS} 
   ${VGM_SOURCE_DIR}/packages/VGM/include 
   ${VGM_SOURCE_DIR}/packages/ClhepVGM/include 
   ${VGM_SOURCE_DIR}/packages/BaseVGM/include 

@@ -17,9 +17,8 @@
 # This module sets up ROOT information 
 # It defines:
 # ROOT_FOUND          If ROOT is found
-# ROOT_INCLUDE_DIR    PATH to the include directory
-# ROOT_LIBRARIES      Most common libraries
-# ROOT_LIBRARY_DIR    PATH to the library directory 
+# ROOT_INCLUDE_DIRS   PATH to the include directories
+# ROOT_LIBRARIES      the libraries needed to use ROOT
 
 #message(STATUS "Looking for ROOT ...")
 
@@ -54,7 +53,7 @@ if(ROOT_CONFIG_EXECUTABLE)
 
   execute_process(
     COMMAND ${ROOT_CONFIG_EXECUTABLE} --incdir
-    OUTPUT_VARIABLE ROOT_INCLUDE_DIR
+    OUTPUT_VARIABLE ROOT_INCLUDE_DIRS
     OUTPUT_STRIP_TRAILING_WHITESPACE)
 
   execute_process(
@@ -72,7 +71,7 @@ endif()
 # If search for root-config failed try to use directly user paths if set
 #
 if (NOT ROOT_FOUND)
-  find_path(ROOT_INCLUDE_DIR NAMES TObject.h PATHS
+  find_path(ROOT_INCLUDE_DIRS NAMES TObject.h PATHS
     ${ROOT_INC_DIR}
     ${ROOT_DIR}/include
   )
@@ -80,7 +79,7 @@ if (NOT ROOT_FOUND)
     ${ROOT_LIB_DIR}
     ${ROOT_LIB}/include
   )
-  if (ROOT_INCLUDE_DIR AND ROOT_LIBRARY_DIR)
+  if (ROOT_INCLUDE_DIRS AND ROOT_LIBRARY_DIR)
     set (ROOT_FOUND TRUE)
     set (ROOT_LIBRARIES -L${ROOT_LIBRARY_DIR} -lCore -lCint -lRIO -lNet -lHist -lGraf -lGraf3d -lGpad -lTree -lRint -lPostscript -lMatrix -lPhysics -lMathCore -lThread -pthread -lm -ldl -rdynamic -lGeom)
   endif()  
@@ -98,5 +97,8 @@ else()
 endif()
 
 # Make variables changeble to the advanced user
-mark_as_advanced(ROOT_INCLUDE_DIR ROOT_LIBRARY_DIR ROOT_LIBRARIES )
+mark_as_advanced(ROOT_INCLUDE_DIRS)
+mark_as_advanced(ROOT_LIBRARIES)
+mark_as_advanced(ROOT_LIBRARY_DIR)
+mark_as_advanced(ROOT_CONFIG_EXECUTABLE)
 

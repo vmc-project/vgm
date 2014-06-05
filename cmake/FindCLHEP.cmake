@@ -17,10 +17,8 @@
 # Once done this will define
 #
 #  CLHEP_FOUND        - If CLHEP is found
-#  CLHEP_INCLUDE_DIR  - the CLHEP include directory
+#  CLHEP_INCLUDE_DIRS - the CLHEP include directories
 #  CLHEP_LIBRARIES    - the libraries needed to use CLHEP
-#  CLHEP_LIBRARY_DIR  - PATH to the library directory 
-#  CLHEP_LIBRARY_NAME - the CLHEP library name 
 
 
 #message(STATUS "Looking for CLHEP ...")
@@ -31,11 +29,10 @@ set(CLHEP_LIB_DIR "" CACHE PATH "Alternative directory for CLHEP libraries")
 
 set(CLHEP_FOUND FALSE)
 
-find_path(CLHEP_INCLUDE_DIR NAMES CLHEP/Evaluator/Evaluator.h PATHS
+find_path(CLHEP_INCLUDE_DIRS NAMES CLHEP/Evaluator/Evaluator.h PATHS
   ${CLHEP_INC_DIR}
   ${CLHEP_DIR}/include
-  ${Geant4_INCLUDE_DIR}
-  ${GEANT4_INCLUDE_DIR}
+  ${Geant4_INCLUDE_DIRS}
   $ENV{CLHEP_BASE_DIR}/include
 )
 
@@ -61,9 +58,9 @@ if (NOT EXTERNAL_CLHEP_LIBRARY_DIR)
   endif(CLHEP_LIBRARY_DIR)
 endif()    
    
-if (CLHEP_INCLUDE_DIR AND CLHEP_LIBRARY_DIR)
+if (CLHEP_INCLUDE_DIRS AND CLHEP_LIBRARY_DIR)
   set(CLHEP_FOUND TRUE)
-endif (CLHEP_INCLUDE_DIR AND CLHEP_LIBRARY_DIR)
+endif (CLHEP_INCLUDE_DIRS AND CLHEP_LIBRARY_DIR)
 
 if (CLHEP_FOUND)
   set(LD_LIBRARY_PATH ${LD_LIBRARY_PATH} ${CLHEP_LIBRARY_DIR})
@@ -77,6 +74,9 @@ else (CLHEP_FOUND)
   endif (CLHEP_FIND_REQUIRED)
 endif (CLHEP_FOUND)
 
-# Make variables changeble to the advanced user
-mark_as_advanced(CLHEP_INCLUDE_DIR CLHEP_LIBRARY_DIR CLHEP_LIBRARIES)
+# Make variables changeble only to the advanced user
+mark_as_advanced(CLHEP_INCLUDE_DIRS)
+mark_as_advanced(CLHEP_LIBRARIES)
+mark_as_advanced(CLHEP_LIBRARY_DIR)
+mark_as_advanced(EXTERNAL_CLHEP_LIBRARY_DIR)
 

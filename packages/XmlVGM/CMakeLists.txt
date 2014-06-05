@@ -17,7 +17,7 @@
 
 #---Include directories---------------------------------------------------------
 include_directories(                     
-  ${CLHEP_INCLUDE_DIR}
+  ${CLHEP_INCLUDE_DIRS}
   ${VGM_SOURCE_DIR}/packages/VGM/include 
   ${VGM_SOURCE_DIR}/packages/ClhepVGM/include 
   ${CMAKE_CURRENT_SOURCE_DIR}/include
