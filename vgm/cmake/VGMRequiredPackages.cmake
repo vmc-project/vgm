@@ -34,12 +34,6 @@ endif()
 
 #-- Optional packages used in test ---------------------------------------------
 if(WITH_TEST)
-
-  # Xerces-C
-  if (WITH_XERCESC)
-    find_package(XercesC REQUIRED)
-  endif(WITH_XERCESC)
-
   # G4Root
   if (WITH_ROOT AND WITH_G4ROOT)
     find_package(G4ROOT REQUIRED)      
