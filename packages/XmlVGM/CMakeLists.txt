@@ -26,7 +26,7 @@ include_directories(
 #---Add library-----------------------------------------------------------------
 file(GLOB sources source/*.cxx)
 add_library(XmlVGM ${sources})
-target_link_libraries(XmlVGM BaseVGM ClhepVGM ${XERCESC_LIBRARIES} )
+target_link_libraries(XmlVGM BaseVGM ClhepVGM)
 
 #----Installation---------------------------------------------------------------
 install(DIRECTORY include/ DESTINATION include  PATTERN ".svn" EXCLUDE)

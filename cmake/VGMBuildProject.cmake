@@ -15,7 +15,7 @@
 # I. Hrivnacova, 04/06/2014
 
 # Find modules
-foreach(_find_mod CLHEP G4ROOT Geant4 ROOT XercesC)
+foreach(_find_mod CLHEP G4ROOT Geant4 ROOT)
   configure_file(
     ${PROJECT_SOURCE_DIR}/cmake/Find${_find_mod}.cmake
     ${PROJECT_BINARY_DIR}/Modules/Find${_find_mod}.cmake

@@ -54,7 +54,7 @@ endif(WITH_ROOT AND WITH_G4ROOT)
 # Add the executable, and link it to the Geant4 libraries
 #
 add_executable(vgm_test vgm_test.cc ${sources} ${headers})
-target_link_libraries(vgm_test ${VGM_LIBRARIES} ${G4ROOT_LIBRARIES} ${Geant4_LIBRARIES} ${CLHEP_LIBRARIES} ${XERCES_LIBRARIES}  ${ROOT_LIBRARIES})
+target_link_libraries(vgm_test ${VGM_LIBRARIES} ${G4ROOT_LIBRARIES} ${Geant4_LIBRARIES} ${CLHEP_LIBRARIES} ${ROOT_LIBRARIES})
 
 #----------------------------------------------------------------------------
 # Copy all test scripts and macros to the build directory.

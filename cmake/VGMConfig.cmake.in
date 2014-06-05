@@ -19,7 +19,6 @@
 #  VGM_WITH_ROOT     - build option: with ROOT
 #  VGM_WITH_TEST     - build option: with test
 #  VGM_WITH_G4ROOT   - build option: with G4Root
-#  VGM_WITH_XERCESC  - build option: with XercesC
 #  VGM_WITH_EXAMPLES - build option: with examples
 #
 # I. Hrivnacova, 04/06/2014
@@ -36,7 +35,6 @@ set(VGM_WITH_GEANT4 @WITH_GEANT4@)
 set(VGM_WITH_ROOT @WITH_ROOT@)
 set(VGM_WITH_TEST @WITH_TEST@)
 set(VGM_WITH_G4ROOT @WITH_G4ROOT@)
-set(VGM_WITH_XERCESC @WITH_XERCESC@)
 set(VGM_WITH_EXAMPLES @ WITH_EXAMPLES@)
 
 # These are IMPORTED targets created by VGMTargets.cmake
