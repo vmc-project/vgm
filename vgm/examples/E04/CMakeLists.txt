@@ -9,56 +9,56 @@
 # Contact: ivana@ipno.in2p3.fr
 # ------------------------------------------------------------------------------
 
-# The CMake build for Virtual Geometry Model is a result of a merge 
-# of the CMake configuration files kindly provided 
-# by Florian Uhlig, GSI and Pere Mato, CERN.
+#----------------------------------------------------------------------------
+# Setup the project
+#
+cmake_minimum_required(VERSION 2.6 FATAL_ERROR)
+project(E04)
 
-#---Example E04 ----------------------------------------------------------------
+#----------------------------------------------------------------------------
+# Set path to Find modules in VGM
+#
+set(CMAKE_MODULE_PATH 
+    ${VGM_DIR}/Modules
+    ${CMAKE_MODULE_PATH}) 
 
-# Create executable  "rootgeom"
+#----------------------------------------------------------------------------
+# Find VGM package
+find_package(VGM REQUIRED)
 
-message(STATUS "Configuring Example E04")  
+#----------------------------------------------------------------------------
+# Find ROOT package
+find_package(ROOT REQUIRED)
 
 #----------------------------------------------------------------------------
 # Includes
 #
-include_directories(
-   ${CLHEP_INCLUDE_DIR} 
-   ${ROOT_INCLUDE_DIR} 
-   ${VGM_SOURCE_DIR}/packages/VGM/include
-   ${VGM_SOURCE_DIR}/packages/BaseVGM/include 
-   ${VGM_SOURCE_DIR}/packages/XmlVGM/include
-   ${VGM_SOURCE_DIR}/packages/RootGM/include
-)
+include_directories(${PROJECT_SOURCE_DIR}/include
+                    ${ROOT_INCLUDE_DIR}
+                    ${VGM_INCLUDE_DIRS})
 
 #----------------------------------------------------------------------------
-# Locate sources and headers for this project
-# NB: headers are included so they will show up in IDEs
+# Add the executable, and link it to the VGM libraries
 #
-file(GLOB sources N03/src/*.cc)
-file(GLOB headers N03/include/*.hh)
-
-#----------------------------------------------------------------------------
-# Add the executable, and link it to the Geant4 libraries
-#
-add_executable(rootgeom rootgeom.cxx)
-target_link_libraries(rootgeom ${ROOT_LIBRARIES} ${CLHEP_LIBRARIES} RootGM BaseVGM ClhepVGM XmlVGM)
+add_executable(exampleE04 rootgeom.cxx)
+target_link_libraries(exampleE04 ${VGM_ROOT_LIBRARIES} ${ROOT_LIBRARIES})
+#VGM Libraries can be used also explicitly
+#target_link_libraries(exampleE04 RootGM ClhepVGM BaseVGM XmlVGM ${ROOT_LIBRARIES})
 
 #----------------------------------------------------------------------------
 # Copy all test scripts and macros to the build directory.
 #
+set(E04_SCRIPTS
+  rootgeom.C
+)
 
-# macros
-file(GLOB macros *.C)
-foreach(_macropath ${macros})
-  get_filename_component(_macro ${_macropath} NAME)
-  # message(STATUS "Macro in list ${_macro}")
+foreach(_script ${E04_SCRIPTS})
   configure_file(
-    ${PROJECT_SOURCE_DIR}/examples/E04/${_macro}
-    ${PROJECT_BINARY_DIR}/examples/E04/${_macro}
+    ${PROJECT_SOURCE_DIR}/${_script}
+    ${PROJECT_BINARY_DIR}/${_script}
     COPYONLY
-  )
+    )
 endforeach()
 
 #----Installation-----------------------------------------------------------------
-install(TARGETS rootgeom DESTINATION bin)
+install(TARGETS exampleE04 DESTINATION bin)

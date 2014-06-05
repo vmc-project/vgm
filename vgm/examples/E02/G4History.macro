@@ -1,0 +1,70 @@
+/run/verbose 2
+/control/execute vis.mac
+/vis/open OGL 600x600-0+0
+/vis/sceneHandler/create OGL
+/vis/viewer/create ! ! 600x600-0+0
+/vis/viewer/refresh
+/vis/viewer/set/autoRefresh false
+/vis/verbose errors
+/vis/drawVolume
+/vis/scene/create
+/vis/scene/add/volume world
+/vis/sceneHandler/attach
+/vis/viewer/set/viewpointThetaPhi 90. 180.
+/vis/scene/add/trajectories smooth
+/tracking/storeTrajectory 2
+/vis/scene/notifyHandlers
+/vis/modeling/trajectories/create/drawByCharge
+/vis/modeling/trajectories/drawByCharge-0/default/setDrawStepPts true
+/vis/scene/notifyHandlers scene-0
+/vis/modeling/trajectories/drawByCharge-0/default/setStepPtsSize 1
+/vis/scene/notifyHandlers scene-0
+/vis/scene/endOfEventAction accumulate
+/vis/viewer/set/autoRefresh true
+/vis/viewer/refresh
+/vis/verbose warnings
+/control/execute gui.mac
+/control/execute icons.mac
+/gui/addIcon "Open macro file" open /control/execute
+/gui/addIcon "Save viewer state" save /vis/viewer/save
+/gui/addIcon "Move" move
+/gui/addIcon "Pick" pick
+/gui/addIcon "Zoom out" zoom_out
+/gui/addIcon "Zoom in" zoom_in
+/gui/addIcon "Rotate" rotate
+/gui/addIcon "Hidden line removal" hidden_line_removal
+/gui/addIcon "Hidden line and hidden surface removal" hidden_line_and_surface_removal
+/gui/addIcon "Surfaces" solid
+/gui/addIcon "Wireframe" wireframe
+/gui/addIcon "Perspective" perspective
+/gui/addIcon "Orthographic" ortho
+/gui/addMenu file File
+/gui/addButton file Quit exit
+/gui/addMenu run Run
+/gui/addButton run "beamOn 1" "/run/beamOn 1"
+/gui/addButton run run1 "/control/execute run1.mac"
+/gui/addMenu gun Gun
+/gui/addButton gun "50 MeV" "/gun/energy 50 MeV"
+/gui/addButton gun "1 GeV" "/gun/energy 1 GeV"
+/gui/addButton gun "10 GeV" "/gun/energy 10 GeV"
+/gui/addButton gun "e-" "/gun/particle e-"
+/gui/addButton gun "pi0" "/gun/particle pi0"
+/gui/addButton gun "pi+" "/gun/particle pi+"
+/gui/addButton gun "neutron" "/gun/particle neutron"
+/gui/addButton gun "proton" "/gun/particle proton"
+/gui/addMenu vis Vis
+/gui/addButton vis DAWNFILE "/control/execute visTutor/exN03Vis0.mac"
+/gui/addButton vis OpenInventor "/control/execute visTutor/exN03Vis5.mac"
+/gui/addButton vis TimeSlicing "/control/execute visTutor/exN03Vis12.mac"
+/gui/addButton vis EmShower "/control/execute visTutor/exN03Vis13.mac"
+/gui/addMenu viewer Viewer
+/gui/addButton viewer "Set style surface" "/vis/viewer/set/style surface"
+/gui/addButton viewer "Set style wireframe" "/vis/viewer/set/style wireframe"
+/gui/addButton viewer "Refresh viewer" "/vis/viewer/refresh"
+/gui/addButton viewer "Update viewer (interaction or end-of-file)" "/vis/viewer/update"
+/gui/addButton viewer "Flush viewer (= refresh + update)" "/vis/viewer/flush"
+/gui/addButton viewer "Update scene" "/vis/scene/notifyHandlers"
+/run/printProgress 100
+/gui/addIcon "Run beam on" user_icon "/run/beamOn 1" run.png
+/run/beamOn 1
+/vis/scene/notifyHandlers scene-0

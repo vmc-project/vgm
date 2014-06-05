@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<AGDD DTD_version = "v7"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+<xi:include href="StandardColors.agdd"/>
+
+<materials  version = "Id: AGDDWriter.cxx 693 2011-01-11 14:41:39Z ihrivnac "
+            date    = "2014-06-04"
+            author  = "VGM AGGD Writer"
+            DTD_version="v7"  >
+
+   <isotope  name="__1"     z="  1"  n="  1"  a="  1"/>
+   <isotope  name="__2"     z="  1"  n="  2"  a="  2"/>
+   <isotope  name="__36"    z=" 18"  n=" 36"  a=" 36"/>
+   <isotope  name="__38"    z=" 18"  n=" 38"  a=" 38"/>
+   <isotope  name="__40"    z=" 18"  n=" 40"  a=" 40"/>
+   <isotope  name="Pb_204"  z=" 82"  n="204"  a="204"/>
+   <isotope  name="Pb_206"  z=" 82"  n="206"  a="206"/>
+   <isotope  name="Pb_207"  z=" 82"  n="207"  a="207"/>
+   <isotope  name="Pb_208"  z=" 82"  n="208"  a="208"/>
+
+   <element  symbol="Galactic_e">
+      <addisotope name="__1"  natoms=" 99" />
+      <addisotope name="__2"  natoms="  0" />
+   </element>
+   <element  symbol="liquidArgon_e">
+      <addisotope name="__36"  natoms="  0" />
+      <addisotope name="__38"  natoms="  0" />
+      <addisotope name="__40"  natoms=" 99" />
+   </element>
+   <element  symbol="Pb">
+      <addisotope name="Pb_204"  natoms="  1" />
+      <addisotope name="Pb_206"  natoms=" 24" />
+      <addisotope name="Pb_207"  natoms=" 22" />
+      <addisotope name="Pb_208"  natoms=" 52" />
+   </element>
+
+   <material  name="G4_Pb_mat"  density=" 11.3500">
+      <addelement name="Pb"  natoms=" 1.0000"/>
+   </material>
+   <material  name="Galactic_mat"  density="1.0000e-25">
+      <addelement name="Galactic_e"  natoms=" 1.0000"/>
+   </material>
+   <material  name="liquidArgon_mat"  density="  1.3900">
+      <addelement name="liquidArgon_e"  natoms=" 1.0000"/>
+   </material>
+
+</materials>
+
+<media  version = "Id: AGDDWriter.cxx 693 2011-01-11 14:41:39Z ihrivnac "
+        date    = "2014-06-04"
+        author  = "VGM AGGD Writer"
+        DTD_version="v7"  >
+
+   <medium  name="G4_Pb"  
+      material="G4_Pb_mat"  
+      color="random"
+      sensitive="true"
+      parameters=""/>
+   <medium  name="Galactic"  
+      material="Galactic_mat"  
+      color="random"
+      sensitive="true"
+      parameters=""/>
+   <medium  name="liquidArgon"  
+      material="liquidArgon_mat"  
+      color="random"
+      sensitive="true"
+      parameters=""/>
+
+</media>
+
+<section DTD_version = "v7"
+         name        = "World"
+         version     = "Id: AGDDWriter.cxx 693 2011-01-11 14:41:39Z ihrivnac "
+         date        = "2014-06-04"
+         author      = "VGM AGGD Writer"
+         top_volume  = "World_comp"  >
+
+   <box    name="World"
+      medium="Galactic"
+      X_Y_Z="12.0000; 12.0000; 18.0000" />
+
+   <box    name="Calorimeter"
+      medium="Galactic"
+      X_Y_Z="10.0000; 10.0000; 15.0000" />
+
+   <box    name="Layer"
+      medium="Galactic"
+      X_Y_Z="10.0000; 10.0000;  1.5000" />
+
+   <box    name="Abso"
+      medium="G4_Pb"
+      X_Y_Z="10.0000; 10.0000;  1.0000" />
+
+   <box    name="Gap"
+      medium="liquidArgon"
+      X_Y_Z="10.0000; 10.0000;  0.5000" />
+
+
+   <composition name="World_comp">
+      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="Calorimeter"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="Calorimeter_comp"/>
+      </posXYZ>
+   </composition>
+
+   <composition name="Calorimeter_comp">
+      <mposZ ncopy="  10"  Z0=" -6.7500"  dZ="  1.5000"> <volume name="Layer"/>
+      </mposZ>
+      <mposZ ncopy="  10"  Z0=" -6.7500"  dZ="  1.5000"> <volume name="Layer_comp"/>
+      </mposZ>
+   </composition>
+
+   <composition name="Layer_comp">
+      <posXYZ   X_Y_Z="  0.0000;   0.0000;  -0.2500"> <volume name="Abso"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.5000"> <volume name="Gap"/>
+      </posXYZ>
+   </composition>
+
+
+</section>
+
+</AGDD>
