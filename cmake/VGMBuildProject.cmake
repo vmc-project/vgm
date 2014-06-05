@@ -33,6 +33,12 @@ install(DIRECTORY
   COMPONENT Development
 )
 
+# Install examples
+install(DIRECTORY
+  ${PROJECT_SOURCE_DIR}/examples
+  DESTINATION shared
+)
+
 #
 # Install the VGMConfig, VGMConfigVersion
 #
