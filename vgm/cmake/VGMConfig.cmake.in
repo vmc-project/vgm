@@ -28,7 +28,7 @@ get_filename_component(_dir "${CMAKE_CURRENT_LIST_FILE}" PATH)
 get_filename_component(_prefix "${_dir}/../.." ABSOLUTE)
 
 # Import targets
-include("${_prefix}/lib/VGM-@VGM_VERSION@/VGMTargets.cmake")
+include("${_prefix}/@CMAKE_INSTALL_LIBDIR@/VGM-@VGM_VERSION@/VGMTargets.cmake")
  
 # Import options
 set(VGM_WITH_GEANT4 @WITH_GEANT4@) 

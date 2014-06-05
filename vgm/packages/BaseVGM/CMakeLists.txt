@@ -28,4 +28,4 @@ add_library(BaseVGM ${sources})
 
 #----Installation---------------------------------------------------------------
 install(DIRECTORY include/ DESTINATION include  PATTERN ".svn" EXCLUDE)
-install(TARGETS BaseVGM EXPORT VGMTargets DESTINATION lib)
+install(TARGETS BaseVGM EXPORT VGMTargets DESTINATION ${CMAKE_INSTALL_LIBDIR})
