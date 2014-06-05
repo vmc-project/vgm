@@ -2,7 +2,7 @@
 
 ------------------------------------------------------------------------
  The documentation file for the Virtual Geometry Model examples
- Copyright (C) 2007, Ivana Hrivnacova               
+ Copyright (C) 2007, 2017 Ivana Hrivnacova               
  All rights reserved. 
            
  For the licensing terms see vgm/LICENSE.
@@ -13,20 +13,17 @@
  -------
 
  The examples demonstrate use of VGM for conversion
- of existing native geometries
- (Geant4 novice example N03, root rootgeom.C)
+ of existing native geometries.
  
  E01:  Geant4 -> Root
  E02:  Root   -> Geant4
  E03:  Geant4 -> XML 
  E04:  Root   -> XML 
  
- 
- The source for all examples can be installed from this directory using
- the provided install script:
- ./install_sources.sh
- 
- The script install.sh will install sources and compile examples
- using the G4 based GNUmakefiles. 
+ The Geant4 basic example B4a source is used in E01, E02, E03 and 
+ Root rootgeom.C macro is used in E03. 
+ The geometry conversion is performed in src/B4DetectorConstruction.cc class
+ (in E01, E02, E03) and in rootgeom.cxx (in E04).
+ See the code following the comments "VGM demo" in Geant4 based examples.
  
  
