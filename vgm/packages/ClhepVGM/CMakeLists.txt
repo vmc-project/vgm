@@ -17,7 +17,7 @@
       
 #---Include directories---------------------------------------------------------
 include_directories(
-  ${CLHEP_INCLUDE_DIR}
+  ${CLHEP_INCLUDE_DIRS}
   ${VGM_SOURCE_DIR}/packages/VGM/include 
   ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
@@ -25,7 +25,7 @@ include_directories(
 #---Add Library-----------------------------------------------------------------
 file(GLOB sources source/*.cxx)
 add_library(ClhepVGM ${sources})
-target_link_libraries(ClhepVGM ${Geant4_LIBRARIES})
+target_link_libraries(ClhepVGM ${CLHEP_LIBRARIES})
 
 #----Installation---------------------------------------------------------------
 install(DIRECTORY include/ DESTINATION include  PATTERN ".svn" EXCLUDE)

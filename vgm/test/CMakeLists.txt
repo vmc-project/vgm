@@ -23,9 +23,9 @@ message(STATUS "Configuring vgm_test")
 # Includes
 #
 include_directories(
-   ${CLHEP_INCLUDE_DIR} 
-   ${ROOT_INCLUDE_DIR} 
-   ${GEANT4_INCLUDE_DIR} 
+   ${CLHEP_INCLUDE_DIRS} 
+   ${ROOT_INCLUDE_DIRS} 
+   ${Geant4_INCLUDE_DIRS} 
    ${VGM_SOURCE_DIR}/packages/VGM/include
    ${VGM_SOURCE_DIR}/packages/ClhepVGM/include
    ${VGM_SOURCE_DIR}/packages/BaseVGM/include 
@@ -33,7 +33,7 @@ include_directories(
    ${VGM_SOURCE_DIR}/packages/RootGM/include
    ${VGM_SOURCE_DIR}/packages/Geant4GM/include
    ${VGM_SOURCE_DIR}/test/include
-   ${G4ROOT_INCLUDE_DIR} 
+   ${G4ROOT_INCLUDE_DIRS} 
 )
 
 #----------------------------------------------------------------------------
@@ -54,7 +54,7 @@ endif(WITH_ROOT AND WITH_G4ROOT)
 # Add the executable, and link it to the Geant4 libraries
 #
 add_executable(vgm_test vgm_test.cc ${sources} ${headers})
-target_link_libraries(vgm_test ${ROOT_LIBRARIES} ${CLHEP_LIBRARIES} ${XERCES_LIBRARIES} ${G4ROOT_LIBRARIES} ${GEANT4_LIBRARIES} Geant4GM RootGM BaseVGM ClhepVGM XmlVGM)
+target_link_libraries(vgm_test ${VGM_LIBRARIES} ${G4ROOT_LIBRARIES} ${Geant4_LIBRARIES} ${CLHEP_LIBRARIES} ${XERCES_LIBRARIES}  ${ROOT_LIBRARIES})
 
 #----------------------------------------------------------------------------
 # Copy all test scripts and macros to the build directory.

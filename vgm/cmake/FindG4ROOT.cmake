@@ -2,7 +2,7 @@
 #
 # ------------------------------------------------------------------------------
 # The configuration file for CMake build for Virtual Geometry Model
-# Copyright (C) 2012, Ivana Hrivnacova
+# Copyright (C) 2012, 2014 Ivana Hrivnacova
 # All rights reserved.
 # 
 # For the licensing terms see vgm/LICENSE.
@@ -16,9 +16,9 @@
 # - Try to find G4ROOT
 # Once done this will define
 #
-#  G4ROOT_FOUND       - If G4ROOT is found
-#  G4ROOT_INCLUDE_DIR - the G4ROOT include directory
-#  G4ROOT_LIBRARIES   - The libraries needed to use G4ROOT
+#  G4ROOT_FOUND        - If G4ROOT is found
+#  G4ROOT_INCLUDE_DIRS - the G4ROOT include directoris
+#  G4ROOT_LIBRARIES    - the libraries needed to use G4ROOT
 
 #message(STATUS "Looking for G4ROOT ...")
 
@@ -33,7 +33,7 @@ set(G4ROOT_ARCH "" CACHE PATH "G4ROOT platform specification")
 if(EXISTS ${Geant4VMC_DIR}/Geant4VMCConfig.cmake)
   include(${Geant4VMC_DIR}/Geant4VMCConfig.cmake)
   if (Geant4VMC_USE_G4ROOT)
-    set(G4ROOT_INCLUDE_DIR ${Geant4VMC_INCLUDE_DIRS})
+    set(G4ROOT_INCLUDE_DIRS ${Geant4VMC_INCLUDE_DIRS})
     set(G4ROOT_LIBRARIES ${Geant4VMC_LIBRARIES})
     set(G4ROOT_FOUND TRUE)
     message(STATUS "Found G4Root in Geant4VMC CMake configuration in ${Geant4VMC_DIR}")
@@ -42,7 +42,7 @@ if(EXISTS ${Geant4VMC_DIR}/Geant4VMCConfig.cmake)
 endif()
 
 
-find_path(G4ROOT_INCLUDE_DIR NAMES TG4RootNavigator.h PATHS
+find_path(G4ROOT_INCLUDE_DIRS NAMES TG4RootNavigator.h PATHS
   ${G4ROOT_INC_DIR}
   ${G4ROOT_DIR}/include/g4root
 )
@@ -62,9 +62,9 @@ find_path(G4ROOT_LIBRARY_DIR NAMES libg4root.so libg4root.dylib PATHS
   ${G4ROOT_DIR}/lib/tgt_${G4ROOT_ARCH}
 )
 
-if (G4ROOT_INCLUDE_DIR AND G4ROOT_LIBRARY_DIR)
+if (G4ROOT_INCLUDE_DIRS AND G4ROOT_LIBRARY_DIR)
   set(G4ROOT_FOUND TRUE)
-endif (G4ROOT_INCLUDE_DIR AND G4ROOT_LIBRARY_DIR)
+endif (G4ROOT_INCLUDE_DIRS AND G4ROOT_LIBRARY_DIR)
 
 if (G4ROOT_FOUND)
   set(LD_LIBRARY_PATH ${LD_LIBRARY_PATH} ${G4ROOT_LIBRARY_DIR})
@@ -79,5 +79,7 @@ else (G4ROOT_FOUND)
 endif (G4ROOT_FOUND)
 
 # Make variables changeble to the advanced user
-mark_as_advanced(G4ROOT_INCLUDE_DIR G4ROOT_LIBRARIES)
+mark_as_advanced(G4ROOT_INCLUDE_DIRS)
+mark_as_advanced(G4ROOT_LIBRARIES)
+mark_as_advanced(G4ROOT_LIBRARY_DIR)
 
