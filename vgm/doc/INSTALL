@@ -9,8 +9,8 @@
  Contact: ivana@ipno.in2p3.fr
 ------------------------------------------------------------------------
 
- The Virtual Geometry Model - Installation with CMake
-========================================================
+ The Virtual Geometry Model - Installation
+=================================================
  
  Configuration:
  --------------
@@ -22,7 +22,7 @@
 
      /my_path/vgm/packages
  
-   We refer to this directory as the source directory. The next step is to 
+   We refer to /my_path/vgm directory as the source directory. The next step is to 
    create a directory in which to configure and run the build and store the 
    build products. This directory should not be the same as, or inside, 
    the source directory. In this guide, we create this build directory 
