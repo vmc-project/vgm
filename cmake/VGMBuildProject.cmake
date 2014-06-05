@@ -29,7 +29,7 @@ set(VGM_CMAKE_DIR ${CMAKE_INSTALL_PREFIX}/cmake)
 # Install the custom modules for the examples
 install(DIRECTORY
   ${PROJECT_BINARY_DIR}/Modules/
-  DESTINATION lib/VGM-${VGM_VERSION}/Modules
+  DESTINATION ${CMAKE_INSTALL_LIBDIR}/VGM-${VGM_VERSION}/Modules
   COMPONENT Development
 )
 
@@ -53,7 +53,7 @@ configure_file(
 install(FILES
   "${PROJECT_BINARY_DIR}/VGMConfig.cmake"
   "${PROJECT_BINARY_DIR}/VGMConfigVersion.cmake"
-  DESTINATION lib/VGM-${VGM_VERSION})
+  DESTINATION ${CMAKE_INSTALL_LIBDIR}/VGM-${VGM_VERSION})
 
 install(EXPORT VGMTargets
-  DESTINATION lib/VGM-${VGM_VERSION})
+  DESTINATION ${CMAKE_INSTALL_LIBDIR}/VGM-${VGM_VERSION})

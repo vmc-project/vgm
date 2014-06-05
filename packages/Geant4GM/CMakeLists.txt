@@ -32,4 +32,4 @@ target_link_libraries(Geant4GM BaseVGM ClhepVGM)
 
 #----Installation---------------------------------------------------------------
 install(DIRECTORY include/ DESTINATION include  PATTERN ".svn" EXCLUDE)
-install(TARGETS Geant4GM EXPORT VGMTargets DESTINATION lib)
+install(TARGETS Geant4GM EXPORT VGMTargets DESTINATION ${CMAKE_INSTALL_LIBDIR})

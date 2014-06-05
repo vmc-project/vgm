@@ -29,4 +29,4 @@ target_link_libraries(ClhepVGM ${CLHEP_LIBRARIES})
 
 #----Installation---------------------------------------------------------------
 install(DIRECTORY include/ DESTINATION include  PATTERN ".svn" EXCLUDE)
-install(TARGETS ClhepVGM EXPORT VGMTargets DESTINATION lib)
+install(TARGETS ClhepVGM EXPORT VGMTargets DESTINATION ${CMAKE_INSTALL_LIBDIR})
