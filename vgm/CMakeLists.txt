@@ -57,7 +57,11 @@ include(VGMInstallLibDir)
 #--- Add the packages sources --------------------------------------------------
 add_subdirectory(packages)
 if(WITH_TEST)
-   add_subdirectory(test)
+   if (WITH_GEANT4 AND WITH_ROOT)
+     add_subdirectory(test)
+   else()
+     message(STATUS "VGM test inactivated: requires both WITH_GEANT4 and WITH_ROOT set ON.")
+   endif()  
 endif()
 
 #--- Build project configuration -----------------------------------------------
