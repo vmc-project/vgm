@@ -113,7 +113,7 @@ if (Geant4_INCLUDE_DIRS AND GEANT4_LIBRARY_DIR AND Geant4_LIBRARIES)
 endif()  
 
 if(Geant4_FOUND) 
-  #sThis should not be needed bor build
+  #This should not be needed for build
   #set(LD_LIBRARY_PATH ${LD_LIBRARY_PATH} ${GEANT4_LIBRARY_DIR})
   if (NOT GEANT4_FIND_QUIETLY)
     if (G4PREFIX)

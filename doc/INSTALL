@@ -2,7 +2,7 @@
 
 ------------------------------------------------------------------------
  The documentation file for the Virtual Geometry Model
- Copyright (C) 2007, Ivana Hrivnacova               
+ Copyright (C) 2007, 2014 Ivana Hrivnacova               
  All rights reserved. 
            
  For the licensing terms see vgm/LICENSE.
@@ -83,7 +83,7 @@
  Test:
  -----
    The test program is automatically build in the build directory,
-   in /my_path/vgm_build/test .
+   in /my_path/vgm_build/test and installed in /my_path/vgm_install/bin.
  
    For different test options, see vgm/test/README file;
    eg.
