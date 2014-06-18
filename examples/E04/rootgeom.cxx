@@ -9,9 +9,11 @@
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
 
+// VGM demo
 #include "RootGM/volumes/Factory.h"
 #include "XmlVGM/AGDDExporter.h"
 #include "XmlVGM/GDMLExporter.h"
+// end VGM demo
 
 #include "TApplication.h"
 #include "TROOT.h"
@@ -32,6 +34,7 @@ int main(int argc,char** argv)
   gGeoManager->SetVisLevel(4);
   gGeoManager->GetTopVolume()->Draw();
 
+  // VGM demo
   // Import Root geometry to VGM
   //
   RootGM::Factory factory;
@@ -46,6 +49,7 @@ int main(int argc,char** argv)
   //
   XmlVGM::GDMLExporter xmlExporter2(&factory);
   xmlExporter2.GenerateXMLGeometry();
+  // end VGM demo
 
   theApp.Run();
 
