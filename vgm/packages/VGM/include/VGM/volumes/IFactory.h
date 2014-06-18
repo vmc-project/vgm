@@ -29,6 +29,8 @@
 #include <string>
 #include <vector>
 
+/// VGM interfaces
+
 namespace VGM {
 
   class ISolid;

@@ -38,6 +38,8 @@ namespace VGM {
   class IExtrudedSolid;
 }
 
+/// VGM implementation for Geant4
+
 namespace Geant4GM {
 
   class Factory : public BaseVGM::VFactory
