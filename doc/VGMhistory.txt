@@ -2,7 +2,7 @@ $Id$
 
 ------------------------------------------------------------------------
  The documentation file for the Virtual Geometry Model
- Copyright (C) 2007, Ivana Hrivnacova               
+ Copyright (C) 2007, 2014 Ivana Hrivnacova               
  All rights reserved. 
            
  For the licensing terms see vgm/LICENSE.
@@ -11,6 +11,23 @@ $Id$
 
  The Virtual Geometry Model - Versions
 =========================================
+  18/06/2014
+  version 4.00
+    New features:
+      - Consolidated CMake buid system (see INSTALL_CMake);
+        now VGMConfig.cmake is also provided
+      - Removed CMT and Autoconf builds (for maintenance reasons),
+        kept GNUmake build as deprecated 
+      - Migration to Geant4 10.00
+      - Migrated Geant4 based examples (E01, E02, E03) to basic B4a example
+        
+    Fixes:
+      - Fixed compiler warnings about unused variables
+      
+    Tested with Root 5.34/18 and Root 6.00/00, Geant4 10.00.p01 
+    (with embedded CLHEP 2.1.4.1) 
+    Linux: gcc 4.8.2 (FC19)
+
   05/12/2012
   version 3.06
     New features:
