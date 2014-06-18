@@ -10,7 +10,7 @@
 ------------------------------------------------------------------------
 
 
- VGM Example B4aGeant4ToXml
+ VGM Example E03
  Converting geometry from Geant4 to XML
  ----------------------------------------
  
@@ -22,12 +22,13 @@
  1. Build example:
     The example is built in the same way as a standard Geant4 example;
     the VGM packages are already provided in CMakeList.txt
+    The example program is called exampleE03.
      
  2. Run example, the geometry will be exported during initialization
-    ./exampleB4aGeant4ToXML
+    $ exampleE03
  
  3. Open and view the generated XML files; 
     in GraXML:
-    graxml
+    $ graxml
     w.show("World.agdd");
     w.show("World.gdml");

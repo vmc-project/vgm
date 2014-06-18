@@ -10,7 +10,7 @@
 ------------------------------------------------------------------------
 
 
- VGM Example B4aRootToGeant4
+ VGM Example E02
  Converting geometry from Root to Geant4
  ----------------------------------------
  
@@ -23,9 +23,10 @@
  1. Build example:
     The example is built in the same way as a standard Geant4 example;
     the VGM packages are already provided in CMakeList.txt
+    The example program is called exampleE02.
      
  2. Run example, the geometry will be imported from Root file during 
     initialization:
-    ./exampleB4aToRoot
+    $ exampleE02
 
                 
