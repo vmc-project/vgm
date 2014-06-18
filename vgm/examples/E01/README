@@ -10,7 +10,7 @@
 ------------------------------------------------------------------------
 
 
- VGM Example B4aGeant4ToRoot
+ VGM Example E01
  Converting geometry from Geant4 to Root
  ----------------------------------------
  
@@ -22,12 +22,13 @@
  1. Build example:
     The example is built in the same way as a standard Geant4 example;
     the VGM packages are already provided in CMakeList.txt
+    The example program is called exampleE01.
      
  2. Run example, the geometry will be exported during initialization
-    ./exampleB4aGeant4ToRoot
+    $ exampleE01
  
  3. Open and view the generated Root file 
-    root
+    $ root
     root [0] TGeoManager::Import("geometry.root");
     root [1] gGeoManager->GetTopVolume()->Draw();
 
