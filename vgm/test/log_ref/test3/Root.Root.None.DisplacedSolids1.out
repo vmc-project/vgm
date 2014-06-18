@@ -10,21 +10,24 @@ Info in <TGeoManager::CloseGeometry>: Voxelization retrieved from file
 Info in <TGeoManager::CountLevels>: max level = 2, max placements = 2
 Info in <TGeoManager::CloseGeometry>: 6 nodes/ 6 volume UID's in Test geometry via Root
 Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
-Info in <TG4RootNavMgr::SetNavigator>: TG4RootNavigator created and registered to G4TransportationManager
+Info in <TObject::SetNavigator>: TG4RootNavigator created and registered to G4TransportationManager
+isMaster=1
 
 *************************************************************
- Geant4 version Name: geant4-09-06-ref-00    (30-November-2012)
+ Geant4 version Name: geant4-10-00-patch-01    (28-February-2014)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
 *************************************************************
 
-Info in <TG4RootNavMgr::ConnectToG4>: ROOT detector construction class connected to G4RunManager
+Info in <TObject::ConnectToG4>: ROOT detector construction class connected to G4RunManager
 Info in <TGeoManager::ConvertReflections>: Converting reflections in: Test - Test geometry via Root ...
 Info in <TGeoManager::ConvertReflections>: Done
 ===> GEANT4 materials created and mapped to TGeo ones...
 ===> GEANT4 physical volumes created and mapped to TGeo hierarchy...
 ### INFO: TG4RootDetectorConstruction::Construct() finished
+TG4RootDetectorConstruction::ConstructSDandField
+### INFO: TG4RootDetectorConstruction::ConstructSDandField finished
 Visualization Manager instantiating with verbosity "warnings (3)"...
 Visualization Manager initialising...
 Registering graphics systems...
@@ -35,8 +38,10 @@ Current available graphics systems are:
   DAWNFILE (DAWNFILE)
   G4HepRep (HepRepXML)
   G4HepRepFile (HepRepFile)
-  OpenGLImmediateX (OGLI, OGLIX)
-  OpenGLStoredX (OGL, OGLS, OGLSX)
+  OpenGLImmediateQt (OGLI, OGLIQt)
+  OpenGLImmediateX (OGLIX, OGLI_FALLBACK, OGLIQt_FALLBACK)
+  OpenGLStoredQt (OGL, OGLS, OGLSQt)
+  OpenGLStoredX (OGLSX, OGL_FALLBACK, OGLS_FALLBACK, OGLSQt_FALLBACK)
   RayTracer (RayTracer)
   RayTracerX (RayTracerX)
   VRML1FILE (VRML1FILE)
@@ -9152,7 +9157,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -228      229 1.41e+03         1        0        0         0       world initStep
     1     -600     -282 1.04e+03         1        0      729       729  OutOfWorld Transportation
-number of event = 1000 User=0.06s Real=0.09s Sys=0.03s
-Execution time: R: 0.091 s  C: 0.091 s 
+number of event = 1000 User=0.07000000000000001s Real=0.09s Sys=0.02s
+Execution time: R: 0.0866 s  C: 0.0866 s 
 Graphics systems deleted.
 Visualization Manager deleting...

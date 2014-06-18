@@ -2,7 +2,7 @@ Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometr
 Root geometry will be defined via VGM and exported to Geant4
 
 *************************************************************
- Geant4 version Name: geant4-09-06-ref-00    (30-November-2012)
+ Geant4 version Name: geant4-10-00-patch-01    (28-February-2014)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -33,8 +33,10 @@ Current available graphics systems are:
   DAWNFILE (DAWNFILE)
   G4HepRep (HepRepXML)
   G4HepRepFile (HepRepFile)
-  OpenGLImmediateX (OGLI, OGLIX)
-  OpenGLStoredX (OGL, OGLS, OGLSX)
+  OpenGLImmediateQt (OGLI, OGLIQt)
+  OpenGLImmediateX (OGLIX, OGLI_FALLBACK, OGLIQt_FALLBACK)
+  OpenGLStoredQt (OGL, OGLS, OGLSQt)
+  OpenGLStoredX (OGLSX, OGL_FALLBACK, OGLS_FALLBACK, OGLSQt_FALLBACK)
   RayTracer (RayTracer)
   RayTracerX (RayTracerX)
   VRML1FILE (VRML1FILE)
@@ -8345,7 +8347,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -1.52e+03      382 3.52e+03         1        0        0         0       world initStep
     1 -2.53e+03   -1e+03 2.53e+03         1        0 1.97e+03  1.97e+03  OutOfWorld Transportation
-number of event = 1000 User=0.04s Real=0.06s Sys=0.02s
-Execution time: R: 0.0603 s  C: 0.0603 s 
+number of event = 1000 User=0.09s Real=0.13s Sys=0.03s
+Execution time: R: 0.128 s  C: 0.128 s 
 Graphics systems deleted.
 Visualization Manager deleting...
