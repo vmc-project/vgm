@@ -3,7 +3,7 @@
 $Id$
 ------------------------------------------------------------------------
  The documentation file for the Virtual Geometry Model
- Copyright (C) 2007, Ivana Hrivnacova               
+ Copyright (C) 2007, 2014 Ivana Hrivnacova               
  All rights reserved. 
            
  For the licensing terms see vgm/LICENSE.
@@ -78,19 +78,20 @@ $Id$
  <a href="http://sourceforge.net/projects/vgm/"> SourceForge </a> .
  
  <p>
- To download the last tagged version (3.06): <br>
+ To download the last tagged version (4.00): <br>
  <font color="#ff0000" face="Bookman Old Style">
- svn co http://svn.code.sf.net/p/vgm/code/tags/v3-06/vgm vgm.3.06
+ svn co http://svn.code.sf.net/p/vgm/code/tags/v4-00/vgm vgm.4.00
  </font><br>
- <i> Tested with Root 5.34/03, Geant4 9.6 (with embedded CLHEP 2.1.3.1) 
-    and also Geant4 9.5.p02 (with embedded CLHEP 2.1.1.0)  </i>
+ <i> Tested with Root 5.34/18 and 6.00/00, Geant4 10.00.p01 
+    (with embedded CLHEP 2.1.4.1) </i>
  
  <p>
  To download the development version:<br>
  <font color="#ff0000" face="Bookman Old Style">
  svn co http://svn.code.sf.net/p/vgm/code/trunk/vgm vgm
  </font><br>
- <i> Tested with Root 5.34/19, Geant4 10.00.p01 (with embedded CLHEP 2.1.4.1) </i>
+ <i> Tested with Root 5.34/18 and 6.00/00, Geant4 10.00.p01 
+    (with embedded CLHEP 2.1.4.1) </i>
  
  <p>
  See also a description of changes in the 
@@ -111,14 +112,14 @@ $Id$
  The <a href="http://www.cmtsite.org/"> CMT </a> and 
  <a href="http://www.gnu.org/software/autoconf/"> Autoconf </a> 
  build systems are removed (for maintenance reasons)
- and <a href="http://www.gnu.org/software/make/"> GNUmake </a> build system 
- is temporarily kept.
+ and <a href="http://www.gnu.org/software/make/">, GNUmake </a> build system 
+ is temporarily kept as deprecated.
 
  <p>
  As the test program (being written for the purpose of testing of all
  features) is too complex, four simple examples demonstrating use
  of VGM for converting native geometries are provided in vgm/examples.
- A detailed guide for how to build and run the examples is included
+ The instructions how to build and run these examples are included
  in the README file in each example.
 
  <a name="GeometryConversions"></a> 
@@ -276,21 +277,15 @@ $Id$
  <h2> Platforms </h2>
 
 <p>
- Tested platforms:
- <ul><li> Linux FC14, gcc 4.5.1
-     <li> MacOS Powerbook 10.4.7 gcc 4 <br>
- </ul>    
+ Tested platform: Linux FC19, gcc 4.8.2
 
 <hr>
 
 <p>
 Contact: <br>
 Ivana Hrivnacova, IPN Orsay <a href="mailto:ivana@ipno.in2p3.fr"> ivana@ipno.in2p3.fr </a> <br>
-Laurent Garnier, LAL Orsay <a href="mailto:garnier@lal.in2p3.fr">garnier@lal.in2p3.fr </a> - CMT configuration, 
-MacOS & Windows platforms <br> 
-Brett Viren, BNL <a href="mailto:bv@bnl.gov">bv@bnl.gov</a> - Autoconf configuration.
 
 <p>
-<i> Last update: 04/06/2014 </i>
+<i> Last update: 18/06/2014 </i>
 
 </p></body></html>
