@@ -36,6 +36,8 @@ namespace VGM {
   class IExtrudedSolid;
 }
 
+/// VGM implementation for Root
+
 namespace RootGM {
 
   class Factory : public BaseVGM::VFactory
