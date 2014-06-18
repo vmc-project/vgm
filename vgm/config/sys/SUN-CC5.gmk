@@ -1,0 +1,88 @@
+# $Id$
+
+# -----------------------------------------------------------------------
+# The system makefile for the Virtual Geometry Model
+# Copyright (C) 2007, Ivana Hrivnacova               
+# All rights reserved. 
+#           
+# For the licensing terms see vgm/LICENSE.
+# Contact: ivana@ipno.in2p3.fr
+# -----------------------------------------------------------------------
+
+# Adopted from Geant4
+
+#
+# -------- SUN ---------
+#
+ifeq ($(VGM_SYSTEM),SUN-CC5)
+  CXX       := CC
+  ifdef VGM_OPTIMISE
+    CXXFLAGS  := -O
+  else
+    ifdef VGM_DEBUG
+      CXXFLAGS  := -g
+      FCFLAGS := -g
+      CCFLAGS := -g
+    endif
+  endif
+  CXXFLAGS += -features=no%anachronisms -mt -lpthread
+#  CXXFLAGS += -fnonstd
+  ifdef VGM_LIB_BUILD_SHARED
+    CXXFLAGS += -KPIC
+    FCFLAGS  += -KPIC
+    CCFLAGS  += -KPIC
+  endif
+  VGM_RUNPATHOPTION := -R
+  VGM_HAVE_BOOL := yes
+  CFRONT_MCTEMPLATE_REPOSITORY  := true
+  FC     := f77
+  SHEXT  := so
+  AR     := $(CXX) -xar -ptr$(VGM_TREP) -o
+  ECHO   := /bin/echo
+  GREP   := /usr/xpmp/bin/grep
+  FCLIBS := -lM77 -lF77 -lsunmath
+  X11FLAGS  := -I/usr/openwin/include/X11/extensions -I/usr/openwin/include/X11
+  X11FLAGS  += -I/usr/openwin/include
+  X11LIBS   := -L/usr/openwin/lib -L/usr/dt/lib -L/usr/ucblib
+  X11LIBS   += -R/usr/openwin/lib -lXmu -lX11 -lXext 
+  XMLIBS    := -L/usr/openwin/lib -L/usr/dt/lib -L/usr/ucblib
+  XMLIBS    += -R/usr/openwin/lib -lXt -lXm -lX11
+  XAWFLAGS  := -I/usr/openwin/include/X11
+  XAWLIBS   := -L/usr/openwin/lib -L/usr/dt/lib -L/usr/ucblib
+  XAWLIBS   += -R/usr/openwin/lib -lXaw -lXmu -lXt -lX11 -lXext
+  ifndef OGLFLAGS
+    OGLFLAGS  := -I$(OGLHOME)/include 
+  endif
+  ifndef OGLLIBS
+    OGLLIBS   := -L$(OGLHOME)/lib -lGLU -lGL
+  endif
+  CPPFLAGS += -DSOCKET_IRIX_SOLARIS
+  LOADLIBS += -L/usr/lib -lsocket -lnsl
+  CPPFLAGS += -DVGM_NOT_ISO_DELETES
+  CPPFLAGS += -I$(VGM_STLINC)/wrappers/$(VGM_SYSTEM)
+  ifdef VGM_USE_OSPACE
+    CPPFLAGS += -DOS_SOLARIS_2_5 -DOS_NEW_CHECK -DOS_STL_ASSERT
+    CPPFLAGS += -DOS_NO_WSTRING -DOS_NO_ALLOCATORS
+    CPPFLAGS += $(OSPACEINC) -I$(OSPACE_BASE_DIR)
+    CXXFLAGS += -compat
+  else
+    ifndef VGM_NO_STD_NAMESPACE
+      VGM_USE_STD_NAMESPACE := yes
+      CPPFLAGS += -DVGM_USE_STD_NAMESPACE
+    else
+      CXXFLAGS += -compat
+    endif
+  endif
+
+  define build-granular-shared-lib
+    @libdir=`(cd $(@D);/bin/pwd)`; \
+    cd $(VGM_TMPDIR); \
+     $(CXX) -G $(CXXTEMPLATE_FLAGS) -o $$libdir/$(@F) -h $(@F) *.o
+  endef
+  define build-global-shared-lib
+    @libdir=`(cd $(@D);/bin/pwd)`; \
+    cd $(VGM_TMP)/$(VGM_SYSTEM); \
+     $(CXX) -G $(CXXTEMPLATE_FLAGS) -o $$libdir/$(@F) -h $(@F) \
+               $(foreach dir,$(SUBLIBS),$(dir)/*.o);
+  endef
+endif

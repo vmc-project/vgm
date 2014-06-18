@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/GDML_2_10_0/src/GDMLSchema/gdml.xsd">
+
+   <define>
+      <position  name="pos_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_1"     x="  -125.0000"  y="     0.0000"  z="  -200.0000"  unit="cm" />
+      <position  name="pos_2"     x="   125.0000"  y="     0.0000"  z="  -200.0000"  unit="cm" />
+      <position  name="pos_3"     x="  -250.0000"  y="     0.0000"  z="   200.0000"  unit="cm" />
+      <position  name="pos_4"     x="     0.0000"  y="     0.0000"  z="   200.0000"  unit="cm" />
+      <position  name="pos_5"     x="   250.0000"  y="     0.0000"  z="   200.0000"  unit="cm" />
+
+      <rotation  name="rot_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name="rot_1"     x="     0.0000"  y="   -45.0000"  z="     0.0000"  unit="degree" />
+
+      <scale     name="scale_0"   x="     1.0000"  y="     1.0000"  z="    -1.0000"  />
+   </define>
+
+   <materials>
+
+      <element  name="Aluminium_e"  Z=" 13.0000"  N=" 26" >
+         <atom type="A" unit="g/mol" value=" 26.9800" />
+      </element>
+
+      <material  name="Basic"  state="undefined"  >
+         <D type="density" unit="g/cm3" value="     2.7000"/>
+         <fraction n="    1.0000"  ref="Aluminium_e"/>
+      </material>
+
+   </materials>
+
+   <solids>
+      <box  lunit="cm" aunit="degree"
+         name="world_s"
+         x="  800.0000"  y="  200.0000"  z="  800.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="solid1_s"
+         x="  100.0000"  y="  100.0000"  z="  100.0000" />
+
+      <cone  lunit="cm" aunit="degree"
+         name="solid2_s"
+         rmin1="   10.0000"  rmin2="   20.0000"  rmax1="   30.0000"  rmax2="   40.0000"
+         z="  200.0000"
+         startphi="    0.0000"  deltaphi="  360.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="intersection_constA_s"
+         x="  100.0000"  y="  100.0000"  z="  100.0000" />
+
+      <cone  lunit="cm" aunit="degree"
+         name="intersection_constB_s"
+         rmin1="   10.0000"  rmin2="   20.0000"  rmax1="   30.0000"  rmax2="   40.0000"
+         z="  200.0000"
+         startphi="    0.0000"  deltaphi="  360.0000" />
+
+      <intersection name="intersection_solid1_solid2_s" >
+         <first  ref="intersection_constA_s" />
+         <second ref="intersection_constB_s" />
+         <position  name="posB_0"    x="    20.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+         <rotation  name="rotB_0"    x="    30.0000"  y="   -45.0000"  z="     0.0000"  unit="degree" />
+      </intersection>
+
+      <box  lunit="cm" aunit="degree"
+         name="subtraction_constA_s"
+         x="  100.0000"  y="  100.0000"  z="  100.0000" />
+
+      <cone  lunit="cm" aunit="degree"
+         name="subtraction_constB_s"
+         rmin1="   10.0000"  rmin2="   20.0000"  rmax1="   30.0000"  rmax2="   40.0000"
+         z="  200.0000"
+         startphi="    0.0000"  deltaphi="  360.0000" />
+
+      <subtraction name="subtraction_solid1_solid2_s" >
+         <first  ref="subtraction_constA_s" />
+         <second ref="subtraction_constB_s" />
+         <position  name="posB_1"    x="    20.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+         <rotation  name="rotB_1"    x="    30.0000"  y="   -45.0000"  z="     0.0000"  unit="degree" />
+      </subtraction>
+
+      <box  lunit="cm" aunit="degree"
+         name="union_constA_s"
+         x="  100.0000"  y="  100.0000"  z="  100.0000" />
+
+      <cone  lunit="cm" aunit="degree"
+         name="union_constB_s"
+         rmin1="   10.0000"  rmin2="   20.0000"  rmax1="   30.0000"  rmax2="   40.0000"
+         z="  200.0000"
+         startphi="    0.0000"  deltaphi="  360.0000" />
+
+      <union name="union_solid1_solid2_s" >
+         <first  ref="union_constA_s" />
+         <second ref="union_constB_s" />
+         <position  name="posB_2"    x="    20.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+         <rotation  name="rotB_2"    x="    30.0000"  y="   -45.0000"  z="     0.0000"  unit="degree" />
+      </union>
+
+   </solids>
+
+   <structure>
+      <volume name="solid1">
+         <materialref ref="Basic"/>
+         <solidref ref="solid1_s"/>
+      </volume>
+
+      <volume name="solid2">
+         <materialref ref="Basic"/>
+         <solidref ref="solid2_s"/>
+      </volume>
+
+      <volume name="intersection_solid1_solid2">
+         <materialref ref="Basic"/>
+         <solidref ref="intersection_solid1_solid2_s"/>
+      </volume>
+
+      <volume name="subtraction_solid1_solid2">
+         <materialref ref="Basic"/>
+         <solidref ref="subtraction_solid1_solid2_s"/>
+      </volume>
+
+      <volume name="union_solid1_solid2">
+         <materialref ref="Basic"/>
+         <solidref ref="union_solid1_solid2_s"/>
+      </volume>
+
+      <volume name="world">
+         <materialref ref="Basic"/>
+         <solidref ref="world_s"/>
+         <physvol>
+            <volumeref ref="solid1"/>
+               <positionref ref="pos_1"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="solid2"/>
+               <positionref ref="pos_2"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="intersection_solid1_solid2"/>
+               <positionref ref="pos_3"/>
+               <rotationref ref="rot_1"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="subtraction_solid1_solid2"/>
+               <positionref ref="pos_4"/>
+               <rotationref ref="rot_1"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="union_solid1_solid2"/>
+               <positionref ref="pos_5"/>
+               <rotationref ref="rot_1"/>
+         </physvol>
+      </volume>
+
+   </structure>
+
+   <setup name="unit1"   version="1.0">
+      <world ref="world"/>
+   </setup>
+
+</gdml>

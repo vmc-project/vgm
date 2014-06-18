@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<AGDD DTD_version = "v7"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+<xi:include href="StandardColors.agdd"/>
+
+<materials  version = "Id: AGDDWriter.cxx 693 2011-01-11 14:41:39Z ihrivnac "
+            date    = "2014-06-18"
+            author  = "VGM AGGD Writer"
+            DTD_version="v7"  >
+
+
+   <element  symbol="Al">
+      <atom zeff="13.0000"  aweight="26.9800" />
+   </element>
+
+   <material  name="Basic_mat"  density="  2.7000">
+      <addelement name="Al"  natoms=" 1.0000"/>
+   </material>
+
+</materials>
+
+<media  version = "Id: AGDDWriter.cxx 693 2011-01-11 14:41:39Z ihrivnac "
+        date    = "2014-06-18"
+        author  = "VGM AGGD Writer"
+        DTD_version="v7"  >
+
+   <medium  name="Basic"  
+      material="Basic_mat"  
+      color="random"
+      sensitive="true"
+      parameters=" 0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000"/>
+
+</media>
+
+<section DTD_version = "v7"
+         name        = "world"
+         version     = "Id: AGDDWriter.cxx 693 2011-01-11 14:41:39Z ihrivnac "
+         date        = "2014-06-18"
+         author      = "VGM AGGD Writer"
+         top_volume  = "world_comp"  >
+
+   <box    name="world"
+      medium="Basic"
+      X_Y_Z="800.0000; 200.0000; 800.0000" />
+
+   <box    name="solid1"
+      medium="Basic"
+      X_Y_Z="100.0000; 100.0000; 100.0000" />
+
+   <cons   name="solid2"
+      medium="Basic"
+      profile=" 0.0000; 360.0000"
+      Rio1_Rio2_Z  ="10.0000; 20.0000; 30.0000; 40.0000; 200.0000" />
+
+   <box    name="intersection_solid1_solid2_constA"
+      medium="Basic"
+      X_Y_Z="100.0000; 100.0000; 100.0000" />
+
+   <cons   name="intersection_solid1_solid2_constB"
+      medium="Basic"
+      profile=" 0.0000; 360.0000"
+      Rio1_Rio2_Z  ="10.0000; 20.0000; 30.0000; 40.0000; 200.0000" />
+
+   <intersection name="intersection_solid1_solid2" >
+      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="intersection_solid1_solid2_constA"/>
+      </posXYZ>
+      <transform    pos=" 20.0000;   0.0000;   0.0000"
+                 matrix=" 0.70711; -0.35355; -0.61237; 
+                          0.00000;  0.86603; -0.50000; 
+                          0.70711;  0.35355;  0.61237"> <volume name="intersection_solid1_solid2_constB"/>
+      </transform>
+   </intersection>
+
+   <box    name="subtraction_solid1_solid2_constA"
+      medium="Basic"
+      X_Y_Z="100.0000; 100.0000; 100.0000" />
+
+   <cons   name="subtraction_solid1_solid2_constB"
+      medium="Basic"
+      profile=" 0.0000; 360.0000"
+      Rio1_Rio2_Z  ="10.0000; 20.0000; 30.0000; 40.0000; 200.0000" />
+
+   <subtraction name="subtraction_solid1_solid2" >
+      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="subtraction_solid1_solid2_constA"/>
+      </posXYZ>
+      <transform    pos=" 20.0000;   0.0000;   0.0000"
+                 matrix=" 0.70711; -0.35355; -0.61237; 
+                          0.00000;  0.86603; -0.50000; 
+                          0.70711;  0.35355;  0.61237"> <volume name="subtraction_solid1_solid2_constB"/>
+      </transform>
+   </subtraction>
+
+   <box    name="union_solid1_solid2_constA"
+      medium="Basic"
+      X_Y_Z="100.0000; 100.0000; 100.0000" />
+
+   <cons   name="union_solid1_solid2_constB"
+      medium="Basic"
+      profile=" 0.0000; 360.0000"
+      Rio1_Rio2_Z  ="10.0000; 20.0000; 30.0000; 40.0000; 200.0000" />
+
+   <union name="union_solid1_solid2" >
+      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="union_solid1_solid2_constA"/>
+      </posXYZ>
+      <transform    pos=" 20.0000;   0.0000;   0.0000"
+                 matrix=" 0.70711; -0.35355; -0.61237; 
+                          0.00000;  0.86603; -0.50000; 
+                          0.70711;  0.35355;  0.61237"> <volume name="union_solid1_solid2_constB"/>
+      </transform>
+   </union>
+
+
+   <composition name="world_comp">
+      <posXYZ   X_Y_Z="-125.0000;   0.0000; -200.0000"> <volume name="solid1"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="125.0000;   0.0000; -200.0000"> <volume name="solid2"/>
+      </posXYZ>
+      <transform    pos="-250.0000;   0.0000; 200.0000"
+                 matrix=" 0.70711;  0.00000;  0.70711; 
+                          0.00000;  1.00000;  0.00000; 
+                         -0.70711;  0.00000;  0.70711"> <volume name="intersection_solid1_solid2"/>
+      </transform>
+      <transform    pos="  0.0000;   0.0000; 200.0000"
+                 matrix=" 0.70711;  0.00000;  0.70711; 
+                          0.00000;  1.00000;  0.00000; 
+                         -0.70711;  0.00000;  0.70711"> <volume name="subtraction_solid1_solid2"/>
+      </transform>
+      <transform    pos="250.0000;   0.0000; 200.0000"
+                 matrix=" 0.70711;  0.00000;  0.70711; 
+                          0.00000;  1.00000;  0.00000; 
+                         -0.70711;  0.00000;  0.70711"> <volume name="union_solid1_solid2"/>
+      </transform>
+   </composition>
+
+
+</section>
+
+</AGDD>

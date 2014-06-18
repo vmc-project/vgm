@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/GDML_2_10_0/src/GDMLSchema/gdml.xsd">
+
+   <define>
+      <position  name="pos_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_1"     x="     0.0000"  y="     0.0000"  z="    -0.2500"  unit="cm" />
+      <position  name="pos_2"     x="     0.0000"  y="     0.0000"  z="     0.5000"  unit="cm" />
+
+      <rotation  name="rot_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
+
+      <scale     name="scale_0"   x="     1.0000"  y="     1.0000"  z="    -1.0000"  />
+   </define>
+
+   <materials>
+      <isotope  name="__1_i"     Z="  1.0000"  N="  1" >
+         <atom type="A" unit="g/mol" value="  1.0078" />
+      </isotope>
+      <isotope  name="__2_i"     Z="  1.0000"  N="  2" >
+         <atom type="A" unit="g/mol" value="  2.0141" />
+      </isotope>
+      <isotope  name="__36_i"    Z=" 18.0000"  N=" 36" >
+         <atom type="A" unit="g/mol" value=" 35.9675" />
+      </isotope>
+      <isotope  name="__38_i"    Z=" 18.0000"  N=" 38" >
+         <atom type="A" unit="g/mol" value=" 37.9627" />
+      </isotope>
+      <isotope  name="__40_i"    Z=" 18.0000"  N=" 40" >
+         <atom type="A" unit="g/mol" value=" 39.9624" />
+      </isotope>
+      <isotope  name="Pb_204_i"  Z=" 82.0000"  N="204" >
+         <atom type="A" unit="g/mol" value="203.9730" />
+      </isotope>
+      <isotope  name="Pb_206_i"  Z=" 82.0000"  N="206" >
+         <atom type="A" unit="g/mol" value="205.9740" />
+      </isotope>
+      <isotope  name="Pb_207_i"  Z=" 82.0000"  N="207" >
+         <atom type="A" unit="g/mol" value="206.9760" />
+      </isotope>
+      <isotope  name="Pb_208_i"  Z=" 82.0000"  N="208" >
+         <atom type="A" unit="g/mol" value="207.9770" />
+      </isotope>
+
+      <element  name="Galactic_e"  >
+         <fraction n="  0.9999"  ref="__1_i" />
+         <fraction n="  0.0001"  ref="__2_i" />
+      </element>
+      <element  name="liquidArgon_e"  >
+         <fraction n="  0.0034"  ref="__36_i" />
+         <fraction n="  0.0006"  ref="__38_i" />
+         <fraction n="  0.9960"  ref="__40_i" />
+      </element>
+      <element  name="Pb_e"  >
+         <fraction n="  0.0140"  ref="Pb_204_i" />
+         <fraction n="  0.2410"  ref="Pb_206_i" />
+         <fraction n="  0.2210"  ref="Pb_207_i" />
+         <fraction n="  0.5240"  ref="Pb_208_i" />
+      </element>
+
+      <material  name="G4_Pb"  state="solid"  >
+         <D type="density" unit="g/cm3" value="    11.3500"/>
+         <fraction n="    1.0000"  ref="Pb_e"/>
+      </material>
+      <material  name="Galactic"  state="gas"  >
+         <D type="density" unit="g/cm3" value=" 1.0000e-25"/>
+         <T type="temperature" unit="K" value="     2.7300"/>
+         <P type="pressure" unit="pascal" value=" 3.0000e-18"/>
+         <fraction n="    1.0000"  ref="Galactic_e"/>
+      </material>
+      <material  name="liquidArgon"  state="solid"  >
+         <D type="density" unit="g/cm3" value="     1.3900"/>
+         <fraction n="    1.0000"  ref="liquidArgon_e"/>
+      </material>
+
+   </materials>
+
+   <solids>
+      <box  lunit="cm" aunit="degree"
+         name="World_s"
+         x="   12.0000"  y="   12.0000"  z="   18.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="Calorimeter_s"
+         x="   10.0000"  y="   10.0000"  z="   15.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="Layer_s"
+         x="   10.0000"  y="   10.0000"  z="    1.5000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="Abso_s"
+         x="   10.0000"  y="   10.0000"  z="    1.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="Gap_s"
+         x="   10.0000"  y="   10.0000"  z="    0.5000" />
+
+   </solids>
+
+   <structure>
+      <volume name="Abso">
+         <materialref ref="G4_Pb"/>
+         <solidref ref="Abso_s"/>
+      </volume>
+
+      <volume name="Gap">
+         <materialref ref="liquidArgon"/>
+         <solidref ref="Gap_s"/>
+      </volume>
+
+      <volume name="Layer">
+         <materialref ref="Galactic"/>
+         <solidref ref="Layer_s"/>
+         <physvol>
+            <volumeref ref="Abso"/>
+               <positionref ref="pos_1"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="Gap"/>
+               <positionref ref="pos_2"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+      </volume>
+
+      <volume name="Calorimeter">
+         <materialref ref="Galactic"/>
+         <solidref ref="Calorimeter_s"/>
+         <divisionvol unit="cm"
+            axis="kZAxis"  number="10"  offset="     0.0000"  width="     1.5000">
+            <volumeref ref="Layer"/>
+         </divisionvol>
+      </volume>
+
+      <volume name="World">
+         <materialref ref="Galactic"/>
+         <solidref ref="World_s"/>
+         <physvol>
+            <volumeref ref="Calorimeter"/>
+               <positionref ref="pos_0"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+      </volume>
+
+   </structure>
+
+   <setup name="unit1"   version="1.0">
+      <world ref="World"/>
+   </setup>
+
+</gdml>

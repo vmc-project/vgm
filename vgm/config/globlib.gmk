@@ -1,0 +1,132 @@
+# $Id$
+
+# -----------------------------------------------------------------------
+# The makefile for the Virtual Geometry Model
+# Copyright (C) 2007, Ivana Hrivnacova               
+# All rights reserved. 
+#           
+# For the licensing terms see vgm/LICENSE.
+# Contact: ivana@ipno.in2p3.fr
+# -----------------------------------------------------------------------
+
+# Based on Geant4 makefile:
+#
+# Id: globlib.gmk,v 1.18 2001/06/26 02:16:10 morita Exp 
+# --------------------------------------------------------------
+# Script for compound libraries.  Gabriele Cosmo, 25/6/98.
+# --------------------------------------------------------------
+
+ifndef VGM_INSTALL
+  VGM_INSTALL = ..
+endif
+
+include $(VGM_INSTALL)/config/architecture.gmk
+
+VGM_LIBDIR = $(VGM_LIB)/$(VGM_SYSTEM)
+
+.PHONY : all glob global objs includes clean clean_libs wipe_libs
+
+all: makesub
+
+makesub:
+	@for dir in $(SUBDIRS); do (cd $$dir && $(MAKE)); done
+
+mplibraries_to_build:=
+
+ifneq ($(VGM_LIB_BUILD_SHARED),)
+  SHARED_LIB=$(VGM_LIBDIR)/lib$(name).$(SHEXT)
+  mplibraries_to_build += $(SHARED_LIB)
+else
+  SHARED_LIB=
+endif
+
+ifneq ($(VGM_LIB_BUILD_STATIC),)
+  mplibraries_to_build += $(VGM_LIBDIR)/lib$(name).a
+endif
+
+glob global: objs wipe_libs $(mplibraries_to_build)
+
+##
+## make static libraries
+##
+ifneq ($(VGM_LIB_BUILD_STATIC),)
+$(VGM_LIBDIR)/lib$(name).a: \
+  $(foreach dir,$(SUBLIBS),$(VGM_TVGM_)/$(VGM_SYSTEM)/$(dir)/obj.last)
+	@if [ ! -d $(VGM_LIBDIR) ] ; then mkdir $(VGM_LIBDIR) ; fi
+	@echo Merging object files in $(VGM_LIBDIR)/lib$(name).a
+	@$(RM) $(VGM_LIBDIR)/lib$(name).a
+#
+#
+#
+	@if [ X$(VGM_SYSTEM) = XWIN32-VC ]  ; i=NO; \
+	then  \
+	(( for lib in $(SUBLIBS); \
+	do ( if [ $$i = NO ]; \
+	then \
+	$(AR) $(OUT_LIB)$(VGM_LIBDIR)/lib$(name).lib \
+		$(VGM_TMP)/$(VGM_SYSTEM)/$$lib/*.o ; \
+	else \
+	$(AR) $(VGM_LIBDIR)/lib$(name).lib $(VGM_TMP)/$(VGM_SYSTEM)/$$lib/*.o; \
+	fi ); \
+	i=YES; \
+	done ) ; \
+	mv $(VGM_LIBDIR)/lib$(name).lib $(VGM_LIBDIR)/lib$(name).a); \
+	else \
+	(for lib in $(SUBLIBS); \
+	do ($(AR) $(OUT_LIB)$(VGM_LIBDIR)/lib$(name).a \
+	$(VGM_TMP)/$(VGM_SYSTEM)/$$lib/*.o); \
+	done);\
+	fi	
+#
+#
+#
+	@if [ -f /usr/bin/ranlib -o -f /bin/ranlib ] ; then \
+	ranlib $(VGM_LIBDIR)/lib$(name).a ; fi
+endif
+
+
+##
+## make shared libraries
+##
+ifneq ($(VGM_LIB_BUILD_SHARED),)
+$(SHARED_LIB):	$(foreach dir,$(SUBLIBS),$(VGM_TMP)/$(VGM_SYSTEM)/$(dir)/obj.last)
+	@if [ ! -d $(VGM_LIBDIR) ] ; then mkdir $(VGM_LIBDIR) ; fi
+	@echo Creating global shared library $@
+	@$(RM) $@
+#	use system specific commands to build the library
+	$(build-global-shared-lib)
+endif
+
+objs:
+	@for dir in $(SUBDIRS); \
+	  do (cd $$dir; $(MAKE) -q obj && ok=yes; \
+	    if [ $$ok ]; \
+	    then echo Nothing to be done for lib$(name) in $$dir/.; \
+	    else $(MAKE) clean_libs; $(MAKE) obj; \
+	    fi; ) \
+	  done
+
+includes::
+	@for dir in $(SUBDIRS); do (cd $$dir && $(MAKE) $@ ); done
+	
+wipe_libs:
+	@for lib in $(SUBLIBS); do (rm -f $(VGM_LIBDIR)/lib$$lib.a); done
+	@for lib in $(SUBLIBS); do (rm -f $(VGM_LIBDIR)/lib$$lib.$(SHEXT)); done
+
+clean:
+	@echo Cleaning up ...
+	@for lib in $(SUBLIBS); do ( \
+				 rm -rf $(VGM_TMP)/$(VGM_SYSTEM)/$$lib;\
+				 rm -f $(VGM_LIBDIR)/lib$$lib.a;\
+				 rm -f $(VGM_LIBDIR)/lib$$lib.$(SHEXT) );\
+				done
+	@rm -f $(VGM_LIBDIR)/lib$(name).a
+
+clean_libs:
+	@echo Removing lib$(name).a/.$(SHEXT) and sub-libraries ...
+	@for lib in $(SUBLIBS); do ( \
+				  rm -f $(VGM_LIBDIR)/lib$$lib.a;\
+				  rm -f $(VGM_LIBDIR)/lib$$lib.$(SHEXT) );\
+				done
+	@rm -f $(VGM_LIBDIR)/lib$(name).a
+	@rm -f $(VGM_LIBDIR)/lib$(name).$(SHEXT)

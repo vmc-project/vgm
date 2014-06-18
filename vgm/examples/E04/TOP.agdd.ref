@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<AGDD DTD_version = "v7"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+<xi:include href="StandardColors.agdd"/>
+
+<materials  version = "Id: AGDDWriter.cxx 693 2011-01-11 14:41:39Z ihrivnac "
+            date    = "2011-12-09"
+            author  = "VGM AGGD Writer"
+            DTD_version="v7"  >
+
+
+   <element  symbol="VACUUM">
+      <atom zeff="0.0000"  aweight="0.0000" />
+   </element>
+   <element  symbol="AL">
+      <atom zeff="13.0000"  aweight="26.9800" />
+   </element>
+
+   <material  name="Al_mat"  density="  2.7000">
+      <addelement name="AL"  natoms=" 1.0000"/>
+   </material>
+   <material  name="Vacuum_mat"  density="  0.0000">
+      <addelement name="VACUUM"  natoms=" 1.0000"/>
+   </material>
+
+</materials>
+
+<media  version = "Id: AGDDWriter.cxx 693 2011-01-11 14:41:39Z ihrivnac "
+        date    = "2011-12-09"
+        author  = "VGM AGGD Writer"
+        DTD_version="v7"  >
+
+   <medium  name="Root_Material"  
+      material="Al_mat"  
+      color="random"
+      sensitive="true"
+      parameters=" 0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000"/>
+   <medium  name="Vacuum"  
+      material="Vacuum_mat"  
+      color="random"
+      sensitive="true"
+      parameters=" 0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000"/>
+
+</media>
+
+<section DTD_version = "v7"
+         name        = "TOP"
+         version     = "Id: AGDDWriter.cxx 693 2011-01-11 14:41:39Z ihrivnac "
+         date        = "2011-12-09"
+         author      = "VGM AGGD Writer"
+         top_volume  = "TOP_comp"  >
+
+   <box    name="TOP"
+      medium="Vacuum"
+      X_Y_Z="540.0000; 540.0000; 240.0000" />
+
+   <box    name="REPLICA"
+      medium="Vacuum"
+      X_Y_Z="240.0000; 240.0000; 240.0000" />
+
+   <box    name="ROOT"
+      medium="Vacuum"
+      X_Y_Z="220.0000; 100.0000; 10.0000" />
+
+   <box    name="R"
+      medium="Vacuum"
+      X_Y_Z="50.0000; 50.0000; 10.0000" />
+
+   <box    name="bar1"
+      medium="Root_Material"
+      X_Y_Z="10.0000; 50.0000; 10.0000" />
+
+   <box    name="bar2"
+      medium="Root_Material"
+      X_Y_Z="10.0000; 10.0000; 10.0000" />
+
+   <tubs   name="tub1"
+      medium="Root_Material"
+      profile="90.0000; 180.0000"
+      Rio_Z  =" 5.0000; 15.0000; 10.0000" />
+
+   <!-- !!! unsupported shape  !!!  name= "bar3" -->
+   <!-- dummy box is written instead  -->
+   <box    name="bar3"
+      medium="Root_Material"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
+   <box    name="O"
+      medium="Vacuum"
+      X_Y_Z="50.0000; 50.0000; 10.0000" />
+
+   <box    name="bar4"
+      medium="Root_Material"
+      X_Y_Z="10.0000; 15.0000; 10.0000" />
+
+   <tubs   name="tub2"
+      medium="Root_Material"
+      profile=" 0.0000; 180.0000"
+      Rio_Z  =" 7.5000; 17.5000; 10.0000" />
+
+   <box    name="T"
+      medium="Vacuum"
+      X_Y_Z="50.0000; 50.0000; 10.0000" />
+
+   <box    name="bar5"
+      medium="Root_Material"
+      X_Y_Z="10.0000; 40.0000; 10.0000" />
+
+   <box    name="bar6"
+      medium="Root_Material"
+      X_Y_Z="35.0000; 10.0000; 10.0000" />
+
+
+   <composition name="TOP_comp">
+      <posXYZ   X_Y_Z="-150.0000; -150.0000;   0.0000"> <volume name="REPLICA"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-150.0000; -150.0000;   0.0000"> <volume name="REPLICA_comp"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="150.0000; -150.0000;   0.0000"> <volume name="REPLICA"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="150.0000; -150.0000;   0.0000"> <volume name="REPLICA_comp"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="150.0000; 150.0000;   0.0000"> <volume name="REPLICA"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="150.0000; 150.0000;   0.0000"> <volume name="REPLICA_comp"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-150.0000; 150.0000;   0.0000"> <volume name="REPLICA"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-150.0000; 150.0000;   0.0000"> <volume name="REPLICA_comp"/>
+      </posXYZ>
+   </composition>
+
+   <composition name="REPLICA_comp">
+      <posXYZ   X_Y_Z="  0.0000;   0.0000; -100.0000"> <volume name="ROOT"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="  0.0000;   0.0000; -100.0000"> <volume name="ROOT_comp"/>
+      </posXYZ>
+      <transform    pos="  0.0000;   0.0000; 100.0000"
+                 matrix="-1.00000; 1.22461e-16; 1.49966e-32; 
+                         1.22461e-16;  1.00000; 1.22461e-16; 
+                          0.00000; 1.22461e-16; -1.00000"> <volume name="ROOT"/>
+      </transform>
+      <transform    pos="  0.0000;   0.0000; 100.0000"
+                 matrix="-1.00000; 1.22461e-16; 1.49966e-32; 
+                         1.22461e-16;  1.00000; 1.22461e-16; 
+                          0.00000; 1.22461e-16; -1.00000"> <volume name="ROOT_comp"/>
+      </transform>
+      <transform    pos="100.0000;   0.0000;   0.0000"
+                 matrix="6.12303e-17; 6.12303e-17; -1.00000; 
+                         -1.00000; 3.74915e-33; -6.12303e-17; 
+                          0.00000;  1.00000; 6.12303e-17"> <volume name="ROOT"/>
+      </transform>
+      <transform    pos="100.0000;   0.0000;   0.0000"
+                 matrix="6.12303e-17; 6.12303e-17; -1.00000; 
+                         -1.00000; 3.74915e-33; -6.12303e-17; 
+                          0.00000;  1.00000; 6.12303e-17"> <volume name="ROOT_comp"/>
+      </transform>
+      <transform    pos="-100.0000;   0.0000;   0.0000"
+                 matrix="6.12303e-17; -6.12303e-17;  1.00000; 
+                          1.00000; 3.74915e-33; -6.12303e-17; 
+                          0.00000;  1.00000; 6.12303e-17"> <volume name="ROOT"/>
+      </transform>
+      <transform    pos="-100.0000;   0.0000;   0.0000"
+                 matrix="6.12303e-17; -6.12303e-17;  1.00000; 
+                          1.00000; 3.74915e-33; -6.12303e-17; 
+                          0.00000;  1.00000; 6.12303e-17"> <volume name="ROOT_comp"/>
+      </transform>
+      <transform    pos="  0.0000; 100.0000;   0.0000"
+                 matrix="6.12303e-17; -1.00000; -6.12303e-17; 
+                          0.00000; 6.12303e-17; -1.00000; 
+                          1.00000; 6.12303e-17; 3.74915e-33"> <volume name="ROOT"/>
+      </transform>
+      <transform    pos="  0.0000; 100.0000;   0.0000"
+                 matrix="6.12303e-17; -1.00000; -6.12303e-17; 
+                          0.00000; 6.12303e-17; -1.00000; 
+                          1.00000; 6.12303e-17; 3.74915e-33"> <volume name="ROOT_comp"/>
+      </transform>
+      <transform    pos="  0.0000; -100.0000;   0.0000"
+                 matrix="6.12303e-17; -1.00000; 6.12303e-17; 
+                          0.00000; 6.12303e-17;  1.00000; 
+                         -1.00000; -6.12303e-17; 3.74915e-33"> <volume name="ROOT"/>
+      </transform>
+      <transform    pos="  0.0000; -100.0000;   0.0000"
+                 matrix="6.12303e-17; -1.00000; 6.12303e-17; 
+                          0.00000; 6.12303e-17;  1.00000; 
+                         -1.00000; -6.12303e-17; 3.74915e-33"> <volume name="ROOT_comp"/>
+      </transform>
+   </composition>
+
+   <composition name="ROOT_comp">
+      <posXYZ   X_Y_Z=" 85.0000;   0.0000;   0.0000"> <volume name="R"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z=" 85.0000;   0.0000;   0.0000"> <volume name="R_comp"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z=" 35.0000;   0.0000;   0.0000"> <volume name="O"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z=" 35.0000;   0.0000;   0.0000"> <volume name="O_comp"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-15.0000;   0.0000;   0.0000"> <volume name="O"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-15.0000;   0.0000;   0.0000"> <volume name="O_comp"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-65.0000;   0.0000;   0.0000"> <volume name="T"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-65.0000;   0.0000;   0.0000"> <volume name="T_comp"/>
+      </posXYZ>
+   </composition>
+
+   <composition name="R_comp">
+      <posXYZ   X_Y_Z=" 20.0000;   0.0000;   0.0000"> <volume name="bar1"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z=" 10.0000;   0.0000;   0.0000"> <volume name="bar2"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z=" 10.0000;  20.0000;   0.0000"> <volume name="bar2"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="  5.0000;  10.0000;   0.0000"> <volume name="tub1"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="bar3"/>
+      </posXYZ>
+   </composition>
+
+   <composition name="O_comp">
+      <posXYZ   X_Y_Z=" 20.0000;   0.0000;   0.0000"> <volume name="bar4"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z=" -5.0000;   0.0000;   0.0000"> <volume name="bar4"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="  7.5000;   7.5000;   0.0000"> <volume name="tub2"/>
+      </posXYZ>
+      <transform    pos="  7.5000;  -7.5000;   0.0000"
+                 matrix=" 1.00000;  0.00000;  0.00000; 
+                          0.00000; -1.00000; 1.22461e-16; 
+                          0.00000; 1.22461e-16;  1.00000"> <volume name="tub2"/>
+      </transform>
+   </composition>
+
+   <composition name="T_comp">
+      <posXYZ   X_Y_Z="  7.5000;  -5.0000;   0.0000"> <volume name="bar5"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="  7.5000;  20.0000;   0.0000"> <volume name="bar6"/>
+      </posXYZ>
+   </composition>
+
+
+</section>
+
+</AGDD>

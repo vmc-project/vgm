@@ -1,0 +1,20 @@
+# $Id: geant4.gmk,v 1.3 2007/05/23 08:48:14 ivana Exp $
+
+# -----------------------------------------------------------------------
+# The makefile for the Virtual Geometry Model
+# Copyright (C) 2007, Ivana Hrivnacova               
+# All rights reserved. 
+#           
+# For the licensing terms see vgm/LICENSE.
+# Contact: ivana@ipno.in2p3.fr
+# -----------------------------------------------------------------------
+
+# Based on Geant4 makefiles:
+
+ifndef VGM_LIBDIR
+  VGM_LIBDIR := $(VGM_LIB)/$(VGM_SYSTEM)
+endif
+
+INTYLIBS += -L$(VGM_LIBDIR) -lClhepVGM -lBaseVGM -L$(AGDD_INSTALL)/lib -lagdd
+
+CPPFLAGS += -I$(AGDD_INSTALL)/include

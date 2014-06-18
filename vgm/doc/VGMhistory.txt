@@ -1,0 +1,390 @@
+$Id$
+
+------------------------------------------------------------------------
+ The documentation file for the Virtual Geometry Model
+ Copyright (C) 2007, 2014 Ivana Hrivnacova               
+ All rights reserved. 
+           
+ For the licensing terms see vgm/LICENSE.
+ Contact: ivana@ipno.in2p3.fr
+------------------------------------------------------------------------
+
+ The Virtual Geometry Model - Versions
+=========================================
+  18/06/2014
+  version 4.00
+    New features:
+      - Consolidated CMake buid system (see INSTALL_CMake);
+        now VGMConfig.cmake is also provided
+      - Removed CMT and Autoconf builds (for maintenance reasons),
+        kept GNUmake build as deprecated 
+      - Migration to Geant4 10.00
+      - Migrated Geant4 based examples (E01, E02, E03) to basic B4a example
+        
+    Fixes:
+      - Fixed compiler warnings about unused variables
+      
+    Tested with Root 5.34/18 and Root 6.00/00, Geant4 10.00.p01 
+    (with embedded CLHEP 2.1.4.1) 
+    Linux: gcc 4.8.2 (FC19)
+
+  05/12/2012
+  version 3.06
+    New features:
+      - Added CMake buid system (see INSTALL_CMake)
+      - Migration to Geant4 9.6
+    Fixes:
+      - Fixed compiler warnings about shadowed variables
+      - Fixed GNUmake build for gcc 4.6.x (thanks toChristian Pulvermacher, 
+        Karlsruhe University, Belle2);
+        added Darwin-g++.gmk (adapted from Geant4)
+      
+    Tested with Root 5.34/03, Geant4 9.6 (with embedded CLHEP 2.1.3.1) 
+    and also Geant4 9.5.p02 (with embedded CLHEP 2.1.1.0) 
+    Linux: gcc 4.5.1 (FC14)
+
+  09/12/2011
+  version 3.05
+    New features:
+      In XmlVGM: improved XML output formats
+    Build:  
+      Migration to geant4-config in GNUmake and Autoconf
+
+    Tested with Root 5.32/00, Geant4 9.5 (with embedded CLHEP 2.1.1.0) 
+    and also CLHEP 2.1.0.1, Geant4 9.4.p02 
+    Linux: gcc 4.5.1 (FC14)
+      
+  22/12/2010
+  version 3.04
+    New features:
+      In RootGM:
+      - Added support for elements composed from isotopes.
+  
+    Fixes:
+      In Geant4GM:
+      - Fixed debug output in MaterialFactory
+      - Fix in importing a vacuum element with z < 1.0
+        (important for the import of geometry from Root in Geant4).
+      In Geant4GM. Root GM:
+      - Fix in converting materials defined directly via Z, A
+        (which caused break, reported by Filimon Roukoutakis)
+
+    Tested with CLHEP 2.1.0.1, Root 5.28/00, Geant4 9.4;
+    Linux: gcc 4.5.1 (FC14)
+      
+  30/04/2010
+  version 3.03
+    New features:
+      New solids:
+        Hype, Paraboloid
+        DisplacedSolid
+          implements G4DisplacedSolid and offset in TGeoBBox
+        Ellipsoid:
+          supported in Geant4 and GDML directly;
+          in Root implemented as TGeoScaleShape with TGeoSphere,
+          and the z-sides are cut via TGeoCompositeShape
+
+      In BaseVGM:
+      - New debug output for placements (in BaseVGM)
+
+      In Geant4GM:
+      - Adding an option to activate Geant4 geometry checking:
+        Geant4GM::Factory::SetSurfCheck(bool)
+
+      In RootGM: 
+      - Added support for TGeoHalfSpace pseudo-shape;
+        the shape is imported in VGM as a displaced big box solid.
+      - In Placement:
+        Added a check for nodes with overlaps and printing a warning
+        if such node is processed, as overlaps are not allowed in Geant4
+        geometry  
+      - Added a prefix to composed assemblies names and its getter/setter
+        (the default is &)
+        
+      Removed AgddGM, as its development was stopped.
+
+      In test:
+      - Adding TstGeometryViaGeant4::TestSpecial with commented code
+        building external user detector construction 
+      - Added as a possible case in ExtraSolid test.
+      - Added stepping action to kill eventually looping tracks    
+
+    Fixes:
+      In Geant4GM:
+       - In multiple placement - make solid type identical with mother 
+         solid type (required by G4PVDivision)
+       - In Arb8 - reordering vertices when necessary 
+  
+      In RootGM::
+       - In Boolean solid - fixed cases when volume names include algebraic signs;
+         take into account eventual offset shift of the constituent solids
+       - In importing box solid with offset.
+    
+      Fixes in building systems, consolidated examples
+    
+    Tested with CLHEP 2.0.4.5, Root 5.27/02, Geant4 9.3.p01;
+    Linux: gcc  4.4.2 (FC10)
+      
+  26/01/2009
+  version 3.02
+             - Added new solids: Arb8 and TessellatedSolid.
+             - Porting code to gcc 4.3.2; fixes for leopard macosx
+             In BaseVGM:
+              - Fix in VPolyhedra::ConvertRadiusFactor: the angle DeltaPhi() has to be 
+                converted from deg in rads. (This affected converting polyhedra solids
+                from Geant4 to other geometries.)
+
+              In XmlVGM: 
+               In GDML exporter:
+               - Implemented multiple placements, reflections 
+               - Write inverse rotation in boolean solid displacement
+               In both AGDD, GDML exporters:
+               - Adding setters for number width & precision (in VExporterm Maps):
+               - Take into account aventual reflection of Boolean solid
+
+               Tested with CLHEP 2.0.4.2, Root 5.22/00, Geant4 9.2;
+               Linux: gcc 4.3.2 (FC10)
+
+  18/07/2008
+  version 3.01
+               Fixes in Geant4GM::Ctubs, RootGM::SolidMap
+               + a few more minor fixes.
+               Ported to gcc4.3.1 (Thanks to Florian Uhlig.)
+
+               Tested with CLHEP 2.0.3.2, Root 5.20/00, Geant4 9.1.p02;
+               Linux: gcc 4.1.1 (FC6)
+
+  16/08/2007
+  version 3.00
+               New packages: AgddGM, autoconf.
+               
+               In XmlVGM:
+               - Updated GDML exporter with new GDML version
+               - Adding export of Boolean solids in AGDD.
+               
+               All:
+               - Adding GPL licence and copyright.
+               - Added ExtrudedSolid
+               - IMaterial::AtomsCount(int) now returns double (was int);
+                 Corrected Material::AtomCount in eant4GM, RootGM to be 
+                 consistent with AgddGM
+               
+               Tested with CLHEP 2.0.3.1, Root 5.16/00, Geant4 9.0,
+                           libagdd 0.6, Xerces-C 2.7.0 
+               Linux: gcc 4.1.1 (FC6)
+               To be tested: MacOS Powerbook 10.4.7 gcc 4 (CMT version)
+
+  22/05/2007
+  version 2.09
+               Tested with CLHEP 2.0.3.1, Root 5.15/04, Geant4 8.2.p01;
+               Linux: gcc 4.1.1 (FC6)
+               MacOS Powerbook 10.4.7 gcc 4 (CMT version)
+
+  23/03/2007
+  version 2.09.pre 
+               In VGM
+               - Adding new interfaces for support of chemical elements
+               composed from isotopes 
+               - Adding an interface to create element via Z
+               using a predefined element table of the geometry
+               model (NIST material table in Geant4, its own element
+               table in Root)
+                
+               In Geant4GM:
+               Consistent use of G4 reflection factory for all placements
+               and divisions (Fixes a problem with missing daughters
+               observed on ALICE geometry, got from conversion
+               Root -> Geant4) 
+            
+               In XmlVGM:
+               - Implemented export of media & materials (including elements 
+                 and isotopes)
+               - AGDD: Update to dtdVersion v7
+               - GDML: Exporting full lengths of solid instead of half lenghts
+               
+               In test:
+               Adding test with tracking particles;
+               consolidated test geometries (volume names, worls volume size)
+               and fixed a few differences in geometry definitions. 
+               
+               Tested with CLHEP 2.0.3.1, Root 5.15/04, Geant4 8.2.p01;
+               Linux: gcc 4.1.1 (FC6)
+               To be tested: MacOS Powerbook 10.4.7 gcc 4 
+
+  18/12/2006
+  version 2.08.04 
+               In RootGM:
+                - Material state, temperature and pressure
+               stored now directly in TGeoMaterial, their default
+               values are defined by TGeo, too. 
+               - By default use user defined elements (may be different
+               from TGeo elements return from material; possibility
+               to use Teo elements kepts as an option. 
+               - Now importingtop node (was volume in previous version)
+               In BaseVGM: 
+               - Export copyNo of the world volume (was set to 0
+               in the previous version);
+               
+               Tested with CLHEP 2.0.3.1, Root 5.14/00, Geant4 8.2;
+               Linux: gcc 4.1.1 (FC6),
+               MacOS Powerbook 10.4.7 gcc 4 
+
+  06/11/2006
+  version 2.08.03 
+               Adding material state, temperature and pressure
+	       to the material interface;
+	       these material properties are now handled via
+	       VGM when creating or converting geometry.
+		       
+	       Tested with CLHEP 2.0.2.3, Root 5.13/04, Geant4 8.1;
+	       Linux: gcc 4.1.1 (FC6),
+	       MacOS Powerbook 10.4.7 gcc 4 
+
+  16/10/2006
+  version 2.08.02 
+               Adding option ignore (see its description in documentation)
+		       
+	       Tested with CLHEP 2.0.2.3, Root 5.13/04, Geant4 8.1;
+	       Linux: gcc 4.1.1 (FC5),
+	       MacOS Powerbook 10.4.7 gcc 4 
+
+
+  04/08/2006
+  version 2.08.01 
+               Fixes only:
+	       Corrected import of reflected volumes if assoiciated
+	       with medias ( affects Root->G4 conversion) 
+		       
+	       Tested with CLHEP 2.0.2.3, Root 5.12/02, Geant4 8.1;
+	       Linux: gcc 4.1.1 (FC5),
+	       MacOS Powerbook 10.4.7 gcc 4 
+
+  08/07/2006
+  version 2.08 
+              - Added support for Ctubs solid (cut tube);
+                in Geant4 the solid is realised via Boolean operations
+              - Added installation scripts to examples
+              - Ported to MacOS (thanks to Laurent Garnier, LAL)
+	      - Added CMT configuration file (Laurent Garnier, LAL)
+              - Added test for assemblies with reflections, the first test for 
+                assemblies now includes assemblies of assemblies 
+                (available in Geant4 from version 8.1)
+              - Fixes:
+                - Corrected export of reflected boolean solids (in G4->Root way)
+                - Import from Root geometry containing not placed volumes
+                - Multiple placement (division) offset in Geant4
+	       	       
+	       Tested with CLHEP 2.0.2.3, Root 5.11/06, Geant4 8.1;
+	       Linux: gcc 4.1.1 (FC5),
+	       MacOS Powerbook 10.4.7 gcc 4 
+
+  20/12/2005
+  version 2.07
+               Upgrade to CLHEP 2.0.2.2 (with namespaces)
+	       	       
+	       Tested with  CLHEP 1.9.2.1 and 2.0.2.2, Root 5.08/00, Geant4 8.0;
+	       gcc 3.2.2 
+
+  18/10/2005
+  version 2.06 
+               RootGM - updated for new implementation of volumes assemblies;
+	       added test for volume assemblies to vgm_test (included in
+	       the test suites.
+	       
+	       Tested with  CLHEP 1.9.2.1, Root 5.04/00, Geant4 7.1;
+	       gcc 3.2.2 
+
+  16/06/2005
+  version 2.05 
+               Added elliptical tube solid;
+	       fix for general trapezoid with triangular faces (in Geant4GM).
+	       
+	       Tested with  CLHEP 1.8.1.0, Root 4.04/02, Geant4 7.0;
+	       gcc 3.2.2 
+
+  16/05/2005
+  version 2.04 
+               Upgrade to Root 4.04/02;
+	       bug fix in AGDD exporter (trap solid)
+	       
+	       Tested with  CLHEP 1.8.1.0, Root 4.04/02, Geant4 7.0;
+	       gcc 3.2.2 
+
+  08/03/2005
+  version 2.03 
+               Port to gcc 3.4.2 (FC3);
+	       AGDD exporter upgraded to the new version of AGDD schema;
+	       fix in importing media in RootGM.
+	       
+	       Tested with  CLHEP 1.8.1.0, Root 4.03/02, Geant4 7.0;
+	       gcc 3.2.2 and gcc 3.4.2. 
+
+  28/01/2005
+  version 2.02  
+               Modifications in VGM interface needed
+	       for geometry conversion in Geant4 VMC:
+	       - adding VGM::IVolume::MediumName()
+	       - change materailName to mediumName in
+	         VGM::IFactory:: CreateVolume()
+   
+               Tested with CLHEP 1.8.1.0, Root 4.02/00, Geant4 7.0
+	       + fix in Root/geom/inc/TGeoMatrix.h - rev 1.18
+	                Root/geom/src/TGeoMatrix.cxx - rev 1.32
+
+  14/01/2005
+  version 2.00.03 (internal number)
+  version 2.01    (second public version) 
+               GDML exporter upgraded to GDML 2.0;
+	       fixed export of placements in AGDD.
+	       Fix in GeantGM::Placement.
+   
+               Tested with CLHEP 1.8.1.0, Root 4.02/00, Geant4 7.0
+	       + fix in Root/geom/inc/TGeoMatrix.h - rev 1.18
+	                Root/geom/src/TGeoMatrix.cxx - rev 1.32
+
+  05/01/2005
+  version 2.00.02
+               Use of CLHEP system of units in VGM replaced with 
+	       fixed units
+
+               Tested with CLHEP 1.8.1.0, Root 4.02/00, Geant4 7.0
+
+
+  17/12/2004
+  version 2.00.01 
+               CLHEP transformations in VGM interfaces replaced 
+	       with VGM::Transform;
+	       Added ClhepVGM package with utility functions
+	       for coversions between VGM::Transform and CLHEP.
+
+               Tested with CLHEP 1.8.1.0, Root 4.01/02, Geant4 6.2p02
+
+  13/12/2004
+  version 2.00.00  
+	       Restructured source into independent packages:
+                  source -> packages with:
+	  	  VGM       - interfaces
+		  BaseVGM   - common implementation
+		  Geant4GM  - VGM implementation for Geant4
+		  RootGM    - VGM implementation for Root TGeo
+		  XmlVGM    - XML eporters
+
+               Introduced namespaces per package;
+	       the name of namespace = name of package.
+ 
+               Tested with CLHEP 1.8.1.0, Root 4.00/08, Geant4 6.2.p02
+
+  03/12/2004
+  version 1.00.01  internal version
+  
+               Removed dependence on G3toG4 (not used);
+	       improved implementation of Root polyhedra, polycone interface;
+	       improved test2 output;
+	       fixed GDML exporter (export full lengths instead of
+	       half lengths of solids).
+               Tested with CLHEP 1.8.1.0, Root 4.01/02, Geant4 6.2.p02
+		
+
+  20/08/2004:
+  version 1.00: The first public version
+                Tested with CLHEP 1.8.1.0, Root 4.00/08, Geant4 6.2

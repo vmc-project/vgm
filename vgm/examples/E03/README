@@ -1,0 +1,34 @@
+ $Id $ 
+
+------------------------------------------------------------------------
+ The documentation file for the Virtual Geometry Model example
+ Copyright (C) 2007,2014 Ivana Hrivnacova               
+ All rights reserved. 
+           
+ For the licensing terms see vgm/LICENSE.
+ Contact: ivana@ipno.in2p3.fr
+------------------------------------------------------------------------
+
+
+ VGM Example E03
+ Converting geometry from Geant4 to XML
+ ----------------------------------------
+ 
+ Source: Geant4 basic B4a example
+ 
+ See Geant4 documentation in README_Geant4 and
+ http://geant4.web.cern.ch/geant4/UserDocumentation/Doxygen/examples_doc/html/ExampleB4.html        
+         
+ 1. Build example:
+    The example is built in the same way as a standard Geant4 example;
+    the VGM packages are already provided in CMakeList.txt
+    The example program is called exampleE03.
+     
+ 2. Run example, the geometry will be exported during initialization
+    $ exampleE03
+ 
+ 3. Open and view the generated XML files; 
+    in GraXML:
+    $ graxml
+    w.show("World.agdd");
+    w.show("World.gdml");

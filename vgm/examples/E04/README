@@ -1,0 +1,34 @@
+ $Id$ 
+
+------------------------------------------------------------------------
+ The documentation file for the Virtual Geometry Model example
+ Copyright (C) 2007, Ivana Hrivnacova               
+ All rights reserved. 
+           
+ For the licensing terms see vgm/LICENSE.
+ Contact: ivana@ipno.in2p3.fr
+------------------------------------------------------------------------
+
+
+ VGM Example E04
+ Exporting geometry from Root to XML
+ --------------------------------------
+ 
+ Source: Root tutorial rootgeom.C macro
+         Main program rootgeom.cxx
+         
+ 1. Build example:
+    The example is built in the same way as a standard Geant4 example;
+    the VGM packages are already provided in CMakeList.txt
+    The example program is called exampleE04.
+    
+ 2. Run example
+    $ exampleE04
+ 
+ 3. Open and view the generated XML files;
+    in GraXML:
+    $ graxml
+    w.show("TOP.agdd");
+    w.show("TOP.gdml");
+
+                

@@ -1,0 +1,26 @@
+# ------------------------------------------------------------------------------
+# The configuration file for CMake build for Virtual Geometry Model
+# Copyright (C) 2014, Ivana Hrivnacova
+# All rights reserved.
+# 
+# For the licensing terms see vgm/LICENSE.
+# Contact: ivana@ipno.in2p3.fr
+# ------------------------------------------------------------------------------
+#
+# $Id$
+#
+# Configuration file for CMake build for VGM packages.
+#
+# I. Hrivnacova, 04/06/2014
+
+set(PACKAGE_VERSION "@VGM_VERSION@")
+ 
+# Check whether the requested PACKAGE_FIND_VERSION is compatible
+if("${PACKAGE_VERSION}" VERSION_LESS "${PACKAGE_FIND_VERSION}")
+  set(PACKAGE_VERSION_COMPATIBLE FALSE)
+else()
+  set(PACKAGE_VERSION_COMPATIBLE TRUE)
+  if ("${PACKAGE_VERSION}" VERSION_EQUAL "${PACKAGE_FIND_VERSION}")
+    set(PACKAGE_VERSION_EXACT TRUE)
+  endif()
+endif()

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/GDML_2_10_0/src/GDMLSchema/gdml.xsd">
+
+   <define>
+      <position  name="pos_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_1"     x="   110.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_2"     x="  -110.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_3"     x="     0.0000"  y="   110.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_4"     x="     0.0000"  y="  -110.0000"  z="     0.0000"  unit="cm" />
+
+      <rotation  name="rot_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name="rot_1"     x="     0.0000"  y="   -90.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name="rot_2"     x="    90.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
+
+      <scale     name="scale_0"   x="     1.0000"  y="     1.0000"  z="    -1.0000"  />
+   </define>
+
+   <materials>
+
+      <element  name="ALUMINIUM_e"  Z=" 13.0000"  N=" 27" >
+         <atom type="A" unit="g/mol" value=" 26.9800" />
+      </element>
+
+      <material  name="Basic"  state="undefined"  >
+         <D type="density" unit="g/cm3" value="     2.7000"/>
+         <fraction n="    1.0000"  ref="ALUMINIUM_e"/>
+      </material>
+
+   </materials>
+
+   <solids>
+      <box  lunit="cm" aunit="degree"
+         name="world_s"
+         x="  400.0000"  y="  400.0000"  z="  200.0000" />
+
+      <cone  lunit="cm" aunit="degree"
+         name="CONS_s"
+         rmin1="   10.0000"  rmin2="   20.0000"  rmax1="   40.0000"  rmax2="   60.0000"
+         z="  100.0000"
+         startphi="    0.0000"  deltaphi="  360.0000" />
+
+   </solids>
+
+   <structure>
+      <volume name="CONS">
+         <materialref ref="Basic"/>
+         <solidref ref="CONS_s"/>
+      </volume>
+
+      <volume name="world">
+         <materialref ref="Basic"/>
+         <solidref ref="world_s"/>
+         <physvol>
+            <volumeref ref="CONS"/>
+               <positionref ref="pos_1"/>
+               <rotationref ref="rot_1"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="CONS"/>
+               <positionref ref="pos_2"/>
+               <rotationref ref="rot_1"/>
+               <scaleref    ref="scale_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="CONS"/>
+               <positionref ref="pos_3"/>
+               <rotationref ref="rot_2"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="CONS"/>
+               <positionref ref="pos_4"/>
+               <rotationref ref="rot_2"/>
+               <scaleref    ref="scale_0"/>
+         </physvol>
+      </volume>
+
+   </structure>
+
+   <setup name="unit1"   version="1.0">
+      <world ref="world"/>
+   </setup>
+
+</gdml>

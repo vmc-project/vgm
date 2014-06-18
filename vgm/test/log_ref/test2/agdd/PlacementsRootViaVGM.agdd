@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<AGDD DTD_version = "v7"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+<xi:include href="StandardColors.agdd"/>
+
+<materials  version = "Id: AGDDWriter.cxx 693 2011-01-11 14:41:39Z ihrivnac "
+            date    = "2014-06-18"
+            author  = "VGM AGGD Writer"
+            DTD_version="v7"  >
+
+   <isotope  name="U_235"   z=" 92"  n="235"  a="235"/>
+   <isotope  name="U_238"   z=" 92"  n="238"  a="238"/>
+
+   <element  symbol="HYDROGEN">
+      <atom zeff="1.0000"  aweight="1.0079" />
+   </element>
+   <element  symbol="Vacuum_e">
+      <atom zeff="1.0000"  aweight="1.0100" />
+   </element>
+   <element  symbol="CARBON">
+      <atom zeff="6.0000"  aweight="12.0107" />
+   </element>
+   <element  symbol="N">
+      <atom zeff="7.0000"  aweight="14.0100" />
+   </element>
+   <element  symbol="O">
+      <atom zeff="8.0000"  aweight="16.0000" />
+   </element>
+   <element  symbol="U">
+      <addisotope name="U_235"  natoms=" 90" />
+      <addisotope name="U_238"  natoms=" 10" />
+   </element>
+
+   <material  name="Air_mat"  density="  0.0013">
+      <addelement name="N"  natoms=" 0.0000"/>
+      <addelement name="O"  natoms=" 0.0000"/>
+   </material>
+   <material  name="Scintillator_mat"  density="  1.0320">
+      <addelement name="CARBON"  natoms=" 0.0000"/>
+      <addelement name="HYDROGEN"  natoms=" 0.0000"/>
+   </material>
+   <material  name="Uranium_mat"  density=" 13.6100">
+      <addelement name="U"  natoms=" 1.0000"/>
+   </material>
+   <material  name="Vacuum_mat"  density="1.0000e-25">
+      <addelement name="Vacuum_e"  natoms=" 1.0000"/>
+   </material>
+
+</materials>
+
+<media  version = "Id: AGDDWriter.cxx 693 2011-01-11 14:41:39Z ihrivnac "
+        date    = "2014-06-18"
+        author  = "VGM AGGD Writer"
+        DTD_version="v7"  >
+
+   <medium  name="Air"  
+      material="Air_mat"  
+      color="random"
+      sensitive="true"
+      parameters=" 0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000"/>
+   <medium  name="Scintillator"  
+      material="Scintillator_mat"  
+      color="random"
+      sensitive="true"
+      parameters=" 0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000"/>
+   <medium  name="Uranium"  
+      material="Uranium_mat"  
+      color="random"
+      sensitive="true"
+      parameters=" 0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000"/>
+   <medium  name="Vacuum"  
+      material="Vacuum_mat"  
+      color="random"
+      sensitive="true"
+      parameters=" 0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000"/>
+
+</media>
+
+<section DTD_version = "v7"
+         name        = "world"
+         version     = "Id: AGDDWriter.cxx 693 2011-01-11 14:41:39Z ihrivnac "
+         date        = "2014-06-18"
+         author      = "VGM AGGD Writer"
+         top_volume  = "world_comp"  >
+
+   <box    name="world"
+      medium="Vacuum"
+      X_Y_Z="1200.0000; 200.0000; 1200.0000" />
+
+   <box    name="layerA"
+      medium="Air"
+      X_Y_Z="40.0000; 120.0000; 100.0000" />
+
+   <box    name="layerB"
+      medium="Uranium"
+      X_Y_Z="40.0000; 20.0000; 100.0000" />
+
+   <box    name="layerC"
+      medium="Scintillator"
+      X_Y_Z="40.0000;  0.4000; 100.0000" />
+
+
+   <composition name="world_comp">
+      <transform    pos="482.9629;   0.0000; 129.4095"
+                 matrix=" 0.96593;  0.00000; -0.25882; 
+                          0.00000;  1.00000;  0.00000; 
+                          0.25882;  0.00000;  0.96593"> <volume name="layerA"/>
+      </transform>
+      <transform    pos="482.9629;   0.0000; 129.4095"
+                 matrix=" 0.96593;  0.00000; -0.25882; 
+                          0.00000;  1.00000;  0.00000; 
+                          0.25882;  0.00000;  0.96593"> <volume name="layerA_comp"/>
+      </transform>
+      <transform    pos="433.0127;   0.0000; 250.0000"
+                 matrix=" 0.86603;  0.00000; -0.50000; 
+                          0.00000;  1.00000;  0.00000; 
+                          0.50000;  0.00000;  0.86603"> <volume name="layerA"/>
+      </transform>
+      <transform    pos="433.0127;   0.0000; 250.0000"
+                 matrix=" 0.86603;  0.00000; -0.50000; 
+                          0.00000;  1.00000;  0.00000; 
+                          0.50000;  0.00000;  0.86603"> <volume name="layerA_comp"/>
+      </transform>
+      <transform    pos="353.5534;   0.0000; 353.5534"
+                 matrix=" 0.70711;  0.00000; -0.70711; 
+                          0.00000;  1.00000;  0.00000; 
+                          0.70711;  0.00000;  0.70711"> <volume name="layerA"/>
+      </transform>
+      <transform    pos="353.5534;   0.0000; 353.5534"
+                 matrix=" 0.70711;  0.00000; -0.70711; 
+                          0.00000;  1.00000;  0.00000; 
+                          0.70711;  0.00000;  0.70711"> <volume name="layerA_comp"/>
+      </transform>
+      <transform    pos="250.0000;   0.0000; 433.0127"
+                 matrix=" 0.50000;  0.00000; -0.86603; 
+                          0.00000;  1.00000;  0.00000; 
+                          0.86603;  0.00000;  0.50000"> <volume name="layerA"/>
+      </transform>
+      <transform    pos="250.0000;   0.0000; 433.0127"
+                 matrix=" 0.50000;  0.00000; -0.86603; 
+                          0.00000;  1.00000;  0.00000; 
+                          0.86603;  0.00000;  0.50000"> <volume name="layerA_comp"/>
+      </transform>
+      <transform    pos="129.4095;   0.0000; 482.9629"
+                 matrix=" 0.25882;  0.00000; -0.96593; 
+                          0.00000;  1.00000;  0.00000; 
+                          0.96593;  0.00000;  0.25882"> <volume name="layerA"/>
+      </transform>
+      <transform    pos="129.4095;   0.0000; 482.9629"
+                 matrix=" 0.25882;  0.00000; -0.96593; 
+                          0.00000;  1.00000;  0.00000; 
+                          0.96593;  0.00000;  0.25882"> <volume name="layerA_comp"/>
+      </transform>
+      <transform    pos="  0.0000;   0.0000; 500.0000"
+                 matrix="6.12323e-17;  0.00000; -1.00000; 
+                          0.00000;  1.00000;  0.00000; 
+                          1.00000;  0.00000; 6.12323e-17"> <volume name="layerA"/>
+      </transform>
+      <transform    pos="  0.0000;   0.0000; 500.0000"
+                 matrix="6.12323e-17;  0.00000; -1.00000; 
+                          0.00000;  1.00000;  0.00000; 
+                          1.00000;  0.00000; 6.12323e-17"> <volume name="layerA_comp"/>
+      </transform>
+      <transform    pos="-129.4095;   0.0000; 482.9629"
+                 matrix="-0.25882; 2.40756e-16; -0.96593; 
+                         3.16962e-17;  1.00000; 2.40756e-16; 
+                          0.96593; 3.16962e-17; -0.25882"> <volume name="layerA"/>
+      </transform>
+      <transform    pos="-129.4095;   0.0000; 482.9629"
+                 matrix="-0.25882; 2.40756e-16; -0.96593; 
+                         3.16962e-17;  1.00000; 2.40756e-16; 
+                          0.96593; 3.16962e-17; -0.25882"> <volume name="layerA_comp"/>
+      </transform>
+      <transform    pos="-250.0000;   0.0000; 433.0127"
+                 matrix="-0.50000; 2.28522e-16; -0.86603; 
+                         6.12323e-17;  1.00000; 2.28522e-16; 
+                          0.86603; 6.12323e-17; -0.50000"> <volume name="layerA"/>
+      </transform>
+      <transform    pos="-250.0000;   0.0000; 433.0127"
+                 matrix="-0.50000; 2.28522e-16; -0.86603; 
+                         6.12323e-17;  1.00000; 2.28522e-16; 
+                          0.86603; 6.12323e-17; -0.50000"> <volume name="layerA_comp"/>
+      </transform>
+      <transform    pos="-353.5534;   0.0000; 353.5534"
+                 matrix="-0.70711; 2.09060e-16; -0.70711; 
+                         8.65956e-17;  1.00000; 2.09060e-16; 
+                          0.70711; 8.65956e-17; -0.70711"> <volume name="layerA"/>
+      </transform>
+      <transform    pos="-353.5534;   0.0000; 353.5534"
+                 matrix="-0.70711; 2.09060e-16; -0.70711; 
+                         8.65956e-17;  1.00000; 2.09060e-16; 
+                          0.70711; 8.65956e-17; -0.70711"> <volume name="layerA_comp"/>
+      </transform>
+      <transform    pos="-433.0127;   0.0000; 250.0000"
+                 matrix="-0.86603; 1.83697e-16; -0.50000; 
+                         1.06058e-16;  1.00000; 1.83697e-16; 
+                          0.50000; 1.06058e-16; -0.86603"> <volume name="layerA"/>
+      </transform>
+      <transform    pos="-433.0127;   0.0000; 250.0000"
+                 matrix="-0.86603; 1.83697e-16; -0.50000; 
+                         1.06058e-16;  1.00000; 1.83697e-16; 
+                          0.50000; 1.06058e-16; -0.86603"> <volume name="layerA_comp"/>
+      </transform>
+      <transform    pos="-482.9629;   0.0000; 129.4095"
+                 matrix="-0.96593; 1.54161e-16; -0.25882; 
+                         1.18292e-16;  1.00000; 1.54161e-16; 
+                          0.25882; 1.18292e-16; -0.96593"> <volume name="layerA"/>
+      </transform>
+      <transform    pos="-482.9629;   0.0000; 129.4095"
+                 matrix="-0.96593; 1.54161e-16; -0.25882; 
+                         1.18292e-16;  1.00000; 1.54161e-16; 
+                          0.25882; 1.18292e-16; -0.96593"> <volume name="layerA_comp"/>
+      </transform>
+      <transform    pos="-500.0000;   0.0000;   0.0000"
+                 matrix="-1.00000; 1.22465e-16; -1.22465e-16; 
+                         1.22465e-16;  1.00000; 1.22465e-16; 
+                         1.22465e-16; 1.22465e-16; -1.00000"> <volume name="layerA"/>
+      </transform>
+      <transform    pos="-500.0000;   0.0000;   0.0000"
+                 matrix="-1.00000; 1.22465e-16; -1.22465e-16; 
+                         1.22465e-16;  1.00000; 1.22465e-16; 
+                         1.22465e-16; 1.22465e-16; -1.00000"> <volume name="layerA_comp"/>
+      </transform>
+      <transform    pos="-482.9629;   0.0000; -129.4095"
+                 matrix="-0.96593; 1.54161e-16;  0.25882; 
+                         1.18292e-16;  1.00000; -1.54161e-16; 
+                         -0.25882; -1.18292e-16; -0.96593"> <volume name="layerA"/>
+      </transform>
+      <transform    pos="-482.9629;   0.0000; -129.4095"
+                 matrix="-0.96593; 1.54161e-16;  0.25882; 
+                         1.18292e-16;  1.00000; -1.54161e-16; 
+                         -0.25882; -1.18292e-16; -0.96593"> <volume name="layerA_comp"/>
+      </transform>
+      <transform    pos="-433.0127;   0.0000; -250.0000"
+                 matrix="-0.86603; 1.83697e-16;  0.50000; 
+                         1.06058e-16;  1.00000; -1.83697e-16; 
+                         -0.50000; -1.06058e-16; -0.86603"> <volume name="layerA"/>
+      </transform>
+      <transform    pos="-433.0127;   0.0000; -250.0000"
+                 matrix="-0.86603; 1.83697e-16;  0.50000; 
+                         1.06058e-16;  1.00000; -1.83697e-16; 
+                         -0.50000; -1.06058e-16; -0.86603"> <volume name="layerA_comp"/>
+      </transform>
+      <transform    pos="-353.5534;   0.0000; -353.5534"
+                 matrix="-0.70711; 2.09060e-16;  0.70711; 
+                         8.65956e-17;  1.00000; -2.09060e-16; 
+                         -0.70711; -8.65956e-17; -0.70711"> <volume name="layerA"/>
+      </transform>
+      <transform    pos="-353.5534;   0.0000; -353.5534"
+                 matrix="-0.70711; 2.09060e-16;  0.70711; 
+                         8.65956e-17;  1.00000; -2.09060e-16; 
+                         -0.70711; -8.65956e-17; -0.70711"> <volume name="layerA_comp"/>
+      </transform>
+      <transform    pos="-250.0000;   0.0000; -433.0127"
+                 matrix="-0.50000; 2.28522e-16;  0.86603; 
+                         6.12323e-17;  1.00000; -2.28522e-16; 
+                         -0.86603; -6.12323e-17; -0.50000"> <volume name="layerA"/>
+      </transform>
+      <transform    pos="-250.0000;   0.0000; -433.0127"
+                 matrix="-0.50000; 2.28522e-16;  0.86603; 
+                         6.12323e-17;  1.00000; -2.28522e-16; 
+                         -0.86603; -6.12323e-17; -0.50000"> <volume name="layerA_comp"/>
+      </transform>
+      <transform    pos="-129.4095;   0.0000; -482.9629"
+                 matrix="-0.25882; 2.40756e-16;  0.96593; 
+                         3.16962e-17;  1.00000; -2.40756e-16; 
+                         -0.96593; -3.16962e-17; -0.25882"> <volume name="layerA"/>
+      </transform>
+      <transform    pos="-129.4095;   0.0000; -482.9629"
+                 matrix="-0.25882; 2.40756e-16;  0.96593; 
+                         3.16962e-17;  1.00000; -2.40756e-16; 
+                         -0.96593; -3.16962e-17; -0.25882"> <volume name="layerA_comp"/>
+      </transform>
+      <transform    pos="  0.0000;   0.0000; -500.0000"
+                 matrix="2.83277e-16;  0.00000;  1.00000; 
+                          0.00000;  1.00000;  0.00000; 
+                         -1.00000;  0.00000; 2.83277e-16"> <volume name="layerA"/>
+      </transform>
+      <transform    pos="  0.0000;   0.0000; -500.0000"
+                 matrix="2.83277e-16;  0.00000;  1.00000; 
+                          0.00000;  1.00000;  0.00000; 
+                         -1.00000;  0.00000; 2.83277e-16"> <volume name="layerA_comp"/>
+      </transform>
+      <transform    pos="129.4095;   0.0000; -482.9629"
+                 matrix=" 0.25882;  0.00000;  0.96593; 
+                          0.00000;  1.00000;  0.00000; 
+                         -0.96593;  0.00000;  0.25882"> <volume name="layerA"/>
+      </transform>
+      <transform    pos="129.4095;   0.0000; -482.9629"
+                 matrix=" 0.25882;  0.00000;  0.96593; 
+                          0.00000;  1.00000;  0.00000; 
+                         -0.96593;  0.00000;  0.25882"> <volume name="layerA_comp"/>
+      </transform>
+      <transform    pos="250.0000;   0.0000; -433.0127"
+                 matrix=" 0.50000;  0.00000;  0.86603; 
+                          0.00000;  1.00000;  0.00000; 
+                         -0.86603;  0.00000;  0.50000"> <volume name="layerA"/>
+      </transform>
+      <transform    pos="250.0000;   0.0000; -433.0127"
+                 matrix=" 0.50000;  0.00000;  0.86603; 
+                          0.00000;  1.00000;  0.00000; 
+                         -0.86603;  0.00000;  0.50000"> <volume name="layerA_comp"/>
+      </transform>
+      <transform    pos="353.5534;   0.0000; -353.5534"
+                 matrix=" 0.70711;  0.00000;  0.70711; 
+                          0.00000;  1.00000;  0.00000; 
+                         -0.70711;  0.00000;  0.70711"> <volume name="layerA"/>
+      </transform>
+      <transform    pos="353.5534;   0.0000; -353.5534"
+                 matrix=" 0.70711;  0.00000;  0.70711; 
+                          0.00000;  1.00000;  0.00000; 
+                         -0.70711;  0.00000;  0.70711"> <volume name="layerA_comp"/>
+      </transform>
+      <transform    pos="433.0127;   0.0000; -250.0000"
+                 matrix=" 0.86603;  0.00000;  0.50000; 
+                          0.00000;  1.00000;  0.00000; 
+                         -0.50000;  0.00000;  0.86603"> <volume name="layerA"/>
+      </transform>
+      <transform    pos="433.0127;   0.0000; -250.0000"
+                 matrix=" 0.86603;  0.00000;  0.50000; 
+                          0.00000;  1.00000;  0.00000; 
+                         -0.50000;  0.00000;  0.86603"> <volume name="layerA_comp"/>
+      </transform>
+      <transform    pos="482.9629;   0.0000; -129.4095"
+                 matrix=" 0.96593;  0.00000;  0.25882; 
+                          0.00000;  1.00000;  0.00000; 
+                         -0.25882;  0.00000;  0.96593"> <volume name="layerA"/>
+      </transform>
+      <transform    pos="482.9629;   0.0000; -129.4095"
+                 matrix=" 0.96593;  0.00000;  0.25882; 
+                          0.00000;  1.00000;  0.00000; 
+                         -0.25882;  0.00000;  0.96593"> <volume name="layerA_comp"/>
+      </transform>
+      <posXYZ   X_Y_Z="500.0000;   0.0000;   0.0000"> <volume name="layerA"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="500.0000;   0.0000;   0.0000"> <volume name="layerA_comp"/>
+      </posXYZ>
+   </composition>
+
+   <composition name="layerA_comp">
+      <mposY ncopy="   3"  Y0=" 40.0000"  dY=" 20.0000"> <volume name="layerB"/>
+      </mposY>
+      <mposY ncopy="   3"  Y0=" 40.0000"  dY=" 20.0000"> <volume name="layerB_comp"/>
+      </mposY>
+   </composition>
+
+   <composition name="layerB_comp">
+      <posXYZ   X_Y_Z="  0.0000;   9.8000;   0.0000"> <volume name="layerC"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="  0.0000;  -9.8000;   0.0000"> <volume name="layerC"/>
+      </posXYZ>
+   </composition>
+
+
+</section>
+
+</AGDD>

@@ -1,0 +1,21 @@
+# $Id$
+
+# -----------------------------------------------------------------------
+# The makefile for the Virtual Geometry Model
+# Copyright (C) 2007, Ivana Hrivnacova               
+# All rights reserved. 
+#           
+# For the licensing terms see vgm/LICENSE.
+# Contact: ivana@ipno.in2p3.fr
+# -----------------------------------------------------------------------
+
+# Based on Geant4 makefiles:
+
+ifndef VGM_LIBDIR
+  VGM_LIBDIR := $(VGM_LIB)/$(VGM_SYSTEM)
+endif
+
+INTYLIBS += -L$(VGM_LIBDIR) -lClhepVGM -lBaseVGM 
+
+CPPFLAGS += -I$(VGM_BASE)/ClhepVGM/include
+

@@ -1,0 +1,32 @@
+ $Id$ 
+
+------------------------------------------------------------------------
+ The documentation file for the Virtual Geometry Model examples
+ Copyright (C) 2007, 2014 Ivana Hrivnacova               
+ All rights reserved. 
+           
+ For the licensing terms see vgm/LICENSE.
+ Contact: ivana@ipno.in2p3.fr
+------------------------------------------------------------------------
+
+ README
+ -------
+
+ The examples demonstrate use of VGM for conversion
+ of existing native geometries.
+ 
+ E01:  Geant4 -> Root
+ E02:  Root   -> Geant4
+ E03:  Geant4 -> XML 
+ E04:  Root   -> XML 
+ 
+ The Geant4 basic example B4a source is used in E01, E02, E03 and 
+ Root rootgeom.C macro is used in E03. The geometry conversion 
+ in E01, E02, E03 examples is performed in src/B4DetectorConstruction.cc class
+ and in E04 example in rootgeom.cxx.
+ 
+ See the code within the comment lines
+  // VGM demo
+ and
+  // end VGM demo
+ in these files.

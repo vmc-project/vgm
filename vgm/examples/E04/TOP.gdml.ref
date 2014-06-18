@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/GDML_2_10_0/src/GDMLSchema/gdml.xsd">
+
+   <define>
+      <position  name="pos_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_1"     x="  -150.0000"  y="  -150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_2"     x="     0.0000"  y="     0.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_3"     x="    85.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_4"     x="    20.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_5"     x="    10.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_6"     x="    10.0000"  y="    20.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_7"     x="     5.0000"  y="    10.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_8"     x="    35.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_9"     x="    -5.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_10"    x="     7.5000"  y="     7.5000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_11"    x="     7.5000"  y="    -7.5000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_12"    x="   -15.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_13"    x="   -65.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_14"    x="     7.5000"  y="    -5.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_15"    x="     7.5000"  y="    20.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_16"    x="     0.0000"  y="     0.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_17"    x="   100.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_18"    x="  -100.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_19"    x="     0.0000"  y="   100.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_20"    x="     0.0000"  y="  -100.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_21"    x="   150.0000"  y="  -150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_22"    x="   150.0000"  y="   150.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_23"    x="  -150.0000"  y="   150.0000"  z="     0.0000"  unit="cm" />
+
+      <rotation  name="rot_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name="rot_1"     x="   180.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name="rot_2"     x="   180.0000"  y="     0.0000"  z="   180.0000"  unit="degree" />
+      <rotation  name="rot_3"     x="   -90.0000"  y="    90.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name="rot_4"     x="   -90.0000"  y="   -90.0000"  z="     0.0000"  unit="degree" />
+      <rotation  name="rot_5"     x="   -90.0000"  y="     0.0000"  z="   -90.0000"  unit="degree" />
+      <rotation  name="rot_6"     x="    90.0000"  y="     0.0000"  z="   -90.0000"  unit="degree" />
+
+      <scale     name="scale_0"   x="     1.0000"  y="     1.0000"  z="    -1.0000"  />
+   </define>
+
+   <materials>
+
+      <element  name="VACUUM_e"  Z="  0.0000"  N="  1" >
+         <atom type="A" unit="g/mol" value="  0.0000" />
+      </element>
+      <element  name="ALUMINIUM_e"  Z=" 13.0000"  N=" 27" >
+         <atom type="A" unit="g/mol" value=" 26.9800" />
+      </element>
+
+      <material  name="Al"  state="undefined"  >
+         <D type="density" unit="g/cm3" value="     2.7000"/>
+         <fraction n="    1.0000"  ref="ALUMINIUM_e"/>
+      </material>
+      <material  name="Vacuum"  state="undefined"  >
+         <D type="density" unit="g/cm3" value="     0.0000"/>
+         <fraction n="    1.0000"  ref="VACUUM_e"/>
+      </material>
+
+   </materials>
+
+   <solids>
+      <box  lunit="cm" aunit="degree"
+         name="TOP_s"
+         x="  540.0000"  y="  540.0000"  z="  240.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="REPLICA_s"
+         x="  240.0000"  y="  240.0000"  z="  240.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="ROOT_s"
+         x="  220.0000"  y="  100.0000"  z="   10.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="R_s"
+         x="   50.0000"  y="   50.0000"  z="   10.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="bar1_s"
+         x="   10.0000"  y="   50.0000"  z="   10.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="bar2_s"
+         x="   10.0000"  y="   10.0000"  z="   10.0000" />
+
+      <tube  lunit="cm" aunit="degree"
+         name="tub1_s"
+         rmin="    5.0000"  rmax="   15.0000"  z="   10.0000"
+         startphi="   90.0000"  deltaphi="  180.0000" />
+
+      <arb8  lunit="cm"
+         name="bar3_s"
+         dz="   10.0000"
+         v1x="   15.0000"  v1y="   -5.0000"
+         v2x="    0.0000"  v2y="  -25.0000"
+         v3x="  -10.0000"  v3y="  -25.0000"
+         v4x="    5.0000"  v4y="   -5.0000"
+         v5x="   15.0000"  v5y="   -5.0000"
+         v6x="    0.0000"  v6y="  -25.0000"
+         v7x="  -10.0000"  v7y="  -25.0000"
+         v8x="    5.0000"  v8y="   -5.0000"  />
+
+      <box  lunit="cm" aunit="degree"
+         name="O_s"
+         x="   50.0000"  y="   50.0000"  z="   10.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="bar4_s"
+         x="   10.0000"  y="   15.0000"  z="   10.0000" />
+
+      <tube  lunit="cm" aunit="degree"
+         name="tub2_s"
+         rmin="    7.5000"  rmax="   17.5000"  z="   10.0000"
+         startphi="    0.0000"  deltaphi="  180.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="T_s"
+         x="   50.0000"  y="   50.0000"  z="   10.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="bar5_s"
+         x="   10.0000"  y="   40.0000"  z="   10.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="bar6_s"
+         x="   35.0000"  y="   10.0000"  z="   10.0000" />
+
+   </solids>
+
+   <structure>
+      <volume name="bar1">
+         <materialref ref="Al"/>
+         <solidref ref="bar1_s"/>
+      </volume>
+
+      <volume name="bar2">
+         <materialref ref="Al"/>
+         <solidref ref="bar2_s"/>
+      </volume>
+
+      <volume name="tub1">
+         <materialref ref="Al"/>
+         <solidref ref="tub1_s"/>
+      </volume>
+
+      <volume name="bar3">
+         <materialref ref="Al"/>
+         <solidref ref="bar3_s"/>
+      </volume>
+
+      <volume name="R">
+         <materialref ref="Vacuum"/>
+         <solidref ref="R_s"/>
+         <physvol>
+            <volumeref ref="bar1"/>
+               <positionref ref="pos_4"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="bar2"/>
+               <positionref ref="pos_5"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="bar2"/>
+               <positionref ref="pos_6"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="tub1"/>
+               <positionref ref="pos_7"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="bar3"/>
+               <positionref ref="pos_0"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+      </volume>
+
+      <volume name="bar4">
+         <materialref ref="Al"/>
+         <solidref ref="bar4_s"/>
+      </volume>
+
+      <volume name="tub2">
+         <materialref ref="Al"/>
+         <solidref ref="tub2_s"/>
+      </volume>
+
+      <volume name="O">
+         <materialref ref="Vacuum"/>
+         <solidref ref="O_s"/>
+         <physvol>
+            <volumeref ref="bar4"/>
+               <positionref ref="pos_4"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="bar4"/>
+               <positionref ref="pos_9"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="tub2"/>
+               <positionref ref="pos_10"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="tub2"/>
+               <positionref ref="pos_11"/>
+               <rotationref ref="rot_1"/>
+               <scaleref    ref="scale_0"/>
+         </physvol>
+      </volume>
+
+      <volume name="bar5">
+         <materialref ref="Al"/>
+         <solidref ref="bar5_s"/>
+      </volume>
+
+      <volume name="bar6">
+         <materialref ref="Al"/>
+         <solidref ref="bar6_s"/>
+      </volume>
+
+      <volume name="T">
+         <materialref ref="Vacuum"/>
+         <solidref ref="T_s"/>
+         <physvol>
+            <volumeref ref="bar5"/>
+               <positionref ref="pos_14"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="bar6"/>
+               <positionref ref="pos_15"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+      </volume>
+
+      <volume name="ROOT">
+         <materialref ref="Vacuum"/>
+         <solidref ref="ROOT_s"/>
+         <physvol>
+            <volumeref ref="R"/>
+               <positionref ref="pos_3"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="O"/>
+               <positionref ref="pos_8"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="O"/>
+               <positionref ref="pos_12"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="T"/>
+               <positionref ref="pos_13"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+      </volume>
+
+      <volume name="REPLICA">
+         <materialref ref="Vacuum"/>
+         <solidref ref="REPLICA_s"/>
+         <physvol>
+            <volumeref ref="ROOT"/>
+               <positionref ref="pos_2"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="ROOT"/>
+               <positionref ref="pos_16"/>
+               <rotationref ref="rot_2"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="ROOT"/>
+               <positionref ref="pos_17"/>
+               <rotationref ref="rot_3"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="ROOT"/>
+               <positionref ref="pos_18"/>
+               <rotationref ref="rot_4"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="ROOT"/>
+               <positionref ref="pos_19"/>
+               <rotationref ref="rot_5"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="ROOT"/>
+               <positionref ref="pos_20"/>
+               <rotationref ref="rot_6"/>
+         </physvol>
+      </volume>
+
+      <volume name="TOP">
+         <materialref ref="Vacuum"/>
+         <solidref ref="TOP_s"/>
+         <physvol>
+            <volumeref ref="REPLICA"/>
+               <positionref ref="pos_1"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="REPLICA"/>
+               <positionref ref="pos_21"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="REPLICA"/>
+               <positionref ref="pos_22"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="REPLICA"/>
+               <positionref ref="pos_23"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+      </volume>
+
+   </structure>
+
+   <setup name="unit1"   version="1.0">
+      <world ref="TOP"/>
+   </setup>
+
+</gdml>

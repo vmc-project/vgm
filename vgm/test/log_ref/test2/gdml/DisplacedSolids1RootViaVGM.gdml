@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/GDML_2_10_0/src/GDMLSchema/gdml.xsd">
+
+   <define>
+      <position  name="pos_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_1"     x="     0.0000"  y="     0.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_2"     x="     0.0000"  y="     0.0000"  z="   150.0000"  unit="cm" />
+
+      <rotation  name="rot_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
+
+      <scale     name="scale_0"   x="     1.0000"  y="     1.0000"  z="    -1.0000"  />
+   </define>
+
+   <materials>
+
+      <element  name="Aluminium_e"  Z=" 13.0000"  N=" 26" >
+         <atom type="A" unit="g/mol" value=" 26.9800" />
+      </element>
+
+      <material  name="Basic"  state="undefined"  >
+         <D type="density" unit="g/cm3" value="     2.7000"/>
+         <fraction n="    1.0000"  ref="Aluminium_e"/>
+      </material>
+
+   </materials>
+
+   <solids>
+      <box  lunit="cm" aunit="degree"
+         name="world_s"
+         x="  120.0000"  y="  120.0000"  z="  320.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="volume1_s"
+         x="  100.0000"  y="  100.0000"  z="  100.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="volume4_s"
+         x="   40.0000"  y="   40.0000"  z="   20.0000" />
+
+      <!-- !!! unsupported shape  !!!  name= "volume2C_s" -->
+      <!-- dummy box is written instead  -->
+      <box  lunit="cm" aunit="degree"
+         name="volume2C_s"
+         x="    0.2000"  y="    0.2000"  z="    0.2000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="volume3_s"
+         x="   40.0000"  y="   40.0000"  z="   40.0000" />
+
+      <!-- !!! unsupported shape  !!!  name= "volume5A_s" -->
+      <!-- dummy box is written instead  -->
+      <box  lunit="cm" aunit="degree"
+         name="volume5A_s"
+         x="    0.2000"  y="    0.2000"  z="    0.2000" />
+
+   </solids>
+
+   <structure>
+      <volume name="volume4">
+         <materialref ref="Basic"/>
+         <solidref ref="volume4_s"/>
+      </volume>
+
+      <volume name="volume1">
+         <materialref ref="Basic"/>
+         <solidref ref="volume1_s"/>
+         <physvol>
+            <volumeref ref="volume4"/>
+               <positionref ref="pos_0"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+      </volume>
+
+      <volume name="volume3">
+         <materialref ref="Basic"/>
+         <solidref ref="volume3_s"/>
+      </volume>
+
+      <volume name="volume5A">
+         <materialref ref="Basic"/>
+         <solidref ref="volume5A_s"/>
+      </volume>
+
+      <volume name="volume2C">
+         <materialref ref="Basic"/>
+         <solidref ref="volume2C_s"/>
+         <physvol>
+            <volumeref ref="volume3"/>
+               <positionref ref="pos_2"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="volume5A"/>
+               <positionref ref="pos_2"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+      </volume>
+
+      <volume name="world">
+         <materialref ref="Basic"/>
+         <solidref ref="world_s"/>
+         <physvol>
+            <volumeref ref="volume1"/>
+               <positionref ref="pos_1"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="volume2C"/>
+               <positionref ref="pos_1"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+      </volume>
+
+   </structure>
+
+   <setup name="unit1"   version="1.0">
+      <world ref="world"/>
+   </setup>
+
+</gdml>

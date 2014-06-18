@@ -1,0 +1,58 @@
+# ------------------------------------------------------------------------------
+# The configuration file for CMake build for Virtual Geometry Model
+# Copyright (C) 2014, Ivana Hrivnacova
+# All rights reserved.
+# 
+# For the licensing terms see vgm/LICENSE.
+# Contact: ivana@ipno.in2p3.fr
+# ------------------------------------------------------------------------------
+#
+# $Id$
+#
+# Configuration file for CMake build for VGM packages.
+# It defines the following variables
+#  VGM_INCLUDE_DIRS - include directories for VGM
+#  VGM_LIBRARIES    - libraries to link against
+#  VGM_GEANT4_LIBRARIES  - libraries to link against (Geant4 dependent only)
+#  VGM_ROOT_LIBRARIES  - libraries to link against (Root depenedent only)
+#  VGM_WITH_GEANT4   - build option: with G4eant4
+#  VGM_WITH_ROOT     - build option: with ROOT
+#  VGM_WITH_TEST     - build option: with test
+#  VGM_WITH_G4ROOT   - build option: with G4Root
+#  VGM_WITH_EXAMPLES - build option: with examples
+#
+# I. Hrivnacova, 04/06/2014
+
+# Compute installation prefix relative to this file
+get_filename_component(_dir "${CMAKE_CURRENT_LIST_FILE}" PATH)
+get_filename_component(_prefix "${_dir}/../.." ABSOLUTE)
+
+# Import targets
+include("${_prefix}/@CMAKE_INSTALL_LIBDIR@/VGM-@VGM_VERSION@/VGMTargets.cmake")
+ 
+# Import options
+set(VGM_WITH_GEANT4 @WITH_GEANT4@) 
+set(VGM_WITH_ROOT @WITH_ROOT@)
+set(VGM_WITH_TEST @WITH_TEST@)
+set(VGM_WITH_G4ROOT @WITH_G4ROOT@)
+set(VGM_WITH_EXAMPLES @ WITH_EXAMPLES@)
+
+# These are IMPORTED targets created by VGMTargets.cmake
+set(VGM_LIBRARIES BaseVGM;XmlVGM;ClhepVGM)
+if(VGM_WITH_GEANT4)
+set(VGM_LIBRARIES "${VGM_LIBRARIES};Geant4GM")
+endif()
+if(VGM_WITH_ROOT)
+set(VGM_LIBRARIES "${VGM_LIBRARIES};RootGM")
+endif()
+
+if(VGM_WITH_GEANT4)
+set(VGM_GEANT4_LIBRARIES Geant4GM;ClhepVGM;BaseVGM;XmlVGM)
+endif()
+if(VGM_WITH_ROOT)
+set(VGM_ROOT_LIBRARIES RootGM;ClhepVGM;BaseVGM;XmlVGM)
+endif()
+
+# Set includes
+set(VGM_INCLUDE_DIRS "${_prefix}/include")
+

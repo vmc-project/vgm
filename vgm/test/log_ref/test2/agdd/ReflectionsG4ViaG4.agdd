@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<AGDD DTD_version = "v7"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+<xi:include href="StandardColors.agdd"/>
+
+<materials  version = "Id: AGDDWriter.cxx 693 2011-01-11 14:41:39Z ihrivnac "
+            date    = "2014-06-18"
+            author  = "VGM AGGD Writer"
+            DTD_version="v7"  >
+
+   <isotope  name="__27"    z=" 13"  n=" 27"  a=" 27"/>
+
+   <element  symbol="Basic_e">
+      <addisotope name="__27"  natoms="100" />
+   </element>
+
+   <material  name="Basic_mat"  density="  2.7000">
+      <addelement name="Basic_e"  natoms=" 1.0000"/>
+   </material>
+
+</materials>
+
+<media  version = "Id: AGDDWriter.cxx 693 2011-01-11 14:41:39Z ihrivnac "
+        date    = "2014-06-18"
+        author  = "VGM AGGD Writer"
+        DTD_version="v7"  >
+
+   <medium  name="Basic"  
+      material="Basic_mat"  
+      color="random"
+      sensitive="true"
+      parameters=""/>
+
+</media>
+
+<section DTD_version = "v7"
+         name        = "world"
+         version     = "Id: AGDDWriter.cxx 693 2011-01-11 14:41:39Z ihrivnac "
+         date        = "2014-06-18"
+         author      = "VGM AGGD Writer"
+         top_volume  = "world_comp"  >
+
+   <box    name="world"
+      medium="Basic"
+      X_Y_Z="1240.0000; 600.0000; 600.0000" />
+
+   <box    name="box"
+      medium="Basic"
+      X_Y_Z="40.0000; 120.0000; 100.0000" />
+
+   <box    name="box_refl"
+      medium="Basic"
+      X_Y_Z="40.0000; 120.0000; 100.0000" />
+
+   <cons   name="cons"
+      medium="Basic"
+      profile=" 0.0000; 360.0000"
+      Rio1_Rio2_Z  ="10.0000; 20.0000; 40.0000; 60.0000; 100.0000" />
+
+   <cons   name="cons_refl"
+      medium="Basic"
+      profile=" 0.0000; 360.0000"
+      Rio1_Rio2_Z  ="20.0000; 10.0000; 60.0000; 40.0000; 100.0000" />
+
+   <!-- !!! unsupported shape  !!!  name= "eltu" -->
+   <!-- dummy box is written instead  -->
+   <box    name="eltu"
+      medium="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
+   <!-- !!! unsupported shape  !!!  name= "eltu_refl" -->
+   <!-- dummy box is written instead  -->
+   <box    name="eltu_refl"
+      medium="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
+   <para   name="para"
+      medium="Basic"
+      X_Y_Z="80.0000; 120.0000; 100.0000"
+      alpha="30.0000"
+      theta="30.0000"
+      phi=  "30.0000" />
+
+   <para   name="para_refl"
+      medium="Basic"
+      X_Y_Z="80.0000; 120.0000; 100.0000"
+      alpha="30.0000"
+      theta="150.0000"
+      phi=  "30.0000" />
+
+   <pcon   name="pcone"
+      medium="Basic"
+      profile=" 0.0000; 360.0000" >
+      <polyplane Rio_Z="10.0000; 50.0000; -50.0000" />
+      <polyplane Rio_Z="20.0000; 30.0000; 10.0000" />
+      <polyplane Rio_Z="30.0000; 60.0000; 40.0000" />
+   </pcon>
+
+   <pcon   name="pcone_refl"
+      medium="Basic"
+      profile=" 0.0000; 360.0000" >
+      <polyplane Rio_Z="10.0000; 50.0000; 50.0000" />
+      <polyplane Rio_Z="20.0000; 30.0000; -10.0000" />
+      <polyplane Rio_Z="30.0000; 60.0000; -40.0000" />
+   </pcon>
+
+   <phedra name="phedra"
+      medium="Basic"
+      profile=" 0.0000; 360.0000"
+      sides ="4"
+      Ris="10.0000; 20.0000; 30.0000"
+      Ros="40.0000; 20.0000; 50.0000"
+      Zs ="-50.0000; 10.0000; 40.0000" />
+
+   <phedra name="phedra_refl"
+      medium="Basic"
+      profile=" 0.0000; 360.0000"
+      sides ="4"
+      Ris="10.0000; 20.0000; 30.0000"
+      Ros="40.0000; 20.0000; 50.0000"
+      Zs ="50.0000; -10.0000; -40.0000" />
+
+   <!-- !!! unsupported shape  !!!  name= "sphere" -->
+   <!-- dummy box is written instead  -->
+   <box    name="sphere"
+      medium="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
+   <!-- !!! unsupported shape  !!!  name= "sphere_refl" -->
+   <!-- dummy box is written instead  -->
+   <box    name="sphere_refl"
+      medium="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
+   <!-- !!! unsupported shape  !!!  name= "torus" -->
+   <!-- dummy box is written instead  -->
+   <box    name="torus"
+      medium="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
+   <!-- !!! unsupported shape  !!!  name= "torus_refl" -->
+   <!-- dummy box is written instead  -->
+   <box    name="torus_refl"
+      medium="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
+   <trap   name="trap"
+      medium="Basic"
+      Xmumdpupd_Ymp_Z="30.0000; 20.0000; 30.0000; 20.0000; 40.0000; 40.0000; 60.0000"
+      inclination="20.9057; 14.9740"
+      declination=" 0.0000;  0.0000" />
+
+   <trap   name="trap_refl"
+      medium="Basic"
+      Xmumdpupd_Ymp_Z="30.0000; 20.0000; 30.0000; 20.0000; 40.0000; 40.0000; 60.0000"
+      inclination="-20.9057; 14.9740"
+      declination=" 0.0000;  0.0000" />
+
+   <trd    name="trd"
+      medium="Basic"
+      Xmp_Ymp_Z="40.0000; 60.0000; 80.0000; 100.0000; 100.0000" />
+
+   <trd    name="trd_refl"
+      medium="Basic"
+      Xmp_Ymp_Z="60.0000; 40.0000; 100.0000; 80.0000; 100.0000" />
+
+   <tubs   name="tubs"
+      medium="Basic"
+      profile=" 0.0000; 360.0000"
+      Rio_Z  ="20.0000; 40.0000; 100.0000" />
+
+   <tubs   name="tubs_refl"
+      medium="Basic"
+      profile=" 0.0000; 360.0000"
+      Rio_Z  ="20.0000; 40.0000; 100.0000" />
+
+   <tubs   name="ctubs_constA_constA"
+      medium="Basic"
+      profile="-30.0000; 280.0000"
+      Rio_Z  ="20.0000; 30.0000; 180.8242" />
+
+   <box    name="ctubs_constA_constB"
+      medium="Basic"
+      X_Y_Z="168.7492; 168.7492; 93.6233" />
+
+   <subtraction name="ctubs_constA" >
+      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="ctubs_constA_constA"/>
+      </posXYZ>
+      <transform    pos="  0.0000;   0.0000; -121.3603"
+                 matrix=" 1.00000;  0.00000;  0.00000; 
+                          0.00000; -0.76904;  0.63920; 
+                         -0.00000; -0.63920; -0.76904"> <volume name="ctubs_constA_constB"/>
+      </transform>
+   </subtraction>
+
+   <box    name="ctubs_constB"
+      medium="Basic"
+      X_Y_Z="131.6788; 131.6788; 72.3842" />
+
+   <subtraction name="ctubs" >
+      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="ctubs_constA"/>
+      </posXYZ>
+      <transform    pos="  0.0000;   0.0000;  96.8753"
+                 matrix=" 1.00000;  0.00000;  0.00000; 
+                          0.00000;  0.99469;  0.10290; 
+                          0.00000; -0.10290;  0.99469"> <volume name="ctubs_constB"/>
+      </transform>
+   </subtraction>
+
+   <tubs   name="ctubs_refl_constA_constA"
+      medium="Basic"
+      profile="-30.0000; 280.0000"
+      Rio_Z  ="20.0000; 30.0000; 180.8242" />
+
+   <box    name="ctubs_refl_constA_constB"
+      medium="Basic"
+      X_Y_Z="168.7492; 168.7492; 93.6233" />
+
+   <subtraction name="ctubs_refl_constA" >
+      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="ctubs_refl_constA_constA"/>
+      </posXYZ>
+      <transform    pos="  0.0000;   0.0000; -121.3603"
+                 matrix=" 1.00000;  0.00000;  0.00000; 
+                          0.00000; -0.76904;  0.63920; 
+                         -0.00000; -0.63920; -0.76904"> <volume name="ctubs_refl_constA_constB"/>
+      </transform>
+   </subtraction>
+
+   <box    name="ctubs_refl_constB"
+      medium="Basic"
+      X_Y_Z="131.6788; 131.6788; 72.3842" />
+
+   <subtraction name="ctubs_refl" >
+      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="ctubs_refl_constA"/>
+      </posXYZ>
+      <transform    pos="  0.0000;   0.0000;  96.8753"
+                 matrix=" 1.00000;  0.00000;  0.00000; 
+                          0.00000;  0.99469;  0.10290; 
+                          0.00000; -0.10290;  0.99469"> <volume name="ctubs_refl_constB"/>
+      </transform>
+   </subtraction>
+
+   <!-- !!! unsupported shape  !!!  name= "xtru1" -->
+   <!-- dummy box is written instead  -->
+   <box    name="xtru1"
+      medium="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
+   <!-- !!! unsupported shape  !!!  name= "xtru1_refl" -->
+   <!-- dummy box is written instead  -->
+   <box    name="xtru1_refl"
+      medium="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
+   <!-- !!! unsupported shape  !!!  name= "xtru2_constA" -->
+   <!-- dummy box is written instead  -->
+   <box    name="xtru2_constA"
+      medium="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
+   <!-- !!! unsupported shape  !!!  name= "xtru2_constB" -->
+   <!-- dummy box is written instead  -->
+   <box    name="xtru2_constB"
+      medium="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
+   <union name="xtru2" >
+      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="xtru2_constA"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="xtru2_constB"/>
+      </posXYZ>
+   </union>
+
+   <!-- !!! unsupported shape  !!!  name= "xtru2_refl_constA" -->
+   <!-- dummy box is written instead  -->
+   <box    name="xtru2_refl_constA"
+      medium="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
+   <!-- !!! unsupported shape  !!!  name= "xtru2_refl_constB" -->
+   <!-- dummy box is written instead  -->
+   <box    name="xtru2_refl_constB"
+      medium="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
+   <union name="xtru2_refl" >
+      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="xtru2_refl_constA"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="xtru2_refl_constB"/>
+      </posXYZ>
+   </union>
+
+   <!-- !!! unsupported shape  !!!  name= "hype" -->
+   <!-- dummy box is written instead  -->
+   <box    name="hype"
+      medium="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
+   <!-- !!! unsupported shape  !!!  name= "hype_refl" -->
+   <!-- dummy box is written instead  -->
+   <box    name="hype_refl"
+      medium="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
+   <!-- !!! unsupported shape  !!!  name= "paraboloid" -->
+   <!-- dummy box is written instead  -->
+   <box    name="paraboloid"
+      medium="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
+   <!-- !!! unsupported shape  !!!  name= "paraboloid_refl" -->
+   <!-- dummy box is written instead  -->
+   <box    name="paraboloid_refl"
+      medium="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
+
+   <composition name="world_comp">
+      <posXYZ   X_Y_Z="-500.0000; -150.0000; 100.0000"> <volume name="box"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-500.0000; -150.0000; -100.0000"> <volume name="box_refl"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-500.0000; 150.0000; 100.0000"> <volume name="cons"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-500.0000; 150.0000; -100.0000"> <volume name="cons_refl"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-350.0000; -150.0000; 100.0000"> <volume name="eltu"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-350.0000; -150.0000; -100.0000"> <volume name="eltu_refl"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-350.0000; 150.0000; 100.0000"> <volume name="para"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-350.0000; 150.0000; -100.0000"> <volume name="para_refl"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-200.0000; -150.0000; 100.0000"> <volume name="pcone"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-200.0000; -150.0000; -100.0000"> <volume name="pcone_refl"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-200.0000; 150.0000; 100.0000"> <volume name="phedra"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-200.0000; 150.0000; -100.0000"> <volume name="phedra_refl"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-50.0000; -150.0000; 100.0000"> <volume name="sphere"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-50.0000; -150.0000; -100.0000"> <volume name="sphere_refl"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-50.0000; 150.0000; 100.0000"> <volume name="torus"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-50.0000; 150.0000; -100.0000"> <volume name="torus_refl"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="100.0000; -150.0000; 100.0000"> <volume name="trap"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="100.0000; -150.0000; -100.0000"> <volume name="trap_refl"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="100.0000; 150.0000; 100.0000"> <volume name="trd"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="100.0000; 150.0000; -100.0000"> <volume name="trd_refl"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="250.0000; -150.0000; 100.0000"> <volume name="tubs"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="250.0000; -150.0000; -100.0000"> <volume name="tubs_refl"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="250.0000; 150.0000; 100.0000"> <volume name="ctubs"/>
+      </posXYZ>
+      <transform    pos="250.0000; 150.0000; -100.0000"
+                 matrix=" 1.00000;  0.00000;  0.00000; 
+                          0.00000;  1.00000;  0.00000; 
+                          0.00000;  0.00000; -1.00000"> <volume name="ctubs_refl"/>
+      </transform>
+      <posXYZ   X_Y_Z="400.0000; -150.0000; 100.0000"> <volume name="xtru1"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="400.0000; -150.0000; -100.0000"> <volume name="xtru1_refl"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="400.0000; 150.0000; 100.0000"> <volume name="xtru2"/>
+      </posXYZ>
+      <transform    pos="400.0000; 150.0000; -100.0000"
+                 matrix=" 1.00000;  0.00000;  0.00000; 
+                          0.00000;  1.00000;  0.00000; 
+                          0.00000;  0.00000; -1.00000"> <volume name="xtru2_refl"/>
+      </transform>
+      <posXYZ   X_Y_Z="550.0000; -150.0000; 100.0000"> <volume name="hype"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="550.0000; -150.0000; -100.0000"> <volume name="hype_refl"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="550.0000; 150.0000; 100.0000"> <volume name="paraboloid"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="550.0000; 150.0000; -100.0000"> <volume name="paraboloid_refl"/>
+      </posXYZ>
+   </composition>
+
+
+</section>
+
+</AGDD>

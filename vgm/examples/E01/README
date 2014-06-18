@@ -1,0 +1,35 @@
+ $Id $ 
+
+------------------------------------------------------------------------
+ The documentation file for the Virtual Geometry Model example
+ Copyright (C) 2007,2014 Ivana Hrivnacova               
+ All rights reserved. 
+           
+ For the licensing terms see vgm/LICENSE.
+ Contact: ivana@ipno.in2p3.fr
+------------------------------------------------------------------------
+
+
+ VGM Example E01
+ Converting geometry from Geant4 to Root
+ ----------------------------------------
+ 
+ Source: Geant4 basic B4a example
+ 
+ See Geant4 documentation in README_Geant4 and
+ http://geant4.web.cern.ch/geant4/UserDocumentation/Doxygen/examples_doc/html/ExampleB4.html        
+         
+ 1. Build example:
+    The example is built in the same way as a standard Geant4 example;
+    the VGM packages are already provided in CMakeList.txt
+    The example program is called exampleE01.
+     
+ 2. Run example, the geometry will be exported during initialization
+    $ exampleE01
+ 
+ 3. Open and view the generated Root file 
+    $ root
+    root [0] TGeoManager::Import("geometry.root");
+    root [1] gGeoManager->GetTopVolume()->Draw();
+
+                

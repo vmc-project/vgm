@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/GDML_2_10_0/src/GDMLSchema/gdml.xsd">
+
+   <define>
+      <position  name="pos_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_1"     x="  -500.0000"  y="  -150.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_2"     x="  -500.0000"  y="  -150.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_3"     x="  -500.0000"  y="   150.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_4"     x="  -500.0000"  y="   150.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_5"     x="  -350.0000"  y="  -150.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_6"     x="  -350.0000"  y="  -150.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_7"     x="  -350.0000"  y="   150.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_8"     x="  -350.0000"  y="   150.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_9"     x="  -200.0000"  y="  -150.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_10"    x="  -200.0000"  y="  -150.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_11"    x="  -200.0000"  y="   150.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_12"    x="  -200.0000"  y="   150.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_13"    x="   -50.0000"  y="  -150.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_14"    x="   -50.0000"  y="  -150.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_15"    x="   -50.0000"  y="   150.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_16"    x="   -50.0000"  y="   150.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_17"    x="   100.0000"  y="  -150.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_18"    x="   100.0000"  y="  -150.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_19"    x="   100.0000"  y="   150.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_20"    x="   100.0000"  y="   150.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_21"    x="   250.0000"  y="  -150.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_22"    x="   250.0000"  y="  -150.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_23"    x="   250.0000"  y="   150.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_24"    x="   250.0000"  y="   150.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_25"    x="   400.0000"  y="  -150.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_26"    x="   400.0000"  y="  -150.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_27"    x="   400.0000"  y="   150.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_28"    x="   400.0000"  y="   150.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_29"    x="   550.0000"  y="  -150.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_30"    x="   550.0000"  y="  -150.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_31"    x="   550.0000"  y="   150.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_32"    x="   550.0000"  y="   150.0000"  z="  -100.0000"  unit="cm" />
+
+      <rotation  name="rot_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
+
+      <scale     name="scale_0"   x="     1.0000"  y="     1.0000"  z="    -1.0000"  />
+   </define>
+
+   <materials>
+
+      <element  name="Aluminium_e"  Z=" 13.0000"  N=" 26" >
+         <atom type="A" unit="g/mol" value=" 26.9800" />
+      </element>
+
+      <material  name="Basic"  state="undefined"  >
+         <D type="density" unit="g/cm3" value="     2.7000"/>
+         <fraction n="    1.0000"  ref="Aluminium_e"/>
+      </material>
+
+   </materials>
+
+   <solids>
+      <box  lunit="cm" aunit="degree"
+         name="world_s"
+         x=" 1240.0000"  y="  600.0000"  z="  600.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="box_s"
+         x="   40.0000"  y="  120.0000"  z="  100.0000" />
+
+      <cone  lunit="cm" aunit="degree"
+         name="cons_s"
+         rmin1="   10.0000"  rmin2="   20.0000"  rmax1="   40.0000"  rmax2="   60.0000"
+         z="  100.0000"
+         startphi="    0.0000"  deltaphi="  360.0000" />
+
+      <eltube  lunit="cm" aunit="degree"
+         name="eltu_s"
+         dx="   20.0000"  dy="   30.0000"  dz="   50.0000" />
+
+      <para  lunit="cm" aunit="degree"
+         name="para_s"
+         x="   80.0000"  y="  120.0000"  z="  100.0000"
+         alpha="   30.0000"  theta="   30.0000"  phi="   30.0000" />
+
+      <polycone  lunit="cm" aunit="degree"
+         name="pcone_s"
+         startphi="    0.0000"  deltaphi="  360.0000" >
+         <zplane  z="  -50.0000"  rmin="   10.0000"  rmax="   50.0000" />
+         <zplane  z="   10.0000"  rmin="   20.0000"  rmax="   30.0000" />
+         <zplane  z="   40.0000"  rmin="   30.0000"  rmax="   60.0000" />
+      </polycone>
+
+      <polyhedra  lunit="cm" aunit="degree"
+         name="phedra_s"
+         numsides="4"
+         startphi="    0.0000"  deltaphi="  360.0000" >
+         <zplane  z="  -50.0000"  rmin="   10.0000"  rmax="   40.0000" />
+         <zplane  z="   10.0000"  rmin="   20.0000"  rmax="   20.0000" />
+         <zplane  z="   40.0000"  rmin="   30.0000"  rmax="   50.0000" />
+      </polyhedra>
+
+      <sphere  lunit="cm" aunit="degree"
+         name="sphere_s"
+         rmin="   20.0000"  rmax="   60.0000"
+         startphi="    0.0000"  deltaphi="  360.0000"  starttheta="    0.0000"  deltatheta="  180.0000" />
+
+      <torus  lunit="cm" aunit="degree"
+         name="torus_s"
+         rmin="   20.0000"  rmax="   30.0000"  rtor="   40.0000"
+         startphi="    0.0000"  deltaphi="  360.0000" />
+
+      <trap  lunit="cm" aunit="degree"
+         name="trap_s"
+         z="   60.0000"
+         theta="   25.0000"  phi="   35.0000"
+         y1="   40.0000"  x1="   20.0000"  x2="   30.0000"  alpha1="    0.0000"
+         y2="   40.0000"  x3="   20.0000"  x4="   30.0000"  alpha2="    0.0000" />
+
+      <trd  lunit="cm" aunit="degree"
+         name="trd_s"
+         x1="   40.0000"  x2="   60.0000"  y1="   80.0000"  y2="  100.0000"
+         z="  100.0000" />
+
+      <tube  lunit="cm" aunit="degree"
+         name="tubs_s"
+         rmin="   20.0000"  rmax="   40.0000"  z="  100.0000"
+         startphi="    0.0000"  deltaphi="  360.0000" />
+
+      <cutTube  lunit="cm" aunit="degree"
+         name="ctubs_s"
+         rmin="   20.0000"  rmax="   30.0000"  z="  120.9800"
+         startphi="  330.0000"  deltaphi="  280.0000"
+         lowX="    0.0000"  lowY="    0.0640"  lowZ="   -0.0770"
+         highX="    0.0000"  highY="    0.0090"  highZ="    0.0870" />
+
+      <xtru  lunit="cm" aunit="degree"
+         name="xtru1_s" >
+         <twoDimVertex  x="  -30.0000"  y="  -30.0000" />
+         <twoDimVertex  x="  -30.0000"  y="   30.0000" />
+         <twoDimVertex  x="   30.0000"  y="   30.0000" />
+         <twoDimVertex  x="   30.0000"  y="  -30.0000" />
+         <twoDimVertex  x="   15.0000"  y="  -30.0000" />
+         <twoDimVertex  x="   15.0000"  y="   15.0000" />
+         <twoDimVertex  x="  -15.0000"  y="   15.0000" />
+         <twoDimVertex  x="  -15.0000"  y="  -30.0000" />
+         <section  zPosition="  -40.0000"  zOrder="  0"  xOffset="  -20.0000"  yOffset="   10.0000"  scalingFactor="    1.5000" />
+         <section  zPosition="   10.0000"  zOrder="  1"  xOffset="    0.0000"  yOffset="    0.0000"  scalingFactor="    0.5000" />
+         <section  zPosition="   15.0000"  zOrder="  2"  xOffset="    0.0000"  yOffset="    0.0000"  scalingFactor="    0.7000" />
+         <section  zPosition="   40.0000"  zOrder="  3"  xOffset="   20.0000"  yOffset="   20.0000"  scalingFactor="    0.9000" />
+      </xtru>
+
+      <xtru  lunit="cm" aunit="degree"
+         name="xtru2_s" >
+         <twoDimVertex  x="  -30.0000"  y="  -30.0000" />
+         <twoDimVertex  x="  -30.0000"  y="   30.0000" />
+         <twoDimVertex  x="   30.0000"  y="   30.0000" />
+         <twoDimVertex  x="   30.0000"  y="  -30.0000" />
+         <twoDimVertex  x="   15.0000"  y="  -30.0000" />
+         <twoDimVertex  x="   15.0000"  y="   15.0000" />
+         <twoDimVertex  x="  -15.0000"  y="   15.0000" />
+         <twoDimVertex  x="  -15.0000"  y="  -30.0000" />
+         <section  zPosition="  -40.0000"  zOrder="  0"  xOffset="  -20.0000"  yOffset="   10.0000"  scalingFactor="    1.5000" />
+         <section  zPosition="   10.0000"  zOrder="  1"  xOffset="    0.0000"  yOffset="    0.0000"  scalingFactor="    0.5000" />
+         <section  zPosition="   10.0000"  zOrder="  2"  xOffset="    0.0000"  yOffset="    0.0000"  scalingFactor="    0.7000" />
+         <section  zPosition="   40.0000"  zOrder="  3"  xOffset="   20.0000"  yOffset="   20.0000"  scalingFactor="    0.9000" />
+      </xtru>
+
+      <hype  lunit="cm" aunit="degree"
+         name="hype_s"
+         rmin="   20.0000"  rmax="   30.0000"
+         inst="   30.0000"  outst="   40.0000"
+         z="  100.0000" />
+
+      <paraboloid  lunit="cm" aunit="degree"
+         name="paraboloid_s"
+         rlo="   20.0000"  rhi="   45.0000"  dz="   50.0000" />
+
+   </solids>
+
+   <structure>
+      <volume name="box">
+         <materialref ref="Basic"/>
+         <solidref ref="box_s"/>
+      </volume>
+
+      <volume name="cons">
+         <materialref ref="Basic"/>
+         <solidref ref="cons_s"/>
+      </volume>
+
+      <volume name="eltu">
+         <materialref ref="Basic"/>
+         <solidref ref="eltu_s"/>
+      </volume>
+
+      <volume name="para">
+         <materialref ref="Basic"/>
+         <solidref ref="para_s"/>
+      </volume>
+
+      <volume name="pcone">
+         <materialref ref="Basic"/>
+         <solidref ref="pcone_s"/>
+      </volume>
+
+      <volume name="phedra">
+         <materialref ref="Basic"/>
+         <solidref ref="phedra_s"/>
+      </volume>
+
+      <volume name="sphere">
+         <materialref ref="Basic"/>
+         <solidref ref="sphere_s"/>
+      </volume>
+
+      <volume name="torus">
+         <materialref ref="Basic"/>
+         <solidref ref="torus_s"/>
+      </volume>
+
+      <volume name="trap">
+         <materialref ref="Basic"/>
+         <solidref ref="trap_s"/>
+      </volume>
+
+      <volume name="trd">
+         <materialref ref="Basic"/>
+         <solidref ref="trd_s"/>
+      </volume>
+
+      <volume name="tubs">
+         <materialref ref="Basic"/>
+         <solidref ref="tubs_s"/>
+      </volume>
+
+      <volume name="ctubs">
+         <materialref ref="Basic"/>
+         <solidref ref="ctubs_s"/>
+      </volume>
+
+      <volume name="xtru1">
+         <materialref ref="Basic"/>
+         <solidref ref="xtru1_s"/>
+      </volume>
+
+      <volume name="xtru2">
+         <materialref ref="Basic"/>
+         <solidref ref="xtru2_s"/>
+      </volume>
+
+      <volume name="hype">
+         <materialref ref="Basic"/>
+         <solidref ref="hype_s"/>
+      </volume>
+
+      <volume name="paraboloid">
+         <materialref ref="Basic"/>
+         <solidref ref="paraboloid_s"/>
+      </volume>
+
+      <volume name="world">
+         <materialref ref="Basic"/>
+         <solidref ref="world_s"/>
+         <physvol>
+            <volumeref ref="box"/>
+               <positionref ref="pos_1"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="box"/>
+               <positionref ref="pos_2"/>
+               <rotationref ref="rot_0"/>
+               <scaleref    ref="scale_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="cons"/>
+               <positionref ref="pos_3"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="cons"/>
+               <positionref ref="pos_4"/>
+               <rotationref ref="rot_0"/>
+               <scaleref    ref="scale_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="eltu"/>
+               <positionref ref="pos_5"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="eltu"/>
+               <positionref ref="pos_6"/>
+               <rotationref ref="rot_0"/>
+               <scaleref    ref="scale_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="para"/>
+               <positionref ref="pos_7"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="para"/>
+               <positionref ref="pos_8"/>
+               <rotationref ref="rot_0"/>
+               <scaleref    ref="scale_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="pcone"/>
+               <positionref ref="pos_9"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="pcone"/>
+               <positionref ref="pos_10"/>
+               <rotationref ref="rot_0"/>
+               <scaleref    ref="scale_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="phedra"/>
+               <positionref ref="pos_11"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="phedra"/>
+               <positionref ref="pos_12"/>
+               <rotationref ref="rot_0"/>
+               <scaleref    ref="scale_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="sphere"/>
+               <positionref ref="pos_13"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="sphere"/>
+               <positionref ref="pos_14"/>
+               <rotationref ref="rot_0"/>
+               <scaleref    ref="scale_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="torus"/>
+               <positionref ref="pos_15"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="torus"/>
+               <positionref ref="pos_16"/>
+               <rotationref ref="rot_0"/>
+               <scaleref    ref="scale_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="trap"/>
+               <positionref ref="pos_17"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="trap"/>
+               <positionref ref="pos_18"/>
+               <rotationref ref="rot_0"/>
+               <scaleref    ref="scale_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="trd"/>
+               <positionref ref="pos_19"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="trd"/>
+               <positionref ref="pos_20"/>
+               <rotationref ref="rot_0"/>
+               <scaleref    ref="scale_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="tubs"/>
+               <positionref ref="pos_21"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="tubs"/>
+               <positionref ref="pos_22"/>
+               <rotationref ref="rot_0"/>
+               <scaleref    ref="scale_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="ctubs"/>
+               <positionref ref="pos_23"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="ctubs"/>
+               <positionref ref="pos_24"/>
+               <rotationref ref="rot_0"/>
+               <scaleref    ref="scale_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="xtru1"/>
+               <positionref ref="pos_25"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="xtru1"/>
+               <positionref ref="pos_26"/>
+               <rotationref ref="rot_0"/>
+               <scaleref    ref="scale_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="xtru2"/>
+               <positionref ref="pos_27"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="xtru2"/>
+               <positionref ref="pos_28"/>
+               <rotationref ref="rot_0"/>
+               <scaleref    ref="scale_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="hype"/>
+               <positionref ref="pos_29"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="hype"/>
+               <positionref ref="pos_30"/>
+               <rotationref ref="rot_0"/>
+               <scaleref    ref="scale_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="paraboloid"/>
+               <positionref ref="pos_31"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="paraboloid"/>
+               <positionref ref="pos_32"/>
+               <rotationref ref="rot_0"/>
+               <scaleref    ref="scale_0"/>
+         </physvol>
+      </volume>
+
+   </structure>
+
+   <setup name="unit1"   version="1.0">
+      <world ref="world"/>
+   </setup>
+
+</gdml>
