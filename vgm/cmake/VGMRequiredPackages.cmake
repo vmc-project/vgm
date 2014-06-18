@@ -36,7 +36,7 @@ endif()
 if(WITH_TEST)
   # G4Root
   if (WITH_ROOT AND WITH_G4ROOT)
-    find_package(G4ROOT REQUIRED)      
+    find_package(G4Root REQUIRED)      
   endif(WITH_ROOT AND WITH_G4ROOT)
 
 endif(WITH_TEST)

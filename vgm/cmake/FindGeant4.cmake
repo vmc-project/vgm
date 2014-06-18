@@ -26,7 +26,6 @@
 
 # Alternative paths which can be defined by user
 set(Geant4_DIR "" CACHE PATH "Directory where Geant4Config.cmake is installed")
-set(GEANT4_DIR "" CACHE PATH "Directory where Geant4 is installed")
 set(GEANT4_INC_DIR "" CACHE PATH "Alternative directory for Geant4 includes")
 set(GEANT4_LIB_DIR "" CACHE PATH "Alternative directory for Geant4 libraries")
 set(GEANT4_SYSTEM "" CACHE PATH "Geant4 platform specification")
@@ -37,16 +36,16 @@ set(GEANT4_SYSTEM "" CACHE PATH "Geant4 platform specification")
 if(EXISTS ${Geant4_DIR}/Geant4Config.cmake)
   include(${Geant4_DIR}/Geant4Config.cmake)
   # Geant4_INCLUDE_DIRS, Geant4_LIBRARIES are defined in Geant4Config
-  set(Geant4_FOUND TRUE)
   message(STATUS "Found Geant4 CMake configuration in ${Geant4_DIR}")
+  set(Geant4_FOUND TRUE)
   return()
 endif()
 
-# If Geant4_DIR was not set search for geant4-config executable on system path
-# to get Geant4 installation directory 
+# If Geant4Config.cmake was not found in Geant4_DIR
+# search for geant4-config executable on system path to get Geant4 installation directory 
 
 find_program(GEANT4_CONFIG_EXECUTABLE geant4-config PATHS
-  ${GEANT4_DIR}/bin
+  ${Geant4_DIR}/bin
   )
 
 if(GEANT4_CONFIG_EXECUTABLE)
@@ -80,19 +79,19 @@ if(GEANT4_CONFIG_EXECUTABLE)
 
 endif()
 
-# If search for geant4-config failed try to use directly user paths if set
-# or environment variables 
+# If search for Geant4Config.cmake via geant4-config failed try to use directly 
+# user paths if set or environment variables 
 #
 if (NOT Geant4_FOUND)
   find_path(Geant4_INCLUDE_DIRS NAMES globals.hh PATHS
     ${GEANT4_INC_DIR}
-    ${GEANT4_DIR}/include
+    ${Geant4_DIR}/include
     $ENV{G4INSTALL}/include
     $ENV{G4INCLUDE}
   )
   find_path(GEANT4_LIBRARY_DIR NAMES libname.map PATHS
     ${GEANT4_LIB_DIR}
-    ${GEANT4_DIR}/lib/${GEANT4_SYSTEM}
+    ${Geant4_DIR}/lib/${GEANT4_SYSTEM}
     $ENV{G4INSTALL}/lib/$ENV{G4SYSTEM}
     $ENV{G4LIB}
   )
@@ -113,8 +112,6 @@ if (Geant4_INCLUDE_DIRS AND GEANT4_LIBRARY_DIR AND Geant4_LIBRARIES)
 endif()  
 
 if(Geant4_FOUND) 
-  #This should not be needed for build
-  #set(LD_LIBRARY_PATH ${LD_LIBRARY_PATH} ${GEANT4_LIBRARY_DIR})
   if (NOT GEANT4_FIND_QUIETLY)
     if (G4PREFIX)
       message(STATUS "Found GEANT4 ${GEANT4_VERSION} in ${G4PREFIX}")
