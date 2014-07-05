@@ -42,11 +42,12 @@ set(${PROJECT_NAME}_VERSION
     ${${PROJECT_NAME}_VERSION_MAJOR}.${${PROJECT_NAME}_VERSION_MINOR}.${${PROJECT_NAME}_VERSION_PATCH})
 
 #--- Options -------------------------------------------------------------------
-option(WITH_GEANT4       "Build Geant4 dependent subpackage (Geant4GM)" ON)
-option(WITH_ROOT         "Build Root dependent subpackage(RootGM)" ON)
-option(WITH_TEST         "Build test" ON)
-option(WITH_G4ROOT       "Build test with G4Root" OFF)
-option(BUILD_SHARED_LIBS "Build the dynamic libraries" ON)  
+option(WITH_GEANT4          "Build Geant4 dependent subpackage (Geant4GM)" ON)
+option(WITH_ROOT            "Build Root dependent subpackage(RootGM)" ON)
+option(WITH_TEST            "Build test" ON)
+option(WITH_G4ROOT          "Build test with G4Root" OFF)
+option(BUILD_SHARED_LIBS    "Build the dynamic libraries" ON) 
+option(VGM_INSTALL_EXAMPLES "Install examples" ON) 
 
 #--- Find required packages ----------------------------------------------------
 include(VGMRequiredPackages)
