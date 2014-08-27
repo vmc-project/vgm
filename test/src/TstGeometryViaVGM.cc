@@ -83,7 +83,7 @@ IVolume* TstGeometryViaVGM::CreateWorld(double x, double y, double z,
 //_____________________________________________________________________________
 IVolume* TstGeometryViaVGM::CreateNewSolid()
 {
-  return CreateEllipsoid();
+  return CreateCtubs(0, 360*fDeg);
 }  
 
 

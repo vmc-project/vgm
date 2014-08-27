@@ -86,7 +86,7 @@ TGeoVolume* TstGeometryViaRoot::CreateWorld(Double_t x, Double_t y, Double_t z)
 //_____________________________________________________________________________
 TGeoVolume* TstGeometryViaRoot::CreateNewSolid()
 {
-  return CreateHype();
+  return CreateCtubs(0., 360.);
 }  
 
 
