@@ -1,7 +1,7 @@
 Geant4 geometry will be defined via VGM
 
 *************************************************************
- Geant4 version Name: geant4-10-00-patch-01    (28-February-2014)
+ Geant4 version Name: geant4-10-00-patch-02    (13-June-2014)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -18,10 +18,8 @@ Current available graphics systems are:
   DAWNFILE (DAWNFILE)
   G4HepRep (HepRepXML)
   G4HepRepFile (HepRepFile)
-  OpenGLImmediateQt (OGLI, OGLIQt)
-  OpenGLImmediateX (OGLIX, OGLI_FALLBACK, OGLIQt_FALLBACK)
-  OpenGLStoredQt (OGL, OGLS, OGLSQt)
-  OpenGLStoredX (OGLSX, OGL_FALLBACK, OGLS_FALLBACK, OGLSQt_FALLBACK)
+  OpenGLImmediateX (OGLI, OGLIX)
+  OpenGLStoredX (OGL, OGLS, OGLSX)
   RayTracer (RayTracer)
   RayTracerX (RayTracerX)
   VRML1FILE (VRML1FILE)
@@ -1332,11 +1330,10 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 *********************************************************************************************************
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
-    0 2.31e+03  1.7e+03      507         1        0        0         0       ctubs initStep
-    1 2.26e+03 1.68e+03      497         1        0       59        59       world Transportation
-    2 1.28e+03 1.24e+03      312         1        0 1.09e+03  1.15e+03         trd Transportation
-    3      808 1.03e+03      223         1        0      527  1.67e+03       world Transportation
-    4 -6.2e+03 -2.12e+03 -1.1e+03         1        0 7.79e+03  9.47e+03  OutOfWorld Transportation
+    0 2.31e+03  1.7e+03      507         1        0        0         0       world initStep
+    1 1.28e+03 1.24e+03      312         1        0 1.15e+03  1.15e+03         trd Transportation
+    2      808 1.03e+03      223         1        0      527  1.67e+03       world Transportation
+    3 -6.2e+03 -2.12e+03 -1.1e+03         1        0 7.79e+03  9.47e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -8432,7 +8429,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -2.36e+03 1.15e+03 1.76e+03         1        0        0         0       world initStep
     1 -5.38e+03   -3e+03 -1.19e+03         1        0 5.91e+03  5.91e+03  OutOfWorld Transportation
-number of event = 1000 User=0.06s Real=0.07000000000000001s Sys=0.02s
-Execution time: R: 0.0707 s  C: 0.0707 s 
+number of event = 1000 User=0.04s Real=0.06s Sys=0.02s
+Execution time: R: 0.0593 s  C: 0.0593 s 
 Graphics systems deleted.
 Visualization Manager deleting...

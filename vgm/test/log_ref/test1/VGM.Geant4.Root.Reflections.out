@@ -2,7 +2,7 @@ Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometr
 Geant4 geometry will be defined via VGM and exported to Root
 
 *************************************************************
- Geant4 version Name: geant4-10-00-patch-01    (28-February-2014)
+ Geant4 version Name: geant4-10-00-patch-02    (13-June-2014)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -88,34 +88,6 @@ VGM info:   ImportDaughters for tubs_refl
 VGM info:   ImportPositions for lv tubs_refl nofDaughters: 0
 VGM info:   Importing LV: ctubs_refl
 VGM info:   Importing solid: ctubsS_refl
-VGM info:   Importing solid: boolean
-VGM info:   Importing solid: tubs
-VGM info:      Imported solid: Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
-VGM info:   Importing solid: boxLow
-VGM info:      Imported solid: Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
-VGM info:   Imported Boolean solid: 
-VGM info:   Boolean  "boolean"  Subtraction: 
-  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
-  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
-  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
-  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
-VGM info:      Imported solid: Boolean  "boolean"  Subtraction: 
-  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
-  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
-  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
-  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
-VGM info:   Importing solid: boxHigh
-VGM info:      Imported solid: Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
-VGM info:   Imported Boolean solid: 
-VGM info:   Boolean  "ctubsS"  Subtraction: 
-  ConstituentA = Boolean  "boolean"  Subtraction: 
-  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
-  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
-  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
-  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
-  ConstituentB = Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
-  Displacement translation (object):  ( 0,  0,  968.753) mm 
-  Displacement rotation (object):  (-5.90614,  -0,  0) deg    no reflectionZ
 VGM info:   ImportDaughters for ctubs_refl
 VGM info:   ImportPositions for lv ctubs_refl nofDaughters: 0
 VGM info:   Importing LV: xtru1_refl
@@ -257,7 +229,7 @@ VGM info:   Material: "Air"  density 0.00129 g/cm3  radlen 28516.1 cm  intlen 66
      1th isotope: Isotope: "O17"    Z = 8  N = 17  A = 16.9991 g/mole  abundance: 0.038%
      2th isotope: Isotope: "O18"    Z = 8  N = 18  A = 17.9992 g/mole  abundance: 0.205%  Elm mass fraction: 30 %
 VGM info:   Exporting material: 
-VGM info:   Material: "Scintillator"  density 1.032 g/cm3  radlen 42.5442 cm  intlen 70.0657 cm  state "Solid"  temperature 273.15 kelvin  pressure 1 atm
+VGM info:   Material: "Scintillator"  density 1.032 g/cm3  radlen 42.5442 cm  intlen 70.0652 cm  state "Solid"  temperature 273.15 kelvin  pressure 1 atm
    0th element: Element: "C"  "C"  Z = 6  N = 12.0107  A = 12.0107 g/mole
      0th isotope: Isotope: "C12"    Z = 6  N = 12  A = 12 g/mole  abundance: 98.93%
      1th isotope: Isotope: "C13"    Z = 6  N = 13  A = 13.0034 g/mole  abundance: 1.07%  Elm mass fraction: 91.4709 %
@@ -270,7 +242,7 @@ VGM info:   Material: "Uranium"  density 13.61 g/cm3  radlen 0.435829 cm  intlen
      0th isotope: Isotope: "U235"    Z = 92  N = 235  A = 235.01 g/mole  abundance: 90%
      1th isotope: Isotope: "U238"    Z = 92  N = 238  A = 238.03 g/mole  abundance: 10%  Elm mass fraction: 100 %
 VGM info:   Exporting material: 
-VGM info:   Material: "Vacuum"  density 1e-25 g/cm3  radlen 6.31723e+26 cm  intlen 3.51163e+26 cm  state "Gas"  temperature 2.73 kelvin  pressure 2.96077e-23 atm
+VGM info:   Material: "Vacuum"  density 1e-25 g/cm3  radlen 6.31723e+26 cm  intlen 3.5e+26 cm  state "Gas"  temperature 2.73 kelvin  pressure 2.96077e-23 atm
    0th element: Element: "Vacuum"  "Vacuum_e"  Z = 1  N = 1.01  A = 1.01 g/mole
      0th isotope: Isotope: "Vacuum_e1"    Z = 1  N = 1  A = 1.00783 g/mole  abundance: 99.9885%
      1th isotope: Isotope: "Vacuum_e2"    Z = 1  N = 2  A = 2.0141 g/mole  abundance: 0.0115%  Elm mass fraction: 100 %
@@ -377,30 +349,11 @@ VGM info:      Exporting solid:
 VGM info:      Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
 VGM info:   Exporting volume:  22th  "tubs_refl"  material: "Basic"
 VGM info:      Exporting solid: 
-VGM info:      Ctubs  "tubs"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = -30deg  dphi = 280deg  nlow = (0, 0.64, -0.77)  nhigh = (0, 0.09, 0.87)
+VGM info:      Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = -30deg  dphi = 280deg  nlow = (0, 0.639201, -0.769039)  nhigh = (0, 0.102899, 0.994692)
 VGM info:   Exporting volume:  23th  "ctubs"  material: "Basic"
 VGM info:      Exporting solid: 
-VGM info:      Boolean  "ctubsS"  Subtraction: 
-  ConstituentA = Boolean  "boolean"  Subtraction: 
-  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
-  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
-  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
-  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
-  ConstituentB = Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
-  Displacement translation (object):  ( 0,  0,  968.753) mm 
-  Displacement rotation (object):  (-5.90614,  -0,  0) deg    no reflectionZ
-VGM info:      Exporting solid: 
-VGM info:      Boolean  "boolean"  Subtraction: 
-  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
-  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
-  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
-  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
-VGM info:      Exporting solid: 
-VGM info:      Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
-VGM info:      Exporting solid: 
-VGM info:      Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
-VGM info:      Exporting solid: 
-VGM info:      Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
+VGM info:      Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = -30deg  dphi = 280deg  nlow = (0, 0.102899, 0.994692)  nhigh = (0, 0.639201, -0.769039)
+Error in <TGeoCtub::ComputeBBox>: In shape ctubsS wrong definition of cut planes
 VGM info:   Exporting volume:  24th  "ctubs_refl"  material: "Basic"
 VGM info:      Exporting solid: 
 VGM info:      Extruded  "xtruS"
@@ -570,10 +523,8 @@ Current available graphics systems are:
   DAWNFILE (DAWNFILE)
   G4HepRep (HepRepXML)
   G4HepRepFile (HepRepFile)
-  OpenGLImmediateQt (OGLI, OGLIQt)
-  OpenGLImmediateX (OGLIX, OGLI_FALLBACK, OGLIQt_FALLBACK)
-  OpenGLStoredQt (OGL, OGLS, OGLSQt)
-  OpenGLStoredX (OGLSX, OGL_FALLBACK, OGLS_FALLBACK, OGLSQt_FALLBACK)
+  OpenGLImmediateX (OGLI, OGLIX)
+  OpenGLStoredX (OGL, OGLS, OGLSX)
   RayTracer (RayTracer)
   RayTracerX (RayTracerX)
   VRML1FILE (VRML1FILE)

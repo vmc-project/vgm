@@ -4,7 +4,7 @@ Info in <TGeoManager::TGeoManager>: Geometry Test, Test geometry via Root create
 Root geometry will be defined via Root and exported to Geant4
 
 *************************************************************
- Geant4 version Name: geant4-10-00-patch-01    (28-February-2014)
+ Geant4 version Name: geant4-10-00-patch-02    (13-June-2014)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -505,34 +505,6 @@ VGM info:      22th daughter vol = ctubs  simple placement: ctubs
 VGM info:      23th daughter vol = ctubs  simple placement: ctubs
 VGM info:   Importing LV: ctubs_refl
 VGM info:   Importing solid: ctubsS_refl
-VGM info:   Importing solid: boolean
-VGM info:   Importing solid: tubs
-VGM info:      Imported solid: Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
-VGM info:   Importing solid: boxLow
-VGM info:      Imported solid: Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
-VGM info:   Imported Boolean solid: 
-VGM info:   Boolean  "boolean"  Subtraction: 
-  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
-  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
-  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
-  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
-VGM info:      Imported solid: Boolean  "boolean"  Subtraction: 
-  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
-  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
-  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
-  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
-VGM info:   Importing solid: boxHigh
-VGM info:      Imported solid: Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
-VGM info:   Imported Boolean solid: 
-VGM info:   Boolean  "ctubsS"  Subtraction: 
-  ConstituentA = Boolean  "boolean"  Subtraction: 
-  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
-  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
-  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
-  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
-  ConstituentB = Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
-  Displacement translation (object):  ( 0,  0,  968.753) mm 
-  Displacement rotation (object):  (-5.90614,  -0,  0) deg    no reflectionZ
 VGM info:   ImportDaughters for ctubs_refl
 VGM info:   ImportPositions for lv ctubs_refl nofDaughters: 0
 VGM info:      24th daughter vol = xtru1  simple placement: xtru1
@@ -630,10 +602,8 @@ Current available graphics systems are:
   DAWNFILE (DAWNFILE)
   G4HepRep (HepRepXML)
   G4HepRepFile (HepRepFile)
-  OpenGLImmediateQt (OGLI, OGLIQt)
-  OpenGLImmediateX (OGLIX, OGLI_FALLBACK, OGLIQt_FALLBACK)
-  OpenGLStoredQt (OGL, OGLS, OGLSQt)
-  OpenGLStoredX (OGLSX, OGL_FALLBACK, OGLS_FALLBACK, OGLSQt_FALLBACK)
+  OpenGLImmediateX (OGLI, OGLIX)
+  OpenGLStoredX (OGL, OGLS, OGLSX)
   RayTracer (RayTracer)
   RayTracerX (RayTracerX)
   VRML1FILE (VRML1FILE)

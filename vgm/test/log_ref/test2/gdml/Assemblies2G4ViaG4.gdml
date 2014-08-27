@@ -17,17 +17,17 @@
    </define>
 
    <materials>
-      <isotope  name="__27_i"    Z=" 13.0000"  N=" 27" >
+      <isotope  name="Al_27_i"   Z=" 13.0000"  N=" 27" >
          <atom type="A" unit="g/mol" value=" 26.9815" />
       </isotope>
 
-      <element  name="Basic_e"  >
-         <fraction n="  1.0000"  ref="__27_i" />
+      <element  name="Al_e"  >
+         <fraction n="  1.0000"  ref="Al_27_i" />
       </element>
 
       <material  name="Basic"  state="solid"  >
          <D type="density" unit="g/cm3" value="     2.7000"/>
-         <fraction n="    1.0000"  ref="Basic_e"/>
+         <fraction n="    1.0000"  ref="Al_e"/>
       </material>
 
    </materials>

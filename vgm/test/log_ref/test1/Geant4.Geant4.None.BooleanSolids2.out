@@ -1,7 +1,7 @@
 Geant4 geometry will be defined via Geant4
 
 *************************************************************
- Geant4 version Name: geant4-10-00-patch-01    (28-February-2014)
+ Geant4 version Name: geant4-10-00-patch-02    (13-June-2014)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -11,7 +11,7 @@ TestBooleanSolids2 finished
 Go to Import
 VGM info:   Geant4GM::Factory::Import started ...
 VGM info:   Importing isotope: 
-VGM info:    Isotope:    27   Z = 13   N =  27   A =  26.98 g/mole
+VGM info:    Isotope:  Al27   Z = 13   N =  27   A =  26.98 g/mole
 VGM info:   Importing isotope: 
 VGM info:    Isotope:   N14   Z =  7   N =  14   A =  14.00 g/mole
 VGM info:   Importing isotope: 
@@ -35,22 +35,22 @@ VGM info:    Isotope:  U235   Z = 92   N = 235   A = 235.01 g/mole
 VGM info:   Importing isotope: 
 VGM info:    Isotope:  U238   Z = 92   N = 238   A = 238.03 g/mole
 VGM info:   Importing isotope: 
-VGM info:    Isotope:     1   Z =  1   N =   1   A =   1.01 g/mole
+VGM info:    Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole
 VGM info:   Importing isotope: 
-VGM info:    Isotope:     2   Z =  1   N =   2   A =   2.01 g/mole
+VGM info:    Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole
 VGM info:   Importing isotope: 
-VGM info:    Isotope:   180   Z = 74   N = 180   A = 179.95 g/mole
+VGM info:    Isotope:  W180   Z = 74   N = 180   A = 179.95 g/mole
 VGM info:   Importing isotope: 
-VGM info:    Isotope:   182   Z = 74   N = 182   A = 181.95 g/mole
+VGM info:    Isotope:  W182   Z = 74   N = 182   A = 181.95 g/mole
 VGM info:   Importing isotope: 
-VGM info:    Isotope:   183   Z = 74   N = 183   A = 182.95 g/mole
+VGM info:    Isotope:  W183   Z = 74   N = 183   A = 182.95 g/mole
 VGM info:   Importing isotope: 
-VGM info:    Isotope:   184   Z = 74   N = 184   A = 183.95 g/mole
+VGM info:    Isotope:  W184   Z = 74   N = 184   A = 183.95 g/mole
 VGM info:   Importing isotope: 
-VGM info:    Isotope:   186   Z = 74   N = 186   A = 185.95 g/mole
+VGM info:    Isotope:  W186   Z = 74   N = 186   A = 185.95 g/mole
 VGM info:   Importing element: 
-VGM info:    Element: Basic ( )   Z = 13.0   N =  27.0   A =  26.98 g/mole
-         --->  Isotope:    27   Z = 13   N =  27   A =  26.98 g/mole   abundance: 100.00 %
+VGM info:    Element: Al (Al)   Z = 13.0   N =  27.0   A =  26.98 g/mole
+         --->  Isotope:  Al27   Z = 13   N =  27   A =  26.98 g/mole   abundance: 100.00 %
 VGM info:   Importing element: 
 VGM info:    Element: Nitrogen (N)   Z =  7.0   N =  14.0   A =  14.01 g/mole
          --->  Isotope:   N14   Z =  7   N =  14   A =  14.00 g/mole   abundance:  99.63 %
@@ -73,22 +73,22 @@ VGM info:    Element: enriched Uranium (U)   Z = 92.0   N = 235.3   A = 235.31 g
          --->  Isotope:  U235   Z = 92   N = 235   A = 235.01 g/mole   abundance:  90.00 %
          --->  Isotope:  U238   Z = 92   N = 238   A = 238.03 g/mole   abundance:  10.00 %
 VGM info:   Importing element: 
-VGM info:    Element: Vacuum ( )   Z =  1.0   N =   1.0   A =   1.01 g/mole
-         --->  Isotope:     1   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
-         --->  Isotope:     2   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %
+VGM info:    Element: H (H)   Z =  1.0   N =   1.0   A =   1.01 g/mole
+         --->  Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
+         --->  Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %
 VGM info:   Importing element: 
-VGM info:    Element: Tungsten ( )   Z = 74.0   N = 183.8   A = 183.84 g/mole
-         --->  Isotope:   180   Z = 74   N = 180   A = 179.95 g/mole   abundance:   0.12 %
-         --->  Isotope:   182   Z = 74   N = 182   A = 181.95 g/mole   abundance:  26.50 %
-         --->  Isotope:   183   Z = 74   N = 183   A = 182.95 g/mole   abundance:  14.31 %
-         --->  Isotope:   184   Z = 74   N = 184   A = 183.95 g/mole   abundance:  30.64 %
-         --->  Isotope:   186   Z = 74   N = 186   A = 185.95 g/mole   abundance:  28.43 %
+VGM info:    Element: W (W)   Z = 74.0   N = 183.8   A = 183.84 g/mole
+         --->  Isotope:  W180   Z = 74   N = 180   A = 179.95 g/mole   abundance:   0.12 %
+         --->  Isotope:  W182   Z = 74   N = 182   A = 181.95 g/mole   abundance:  26.50 %
+         --->  Isotope:  W183   Z = 74   N = 183   A = 182.95 g/mole   abundance:  14.31 %
+         --->  Isotope:  W184   Z = 74   N = 184   A = 183.95 g/mole   abundance:  30.64 %
+         --->  Isotope:  W186   Z = 74   N = 186   A = 185.95 g/mole   abundance:  28.43 %
 VGM info:   Importing material: 
 VGM info:    Material:    Basic    density:  2.700 g/cm3   RadL:   8.893 cm   Nucl.Int.Length:  38.879 cm 
                        Imean: 166.000 eV 
 
-   --->  Element: Basic ( )   Z = 13.0   N =  27.0   A =  26.98 g/mole
-         --->  Isotope:    27   Z = 13   N =  27   A =  26.98 g/mole   abundance: 100.00 %
+   --->  Element: Al (Al)   Z = 13.0   N =  27.0   A =  26.98 g/mole
+         --->  Isotope:  Al27   Z = 13   N =  27   A =  26.98 g/mole   abundance: 100.00 %
           ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
 
 VGM info:   Importing material: 
@@ -107,7 +107,7 @@ VGM info:    Material:      Air    density:  1.290 mg/cm3  RadL: 285.161 m    Nu
           ElmMassFraction:  30.00 %  ElmAbundance  27.29 % 
 
 VGM info:   Importing material: 
-VGM info:    Material: Scintillator    density:  1.032 g/cm3   RadL:  42.544 cm   Nucl.Int.Length:  70.066 cm 
+VGM info:    Material: Scintillator    density:  1.032 g/cm3   RadL:  42.544 cm   Nucl.Int.Length:  70.065 cm 
                        Imean:  64.684 eV 
 
    --->  Element: C (C)   Z =  6.0   N =  12.0   A =  12.01 g/mole
@@ -130,24 +130,24 @@ VGM info:    Material:  Uranium    density: 13.610 g/cm3   RadL:   4.358 mm   Nu
           ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
 
 VGM info:   Importing material: 
-VGM info:    Material:   Vacuum    density:  0.000 kg/m3   RadL: 204727512.315 pc   Nucl.Int.Length: 113804112.837 pc 
+VGM info:    Material:   Vacuum    density:  0.000 kg/m3   RadL: 204727512.315 pc   Nucl.Int.Length: 113427275.267 pc 
                        Imean:  19.200 eV   temperature:   2.73 K  pressure:   0.00 atm
 
-   --->  Element: Vacuum ( )   Z =  1.0   N =   1.0   A =   1.01 g/mole
-         --->  Isotope:     1   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
-         --->  Isotope:     2   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %
+   --->  Element: H (H)   Z =  1.0   N =   1.0   A =   1.01 g/mole
+         --->  Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
+         --->  Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %
           ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
 
 VGM info:   Importing material: 
 VGM info:    Material: Tungsten    density: 19.250 g/cm3   RadL:   3.513 mm   Nucl.Int.Length:  10.338 cm 
                        Imean: 727.000 eV 
 
-   --->  Element: Tungsten ( )   Z = 74.0   N = 183.8   A = 183.84 g/mole
-         --->  Isotope:   180   Z = 74   N = 180   A = 179.95 g/mole   abundance:   0.12 %
-         --->  Isotope:   182   Z = 74   N = 182   A = 181.95 g/mole   abundance:  26.50 %
-         --->  Isotope:   183   Z = 74   N = 183   A = 182.95 g/mole   abundance:  14.31 %
-         --->  Isotope:   184   Z = 74   N = 184   A = 183.95 g/mole   abundance:  30.64 %
-         --->  Isotope:   186   Z = 74   N = 186   A = 185.95 g/mole   abundance:  28.43 %
+   --->  Element: W (W)   Z = 74.0   N = 183.8   A = 183.84 g/mole
+         --->  Isotope:  W180   Z = 74   N = 180   A = 179.95 g/mole   abundance:   0.12 %
+         --->  Isotope:  W182   Z = 74   N = 182   A = 181.95 g/mole   abundance:  26.50 %
+         --->  Isotope:  W183   Z = 74   N = 183   A = 182.95 g/mole   abundance:  14.31 %
+         --->  Isotope:  W184   Z = 74   N = 184   A = 183.95 g/mole   abundance:  30.64 %
+         --->  Isotope:  W186   Z = 74   N = 186   A = 185.95 g/mole   abundance:  28.43 %
           ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
 
 VGM info:   Importing LV: world
@@ -255,10 +255,8 @@ Current available graphics systems are:
   DAWNFILE (DAWNFILE)
   G4HepRep (HepRepXML)
   G4HepRepFile (HepRepFile)
-  OpenGLImmediateQt (OGLI, OGLIQt)
-  OpenGLImmediateX (OGLIX, OGLI_FALLBACK, OGLIQt_FALLBACK)
-  OpenGLStoredQt (OGL, OGLS, OGLSQt)
-  OpenGLStoredX (OGLSX, OGL_FALLBACK, OGLS_FALLBACK, OGLSQt_FALLBACK)
+  OpenGLImmediateX (OGLI, OGLIX)
+  OpenGLStoredX (OGL, OGLS, OGLSX)
   RayTracer (RayTracer)
   RayTracerX (RayTracerX)
   VRML1FILE (VRML1FILE)

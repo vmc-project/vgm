@@ -114,8 +114,8 @@
          name="ctubs_s"
          rmin="   20.0000"  rmax="   30.0000"  z="  120.9800"
          startphi="  -30.0000"  deltaphi="  280.0000"
-         lowX="    0.0000"  lowY="    0.6400"  lowZ="   -0.7700"
-         highX="    0.0000"  highY="    0.0900"  highZ="    0.8700" />
+         lowX="    0.0000"  lowY="    0.6392"  lowZ="   -0.7690"
+         highX="    0.0000"  highY="    0.1029"  highZ="    0.9947" />
 
       <xtru  lunit="cm" aunit="degree"
          name="xtru1_s" >

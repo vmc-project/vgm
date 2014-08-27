@@ -6,24 +6,24 @@
 <xi:include href="StandardColors.agdd"/>
 
 <materials  version = "Id: AGDDWriter.cxx 693 2011-01-11 14:41:39Z ihrivnac "
-            date    = "2014-06-18"
+            date    = "2014-08-27"
             author  = "VGM AGGD Writer"
             DTD_version="v7"  >
 
-   <isotope  name="__27"    z=" 13"  n=" 27"  a=" 27"/>
+   <isotope  name="Al_27"   z=" 13"  n=" 27"  a=" 27"/>
 
-   <element  symbol="Basic_e">
-      <addisotope name="__27"  natoms="100" />
+   <element  symbol="Al">
+      <addisotope name="Al_27"  natoms="100" />
    </element>
 
    <material  name="Basic_mat"  density="  2.7000">
-      <addelement name="Basic_e"  natoms=" 1.0000"/>
+      <addelement name="Al"  natoms=" 1.0000"/>
    </material>
 
 </materials>
 
 <media  version = "Id: AGDDWriter.cxx 693 2011-01-11 14:41:39Z ihrivnac "
-        date    = "2014-06-18"
+        date    = "2014-08-27"
         author  = "VGM AGGD Writer"
         DTD_version="v7"  >
 
@@ -38,7 +38,7 @@
 <section DTD_version = "v7"
          name        = "world"
          version     = "Id: AGDDWriter.cxx 693 2011-01-11 14:41:39Z ihrivnac "
-         date        = "2014-06-18"
+         date        = "2014-08-27"
          author      = "VGM AGGD Writer"
          top_volume  = "world_comp"  >
 

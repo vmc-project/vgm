@@ -6,13 +6,11 @@
 <xi:include href="StandardColors.agdd"/>
 
 <materials  version = "Id: AGDDWriter.cxx 693 2011-01-11 14:41:39Z ihrivnac "
-            date    = "2014-06-18"
+            date    = "2014-08-27"
             author  = "VGM AGGD Writer"
             DTD_version="v7"  >
 
-   <isotope  name="__1"     z="  1"  n="  1"  a="  1"/>
    <isotope  name="H_1"     z="  1"  n="  1"  a="  1"/>
-   <isotope  name="__2"     z="  1"  n="  2"  a="  2"/>
    <isotope  name="H_2"     z="  1"  n="  2"  a="  2"/>
    <isotope  name="C_12"    z="  6"  n=" 12"  a=" 12"/>
    <isotope  name="C_13"    z="  6"  n=" 13"  a=" 13"/>
@@ -28,9 +26,9 @@
       <addisotope name="H_1"  natoms=" 99" />
       <addisotope name="H_2"  natoms="  0" />
    </element>
-   <element  symbol="Vacuum_e">
-      <addisotope name="__1"  natoms=" 99" />
-      <addisotope name="__2"  natoms="  0" />
+   <element  symbol="H">
+      <addisotope name="H_1"  natoms=" 99" />
+      <addisotope name="H_2"  natoms="  0" />
    </element>
    <element  symbol="C">
       <addisotope name="C_12"  natoms=" 98" />
@@ -62,13 +60,13 @@
       <addelement name="U"  natoms=" 1.0000"/>
    </material>
    <material  name="Vacuum_mat"  density="1.0000e-25">
-      <addelement name="Vacuum_e"  natoms=" 1.0000"/>
+      <addelement name="H"  natoms=" 1.0000"/>
    </material>
 
 </materials>
 
 <media  version = "Id: AGDDWriter.cxx 693 2011-01-11 14:41:39Z ihrivnac "
-        date    = "2014-06-18"
+        date    = "2014-08-27"
         author  = "VGM AGGD Writer"
         DTD_version="v7"  >
 
@@ -98,7 +96,7 @@
 <section DTD_version = "v7"
          name        = "world"
          version     = "Id: AGDDWriter.cxx 693 2011-01-11 14:41:39Z ihrivnac "
-         date        = "2014-06-18"
+         date        = "2014-08-27"
          author      = "VGM AGGD Writer"
          top_volume  = "world_comp"  >
 
