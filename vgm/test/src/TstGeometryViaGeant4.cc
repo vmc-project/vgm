@@ -101,7 +101,7 @@ G4LogicalVolume* TstGeometryViaGeant4::CreateNewSolid()
 // Create a new solid
 // ---
 
-  return CreateEllipsoid();
+  return CreateCtubs(0, 360.*deg);
 }    
 
 //_____________________________________________________________________________

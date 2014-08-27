@@ -2,7 +2,7 @@
 
 // -----------------------------------------------------------------------
 // The Geant4GM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
+// Copyright (C) 2014, Ivana Hrivnacova               
 // All rights reserved. 
 //           
 // For the licensing terms see vgm/LICENSE.
@@ -29,8 +29,7 @@
 
 #include <string>
 
-class G4Tubs;
-class G4VSolid;
+class G4CutTubs;
 class G4ReflectedSolid;
 
 namespace Geant4GM {
@@ -43,6 +42,8 @@ namespace Geant4GM {
 	      double sphi, double dphi,
 	      double nxlow, double nylow, double nzlow,
 	      double nxhigh, double nyhigh, double nzhigh);
+      Ctubs(G4CutTubs* ctubs, 
+            G4ReflectedSolid* reflCtubs = 0);
       virtual ~Ctubs();
 
       // methods
@@ -66,11 +67,8 @@ namespace Geant4GM {
     private:
       static const double fgkTolerance;
     
-      G4Tubs*   fTubs;
-      G4VSolid* fBooleanSolid;
-      G4double  fHz;
-      G4ThreeVector  fNLow;
-      G4ThreeVector  fNHigh;
+      bool        fIsReflected;
+      G4CutTubs*  fCutTubs;
   };
 
 }

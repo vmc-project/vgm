@@ -60,6 +60,7 @@
 #include "G4DisplacedSolid.hh"
 #include "G4Box.hh"
 #include "G4Cons.hh"
+#include "G4CutTubs.hh"
 #include "G4Ellipsoid.hh"
 #include "G4EllipticalTube.hh"
 #include "G4ExtrudedSolid.hh"
@@ -199,6 +200,13 @@ Geant4GM::Factory::ImportSolid(G4VSolid* solid)
     VGM::ICons* vgmCons = new Geant4GM::Cons(cons, reflSolid);
     SolidStore().push_back(vgmCons);
     return vgmCons; 
+  }
+
+  G4CutTubs* ctubs = dynamic_cast<G4CutTubs*>(consSolid);
+  if (ctubs) { 
+    VGM::ICtubs* vgmCtubs = new Geant4GM::Ctubs(ctubs, reflSolid);
+    SolidStore().push_back(vgmCtubs);
+    return vgmCtubs; 
   }
 
   G4Ellipsoid* ellipsoid = dynamic_cast<G4Ellipsoid*>(consSolid);
