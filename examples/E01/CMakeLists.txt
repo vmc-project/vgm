@@ -15,8 +15,10 @@ set(CMAKE_MODULE_PATH
 
 #----------------------------------------------------------------------------
 # Find VGM package
-find_package(VGM REQUIRED)
-
+if (NOT VGM_FOUND)
+  find_package(VGM REQUIRED)
+endif()
+  
 #----------------------------------------------------------------------------
 # Find ROOT package
 find_package(ROOT REQUIRED)

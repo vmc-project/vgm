@@ -34,12 +34,12 @@ install(DIRECTORY
 )
 
 # Install examples
-if(VGM_INSTALL_EXAMPLES)
+if(INSTALL_EXAMPLES)
   install(DIRECTORY
     ${PROJECT_SOURCE_DIR}/examples
     DESTINATION share/VGM-${VGM_VERSION}
   )
-endif()  
+endif()
 
 #
 # Install the VGMConfig, VGMConfigVersion
