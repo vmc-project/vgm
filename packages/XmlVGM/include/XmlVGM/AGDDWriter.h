@@ -226,7 +226,6 @@ namespace XmlVGM {
       int                fNW;               //output numbers width
       int                fNP;               //output numbers precision 
       StringSet          fAGDDNames;        //names in GDML 
-      Maps*              fMaps;             //name maps
   };
 
 }

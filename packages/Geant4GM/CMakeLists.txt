@@ -28,7 +28,7 @@ include_directories(
 #---Add library-----------------------------------------------------------------
 file(GLOB sources source/*/*.cxx)
 add_library(Geant4GM ${sources})
-target_link_libraries(Geant4GM BaseVGM ClhepVGM)
+target_link_libraries(Geant4GM BaseVGM ClhepVGM ${Geant4_LIBRARIES} ${CLHEP_LIBRARIES})
 
 #----Installation---------------------------------------------------------------
 install(DIRECTORY include/ DESTINATION include  PATTERN ".svn" EXCLUDE)

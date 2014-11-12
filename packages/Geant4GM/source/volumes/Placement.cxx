@@ -162,7 +162,7 @@ bool Geant4GM::Placement::MultiplePlacementData(
     
   // Different get functions for PVReplica and PVDivisions
   //
-  EAxis g4Axis;
+  EAxis g4Axis = kUndefined;
   if (dynamic_cast<G4PVReplica*>(fPhysicalVolume)) {
     bool consuming;
   

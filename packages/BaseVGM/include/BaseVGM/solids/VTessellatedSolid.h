@@ -18,7 +18,7 @@
 /// \author Ivana Hrivnacova; IPN Orsay
 
 #ifndef BASE_VGM_V_TESSELLATED_SOLID_H
-#define BASE_VGM_V_TESSELLATED__SOLID_H
+#define BASE_VGM_V_TESSELLATED_SOLID_H
 
 #include "VGM/solids/ITessellatedSolid.h"
 

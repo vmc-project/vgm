@@ -17,7 +17,7 @@
 ///
 /// \author Ivana Hrivnacova; IPN Orsay
 
-#ifndef GEANT4_GM_ELLIPSOIDB_H
+#ifndef GEANT4_GM_ELLIPSOID_H
 #define GEANT4_GM_ELLIPSOID_H
 
 #include "BaseVGM/solids/VEllipsoid.h"
