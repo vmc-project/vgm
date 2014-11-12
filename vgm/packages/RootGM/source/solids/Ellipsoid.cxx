@@ -178,5 +178,5 @@ double RootGM::Ellipsoid::ZBottomCut() const
 //_____________________________________________________________________________
 double RootGM::Ellipsoid::ZTopCut() const
 {
-  return fZBottomCut;
+  return fZTopCut;
 }  

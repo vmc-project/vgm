@@ -55,6 +55,7 @@ namespace RootGM {
       double      fDy;
       double      fDz;
       double      fZBottomCut;
+      double      fZTopCut;
   };
 }
 
