@@ -45,6 +45,9 @@
    to the source directory, but you can also use the relative path from your 
    build directory to your source directory. 
 
+ Configuration Options:
+ ---------------------- 
+
    Additional arguments may be passed to CMake to (in)activate optional 
    components of VGM, or tune the build and install parameters. See 
    vgm/CMakeList.txt for details of these  options. If you run CMake and decide
@@ -53,6 +56,15 @@
 
    On executing this CMake command, it will run, configuring the build and 
    generating  Unix Makefiles to perform the actual build. 
+   
+   Overview of available options and their default values:
+
+   WITH_GEANT4       "Build Geant4 dependent subpackage (Geant4GM)" ON
+   WITH_ROOT         "Build Root dependent subpackage(RootGM)"      ON
+   WITH_EXAMPLES     "Build examples"                               ON
+   WITH_TEST         "Build test"                                   OFF
+   WITH_G4ROOT       "Build test with G4Root"                       OFF
+   INSTALL_EXAMPLES  "Install examples"                             ON
  
  Compilation:
  ------------ 
@@ -82,8 +94,9 @@
 
  Test:
  -----
-   The test program is automatically build in the build directory,
-   in /my_path/vgm_build/test and installed in /my_path/vgm_install/bin.
+   When WITH_TEST cmake option is activated, the test program is automatically 
+   build in the build directory, in /my_path/vgm_build/test and installed in 
+   /my_path/vgm_install/bin.
  
    For different test options, see vgm/test/README file;
    eg.
@@ -96,6 +109,24 @@
    The output from tests stored in log directory can be then compared
    with the reference output in log_ref directory.
 
+   Optionally, the test can be built with G4Root package, see:
+   http://root.cern.ch/drupal/content/g4root  
+   when WITH_G4ROOT cmake option is activated.
+   
+   Note that even though also Geant4 VMC can be build with VGM, there is no
+   circular depndence between these packages, as G4Root is lower level package
+   which does not depend on Geant4 VMC library.
+
+   To build both VGM with G4Root and Geant4 VMC with VGM, you can proceed
+   in this waY:
+   1. install VGM without test
+   2. install Geant4 VMC with VGM
+   3. build and install VGM test against G4Root installed with Geant4 VMC
+   
+   If you are not interested in using Geant4 VMC then you can proceed 
+   in this way:
+   1. Download Geant4 VMC and install only G4Root
+   2. Install VGM with test against G4Root installed
  
  Aknowledgements:
 
