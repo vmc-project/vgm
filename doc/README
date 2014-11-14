@@ -201,7 +201,7 @@ $Id$
  -------------
 
  Tested on platforms: 
- Linux FC19, gcc 4.8.2
+ Linux FC19: gcc 4.8.2, Mac OSX 10.9: clang 3.5
 
  8. Files
  ---------
