@@ -44,12 +44,8 @@
 #include "G4UImanager.hh"
 #include "G4UIterminal.hh"
 #include "G4UItcsh.hh"
-#ifdef G4VIS_USE
 #include "G4VisExecutive.hh"
-#endif
-#ifdef G4UI_USE
 #include "G4UIExecutive.hh"
-#endif
 
 #include "RootGM/volumes/Placement.h"
 
@@ -120,6 +116,13 @@ int main(int argc, char** argv)
       std::cerr << " Argument " << argv[i] << " not recognized." << std::endl;
   }   
   
+  // Define UI session (if interactive mode)
+  //
+  G4UIExecutive* session = 0;
+  if (visMode != "None") {
+    session = new G4UIExecutive(argc, argv);
+  }
+
   // Create detector conctruction and let it check selected channels
   TstDetectorConstruction* detector
     = new TstDetectorConstruction(inputType, inputFactory, outputFactory, 
@@ -174,41 +177,36 @@ int main(int argc, char** argv)
   // Initialize G4 kernel
   runManager->Initialize();
 
-  // Vis manager
-#ifdef G4VIS_USE
+  // Initialize visualization
+  //
   G4VisManager* visManager = new G4VisExecutive;
+  // G4VisExecutive can take a verbosity argument - see /vis/verbose guidance.
+  // G4VisManager* visManager = new G4VisExecutive("Quiet");
   visManager->Initialize();
-#endif     
-    
-  // Get the pointer to the User Interface manager 
-  G4UImanager* UI = G4UImanager::GetUIpointer();  
+
+  // Get the pointer to the User Interface manager
+  G4UImanager* ui = G4UImanager::GetUIpointer();
 
   if (visMode != "None") {
-#ifdef G4UI_USE
-    //G4UIExecutive* session = new G4UIExecutive(argc, argv, "tcsh");
-    G4UIExecutive* session = new G4UIExecutive(argc, argv);
-#ifdef G4VIS_USE
-      UI->ApplyCommand("/control/execute macro/vis.mac");    
-#endif
-      if (session->IsGUI())
-         UI->ApplyCommand("/control/execute macro/icons.mac");
+      // interactive mode
+      ui->ApplyCommand("/control/execute macro/vis.mac");    
+      if (session->IsGUI()) {
+         ui->ApplyCommand("/control/execute macro/icons.mac");
+      }   
       session->SessionStart();
       delete session;
-#endif
   }
   
   if ( run ) {
       G4String cmd = "/control/execute macro/gener_";
       cmd += selectedTest;
       cmd += ".mac";
-      UI->ApplyCommand(cmd);
-      UI->ApplyCommand("/control/execute macro/run.mac");
+      ui->ApplyCommand(cmd);
+      ui->ApplyCommand("/control/execute macro/run.mac");
   }        
 
   // job termination
-#ifdef G4VIS_USE
   delete visManager;
-#endif
   delete runManager;
 
   return 0;
