@@ -59,12 +59,11 @@ void TstPrimaryGeneratorActionMessenger::SetNewValue(G4UIcommand* command,
 /// Apply command to the associated object.
 
   if(command == fSetGunTypeCmd) { 
-    TstPrimaryGeneratorAction::GunType gunType;
-    if ( newValue == G4String("Gun") )
-      gunType = TstPrimaryGeneratorAction::kGun;
-    else if ( newValue == G4String("GPS") )
-      gunType = TstPrimaryGeneratorAction::kGPS;
-
-    fPrimaryGeneratorAction->SetGunType(gunType); 
+    if ( newValue == G4String("Gun") ) {
+      fPrimaryGeneratorAction->SetGunType(TstPrimaryGeneratorAction::kGun);
+    }
+    else if ( newValue == G4String("GPS") ) {
+      fPrimaryGeneratorAction->SetGunType(TstPrimaryGeneratorAction::kGPS);
+    }
   }   
 }
