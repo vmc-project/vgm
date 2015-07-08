@@ -110,7 +110,11 @@ std::string Geant4GM::Sphere::Name() const
 //_____________________________________________________________________________
 double Geant4GM::Sphere::InnerRadius() const
 {
+#ifdef G4GEOM_USE_USOLIDS
+  return fSphere->GetInnerRadius() * ClhepVGM::Units::Length();
+#else  
   return fSphere->GetInsideRadius() * ClhepVGM::Units::Length();
+#endif
 }  
 
 //_____________________________________________________________________________
