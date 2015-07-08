@@ -70,6 +70,7 @@
 #include "G4Polycone.hh"
 #include "G4Polyhedra.hh"
 #include "G4Sphere.hh"
+#include "G4TessellatedSolid.hh"
 #include "G4Torus.hh"
 #include "G4Trap.hh"
 #include "G4Trd.hh"
