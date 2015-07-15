@@ -23,6 +23,7 @@
 
       <material  name="Basic"  state="solid"  >
          <D type="density" unit="g/cm3" value="     2.7000"/>
+         <T type="temperature" unit="K" value="   293.1500"/>
          <fraction n="    1.0000"  ref="Aluminium_e"/>
       </material>
 
