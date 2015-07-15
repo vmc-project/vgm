@@ -11,6 +11,15 @@ $Id$
 
  The Virtual Geometry Model - Versions
 =========================================
+  15/07/2015
+  version 4.3
+    Minor fixes (compiler warnings),
+    migration to Geant4 10.01.x (including build with USolids library).
+  
+    Tested with Root 5.34/26 and Root 6.02/02, Geant4 10.01.p02
+    (with embedded CLHEP 2.2.4.1) 
+    Linux FC19: gcc 4.8.2, Mac OSX 10.10: clang 3.5
+
   14/11/2014
   version 4.2
     New features:
