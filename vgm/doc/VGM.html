@@ -16,6 +16,16 @@ $Id$
 
  <h1> Virtual Geometry Model </h1>
 
+<p>
+<b> Virtual Geometry Model (VGM) </b>  is a geometry conversion tool, actually providing 
+conversion between Geant4 and ROOT TGeo geometry models. Its design allows inclusion of 
+another geometry model  by implementing a single sub-module instead of writing bilateral
+converters for all already supported models. </p>
+<p>
+The reference paper: <i> <a href="http://iopscience.iop.org/article/10.1088/1742-6596/119/4/042016/pdf">
+I. Hrivnacova et al 2008 J. Phys.: Conf. Ser. 119 042016 </a></i>.
+</p>
+
  <ul><li><a href="#Introduction">        Introduction</a>
      <li><a href="#Download">            Download</a>
      <li><a href="#Installation">        Installation, Examples</a>
@@ -25,6 +35,7 @@ $Id$
      <li><a href="#Options">             Options</a>
      <li><a href="#Documentation">       Source code documentation</a>
      <li><a href="#Platforms">           Platforms</a>
+     <li><a href="#Publications">        Publications</a>
  </ul>
     
  <a name="Introduction"></a> 
@@ -98,6 +109,38 @@ $Id$
  <a href="VGMhistory.txt"> history </a>  
  file, previous version(s) are available from the 
  <a href="http://sourceforge.net/svn/?group_id=200007"> SourceForge SVN page </a>.
+
+ <h3> Tar files: </h3>
+
+<table width="90%" cellspacing="0" align="center">
+    <tbody>
+        <tr>
+            <td width="15%"><b>Version 4.3 </b><br><br></td>
+            <td width="15%"><a href="vgm.4.3.tar.gz"> vgm.4.3.tar.gz <br><br></a></td>
+            <td width="70%"><i> Tested with ROOT 5.34/26 and 6.02/02, <br> 
+                                Geant4 10.01.p02 (with embedded CLHEP 2.2.4.1
+                                <br><br>
+                            </i></td>
+        </tr>
+        <tr>
+            <td width="15%"><b> Version 4.2 </b><br><br></td>
+            <td width="15%"><a href="vgm.4.2.tar.gz"> vgm.4.2.tar.gz <br><br></a></td>
+            <td width="70%"><i> Tested with ROOT 5.34/23 and 6.02/01, <br>
+                                Geant4 10.00.p03 (with embedded CLHEP 2.1.4.1) 
+                                <br><br>
+                            </i></td>
+        </tr>
+        <tr>
+            <td width="15%"><b> Version 3.06 </b><br><br></td>
+            <td width="15%"><a href="vgm.3.06.tar.gz"> vgm.3.06.tar.gz <br><br></a></td>
+            <td width="70%"><i> Tested with ROOT 5.34/03 <br>
+                                Geant4 9.6 (with embedded CLHEP 2.1.3.1) <br>
+                                and 9.5.p02 (with embedded CLHEP 2.1.1.0) 
+                                <br>
+                            </i></td>
+        </tr>
+    </tbody>
+</table>
 
  <a name="Installation"></a> 
  <h2> Installation, Examples </h2>
@@ -281,11 +324,20 @@ $Id$
 
 <hr>
 
+<a name="Publications"></a> 
+<h2> Publications </h2>
+<ul>
+<li> <a href="http://iopscience.iop.org/article/10.1088/1742-6596/119/4/042016/pdf">
+I. Hrivnacova et al 2008 J. Phys.: Conf. Ser. 119 042016 </a></i></li>
+<li> <a href="http://indico.cern.ch/event/0/contributions/1294400/">
+I. Hrivnacova 2004 Computing in High Energy and Nuclear Physics (Interlaken) Id 387 </a></i>. </li>
+</ul>
+
 <p>
 Contact: <br>
 Ivana Hrivnacova, IPN Orsay <a href="mailto:ivana@ipno.in2p3.fr"> ivana@ipno.in2p3.fr </a> <br>
 
 <p>
-<i> Last update: 15/07/2015 </i>
+<i> Last update: 23/09/2016 </i>
 
 </p></body></html>
