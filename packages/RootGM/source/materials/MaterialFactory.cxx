@@ -36,7 +36,7 @@
 #include "TGeoElement.h"
 #include "TList.h"
 
-#include <math.h>
+#include <cmath>
 
 const double RootGM::MaterialFactory::fgkTolerance = 1e-09; 
 
@@ -83,8 +83,8 @@ RootGM::MaterialFactory::GetElement(double z, double a) const
   for ( unsigned i=0; i<Elements().size(); i++ ) {
     VGM::IElement* element = Elements()[i];
     
-    if ( fabs(z - element->Z()) < fgkTolerance &&
-         fabs(a - element->A()) < fgkTolerance ) return element;
+    if ( std::abs(z - element->Z()) < fgkTolerance &&
+         std::abs(a - element->A()) < fgkTolerance ) return element;
   }
   
   return 0;
@@ -141,10 +141,10 @@ bool RootGM::MaterialFactory::CompareIsotopes(const TGeoElement* tgeoElement,
 
     for ( unsigned j=0; j<isotopes.size(); ++j ) {
       VGM::IIsotope* vgmIsotope = isotopes[j];
-      if ( fabs ( vgmIsotope->Z() - tgeoIsotope->GetZ() ) < fgkTolerance &&
-           fabs ( vgmIsotope->N() - tgeoIsotope->GetN() ) < fgkTolerance &&
-           fabs ( vgmIsotope->A() - tgeoIsotope->GetA() ) < fgkTolerance &&
-           fabs ( relAbundances[j] - tgeoRelAbundance ) < fgkTolerance ) {
+      if ( std::abs ( vgmIsotope->Z() - tgeoIsotope->GetZ() ) < fgkTolerance &&
+           std::abs ( vgmIsotope->N() - tgeoIsotope->GetN() ) < fgkTolerance &&
+           std::abs ( vgmIsotope->A() - tgeoIsotope->GetA() ) < fgkTolerance &&
+           std::abs ( relAbundances[j] - tgeoRelAbundance ) < fgkTolerance ) {
         match = true;
         break;
       }  
@@ -216,8 +216,8 @@ RootGM::MaterialFactory::ImportElements(TGeoMaterial* material,
     
     // Do not take the element if its properties do not match
     if ( vgmElement &&
-         ( fabs ( vgmElement->Z() - z ) >= fgkTolerance || 
-           fabs ( vgmElement->A() - a ) >= fgkTolerance ) ) { 
+         ( std::abs ( vgmElement->Z() - z ) >= fgkTolerance || 
+           std::abs ( vgmElement->A() - a ) >= fgkTolerance ) ) { 
        vgmElement = 0;  
     }     
 
@@ -229,8 +229,8 @@ RootGM::MaterialFactory::ImportElements(TGeoMaterial* material,
       std::string symbol = tgeoElement->GetName();
 
       bool isElementObject = 
-             fabs(tgeoElement->Z() - z ) < fgkTolerance &&
-             fabs(tgeoElement->A() - a ) < fgkTolerance;
+             std::abs(tgeoElement->Z() - z ) < fgkTolerance &&
+             std::abs(tgeoElement->A() - a ) < fgkTolerance;
       std::string from; 
       
       if ( isElementObject ) {
@@ -320,9 +320,9 @@ RootGM::MaterialFactory::CreateIsotope(
     
   // Do not take the isotope if its properties do not match
   if ( tgeoIsotope &&
-       ( fabs ( tgeoIsotope->GetZ() - z ) >= fgkTolerance ||
-         fabs ( tgeoIsotope->GetN() - n ) >= fgkTolerance ||
-         fabs ( tgeoIsotope->GetA() - a ) >= fgkTolerance ) ) {
+       ( std::abs ( tgeoIsotope->GetZ() - z ) >= fgkTolerance ||
+         std::abs ( tgeoIsotope->GetN() - n ) >= fgkTolerance ||
+         std::abs ( tgeoIsotope->GetA() - a ) >= fgkTolerance ) ) {
      tgeoIsotope = 0;
   }           
 
@@ -355,8 +355,8 @@ RootGM::MaterialFactory::CreateElement(
     
   // Do not take the element if its properties do not match
   if ( tgeoElement &&
-       ( fabs ( tgeoElement->Z() - z ) >= fgkTolerance || 
-         fabs ( tgeoElement->A() - a ) >= fgkTolerance ) ) { 
+       ( std::abs ( tgeoElement->Z() - z ) >= fgkTolerance || 
+         std::abs ( tgeoElement->A() - a ) >= fgkTolerance ) ) { 
      tgeoElement = 0;  
   }     
   
