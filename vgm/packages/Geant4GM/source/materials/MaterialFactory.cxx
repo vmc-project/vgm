@@ -36,6 +36,8 @@
 #include "G4NistManager.hh"
 #include "G4SystemOfUnits.hh"
 
+#include <cmath>
+
 const double Geant4GM::MaterialFactory::fgkTolerance = 1e-09; 
 
 //_____________________________________________________________________________
@@ -156,10 +158,10 @@ bool Geant4GM::MaterialFactory::CompareIsotopes(const G4Element* g4Element,
 
     for ( G4int j=0; j<G4int(isotopes.size()); ++j ) {
       VGM::IIsotope* vgmIsotope = isotopes[j];
-      if ( fabs ( vgmIsotope->Z() - g4Isotope->GetZ() ) < fgkTolerance &&
-           fabs ( vgmIsotope->N() - g4Isotope->GetN() ) < fgkTolerance &&
-           fabs ( vgmIsotope->A() - g4Isotope->GetA()/(g/mole) ) < fgkTolerance &&
-           fabs ( relAbundances[j] - g4RelAbundance ) < fgkTolerance ) {
+      if ( std::abs ( vgmIsotope->Z() - g4Isotope->GetZ() ) < fgkTolerance &&
+           std::abs ( vgmIsotope->N() - g4Isotope->GetN() ) < fgkTolerance &&
+           std::abs ( vgmIsotope->A() - g4Isotope->GetA()/(g/mole) ) < fgkTolerance &&
+           std::abs ( relAbundances[j] - g4RelAbundance ) < fgkTolerance ) {
         match = true;
         break;
       }  
@@ -187,9 +189,9 @@ Geant4GM::MaterialFactory::CreateIsotope(
 
   // Do not take the isotope if its properties do not match
   if ( g4Isotope &&
-       ( fabs ( g4Isotope->GetZ() - z ) >= fgkTolerance ||
-         fabs ( g4Isotope->GetN() - n  ) >= fgkTolerance ||
-         fabs ( g4Isotope->GetA()/(g/mole) - a ) >= fgkTolerance ) ) {
+       ( std::abs ( g4Isotope->GetZ() - z ) >= fgkTolerance ||
+         std::abs ( g4Isotope->GetN() - n  ) >= fgkTolerance ||
+         std::abs ( g4Isotope->GetA()/(g/mole) - a ) >= fgkTolerance ) ) {
      g4Isotope = 0;
   }           
 
@@ -219,8 +221,8 @@ Geant4GM::MaterialFactory::CreateElement(
   
   // Do not take the element if its properties do not match
   if ( g4Element &&
-       ( fabs ( g4Element->GetZ() - z ) >= fgkTolerance || 
-         fabs ( g4Element->GetA()/(g/mole) - a ) >= fgkTolerance ) ) { 
+       ( std::abs ( g4Element->GetZ() - z ) >= fgkTolerance || 
+         std::abs ( g4Element->GetA()/(g/mole) - a ) >= fgkTolerance ) ) { 
      g4Element = 0;  
   }     
   
