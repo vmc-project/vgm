@@ -53,7 +53,7 @@ namespace BaseVGM {
       virtual const VGM::VolumeStore&  Volumes() const;			       
       virtual VGM::IMaterialFactory*   MaterialFactory() const;
 
-      virtual bool  Export(VGM::IFactory* factory) const;			       
+      virtual bool  Export(VGM::IFactory* factory) const;
 
       virtual void  PrintSolids() const;			       
       virtual void  PrintVolumes() const;	
@@ -61,13 +61,16 @@ namespace BaseVGM {
       virtual void  SetDebug (int debug);			       
       virtual int   Debug() const;
 
-      virtual void  SetIgnore (bool ignore);			       
+      virtual void  SetIgnore (bool ignore);		       
       virtual bool  Ignore() const;
 
 
     protected:
       VFactory();
       VFactory(const VFactory& rhs);
+
+      virtual void  SetSingleMode (bool singleMode);           
+      virtual bool  SingleMode() const;
 
       virtual VGM::SolidStore&   SolidStore();			       
       virtual VGM::VolumeStore&  VolumeStore();
@@ -91,20 +94,21 @@ namespace BaseVGM {
       VGM::IPlacement* ExportSimplePlacement(
                              VGM::IPlacement* placement, 
                              VGM::IFactory* factory, 
-			     VolumeMap* volumeMap) const;
+                             VolumeMap* volumeMap) const;
       VGM::IPlacement* ExportMultiplePlacement(
                              VGM::IPlacement* placement, 
                              VGM::IFactory* factory, 
-			     VolumeMap* volumeMap) const;
+                             VolumeMap* volumeMap) const;
       void             ExportPlacements(
                              VGM::IFactory* factory, 
-			     VolumeMap* map) const;
+                             VolumeMap* map) const;
   
       VGM::Transform   Identity() const;
 
       // data members
       int                     fDebug;
       bool                    fIgnore;
+      bool                    fSingleMode;
       std::string             fName;
       VGM::SolidStore         fSolids;
       VGM::VolumeStore        fVolumes;
@@ -153,5 +157,11 @@ inline void BaseVGM::VFactory::SetIgnore (bool ignore)
 
 inline bool BaseVGM::VFactory::Ignore() const
 { return fIgnore; }
+
+inline void  BaseVGM::VFactory::SetSingleMode (bool singleMode)
+{ fSingleMode = singleMode; }
+
+inline bool  BaseVGM::VFactory::SingleMode() const
+{ return fSingleMode; }
 
 #endif //BASE_VGM_V_FACTORY_H

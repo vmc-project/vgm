@@ -52,6 +52,7 @@ BaseVGM::VFactory::VFactory(const std::string& name,
   : VGM::IFactory(),
     fDebug(0),
     fIgnore(false),
+    fSingleMode(false),
     fName(name),
     fSolids(),
     fVolumes(),
@@ -122,7 +123,7 @@ BaseVGM::VFactory::ExportDisplacedSolid(VGM::IDisplacedSolid* solid,
     = factory->CreateDisplacedSolid(
                                solid->Name(), 
                                constituentSolid,
-			       transform);
+			                         transform);
   return newSolid;
 }  
 
@@ -621,16 +622,39 @@ bool BaseVGM::VFactory::Export(VGM::IFactory* factory) const
 {
 /// Export the whole geometry to the given factory.
 
-  // Export materials
-  //
-  fMaterialFactory->Export(factory->MaterialFactory());
-  
-  // Export volumes 
-  //
-  VolumeMap* volumeMap = ExportVolumeStore(factory);
-  ExportPlacements(factory, volumeMap);
+  // set the mode to destination factory
+  factory->SetSingleMode(SingleMode());
 
-  return true;  			       
+  if ( ! SingleMode() ) {
+    // Export materials
+    //
+    fMaterialFactory->Export(factory->MaterialFactory());
+
+    // Export volumes 
+    //
+    VolumeMap* volumeMap = ExportVolumeStore(factory);
+    ExportPlacements(factory, volumeMap);
+
+    return true;
+  }
+  else {
+    // one solid mode
+
+    // Check if a solid was created/imported
+    if ( ! ISolid() ) {
+      std::cerr << "++ Warning: ++ " << std::endl;
+      std::cerr << "   BaseVGM::Export:" << std::endl; 
+      std::cerr << "   A solid must be created/imported first." << std::endl;
+
+      return false;
+    }
+
+    // Export solid
+    VGM::ISolid* solid = ExportSolid(ISolid(), factory);
+    factory->SetSolid(solid);
+
+    return ( solid != 0 );
+  }
 }  
 
 //_____________________________________________________________________________
@@ -672,4 +696,3 @@ void BaseVGM::VFactory::SetDebug (int debug)
   fDebug = debug; 
   MaterialFactory()->SetDebug(debug);
 }
-			       

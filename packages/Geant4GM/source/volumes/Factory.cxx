@@ -109,7 +109,8 @@ Geant4GM::Factory::Factory()
   : VGM::IFactory(),
     BaseVGM::VFactory("Geant4_GM_Factory", 
                      new Geant4GM::MaterialFactory()),
-    fTop(0)
+    fTop(0),
+    fSolid(0)
 {
 /// Standard default constructor
 }
@@ -190,132 +191,93 @@ Geant4GM::Factory::ImportSolid(G4VSolid* solid)
   
   G4Box* box = dynamic_cast<G4Box*>(consSolid);
   if (box) { 
-    VGM::IBox* vgmBox = new Geant4GM::Box(box, reflSolid);
-    SolidStore().push_back(vgmBox);
-    return vgmBox; 
+    return Register(new Geant4GM::Box(box, reflSolid));
   }
 
   G4Cons* cons = dynamic_cast<G4Cons*>(consSolid);
   if (cons) { 
-    //VGM::ICons* vgmCons = new Geant4GM::Cons(cons, isReflected);
-    VGM::ICons* vgmCons = new Geant4GM::Cons(cons, reflSolid);
-    SolidStore().push_back(vgmCons);
-    return vgmCons; 
+    return Register(new Geant4GM::Cons(cons, reflSolid)); 
   }
 
   G4CutTubs* ctubs = dynamic_cast<G4CutTubs*>(consSolid);
   if (ctubs) { 
-    VGM::ICtubs* vgmCtubs = new Geant4GM::Ctubs(ctubs, reflSolid);
-    SolidStore().push_back(vgmCtubs);
-    return vgmCtubs; 
+    return Register(new Geant4GM::Ctubs(ctubs, reflSolid));
   }
 
   G4Ellipsoid* ellipsoid = dynamic_cast<G4Ellipsoid*>(consSolid);
   if (ellipsoid) { 
-    VGM::IEllipsoid* vgmEllipsoid = new Geant4GM::Ellipsoid(ellipsoid, reflSolid);
-    SolidStore().push_back(vgmEllipsoid);
-    return vgmEllipsoid; 
+    return Register(new Geant4GM::Ellipsoid(ellipsoid, reflSolid));
   }
 
   G4EllipticalTube* eltu = dynamic_cast<G4EllipticalTube*>(consSolid);
   if (eltu) { 
-    VGM::IEllipticalTube* vgmEltu = new Geant4GM::EllipticalTube(eltu, reflSolid);
-    SolidStore().push_back(vgmEltu);
-    return vgmEltu; 
+    return Register(new Geant4GM::EllipticalTube(eltu, reflSolid));
   }
 
   G4ExtrudedSolid* xtru = dynamic_cast<G4ExtrudedSolid*>(consSolid);
   if (xtru) { 
-    VGM::IExtrudedSolid* vgmXtru = new Geant4GM::ExtrudedSolid(xtru, reflSolid);
-    SolidStore().push_back(vgmXtru);
-    return vgmXtru; 
+    return Register(new Geant4GM::ExtrudedSolid(xtru, reflSolid));
   }
 
   G4Hype* hype = dynamic_cast<G4Hype*>(consSolid);
   if (hype) { 
-    VGM::IHype* vgmHype = new Geant4GM::Hype(hype, reflSolid);
-    SolidStore().push_back(vgmHype);
-    return vgmHype; 
+    return Register(new Geant4GM::Hype(hype, reflSolid));
   }
 
   G4Para* para = dynamic_cast<G4Para*>(consSolid);
   if (para) { 
-    VGM::IPara* vgmPara = new Geant4GM::Para(para, reflSolid);
-    SolidStore().push_back(vgmPara);
-    return vgmPara; 
+    return Register(new Geant4GM::Para(para, reflSolid));
   }
 
   G4Paraboloid* paraboloid = dynamic_cast<G4Paraboloid*>(consSolid);
   if (paraboloid) { 
-    VGM::IParaboloid* vgmParaboloid = new Geant4GM::Paraboloid(paraboloid, reflSolid);
-    SolidStore().push_back(vgmParaboloid);
-    return vgmParaboloid; 
+    return Register(new Geant4GM::Paraboloid(paraboloid, reflSolid));
   }
 
   G4Polycone* polycone = dynamic_cast<G4Polycone*>(consSolid);
   if (polycone) { 
-    VGM::IPolycone* vgmPolycone 
-      = new Geant4GM::Polycone(polycone, reflSolid);
-    SolidStore().push_back(vgmPolycone);
-    return vgmPolycone; 
+    return Register(new Geant4GM::Polycone(polycone, reflSolid));
   }
 
   G4Polyhedra* polyhedra = dynamic_cast<G4Polyhedra*>(consSolid);
   if (polyhedra) { 
-    VGM::IPolyhedra* vgmPolyhedra 
-      = new Geant4GM::Polyhedra(polyhedra, reflSolid);
-    SolidStore().push_back(vgmPolyhedra);
-    return vgmPolyhedra; 
+    return Register(new Geant4GM::Polyhedra(polyhedra, reflSolid));
   }
 
   G4Sphere* sphere = dynamic_cast<G4Sphere*>(consSolid);
   if (sphere) { 
-    VGM::ISphere* vgmSphere = new Geant4GM::Sphere(sphere, reflSolid);
-    SolidStore().push_back(vgmSphere);
-    return vgmSphere; 
+    return Register(new Geant4GM::Sphere(sphere, reflSolid));
   }
 
   G4TessellatedSolid* tessel = dynamic_cast<G4TessellatedSolid*>(consSolid);
   if (tessel) { 
-    VGM::ITessellatedSolid* vgmTessel = new Geant4GM::TessellatedSolid(tessel, reflSolid);
-    SolidStore().push_back(vgmTessel);
-    return vgmTessel; 
+    return Register(new Geant4GM::TessellatedSolid(tessel, reflSolid));
   }
 
   G4Torus* torus = dynamic_cast<G4Torus*>(consSolid);
   if (torus) { 
-    VGM::ITorus* vgmTorus = new Geant4GM::Torus(torus, reflSolid);
-    SolidStore().push_back(vgmTorus);
-    return vgmTorus; 
+    return Register(new Geant4GM::Torus(torus, reflSolid));
   }
 
   G4Trap* trap = dynamic_cast<G4Trap*>(consSolid);
   if (trap) { 
-    VGM::ITrap* vgmTrap = new Geant4GM::Trap(trap, reflSolid);
-    SolidStore().push_back(vgmTrap);
-    return vgmTrap; 
+    return Register(new Geant4GM::Trap(trap, reflSolid));
   }
 
   G4Trd* trd = dynamic_cast<G4Trd*>(consSolid);
   if (trd) { 
-    VGM::ITrd* vgmTrd = new Geant4GM::Trd(trd, reflSolid);
-    SolidStore().push_back(vgmTrd);
-    return vgmTrd; 
+    return Register(new Geant4GM::Trd(trd, reflSolid));
   }
 
   G4Tubs* tubs = dynamic_cast<G4Tubs*>(consSolid);
   if (tubs) { 
-    VGM::ITubs* vgmTubs = new Geant4GM::Tubs(tubs, reflSolid);
-    SolidStore().push_back(vgmTubs);
-    return vgmTubs; 
+    return Register(new Geant4GM::Tubs(tubs, reflSolid));
   }
 
   G4DisplacedSolid* displaced = dynamic_cast<G4DisplacedSolid*>(consSolid);
   if (displaced) {
     ImportSolid(displaced->GetConstituentMovedSolid());
-    VGM::IDisplacedSolid* vgmDisplaced = new Geant4GM::DisplacedSolid(displaced, reflSolid);
-    SolidStore().push_back(vgmDisplaced);
-    return vgmDisplaced;
+    return Register(new Geant4GM::DisplacedSolid(displaced, reflSolid));
   }  
 
   G4BooleanSolid* boolean = dynamic_cast<G4BooleanSolid*>(consSolid);
@@ -323,7 +285,7 @@ Geant4GM::Factory::ImportSolid(G4VSolid* solid)
     ImportConstituentSolid(0, boolean);
     ImportConstituentSolid(1, boolean);
     VGM::IBooleanSolid* vgmBoolean = new Geant4GM::BooleanSolid(boolean, reflSolid);
-    SolidStore().push_back(vgmBoolean);
+    Register(vgmBoolean);
 
     if (Debug()>0) {
       BaseVGM::DebugInfo();
@@ -345,11 +307,7 @@ Geant4GM::Factory::ImportSolid(G4VSolid* solid)
 	    
   if ( Ignore() ) {
     std::cerr << "*** Warning: Using a box instead  ***" << std::endl; 
-    VGM::IBox* vgmBox 
-      = new Geant4GM::Box(solid->GetName(), 1.*mm, 1.*mm, 1.*mm);
-    SolidStore().push_back(vgmBox);
-    Geant4GM::SolidMap::Instance()->AddSolid(vgmBox, solid); 
-    return vgmBox; 
+    return Register(new Geant4GM::Box(solid->GetName(), 1.*mm, 1.*mm, 1.*mm));
   }
   else {	    
     std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
@@ -551,7 +509,7 @@ void Geant4GM::Factory::ImportPositions(G4LogicalVolume* lv)
 //_____________________________________________________________________________
 VGM::IPlacement*          
 Geant4GM::Factory::ImportPVPair(VGM::IVolume* volume, 
-			        VGM::IVolume* motherVolume,
+                                VGM::IVolume* motherVolume,
                                 G4PhysicalVolumesPair pvPair)
 {
   G4ReflectionFactory* g4ReflectionFactory = G4ReflectionFactory::Instance();
@@ -608,7 +566,7 @@ Geant4GM::Factory::ImportPVPair(VGM::IVolume* volume,
         // has to be imported into VGM
         iv2 = ImportLV(lv2, volume->MediumName());
         ImportDaughters(lv2);
-	ImportPositions(lv2);
+        ImportPositions(lv2);
       }
       VGM::IPlacement* placement2 = new Geant4GM::Placement(iv2, miv2, pv2);
       // Register physical volume in the map
@@ -666,8 +624,39 @@ bool Geant4GM::Factory::Import(void* topVolume)
     = static_cast<G4VPhysicalVolume*>(topVolume);
 
   return Import(worldPV);
-
 }			      
+
+//_____________________________________________________________________________
+bool Geant4GM::Factory::ImportSolid(void* solid)
+{
+/// Import native geometry
+
+  G4VSolid* g4Solid
+    = static_cast<G4VSolid*>(solid);
+
+  return Import(g4Solid);
+}           
+
+//_____________________________________________________________________________
+VGM::ISolid*  Geant4GM::Factory::Register(VGM::ISolid* vgmSolid)
+{
+/// Register solid in SolidStore()
+
+  SolidStore().push_back(vgmSolid);
+  return vgmSolid;
+}
+
+//
+// protected functions
+//
+
+//_____________________________________________________________________________
+void Geant4GM::Factory::SetSolid(VGM::ISolid* solid)
+{
+/// Set solid (in single mode)
+
+  fSolid = solid;
+}
 
 //
 // public functions
@@ -676,18 +665,15 @@ bool Geant4GM::Factory::Import(void* topVolume)
 //_____________________________________________________________________________
 VGM::ISolid* 
 Geant4GM::Factory::CreateArb8(const std::string& name, 
-                              double hz, 
-                              std::vector<VGM::TwoVector> vertices)
+                     double hz, 
+                     std::vector<VGM::TwoVector> vertices)
 {
 //
   if ( Geant4GM::Arb8::IsTwisted(vertices) ) {
     std::cerr << "*** Error: Cannot create Twisted Arb8 solid in Geant4 ***" << std::endl; 
     if ( Ignore() ) {
       std::cerr << "*** Warning: Using a box instead  ***" << std::endl; 
-      VGM::IBox* vgmBox 
-        = new Geant4GM::Box(name, 1., 1., 1.);
-      SolidStore().push_back(vgmBox);
-      return vgmBox; 
+      return Register(new Geant4GM::Box(name, 1., 1., 1.));
     }
     else {	    
       std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
@@ -695,267 +681,205 @@ Geant4GM::Factory::CreateArb8(const std::string& name,
     }
   }    
 
-  VGM::ISolid* vgmSolid 
-    = new Geant4GM::Arb8(name, hz, vertices);
-    
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
+  return Register(new Geant4GM::Arb8(name, hz, vertices));
 }  			     
 
 //_____________________________________________________________________________
 VGM::ISolid* 
 Geant4GM::Factory::CreateBox(const std::string& name, 
-                             double hx, double hy, double hz)
+                     double hx, double hy, double hz)
 {
 //
-  VGM::ISolid* vgmSolid 
-    = new Geant4GM::Box(name, hx, hy, hz);
-    
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
+  return Register(new Geant4GM::Box(name, hx, hy, hz));
 }  			     
 
 //_____________________________________________________________________________
 VGM::ISolid*  
 Geant4GM::Factory::CreateCons(const std::string& name, 
-                              double rin1, double rout1, 
-			      double rin2, double rout2, double hz,
-	                      double sphi, double dphi)
+                     double rin1, double rout1, 
+                     double rin2, double rout2, double hz,
+                     double sphi, double dphi)
 {			       
 //
-  VGM::ISolid* vgmSolid 
-    = new Geant4GM::Cons(name, rin1, rout1, rin2, rout2, hz, sphi, dphi);
-
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
+  return Register(new Geant4GM::Cons(name, rin1, rout1, rin2, rout2, hz, 
+                        sphi, dphi));
 }  			     
 			       
 //_____________________________________________________________________________
 VGM::ISolid*  
 Geant4GM::Factory::CreateCtubs(const std::string& name, 
-                              double rin, double rout, double hz, 
-			      double sphi, double dphi,
-			      double nxlow, double nylow, double nzlow,
-			      double nxhigh, double nyhigh, double nzhigh)
+                     double rin, double rout, double hz, 
+                     double sphi, double dphi,
+                     double nxlow, double nylow, double nzlow,
+                     double nxhigh, double nyhigh, double nzhigh)
 {			      
 //
-  VGM::ISolid* vgmSolid 
-    = new Geant4GM::Ctubs(name, rin, rout, hz, sphi, dphi,
-                          nxlow, nylow, nzlow, nxhigh, nyhigh, nzhigh);
-
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
+  return Register(new Geant4GM::Ctubs(name, rin, rout, hz, sphi, dphi,
+                          nxlow, nylow, nzlow, nxhigh, nyhigh, nzhigh));
 }  			     
 			       
 //_____________________________________________________________________________
 VGM::ISolid*  
 Geant4GM::Factory::CreateEllipsoid(const std::string& name, 
-                              double dx, double dy, double dz,
-                              double zBottomCut, double zTopCut)
+                     double dx, double dy, double dz,
+                     double zBottomCut, double zTopCut)
 {			       
 //
-  VGM::ISolid* vgmSolid 
-    = new Geant4GM::Ellipsoid(name, dx, dy, dz, zBottomCut, zTopCut);
-
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
+  return Register(new Geant4GM::Ellipsoid(name, dx, dy, dz, zBottomCut, zTopCut));
 }  			     
 			       
 //_____________________________________________________________________________
 VGM::ISolid*  
 Geant4GM::Factory::CreateEllipticalTube(const std::string& name, 
-                              double dx, double dy, double hz)
+                     double dx, double dy, double hz)
 {			       
 //
-  VGM::ISolid* vgmSolid 
-    = new Geant4GM::EllipticalTube(name, dx, dy,  hz);
+  return Register(new Geant4GM::EllipticalTube(name, dx, dy,  hz));
 
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
 }  			     
 			       
 //_____________________________________________________________________________
 VGM::ISolid*  
 Geant4GM::Factory::CreateHype(const std::string& name, 
-                              double r1, double r2, double stereo1, double stereo2,
-                              double hz)
+                     double r1, double r2, double stereo1, double stereo2,
+                     double hz)
 {			       
 //
-  VGM::ISolid* vgmSolid 
-    = new Geant4GM::Hype(name, r1, r2, stereo1, stereo2, hz);
+  return Register(new Geant4GM::Hype(name, r1, r2, stereo1, stereo2, hz));
 
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
 }  			     
 			       
 //_____________________________________________________________________________
 VGM::ISolid*  
 Geant4GM::Factory::CreatePara(const std::string& name, 
-                              double dx, double dy, double dz,
-	                      double alpha, double theta, double phi)
+                     double dx, double dy, double dz,
+                     double alpha, double theta, double phi)
 {			       
 //
-  VGM::ISolid* vgmSolid 
-    = new Geant4GM::Para(name, dx, dy, dz, alpha, theta, phi);
+  return Register(new Geant4GM::Para(name, dx, dy, dz, alpha, theta, phi));
 
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
 }  			     
 			       
 //_____________________________________________________________________________
 VGM::ISolid*  
 Geant4GM::Factory::CreateParaboloid(const std::string& name, 
-                              double r1, double r2, double hz)
+                     double r1, double r2, double hz)
 {			       
 //
-  VGM::ISolid* vgmSolid 
-    = new Geant4GM::Paraboloid(name, r1, r2, hz);
+  return Register(new Geant4GM::Paraboloid(name, r1, r2, hz));
 
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
 }  			     
 			       
 //_____________________________________________________________________________
 VGM::ISolid*  
 Geant4GM::Factory::CreatePolycone(
-                              const std::string& name, 
-                              double sphi, double dphi, 
-			      int nofZplanes,
-                              double* z, double* rin, double* rout)
+                     const std::string& name, 
+                     double sphi, double dphi, 
+                     int nofZplanes,
+                     double* z, double* rin, double* rout)
 {			       
 //
-  VGM::ISolid* vgmSolid 
-    = new Geant4GM::Polycone(name, sphi, dphi, nofZplanes, z, rin, rout);
-
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
+  return Register(new Geant4GM::Polycone(name, sphi, dphi, nofZplanes, z, 
+                        rin, rout));
 }  			     
 			       
 //_____________________________________________________________________________
 VGM::ISolid*  
 Geant4GM::Factory::CreatePolyhedra(
-                               const std::string& name, 
-                               double sphi, double dphi, 
-			       int nofSides, int nofZplanes,
-                               double* z, double* rin, double* rout)
+                     const std::string& name, 
+                     double sphi, double dphi, 
+                     int nofSides, int nofZplanes,
+                     double* z, double* rin, double* rout)
 {			       
 //
-  VGM::ISolid* vgmSolid 
-    = new Geant4GM::Polyhedra(name, sphi, dphi, 
-                              nofSides, nofZplanes, z, rin, rout);
+  return Register(new Geant4GM::Polyhedra(name, sphi, dphi, 
+                        nofSides, nofZplanes, z, rin, rout));
 
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
 }  			     
 			       
 //_____________________________________________________________________________
 VGM::ISolid*  
 Geant4GM::Factory::CreateSphere(const std::string& name, 
-                                double rin, double rout, 
-			        double sphi, double dphi, 
-	                        double stheta, double dtheta)
+                     double rin, double rout, 
+                     double sphi, double dphi, 
+                     double stheta, double dtheta)
 {			       
 //
-  VGM::ISolid* vgmSolid 
-    = new Geant4GM::Sphere(name, rin, rout, sphi, dphi, stheta, dtheta);
+  return Register(new Geant4GM::Sphere(name, rin, rout, sphi, dphi, stheta, dtheta));
 
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
 }  			     
 			       
 //_____________________________________________________________________________
 VGM::ISolid*  
 Geant4GM::Factory::CreateTessellatedSolid(const std::string& name, 
-                               std::vector< std::vector<VGM::ThreeVector> > facets)
+                     std::vector< std::vector<VGM::ThreeVector> > facets)
 {
 //
-  VGM::ISolid* vgmSolid 
-    = new Geant4GM::TessellatedSolid(name, facets);
+  return Register(new Geant4GM::TessellatedSolid(name, facets));
 
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
 }                               
 
 //_____________________________________________________________________________
 VGM::ISolid*  
 Geant4GM::Factory::CreateTorus(const std::string& name, 
-                               double rin, double rout, double rax, 
-			       double sphi, double dphi)
+                     double rin, double rout, double rax, 
+                     double sphi, double dphi)
 {			       
 //
-  VGM::ISolid* vgmSolid 
-    = new Geant4GM::Torus(name, rin, rout, rax, sphi, dphi);
-
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
+  return Register(new Geant4GM::Torus(name, rin, rout, rax, sphi, dphi));
 }  			     
 			       
 //_____________________________________________________________________________
 VGM::ISolid*  
 Geant4GM::Factory::CreateTrap(const std::string& name, 
-                              double hz, double theta, double phi,
-                              double dy1, double dx1, double dx2, 
-			      double alpha1, 
-                              double dy2, double dx3, double dx4, 
-			      double alpha2)
+                     double hz, double theta, double phi,
+                     double dy1, double dx1, double dx2, 
+                     double alpha1, 
+                     double dy2, double dx3, double dx4, 
+                     double alpha2)
 {			       
 //
-  VGM::ISolid* vgmSolid 
-    = new Geant4GM::Trap(name, hz, theta, phi, 
-                  dy1, dx1, dx2, alpha1, dy2, dx3, dx4, alpha2);
-
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
+  return Register(new Geant4GM::Trap(name, hz, theta, phi, 
+                        dy1, dx1, dx2, alpha1, dy2, dx3, dx4, alpha2));
 }  			     
 			       
 //_____________________________________________________________________________
 VGM::ISolid*  
 Geant4GM::Factory::CreateTrd(const std::string& name, 
-                             double hx1, double hx2, double hy1, double hy2, 
-			     double hz)
+                     double hx1, double hx2, double hy1, double hy2, 
+                     double hz)
 {			       
 //
-  VGM::ISolid* vgmSolid 
-    = new Geant4GM::Trd(name, hx1, hx2, hy1, hy2, hz);
+  return Register(new Geant4GM::Trd(name, hx1, hx2, hy1, hy2, hz));
 
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
 }  			     
 			       
 //_____________________________________________________________________________
 VGM::ISolid*  
 Geant4GM::Factory::CreateTubs(const std::string& name, 
-                              double rin, double rout, double hz, 
-			      double sphi, double dphi)
+                     double rin, double rout, double hz, 
+                     double sphi, double dphi)
 {			       
 //
-  VGM::ISolid* vgmSolid 
-    = new Geant4GM::Tubs(name, rin, rout, hz, sphi, dphi);
-
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
+  return Register(new Geant4GM::Tubs(name, rin, rout, hz, sphi, dphi));
 }  			     
 			       
 //_____________________________________________________________________________
 VGM::ISolid*  
 Geant4GM::Factory::CreateExtrudedSolid(const std::string& name, 
-                               std::vector< VGM::TwoVector > polygon,
-                               std::vector< std::vector<double> > zsections)
+                     std::vector< VGM::TwoVector > polygon,
+                     std::vector< std::vector<double> > zsections)
 {			       
 //
-  VGM::ISolid* vgmSolid 
-    = new Geant4GM::ExtrudedSolid(name, polygon, zsections);
-
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
+  return Register(new Geant4GM::ExtrudedSolid(name, polygon, zsections));
 }  			     
 			       
 //_____________________________________________________________________________
 VGM::ISolid*  
 Geant4GM::Factory::CreateIntersectionSolid(
-                               const std::string& name, 
-                               VGM::ISolid* solidA, VGM::ISolid* solidB, 
-                               const VGM::Transform& transform)
+                     const std::string& name, 
+                     VGM::ISolid* solidA, VGM::ISolid* solidB, 
+                     const VGM::Transform& transform)
 {
 //
   if (ClhepVGM::HasReflection(transform)) {
@@ -966,24 +890,20 @@ Geant4GM::Factory::CreateIntersectionSolid(
     exit(1);
   }  	      
                
-  VGM::ISolid* vgmSolid 
-    = new Geant4GM::BooleanSolid(
-            name, 
-	    VGM::kIntersection, 
-	    solidA, solidB, 
-            new CLHEP::HepRotation(ClhepVGM::Rotation(transform).inverse()), 
-	    ClhepVGM::Translation(transform));
-    
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
+  return Register(new Geant4GM::BooleanSolid(
+                        name, 
+	                      VGM::kIntersection, 
+	                      solidA, solidB, 
+                        new CLHEP::HepRotation(ClhepVGM::Rotation(transform).inverse()), 
+	                      ClhepVGM::Translation(transform)));
 }  			     
 
 //_____________________________________________________________________________
 VGM::ISolid*  
 Geant4GM::Factory::CreateSubtractionSolid(
-                               const std::string& name, 
-                               VGM::ISolid* solidA, VGM::ISolid* solidB, 
-                               const VGM::Transform& transform)
+                     const std::string& name, 
+                     VGM::ISolid* solidA, VGM::ISolid* solidB, 
+                     const VGM::Transform& transform)
 {
 //
 
@@ -995,24 +915,20 @@ Geant4GM::Factory::CreateSubtractionSolid(
     exit(1);
   }  	      
                
-  VGM::ISolid* vgmSolid 
-    = new Geant4GM::BooleanSolid(
-            name, 
-	    VGM::kSubtraction, 
-	    solidA, solidB, 
-            new CLHEP::HepRotation(ClhepVGM::Rotation(transform).inverse()), 
-	    ClhepVGM::Translation(transform));
-    
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
+  return Register(new Geant4GM::BooleanSolid(
+                        name, 
+	                      VGM::kSubtraction, 
+	                      solidA, solidB, 
+                        new CLHEP::HepRotation(ClhepVGM::Rotation(transform).inverse()), 
+	                      ClhepVGM::Translation(transform)));
 }  			     
 
 //_____________________________________________________________________________
 VGM::ISolid*  
 Geant4GM::Factory::CreateUnionSolid(
-                               const std::string& name, 
-                               VGM::ISolid* solidA, VGM::ISolid* solidB, 
-                               const VGM::Transform& transform)
+                     const std::string& name, 
+                     VGM::ISolid* solidA, VGM::ISolid* solidB, 
+                     const VGM::Transform& transform)
 {
 //
   if (ClhepVGM::HasReflection(transform)) {
@@ -1023,24 +939,20 @@ Geant4GM::Factory::CreateUnionSolid(
     exit(1);
   }  	      
                
-  VGM::ISolid* vgmSolid 
-    = new Geant4GM::BooleanSolid(
-            name, 
-	    VGM::kUnion, 
-	    solidA, solidB, 
-            new CLHEP::HepRotation(ClhepVGM::Rotation(transform).inverse()), 
-	    ClhepVGM::Translation(transform));
-    
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
+  return Register(new Geant4GM::BooleanSolid(
+                        name, 
+	                      VGM::kUnion, 
+	                      solidA, solidB, 
+                        new CLHEP::HepRotation(ClhepVGM::Rotation(transform).inverse()), 
+	                      ClhepVGM::Translation(transform)));
 }  			     
 
 //_____________________________________________________________________________
 VGM::ISolid*  
 Geant4GM::Factory::CreateDisplacedSolid(
-                               const std::string& name, 
-                               VGM::ISolid* solid,
-                               const VGM::Transform& transform)
+                     const std::string& name, 
+                     VGM::ISolid* solid,
+                     const VGM::Transform& transform)
 {
 //
   if ( ClhepVGM::HasReflection(transform )) {
@@ -1051,22 +963,18 @@ Geant4GM::Factory::CreateDisplacedSolid(
     exit(1);
   }  	      
                
-  VGM::ISolid* vgmSolid 
-    = new Geant4GM::DisplacedSolid(
-            name, 
-	    solid,
-            new CLHEP::HepRotation(ClhepVGM::Rotation(transform).inverse()), 
-	    ClhepVGM::Translation(transform));
-    
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
+  return Register(new Geant4GM::DisplacedSolid(
+                        name, 
+	                      solid,
+                        new CLHEP::HepRotation(ClhepVGM::Rotation(transform).inverse()), 
+	                      ClhepVGM::Translation(transform)));
 }  			     
 
 //_____________________________________________________________________________
 VGM::IVolume* 
 Geant4GM::Factory::CreateVolume(const std::string& name, 
-                                VGM::ISolid* solid, 
-                                const std::string& mediumName)
+                     VGM::ISolid* solid, 
+                     const std::string& mediumName)
 {
 //
   // Get material name from medium
@@ -1095,11 +1003,11 @@ Geant4GM::Factory::CreateVolume(const std::string& name,
 //_____________________________________________________________________________
 VGM::IPlacement* 
 Geant4GM::Factory::CreatePlacement(
-                               const std::string& name, 
-                               int copyNo,
-                               VGM::IVolume* volume, 
-			       VGM::IVolume* motherVolume,
-                               const VGM::Transform& transform)
+                     const std::string& name, 
+                     int copyNo,
+                     VGM::IVolume* volume, 
+                     VGM::IVolume* motherVolume,
+                     const VGM::Transform& transform)
 {
 //
 /*
@@ -1145,13 +1053,13 @@ Geant4GM::Factory::CreatePlacement(
 //_____________________________________________________________________________
 VGM::IPlacement* 
 Geant4GM::Factory::CreateMultiplePlacement(
-                               const std::string& name, 
-                               VGM::IVolume* volume, 
-			       VGM::IVolume* motherVolume,
-			       VGM::Axis axis,
-                               int nofItems,
-                               double  width,
-                               double  offset)
+                     const std::string& name, 
+                     VGM::IVolume* volume, 
+                     VGM::IVolume* motherVolume,
+                     VGM::Axis axis,
+                     int nofItems,
+                     double  width,
+                     double  offset)
 {
 //
 
@@ -1225,6 +1133,15 @@ Geant4GM::Factory::Top() const
 }  		       
 
 //_____________________________________________________________________________
+VGM::ISolid* 
+Geant4GM::Factory::ISolid() const 
+{
+/// Returns the solid (if in one solid conversion mode)
+
+  return fSolid;
+}            
+
+//_____________________________________________________________________________
 G4VPhysicalVolume*  
 Geant4GM::Factory:: World() const
 {
@@ -1233,6 +1150,14 @@ Geant4GM::Factory:: World() const
   return Geant4GM::PlacementMap::Instance()->GetPlacement(fTop);
 }
 
+//_____________________________________________________________________________
+G4VSolid*  
+Geant4GM::Factory::Solid() const
+{
+/// Returns the solid (if in one solid conversion mode)
+
+  return Geant4GM::SolidMap::Instance()->GetSolid(fSolid);
+}            
 
 //_____________________________________________________________________________
 bool Geant4GM::Factory::Import(G4VPhysicalVolume* worldPV)
@@ -1246,10 +1171,13 @@ bool Geant4GM::Factory::Import(G4VPhysicalVolume* worldPV)
     std::cout << std::endl;
   }  
  
+  // Inactivate single mode (if it was switch previously)
+  //
+  SetSingleMode(false);
+
   // Import materials
   // 
   MaterialFactory()->Import();
-
 
   // Get logical volume
   G4LogicalVolume* worldLV = worldPV->GetLogicalVolume();
@@ -1281,4 +1209,38 @@ bool Geant4GM::Factory::Import(G4VPhysicalVolume* worldPV)
   }  
  
   return true;
-}			      
+}
+
+//_____________________________________________________________________________
+bool Geant4GM::Factory::Import(G4VSolid* solid)
+{
+/// Import one Geant4 solid.
+/// This call automatically activates a special single mode
+
+
+  if (Debug()>0) {
+    BaseVGM::DebugInfo();
+    std::cout << "Geant4GM::Factory::Import of one solid started ...";
+    if (Debug()>1)  std::cout << solid;
+    std::cout << std::endl;
+  } 
+
+  // Clear solid store
+  // (Do not delete objects as they are also referenced in a singleton mao)
+  SolidStore().clear();
+
+  // Activate single mode
+  //
+  SetSingleMode(true);
+
+  // Import solid
+  fSolid = ImportSolid(solid);
+  
+  if (Debug()>0) {
+    BaseVGM::DebugInfo();
+    std::cout << "Geant4GM::Factory::Import of one solid finished." << std::endl;
+  }  
+ 
+  return  ( fSolid != 0);
+}
+
