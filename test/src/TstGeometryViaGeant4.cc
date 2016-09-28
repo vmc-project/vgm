@@ -33,6 +33,7 @@
 #include "G4VSolid.hh"
 #include "G4Box.hh"
 #include "G4Cons.hh"
+#include "G4CutTubs.hh"
 #include "G4Ellipsoid.hh"
 #include "G4EllipticalTube.hh"
 #include "G4ExtrudedSolid.hh"
@@ -174,6 +175,7 @@ G4LogicalVolume* TstGeometryViaGeant4::CreateExtrudedSolid1()
 //_____________________________________________________________________________
 G4LogicalVolume* TstGeometryViaGeant4::CreateExtrudedSolid2()
 {   
+
   std::vector<G4TwoVector> polygon;
   polygon.push_back(G4TwoVector(-30.*cm, -30.*cm));
   polygon.push_back(G4TwoVector(-30.*cm,  30.*cm));
@@ -196,7 +198,7 @@ G4LogicalVolume* TstGeometryViaGeant4::CreateExtrudedSolid2()
   zsections2.push_back(G4ExtrudedSolid::ZSection( 40.*cm, G4TwoVector( 20.*cm, 20.*cm), 0.9));
 
   G4ExtrudedSolid* xtruS2 
-    = new G4ExtrudedSolid("XtruS1", polygon, zsections2);
+    = new G4ExtrudedSolid("XtruS2", polygon, zsections2);
 
   G4UnionSolid* unionS
     = new G4UnionSolid("xtruU", xtruS1, xtruS2, 0, G4ThreeVector());
@@ -204,8 +206,8 @@ G4LogicalVolume* TstGeometryViaGeant4::CreateExtrudedSolid2()
   G4LogicalVolume* xtruV 
     = new G4LogicalVolume(unionS, fBasicMaterial, "xtru2");
 
-  return xtruV;  
-}  
+  return xtruV;
+}
  
 //_____________________________________________________________________________
 G4LogicalVolume* TstGeometryViaGeant4::CreateHype()
@@ -404,81 +406,11 @@ G4LogicalVolume* TstGeometryViaGeant4::CreateTubs(G4double sphi, G4double dphi)
 //_____________________________________________________________________________
 G4LogicalVolume* TstGeometryViaGeant4::CreateCtubs(G4double /*sphi*/, G4double /*dphi*/)
 {
-  // Input parameters
-  G4double rin  = 20.*cm;
-  G4double rout = 30.*cm;
-  G4double hz = 60.49*cm;
-  G4double sphi = 330.*deg;
-  G4double dphi = 280.*deg;
-  Hep3Vector nLow( 0.00, 0.64, -0.77);
-  Hep3Vector nHigh( 0.00, 0.09, 0.87);
+  G4VSolid* ctubsS
+    = new G4CutTubs("ctubsS", 20.*cm, 30.*cm, 60.49*cm, 330.*deg, 280.*deg, 
+                    G4ThreeVector( 0.00, 0.64, -0.77), G4ThreeVector(0.00, 0.09, 0.87));
 
-  // Get angles 
-  double thetaLow = nLow.theta();
-  double thetaHigh = nHigh.theta();
-
-  // Calculate new hz
-  double dzLow  = fabs(rout * tan(thetaLow));
-  double dzHigh = fabs(rout * tan(thetaHigh));
-  double dzMax = dzLow >= dzHigh ? dzLow : dzHigh;
-  double hzNew = hz + dzMax*1.2;
-
-  /// Create tube 
-  G4VSolid* tubs = new G4Tubs("tubs", rin, rout, hzNew, sphi, dphi);
-		     
-  // Define  dimensions of boxes
-  //
-  double hzLow = 1.2 * fabs(rout / cos(thetaLow));		     
-  double hzHigh = 1.2 * fabs(rout / cos(thetaHigh));
-
-  double dHz = hzNew-hz;
-  double thetaLow2 = thetaLow;
-  double thetaHigh2 = thetaHigh;
-  if ( thetaLow2 > CLHEP::pi/2. ) thetaLow2 = thetaLow - CLHEP::pi/2.;
-  if ( thetaHigh2 > CLHEP::pi/2. ) thetaHigh2 = thetaHigh - CLHEP::pi/2.;
-  double rCorner = sqrt(rout*rout + dHz*dHz);
-  double thetaPlusLow = atan(dHz/rout) - thetaLow2;
-  double thetaPlusHigh = atan(dHz/rout) - thetaHigh2;
-  double hxLow = 2.*rCorner*cos(thetaPlusLow);
-  double hxHigh = 2.*rCorner*cos(thetaPlusHigh);
-
-  G4VSolid* boxLow = new G4Box("boxLow", hxLow, hxLow, hzLow);  
-  G4VSolid* boxHigh = new G4Box("boxHigh", hxHigh, hxHigh, hzHigh);  
-
-  
-  // Define rotations of boxes
-  //
-  // Rotation axis - cross product of normals
-  Hep3Vector axisLow = Hep3Vector(0,0,1).cross(nLow);
-  double angleLow = Hep3Vector(0,0,1).angle(nLow);
-  HepRotation rotLow;
-  rotLow.set(axisLow, angleLow);
-  
-  Hep3Vector axisHigh = Hep3Vector(0,0,1).cross(nHigh);
-  double angleHigh = Hep3Vector(0,0,1).angle(nHigh);
-  HepRotation rotHigh;
-  rotHigh.set(axisHigh, angleHigh);
- 
-  // Define displacement of boxes
-  //
-  double zposLow  = fabs(hzLow  / cos(thetaLow));
-  double zposHigh = fabs(hzHigh / cos(thetaHigh));
-  //std::cout << "zposLow="  << zposLow  << std::endl;
-  //std::cout << "zposHigh=" << zposHigh << std::endl;
-
-
-  // Subtract boxes from tube
-  G4VSolid* booleanSolid1
-     = new G4SubtractionSolid("ctubs1", tubs, boxLow,
-                               new HepRotation(rotLow.inverse()),
-                               Hep3Vector(0, 0, - (hz + zposLow)));			
-
-  G4VSolid* booleanSolid2
-     = new G4SubtractionSolid("ctubs2", booleanSolid1, boxHigh,
-                               new HepRotation(rotHigh.inverse()),
-                               Hep3Vector(0, 0, hz + zposHigh));			
-
-  return new G4LogicalVolume(booleanSolid2, fBasicMaterial, "ctubs");
+  return new G4LogicalVolume(ctubsS, fBasicMaterial, "ctubs");
 }  
  
 
@@ -507,156 +439,156 @@ TstGeometryViaGeant4::PlaceSolids(G4LogicalVolume* mother,
   G4LogicalVolume* boxV = CreateBox();
   new G4PVPlacement(
                HepGeom::Translate3D(x0 + (counter)*dx,  -dy, zpos),
-	       boxV, "box", mother, false, 0);
+         boxV, "box", mother, false, 0);
 
   if (reflect) {
     G4ReflectionFactory::Instance()
       ->Place(HepGeom::Translate3D(x0 + (counter)*dx,  -dy, -zpos) * reflect3D,
-	      "box", boxV, mother, false, 0);
-  }	      
+        "box", boxV, mother, false, 0);
+  }       
 
   // Cons 
   //
   G4LogicalVolume* consV = CreateCons(sphi, dphi);
   new G4PVPlacement(
                HepGeom::Translate3D(x0 + (counter)*dx, dy, zpos),
-	       consV, "cons", mother, false, 0);
+         consV, "cons", mother, false, 0);
 
   if (reflect) {
     G4ReflectionFactory::Instance()
       ->Place(HepGeom::Translate3D(x0 + (counter)*dx, dy, -zpos) * reflect3D,
-	      "cons", consV, mother, false, 0);
-  }	      
+        "cons", consV, mother, false, 0);
+  }       
 
   // Elliptical tube 
   //
   G4LogicalVolume* eltuV = CreateEllipticalTube();
   new G4PVPlacement(
                HepGeom::Translate3D(x0 + (++counter)*dx, -dy, zpos),
-	       eltuV, "eltu", mother, false, 0);
+         eltuV, "eltu", mother, false, 0);
 
   if (reflect) {
     G4ReflectionFactory::Instance()
       ->Place(HepGeom::Translate3D(x0 + (counter)*dx, -dy, -zpos) * reflect3D,
-	      "eltu", eltuV, mother, false, 0);
-  }	      
+        "eltu", eltuV, mother, false, 0);
+  }       
 
   // Para
   //
   G4LogicalVolume* paraV = CreatePara();
   new G4PVPlacement( 
                HepGeom::Translate3D(x0 + (counter)*dx,  dy, zpos),
-	       paraV, "para", mother, false, 0);
+         paraV, "para", mother, false, 0);
 
   if (reflect) {
     G4ReflectionFactory::Instance()
       ->Place(HepGeom::Translate3D(x0 + (counter)*dx,  dy, -zpos) * reflect3D,
-	      "para", paraV, mother, false, 0);
-  }	      
+        "para", paraV, mother, false, 0);
+  }       
   
   // Polycone
   //
   G4LogicalVolume* pconeV = CreatePolycone(sphi, dphi);
   new G4PVPlacement( 
                HepGeom::Translate3D(x0 + (++counter)*dx, -dy, zpos),
-	       pconeV, "pcone", mother, false, 0);
+         pconeV, "pcone", mother, false, 0);
 
   if (reflect) {
     G4ReflectionFactory::Instance()
       ->Place(HepGeom::Translate3D(x0 + (counter)*dx, -dy, -zpos) * reflect3D,
-	      "pcone", pconeV, mother, false, 0);
-  }	      
+        "pcone", pconeV, mother, false, 0);
+  }       
 
   // Polyhedra
   //
   G4LogicalVolume* phedraV = CreatePolyhedra(sphi, dphi);
   new G4PVPlacement( 
                HepGeom::Translate3D(x0 + (counter)*dx,  dy, zpos),
-	       phedraV, "phedra", mother, false, 0);
+         phedraV, "phedra", mother, false, 0);
 
   if (reflect) {
     G4ReflectionFactory::Instance()
       ->Place(HepGeom::Translate3D(x0 + (counter)*dx,  dy, -zpos) * reflect3D,
-	      "phedra", phedraV, mother, false, 0);
-  }	      
+        "phedra", phedraV, mother, false, 0);
+  }       
 
   // Sphere 
   //
   G4LogicalVolume* sphereV = CreateSphere(sphi, dphi);
   new G4PVPlacement(
                HepGeom::Translate3D(x0 + (++counter)*dx, -dy, zpos),
-	       sphereV, "sphere", mother, false, 0);
-	       
+         sphereV, "sphere", mother, false, 0);
+         
   if (reflect) {
     G4ReflectionFactory::Instance()
       ->Place(HepGeom::Translate3D(x0 + (counter)*dx, -dy, -zpos) * reflect3D,
-	      "sphere", sphereV, mother, false, 0);
-  }	      
+        "sphere", sphereV, mother, false, 0);
+  }       
 
   // Torus
   //
   G4LogicalVolume* torusV = CreateTorus(sphi, dphi);
   new G4PVPlacement( 
                HepGeom::Translate3D(x0 + (counter)*dx,  dy, zpos),
-	       torusV, "torus", mother, false, 0);
+         torusV, "torus", mother, false, 0);
 
   if (reflect) {
     G4ReflectionFactory::Instance()
       ->Place(HepGeom::Translate3D(x0 + (counter)*dx,  dy, -zpos) * reflect3D,
-	      "torus", torusV, mother, false, 0);
-  }	      
+        "torus", torusV, mother, false, 0);
+  }       
 
   // Trap 
   //
   G4LogicalVolume* trapV = CreateTrap();
   new G4PVPlacement( 
                HepGeom::Translate3D(x0 + (++counter)*dx, -dy, zpos),
-	       trapV, "trap", mother, false, 0);
+         trapV, "trap", mother, false, 0);
 
   if (reflect) {
     G4ReflectionFactory::Instance()
       ->Place(HepGeom::Translate3D(x0 + (counter)*dx, -dy, -zpos) * reflect3D,
-	      "trap", trapV, mother, false, 0);
-  }	      
+        "trap", trapV, mother, false, 0);
+  }       
 
   // Trd
   //
   G4LogicalVolume* trdV = CreateTrd();
   new G4PVPlacement( 
                HepGeom::Translate3D(x0 + (counter)*dx,  dy, zpos),
-	       trdV, "trd", mother, false, 0);
+         trdV, "trd", mother, false, 0);
 
   if (reflect) {
     G4ReflectionFactory::Instance()
       ->Place(HepGeom::Translate3D(x0 + (counter)*dx,  dy, -zpos) * reflect3D,
-	      "trd", trdV, mother, false, 0);
-  }	      
+        "trd", trdV, mother, false, 0);
+  }       
  
   // Tubs
   //
   G4LogicalVolume* tubsV = CreateTubs(sphi, dphi);
   new G4PVPlacement(
                HepGeom::Translate3D(x0 + (++counter)*dx, -dy, zpos),
-	       tubsV, "tubs", mother, false, 0);
+         tubsV, "tubs", mother, false, 0);
 
   if (reflect) {
     G4ReflectionFactory::Instance()
       ->Place(HepGeom::Translate3D(x0 + (counter)*dx, -dy, -zpos) * reflect3D,
-	      "tubs", tubsV, mother, false, 0);
-  }	      
+        "tubs", tubsV, mother, false, 0);
+  }       
 
   // CTubs
   //
   G4LogicalVolume* ctubsV = CreateCtubs(sphi, dphi);
   new G4PVPlacement(
                HepGeom::Translate3D(x0 + (counter)*dx, dy, zpos),
-	       ctubsV, "ctubs", mother, false, 0);
+         ctubsV, "ctubs", mother, false, 0);
 
   if (reflect) {
     G4ReflectionFactory::Instance()
       ->Place(HepGeom::Translate3D(x0 + (counter)*dx, dy, -zpos) * reflect3D,
-	      "ctubs", ctubsV, mother, false, 0);
-  }	      
+        "ctubs", ctubsV, mother, false, 0);
+  }       
 
  
   // Xtru1
@@ -664,52 +596,52 @@ TstGeometryViaGeant4::PlaceSolids(G4LogicalVolume* mother,
   G4LogicalVolume* xtru1V = CreateExtrudedSolid1();
   new G4PVPlacement(
                HepGeom::Translate3D(x0 + (++counter)*dx, -dy, zpos),
-	       xtru1V, "xtru1", mother, false, 0);
+         xtru1V, "xtru1", mother, false, 0);
 
   if (reflect) {
     G4ReflectionFactory::Instance()
       ->Place(HepGeom::Translate3D(x0 + (counter)*dx, -dy, -zpos) * reflect3D,
-	      "xtru1", xtru1V, mother, false, 0);
-  }	      
+        "xtru1", xtru1V, mother, false, 0);
+  }       
 
   // Xtru2
   //
   G4LogicalVolume* xtru2V = CreateExtrudedSolid2();
   new G4PVPlacement(
                HepGeom::Translate3D(x0 + (counter)*dx, dy, zpos),
-	       xtru2V, "xtru2", mother, false, 0);
+         xtru2V, "xtru2", mother, false, 0);
 
   if (reflect) {
     G4ReflectionFactory::Instance()
       ->Place(HepGeom::Translate3D(x0 + (counter)*dx, dy, -zpos) * reflect3D,
-	      "xtru2", xtru2V, mother, false, 0);
-  }	      
+        "xtru2", xtru2V, mother, false, 0);
+  }       
 
   // Hype
   //
   G4LogicalVolume* hypeV = CreateHype();
   new G4PVPlacement(
                HepGeom::Translate3D(x0 + (++counter)*dx, -dy, zpos),
-	       hypeV, "hype", mother, false, 0);
+         hypeV, "hype", mother, false, 0);
 
   if (reflect) {
     G4ReflectionFactory::Instance()
       ->Place(HepGeom::Translate3D(x0 + (counter)*dx, -dy, -zpos) * reflect3D,
-	      "hype", hypeV, mother, false, 0);
-  }	      
+        "hype", hypeV, mother, false, 0);
+  }       
 
   // Paraboloid
   //
   G4LogicalVolume* paraboloidV = CreateParaboloid();
   new G4PVPlacement(
                HepGeom::Translate3D(x0 + (counter)*dx, dy, zpos),
-	       paraboloidV, "paraboloid", mother, false, 0);
+         paraboloidV, "paraboloid", mother, false, 0);
 
   if (reflect) {
     G4ReflectionFactory::Instance()
       ->Place(HepGeom::Translate3D(x0 + (counter)*dx, dy, -zpos) * reflect3D,
-	      "paraboloid", paraboloidV, mother, false, 0);
-  }	      
+        "paraboloid", paraboloidV, mother, false, 0);
+  }       
 
  
   return mother;

@@ -1528,4 +1528,3 @@ void* TstGeometryViaVGM::TestDisplacedSolids2()
   
   return (void*) fFactory->Top();
 }
-

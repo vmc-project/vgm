@@ -47,6 +47,7 @@ class TstDetectorConstruction : public G4VUserDetectorConstruction
     void SelectTest(const G4String& testName, G4bool fullAngle);
     void SelectVisualization(const G4String& visMode);
     void SetDebug(G4bool debugMode);
+    void SetSingleMode(G4bool singleMode);
 
   private:
     bool IsGeant4Geometry() const;
@@ -74,6 +75,7 @@ class TstDetectorConstruction : public G4VUserDetectorConstruction
     G4String           fSelectedTest;
     G4String           fSelectedVisMode;
     G4bool             fFullAngle;
+    G4bool             fSingleMode;
     VGM::IFactory*     fInputFactory;
     VGM::IFactory*     fOutputFactory;
     Geant4GM::Factory* fGeant4Factory;
