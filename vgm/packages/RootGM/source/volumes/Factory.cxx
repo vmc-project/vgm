@@ -76,7 +76,8 @@ RootGM::Factory::Factory()
   : VGM::IFactory(),
     BaseVGM::VFactory("Root_GM_Factory",      
                      new RootGM::MaterialFactory()),
-    fTop(0) 
+    fTop(0),
+    fSolid(0)
 {
 /// Standard default constructor
   
@@ -161,149 +162,106 @@ RootGM::Factory::ImportSolid(TGeoShape* shape)
          ( origin[0] == 0.0 && origin[1]== 0.0 && origin[2] == 0.0 ) ) {
 
       // Import box itself
-      VGM::IBox* vgmBox = new RootGM::Box(box);
-      SolidStore().push_back(vgmBox);
-      return vgmBox;
+      return Register(new RootGM::Box(box));
     }  
   
     // Import box with offset via displaced solid
-    VGM::IDisplacedSolid* vgmDisplacedSolid = new RootGM::DisplacedSolid(box);
-    SolidStore().push_back(vgmDisplacedSolid);
-    return vgmDisplacedSolid; 
+    return Register(new RootGM::DisplacedSolid(box));
   }
 
   TGeoConeSeg* cons = dynamic_cast<TGeoConeSeg*>(shape);
   if (cons) { 
-    VGM::ICons* vgmCons = new RootGM::Cons(cons);
-    SolidStore().push_back(vgmCons);
-    return vgmCons; 
+    return Register(new RootGM::Cons(cons));
   }
 
   TGeoEltu* eltu = dynamic_cast<TGeoEltu*>(shape);
   if (eltu ) { 
-     
-    VGM::IEllipticalTube* vgmEltu = new RootGM::EllipticalTube(eltu);
-    SolidStore().push_back(vgmEltu);
-    return vgmEltu; 
+    return Register(new RootGM::EllipticalTube(eltu));
   }
 
   TGeoCone* cone = dynamic_cast<TGeoCone*>(shape);
   if (cone) { 
-    VGM::ICons* vgmCons = new RootGM::Cons(cone);
-    SolidStore().push_back(vgmCons);
-    return vgmCons; 
+    return Register(new RootGM::Cons(cone));
   }
 
   TGeoHalfSpace* halfSpace = dynamic_cast<TGeoHalfSpace*>(shape);
   if (halfSpace) { 
-    VGM::IDisplacedSolid* vgmDisplacedSolid = new RootGM::DisplacedSolid(halfSpace);
-    SolidStore().push_back(vgmDisplacedSolid);
-    return vgmDisplacedSolid; 
+    return Register(new RootGM::DisplacedSolid(halfSpace));
   }
 
   TGeoHype* hype = dynamic_cast<TGeoHype*>(shape);
   if (hype) { 
-    VGM::IHype* vgmHype = new RootGM::Hype(hype);
-    SolidStore().push_back(vgmHype);
-    return vgmHype; 
+    return Register(new RootGM::Hype(hype));
   }
 
   TGeoPara* para = dynamic_cast<TGeoPara*>(shape);
   if (para) { 
-    VGM::IPara* vgmPara = new RootGM::Para(para);
-    SolidStore().push_back(vgmPara);
-    return vgmPara; 
+    return Register(new RootGM::Para(para));
   }
 
   TGeoParaboloid* paraboloid = dynamic_cast<TGeoParaboloid*>(shape);
   if (paraboloid) { 
-    VGM::IParaboloid* vgmParaboloid = new RootGM::Paraboloid(paraboloid);
-    SolidStore().push_back(vgmParaboloid);
-    return vgmParaboloid; 
+    return Register(new RootGM::Paraboloid(paraboloid));
   }
 
   TGeoPgon* polyhedra = dynamic_cast<TGeoPgon*>(shape);
   if (polyhedra) { 
-    VGM::IPolyhedra* vgmPolyhedra = new RootGM::Polyhedra(polyhedra);
-    SolidStore().push_back(vgmPolyhedra);
-    return vgmPolyhedra; 
+    return Register(new RootGM::Polyhedra(polyhedra));
   }
 
   TGeoPcon* polycone = dynamic_cast<TGeoPcon*>(shape);
   if (polycone) { 
-    VGM::IPolycone* vgmPolycone = new RootGM::Polycone(polycone);
-    SolidStore().push_back(vgmPolycone);
-    return vgmPolycone; 
+    return Register(new RootGM::Polycone(polycone));
   }
 
   TGeoSphere* sphere = dynamic_cast<TGeoSphere*>(shape);
   if (sphere) { 
-    VGM::ISphere* vgmSphere = new RootGM::Sphere(sphere);
-    SolidStore().push_back(vgmSphere);
-    return vgmSphere; 
+    return Register(new RootGM::Sphere(sphere));
   }
 
   TGeoTorus* torus = dynamic_cast<TGeoTorus*>(shape);
   if (torus) { 
-    VGM::ITorus* vgmTorus = new RootGM::Torus(torus);
-    SolidStore().push_back(vgmTorus);
-    return vgmTorus; 
+    return Register(new RootGM::Torus(torus));
   }
 
   TGeoTrap* trap = dynamic_cast<TGeoTrap*>(shape);
   if (trap) { 
-    VGM::ITrap* vgmTrap = new RootGM::Trap(trap);
-    SolidStore().push_back(vgmTrap);
-    return vgmTrap; 
+    return Register(new RootGM::Trap(trap));
   }
 
   TGeoTrd1* trd1 = dynamic_cast<TGeoTrd1*>(shape);
   if (trd1) { 
-    VGM::ITrd* vgmTrd = new RootGM::Trd(trd1);
-    SolidStore().push_back(vgmTrd);
-    return vgmTrd; 
+    return Register(new RootGM::Trd(trd1));
   }
 
   TGeoTrd2* trd2 = dynamic_cast<TGeoTrd2*>(shape);
   if (trd2) { 
-    VGM::ITrd* vgmTrd = new RootGM::Trd(trd2);
-    SolidStore().push_back(vgmTrd);
-    return vgmTrd; 
+    return Register(new RootGM::Trd(trd2));
   }
 
   TGeoArb8* arb8 = dynamic_cast<TGeoArb8*>(shape);
   if (arb8) { 
-    VGM::IArb8* vgmArb8 = new RootGM::Arb8(arb8);
-    SolidStore().push_back(vgmArb8);
-    return vgmArb8; 
+    return Register(new RootGM::Arb8(arb8));
   }
 
   TGeoCtub* ctubs = dynamic_cast<TGeoCtub*>(shape);
   if (ctubs) { 
-    VGM::ICtubs* vgmCtubs = new RootGM::Ctubs(ctubs);
-    SolidStore().push_back(vgmCtubs);
-    return vgmCtubs; 
+    return Register(new RootGM::Ctubs(ctubs));
   }
 
   TGeoTubeSeg* tubs = dynamic_cast<TGeoTubeSeg*>(shape);
   if (tubs) { 
-    VGM::ITubs* vgmTubs = new RootGM::Tubs(tubs);
-    SolidStore().push_back(vgmTubs);
-    return vgmTubs; 
+    return Register(new RootGM::Tubs(tubs));
   }
 
   TGeoTube* tube = dynamic_cast<TGeoTube*>(shape);
   if (tube) { 
-    VGM::ITubs* vgmTubs = new RootGM::Tubs(tube);
-    SolidStore().push_back(vgmTubs);
-    return vgmTubs; 
+    return Register(new RootGM::Tubs(tube));
   }
 
   TGeoXtru* xtru = dynamic_cast<TGeoXtru*>(shape);
   if (xtru) { 
-    VGM::IExtrudedSolid* vgmXtru = new RootGM::ExtrudedSolid(xtru);
-    SolidStore().push_back(vgmXtru);
-    return vgmXtru; 
+    return Register(new RootGM::ExtrudedSolid(xtru));
   }
 
   TGeoShapeAssembly* assembly = dynamic_cast<TGeoShapeAssembly*>(shape);
@@ -316,7 +274,7 @@ RootGM::Factory::ImportSolid(TGeoShape* shape)
     ImportConstituentSolid(0, composite);
     ImportConstituentSolid(1, composite);
     VGM::IBooleanSolid* vgmBoolean = new RootGM::BooleanSolid(composite);
-    SolidStore().push_back(vgmBoolean);
+    Register(vgmBoolean);
 
     if (Debug()>0) {
       BaseVGM::DebugInfo();
@@ -340,9 +298,7 @@ RootGM::Factory::ImportSolid(TGeoShape* shape)
          scaledSphere->GetTheta1() == 0. && scaledSphere->GetTheta2() == 180. &&
          scaledSphere->GetPhi1() == 0. && scaledSphere->GetPhi2() == 360. ) {
          
-      VGM::IEllipsoid* vgmEllipsoid = new RootGM::Ellipsoid(scaled);
-      SolidStore().push_back(vgmEllipsoid);
-      return vgmEllipsoid; 
+      return Register(new RootGM::Ellipsoid(scaled));
     }
   }  
 
@@ -354,11 +310,7 @@ RootGM::Factory::ImportSolid(TGeoShape* shape)
 	    
   if ( Ignore() ) {
     std::cerr << "*** Warning: Using a box instead  ***" << std::endl; 
-    VGM::IBox* vgmBox 
-      = new RootGM::Box(shape->GetName(), 1., 1., 1.);
-    SolidStore().push_back(vgmBox);
-    RootGM::SolidMap::Instance()->AddSolid(vgmBox, shape); 
-    return vgmBox; 
+    return Register(new RootGM::Box(shape->GetName(), 1., 1., 1.));
   }
   else {	    
     std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
@@ -426,9 +378,9 @@ void RootGM::Factory::ImportDaughters(TGeoVolume* rootVolume)
 
 //_____________________________________________________________________________
 void RootGM::Factory::ImportAssembly(const TGeoVolume* rootVolume,
-                                     VGM::IVolume* volume,
-                                     const TGeoNode* rootAssemblyNode,
-				     std::vector<const TGeoNode*>& assemblyNodes)
+                        VGM::IVolume* volume,
+                        const TGeoNode* rootAssemblyNode,
+                        std::vector<const TGeoNode*>& assemblyNodes)
 {
 /// Import an assembly daughter of the rootVolume.                            \n
 /// Called recursively if the daughter of assembly is again assembly.
@@ -600,6 +552,17 @@ bool RootGM::Factory::Import(void* topNode)
 }			      
 
 //_____________________________________________________________________________
+bool RootGM::Factory::ImportSolid(void* solid)
+{
+//
+  TGeoShape* rootSolid
+    = static_cast<TGeoShape*>(solid);
+
+  return Import(rootSolid);
+
+}           
+
+//_____________________________________________________________________________
 bool RootGM::Factory::IsDivided(const TGeoVolume* volume) const
 {
 /// Returns true if the volume is divided
@@ -617,6 +580,27 @@ bool RootGM::Factory::IsDivided(const TGeoVolume* volume) const
   return true;
 }  
 
+//_____________________________________________________________________________
+VGM::ISolid*  RootGM::Factory::Register(VGM::ISolid* vgmSolid)
+{
+/// Register solid in  SolidStore() 
+
+  SolidStore().push_back(vgmSolid);
+  return vgmSolid;
+}
+
+//
+// protected functions
+//
+
+//_____________________________________________________________________________
+void RootGM::Factory::SetSolid(VGM::ISolid* solid)
+{
+/// Set solid (in single mode)
+
+  fSolid = solid;
+}
+
 //
 // public functions
 //
@@ -624,182 +608,138 @@ bool RootGM::Factory::IsDivided(const TGeoVolume* volume) const
 //_____________________________________________________________________________
 VGM::ISolid* 
 RootGM::Factory::CreateArb8(const std::string& name, 
-                            double hz, 
-                            std::vector<VGM::TwoVector> vertices)
+                   double hz, 
+                   std::vector<VGM::TwoVector> vertices)
 {
 //
-  VGM::ISolid* vgmSolid 
-    = new RootGM::Arb8(name, hz, vertices);
-    
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
+  return Register(new RootGM::Arb8(name, hz, vertices));
 }  			     
 
 //_____________________________________________________________________________
 VGM::ISolid* 
 RootGM::Factory::CreateBox(const std::string& name, 
-                           double hx, double hy, double hz)
+                   double hx, double hy, double hz)
 {
 //
-  VGM::ISolid* vgmSolid 
-    = new RootGM::Box(name, hx, hy, hz);
-
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
+  return Register(new RootGM::Box(name, hx, hy, hz));
 }  			     
 
 //_____________________________________________________________________________
 VGM::ISolid*  
 RootGM::Factory::CreateCons(const std::string& name, 
-                            double rin1, double rout1, 
-			    double rin2, double rout2, double hz,
-	                    double sphi, double dphi)
+                   double rin1, double rout1, 
+                   double rin2, double rout2, double hz,
+                   double sphi, double dphi)
 {			       
 //
-  VGM::ISolid* vgmSolid 
-    = new RootGM::Cons(name, rin1, rout1, rin2, rout2, hz, sphi, dphi);
-
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
+  return Register(new RootGM::Cons(name, rin1, rout1, rin2, rout2, hz, 
+                        sphi, dphi));
 }  			     
 			       
 //_____________________________________________________________________________
 VGM::ISolid*  
 RootGM::Factory::CreateCtubs(const std::string& name, 
-                            double rin, double rout, double hz, 
-			    double sphi, double dphi,
-			    double nxlow, double nylow, double nzlow,
-			    double nxhigh, double nyhigh, double nzhigh)
+                   double rin, double rout, double hz, 
+                   double sphi, double dphi,
+                   double nxlow, double nylow, double nzlow,
+                   double nxhigh, double nyhigh, double nzhigh)
 {			       
 //
-  VGM::ISolid* vgmSolid 
-    = new RootGM::Ctubs(name, rin, rout, hz, sphi, dphi, 
-                        nxlow, nylow, nzlow, nxhigh, nyhigh, nzhigh);
-
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
+  return Register(new RootGM::Ctubs(name, rin, rout, hz, sphi, dphi, 
+                        nxlow, nylow, nzlow, nxhigh, nyhigh, nzhigh));
 }  			     
 			       
 //_____________________________________________________________________________
 VGM::ISolid*  
 RootGM::Factory::CreateEllipsoid(const std::string& name, 
-                              double dx, double dy, double dz,
-                              double zBottomCut, double zTopCut)
+                   double dx, double dy, double dz,
+                   double zBottomCut, double zTopCut)
 {			       
 //
-  VGM::ISolid* vgmSolid 
-    = new RootGM::Ellipsoid(name, dx, dy, dz, zBottomCut, zTopCut);
-
-  SolidStore().push_back(vgmSolid);
-  
-  return vgmSolid; 
+  return Register(new RootGM::Ellipsoid(name, dx, dy, dz, zBottomCut, zTopCut));
 }  			     
 			       
 //_____________________________________________________________________________
 VGM::ISolid*  
 RootGM::Factory::CreateEllipticalTube(const std::string& name, 
-                              double dx, double dy, double hz)
+                   double dx, double dy, double hz)
 {			       
 //
-  VGM::ISolid* vgmSolid 
-    = new RootGM::EllipticalTube(name, dx, dy,  hz);
-
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
+  return Register(new RootGM::EllipticalTube(name, dx, dy,  hz));
 }  			     
 			       
 //_____________________________________________________________________________
 VGM::ISolid*  
 RootGM::Factory::CreateHype(const std::string& name, 
-                            double r1, double r2, double stereo1, double stereo2,
-                            double hz)
+                   double r1, double r2, double stereo1, double stereo2,
+                   double hz)
 {			       
 //
-  VGM::ISolid* vgmSolid 
-    = new RootGM::Hype(name, r1, r2, stereo1, stereo2, hz);
-
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
+  return Register(new RootGM::Hype(name, r1, r2, stereo1, stereo2, hz));
 }  			     
 			       
 //_____________________________________________________________________________
 VGM::ISolid*  
 RootGM::Factory::CreatePara(const std::string& name, 
-                            double dx, double dy, double dz,
-	                    double alpha, double theta, double phi)
+                   double dx, double dy, double dz,
+                   double alpha, double theta, double phi)
 {			       
 //
-  VGM::ISolid* vgmSolid 
-    = new RootGM::Para(name, dx, dy, dz, alpha, theta, phi);
+  return Register(new RootGM::Para(name, dx, dy, dz, alpha, theta, phi));
 
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
 }  			     
 			       
 //_____________________________________________________________________________
 VGM::ISolid*  
 RootGM::Factory::CreateParaboloid(const std::string& name, 
-                            double r1, double r2, double hz)
+                   double r1, double r2, double hz)
 {			       
 //
-  VGM::ISolid* vgmSolid 
-    = new RootGM::Paraboloid(name, r1, r2, hz);
-
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
+  return Register(new RootGM::Paraboloid(name, r1, r2, hz));
 }  			     
 			       
 //_____________________________________________________________________________
 VGM::ISolid*  
 RootGM::Factory::CreatePolycone(
-                           const std::string& name, 
-                           double sphi, double dphi, int nofZplanes,
-                           double* z, double* rin, double* rout)
+                   const std::string& name, 
+                   double sphi, double dphi, int nofZplanes,
+                   double* z, double* rin, double* rout)
 {			       
 //
-  VGM::ISolid* vgmSolid 
-    = new RootGM::Polycone(name, sphi, dphi, nofZplanes, z, rin, rout);
+  return Register(new RootGM::Polycone(name, sphi, dphi, nofZplanes, z, 
+                        rin, rout));
 
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
 }  			     
 			       
 //_____________________________________________________________________________
 VGM::ISolid*  
 RootGM::Factory::CreatePolyhedra(
-                           const std::string& name, 
-                           double sphi, double dphi, 
-			   int nofSides, int nofZplanes,
-                           double* z, double* rin, double* rout)
+                   const std::string& name, 
+                   double sphi, double dphi, 
+                   int nofSides, int nofZplanes,
+                   double* z, double* rin, double* rout)
 {			       
 //
-  VGM::ISolid* vgmSolid 
-    = new RootGM::Polyhedra(name, sphi, dphi, nofSides, nofZplanes, 
-                            z, rin, rout);
-
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
+  return Register(new RootGM::Polyhedra(name, sphi, dphi, nofSides, nofZplanes, 
+                        z, rin, rout));
 }
   			     			       
 //_____________________________________________________________________________
 VGM::ISolid*  
 RootGM::Factory::CreateSphere(const std::string& name, 
-                              double rin, double rout, 
-			      double sphi, double dphi, 
-	                      double stheta, double dtheta)
+                   double rin, double rout, 
+                   double sphi, double dphi, 
+                   double stheta, double dtheta)
 {			       
 //
-  VGM::ISolid* vgmSolid 
-    = new RootGM::Sphere(name, rin, rout, sphi, dphi, stheta, dtheta);
+  return Register(new RootGM::Sphere(name, rin, rout, sphi, dphi, stheta, dtheta));
 
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
 }  			     
 			       
 //_____________________________________________________________________________
 VGM::ISolid*  
 RootGM::Factory::CreateTessellatedSolid(const std::string& name, 
-                               std::vector< std::vector<VGM::ThreeVector> > /*facets*/)
+                   std::vector< std::vector<VGM::ThreeVector> > /*facets*/)
 {
 // Not supported solid in Root
 
@@ -807,10 +747,7 @@ RootGM::Factory::CreateTessellatedSolid(const std::string& name,
   if ( Ignore() ) {
     std::cerr << "*** Warning: Using a box instead  ***" << std::endl; 
     std::cerr << std::endl; 
-    VGM::IBox* vgmBox 
-      = new RootGM::Box(name, 1., 1., 1.);
-    SolidStore().push_back(vgmBox);
-    return vgmBox; 
+    return Register(new RootGM::Box(name, 1., 1., 1.));
   }
   else {	    
     std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
@@ -821,157 +758,124 @@ RootGM::Factory::CreateTessellatedSolid(const std::string& name,
 //_____________________________________________________________________________
 VGM::ISolid*  
 RootGM::Factory::CreateTorus(const std::string& name, 
-                             double rin, double rout, double rax, 
-			     double sphi, double dphi)
+                   double rin, double rout, double rax, 
+                   double sphi, double dphi)
 {			       
 //
-  VGM::ISolid* vgmSolid 
-    = new RootGM::Torus(name, rin, rout, rax, sphi, dphi);
-
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
+  return Register(new RootGM::Torus(name, rin, rout, rax, sphi, dphi));
 }  			     
 			       
 //_____________________________________________________________________________
 VGM::ISolid*  
 RootGM::Factory::CreateTrap(const std::string& name, 
-                            double hz, double theta, double phi,
-                            double dy1, double dx1, double dx2, 
-			    double alpha1, 
-                            double dy2, double dx3, double dx4, 
-			    double alpha2)
+                   double hz, double theta, double phi,
+                   double dy1, double dx1, double dx2, 
+                   double alpha1, 
+                   double dy2, double dx3, double dx4, 
+                   double alpha2)
 {			       
 //
-  VGM::ISolid* vgmSolid 
-    = new RootGM::Trap(name, hz, theta, phi, 
-                  dy1, dx1, dx2, alpha1, dy2, dx3, dx4, alpha2);
+  return Register(new RootGM::Trap(name, hz, theta, phi, 
+                        dy1, dx1, dx2, alpha1, dy2, dx3, dx4, alpha2));
 
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
 }  			     
 			       
 //_____________________________________________________________________________
 VGM::ISolid*  
 RootGM::Factory::CreateTrd(const std::string& name, 
-                           double hx1, double hx2, double hy1, double hy2, 
-			   double hz)
+                   double hx1, double hx2, double hy1, double hy2, 
+                   double hz)
 {			       
 //
-  VGM::ISolid* vgmSolid 
-    = new RootGM::Trd(name, hx1, hx2, hy1, hy2, hz);
-
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
+  return Register(new RootGM::Trd(name, hx1, hx2, hy1, hy2, hz));
 }  			     
 			       
 //_____________________________________________________________________________
 VGM::ISolid*  
 RootGM::Factory::CreateTubs(const std::string& name, 
-                            double rin, double rout, double hz, 
-			    double sphi, double dphi)
+                   double rin, double rout, double hz, 
+                   double sphi, double dphi)
 {			       
 //
-  VGM::ISolid* vgmSolid 
-    = new RootGM::Tubs(name, rin, rout, hz, sphi, dphi);
+  return Register(new RootGM::Tubs(name, rin, rout, hz, sphi, dphi));
 
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
 }  			     
 			       
 //_____________________________________________________________________________
 VGM::ISolid*  
 RootGM::Factory::CreateExtrudedSolid(const std::string& name, 
-                            std::vector< VGM::TwoVector > polygon,
-                            std::vector< std::vector<double> > zsections)
+                   std::vector< VGM::TwoVector > polygon,
+                   std::vector< std::vector<double> > zsections)
 {			       
 //
-  VGM::ISolid* vgmSolid 
-    = new RootGM::ExtrudedSolid(name, polygon, zsections);
+  return Register(new RootGM::ExtrudedSolid(name, polygon, zsections));
 
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
 }  			     
 			       
 //_____________________________________________________________________________
 VGM::ISolid*  
 RootGM::Factory::CreateIntersectionSolid(
-                             const std::string& name, 
-                             VGM::ISolid* solidA, VGM::ISolid* solidB, 
-                             const VGM::Transform& transform)
+                   const std::string& name, 
+                   VGM::ISolid* solidA, VGM::ISolid* solidB, 
+                   const VGM::Transform& transform)
 {
 //
-  VGM::ISolid* vgmSolid 
-    = new RootGM::BooleanSolid(
+  return Register(new RootGM::BooleanSolid(
                          name, 
                          VGM::kIntersection, 
-			 solidA, solidB, 
-                         CreateTransform(transform));
-    
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
+			                   solidA, solidB, 
+                         CreateTransform(transform)));
 }  			     
 
 //_____________________________________________________________________________
 VGM::ISolid*  
 RootGM::Factory::CreateSubtractionSolid(
-                             const std::string& name, 
-                             VGM::ISolid* solidA, VGM::ISolid* solidB, 
-                             const VGM::Transform& transform)
+                   const std::string& name, 
+                   VGM::ISolid* solidA, VGM::ISolid* solidB, 
+                   const VGM::Transform& transform)
 {
 //
-  VGM::ISolid* vgmSolid 
-    = new RootGM::BooleanSolid(
+  return Register(new RootGM::BooleanSolid(
                          name, 
-			 VGM::kSubtraction,
-			 solidA, solidB, 
-                         CreateTransform(transform));
-    
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
+			                   VGM::kSubtraction,
+			                   solidA, solidB, 
+                         CreateTransform(transform)));
 }  			     
 
 //_____________________________________________________________________________
 VGM::ISolid*  
 RootGM::Factory::CreateUnionSolid(
-                             const std::string& name, 
-                             VGM::ISolid* solidA, VGM::ISolid* solidB, 
-                             const VGM::Transform& transform)
+                   const std::string& name, 
+                   VGM::ISolid* solidA, VGM::ISolid* solidB, 
+                   const VGM::Transform& transform)
 {
 //
-  VGM::ISolid* vgmSolid 
-    = new RootGM::BooleanSolid(
+  return Register(new RootGM::BooleanSolid(
                          name, 
-			 VGM::kUnion, 
-			 solidA, solidB, 
-                         CreateTransform(transform));
-    
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
+			                   VGM::kUnion, 
+			                   solidA, solidB, 
+                         CreateTransform(transform)));
 }  			     
 
 //_____________________________________________________________________________
 VGM::ISolid*  
 RootGM::Factory::CreateDisplacedSolid(
-                             const std::string& name, 
-                             VGM::ISolid* solid, 
-                             const VGM::Transform& transform)
+                   const std::string& name, 
+                   VGM::ISolid* solid, 
+                   const VGM::Transform& transform)
 {
 //
-  VGM::ISolid* vgmSolid 
-    = new RootGM::DisplacedSolid(
+  return Register(new RootGM::DisplacedSolid(
                          name, 
-			 solid, 
-                         CreateTransform(transform));
-    
-  SolidStore().push_back(vgmSolid);
-  return vgmSolid; 
+			                   solid, 
+                         CreateTransform(transform)));
 }  			     
 
 //_____________________________________________________________________________
 VGM::IVolume* 
 RootGM::Factory::CreateVolume(const std::string& name, 
-                              VGM::ISolid* solid, 
-                              const std::string& mediumName)
+                   VGM::ISolid* solid, 
+                   const std::string& mediumName)
 {
 //
   VGM::IVolume* volume
@@ -984,11 +888,11 @@ RootGM::Factory::CreateVolume(const std::string& name,
 //_____________________________________________________________________________
 VGM::IPlacement* 
 RootGM::Factory::CreatePlacement(
-                               const std::string& name, 
-                               int copyNo,
-                               VGM::IVolume* volume, 
-			       VGM::IVolume* motherVolume,
-                               const VGM::Transform& transform)
+                   const std::string& name, 
+                   int copyNo,
+                   VGM::IVolume* volume, 
+                   VGM::IVolume* motherVolume,
+                   const VGM::Transform& transform)
 {
 //
   VGM::IPlacement* placement
@@ -1016,13 +920,13 @@ RootGM::Factory::CreatePlacement(
 //_____________________________________________________________________________
 VGM::IPlacement* 
 RootGM::Factory::CreateMultiplePlacement(
-                               const std::string& name, 
-                               VGM::IVolume* volume, 
-			       VGM::IVolume* motherVolume,
-			       VGM::Axis axis,
-                               int nofItems,
-                               double  width,
-                               double  offset)
+                   const std::string& name, 
+                   VGM::IVolume* volume, 
+                   VGM::IVolume* motherVolume,
+                   VGM::Axis axis,
+                   int nofItems,
+                   double  width,
+                   double  offset)
 {
 //
   // Cannot be top volume
@@ -1073,14 +977,31 @@ RootGM::Factory::Top() const
 }  		       
 
 //_____________________________________________________________________________
+VGM::ISolid* 
+RootGM::Factory::ISolid() const 
+{
+/// Returns the solid (if in one solid conversion mode)
+
+  return fSolid;
+}            
+
+//_____________________________________________________________________________
 TGeoNode*  
-RootGM::Factory:: World() const
+RootGM::Factory::World() const
 {
 /// Returns the world volume (Root node)
 
   return RootGM::PlacementMap::Instance()->GetPlacement(fTop);
 }
 
+//_____________________________________________________________________________
+TGeoShape*  
+RootGM::Factory::Solid() const
+{
+/// Returns the solid (if in one solid conversion mode)
+
+  return RootGM::SolidMap::Instance()->GetSolid(fSolid);
+}            
 
 //_____________________________________________________________________________
 bool RootGM::Factory::Import(TGeoNode* topNode)
@@ -1094,7 +1015,11 @@ bool RootGM::Factory::Import(TGeoNode* topNode)
     if (Debug()>1)  std::cout << topNode;
     std::cout << std::endl;
   }  
- 
+
+  // Inactivate single mode (if it was switch previously)
+  //
+  SetSingleMode(false);
+
   // Import materials
   // 
   MaterialFactory()->Import();
@@ -1131,4 +1056,35 @@ bool RootGM::Factory::Import(TGeoNode* topNode)
   return true;
 }
 			       
+//_____________________________________________________________________________
+bool RootGM::Factory::Import(TGeoShape* shape)
+{
+/// Import one Root shape.
+/// This call automatically activates a special single mode
 
+
+  if (Debug()>0) {
+    BaseVGM::DebugInfo();
+    std::cout << "RootGM::Factory::Import of one solid started ...";
+    if (Debug()>1)  std::cout << shape;
+    std::cout << std::endl;
+  } 
+
+  // Clear solid store
+  // (Do not delete objects as they are also referenced in a singleton mao)
+  SolidStore().clear();
+
+  // Activate single mode
+  //
+  SetSingleMode(true);
+
+  // Import shape
+  fSolid = ImportSolid(shape);
+  
+  if (Debug()>0) {
+    BaseVGM::DebugInfo();
+    std::cout << "RootGM::Factory::Import of one solid finished." << std::endl;
+  }  
+ 
+  return ( fSolid != 0);
+}
