@@ -25,9 +25,10 @@
 #include "TstGeometryViaRoot.hh"
 
 #include "G4GDMLParser.hh"
+#include "G4SolidStore.hh"
 
 const G4String TstDetectorConstruction::fgkTestNameCandidates 
-  = "Solids NewSolid NewSolid2 ExtraSolid Placements Reflections Assemblies1 Assemblies2 BooleanSolids1 BooleanSolids2 BooleanSolids3 BooleanSolids4 BooleanSolids5 BooleanSolids6 BooleanSolids7 Special DisplacedSolids1 DisplacedSolids2 Special";
+  = "Solids NewSolid NewSolid2 ExtraSolid Placements Reflections Assemblies1 Assemblies2 BooleanSolids1 BooleanSolids2 BooleanSolids3 BooleanSolids4 BooleanSolids5 BooleanSolids6 BooleanSolids7 Special DisplacedSolids1 DisplacedSolids2 Special SingleMode";
 const G4String TstDetectorConstruction::fgkVisModeCandidates 
   = "Geant4 Root None";
 const G4String TstDetectorConstruction::fgkInputCandidates 
@@ -46,6 +47,7 @@ TstDetectorConstruction::TstDetectorConstruction(const G4String& inputType,
     fSelectedTest("Solids"),
     fSelectedVisMode("Geant4"),
     fFullAngle(true),
+    fSingleMode(false),
     fInputFactory(0),
     fOutputFactory(0),
     fGeant4Factory(0),
@@ -164,7 +166,89 @@ G4VPhysicalVolume* TstDetectorConstruction::Construct()
     world = fGeometry->TestSpecial();
     std::cout << "TestSpecial finished" << std::endl;
   }
-  
+
+  // Single mode test (does not build valid geometry)
+  if ( fSingleMode) {
+    std::cout << "Go to Import/Export solids one by one" << std::endl;
+
+    // Detect input/output types
+    Geant4GM::Factory* g4InputFactory
+      = dynamic_cast<Geant4GM::Factory*>(fInputFactory);
+
+    RootGM::Factory* rtInputFactory
+      = dynamic_cast<RootGM::Factory*>(fInputFactory);
+
+    Geant4GM::Factory* g4OutputFactory
+      = dynamic_cast<Geant4GM::Factory*>(fOutputFactory);
+
+    RootGM::Factory* rtOutputFactory
+      = dynamic_cast<RootGM::Factory*>(fOutputFactory);
+
+    // Root -> Geant4
+    if ( rtInputFactory && g4OutputFactory ) {
+      TObjArray* solids = gGeoManager->GetListOfShapes();
+      TIter next(solids);
+      std::vector<TGeoShape*> solidsVector;
+      while (TObject *obj = next()) {
+        TGeoShape* rtSolid = (TGeoShape*)obj;                  
+        solidsVector.push_back(rtSolid);
+      }
+      for (int i=0; i<int(solidsVector.size()); i++) {
+        TGeoShape* rtSolid = solidsVector[i];               
+        std::cout<< "Processing solid " << rtSolid->GetName() << std::endl;
+        rtSolid->Dump();
+        rtInputFactory->Import(rtSolid);
+        std::cout << "Import  of solid finished" << std::endl;
+        rtInputFactory->Export(g4OutputFactory);
+        G4VSolid* g4Solid = g4OutputFactory->Solid();
+        std::cout << g4Solid << std::endl;
+        std::cout << *g4Solid << std::endl;
+        // Circular check
+        // g4OutputFactory->Solid();
+        // std::cout << "Export of solid finished: " << std::endl;
+        // // Export back in Root 
+        // // this allows to check in the debug output if the new VGM solid
+        // // has identical parameters as the original one
+        // g4OutputFactory->Export(rtInputFactory);
+        // std::cout << "Export-back of solid finished: " << std::endl;
+      }
+    }
+    else if ( g4InputFactory && rtOutputFactory ) {
+      G4SolidStore* solidStore = G4SolidStore::GetInstance();
+      std::vector<G4VSolid*> solidsVector;
+      for (int i=0; i<int(solidStore->size()); i++) {
+        G4VSolid* g4Solid = (*solidStore)[i];
+        solidsVector.push_back(g4Solid);
+      }
+      for (int i=0; i<int(solidsVector.size()); i++) {
+        G4VSolid* g4Solid = solidsVector[i];
+        std::cout<< "Processing solid " << g4Solid->GetName() << std::endl;
+        std::cout << *g4Solid << std::endl;
+        g4InputFactory->Import(g4Solid);
+        g4InputFactory->Export(rtOutputFactory);
+        TGeoShape* rtSolid = rtOutputFactory->Solid();
+        std::cout << rtSolid << std::endl;
+        rtSolid->Dump();
+        // Circular check
+        // rtOutputFactory->Solid();
+        // std::cout << "Export of solid finished: ";
+        // // Export back in Geant4
+        // // this allows to check in the debug output if the new VGM solid
+        // // has identical parameters as the original one
+        // rtOutputFactory->Export(g4InputFactory);
+        // std::cout << "Export-back of solid finished: " << std::endl;
+      }
+    }
+    else {
+      std::cout << "Not supported input/output." << std::endl;
+      exit (0);
+      return 0;
+    }  
+    std::cout << " Import/Export solids one by one finished." << std::endl;
+    exit (0);
+    return 0;
+  }
+   
   // Check if geometry was built
   if ( !world) {  
     std::cout << "No geometry is built." << std::endl;
@@ -220,7 +304,7 @@ G4VPhysicalVolume* TstDetectorConstruction::Construct()
     gGeoManager->CloseGeometry();
     SaveRootGeometry();
   }  
-  
+
   // Print materials 
   //
 /*
@@ -231,10 +315,10 @@ G4VPhysicalVolume* TstDetectorConstruction::Construct()
   std::cout << "*** VGM materials" << std::endl;
   fInputFactory->MaterialFactory()->PrintMaterials();
 */  
-
+  
   // Generate XML output
   GenerateXML();
-
+  
   // Return top volume
   //
   if (IsGeant4Geometry()) {
@@ -244,7 +328,7 @@ G4VPhysicalVolume* TstDetectorConstruction::Construct()
     std::cout << "No Geant4 geometry is built." << std::endl;
     exit (0);
     return 0;
-  }  
+  } 
 }
 
 //_____________________________________________________________________________
@@ -280,6 +364,14 @@ void TstDetectorConstruction::SetDebug(G4bool debugMode)
 
  if (fInputFactory)  fInputFactory->SetDebug(debugMode);
  if (fOutputFactory) fOutputFactory->SetDebug(debugMode);
+}  
+
+//_____________________________________________________________________________
+void TstDetectorConstruction::SetSingleMode(G4bool singleMode)
+{
+// Set single mode option
+
+  fSingleMode = singleMode;
 }  
 
 //

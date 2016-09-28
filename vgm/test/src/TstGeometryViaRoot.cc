@@ -752,7 +752,7 @@ TGeoVolume* TstGeometryViaRoot::PlaceSolids(TGeoVolume* mother,
     mother->AddNode(paraboloidV, 1,
                   new TGeoCombiTrans(x0 + (counter)*dx, dy, -zpos, reflect3D));
 
-  return mother;   		  
+  return mother;
 }
 
 //_____________________________________________________________________________
@@ -1731,6 +1731,7 @@ void* TstGeometryViaRoot::TestDisplacedSolids1()
 
   return (void*) gGeoManager->GetTopNode();
 }  
+
 //_____________________________________________________________________________
 void* TstGeometryViaRoot::TestSpecial()
 {
