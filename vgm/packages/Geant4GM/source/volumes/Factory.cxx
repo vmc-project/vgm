@@ -1134,7 +1134,7 @@ Geant4GM::Factory::Top() const
 
 //_____________________________________________________________________________
 VGM::ISolid* 
-Geant4GM::Factory::ISolid() const 
+Geant4GM::Factory::SingleSolid() const 
 {
 /// Returns the solid (if in one solid conversion mode)
 

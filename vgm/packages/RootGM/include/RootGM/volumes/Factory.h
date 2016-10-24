@@ -179,7 +179,7 @@ namespace RootGM {
       // top volume
       //
       virtual VGM::IPlacement* Top() const;		       
-      virtual VGM::ISolid*  ISolid() const;           
+      virtual VGM::ISolid*     SingleSolid() const;           
       TGeoNode*   World() const;
       TGeoShape*  Solid() const;
 

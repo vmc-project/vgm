@@ -195,7 +195,7 @@ namespace Geant4GM {
       // top volume
       //
       virtual VGM::IPlacement* Top() const;	
-      virtual VGM::ISolid*  ISolid() const;           
+      virtual VGM::ISolid*     SingleSolid() const;           
 
       G4VPhysicalVolume*     World() const;
       G4VSolid*         	   Solid() const;    

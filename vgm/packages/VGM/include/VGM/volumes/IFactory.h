@@ -412,7 +412,7 @@ namespace VGM {
                           /// Return the top volume placement
       virtual IPlacement* Top() const = 0;		       
                           /// Return solid (if in one solid conversion mode)
-      virtual ISolid*     ISolid() const = 0;           
+      virtual ISolid*     SingleSolid() const = 0;           
 
       //
       // access

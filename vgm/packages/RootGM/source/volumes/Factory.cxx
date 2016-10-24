@@ -978,7 +978,7 @@ RootGM::Factory::Top() const
 
 //_____________________________________________________________________________
 VGM::ISolid* 
-RootGM::Factory::ISolid() const 
+RootGM::Factory::SingleSolid() const 
 {
 /// Returns the solid (if in one solid conversion mode)
 
