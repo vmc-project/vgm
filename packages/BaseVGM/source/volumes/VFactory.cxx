@@ -641,7 +641,7 @@ bool BaseVGM::VFactory::Export(VGM::IFactory* factory) const
     // one solid mode
 
     // Check if a solid was created/imported
-    if ( ! ISolid() ) {
+    if ( ! SingleSolid() ) {
       std::cerr << "++ Warning: ++ " << std::endl;
       std::cerr << "   BaseVGM::Export:" << std::endl; 
       std::cerr << "   A solid must be created/imported first." << std::endl;
@@ -650,7 +650,7 @@ bool BaseVGM::VFactory::Export(VGM::IFactory* factory) const
     }
 
     // Export solid
-    VGM::ISolid* solid = ExportSolid(ISolid(), factory);
+    VGM::ISolid* solid = ExportSolid(SingleSolid(), factory);
     factory->SetSolid(solid);
 
     return ( solid != 0 );
