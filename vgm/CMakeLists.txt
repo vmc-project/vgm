@@ -41,6 +41,9 @@ set(${PROJECT_NAME}_VERSION_PATCH "0")
 set(${PROJECT_NAME}_VERSION
     ${${PROJECT_NAME}_VERSION_MAJOR}.${${PROJECT_NAME}_VERSION_MINOR}.${${PROJECT_NAME}_VERSION_PATCH})
 
+#--- Default project build mode ------------------------------------------------
+include(VGMBuildMode)
+
 #--- Options -------------------------------------------------------------------
 option(WITH_GEANT4       "Build Geant4 dependent subpackage (Geant4GM)" ON)
 option(WITH_ROOT         "Build Root dependent subpackage(RootGM)" ON)
