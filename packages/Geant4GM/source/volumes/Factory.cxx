@@ -31,6 +31,7 @@
 #include "Geant4GM/solids/SolidMap.h"
 #include "Geant4GM/solids/BooleanSolid.h"
 #include "Geant4GM/solids/DisplacedSolid.h"
+#include "Geant4GM/solids/ScaledSolid.h"
 #include "Geant4GM/solids/Arb8.h"
 #include "Geant4GM/solids/Box.h"
 #include "Geant4GM/solids/Cons.h"
@@ -58,6 +59,7 @@
 #include "G4VSolid.hh"
 #include "G4BooleanSolid.hh"
 #include "G4DisplacedSolid.hh"
+#include "G4ScaledSolid.hh"
 #include "G4Box.hh"
 #include "G4Cons.hh"
 #include "G4CutTubs.hh"
@@ -278,6 +280,12 @@ Geant4GM::Factory::ImportSolid(G4VSolid* solid)
   if (displaced) {
     ImportSolid(displaced->GetConstituentMovedSolid());
     return Register(new Geant4GM::DisplacedSolid(displaced, reflSolid));
+  }  
+
+  G4ScaledSolid* scaled = dynamic_cast<G4ScaledSolid*>(consSolid);
+  if (scaled) {
+    ImportSolid(scaled->GetUnscaledSolid());
+    return Register(new Geant4GM::ScaledSolid(scaled, reflSolid));
   }  
 
   G4BooleanSolid* boolean = dynamic_cast<G4BooleanSolid*>(consSolid);
@@ -969,6 +977,28 @@ Geant4GM::Factory::CreateDisplacedSolid(
                         new CLHEP::HepRotation(ClhepVGM::Rotation(transform).inverse()), 
 	                      ClhepVGM::Translation(transform)));
 }  			     
+
+//_____________________________________________________________________________
+VGM::ISolid*  
+Geant4GM::Factory::CreateScaledSolid(
+                     const std::string& name, 
+                     VGM::ISolid* solid,
+                     const VGM::Transform& transform)
+{
+//
+  if ( ClhepVGM::HasReflection(transform )) {
+    std::cerr << "    Geant4GM::Factory::CreateDisplacedSolid:" << std::endl;
+    std::cerr << "    Reflection in ScaledSolid solid not supported in Geant4."
+              << std::endl; 
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    exit(1);
+  }         
+               
+  return Register(new Geant4GM::ScaledSolid(
+                        name, 
+                        solid,
+                        ClhepVGM::Scale(transform)));
+}
 
 //_____________________________________________________________________________
 VGM::IVolume* 

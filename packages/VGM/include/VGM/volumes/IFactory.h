@@ -349,6 +349,14 @@ namespace VGM {
                                VGM::ISolid* solid,
                                const VGM::Transform& transform) = 0; 
 
+                       /// Create scaled solid
+                       /// \param solid  constituent solids
+                       /// \param transform scale transformation (sx, sy, sz)
+      virtual ISolid*  CreateScaledSolid(
+                               const std::string& name, 
+                               VGM::ISolid* solid,
+                               const VGM::Transform& transform) = 0; 
+
       //
       // volumes
       //

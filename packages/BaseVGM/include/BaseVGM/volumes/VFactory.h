@@ -30,6 +30,7 @@ namespace VGM {
   class ISolid;
   class IBooleanSolid;
   class IDisplacedSolid;
+  class IScaledSolid;
   class IVolume;
   class IPlacement;
   class IMaterialFactory;
@@ -88,6 +89,9 @@ namespace BaseVGM {
                              VGM::IFactory* factory) const;
       VGM::ISolid*     ExportDisplacedSolid(
                              VGM::IDisplacedSolid* solid,
+                             VGM::IFactory* factory) const;
+      VGM::ISolid*     ExportScaledSolid(
+                             VGM::IScaledSolid* solid,
                              VGM::IFactory* factory) const;
       VolumeMap*       ExportVolumeStore(VGM::IFactory* factory) const;
 

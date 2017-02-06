@@ -33,6 +33,7 @@ namespace ClhepVGM {
     VGM::Transform  Transform(const CLHEP::HepRotation& rotation,
                               const CLHEP::Hep3Vector& translation);
     VGM::Transform  Transform(const HepGeom::Transform3D& objectTransform);
+    VGM::Transform  TransformScale(const HepGeom::Scale3D& scaleTransform);
     VGM::Transform  Identity();
     bool            HasReflection(const HepGeom::Transform3D& transform);
     
@@ -40,6 +41,7 @@ namespace ClhepVGM {
     //
     CLHEP::Hep3Vector     Translation(const VGM::Transform& transform);
     CLHEP::HepRotation    Rotation(const VGM::Transform& transform);
+    HepGeom::Scale3D      Scale(const VGM::Transform& transform);
     HepGeom::Transform3D  Transform(const VGM::Transform& transform);
     bool            HasReflection(const VGM::Transform& transform);
 

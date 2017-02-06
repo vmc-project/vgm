@@ -46,6 +46,7 @@ namespace VGM {
     kTubs,
     kBoolean,
     kDisplaced,
+    kScaled,
     kUnknownSolid
   };
   

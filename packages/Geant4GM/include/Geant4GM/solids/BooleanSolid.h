@@ -39,9 +39,9 @@ namespace Geant4GM {
       BooleanSolid(const std::string& name, 
                    VGM::BooleanType boolType,
                    VGM::ISolid* solidA, 
-		   VGM::ISolid* solidB, 
+                   VGM::ISolid* solidB, 
                    CLHEP::HepRotation* rotation, 
-		   const CLHEP::Hep3Vector& translation);
+                   const CLHEP::Hep3Vector& translation);
       BooleanSolid(G4BooleanSolid* booleanSolid,
                    G4ReflectedSolid* reflectedBoolean);
       virtual ~BooleanSolid();
