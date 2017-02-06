@@ -96,6 +96,19 @@ VGM::Transform  RootGM::Transform(const TGeoMatrix& matrix)
 }
 
 //_____________________________________________________________________________
+VGM::Transform  RootGM::TransformScale(const TGeoScale& scale)
+{
+  const Double_t* dscale = scale.GetScale();
+
+  VGM::Transform transform(VGM::kSize);
+  transform[VGM::kDx] = dscale[0];
+  transform[VGM::kDy] = dscale[1] ;
+  transform[VGM::kDz] = dscale[2] ;
+
+  return transform;
+}
+
+//_____________________________________________________________________________
 bool RootGM::HasReflection(const TGeoMatrix& matrix)
 {
 //
@@ -166,6 +179,14 @@ TGeoMatrix* RootGM::CreateTransform(const VGM::Transform& transform)
                            transform[VGM::kDy] / Units::Length(),
                            transform[VGM::kDz] / Units::Length(),
 			   rootRotation);
+}
+
+//_____________________________________________________________________________
+TGeoScale*  RootGM::CreateScale(const VGM::Transform& transform)
+{
+  return new TGeoScale(transform[VGM::kDx], 
+                       transform[VGM::kDy], 
+                       transform[VGM::kDz]);
 }
 
 //_____________________________________________________________________________

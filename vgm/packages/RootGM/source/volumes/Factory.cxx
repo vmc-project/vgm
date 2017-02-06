@@ -29,6 +29,7 @@
 #include "RootGM/solids/SolidMap.h"
 #include "RootGM/solids/BooleanSolid.h"
 #include "RootGM/solids/DisplacedSolid.h"
+#include "RootGM/solids/ScaledSolid.h"
 #include "RootGM/solids/Arb8.h"
 #include "RootGM/solids/Box.h"
 #include "RootGM/solids/Cons.h"
@@ -269,6 +270,12 @@ RootGM::Factory::ImportSolid(TGeoShape* shape)
     return 0; 
   }
 
+  TGeoScaledShape* scaled = dynamic_cast<TGeoScaledShape*>(shape);
+  if (scaled) {
+    ImportSolid(scaled->GetShape());
+    return Register(new RootGM::ScaledSolid(scaled));
+  }
+
   TGeoCompositeShape* composite = dynamic_cast<TGeoCompositeShape*>(shape);
   if (composite) { 
     ImportConstituentSolid(0, composite);
@@ -286,21 +293,6 @@ RootGM::Factory::ImportSolid(TGeoShape* shape)
     }		
     return vgmBoolean; 
   }
-
-  TGeoScaledShape* scaled = dynamic_cast<TGeoScaledShape*>(shape);
-  if ( scaled  &&
-       dynamic_cast<TGeoSphere*>(scaled->GetShape()) ) { 
-    // only scaled sphere is supported in order to be able to 
-    // import ellipsoid exported in Root
-    
-    TGeoSphere* scaledSphere = dynamic_cast<TGeoSphere*>(scaled->GetShape());
-    if ( scaledSphere->GetRmin() == 0. &&
-         scaledSphere->GetTheta1() == 0. && scaledSphere->GetTheta2() == 180. &&
-         scaledSphere->GetPhi1() == 0. && scaledSphere->GetPhi2() == 360. ) {
-         
-      return Register(new RootGM::Ellipsoid(scaled));
-    }
-  }  
 
   std::cerr << "    RootGM::Factory::ImportSolid: " << std::endl; 
   std::cerr << "    Unsupported solid type (solid \"" 
@@ -869,7 +861,21 @@ RootGM::Factory::CreateDisplacedSolid(
                          name, 
 			                   solid, 
                          CreateTransform(transform)));
-}  			     
+}
+
+//_____________________________________________________________________________
+VGM::ISolid*  
+RootGM::Factory::CreateScaledSolid(
+                   const std::string& name, 
+                   VGM::ISolid* solid, 
+                   const VGM::Transform& transform)
+{
+//
+  return Register(new RootGM::ScaledSolid(
+                         name, 
+                         solid, 
+                         CreateScale(transform)));
+}            
 
 //_____________________________________________________________________________
 VGM::IVolume* 

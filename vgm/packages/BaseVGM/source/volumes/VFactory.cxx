@@ -20,6 +20,7 @@
 #include "VGM/solids/ISolid.h"
 #include "VGM/solids/IBooleanSolid.h"
 #include "VGM/solids/IDisplacedSolid.h"
+#include "VGM/solids/IScaledSolid.h"
 #include "VGM/solids/IArb8.h"
 #include "VGM/solids/IBox.h"
 #include "VGM/solids/ICons.h"
@@ -107,7 +108,7 @@ BaseVGM::VFactory::ExportDisplacedSolid(VGM::IDisplacedSolid* solid,
                                         VGM::IFactory* factory) const
 
 {
-// Exports specified Boolean solid to given factory
+// Exports specified displaced solid to given factory
 // ---
 
   // Export constituent solids first
@@ -124,6 +125,32 @@ BaseVGM::VFactory::ExportDisplacedSolid(VGM::IDisplacedSolid* solid,
                                solid->Name(), 
                                constituentSolid,
 			                         transform);
+  return newSolid;
+}  
+
+//_____________________________________________________________________________
+VGM::ISolid*  
+BaseVGM::VFactory::ExportScaledSolid(VGM::IScaledSolid* solid,
+                                     VGM::IFactory* factory) const
+
+{
+// Exports specific scaled solid to given factory
+// ---
+
+  // Export constituent solids first
+  VGM::ISolid* constituentSolid = ExportSolid(solid->ConstituentSolid(), factory);
+        // Can lead to a duplication of solids in case
+  // the solid has been already exported
+  // Should not harm, but will be better to be avoided  
+
+
+  VGM::Transform transform =  solid->Scale();
+
+  VGM::ISolid* newSolid 
+    = factory->CreateScaledSolid(
+                               solid->Name(), 
+                               constituentSolid,
+                               transform);
   return newSolid;
 }  
 
@@ -385,6 +412,10 @@ BaseVGM::VFactory::ExportSolid(VGM::ISolid* solid,
     VGM::IDisplacedSolid* displaced = dynamic_cast<VGM::IDisplacedSolid*>(solid);
     return ExportDisplacedSolid(displaced, factory);
   }
+  else if (solidType == VGM::kScaled) { 
+    VGM::IScaledSolid* scaled = dynamic_cast<VGM::IScaledSolid*>(solid);
+    return ExportScaledSolid(scaled, factory);
+  }
   else if (solidType == VGM::kBoolean) { 
     VGM::IBooleanSolid* boolean = dynamic_cast<VGM::IBooleanSolid*>(solid);
     return ExportBooleanSolid(boolean, factory);
@@ -463,21 +494,25 @@ BaseVGM::VFactory::ExportSimplePlacement(
   VGM::IVolume* newVolume = (*volumeMap)[placement->Volume()];
   VGM::IVolume* newMother = (*volumeMap)[placement->Mother()];
   
-  // If boolean solid that have to be reflected
+  // If boolean or scaled solid that have to be reflected
   /// set reflection to the transformation
   VGM::Transform transform = placement->Transformation();
   VGM::IBooleanSolid* booleanSolid 
     = dynamic_cast<VGM::IBooleanSolid*>(placement->Volume()->Solid());
-  if ( booleanSolid && booleanSolid->ToBeReflected() )
+  VGM::IScaledSolid* scaledSolid 
+    = dynamic_cast<VGM::IScaledSolid*>(placement->Volume()->Solid());
+  if ( ( booleanSolid && booleanSolid->ToBeReflected() ) ||
+       ( scaledSolid && scaledSolid->ToBeReflected() ) ) {
      transform[VGM::kReflZ] = 1;
-  
+  }
+ 
   VGM::IPlacement* newPlacement
     = factory->CreatePlacement(
                        placement->Name(), 
                        placement->CopyNo(),
-	               newVolume,
-		       newMother,
-		       transform);
+                       newVolume,
+                       newMother,
+                       transform);
       
   return newPlacement;
 }
@@ -487,7 +522,7 @@ VGM::IPlacement*
 BaseVGM::VFactory::ExportMultiplePlacement(
                               VGM::IPlacement* placement,
                               VGM::IFactory* factory, 
-			      VolumeMap* volumeMap) const
+                              VolumeMap* volumeMap) const
 {
 // Exports multiple placement.
 // ---

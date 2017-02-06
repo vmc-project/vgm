@@ -151,6 +151,11 @@ namespace RootGM {
                                  VGM::ISolid* solid,
                                  const VGM::Transform& transform);
 
+      virtual VGM::ISolid*  CreateScaledSolid(
+                                 const std::string& name, 
+                                 VGM::ISolid* solid,
+                                 const VGM::Transform& transform);
+
       // volumes
       //
       virtual VGM::IVolume* CreateVolume(

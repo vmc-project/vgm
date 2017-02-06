@@ -32,11 +32,13 @@ namespace RootGM {
     // Root -> VGM
     //
     VGM::Transform  Transform(const TGeoMatrix& matrix);
+    VGM::Transform  TransformScale(const TGeoScale& scale);
     VGM::Transform  Identity();
     bool            HasReflection(const TGeoMatrix& matrix);
     
     // VGM -> Root
     TGeoMatrix*     CreateTransform(const VGM::Transform& transform);
+    TGeoScale*      CreateScale(const VGM::Transform& transform);
     bool            HasReflection(const VGM::Transform& transform);
     
     // Root special

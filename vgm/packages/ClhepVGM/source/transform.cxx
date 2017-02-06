@@ -83,6 +83,17 @@ ClhepVGM::Transform(const HepGeom::Transform3D& objectTransform)
   return transform;
 }
 
+//_____________________________________________________________________________
+VGM::Transform    
+ClhepVGM::TransformScale(const HepGeom::Scale3D& scale3D)
+{
+  VGM::Transform transform(VGM::kSize);
+  transform[VGM::kDx] = scale3D(0,0);
+  transform[VGM::kDy] = scale3D(1,1);
+  transform[VGM::kDz] = scale3D(2,2);
+
+  return transform;
+}
 
 //_____________________________________________________________________________
 VGM::Transform  ClhepVGM::Identity()
@@ -120,7 +131,7 @@ CLHEP::Hep3Vector ClhepVGM::Translation(const VGM::Transform& transform)
     
   return CLHEP::Hep3Vector(transform[VGM::kDx] / Units::Length(), 
                            transform[VGM::kDy] / Units::Length(), 
-		           transform[VGM::kDz] / Units::Length());
+                           transform[VGM::kDz] / Units::Length());
 } 
 
 
@@ -140,6 +151,14 @@ CLHEP::HepRotation  ClhepVGM::Rotation(const VGM::Transform& transform)
 
   return hepRotation;
 }  
+
+//_____________________________________________________________________________
+ HepGeom::Scale3D  ClhepVGM::Scale(const VGM::Transform& transform)
+{
+  return HepGeom::Scale3D(transform[VGM::kDx], 
+                          transform[VGM::kDy], 
+                          transform[VGM::kDz]);
+}
 
 //_____________________________________________________________________________
 HepGeom::Transform3D  ClhepVGM::Transform(const VGM::Transform& transform)
