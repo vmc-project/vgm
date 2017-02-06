@@ -41,6 +41,7 @@ class TstGeometryViaVGM : public TstVGeometry
     virtual void* TestNewSolid2();
     virtual void* TestPlacements();
     virtual void* TestReflections(bool fullPhi);
+    virtual void* TestScaledSolids(bool fullPhi);
     virtual void* TestBooleanSolids1();
     virtual void* TestBooleanSolids2();
     virtual void* TestBooleanSolids3();
@@ -51,29 +52,30 @@ class TstGeometryViaVGM : public TstVGeometry
     // methods
     VGM::IVolume* CreateWorld(double x, double y, double z, 
                               const std::string& materialName = "Basic");
-    VGM::IVolume* CreateNewSolid();
-    VGM::IVolume* CreateArb8();
+    VGM::ISolid* CreateNewSolid();
+    VGM::ISolid* CreateArb8();
     void          CreateArb8Solids(std::vector<VGM::IVolume*>& volumes);
-    VGM::IVolume* CreateBox();
-    VGM::IVolume* CreateCons(double sphi, double dphi);
-    VGM::IVolume* CreateEllipsoid();
-    VGM::IVolume* CreateEllipticalTube();
-    VGM::IVolume* CreateExtrudedSolid1();
-    VGM::IVolume* CreateExtrudedSolid2();
-    VGM::IVolume* CreateHype();
-    VGM::IVolume* CreatePara();
-    VGM::IVolume* CreateParaboloid();
-    VGM::IVolume* CreatePolycone(double sphi, double dphi);
-    VGM::IVolume* CreatePolyhedra(double sphi, double dphi);
-    VGM::IVolume* CreateSphere(double sphi, double dphi);
-    VGM::IVolume* CreateTessellatedSolid();
-    VGM::IVolume* CreateTorus(double sphi, double dphi);
-    VGM::IVolume* CreateTrap();
-    VGM::IVolume* CreateTrd();
-    VGM::IVolume* CreateTubs(double sphi, double dphi);
-    VGM::IVolume* CreateCtubs(double sphi, double dphi);
+    VGM::ISolid* CreateBox();
+    VGM::ISolid* CreateCons(double sphi, double dphi);
+    VGM::ISolid* CreateEllipsoid();
+    VGM::ISolid* CreateEllipticalTube();
+    VGM::ISolid* CreateExtrudedSolid1();
+    VGM::ISolid* CreateExtrudedSolid2();
+    VGM::ISolid* CreateHype();
+    VGM::ISolid* CreatePara();
+    VGM::ISolid* CreateParaboloid();
+    VGM::ISolid* CreatePolycone(double sphi, double dphi);
+    VGM::ISolid* CreatePolyhedra(double sphi, double dphi);
+    VGM::ISolid* CreateSphere(double sphi, double dphi);
+    VGM::ISolid* CreateTessellatedSolid();
+    VGM::ISolid* CreateTorus(double sphi, double dphi);
+    VGM::ISolid* CreateTrap();
+    VGM::ISolid* CreateTrd();
+    VGM::ISolid* CreateTubs(double sphi, double dphi);
+    VGM::ISolid* CreateCtubs(double sphi, double dphi);
+    VGM::IVolume* CreateVolume(VGM::ISolid* solid, bool scale = false);
     void* PlaceSolids(VGM::IVolume* mother,
-                      bool fullPhi, bool reflect, double zpos);
+                      bool fullPhi, bool reflect, bool scale, double zpos);
     void  PlaceSolids(const std::vector<VGM::IVolume*>& volumes,
                       VGM::IVolume* mother);
     void  PlaceExtraSolid(VGM::SolidType solidType, 

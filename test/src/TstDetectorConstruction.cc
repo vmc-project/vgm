@@ -28,7 +28,7 @@
 #include "G4SolidStore.hh"
 
 const G4String TstDetectorConstruction::fgkTestNameCandidates 
-  = "Solids NewSolid NewSolid2 ExtraSolid Placements Reflections Assemblies1 Assemblies2 BooleanSolids1 BooleanSolids2 BooleanSolids3 BooleanSolids4 BooleanSolids5 BooleanSolids6 BooleanSolids7 Special DisplacedSolids1 DisplacedSolids2 Special SingleMode";
+  = "Solids NewSolid NewSolid2 ExtraSolid Placements Reflections Assemblies1 Assemblies2 BooleanSolids1 BooleanSolids2 BooleanSolids3 BooleanSolids4 BooleanSolids5 BooleanSolids6 BooleanSolids7 ScaledSolids Special DisplacedSolids1 DisplacedSolids2 Special SingleMode";
 const G4String TstDetectorConstruction::fgkVisModeCandidates 
   = "Geant4 Root None";
 const G4String TstDetectorConstruction::fgkInputCandidates 
@@ -148,11 +148,15 @@ G4VPhysicalVolume* TstDetectorConstruction::Construct()
   }
   else if (fSelectedTest == "BooleanSolids6") {
     world = fGeometry->TestBooleanSolids6();
-    std::cout << "TestBooleanSolids5 finished" << std::endl;
+    std::cout << "TestBooleanSolids6 finished" << std::endl;
   }
   else if (fSelectedTest == "BooleanSolids7") {
     world = fGeometry->TestBooleanSolids7();
-    std::cout << "TestBooleanSolids5 finished" << std::endl;
+    std::cout << "TestBooleanSolids7 finished" << std::endl;
+  }
+  else if (fSelectedTest == "ScaledSolids") {
+    world = fGeometry->TestScaledSolids();
+    std::cout << "TestScaledSolids finished" << std::endl;
   }
   else if (fSelectedTest == "DisplacedSolids1") {
     world = fGeometry->TestDisplacedSolids1();

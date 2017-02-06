@@ -1,3 +1,5 @@
+
+
 // $Id$
 
 // -----------------------------------------------------------------------
@@ -26,6 +28,7 @@
 #include "TGeoNode.h"
 #include "TGeoMatrix.h"
 #include "TGeoCompositeShape.h"
+#include "TGeoScaledShape.h"
 #include "TGeoArb8.h"
 #include "TGeoBBox.h"
 #include "TGeoCone.h"
@@ -84,14 +87,14 @@ TGeoVolume* TstGeometryViaRoot::CreateWorld(Double_t x, Double_t y, Double_t z)
 }    
 
 //_____________________________________________________________________________
-TGeoVolume* TstGeometryViaRoot::CreateNewSolid()
+TGeoShape* TstGeometryViaRoot::CreateNewSolid()
 {
   return CreateCtubs(0., 360.);
 }  
 
 
 //_____________________________________________________________________________
-TGeoVolume* TstGeometryViaRoot::CreateArb8()
+TGeoShape* TstGeometryViaRoot::CreateArb8()
 {
   TGeoArb8* arb8S = new TGeoArb8("arb8S", 75.0);
   arb8S->SetVertex(0,  45., -15.);
@@ -104,7 +107,7 @@ TGeoVolume* TstGeometryViaRoot::CreateArb8()
   arb8S->SetVertex(7,  15., -15.);
 
   std::cout << "Is twisted: " << arb8S->IsTwisted() << std::endl;
-  return new TGeoVolume("arb8", arb8S, fBasicMedium);
+  return arb8S;
 }  
 
 //_____________________________________________________________________________
@@ -225,36 +228,27 @@ void TstGeometryViaRoot::CreateArb8Solids(std::vector<TGeoVolume*>& volumes)
 }
 
 //_____________________________________________________________________________
-TGeoVolume* TstGeometryViaRoot::CreateBox()
+TGeoShape* TstGeometryViaRoot::CreateBox()
 {
-  TGeoShape* boxS
-    = new TGeoBBox("boxS", 20., 60., 50.);
-  
-  return new TGeoVolume("box", boxS, fBasicMedium);
+  return new TGeoBBox("boxS", 20., 60., 50.);
 }  
 
 
 //_____________________________________________________________________________
-TGeoVolume* TstGeometryViaRoot::CreateCons(Double_t sphi, Double_t dphi)
+TGeoShape* TstGeometryViaRoot::CreateCons(Double_t sphi, Double_t dphi)
 {
-  TGeoShape* consS
-    = new TGeoConeSeg("consS", 50., 10., 40., 20., 60., sphi, sphi+dphi);
-  
-  return new TGeoVolume("cons", consS, fBasicMedium);
+  return new TGeoConeSeg("consS", 50., 10., 40., 20., 60., sphi, sphi+dphi);
 }
 
 //_____________________________________________________________________________
-TGeoVolume* TstGeometryViaRoot::CreateEllipticalTube()
+TGeoShape* TstGeometryViaRoot::CreateEllipticalTube()
 {
-  TGeoShape* eltuS
-    = new TGeoEltu("eltuS", 20., 30., 50.);
-  
-  return new TGeoVolume("eltu", eltuS, fBasicMedium);
+  return new TGeoEltu("eltuS", 20., 30., 50.);
 }  
 
 
 //_____________________________________________________________________________
-TGeoVolume* TstGeometryViaRoot::CreateExtrudedSolid1()
+TGeoShape* TstGeometryViaRoot::CreateExtrudedSolid1()
 {
   Int_t nz = 4;
   TGeoXtru* xtruS = new TGeoXtru(nz);
@@ -270,13 +264,15 @@ TGeoVolume* TstGeometryViaRoot::CreateExtrudedSolid1()
   Double_t scale[4] = {  1.5, 0.5, 0.7, 0.9 };
 
   for (Int_t i=0; i<4; i++)
-    xtruS->DefineSection(i, vz[i], xoff[i], yoff[i], scale[i]); 
+    xtruS->DefineSection(i, vz[i], xoff[i], yoff[i], scale[i]);
 
-  return new TGeoVolume("xtru1", xtruS, fBasicMedium);
+  xtruS->SetName("xtru1S");
+
+  return xtruS;
 }  
  
 //_____________________________________________________________________________
-TGeoVolume* TstGeometryViaRoot::CreateExtrudedSolid2()
+TGeoShape* TstGeometryViaRoot::CreateExtrudedSolid2()
 {
 
   Int_t nz = 4;
@@ -295,7 +291,9 @@ TGeoVolume* TstGeometryViaRoot::CreateExtrudedSolid2()
   for (Int_t i=0; i<4; i++)
     xtruS->DefineSection(i, vz[i], xoff[i], yoff[i], scale[i]); 
 
-  return new TGeoVolume("xtru2", xtruS, fBasicMedium);
+  xtruS->SetName("xtru2S");
+
+  return xtruS;
 
 /*
   // Test case with wrong conversion (now ok)
@@ -408,34 +406,25 @@ TGeoVolume* TstGeometryViaRoot::CreateExtrudedSolid2()
 }  
  
 //_____________________________________________________________________________
-TGeoVolume* TstGeometryViaRoot::CreateHype()
+TGeoShape* TstGeometryViaRoot::CreateHype()
 {
-  TGeoShape* hypeS
-    = new TGeoHype("paraS", 20., 30., 30., 40., 50.);
-
-  return new TGeoVolume("hype", hypeS, fBasicMedium);
+  return new TGeoHype("hypeS", 20., 30., 30., 40., 50.);
 }  
 
 //_____________________________________________________________________________
-TGeoVolume* TstGeometryViaRoot::CreatePara()
+TGeoShape* TstGeometryViaRoot::CreatePara()
 {
-  TGeoShape* paraS
-    = new TGeoPara("paraS", 40., 60., 50., 30., 30., 30.);
-
-  return new TGeoVolume("para", paraS, fBasicMedium);
+  return new TGeoPara("paraS", 40., 60., 50., 30., 30., 30.);
 }  
 
 //_____________________________________________________________________________
-TGeoVolume* TstGeometryViaRoot::CreateParaboloid()
+TGeoShape* TstGeometryViaRoot::CreateParaboloid()
 {
-  TGeoShape* paraboloidS
-    = new TGeoParaboloid("paraboloidS", 20., 45., 50.);
-
-  return new TGeoVolume("paraboloid", paraboloidS, fBasicMedium);
+  return new TGeoParaboloid("paraboloidS", 20., 45., 50.);
 }  
 
 //_____________________________________________________________________________
-TGeoVolume* TstGeometryViaRoot::CreatePolycone(Double_t sphi, Double_t dphi)
+TGeoShape* TstGeometryViaRoot::CreatePolycone(Double_t sphi, Double_t dphi)
 {
   // Define parameters
 
@@ -475,11 +464,11 @@ TGeoVolume* TstGeometryViaRoot::CreatePolycone(Double_t sphi, Double_t dphi)
   
   delete [] param; 
   
-  return new TGeoVolume("pcone", pconeS, fBasicMedium);
+  return pconeS;
 }  
 
 //_____________________________________________________________________________
-TGeoVolume* TstGeometryViaRoot::CreatePolyhedra(Double_t sphi, Double_t dphi)
+TGeoShape* TstGeometryViaRoot::CreatePolyhedra(Double_t sphi, Double_t dphi)
 {
   // Define parameters
 
@@ -521,72 +510,68 @@ TGeoVolume* TstGeometryViaRoot::CreatePolyhedra(Double_t sphi, Double_t dphi)
 
   delete [] param;
 
-  return new TGeoVolume("phedra", phedraS, fBasicMedium);
+  return phedraS;
 }  
 
 //_____________________________________________________________________________
-TGeoVolume* TstGeometryViaRoot::CreateSphere(Double_t sphi, Double_t dphi)
+TGeoShape* TstGeometryViaRoot::CreateSphere(Double_t sphi, Double_t dphi)
 {
-  TGeoShape* sphereS
-    = new TGeoSphere("sphereS", 20., 60., 
-                      sphi/2., sphi/2.+ dphi/2., sphi, sphi + dphi); 
-			    
-  return new TGeoVolume("sphere", sphereS, fBasicMedium);
+  return new TGeoSphere("sphereS", 20., 60., 
+                    sphi/2., sphi/2.+ dphi/2., sphi, sphi + dphi); 
 }  
 
 //_____________________________________________________________________________
-TGeoVolume* TstGeometryViaRoot::CreateTorus(Double_t sphi, Double_t dphi)
+TGeoShape* TstGeometryViaRoot::CreateTorus(Double_t sphi, Double_t dphi)
 {
-  TGeoShape* torusS
-    = new TGeoTorus("torusS", 40., 20., 30., sphi, dphi);
-			    
-  return new TGeoVolume("torus", torusS, fBasicMedium);  
+  return new TGeoTorus("torusS", 40., 20., 30., sphi, dphi);
 }  
 
 //_____________________________________________________________________________
-TGeoVolume* TstGeometryViaRoot::CreateTrap()
+TGeoShape* TstGeometryViaRoot::CreateTrap()
 {
-  TGeoShape* trapS
-    = new TGeoTrap("trapS", 30., 25., 35.,
-		    20., 10., 15., 0.,
-		    20., 10., 15., 0.);
-  return new TGeoVolume("trap", trapS, fBasicMedium);
+  return new TGeoTrap("trapS", 30., 25., 35.,
+		              20., 10., 15., 0.,
+		              20., 10., 15., 0.);
 }
 
 //_____________________________________________________________________________
-TGeoVolume* TstGeometryViaRoot::CreateTrd()
+TGeoShape* TstGeometryViaRoot::CreateTrd()
 {
-  TGeoShape* trdS
-    = new TGeoTrd2("trdS", 20., 30, 40., 50., 50.);
-
-  return new TGeoVolume("trd", trdS, fBasicMedium);
+  return new TGeoTrd2("trdS", 20., 30, 40., 50., 50.);
 }  
 
 //_____________________________________________________________________________
-TGeoVolume* TstGeometryViaRoot::CreateTubs(Double_t sphi, Double_t dphi)
+TGeoShape* TstGeometryViaRoot::CreateTubs(Double_t sphi, Double_t dphi)
 {
-  TGeoShape* tubsS
-    = new TGeoTubeSeg("tubsS", 20., 40, 50., sphi, sphi + dphi);
-
-  return new TGeoVolume("tubs", tubsS, fBasicMedium);
+  return new TGeoTubeSeg("tubsS", 20., 40, 50., sphi, sphi + dphi);
 }  
  
 //_____________________________________________________________________________
-TGeoVolume* TstGeometryViaRoot::CreateCtubs(Double_t /*sphi*/, Double_t /*dphi*/)
+TGeoShape* TstGeometryViaRoot::CreateCtubs(Double_t /*sphi*/, Double_t /*dphi*/)
 {
-  //TGeoShape* tubsS
-  //  = new TGeoCtub("ctubsS", 20., 30, 60.49, sphi, sphi + dphi,
-  //                 0.00, 0.64, -0.77, 0.00, 0.09, 0.87);
-  TGeoShape* tubsS
-    = new TGeoCtub("ctubsS", 20., 30, 60.49, 330., 610.,
+  return new TGeoCtub("ctubsS", 20., 30, 60.49, 330., 610.,
                    0.00, 0.64, -0.77, 0.00, 0.09, 0.87);
+}
 
-  return new TGeoVolume("ctubs", tubsS, fBasicMedium);
-}  
+//_____________________________________________________________________________
+TGeoVolume* TstGeometryViaRoot::CreateVolume(TGeoShape* shape, TGeoScale* scale3D)
+{
+  // Remove "S" from solid name
+  std::string name = shape->GetName();
+  if ( name.find("S") != std::string::npos ) {
+    name.erase(name.find("S"), 1);
+  }
+
+  TGeoShape* finalShape = shape;
+  if ( scale3D ) finalShape = new TGeoScaledShape(shape->GetName(), shape, scale3D);
+
+  return new TGeoVolume(name.c_str(), finalShape, fBasicMedium);
+}
  
 //_____________________________________________________________________________
 TGeoVolume* TstGeometryViaRoot::PlaceSolids(TGeoVolume* mother,
-                                     Bool_t fullPhi, Bool_t reflect, Double_t zpos)
+                                     Bool_t fullPhi, Bool_t reflect, Bool_t scale,
+                                     Double_t zpos)
 {
   Double_t sphi =   0.;
   Double_t dphi = 360.;
@@ -608,9 +593,13 @@ TGeoVolume* TstGeometryViaRoot::PlaceSolids(TGeoVolume* mother,
   matrix[6] = 0; matrix[7] = 0; matrix[8] = -1;
   reflect3D->SetMatrix(matrix);
  
+  TGeoScale* scale3D = 0;
+  if (scale ) scale3D = new TGeoScale(0.8, 0.5, 0.25);
+
   // Box
   //
-  TGeoVolume* boxV = CreateBox();
+  TGeoShape* box = CreateBox();
+  TGeoVolume* boxV = CreateVolume(box, scale3D);
   mother->AddNode(boxV, 0, 
                   new TGeoTranslation(x0 + (counter)*dx,  -dy, zpos)); 
   if (reflect)
@@ -619,7 +608,8 @@ TGeoVolume* TstGeometryViaRoot::PlaceSolids(TGeoVolume* mother,
 
   // Cons 
   //
-  TGeoVolume* consV = CreateCons(sphi, dphi);
+  TGeoShape* cons = CreateCons(sphi, dphi);
+  TGeoVolume* consV = CreateVolume(cons, scale3D);
   mother->AddNode(consV, 0, 
                   new TGeoTranslation(x0 + (counter)*dx, dy, zpos));
   if (reflect)
@@ -628,7 +618,8 @@ TGeoVolume* TstGeometryViaRoot::PlaceSolids(TGeoVolume* mother,
 
   // Elliptical tube 
   //
-  TGeoVolume* eltuV = CreateEllipticalTube();
+  TGeoShape* eltu = CreateEllipticalTube();
+  TGeoVolume* eltuV = CreateVolume(eltu, scale3D);
   mother->AddNode(eltuV, 0, 
                   new TGeoTranslation(x0 + (++counter)*dx, -dy, zpos));
   if (reflect)
@@ -637,7 +628,8 @@ TGeoVolume* TstGeometryViaRoot::PlaceSolids(TGeoVolume* mother,
 
   // Para
   //
-  TGeoVolume* paraV = CreatePara();
+  TGeoShape* para = CreatePara();
+  TGeoVolume* paraV = CreateVolume(para, scale3D);
   mother->AddNode(paraV, 0, 
                   new TGeoTranslation(x0 + (counter)*dx,  dy, zpos));
   if (reflect)
@@ -646,7 +638,8 @@ TGeoVolume* TstGeometryViaRoot::PlaceSolids(TGeoVolume* mother,
 
   // Polycone
   //
-  TGeoVolume* pconeV = CreatePolycone(sphi, dphi);
+  TGeoShape* pcone = CreatePolycone(sphi, dphi);
+  TGeoVolume* pconeV = CreateVolume(pcone, scale3D);
   mother->AddNode(pconeV, 0,
                   new TGeoTranslation(x0 + (++counter)*dx, -dy, zpos));
   if (reflect)
@@ -655,7 +648,8 @@ TGeoVolume* TstGeometryViaRoot::PlaceSolids(TGeoVolume* mother,
 
   // Polyhedra
   //
-  TGeoVolume* phedraV = CreatePolyhedra(sphi, dphi);
+  TGeoShape* phedra = CreatePolyhedra(sphi, dphi);
+  TGeoVolume* phedraV = CreateVolume(phedra, scale3D);
   mother->AddNode(phedraV, 0, 
                   new TGeoTranslation(x0 + (counter)*dx,  dy, zpos));
   if (reflect)
@@ -664,7 +658,8 @@ TGeoVolume* TstGeometryViaRoot::PlaceSolids(TGeoVolume* mother,
 
   // Sphere 
   //
-  TGeoVolume* sphereV = CreateSphere(sphi, dphi);
+  TGeoShape* sphere = CreateSphere(sphi, dphi);
+  TGeoVolume* sphereV = CreateVolume(sphere, scale3D);
   mother->AddNode(sphereV, 0, 
                   new TGeoTranslation(x0 + (++counter)*dx, -dy, zpos));
   if (reflect)
@@ -673,7 +668,8 @@ TGeoVolume* TstGeometryViaRoot::PlaceSolids(TGeoVolume* mother,
 
   // Torus
   //
-  TGeoVolume* torusV = CreateTorus(sphi, dphi);
+  TGeoShape* torus = CreateTorus(sphi, dphi);
+  TGeoVolume* torusV = CreateVolume(torus, scale3D);
   mother->AddNode(torusV, 0, 
                   new TGeoTranslation(x0 + (counter)*dx,  dy, zpos));
   if (reflect)
@@ -682,7 +678,8 @@ TGeoVolume* TstGeometryViaRoot::PlaceSolids(TGeoVolume* mother,
 
   // Trap 
   //
-  TGeoVolume* trapV = CreateTrap();
+  TGeoShape* trap = CreateTrap();
+  TGeoVolume* trapV = CreateVolume(trap, scale3D);
   mother->AddNode(trapV, 0, 
                   new TGeoTranslation(x0 + (++counter)*dx, -dy, zpos));
   if (reflect)
@@ -691,7 +688,8 @@ TGeoVolume* TstGeometryViaRoot::PlaceSolids(TGeoVolume* mother,
 
   // Trd
   //
-  TGeoVolume* trdV = CreateTrd();
+  TGeoShape* trd = CreateTrd();
+  TGeoVolume* trdV = CreateVolume(trd, scale3D);
   mother->AddNode(trdV, 0, 
                   new TGeoTranslation(x0 + (counter)*dx,  dy, zpos));
   if (reflect)
@@ -700,7 +698,8 @@ TGeoVolume* TstGeometryViaRoot::PlaceSolids(TGeoVolume* mother,
  
   // Tube
   //
-  TGeoVolume* tubsV = CreateTubs(sphi, dphi);
+  TGeoShape* tubs = CreateTubs(sphi, dphi);
+  TGeoVolume* tubsV = CreateVolume(tubs, scale3D);
   mother->AddNode(tubsV, 0, 
                   new TGeoTranslation(x0 + (++counter)*dx, -dy, zpos));
   if (reflect)
@@ -709,7 +708,8 @@ TGeoVolume* TstGeometryViaRoot::PlaceSolids(TGeoVolume* mother,
 
    // Ctubs
   //
-  TGeoVolume* ctubsV = CreateCtubs(sphi, dphi);
+  TGeoShape* ctubs = CreateCtubs(sphi, dphi);
+  TGeoVolume* ctubsV = CreateVolume(ctubs, scale3D);
   mother->AddNode(ctubsV, 0, 
                   new TGeoTranslation(x0 + (counter)*dx, dy, zpos));
   if (reflect)
@@ -718,16 +718,18 @@ TGeoVolume* TstGeometryViaRoot::PlaceSolids(TGeoVolume* mother,
 
   // Xtru1
   //
-  TGeoVolume* xtru1V = CreateExtrudedSolid1();
+  TGeoShape* xtru1 = CreateExtrudedSolid1();
+  TGeoVolume* xtru1V = CreateVolume(xtru1, scale3D);
   mother->AddNode(xtru1V, 0, 
                   new TGeoTranslation(x0 + (++counter)*dx, -dy, zpos));
   if (reflect)
     mother->AddNode(xtru1V, 1,
                   new TGeoCombiTrans(x0 + (counter)*dx, -dy, -zpos, reflect3D));
 
-   // Xtru2
+  // Xtru2
   //
-  TGeoVolume* xtru2V = CreateExtrudedSolid2();
+  TGeoShape* xtru2 = CreateExtrudedSolid2();
+  TGeoVolume* xtru2V = CreateVolume(xtru2, scale3D);
   mother->AddNode(xtru2V, 0, 
                   new TGeoTranslation(x0 + (counter)*dx, dy, zpos));
   if (reflect)
@@ -736,7 +738,8 @@ TGeoVolume* TstGeometryViaRoot::PlaceSolids(TGeoVolume* mother,
 
   // Hype
   //
-  TGeoVolume* hypeV = CreateHype();
+  TGeoShape* hype = CreateHype();
+  TGeoVolume* hypeV = CreateVolume(hype, scale3D);
   mother->AddNode(hypeV, 0, 
                   new TGeoTranslation(x0 + (++counter)*dx, -dy, zpos));
   if (reflect)
@@ -745,7 +748,8 @@ TGeoVolume* TstGeometryViaRoot::PlaceSolids(TGeoVolume* mother,
 
   // Paraboloid 
   //
-  TGeoVolume* paraboloidV = CreateParaboloid();
+  TGeoShape* paraboloid = CreateParaboloid();
+  TGeoVolume* paraboloidV = CreateVolume(paraboloid, scale3D);
   mother->AddNode(paraboloidV, 0, 
                   new TGeoTranslation(x0 + (counter)*dx, dy, zpos));
   if (reflect)
@@ -775,7 +779,7 @@ void TstGeometryViaRoot::PlaceExtraSolid(VGM::SolidType solidType,
   //TString volName;
  
   if ( solidType == VGM::kArb8 ) {
-    vol = CreateArb8();
+    vol = CreateVolume(CreateArb8());
     //volName = "arb8";
   }    
     
@@ -890,7 +894,7 @@ void* TstGeometryViaRoot::TestSolids(Bool_t fullPhi)
 {
   TGeoVolume* worldV = CreateWorld(620., 300., 200.);
   
-  PlaceSolids(worldV, fullPhi, false, 0.);
+  PlaceSolids(worldV, fullPhi, false, false, 0.);
   
   return (void*) gGeoManager->GetTopNode();
  }
@@ -910,23 +914,11 @@ void* TstGeometryViaRoot::TestNewSolid()
 {
   TGeoVolume* worldV = CreateWorld(200., 200., 200.);
  
-  TGeoVolume* newSolidV = CreateNewSolid();
+  TGeoVolume* newSolidV = CreateVolume(CreateNewSolid());
   if ( newSolidV ) {
     worldV->AddNode(newSolidV, 0, new TGeoTranslation()); 
   }  
 
-/*  
-  TGeoShape* boxS
-    = new TGeoBBox("boxS", 1., 1., 1.);
-
-  TGeoVolume* boxV = new TGeoVolume("boxV", boxS, fBasicMedium);
-  worldV->AddNode(boxV, 0, new TGeoTranslation(-3.92, 1.26, 39.7));
-  worldV->AddNode(boxV, 0, new TGeoTranslation(-0.999, 4.75, 26.8));
-  worldV->AddNode(boxV, 0, new TGeoTranslation( 2.8, 9.28, 10.0));
-  worldV->AddNode(boxV, 0, new TGeoTranslation(4.56, 11.4, 2.23));
-  worldV->AddNode(boxV, 0, new TGeoTranslation(6.06, 13.2, -4.38));
-  worldV->AddNode(boxV, 0, new TGeoTranslation(14.1, 22.8, -40.0));
-*/  
   return (void*) gGeoManager->GetTopNode();
  }
 
@@ -1017,7 +1009,18 @@ void* TstGeometryViaRoot::TestReflections(Bool_t fullPhi)
 
   TGeoVolume* worldV = CreateWorld(620., 300., 300.);
   
-  PlaceSolids(worldV, fullPhi, true, 100.);
+  PlaceSolids(worldV, fullPhi, true, false, 100.);
+
+  return (void*) gGeoManager->GetTopNode();
+}
+
+//_____________________________________________________________________________
+void* TstGeometryViaRoot::TestScaledSolids(Bool_t fullPhi)
+{
+
+  TGeoVolume* worldV = CreateWorld(620., 300., 300.);
+  
+  PlaceSolids(worldV, fullPhi, true, true, 100.);
 
   return (void*) gGeoManager->GetTopNode();
 }
@@ -1232,6 +1235,17 @@ void* TstGeometryViaRoot::TestBooleanSolids1()
     = new TGeoVolume("union_solid1_solid2", unionS, fBasicMedium);
   worldV->AddNode(unionV, 1, 
                   new TGeoTranslation(250., 0., 200.));
+
+/*
+  // Scaled Union: causes crash
+  TGeoShape* unionS2
+    = new TGeoCompositeShape("union_solid1_solid2_S2", "boxS+tubsS:tr2"); 
+  // Scaled Uniom
+  TGeoScale* scale3D = new TGeoScale(0.8, 0.5, 0.25);
+  TGeoVolume* unionV2 = CreateVolume(unionS2, scale3D);
+  worldV->AddNode(unionV2, 1, 
+                  new TGeoTranslation(500., 0., 200.));
+*/
   
   return (void*) gGeoManager->GetTopNode();
 }
