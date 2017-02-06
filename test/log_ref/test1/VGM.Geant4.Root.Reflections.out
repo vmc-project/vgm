@@ -2,7 +2,7 @@ Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometr
 Geant4 geometry will be defined via VGM and exported to Root
 
 *************************************************************
- Geant4 version Name: geant4-10-01-patch-02    (19-June-2015)
+ Geant4 version Name: geant4-10-03    (9-December-2016)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -91,21 +91,21 @@ VGM info:   Importing solid: ctubsS_refl
 VGM info:   ImportDaughters for ctubs_refl
 VGM info:   ImportPositions for lv ctubs_refl nofDaughters: 0
 VGM info:   Importing LV: xtru1_refl
-VGM info:   Importing solid: xtruS_refl
+VGM info:   Importing solid: xtru1S_refl
 VGM info:   ImportDaughters for xtru1_refl
 VGM info:   ImportPositions for lv xtru1_refl nofDaughters: 0
 VGM info:   Importing LV: xtru2_refl
-VGM info:   Importing solid: xtruS_refl
-VGM info:   Importing solid: xtruS
-VGM info:      Imported solid: Extruded  "xtruS"
+VGM info:   Importing solid: xtru2S_refl
+VGM info:   Importing solid: xtru2S
+VGM info:      Imported solid: Extruded  "xtru2S"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
   z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
   z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
 
-VGM info:   Importing solid: xtruS
-VGM info:      Imported solid: Extruded  "xtruS"
+VGM info:   Importing solid: xtru2S
+VGM info:      Imported solid: Extruded  "xtru2S"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
@@ -113,15 +113,15 @@ Planes:
   z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
 
 VGM info:   Imported Boolean solid: 
-VGM info:   Boolean  "xtruS"  Union: 
-  ConstituentA = Extruded  "xtruS"
+VGM info:   Boolean  "xtru2S"  Union: 
+  ConstituentA = Extruded  "xtru2S"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
   z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
   z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
 
-  ConstituentB = Extruded  "xtruS"
+  ConstituentB = Extruded  "xtru2S"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
@@ -181,7 +181,7 @@ VGM info:   Isotope: "U235"    Z = 92  N = 235  A = 235.01 g/mole
 VGM info:   Exporting isotope: 
 VGM info:   Isotope: "U238"    Z = 92  N = 238  A = 238.03 g/mole
 VGM info:   Exporting element: 
-VGM info:   Element: "H"  "H"  Z = 1  N = 1.00012  A = 1.00794 g/mole
+VGM info:   Element: "H"  "H"  Z = 1  N = 1.00794  A = 1.00794 g/mole
      0th isotope: Isotope: "H1"    Z = 1  N = 1  A = 1.00783 g/mole  abundance: 99.9885%
      1th isotope: Isotope: "H2"    Z = 1  N = 2  A = 2.0141 g/mole  abundance: 0.0115%
 VGM info:   Exporting element: 
@@ -212,7 +212,7 @@ VGM info:   Element: "Tungsten"  "W"  Z = 74  N = 183.84  A = 183.84 g/mole
      3th isotope: Isotope: "W184"    Z = 74  N = 184  A = 183.951 g/mole  abundance: 30.64%
      4th isotope: Isotope: "W186"    Z = 74  N = 186  A = 185.954 g/mole  abundance: 28.43%
 VGM info:   Exporting element: 
-VGM info:   Element: "enriched Uranium"  "U"  Z = 92  N = 235.3  A = 235.312 g/mole
+VGM info:   Element: "enriched Uranium"  "U"  Z = 92  N = 235.312  A = 235.312 g/mole
      0th isotope: Isotope: "U235"    Z = 92  N = 235  A = 235.01 g/mole  abundance: 90%
      1th isotope: Isotope: "U238"    Z = 92  N = 238  A = 238.03 g/mole  abundance: 10%
 VGM info:   Exporting material: 
@@ -229,16 +229,16 @@ VGM info:   Material: "Air"  density 0.00129 g/cm3  radlen 28516.1 cm  intlen 66
      1th isotope: Isotope: "O17"    Z = 8  N = 17  A = 16.9991 g/mole  abundance: 0.038%
      2th isotope: Isotope: "O18"    Z = 8  N = 18  A = 17.9992 g/mole  abundance: 0.205%  Elm mass fraction: 30 %
 VGM info:   Exporting material: 
-VGM info:   Material: "Scintillator"  density 1.032 g/cm3  radlen 42.5442 cm  intlen 70.0652 cm  state "Solid"  temperature 293.15 kelvin  pressure 1 atm
+VGM info:   Material: "Scintillator"  density 1.032 g/cm3  radlen 42.5442 cm  intlen 69.9694 cm  state "Solid"  temperature 293.15 kelvin  pressure 1 atm
    0th element: Element: "C"  "C"  Z = 6  N = 12.0107  A = 12.0107 g/mole
      0th isotope: Isotope: "C12"    Z = 6  N = 12  A = 12 g/mole  abundance: 98.93%
      1th isotope: Isotope: "C13"    Z = 6  N = 13  A = 13.0034 g/mole  abundance: 1.07%  Elm mass fraction: 91.4709 %
-   1th element: Element: "H"  "H"  Z = 1  N = 1.00012  A = 1.00794 g/mole
+   1th element: Element: "H"  "H"  Z = 1  N = 1.00794  A = 1.00794 g/mole
      0th isotope: Isotope: "H1"    Z = 1  N = 1  A = 1.00783 g/mole  abundance: 99.9885%
      1th isotope: Isotope: "H2"    Z = 1  N = 2  A = 2.0141 g/mole  abundance: 0.0115%  Elm mass fraction: 8.52915 %
 VGM info:   Exporting material: 
-VGM info:   Material: "Uranium"  density 13.61 g/cm3  radlen 0.435829 cm  intlen 15.8772 cm  state "Solid"  temperature 293.15 kelvin  pressure 1 atm
-   0th element: Element: "enriched Uranium"  "U"  Z = 92  N = 235.3  A = 235.312 g/mole
+VGM info:   Material: "Uranium"  density 13.61 g/cm3  radlen 0.435829 cm  intlen 15.8766 cm  state "Solid"  temperature 293.15 kelvin  pressure 1 atm
+   0th element: Element: "enriched Uranium"  "U"  Z = 92  N = 235.312  A = 235.312 g/mole
      0th isotope: Isotope: "U235"    Z = 92  N = 235  A = 235.01 g/mole  abundance: 90%
      1th isotope: Isotope: "U238"    Z = 92  N = 238  A = 238.03 g/mole  abundance: 10%  Elm mass fraction: 100 %
 VGM info:   Exporting material: 
@@ -356,7 +356,7 @@ VGM info:      Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = 
 Error in <TGeoCtub::ComputeBBox>: In shape ctubsS wrong definition of cut planes
 VGM info:   Exporting volume:  24th  "ctubs_refl"  material: "Basic"
 VGM info:      Exporting solid: 
-VGM info:      Extruded  "xtruS"
+VGM info:      Extruded  "xtru1S"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
@@ -367,7 +367,7 @@ Planes:
 
 VGM info:   Exporting volume:  25th  "xtru1"  material: "Basic"
 VGM info:      Exporting solid: 
-VGM info:      Extruded  "xtruS"
+VGM info:      Extruded  "xtru1S"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
@@ -378,7 +378,7 @@ Planes:
 
 VGM info:   Exporting volume:  26th  "xtru1_refl"  material: "Basic"
 VGM info:      Exporting solid: 
-VGM info:      Extruded  "xtruS"
+VGM info:      Extruded  "xtru2S"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
@@ -389,15 +389,15 @@ Planes:
 
 VGM info:   Exporting volume:  27th  "xtru2"  material: "Basic"
 VGM info:      Exporting solid: 
-VGM info:      Boolean  "xtruS"  Union: 
-  ConstituentA = Extruded  "xtruS"
+VGM info:      Boolean  "xtru2S"  Union: 
+  ConstituentA = Extruded  "xtru2S"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
   z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
   z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
 
-  ConstituentB = Extruded  "xtruS"
+  ConstituentB = Extruded  "xtru2S"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
@@ -407,7 +407,7 @@ Planes:
   Displacement translation (object):  ( 0,  0,  0) mm 
   Displacement rotation (object):  (0,  -0,  0) deg    no reflectionZ
 VGM info:      Exporting solid: 
-VGM info:      Extruded  "xtruS"
+VGM info:      Extruded  "xtru2S"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
@@ -415,7 +415,7 @@ Planes:
   z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
 
 VGM info:      Exporting solid: 
-VGM info:      Extruded  "xtruS"
+VGM info:      Extruded  "xtru2S"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
@@ -519,30 +519,35 @@ Registering graphics systems...
 
 You have successfully registered the following graphics systems.
 Current available graphics systems are:
-  ASCIITree (ATree)
-  DAWNFILE (DAWNFILE)
-  G4HepRep (HepRepXML)
-  G4HepRepFile (HepRepFile)
-  RayTracer (RayTracer)
-  VRML1FILE (VRML1FILE)
-  VRML2FILE (VRML2FILE)
-  gMocrenFile (gMocrenFile)
+ASCIITree (ATree)
+DAWNFILE (DAWNFILE)
+G4HepRep (HepRepXML)
+G4HepRepFile (HepRepFile)
+RayTracer (RayTracer)
+VRML1FILE (VRML1FILE)
+VRML2FILE (VRML2FILE)
+gMocrenFile (gMocrenFile)
+OpenGLImmediateX (OGLIX, OGLI)
+OpenGLStoredX (OGLSX, OGL, OGLS)
+RayTracerX (RayTracerX)
 
 Registering model factories...
 
 You have successfully registered the following model factories.
 Registered model factories:
   generic
-  drawByCharge
-  drawByParticleID
-  drawByOriginVolume
   drawByAttribute
+  drawByCharge
+  drawByOriginVolume
+  drawByParticleID
+  drawByEncounteredVolume
 
 Registered filter factories:
-  chargeFilter
-  particleFilter
-  originVolumeFilter
   attributeFilter
+  chargeFilter
+  originVolumeFilter
+  particleFilter
+  encounteredVolumeFilter
 
 You have successfully registered the following user vis actions.
 Run Duration User Vis Actions: none

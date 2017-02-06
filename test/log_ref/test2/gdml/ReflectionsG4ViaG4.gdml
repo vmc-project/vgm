@@ -190,62 +190,22 @@
          rmin="   20.0000"  rmax="   40.0000"  z="  100.0000"
          startphi="    0.0000"  deltaphi="  360.0000" />
 
-      <tube  lunit="cm" aunit="degree"
-         name="ctubs_constA_constA_s"
-         rmin="   20.0000"  rmax="   30.0000"  z="  180.8242"
-         startphi="  330.0000"  deltaphi="  280.0000" />
+      <cutTube  lunit="cm" aunit="degree"
+         name="ctubs_s"
+         rmin="   20.0000"  rmax="   30.0000"  z="  120.9800"
+         startphi="  -30.0000"  deltaphi="  280.0000"
+         lowX="    0.0000"  lowY="    0.6392"  lowZ="   -0.7690"
+         highX="    0.0000"  highY="    0.1029"  highZ="    0.9947" />
 
-      <box  lunit="cm" aunit="degree"
-         name="ctubs_constA_constB_s"
-         x="  168.7492"  y="  168.7492"  z="   93.6233" />
-
-      <subtraction name="ctubs_constA_s" >
-         <first  ref="ctubs_constA_constA_s" />
-         <second ref="ctubs_constA_constB_s" />
-         <position  name="posB_0"    x="     0.0000"  y="     0.0000"  z="  -121.3603"  unit="cm" />
-         <rotation  name="rotB_0"    x="  -140.2677"  y="     0.0000"  z="     0.0000"  unit="degree" />
-      </subtraction>
-
-      <box  lunit="cm" aunit="degree"
-         name="ctubs_constB_s"
-         x="  131.6788"  y="  131.6788"  z="   72.3842" />
-
-      <subtraction name="ctubs_s" >
-         <first  ref="ctubs_constA_s" />
-         <second ref="ctubs_constB_s" />
-         <position  name="posB_1"    x="     0.0000"  y="     0.0000"  z="    96.8753"  unit="cm" />
-         <rotation  name="rotB_1"    x="    -5.9061"  y="     0.0000"  z="     0.0000"  unit="degree" />
-      </subtraction>
-
-      <tube  lunit="cm" aunit="degree"
-         name="ctubs_refl_constA_constA_s"
-         rmin="   20.0000"  rmax="   30.0000"  z="  180.8242"
-         startphi="  330.0000"  deltaphi="  280.0000" />
-
-      <box  lunit="cm" aunit="degree"
-         name="ctubs_refl_constA_constB_s"
-         x="  168.7492"  y="  168.7492"  z="   93.6233" />
-
-      <subtraction name="ctubs_refl_constA_s" >
-         <first  ref="ctubs_refl_constA_constA_s" />
-         <second ref="ctubs_refl_constA_constB_s" />
-         <position  name="posB_2"    x="     0.0000"  y="     0.0000"  z="  -121.3603"  unit="cm" />
-         <rotation  name="rotB_2"    x="  -140.2677"  y="     0.0000"  z="     0.0000"  unit="degree" />
-      </subtraction>
-
-      <box  lunit="cm" aunit="degree"
-         name="ctubs_refl_constB_s"
-         x="  131.6788"  y="  131.6788"  z="   72.3842" />
-
-      <subtraction name="ctubs_refl_s" >
-         <first  ref="ctubs_refl_constA_s" />
-         <second ref="ctubs_refl_constB_s" />
-         <position  name="posB_3"    x="     0.0000"  y="     0.0000"  z="    96.8753"  unit="cm" />
-         <rotation  name="rotB_3"    x="    -5.9061"  y="     0.0000"  z="     0.0000"  unit="degree" />
-      </subtraction>
+      <cutTube  lunit="cm" aunit="degree"
+         name="ctubs_refl_s"
+         rmin="   20.0000"  rmax="   30.0000"  z="  120.9800"
+         startphi="  -30.0000"  deltaphi="  280.0000"
+         lowX="    0.0000"  lowY="    0.1029"  lowZ="    0.9947"
+         highX="    0.0000"  highY="    0.6392"  highZ="   -0.7690" />
 
       <xtru  lunit="cm" aunit="degree"
-         name="xtru1_s" >
+         name="Xtru1_s" >
          <twoDimVertex  x="  -30.0000"  y="  -30.0000" />
          <twoDimVertex  x="  -30.0000"  y="   30.0000" />
          <twoDimVertex  x="   30.0000"  y="   30.0000" />
@@ -261,7 +221,7 @@
       </xtru>
 
       <xtru  lunit="cm" aunit="degree"
-         name="xtru1_refl_s" >
+         name="Xtru1_refl_s" >
          <twoDimVertex  x="  -30.0000"  y="  -30.0000" />
          <twoDimVertex  x="  -30.0000"  y="   30.0000" />
          <twoDimVertex  x="   30.0000"  y="   30.0000" />
@@ -307,8 +267,8 @@
       <union name="xtru2_s" >
          <first  ref="xtru2_constA_s" />
          <second ref="xtru2_constB_s" />
-         <position  name="posB_4"    x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
-         <rotation  name="rotB_4"    x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
+         <position  name="posB_0"    x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+         <rotation  name="rotB_0"    x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
       </union>
 
       <xtru  lunit="cm" aunit="degree"
@@ -342,8 +302,8 @@
       <union name="xtru2_refl_s" >
          <first  ref="xtru2_refl_constA_s" />
          <second ref="xtru2_refl_constB_s" />
-         <position  name="posB_5"    x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
-         <rotation  name="rotB_5"    x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
+         <position  name="posB_1"    x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+         <rotation  name="rotB_1"    x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
       </union>
 
       <hype  lunit="cm" aunit="degree"
@@ -489,14 +449,14 @@
          <solidref ref="ctubs_refl_s"/>
       </volume>
 
-      <volume name="xtru1">
+      <volume name="Xtru1">
          <materialref ref="Basic"/>
-         <solidref ref="xtru1_s"/>
+         <solidref ref="Xtru1_s"/>
       </volume>
 
-      <volume name="xtru1_refl">
+      <volume name="Xtru1_refl">
          <materialref ref="Basic"/>
-         <solidref ref="xtru1_refl_s"/>
+         <solidref ref="Xtru1_refl_s"/>
       </volume>
 
       <volume name="xtru2">
@@ -651,15 +611,14 @@
             <volumeref ref="ctubs_refl"/>
                <positionref ref="pos_24"/>
                <rotationref ref="rot_0"/>
-               <scaleref    ref="scale_0"/>
          </physvol>
          <physvol>
-            <volumeref ref="xtru1"/>
+            <volumeref ref="Xtru1"/>
                <positionref ref="pos_25"/>
                <rotationref ref="rot_0"/>
          </physvol>
          <physvol>
-            <volumeref ref="xtru1_refl"/>
+            <volumeref ref="Xtru1_refl"/>
                <positionref ref="pos_26"/>
                <rotationref ref="rot_0"/>
          </physvol>

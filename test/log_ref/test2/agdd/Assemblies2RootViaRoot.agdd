@@ -6,7 +6,7 @@
 <xi:include href="StandardColors.agdd"/>
 
 <materials  version = "Id: AGDDWriter.cxx 693 2011-01-11 14:41:39Z ihrivnac "
-            date    = "2015-07-15"
+            date    = "2017-02-06"
             author  = "VGM AGGD Writer"
             DTD_version="v7"  >
 
@@ -22,7 +22,7 @@
 </materials>
 
 <media  version = "Id: AGDDWriter.cxx 693 2011-01-11 14:41:39Z ihrivnac "
-        date    = "2015-07-15"
+        date    = "2017-02-06"
         author  = "VGM AGGD Writer"
         DTD_version="v7"  >
 
@@ -37,7 +37,7 @@
 <section DTD_version = "v7"
          name        = "world"
          version     = "Id: AGDDWriter.cxx 693 2011-01-11 14:41:39Z ihrivnac "
-         date        = "2015-07-15"
+         date        = "2017-02-06"
          author      = "VGM AGGD Writer"
          top_volume  = "world_comp"  >
 
@@ -69,8 +69,8 @@
       </transform>
       <transform    pos="  0.0000; -110.0000;   0.0000"
                  matrix=" 1.00000;  0.00000;  0.00000; 
-                          0.00000; -1.60812e-16; -1.00000; 
-                          0.00000; -1.00000; 1.60812e-16"> <volume name="CONS"/>
+                          0.00000; 6.12323e-17; -1.00000; 
+                          0.00000; -1.00000; -6.12323e-17"> <volume name="CONS"/>
       </transform>
    </composition>
 
