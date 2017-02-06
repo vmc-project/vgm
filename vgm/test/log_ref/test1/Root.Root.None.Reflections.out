@@ -4,7 +4,7 @@ Info in <TGeoManager::TGeoManager>: Geometry Test, Test geometry via Root create
 Root geometry will be defined via Root
 
 *************************************************************
- Geant4 version Name: geant4-10-01-patch-02    (19-June-2015)
+ Geant4 version Name: geant4-10-03    (9-December-2016)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -127,8 +127,8 @@ VGM info:   Importing shape: ctubsS
 VGM info:      Imported solid: Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = 330deg  dphi = 280deg  nlow = (0, 0.64, -0.77)  nhigh = (0, 0.09, 0.87)
 VGM info:   ImportDaughters for ctubs
 VGM info:   Importing volume: xtru1
-VGM info:   Importing shape: TGeoXtru
-VGM info:      Imported solid: Extruded  "TGeoXtru"
+VGM info:   Importing shape: xtru1S
+VGM info:      Imported solid: Extruded  "xtru1S"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
@@ -139,8 +139,8 @@ Planes:
 
 VGM info:   ImportDaughters for xtru1
 VGM info:   Importing volume: xtru2
-VGM info:   Importing shape: TGeoXtru
-VGM info:      Imported solid: Extruded  "TGeoXtru"
+VGM info:   Importing shape: xtru2S
+VGM info:      Imported solid: Extruded  "xtru2S"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
@@ -151,8 +151,8 @@ Planes:
 
 VGM info:   ImportDaughters for xtru2
 VGM info:   Importing volume: hype
-VGM info:   Importing shape: paraS
-VGM info:      Imported solid: Hype  "paraS"  r1 = 200mm  stereo1 = 30deg  r2 = 300mm  stereo1 = 40deg  hz = 500mm
+VGM info:   Importing shape: hypeS
+VGM info:      Imported solid: Hype  "hypeS"  r1 = 200mm  stereo1 = 30deg  r2 = 300mm  stereo1 = 40deg  hz = 500mm
 VGM info:   ImportDaughters for hype
 VGM info:   Importing volume: paraboloid
 VGM info:   Importing shape: paraboloidS
@@ -229,7 +229,7 @@ Root_GM_Factory factory solids store:
    10th solid: Trd  "trdS"  hx1 = 200mm  hx2 = 300mm  hy1 = 400mm  hy2 = 500mm  hz = 500mm
    11th solid: Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
    12th solid: Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = 330deg  dphi = 280deg  nlow = (0, 0.64, -0.77)  nhigh = (0, 0.09, 0.87)
-   13th solid: Extruded  "TGeoXtru"
+   13th solid: Extruded  "xtru1S"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
@@ -238,7 +238,7 @@ Planes:
   z = 150 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.7
   z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
 
-   14th solid: Extruded  "TGeoXtru"
+   14th solid: Extruded  "xtru2S"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
@@ -247,7 +247,7 @@ Planes:
   z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.7
   z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
 
-   15th solid: Hype  "paraS"  r1 = 200mm  stereo1 = 30deg  r2 = 300mm  stereo1 = 40deg  hz = 500mm
+   15th solid: Hype  "hypeS"  r1 = 200mm  stereo1 = 30deg  r2 = 300mm  stereo1 = 40deg  hz = 500mm
    16th solid: Paraboloid  "paraboloidS"  r1 = 200mm  r2 = 450mm  hz = 500mm
 Root_GM_Factory factory volumes store: 
    0th: Volume: "world" material "Basic" solid "Box"  32 daughters: "box"  "box"  "cons"  "cons"  "eltu"  "eltu"  "para"  "para"  "pcone"  "pcone"  "phedra"  "phedra"  "sphere"  "sphere"  "torus"  "torus"  "trap"  "trap"  "trd"  "trd"  "tubs"  "tubs"  "ctubs"  "ctubs"  "xtru1"  "xtru1"  "xtru2"  "xtru2"  "hype"  "hype"  "paraboloid"  "paraboloid"  

@@ -2,7 +2,7 @@ Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometr
 Root geometry will be defined via VGM and exported to Geant4
 
 *************************************************************
- Geant4 version Name: geant4-10-01-patch-02    (19-June-2015)
+ Geant4 version Name: geant4-10-03    (9-December-2016)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -29,30 +29,35 @@ Registering graphics systems...
 
 You have successfully registered the following graphics systems.
 Current available graphics systems are:
-  ASCIITree (ATree)
-  DAWNFILE (DAWNFILE)
-  G4HepRep (HepRepXML)
-  G4HepRepFile (HepRepFile)
-  RayTracer (RayTracer)
-  VRML1FILE (VRML1FILE)
-  VRML2FILE (VRML2FILE)
-  gMocrenFile (gMocrenFile)
+ASCIITree (ATree)
+DAWNFILE (DAWNFILE)
+G4HepRep (HepRepXML)
+G4HepRepFile (HepRepFile)
+RayTracer (RayTracer)
+VRML1FILE (VRML1FILE)
+VRML2FILE (VRML2FILE)
+gMocrenFile (gMocrenFile)
+OpenGLImmediateX (OGLIX, OGLI)
+OpenGLStoredX (OGLSX, OGL, OGLS)
+RayTracerX (RayTracerX)
 
 Registering model factories...
 
 You have successfully registered the following model factories.
 Registered model factories:
   generic
-  drawByCharge
-  drawByParticleID
-  drawByOriginVolume
   drawByAttribute
+  drawByCharge
+  drawByOriginVolume
+  drawByParticleID
+  drawByEncounteredVolume
 
 Registered filter factories:
-  chargeFilter
-  particleFilter
-  originVolumeFilter
   attributeFilter
+  chargeFilter
+  originVolumeFilter
+  particleFilter
+  encounteredVolumeFilter
 
 You have successfully registered the following user vis actions.
 Run Duration User Vis Actions: none
@@ -6605,7 +6610,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     1 -4.96e+03     -431 -1.57e+03         1        0      492       492      layerA Transportation
     2 -4.85e+03     -310 -1.82e+03         1        0      300       793       world Transportation
     3 -4.7e+03     -155 -2.14e+03         1        0      385  1.18e+03      layerA Transportation
-    4 -4.55e+03        0 -2.46e+03         1        0      386  1.56e+03      layerC Transportation
+    4 -4.55e+03 2.84e-14 -2.46e+03         1        0      386  1.56e+03      layerC Transportation
     5 -4.55e+03        4 -2.47e+03         1        0     9.93  1.57e+03      layerB Transportation
     6 -4.42e+03      138 -2.74e+03         1        0      334  1.91e+03       world Transportation
     7 -3.6e+03    1e+03 -4.52e+03         1        0 2.14e+03  4.05e+03  OutOfWorld Transportation
@@ -8757,7 +8762,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -2.28e+03      382 5.27e+03         1        0        0         0       world initStep
     1 -3.29e+03   -1e+03 4.29e+03         1        0 1.97e+03  1.97e+03  OutOfWorld Transportation
-number of event = 1000 User=0.04s Real=0.06s Sys=0.01s
-Execution time: R: 0.0584 s  C: 0.0584 s 
+number of event = 1000 User=0.06s Real=0.06s Sys=0.01s
+Execution time: R: 0.066 s  C: 0.066 s 
 Graphics systems deleted.
 Visualization Manager deleting...

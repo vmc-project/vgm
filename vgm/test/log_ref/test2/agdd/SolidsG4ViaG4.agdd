@@ -6,7 +6,7 @@
 <xi:include href="StandardColors.agdd"/>
 
 <materials  version = "Id: AGDDWriter.cxx 693 2011-01-11 14:41:39Z ihrivnac "
-            date    = "2015-07-15"
+            date    = "2017-02-06"
             author  = "VGM AGGD Writer"
             DTD_version="v7"  >
 
@@ -23,7 +23,7 @@
 </materials>
 
 <media  version = "Id: AGDDWriter.cxx 693 2011-01-11 14:41:39Z ihrivnac "
-        date    = "2015-07-15"
+        date    = "2017-02-06"
         author  = "VGM AGGD Writer"
         DTD_version="v7"  >
 
@@ -38,7 +38,7 @@
 <section DTD_version = "v7"
          name        = "world"
          version     = "Id: AGDDWriter.cxx 693 2011-01-11 14:41:39Z ihrivnac "
-         date        = "2015-07-15"
+         date        = "2017-02-06"
          author      = "VGM AGGD Writer"
          top_volume  = "world_comp"  >
 
@@ -111,42 +111,15 @@
       profile=" 0.0000; 360.0000"
       Rio_Z  ="20.0000; 40.0000; 100.0000" />
 
-   <tubs   name="ctubs_constA_constA"
-      medium="Basic"
-      profile="-30.0000; 280.0000"
-      Rio_Z  ="20.0000; 30.0000; 180.8242" />
-
-   <box    name="ctubs_constA_constB"
-      medium="Basic"
-      X_Y_Z="168.7492; 168.7492; 93.6233" />
-
-   <subtraction name="ctubs_constA" >
-      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="ctubs_constA_constA"/>
-      </posXYZ>
-      <transform    pos="  0.0000;   0.0000; -121.3603"
-                 matrix=" 1.00000;  0.00000;  0.00000; 
-                          0.00000; -0.76904;  0.63920; 
-                         -0.00000; -0.63920; -0.76904"> <volume name="ctubs_constA_constB"/>
-      </transform>
-   </subtraction>
-
-   <box    name="ctubs_constB"
-      medium="Basic"
-      X_Y_Z="131.6788; 131.6788; 72.3842" />
-
-   <subtraction name="ctubs" >
-      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="ctubs_constA"/>
-      </posXYZ>
-      <transform    pos="  0.0000;   0.0000;  96.8753"
-                 matrix=" 1.00000;  0.00000;  0.00000; 
-                          0.00000;  0.99469;  0.10290; 
-                          0.00000; -0.10290;  0.99469"> <volume name="ctubs_constB"/>
-      </transform>
-   </subtraction>
-
-   <!-- !!! unsupported shape  !!!  name= "xtru1" -->
+   <!-- !!! unsupported shape  !!!  name= "ctubs" -->
    <!-- dummy box is written instead  -->
-   <box    name="xtru1"
+   <box    name="ctubs"
+      medium="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
+   <!-- !!! unsupported shape  !!!  name= "Xtru1" -->
+   <!-- dummy box is written instead  -->
+   <box    name="Xtru1"
       medium="Basic"
       X_Y_Z=" 0.2000;  0.2000;  0.2000" />
 
@@ -207,7 +180,7 @@
       </posXYZ>
       <posXYZ   X_Y_Z="250.0000; 150.0000;   0.0000"> <volume name="ctubs"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="400.0000; -150.0000;   0.0000"> <volume name="xtru1"/>
+      <posXYZ   X_Y_Z="400.0000; -150.0000;   0.0000"> <volume name="Xtru1"/>
       </posXYZ>
       <posXYZ   X_Y_Z="400.0000; 150.0000;   0.0000"> <volume name="xtru2"/>
       </posXYZ>

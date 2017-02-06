@@ -2,7 +2,7 @@ Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometr
 Root geometry will be defined via VGM and exported to Geant4
 
 *************************************************************
- Geant4 version Name: geant4-10-01-patch-02    (19-June-2015)
+ Geant4 version Name: geant4-10-03    (9-December-2016)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -29,30 +29,35 @@ Registering graphics systems...
 
 You have successfully registered the following graphics systems.
 Current available graphics systems are:
-  ASCIITree (ATree)
-  DAWNFILE (DAWNFILE)
-  G4HepRep (HepRepXML)
-  G4HepRepFile (HepRepFile)
-  RayTracer (RayTracer)
-  VRML1FILE (VRML1FILE)
-  VRML2FILE (VRML2FILE)
-  gMocrenFile (gMocrenFile)
+ASCIITree (ATree)
+DAWNFILE (DAWNFILE)
+G4HepRep (HepRepXML)
+G4HepRepFile (HepRepFile)
+RayTracer (RayTracer)
+VRML1FILE (VRML1FILE)
+VRML2FILE (VRML2FILE)
+gMocrenFile (gMocrenFile)
+OpenGLImmediateX (OGLIX, OGLI)
+OpenGLStoredX (OGLSX, OGL, OGLS)
+RayTracerX (RayTracerX)
 
 Registering model factories...
 
 You have successfully registered the following model factories.
 Registered model factories:
   generic
-  drawByCharge
-  drawByParticleID
-  drawByOriginVolume
   drawByAttribute
+  drawByCharge
+  drawByOriginVolume
+  drawByParticleID
+  drawByEncounteredVolume
 
 Registered filter factories:
-  chargeFilter
-  particleFilter
-  originVolumeFilter
   attributeFilter
+  chargeFilter
+  originVolumeFilter
+  particleFilter
+  encounteredVolumeFilter
 
 You have successfully registered the following user vis actions.
 Run Duration User Vis Actions: none
@@ -2175,7 +2180,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      248    -65.5    -69.6         1        0        0         0       world initStep
-    1      335     46.7 -1.42e-14         1        0      158       158    volume2C Transportation
+    1      335     46.7        0         1        0      158       158    volume2C Transportation
     2      500      258      131         1        0      298       457       world Transportation
     3      600      386      211         1        0      181       638  OutOfWorld Transportation
 
@@ -4739,7 +4744,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     1       33     -345    1e+03         1        0      134       134    volume2C Transportation
     2     -133     -200      546         1        0      505       638     volume3 Transportation
     3     -200     -141      361         1        0      206       844    volume2C Transportation
-    4     -331    -25.6        0         1        0      401  1.24e+03       world Transportation
+    4     -331    -25.6 5.68e-14         1        0      401  1.24e+03       world Transportation
     5     -600      210     -737         1        0      819  2.06e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -6791,7 +6796,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0    -85.8      221     -161         1        0        0         0       world initStep
-    1      208    -76.1 -2.84e-14         1        0      448       448    volume2C Transportation
+    1      208    -76.1        0         1        0      448       448    volume2C Transportation
     2      500     -372      160         1        0      446       894       world Transportation
     3      600     -473      215         1        0      153  1.05e+03  OutOfWorld Transportation
 
@@ -9147,7 +9152,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -228      229 1.41e+03         1        0        0         0       world initStep
     1     -600     -282 1.04e+03         1        0      729       729  OutOfWorld Transportation
-number of event = 1000 User=0.05s Real=0.07000000000000001s Sys=0.01s
-Execution time: R: 0.0624 s  C: 0.0624 s 
+number of event = 1000 User=0.06s Real=0.08s Sys=0.02s
+Execution time: R: 0.0751 s  C: 0.0751 s 
 Graphics systems deleted.
 Visualization Manager deleting...

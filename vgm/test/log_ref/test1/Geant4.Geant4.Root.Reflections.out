@@ -2,7 +2,7 @@ Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometr
 Geant4 geometry will be defined via Geant4 and exported to Root
 
 *************************************************************
- Geant4 version Name: geant4-10-01-patch-02    (19-June-2015)
+ Geant4 version Name: geant4-10-03    (9-December-2016)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -50,105 +50,105 @@ VGM info:    Isotope:  W184   Z = 74   N = 184   A = 183.95 g/mole
 VGM info:   Importing isotope: 
 VGM info:    Isotope:  W186   Z = 74   N = 186   A = 185.95 g/mole
 VGM info:   Importing element: 
-VGM info:    Element: Al (Al)   Z = 13.0   N =  27.0   A =  26.98 g/mole
-         --->  Isotope:  Al27   Z = 13   N =  27   A =  26.98 g/mole   abundance: 100.00 %
+VGM info:    Element: Al (Al)   Z = 13.0   N =    27   A = 26.980 g/mole
+         --->  Isotope:  Al27   Z = 13   N =  27   A =  26.98 g/mole   abundance: 100.000 %
 VGM info:   Importing element: 
-VGM info:    Element: Nitrogen (N)   Z =  7.0   N =  14.0   A =  14.01 g/mole
-         --->  Isotope:   N14   Z =  7   N =  14   A =  14.00 g/mole   abundance:  99.63 %
-         --->  Isotope:   N15   Z =  7   N =  15   A =  15.00 g/mole   abundance:   0.37 %
+VGM info:    Element: Nitrogen (N)   Z =  7.0   N =    14   A = 14.010 g/mole
+         --->  Isotope:   N14   Z =  7   N =  14   A =  14.00 g/mole   abundance: 99.632 %
+         --->  Isotope:   N15   Z =  7   N =  15   A =  15.00 g/mole   abundance:  0.368 %
 VGM info:   Importing element: 
-VGM info:    Element: Oxygen (O)   Z =  8.0   N =  16.0   A =  16.00 g/mole
-         --->  Isotope:   O16   Z =  8   N =  16   A =  15.99 g/mole   abundance:  99.76 %
-         --->  Isotope:   O17   Z =  8   N =  17   A =  17.00 g/mole   abundance:   0.04 %
-         --->  Isotope:   O18   Z =  8   N =  18   A =  18.00 g/mole   abundance:   0.20 %
+VGM info:    Element: Oxygen (O)   Z =  8.0   N =    16   A = 16.000 g/mole
+         --->  Isotope:   O16   Z =  8   N =  16   A =  15.99 g/mole   abundance: 99.757 %
+         --->  Isotope:   O17   Z =  8   N =  17   A =  17.00 g/mole   abundance:  0.038 %
+         --->  Isotope:   O18   Z =  8   N =  18   A =  18.00 g/mole   abundance:  0.205 %
 VGM info:   Importing element: 
-VGM info:    Element: H (H)   Z =  1.0   N =   1.0   A =   1.01 g/mole
-         --->  Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
-         --->  Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %
+VGM info:    Element: H (H)   Z =  1.0   N =     1   A =  1.008 g/mole
+         --->  Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole   abundance: 99.989 %
+         --->  Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole   abundance:  0.011 %
 VGM info:   Importing element: 
-VGM info:    Element: C (C)   Z =  6.0   N =  12.0   A =  12.01 g/mole
-         --->  Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole   abundance:  98.93 %
-         --->  Isotope:   C13   Z =  6   N =  13   A =  13.00 g/mole   abundance:   1.07 %
+VGM info:    Element: C (C)   Z =  6.0   N =    12   A = 12.011 g/mole
+         --->  Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole   abundance: 98.930 %
+         --->  Isotope:   C13   Z =  6   N =  13   A =  13.00 g/mole   abundance:  1.070 %
 VGM info:   Importing element: 
-VGM info:    Element: enriched Uranium (U)   Z = 92.0   N = 235.3   A = 235.31 g/mole
-         --->  Isotope:  U235   Z = 92   N = 235   A = 235.01 g/mole   abundance:  90.00 %
-         --->  Isotope:  U238   Z = 92   N = 238   A = 238.03 g/mole   abundance:  10.00 %
+VGM info:    Element: enriched Uranium (U)   Z = 92.0   N =   235   A = 235.312 g/mole
+         --->  Isotope:  U235   Z = 92   N = 235   A = 235.01 g/mole   abundance: 90.000 %
+         --->  Isotope:  U238   Z = 92   N = 238   A = 238.03 g/mole   abundance: 10.000 %
 VGM info:   Importing element: 
-VGM info:    Element: H (H)   Z =  1.0   N =   1.0   A =   1.01 g/mole
-         --->  Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
-         --->  Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %
+VGM info:    Element: H (H)   Z =  1.0   N =     1   A =  1.010 g/mole
+         --->  Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole   abundance: 99.989 %
+         --->  Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole   abundance:  0.011 %
 VGM info:   Importing element: 
-VGM info:    Element: W (W)   Z = 74.0   N = 183.8   A = 183.84 g/mole
-         --->  Isotope:  W180   Z = 74   N = 180   A = 179.95 g/mole   abundance:   0.12 %
-         --->  Isotope:  W182   Z = 74   N = 182   A = 181.95 g/mole   abundance:  26.50 %
-         --->  Isotope:  W183   Z = 74   N = 183   A = 182.95 g/mole   abundance:  14.31 %
-         --->  Isotope:  W184   Z = 74   N = 184   A = 183.95 g/mole   abundance:  30.64 %
-         --->  Isotope:  W186   Z = 74   N = 186   A = 185.95 g/mole   abundance:  28.43 %
+VGM info:    Element: W (W)   Z = 74.0   N =   184   A = 183.840 g/mole
+         --->  Isotope:  W180   Z = 74   N = 180   A = 179.95 g/mole   abundance:  0.120 %
+         --->  Isotope:  W182   Z = 74   N = 182   A = 181.95 g/mole   abundance: 26.500 %
+         --->  Isotope:  W183   Z = 74   N = 183   A = 182.95 g/mole   abundance: 14.310 %
+         --->  Isotope:  W184   Z = 74   N = 184   A = 183.95 g/mole   abundance: 30.640 %
+         --->  Isotope:  W186   Z = 74   N = 186   A = 185.95 g/mole   abundance: 28.430 %
 VGM info:   Importing material: 
 VGM info:    Material:    Basic    density:  2.700 g/cm3   RadL:   8.893 cm   Nucl.Int.Length:  38.879 cm 
                        Imean: 166.000 eV 
 
-   --->  Element: Al (Al)   Z = 13.0   N =  27.0   A =  26.98 g/mole
-         --->  Isotope:  Al27   Z = 13   N =  27   A =  26.98 g/mole   abundance: 100.00 %
+   --->  Element: Al (Al)   Z = 13.0   N =    27   A = 26.980 g/mole
+         --->  Isotope:  Al27   Z = 13   N =  27   A =  26.98 g/mole   abundance: 100.000 %
           ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
 
 VGM info:   Importing material: 
 VGM info:    Material:      Air    density:  1.290 mg/cm3  RadL: 285.161 m    Nucl.Int.Length: 662.680 m  
                        Imean:  85.703 eV   temperature: 293.15 K  pressure:   1.00 atm
 
-   --->  Element: Nitrogen (N)   Z =  7.0   N =  14.0   A =  14.01 g/mole
-         --->  Isotope:   N14   Z =  7   N =  14   A =  14.00 g/mole   abundance:  99.63 %
-         --->  Isotope:   N15   Z =  7   N =  15   A =  15.00 g/mole   abundance:   0.37 %
+   --->  Element: Nitrogen (N)   Z =  7.0   N =    14   A = 14.010 g/mole
+         --->  Isotope:   N14   Z =  7   N =  14   A =  14.00 g/mole   abundance: 99.632 %
+         --->  Isotope:   N15   Z =  7   N =  15   A =  15.00 g/mole   abundance:  0.368 %
           ElmMassFraction:  70.00 %  ElmAbundance  72.71 % 
 
-   --->  Element: Oxygen (O)   Z =  8.0   N =  16.0   A =  16.00 g/mole
-         --->  Isotope:   O16   Z =  8   N =  16   A =  15.99 g/mole   abundance:  99.76 %
-         --->  Isotope:   O17   Z =  8   N =  17   A =  17.00 g/mole   abundance:   0.04 %
-         --->  Isotope:   O18   Z =  8   N =  18   A =  18.00 g/mole   abundance:   0.20 %
+   --->  Element: Oxygen (O)   Z =  8.0   N =    16   A = 16.000 g/mole
+         --->  Isotope:   O16   Z =  8   N =  16   A =  15.99 g/mole   abundance: 99.757 %
+         --->  Isotope:   O17   Z =  8   N =  17   A =  17.00 g/mole   abundance:  0.038 %
+         --->  Isotope:   O18   Z =  8   N =  18   A =  18.00 g/mole   abundance:  0.205 %
           ElmMassFraction:  30.00 %  ElmAbundance  27.29 % 
 
 VGM info:   Importing material: 
-VGM info:    Material: Scintillator    density:  1.032 g/cm3   RadL:  42.544 cm   Nucl.Int.Length:  70.065 cm 
+VGM info:    Material: Scintillator    density:  1.032 g/cm3   RadL:  42.544 cm   Nucl.Int.Length:  69.969 cm 
                        Imean:  64.684 eV 
 
-   --->  Element: C (C)   Z =  6.0   N =  12.0   A =  12.01 g/mole
-         --->  Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole   abundance:  98.93 %
-         --->  Isotope:   C13   Z =  6   N =  13   A =  13.00 g/mole   abundance:   1.07 %
+   --->  Element: C (C)   Z =  6.0   N =    12   A = 12.011 g/mole
+         --->  Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole   abundance: 98.930 %
+         --->  Isotope:   C13   Z =  6   N =  13   A =  13.00 g/mole   abundance:  1.070 %
           ElmMassFraction:  91.47 %  ElmAbundance  47.37 % 
 
-   --->  Element: H (H)   Z =  1.0   N =   1.0   A =   1.01 g/mole
-         --->  Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
-         --->  Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %
+   --->  Element: H (H)   Z =  1.0   N =     1   A =  1.008 g/mole
+         --->  Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole   abundance: 99.989 %
+         --->  Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole   abundance:  0.011 %
           ElmMassFraction:   8.53 %  ElmAbundance  52.63 % 
 
 VGM info:   Importing material: 
 VGM info:    Material:  Uranium    density: 13.610 g/cm3   RadL:   4.358 mm   Nucl.Int.Length:  15.877 cm 
                        Imean: 890.000 eV 
 
-   --->  Element: enriched Uranium (U)   Z = 92.0   N = 235.3   A = 235.31 g/mole
-         --->  Isotope:  U235   Z = 92   N = 235   A = 235.01 g/mole   abundance:  90.00 %
-         --->  Isotope:  U238   Z = 92   N = 238   A = 238.03 g/mole   abundance:  10.00 %
+   --->  Element: enriched Uranium (U)   Z = 92.0   N =   235   A = 235.312 g/mole
+         --->  Isotope:  U235   Z = 92   N = 235   A = 235.01 g/mole   abundance: 90.000 %
+         --->  Isotope:  U238   Z = 92   N = 238   A = 238.03 g/mole   abundance: 10.000 %
           ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
 
 VGM info:   Importing material: 
 VGM info:    Material:   Vacuum    density:  0.000 kg/m3   RadL: 204727512.315 pc   Nucl.Int.Length: 113427275.267 pc 
                        Imean:  19.200 eV   temperature:   2.73 K  pressure:   0.00 atm
 
-   --->  Element: H (H)   Z =  1.0   N =   1.0   A =   1.01 g/mole
-         --->  Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
-         --->  Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %
+   --->  Element: H (H)   Z =  1.0   N =     1   A =  1.010 g/mole
+         --->  Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole   abundance: 99.989 %
+         --->  Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole   abundance:  0.011 %
           ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
 
 VGM info:   Importing material: 
 VGM info:    Material: Tungsten    density: 19.250 g/cm3   RadL:   3.513 mm   Nucl.Int.Length:  10.338 cm 
                        Imean: 727.000 eV 
 
-   --->  Element: W (W)   Z = 74.0   N = 183.8   A = 183.84 g/mole
-         --->  Isotope:  W180   Z = 74   N = 180   A = 179.95 g/mole   abundance:   0.12 %
-         --->  Isotope:  W182   Z = 74   N = 182   A = 181.95 g/mole   abundance:  26.50 %
-         --->  Isotope:  W183   Z = 74   N = 183   A = 182.95 g/mole   abundance:  14.31 %
-         --->  Isotope:  W184   Z = 74   N = 184   A = 183.95 g/mole   abundance:  30.64 %
-         --->  Isotope:  W186   Z = 74   N = 186   A = 185.95 g/mole   abundance:  28.43 %
+   --->  Element: W (W)   Z = 74.0   N =   184   A = 183.840 g/mole
+         --->  Isotope:  W180   Z = 74   N = 180   A = 179.95 g/mole   abundance:  0.120 %
+         --->  Isotope:  W182   Z = 74   N = 182   A = 181.95 g/mole   abundance: 26.500 %
+         --->  Isotope:  W183   Z = 74   N = 183   A = 182.95 g/mole   abundance: 14.310 %
+         --->  Isotope:  W184   Z = 74   N = 184   A = 183.95 g/mole   abundance: 30.640 %
+         --->  Isotope:  W186   Z = 74   N = 186   A = 185.95 g/mole   abundance: 28.430 %
           ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
 
 VGM info:   Importing LV: world
@@ -256,70 +256,16 @@ VGM info:   Importing solid: tubsS_refl
 VGM info:      Imported solid: Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
 VGM info:   ImportDaughters for tubs_refl
 VGM info:   Importing LV: ctubs
-VGM info:   Importing solid: ctubs2
-VGM info:   Importing solid: ctubs1
-VGM info:   Importing solid: tubs
-VGM info:      Imported solid: Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
-VGM info:   Importing solid: boxLow
-VGM info:      Imported solid: Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
-VGM info:   Imported Boolean solid: 
-VGM info:   Boolean  "ctubs1"  Subtraction: 
-  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
-  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
-  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
-  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
-VGM info:      Imported solid: Boolean  "ctubs1"  Subtraction: 
-  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
-  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
-  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
-  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
-VGM info:   Importing solid: boxHigh
-VGM info:      Imported solid: Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
-VGM info:   Imported Boolean solid: 
-VGM info:   Boolean  "ctubs2"  Subtraction: 
-  ConstituentA = Boolean  "ctubs1"  Subtraction: 
-  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
-  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
-  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
-  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
-  ConstituentB = Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
-  Displacement translation (object):  ( 0,  0,  968.753) mm 
-  Displacement rotation (object):  (-5.90614,  -0,  0) deg    no reflectionZ
-VGM info:      Imported solid: Boolean  "ctubs2"  Subtraction: 
-  ConstituentA = Boolean  "ctubs1"  Subtraction: 
-  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
-  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
-  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
-  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
-  ConstituentB = Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
-  Displacement translation (object):  ( 0,  0,  968.753) mm 
-  Displacement rotation (object):  (-5.90614,  -0,  0) deg    no reflectionZ
+VGM info:   Importing solid: ctubsS
+VGM info:      Imported solid: Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = -30deg  dphi = 280deg  nlow = (0, 0.639201, -0.769039)  nhigh = (0, 0.102899, 0.994692)
 VGM info:   ImportDaughters for ctubs
 VGM info:   Importing LV: ctubs_refl
-VGM info:   Importing solid: ctubs2_refl
-VGM info:   Imported Boolean solid: 
-VGM info:   Boolean  "ctubs2"  Subtraction: 
-  ConstituentA = Boolean  "ctubs1"  Subtraction: 
-  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
-  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
-  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
-  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
-  ConstituentB = Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
-  Displacement translation (object):  ( 0,  0,  968.753) mm 
-  Displacement rotation (object):  (-5.90614,  -0,  0) deg    no reflectionZ
-VGM info:      Imported solid: Boolean  "ctubs2"  Subtraction: 
-  ConstituentA = Boolean  "ctubs1"  Subtraction: 
-  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
-  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
-  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
-  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
-  ConstituentB = Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
-  Displacement translation (object):  ( 0,  0,  968.753) mm 
-  Displacement rotation (object):  (-5.90614,  -0,  0) deg    no reflectionZ
+VGM info:   Importing solid: ctubsS_refl
+VGM info:      Imported solid: Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = -30deg  dphi = 280deg  nlow = (0, 0.102899, 0.994692)  nhigh = (0, 0.639201, -0.769039)
 VGM info:   ImportDaughters for ctubs_refl
-VGM info:   Importing LV: xtru1
-VGM info:   Importing solid: XtruS
-VGM info:      Imported solid: Extruded  "XtruS"
+VGM info:   Importing LV: Xtru1
+VGM info:   Importing solid: Xtru1S
+VGM info:      Imported solid: Extruded  "Xtru1S"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
@@ -328,10 +274,10 @@ Planes:
   z = 150 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.7
   z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
 
-VGM info:   ImportDaughters for xtru1
-VGM info:   Importing LV: xtru1_refl
-VGM info:   Importing solid: XtruS_refl
-VGM info:      Imported solid: Extruded  "XtruS"
+VGM info:   ImportDaughters for Xtru1
+VGM info:   Importing LV: Xtru1_refl
+VGM info:   Importing solid: Xtru1S_refl
+VGM info:      Imported solid: Extruded  "Xtru1S"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
@@ -340,9 +286,9 @@ Planes:
   z = -100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
   z = 400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
 
-VGM info:   ImportDaughters for xtru1_refl
+VGM info:   ImportDaughters for Xtru1_refl
 VGM info:   Importing LV: xtru2
-VGM info:   Importing solid: xtruU
+VGM info:   Importing solid: xtru2S
 VGM info:   Importing solid: XtruS1
 VGM info:      Imported solid: Extruded  "XtruS1"
 Polygon,  8 vertices:
@@ -351,8 +297,8 @@ Planes:
   z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
   z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
 
-VGM info:   Importing solid: XtruS1
-VGM info:      Imported solid: Extruded  "XtruS1"
+VGM info:   Importing solid: XtruS2
+VGM info:      Imported solid: Extruded  "XtruS2"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
@@ -360,7 +306,7 @@ Planes:
   z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
 
 VGM info:   Imported Boolean solid: 
-VGM info:   Boolean  "xtruU"  Union: 
+VGM info:   Boolean  "xtru2S"  Union: 
   ConstituentA = Extruded  "XtruS1"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
@@ -368,7 +314,7 @@ Planes:
   z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
   z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
 
-  ConstituentB = Extruded  "XtruS1"
+  ConstituentB = Extruded  "XtruS2"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
@@ -377,7 +323,7 @@ Planes:
 
   Displacement translation (object):  ( 0,  0,  0) mm 
   Displacement rotation (object):  (0,  -0,  0) deg    no reflectionZ
-VGM info:      Imported solid: Boolean  "xtruU"  Union: 
+VGM info:      Imported solid: Boolean  "xtru2S"  Union: 
   ConstituentA = Extruded  "XtruS1"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
@@ -385,7 +331,7 @@ Planes:
   z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
   z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
 
-  ConstituentB = Extruded  "XtruS1"
+  ConstituentB = Extruded  "XtruS2"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
@@ -396,9 +342,9 @@ Planes:
   Displacement rotation (object):  (0,  -0,  0) deg    no reflectionZ
 VGM info:   ImportDaughters for xtru2
 VGM info:   Importing LV: xtru2_refl
-VGM info:   Importing solid: xtruU_refl
+VGM info:   Importing solid: xtru2S_refl
 VGM info:   Imported Boolean solid: 
-VGM info:   Boolean  "xtruU"  Union: 
+VGM info:   Boolean  "xtru2S"  Union: 
   ConstituentA = Extruded  "XtruS1"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
@@ -406,7 +352,7 @@ Planes:
   z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
   z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
 
-  ConstituentB = Extruded  "XtruS1"
+  ConstituentB = Extruded  "XtruS2"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
@@ -415,7 +361,7 @@ Planes:
 
   Displacement translation (object):  ( 0,  0,  0) mm 
   Displacement rotation (object):  (0,  -0,  0) deg    no reflectionZ
-VGM info:      Imported solid: Boolean  "xtruU"  Union: 
+VGM info:      Imported solid: Boolean  "xtru2S"  Union: 
   ConstituentA = Extruded  "XtruS1"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
@@ -423,7 +369,7 @@ Planes:
   z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
   z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
 
-  ConstituentB = Extruded  "XtruS1"
+  ConstituentB = Extruded  "XtruS2"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
@@ -475,8 +421,8 @@ VGM info:      20th daughter  pv = tubs  lv = tubs vgmPl = tubs vgmVol = tubs
 VGM info:      21th daughter  pv = tubs  lv = tubs_refl vgmPl = tubs vgmVol = tubs_refl
 VGM info:      22th daughter  pv = ctubs  lv = ctubs vgmPl = ctubs vgmVol = ctubs
 VGM info:      23th daughter  pv = ctubs  lv = ctubs_refl vgmPl = ctubs vgmVol = ctubs_refl
-VGM info:      24th daughter  pv = xtru1  lv = xtru1 vgmPl = xtru1 vgmVol = xtru1
-VGM info:      25th daughter  pv = xtru1  lv = xtru1_refl vgmPl = xtru1 vgmVol = xtru1_refl
+VGM info:      24th daughter  pv = xtru1  lv = Xtru1 vgmPl = xtru1 vgmVol = Xtru1
+VGM info:      25th daughter  pv = xtru1  lv = Xtru1_refl vgmPl = xtru1 vgmVol = Xtru1_refl
 VGM info:      26th daughter  pv = xtru2  lv = xtru2 vgmPl = xtru2 vgmVol = xtru2
 VGM info:      27th daughter  pv = xtru2  lv = xtru2_refl vgmPl = xtru2 vgmVol = xtru2_refl
 VGM info:      28th daughter  pv = hype  lv = hype vgmPl = hype vgmVol = hype
@@ -507,8 +453,8 @@ VGM info:   21th volume: tubs
 VGM info:   22th volume: tubs_refl  
 VGM info:   23th volume: ctubs  
 VGM info:   24th volume: ctubs_refl  
-VGM info:   25th volume: xtru1  
-VGM info:   26th volume: xtru1_refl  
+VGM info:   25th volume: Xtru1  
+VGM info:   26th volume: Xtru1_refl  
 VGM info:   27th volume: xtru2  
 VGM info:   28th volume: xtru2_refl  
 VGM info:   29th volume: hype  
@@ -552,33 +498,9 @@ Geant4_GM_Factory factory solids store:
    20th solid: Trd  "trdS"  hx1 = 300mm  hx2 = 200mm  hy1 = 500mm  hy2 = 400mm  hz = 500mm
    21th solid: Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
    22th solid: Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
-   23th solid: Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
-   24th solid: Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
-   25th solid: Boolean  "ctubs1"  Subtraction: 
-  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
-  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
-  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
-  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
-   26th solid: Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
-   27th solid: Boolean  "ctubs2"  Subtraction: 
-  ConstituentA = Boolean  "ctubs1"  Subtraction: 
-  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
-  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
-  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
-  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
-  ConstituentB = Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
-  Displacement translation (object):  ( 0,  0,  968.753) mm 
-  Displacement rotation (object):  (-5.90614,  -0,  0) deg    no reflectionZ
-   28th solid: Boolean  "ctubs2"  Subtraction: 
-  ConstituentA = Boolean  "ctubs1"  Subtraction: 
-  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
-  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
-  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
-  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
-  ConstituentB = Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
-  Displacement translation (object):  ( 0,  0,  968.753) mm 
-  Displacement rotation (object):  (-5.90614,  -0,  0) deg    no reflectionZ
-   29th solid: Extruded  "XtruS"
+   23th solid: Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = -30deg  dphi = 280deg  nlow = (0, 0.639201, -0.769039)  nhigh = (0, 0.102899, 0.994692)
+   24th solid: Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = -30deg  dphi = 280deg  nlow = (0, 0.102899, 0.994692)  nhigh = (0, 0.639201, -0.769039)
+   25th solid: Extruded  "Xtru1S"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
@@ -587,7 +509,7 @@ Planes:
   z = 150 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.7
   z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
 
-   30th solid: Extruded  "XtruS"
+   26th solid: Extruded  "Xtru1S"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
@@ -596,21 +518,21 @@ Planes:
   z = -100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
   z = 400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
 
-   31th solid: Extruded  "XtruS1"
+   27th solid: Extruded  "XtruS1"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
   z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
   z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
 
-   32th solid: Extruded  "XtruS1"
+   28th solid: Extruded  "XtruS2"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
   z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.7
   z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
 
-   33th solid: Boolean  "xtruU"  Union: 
+   29th solid: Boolean  "xtru2S"  Union: 
   ConstituentA = Extruded  "XtruS1"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
@@ -618,7 +540,7 @@ Planes:
   z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
   z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
 
-  ConstituentB = Extruded  "XtruS1"
+  ConstituentB = Extruded  "XtruS2"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
@@ -627,7 +549,7 @@ Planes:
 
   Displacement translation (object):  ( 0,  0,  0) mm 
   Displacement rotation (object):  (0,  -0,  0) deg    no reflectionZ
-   34th solid: Boolean  "xtruU"  Union: 
+   30th solid: Boolean  "xtru2S"  Union: 
   ConstituentA = Extruded  "XtruS1"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
@@ -635,7 +557,7 @@ Planes:
   z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
   z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
 
-  ConstituentB = Extruded  "XtruS1"
+  ConstituentB = Extruded  "XtruS2"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
@@ -644,10 +566,10 @@ Planes:
 
   Displacement translation (object):  ( 0,  0,  0) mm 
   Displacement rotation (object):  (0,  -0,  0) deg    no reflectionZ
-   35th solid: Hype  "hypeS"  r1 = 200mm  stereo1 = 30deg  r2 = 300mm  stereo1 = 40deg  hz = 500mm
-   36th solid: Hype  "hypeS"  r1 = 200mm  stereo1 = 30deg  r2 = 300mm  stereo1 = 40deg  hz = 500mm
-   37th solid: Paraboloid  "paraboloidS"  r1 = 200mm  r2 = 450mm  hz = 500mm
-   38th solid: Paraboloid  "paraboloidS"  r1 = 450mm  r2 = 200mm  hz = 500mm
+   31th solid: Hype  "hypeS"  r1 = 200mm  stereo1 = 30deg  r2 = 300mm  stereo1 = 40deg  hz = 500mm
+   32th solid: Hype  "hypeS"  r1 = 200mm  stereo1 = 30deg  r2 = 300mm  stereo1 = 40deg  hz = 500mm
+   33th solid: Paraboloid  "paraboloidS"  r1 = 200mm  r2 = 450mm  hz = 500mm
+   34th solid: Paraboloid  "paraboloidS"  r1 = 450mm  r2 = 200mm  hz = 500mm
 Geant4_GM_Factory factory volumes store: 
    0th: Volume: "world" material "Basic" solid "Box"  32 daughters: "box"  "box"  "cons"  "cons"  "eltu"  "eltu"  "para"  "para"  "pcone"  "pcone"  "phedra"  "phedra"  "sphere"  "sphere"  "torus"  "torus"  "trap"  "trap"  "trd"  "trd"  "tubs"  "tubs"  "ctubs"  "ctubs"  "xtru1"  "xtru1"  "xtru2"  "xtru2"  "hype"  "hype"  "paraboloid"  "paraboloid"  
    1th: Volume: "box" material "Basic" solid "Box"  0 daughters: 
@@ -672,10 +594,10 @@ Geant4_GM_Factory factory volumes store:
    20th: Volume: "trd_refl" material "Basic" solid "Trd"  0 daughters: 
    21th: Volume: "tubs" material "Basic" solid "Tubs"  0 daughters: 
    22th: Volume: "tubs_refl" material "Basic" solid "Tubs"  0 daughters: 
-   23th: Volume: "ctubs" material "Basic" solid "Boolean"  0 daughters: 
-   24th: Volume: "ctubs_refl" material "Basic" solid "Boolean"  0 daughters: 
-   25th: Volume: "xtru1" material "Basic" solid "Extruded"  0 daughters: 
-   26th: Volume: "xtru1_refl" material "Basic" solid "Extruded"  0 daughters: 
+   23th: Volume: "ctubs" material "Basic" solid "Ctubs"  0 daughters: 
+   24th: Volume: "ctubs_refl" material "Basic" solid "Ctubs"  0 daughters: 
+   25th: Volume: "Xtru1" material "Basic" solid "Extruded"  0 daughters: 
+   26th: Volume: "Xtru1_refl" material "Basic" solid "Extruded"  0 daughters: 
    27th: Volume: "xtru2" material "Basic" solid "Boolean"  0 daughters: 
    28th: Volume: "xtru2_refl" material "Basic" solid "Boolean"  0 daughters: 
    29th: Volume: "hype" material "Basic" solid "Hype"  0 daughters: 
@@ -736,7 +658,7 @@ VGM info:   Element: "Oxygen"  "O"  Z = 8  N = 16  A = 16 g/mole
      1th isotope: Isotope: "O17"    Z = 8  N = 17  A = 16.9991 g/mole  abundance: 0.038%
      2th isotope: Isotope: "O18"    Z = 8  N = 18  A = 17.9992 g/mole  abundance: 0.205%
 VGM info:   Exporting element: 
-VGM info:   Element: "H"  "H"  Z = 1  N = 1.00012  A = 1.00794 g/mole
+VGM info:   Element: "H"  "H"  Z = 1  N = 1.00794  A = 1.00794 g/mole
      0th isotope: Isotope: "H1"    Z = 1  N = 1  A = 1.00783 g/mole  abundance: 99.9885%
      1th isotope: Isotope: "H2"    Z = 1  N = 2  A = 2.0141 g/mole  abundance: 0.0115%
 VGM info:   Exporting element: 
@@ -744,7 +666,7 @@ VGM info:   Element: "C"  "C"  Z = 6  N = 12.0107  A = 12.0107 g/mole
      0th isotope: Isotope: "C12"    Z = 6  N = 12  A = 12 g/mole  abundance: 98.93%
      1th isotope: Isotope: "C13"    Z = 6  N = 13  A = 13.0034 g/mole  abundance: 1.07%
 VGM info:   Exporting element: 
-VGM info:   Element: "enriched Uranium"  "U"  Z = 92  N = 235.3  A = 235.312 g/mole
+VGM info:   Element: "enriched Uranium"  "U"  Z = 92  N = 235.312  A = 235.312 g/mole
      0th isotope: Isotope: "U235"    Z = 92  N = 235  A = 235.01 g/mole  abundance: 90%
      1th isotope: Isotope: "U238"    Z = 92  N = 238  A = 238.03 g/mole  abundance: 10%
 VGM info:   Exporting element: 
@@ -772,16 +694,16 @@ VGM info:   Material: "Air"  density 0.00129 g/cm3  radlen 28516.1 cm  intlen 66
      1th isotope: Isotope: "O17"    Z = 8  N = 17  A = 16.9991 g/mole  abundance: 0.038%
      2th isotope: Isotope: "O18"    Z = 8  N = 18  A = 17.9992 g/mole  abundance: 0.205%  Elm mass fraction: 30 %
 VGM info:   Exporting material: 
-VGM info:   Material: "Scintillator"  density 1.032 g/cm3  radlen 42.5442 cm  intlen 70.0652 cm  state "Solid"  temperature 293.15 kelvin  pressure 1 atm
+VGM info:   Material: "Scintillator"  density 1.032 g/cm3  radlen 42.5442 cm  intlen 69.9694 cm  state "Solid"  temperature 293.15 kelvin  pressure 1 atm
    0th element: Element: "C"  "C"  Z = 6  N = 12.0107  A = 12.0107 g/mole
      0th isotope: Isotope: "C12"    Z = 6  N = 12  A = 12 g/mole  abundance: 98.93%
      1th isotope: Isotope: "C13"    Z = 6  N = 13  A = 13.0034 g/mole  abundance: 1.07%  Elm mass fraction: 91.4709 %
-   1th element: Element: "H"  "H"  Z = 1  N = 1.00012  A = 1.00794 g/mole
+   1th element: Element: "H"  "H"  Z = 1  N = 1.00794  A = 1.00794 g/mole
      0th isotope: Isotope: "H1"    Z = 1  N = 1  A = 1.00783 g/mole  abundance: 99.9885%
      1th isotope: Isotope: "H2"    Z = 1  N = 2  A = 2.0141 g/mole  abundance: 0.0115%  Elm mass fraction: 8.52915 %
 VGM info:   Exporting material: 
-VGM info:   Material: "Uranium"  density 13.61 g/cm3  radlen 0.435829 cm  intlen 15.8772 cm  state "Solid"  temperature 293.15 kelvin  pressure 1 atm
-   0th element: Element: "enriched Uranium"  "U"  Z = 92  N = 235.3  A = 235.312 g/mole
+VGM info:   Material: "Uranium"  density 13.61 g/cm3  radlen 0.435829 cm  intlen 15.8766 cm  state "Solid"  temperature 293.15 kelvin  pressure 1 atm
+   0th element: Element: "enriched Uranium"  "U"  Z = 92  N = 235.312  A = 235.312 g/mole
      0th isotope: Isotope: "U235"    Z = 92  N = 235  A = 235.01 g/mole  abundance: 90%
      1th isotope: Isotope: "U238"    Z = 92  N = 238  A = 238.03 g/mole  abundance: 10%  Elm mass fraction: 100 %
 VGM info:   Exporting material: 
@@ -811,16 +733,16 @@ VGM info:   Material: "Air"  density 0.00129 g/cm3  radlen 28516.1 cm  intlen 66
      1th isotope: Isotope: "O17"    Z = 8  N = 17  A = 16.9991 g/mole  abundance: 0.038%
      2th isotope: Isotope: "O18"    Z = 8  N = 18  A = 17.9992 g/mole  abundance: 0.205%  Elm mass fraction: 30 %
 VGM info:   Generation medium for material: 
-VGM info:   Material: "Scintillator"  density 1.032 g/cm3  radlen 42.5442 cm  intlen 70.0652 cm  state "Solid"  temperature 293.15 kelvin  pressure 1 atm
+VGM info:   Material: "Scintillator"  density 1.032 g/cm3  radlen 42.5442 cm  intlen 69.9694 cm  state "Solid"  temperature 293.15 kelvin  pressure 1 atm
    0th element: Element: "C"  "C"  Z = 6  N = 12.0107  A = 12.0107 g/mole
      0th isotope: Isotope: "C12"    Z = 6  N = 12  A = 12 g/mole  abundance: 98.93%
      1th isotope: Isotope: "C13"    Z = 6  N = 13  A = 13.0034 g/mole  abundance: 1.07%  Elm mass fraction: 91.4709 %
-   1th element: Element: "H"  "H"  Z = 1  N = 1.00012  A = 1.00794 g/mole
+   1th element: Element: "H"  "H"  Z = 1  N = 1.00794  A = 1.00794 g/mole
      0th isotope: Isotope: "H1"    Z = 1  N = 1  A = 1.00783 g/mole  abundance: 99.9885%
      1th isotope: Isotope: "H2"    Z = 1  N = 2  A = 2.0141 g/mole  abundance: 0.0115%  Elm mass fraction: 8.52915 %
 VGM info:   Generation medium for material: 
-VGM info:   Material: "Uranium"  density 13.61 g/cm3  radlen 0.435829 cm  intlen 15.8772 cm  state "Solid"  temperature 293.15 kelvin  pressure 1 atm
-   0th element: Element: "enriched Uranium"  "U"  Z = 92  N = 235.3  A = 235.312 g/mole
+VGM info:   Material: "Uranium"  density 13.61 g/cm3  radlen 0.435829 cm  intlen 15.8766 cm  state "Solid"  temperature 293.15 kelvin  pressure 1 atm
+   0th element: Element: "enriched Uranium"  "U"  Z = 92  N = 235.312  A = 235.312 g/mole
      0th isotope: Isotope: "U235"    Z = 92  N = 235  A = 235.01 g/mole  abundance: 90%
      1th isotope: Isotope: "U238"    Z = 92  N = 238  A = 238.03 g/mole  abundance: 10%  Elm mass fraction: 100 %
 VGM info:   Generation medium for material: 
@@ -919,53 +841,14 @@ VGM info:      Exporting solid:
 VGM info:      Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
 VGM info:   Exporting volume:  22th  "tubs_refl"  material: "Basic"
 VGM info:      Exporting solid: 
-VGM info:      Boolean  "ctubs2"  Subtraction: 
-  ConstituentA = Boolean  "ctubs1"  Subtraction: 
-  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
-  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
-  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
-  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
-  ConstituentB = Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
-  Displacement translation (object):  ( 0,  0,  968.753) mm 
-  Displacement rotation (object):  (-5.90614,  -0,  0) deg    no reflectionZ
-VGM info:      Exporting solid: 
-VGM info:      Boolean  "ctubs1"  Subtraction: 
-  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
-  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
-  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
-  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
-VGM info:      Exporting solid: 
-VGM info:      Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
-VGM info:      Exporting solid: 
-VGM info:      Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
-VGM info:      Exporting solid: 
-VGM info:      Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
+VGM info:      Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = -30deg  dphi = 280deg  nlow = (0, 0.639201, -0.769039)  nhigh = (0, 0.102899, 0.994692)
 VGM info:   Exporting volume:  23th  "ctubs"  material: "Basic"
 VGM info:      Exporting solid: 
-VGM info:      Boolean  "ctubs2"  Subtraction: 
-  ConstituentA = Boolean  "ctubs1"  Subtraction: 
-  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
-  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
-  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
-  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
-  ConstituentB = Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
-  Displacement translation (object):  ( 0,  0,  968.753) mm 
-  Displacement rotation (object):  (-5.90614,  -0,  0) deg    no reflectionZ
-VGM info:      Exporting solid: 
-VGM info:      Boolean  "ctubs1"  Subtraction: 
-  ConstituentA = Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
-  ConstituentB = Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
-  Displacement translation (object):  ( 0,  0,  -1213.6) mm 
-  Displacement rotation (object):  (-140.268,  0,  0) deg    no reflectionZ
-VGM info:      Exporting solid: 
-VGM info:      Tubs  "tubs"  rin = 200mm  rout = 300mm  hz = 904.121mm  sphi = -30deg  dphi = 280deg
-VGM info:      Exporting solid: 
-VGM info:      Box  "boxLow"  hx = 843.746mm  hy = 843.746mm  hz = 468.117mm
-VGM info:      Exporting solid: 
-VGM info:      Box  "boxHigh"  hx = 658.394mm  hy = 658.394mm  hz = 361.921mm
+VGM info:      Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = -30deg  dphi = 280deg  nlow = (0, 0.102899, 0.994692)  nhigh = (0, 0.639201, -0.769039)
+Error in <TGeoCtub::ComputeBBox>: In shape ctubsS wrong definition of cut planes
 VGM info:   Exporting volume:  24th  "ctubs_refl"  material: "Basic"
 VGM info:      Exporting solid: 
-VGM info:      Extruded  "XtruS"
+VGM info:      Extruded  "Xtru1S"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
@@ -974,9 +857,9 @@ Planes:
   z = 150 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.7
   z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
 
-VGM info:   Exporting volume:  25th  "xtru1"  material: "Basic"
+VGM info:   Exporting volume:  25th  "Xtru1"  material: "Basic"
 VGM info:      Exporting solid: 
-VGM info:      Extruded  "XtruS"
+VGM info:      Extruded  "Xtru1S"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
@@ -985,9 +868,9 @@ Planes:
   z = -100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
   z = 400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
 
-VGM info:   Exporting volume:  26th  "xtru1_refl"  material: "Basic"
+VGM info:   Exporting volume:  26th  "Xtru1_refl"  material: "Basic"
 VGM info:      Exporting solid: 
-VGM info:      Boolean  "xtruU"  Union: 
+VGM info:      Boolean  "xtru2S"  Union: 
   ConstituentA = Extruded  "XtruS1"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
@@ -995,7 +878,7 @@ Planes:
   z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
   z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
 
-  ConstituentB = Extruded  "XtruS1"
+  ConstituentB = Extruded  "XtruS2"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
@@ -1013,7 +896,7 @@ Planes:
   z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
 
 VGM info:      Exporting solid: 
-VGM info:      Extruded  "XtruS1"
+VGM info:      Extruded  "XtruS2"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
@@ -1022,7 +905,7 @@ Planes:
 
 VGM info:   Exporting volume:  27th  "xtru2"  material: "Basic"
 VGM info:      Exporting solid: 
-VGM info:      Boolean  "xtruU"  Union: 
+VGM info:      Boolean  "xtru2S"  Union: 
   ConstituentA = Extruded  "XtruS1"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
@@ -1030,7 +913,7 @@ Planes:
   z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
   z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
 
-  ConstituentB = Extruded  "XtruS1"
+  ConstituentB = Extruded  "XtruS2"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
@@ -1048,7 +931,7 @@ Planes:
   z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
 
 VGM info:      Exporting solid: 
-VGM info:      Extruded  "XtruS1"
+VGM info:      Extruded  "XtruS2"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
@@ -1093,8 +976,8 @@ VGM info:      20th daughter vol = tubs  simple placement: tubs
 VGM info:      21th daughter vol = tubs_refl  simple placement: tubs
 VGM info:      22th daughter vol = ctubs  simple placement: ctubs
 VGM info:      23th daughter vol = ctubs_refl  simple placement: ctubs
-VGM info:      24th daughter vol = xtru1  simple placement: xtru1
-VGM info:      25th daughter vol = xtru1_refl  simple placement: xtru1
+VGM info:      24th daughter vol = Xtru1  simple placement: xtru1
+VGM info:      25th daughter vol = Xtru1_refl  simple placement: xtru1
 VGM info:      26th daughter vol = xtru2  simple placement: xtru2
 VGM info:      27th daughter vol = xtru2_refl  simple placement: xtru2
 VGM info:      28th daughter vol = hype  simple placement: hype
@@ -1125,8 +1008,8 @@ VGM info:   ExportPlacements for 21th volume tubs
 VGM info:   ExportPlacements for 22th volume tubs_refl
 VGM info:   ExportPlacements for 23th volume ctubs
 VGM info:   ExportPlacements for 24th volume ctubs_refl
-VGM info:   ExportPlacements for 25th volume xtru1
-VGM info:   ExportPlacements for 26th volume xtru1_refl
+VGM info:   ExportPlacements for 25th volume Xtru1
+VGM info:   ExportPlacements for 26th volume Xtru1_refl
 VGM info:   ExportPlacements for 27th volume xtru2
 VGM info:   ExportPlacements for 28th volume xtru2_refl
 VGM info:   ExportPlacements for 29th volume hype
@@ -1152,30 +1035,35 @@ Registering graphics systems...
 
 You have successfully registered the following graphics systems.
 Current available graphics systems are:
-  ASCIITree (ATree)
-  DAWNFILE (DAWNFILE)
-  G4HepRep (HepRepXML)
-  G4HepRepFile (HepRepFile)
-  RayTracer (RayTracer)
-  VRML1FILE (VRML1FILE)
-  VRML2FILE (VRML2FILE)
-  gMocrenFile (gMocrenFile)
+ASCIITree (ATree)
+DAWNFILE (DAWNFILE)
+G4HepRep (HepRepXML)
+G4HepRepFile (HepRepFile)
+RayTracer (RayTracer)
+VRML1FILE (VRML1FILE)
+VRML2FILE (VRML2FILE)
+gMocrenFile (gMocrenFile)
+OpenGLImmediateX (OGLIX, OGLI)
+OpenGLStoredX (OGLSX, OGL, OGLS)
+RayTracerX (RayTracerX)
 
 Registering model factories...
 
 You have successfully registered the following model factories.
 Registered model factories:
   generic
-  drawByCharge
-  drawByParticleID
-  drawByOriginVolume
   drawByAttribute
+  drawByCharge
+  drawByOriginVolume
+  drawByParticleID
+  drawByEncounteredVolume
 
 Registered filter factories:
-  chargeFilter
-  particleFilter
-  originVolumeFilter
   attributeFilter
+  chargeFilter
+  originVolumeFilter
+  particleFilter
+  encounteredVolumeFilter
 
 You have successfully registered the following user vis actions.
 Run Duration User Vis Actions: none

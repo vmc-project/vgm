@@ -2,7 +2,7 @@ Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometr
 Root geometry will be defined via VGM and exported to Geant4
 
 *************************************************************
- Geant4 version Name: geant4-10-01-patch-02    (19-June-2015)
+ Geant4 version Name: geant4-10-03    (9-December-2016)
                       Copyright : Geant4 Collaboration
                       Reference : NIM A 506 (2003), 250-303
                             WWW : http://cern.ch/geant4
@@ -149,7 +149,7 @@ VGM info:      Exporting solid:
 VGM info:      Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = 330deg  dphi = 280deg  nlow = (0, 0.064, -0.077)  nhigh = (0, 0.009, 0.087)
 VGM info:   Exporting volume:  12th  "ctubs"  material: "Basic"
 VGM info:      Exporting solid: 
-VGM info:      Extruded  "xtruS"
+VGM info:      Extruded  "xtru1S"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
@@ -160,7 +160,7 @@ Planes:
 
 VGM info:   Exporting volume:  13th  "xtru1"  material: "Basic"
 VGM info:      Exporting solid: 
-VGM info:      Extruded  "xtruS"
+VGM info:      Extruded  "xtru2S"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
@@ -252,23 +252,23 @@ VGM info:   ImportPositions for lv ctubs_refl nofDaughters: 0
 VGM info:      24th daughter vol = xtru1  simple placement: xtru1
 VGM info:      25th daughter vol = xtru1  simple placement: xtru1
 VGM info:   Importing LV: xtru1_refl
-VGM info:   Importing solid: xtruS_refl
+VGM info:   Importing solid: xtru1S_refl
 VGM info:   ImportDaughters for xtru1_refl
 VGM info:   ImportPositions for lv xtru1_refl nofDaughters: 0
 VGM info:      26th daughter vol = xtru2  simple placement: xtru2
 VGM info:      27th daughter vol = xtru2  simple placement: xtru2
 VGM info:   Importing LV: xtru2_refl
-VGM info:   Importing solid: xtruS_refl
-VGM info:   Importing solid: xtruS
-VGM info:      Imported solid: Extruded  "xtruS"
+VGM info:   Importing solid: xtru2S_refl
+VGM info:   Importing solid: xtru2S
+VGM info:      Imported solid: Extruded  "xtru2S"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
   z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
   z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
 
-VGM info:   Importing solid: xtruS
-VGM info:      Imported solid: Extruded  "xtruS"
+VGM info:   Importing solid: xtru2S
+VGM info:      Imported solid: Extruded  "xtru2S"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
@@ -276,15 +276,15 @@ Planes:
   z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
 
 VGM info:   Imported Boolean solid: 
-VGM info:   Boolean  "xtruS"  Union: 
-  ConstituentA = Extruded  "xtruS"
+VGM info:   Boolean  "xtru2S"  Union: 
+  ConstituentA = Extruded  "xtru2S"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
   z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
   z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
 
-  ConstituentB = Extruded  "xtruS"
+  ConstituentB = Extruded  "xtru2S"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
 Planes:
@@ -340,30 +340,35 @@ Registering graphics systems...
 
 You have successfully registered the following graphics systems.
 Current available graphics systems are:
-  ASCIITree (ATree)
-  DAWNFILE (DAWNFILE)
-  G4HepRep (HepRepXML)
-  G4HepRepFile (HepRepFile)
-  RayTracer (RayTracer)
-  VRML1FILE (VRML1FILE)
-  VRML2FILE (VRML2FILE)
-  gMocrenFile (gMocrenFile)
+ASCIITree (ATree)
+DAWNFILE (DAWNFILE)
+G4HepRep (HepRepXML)
+G4HepRepFile (HepRepFile)
+RayTracer (RayTracer)
+VRML1FILE (VRML1FILE)
+VRML2FILE (VRML2FILE)
+gMocrenFile (gMocrenFile)
+OpenGLImmediateX (OGLIX, OGLI)
+OpenGLStoredX (OGLSX, OGL, OGLS)
+RayTracerX (RayTracerX)
 
 Registering model factories...
 
 You have successfully registered the following model factories.
 Registered model factories:
   generic
-  drawByCharge
-  drawByParticleID
-  drawByOriginVolume
   drawByAttribute
+  drawByCharge
+  drawByOriginVolume
+  drawByParticleID
+  drawByEncounteredVolume
 
 Registered filter factories:
-  chargeFilter
-  particleFilter
-  originVolumeFilter
   attributeFilter
+  chargeFilter
+  originVolumeFilter
+  particleFilter
+  encounteredVolumeFilter
 
 You have successfully registered the following user vis actions.
 Run Duration User Vis Actions: none
