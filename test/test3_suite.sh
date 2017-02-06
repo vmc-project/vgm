@@ -35,7 +35,7 @@ do
     # Use the line below for performance tests (G4 navigator)/G4Root navigator)
     # for outputFactory in None
     do
-      for selectedTest in Solids Placements Reflections Assemblies1 Assemblies2 BooleanSolids1 BooleanSolids2 DisplacedSolids1 DisplacedSolids2
+      for selectedTest in Solids Placements Reflections ScaledSolids Assemblies1 Assemblies2 BooleanSolids1 BooleanSolids2 DisplacedSolids1 DisplacedSolids2
       do
         DOIT="1"
 
