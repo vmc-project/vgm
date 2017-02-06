@@ -199,6 +199,17 @@ I. Hrivnacova et al 2008 J. Phys.: Conf. Ser. 119 042016 </a></i>.
  The geometry conversions between Geant4 and Root
  geometry models are demonstrated in provided examples E01 and E02.
 
+ <p>
+ Since version 4.4, it is also to use VGM to convert a single solid from one geometry
+ model into another one:                                <font face="Courier" color="#00aa00">
+<pre>
+  XFactory xFactory;
+  YFactory yFactory;
+  xFactory.Import(xsolid);
+  xFactory.Export(yFactory);
+  YSolid* ysolid = yFactory.Solid();                    </font>
+</pre>
+ 
  <a name="GeometryConstruction"></a> 
  <h2> Geometry construction via VGM </h2>
 

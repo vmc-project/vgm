@@ -111,6 +111,16 @@ $Id$
       
   The geometry conversions between Geant4 and Root
   geometry models are demonstrated in examples E01 and E02.
+
+  Since version 4.4, it is also to use VGM to convert a single solid from one geometry
+  model into another one:
+
+  XFactory xFactory;
+  YFactory yFactory;
+  xFactory.Import(xsolid);
+  xFactory.Export(yFactory);
+  YSolid* ysolid = yFactory.Solid();
+
   
  4. Geometry construction via VGM
  --------------------------------
@@ -152,6 +162,7 @@ $Id$
  RootGM::Factory theFactory;
  myDetectorConstruction->Construct(&theFactory);
          // Root geometry will be built
+ 
  
  5. XML
  -------
@@ -210,12 +221,12 @@ $Id$
               INSTALL  - Installation guides (available for GNUmake, CMake,
                          Autoconf and CMT)	
               INSTALL.GNUmake  - Installation guides for GNUmake (now deprecated)
-	      README   - VGM User's guide (This file)
-	      VGM.html - VGM Web page
-	      VGMhistory.txt  - versions description  
+	            README   - VGM User's guide (This file)
+	            VGM.html - VGM Web page
+	            VGMhistory.txt  - versions description  
    examples - examples for use of VGM
    packages - source code:
-   	      VGM       - interfaces
+   	    VGM       - interfaces
 	      ClhepVGM  - conversion functions between CLHEP and VGM
 	                  transformations
 	      BaseVGM   - common implementation
