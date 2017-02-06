@@ -39,6 +39,7 @@ class TstGeometryViaGeant4 : public TstVGeometry
     virtual void* TestNewSolid2();
     virtual void* TestPlacements();
     virtual void* TestReflections(G4bool fullPhi);
+    virtual void* TestScaledSolids(bool fullPhi);
     virtual void* TestAssemblies();
     virtual void* TestAssemblies2();
     virtual void* TestBooleanSolids1();
@@ -50,27 +51,29 @@ class TstGeometryViaGeant4 : public TstVGeometry
 
   private:
     G4LogicalVolume* CreateWorld(G4double x, G4double y, G4double z);
-    G4LogicalVolume* CreateNewSolid();
-    G4LogicalVolume* CreateBox();
-    G4LogicalVolume* CreateCons(G4double sphi, G4double dphi);
-    G4LogicalVolume* CreateEllipsoid();
-    G4LogicalVolume* CreateEllipticalTube();
-    G4LogicalVolume* CreateExtrudedSolid1();
-    G4LogicalVolume* CreateExtrudedSolid2();
-    G4LogicalVolume* CreateHype();
-    G4LogicalVolume* CreatePara();
-    G4LogicalVolume* CreateParaboloid();
-    G4LogicalVolume* CreatePolycone(G4double sphi, G4double dphi);
-    G4LogicalVolume* CreatePolyhedra(G4double sphi, G4double dphi);
-    G4LogicalVolume* CreateSphere(G4double sphi, G4double dphi);
-    G4LogicalVolume* CreateTessellatedSolid();
-    G4LogicalVolume* CreateTorus(G4double sphi, G4double dphi);
-    G4LogicalVolume* CreateTrap();
-    G4LogicalVolume* CreateTrd();
-    G4LogicalVolume* CreateTubs(G4double sphi, G4double dphi);
-    G4LogicalVolume* CreateCtubs(G4double sphi, G4double dphi);
+    G4VSolid* CreateNewSolid();
+    G4VSolid* CreateBox();
+    G4VSolid* CreateCons(G4double sphi, G4double dphi);
+    G4VSolid* CreateEllipsoid();
+    G4VSolid* CreateEllipticalTube();
+    G4VSolid* CreateExtrudedSolid1();
+    G4VSolid* CreateExtrudedSolid2();
+    G4VSolid* CreateHype();
+    G4VSolid* CreatePara();
+    G4VSolid* CreateParaboloid();
+    G4VSolid* CreatePolycone(G4double sphi, G4double dphi);
+    G4VSolid* CreatePolyhedra(G4double sphi, G4double dphi);
+    G4VSolid* CreateSphere(G4double sphi, G4double dphi);
+    G4VSolid* CreateTessellatedSolid();
+    G4VSolid* CreateTorus(G4double sphi, G4double dphi);
+    G4VSolid* CreateTrap();
+    G4VSolid* CreateTrd();
+    G4VSolid* CreateTubs(G4double sphi, G4double dphi);
+    G4VSolid* CreateCtubs(G4double sphi, G4double dphi);
+    G4LogicalVolume* CreateVolume(G4VSolid* solid, G4bool scale = false);
     G4LogicalVolume* PlaceSolids(G4LogicalVolume* mother,
-                          G4bool fullPhi, G4bool reflect, G4double zpos);
+                          G4bool fullPhi, G4bool reflect, G4bool scale,
+                          G4double zpos);
     void  PlaceExtraSolid(VGM::SolidType solidType, G4LogicalVolume* mother);
 
     // data members

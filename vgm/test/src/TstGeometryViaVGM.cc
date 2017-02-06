@@ -81,14 +81,14 @@ IVolume* TstGeometryViaVGM::CreateWorld(double x, double y, double z,
 }    
 
 //_____________________________________________________________________________
-IVolume* TstGeometryViaVGM::CreateNewSolid()
+ISolid* TstGeometryViaVGM::CreateNewSolid()
 {
   return CreateCtubs(0, 360*fDeg);
 }  
 
 
 //_____________________________________________________________________________
-IVolume* TstGeometryViaVGM::CreateArb8()
+ISolid* TstGeometryViaVGM::CreateArb8()
 {   
   std::vector<VGM::TwoVector> vertices;
   vertices.push_back(VGM::TwoVector( 45.*fCm, -15.*fCm));
@@ -100,10 +100,7 @@ IVolume* TstGeometryViaVGM::CreateArb8()
   vertices.push_back(VGM::TwoVector(-30.*fCm, -75.*fCm));
   vertices.push_back(VGM::TwoVector( 15.*fCm, -15.*fCm));
 
-  ISolid* arb8S
-    = fFactory->CreateArb8("arb8S", 75.*fCm, vertices);
-  
-  return fFactory->CreateVolume("arb8", arb8S, "Basic");
+  return fFactory->CreateArb8("arb8S", 75.*fCm, vertices);
 }  
  
 //_____________________________________________________________________________
@@ -233,47 +230,35 @@ void TstGeometryViaVGM::CreateArb8Solids(std::vector<VGM::IVolume*>& volumes)
 }
  
 //_____________________________________________________________________________
-IVolume* TstGeometryViaVGM::CreateBox()
+ISolid* TstGeometryViaVGM::CreateBox()
 {
-  ISolid* boxS
-    = fFactory->CreateBox("boxS", 20. * fCm, 60.* fCm, 50.* fCm);
-  
-  return fFactory->CreateVolume("box", boxS, "Basic");
+  return fFactory->CreateBox("boxS", 20. * fCm, 60.* fCm, 50.* fCm);
 }  
 
 
 //_____________________________________________________________________________
-IVolume* TstGeometryViaVGM::CreateCons(double sphi, double dphi)
+ISolid* TstGeometryViaVGM::CreateCons(double sphi, double dphi)
 {
-  ISolid* consS
-    = fFactory->CreateCons("consS", 
-                           10.* fCm, 40.* fCm, 20.* fCm, 60.* fCm, 50* fCm,
-                           sphi, dphi);
-  
-  return fFactory->CreateVolume("cons", consS, "Basic");
+  return fFactory->CreateCons("consS", 
+                         10.* fCm, 40.* fCm, 20.* fCm, 60.* fCm, 50* fCm,
+                         sphi, dphi);
 }
 
 //_____________________________________________________________________________
-IVolume* TstGeometryViaVGM::CreateEllipsoid()
+ISolid* TstGeometryViaVGM::CreateEllipsoid()
 {
-  ISolid* ellipsoidS
-    = fFactory->CreateEllipsoid("ellipsoidS",  
-                           10.* fCm, 20.* fCm, 50* fCm, -10.*fCm, 60.*fCm);
-    
-  return fFactory->CreateVolume("ellipsoid", ellipsoidS, "Basic");
+  return fFactory->CreateEllipsoid("ellipsoidS",  
+                         10.* fCm, 20.* fCm, 50* fCm, -10.*fCm, 60.*fCm);
 }
  
 //_____________________________________________________________________________
-IVolume* TstGeometryViaVGM::CreateEllipticalTube()
+ISolid* TstGeometryViaVGM::CreateEllipticalTube()
 {
-  ISolid* eltuS
-    = fFactory->CreateEllipticalTube("eltuS", 20.* fCm, 30.* fCm, 50* fCm);
-  
-  return fFactory->CreateVolume("eltu", eltuS, "Basic");
+  return fFactory->CreateEllipticalTube("eltuS", 20.* fCm, 30.* fCm, 50* fCm);
 }
  
 //_____________________________________________________________________________
-IVolume* TstGeometryViaVGM::CreateExtrudedSolid1()
+ISolid* TstGeometryViaVGM::CreateExtrudedSolid1()
 {   
   std::vector<VGM::TwoVector> polygon;
   polygon.push_back(VGM::TwoVector(-30.*fCm, -30.*fCm));
@@ -296,14 +281,11 @@ IVolume* TstGeometryViaVGM::CreateExtrudedSolid1()
   zsections.push_back(std::vector<double>(array3, array3 + 4));
   zsections.push_back(std::vector<double>(array4, array4 + 4));
 
-  ISolid* xtruS
-    = fFactory->CreateExtrudedSolid("xtruS",polygon, zsections);
-  
-  return fFactory->CreateVolume("xtru1", xtruS, "Basic");
+  return fFactory->CreateExtrudedSolid("xtru1S",polygon, zsections);
 }  
  
 //_____________________________________________________________________________
-IVolume* TstGeometryViaVGM::CreateExtrudedSolid2()
+ISolid* TstGeometryViaVGM::CreateExtrudedSolid2()
 {   
   std::vector<VGM::TwoVector> polygon;
   polygon.push_back(VGM::TwoVector(-30.*fCm, -30.*fCm));
@@ -326,43 +308,31 @@ IVolume* TstGeometryViaVGM::CreateExtrudedSolid2()
   zsections.push_back(std::vector<double>(array3, array3 + 4));
   zsections.push_back(std::vector<double>(array4, array4 + 4));
 
-  ISolid* xtruS
-    = fFactory->CreateExtrudedSolid("xtruS",polygon, zsections);
-  
-  return fFactory->CreateVolume("xtru2", xtruS, "Basic");
+  return fFactory->CreateExtrudedSolid("xtru2S",polygon, zsections);
 }  
  
 //_____________________________________________________________________________
-IVolume* TstGeometryViaVGM::CreateHype()
+ISolid* TstGeometryViaVGM::CreateHype()
 {
-  ISolid* hypeS
-    = fFactory->CreateHype("hypeS", 20.* fCm, 30.* fCm, 30.* fDeg, 
-                           40.* fDeg, 50.*fCm);
-
-  return fFactory->CreateVolume("hype", hypeS, "Basic");
+  return fFactory->CreateHype("hypeS", 20.* fCm, 30.* fCm, 30.* fDeg, 
+                              40.* fDeg, 50.*fCm);
 }  
 
 //_____________________________________________________________________________
-IVolume* TstGeometryViaVGM::CreatePara()
+ISolid* TstGeometryViaVGM::CreatePara()
 {
-  ISolid* paraS
-    = fFactory->CreatePara("paraS", 40.* fCm, 60.* fCm, 50.* fCm, 
-                           30.* fDeg, 30.* fDeg, 30.* fDeg);
-
-  return fFactory->CreateVolume("para", paraS, "Basic");
+  return fFactory->CreatePara("paraS", 40.* fCm, 60.* fCm, 50.* fCm, 
+                              30.* fDeg, 30.* fDeg, 30.* fDeg);
 }  
 
 //_____________________________________________________________________________
-IVolume* TstGeometryViaVGM::CreateParaboloid()
+ISolid* TstGeometryViaVGM::CreateParaboloid()
 {
-  ISolid* paraboloidS
-    = fFactory->CreateParaboloid("paraboloidS", 20.* fCm, 45.* fCm, 50.* fCm);
-
-  return fFactory->CreateVolume("paraboloid", paraboloidS, "Basic");
+  return fFactory->CreateParaboloid("paraboloidS", 20.* fCm, 45.* fCm, 50.* fCm);
 }  
 
 //_____________________________________________________________________________
-IVolume* TstGeometryViaVGM::CreatePolycone(double sphi, double dphi)
+ISolid* TstGeometryViaVGM::CreatePolycone(double sphi, double dphi)
 {
   // Define parameters
 
@@ -383,14 +353,11 @@ IVolume* TstGeometryViaVGM::CreatePolycone(double sphi, double dphi)
   rin[2] = 30.* fCm;
   rout[2] = 60.* fCm;
   
-  ISolid* pconeS
-    = fFactory->CreatePolycone("pconeS", sphi, dphi, nofPlanes, z, rin, rout);
-  
-  return fFactory->CreateVolume("pcone", pconeS, "Basic");
+  return fFactory->CreatePolycone("pconeS", sphi, dphi, nofPlanes, z, rin, rout);
 }  
 
 //_____________________________________________________________________________
-IVolume* TstGeometryViaVGM::CreatePolyhedra(double sphi, double dphi)
+ISolid* TstGeometryViaVGM::CreatePolyhedra(double sphi, double dphi)
 {
   // Define parameters
 
@@ -412,26 +379,19 @@ IVolume* TstGeometryViaVGM::CreatePolyhedra(double sphi, double dphi)
   rin[2] = 30.* fCm;
   rout[2] = 50.* fCm;
   
-
-  ISolid* phedraS
-    = fFactory->CreatePolyhedra("phedraS", sphi, dphi, 
-                           nofSides, nofPlanes, z, rin, rout);
-
-  return fFactory->CreateVolume("phedra", phedraS, "Basic");
+  return fFactory->CreatePolyhedra("phedraS", sphi, dphi, 
+                                   nofSides, nofPlanes, z, rin, rout);
 }  
 
 //_____________________________________________________________________________
-IVolume* TstGeometryViaVGM::CreateSphere(double sphi, double dphi)
+ISolid* TstGeometryViaVGM::CreateSphere(double sphi, double dphi)
 {
-  ISolid* sphereS
-    = fFactory->CreateSphere("sphereS", 20.* fCm, 60.* fCm,
-                            sphi, dphi, sphi/2., dphi/2.); 
-			    
-  return fFactory->CreateVolume("sphere", sphereS, "Basic");
+  return fFactory->CreateSphere("sphereS", 20.* fCm, 60.* fCm,
+                                 sphi, dphi, sphi/2., dphi/2.); 
 }  
 
 //_____________________________________________________________________________
-IVolume* TstGeometryViaVGM::CreateTessellatedSolid()
+ISolid* TstGeometryViaVGM::CreateTessellatedSolid()
 {
   double targetSize = 100.*fCm ;
 
@@ -486,65 +446,65 @@ IVolume* TstGeometryViaVGM::CreateTessellatedSolid()
   facets.push_back(facet4);
   facets.push_back(facet5);
 
-  ISolid* tessellatedS
-    = fFactory->CreateTessellatedSolid("tessellatedS", facets);
-			    
-  return fFactory->CreateVolume("tessellated", tessellatedS, "Basic");  
+  return fFactory->CreateTessellatedSolid("tessellatedS", facets);
 }  
 
 //_____________________________________________________________________________
-IVolume* TstGeometryViaVGM::CreateTorus(double sphi, double dphi)
+ISolid* TstGeometryViaVGM::CreateTorus(double sphi, double dphi)
 {
-  ISolid* torusS
-    = fFactory->CreateTorus("torusS", 20.* fCm, 30.* fCm, 40.* fCm,
-                            sphi, dphi);
-			    
-  return fFactory->CreateVolume("torus", torusS, "Basic");  
+  return fFactory->CreateTorus("torusS", 20.* fCm, 30.* fCm, 40.* fCm,
+                               sphi, dphi);
 }  
 
 //_____________________________________________________________________________
-IVolume* TstGeometryViaVGM::CreateTrap()
+ISolid* TstGeometryViaVGM::CreateTrap()
 {
-  ISolid* trapS
-    = fFactory->CreateTrap("trapS", 30.* fCm, 25.* fDeg, 35.* fDeg,
-  		          20.* fCm, 10.* fCm, 15.* fCm, 0.* fDeg,
-  		          20.* fCm, 10.* fCm, 15.* fCm, 0.* fDeg);
-
-  return fFactory->CreateVolume("trap", trapS, "Basic");
+  return fFactory->CreateTrap("trapS", 30.* fCm, 25.* fDeg, 35.* fDeg,
+  		                        20.* fCm, 10.* fCm, 15.* fCm, 0.* fDeg,
+  		                        20.* fCm, 10.* fCm, 15.* fCm, 0.* fDeg);
 }
 
 //_____________________________________________________________________________
-IVolume* TstGeometryViaVGM::CreateTrd()
+ISolid* TstGeometryViaVGM::CreateTrd()
 {
-  ISolid* trdS
-    = fFactory->CreateTrd("trdS", 20.* fCm, 30* fCm, 40.* fCm, 50.* fCm, 50.* fCm);
-
-  return fFactory->CreateVolume("trd", trdS, "Basic");
+  return fFactory->CreateTrd("trdS", 20.* fCm, 30* fCm, 40.* fCm, 50.* fCm, 50.* fCm);
 }  
 
 //_____________________________________________________________________________
-IVolume* TstGeometryViaVGM::CreateTubs(double sphi, double dphi)
+ISolid* TstGeometryViaVGM::CreateTubs(double sphi, double dphi)
 {
-  ISolid* tubsS
-    = fFactory->CreateTubs("tubsS", 20.* fCm, 40* fCm, 50.* fCm, sphi, dphi);
-
-  return fFactory->CreateVolume("tubs", tubsS, "Basic");
+  return fFactory->CreateTubs("tubsS", 20.* fCm, 40* fCm, 50.* fCm, sphi, dphi);
 }  
  
 //_____________________________________________________________________________
-IVolume* TstGeometryViaVGM::CreateCtubs(double /*sphi*/, double /*dphi*/)
+ISolid* TstGeometryViaVGM::CreateCtubs(double /*sphi*/, double /*dphi*/)
 {
-  ISolid* ctubsS
-    = fFactory->CreateCtubs("ctubsS", 20.* fCm, 30* fCm, 60.49* fCm, 
-                           330.* fDeg, 280.*fDeg,
-			   0.00, 0.64, -0.77, 0.00, 0.09, 0.87);
-
-  return fFactory->CreateVolume("ctubs", ctubsS, "Basic");
+  return fFactory->CreateCtubs("ctubsS", 20.* fCm, 30* fCm, 60.49* fCm, 
+                               330.* fDeg, 280.*fDeg,
+			                         0.00, 0.64, -0.77, 0.00, 0.09, 0.87);
 }  
- 
+
+//_____________________________________________________________________________
+IVolume* TstGeometryViaVGM::CreateVolume(ISolid* solid, bool scale)
+{
+  HepGeom::Scale3D scale3D(0.8, 0.5, 0.25);
+
+  // Remove "S" from solid name
+  std::string name = solid->Name();
+  name.erase(name.find("S"), 1);
+
+  ISolid* finalSolid = solid;
+  if ( scale ) {
+    finalSolid = fFactory->CreateScaledSolid(solid->Name(), solid, ClhepVGM::TransformScale(scale3D));
+  }
+
+  return fFactory->CreateVolume(name, finalSolid, "Basic");
+}
+
 //_____________________________________________________________________________
 void* TstGeometryViaVGM::PlaceSolids(IVolume* mother,
-                                     bool fullPhi, bool reflect, double zpos)
+                                     bool fullPhi, bool reflect, bool scale,
+                                     double zpos)
 {
   double sphi =   0.* fDeg;
   double dphi = 360.* fDeg;
@@ -559,10 +519,11 @@ void* TstGeometryViaVGM::PlaceSolids(IVolume* mother,
   double dy = 150.*fCm;
   
   HepGeom::ReflectZ3D reflect3D;
- 
+
   // Box
   //
-  IVolume* boxV = CreateBox();
+  ISolid* box = CreateBox();
+  IVolume* boxV = CreateVolume(box, scale);
   fFactory->CreatePlacement("box", 0, boxV, mother, 
               ClhepVGM::Transform(
 	        HepGeom::Translate3D(x0 + (counter)*dx,  -dy, zpos))); 
@@ -573,7 +534,8 @@ void* TstGeometryViaVGM::PlaceSolids(IVolume* mother,
 
   // Cons 
   //
-  IVolume* consV = CreateCons(sphi, dphi);
+  ISolid* cons = CreateCons(sphi, dphi);
+  IVolume* consV = CreateVolume(cons, scale);
   fFactory->CreatePlacement("cons", 0, consV, mother, 
               ClhepVGM::Transform(
                 HepGeom::Translate3D(x0 + (counter)*dx, dy, zpos)));
@@ -584,7 +546,8 @@ void* TstGeometryViaVGM::PlaceSolids(IVolume* mother,
 
   // Elliptical tube 
   //
-  IVolume* eltuV = CreateEllipticalTube();
+  ISolid* eltu = CreateEllipticalTube();
+  IVolume* eltuV = CreateVolume(eltu, scale);
   fFactory->CreatePlacement("eltu", 0, eltuV, mother, 
                ClhepVGM::Transform(
                  HepGeom::Translate3D(x0 + (++counter)*dx, -dy, zpos)));
@@ -595,7 +558,8 @@ void* TstGeometryViaVGM::PlaceSolids(IVolume* mother,
 
   // Para
   //
-  IVolume* paraV = CreatePara();
+  ISolid* para = CreatePara();
+  IVolume* paraV = CreateVolume(para, scale);
   fFactory->CreatePlacement("para", 0, paraV, mother, 
                ClhepVGM::Transform(
                  HepGeom::Translate3D(x0 + (counter)*dx,  dy, zpos)));
@@ -606,7 +570,8 @@ void* TstGeometryViaVGM::PlaceSolids(IVolume* mother,
   
   // Polycone
   //
-  IVolume* pconeV = CreatePolycone(sphi, dphi);
+  ISolid* pcone = CreatePolycone(sphi, dphi);
+  IVolume* pconeV = CreateVolume(pcone, scale);
   fFactory->CreatePlacement("pcone", 0, pconeV, mother, 
                ClhepVGM::Transform(
                  HepGeom::Translate3D(x0 + (++counter)*dx, -dy, zpos)));
@@ -617,7 +582,8 @@ void* TstGeometryViaVGM::PlaceSolids(IVolume* mother,
 
   // Polyhedra
   //
-  IVolume* phedraV = CreatePolyhedra(sphi, dphi);
+  ISolid* phedra = CreatePolyhedra(sphi, dphi);
+  IVolume* phedraV = CreateVolume(phedra, scale);
   fFactory->CreatePlacement("phedra", 0, phedraV, mother, 
                ClhepVGM::Transform(
                  HepGeom::Translate3D(x0 + (counter)*dx,  dy, zpos)));
@@ -628,7 +594,8 @@ void* TstGeometryViaVGM::PlaceSolids(IVolume* mother,
 
   // Sphere 
   //
-  IVolume* sphereV = CreateSphere(sphi, dphi);
+  ISolid* sphere = CreateSphere(sphi, dphi);
+  IVolume* sphereV = CreateVolume(sphere, scale);
   fFactory->CreatePlacement("sphere", 0, sphereV, mother, 
                ClhepVGM::Transform(
                  HepGeom::Translate3D(x0 + (++counter)*dx, -dy, zpos)));
@@ -639,7 +606,8 @@ void* TstGeometryViaVGM::PlaceSolids(IVolume* mother,
 
   // Torus
   //
-  IVolume* torusV = CreateTorus(sphi, dphi);
+  ISolid* torus = CreateTorus(sphi, dphi);
+  IVolume* torusV = CreateVolume(torus, scale);
   fFactory->CreatePlacement("torus", 0, torusV, mother, 
                ClhepVGM::Transform(
                  HepGeom::Translate3D(x0 + (counter)*dx,  dy, zpos)));
@@ -650,7 +618,8 @@ void* TstGeometryViaVGM::PlaceSolids(IVolume* mother,
 
   // Trap 
   //
-  IVolume* trapV = CreateTrap();
+  ISolid* trap = CreateTrap();
+  IVolume* trapV = CreateVolume(trap, scale);
   fFactory->CreatePlacement("trap", 0, trapV, mother, 
                ClhepVGM::Transform(
                  HepGeom::Translate3D(x0 + (++counter)*dx, -dy, zpos)));
@@ -661,7 +630,8 @@ void* TstGeometryViaVGM::PlaceSolids(IVolume* mother,
 
   // Trd
   //
-  IVolume* trdV = CreateTrd();
+  ISolid* trd = CreateTrd();
+  IVolume* trdV = CreateVolume(trd, scale);
   fFactory->CreatePlacement("trd", 0, trdV, mother, 
                ClhepVGM::Transform(
                  HepGeom::Translate3D(x0 + (counter)*dx,  dy, zpos)));
@@ -672,7 +642,8 @@ void* TstGeometryViaVGM::PlaceSolids(IVolume* mother,
  
   // Tube
   //
-  IVolume* tubsV = CreateTubs(sphi, dphi);
+  ISolid* tubs = CreateTubs(sphi, dphi);
+  IVolume* tubsV = CreateVolume(tubs, scale);
   fFactory->CreatePlacement("tubs", 0, tubsV, mother, 
                ClhepVGM::Transform(
                  HepGeom::Translate3D(x0 + (++counter)*dx, -dy, zpos)));
@@ -683,7 +654,8 @@ void* TstGeometryViaVGM::PlaceSolids(IVolume* mother,
 
   // Ctubs
   //
-  IVolume* ctubsV = CreateCtubs(sphi, dphi);
+  ISolid* ctubs = CreateCtubs(sphi, dphi);
+  IVolume* ctubsV = CreateVolume(ctubs, scale);
   fFactory->CreatePlacement("ctubs", 0, ctubsV, mother, 
                ClhepVGM::Transform(
                  HepGeom::Translate3D(x0 + (counter)*dx, dy, zpos)));
@@ -694,7 +666,8 @@ void* TstGeometryViaVGM::PlaceSolids(IVolume* mother,
 
   // Xtru1
   //
-  IVolume* xtru1V = CreateExtrudedSolid1();
+  ISolid* xtru1 = CreateExtrudedSolid1();
+  IVolume* xtru1V = CreateVolume(xtru1, scale);
   fFactory->CreatePlacement("xtru1", 0, xtru1V, mother, 
                ClhepVGM::Transform(
                  HepGeom::Translate3D(x0 + (++counter)*dx, -dy, zpos)));
@@ -705,7 +678,8 @@ void* TstGeometryViaVGM::PlaceSolids(IVolume* mother,
 
   // Xtru2
   //
-  IVolume* xtru2V = CreateExtrudedSolid2();
+  ISolid* xtru2 = CreateExtrudedSolid2();
+  IVolume* xtru2V = CreateVolume(xtru2, scale);
   fFactory->CreatePlacement("xtru2", 0, xtru2V, mother, 
                ClhepVGM::Transform(
                  HepGeom::Translate3D(x0 + (counter)*dx, dy, zpos)));
@@ -716,7 +690,8 @@ void* TstGeometryViaVGM::PlaceSolids(IVolume* mother,
 
   // Hype
   //
-  IVolume* hypeV = CreateHype();
+  ISolid* hype = CreateHype();
+  IVolume* hypeV = CreateVolume(hype, scale);
   fFactory->CreatePlacement("hype", 0, hypeV, mother, 
                ClhepVGM::Transform(
                  HepGeom::Translate3D(x0 + (++counter)*dx, -dy, zpos)));
@@ -727,7 +702,8 @@ void* TstGeometryViaVGM::PlaceSolids(IVolume* mother,
 
   // Paraboloid
   //
-  IVolume* paraboloidV = CreateParaboloid();
+  ISolid* paraboloid = CreateParaboloid();
+  IVolume* paraboloidV = CreateVolume(paraboloid, scale);
   fFactory->CreatePlacement("paraboloid", 0, paraboloidV, mother, 
                ClhepVGM::Transform(
                  HepGeom::Translate3D(x0 + (counter)*dx, dy, zpos)));
@@ -770,17 +746,17 @@ void TstGeometryViaVGM::PlaceExtraSolid(VGM::SolidType solidType,
   std::string volName;
  
   if ( solidType == VGM::kArb8 ) {
-    vol = CreateArb8();
+    vol = CreateVolume(CreateArb8());
     volName = "arb8";
   }    
 
   if ( solidType == VGM::kEllipsoid ) {
-    vol = CreateEllipsoid();
+    vol = CreateVolume(CreateEllipsoid());
     volName = "ellipsoid";
   }    
     
   if ( solidType == VGM::kTessellated ) {
-    vol = CreateTessellatedSolid();
+    vol = CreateVolume(CreateTessellatedSolid());
     volName = "tessellated";
   }    
     
@@ -918,7 +894,7 @@ void* TstGeometryViaVGM::TestSolids(bool fullPhi)
   IVolume* worldV = CreateWorld(620.*fCm, 300.*fCm, 200.*fCm);
   fFactory->CreatePlacement("world", 0, worldV, 0, ClhepVGM::Identity());
   
-  PlaceSolids(worldV, fullPhi, false, 0.);
+  PlaceSolids(worldV, fullPhi, false, false, 0.);
 
   return (void*) fFactory->Top();
  }
@@ -940,7 +916,7 @@ void* TstGeometryViaVGM::TestNewSolid()
   IVolume* worldV = CreateWorld(200.*fCm, 200.*fCm, 200.*fCm);
   fFactory->CreatePlacement("world", 0, worldV, 0, ClhepVGM::Identity());
   
-  IVolume* newSolidV = CreateNewSolid();
+  IVolume* newSolidV = CreateVolume(CreateNewSolid());
   if ( newSolidV ) {
     fFactory->CreatePlacement(newSolidV->Name(), 0, newSolidV, worldV, 
                               ClhepVGM::Identity());
@@ -1048,7 +1024,18 @@ void* TstGeometryViaVGM::TestReflections(bool fullPhi)
   IVolume* worldV = CreateWorld(620.*fCm, 300.*fCm, 300.*fCm);
   fFactory->CreatePlacement("world", 0, worldV, 0, ClhepVGM::Identity());
   
-  PlaceSolids(worldV, fullPhi, true, 100.* fCm);
+  PlaceSolids(worldV, fullPhi, true, false, 100.* fCm);
+
+  return (void*) fFactory->Top();
+ }
+
+//_____________________________________________________________________________
+void* TstGeometryViaVGM::TestScaledSolids(bool fullPhi)
+{
+  IVolume* worldV = CreateWorld(620.*fCm, 300.*fCm, 300.*fCm);
+  fFactory->CreatePlacement("world", 0, worldV, 0, ClhepVGM::Identity());
+  
+  PlaceSolids(worldV, fullPhi, true, true, 100.* fCm);
 
   return (void*) fFactory->Top();
  }
