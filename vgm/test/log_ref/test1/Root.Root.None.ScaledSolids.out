@@ -1,0 +1,400 @@
+Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometry created
+Warning in <TGeoManager::Init>: Deleting previous geometry: VGM Root geometry/VGM Root geometry
+Info in <TGeoManager::TGeoManager>: Geometry Test, Test geometry via Root created
+Root geometry will be defined via Root
+
+*************************************************************
+ Geant4 version Name: geant4-10-03    (9-December-2016)
+                      Copyright : Geant4 Collaboration
+                      Reference : NIM A 506 (2003), 250-303
+                            WWW : http://cern.ch/geant4
+*************************************************************
+
+Info in <TGeoManager::SetTopVolume>: Top volume is world. Master volume is world
+Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+TestScaledSolids finished
+Go to Import
+Info in <TGeoManager::Export>: Exporting Test Test geometry via Root as root file. Optimizations streamed.
+VGM info:   RootGM::Factory::Import started ...
+VGM info:   Importing material: 
+VGM info:   Material Basic    A=26.98 Z=13 rho=2.7 radlen=8.8751 intlen=38.8622 index=0
+VGM info:   Importing element: from material
+VGM info:   Element: AL      Z=13   N=27.000000   A=26.981538 [g/mole]
+VGM info:   Importing material: 
+VGM info:   Mixture Air    Aeff=14.607 Zeff=7.3 rho=0.00129 radlen=28405.7 intlen=66278.6 index=1
+   Element #0 : N  Z=  7.00 A= 14.01 w= 0.700
+   Element #1 : O  Z=  8.00 A= 16.00 w= 0.300
+VGM info:   Importing element: from material
+VGM info:   Element: N      Z=7   N=14.000000   A=14.006740 [g/mole]
+VGM info:   Importing element: from material
+VGM info:   Element: O      Z=8   N=16.000000   A=15.999400 [g/mole]
+VGM info:   Importing material: 
+VGM info:   Mixture Scintillator    Aeff=11.0723 Zeff=5.57354 rho=1.032 radlen=42.132 intlen=70.1007 index=2
+   Element #0 : C  Z=  6.00 A= 12.01 w= 0.915 natoms=9
+   Element #1 : H  Z=  1.00 A=  1.01 w= 0.085 natoms=10
+VGM info:   Importing element: from element object
+VGM info:   Element: C      Z=6   N=12.000000   A=12.010700 [g/mole]
+VGM info:   Importing element: from element object
+VGM info:   Element: H      Z=1   N=1.000000   A=1.007940 [g/mole]
+VGM info:   Importing material: 
+VGM info:   Material Uranium    A=235.312 Z=92 rho=13.61 radlen=0.436288 intlen=15.8771 index=3
+VGM info:   Importing isotope: 
+VGM info:   Isotope: U235     Z=92   N=235   A=235.010000 [g/mole]
+VGM info:   Importing isotope: 
+VGM info:   Isotope: U238     Z=92   N=238   A=238.030000 [g/mole]
+VGM info:   Importing element: from element object
+VGM info:   Element: enriched Uranium      Z=92   N=235.300000   A=235.312000 [g/mole]
+=>Isotope U235, abundance=0.900000 :
+Isotope: U235     Z=92   N=235   A=235.010000 [g/mole]
+=>Isotope U238, abundance=0.100000 :
+Isotope: U238     Z=92   N=238   A=238.030000 [g/mole]
+VGM info:   Importing material: 
+VGM info:   Material Vacuum    A=0 Z=0 rho=0 radlen=1e+30 intlen=1e+30 index=4
+VGM info:   Importing element: from element object
+VGM info:   Element: VACUUM      Z=0   N=0.000000   A=0.000000 [g/mole]
+VGM info:   Importing material: 
+VGM info:   Material Tungsten    A=183.84 Z=74 rho=19.25 radlen=0.351617 intlen=10.3323 index=5
+VGM info:   Importing element: from element object
+VGM info:   Element: W      Z=74   N=184.000000   A=183.840000 [g/mole]
+VGM info:   Importing medium: 
+VGM info:   OBJ: TGeoMedium	Basic	
+VGM info:   Importing medium: 
+VGM info:   OBJ: TGeoMedium	Air	
+VGM info:   Importing medium: 
+VGM info:   OBJ: TGeoMedium	Scintillator	
+VGM info:   Importing medium: 
+VGM info:   OBJ: TGeoMedium	Uranium	
+VGM info:   Importing medium: 
+VGM info:   OBJ: TGeoMedium	Vacuum	
+VGM info:   Importing medium: 
+VGM info:   OBJ: TGeoMedium	Tungsten	
+VGM info:   Importing volume: world
+VGM info:   Importing shape: worldS
+VGM info:      Imported solid: Box  "worldS"  hx = 6200mm  hy = 3000mm  hz = 3000mm
+VGM info:   ImportDaughters for world
+VGM info:   Importing volume: box
+VGM info:   Importing shape: boxS
+VGM info:   Importing shape: boxS
+VGM info:      Imported solid: Scaled  "boxS"    Constituent = Box  "boxS"  hx = 200mm  hy = 600mm  hz = 500mm
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+VGM info:   ImportDaughters for box
+VGM info:   Importing volume: cons
+VGM info:   Importing shape: consS
+VGM info:   Importing shape: consS
+VGM info:      Imported solid: Scaled  "consS"    Constituent = Cons  "consS"  rin1 = 100mm  rout1 = 400mm  rin2 = 200mm  rout2 = 600mm  hz = 500mm  sphi = 0deg  dphi = 360deg
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+VGM info:   ImportDaughters for cons
+VGM info:   Importing volume: eltu
+VGM info:   Importing shape: eltuS
+VGM info:   Importing shape: eltuS
+VGM info:      Imported solid: Scaled  "eltuS"    Constituent = Eltu  "eltuS"  dx = 200mm  dy = 300mm  hz = 500mm
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+VGM info:   ImportDaughters for eltu
+VGM info:   Importing volume: para
+VGM info:   Importing shape: paraS
+VGM info:   Importing shape: paraS
+VGM info:      Imported solid: Scaled  "paraS"    Constituent = Para  "paraS"  hx = 400mm  hy = 600mm  hz = 500mm  alpha = 30deg  theta = 30deg  phi = 30deg
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+VGM info:   ImportDaughters for para
+VGM info:   Importing volume: pcone
+VGM info:   Importing shape: pconeS
+VGM info:   Importing shape: pconeS
+VGM info:      Imported solid: Scaled  "pconeS"    Constituent = Polycone  "pconeS"  sphi = 0deg  dphi = 360deg  nz = 3
+   0th plane:  z = -500mm rin = 100mm rout = 500mm
+   1th plane:  z = 100mm rin = 200mm rout = 300mm
+   2th plane:  z = 400mm rin = 300mm rout = 600mm
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+VGM info:   ImportDaughters for pcone
+VGM info:   Importing volume: phedra
+VGM info:   Importing shape: phedraS
+VGM info:   Importing shape: phedraS
+VGM info:      Imported solid: Scaled  "phedraS"    Constituent = Polygone  "phedraS"  sphi = 0deg  dphi = 360deg  nsides = 4  nz = 3
+   0th plane:  z = -500mm rin = 100mm rout = 400mm
+   1th plane:  z = 100mm rin = 200mm rout = 200mm
+   2th plane:  z = 400mm rin = 300mm rout = 500mm
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+VGM info:   ImportDaughters for phedra
+VGM info:   Importing volume: sphere
+VGM info:   Importing shape: sphereS
+VGM info:   Importing shape: sphereS
+VGM info:      Imported solid: Scaled  "sphereS"    Constituent = Sphere  "sphereS"  rin = 200mm  rout = 600mm  sphi = 0deg  dphi = 360deg  stheta = 0deg  dtheta = 180deg
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+VGM info:   ImportDaughters for sphere
+VGM info:   Importing volume: torus
+VGM info:   Importing shape: torusS
+VGM info:   Importing shape: torusS
+VGM info:      Imported solid: Scaled  "torusS"    Constituent = Torus  "torusS"  rin = 200mm  rout = 300mm  rtor = 400mm  sphi = 0deg  dphi = 360deg
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+VGM info:   ImportDaughters for torus
+VGM info:   Importing volume: trap
+VGM info:   Importing shape: trapS
+VGM info:   Importing shape: trapS
+VGM info:      Imported solid: Scaled  "trapS"    Constituent = Trap  "trapS"  hz = 300mm  theta = 25deg  phi = 35deg  hy1 = 200mm  hx1 = 100mm  hx2 = 150mm  alpha1 = 0deg  hy2 = 200mm  hx3 = 100mm  hx4 = 150mm  alpha2 = 0deg
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+VGM info:   ImportDaughters for trap
+VGM info:   Importing volume: trd
+VGM info:   Importing shape: trdS
+VGM info:   Importing shape: trdS
+VGM info:      Imported solid: Scaled  "trdS"    Constituent = Trd  "trdS"  hx1 = 200mm  hx2 = 300mm  hy1 = 400mm  hy2 = 500mm  hz = 500mm
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+VGM info:   ImportDaughters for trd
+VGM info:   Importing volume: tubs
+VGM info:   Importing shape: tubsS
+VGM info:   Importing shape: tubsS
+VGM info:      Imported solid: Scaled  "tubsS"    Constituent = Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+VGM info:   ImportDaughters for tubs
+VGM info:   Importing volume: ctubs
+VGM info:   Importing shape: ctubsS
+VGM info:   Importing shape: ctubsS
+VGM info:      Imported solid: Scaled  "ctubsS"    Constituent = Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = 330deg  dphi = 280deg  nlow = (0, 0.64, -0.77)  nhigh = (0, 0.09, 0.87)
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+VGM info:   ImportDaughters for ctubs
+VGM info:   Importing volume: xtru1
+VGM info:   Importing shape: xtru1S
+VGM info:   Importing shape: xtru1S
+VGM info:      Imported solid: Scaled  "xtru1S"    Constituent = Extruded  "xtru1S"
+Polygon,  8 vertices:
+  (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
+Planes:
+  z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
+  z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
+  z = 150 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.7
+  z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
+
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+VGM info:   ImportDaughters for xtru1
+VGM info:   Importing volume: xtru2
+VGM info:   Importing shape: xtru2S
+VGM info:   Importing shape: xtru2S
+VGM info:      Imported solid: Scaled  "xtru2S"    Constituent = Extruded  "xtru2S"
+Polygon,  8 vertices:
+  (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
+Planes:
+  z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
+  z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
+  z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.7
+  z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
+
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+VGM info:   ImportDaughters for xtru2
+VGM info:   Importing volume: hype
+VGM info:   Importing shape: hypeS
+VGM info:   Importing shape: hypeS
+VGM info:      Imported solid: Scaled  "hypeS"    Constituent = Hype  "hypeS"  r1 = 200mm  stereo1 = 30deg  r2 = 300mm  stereo1 = 40deg  hz = 500mm
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+VGM info:   ImportDaughters for hype
+VGM info:   Importing volume: paraboloid
+VGM info:   Importing shape: paraboloidS
+VGM info:   Importing shape: paraboloidS
+VGM info:      Imported solid: Scaled  "paraboloidS"    Constituent = Paraboloid  "paraboloidS"  r1 = 200mm  r2 = 450mm  hz = 500mm
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+VGM info:   ImportDaughters for paraboloid
+VGM info:   Import positions: 
+VGM info:   0th volume: world  
+VGM info:      0th daughter  rtNode = box_0  rtVol = box vgmPl = box vgmVol = box
+VGM info:      1th daughter  rtNode = box_1  rtVol = box vgmPl = box vgmVol = box
+VGM info:      2th daughter  rtNode = cons_0  rtVol = cons vgmPl = cons vgmVol = cons
+VGM info:      3th daughter  rtNode = cons_1  rtVol = cons vgmPl = cons vgmVol = cons
+VGM info:      4th daughter  rtNode = eltu_0  rtVol = eltu vgmPl = eltu vgmVol = eltu
+VGM info:      5th daughter  rtNode = eltu_1  rtVol = eltu vgmPl = eltu vgmVol = eltu
+VGM info:      6th daughter  rtNode = para_0  rtVol = para vgmPl = para vgmVol = para
+VGM info:      7th daughter  rtNode = para_1  rtVol = para vgmPl = para vgmVol = para
+VGM info:      8th daughter  rtNode = pcone_0  rtVol = pcone vgmPl = pcone vgmVol = pcone
+VGM info:      9th daughter  rtNode = pcone_1  rtVol = pcone vgmPl = pcone vgmVol = pcone
+VGM info:      10th daughter  rtNode = phedra_0  rtVol = phedra vgmPl = phedra vgmVol = phedra
+VGM info:      11th daughter  rtNode = phedra_1  rtVol = phedra vgmPl = phedra vgmVol = phedra
+VGM info:      12th daughter  rtNode = sphere_0  rtVol = sphere vgmPl = sphere vgmVol = sphere
+VGM info:      13th daughter  rtNode = sphere_1  rtVol = sphere vgmPl = sphere vgmVol = sphere
+VGM info:      14th daughter  rtNode = torus_0  rtVol = torus vgmPl = torus vgmVol = torus
+VGM info:      15th daughter  rtNode = torus_1  rtVol = torus vgmPl = torus vgmVol = torus
+VGM info:      16th daughter  rtNode = trap_0  rtVol = trap vgmPl = trap vgmVol = trap
+VGM info:      17th daughter  rtNode = trap_1  rtVol = trap vgmPl = trap vgmVol = trap
+VGM info:      18th daughter  rtNode = trd_0  rtVol = trd vgmPl = trd vgmVol = trd
+VGM info:      19th daughter  rtNode = trd_1  rtVol = trd vgmPl = trd vgmVol = trd
+VGM info:      20th daughter  rtNode = tubs_0  rtVol = tubs vgmPl = tubs vgmVol = tubs
+VGM info:      21th daughter  rtNode = tubs_1  rtVol = tubs vgmPl = tubs vgmVol = tubs
+VGM info:      22th daughter  rtNode = ctubs_0  rtVol = ctubs vgmPl = ctubs vgmVol = ctubs
+VGM info:      23th daughter  rtNode = ctubs_1  rtVol = ctubs vgmPl = ctubs vgmVol = ctubs
+VGM info:      24th daughter  rtNode = xtru1_0  rtVol = xtru1 vgmPl = xtru1 vgmVol = xtru1
+VGM info:      25th daughter  rtNode = xtru1_1  rtVol = xtru1 vgmPl = xtru1 vgmVol = xtru1
+VGM info:      26th daughter  rtNode = xtru2_0  rtVol = xtru2 vgmPl = xtru2 vgmVol = xtru2
+VGM info:      27th daughter  rtNode = xtru2_1  rtVol = xtru2 vgmPl = xtru2 vgmVol = xtru2
+VGM info:      28th daughter  rtNode = hype_0  rtVol = hype vgmPl = hype vgmVol = hype
+VGM info:      29th daughter  rtNode = hype_1  rtVol = hype vgmPl = hype vgmVol = hype
+VGM info:      30th daughter  rtNode = paraboloid_0  rtVol = paraboloid vgmPl = paraboloid vgmVol = paraboloid
+VGM info:      31th daughter  rtNode = paraboloid_1  rtVol = paraboloid vgmPl = paraboloid vgmVol = paraboloid
+VGM info:   1th volume: box  
+VGM info:   2th volume: cons  
+VGM info:   3th volume: eltu  
+VGM info:   4th volume: para  
+VGM info:   5th volume: pcone  
+VGM info:   6th volume: phedra  
+VGM info:   7th volume: sphere  
+VGM info:   8th volume: torus  
+VGM info:   9th volume: trap  
+VGM info:   10th volume: trd  
+VGM info:   11th volume: tubs  
+VGM info:   12th volume: ctubs  
+VGM info:   13th volume: xtru1  
+VGM info:   14th volume: xtru2  
+VGM info:   15th volume: hype  
+VGM info:   16th volume: paraboloid  
+VGM info:   
+Root_GM_Factory factory solids store: 
+   0th solid: Box  "worldS"  hx = 6200mm  hy = 3000mm  hz = 3000mm
+   1th solid: Box  "boxS"  hx = 200mm  hy = 600mm  hz = 500mm
+   2th solid: Scaled  "boxS"    Constituent = Box  "boxS"  hx = 200mm  hy = 600mm  hz = 500mm
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+   3th solid: Cons  "consS"  rin1 = 100mm  rout1 = 400mm  rin2 = 200mm  rout2 = 600mm  hz = 500mm  sphi = 0deg  dphi = 360deg
+   4th solid: Scaled  "consS"    Constituent = Cons  "consS"  rin1 = 100mm  rout1 = 400mm  rin2 = 200mm  rout2 = 600mm  hz = 500mm  sphi = 0deg  dphi = 360deg
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+   5th solid: Eltu  "eltuS"  dx = 200mm  dy = 300mm  hz = 500mm
+   6th solid: Scaled  "eltuS"    Constituent = Eltu  "eltuS"  dx = 200mm  dy = 300mm  hz = 500mm
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+   7th solid: Para  "paraS"  hx = 400mm  hy = 600mm  hz = 500mm  alpha = 30deg  theta = 30deg  phi = 30deg
+   8th solid: Scaled  "paraS"    Constituent = Para  "paraS"  hx = 400mm  hy = 600mm  hz = 500mm  alpha = 30deg  theta = 30deg  phi = 30deg
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+   9th solid: Polycone  "pconeS"  sphi = 0deg  dphi = 360deg  nz = 3
+   0th plane:  z = -500mm rin = 100mm rout = 500mm
+   1th plane:  z = 100mm rin = 200mm rout = 300mm
+   2th plane:  z = 400mm rin = 300mm rout = 600mm
+   10th solid: Scaled  "pconeS"    Constituent = Polycone  "pconeS"  sphi = 0deg  dphi = 360deg  nz = 3
+   0th plane:  z = -500mm rin = 100mm rout = 500mm
+   1th plane:  z = 100mm rin = 200mm rout = 300mm
+   2th plane:  z = 400mm rin = 300mm rout = 600mm
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+   11th solid: Polygone  "phedraS"  sphi = 0deg  dphi = 360deg  nsides = 4  nz = 3
+   0th plane:  z = -500mm rin = 100mm rout = 400mm
+   1th plane:  z = 100mm rin = 200mm rout = 200mm
+   2th plane:  z = 400mm rin = 300mm rout = 500mm
+   12th solid: Scaled  "phedraS"    Constituent = Polygone  "phedraS"  sphi = 0deg  dphi = 360deg  nsides = 4  nz = 3
+   0th plane:  z = -500mm rin = 100mm rout = 400mm
+   1th plane:  z = 100mm rin = 200mm rout = 200mm
+   2th plane:  z = 400mm rin = 300mm rout = 500mm
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+   13th solid: Sphere  "sphereS"  rin = 200mm  rout = 600mm  sphi = 0deg  dphi = 360deg  stheta = 0deg  dtheta = 180deg
+   14th solid: Scaled  "sphereS"    Constituent = Sphere  "sphereS"  rin = 200mm  rout = 600mm  sphi = 0deg  dphi = 360deg  stheta = 0deg  dtheta = 180deg
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+   15th solid: Torus  "torusS"  rin = 200mm  rout = 300mm  rtor = 400mm  sphi = 0deg  dphi = 360deg
+   16th solid: Scaled  "torusS"    Constituent = Torus  "torusS"  rin = 200mm  rout = 300mm  rtor = 400mm  sphi = 0deg  dphi = 360deg
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+   17th solid: Trap  "trapS"  hz = 300mm  theta = 25deg  phi = 35deg  hy1 = 200mm  hx1 = 100mm  hx2 = 150mm  alpha1 = 0deg  hy2 = 200mm  hx3 = 100mm  hx4 = 150mm  alpha2 = 0deg
+   18th solid: Scaled  "trapS"    Constituent = Trap  "trapS"  hz = 300mm  theta = 25deg  phi = 35deg  hy1 = 200mm  hx1 = 100mm  hx2 = 150mm  alpha1 = 0deg  hy2 = 200mm  hx3 = 100mm  hx4 = 150mm  alpha2 = 0deg
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+   19th solid: Trd  "trdS"  hx1 = 200mm  hx2 = 300mm  hy1 = 400mm  hy2 = 500mm  hz = 500mm
+   20th solid: Scaled  "trdS"    Constituent = Trd  "trdS"  hx1 = 200mm  hx2 = 300mm  hy1 = 400mm  hy2 = 500mm  hz = 500mm
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+   21th solid: Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
+   22th solid: Scaled  "tubsS"    Constituent = Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+   23th solid: Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = 330deg  dphi = 280deg  nlow = (0, 0.64, -0.77)  nhigh = (0, 0.09, 0.87)
+   24th solid: Scaled  "ctubsS"    Constituent = Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = 330deg  dphi = 280deg  nlow = (0, 0.64, -0.77)  nhigh = (0, 0.09, 0.87)
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+   25th solid: Extruded  "xtru1S"
+Polygon,  8 vertices:
+  (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
+Planes:
+  z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
+  z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
+  z = 150 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.7
+  z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
+
+   26th solid: Scaled  "xtru1S"    Constituent = Extruded  "xtru1S"
+Polygon,  8 vertices:
+  (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
+Planes:
+  z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
+  z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
+  z = 150 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.7
+  z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
+
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+   27th solid: Extruded  "xtru2S"
+Polygon,  8 vertices:
+  (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
+Planes:
+  z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
+  z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
+  z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.7
+  z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
+
+   28th solid: Scaled  "xtru2S"    Constituent = Extruded  "xtru2S"
+Polygon,  8 vertices:
+  (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
+Planes:
+  z = -400 mm    x0 = -200 mm    y0 = 100 mm    scale= 1.5
+  z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.5
+  z = 100 mm    x0 = 0 mm    y0 = 0 mm    scale= 0.7
+  z = 400 mm    x0 = 200 mm    y0 = 200 mm    scale= 0.9
+
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+   29th solid: Hype  "hypeS"  r1 = 200mm  stereo1 = 30deg  r2 = 300mm  stereo1 = 40deg  hz = 500mm
+   30th solid: Scaled  "hypeS"    Constituent = Hype  "hypeS"  r1 = 200mm  stereo1 = 30deg  r2 = 300mm  stereo1 = 40deg  hz = 500mm
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+   31th solid: Paraboloid  "paraboloidS"  r1 = 200mm  r2 = 450mm  hz = 500mm
+   32th solid: Scaled  "paraboloidS"    Constituent = Paraboloid  "paraboloidS"  r1 = 200mm  r2 = 450mm  hz = 500mm
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+Root_GM_Factory factory volumes store: 
+   0th: Volume: "world" material "Basic" solid "Box"  32 daughters: "box"  "box"  "cons"  "cons"  "eltu"  "eltu"  "para"  "para"  "pcone"  "pcone"  "phedra"  "phedra"  "sphere"  "sphere"  "torus"  "torus"  "trap"  "trap"  "trd"  "trd"  "tubs"  "tubs"  "ctubs"  "ctubs"  "xtru1"  "xtru1"  "xtru2"  "xtru2"  "hype"  "hype"  "paraboloid"  "paraboloid"  
+   1th: Volume: "box" material "Basic" solid "Scaled"  0 daughters: 
+   2th: Volume: "cons" material "Basic" solid "Scaled"  0 daughters: 
+   3th: Volume: "eltu" material "Basic" solid "Scaled"  0 daughters: 
+   4th: Volume: "para" material "Basic" solid "Scaled"  0 daughters: 
+   5th: Volume: "pcone" material "Basic" solid "Scaled"  0 daughters: 
+   6th: Volume: "phedra" material "Basic" solid "Scaled"  0 daughters: 
+   7th: Volume: "sphere" material "Basic" solid "Scaled"  0 daughters: 
+   8th: Volume: "torus" material "Basic" solid "Scaled"  0 daughters: 
+   9th: Volume: "trap" material "Basic" solid "Scaled"  0 daughters: 
+   10th: Volume: "trd" material "Basic" solid "Scaled"  0 daughters: 
+   11th: Volume: "tubs" material "Basic" solid "Scaled"  0 daughters: 
+   12th: Volume: "ctubs" material "Basic" solid "Scaled"  0 daughters: 
+   13th: Volume: "xtru1" material "Basic" solid "Scaled"  0 daughters: 
+   14th: Volume: "xtru2" material "Basic" solid "Scaled"  0 daughters: 
+   15th: Volume: "hype" material "Basic" solid "Scaled"  0 daughters: 
+   16th: Volume: "paraboloid" material "Basic" solid "Scaled"  0 daughters: 
+VGM info:   RootGM::Factory::Import finished.
+Import finished
+Go to save Root geometry
+Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
+Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
+Info in <TGeoManager::CloseGeometry>: Counting nodes...
+Info in <TGeoManager::Voxelize>: Voxelizing...
+Info in <TGeoManager::CloseGeometry>: Building cache...
+Info in <TGeoManager::CountLevels>: max level = 1, max placements = 32
+Info in <TGeoManager::CloseGeometry>: 33 nodes/ 17 volume UID's in Test geometry via Root
+Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+Info in <TGeoManager::Export>: Exporting Test Test geometry via Root as root file. Optimizations streamed.
+No Geant4 geometry is built.
