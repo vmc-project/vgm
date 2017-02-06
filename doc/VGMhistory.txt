@@ -11,6 +11,29 @@ $Id$
 
  The Virtual Geometry Model - Versions
 =========================================
+  06/02/2017
+  version 4.4
+    New features:
+    - Implemented mode for a single solid conversion, which can be used 
+      in the following way:
+        XFactory xFactory;
+        YFactory yFactory;
+        xFactory.Import(xsolid);
+        xFactory.Export(yFactory);
+        YSolid* ysolid = yFactory.Solid();
+      See also the new singleMode option in TstDetectorConstruction class 
+      in vgm_test.
+    - Added support for ScaledSolid (available in Geant4 10.3)
+  
+    Fixes: 
+    - Fixed gcc 5.4 compliation issue 
+      (Thanks to Oliver Freyermuth, University of Bonn)
+    - Define the default CMake build mode if not set by the user
+
+    Tested with Root 5.34/36 and Root 6.08/04, Geant4 10.03
+    (with embedded CLHEP 2.3.4.3) 
+    Mac OSX 10.11.5: with Apple LLVM version 7.3.0
+
   15/07/2015
   version 4.3
     Minor fixes (compiler warnings),
@@ -27,7 +50,7 @@ $Id$
     - Extended doc/INSTALL with description of configuration options
       and use of G4Root in test.
 
-    Fixes:
+    Fixes: 
     - Fixes for build on MacOS with clang
       (Thanks to suggestions by Oliver Freyermuth, University of Bonn)
     - Fixed return value in RootGM::Ellipsoid::ZTopCut()   

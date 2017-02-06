@@ -211,8 +211,8 @@ $Id$
  7. Platforms
  -------------
 
- Tested on platforms: 
- Linux FC19: gcc 4.8.2, Mac OSX 10.10: clang 3.5
+ Tested on platform: 
+ Mac OSX 10.11.5: with Apple LLVM version 7.3.0
 
  8. Files
  ---------
