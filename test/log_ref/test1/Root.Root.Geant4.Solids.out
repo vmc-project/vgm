@@ -3,12 +3,14 @@ Warning in <TGeoManager::Init>: Deleting previous geometry: VGM Root geometry/VG
 Info in <TGeoManager::TGeoManager>: Geometry Test, Test geometry via Root created
 Root geometry will be defined via Root and exported to Geant4
 
-*************************************************************
- Geant4 version Name: geant4-10-03    (9-December-2016)
-                      Copyright : Geant4 Collaboration
-                      Reference : NIM A 506 (2003), 250-303
-                            WWW : http://cern.ch/geant4
-*************************************************************
+**************************************************************
+ Geant4 version Name: geant4-10-05    (7-December-2018)
+                       Copyright : Geant4 Collaboration
+                      References : NIM A 506 (2003), 250-303
+                                 : IEEE-TNS 53 (2006), 270-278
+                                 : NIM A 835 (2016), 186-225
+                             WWW : http://geant4.org/
+**************************************************************
 
 Info in <TGeoManager::SetTopVolume>: Top volume is world. Master volume is world
 Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
@@ -504,8 +506,6 @@ End of Event User Vis Actions: none
 End of Run User Vis Actions: none
 
 Some /vis commands (optionally) take a string to specify colour.
-Available colours:
-  black, blue, brown, cyan, gray, green, grey, magenta, red, white, yellow
-
+"/vis/list" to see available colours.
 Graphics systems deleted.
 Visualization Manager deleting...

@@ -1,12 +1,14 @@
 Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometry created
 Geant4 geometry will be defined via VGM and exported to Root
 
-*************************************************************
- Geant4 version Name: geant4-10-03    (9-December-2016)
-                      Copyright : Geant4 Collaboration
-                      Reference : NIM A 506 (2003), 250-303
-                            WWW : http://cern.ch/geant4
-*************************************************************
+**************************************************************
+ Geant4 version Name: geant4-10-05    (7-December-2018)
+                       Copyright : Geant4 Collaboration
+                      References : NIM A 506 (2003), 250-303
+                                 : IEEE-TNS 53 (2006), 270-278
+                                 : NIM A 835 (2016), 186-225
+                             WWW : http://geant4.org/
+**************************************************************
 
 VGM info:   Importing isotope: 
 VGM info:    Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole
@@ -207,7 +209,7 @@ VGM info:      21th daughter vol = layerA  simple placement: layerA
 VGM info:      22th daughter vol = layerA  simple placement: layerA
 VGM info:      23th daughter vol = layerA  simple placement: layerA
 VGM info:   ExportPlacements for 1th volume layerA
-VGM info:      0th daughter vol = layerB  multiple placement - data: 1,  3,  200,  600
+VGM info:      0th daughter vol = layerB  multiple placement - data: 1,  3,  200,  600,  0
 VGM info:   ExportPlacements for 2th volume layerB
 VGM info:      0th daughter vol = layerC  simple placement: layerC
 VGM info:      1th daughter vol = layerC  simple placement: layerC
@@ -267,8 +269,6 @@ End of Event User Vis Actions: none
 End of Run User Vis Actions: none
 
 Some /vis commands (optionally) take a string to specify colour.
-Available colours:
-  black, blue, brown, cyan, gray, green, grey, magenta, red, white, yellow
-
+"/vis/list" to see available colours.
 Graphics systems deleted.
 Visualization Manager deleting...

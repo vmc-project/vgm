@@ -1,12 +1,14 @@
 Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometry created
 Geant4 geometry will be defined via VGM and exported to Root
 
-*************************************************************
- Geant4 version Name: geant4-10-03    (9-December-2016)
-                      Copyright : Geant4 Collaboration
-                      Reference : NIM A 506 (2003), 250-303
-                            WWW : http://cern.ch/geant4
-*************************************************************
+**************************************************************
+ Geant4 version Name: geant4-10-05    (7-December-2018)
+                       Copyright : Geant4 Collaboration
+                      References : NIM A 506 (2003), 250-303
+                                 : IEEE-TNS 53 (2006), 270-278
+                                 : NIM A 835 (2016), 186-225
+                             WWW : http://geant4.org/
+**************************************************************
 
 VGM info:   Importing isotope: 
 VGM info:    Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole
@@ -176,11 +178,7 @@ VGM info:      Exporting solid:
 VGM info:      Box  "boxS1"  hx = 500mm  hy = 500mm  hz = 500mm
 VGM info:   Exporting volume:  1th  "volume1"  material: "Basic"
 VGM info:      Exporting solid: 
-VGM info:      Displaced  "boxS2C"  Const. = "boxS2B"  Displacement = ( 0, 0, 500)mm ( 0, -0, 0)deg   noReflZ
-VGM info:      Exporting solid: 
-VGM info:      Displaced  "boxS2B"  Const. = "boxS2A"  Displacement = ( 0, 0, 500)mm ( 0, -0, 0)deg   noReflZ
-VGM info:      Exporting solid: 
-VGM info:      Displaced  "boxS2A"  Const. = "boxS2"  Displacement = ( 0, 0, 500)mm ( 0, -0, 0)deg   noReflZ
+VGM info:      Displaced  "boxS2C"  Const. = "boxS2"  Displacement = ( 0, 0, 1500)mm ( 0, -0, 0)deg   noReflZ
 VGM info:      Exporting solid: 
 VGM info:      Box  "boxS2"  hx = 500mm  hy = 500mm  hz = 500mm
 VGM info:   Exporting volume:  2th  "volume2C"  material: "Basic"
@@ -261,8 +259,6 @@ End of Event User Vis Actions: none
 End of Run User Vis Actions: none
 
 Some /vis commands (optionally) take a string to specify colour.
-Available colours:
-  black, blue, brown, cyan, gray, green, grey, magenta, red, white, yellow
-
+"/vis/list" to see available colours.
 Graphics systems deleted.
 Visualization Manager deleting...

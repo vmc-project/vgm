@@ -5,8 +5,8 @@
 
 <xi:include href="StandardColors.agdd"/>
 
-<materials  version = "Id: AGDDWriter.cxx 693 2011-01-11 14:41:39Z ihrivnac "
-            date    = "2017-02-06"
+<materials  version = "Id"
+            date    = "2019-01-25"
             author  = "VGM AGGD Writer"
             DTD_version="v7"  >
 
@@ -22,8 +22,8 @@
 
 </materials>
 
-<media  version = "Id: AGDDWriter.cxx 693 2011-01-11 14:41:39Z ihrivnac "
-        date    = "2017-02-06"
+<media  version = "Id"
+        date    = "2019-01-25"
         author  = "VGM AGGD Writer"
         DTD_version="v7"  >
 
@@ -37,8 +37,8 @@
 
 <section DTD_version = "v7"
          name        = "world"
-         version     = "Id: AGDDWriter.cxx 693 2011-01-11 14:41:39Z ihrivnac "
-         date        = "2017-02-06"
+         version     = "Id"
+         date        = "2019-01-25"
          author      = "VGM AGGD Writer"
          top_volume  = "world_comp"  >
 
@@ -61,17 +61,19 @@
       medium="Basic"
       X_Y_Z=" 0.2000;  0.2000;  0.2000" />
 
-   <!-- !!! unsupported shape  !!!  name= "intersection_solid1_solid2_constB" -->
-   <!-- dummy box is written instead  -->
-   <box    name="intersection_solid1_solid2_constB"
+   <cons   name="intersection_solid1_solid2_constB"
       medium="Basic"
-      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+      profile=" 0.0000; 360.0000"
+      Rio1_Rio2_Z  ="10.0000; 20.0000; 30.0000; 40.0000; 200.0000" />
 
    <intersection name="intersection_solid1_solid2" >
       <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="intersection_solid1_solid2_constA"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="intersection_solid1_solid2_constB"/>
-      </posXYZ>
+      <transform    pos=" 20.0000;   0.0000;   0.0000"
+                 matrix=" 1.00000;  0.00000;  0.00000; 
+                          0.00000;  0.86603; -0.50000; 
+                          0.00000;  0.50000;  0.86603"> <volume name="intersection_solid1_solid2_constB"/>
+      </transform>
    </intersection>
 
    <!-- !!! unsupported shape  !!!  name= "subtraction_solid1_solid2_constA" -->
@@ -80,17 +82,19 @@
       medium="Basic"
       X_Y_Z=" 0.2000;  0.2000;  0.2000" />
 
-   <!-- !!! unsupported shape  !!!  name= "subtraction_solid1_solid2_constB" -->
-   <!-- dummy box is written instead  -->
-   <box    name="subtraction_solid1_solid2_constB"
+   <cons   name="subtraction_solid1_solid2_constB"
       medium="Basic"
-      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+      profile=" 0.0000; 360.0000"
+      Rio1_Rio2_Z  ="10.0000; 20.0000; 30.0000; 40.0000; 200.0000" />
 
    <subtraction name="subtraction_solid1_solid2" >
       <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="subtraction_solid1_solid2_constA"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="subtraction_solid1_solid2_constB"/>
-      </posXYZ>
+      <transform    pos=" 20.0000;   0.0000;   0.0000"
+                 matrix=" 1.00000;  0.00000;  0.00000; 
+                          0.00000;  0.86603; -0.50000; 
+                          0.00000;  0.50000;  0.86603"> <volume name="subtraction_solid1_solid2_constB"/>
+      </transform>
    </subtraction>
 
    <!-- !!! unsupported shape  !!!  name= "union_solid1_solid2_constA" -->
@@ -99,17 +103,19 @@
       medium="Basic"
       X_Y_Z=" 0.2000;  0.2000;  0.2000" />
 
-   <!-- !!! unsupported shape  !!!  name= "union_solid1_solid2_constB" -->
-   <!-- dummy box is written instead  -->
-   <box    name="union_solid1_solid2_constB"
+   <cons   name="union_solid1_solid2_constB"
       medium="Basic"
-      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+      profile=" 0.0000; 360.0000"
+      Rio1_Rio2_Z  ="10.0000; 20.0000; 30.0000; 40.0000; 200.0000" />
 
    <union name="union_solid1_solid2" >
       <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="union_solid1_solid2_constA"/>
       </posXYZ>
-      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="union_solid1_solid2_constB"/>
-      </posXYZ>
+      <transform    pos=" 20.0000;   0.0000;   0.0000"
+                 matrix=" 1.00000;  0.00000;  0.00000; 
+                          0.00000;  0.86603; -0.50000; 
+                          0.00000;  0.50000;  0.86603"> <volume name="union_solid1_solid2_constB"/>
+      </transform>
    </union>
 
 

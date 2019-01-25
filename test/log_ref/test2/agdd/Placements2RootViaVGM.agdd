@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<AGDD DTD_version = "v7"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+<xi:include href="StandardColors.agdd"/>
+
+<materials  version = "Id"
+            date    = "2019-01-25"
+            author  = "VGM AGGD Writer"
+            DTD_version="v7"  >
+
+
+   <element  symbol="HYDROGEN">
+      <atom zeff="1.0000"  aweight="1.0079" />
+   </element>
+   <element  symbol="CARBON">
+      <atom zeff="6.0000"  aweight="12.0107" />
+   </element>
+   <element  symbol="N">
+      <atom zeff="7.0000"  aweight="14.0100" />
+   </element>
+   <element  symbol="O">
+      <atom zeff="8.0000"  aweight="16.0000" />
+   </element>
+
+   <material  name="Air_mat"  density="  0.0013">
+      <addelement name="N"  natoms=" 0.0000"/>
+      <addelement name="O"  natoms=" 0.0000"/>
+   </material>
+   <material  name="Scintillator_mat"  density="  1.0320">
+      <addelement name="CARBON"  natoms=" 0.0000"/>
+      <addelement name="HYDROGEN"  natoms=" 0.0000"/>
+   </material>
+
+</materials>
+
+<media  version = "Id"
+        date    = "2019-01-25"
+        author  = "VGM AGGD Writer"
+        DTD_version="v7"  >
+
+   <medium  name="Air"  
+      material="Air_mat"  
+      color="random"
+      sensitive="true"
+      parameters=" 0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000"/>
+   <medium  name="Scintillator"  
+      material="Scintillator_mat"  
+      color="random"
+      sensitive="true"
+      parameters=" 0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000"/>
+
+</media>
+
+<section DTD_version = "v7"
+         name        = "world"
+         version     = "Id"
+         date        = "2019-01-25"
+         author      = "VGM AGGD Writer"
+         top_volume  = "world_comp"  >
+
+   <box    name="world"
+      medium="Air"
+      X_Y_Z="400.0000; 200.0000; 800.0000" />
+
+   <box    name="vol1A"
+      medium="Air"
+      X_Y_Z="40.0000; 120.0000; 100.0000" />
+
+   <box    name="vol1B"
+      medium="Scintillator"
+      X_Y_Z="40.0000; 20.0000; 100.0000" />
+
+   <box    name="vol2A"
+      medium="Air"
+      X_Y_Z="40.0000; 120.0000; 100.0000" />
+
+   <box    name="vol2Bbis"
+      medium="Air"
+      X_Y_Z="40.0000; 12.0000; 100.0000" />
+
+   <box    name="vol2B"
+      medium="Scintillator"
+      X_Y_Z="40.0000; 12.0000; 100.0000" />
+
+   <box    name="vol3A"
+      medium="Air"
+      X_Y_Z="40.0000; 120.0000; 100.0000" />
+
+   <box    name="vol3B"
+      medium="Scintillator"
+      X_Y_Z="40.0000; 20.0000; 100.0000" />
+
+
+   <composition name="world_comp">
+      <posXYZ   X_Y_Z="  0.0000;   0.0000; -200.0000"> <volume name="vol1A"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="  0.0000;   0.0000; -200.0000"> <volume name="vol1A_comp"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="vol2A"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="vol2A_comp"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="  0.0000;   0.0000; 200.0000"> <volume name="vol3A"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="  0.0000;   0.0000; 200.0000"> <volume name="vol3A_comp"/>
+      </posXYZ>
+   </composition>
+
+   <composition name="vol1A_comp">
+      <mposY ncopy="   6"  Y0="-50.0000"  dY=" 20.0000"> <volume name="vol1B"/>
+      </mposY>
+   </composition>
+
+   <composition name="vol2A_comp">
+      <mposY ncopy="   6"  Y0="-50.0000"  dY=" 20.0000"> <volume name="vol2Bbis"/>
+      </mposY>
+      <mposY ncopy="   6"  Y0="-50.0000"  dY=" 20.0000"> <volume name="vol2Bbis_comp"/>
+      </mposY>
+   </composition>
+
+   <composition name="vol2Bbis_comp">
+      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="vol2B"/>
+      </posXYZ>
+   </composition>
+
+   <composition name="vol3A_comp">
+      <mposY ncopy="   6"  Y0="-50.0000"  dY=" 20.0000"> <volume name="vol3B"/>
+      </mposY>
+   </composition>
+
+
+</section>
+
+</AGDD>

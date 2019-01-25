@@ -1,0 +1,328 @@
+Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometry created
+Warning in <TGeoManager::Init>: Deleting previous geometry: VGM Root geometry/VGM Root geometry
+Info in <TGeoManager::TGeoManager>: Geometry Test, Test geometry via Root created
+Root geometry will be defined via Root and exported to Geant4
+
+**************************************************************
+ Geant4 version Name: geant4-10-05    (7-December-2018)
+                       Copyright : Geant4 Collaboration
+                      References : NIM A 506 (2003), 250-303
+                                 : IEEE-TNS 53 (2006), 270-278
+                                 : NIM A 835 (2016), 186-225
+                             WWW : http://geant4.org/
+**************************************************************
+
+Info in <TGeoManager::SetTopVolume>: Top volume is world. Master volume is world
+Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+TestPlacements finished
+Go to Import
+Info in <TGeoManager::Export>: Exporting Test Test geometry via Root as root file. Optimizations streamed.
+VGM info:   RootGM::Factory::Import started ...
+VGM info:   Importing material: 
+VGM info:   Material Basic    A=26.98 Z=13 rho=2.7 radlen=8.8751 intlen=38.8622 index=0
+VGM info:   Importing element: from material
+VGM info:   Element: AL      Z=13   N=27.000000   A=26.981538 [g/mole]
+VGM info:   Importing material: 
+VGM info:   Mixture Air    Aeff=14.607 Zeff=7.3 rho=0.00129 radlen=28405.7 intlen=66278.6 index=1
+   Element #0 : N  Z=  7.00 A= 14.01 w= 0.700
+   Element #1 : O  Z=  8.00 A= 16.00 w= 0.300
+VGM info:   Importing element: from material
+VGM info:   Element: N      Z=7   N=14.000000   A=14.006740 [g/mole]
+VGM info:   Importing element: from material
+VGM info:   Element: O      Z=8   N=16.000000   A=15.999400 [g/mole]
+VGM info:   Importing material: 
+VGM info:   Mixture Scintillator    Aeff=11.0723 Zeff=5.57354 rho=1.032 radlen=42.132 intlen=70.1007 index=2
+   Element #0 : C  Z=  6.00 A= 12.01 w= 0.915 natoms=9
+   Element #1 : H  Z=  1.00 A=  1.01 w= 0.085 natoms=10
+VGM info:   Importing element: from element object
+VGM info:   Element: C      Z=6   N=12.000000   A=12.010700 [g/mole]
+VGM info:   Importing element: from element object
+VGM info:   Element: H      Z=1   N=1.000000   A=1.007940 [g/mole]
+VGM info:   Importing material: 
+VGM info:   Material Uranium    A=235.312 Z=92 rho=13.61 radlen=0.436288 intlen=15.8771 index=3
+VGM info:   Importing isotope: 
+VGM info:   Isotope: U235     Z=92   N=235   A=235.010000 [g/mole]
+VGM info:   Importing isotope: 
+VGM info:   Isotope: U238     Z=92   N=238   A=238.030000 [g/mole]
+VGM info:   Importing element: from element object
+VGM info:   Element: enriched Uranium      Z=92   N=235.300000   A=235.312000 [g/mole]
+=>Isotope U235, abundance=0.900000 :
+Isotope: U235     Z=92   N=235   A=235.010000 [g/mole]
+=>Isotope U238, abundance=0.100000 :
+Isotope: U238     Z=92   N=238   A=238.030000 [g/mole]
+VGM info:   Importing material: 
+VGM info:   Material Vacuum    A=0 Z=0 rho=0 radlen=1e+30 intlen=1e+30 index=4
+VGM info:   Importing element: from element object
+VGM info:   Element: VACUUM      Z=0   N=0.000000   A=0.000000 [g/mole]
+VGM info:   Importing material: 
+VGM info:   Material Tungsten    A=183.84 Z=74 rho=19.25 radlen=0.351617 intlen=10.3323 index=5
+VGM info:   Importing element: from element object
+VGM info:   Element: W      Z=74   N=184.000000   A=183.840000 [g/mole]
+VGM info:   Importing medium: 
+VGM info:   OBJ: TGeoMedium	Basic	
+VGM info:   Importing medium: 
+VGM info:   OBJ: TGeoMedium	Air	
+VGM info:   Importing medium: 
+VGM info:   OBJ: TGeoMedium	Scintillator	
+VGM info:   Importing medium: 
+VGM info:   OBJ: TGeoMedium	Uranium	
+VGM info:   Importing medium: 
+VGM info:   OBJ: TGeoMedium	Vacuum	
+VGM info:   Importing medium: 
+VGM info:   OBJ: TGeoMedium	Tungsten	
+VGM info:   Importing volume: world
+VGM info:   Importing shape: worldS
+VGM info:      Imported solid: Box  "worldS"  hx = 2000mm  hy = 1000mm  hz = 4000mm
+VGM info:   ImportDaughters for world
+VGM info:   Importing volume: vol1A
+VGM info:   Importing shape: box1A
+VGM info:      Imported solid: Box  "box1A"  hx = 200mm  hy = 600mm  hz = 500mm
+VGM info:   ImportDaughters for vol1A
+VGM info:   Importing volume: vol1B
+VGM info:   Importing shape: TGeoBBox
+VGM info:      Imported solid: Box  "TGeoBBox"  hx = 200mm  hy = 100mm  hz = 500mm
+VGM info:   ImportDaughters for vol1B
+VGM info:   Importing volume: vol2A
+VGM info:   Importing shape: box2A
+VGM info:      Imported solid: Box  "box2A"  hx = 200mm  hy = 600mm  hz = 500mm
+VGM info:   ImportDaughters for vol2A
+VGM info:   Importing volume: vol2Bbis
+VGM info:   Importing shape: TGeoBBox
+VGM info:      Imported solid: Box  "TGeoBBox"  hx = 200mm  hy = 100mm  hz = 500mm
+VGM info:   ImportDaughters for vol2Bbis
+VGM info:   Importing volume: vol2B
+VGM info:   Importing shape: box2B
+VGM info:      Imported solid: Box  "box2B"  hx = 200mm  hy = 60mm  hz = 500mm
+VGM info:   ImportDaughters for vol2B
+VGM info:   Importing volume: vol3A
+VGM info:   Importing shape: box3A
+VGM info:      Imported solid: Box  "box3A"  hx = 200mm  hy = 600mm  hz = 500mm
+VGM info:   ImportDaughters for vol3A
+VGM info:   Importing volume: vol3B
+VGM info:   Importing shape: TGeoBBox
+VGM info:      Imported solid: Box  "TGeoBBox"  hx = 200mm  hy = 100mm  hz = 500mm
+VGM info:   ImportDaughters for vol3B
+VGM info:   Import positions: 
+VGM info:   0th volume: world  
+VGM info:      0th daughter  rtNode = vol1A_0  rtVol = vol1A vgmPl = vol1A vgmVol = vol1A
+VGM info:      1th daughter  rtNode = vol2A_1  rtVol = vol2A vgmPl = vol2A vgmVol = vol2A
+VGM info:      2th daughter  rtNode = vol3A_2  rtVol = vol3A vgmPl = vol3A vgmVol = vol3A
+VGM info:   1th volume: vol1A  
+VGM info:      0th daughter (division) rtNode = vol1B_1  rtVol = vol1B vgmPl = vol1B vgmVol = vol1A
+VGM info:   2th volume: vol1B  
+VGM info:   3th volume: vol2A  
+VGM info:      0th daughter (division) rtNode = vol2Bbis_1  rtVol = vol2Bbis vgmPl = vol2Bbis vgmVol = vol2A
+VGM info:   4th volume: vol2B  
+VGM info:   5th volume: vol2Bbis  
+VGM info:      0th daughter  rtNode = vol2B_0  rtVol = vol2B vgmPl = vol2B vgmVol = vol2B
+VGM info:   6th volume: vol3A  
+VGM info:      0th daughter (division) rtNode = vol3B_1  rtVol = vol3B vgmPl = vol3B vgmVol = vol3A
+VGM info:   7th volume: vol3B  
+VGM info:   
+Root_GM_Factory factory solids store: 
+   0th solid: Box  "worldS"  hx = 2000mm  hy = 1000mm  hz = 4000mm
+   1th solid: Box  "box1A"  hx = 200mm  hy = 600mm  hz = 500mm
+   2th solid: Box  "TGeoBBox"  hx = 200mm  hy = 100mm  hz = 500mm
+   3th solid: Box  "box2A"  hx = 200mm  hy = 600mm  hz = 500mm
+   4th solid: Box  "TGeoBBox"  hx = 200mm  hy = 100mm  hz = 500mm
+   5th solid: Box  "box2B"  hx = 200mm  hy = 60mm  hz = 500mm
+   6th solid: Box  "box3A"  hx = 200mm  hy = 600mm  hz = 500mm
+   7th solid: Box  "TGeoBBox"  hx = 200mm  hy = 100mm  hz = 500mm
+Root_GM_Factory factory volumes store: 
+   0th: Volume: "world" material "Air" solid "Box"  3 daughters: "vol1A"  "vol2A"  "vol3A"  
+   1th: Volume: "vol1A" material "Scintillator" solid "Box"  1 daughters: "vol1B"  
+   2th: Volume: "vol1B" material "Scintillator" solid "Box"  0 daughters: 
+   3th: Volume: "vol2A" material "Air" solid "Box"  1 daughters: "vol2Bbis"  
+   4th: Volume: "vol2Bbis" material "Air" solid "Box"  1 daughters: "vol2B"  
+   5th: Volume: "vol2B" material "Scintillator" solid "Box"  0 daughters: 
+   6th: Volume: "vol3A" material "Scintillator" solid "Box"  1 daughters: "vol3B"  
+   7th: Volume: "vol3B" material "Scintillator" solid "Box"  0 daughters: 
+VGM info:   RootGM::Factory::Import finished.
+Import finished
+Go to export
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "U235"    Z = 92  N = 235  A = 235.01 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "U238"    Z = 92  N = 238  A = 238.03 g/mole
+VGM info:   Exporting element: 
+VGM info:   Element: "ALUMINIUM"  "AL"  Z = 13  N = 26.98  A = 26.98 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:  AL27   Z = 13   N =  27   A =  26.98 g/mole
+VGM info:   Exporting element: 
+VGM info:   Element: "NITROGEN"  "N"  Z = 7  N = 14.01  A = 14.01 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   N14   Z =  7   N =  14   A =  14.00 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   N15   Z =  7   N =  15   A =  15.00 g/mole
+VGM info:   Exporting element: 
+VGM info:   Element: "OXYGEN"  "O"  Z = 8  N = 16  A = 16 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   O16   Z =  8   N =  16   A =  15.99 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   O17   Z =  8   N =  17   A =  17.00 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   O18   Z =  8   N =  18   A =  18.00 g/mole
+VGM info:   Exporting element: 
+VGM info:   Element: "C"  "CARBON"  Z = 6  N = 12  A = 12.0107 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope: CARBON12   Z =  6   N =  12   A =  12.00 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope: CARBON13   Z =  6   N =  13   A =  13.00 g/mole
+VGM info:   Exporting element: 
+VGM info:   Element: "H"  "HYDROGEN"  Z = 1  N = 1  A = 1.00794 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope: HYDROGEN1   Z =  1   N =   1   A =   1.01 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope: HYDROGEN2   Z =  1   N =   2   A =   2.01 g/mole
+VGM info:   Exporting element: 
+VGM info:   Element: "enriched Uranium"  "U"  Z = 92  N = 235.3  A = 235.312 g/mole
+     0th isotope: Isotope: "U235"    Z = 92  N = 235  A = 235.01 g/mole  abundance: 90%
+     1th isotope: Isotope: "U238"    Z = 92  N = 238  A = 238.03 g/mole  abundance: 10%
+VGM info:   Exporting element: 
+VGM info:   Element: "VACUUM"  "VACUUM"  Z = 0  N = 0  A = 0 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope: VACUUM1   Z =  1   N =   1   A =   1.01 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope: VACUUM2   Z =  1   N =   2   A =   2.01 g/mole
+VGM info:   Exporting element: 
+VGM info:   Element: "W"  "TUNGSTEN"  Z = 74  N = 184  A = 183.84 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope: TUNGSTEN180   Z = 74   N = 180   A = 179.95 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope: TUNGSTEN182   Z = 74   N = 182   A = 181.95 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope: TUNGSTEN183   Z = 74   N = 183   A = 182.95 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope: TUNGSTEN184   Z = 74   N = 184   A = 183.95 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope: TUNGSTEN186   Z = 74   N = 186   A = 185.95 g/mole
+VGM info:   Exporting material: 
+VGM info:   Material: "Basic"  density 2.7 g/cm3  radlen 8.8751 cm  intlen 38.8622 cm  state "Undefined"  temperature 273.15 kelvin  pressure 1 atm
+   0th element: Element: "ALUMINIUM"  "AL"  Z = 13  N = 26.98  A = 26.98 g/mole  Elm mass fraction: 100 %
+VGM info:   Exporting material: 
+VGM info:   Material: "Air"  density 0.00129 g/cm3  radlen 28405.7 cm  intlen 66278.6 cm  state "Undefined"  temperature 273.15 kelvin  pressure 1 atm
+   0th element: Element: "NITROGEN"  "N"  Z = 7  N = 14.01  A = 14.01 g/mole  Elm mass fraction: 70 %
+   1th element: Element: "OXYGEN"  "O"  Z = 8  N = 16  A = 16 g/mole  Elm mass fraction: 30 %
+VGM info:   Exporting material: 
+VGM info:   Material: "Scintillator"  density 1.032 g/cm3  radlen 42.132 cm  intlen 70.1007 cm  state "Undefined"  temperature 273.15 kelvin  pressure 1 atm
+   0th element: Element: "C"  "CARBON"  Z = 6  N = 12  A = 12.0107 g/mole  Elm mass fraction: 91.4708 %
+   1th element: Element: "H"  "HYDROGEN"  Z = 1  N = 1  A = 1.00794 g/mole  Elm mass fraction: 8.52916 %
+VGM info:   Exporting material: 
+VGM info:   Material: "Uranium"  density 13.61 g/cm3  radlen 0.436288 cm  intlen 15.8771 cm  state "Undefined"  temperature 273.15 kelvin  pressure 1 atm
+   0th element: Element: "enriched Uranium"  "U"  Z = 92  N = 235.3  A = 235.312 g/mole
+     0th isotope: Isotope: "U235"    Z = 92  N = 235  A = 235.01 g/mole  abundance: 90%
+     1th isotope: Isotope: "U238"    Z = 92  N = 238  A = 238.03 g/mole  abundance: 10%  Elm mass fraction: 100 %
+VGM info:   Exporting material: 
+VGM info:   Material: "Vacuum"  density 0 g/cm3  radlen 1e+30 cm  intlen 1e+30 cm  state "Gas"  temperature 2.73 kelvin  pressure 2.96077e-23 atm
+   0th element: Element: "VACUUM"  "VACUUM"  Z = 0  N = 0  A = 0 g/mole  Elm mass fraction: 100 %
+VGM info:   Exporting material: 
+VGM info:   Material: "Tungsten"  density 19.25 g/cm3  radlen 0.351617 cm  intlen 10.3323 cm  state "Undefined"  temperature 273.15 kelvin  pressure 1 atm
+   0th element: Element: "W"  "TUNGSTEN"  Z = 74  N = 184  A = 183.84 g/mole  Elm mass fraction: 100 %
+VGM info:   Exporting medium: 
+VGM info:   Medium: "Basic"  material Basic g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+VGM info:   Exporting medium: 
+VGM info:   Medium: "Air"  material Air g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+VGM info:   Exporting medium: 
+VGM info:   Medium: "Scintillator"  material Scintillator g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+VGM info:   Exporting medium: 
+VGM info:   Medium: "Uranium"  material Uranium g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+VGM info:   Exporting medium: 
+VGM info:   Medium: "Vacuum"  material Vacuum g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+VGM info:   Exporting medium: 
+VGM info:   Medium: "Tungsten"  material Tungsten g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+VGM info:   Exporting volume store: 
+VGM info:      Exporting solid: 
+VGM info:      Box  "worldS"  hx = 2000mm  hy = 1000mm  hz = 4000mm
+VGM info:   Exporting volume:  0th  "world"  material: "Air"
+VGM info:      Exporting solid: 
+VGM info:      Box  "box1A"  hx = 200mm  hy = 600mm  hz = 500mm
+VGM info:   Exporting volume:  1th  "vol1A"  material: "Scintillator"
+VGM info:      Exporting solid: 
+VGM info:      Box  "TGeoBBox"  hx = 200mm  hy = 100mm  hz = 500mm
+VGM info:   Exporting volume:  2th  "vol1B"  material: "Scintillator"
+VGM info:      Exporting solid: 
+VGM info:      Box  "box2A"  hx = 200mm  hy = 600mm  hz = 500mm
+VGM info:   Exporting volume:  3th  "vol2A"  material: "Air"
+VGM info:      Exporting solid: 
+VGM info:      Box  "TGeoBBox"  hx = 200mm  hy = 100mm  hz = 500mm
+VGM info:   Exporting volume:  4th  "vol2Bbis"  material: "Air"
+VGM info:      Exporting solid: 
+VGM info:      Box  "box2B"  hx = 200mm  hy = 60mm  hz = 500mm
+VGM info:   Exporting volume:  5th  "vol2B"  material: "Scintillator"
+VGM info:      Exporting solid: 
+VGM info:      Box  "box3A"  hx = 200mm  hy = 600mm  hz = 500mm
+VGM info:   Exporting volume:  6th  "vol3A"  material: "Scintillator"
+VGM info:      Exporting solid: 
+VGM info:      Box  "TGeoBBox"  hx = 200mm  hy = 100mm  hz = 500mm
+VGM info:   Exporting volume:  7th  "vol3B"  material: "Scintillator"
+VGM info:   ExportPlacements for 0th volume world
+VGM info:      0th daughter vol = vol1A  simple placement: vol1A
+VGM info:      1th daughter vol = vol2A  simple placement: vol2A
+VGM info:      2th daughter vol = vol3A  simple placement: vol3A
+VGM info:   ExportPlacements for 1th volume vol1A
+VGM info:      0th daughter vol = vol1B  multiple placement - data: 1,  6,  200,  0,  0
+VGM info:   ExportPlacements for 2th volume vol1B
+VGM info:   ExportPlacements for 3th volume vol2A
+VGM info:      0th daughter vol = vol2Bbis  multiple placement - data: 1,  6,  200,  0,  0
+VGM info:   ExportPlacements for 4th volume vol2Bbis
+VGM info:      0th daughter vol = vol2B  simple placement: vol2B
+VGM info:   ExportPlacements for 5th volume vol2B
+VGM info:   ExportPlacements for 6th volume vol3A
+VGM info:      0th daughter vol = vol3B  multiple placement - data: 1,  6,  200,  0,  0
+VGM info:   ExportPlacements for 7th volume vol3B
+Export finished
+Go to save Root geometry
+Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
+Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
+Info in <TGeoManager::CloseGeometry>: Counting nodes...
+Info in <TGeoManager::Voxelize>: Voxelizing...
+Info in <TGeoManager::CloseGeometry>: Building cache...
+Info in <TGeoManager::CountLevels>: max level = 3, max placements = 3
+Info in <TGeoManager::CloseGeometry>: 28 nodes/ 8 volume UID's in Test geometry via Root
+Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+Info in <TGeoManager::Export>: Exporting Test Test geometry via Root as root file. Optimizations streamed.
+Visualization Manager instantiating with verbosity "warnings (3)"...
+Visualization Manager initialising...
+Registering graphics systems...
+
+You have successfully registered the following graphics systems.
+Current available graphics systems are:
+ASCIITree (ATree)
+DAWNFILE (DAWNFILE)
+G4HepRep (HepRepXML)
+G4HepRepFile (HepRepFile)
+RayTracer (RayTracer)
+VRML1FILE (VRML1FILE)
+VRML2FILE (VRML2FILE)
+gMocrenFile (gMocrenFile)
+OpenGLImmediateX (OGLIX, OGLI)
+OpenGLStoredX (OGLSX, OGL, OGLS)
+RayTracerX (RayTracerX)
+
+Registering model factories...
+
+You have successfully registered the following model factories.
+Registered model factories:
+  generic
+  drawByAttribute
+  drawByCharge
+  drawByOriginVolume
+  drawByParticleID
+  drawByEncounteredVolume
+
+Registered filter factories:
+  attributeFilter
+  chargeFilter
+  originVolumeFilter
+  particleFilter
+  encounteredVolumeFilter
+
+You have successfully registered the following user vis actions.
+Run Duration User Vis Actions: none
+End of Event User Vis Actions: none
+End of Run User Vis Actions: none
+
+Some /vis commands (optionally) take a string to specify colour.
+"/vis/list" to see available colours.
+Graphics systems deleted.
+Visualization Manager deleting...

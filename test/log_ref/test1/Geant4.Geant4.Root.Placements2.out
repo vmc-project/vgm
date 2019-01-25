@@ -1,0 +1,466 @@
+Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometry created
+Geant4 geometry will be defined via Geant4 and exported to Root
+
+**************************************************************
+ Geant4 version Name: geant4-10-05    (7-December-2018)
+                       Copyright : Geant4 Collaboration
+                      References : NIM A 506 (2003), 250-303
+                                 : IEEE-TNS 53 (2006), 270-278
+                                 : NIM A 835 (2016), 186-225
+                             WWW : http://geant4.org/
+**************************************************************
+
+TestPlacements finished
+Go to Import
+VGM info:   Geant4GM::Factory::Import started ...
+VGM info:   Importing isotope: 
+VGM info:    Isotope:  Al27   Z = 13   N =  27   A =  26.98 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   N14   Z =  7   N =  14   A =  14.00 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   N15   Z =  7   N =  15   A =  15.00 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   O16   Z =  8   N =  16   A =  15.99 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   O17   Z =  8   N =  17   A =  17.00 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   O18   Z =  8   N =  18   A =  18.00 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   C13   Z =  6   N =  13   A =  13.00 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:  U235   Z = 92   N = 235   A = 235.01 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:  U238   Z = 92   N = 238   A = 238.03 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:  W180   Z = 74   N = 180   A = 179.95 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:  W182   Z = 74   N = 182   A = 181.95 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:  W183   Z = 74   N = 183   A = 182.95 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:  W184   Z = 74   N = 184   A = 183.95 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:  W186   Z = 74   N = 186   A = 185.95 g/mole
+VGM info:   Importing element: 
+VGM info:    Element: Al (Al)   Z = 13.0   N =    27   A = 26.980 g/mole
+         --->  Isotope:  Al27   Z = 13   N =  27   A =  26.98 g/mole   abundance: 100.000 %
+VGM info:   Importing element: 
+VGM info:    Element: Nitrogen (N)   Z =  7.0   N =    14   A = 14.010 g/mole
+         --->  Isotope:   N14   Z =  7   N =  14   A =  14.00 g/mole   abundance: 99.632 %
+         --->  Isotope:   N15   Z =  7   N =  15   A =  15.00 g/mole   abundance:  0.368 %
+VGM info:   Importing element: 
+VGM info:    Element: Oxygen (O)   Z =  8.0   N =    16   A = 16.000 g/mole
+         --->  Isotope:   O16   Z =  8   N =  16   A =  15.99 g/mole   abundance: 99.757 %
+         --->  Isotope:   O17   Z =  8   N =  17   A =  17.00 g/mole   abundance:  0.038 %
+         --->  Isotope:   O18   Z =  8   N =  18   A =  18.00 g/mole   abundance:  0.205 %
+VGM info:   Importing element: 
+VGM info:    Element: H (H)   Z =  1.0   N =     1   A =  1.008 g/mole
+         --->  Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole   abundance: 99.989 %
+         --->  Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole   abundance:  0.011 %
+VGM info:   Importing element: 
+VGM info:    Element: C (C)   Z =  6.0   N =    12   A = 12.011 g/mole
+         --->  Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole   abundance: 98.930 %
+         --->  Isotope:   C13   Z =  6   N =  13   A =  13.00 g/mole   abundance:  1.070 %
+VGM info:   Importing element: 
+VGM info:    Element: enriched Uranium (U)   Z = 92.0   N =   235   A = 235.312 g/mole
+         --->  Isotope:  U235   Z = 92   N = 235   A = 235.01 g/mole   abundance: 90.000 %
+         --->  Isotope:  U238   Z = 92   N = 238   A = 238.03 g/mole   abundance: 10.000 %
+VGM info:   Importing element: 
+VGM info:    Element: H (H)   Z =  1.0   N =     1   A =  1.010 g/mole
+         --->  Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole   abundance: 99.989 %
+         --->  Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole   abundance:  0.011 %
+VGM info:   Importing element: 
+VGM info:    Element: W (W)   Z = 74.0   N =   184   A = 183.840 g/mole
+         --->  Isotope:  W180   Z = 74   N = 180   A = 179.95 g/mole   abundance:  0.120 %
+         --->  Isotope:  W182   Z = 74   N = 182   A = 181.95 g/mole   abundance: 26.500 %
+         --->  Isotope:  W183   Z = 74   N = 183   A = 182.95 g/mole   abundance: 14.310 %
+         --->  Isotope:  W184   Z = 74   N = 184   A = 183.95 g/mole   abundance: 30.640 %
+         --->  Isotope:  W186   Z = 74   N = 186   A = 185.95 g/mole   abundance: 28.430 %
+VGM info:   Importing material: 
+VGM info:    Material:    Basic    density:  2.700 g/cm3   RadL:   8.893 cm   Nucl.Int.Length:  38.879 cm 
+                       Imean: 166.000 eV   temperature: 293.15 K  pressure:   1.00 atm
+
+   --->  Element: Al (Al)   Z = 13.0   N =    27   A = 26.980 g/mole
+         --->  Isotope:  Al27   Z = 13   N =  27   A =  26.98 g/mole   abundance: 100.000 %
+          ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
+
+VGM info:   Importing material: 
+VGM info:    Material:      Air    density:  1.290 mg/cm3  RadL: 285.161 m    Nucl.Int.Length: 662.680 m  
+                       Imean:  85.703 eV   temperature: 293.15 K  pressure:   1.00 atm
+
+   --->  Element: Nitrogen (N)   Z =  7.0   N =    14   A = 14.010 g/mole
+         --->  Isotope:   N14   Z =  7   N =  14   A =  14.00 g/mole   abundance: 99.632 %
+         --->  Isotope:   N15   Z =  7   N =  15   A =  15.00 g/mole   abundance:  0.368 %
+          ElmMassFraction:  70.00 %  ElmAbundance  72.71 % 
+
+   --->  Element: Oxygen (O)   Z =  8.0   N =    16   A = 16.000 g/mole
+         --->  Isotope:   O16   Z =  8   N =  16   A =  15.99 g/mole   abundance: 99.757 %
+         --->  Isotope:   O17   Z =  8   N =  17   A =  17.00 g/mole   abundance:  0.038 %
+         --->  Isotope:   O18   Z =  8   N =  18   A =  18.00 g/mole   abundance:  0.205 %
+          ElmMassFraction:  30.00 %  ElmAbundance  27.29 % 
+
+VGM info:   Importing material: 
+VGM info:    Material: Scintillator    density:  1.032 g/cm3   RadL:  42.544 cm   Nucl.Int.Length:  69.969 cm 
+                       Imean:  64.684 eV   temperature: 293.15 K  pressure:   1.00 atm
+
+   --->  Element: C (C)   Z =  6.0   N =    12   A = 12.011 g/mole
+         --->  Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole   abundance: 98.930 %
+         --->  Isotope:   C13   Z =  6   N =  13   A =  13.00 g/mole   abundance:  1.070 %
+          ElmMassFraction:  91.47 %  ElmAbundance  47.37 % 
+
+   --->  Element: H (H)   Z =  1.0   N =     1   A =  1.008 g/mole
+         --->  Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole   abundance: 99.989 %
+         --->  Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole   abundance:  0.011 %
+          ElmMassFraction:   8.53 %  ElmAbundance  52.63 % 
+
+VGM info:   Importing material: 
+VGM info:    Material:  Uranium    density: 13.610 g/cm3   RadL:   4.358 mm   Nucl.Int.Length:  15.877 cm 
+                       Imean: 890.000 eV   temperature: 293.15 K  pressure:   1.00 atm
+
+   --->  Element: enriched Uranium (U)   Z = 92.0   N =   235   A = 235.312 g/mole
+         --->  Isotope:  U235   Z = 92   N = 235   A = 235.01 g/mole   abundance: 90.000 %
+         --->  Isotope:  U238   Z = 92   N = 238   A = 238.03 g/mole   abundance: 10.000 %
+          ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
+
+VGM info:   Importing material: 
+VGM info:    Material:   Vacuum    density:  0.000 kg/m3   RadL: 204727512.315 pc   Nucl.Int.Length: 113427275.267 pc 
+                       Imean:  19.200 eV   temperature:   2.73 K  pressure:   0.00 atm
+
+   --->  Element: H (H)   Z =  1.0   N =     1   A =  1.010 g/mole
+         --->  Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole   abundance: 99.989 %
+         --->  Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole   abundance:  0.011 %
+          ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
+
+VGM info:   Importing material: 
+VGM info:    Material: Tungsten    density: 19.250 g/cm3   RadL:   3.513 mm   Nucl.Int.Length:  10.338 cm 
+                       Imean: 727.000 eV   temperature: 293.15 K  pressure:   1.00 atm
+
+   --->  Element: W (W)   Z = 74.0   N =   184   A = 183.840 g/mole
+         --->  Isotope:  W180   Z = 74   N = 180   A = 179.95 g/mole   abundance:  0.120 %
+         --->  Isotope:  W182   Z = 74   N = 182   A = 181.95 g/mole   abundance: 26.500 %
+         --->  Isotope:  W183   Z = 74   N = 183   A = 182.95 g/mole   abundance: 14.310 %
+         --->  Isotope:  W184   Z = 74   N = 184   A = 183.95 g/mole   abundance: 30.640 %
+         --->  Isotope:  W186   Z = 74   N = 186   A = 185.95 g/mole   abundance: 28.430 %
+          ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
+
+VGM info:   Importing LV: world
+VGM info:   Importing solid: worldS
+VGM info:      Imported solid: Box  "worldS"  hx = 2000mm  hy = 1000mm  hz = 4000mm
+VGM info:   ImportDaughters for world
+VGM info:   Importing LV: vol1A
+VGM info:   Importing solid: box1A
+VGM info:      Imported solid: Box  "box1A"  hx = 200mm  hy = 600mm  hz = 500mm
+VGM info:   ImportDaughters for vol1A
+VGM info:   Importing LV: vol1B
+VGM info:   Importing solid: box1B
+VGM info:      Imported solid: Box  "box1B"  hx = 200mm  hy = 100mm  hz = 500mm
+VGM info:   ImportDaughters for vol1B
+VGM info:   Importing LV: vol2A
+VGM info:   Importing solid: box2A
+VGM info:      Imported solid: Box  "box2A"  hx = 200mm  hy = 600mm  hz = 500mm
+VGM info:   ImportDaughters for vol2A
+VGM info:   Importing LV: vol2B
+VGM info:   Importing solid: box2B
+VGM info:      Imported solid: Box  "box2B"  hx = 200mm  hy = 50mm  hz = 500mm
+VGM info:   ImportDaughters for vol2B
+VGM info:   Importing LV: vol3A
+VGM info:   Importing solid: box3A
+VGM info:      Imported solid: Box  "box3A"  hx = 200mm  hy = 600mm  hz = 500mm
+VGM info:   ImportDaughters for vol3A
+VGM info:   Importing LV: vol3B
+VGM info:   Importing solid: box3B
+VGM info:      Imported solid: Box  "box3B"  hx = 200mm  hy = 100mm  hz = 500mm
+VGM info:   ImportDaughters for vol3B
+VGM info:   Import positions: 
+VGM info:   0th volume: world  
+VGM info:      0th daughter  pv = vol1A  lv = vol1A vgmPl = vol1A vgmVol = vol1A
+VGM info:      1th daughter  pv = vol2A  lv = vol2A vgmPl = vol2A vgmVol = vol2A
+VGM info:      2th daughter  pv = vol3A  lv = vol3A vgmPl = vol3A vgmVol = vol3A
+VGM info:   1th volume: vol1A  
+VGM info:      0th daughter  pv = vol1B  lv = vol1B vgmPl = vol1B vgmVol = vol1B
+VGM info:   2th volume: vol1B  
+VGM info:   3th volume: vol2A  
+VGM info:      0th daughter  pv = vol2B  lv = vol2B vgmPl = vol2B vgmVol = vol2B
+VGM info:   4th volume: vol2B  
+VGM info:   5th volume: vol3A  
+VGM info:      0th daughter  pv = vol3B  lv = vol3B vgmPl = vol3B vgmVol = vol3B
+VGM info:   6th volume: vol3B  
+VGM info:   
+Geant4_GM_Factory factory solids store: 
+   0th solid: Box  "worldS"  hx = 2000mm  hy = 1000mm  hz = 4000mm
+   1th solid: Box  "box1A"  hx = 200mm  hy = 600mm  hz = 500mm
+   2th solid: Box  "box1B"  hx = 200mm  hy = 100mm  hz = 500mm
+   3th solid: Box  "box2A"  hx = 200mm  hy = 600mm  hz = 500mm
+   4th solid: Box  "box2B"  hx = 200mm  hy = 50mm  hz = 500mm
+   5th solid: Box  "box3A"  hx = 200mm  hy = 600mm  hz = 500mm
+   6th solid: Box  "box3B"  hx = 200mm  hy = 100mm  hz = 500mm
+Geant4_GM_Factory factory volumes store: 
+   0th: Volume: "world" material "Air" solid "Box"  3 daughters: "vol1A"  "vol2A"  "vol3A"  
+   1th: Volume: "vol1A" material "Air" solid "Box"  1 daughters: "vol1B"  
+   2th: Volume: "vol1B" material "Scintillator" solid "Box"  0 daughters: 
+   3th: Volume: "vol2A" material "Air" solid "Box"  1 daughters: "vol2B"  
+   4th: Volume: "vol2B" material "Scintillator" solid "Box"  0 daughters: 
+   5th: Volume: "vol3A" material "Air" solid "Box"  1 daughters: "vol3B"  
+   6th: Volume: "vol3B" material "Scintillator" solid "Box"  0 daughters: 
+VGM info:   Geant4GM::Factory::Import finished.
+Import finished
+Go to export
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "Al27"    Z = 13  N = 27  A = 26.9815 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "N14"    Z = 7  N = 14  A = 14.0031 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "N15"    Z = 7  N = 15  A = 15.0001 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "O16"    Z = 8  N = 16  A = 15.9949 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "O17"    Z = 8  N = 17  A = 16.9991 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "O18"    Z = 8  N = 18  A = 17.9992 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "H1"    Z = 1  N = 1  A = 1.00783 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "H2"    Z = 1  N = 2  A = 2.0141 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "C12"    Z = 6  N = 12  A = 12 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "C13"    Z = 6  N = 13  A = 13.0034 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "U235"    Z = 92  N = 235  A = 235.01 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "U238"    Z = 92  N = 238  A = 238.03 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "H1"    Z = 1  N = 1  A = 1.00783 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "H2"    Z = 1  N = 2  A = 2.0141 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "W180"    Z = 74  N = 180  A = 179.947 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "W182"    Z = 74  N = 182  A = 181.948 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "W183"    Z = 74  N = 183  A = 182.95 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "W184"    Z = 74  N = 184  A = 183.951 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "W186"    Z = 74  N = 186  A = 185.954 g/mole
+VGM info:   Exporting element: 
+VGM info:   Element: "Al"  "Al"  Z = 13  N = 26.98  A = 26.98 g/mole
+     0th isotope: Isotope: "Al27"    Z = 13  N = 27  A = 26.9815 g/mole  abundance: 100%
+VGM info:   Exporting element: 
+VGM info:   Element: "Nitrogen"  "N"  Z = 7  N = 14.01  A = 14.01 g/mole
+     0th isotope: Isotope: "N14"    Z = 7  N = 14  A = 14.0031 g/mole  abundance: 99.632%
+     1th isotope: Isotope: "N15"    Z = 7  N = 15  A = 15.0001 g/mole  abundance: 0.368%
+VGM info:   Exporting element: 
+VGM info:   Element: "Oxygen"  "O"  Z = 8  N = 16  A = 16 g/mole
+     0th isotope: Isotope: "O16"    Z = 8  N = 16  A = 15.9949 g/mole  abundance: 99.757%
+     1th isotope: Isotope: "O17"    Z = 8  N = 17  A = 16.9991 g/mole  abundance: 0.038%
+     2th isotope: Isotope: "O18"    Z = 8  N = 18  A = 17.9992 g/mole  abundance: 0.205%
+VGM info:   Exporting element: 
+VGM info:   Element: "H"  "H"  Z = 1  N = 1.00794  A = 1.00794 g/mole
+     0th isotope: Isotope: "H1"    Z = 1  N = 1  A = 1.00783 g/mole  abundance: 99.9885%
+     1th isotope: Isotope: "H2"    Z = 1  N = 2  A = 2.0141 g/mole  abundance: 0.0115%
+VGM info:   Exporting element: 
+VGM info:   Element: "C"  "C"  Z = 6  N = 12.0107  A = 12.0107 g/mole
+     0th isotope: Isotope: "C12"    Z = 6  N = 12  A = 12 g/mole  abundance: 98.93%
+     1th isotope: Isotope: "C13"    Z = 6  N = 13  A = 13.0034 g/mole  abundance: 1.07%
+VGM info:   Exporting element: 
+VGM info:   Element: "enriched Uranium"  "U"  Z = 92  N = 235.312  A = 235.312 g/mole
+     0th isotope: Isotope: "U235"    Z = 92  N = 235  A = 235.01 g/mole  abundance: 90%
+     1th isotope: Isotope: "U238"    Z = 92  N = 238  A = 238.03 g/mole  abundance: 10%
+VGM info:   Exporting element: 
+VGM info:   Element: "H"  "H"  Z = 1  N = 1.01  A = 1.01 g/mole
+     0th isotope: Isotope: "H1"    Z = 1  N = 1  A = 1.00783 g/mole  abundance: 99.9885%
+     1th isotope: Isotope: "H2"    Z = 1  N = 2  A = 2.0141 g/mole  abundance: 0.0115%
+VGM info:   Exporting element: 
+VGM info:   Element: "W"  "W"  Z = 74  N = 183.84  A = 183.84 g/mole
+     0th isotope: Isotope: "W180"    Z = 74  N = 180  A = 179.947 g/mole  abundance: 0.12%
+     1th isotope: Isotope: "W182"    Z = 74  N = 182  A = 181.948 g/mole  abundance: 26.5%
+     2th isotope: Isotope: "W183"    Z = 74  N = 183  A = 182.95 g/mole  abundance: 14.31%
+     3th isotope: Isotope: "W184"    Z = 74  N = 184  A = 183.951 g/mole  abundance: 30.64%
+     4th isotope: Isotope: "W186"    Z = 74  N = 186  A = 185.954 g/mole  abundance: 28.43%
+VGM info:   Exporting material: 
+VGM info:   Material: "Basic"  density 2.7 g/cm3  radlen 8.89253 cm  intlen 38.8793 cm  state "Solid"  temperature 293.15 kelvin  pressure 1 atm
+   0th element: Element: "Al"  "Al"  Z = 13  N = 26.98  A = 26.98 g/mole
+     0th isotope: Isotope: "Al27"    Z = 13  N = 27  A = 26.9815 g/mole  abundance: 100%  Elm mass fraction: 100 %
+VGM info:   Exporting material: 
+VGM info:   Material: "Air"  density 0.00129 g/cm3  radlen 28516.1 cm  intlen 66268 cm  state "Gas"  temperature 293.15 kelvin  pressure 1 atm
+   0th element: Element: "Nitrogen"  "N"  Z = 7  N = 14.01  A = 14.01 g/mole
+     0th isotope: Isotope: "N14"    Z = 7  N = 14  A = 14.0031 g/mole  abundance: 99.632%
+     1th isotope: Isotope: "N15"    Z = 7  N = 15  A = 15.0001 g/mole  abundance: 0.368%  Elm mass fraction: 70 %
+   1th element: Element: "Oxygen"  "O"  Z = 8  N = 16  A = 16 g/mole
+     0th isotope: Isotope: "O16"    Z = 8  N = 16  A = 15.9949 g/mole  abundance: 99.757%
+     1th isotope: Isotope: "O17"    Z = 8  N = 17  A = 16.9991 g/mole  abundance: 0.038%
+     2th isotope: Isotope: "O18"    Z = 8  N = 18  A = 17.9992 g/mole  abundance: 0.205%  Elm mass fraction: 30 %
+VGM info:   Exporting material: 
+VGM info:   Material: "Scintillator"  density 1.032 g/cm3  radlen 42.5442 cm  intlen 69.9694 cm  state "Solid"  temperature 293.15 kelvin  pressure 1 atm
+   0th element: Element: "C"  "C"  Z = 6  N = 12.0107  A = 12.0107 g/mole
+     0th isotope: Isotope: "C12"    Z = 6  N = 12  A = 12 g/mole  abundance: 98.93%
+     1th isotope: Isotope: "C13"    Z = 6  N = 13  A = 13.0034 g/mole  abundance: 1.07%  Elm mass fraction: 91.4709 %
+   1th element: Element: "H"  "H"  Z = 1  N = 1.00794  A = 1.00794 g/mole
+     0th isotope: Isotope: "H1"    Z = 1  N = 1  A = 1.00783 g/mole  abundance: 99.9885%
+     1th isotope: Isotope: "H2"    Z = 1  N = 2  A = 2.0141 g/mole  abundance: 0.0115%  Elm mass fraction: 8.52915 %
+VGM info:   Exporting material: 
+VGM info:   Material: "Uranium"  density 13.61 g/cm3  radlen 0.435829 cm  intlen 15.8766 cm  state "Solid"  temperature 293.15 kelvin  pressure 1 atm
+   0th element: Element: "enriched Uranium"  "U"  Z = 92  N = 235.312  A = 235.312 g/mole
+     0th isotope: Isotope: "U235"    Z = 92  N = 235  A = 235.01 g/mole  abundance: 90%
+     1th isotope: Isotope: "U238"    Z = 92  N = 238  A = 238.03 g/mole  abundance: 10%  Elm mass fraction: 100 %
+VGM info:   Exporting material: 
+VGM info:   Material: "Vacuum"  density 1e-25 g/cm3  radlen 6.31723e+26 cm  intlen 3.5e+26 cm  state "Gas"  temperature 2.73 kelvin  pressure 2.96077e-23 atm
+   0th element: Element: "H"  "H"  Z = 1  N = 1.01  A = 1.01 g/mole
+     0th isotope: Isotope: "H1"    Z = 1  N = 1  A = 1.00783 g/mole  abundance: 99.9885%
+     1th isotope: Isotope: "H2"    Z = 1  N = 2  A = 2.0141 g/mole  abundance: 0.0115%  Elm mass fraction: 100 %
+VGM info:   Exporting material: 
+VGM info:   Material: "Tungsten"  density 19.25 g/cm3  radlen 0.351325 cm  intlen 10.3383 cm  state "Solid"  temperature 293.15 kelvin  pressure 1 atm
+   0th element: Element: "W"  "W"  Z = 74  N = 183.84  A = 183.84 g/mole
+     0th isotope: Isotope: "W180"    Z = 74  N = 180  A = 179.947 g/mole  abundance: 0.12%
+     1th isotope: Isotope: "W182"    Z = 74  N = 182  A = 181.948 g/mole  abundance: 26.5%
+     2th isotope: Isotope: "W183"    Z = 74  N = 183  A = 182.95 g/mole  abundance: 14.31%
+     3th isotope: Isotope: "W184"    Z = 74  N = 184  A = 183.951 g/mole  abundance: 30.64%
+     4th isotope: Isotope: "W186"    Z = 74  N = 186  A = 185.954 g/mole  abundance: 28.43%  Elm mass fraction: 100 %
+VGM info:   Generation medium for material: 
+VGM info:   Material: "Basic"  density 2.7 g/cm3  radlen 8.89253 cm  intlen 38.8793 cm  state "Solid"  temperature 293.15 kelvin  pressure 1 atm
+   0th element: Element: "Al"  "Al"  Z = 13  N = 26.98  A = 26.98 g/mole
+     0th isotope: Isotope: "Al27"    Z = 13  N = 27  A = 26.9815 g/mole  abundance: 100%  Elm mass fraction: 100 %
+VGM info:   Generation medium for material: 
+VGM info:   Material: "Air"  density 0.00129 g/cm3  radlen 28516.1 cm  intlen 66268 cm  state "Gas"  temperature 293.15 kelvin  pressure 1 atm
+   0th element: Element: "Nitrogen"  "N"  Z = 7  N = 14.01  A = 14.01 g/mole
+     0th isotope: Isotope: "N14"    Z = 7  N = 14  A = 14.0031 g/mole  abundance: 99.632%
+     1th isotope: Isotope: "N15"    Z = 7  N = 15  A = 15.0001 g/mole  abundance: 0.368%  Elm mass fraction: 70 %
+   1th element: Element: "Oxygen"  "O"  Z = 8  N = 16  A = 16 g/mole
+     0th isotope: Isotope: "O16"    Z = 8  N = 16  A = 15.9949 g/mole  abundance: 99.757%
+     1th isotope: Isotope: "O17"    Z = 8  N = 17  A = 16.9991 g/mole  abundance: 0.038%
+     2th isotope: Isotope: "O18"    Z = 8  N = 18  A = 17.9992 g/mole  abundance: 0.205%  Elm mass fraction: 30 %
+VGM info:   Generation medium for material: 
+VGM info:   Material: "Scintillator"  density 1.032 g/cm3  radlen 42.5442 cm  intlen 69.9694 cm  state "Solid"  temperature 293.15 kelvin  pressure 1 atm
+   0th element: Element: "C"  "C"  Z = 6  N = 12.0107  A = 12.0107 g/mole
+     0th isotope: Isotope: "C12"    Z = 6  N = 12  A = 12 g/mole  abundance: 98.93%
+     1th isotope: Isotope: "C13"    Z = 6  N = 13  A = 13.0034 g/mole  abundance: 1.07%  Elm mass fraction: 91.4709 %
+   1th element: Element: "H"  "H"  Z = 1  N = 1.00794  A = 1.00794 g/mole
+     0th isotope: Isotope: "H1"    Z = 1  N = 1  A = 1.00783 g/mole  abundance: 99.9885%
+     1th isotope: Isotope: "H2"    Z = 1  N = 2  A = 2.0141 g/mole  abundance: 0.0115%  Elm mass fraction: 8.52915 %
+VGM info:   Generation medium for material: 
+VGM info:   Material: "Uranium"  density 13.61 g/cm3  radlen 0.435829 cm  intlen 15.8766 cm  state "Solid"  temperature 293.15 kelvin  pressure 1 atm
+   0th element: Element: "enriched Uranium"  "U"  Z = 92  N = 235.312  A = 235.312 g/mole
+     0th isotope: Isotope: "U235"    Z = 92  N = 235  A = 235.01 g/mole  abundance: 90%
+     1th isotope: Isotope: "U238"    Z = 92  N = 238  A = 238.03 g/mole  abundance: 10%  Elm mass fraction: 100 %
+VGM info:   Generation medium for material: 
+VGM info:   Material: "Vacuum"  density 1e-25 g/cm3  radlen 6.31723e+26 cm  intlen 3.5e+26 cm  state "Gas"  temperature 2.73 kelvin  pressure 2.96077e-23 atm
+   0th element: Element: "H"  "H"  Z = 1  N = 1.01  A = 1.01 g/mole
+     0th isotope: Isotope: "H1"    Z = 1  N = 1  A = 1.00783 g/mole  abundance: 99.9885%
+     1th isotope: Isotope: "H2"    Z = 1  N = 2  A = 2.0141 g/mole  abundance: 0.0115%  Elm mass fraction: 100 %
+VGM info:   Generation medium for material: 
+VGM info:   Material: "Tungsten"  density 19.25 g/cm3  radlen 0.351325 cm  intlen 10.3383 cm  state "Solid"  temperature 293.15 kelvin  pressure 1 atm
+   0th element: Element: "W"  "W"  Z = 74  N = 183.84  A = 183.84 g/mole
+     0th isotope: Isotope: "W180"    Z = 74  N = 180  A = 179.947 g/mole  abundance: 0.12%
+     1th isotope: Isotope: "W182"    Z = 74  N = 182  A = 181.948 g/mole  abundance: 26.5%
+     2th isotope: Isotope: "W183"    Z = 74  N = 183  A = 182.95 g/mole  abundance: 14.31%
+     3th isotope: Isotope: "W184"    Z = 74  N = 184  A = 183.951 g/mole  abundance: 30.64%
+     4th isotope: Isotope: "W186"    Z = 74  N = 186  A = 185.954 g/mole  abundance: 28.43%  Elm mass fraction: 100 %
+VGM info:   Exporting volume store: 
+VGM info:      Exporting solid: 
+VGM info:      Box  "worldS"  hx = 2000mm  hy = 1000mm  hz = 4000mm
+VGM info:   Exporting volume:  0th  "world"  material: "Air"
+VGM info:      Exporting solid: 
+VGM info:      Box  "box1A"  hx = 200mm  hy = 600mm  hz = 500mm
+VGM info:   Exporting volume:  1th  "vol1A"  material: "Air"
+VGM info:      Exporting solid: 
+VGM info:      Box  "box1B"  hx = 200mm  hy = 100mm  hz = 500mm
+VGM info:   Exporting volume:  2th  "vol1B"  material: "Scintillator"
+VGM info:      Exporting solid: 
+VGM info:      Box  "box2A"  hx = 200mm  hy = 600mm  hz = 500mm
+VGM info:   Exporting volume:  3th  "vol2A"  material: "Air"
+VGM info:      Exporting solid: 
+VGM info:      Box  "box2B"  hx = 200mm  hy = 50mm  hz = 500mm
+VGM info:   Exporting volume:  4th  "vol2B"  material: "Scintillator"
+VGM info:      Exporting solid: 
+VGM info:      Box  "box3A"  hx = 200mm  hy = 600mm  hz = 500mm
+VGM info:   Exporting volume:  5th  "vol3A"  material: "Air"
+VGM info:      Exporting solid: 
+VGM info:      Box  "box3B"  hx = 200mm  hy = 100mm  hz = 500mm
+VGM info:   Exporting volume:  6th  "vol3B"  material: "Scintillator"
+VGM info:   ExportPlacements for 0th volume world
+VGM info:      0th daughter vol = vol1A  simple placement: vol1A
+VGM info:      1th daughter vol = vol2A  simple placement: vol2A
+VGM info:      2th daughter vol = vol3A  simple placement: vol3A
+VGM info:   ExportPlacements for 1th volume vol1A
+VGM info:      0th daughter vol = vol1B  multiple placement - data: 1,  6,  200,  0,  0
+VGM info:   ExportPlacements for 2th volume vol1B
+VGM info:   ExportPlacements for 3th volume vol2A
+VGM info:      0th daughter vol = vol2B  multiple placement - data: 1,  6,  200,  0,  40
+    RootGM::Factory:::EmulateReplicatedSlice 
+    Slice solid dimensions do not respect multiple placement parameters.
+    Solid dimensions: 200,50,500,
+    Expected: 200,60,500,
+    New solid and volume will be created.
+VGM info:   ExportPlacements for 4th volume vol2B
+VGM info:   ExportPlacements for 5th volume vol3A
+VGM info:      0th daughter vol = vol3B  multiple placement - data: 1,  6,  200,  0,  0
+VGM info:   ExportPlacements for 6th volume vol3B
+Info in <TGeoManager::SetTopVolume>: Top volume is world. Master volume is world
+Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+Export finished
+Go to save Root geometry
+Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
+Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
+Info in <TGeoManager::CloseGeometry>: Counting nodes...
+Info in <TGeoManager::Voxelize>: Voxelizing...
+Info in <TGeoManager::CloseGeometry>: Building cache...
+Info in <TGeoManager::CountLevels>: max level = 3, max placements = 3
+Info in <TGeoManager::CloseGeometry>: 28 nodes/ 8 volume UID's in VGM Root geometry
+Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+Info in <TGeoManager::Export>: Exporting VGM Root geometry VGM Root geometry as root file. Optimizations streamed.
+Visualization Manager instantiating with verbosity "warnings (3)"...
+Visualization Manager initialising...
+Registering graphics systems...
+
+You have successfully registered the following graphics systems.
+Current available graphics systems are:
+ASCIITree (ATree)
+DAWNFILE (DAWNFILE)
+G4HepRep (HepRepXML)
+G4HepRepFile (HepRepFile)
+RayTracer (RayTracer)
+VRML1FILE (VRML1FILE)
+VRML2FILE (VRML2FILE)
+gMocrenFile (gMocrenFile)
+OpenGLImmediateX (OGLIX, OGLI)
+OpenGLStoredX (OGLSX, OGL, OGLS)
+RayTracerX (RayTracerX)
+
+Registering model factories...
+
+You have successfully registered the following model factories.
+Registered model factories:
+  generic
+  drawByAttribute
+  drawByCharge
+  drawByOriginVolume
+  drawByParticleID
+  drawByEncounteredVolume
+
+Registered filter factories:
+  attributeFilter
+  chargeFilter
+  originVolumeFilter
+  particleFilter
+  encounteredVolumeFilter
+
+You have successfully registered the following user vis actions.
+Run Duration User Vis Actions: none
+End of Event User Vis Actions: none
+End of Run User Vis Actions: none
+
+Some /vis commands (optionally) take a string to specify colour.
+"/vis/list" to see available colours.
+Graphics systems deleted.
+Visualization Manager deleting...

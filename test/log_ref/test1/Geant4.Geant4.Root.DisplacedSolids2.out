@@ -1,12 +1,14 @@
 Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometry created
 Geant4 geometry will be defined via Geant4 and exported to Root
 
-*************************************************************
- Geant4 version Name: geant4-10-03    (9-December-2016)
-                      Copyright : Geant4 Collaboration
-                      Reference : NIM A 506 (2003), 250-303
-                            WWW : http://cern.ch/geant4
-*************************************************************
+**************************************************************
+ Geant4 version Name: geant4-10-05    (7-December-2018)
+                       Copyright : Geant4 Collaboration
+                      References : NIM A 506 (2003), 250-303
+                                 : IEEE-TNS 53 (2006), 270-278
+                                 : NIM A 835 (2016), 186-225
+                             WWW : http://geant4.org/
+**************************************************************
 
 TestDisplacedSolids2 finished
 Go to Import
@@ -86,7 +88,7 @@ VGM info:    Element: W (W)   Z = 74.0   N =   184   A = 183.840 g/mole
          --->  Isotope:  W186   Z = 74   N = 186   A = 185.95 g/mole   abundance: 28.430 %
 VGM info:   Importing material: 
 VGM info:    Material:    Basic    density:  2.700 g/cm3   RadL:   8.893 cm   Nucl.Int.Length:  38.879 cm 
-                       Imean: 166.000 eV 
+                       Imean: 166.000 eV   temperature: 293.15 K  pressure:   1.00 atm
 
    --->  Element: Al (Al)   Z = 13.0   N =    27   A = 26.980 g/mole
          --->  Isotope:  Al27   Z = 13   N =  27   A =  26.98 g/mole   abundance: 100.000 %
@@ -109,7 +111,7 @@ VGM info:    Material:      Air    density:  1.290 mg/cm3  RadL: 285.161 m    Nu
 
 VGM info:   Importing material: 
 VGM info:    Material: Scintillator    density:  1.032 g/cm3   RadL:  42.544 cm   Nucl.Int.Length:  69.969 cm 
-                       Imean:  64.684 eV 
+                       Imean:  64.684 eV   temperature: 293.15 K  pressure:   1.00 atm
 
    --->  Element: C (C)   Z =  6.0   N =    12   A = 12.011 g/mole
          --->  Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole   abundance: 98.930 %
@@ -123,7 +125,7 @@ VGM info:    Material: Scintillator    density:  1.032 g/cm3   RadL:  42.544 cm 
 
 VGM info:   Importing material: 
 VGM info:    Material:  Uranium    density: 13.610 g/cm3   RadL:   4.358 mm   Nucl.Int.Length:  15.877 cm 
-                       Imean: 890.000 eV 
+                       Imean: 890.000 eV   temperature: 293.15 K  pressure:   1.00 atm
 
    --->  Element: enriched Uranium (U)   Z = 92.0   N =   235   A = 235.312 g/mole
          --->  Isotope:  U235   Z = 92   N = 235   A = 235.01 g/mole   abundance: 90.000 %
@@ -141,7 +143,7 @@ VGM info:    Material:   Vacuum    density:  0.000 kg/m3   RadL: 204727512.315 p
 
 VGM info:   Importing material: 
 VGM info:    Material: Tungsten    density: 19.250 g/cm3   RadL:   3.513 mm   Nucl.Int.Length:  10.338 cm 
-                       Imean: 727.000 eV 
+                       Imean: 727.000 eV   temperature: 293.15 K  pressure:   1.00 atm
 
    --->  Element: W (W)   Z = 74.0   N =   184   A = 183.840 g/mole
          --->  Isotope:  W180   Z = 74   N = 180   A = 179.95 g/mole   abundance:  0.120 %
@@ -167,47 +169,45 @@ VGM info:   Importing LV: intersection_solid1_solid2
 VGM info:   Importing solid: intersection_dsolid1_dsolid2_S
 VGM info:   Importing solid: dboxS
 VGM info:      Imported solid: Displaced  "dboxS"  Const. = "boxS"  Displacement = ( 0, 0, 0)mm ( 0, 45, 0)deg   noReflZ
-VGM info:   Importing solid: dconsS
-VGM info:      Imported solid: Displaced  "dconsS"  Const. = "consS"  Displacement = ( 200, 0, 0)mm ( 30, -0, 0)deg   noReflZ
 VGM info:   Imported Boolean solid: 
 VGM info:   Boolean  "intersection_dsolid1_dsolid2_S"  Intersection: 
   ConstituentA = Displaced  "dboxS"  Const. = "boxS"  Displacement = ( 0, 0, 0)mm ( 0, 45, 0)deg   noReflZ
-  ConstituentB = Displaced  "dconsS"  Const. = "consS"  Displacement = ( 200, 0, 0)mm ( 30, -0, 0)deg   noReflZ
-  Displacement translation (object):  ( 0,  0,  0) mm 
-  Displacement rotation (object):  (0,  -0,  0) deg    no reflectionZ
+  ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
+  Displacement translation (object):  ( 200,  0,  0) mm 
+  Displacement rotation (object):  (30,  -0,  0) deg    no reflectionZ
 VGM info:      Imported solid: Boolean  "intersection_dsolid1_dsolid2_S"  Intersection: 
   ConstituentA = Displaced  "dboxS"  Const. = "boxS"  Displacement = ( 0, 0, 0)mm ( 0, 45, 0)deg   noReflZ
-  ConstituentB = Displaced  "dconsS"  Const. = "consS"  Displacement = ( 200, 0, 0)mm ( 30, -0, 0)deg   noReflZ
-  Displacement translation (object):  ( 0,  0,  0) mm 
-  Displacement rotation (object):  (0,  -0,  0) deg    no reflectionZ
+  ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
+  Displacement translation (object):  ( 200,  0,  0) mm 
+  Displacement rotation (object):  (30,  -0,  0) deg    no reflectionZ
 VGM info:   ImportDaughters for intersection_solid1_solid2
 VGM info:   Importing LV: subtraction_solid1_solid2
 VGM info:   Importing solid: subtraction_dsolid1_dsolid2_S
 VGM info:   Imported Boolean solid: 
 VGM info:   Boolean  "subtraction_dsolid1_dsolid2_S"  Subtraction: 
   ConstituentA = Displaced  "dboxS"  Const. = "boxS"  Displacement = ( 0, 0, 0)mm ( 0, 45, 0)deg   noReflZ
-  ConstituentB = Displaced  "dconsS"  Const. = "consS"  Displacement = ( 200, 0, 0)mm ( 30, -0, 0)deg   noReflZ
-  Displacement translation (object):  ( 0,  0,  0) mm 
-  Displacement rotation (object):  (0,  -0,  0) deg    no reflectionZ
+  ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
+  Displacement translation (object):  ( 200,  0,  0) mm 
+  Displacement rotation (object):  (30,  -0,  0) deg    no reflectionZ
 VGM info:      Imported solid: Boolean  "subtraction_dsolid1_dsolid2_S"  Subtraction: 
   ConstituentA = Displaced  "dboxS"  Const. = "boxS"  Displacement = ( 0, 0, 0)mm ( 0, 45, 0)deg   noReflZ
-  ConstituentB = Displaced  "dconsS"  Const. = "consS"  Displacement = ( 200, 0, 0)mm ( 30, -0, 0)deg   noReflZ
-  Displacement translation (object):  ( 0,  0,  0) mm 
-  Displacement rotation (object):  (0,  -0,  0) deg    no reflectionZ
+  ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
+  Displacement translation (object):  ( 200,  0,  0) mm 
+  Displacement rotation (object):  (30,  -0,  0) deg    no reflectionZ
 VGM info:   ImportDaughters for subtraction_solid1_solid2
 VGM info:   Importing LV: union_solid1_solid2
 VGM info:   Importing solid: union_dsolid1_dsolid2_S
 VGM info:   Imported Boolean solid: 
 VGM info:   Boolean  "union_dsolid1_dsolid2_S"  Union: 
   ConstituentA = Displaced  "dboxS"  Const. = "boxS"  Displacement = ( 0, 0, 0)mm ( 0, 45, 0)deg   noReflZ
-  ConstituentB = Displaced  "dconsS"  Const. = "consS"  Displacement = ( 200, 0, 0)mm ( 30, -0, 0)deg   noReflZ
-  Displacement translation (object):  ( 0,  0,  0) mm 
-  Displacement rotation (object):  (0,  -0,  0) deg    no reflectionZ
+  ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
+  Displacement translation (object):  ( 200,  0,  0) mm 
+  Displacement rotation (object):  (30,  -0,  0) deg    no reflectionZ
 VGM info:      Imported solid: Boolean  "union_dsolid1_dsolid2_S"  Union: 
   ConstituentA = Displaced  "dboxS"  Const. = "boxS"  Displacement = ( 0, 0, 0)mm ( 0, 45, 0)deg   noReflZ
-  ConstituentB = Displaced  "dconsS"  Const. = "consS"  Displacement = ( 200, 0, 0)mm ( 30, -0, 0)deg   noReflZ
-  Displacement translation (object):  ( 0,  0,  0) mm 
-  Displacement rotation (object):  (0,  -0,  0) deg    no reflectionZ
+  ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
+  Displacement translation (object):  ( 200,  0,  0) mm 
+  Displacement rotation (object):  (30,  -0,  0) deg    no reflectionZ
 VGM info:   ImportDaughters for union_solid1_solid2
 VGM info:   Import positions: 
 VGM info:   0th volume: world  
@@ -227,22 +227,21 @@ Geant4_GM_Factory factory solids store:
    1th solid: Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
    2th solid: Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
    3th solid: Displaced  "dboxS"  Const. = "boxS"  Displacement = ( 0, 0, 0)mm ( 0, 45, 0)deg   noReflZ
-   4th solid: Displaced  "dconsS"  Const. = "consS"  Displacement = ( 200, 0, 0)mm ( 30, -0, 0)deg   noReflZ
-   5th solid: Boolean  "intersection_dsolid1_dsolid2_S"  Intersection: 
+   4th solid: Boolean  "intersection_dsolid1_dsolid2_S"  Intersection: 
   ConstituentA = Displaced  "dboxS"  Const. = "boxS"  Displacement = ( 0, 0, 0)mm ( 0, 45, 0)deg   noReflZ
-  ConstituentB = Displaced  "dconsS"  Const. = "consS"  Displacement = ( 200, 0, 0)mm ( 30, -0, 0)deg   noReflZ
-  Displacement translation (object):  ( 0,  0,  0) mm 
-  Displacement rotation (object):  (0,  -0,  0) deg    no reflectionZ
-   6th solid: Boolean  "subtraction_dsolid1_dsolid2_S"  Subtraction: 
+  ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
+  Displacement translation (object):  ( 200,  0,  0) mm 
+  Displacement rotation (object):  (30,  -0,  0) deg    no reflectionZ
+   5th solid: Boolean  "subtraction_dsolid1_dsolid2_S"  Subtraction: 
   ConstituentA = Displaced  "dboxS"  Const. = "boxS"  Displacement = ( 0, 0, 0)mm ( 0, 45, 0)deg   noReflZ
-  ConstituentB = Displaced  "dconsS"  Const. = "consS"  Displacement = ( 200, 0, 0)mm ( 30, -0, 0)deg   noReflZ
-  Displacement translation (object):  ( 0,  0,  0) mm 
-  Displacement rotation (object):  (0,  -0,  0) deg    no reflectionZ
-   7th solid: Boolean  "union_dsolid1_dsolid2_S"  Union: 
+  ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
+  Displacement translation (object):  ( 200,  0,  0) mm 
+  Displacement rotation (object):  (30,  -0,  0) deg    no reflectionZ
+   6th solid: Boolean  "union_dsolid1_dsolid2_S"  Union: 
   ConstituentA = Displaced  "dboxS"  Const. = "boxS"  Displacement = ( 0, 0, 0)mm ( 0, 45, 0)deg   noReflZ
-  ConstituentB = Displaced  "dconsS"  Const. = "consS"  Displacement = ( 200, 0, 0)mm ( 30, -0, 0)deg   noReflZ
-  Displacement translation (object):  ( 0,  0,  0) mm 
-  Displacement rotation (object):  (0,  -0,  0) deg    no reflectionZ
+  ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
+  Displacement translation (object):  ( 200,  0,  0) mm 
+  Displacement rotation (object):  (30,  -0,  0) deg    no reflectionZ
 Geant4_GM_Factory factory volumes store: 
    0th: Volume: "world" material "Basic" solid "Box"  5 daughters: "solid1"  "solid2"  "intersection_solid1_solid2"  "subtraction_solid1_solid2"  "union_solid1_solid2"  
    1th: Volume: "volume1" material "Basic" solid "Box"  0 daughters: 
@@ -417,45 +416,39 @@ VGM info:   Exporting volume:  2th  "volume2"  material: "Basic"
 VGM info:      Exporting solid: 
 VGM info:      Boolean  "intersection_dsolid1_dsolid2_S"  Intersection: 
   ConstituentA = Displaced  "dboxS"  Const. = "boxS"  Displacement = ( 0, 0, 0)mm ( 0, 45, 0)deg   noReflZ
-  ConstituentB = Displaced  "dconsS"  Const. = "consS"  Displacement = ( 200, 0, 0)mm ( 30, -0, 0)deg   noReflZ
-  Displacement translation (object):  ( 0,  0,  0) mm 
-  Displacement rotation (object):  (0,  -0,  0) deg    no reflectionZ
+  ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
+  Displacement translation (object):  ( 200,  0,  0) mm 
+  Displacement rotation (object):  (30,  -0,  0) deg    no reflectionZ
 VGM info:      Exporting solid: 
 VGM info:      Displaced  "dboxS"  Const. = "boxS"  Displacement = ( 0, 0, 0)mm ( 0, 45, 0)deg   noReflZ
 VGM info:      Exporting solid: 
 VGM info:      Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
-VGM info:      Exporting solid: 
-VGM info:      Displaced  "dconsS"  Const. = "consS"  Displacement = ( 200, 0, 0)mm ( 30, -0, 0)deg   noReflZ
 VGM info:      Exporting solid: 
 VGM info:      Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
 VGM info:   Exporting volume:  3th  "intersection_solid1_solid2"  material: "Basic"
 VGM info:      Exporting solid: 
 VGM info:      Boolean  "subtraction_dsolid1_dsolid2_S"  Subtraction: 
   ConstituentA = Displaced  "dboxS"  Const. = "boxS"  Displacement = ( 0, 0, 0)mm ( 0, 45, 0)deg   noReflZ
-  ConstituentB = Displaced  "dconsS"  Const. = "consS"  Displacement = ( 200, 0, 0)mm ( 30, -0, 0)deg   noReflZ
-  Displacement translation (object):  ( 0,  0,  0) mm 
-  Displacement rotation (object):  (0,  -0,  0) deg    no reflectionZ
+  ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
+  Displacement translation (object):  ( 200,  0,  0) mm 
+  Displacement rotation (object):  (30,  -0,  0) deg    no reflectionZ
 VGM info:      Exporting solid: 
 VGM info:      Displaced  "dboxS"  Const. = "boxS"  Displacement = ( 0, 0, 0)mm ( 0, 45, 0)deg   noReflZ
 VGM info:      Exporting solid: 
 VGM info:      Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
-VGM info:      Exporting solid: 
-VGM info:      Displaced  "dconsS"  Const. = "consS"  Displacement = ( 200, 0, 0)mm ( 30, -0, 0)deg   noReflZ
 VGM info:      Exporting solid: 
 VGM info:      Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
 VGM info:   Exporting volume:  4th  "subtraction_solid1_solid2"  material: "Basic"
 VGM info:      Exporting solid: 
 VGM info:      Boolean  "union_dsolid1_dsolid2_S"  Union: 
   ConstituentA = Displaced  "dboxS"  Const. = "boxS"  Displacement = ( 0, 0, 0)mm ( 0, 45, 0)deg   noReflZ
-  ConstituentB = Displaced  "dconsS"  Const. = "consS"  Displacement = ( 200, 0, 0)mm ( 30, -0, 0)deg   noReflZ
-  Displacement translation (object):  ( 0,  0,  0) mm 
-  Displacement rotation (object):  (0,  -0,  0) deg    no reflectionZ
+  ConstituentB = Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
+  Displacement translation (object):  ( 200,  0,  0) mm 
+  Displacement rotation (object):  (30,  -0,  0) deg    no reflectionZ
 VGM info:      Exporting solid: 
 VGM info:      Displaced  "dboxS"  Const. = "boxS"  Displacement = ( 0, 0, 0)mm ( 0, 45, 0)deg   noReflZ
 VGM info:      Exporting solid: 
 VGM info:      Box  "boxS"  hx = 500mm  hy = 500mm  hz = 500mm
-VGM info:      Exporting solid: 
-VGM info:      Displaced  "dconsS"  Const. = "consS"  Displacement = ( 200, 0, 0)mm ( 30, -0, 0)deg   noReflZ
 VGM info:      Exporting solid: 
 VGM info:      Cons  "consS"  rin1 = 100mm  rout1 = 300mm  rin2 = 200mm  rout2 = 400mm  hz = 1000mm  sphi = 0deg  dphi = 360deg
 VGM info:   Exporting volume:  5th  "union_solid1_solid2"  material: "Basic"
@@ -525,8 +518,6 @@ End of Event User Vis Actions: none
 End of Run User Vis Actions: none
 
 Some /vis commands (optionally) take a string to specify colour.
-Available colours:
-  black, blue, brown, cyan, gray, green, grey, magenta, red, white, yellow
-
+"/vis/list" to see available colours.
 Graphics systems deleted.
 Visualization Manager deleting...

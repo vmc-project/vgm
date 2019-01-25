@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/GDML_2_10_0/src/GDMLSchema/gdml.xsd">
+
+   <define>
+      <position  name="pos_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_1"     x="     0.0000"  y="     0.0000"  z="  -200.0000"  unit="cm" />
+      <position  name="pos_2"     x="     0.0000"  y="     0.0000"  z="   200.0000"  unit="cm" />
+
+      <rotation  name="rot_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
+
+      <scale     name="scale_0"   x="     1.0000"  y="     1.0000"  z="    -1.0000"  />
+   </define>
+
+   <materials>
+
+      <element  name="H_e"  Z="  1.0000"  N="  1" >
+         <atom type="A" unit="g/mol" value="  1.0079" />
+      </element>
+      <element  name="C_e"  Z="  6.0000"  N=" 12" >
+         <atom type="A" unit="g/mol" value=" 12.0107" />
+      </element>
+      <element  name="Nitrogen_e"  Z="  7.0000"  N=" 14" >
+         <atom type="A" unit="g/mol" value=" 14.0100" />
+      </element>
+      <element  name="Oxygen_e"  Z="  8.0000"  N=" 16" >
+         <atom type="A" unit="g/mol" value=" 16.0000" />
+      </element>
+
+      <material  name="Air"  state="undefined"  >
+         <D type="density" unit="g/cm3" value="     0.0013"/>
+         <fraction n="    0.7000"  ref="Nitrogen_e"/>
+         <fraction n="    0.3000"  ref="Oxygen_e"/>
+      </material>
+      <material  name="Scintillator"  state="undefined"  >
+         <D type="density" unit="g/cm3" value="     1.0320"/>
+         <fraction n="    0.9147"  ref="C_e"/>
+         <fraction n="    0.0853"  ref="H_e"/>
+      </material>
+
+   </materials>
+
+   <solids>
+      <box  lunit="cm" aunit="degree"
+         name="world_s"
+         x="  400.0000"  y="  200.0000"  z="  800.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="vol1A_s"
+         x="   40.0000"  y="  120.0000"  z="  100.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="vol1B_s"
+         x="   40.0000"  y="   20.0000"  z="  100.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="vol2A_s"
+         x="   40.0000"  y="  120.0000"  z="  100.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="vol2Bbis_s"
+         x="   40.0000"  y="   12.0000"  z="  100.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="vol2B_s"
+         x="   40.0000"  y="   12.0000"  z="  100.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="vol3A_s"
+         x="   40.0000"  y="  120.0000"  z="  100.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="vol3B_s"
+         x="   40.0000"  y="   20.0000"  z="  100.0000" />
+
+   </solids>
+
+   <structure>
+      <volume name="vol1B">
+         <materialref ref="Scintillator"/>
+         <solidref ref="vol1B_s"/>
+      </volume>
+
+      <volume name="vol1A">
+         <materialref ref="Air"/>
+         <solidref ref="vol1A_s"/>
+         <divisionvol unit="cm"
+            axis="kYAxis"  number="6"  offset="     0.0000"  width="    20.0000">
+            <volumeref ref="vol1B"/>
+         </divisionvol>
+      </volume>
+
+      <volume name="vol2B">
+         <materialref ref="Scintillator"/>
+         <solidref ref="vol2B_s"/>
+      </volume>
+
+      <volume name="vol2Bbis">
+         <materialref ref="Air"/>
+         <solidref ref="vol2Bbis_s"/>
+         <physvol>
+            <volumeref ref="vol2B"/>
+               <positionref ref="pos_0"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+      </volume>
+
+      <volume name="vol2A">
+         <materialref ref="Air"/>
+         <solidref ref="vol2A_s"/>
+         <divisionvol unit="cm"
+            axis="kYAxis"  number="6"  offset="     0.0000"  width="    20.0000">
+            <volumeref ref="vol2Bbis"/>
+         </divisionvol>
+      </volume>
+
+      <volume name="vol3B">
+         <materialref ref="Scintillator"/>
+         <solidref ref="vol3B_s"/>
+      </volume>
+
+      <volume name="vol3A">
+         <materialref ref="Air"/>
+         <solidref ref="vol3A_s"/>
+         <divisionvol unit="cm"
+            axis="kYAxis"  number="6"  offset="     0.0000"  width="    20.0000">
+            <volumeref ref="vol3B"/>
+         </divisionvol>
+      </volume>
+
+      <volume name="world">
+         <materialref ref="Air"/>
+         <solidref ref="world_s"/>
+         <physvol>
+            <volumeref ref="vol1A"/>
+               <positionref ref="pos_1"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="vol2A"/>
+               <positionref ref="pos_0"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="vol3A"/>
+               <positionref ref="pos_2"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+      </volume>
+
+   </structure>
+
+   <setup name="unit1"   version="1.0">
+      <world ref="world"/>
+   </setup>
+
+</gdml>
