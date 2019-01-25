@@ -11,6 +11,31 @@ $Id$
 
  The Virtual Geometry Model - Versions
 =========================================
+  25/01/2019
+  version 4.5
+    New features:
+    - Added support for G4ReplicatedSlice (which defines division with gaps):
+      As there is not an equivalent placement in Root, this feature is emulated
+      by default via an intermediate division without gaps and a placement of the
+      cell volumes. This however results in a different volume hieararchy than in the source
+      (Geant4 geometry)
+      When a new, "bestMatch" option is selected, this feature is implemented
+      via simple placements of the cells in the mother volume, what may be ineffiecient
+      in case of a large number of divisions.
+      - Only box shapes are supprted in this first version
+    - Added "bestMatch" option to VGM::IFactory, used only in the context of
+      division with a gap in Root geometry
+    - Added new "Placements2" test with divisions with gaps and "ignore" and "bestMatch"
+      run options in vgm_test
+
+    Fixes:
+    - CMake build: Add support for ROOT compiled with C++14:
+      (thanks to Dario Berzano, CERN)
+
+    Tested with Root 5.34/38 and 6.08/04, Geant4 10.03
+    (with embedded CLHEP 2.3.4.3)
+    Mac OSX 10.14: with Apple LLVM version 10.0.0
+
   06/02/2017
   version 4.4
     New features:

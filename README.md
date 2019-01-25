@@ -186,9 +186,11 @@
 
  Debug printing can be switched on via VGM::IFactory::SetDebug function:
 
+```cpp
  IFactory& myFactory;
  myFactory.SetDebug(n);
       where n=1 or 2; if 2 also object adresses are printed
+```
 
  #### Ignore
 
@@ -197,14 +199,28 @@
  and stops. It is however possible to let VGM continue by setting the option
  "Ignore" to the factory importing the geometry:
 
+```cpp
  IFactory& myFactory;
  myFactory.SetIgnore(true);
+```
 
+ #### BestMatch
+
+ This option is used only in the context of a division with gaps in Root geometry.
+ As there is not an equivalent placement in Root, this feature is emulated by default via an intermediate division without gaps and a placement of the cell volumes.
+ This however results in a different volume hierarchy than in the source (Geant4 geometry).
+
+ When a new, "bestMatch" option is selected, this feature is implemented via simple placements of the cells in the mother volume, what may be however ineffiecient in case of a large number of divisions.
+
+```cpp
+ IFactory& myFactory;
+ myFactory.SetBestMatch(true);
+```
 
  ## Platforms
 
  Tested on platform:
- Mac OSX 10.11.5: with Apple LLVM version 7.3.0
+ Tested platform: Mac OSX 10.14: with Apple LLVM version 10.0.0
 
  ## Files
 
