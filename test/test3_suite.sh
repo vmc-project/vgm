@@ -68,6 +68,7 @@ do
           fi
 
           # run test
+          echo "Testing configuration: $inputType $inputFactory $outputFactory $selectedTest $NAVIG $OPTION"
           vgm_test $inputType $inputFactory $outputFactory $NOXML $selectedTest $NOVIS $OPTION run $NAVIG \
             >& $OUTDIR/"$inputType.$inputFactory.$outputFactory.$selectedTest$OPTION.out"
 
