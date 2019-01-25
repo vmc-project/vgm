@@ -13,7 +13,7 @@
 //
 /// \class ClhepVGM::Units
 ///
-/// Conversion from CLHEP physical units to VGM units..
+/// Conversion from CLHEP physical units to VGM units.
 ///
 /// \author Ivana Hrivnacova; IPN Orsay
 
