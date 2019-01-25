@@ -100,9 +100,9 @@ char RootGM::Placement::GetNamePrefix()
 //_____________________________________________________________________________
 RootGM::Placement::Placement(
                       const std::string& name, 
-		      int copyNo,
+                      int copyNo,
                       VGM::IVolume* volume, VGM::IVolume* motherVolume,
-		      TGeoMatrix* transformation)
+                      TGeoMatrix* transformation)
   : VGM::IPlacement(),
     BaseVGM::VPlacement(volume, motherVolume),
     fName(name),       
@@ -163,7 +163,7 @@ RootGM::Placement::Placement(
                       const std::string& name, 
                       VGM::IVolume* volume, VGM::IVolume* motherVolume,
                       VGM::Axis axis, 
-		      int nofItems, double  width, double  offset)
+                      int nofItems, double  width, double  offset)
   : VGM::IPlacement(),
     BaseVGM::VPlacement(volume, motherVolume),
     fName(name), 
@@ -243,7 +243,7 @@ RootGM::Placement::Placement(
 RootGM::Placement::Placement(
                       VGM::IVolume* volume, VGM::IVolume* motherVolume,
                       TGeoNode* node, 
-		      std::vector<const TGeoNode*> assemblyNodes)
+                      std::vector<const TGeoNode*> assemblyNodes)
   : VGM::IPlacement(),
     BaseVGM::VPlacement(volume, motherVolume),
     fName(),       
@@ -292,7 +292,7 @@ RootGM::Placement::~Placement() {
 //_____________________________________________________________________________
 TGeoMatrix*
 RootGM::Placement::ComposeMatrix(VGM::IVolume* volume, VGM::IVolume* motherVolume,
-		                 TGeoMatrix* transformation) const
+                                 TGeoMatrix* transformation) const
 {
 /// Get composed matrix by taking into account solid displacements. 
 
@@ -426,8 +426,12 @@ RootGM::Placement::Transformation() const
     TGeoMatrix* matrixAN =fAssemblyNodes[i-1]->GetMatrix();
     TGeoHMatrix transformAN(*matrixAN);
     transform3D = transformAN * transform3D;
-  }    
+  }
   
+  // work around to suppress a warning:
+  // Warning in <TGeoMatrix::dtor>: Registered matrix  was removed
+  transform3D.SetBit(TGeoMatrix::kGeoRegistered,false);
+
   return Transform(transform3D);
 }  
 
@@ -436,7 +440,8 @@ bool RootGM::Placement::MultiplePlacementData(
                                 VGM::Axis&  axis,
                                 int&     nofItems,
                                 double&  width,
-                                double&  offset) const
+                                double&  offset,
+                                double&  halfGap) const
 {
   // Fill data only if multiple placement
   const TGeoPatternFinder* finder = fGeoNode->GetMotherVolume()->GetFinder();    
@@ -451,10 +456,12 @@ bool RootGM::Placement::MultiplePlacementData(
     ->GetAxisRange(RootGM::Axis(axis), xlo, xhi);
   offset = start - xlo;
   width  = finder->GetStep();
+  halfGap = 0;
 
   // Convert units
   offset *= RootGM::Units::AxisUnit(axis);
   width  *= RootGM::Units::AxisUnit(axis);
+  halfGap *= RootGM::Units::AxisUnit(axis);
 
-  return true;  
+  return true;
 }

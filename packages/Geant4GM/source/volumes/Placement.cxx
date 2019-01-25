@@ -35,6 +35,7 @@
 #include "G4PVReplica.hh"
 #include "G4PVDivision.hh"
 #include "G4VDivisionParameterisation.hh"
+#include "G4ReplicatedSlice.hh"
 #include "G4ReflectionFactory.hh"
 
 //_____________________________________________________________________________
@@ -155,7 +156,8 @@ bool Geant4GM::Placement::MultiplePlacementData(
                                 VGM::Axis&  axis,
                                 int&     nofItems,
                                 double&  width,
-                                double&  offset) const
+                                double&  offset,
+                                double&  halfGap) const
 {
   // Fill data only if multiple placement
   if (Type() != VGM::kMultiplePlacement) return false;
@@ -202,14 +204,15 @@ bool Geant4GM::Placement::MultiplePlacementData(
     
     offset = offset0 - xlo;		       
   }
-  else if (dynamic_cast<G4PVDivision*>(fPhysicalVolume)) {
+  else if (dynamic_cast<G4PVDivision*>(fPhysicalVolume) ||
+           dynamic_cast<G4ReplicatedSlice*>(fPhysicalVolume)) {
     G4VDivisionParameterisation* param
       = dynamic_cast<G4VDivisionParameterisation*>(
           fPhysicalVolume->GetParameterisation());
 	  
     if (!param) {
       std::cerr << "    Geant4GM::Placement::MultiplePlacementData: " << std::endl; 
-      std::cerr << "    Incorrect parameterisation type for G4PVDivision" 
+      std::cerr << "    Incorrect parameterisation type for G4PVDivision/G4ReplicatedSlice"
                  << std::endl; 
       std::cerr << "    (G4VDivisionParameterisation type was expected.)"  
                 << std::endl; 
@@ -221,6 +224,7 @@ bool Geant4GM::Placement::MultiplePlacementData(
     nofItems = param->GetNoDiv();
     width =  param->GetWidth();
     offset = param->GetOffset();
+    halfGap = param->GetHalfGap();
   }  
 
   axis = GetAxis(g4Axis);
@@ -228,6 +232,7 @@ bool Geant4GM::Placement::MultiplePlacementData(
   // Convert units
   offset *= ClhepVGM::Units::AxisUnit(axis);
   width  *= ClhepVGM::Units::AxisUnit(axis);
+  halfGap  *= ClhepVGM::Units::AxisUnit(axis);
 
   return true;
 }

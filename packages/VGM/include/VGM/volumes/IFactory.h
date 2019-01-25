@@ -96,7 +96,7 @@ namespace VGM {
                        ///
       virtual ISolid*  CreateCons(const std::string& name, 
                                double rin1, double rout1, 
-			       double rin2, double rout2, double hz,
+                               double rin2, double rout2, double hz,
 	                       double sphi, double dphi) = 0; 
 
                        /// Create the cut tubs solid = phi segment of a tube
@@ -121,9 +121,9 @@ namespace VGM {
                        ///
       virtual ISolid*  CreateCtubs(const std::string& name, 
                                double rin, double rout, double hz, 
-			       double sphi, double dphi,
-			       double nxlow, double nylow, double nzlow,
-			       double nxhigh, double nyhigh, double nzhigh) = 0;
+                               double sphi, double dphi,
+                               double nxlow, double nylow, double nzlow,
+                               double nxhigh, double nyhigh, double nzhigh) = 0;
 
                        /// Create the ellipsoid solid
                        /// \param dx the semi-axis of the ellipse along x in mm
@@ -216,7 +216,7 @@ namespace VGM {
                        ///
       virtual ISolid*  CreatePolyhedra(const std::string& name, 
                                double sphi, double dphi, 
-			       int nofSides, int nofZplanes,
+                               int nofSides, int nofZplanes,
                                double* z, double* rin, double* rout) = 0;
 
                        /// Create the sphere solid = phi segment of a spherical
@@ -228,10 +228,10 @@ namespace VGM {
                        /// \param stheta starting polar angle of the segment in deg
                        /// \param dtheta opening polar angle of the segment in deg
                        ///
-      virtual ISolid*  CreateSphere(const std::string& name, 
-                               double rin, double rout, 
-			       double sphi, double dphi, 
-	                       double stheta, double dtheta) = 0;
+      virtual ISolid*  CreateSphere(const std::string& name,
+                               double rin, double rout,
+                               double sphi, double dphi,
+                               double stheta, double dtheta) = 0;
 
                        /// Create tessellated solid = solid composed from
                        /// triangular and rectangular facets
@@ -251,7 +251,7 @@ namespace VGM {
                        ///
       virtual ISolid*  CreateTorus(const std::string& name, 
                                double rin, double rout, double rax, 
-			       double sphi, double dphi) = 0;
+                               double sphi, double dphi) = 0;
 
                        /// Create the trap solid = general trapezoid
                        /// ( Note that of the 11 parameters described below, only 9 
@@ -384,8 +384,8 @@ namespace VGM {
                                const std::string& name, 
                                int copyNo,
                                VGM::IVolume* volume, 
-			       VGM::IVolume* motherVolume,
-			       const VGM::Transform& transform) = 0;
+                               VGM::IVolume* motherVolume,
+                               const VGM::Transform& transform) = 0;
 
                           /// Create the multiple volume placement
                           /// \param volume the associated volume which will be replicated
@@ -400,19 +400,20 @@ namespace VGM {
       virtual IPlacement* CreateMultiplePlacement(
                                const std::string& name, 
                                VGM::IVolume* volume, 
-			       VGM::IVolume* motherVolume,
-			       VGM::Axis axis,
+                               VGM::IVolume* motherVolume,
+                               VGM::Axis axis,
                                int nofItems,
-                               double  width,
-                               double  offset) = 0;
-			       
+                               double width,
+                               double offset,
+                               double halfGap) = 0;
+
             // TO DO: IVolume* volume parameter is redundant;
             // IVolume and ISolid should be created automatically
             // via factory; this is however not available in
             // Geant4 now (it would have to be done on the VGM level)
             // - should be possible with G4Division class, so lets wait
-            // for it 	     			       			       
-			       
+            // for it
+
       ///
       // top volume
       //
@@ -431,7 +432,7 @@ namespace VGM {
 
                                   ///
                                   /// Return the store of solids
-      virtual const SolidStore&   Solids() const = 0;			       
+      virtual const SolidStore&   Solids() const = 0;
                                   ///
                                   /// Return the store of volumes
       virtual const VolumeStore&  Volumes() const = 0;	
@@ -444,7 +445,7 @@ namespace VGM {
       //
                     ///
                     /// Print all solids
-      virtual void  PrintSolids() const = 0;			       
+      virtual void  PrintSolids() const = 0;
                     ///
                     /// Print all volumes
       virtual void  PrintVolumes() const = 0;	
@@ -454,14 +455,14 @@ namespace VGM {
       //
                    ///
                    /// Export geometry to the specified factory
-      virtual bool Export(IFactory* factory) const = 0;			       
+      virtual bool Export(IFactory* factory) const = 0;
 
       //
       // debug
       //
                    ///
                    /// Set the debug level
-      virtual void SetDebug (int debug) = 0;			       
+      virtual void SetDebug (int value) = 0;
 	           ///
                    /// Return the debug level
       virtual int  Debug() const = 0;
@@ -474,20 +475,34 @@ namespace VGM {
                    /// - if not set (default) - program stops when an unsupported 
                    ///   feature occurs
                    /// - if set - only warning is issued
-      virtual void SetIgnore (bool debug) = 0;			       
+      virtual void SetIgnore (bool value) = 0;
                    ///
                    /// Return the ignore option
       virtual bool Ignore() const = 0;
+
+                   ///
+                   /// Set best match option
+                   /// - if not set (default) - prefer the geometry optimization
+                   ///            to the best match of the hierarchy of volumes
+                   /// - if set - prefer the best match of the hierarchy of volumes to optimization
+                   ///            in preformance/memory
+                   ///   (currently this option is used only in emulation of the "replica slice"
+                   ///    emulation in Root)
+      virtual void SetBestMatch (bool value) = 0;
+                   ///
+                   /// Return the single mode option
+      virtual bool BestMatch() const = 0;
 
                    ///
                    /// Set single mode option
                    /// - if not set (default) - import/export the whole geometry tree
                    /// - if set - import/export a single geometry object 
                    ///   (currently only solid objects are supported)
-      virtual void SetSingleMode (bool debug) = 0;             
+      virtual void SetSingleMode (bool value) = 0;
                    ///
                    /// Return the single mode option
       virtual bool SingleMode() const = 0;
+
 
                    /// Set solid (in single mode)
       virtual void SetSolid(VGM::ISolid* solid) = 0;

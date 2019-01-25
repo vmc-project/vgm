@@ -59,19 +59,19 @@ namespace RootGM {
       virtual VGM::ISolid*  CreateBox(
                                const std::string& name, 
                                double hx, double hy, double hz);
-				  
+
       virtual VGM::ISolid*  CreateCons(
                                const std::string& name, 
                                double rin1, double rout1, 
-			       double rin2, double rout2, double hz,
-	                       double sphi, double dphi); 
-			       
+                               double rin2, double rout2, double hz,
+                               double sphi, double dphi);
+
       virtual VGM::ISolid*  CreateCtubs(const std::string& name, 
                                double rin, double rout, double hz, 
-			       double sphi, double dphi,
-			       double nxlow, double nylow, double nzlow,
-			       double nxhigh, double nyhigh, double nzhigh);
-			       
+                               double sphi, double dphi,
+                               double nxlow, double nylow, double nzlow,
+                               double nxhigh, double nyhigh, double nzhigh);
+
       virtual VGM::ISolid*  CreateEllipsoid(const std::string& name, 
                                  double dx, double dy, double dz,
                                  double zBottomCut, double zTopCut); 
@@ -90,62 +90,62 @@ namespace RootGM {
 
       virtual VGM::ISolid*  CreatePara(const std::string& name, 
                                double dx, double dy, double dz,
-	                       double alpha, double theta, double phi);
-			       
+                               double alpha, double theta, double phi);
+
       virtual VGM::ISolid*  CreateParaboloid(const std::string& name, 
                                double r1, double r2, double hz);
                                  
       virtual VGM::ISolid*  CreatePolycone(const std::string& name, 
                                double sphi, double dphi, 
-			       int nofZplanes,
+                               int nofZplanes,
                                double* z, double* rin, double* rout);
-			       
+
       virtual VGM::ISolid*  CreatePolyhedra(const std::string& name, 
                                double sphi, double dphi, 
-			       int nofSides, int nofZplanes,
+                               int nofSides, int nofZplanes,
                                double* z, double* rin, double* rout);
-			       
-      virtual VGM::ISolid*  CreateSphere(const std::string& name, 
-                               double rin, double rout, 
-			       double sphi, double dphi, 
-	                       double stheta, double dtheta);
-			       
+
+      virtual VGM::ISolid*  CreateSphere(const std::string& name,
+                               double rin, double rout,
+                               double sphi, double dphi,
+                               double stheta, double dtheta);
+
       virtual VGM::ISolid*  CreateTessellatedSolid(const std::string& name, 
                                std::vector< std::vector<VGM::ThreeVector> > facets);
 
       virtual VGM::ISolid*  CreateTorus(const std::string& name, 
                                double rin, double rout, double rax, 
-			       double sphi, double dphi);
-			       
+                               double sphi, double dphi);
+
       virtual VGM::ISolid*  CreateTrap(const std::string& name, 
                                double hz, double theta, double phi,
                                double dy1, double dx1, double dx2, 
-			       double alpha1, 
-                               double dy2, double dx3, double dx4, 
-			       double alpha2);
-			       
+                               double alpha1,
+                               double dy2, double dx3, double dx4,
+                               double alpha2);
+
       virtual VGM::ISolid*  CreateTrd(const std::string& name, 
                                double hx1, double hx2, double hy1, double hy2, 
-			       double hz);
-			       
+                               double hz);
+
       virtual VGM::ISolid*  CreateTubs(const std::string& name, 
                                double rin, double rout, double hz, 
-			       double sphi, double dphi);
+                               double sphi, double dphi);
 
-      // Boolean solids			       
-      // 
+      // Boolean solids
+      //
       virtual VGM::ISolid*  CreateIntersectionSolid(const std::string& name, 
                                VGM::ISolid* solidA, VGM::ISolid* solidB, 
                                const VGM::Transform& transform); 
- 			       
+
       virtual VGM::ISolid*  CreateSubtractionSolid(const std::string& name, 
                                VGM::ISolid* solidA, VGM::ISolid* solidB, 
                                const VGM::Transform& transform); 
-			       
+
       virtual VGM::ISolid*  CreateUnionSolid(const std::string& name, 
                                VGM::ISolid* solidA, VGM::ISolid* solidB, 
                                const VGM::Transform& transform); 
-			       
+
       virtual VGM::ISolid*  CreateDisplacedSolid(
                                  const std::string& name, 
                                  VGM::ISolid* solid,
@@ -169,17 +169,18 @@ namespace RootGM {
                                  const std::string& name, 
                                  int copyNo,
                                  VGM::IVolume* volume, 
-			         VGM::IVolume* motherVolume,
+                                 VGM::IVolume* motherVolume,
                                  const VGM::Transform& transform);
 
       virtual VGM::IPlacement* CreateMultiplePlacement(
                                  const std::string& name, 
                                  VGM::IVolume* volume, 
-			         VGM::IVolume* motherVolume,
-			         VGM::Axis axis,
+                                 VGM::IVolume* motherVolume,
+                                 VGM::Axis axis,
                                  int nofItems,
                                  double  width,
-                                 double  offset);
+                                 double  offset,
+                                 double  halfGap);
 
       // top volume
       //
@@ -194,7 +195,7 @@ namespace RootGM {
       bool Import(TGeoNode* topNode);	
       bool Import(TGeoShape* shape); 
 
-			       
+
     protected:
       Factory(const Factory& rhs);
 
@@ -220,10 +221,20 @@ namespace RootGM {
 
       VGM::ISolid*  Register(VGM::ISolid* solid);
 
+      void          EmulateReplicatedSlice(
+                                 const std::string& name,
+                                 VGM::IVolume* volume,
+                                 VGM::IVolume* motherVolume,
+                                 VGM::Axis axis,
+                                 int nofItems,
+                                 double  width,
+                                 double  offset,
+                                 double  halfGap);
+
       // import/export
       //
       virtual bool Import(void* topNode);
-      virtual bool ImportSolid(void* solid);			       
+      virtual bool ImportSolid(void* solid);
     
       VGM::IPlacement* fTop;    
       VGM::ISolid*     fSolid;

@@ -581,6 +581,116 @@ VGM::ISolid*  RootGM::Factory::Register(VGM::ISolid* vgmSolid)
   return vgmSolid;
 }
 
+//_____________________________________________________________________________
+void RootGM::Factory::EmulateReplicatedSlice(
+                                 const std::string& name,
+                                 VGM::IVolume* volume,
+                                 VGM::IVolume* motherVolume,
+                                 VGM::Axis axis,
+                                 int nofItems,
+                                 double  width,
+                                 double  offset,
+                                 double  halfGap)
+{
+  // Only box shape is supported
+  if ( motherVolume->Solid()->Type() != VGM::kBox ) {
+    std::cerr << "    RootGM::Factory:::EmulateReplicatedSlice " << std::endl;
+    std::cerr << "    Unsupported solid type \""
+              << VGM::SolidTypeName(motherVolume->Solid()->Type()) << "\", "
+              << "mother volume: \""  << motherVolume->Name() << "\""
+              << std::endl;
+    return;
+  }
+
+  // Compute slice dimensions
+  VGM::IBox* motherBox
+    = dynamic_cast<VGM::IBox*>(motherVolume->Solid());
+  double hx = motherBox->XHalfLength();
+  double hy = motherBox->YHalfLength();
+  double hz = motherBox->ZHalfLength();
+
+  if ( axis == VGM::kXAxis ) {
+    hx = ( width - 2.*halfGap)/2.;
+  }
+  else if ( axis == VGM::kYAxis ) {
+    hy = ( width - 2.*halfGap)/2.;
+  }
+  else if ( axis == VGM::kZAxis ) {
+    hz = ( width - 2.*halfGap)/2.;
+  }
+
+  // Create the cell solid
+  // (Should not be needed if the slice solid is correct- check)
+  VGM::IBox* sliceBox
+    = dynamic_cast<VGM::IBox*>(volume->Solid());
+  VGM::IVolume* sliceVolume = volume;
+
+  // Check dimensions
+  if ( sliceBox->XHalfLength() != hx || sliceBox->YHalfLength() != hy ||
+       sliceBox->ZHalfLength() != hz ) {
+    std::cerr << "    RootGM::Factory:::EmulateReplicatedSlice " << std::endl;
+    std::cerr << "    Slice solid dimensions do not respect multiple placement parameters." << std::endl;
+    std::cerr << "    Solid dimensions: "  << sliceBox->XHalfLength() << ","  << sliceBox->YHalfLength() << ","  << sliceBox->ZHalfLength() << ","  << std::endl;
+    std::cerr << "    Expected: "  << hx << ","  << hy << ","  << hz << ","  << std::endl;
+    std::cerr << "    New solid and volume will be created." << std::endl;
+
+    VGM::ISolid* newSolid = CreateBox(volume->Solid()->Name(), hx, hy, hz);
+    sliceVolume = CreateVolume(volume->Name(), newSolid, volume->MediumName());
+  }
+
+  if ( BestMatch() ) {
+     // Compute start position and its delta for a=each copy
+     std::vector<double> start = { 0., 0., 0.};
+     std::vector<double> delta  = { 0., 0., 0. };
+
+     if ( axis == VGM::kXAxis ) {
+       delta[0] = width;
+       start[0] = - motherBox->XHalfLength() + offset + width/2.;
+     }
+     else if ( axis == VGM::kYAxis ) {
+       delta[1] = width;
+       start[1] = - motherBox->YHalfLength() + offset + width/2.;
+     }
+     else if ( axis == VGM::kZAxis ) {
+       delta[2] = width;
+       start[2] = - motherBox->ZHalfLength() + offset  + width/2.;
+     }
+
+    // Place the slice multiple times
+    for (int i=0; i<nofItems; ++i) {
+      // Define trasformation
+      std::cout << i << "th position: " <<  start[0] + i * delta[0] << ",";
+      std::cout <<  start[1] + i * delta[1] << ",";
+      std::cout <<  start[2] + i * delta[2] << std::endl;
+
+      VGM::Transform transform
+        = { start[0] + i * delta[0], start[1] + i * delta[1], start[2] + i * delta[2], 0., 0., 0., 0.};
+
+      CreatePlacement(name, i, sliceVolume, motherVolume, transform);
+    }
+  } else {
+    // Create an interim volume (envelope) by division and place the slice inside it
+    std::string nameBis = name + "bis";
+    VGM::IVolume* volumeBis
+      = CreateVolume(nameBis, volume->Solid(), motherVolume->MediumName());
+
+    // Create TGeo division without gaps
+    BaseVGM::VPlacement* placement
+      = new RootGM::Placement(nameBis, volumeBis, motherVolume, axis, nofItems, width, offset);
+
+    // Import divison volume
+    // (The VGM::IVolume* volume is ignored)
+    TGeoNode* node = RootGM::PlacementMap::Instance()->GetPlacement(placement);
+    TGeoVolume* rootVolume = node->GetVolume();
+    rootVolume->SetName(volumeBis->Name().data());
+    (dynamic_cast<RootGM::Volume*>(volumeBis))->ResetVolume(rootVolume);
+
+    // Place the slice volume in the created division
+    VGM::Transform transform = { 0, 0, 0, 0, 0, 0, 0 };
+    CreatePlacement(name, 0, sliceVolume, volumeBis, transform);
+  }
+}
+
 //
 // protected functions
 //
@@ -905,9 +1015,9 @@ RootGM::Factory::CreatePlacement(
     = new RootGM::Placement(
                        name, 
                        copyNo, 
-		       volume, motherVolume, 
-		       CreateTransform(transform)); 
-		       
+                       volume, motherVolume,
+                       CreateTransform(transform));
+
   // Top volume
   if (!motherVolume) {
     if (!fTop)
@@ -932,7 +1042,8 @@ RootGM::Factory::CreateMultiplePlacement(
                    VGM::Axis axis,
                    int nofItems,
                    double  width,
-                   double  offset)
+                   double  offset,
+                   double  halfGap)
 {
 //
   // Cannot be top volume
@@ -941,37 +1052,45 @@ RootGM::Factory::CreateMultiplePlacement(
     std::cerr << "    Mother volume not defined!" << std::endl;
     std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
     exit(1);
-  }		  
+  }
 
-  // Create TGeo division
-  BaseVGM::VPlacement* placement
-    = new RootGM::Placement(name, volume, motherVolume, axis, nofItems, width, offset);
-     
-  // Import divison volume
-  // (The VGM::IVolume* volume is ignored)
-  TGeoNode* node = RootGM::PlacementMap::Instance()->GetPlacement(placement);
-  TGeoVolume* rootVolume = node->GetVolume();
-  rootVolume->SetName(volume->Name().data());
-      // Now we should copy old root volume daughters to this new one
-      // but there is no way to do it
-      // For the time being only check if it happens 
-      
-  TGeoVolume* oldVolume 
-      = RootGM::VolumeMap::Instance()->GetVolume(volume);
-  oldVolume->SetName("volumeNotPlacedInGeometry");    
-  if (oldVolume->GetNdaughters()>0) {
-    std::cerr << "*** Limitation  ***" << std::endl; 
-    std::cerr << "    RootGM::Factory::CreateMultiplePlacement: " <<  std::endl;
-    std::cerr << "    Daughters of divided volume can be set " <<  std::endl
-              << "    only after multiple placement definition." << std::endl   
-	      << "    Geometry would be incomplete." << std::endl;
-    exit(1);	      
-  }	      
+  if ( halfGap != 0 ) {
+    EmulateReplicatedSlice(name, volume, motherVolume,
+                           axis, nofItems, width, offset, halfGap);
+    return 0;
+  }
+  else {
 
-  (dynamic_cast<RootGM::Volume*>(volume))->ResetVolume(rootVolume);
+    // Create TGeo division
+    BaseVGM::VPlacement* placement
+      = new RootGM::Placement(name, volume, motherVolume, axis, nofItems, width, offset);
 
-  return placement;
-}			  			       
+    // Import divison volume
+    // (The VGM::IVolume* volume is ignored)
+    TGeoNode* node = RootGM::PlacementMap::Instance()->GetPlacement(placement);
+    TGeoVolume* rootVolume = node->GetVolume();
+    rootVolume->SetName(volume->Name().data());
+        // Now we should copy old root volume daughters to this new one
+        // but there is no way to do it
+        // For the time being only check if it happens
+
+    TGeoVolume* oldVolume
+        = RootGM::VolumeMap::Instance()->GetVolume(volume);
+    oldVolume->SetName("volumeNotPlacedInGeometry");
+    if (oldVolume->GetNdaughters()>0) {
+      std::cerr << "*** Limitation  ***" << std::endl;
+      std::cerr << "    RootGM::Factory::CreateMultiplePlacement: " <<  std::endl;
+      std::cerr << "    Daughters of divided volume can be set " <<  std::endl
+                << "    only after multiple placement definition." << std::endl
+	              << "    Geometry would be incomplete." << std::endl;
+      exit(1);
+    }
+
+    (dynamic_cast<RootGM::Volume*>(volume))->ResetVolume(rootVolume);
+
+    return placement;
+  }
+}
 
 //_____________________________________________________________________________
 VGM::IPlacement* 

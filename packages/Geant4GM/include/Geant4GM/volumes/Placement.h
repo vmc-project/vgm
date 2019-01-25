@@ -58,7 +58,8 @@ namespace Geant4GM {
                            VGM::Axis&  axis,
                            int&     nofItems,
                            double&  width,
-                           double&  offset) const;
+                           double&  offset,
+                           double&  halfGap) const;
 
     protected:
       Placement();

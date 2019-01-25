@@ -28,7 +28,7 @@
 #include "G4SolidStore.hh"
 
 const G4String TstDetectorConstruction::fgkTestNameCandidates 
-  = "Solids NewSolid NewSolid2 ExtraSolid Placements Reflections Assemblies1 Assemblies2 BooleanSolids1 BooleanSolids2 BooleanSolids3 BooleanSolids4 BooleanSolids5 BooleanSolids6 BooleanSolids7 ScaledSolids Special DisplacedSolids1 DisplacedSolids2 Special SingleMode";
+  = "Solids NewSolid NewSolid2 ExtraSolid Placements Placements2 Reflections Assemblies1 Assemblies2 BooleanSolids1 BooleanSolids2 BooleanSolids3 BooleanSolids4 BooleanSolids5 BooleanSolids6 BooleanSolids7 ScaledSolids Special DisplacedSolids1 DisplacedSolids2 Special SingleMode";
 const G4String TstDetectorConstruction::fgkVisModeCandidates 
   = "Geant4 Root None";
 const G4String TstDetectorConstruction::fgkInputCandidates 
@@ -47,6 +47,7 @@ TstDetectorConstruction::TstDetectorConstruction(const G4String& inputType,
     fSelectedTest("Solids"),
     fSelectedVisMode("Geant4"),
     fFullAngle(true),
+    fBestMatchMode(false),
     fSingleMode(false),
     fInputFactory(0),
     fOutputFactory(0),
@@ -112,6 +113,10 @@ G4VPhysicalVolume* TstDetectorConstruction::Construct()
   }
   else if (fSelectedTest == "Placements") {
     world = fGeometry->TestPlacements();
+    std::cout << "TestPlacements finished" << std::endl;
+  }
+  else if (fSelectedTest == "Placements2") {
+    world = fGeometry->TestPlacements2(fBestMatchMode);
     std::cout << "TestPlacements finished" << std::endl;
   }
   else if (fSelectedTest == "Reflections") {
@@ -368,7 +373,28 @@ void TstDetectorConstruction::SetDebug(G4bool debugMode)
 
  if (fInputFactory)  fInputFactory->SetDebug(debugMode);
  if (fOutputFactory) fOutputFactory->SetDebug(debugMode);
-}  
+}
+
+//_____________________________________________________________________________
+void TstDetectorConstruction::SetIgnore(G4bool ignoreMode)
+{
+// Set debug mode to instantiated factories
+
+ if (fInputFactory)  fInputFactory->SetIgnore(ignoreMode);
+ if (fOutputFactory) fOutputFactory->SetIgnore(ignoreMode);
+}
+
+//_____________________________________________________________________________
+void TstDetectorConstruction::SetBestMatch(G4bool bestMatchMode)
+{
+// Set debug mode to instantiated factories
+
+ fBestMatchMode = bestMatchMode;
+ if (fInputFactory)  fInputFactory->SetBestMatch(bestMatchMode);
+ if (fOutputFactory) {
+    fOutputFactory->SetBestMatch(bestMatchMode);
+ }
+}
 
 //_____________________________________________________________________________
 void TstDetectorConstruction::SetSingleMode(G4bool singleMode)

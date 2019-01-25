@@ -65,6 +65,8 @@ namespace BaseVGM {
       virtual void  SetIgnore (bool ignore);		       
       virtual bool  Ignore() const;
 
+      virtual void  SetBestMatch (bool value);
+      virtual bool  BestMatch() const;
 
     protected:
       VFactory();
@@ -112,6 +114,7 @@ namespace BaseVGM {
       // data members
       int                     fDebug;
       bool                    fIgnore;
+      bool                    fBestMatch;
       bool                    fSingleMode;
       std::string             fName;
       VGM::SolidStore         fSolids;
@@ -161,6 +164,12 @@ inline void BaseVGM::VFactory::SetIgnore (bool ignore)
 
 inline bool BaseVGM::VFactory::Ignore() const
 { return fIgnore; }
+
+inline void BaseVGM::VFactory::SetBestMatch (bool bestMatch)
+{ fBestMatch = bestMatch; }
+
+inline bool BaseVGM::VFactory::BestMatch() const
+{ return fBestMatch; }
 
 inline void  BaseVGM::VFactory::SetSingleMode (bool singleMode)
 { fSingleMode = singleMode; }

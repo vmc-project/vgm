@@ -47,6 +47,8 @@ class TstDetectorConstruction : public G4VUserDetectorConstruction
     void SelectTest(const G4String& testName, G4bool fullAngle);
     void SelectVisualization(const G4String& visMode);
     void SetDebug(G4bool debugMode);
+    void SetIgnore(G4bool ignoreMode);
+    void SetBestMatch(G4bool bestMatchMode);
     void SetSingleMode(G4bool singleMode);
 
   private:
@@ -75,6 +77,7 @@ class TstDetectorConstruction : public G4VUserDetectorConstruction
     G4String           fSelectedTest;
     G4String           fSelectedVisMode;
     G4bool             fFullAngle;
+    G4bool             fBestMatchMode;
     G4bool             fSingleMode;
     VGM::IFactory*     fInputFactory;
     VGM::IFactory*     fOutputFactory;

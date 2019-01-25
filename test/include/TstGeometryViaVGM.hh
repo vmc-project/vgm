@@ -40,6 +40,7 @@ class TstGeometryViaVGM : public TstVGeometry
     virtual void* TestNewSolid();
     virtual void* TestNewSolid2();
     virtual void* TestPlacements();
+    virtual void* TestPlacements2(bool bestMatch);
     virtual void* TestReflections(bool fullPhi);
     virtual void* TestScaledSolids(bool fullPhi);
     virtual void* TestBooleanSolids1();

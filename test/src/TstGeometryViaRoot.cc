@@ -1004,6 +1004,88 @@ void* TstGeometryViaRoot::TestPlacements()
 }
 
 //_____________________________________________________________________________
+void* TstGeometryViaRoot::TestPlacements2(Bool_t bestMatch)
+{
+  // World
+  //
+  TGeoVolume* worldV = CreateWorld(200., 100., 400.);
+
+  // Get materials via names
+  TGeoMedium* air = gGeoManager->GetMedium("Air");
+  TGeoMedium* scintillator = gGeoManager->GetMedium("Scintillator");
+
+  // Reset world material to vacuum
+  worldV->SetMedium(air);
+
+  // Divison 1
+  //
+  // Box A (mother)
+  TGeoShape* box1A
+    = new TGeoBBox("box1A", 20., 60., 50.);
+  TGeoVolume* vol1A
+    = new TGeoVolume("vol1A", box1A, scintillator);
+
+  // Division B in A
+  vol1A->Divide("vol1B", 2, 6, -60., 20.);
+            // vol in the whole mother
+
+  // Divison 2 with gaps - emulated with placements
+  //
+  // Box A (mother)
+  Double_t motherHy = 60.;
+  TGeoShape* box2A
+    = new TGeoBBox("box2A", 20., motherHy, 50.);
+  TGeoVolume* vol2A
+    = new TGeoVolume("vol2A", box2A, air);
+
+  // Box A (mother)
+  Double_t width = 20.;
+  Double_t halfGap = 4.;
+  TGeoShape* box2B
+    = new TGeoBBox("box2B", 20., width/2. - halfGap, 50.);
+  TGeoVolume* vol2B
+    = new TGeoVolume("vol2B", box2B, scintillator);
+
+  if ( bestMatch ) {
+    // Division B in A via placements
+    // Place layers B  (division)
+    for (Int_t i = 0; i < 6; ++i) {
+       double start =  - motherHy + width/2.;
+       Double_t posY = start + i * width;
+       TGeoCombiTrans* combi= new TGeoCombiTrans( 0, posY, 0, 0);
+       vol2A->AddNode(vol2B, i, combi);
+    }
+  } else {
+    // Divison B in A emulated with a placeement in an interim division
+    //
+    // Division in A (envelope for B)
+    TGeoVolume* envelope2B
+      = vol2A->Divide("vol2Bbis", 2, 6, -60., 20.);
+              // division in the whole mother
+    envelope2B->AddNode(vol2B, 0, new TGeoCombiTrans( 0, 0, 0, 0));
+  }
+
+  // Divison 3
+  //
+  // Box A (mother)
+  TGeoShape* box3A
+    = new TGeoBBox("box3A", 20., 60., 50.);
+  TGeoVolume* vol3A
+    = new TGeoVolume("vol3A", box3A, scintillator);
+
+  // Thick layer B (in A)
+  // Place layers B  (division)
+  vol3A->Divide("vol3B", 2, 6, -60., 20.);
+            // division in the whole mother
+
+  worldV->AddNode(vol1A, 0, new TGeoCombiTrans( 0, 0, -200., 0));
+  worldV->AddNode(vol2A, 1, new TGeoCombiTrans( 0, 0,    0., 0));
+  worldV->AddNode(vol3A, 2, new TGeoCombiTrans( 0, 0,  200., 0));
+
+  return (void*) gGeoManager->GetTopNode();
+}
+
+//_____________________________________________________________________________
 void* TstGeometryViaRoot::TestReflections(Bool_t fullPhi)
 {
 

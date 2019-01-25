@@ -101,12 +101,14 @@ std::ostream& BaseVGM::VPlacement::Put(std::ostream& out) const
      int nofItems;
      double width;
      double offset;
-     MultiplePlacementData(axis, nofItems, width, offset);
+     double halfGap;
+     MultiplePlacementData(axis, nofItems, width, offset, halfGap);
 
-     out << "  axis: \"" << VGM::AxisTypeName(axis) << "\""
-         << "  ndiv: "   << nofItems
-         << "  width: "  << width
-         << "  offset: " << offset;
+     out << "  axis: \""  << VGM::AxisTypeName(axis) << "\""
+         << "  ndiv: "    << nofItems
+         << "  width: "   << width
+         << "  offset: "  << offset
+         << "  halfGap: " << halfGap;
   }     
 
   return out; 

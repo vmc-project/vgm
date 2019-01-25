@@ -47,7 +47,8 @@ namespace BaseVGM {
                              VGM::Axis&  axis,
                              int&     nofDivisions,
                              double&  width,
-                             double&  offset) const = 0;
+                             double&  offset,
+                             double&  halfGap) const = 0;
 
                             /// Put the printing of the placement parameters
 			    /// in the out stream

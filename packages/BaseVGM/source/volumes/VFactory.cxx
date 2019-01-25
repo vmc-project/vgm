@@ -53,6 +53,7 @@ BaseVGM::VFactory::VFactory(const std::string& name,
   : VGM::IFactory(),
     fDebug(0),
     fIgnore(false),
+    fBestMatch(false),
     fSingleMode(false),
     fName(name),
     fSolids(),
@@ -534,26 +535,28 @@ BaseVGM::VFactory::ExportMultiplePlacement(
   int nofItems;
   double width;
   double offset;
-  placement->MultiplePlacementData(axis, nofItems, width, offset);
+  double halfGap;
+  placement->MultiplePlacementData(axis, nofItems, width, offset, halfGap);
  
 #ifndef NEW_DEBUG
   if (Debug()>0) {
     std::cout << "  multiple placement - data: "
 	      << axis  << ",  " << nofItems << ",  " 
-	      << width << ",  " << offset << std::endl;
+	      << width << ",  " << offset << ",  " << halfGap << std::endl;
   }	      
 #endif
   
   VGM::IPlacement* newPlacement
     = factory->CreateMultiplePlacement(
                      placement->Name(), 
-		     newVolume,
-		     newMother,
-		     axis,
-		     nofItems,
-		     width,
-		     offset);
-		     			       
+                     newVolume,
+                     newMother,
+                     axis,
+                     nofItems,
+                     width,
+                     offset,
+                     halfGap);
+
   return newPlacement;
 }
 

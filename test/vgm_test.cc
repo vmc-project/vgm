@@ -25,6 +25,8 @@
 //                         DisplacedSolidsN,
 //                             where N = 1, 2; M = 1, 2, 3
 //         debug         = if specified the factories operate in debug mode
+//         ignore        = if specified the factories operate in ignore mode
+//         bestMatch     = if specified the factories operate in bestMatch mode
 //         openAngle     = if specified, solids like tubs, cons etc. are built
 //                         with open azimuthal angle
 //         noVis         = no visualisation
@@ -49,6 +51,7 @@
 #include "G4UItcsh.hh"
 #include "G4VisExecutive.hh"
 #include "G4UIExecutive.hh"
+#include "Randomize.hh"
 
 #include "RootGM/volumes/Placement.h"
 
@@ -73,11 +76,13 @@ int main(int argc, char** argv)
     std::cerr << "          inputFactory  = AGDD, Geant4, Root" << std::endl;
     std::cerr << "          outputFactory = Geant4, Root, None" << std::endl;
     std::cerr << "          outputXML     = AGDD, GDML, noXML" << std::endl;
-    std::cerr << "          selectedTest  = Solids, NewSolid, Placements, Reflections, Assemblies," << std::endl;
+    std::cerr << "          selectedTest  = Solids, NewSolid, Placements[2], Reflections, Assemblies," << std::endl;
     std::cerr << "                          AssembliesN, BooleanSolidsM, ScaledSolids, " << std::endl;
     std::cerr << "                          Special, DisplacedSolidN " << std::endl;
     std::cerr << "                               where N = 1, 2; M = 1, 2, 3" << std::endl;
-    std::cerr << "          debug         = if specified the factories operate in debug mode"  << std::endl;
+    std::cerr << "          debug         = if specified the factories operate in debug mode" << std::endl;
+    std::cerr << "          ignore        = if specified the factories operate in ignore mode" << std::endl;
+    std::cerr << "          bestMatch     = if specified the factories operate in bestMatch mode" << std::endl;
     std::cerr << "          openAngle     = if specified, solids like tubs, cons etc. are built" << std::endl;
     std::cerr << "                          with open azimuthal angle" << std::endl;
     std::cerr << "          noVis         = no visualisation" << std::endl;
@@ -100,6 +105,8 @@ int main(int argc, char** argv)
   // Optional parameters
   //
   G4bool   debugMode = false;
+  G4bool   ignoreMode = false;
+  G4bool   bestMatchMode = false;
   G4bool   fullAngle = true;
   G4String visMode = outputFactory;
   if (outputFactory == "None") visMode = inputFactory;
@@ -109,8 +116,12 @@ int main(int argc, char** argv)
   
   if (argc > 6)
   for (G4int i=6; i<argc; i++) {
-    if (G4String(argv[i]) == "debug")       
+    if (G4String(argv[i]) == "debug")
       debugMode = true;
+    else if (G4String(argv[i]) == "ignore")
+      ignoreMode = true;
+    else if (G4String(argv[i]) == "bestMatch")
+      bestMatchMode = true;
     else if (G4String(argv[i]) == "openAngle")       
       fullAngle = false;
     else if (G4String(argv[i]) == "noVis")  
@@ -125,6 +136,10 @@ int main(int argc, char** argv)
       std::cerr << " Argument " << argv[i] << " not recognized." << std::endl;
   }   
   
+  // Choose the Random engine
+  //
+  G4Random::setTheEngine(new CLHEP::HepJamesRandom);
+
   // Define UI session (if interactive mode)
   //
   G4UIExecutive* session = 0;
@@ -137,6 +152,8 @@ int main(int argc, char** argv)
     = new TstDetectorConstruction(inputType, inputFactory, outputFactory, 
                                   outputXML);
   detector->SetDebug(debugMode);
+  detector->SetIgnore(ignoreMode);
+  detector->SetBestMatch(bestMatchMode);
   detector->SetSingleMode(singleMode);
   detector->SelectTest(selectedTest, fullAngle);  
   detector->SelectVisualization(visMode);  

@@ -32,8 +32,7 @@ do
   do
     for outputFactory in None Geant4 Root
     do
-      for selectedTest in Solids Placements Reflections ScaledSolids Assemblies1 Assemblies2 BooleanSolids2 DisplacedSolids1 DisplacedSolids2 
-      #for selectedTest in Placements 
+      for selectedTest in Solids Placements Placements2 Reflections ScaledSolids Assemblies1 Assemblies2 BooleanSolids2 DisplacedSolids1 DisplacedSolids2
       do
         DOIT="1"
 

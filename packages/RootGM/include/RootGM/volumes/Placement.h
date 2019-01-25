@@ -43,9 +43,9 @@ namespace RootGM {
     public:
       Placement(
          const std::string& name, 
-	 int copyNo,
+         int copyNo,
          VGM::IVolume* volume, VGM::IVolume* motherVolume,
-	 TGeoMatrix* transformation);
+         TGeoMatrix* transformation);
       Placement(
          const std::string& name, 
          VGM::IVolume* volume, VGM::IVolume* motherVolume,
@@ -77,7 +77,8 @@ namespace RootGM {
                                 VGM::Axis&  axis,
                                 int&     nofItems,
                                 double&  width,
-                                double&  offset) const;
+                                double&  offset,
+                                double&  halfGap) const;
 
     protected:
       Placement();
@@ -86,7 +87,7 @@ namespace RootGM {
     private:
       // methods
       TGeoMatrix*  ComposeMatrix(VGM::IVolume* volume, VGM::IVolume* motherVolume,
-		                 TGeoMatrix* transformation) const;
+                                 TGeoMatrix* transformation) const;
       
       // static data members
       static bool fgIncludeAssembliesInNames; 

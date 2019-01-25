@@ -53,6 +53,7 @@
 #include "G4Tubs.hh"
 #include "G4PVPlacement.hh"
 #include "G4PVDivision.hh"
+#include "G4ReplicatedSlice.hh"
 #include "G4RotationMatrix.hh"
 #include "G4TwoVector.hh"
 #include "G4PhysicalConstants.hh"
@@ -859,6 +860,108 @@ void* TstGeometryViaGeant4::TestPlacements()
                        volA, "layerA", worldV, false, i);
    }
    
+  return (void*) world;
+}
+
+//_____________________________________________________________________________
+void* TstGeometryViaGeant4::TestPlacements2(G4bool /*bestMatch*/)
+{
+  // World
+  //
+  G4LogicalVolume* worldV = CreateWorld(2.*m, 1.*m, 4.*m);
+  G4VPhysicalVolume* world
+    = new G4PVPlacement(0, CLHEP::Hep3Vector(), worldV, "world", 0, false, 0);
+
+  // Get materials via names
+  G4Material* air = G4Material::GetMaterial("Air");
+  G4Material* scintillator = G4Material::GetMaterial("Scintillator");
+
+  // Reset world material to air
+  worldV->SetMaterial(air);
+
+  // Divison 1 (defined via replica)
+  //
+  G4VSolid * box1A
+    = new G4Box("box1A", 20.*cm, 60.*cm, 50.*cm);
+  G4LogicalVolume* vol1A
+    = new G4LogicalVolume(box1A, air, "vol1A");
+
+  // Replica cell
+  //
+  G4VSolid * box1B
+    = new G4Box("box1B", 20.*cm, 10.*cm, 50.*cm);
+  G4LogicalVolume * vol1B
+    = new G4LogicalVolume(box1B, scintillator, "vol1B");
+
+  // Replica PV
+  //
+  // G4PVReplica(const G4String& pName,
+  //                   G4LogicalVolume *pLogical,
+  //                   G4LogicalVolume *pMother,
+  //             const EAxis pAxis,
+  //             const G4int nReplicas,
+  //             const G4double width,
+  //             const G4double offset=0);
+  new G4PVDivision("vol1B", vol1B, vol1A, kYAxis, 6, 20.*cm, 0.*cm);
+             // division with offeset
+
+  // Replicated Slice
+  //
+  G4VSolid * box2A
+    = new G4Box("box2A", 20.*cm, 60.*cm, 50.*cm);
+  G4LogicalVolume* vol2A
+    = new G4LogicalVolume(box2A, air, "vol2A");
+
+  // Replicated Slice cell
+  //
+  G4VSolid * box2B
+    = new G4Box("box2B", 20.*cm, 5.*cm, 50.*cm);
+  G4LogicalVolume * vol2B
+    = new G4LogicalVolume(box2B, scintillator, "vol2B");
+
+  // Replicated slice
+  //
+  // G4ReplicatedSlice(const G4String& pName,
+  //                         G4LogicalVolume* pLogical,
+  //                         G4LogicalVolume* pMotherLogical,
+  //                   const EAxis pAxis,
+  //                   const G4int nReplicas,
+  //                   const G4double width,
+  //                   const G4double half_gap,
+  //                   const G4double offset );
+  new G4ReplicatedSlice("vol2B", vol2B, vol2A, kYAxis, 6, 20.*cm, 4.*cm, 0.);
+
+  // Division
+  //
+  G4VSolid * box3A
+    = new G4Box("box3A", 20.*cm, 60.*cm, 50.*cm);
+  G4LogicalVolume* vol3A
+    = new G4LogicalVolume(box3A, air, "vol3A");
+
+  // Division cell
+  //
+  G4VSolid * box3B
+    = new G4Box("box3B", 20.*cm, 10.*cm, 50.*cm);
+  G4LogicalVolume * vol3B
+    = new G4LogicalVolume(box3B, scintillator, "vol3B");
+
+  // Division
+  //
+  // G4PVDivision(const G4String& pName,
+  //                    G4LogicalVolume* pLogical,
+  //                    G4LogicalVolume* pMother,
+  //              const EAxis pAxis,
+  //              const G4int nReplicas,
+  //              const G4double width,
+  //              const G4double offset=0)
+  new G4PVDivision("vol3B", vol3B, vol3A, kYAxis, 6, 20.*cm, 0.*cm);
+
+  // Placements of A volumes along z axis
+  //
+  new G4PVPlacement(0, CLHEP::Hep3Vector(0, 0, -2.*m), vol1A, "vol1A", worldV, false, 0);
+  new G4PVPlacement(0, CLHEP::Hep3Vector(0, 0, 0),     vol2A, "vol2A", worldV, false, 1);
+  new G4PVPlacement(0, CLHEP::Hep3Vector(0, 0,  2.*m), vol3A, "vol3A", worldV, false, 2);
+
   return (void*) world;
 }
 

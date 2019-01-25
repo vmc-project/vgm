@@ -974,7 +974,7 @@ void* TstGeometryViaVGM::TestPlacements()
              // division in the whole mother
 
   fFactory->CreateMultiplePlacement("layerB", volB, volA, 
-                                   VGM::kYAxis, 3, 20.* fCm, 60.* fCm);
+                                   VGM::kYAxis, 3, 20.* fCm, 60.* fCm, 0.);
              // division with offset
 
 	// If layers C placed first, they are not passed
@@ -1015,6 +1015,77 @@ void* TstGeometryViaVGM::TestPlacements()
                                ClhepVGM::Transform(rot, CLHEP::Hep3Vector(x, y0, z)));
    }
    
+  return (void*) fFactory->Top();
+}
+
+//_____________________________________________________________________________
+void* TstGeometryViaVGM::TestPlacements2(bool /*bestMatch*/)
+{
+  // World
+  //
+  IVolume* worldV = CreateWorld(200.*fCm, 100.*fCm, 400.*fCm, "Air");
+  fFactory->CreatePlacement("world", 0, worldV, 0, ClhepVGM::Identity());
+
+  // Divison 1
+  //
+  // Box A (mother)
+  ISolid * box1A
+    = fFactory->CreateBox("box1A", 20.* fCm, 60.* fCm, 50.* fCm);
+  IVolume* vol1A
+    = fFactory->CreateVolume("vol1A", box1A, "Air");
+
+  // Division B in A
+  ISolid * box1B
+    = fFactory->CreateBox("box1B", 20.* fCm, 10.* fCm, 50.* fCm);
+  IVolume * vol1B
+    = fFactory->CreateVolume("vol1B", box1B, "Scintillator");
+
+  fFactory->CreateMultiplePlacement("vol1B", vol1B, vol1A,
+                                    VGM::kYAxis, 6, 20.* fCm, 0., 0.);
+
+  // Divison 2 with gaps
+  //
+  // Box A (mother)
+  ISolid * box2A
+    = fFactory->CreateBox("box2A", 20.* fCm, 60.* fCm, 50.* fCm);
+  IVolume* vol2A
+    = fFactory->CreateVolume("vol2A", box2A, "Air");
+
+  // Replicated Slice cell
+  ISolid * box2B
+    = fFactory->CreateBox("box2B", 20.* fCm, 6.* fCm, 50.* fCm);
+  IVolume * vol2B
+    = fFactory->CreateVolume("vol2B", box2B, "Scintillator");
+
+  fFactory->CreateMultiplePlacement("vol2B", vol2B, vol2A,
+                                    VGM::kYAxis, 6, 20.* fCm, 0., 4.*cm);
+
+  // Division 3
+  //
+  // Box A (mother)
+  ISolid * box3A
+    = fFactory->CreateBox("box3A", 20.* fCm, 60.* fCm, 50.* fCm);
+  IVolume* vol3A
+    = fFactory->CreateVolume("vol3A", box3A, "Air");
+
+  // Division B in A
+  ISolid * box3B
+    = fFactory->CreateBox("box3B", 20.* fCm, 10.* fCm, 50.* fCm);
+  IVolume * vol3B
+    = fFactory->CreateVolume("vol3B", box3B, "Scintillator");
+
+  fFactory->CreateMultiplePlacement("vol3B", vol3B, vol3A,
+                                    VGM::kYAxis, 6, 20.* fCm, 0., 0.);
+
+  // Placements of A volumes along z axis
+  //
+  fFactory->CreatePlacement("vol1A", 0, vol1A, worldV,
+                            ClhepVGM::Transform(CLHEP::HepRotation(), CLHEP::Hep3Vector(0, 0, -200.*fCm)));
+  fFactory->CreatePlacement("vol2A", 0, vol2A, worldV,
+                            ClhepVGM::Transform(CLHEP::HepRotation(), CLHEP::Hep3Vector(0, 0, 0)));
+  fFactory->CreatePlacement("vol3A", 0, vol3A, worldV,
+                            ClhepVGM::Transform(CLHEP::HepRotation(), CLHEP::Hep3Vector(0, 0, 200.*fCm)));
+
   return (void*) fFactory->Top();
 }
 

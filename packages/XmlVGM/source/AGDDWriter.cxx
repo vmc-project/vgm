@@ -1525,8 +1525,16 @@ void XmlVGM::AGDDWriter::WritePlacement(
     int nReplicas;
     double width;
     double offset;
-    placement.MultiplePlacementData(axis, nReplicas, width, offset);
-	    
+    double halfGap; // not supported
+    placement.MultiplePlacementData(axis, nReplicas, width, offset, halfGap);
+
+    if ( halfGap != 0. ) {
+      std::cerr << "+++ Warning  +++" << std::endl;
+      std::cerr << "  XmlVGM::Writer::WritePlacement: " << std::endl;
+      std::cerr << "  Multiple placement with a half gap is not supported. " << std::endl;
+      std::cerr << "  The half gap parameter will be ignored. " << std::endl;
+    }
+
     // write multiple position
     WriteMultiplePlacement(volumeName, axis, nReplicas, width, offset);
 

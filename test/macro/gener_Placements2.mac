@@ -1,0 +1,33 @@
+# $Id$
+
+# -----------------------------------------------------------------------
+# The macro for the Virtual Geometry Model test
+# Copyright (C) 2007, Ivana Hrivnacova               
+# All rights reserved. 
+#           
+# For the licensing terms see vgm/LICENSE.
+# Contact: ivana@ipno.in2p3.fr
+# -----------------------------------------------------------------------
+
+/random/resetEngineFrom startRun.rdm
+
+/gps/particle geantino
+
+/gps/pos/type Volume
+/gps/pos/shape Para
+/gps/pos/centre 0. 0. 0. cm
+/gps/pos/halfx 2 m
+/gps/pos/halfy 1 m
+/gps/pos/halfz 4 m
+
+/gps/ang/type iso
+
+# test layers in replicated slice
+#
+#/tstGenerator/gunType Gun
+#/gun/particle geantino
+#/gun/position 0 -1 0 m
+#/gun/direction 0 1 0
+#
+#/tracking/verbose 1
+#/run/beamOn 1

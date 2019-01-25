@@ -52,6 +52,7 @@
 #include "Geant4GM/solids/Tubs.h"
 
 #include "G4PVDivisionFactory.hh"
+#include "G4ReplicatedSlice.hh"
 #include "G4ReflectedSolid.hh"
 #include "G4VPhysicalVolume.hh"
 #include "G4LogicalVolume.hh"
@@ -1089,7 +1090,8 @@ Geant4GM::Factory::CreateMultiplePlacement(
                      VGM::Axis axis,
                      int nofItems,
                      double  width,
-                     double  offset)
+                     double  offset,
+                     double  halfGap)
 {
 //
 
@@ -1136,15 +1138,30 @@ Geant4GM::Factory::CreateMultiplePlacement(
        offset + nofItems * width > 2 * CLHEP::pi ) 
     offset = offset - 2 * CLHEP::pi;   
 
-  // Create PV division 
-  // for a general transformation we have to use G4 reflection factory
-  G4PVDivisionFactory::GetInstance();
-  G4ReflectionFactory* g4ReflectionFactory = G4ReflectionFactory::Instance();
 
-  G4PhysicalVolumesPair pvPair
-    = g4ReflectionFactory
-        ->Divide(name, g4LV, g4MotherLV,
-                 Geant4GM::Placement::GetAxis(axis), nofItems, width, offset );
+  // The instance of G4PVDivisionFactory must exist
+  G4PVDivisionFactory::GetInstance();
+
+  // The halfGap is not yet supported by G4ReflectionFactory
+  G4PhysicalVolumesPair pvPair;
+  if ( halfGap != 0. ) {
+    G4VPhysicalVolume* replicatedSlice
+      = new G4ReplicatedSlice(name, g4LV, g4MotherLV,
+              Geant4GM::Placement::GetAxis(axis), nofItems, width, halfGap, offset);
+    pvPair.first = replicatedSlice;
+    pvPair.second = 0;
+  }
+  else {
+    // Create PV division
+    // for a general transformation we have to use G4 reflection factory
+    G4ReflectionFactory* g4ReflectionFactory = G4ReflectionFactory::Instance();
+
+    // G4PhysicalVolumesPair pvPair
+    pvPair
+      = g4ReflectionFactory
+          ->Divide(name, g4LV, g4MotherLV,
+                   Geant4GM::Placement::GetAxis(axis), nofItems, width, offset);
+  }
 
   // Import volumes created via G4 reflection factory
   VGM::IPlacement* placement1 = ImportPVPair(volume, motherVolume, pvPair);
