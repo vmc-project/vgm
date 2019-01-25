@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The Geant4GM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -35,41 +35,41 @@ namespace Geant4GM {
                double density,
                VGM::IElement* element,
                bool isVacuum = false);
-               
+
       Material(const std::string& name,
                double density,
                VGM::IElement* element,
 	       VGM::MaterialState state,
 	       double temperature, double pressure,
                bool isVacuum = false);
-               
-      Material(const std::string& name, 
+
+      Material(const std::string& name,
                double density,
 	       const VGM::ElementVector& elements,
                const VGM::MassFractionVector& fractions);
-               
-      Material(const std::string& name, 
+
+      Material(const std::string& name,
                double density,
 	       const VGM::ElementVector& elements,
                const VGM::MassFractionVector& fractions,
 	       VGM::MaterialState state,
 	       double temperature, double pressure);
-               
-      Material(const std::string& name, 
+
+      Material(const std::string& name,
                double density,
 	       const VGM::ElementVector& elements,
                const VGM::AtomCountVector& atomCounts);
-               
-      Material(const std::string& name, 
+
+      Material(const std::string& name,
                double density,
 	       const VGM::ElementVector& elements,
                const VGM::AtomCountVector& atomCounts,
 	       VGM::MaterialState state,
 	       double temperature, double pressure);
-               
-      Material(G4Material* material);		
+
+      Material(G4Material* material);
       virtual ~Material();
-    
+
       // methods
       virtual std::string Name() const;
 
@@ -78,23 +78,23 @@ namespace Geant4GM {
       virtual double  NuclearInterLength() const;
       virtual VGM::MaterialState  State() const;
       virtual double  Temperature() const;
-      virtual double  Pressure() const;			  
-    
+      virtual double  Pressure() const;
+
       virtual int     NofElements() const;
       virtual VGM::IElement*  Element(int iel) const;
       virtual double  MassFraction(int iel) const;
       virtual double  AtomCount(int iel) const;
 
-    protected:  
-      Material();  
+    protected:
+      Material();
       Material(const Material& rhs);
-     
+
     private:
       void CheckIndex(int iel) const;
       G4State GetG4State(VGM::MaterialState state) const;
       VGM::MaterialState GetVGMState(G4State state) const;
-  
-      G4Material*  fMaterial;  
+
+      G4Material*  fMaterial;
   };
 
 }

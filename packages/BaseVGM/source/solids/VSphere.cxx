@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The BaseVGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -23,14 +23,14 @@ std::ostream& operator<<(std::ostream& out, const VGM::ISphere& sphere)
 {
   const VGM::ISolid& sphereSolid = sphere;
   out << sphereSolid;
-  return out; 
+  return out;
 }
 
 //_____________________________________________________________________________
 BaseVGM::VSphere::VSphere()
   : VGM::ISphere()
 {
-/// Default constructor  
+/// Default constructor
 }
 
 
@@ -42,12 +42,12 @@ BaseVGM::VSphere::~VSphere() {
 //_____________________________________________________________________________
 std::ostream& BaseVGM::VSphere::Put(std::ostream& out) const
 {
-  out << "  rin = "    << InnerRadius() << "mm" 
-      << "  rout = "   << OuterRadius() << "mm" 
+  out << "  rin = "    << InnerRadius() << "mm"
+      << "  rout = "   << OuterRadius() << "mm"
       << "  sphi = "   << StartPhi()    << "deg"
       << "  dphi = "   << DeltaPhi()    << "deg"
       << "  stheta = " << StartTheta()  << "deg"
       << "  dtheta = " << DeltaTheta()  << "deg";
-  return out; 
+  return out;
 }
 

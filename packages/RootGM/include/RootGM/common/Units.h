@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -28,56 +28,56 @@ namespace RootGM {
   {
     public:
       // --> protected
-      // Units();  
+      // Units();
       virtual ~Units();
-  
+
       //
       // static get methods
       //
-      
+
                     /// Return Root length unit in VGM units
 		    ///
-      static double Length(); 
+      static double Length();
 
                     /// Return Root angle unit in VGM units
 		    ///
-      static double Angle(); 
+      static double Angle();
 
                     /// Return Root unit for the given axis in VGM units
 		    ///
-      static double AxisUnit(VGM::Axis axis); 
+      static double AxisUnit(VGM::Axis axis);
 
                     /// Return Root mass density unit in VGM units
 		    ///
-      static double MassDensity(); 
+      static double MassDensity();
 
                     /// Return Root atomic weight unit in VGM units
 		    ///
-      static double AtomicWeight();     
-      
+      static double AtomicWeight();
+
                     /// Return Root temperature unit in VGM unit
 		    ///
-      static double Temperature();		    
-      
+      static double Temperature();
+
                     /// Return Root pressure unit in VGM unit
 		    ///
-      static double Pressure();		    
+      static double Pressure();
 
     protected:
-      Units();      
+      Units();
           // only static data members and methods
 
     private:
-      // static data members  
-      static const double fgkLength; 
-      static const double fgkAngle;  
+      // static data members
+      static const double fgkLength;
+      static const double fgkAngle;
       static const double fgkMassDensity;
       static const double fgkAtomicWeight;
       static const double fgkTemperature;
       static const double fgkPressure;
-  }; 
-  
-}      
+  };
+
+}
 
 // inline methods
 

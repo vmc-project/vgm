@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The VGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -12,7 +12,7 @@
 /// \ingroup VGM_solids
 ///
 /// \class VGM::IEllipsoid
-/// 
+///
 /// The VGM interface to ellipsoid solids.
 ///
 /// \author Ivana Hrivnacova; IPN Orsay
@@ -32,7 +32,7 @@ namespace VGM {
       virtual ~IEllipsoid() {}
 
       // methods
-      
+
       virtual SolidType   Type() const = 0;
       virtual std::string Name() const = 0;
 
@@ -55,7 +55,7 @@ namespace VGM {
       // streaming
       virtual std::ostream& Put(std::ostream& out) const = 0;
   };
-}  
+}
 
 std::ostream& operator << (std::ostream& out, const VGM::IEllipsoid& box);
 

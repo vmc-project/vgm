@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -31,9 +31,9 @@ namespace RootGM {
   class Trap : public BaseVGM::VTrap
   {
     public:
-      Trap(const std::string& name, 
+      Trap(const std::string& name,
            double hz, double theta, double phi,
-           double dy1, double dx1, double dx2, double alpha1, 
+           double dy1, double dx1, double dx2, double alpha1,
            double dy2, double dx3, double dx4, double alpha2);
       Trap(TGeoTrap* trap);
       virtual ~Trap();

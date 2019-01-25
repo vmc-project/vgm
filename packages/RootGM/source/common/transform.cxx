@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -12,7 +12,7 @@
 //
 // RootGM utilities
 // --------------
-// Utility functions 
+// Utility functions
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
@@ -46,7 +46,7 @@ VGM::Transform  RootGM::Transform(const TGeoMatrix& matrix)
   transform[1] = translation[VGM::kDy] * Units::Length();
   transform[2] = translation[VGM::kDz] * Units::Length();
 
-  // Rotation 
+  // Rotation
   //
   const Double_t* rm = matrix.GetRotationMatrix();
 
@@ -58,11 +58,11 @@ VGM::Transform  RootGM::Transform(const TGeoMatrix& matrix)
   yx = rm[3]; yy = rm[4]; yz = rm[5];
   zx = rm[6]; zy = rm[7]; zz = rm[8];
 
-  // Decompose reflectionZ from rotation matrix 
+  // Decompose reflectionZ from rotation matrix
 
   if ( HasReflection(matrix) ) {
     xz = -xz; yz = -yz; zz = -zz;
-  }  
+  }
 
   // Get axis angles
   // (Using E.Tchernaiev formula)
@@ -70,7 +70,7 @@ VGM::Transform  RootGM::Transform(const TGeoMatrix& matrix)
   double angleX;
   double angleY;
   double angleZ;
-  double cosb = sqrt(xx*xx + yx*yx); 
+  double cosb = sqrt(xx*xx + yx*yx);
   if (cosb > 16*FLT_EPSILON) {
     angleX = atan2( zy, zz);
     angleY = atan2(-zx, cosb);
@@ -86,12 +86,12 @@ VGM::Transform  RootGM::Transform(const TGeoMatrix& matrix)
   transform[VGM::kAngleY] = angleY * TMath::RadToDeg() * Units::Angle();
   transform[VGM::kAngleZ] = angleZ * TMath::RadToDeg() * Units::Angle();
 
-  // Reflection 
+  // Reflection
   //
   transform[VGM::kReflZ] = 0.;
   if (matrix.IsReflection()) transform[VGM::kReflZ] = 1.;
-    
-  
+
+
   return transform;
 }
 
@@ -113,7 +113,7 @@ bool RootGM::HasReflection(const TGeoMatrix& matrix)
 {
 //
 /*
-  // Decompose general matrix 
+  // Decompose general matrix
   const Double_t* rm = matrix.GetRotation()
 
   // Matrix
@@ -132,10 +132,10 @@ bool RootGM::HasReflection(const TGeoMatrix& matrix)
   sx = sm[0]; sy = sm[1]; sz = sm[2];
 
   // If reflection, apply it to scaleZ
-  if (xx*(yy*zz-yz*zy) - xy*(yx*zz-yz*zx) + xz*(yx*zy-yy*zx) < 0) 
+  if (xx*(yy*zz-yz*zy) - xy*(yx*zz-yz*zx) + xz*(yx*zy-yy*zx) < 0)
     return true;
   else
-    return false  
+    return false
 */
 
   return matrix.IsReflection();
@@ -153,8 +153,8 @@ TGeoMatrix* RootGM::CreateTransform(const VGM::Transform& transform)
     std::cerr << "RootGM::CreateTransform: " << std::endl;
     std::cerr << "Wrong transform vector size. " << std::endl;
     exit(1);
-  }  
-    
+  }
+
   TGeoRotation* rootRotation = new TGeoRotation();
   rootRotation->RotateX( transform[VGM::kAngleX] / Units::Angle() );
   rootRotation->RotateY( transform[VGM::kAngleY] / Units::Angle() );
@@ -165,7 +165,7 @@ TGeoMatrix* RootGM::CreateTransform(const VGM::Transform& transform)
     const Double_t* matrix = rootRotation->GetRotationMatrix();
     Double_t matrix2[9];
     for (Int_t i=0; i<9; i++) matrix2[i] = matrix[i];
-    
+
     // apply reflectionZ to rotation matrix
     matrix2[2] = - matrix2[2];  //xz
     matrix2[5] = - matrix2[5];  //yz
@@ -174,7 +174,7 @@ TGeoMatrix* RootGM::CreateTransform(const VGM::Transform& transform)
     // reset matrix
     rootRotation->SetMatrix(matrix2);
  }
- 
+
  return new TGeoCombiTrans(transform[VGM::kDx] / Units::Length(),
                            transform[VGM::kDy] / Units::Length(),
                            transform[VGM::kDz] / Units::Length(),
@@ -184,8 +184,8 @@ TGeoMatrix* RootGM::CreateTransform(const VGM::Transform& transform)
 //_____________________________________________________________________________
 TGeoScale*  RootGM::CreateScale(const VGM::Transform& transform)
 {
-  return new TGeoScale(transform[VGM::kDx], 
-                       transform[VGM::kDy], 
+  return new TGeoScale(transform[VGM::kDx],
+                       transform[VGM::kDy],
                        transform[VGM::kDz]);
 }
 
@@ -193,7 +193,7 @@ TGeoScale*  RootGM::CreateScale(const VGM::Transform& transform)
 bool RootGM::HasReflection(const VGM::Transform& transform)
 {
   return BaseVGM::Round(transform[VGM::kReflZ]) == 1.;
-}  
+}
 
 //
 // Root special
@@ -204,13 +204,13 @@ TGeoHMatrix  RootGM::Displacement(TGeoShape* shape)
 {
   TGeoBBox* box = dynamic_cast<TGeoBBox*>(shape);
   if ( ! box ) return TGeoHMatrix();
-  
+
   const Double_t* origin = box->GetOrigin();
   if ( ! origin ) return TGeoHMatrix();
-  
+
   return  TGeoHMatrix(TGeoTranslation(origin[0], origin[1], origin[2]));;
-}  
-  
+}
+
 
 
 
@@ -242,7 +242,7 @@ TGeoHMatrix  RootGM::Displacement(TGeoShape* shape)
  * "from" into another vector called "to".
  * Input : from[3], to[3] which both must be *normalized* non-zero vectors
  * Output: mtx[3][3] -- a 3x3 matrix in colum-major form
- * Authors: Tomas Möller, John Hughes
+ * Authors: Tomas MÃ¶ller, John Hughes
  *          "Efficiently Building a Matrix to Rotate One Vector to Another"
  *          Journal of Graphics Tools, 4(4):1-4, 1999
  */

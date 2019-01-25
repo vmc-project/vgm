@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The BaseVGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -20,7 +20,7 @@
 
 #include "BaseVGM/materials/VMedium.h"
 
-const int BaseVGM::VMedium::fgkParamSize = 20;  
+const int BaseVGM::VMedium::fgkParamSize = 20;
 
 //_____________________________________________________________________________
 std::ostream& operator<<(std::ostream& out, const VGM::IMedium& medium)
@@ -28,15 +28,15 @@ std::ostream& operator<<(std::ostream& out, const VGM::IMedium& medium)
   out << "Medium: " << "\"" << medium.Name() << "\""
       << "  material " << medium.Name() << " g/cm3"
       << "  parameters:";
-      
-  for (int i=0; i<medium.NofParameters(); i++) 
+
+  for (int i=0; i<medium.NofParameters(); i++)
     out << "  " << medium.Parameter(i);
-    
-  return out;    
+
+  return out;
 }
 
 //_____________________________________________________________________________
-BaseVGM::VMedium::VMedium(VGM::IMaterial* material) 
+BaseVGM::VMedium::VMedium(VGM::IMaterial* material)
   : VGM::IMedium(),
     fMaterial(material)
 {
@@ -45,14 +45,14 @@ BaseVGM::VMedium::VMedium(VGM::IMaterial* material)
 
 
 //_____________________________________________________________________________
-BaseVGM::VMedium::VMedium() 
-  : VGM::IMedium() 
+BaseVGM::VMedium::VMedium()
+  : VGM::IMedium()
 {
 /// Protected default constructor
 }
 
 //_____________________________________________________________________________
-BaseVGM::VMedium::VMedium(const VMedium& rhs) 
+BaseVGM::VMedium::VMedium(const VMedium& rhs)
   : VGM::IMedium(rhs)
 {
 /// Protected copy constructor
@@ -64,16 +64,16 @@ BaseVGM::VMedium::~VMedium() {
 }
 
 //_____________________________________________________________________________
-VGM::IMaterial* 
-BaseVGM::VMedium::Material() const 
+VGM::IMaterial*
+BaseVGM::VMedium::Material() const
 {
 //
   return fMaterial;
-}  
+}
 
 //_____________________________________________________________________________
 int  BaseVGM::VMedium::NofParameters() const
 {
   return fgkParamSize;
-}  
+}
 

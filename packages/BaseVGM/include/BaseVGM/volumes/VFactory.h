@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The BaseVGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -15,7 +15,7 @@
 ///
 /// The abstract base class to geometry factory.
 /// It owns the solids and volumes stores and
-/// implements the export to other factory. 
+/// implements the export to other factory.
 ///
 /// \author Ivana Hrivnacova; IPN Orsay
 
@@ -41,28 +41,28 @@ namespace BaseVGM {
   class VFactory : public virtual VGM::IFactory
   {
     public:
-      VFactory(const std::string& name, 
+      VFactory(const std::string& name,
                 VGM::IMaterialFactory* materialFactory);
       virtual ~VFactory();
-    
+
       //
       // methods
       //
-      
+
       virtual std::string Name() const;
-      virtual const VGM::SolidStore&   Solids() const;			       
-      virtual const VGM::VolumeStore&  Volumes() const;			       
+      virtual const VGM::SolidStore&   Solids() const;
+      virtual const VGM::VolumeStore&  Volumes() const;
       virtual VGM::IMaterialFactory*   MaterialFactory() const;
 
       virtual bool  Export(VGM::IFactory* factory) const;
 
-      virtual void  PrintSolids() const;			       
-      virtual void  PrintVolumes() const;	
+      virtual void  PrintSolids() const;
+      virtual void  PrintVolumes() const;
 
-      virtual void  SetDebug (int debug);			       
+      virtual void  SetDebug (int debug);
       virtual int   Debug() const;
 
-      virtual void  SetIgnore (bool ignore);		       
+      virtual void  SetIgnore (bool ignore);
       virtual bool  Ignore() const;
 
       virtual void  SetBestMatch (bool value);
@@ -72,10 +72,10 @@ namespace BaseVGM {
       VFactory();
       VFactory(const VFactory& rhs);
 
-      virtual void  SetSingleMode (bool singleMode);           
+      virtual void  SetSingleMode (bool singleMode);
       virtual bool  SingleMode() const;
 
-      virtual VGM::SolidStore&   SolidStore();			       
+      virtual VGM::SolidStore&   SolidStore();
       virtual VGM::VolumeStore&  VolumeStore();
 
     private:
@@ -84,7 +84,7 @@ namespace BaseVGM {
 
       // methods
       VGM::ISolid*     ExportSolid(
-                             VGM::ISolid* solid, 
+                             VGM::ISolid* solid,
                              VGM::IFactory* factory) const;
       VGM::ISolid*     ExportBooleanSolid(
                              VGM::IBooleanSolid* solid,
@@ -98,17 +98,17 @@ namespace BaseVGM {
       VolumeMap*       ExportVolumeStore(VGM::IFactory* factory) const;
 
       VGM::IPlacement* ExportSimplePlacement(
-                             VGM::IPlacement* placement, 
-                             VGM::IFactory* factory, 
+                             VGM::IPlacement* placement,
+                             VGM::IFactory* factory,
                              VolumeMap* volumeMap) const;
       VGM::IPlacement* ExportMultiplePlacement(
-                             VGM::IPlacement* placement, 
-                             VGM::IFactory* factory, 
+                             VGM::IPlacement* placement,
+                             VGM::IFactory* factory,
                              VolumeMap* volumeMap) const;
       void             ExportPlacements(
-                             VGM::IFactory* factory, 
+                             VGM::IFactory* factory,
                              VolumeMap* map) const;
-  
+
       VGM::Transform   Identity() const;
 
       // data members
@@ -121,46 +121,46 @@ namespace BaseVGM {
       VGM::VolumeStore        fVolumes;
       VGM::IMaterialFactory*  fMaterialFactory;
   };
-  
-}  
+
+}
 
 // inline functions
 
-inline std::string 
+inline std::string
 BaseVGM::VFactory::Name() const
 { return fName; }
 
-inline const VGM::SolidStore& 
+inline const VGM::SolidStore&
 BaseVGM::VFactory::Solids() const
 { return fSolids; }
-			       
-inline const VGM::VolumeStore& 
+
+inline const VGM::VolumeStore&
 BaseVGM::VFactory::Volumes() const
 { return fVolumes; }
 
-inline VGM::IMaterialFactory*  
+inline VGM::IMaterialFactory*
 BaseVGM::VFactory::MaterialFactory() const
 { return fMaterialFactory; }
 
-inline VGM::SolidStore& 
+inline VGM::SolidStore&
 BaseVGM::VFactory::SolidStore()
-{ 
+{
   /// Return the store of solids (non const)
-  return fSolids; 
+  return fSolids;
 }
-			       
-inline VGM::VolumeStore& 
+
+inline VGM::VolumeStore&
 BaseVGM::VFactory::VolumeStore()
-{ 
+{
   /// Return the store of volumes (non const)
   return fVolumes;
 }
 
 inline int BaseVGM::VFactory::Debug() const
 { return fDebug; }
- 
+
 inline void BaseVGM::VFactory::SetIgnore (bool ignore)
-{ fIgnore = ignore; }			       
+{ fIgnore = ignore; }
 
 inline bool BaseVGM::VFactory::Ignore() const
 { return fIgnore; }

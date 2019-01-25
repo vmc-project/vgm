@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The test program of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -32,12 +32,12 @@ class TstPrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
     enum GunType {
       kGun,
       kGPS
-    };  
+    };
 
   public:
     TstPrimaryGeneratorAction();
     virtual ~TstPrimaryGeneratorAction();
-    
+
     // set method
     void SetGunType(GunType gunType);
 

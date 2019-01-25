@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -24,17 +24,17 @@
 #include "TGeoHype.h"
 
 //_____________________________________________________________________________
-RootGM::Hype::Hype(const std::string& name, 
-                   double r1, double r2, double stereo1, double stereo2, 
+RootGM::Hype::Hype(const std::string& name,
+                   double r1, double r2, double stereo1, double stereo2,
                    double hz)
   : VGM::ISolid(),
     VGM::IHype(),
     BaseVGM::VHype(),
-    fHype(new TGeoHype(name.data(), 
-                       r1      / RootGM::Units::Length(), 
-                       stereo1 / RootGM::Units::Angle(), 
-		       r2      / RootGM::Units::Length(), 
-                       stereo2 / RootGM::Units::Angle(), 
+    fHype(new TGeoHype(name.data(),
+                       r1      / RootGM::Units::Length(),
+                       stereo1 / RootGM::Units::Angle(),
+		       r2      / RootGM::Units::Length(),
+                       stereo2 / RootGM::Units::Angle(),
 		       hz      / RootGM::Units::Length()))
 {
 /// Standard constructor to define hyperboloid from parameters
@@ -43,8 +43,8 @@ RootGM::Hype::Hype(const std::string& name,
 /// \param stereo1 stereo angle for the inner hyperbolic surface in deg
 /// \param stereo2 stereo angle for the outer hyperbolic surface in deg
 /// \param hz half-length along the z axis in mm
-  			 
-  RootGM::SolidMap::Instance()->AddSolid(this, fHype); 
+
+  RootGM::SolidMap::Instance()->AddSolid(this, fHype);
 }
 
 
@@ -54,26 +54,26 @@ RootGM::Hype::Hype(TGeoHype* hype)
     VGM::IHype(),
     BaseVGM::VHype(),
     fHype(hype)
-{    
+{
 /// Standard constructor to define hyperboloid from Root object
 
-  RootGM::SolidMap::Instance()->AddSolid(this, fHype); 
+  RootGM::SolidMap::Instance()->AddSolid(this, fHype);
 }
 
 //_____________________________________________________________________________
-RootGM::Hype::Hype() 
+RootGM::Hype::Hype()
   : VGM::ISolid(),
     VGM::IHype(),
-    BaseVGM::VHype() 
+    BaseVGM::VHype()
 {
 /// Protected default constructor
 }
 
 //_____________________________________________________________________________
-RootGM::Hype::Hype(const Hype& rhs) 
+RootGM::Hype::Hype(const Hype& rhs)
   : VGM::ISolid(rhs),
     VGM::IHype(rhs),
-    BaseVGM::VHype(rhs) 
+    BaseVGM::VHype(rhs)
 {
 /// Protected copy constructor
 }
@@ -81,40 +81,40 @@ RootGM::Hype::Hype(const Hype& rhs)
 //_____________________________________________________________________________
 RootGM::Hype::~Hype() {
 //
-}    
+}
 
 //_____________________________________________________________________________
 std::string RootGM::Hype::Name() const
 {
   return fHype->GetName();
-}  
-  
+}
+
 //_____________________________________________________________________________
 double RootGM::Hype::InnerRadius() const
 {
   return fHype->GetRmin() * RootGM::Units::Length();
-}  
+}
 
 //_____________________________________________________________________________
 double RootGM::Hype::InnerStereoAngle() const
 {
   return fHype->GetStIn() * RootGM::Units::Angle();
-}  
+}
 
 //_____________________________________________________________________________
 double RootGM::Hype::OuterRadius() const
 {
   return fHype->GetRmax() * RootGM::Units::Length();
-}  
+}
 
 //_____________________________________________________________________________
 double RootGM::Hype::OuterStereoAngle() const
 {
   return fHype->GetStOut() * RootGM::Units::Angle();
-}  
+}
 
 //_____________________________________________________________________________
 double RootGM::Hype::ZHalfLength() const
 {
   return fHype->GetDz() * RootGM::Units::Length();
-}  
+}

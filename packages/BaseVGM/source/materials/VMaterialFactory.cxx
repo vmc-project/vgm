@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The BaseVGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -13,8 +13,8 @@
 // Class VMaterialFactory
 // ---------------
 // The abstract base class to material factory.
-// It owns the material stores and implements the export 
-// to other factory. 
+// It owns the material stores and implements the export
+// to other factory.
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
@@ -41,43 +41,43 @@ BaseVGM::VMaterialFactory::VMaterialFactory(const std::string& name)
 }
 
 //_____________________________________________________________________________
-BaseVGM::VMaterialFactory::VMaterialFactory() 
-  : VGM::IMaterialFactory() 
+BaseVGM::VMaterialFactory::VMaterialFactory()
+  : VGM::IMaterialFactory()
 {
 /// Protected default constructor
 }
 
 //_____________________________________________________________________________
-BaseVGM::VMaterialFactory::VMaterialFactory(const VMaterialFactory& rhs) 
+BaseVGM::VMaterialFactory::VMaterialFactory(const VMaterialFactory& rhs)
   : VGM::IMaterialFactory(rhs)
 {
 /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
-BaseVGM::VMaterialFactory::~VMaterialFactory() 
+BaseVGM::VMaterialFactory::~VMaterialFactory()
 {
 // Deletes all objects created via material factory
 
   // Delete isotopes
   for (unsigned int i=0; i<fIsotopes.size(); i++) {
     delete fIsotopes[i];
-  }  
+  }
 
   // Delete elements
   for (unsigned int i=0; i<fElements.size(); i++) {
     delete fElements[i];
-  }  
+  }
 
   // Delete materials
   for (unsigned int j=0; j<fMaterials.size(); j++) {
     delete fMaterials[j];
-  }  
+  }
 
   // Delete media
   for (unsigned int k=0; k<fMedia.size(); k++) {
     delete fMedia[k];
-  }  
+  }
 }
 
 //
@@ -85,9 +85,9 @@ BaseVGM::VMaterialFactory::~VMaterialFactory()
 //
 
 //_____________________________________________________________________________
-VGM::IIsotope* 
+VGM::IIsotope*
 BaseVGM::VMaterialFactory::ExportIsotope(
-                                 VGM::IIsotope* isotope, 
+                                 VGM::IIsotope* isotope,
                                  VGM::IMaterialFactory* factory) const
 {
 // Exports specified material to given factory
@@ -95,12 +95,12 @@ BaseVGM::VMaterialFactory::ExportIsotope(
 
   if (Debug()>0) {
     BaseVGM::DebugInfo();
-    std::cout << "Exporting isotope: "; 
+    std::cout << "Exporting isotope: ";
     if (Debug()>1) std::cout << isotope;
     std::cout << std::endl;
     BaseVGM::DebugInfo();
     std::cout << *isotope << std::endl;
-  }	      
+  }
 
   VGM::IIsotope* newIsotope
     =  factory->CreateIsotope(
@@ -108,13 +108,13 @@ BaseVGM::VMaterialFactory::ExportIsotope(
                         isotope->Z(),
                         isotope->N(),
                         isotope->A());
-  return newIsotope;									
-}  
+  return newIsotope;
+}
 
 //_____________________________________________________________________________
-VGM::IElement* 
+VGM::IElement*
 BaseVGM::VMaterialFactory::ExportElement(
-                                 VGM::IElement* element, 
+                                 VGM::IElement* element,
                                  VGM::IMaterialFactory* factory,
 			         IsotopeMap* isotopeMap) const
 {
@@ -123,12 +123,12 @@ BaseVGM::VMaterialFactory::ExportElement(
 
   if (Debug()>0) {
     BaseVGM::DebugInfo();
-    std::cout << "Exporting element: "; 
+    std::cout << "Exporting element: ";
     if (Debug()>1) std::cout << element;
     std::cout << std::endl;
     BaseVGM::DebugInfo();
     std::cout << *element << std::endl;
-  }	      
+  }
 
   VGM::IElement* newElement;
   if ( ! element->NofIsotopes() ) {
@@ -150,22 +150,22 @@ BaseVGM::VMaterialFactory::ExportElement(
 
       isotopes.push_back(newIsotope);
       relAbundances.push_back(relAbundance);
-    }  
+    }
     newElement
       =  factory->CreateElement(
                           element->Name(),
                           element->Symbol(),
                           isotopes,
                           relAbundances);
-  }                          
-                            
-  return newElement;									
-}  
+  }
+
+  return newElement;
+}
 
 //_____________________________________________________________________________
-VGM::IMaterial* 
+VGM::IMaterial*
 BaseVGM::VMaterialFactory::ExportMaterial(
-                                  VGM::IMaterial* material, 
+                                  VGM::IMaterial* material,
                                   VGM::IMaterialFactory* factory,
 			          ElementMap* elementMap) const
 {
@@ -174,16 +174,16 @@ BaseVGM::VMaterialFactory::ExportMaterial(
 
   if (Debug()>0) {
     BaseVGM::DebugInfo();
-    std::cout << "Exporting material: "; 
+    std::cout << "Exporting material: ";
     if (Debug()>1) std::cout << material;
     std::cout << std::endl;
     BaseVGM::DebugInfo();
     std::cout << *material << std::endl;
-  }	      
+  }
 
   VGM::IMaterial* newMaterial;
   int nofElements = material->NofElements();
-  if (nofElements == 1) { 
+  if (nofElements == 1) {
     VGM::IElement* newElement = (*elementMap)[material->Element(0)];
     newMaterial
       = factory->CreateMaterial(
@@ -195,8 +195,8 @@ BaseVGM::VMaterialFactory::ExportMaterial(
 			material->State(),
 			material->Temperature(),
 			material->Pressure());
-  }			
-  else {  
+  }
+  else {
     // Fill elements vector
     VGM::ElementVector elements;
     VGM::MassFractionVector massFractions;
@@ -207,7 +207,7 @@ BaseVGM::VMaterialFactory::ExportMaterial(
 
       elements.push_back(newElement);
       massFractions.push_back(massFraction);
-    }  
+    }
 
     newMaterial
       = factory->CreateMaterial(
@@ -218,15 +218,15 @@ BaseVGM::VMaterialFactory::ExportMaterial(
 			material->State(),
 			material->Temperature(),
 			material->Pressure());
-  }			
+  }
 
-  return newMaterial;									
-}  
+  return newMaterial;
+}
 
 //_____________________________________________________________________________
-VGM::IMedium* 
+VGM::IMedium*
 BaseVGM::VMaterialFactory::ExportMedium(
-                                VGM::IMedium* medium, 
+                                VGM::IMedium* medium,
                                 VGM::IMaterialFactory* factory,
 				MaterialMap* materialMap) const
 {
@@ -236,19 +236,19 @@ BaseVGM::VMaterialFactory::ExportMedium(
   if (Debug()>0) {
     BaseVGM::DebugInfo();
     std::cout << "Exporting medium: ";
-    if (Debug()>1)  std::cout << medium; 
+    if (Debug()>1)  std::cout << medium;
     std::cout  << std::endl;
     BaseVGM::DebugInfo();
     std::cout << *medium << std::endl;
-  }	      
+  }
 
   VGM::IMaterial* material = medium->Material();
-  VGM::IMaterial* newMaterial 
-    = (*materialMap)[material]; 
+  VGM::IMaterial* newMaterial
+    = (*materialMap)[material];
 
-  int nofParameters  = medium->NofParameters();   
+  int nofParameters  = medium->NofParameters();
   double* parameters = new double[nofParameters];
-  for (int i=0; i<nofParameters; i++) 
+  for (int i=0; i<nofParameters; i++)
     parameters[i] = medium->Parameter(i);
 
   VGM::IMedium* newMedium
@@ -259,13 +259,13 @@ BaseVGM::VMaterialFactory::ExportMedium(
 
   delete [] parameters;
 
-  return  newMedium; 												
-}  
+  return  newMedium;
+}
 
 //_____________________________________________________________________________
-VGM::IMedium* 
+VGM::IMedium*
 BaseVGM::VMaterialFactory::GenerateMedium(
-                                  VGM::IMaterial* material, 
+                                  VGM::IMaterial* material,
                                   int mediumId,
                                   VGM::IMaterialFactory* factory,
 				  MaterialMap* materialMap) const
@@ -276,15 +276,15 @@ BaseVGM::VMaterialFactory::GenerateMedium(
   if (Debug()>0) {
     BaseVGM::DebugInfo();
     std::cout << "Generation medium for material: ";
-    if (Debug()>1)  std::cout << material; 
+    if (Debug()>1)  std::cout << material;
     std::cout  << std::endl;
     BaseVGM::DebugInfo();
     std::cout << *material << std::endl;
-  }	      
+  }
 
-  VGM::IMaterial* newMaterial = (*materialMap)[material]; 
+  VGM::IMaterial* newMaterial = (*materialMap)[material];
 
-  int nofParameters  = 0;   
+  int nofParameters  = 0;
   double* parameters = new double[nofParameters];
 
   VGM::IMedium* newMedium
@@ -295,11 +295,11 @@ BaseVGM::VMaterialFactory::GenerateMedium(
 
   delete [] parameters;
 
-  return  newMedium; 												
-}  
+  return  newMedium;
+}
 
 //_____________________________________________________________________________
-BaseVGM::VMaterialFactory::IsotopeMap*  
+BaseVGM::VMaterialFactory::IsotopeMap*
 BaseVGM::VMaterialFactory::ExportIsotopes(VGM::IMaterialFactory* factory) const
 {
 // Export the whole isotope store to the given factory.
@@ -308,19 +308,19 @@ BaseVGM::VMaterialFactory::ExportIsotopes(VGM::IMaterialFactory* factory) const
   IsotopeMap* isotopeMap = new IsotopeMap();
 
   for (unsigned int i=0; i<Isotopes().size(); i++) {
-  
+
     VGM::IIsotope* isotope = Isotopes()[i];
     VGM::IIsotope* newIsotope = ExportIsotope(isotope, factory);
-			     
+
     // Map new isotope to old isotope
-    (*isotopeMap)[isotope] = newIsotope;	
-  } 
-  
+    (*isotopeMap)[isotope] = newIsotope;
+  }
+
   return isotopeMap;
-}  
+}
 
 //_____________________________________________________________________________
-BaseVGM::VMaterialFactory::ElementMap*  
+BaseVGM::VMaterialFactory::ElementMap*
 BaseVGM::VMaterialFactory::ExportElements(VGM::IMaterialFactory* factory,
                                           IsotopeMap* isotopeMap) const
 {
@@ -330,19 +330,19 @@ BaseVGM::VMaterialFactory::ExportElements(VGM::IMaterialFactory* factory,
   ElementMap* elementMap = new ElementMap();
 
   for (unsigned int i=0; i<Elements().size(); i++) {
-  
+
     VGM::IElement* element = Elements()[i];
     VGM::IElement* newElement = ExportElement(element, factory, isotopeMap);
-			     
+
     // Map new element to old element
-    (*elementMap)[element] = newElement;			     
-  } 
-  
+    (*elementMap)[element] = newElement;
+  }
+
   return elementMap;
-}  
+}
 
 //_____________________________________________________________________________
-BaseVGM::VMaterialFactory::MaterialMap*  
+BaseVGM::VMaterialFactory::MaterialMap*
 BaseVGM::VMaterialFactory::ExportMaterials(
                                    VGM::IMaterialFactory* factory,
                                    ElementMap* elementMap) const
@@ -353,16 +353,16 @@ BaseVGM::VMaterialFactory::ExportMaterials(
   MaterialMap* materialMap = new MaterialMap();
 
   for (unsigned int i=0; i<Materials().size(); i++) {
-  
+
     VGM::IMaterial* material = Materials()[i];
     VGM::IMaterial* newMaterial = ExportMaterial(material, factory, elementMap);
-			     
+
     // Map new material to old material
-    (*materialMap)[material] = newMaterial;			     
-  } 
-  
+    (*materialMap)[material] = newMaterial;
+  }
+
   return materialMap;
-}  
+}
 
 //_____________________________________________________________________________
 void BaseVGM::VMaterialFactory::ExportMedia(
@@ -374,11 +374,11 @@ void BaseVGM::VMaterialFactory::ExportMedia(
 
   for (unsigned int i=0; i<Media().size(); i++) {
     VGM::IMedium* medium = Media()[i];
-    ExportMedium(medium, factory, materialMap); 
-  } 
-  
+    ExportMedium(medium, factory, materialMap);
+  }
+
   delete materialMap;
-}  
+}
 
 //_____________________________________________________________________________
 void BaseVGM::VMaterialFactory::GenerateMedia(
@@ -386,23 +386,23 @@ void BaseVGM::VMaterialFactory::GenerateMedia(
                                       MaterialMap* materialMap) const
 {
 // Generate media from materials.
-// (Use this fuinction if the given factory has not defined media.) 
+// (Use this fuinction if the given factory has not defined media.)
 // ---
 
   for (unsigned int i=0; i<Materials().size(); i++) {
     VGM::IMaterial* material = Materials()[i];
-    GenerateMedium(material, i, factory, materialMap); 
-  } 
-  
+    GenerateMedium(material, i, factory, materialMap);
+  }
+
   delete materialMap;
-}  
+}
 
 //
 // public functions
 //
 
 //_____________________________________________________________________________
-const VGM::IIsotope* 
+const VGM::IIsotope*
 BaseVGM::VMaterialFactory::Isotope(const std::string& name) const
 {
 /// Finds the VGM isotope specified by name;
@@ -412,12 +412,12 @@ BaseVGM::VMaterialFactory::Isotope(const std::string& name) const
     const VGM::IIsotope* isotope = Isotopes()[i];
     if (isotope->Name() == name) return isotope;
   }
-  
+
   return 0;
-}   
-	
+}
+
 //_____________________________________________________________________________
-const VGM::IElement* 
+const VGM::IElement*
 BaseVGM::VMaterialFactory::Element(const std::string& name) const
 {
 /// Finds the VGM element specified by name;
@@ -427,12 +427,12 @@ BaseVGM::VMaterialFactory::Element(const std::string& name) const
     const VGM::IElement* element = Elements()[i];
     if (element->Name() == name) return element;
   }
-  
+
   return 0;
-}   
-	
+}
+
 //_____________________________________________________________________________
-const VGM::IMaterial* 
+const VGM::IMaterial*
 BaseVGM::VMaterialFactory::Material(const std::string& name) const
 {
 /// Finds the VGM material specified by name;
@@ -442,14 +442,14 @@ BaseVGM::VMaterialFactory::Material(const std::string& name) const
     const VGM::IMaterial* material = Materials()[i];
     if (material->Name() == name) return material;
   }
-  
+
   return 0;
-}   
-	
+}
+
 //_____________________________________________________________________________
-const VGM::IMedium* 
+const VGM::IMedium*
 BaseVGM::VMaterialFactory::Medium(const std::string& name) const
-{	
+{
 /// Finds the VGM medium specified by name;
 /// returns 0 if medium is not found.
 
@@ -457,25 +457,25 @@ BaseVGM::VMaterialFactory::Medium(const std::string& name) const
     const VGM::IMedium* medium = Media()[i];
     if (medium->Name() == name) return medium;
   }
-  
+
   return 0;
-}   
+}
 
 //_____________________________________________________________________________
 bool BaseVGM::VMaterialFactory::Export(VGM::IMaterialFactory* factory) const
 {
 /// Export the whole material and media store to the given factory.
 
-  IsotopeMap* isotopeMap = ExportIsotopes(factory); 
-  ElementMap* elementMap = ExportElements(factory, isotopeMap); 
+  IsotopeMap* isotopeMap = ExportIsotopes(factory);
+  ElementMap* elementMap = ExportElements(factory, isotopeMap);
   MaterialMap* materialMap = ExportMaterials(factory, elementMap);
   if  (Media().size()>0)
     ExportMedia(factory, materialMap);
-  else     
+  else
     GenerateMedia(factory, materialMap);
 
   return true;
-}  
+}
 
 //_____________________________________________________________________________
 void  BaseVGM::VMaterialFactory::PrintIsotopes() const
@@ -485,10 +485,10 @@ void  BaseVGM::VMaterialFactory::PrintIsotopes() const
   const VGM::IsotopeStore& isotopes = Isotopes();
 
   for (unsigned i=0; i<isotopes.size(); i++) {
-  
+
     std::cout << i << "th isotope: " << std::endl;
     std::cout << *isotopes[i] << std::endl;
-  }   
+  }
 }
 
 //_____________________________________________________________________________
@@ -499,10 +499,10 @@ void  BaseVGM::VMaterialFactory::PrintElements() const
   const VGM::ElementStore& elements = Elements();
 
   for (unsigned i=0; i<elements.size(); i++) {
-  
+
     std::cout << i << "th element: " << std::endl;
     std::cout << *elements[i] << std::endl;
-  }   
+  }
 }
 
 //_____________________________________________________________________________
@@ -513,10 +513,10 @@ void  BaseVGM::VMaterialFactory::PrintMaterials() const
   const VGM::MaterialStore& materials = Materials();
 
   for (unsigned i=0; i<materials.size(); i++) {
-  
+
     std::cout << i << "th material: " << std::endl;
     std::cout << *materials[i] << std::endl;
-  }   
+  }
 }
 
 //_____________________________________________________________________________
@@ -527,8 +527,8 @@ void  BaseVGM::VMaterialFactory::PrintMedia() const
   const VGM::MediumStore& media = Media();
 
   for (unsigned i=0; i<media.size(); i++) {
-  
+
     std::cout << i << "th medium: " << std::endl;
     std::cout << *media[i] << std::endl;
-  }   
+  }
 }

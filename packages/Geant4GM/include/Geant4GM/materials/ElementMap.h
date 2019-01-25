@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The Geant4GM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -26,7 +26,7 @@ class G4Element;
 
 namespace VGM {
   class IElement;
-}  
+}
 
 namespace Geant4GM {
 
@@ -46,12 +46,12 @@ namespace Geant4GM {
       virtual ~ElementMap();
 
       // static access methods
-      static ElementMap* Instance(); 
+      static ElementMap* Instance();
 
       // methods
-      void  AddElement(VGM::IElement*, G4Element*); 
+      void  AddElement(VGM::IElement*, G4Element*);
       void  Print() const;
-  
+
       // get methods
       G4Element*     GetElement(VGM::IElement* iElement) const;
       VGM::IElement* GetElement(G4Element* g4Element) const;
@@ -62,7 +62,7 @@ namespace Geant4GM {
     private:
       // static data members
       static ElementMap*  fgInstance;
-  
+
       // data members
       G4ElementMap   fG4Elements;
       VgmElementMap  fVgmElements;

@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The BaseVGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -27,7 +27,7 @@
 
 namespace VGM {
   class IMaterial;
-}  
+}
 
 namespace BaseVGM {
 
@@ -36,21 +36,21 @@ namespace BaseVGM {
     public:
       VMedium(VGM::IMaterial* material);
       virtual ~VMedium();
-    
+
       // methods
       virtual VGM::IMaterial* Material() const ;
       virtual int  NofParameters() const;
 
-    protected:   
+    protected:
       VMedium();
       VMedium(const VMedium& rhs);
-    
+
       // data members
-      static const int fgkParamSize;  
-          
+      static const int fgkParamSize;
+
       VGM::IMaterial* fMaterial;
   };
-  
-}  
+
+}
 
 #endif //BASE_VGM_V_MEDIUM_H

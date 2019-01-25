@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The BaseVGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -25,14 +25,14 @@ std::ostream& operator<<(std::ostream& out, const VGM::ITessellatedSolid& xtru)
 {
   const VGM::ISolid& xtruSolid = xtru;
   out << xtruSolid;
-  return out; 
+  return out;
 }
 
 //_____________________________________________________________________________
 BaseVGM::VTessellatedSolid::VTessellatedSolid()
-  : VGM::ITessellatedSolid() 
+  : VGM::ITessellatedSolid()
 {
-/// Default constructor  
+/// Default constructor
 }
 
 
@@ -49,15 +49,15 @@ std::ostream& BaseVGM::VTessellatedSolid::Put(std::ostream& out) const
   for (int i=0; i< NofFacets(); i++ ) {
     out << "Facet #" << i << ": " <<  std::endl;
 
-    out << "   " << NofVertices(i) << " vertices:" << std::endl;  
+    out << "   " << NofVertices(i) << " vertices:" << std::endl;
     for (int j=0; j< NofVertices(i); j++ ) {
-      out << "     (" 
-          << Vertex(i, j)[VGM::kDx]  << ", " 
-          << Vertex(i, j)[VGM::kDy]  << ", " 
-          << Vertex(i, j)[VGM::kDz]  << ")";  
-      out << " mm" << std::endl;               
-    }      
+      out << "     ("
+          << Vertex(i, j)[VGM::kDx]  << ", "
+          << Vertex(i, j)[VGM::kDy]  << ", "
+          << Vertex(i, j)[VGM::kDz]  << ")";
+      out << " mm" << std::endl;
+    }
   }
-  return out; 
+  return out;
 }
 

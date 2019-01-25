@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -32,7 +32,7 @@ namespace RootGM {
 
   class VolumeMap;
 
-  class VolumeMap 
+  class VolumeMap
   {
     public:
       typedef std::map<VGM::IVolume*, TGeoVolume*>  RootVolumeMap;
@@ -46,10 +46,10 @@ namespace RootGM {
       virtual ~VolumeMap();
 
       // static access methods
-      static VolumeMap* Instance(); 
+      static VolumeMap* Instance();
 
       // methods
-      void  AddVolume(VGM::IVolume*, TGeoVolume*); 
+      void  AddVolume(VGM::IVolume*, TGeoVolume*);
       void  Print() const;
 
       // get methods
@@ -61,12 +61,12 @@ namespace RootGM {
 
       // static data members
       static VolumeMap*  fgInstance;
-  
+
       // data members
       RootVolumeMap  fRootVolumes;
       VgmVolumeMap   fVgmVolumes;
   };
-  
+
 }
 
 #endif //ROOT_GM_VOLUME_MAP_H

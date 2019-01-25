@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The Geant4GM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -36,7 +36,7 @@ namespace Geant4GM {
   class ExtrudedSolid : public BaseVGM::VExtrudedSolid
   {
     public:
-      ExtrudedSolid(const std::string& name, 
+      ExtrudedSolid(const std::string& name,
                     std::vector<VGM::TwoVector> polygon,
                     std::vector< std::vector<double> > zsections);
       ExtrudedSolid(G4ExtrudedSolid* xtru,
@@ -55,21 +55,21 @@ namespace Geant4GM {
     protected:
       ExtrudedSolid();
       ExtrudedSolid(const ExtrudedSolid& rhs);
-      
-    private:   
+
+    private:
       // types
       typedef std::vector<double>  ZSectionType;
-     
+
       // methods
       void CreateFinalSolid();
-      
+
       // data members
-      G4String   fName;       
+      G4String   fName;
       G4VSolid*  fExtrudedSolid;
       std::vector<ZSectionType>     fZSections;
       std::vector<G4ExtrudedSolid*> fConstituents;
   };
 
-}  
+}
 
 #endif //GEANT4_GM_EXTRUDED_SOLID_H

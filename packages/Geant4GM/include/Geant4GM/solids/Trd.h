@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The Geant4GM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -32,9 +32,9 @@ namespace Geant4GM {
   class Trd : public BaseVGM::VTrd
   {
     public:
-      Trd(const std::string& name, 
+      Trd(const std::string& name,
           double hx1, double hx2, double hy1, double hy2, double hz);
-      Trd(G4Trd* trd, 
+      Trd(G4Trd* trd,
           G4ReflectedSolid* reflTrd = 0);
       virtual ~Trd();
 

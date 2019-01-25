@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -26,7 +26,7 @@ class TGeoShape;
 
 namespace VGM {
   class ISolid;
-}  
+}
 
 namespace RootGM {
 
@@ -46,12 +46,12 @@ namespace RootGM {
       virtual ~SolidMap();
 
       // static access methods
-      static SolidMap* Instance(); 
+      static SolidMap* Instance();
 
       // methods
-      void  AddSolid(VGM::ISolid*, TGeoShape*); 
-      void  AddSolidInRootMapOnly(VGM::ISolid*, TGeoShape*); 
-      void  AddSolidInVGMMapOnly(VGM::ISolid*, TGeoShape*); 
+      void  AddSolid(VGM::ISolid*, TGeoShape*);
+      void  AddSolidInRootMapOnly(VGM::ISolid*, TGeoShape*);
+      void  AddSolidInVGMMapOnly(VGM::ISolid*, TGeoShape*);
 
       // get methods
       TGeoShape*    GetSolid(VGM::ISolid* iSolid) const;
@@ -62,7 +62,7 @@ namespace RootGM {
 
       // static data members
       static SolidMap*  fgInstance;
-  
+
       // data members
       RootSolidMap  fRootSolids;
       VgmSolidMap   fVgmSolids;

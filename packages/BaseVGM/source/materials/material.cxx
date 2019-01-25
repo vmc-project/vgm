@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The BaseVGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -28,8 +28,8 @@ std::ostream& operator<<(std::ostream& out, const VGM::IMaterial& material)
     case VGM::kLiquid:    stateName = "Liquid"; break;
     case VGM::kGas:       stateName = "Gas"; break;
     case VGM::kUndefined:
-    default:              stateName = "Undefined"; 
-  }  
+    default:              stateName = "Undefined";
+  }
 
   out << "Material: " << "\"" << material.Name() << "\""
       << "  density " << material.Density() << " g/cm3"
@@ -39,13 +39,13 @@ std::ostream& operator<<(std::ostream& out, const VGM::IMaterial& material)
       << "  temperature " << material.Temperature() << " kelvin"
       << "  pressure "    << material.Pressure() << " atm"
       << std::endl;
-      
+
   for (int i=0; i<material.NofElements(); i++) {
     out << "   "
         << i << "th element: " << *material.Element(i)
         << "  Elm mass fraction: " <<  material.MassFraction(i) * 100. << " %";
     if (i<material.NofElements()-1) out <<std::endl;
-  }       
-    
-  return out;    
+  }
+
+  return out;
 }

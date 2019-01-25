@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The test program of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -29,7 +29,7 @@ class TGeoVolume;
 class TGeoMedium;
 class TGeoScale;
 
-class TstGeometryViaRoot : public TstVGeometry 
+class TstGeometryViaRoot : public TstVGeometry
 {
   public:
     TstGeometryViaRoot();
@@ -87,7 +87,7 @@ class TstGeometryViaRoot : public TstVGeometry
     void PlaceExtraSolid(VGM::SolidType solidType, TGeoVolume* mother);
 
     // data members
-    TGeoManager* fGeoManager;		      
+    TGeoManager* fGeoManager;
     TGeoMedium*  fBasicMedium;
 };
 

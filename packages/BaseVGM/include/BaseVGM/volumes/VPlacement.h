@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The BaseVGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -31,17 +31,17 @@ namespace BaseVGM {
   class VPlacement : public virtual VGM::IPlacement
   {
     public:
-      VPlacement(VGM::IVolume* volume, 
+      VPlacement(VGM::IVolume* volume,
                  VGM::IVolume* motherVolume);
       virtual ~VPlacement();
-    
+
       // methods
-      
+
       virtual std::string     Name() const = 0;
       virtual VGM::IVolume*   Volume() const;
       virtual VGM::IVolume*   Mother() const;
       virtual int             CopyNo() const = 0;
-      virtual VGM::Transform  Transformation() const = 0;      
+      virtual VGM::Transform  Transformation() const = 0;
 
       virtual bool  MultiplePlacementData(
                              VGM::Axis&  axis,
@@ -54,12 +54,12 @@ namespace BaseVGM {
 			    /// in the out stream
       virtual std::ostream& Put(std::ostream& out) const;
 
-      void SetVolume(VGM::IVolume* volume);			       
- 
+      void SetVolume(VGM::IVolume* volume);
+
     protected:
       VPlacement();
       VPlacement(const VPlacement& rhs);
-    
+
     private:
       VGM::IVolume*  fVolume;
       VGM::IVolume*  fMotherVolume;

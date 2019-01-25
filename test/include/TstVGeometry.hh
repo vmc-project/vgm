@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The test program of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -22,14 +22,14 @@
 
 #include "VGM/solids/ISolid.h"
 
-class TstVGeometry 
+class TstVGeometry
 {
   public:
     TstVGeometry();
     virtual ~TstVGeometry();
 
     virtual void  DefineMaterials() = 0;
-    
+
     virtual void* TestSolids(bool fullPhi = true) = 0;
     virtual void* TestExtraSolid(VGM::SolidType solidType) = 0;
     virtual void* TestNewSolid() = 0;

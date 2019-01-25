@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The XmlVGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -12,7 +12,7 @@
 //
 // Author: I. Hrivnacova, 31.03.2004
 //
-// Class GDMLWriter 
+// Class GDMLWriter
 // ----------------------
 // See the class description in the header file.
 
@@ -56,19 +56,19 @@
 
 const int         XmlVGM::GDMLWriter::fgkDefaultNumWidth = 10;
 const int         XmlVGM::GDMLWriter::fgkDefaultNumPrecision = 4;
-const std::string XmlVGM::GDMLWriter::fgkSolidNameExtension  = "_s";  
-const std::string XmlVGM::GDMLWriter::fgkIsotopeNameExtension = "_i"; 
-const std::string XmlVGM::GDMLWriter::fgkElementNameExtension = "_e"; 
-const char        XmlVGM::GDMLWriter::fgkCharReplacement = '_'; 
+const std::string XmlVGM::GDMLWriter::fgkSolidNameExtension  = "_s";
+const std::string XmlVGM::GDMLWriter::fgkIsotopeNameExtension = "_i";
+const std::string XmlVGM::GDMLWriter::fgkElementNameExtension = "_e";
+const char        XmlVGM::GDMLWriter::fgkCharReplacement = '_';
 const std::string XmlVGM::GDMLWriter::fgkNotAllowedChars = " +-*/&<>%^";
-const std::string XmlVGM::GDMLWriter::fgkNotAllowedChars1 = "0123456789"; 
-const double      XmlVGM::GDMLWriter::fgkSTPTemperature = 273.15; // in kelvin                                                     
-const double      XmlVGM::GDMLWriter::fgkSTPPressure = 101325; // in pascal                                                  
-const double      XmlVGM::GDMLWriter::fgkCarTolerance = 1e-10; 
+const std::string XmlVGM::GDMLWriter::fgkNotAllowedChars1 = "0123456789";
+const double      XmlVGM::GDMLWriter::fgkSTPTemperature = 273.15; // in kelvin
+const double      XmlVGM::GDMLWriter::fgkSTPPressure = 101325; // in pascal
+const double      XmlVGM::GDMLWriter::fgkCarTolerance = 1e-10;
 const double      XmlVGM::GDMLWriter::fgkAngTolerance = 1e-8;
 
 //_____________________________________________________________________________
-XmlVGM::GDMLWriter::GDMLWriter(const std::string& unitName, 
+XmlVGM::GDMLWriter::GDMLWriter(const std::string& unitName,
                                const std::string& version)
   : IWriter(),
     fOutFile(),
@@ -85,7 +85,7 @@ XmlVGM::GDMLWriter::GDMLWriter(const std::string& unitName,
 /// Standard constructor
 /// \param unitName GDML unit name
 /// \param version GDML file version
- 
+
   fOutFile.width(fgkDefaultNumWidth);
   fOutFile.precision(fgkDefaultNumPrecision);
 }
@@ -111,70 +111,70 @@ double XmlVGM::GDMLWriter::UpdateAngle(double angle) const
 {
 /// Check if the value of the angle is within (-360., 360.),
 /// and convert the value to fit within (0, 360.).
- 
+
   if (angle < -360. || angle > 360.) {
     std::cerr << "+++ Warning +++: " << std::endl;
     std::cerr << "    XmlVGM::GDMLWriter::UpdateAngle:" << std::endl;
-    std::cerr << "    Angle " << angle/AngleUnit() 
+    std::cerr << "    Angle " << angle/AngleUnit()
               << " is outside <-360., 360.>" << std::endl;
     std::cerr << "    It was converted to 0." << std::endl;
-    return 0.;	      
+    return 0.;
   }
-  
+
   if (angle < 0.) return angle + 360.;
-  
-  return angle;  
+
+  return angle;
 }
 
 //_____________________________________________________________________________
-void XmlVGM::GDMLWriter::RegisterName(const std::string& name, 
+void XmlVGM::GDMLWriter::RegisterName(const std::string& name,
                                       bool warning)
 {
 /// Register the given name
 /// and give a warning if a duplicated name occurs
-  
+
   // Check if the name is unique
   if (fGDMLNames.find(name) == fGDMLNames.end())
     fGDMLNames.insert(name);
-  else 
+  else
     if (warning) {
       std::cerr << "+++ Warning +++: " << std::endl;
-      std::cerr << "    Duplicated name has occured: \"" << name << "\"" 
+      std::cerr << "    Duplicated name has occured: \"" << name << "\""
                 << " in geometry." << std::endl;
       std::cerr << "    Duplicated names are not allowed in GDML." << std::endl;
     }
-}  
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteBooleanSolid(
-                            std::string lvName, 
-                            const VGM::IBooleanSolid* booleanSolid) 
+                            std::string lvName,
+                            const VGM::IBooleanSolid* booleanSolid)
 {
 /// Write Boolean solid
-			      
+
   // Get constituent solids
   VGM::ISolid* solidA = booleanSolid->ConstituentSolidA();
   VGM::ISolid* solidB = booleanSolid->ConstituentSolidB();
-  
+
   // Write constituent solids
   std::string nameA = StripName(lvName, fgkSolidNameExtension) + "_constA";
   std::string nameB = StripName(lvName, fgkSolidNameExtension) + "_constB";
-  WriteSolid(nameA, solidA, ""); 
-  WriteSolid(nameB, solidB, ""); 
-  
+  WriteSolid(nameA, solidA, "");
+  WriteSolid(nameB, solidB, "");
+
   // Update names
-  nameA = UpdateName(nameA, fgkSolidNameExtension); 
-  nameB = UpdateName(nameB, fgkSolidNameExtension); 
-  
+  nameA = UpdateName(nameA, fgkSolidNameExtension);
+  nameB = UpdateName(nameB, fgkSolidNameExtension);
+
   // Get displacement
   VGM::Transform transform = booleanSolid->Displacement();
   VGM::Transform invTransform = ClhepVGM::Inverse(transform);
   std::string positionName = fMaps->AddBooleanPosition();
   std::string rotationName = fMaps->AddBooleanRotation();
-	
+
   // Get boolean type
   VGM::BooleanType boolType = booleanSolid->BoolType();
-  
+
   // compose element string template
   //
   std::string element1;
@@ -194,16 +194,16 @@ void XmlVGM::GDMLWriter::WriteBooleanSolid(
       break;
     case VGM::kUnknownBoolean:
       break;
-  }    
+  }
   std::string element2 = "\" >";
   std::string element3 = "<first  ref=\"";
   std::string element4 = "\" />";
   std::string element5 = "<second ref=\"";
   std::string indention = fIndention + fkBasicIndention;
-  
+
   // write element
-  fOutFile << fIndention << element1 << lvName  
-           << element2   << std::endl  
+  fOutFile << fIndention << element1 << lvName
+           << element2   << std::endl
            << indention  << element3 << nameA        << element4   << std::endl
            << indention  << element5 << nameB        << element4   << std::endl;
 
@@ -211,7 +211,7 @@ void XmlVGM::GDMLWriter::WriteBooleanSolid(
   WritePosition(positionName, transform);
 
   fOutFile << fkBasicIndention;
-  WriteRotation(rotationName, invTransform);         
+  WriteRotation(rotationName, invTransform);
 
   fOutFile << fIndention << element6 << std::endl << std::endl;
 }
@@ -219,21 +219,21 @@ void XmlVGM::GDMLWriter::WriteBooleanSolid(
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteBox(
                               std::string name,
-                              double hx, double hy, double hz)  
-{			      
+                              double hx, double hy, double hz)
+{
 /// Write box solid
 
   // get parameters
   double x = hx/LengthUnit();
   double y = hy/LengthUnit();
   double z = hz/LengthUnit();
-  
+
   // convert half lengths to full lengths
   if (fFullLengths) {
     x *= 2.;
     y *= 2.;
     z *= 2.;
-  } 
+  }
 
   // compose element string template
   std::string quota = "\"";
@@ -244,31 +244,31 @@ void XmlVGM::GDMLWriter::WriteBox(
   std::string element5 = "z=\"";
   std::string element6 = "\" />";
   std::string indention = fIndention + fkBasicIndention;
-  
+
   // write element
-  fOutFile << fIndention << element1 << std::endl  
+  fOutFile << fIndention << element1 << std::endl
            << indention  << element2 << std::endl
-	   << indention        
+	   << indention
 	   << element3 << std::setw(fNW) << std::setprecision(fNP) << x << quota << "  "
 	   << element4 << std::setw(fNW) << std::setprecision(fNP) << y << quota << "  "
-	   << element5 << std::setw(fNW) << std::setprecision(fNP) << z 
+	   << element5 << std::setw(fNW) << std::setprecision(fNP) << z
 	   << element6 << std::endl << std::endl;
 }
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteArb8(
-                              std::string name, 
+                              std::string name,
 			      const VGM::IArb8* arb8)
 {
 /// Write VGM::ITessellatedSolid solid
 
   // get parameters
   double hz = arb8->ZHalfLength() / LengthUnit();
-  
+
   // convert half lengths to full lengths
   if (fFullLengths) {
     hz *= 2.;
-  } 
+  }
 
   // compose element string template
   std::string quota = "\"";
@@ -280,43 +280,43 @@ void XmlVGM::GDMLWriter::WriteArb8(
   std::string element6 = "y=\"";
   std::string element7 = "  />";
   std::string indention = fIndention + fkBasicIndention;
-  
+
   // write openning element
   fOutFile << fIndention << element1 << std::endl
            << indention << element2 << std::endl
            << indention << element3
            << std::setw(fNW) << std::setprecision(fNP) << hz << quota;
-  
+
   // write vertices
   for (int i=0; i<arb8->NofVertices(); ++i) {
     VGM::TwoVector vertex = arb8->Vertex(i);
     double dx = vertex.first / LengthUnit();
     double dy = vertex.second / LengthUnit();
-    
+
     fOutFile << std::endl
              << indention
-             << element4 << std::setw(1) << i+1 << element5 
+             << element4 << std::setw(1) << i+1 << element5
              << std::setw(fNW) << std::setprecision(fNP) << dx << quota << "  "
-             << element4 << std::setw(1) << i+1 << element6 
+             << element4 << std::setw(1) << i+1 << element6
              << std::setw(fNW) << std::setprecision(fNP) << dy << quota;
   }
   fOutFile << element7 << std::endl << std::endl;
-}  
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteBox(
-                              std::string name, 
-			      const VGM::IBox* box) 
+                              std::string name,
+			      const VGM::IBox* box)
 {
 /// Write box solid
 
-  WriteBox(name, 
+  WriteBox(name,
            box->XHalfLength(), box->YHalfLength(), box->ZHalfLength());
 }
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteCons(
-                              std::string name, 
+                              std::string name,
 			      const VGM::ICons* cons)
 {
 /// Write cons solid
@@ -333,7 +333,7 @@ void XmlVGM::GDMLWriter::WriteCons(
   // convert half lengths to full lengths
   if (fFullLengths) {
     hz *= 2.;
-  }  
+  }
 
   // compose element string template
   std::string quota = "\"";
@@ -348,26 +348,26 @@ void XmlVGM::GDMLWriter::WriteCons(
   std::string element9 = "deltaphi=\"";
   std::string element10 = "\" />";
   std::string indention = fIndention + fkBasicIndention;
-  
+
   // write element
   fOutFile << fIndention << element1 << std::endl
 	   << indention  << element2 << std::endl
-	   << indention        
+	   << indention
 	   << element4 << std::setw(fNW) << std::setprecision(fNP) << rmin1 << quota << "  "
 	   << element5 << std::setw(fNW) << std::setprecision(fNP) << rmin2 << quota << "  "
 	   << element6 << std::setw(fNW) << std::setprecision(fNP) << rmax1 << quota << "  "
 	   << element7 << std::setw(fNW) << std::setprecision(fNP) << rmax2 << quota << std::endl
-	   << indention        
+	   << indention
 	   << element3 << std::setw(fNW) << std::setprecision(fNP) << hz << quota << std::endl
-	   << indention        
+	   << indention
 	   << element8 << std::setw(fNW)   << std::setprecision(fNP) << sphi << quota << "  "
 	   << element9 << std::setw(fNW)   << std::setprecision(fNP) << dphi
 	   << element10 << std::endl << std::endl;
-}  
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteCtubs(
-                              std::string name, 
+                              std::string name,
 			      const VGM::ICtubs* ctubs)
 {
 /// Write ctubs solid
@@ -402,34 +402,34 @@ void XmlVGM::GDMLWriter::WriteCtubs(
   std::string element13 = "highZ=\"";
   std::string element14 = "\" />";
   std::string indention = fIndention + fkBasicIndention;
-  
+
   // write element
   fOutFile << fIndention << element1 << std::endl
 	   << indention  << element2 << std::endl
-	   << indention        
+	   << indention
 	   << element4 << std::setw(fNW) << std::setprecision(fNP) << rmin << quota << "  "
-	   << element5 << std::setw(fNW) << std::setprecision(fNP) << rmax << quota << "  " 
+	   << element5 << std::setw(fNW) << std::setprecision(fNP) << rmax << quota << "  "
 	   << element3 << std::setw(fNW) << std::setprecision(fNP) << hz << quota
 	   << std::endl
-	   << indention        
+	   << indention
 	   << element6 << std::setw(fNW) << std::setprecision(fNP) << sphi << quota << "  "
 	   << element7 << std::setw(fNW) << std::setprecision(fNP) << dphi << quota
 	   << std::endl
-	   << indention        
-           << element8  << std::setw(fNW) << std::setprecision(fNP) << nxl << quota << "  "         
-           << element9  << std::setw(fNW) << std::setprecision(fNP) << nyl << quota << "  "         
-           << element10 << std::setw(fNW) << std::setprecision(fNP) << nzl << quota         
+	   << indention
+           << element8  << std::setw(fNW) << std::setprecision(fNP) << nxl << quota << "  "
+           << element9  << std::setw(fNW) << std::setprecision(fNP) << nyl << quota << "  "
+           << element10 << std::setw(fNW) << std::setprecision(fNP) << nzl << quota
 	   << std::endl
-	   << indention        
-           << element11 << std::setw(fNW) << std::setprecision(fNP) << nxh << quota << "  "         
-           << element12 << std::setw(fNW) << std::setprecision(fNP) << nyh << quota << "  "         
-           << element13 << std::setw(fNW) << std::setprecision(fNP) << nzh         
+	   << indention
+           << element11 << std::setw(fNW) << std::setprecision(fNP) << nxh << quota << "  "
+           << element12 << std::setw(fNW) << std::setprecision(fNP) << nyh << quota << "  "
+           << element13 << std::setw(fNW) << std::setprecision(fNP) << nzh
 	   << element14 << std::endl << std::endl;
-}  
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteEllipsoid(
-                              std::string name, const VGM::IEllipsoid* ellipsoid) 
+                              std::string name, const VGM::IEllipsoid* ellipsoid)
 {
 /// Write elliptical tube solid
 
@@ -451,22 +451,22 @@ void XmlVGM::GDMLWriter::WriteEllipsoid(
   std::string element7 = "zcut2=\"";
   std::string element8 = "\" />";
   std::string indention = fIndention + fkBasicIndention;
-  
+
   // write element
   fOutFile << fIndention << element1 << std::endl
 	   << indention  << element2 << std::endl
-	   << indention        
+	   << indention
 	   << element3 << std::setw(fNW) << std::setprecision(fNP) << dx << quota << "  "
-	   << element4 << std::setw(fNW) << std::setprecision(fNP) << dy << quota << "  " 
+	   << element4 << std::setw(fNW) << std::setprecision(fNP) << dy << quota << "  "
 	   << element5 << std::setw(fNW) << std::setprecision(fNP) << dz << quota << "  "
-	   << element6 << std::setw(fNW) << std::setprecision(fNP) << zbCut << quota << "  " 
+	   << element6 << std::setw(fNW) << std::setprecision(fNP) << zbCut << quota << "  "
 	   << element7 << std::setw(fNW) << std::setprecision(fNP) << ztCut
 	   << element8 << std::endl << std::endl;
-}  
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteEllipticalTube(
-                              std::string name, const VGM::IEllipticalTube* eltu) 
+                              std::string name, const VGM::IEllipticalTube* eltu)
 {
 /// Write elliptical tube solid
 
@@ -479,7 +479,7 @@ void XmlVGM::GDMLWriter::WriteEllipticalTube(
 /*
   if (fFullLengths) {
     hz *= 2.;
-  }  
+  }
 */
   // compose element string template
   std::string quota = "\"";
@@ -490,20 +490,20 @@ void XmlVGM::GDMLWriter::WriteEllipticalTube(
   std::string element5 = "dz=\"";
   std::string element6 = "\" />";
   std::string indention = fIndention + fkBasicIndention;
-  
+
   // write element
   fOutFile << fIndention << element1 << std::endl
 	   << indention  << element2 << std::endl
-	   << indention        
+	   << indention
 	   << element3 << std::setw(fNW) << std::setprecision(fNP) << dx << quota << "  "
-	   << element4 << std::setw(fNW) << std::setprecision(fNP) << dy << quota << "  " 
+	   << element4 << std::setw(fNW) << std::setprecision(fNP) << dy << quota << "  "
 	   << element5 << std::setw(fNW) << std::setprecision(fNP) << hz
 	   << element6 << std::endl << std::endl;
-}  
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteExtrudedSolid(
-                             std::string name, 
+                             std::string name,
 			     const VGM::IExtrudedSolid* extruded)
 {
 /// Write VGM::IExtrudedSolid solid
@@ -515,7 +515,7 @@ void XmlVGM::GDMLWriter::WriteExtrudedSolid(
   for (int i=0; i<nofVertices; i++) {
     xvertArray[i] = extruded->Vertex(i).first/LengthUnit();
     yvertArray[i] = extruded->Vertex(i).second/LengthUnit();
-  }    
+  }
 
   // get Z sections parameters
   int nofZSections = extruded->NofZSections();
@@ -528,8 +528,8 @@ void XmlVGM::GDMLWriter::WriteExtrudedSolid(
     xoffsetArray[i] = extruded->Offset(i).first/LengthUnit();
     yoffsetArray[i] = extruded->Offset(i).second/LengthUnit();
     scaleArray[i] = extruded->Scale(i);
-  }  
-    
+  }
+
   // compose element string template
   std::string quota = "\"";
   std::string element1 = "<xtru  lunit=\"cm\" aunit=\"degree\"";
@@ -545,48 +545,48 @@ void XmlVGM::GDMLWriter::WriteExtrudedSolid(
   std::string element11 = "scalingFactor=\"";
   std::string element12 = "</xtru>";
   std::string indention = fIndention + fkBasicIndention;
-  
+
   // write xtru element
   fOutFile << fIndention << element1 << std::endl
 	   << indention  << element2 << element3 << std::endl;
-           
+
   // write vertices
   for (int i=0; i<nofVertices; i++) {
-    fOutFile << indention 
+    fOutFile << indention
              << element4 << std::setw(fNW) << std::setprecision(fNP) << xvertArray[i] << quota << "  "
              << element5 << std::setw(fNW) << std::setprecision(fNP) << yvertArray[i]
 	     << element6
 	     << std::endl;
-  }           
-             
-           
+  }
+
+
   // write polyplane elements
   for (int i=0; i<nofZSections; i++) {
-    fOutFile << indention 
+    fOutFile << indention
              << element7  << std::setw(fNW) << std::setprecision(fNP) << zArray[i] << quota << "  "
 	     << element8  << std::setw(3)   << i << quota << "  "
-	     << element9  << std::setw(fNW) << std::setprecision(fNP) << xoffsetArray[i] << quota << "  " 
-	     << element10 << std::setw(fNW) << std::setprecision(fNP) << yoffsetArray[i] << quota << "  " 
-	     << element11 << std::setw(fNW) << std::setprecision(fNP) << scaleArray[i] 
+	     << element9  << std::setw(fNW) << std::setprecision(fNP) << xoffsetArray[i] << quota << "  "
+	     << element10 << std::setw(fNW) << std::setprecision(fNP) << yoffsetArray[i] << quota << "  "
+	     << element11 << std::setw(fNW) << std::setprecision(fNP) << scaleArray[i]
 	     << element6
 	     << std::endl;
   }
-  
+
   // close pcon element
   fOutFile << fIndention
-           << element12 << std::endl << std::endl;  	     
+           << element12 << std::endl << std::endl;
 
-  delete [] xvertArray;			      
-  delete [] yvertArray;			      
-  delete [] zArray;			      
-  delete [] xoffsetArray;			      
-  delete [] yoffsetArray;			      
-  delete [] scaleArray;			      
-}  
+  delete [] xvertArray;
+  delete [] yvertArray;
+  delete [] zArray;
+  delete [] xoffsetArray;
+  delete [] yoffsetArray;
+  delete [] scaleArray;
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteHype(
-                              std::string name, 
+                              std::string name,
 			      const VGM::IHype* hype)
 {
 /// Write VGM::IPara solid
@@ -601,7 +601,7 @@ void XmlVGM::GDMLWriter::WriteHype(
   // convert half lengths to full lengths
   if (fFullLengths) {
     dz *= 2.;
-  }  
+  }
 
   // compose element string template
   std::string quota = "\"";
@@ -614,25 +614,25 @@ void XmlVGM::GDMLWriter::WriteHype(
   std::string element7 = "z=\"";
   std::string element8 = "\" />";
   std::string indention = fIndention + fkBasicIndention;
-  
+
   // write element
-  fOutFile << fIndention << element1 << std::endl  
+  fOutFile << fIndention << element1 << std::endl
            << indention  << element2 << std::endl
-	   << indention        
+	   << indention
 	   << element3 << std::setw(fNW) << std::setprecision(fNP) << rin << quota << "  "
 	   << element4 << std::setw(fNW) << std::setprecision(fNP) << rout << quota  << std::endl
-	   << indention        
+	   << indention
 	   << element5 << std::setw(fNW) << std::setprecision(fNP) << stereoin << quota  << "  "
 	   << element6 << std::setw(fNW) << std::setprecision(fNP) << stereoout << quota << std::endl
-	   << indention        
-	   << element7 << std::setw(fNW) << std::setprecision(fNP) << dz << element8 
+	   << indention
+	   << element7 << std::setw(fNW) << std::setprecision(fNP) << dz << element8
            << std::endl << std::endl;
 }
- 
+
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WritePara(
-                              std::string name, 
+                              std::string name,
 			      const VGM::IPara* para)
 {
 /// Write VGM::IPara solid
@@ -650,7 +650,7 @@ void XmlVGM::GDMLWriter::WritePara(
     dx *= 2.;
     dy *= 2.;
     dz *= 2.;
-  }  
+  }
 
   // compose element string template
   std::string quota = "\"";
@@ -664,24 +664,24 @@ void XmlVGM::GDMLWriter::WritePara(
   std::string element8 = "phi=\"";
   std::string element9 = "\" />";
   std::string indention = fIndention + fkBasicIndention;
-  
+
   // write element
-  fOutFile << fIndention << element1 << std::endl  
+  fOutFile << fIndention << element1 << std::endl
            << indention  << element2 << std::endl
-	   << indention        
+	   << indention
 	   << element3 << std::setw(fNW) << std::setprecision(fNP) << dx << quota << "  "
 	   << element4 << std::setw(fNW) << std::setprecision(fNP) << dy << quota << "  "
 	   << element5 << std::setw(fNW) << std::setprecision(fNP) << dz << quota << std::endl
-	   << indention        
+	   << indention
 	   << element6 << std::setw(fNW) << std::setprecision(fNP) << alpha << quota << "  "
 	   << element7 << std::setw(fNW) << std::setprecision(fNP) << theta << quota << "  "
-	   << element8 << std::setw(fNW) << std::setprecision(fNP) << phi 
+	   << element8 << std::setw(fNW) << std::setprecision(fNP) << phi
 	   << element9 << std::endl << std::endl;
 }
- 
+
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteParaboloid(
-                              std::string name, 
+                              std::string name,
 			      const VGM::IParaboloid* paraboloid)
 {
 /// Write VGM::IPara solid
@@ -697,13 +697,13 @@ void XmlVGM::GDMLWriter::WriteParaboloid(
     double tmp = rlo;
     rlo = rhi;
     rhi = tmp;
-  }  
+  }
 
   // convert half lengths to full lengths
   // if (fFullLengths) {
   //  dz *= 2.;
-  //}  
-  
+  //}
+
   // compose element string template
   std::string quota = "\"";
   std::string element1 = "<paraboloid  lunit=\"cm\" aunit=\"degree\"";
@@ -713,20 +713,20 @@ void XmlVGM::GDMLWriter::WriteParaboloid(
   std::string element5 = "dz=\"";
   std::string element6 = "\" />";
   std::string indention = fIndention + fkBasicIndention;
-  
+
   // write element
-  fOutFile << fIndention << element1 << std::endl  
+  fOutFile << fIndention << element1 << std::endl
            << indention  << element2 << std::endl
-	   << indention        
+	   << indention
 	   << element3 << std::setw(fNW) << std::setprecision(fNP) << rlo << quota << "  "
 	   << element4 << std::setw(fNW) << std::setprecision(fNP) << rhi << quota << "  "
-	   << element5 << std::setw(fNW) << std::setprecision(fNP) << dz << element6 
+	   << element5 << std::setw(fNW) << std::setprecision(fNP) << dz << element6
            << std::endl << std::endl;
 }
- 
+
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WritePolycone(
-                             std::string name, 
+                             std::string name,
 			     const VGM::IPolycone* polycone)
 {
 /// Write VGM::IPolycone solid
@@ -734,7 +734,7 @@ void XmlVGM::GDMLWriter::WritePolycone(
   // get profile parameters
   double sphi = polycone->StartPhi()/AngleUnit();
   double dphi = polycone->DeltaPhi()/AngleUnit();
-  
+
   // get polycone Z planes parameters
   int nofZPlanes = polycone->NofZPlanes();
   double* rminArray = new double[nofZPlanes];
@@ -744,8 +744,8 @@ void XmlVGM::GDMLWriter::WritePolycone(
     rminArray[i] = polycone->InnerRadiusValues()[i]/LengthUnit();
     rmaxArray[i] = polycone->OuterRadiusValues()[i]/LengthUnit();
     zArray[i]    = polycone->ZValues()[i]/LengthUnit();
-  }  
-    
+  }
+
   // compose element string template
   std::string quota = "\"";
   std::string element1 = "<polycone  lunit=\"cm\" aunit=\"degree\"";
@@ -759,11 +759,11 @@ void XmlVGM::GDMLWriter::WritePolycone(
   std::string element9 = "\" />";
   std::string element10 = "</polycone>";
   std::string indention = fIndention + fkBasicIndention;
-  
+
   // write pcon element
   fOutFile << fIndention << element1 << std::endl
 	   << indention  << element2 << std::endl
-	   << indention  
+	   << indention
 	   << element3 << std::setw(fNW) << std::setprecision(fNP) << sphi << quota << "  "
 	   << element4 << std::setw(fNW) << std::setprecision(fNP) << dphi
 	   << element5
@@ -771,28 +771,28 @@ void XmlVGM::GDMLWriter::WritePolycone(
 
   // write polyplane elements
   for (int j=0; j<nofZPlanes; j++) {
-  
-    fOutFile << indention 
+
+    fOutFile << indention
              << element6 << std::setw(fNW) << std::setprecision(fNP) << zArray[j]    << quota << "  "
 	     << element7 << std::setw(fNW) << std::setprecision(fNP) << rminArray[j] << quota << "  "
-	     << element8 << std::setw(fNW) << std::setprecision(fNP) << rmaxArray[j]  
+	     << element8 << std::setw(fNW) << std::setprecision(fNP) << rmaxArray[j]
 	     << element9
 	     << std::endl;
   }
-  
+
   // close pcon element
   fOutFile << fIndention
-           << element10 << std::endl << std::endl;  	     
+           << element10 << std::endl << std::endl;
 
-  delete [] rminArray;			      
-  delete [] rmaxArray;	
-  delete [] zArray;			      
-}  
+  delete [] rminArray;
+  delete [] rmaxArray;
+  delete [] zArray;
+}
 
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WritePolyhedra(
-                             std::string name, 
+                             std::string name,
 			     const VGM::IPolyhedra* polyhedra)
 {
 /// Write VGM::IPolyhedra solid
@@ -800,7 +800,7 @@ void XmlVGM::GDMLWriter::WritePolyhedra(
   // get profile parameters
   double sphi = UpdateAngle(polyhedra->StartPhi())/AngleUnit();
   double dphi = UpdateAngle(polyhedra->DeltaPhi())/AngleUnit();
-  
+
   // get polyhedra Z planes parameters
   int nofZPlanes = polyhedra->NofZPlanes();
   int nofSides = polyhedra->NofSides();
@@ -811,8 +811,8 @@ void XmlVGM::GDMLWriter::WritePolyhedra(
     rminArray[i] = polyhedra->InnerRadiusValues()[i]/LengthUnit();
     rmaxArray[i] = polyhedra->OuterRadiusValues()[i]/LengthUnit();
     zArray[i]    = polyhedra->ZValues()[i]/LengthUnit();
-  }  
-    
+  }
+
   // compose element string template
   std::string quota = "\"";
   std::string element1 = "<polyhedra  lunit=\"cm\" aunit=\"degree\"";
@@ -827,13 +827,13 @@ void XmlVGM::GDMLWriter::WritePolyhedra(
   std::string element10 = "\" />";
   std::string element11 = "</polyhedra>";
   std::string indention = fIndention + fkBasicIndention;
-  
+
   // write polyhedra element
   fOutFile << fIndention << element1 << std::endl
 	   << indention  << element2 << std::endl
-	   << indention  
+	   << indention
 	   << element3 << nofSides << quota << std::endl
-	   << indention  
+	   << indention
 	   << element4 << std::setw(fNW) << std::setprecision(fNP) << sphi << quota << "  "
 	   << element5 << std::setw(fNW) << std::setprecision(fNP) << dphi
 	   << element6
@@ -841,28 +841,28 @@ void XmlVGM::GDMLWriter::WritePolyhedra(
 
   // write polyplane elements
   for (int j=0; j<nofZPlanes; j++) {
-  
-    fOutFile << indention 
+
+    fOutFile << indention
              << element7 << std::setw(fNW) << std::setprecision(fNP) << zArray[j]    << quota << "  "
 	     << element8 << std::setw(fNW) << std::setprecision(fNP) << rminArray[j] << quota << "  "
-	     << element9 << std::setw(fNW) << std::setprecision(fNP) << rmaxArray[j]  
+	     << element9 << std::setw(fNW) << std::setprecision(fNP) << rmaxArray[j]
 	     << element10
 	     << std::endl;
   }
-  
+
   // close pcon element
   fOutFile << fIndention
-           << element11 << std::endl << std::endl;  	     
+           << element11 << std::endl << std::endl;
 
-  delete [] rminArray;			      
-  delete [] rmaxArray;	
-  delete [] zArray;			      
-}  
+  delete [] rminArray;
+  delete [] rmaxArray;
+  delete [] zArray;
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteSphere(
-                              std::string name, 
-			      const VGM::ISphere* sphere) 
+                              std::string name,
+			      const VGM::ISphere* sphere)
 {
 /// Write VGM::ISphere solid
 
@@ -887,24 +887,24 @@ void XmlVGM::GDMLWriter::WriteSphere(
   std::string element8 = "deltatheta=\"";
   std::string element9 = "\" />";
   std::string indention = fIndention + fkBasicIndention;
-  
+
   // write element
-  fOutFile << fIndention << element1 << std::endl  
+  fOutFile << fIndention << element1 << std::endl
            << indention  << element2 << std::endl
-	   << indention        
+	   << indention
 	   << element3 << std::setw(fNW) << std::setprecision(fNP) << rmin << quota << "  "
 	   << element4 << std::setw(fNW) << std::setprecision(fNP) << rmax << quota << std::endl
-	   << indention        
+	   << indention
 	   << element5 << std::setw(fNW) << std::setprecision(fNP) << sphi << quota << "  "
 	   << element6 << std::setw(fNW) << std::setprecision(fNP) << dphi << quota << "  "
 	   << element7 << std::setw(fNW) << std::setprecision(fNP) << stheta << quota << "  "
 	   << element8 << std::setw(fNW) << std::setprecision(fNP) << dtheta
 	   << element9 << std::endl << std::endl;
 }
- 
+
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteTessellatedSolid(
-                              std::string name, 
+                              std::string name,
 			      const VGM::ITessellatedSolid* tessellated)
 {
 /// Write VGM::ITessellatedSolid solid
@@ -919,37 +919,37 @@ void XmlVGM::GDMLWriter::WriteTessellatedSolid(
   std::string element6 = "/>";
   std::string element8 = "</tessellated>";
   std::string indention = fIndention + fkBasicIndention;
-  
+
   // write openning element
   fOutFile << fIndention << element1 << std::endl;
-  
+
   // write triangular facets
   for (int i=0; i<tessellated->NofFacets(); ++i) {
      int nofVertices = tessellated->NofVertices(i);
      if ( nofVertices == 3 )
         fOutFile << indention  << element2;
-     else   
+     else
         fOutFile << indention  << element3;
-      
+
      for (int j=0; j<nofVertices; ++j) {
         // Vertex position
         VGM::ThreeVector vertex = tessellated->Vertex(i,j);
         std::string positionRef = fMaps->FindPositionName(vertex);
-      
+
         fOutFile << element4
-                 << std::setw(1) << j+1 << element5 << positionRef << quota; 
+                 << std::setw(1) << j+1 << element5 << positionRef << quota;
     }
     fOutFile << element6 << std::endl;
-   
-  }              
+
+  }
 
   // write closing element
   fOutFile << fIndention << element8 << std::endl << std::endl;
-}  
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteTorus(
-                              std::string name, 
+                              std::string name,
 			      const VGM::ITorus* torus)
 {
 /// Write VGM::ITorus solid
@@ -972,24 +972,24 @@ void XmlVGM::GDMLWriter::WriteTorus(
   std::string element7 = "deltaphi=\"";
   std::string element8 = "\" />";
   std::string indention = fIndention + fkBasicIndention;
-  
+
   // write element
   fOutFile << fIndention << element1 << std::endl
 	   << indention  << element2 << std::endl
-	   << indention        
+	   << indention
 	   << element3 << std::setw(fNW) << std::setprecision(fNP) << rmin << quota << "  "
-	   << element4 << std::setw(fNW) << std::setprecision(fNP) << rmax << quota << "  " 
+	   << element4 << std::setw(fNW) << std::setprecision(fNP) << rmax << quota << "  "
 	   << element5 << std::setw(fNW) << std::setprecision(fNP) << rax  << quota
 	   << std::endl
-	   << indention        
+	   << indention
 	   << element6 << std::setw(fNW)   << std::setprecision(fNP) << sphi << quota << "  "
 	   << element7 << std::setw(fNW)   << std::setprecision(fNP) << dphi
 	   << element8 << std::endl << std::endl;
-}  
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteTrap(
-                              std::string name, 
+                              std::string name,
 			      const VGM::ITrap* trap)
 {
 /// Write VGM::ITrap solid
@@ -1016,7 +1016,7 @@ void XmlVGM::GDMLWriter::WriteTrap(
     y2 *= 2.;
     x3 *= 2.;
     x4 *= 2.;
-  }  
+  }
 
   // compose element string template
   std::string quota = "\"";
@@ -1039,27 +1039,27 @@ void XmlVGM::GDMLWriter::WriteTrap(
   // write element
   fOutFile << fIndention << element1 << std::endl
 	   << indention        << element2 << std::endl
-	   << indention        
+	   << indention
 	   << element3 << std::setw(fNW) << std::setprecision(fNP) << dz << quota << std::endl
-	   << indention        
+	   << indention
 	   << element4 << std::setw(fNW) << std::setprecision(fNP) << theta << quota << "  "
 	   << element5 << std::setw(fNW) << std::setprecision(fNP) << phi << quota << std::endl
-	   << indention        
+	   << indention
 	   << element6 << std::setw(fNW) << std::setprecision(fNP) << y1 << quota << "  "
 	   << element7 << std::setw(fNW) << std::setprecision(fNP) << x1 << quota << "  "
 	   << element8 << std::setw(fNW) << std::setprecision(fNP) << x2 << quota << "  "
 	   << element9 << std::setw(fNW) << std::setprecision(fNP) << alpha1 << quota << std::endl
-	   << indention        
+	   << indention
 	   << element10 << std::setw(fNW) << std::setprecision(fNP) << y2 << quota << "  "
 	   << element11 << std::setw(fNW) << std::setprecision(fNP) << x3 << quota << "  "
 	   << element12 << std::setw(fNW) << std::setprecision(fNP) << x4 << quota << "  "
 	   << element13 << std::setw(fNW) << std::setprecision(fNP) << alpha2
 	   << element14 << std::endl << std::endl;
-}  
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteTrd(
-                              std::string name, 
+                              std::string name,
 			      const VGM::ITrd* trd)
 {
 /// Write VGM::ITrd solid
@@ -1078,7 +1078,7 @@ void XmlVGM::GDMLWriter::WriteTrd(
     y1 *= 2.;
     y2 *= 2.;
     hz *= 2.;
-  }  
+  }
 
   // compose element string template
   std::string quota = "\"";
@@ -1091,11 +1091,11 @@ void XmlVGM::GDMLWriter::WriteTrd(
   std::string element7 = "z=\"";
   std::string element8 = "\" />";
   std::string indention = fIndention + fkBasicIndention;
-  
+
   // write element
   fOutFile << fIndention << element1 << std::endl
 	   << indention        << element2 << std::endl
-	   << indention        
+	   << indention
 	   << element3 << std::setw(fNW) << std::setprecision(fNP) << x1 << quota << "  "
 	   << element4 << std::setw(fNW) << std::setprecision(fNP) << x2 << quota << "  "
 	   << element5 << std::setw(fNW) << std::setprecision(fNP) << y1 << quota << "  "
@@ -1103,11 +1103,11 @@ void XmlVGM::GDMLWriter::WriteTrd(
 	   << indention
 	   << element7 << std::setw(fNW) << std::setprecision(fNP) << hz
 	   << element8 << std::endl << std::endl;
-}  
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteTubs(
-                              std::string name, 
+                              std::string name,
 			      const VGM::ITubs* tubs)
 {
 /// Write tubs solid
@@ -1122,7 +1122,7 @@ void XmlVGM::GDMLWriter::WriteTubs(
   // convert half lengths to full lengths
   if (fFullLengths) {
     hz *= 2.;
-  }  
+  }
 
   // compose element string template
   std::string quota = "\"";
@@ -1135,44 +1135,44 @@ void XmlVGM::GDMLWriter::WriteTubs(
   std::string element7 = "deltaphi=\"";
   std::string element8 = "\" />";
   std::string indention = fIndention + fkBasicIndention;
-  
+
   // write element
   fOutFile << fIndention << element1 << std::endl
 	   << indention  << element2 << std::endl
-	   << indention        
+	   << indention
 	   << element4 << std::setw(fNW) << std::setprecision(fNP) << rmin << quota << "  "
-	   << element5 << std::setw(fNW) << std::setprecision(fNP) << rmax << quota << "  " 
+	   << element5 << std::setw(fNW) << std::setprecision(fNP) << rmax << quota << "  "
 	   << element3 << std::setw(fNW) << std::setprecision(fNP) << hz << quota
 	   << std::endl
-	   << indention        
+	   << indention
 	   << element6 << std::setw(fNW)   << std::setprecision(fNP) << sphi << quota << "  "
 	   << element7 << std::setw(fNW)   << std::setprecision(fNP) << dphi
 	   << element8 << std::endl << std::endl;
-}  
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteNotSupportedSolid(
                               std::string name)
-{				   
+{
 /// Write a comment line with a warning
-/// and then write a box element instead 
+/// and then write a box element instead
 
   // Compose comment
-  std::string element1 = "<!-- !!! unsupported shape  !!!  name= \""; 
+  std::string element1 = "<!-- !!! unsupported shape  !!!  name= \"";
   std::string element2 = "\" -->";
-  std::string element3 = "<!-- dummy box is written instead  -->"; 
-  
+  std::string element3 = "<!-- dummy box is written instead  -->";
+
   // Write element with warning
   fOutFile << fIndention << element1 << name << element2 << std::endl
 	   << fIndention << element3 << std::endl;
-	   
+
   // Write dummy box element
-  WriteBox(name, 1.0, 1.0, 1.0); 
-}  	   
+  WriteBox(name, 1.0, 1.0, 1.0);
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteSimplePlacement(
-                              const std::string& volumeName, 
+                              const std::string& volumeName,
 			      const std::string& positionRef,
 			      const std::string& rotationRef,
                               bool isReflection)
@@ -1186,7 +1186,7 @@ void XmlVGM::GDMLWriter::WriteSimplePlacement(
   //
   std::string element0 = "\"/>";
   std::string element1 = "<physvol>";
- 
+
   std::string element2 = "<volumeref ref=\"";
   element2.append(name);
   element2.append(element0);
@@ -1194,39 +1194,39 @@ void XmlVGM::GDMLWriter::WriteSimplePlacement(
   std::string element3 = "<positionref ref=\"";
   element3.append(positionRef);
   element3.append(element0);
-  
+
   std::string element4 = "<rotationref ref=\"";
   element4.append(rotationRef);
   element4.append(element0);
-  
+
   std::string element5 = "<scaleref    ref=\"";
   element5.append(std::string("scale_0"));
   element5.append(element0);
 
   std::string element6 = "</physvol>";
-  
+
   std::string indention1 = fIndention + fkBasicIndention;
   std::string indention2 = fIndention + fkBasicIndention + fkBasicIndention;
-  
+
   // Write element
   fOutFile << fIndention << element1 << std::endl
            << indention1 << element2 << std::endl
            << indention2 << element3 << std::endl
            << indention2 << element4 << std::endl;
-           
-  if ( isReflection )           
+
+  if ( isReflection )
     fOutFile << indention2 << element5 << std::endl;
-  
+
   fOutFile << fIndention << element6 << std::endl;
-}  
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteMultiplePlacement(
                               const std::string& volumeName,
-                              VGM::Axis axis, 
+                              VGM::Axis axis,
 			      int   nofReplicas,
-			      double width, 
-			      double offset)			       
+			      double width,
+			      double offset)
 {
 /// Write multiple position
 
@@ -1238,9 +1238,9 @@ void XmlVGM::GDMLWriter::WriteMultiplePlacement(
     case VGM::kRho:   axisName = "kRho"; break;
     case VGM::kPhi:         axisName = "kPhi"; break;
     case VGM::kRadial3D:    axisName = "Undefined"; break; // ADD WARNING HERE
-    case VGM::kSphTheta:    axisName = "Undefined"; break; 
+    case VGM::kSphTheta:    axisName = "Undefined"; break;
     case VGM::kUnknownAxis: axisName = "Undefined"; break;
-  }  
+  }
 
   // set units
   double width2;
@@ -1250,13 +1250,13 @@ void XmlVGM::GDMLWriter::WriteMultiplePlacement(
     width2 = width/LengthUnit();
     offset2 = offset/LengthUnit();
     unit = "cm";
-  }  
+  }
   else  {
     width2 = width/AngleUnit();
     offset2 = offset/AngleUnit();
     unit = "degree";
-  }  
-  
+  }
+
   // Compose element strings
   //
   // compose element string template
@@ -1267,7 +1267,7 @@ void XmlVGM::GDMLWriter::WriteMultiplePlacement(
   std::string element4 = "offset=\"";
   std::string element5 = "width=\"";
   std::string element6 =  "\">";
-  
+
   std::string element7 = "<volumeref ref=\"";
   std::string element8 =  "\"/>";
   std::string element9 = "</divisionvol>";
@@ -1275,15 +1275,15 @@ void XmlVGM::GDMLWriter::WriteMultiplePlacement(
   std::string indention1 = fIndention + fkBasicIndention;
 
   // write element
-  fOutFile << fIndention  << element1 << unit << quota << std::endl 
+  fOutFile << fIndention  << element1 << unit << quota << std::endl
            << indention1  << element2 << axisName + quota  << "  "
            << element3 << nofReplicas << quota << "  "
 	   << element4 << std::setw(fNW+1) << std::setprecision(fNP) << offset2  << quota << "  "
-	   << element5 << std::setw(fNW+1) << std::setprecision(fNP) << width2 
+	   << element5 << std::setw(fNW+1) << std::setprecision(fNP) << width2
            << element6 << std::endl
            << indention1 << element7 << volumeName << element8 << std::endl
            << fIndention << element9 << std::endl;
-}  
+}
 
 //
 // public methods
@@ -1291,17 +1291,17 @@ void XmlVGM::GDMLWriter::WriteMultiplePlacement(
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::OpenFile(std::string filePath)
-{ 
+{
 // Opens output file
 
-  fOutFile.open(filePath.data(), std::ios::out); 
-  
+  fOutFile.open(filePath.data(), std::ios::out);
+
   if (!fOutFile) {
-    std::cerr << "   Cannot open " << filePath << std::endl;  
-    std::cerr << "** Exception: Aborting execution **" << std::endl;   
+    std::cerr << "   Cannot open " << filePath << std::endl;
+    std::cerr << "** Exception: Aborting execution **" << std::endl;
     exit(1);
   }
-  
+
   // use FORTRAN compatibility output
   fOutFile.setf(std::ios::fixed, std::ios::floatfield);
 }
@@ -1311,86 +1311,86 @@ void XmlVGM::GDMLWriter::OpenDocument()
 {
 // Write document opening;
 // Could be made customizable in future
-			 
-  fOutFile << "<?xml version=\"1.0\" encoding=\"UTF-8\"\?>" 
+
+  fOutFile << "<?xml version=\"1.0\" encoding=\"UTF-8\"\?>"
            << std::endl
-	   << "<gdml xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"" 
+	   << "<gdml xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""
 	   << std::endl
-	   << "      xsi:noNamespaceSchemaLocation=\"http://service-spi.web.cern.ch/service-spi/app/releases/GDML/GDML_2_10_0/src/GDMLSchema/gdml.xsd\">" 
+	   << "      xsi:noNamespaceSchemaLocation=\"http://service-spi.web.cern.ch/service-spi/app/releases/GDML/GDML_2_10_0/src/GDMLSchema/gdml.xsd\">"
 	   << std::endl;
-}  
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::OpenSection(const std::string& /*topVolume*/)
 {
 // Write section opening
 
-  // nothing to be done in GDML			 
-}  
+  // nothing to be done in GDML
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::OpenPositions()
 {
-// Open element for general definitions 
+// Open element for general definitions
 // (positions and rotations for generated XML files.)
 
-  std::string element1 = "<define>"; 
+  std::string element1 = "<define>";
 
   // write element
   fOutFile << fIndention << element1 << std::endl;
 
   // increase indention
-  IncreaseIndention();	   
-}  
+  IncreaseIndention();
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::OpenRotations()
 {
 // Rotations are written in the same element as positions.
 // The element is already open.
-}  
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::OpenMaterials()
 {
 // Write materials opening
-			 
+
   std::string element = "<materials>";
-  
+
   // write element
   fOutFile << fIndention << element << std::endl;
 
   // increase indention
-  IncreaseIndention();	   
-}  
+  IncreaseIndention();
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::OpenSolids()
 {
 // Write solids opening
 
-  std::string element = "<solids>"; 
+  std::string element = "<solids>";
 
   // write element
   fOutFile << fIndention << element << std::endl;
 
   // increase indention
-  IncreaseIndention();	   
-}  
+  IncreaseIndention();
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::OpenStructure()
 {
 // Write structure opening.
-			 
+
   std::string element = "<structure>";
-  
+
   // Write element
   fOutFile << fIndention << element << std::endl;
 
   // increase indention
-  IncreaseIndention();	   
-}  
+  IncreaseIndention();
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::OpenComposition(
@@ -1403,22 +1403,22 @@ void XmlVGM::GDMLWriter::OpenComposition(
   std::string volName = UpdateName(name);
   std::string matName = UpdateName(materialName);
   std::string sldName = UpdateName(name, fgkSolidNameExtension);
-  
+
   // Register volume name
   RegisterName(volName);
-			 
+
   std::string element1 = "<volume name=\"";
   element1.append(volName);
   element1.append("\">");
-  
+
   std::string element2 = "<materialref ref=\"";
   element2.append(matName);
   element2.append("\"/>");
-  
+
   std::string element3 = "<solidref ref=\"";
   element3.append(sldName);
   element3.append("\"/>");
-  
+
   std::string indention =  fIndention + fkBasicIndention;
 
   // write element
@@ -1427,15 +1427,15 @@ void XmlVGM::GDMLWriter::OpenComposition(
            << indention  << element3 << std::endl;
 
   // increase indention
-  IncreaseIndention();	   
-}  
+  IncreaseIndention();
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::CloseFile()
-{ 
+{
 // Closes output file
 
-  fOutFile.close(); 
+  fOutFile.close();
 }
 
 //_____________________________________________________________________________
@@ -1444,7 +1444,7 @@ void XmlVGM::GDMLWriter::CloseDocument()
 // Write document closing
 
    fOutFile << "</gdml>" << std::endl;
-}  
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::CloseSection(const std::string& topVolume)
@@ -1457,18 +1457,18 @@ void XmlVGM::GDMLWriter::CloseSection(const std::string& topVolume)
   std::string element2 = "<setup name=\"";
   element2.append(fUnitName);
   element2.append(quota);
-  
+
   std::string element3 = "version=\"";
   element3.append(fVersion);
   element3.append(quota);
-  		
+
   std::string element4 = "<world ref=\"";
   element4.append(topVolume);
   element4.append(quota);
-    
+
   std::string element5 = "</setup>";
   std::string indention = fIndention + fkBasicIndention;
- 
+
   // Write element
   //
   fOutFile << fIndention       << element2
@@ -1476,29 +1476,29 @@ void XmlVGM::GDMLWriter::CloseSection(const std::string& topVolume)
 	   << indention        << element4 << "/>" << std::endl
 	   << fIndention       << element5 << std::endl
 	   << std::endl;
-}  
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::ClosePositions()
 {
 // Do not close the element.
 // Rotations will be written in the same element as positions.
-}  
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::CloseRotations()
 {
-// Close element for general definitions 
+// Close element for general definitions
 // (positions and rotations for generated XML files.)
 
   // decrease indention
-  DecreaseIndention();	   
+  DecreaseIndention();
 
-  std::string element1 = "</define>"; 
+  std::string element1 = "</define>";
 
   // write element
   fOutFile << fIndention << element1 << std::endl;
-}  
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::CloseMaterials()
@@ -1506,28 +1506,28 @@ void XmlVGM::GDMLWriter::CloseMaterials()
 // Write materials closing
 
   // decrease indention
-  DecreaseIndention();	   
+  DecreaseIndention();
 
   // define element
   std::string element = "</materials>";
 
   // write element
   fOutFile << fIndention << element << std::endl;
-}  
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::CloseSolids()
 {
-// Close element for solids 
+// Close element for solids
 
   // decrease indention
-  DecreaseIndention();	   
+  DecreaseIndention();
 
-  std::string element1 = "</solids>"; 
+  std::string element1 = "</solids>";
 
   // write element
   fOutFile << fIndention << element1 << std::endl;
-}  
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::CloseStructure()
@@ -1535,13 +1535,13 @@ void XmlVGM::GDMLWriter::CloseStructure()
 // Close element for structure
 
   // decrease indention
-  DecreaseIndention();	   
+  DecreaseIndention();
 
   std::string element = "</structure>";
 
   // write element
   fOutFile << fIndention << element << std::endl;
-}  
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::CloseComposition()
@@ -1556,22 +1556,22 @@ void XmlVGM::GDMLWriter::CloseComposition()
 
   // write element
   fOutFile << fIndention << element << std::endl;
-}  
+}
 
 //_____________________________________________________________________________
-void XmlVGM::GDMLWriter::WriteIsotope(const VGM::IIsotope* isotope) 
+void XmlVGM::GDMLWriter::WriteIsotope(const VGM::IIsotope* isotope)
 {
-// Write VGM::IElement 
+// Write VGM::IElement
 
   std::string name = IsotopeName(isotope);
   name.append(fgkIsotopeNameExtension);
-  RegisterName(name);  
-    
+  RegisterName(name);
+
   // Get parameters
   int  theZ = isotope->Z();
   int  theN = isotope->N();
   double theA = isotope->A()/ AtomicWeightUnit();
-  
+
   // GDML does not allow N=0
   // Let's put =1 in this case
   if (theN == 0) theN = 1;
@@ -1580,40 +1580,40 @@ void XmlVGM::GDMLWriter::WriteIsotope(const VGM::IIsotope* isotope)
   std::string quota1 = "\"";
   std::string quota2 = "\"  ";
   std::string element1 = "<isotope  name=\"";
-  
+
   std::string element2 = "Z=\"";
   std::string element3 = "N=\"";
   std::string element4 = "<atom type=\"A\" unit=\"g/mol\" value=\"";
   std::string element5 = "\" />";
   std::string element6 = "</isotope>";
-  
+
   std::string indention = fIndention + fkBasicIndention;
-  
+
   // Write isotope
   fOutFile << fIndention << element1 << name << quota1;
   for ( int i=0; i< 10 - int(name.size()); i++ ) fOutFile << " ";
-  
+
   SmartPut(fOutFile, fNW-2, fNP, 0, element2, theZ, quota2);
 
   //SmartPut(fOutFile, fNW-2, fNP, element3, theN, "\" >");
-  //fOutFile << std::endl; 
+  //fOutFile << std::endl;
   fOutFile << element3 << std::setw(3) << theN << "\" >" << std::endl;
-  
+
   fOutFile << indention;
   SmartPut(fOutFile, fNW-2, fNP, 0, element4, theA, element5);
-  fOutFile << std::endl; 
+  fOutFile << std::endl;
 
   fOutFile << fIndention << element6 << std::endl;
-}  
+}
 
 //_____________________________________________________________________________
-void XmlVGM::GDMLWriter::WriteElement(const VGM::IElement* element) 
+void XmlVGM::GDMLWriter::WriteElement(const VGM::IElement* element)
 {
-// Write VGM::IElement 
+// Write VGM::IElement
 
   std::string name = UpdateName(element->Name(), fgkElementNameExtension);
-  RegisterName(name);  
-    
+  RegisterName(name);
+
   // Compose element string template
   std::string quota1 = "\"";
   std::string quota2 = "\"  ";
@@ -1628,7 +1628,7 @@ void XmlVGM::GDMLWriter::WriteElement(const VGM::IElement* element)
 
   // Get parameters
   if ( element->NofIsotopes() > 0 ) {
-  
+
     std::string element2 = ">";
     std::string element3 = "<fraction n=\"";
     std::string element4 = "ref=\"";
@@ -1639,17 +1639,17 @@ void XmlVGM::GDMLWriter::WriteElement(const VGM::IElement* element)
       std::string name2 = IsotopeName(isotope);
       name2.append(fgkIsotopeNameExtension);
       double natoms = element->RelAbundance(i);
-  
+
       fOutFile << indention;
       SmartPut(fOutFile, fNW-2, fNP, 0, element3, natoms, quota2);
       fOutFile << element4 << name2 << element6 << std::endl;
-    }  
+    }
   }
   else {
     double theZ = element->Z();
     int    theN = (int) ClhepVGM::Round(element->N());
     double theA = element->A()/ AtomicWeightUnit();
-  
+
     // GDML does not allow N=0
     // Let's put =1 in this case
     if (theN == 0) theN = 1;
@@ -1660,19 +1660,19 @@ void XmlVGM::GDMLWriter::WriteElement(const VGM::IElement* element)
 
     SmartPut(fOutFile, fNW-2, fNP, 0, element3, theZ, quota2);
     //SmartPut(fOutFile, fNW-2, fNP, element3, theN, "\" >");
-    //fOutFile << std::endl; 
+    //fOutFile << std::endl;
     fOutFile << element4 << std::setw(3) << theN << "\" >" << std::endl;
-  
+
     fOutFile << indention;
     SmartPut(fOutFile, fNW-2, fNP, 0, element5, theA, element6);
     fOutFile << std::endl;
-  }   
+  }
 
   fOutFile << fIndention << element7 << std::endl;
-}  
+}
 
 //_____________________________________________________________________________
-void XmlVGM::GDMLWriter::WriteMaterial(const VGM::IMaterial* material) 
+void XmlVGM::GDMLWriter::WriteMaterial(const VGM::IMaterial* material)
 {
 // Write VGM::IMaterial
 
@@ -1688,21 +1688,21 @@ void XmlVGM::GDMLWriter::WriteMaterial(const VGM::IMaterial* material)
     case VGM::kGas:       state = "gas"; break;
     case VGM::kUndefined:
     default:              state = "undefined";
-  }  
+  }
   double temperature = material->Temperature()/TemperatureUnit();
-  double pressure = material->Pressure()/PressureUnit(); 
- 
+  double pressure = material->Pressure()/PressureUnit();
+
   // Compose material string template
   std::string quota = "\"  ";
   std::string element1 = "<material  name=\"";
   element1.append(materialName);
   element1.append(quota);
-  
+
   std::string element2 = "state=\"";
   element2.append(state);
   element2.append(quota);
   element2.append(">");
-  
+
   std::string element3 = "<D type=\"density\" unit=\"g/cm3\" value=\"";
   std::string element4 = "<T type=\"temperature\" unit=\"K\" value=\"";
   std::string element5 = "<P type=\"pressure\" unit=\"pascal\" value=\"";
@@ -1710,164 +1710,164 @@ void XmlVGM::GDMLWriter::WriteMaterial(const VGM::IMaterial* material)
   std::string element7 = "ref=\"";
   std::string element8 = "\"/>";
   std::string element9 = "</material>";
-  
+
   std::string indention = fIndention + fkBasicIndention;
-  
+
   // Write element
   fOutFile << fIndention << element1 << element2 << std::endl;
 
   fOutFile << indention;
   SmartPut(fOutFile, fNW+1, fNP, 0, element3, density, element8);
-  fOutFile << std::endl; 
-  
+  fOutFile << std::endl;
+
   if ( temperature != fgkSTPTemperature ) {
     fOutFile << indention;
     SmartPut(fOutFile, fNW+1, fNP, 0, element4, temperature, element8);
-    fOutFile << std::endl; 
-  }  
-  
+    fOutFile << std::endl;
+  }
+
   if ( pressure != fgkSTPPressure ) {
     fOutFile << indention;
     SmartPut(fOutFile, fNW+1, fNP, 0, element5, pressure, element8);
-    fOutFile << std::endl; 
-  }  
-  
+    fOutFile << std::endl;
+  }
+
   for (int i=0; i<int(material->NofElements()); i++) {
     double fraction
       = material->MassFraction(i);
     std::string elementName
-      = UpdateName(material->Element(i)->Name(), fgkElementNameExtension);  
+      = UpdateName(material->Element(i)->Name(), fgkElementNameExtension);
 
     fOutFile << indention;
     SmartPut(fOutFile, fNW, fNP, 0, element6, fraction, quota);
     fOutFile << element7 << elementName << element8 << std::endl;
-  }  
+  }
 
   fOutFile << fIndention << element9 << std::endl;
- }  
+ }
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteSolid(
-                              std::string volumeName, 
-			      const VGM::ISolid* solid, 
-                              std::string /*materialName*/) 
+                              std::string volumeName,
+			      const VGM::ISolid* solid,
+                              std::string /*materialName*/)
 {
-// Finds solid concrete type and calls writing function. 
+// Finds solid concrete type and calls writing function.
 // For not yet implemented solids, only XML comment element is written.
 
   std::string solidName = UpdateName(volumeName, fgkSolidNameExtension);
   RegisterName(solidName);
-  
+
   VGM::SolidType solidType = solid->Type();
-  if (solidType == VGM::kArb8) { 
-    const VGM::IArb8* arb8 = dynamic_cast<const VGM::IArb8*>(solid); 
-    WriteArb8(solidName, arb8); 
-    return;   
+  if (solidType == VGM::kArb8) {
+    const VGM::IArb8* arb8 = dynamic_cast<const VGM::IArb8*>(solid);
+    WriteArb8(solidName, arb8);
+    return;
   }
-  else if (solidType == VGM::kBox) { 
-    const VGM::IBox* box = dynamic_cast<const VGM::IBox*>(solid); 
-    WriteBox(solidName, box); 
-    return;   
+  else if (solidType == VGM::kBox) {
+    const VGM::IBox* box = dynamic_cast<const VGM::IBox*>(solid);
+    WriteBox(solidName, box);
+    return;
   }
-  else if (solidType == VGM::kCons) { 
-    const VGM::ICons* cons = dynamic_cast<const VGM::ICons*>(solid); 
-    WriteCons(solidName, cons); 
-    return;   
+  else if (solidType == VGM::kCons) {
+    const VGM::ICons* cons = dynamic_cast<const VGM::ICons*>(solid);
+    WriteCons(solidName, cons);
+    return;
   }
-  else if (solidType == VGM::kCtubs) { 
-    const VGM::ICtubs* ctubs = dynamic_cast<const VGM::ICtubs*>(solid); 
-    WriteCtubs(solidName, ctubs); 
-    return;   
+  else if (solidType == VGM::kCtubs) {
+    const VGM::ICtubs* ctubs = dynamic_cast<const VGM::ICtubs*>(solid);
+    WriteCtubs(solidName, ctubs);
+    return;
   }
-  else if (solidType == VGM::kEllipsoid) { 
-    const VGM::IEllipsoid* ellipsoid 
-      = dynamic_cast<const VGM::IEllipsoid*>(solid); 
-    WriteEllipsoid(solidName, ellipsoid); 
-    return;   
+  else if (solidType == VGM::kEllipsoid) {
+    const VGM::IEllipsoid* ellipsoid
+      = dynamic_cast<const VGM::IEllipsoid*>(solid);
+    WriteEllipsoid(solidName, ellipsoid);
+    return;
   }
-  else if (solidType == VGM::kEltu) { 
-    const VGM::IEllipticalTube* eltu 
-      = dynamic_cast<const VGM::IEllipticalTube*>(solid); 
-    WriteEllipticalTube(solidName, eltu); 
-    return;   
+  else if (solidType == VGM::kEltu) {
+    const VGM::IEllipticalTube* eltu
+      = dynamic_cast<const VGM::IEllipticalTube*>(solid);
+    WriteEllipticalTube(solidName, eltu);
+    return;
   }
-  else if (solidType == VGM::kExtruded) { 
-    const VGM::IExtrudedSolid* extruded 
-      = dynamic_cast<const VGM::IExtrudedSolid*>(solid); 
-    WriteExtrudedSolid(solidName, extruded); 
-    return;   
+  else if (solidType == VGM::kExtruded) {
+    const VGM::IExtrudedSolid* extruded
+      = dynamic_cast<const VGM::IExtrudedSolid*>(solid);
+    WriteExtrudedSolid(solidName, extruded);
+    return;
   }
-  else if (solidType == VGM::kHype) { 
-    const VGM::IHype* hype = dynamic_cast<const VGM::IHype*>(solid); 
-    WriteHype(solidName, hype); 
-    return;   
+  else if (solidType == VGM::kHype) {
+    const VGM::IHype* hype = dynamic_cast<const VGM::IHype*>(solid);
+    WriteHype(solidName, hype);
+    return;
   }
-  else if (solidType == VGM::kPara) { 
-    const VGM::IPara* para = dynamic_cast<const VGM::IPara*>(solid); 
-    WritePara(solidName, para); 
-    return;   
+  else if (solidType == VGM::kPara) {
+    const VGM::IPara* para = dynamic_cast<const VGM::IPara*>(solid);
+    WritePara(solidName, para);
+    return;
   }
-  else if (solidType == VGM::kParaboloid) { 
-    const VGM::IParaboloid* paraboloid = dynamic_cast<const VGM::IParaboloid*>(solid); 
-    WriteParaboloid(solidName, paraboloid); 
-    return;   
+  else if (solidType == VGM::kParaboloid) {
+    const VGM::IParaboloid* paraboloid = dynamic_cast<const VGM::IParaboloid*>(solid);
+    WriteParaboloid(solidName, paraboloid);
+    return;
   }
-  else if (solidType == VGM::kPolycone) { 
-    const VGM::IPolycone* polycone = dynamic_cast<const VGM::IPolycone*>(solid); 
-    WritePolycone(solidName, polycone); 
-    return;   
+  else if (solidType == VGM::kPolycone) {
+    const VGM::IPolycone* polycone = dynamic_cast<const VGM::IPolycone*>(solid);
+    WritePolycone(solidName, polycone);
+    return;
   }
-  else if (solidType == VGM::kPolyhedra) { 
-    const VGM::IPolyhedra* polyhedra = dynamic_cast<const VGM::IPolyhedra*>(solid); 
-    WritePolyhedra(solidName, polyhedra); 
-    return;   
+  else if (solidType == VGM::kPolyhedra) {
+    const VGM::IPolyhedra* polyhedra = dynamic_cast<const VGM::IPolyhedra*>(solid);
+    WritePolyhedra(solidName, polyhedra);
+    return;
   }
-  else if (solidType == VGM::kSphere) { 
-    const VGM::ISphere* sphere = dynamic_cast<const VGM::ISphere*>(solid); 
-    WriteSphere(solidName, sphere); 
-    return;   
+  else if (solidType == VGM::kSphere) {
+    const VGM::ISphere* sphere = dynamic_cast<const VGM::ISphere*>(solid);
+    WriteSphere(solidName, sphere);
+    return;
   }
-  else if (solidType == VGM::kTessellated) { 
-    const VGM::ITessellatedSolid* tessellated 
-      = dynamic_cast<const VGM::ITessellatedSolid*>(solid); 
-    WriteTessellatedSolid(solidName, tessellated); 
-    return;   
+  else if (solidType == VGM::kTessellated) {
+    const VGM::ITessellatedSolid* tessellated
+      = dynamic_cast<const VGM::ITessellatedSolid*>(solid);
+    WriteTessellatedSolid(solidName, tessellated);
+    return;
   }
-  else if (solidType == VGM::kTorus) { 
-    const VGM::ITorus* torus = dynamic_cast<const VGM::ITorus*>(solid); 
-    WriteTorus(solidName, torus); 
-    return;   
+  else if (solidType == VGM::kTorus) {
+    const VGM::ITorus* torus = dynamic_cast<const VGM::ITorus*>(solid);
+    WriteTorus(solidName, torus);
+    return;
   }
-  else if (solidType == VGM::kTrap) { 
-    const VGM::ITrap* trap = dynamic_cast<const VGM::ITrap*>(solid); 
-    WriteTrap(solidName, trap); 
-    return;   
+  else if (solidType == VGM::kTrap) {
+    const VGM::ITrap* trap = dynamic_cast<const VGM::ITrap*>(solid);
+    WriteTrap(solidName, trap);
+    return;
   }
-  else if (solidType == VGM::kTrd) { 
-    const VGM::ITrd* trd = dynamic_cast<const VGM::ITrd*>(solid); 
-    WriteTrd(solidName, trd); 
-    return;   
+  else if (solidType == VGM::kTrd) {
+    const VGM::ITrd* trd = dynamic_cast<const VGM::ITrd*>(solid);
+    WriteTrd(solidName, trd);
+    return;
   }
-  else if (solidType == VGM::kTubs) { 
-    const VGM::ITubs* tubs = dynamic_cast<const VGM::ITubs*>(solid); 
-    WriteTubs(solidName, tubs); 
-    return;   
+  else if (solidType == VGM::kTubs) {
+    const VGM::ITubs* tubs = dynamic_cast<const VGM::ITubs*>(solid);
+    WriteTubs(solidName, tubs);
+    return;
   }
-  else if (solidType == VGM::kBoolean) { 
-    const VGM::IBooleanSolid* boolean 
+  else if (solidType == VGM::kBoolean) {
+    const VGM::IBooleanSolid* boolean
       = dynamic_cast<const VGM::IBooleanSolid*>(solid);
-    WriteBooleanSolid(solidName, boolean); 
-    return;   
+    WriteBooleanSolid(solidName, boolean);
+    return;
   }
 
   // Not supported solid
   WriteNotSupportedSolid(solidName);
-}  
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WritePosition(
-                              const std::string& name, 
-                              const VGM::Transform& transform) 
+                              const std::string& name,
+                              const VGM::Transform& transform)
 {
 // Write position element with a given name
 
@@ -1886,7 +1886,7 @@ void XmlVGM::GDMLWriter::WritePosition(
   std::string element3 = "y=\"";
   std::string element4 = "z=\"";
   std::string element5 = "\"  unit=\"cm\" />";
-  
+
   // write element
   fOutFile << fIndention << element1 << posName;
 
@@ -1895,11 +1895,11 @@ void XmlVGM::GDMLWriter::WritePosition(
   SmartPut(fOutFile, fNW+1, fNP, fgkCarTolerance, element4, z, "");
 
   fOutFile << element5 << std::endl;
-}  
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteRotation(
-                              const std::string& name, 
+                              const std::string& name,
                               const VGM::Transform& transform)
 {
 // Write rotation element with a given name
@@ -1921,7 +1921,7 @@ void XmlVGM::GDMLWriter::WriteRotation(
   std::string element3 = "y=\"";
   std::string element4 = "z=\"";
   std::string element5 = "\"  unit=\"degree\" />";
-  
+
   // Write element
   fOutFile << fIndention << element1 << rotName;
 
@@ -1930,7 +1930,7 @@ void XmlVGM::GDMLWriter::WriteRotation(
   SmartPut(fOutFile, fNW+1, fNP, fgkAngTolerance, element4, angleZ, "");
 
   fOutFile << element5 << std::endl;
-}  
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WriteScale(
@@ -1953,7 +1953,7 @@ void XmlVGM::GDMLWriter::WriteScale(
   std::string element3 = "y=\"";
   std::string element4 = "z=\"";
   std::string element5 = "\"  />";
-  
+
   // Write element
   fOutFile << fIndention << element1 << rotName;
 
@@ -1962,36 +1962,36 @@ void XmlVGM::GDMLWriter::WriteScale(
   SmartPut(fOutFile, fNW+1, fNP, 0, element4, scaleZ, "");
 
   fOutFile << element5 << std::endl;
-}  
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::WritePlacement(
                               const VGM::IPlacement& placement)
-{			       
-  
+{
+
   VGM::PlacementType placementType = placement.Type();
 
   if (placementType == VGM::kSimplePlacement) {
-    
+
     // simple placement
     VGM::Transform transform = placement.Transformation();
-	 
+
     // Get position
     std::string positionRef = fMaps->FindPositionName(transform);
-  
+
     // Get rotation
     std::string rotationRef = fMaps->FindRotationName(transform);
-	
+
     // If boolean solid that have to be reflected
     // set reflection to the transformation
-    VGM::IBooleanSolid* booleanSolid 
+    VGM::IBooleanSolid* booleanSolid
       = dynamic_cast<VGM::IBooleanSolid*>(placement.Volume()->Solid());
     if ( booleanSolid && booleanSolid->ToBeReflected() )
        transform[VGM::kReflZ] = 1;
-        
+
     // If paraboloid that have to be reflected,
     // set reflection to the transformation
-    VGM::IParaboloid* paraboloid 
+    VGM::IParaboloid* paraboloid
       = dynamic_cast<VGM::IParaboloid*>(placement.Volume()->Solid());
     if ( paraboloid && paraboloid->RadiusPlusZ() <=  paraboloid->RadiusMinusZ() )
        transform[VGM::kReflZ] = 1;
@@ -1999,7 +1999,7 @@ void XmlVGM::GDMLWriter::WritePlacement(
     // Get info about reflection
     bool isReflection = ClhepVGM::HasReflection(transform);
 
-    WriteSimplePlacement(placement.Volume()->Name(), 
+    WriteSimplePlacement(placement.Volume()->Name(),
                          positionRef, rotationRef, isReflection);
   }
   else if (placementType == VGM::kMultiplePlacement) {
@@ -2022,14 +2022,14 @@ void XmlVGM::GDMLWriter::WritePlacement(
     // write multiple position
     WriteMultiplePlacement(placement.Volume()->Name(),
                            axis, nReplicas, width, offset);
-     
+
   }
   else {
-    std::cerr << "+++ Warning  +++" << std::endl; 
+    std::cerr << "+++ Warning  +++" << std::endl;
     std::cerr << "    XmlVGM::GDMLExporter::ProcessVolume: " << std::endl;
     std::cerr << "    Unknown placement type. " << std::endl;
-    std::cerr << "    Volume \"" << placement.Name() 
-	      << "\" was not converted." << std::endl;  
+    std::cerr << "    Volume \"" << placement.Name()
+	      << "\" was not converted." << std::endl;
   }
 }
 
@@ -2039,14 +2039,14 @@ void XmlVGM::GDMLWriter::WriteEmptyLine()
 // Write empty line.
 
   fOutFile << std::endl;
-}  
+}
 
 //_____________________________________________________________________________
 void XmlVGM::GDMLWriter::IncreaseIndention()
 {
 // Increase indention
 
-  fIndention.append(fkBasicIndention);	   
+  fIndention.append(fkBasicIndention);
 }
 
 //_____________________________________________________________________________

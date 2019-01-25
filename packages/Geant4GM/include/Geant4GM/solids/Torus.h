@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The Geant4GM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -32,10 +32,10 @@ namespace Geant4GM {
   class Torus : public BaseVGM::VTorus
   {
     public:
-      Torus(const std::string& name, 
-            double rin, double rout, double rax, 
+      Torus(const std::string& name,
+            double rin, double rout, double rax,
 	    double sphi, double dphi);
-      Torus(G4Torus* torus, 
+      Torus(G4Torus* torus,
             G4ReflectedSolid* reflTorus = 0);
       virtual ~Torus();
 

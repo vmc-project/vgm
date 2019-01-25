@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -27,11 +27,11 @@
 
 const double  RootGM::Material::fgkVacuumDensity = 1.e-25;       // g/cm3
 const double  RootGM::Material::fgkVacuumTemperature = 2.73;     // kelvin
-const double  RootGM::Material::fgkVacuumPressure = 2.96077e-23; // atmosphere  
+const double  RootGM::Material::fgkVacuumPressure = 2.96077e-23; // atmosphere
 
 //_____________________________________________________________________________
-RootGM::Material::Material(const std::string& name, 
-                           double density, 
+RootGM::Material::Material(const std::string& name,
+                           double density,
 		           VGM::IElement* element,
 			   double radlen, double intlen)
  :  VGM::IMaterial(),
@@ -39,7 +39,7 @@ RootGM::Material::Material(const std::string& name,
     fElements()
 
 {
-/// Standard constructor to define material from parameters 
+/// Standard constructor to define material from parameters
 /// \param name its name
 ///	   (must be unique in the factory)
 /// \param density in g/cm3
@@ -48,17 +48,17 @@ RootGM::Material::Material(const std::string& name,
 /// \param intlen nuclear interaction length in mm
 
   if ( ! element ) {
-    std::cerr << "    RootGM::Material::Material: " << std::endl; 
+    std::cerr << "    RootGM::Material::Material: " << std::endl;
     std::cerr << "    No element defined.";
-    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl;
     exit(1);
   }
 
   // Create vacuum if density is lower than universe mean density
   // or Z < 1.0
   if ( density < fgkVacuumDensity || element->Z() < 1.0 ) {
-    fMaterial = new TGeoMaterial(name.data(), 
-                                 element->A(), 
+    fMaterial = new TGeoMaterial(name.data(),
+                                 element->A(),
                                  element->Z(),
                                  fgkVacuumDensity  / RootGM::Units::MassDensity(),
                                  TGeoMaterial::kMatStateGas,
@@ -66,25 +66,25 @@ RootGM::Material::Material(const std::string& name,
                                  fgkVacuumPressure / RootGM::Units::Pressure());
   }
   else {
-    fMaterial = new TGeoMaterial(name.data(), 
-                                 element->A(), 
+    fMaterial = new TGeoMaterial(name.data(),
+                                 element->A(),
                                  element->Z(),
                                  density / RootGM::Units::MassDensity());
   }
 
   // Add element
   fElements.push_back(element);
-  
+
   // Set parameters
   fMaterial->SetRadLen(radlen, intlen);
-  
+
   // Register material in the map
-  RootGM::MaterialMap::Instance()->AddMaterial(this, fMaterial); 
+  RootGM::MaterialMap::Instance()->AddMaterial(this, fMaterial);
 }
-			   
+
 //_____________________________________________________________________________
-RootGM::Material::Material(const std::string& name, 
-                           double density, 
+RootGM::Material::Material(const std::string& name,
+                           double density,
 		           VGM::IElement* element,
 			   double radlen, double intlen,
  	                   VGM::MaterialState state,
@@ -93,7 +93,7 @@ RootGM::Material::Material(const std::string& name,
     fMaterial(0),
     fElements()
 {
-/// Standard constructor to define material from parameters 
+/// Standard constructor to define material from parameters
 /// \param name its name
 ///	   (must be unique in the factory)
 /// \param density in g/cm3
@@ -105,9 +105,9 @@ RootGM::Material::Material(const std::string& name,
 /// \param pressure material pressure (not defined in Root material)
 
   if ( ! element ) {
-    std::cerr << "    RootGM::Material::Material: " << std::endl; 
+    std::cerr << "    RootGM::Material::Material: " << std::endl;
     std::cerr << "    No element defined.";
-    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl;
     exit(1);
   }
 
@@ -115,8 +115,8 @@ RootGM::Material::Material(const std::string& name,
   // or Z < 1.0
   if ( density < fgkVacuumDensity || element->Z() < 1.0 ) {
     fMaterial = new TGeoMaterial(
-                        name.data(), 
-                        element->A(), 
+                        name.data(),
+                        element->A(),
                         element->Z(),
                         fgkVacuumDensity     / RootGM::Units::MassDensity(),
                         TGeoMaterial::kMatStateGas,
@@ -125,78 +125,78 @@ RootGM::Material::Material(const std::string& name,
   }
   else {
     fMaterial = new TGeoMaterial(
-                        name.data(), 
-                        element->A(), 
+                        name.data(),
+                        element->A(),
                         element->Z(),
                         density     / RootGM::Units::MassDensity(),
                         GetGeoState(state),
                         temperature / RootGM::Units::Temperature(),
                         pressure    / RootGM::Units::Pressure());
-  }                        
+  }
 
   // Add element
   fElements.push_back(element);
-  
+
   // Set parameters
   fMaterial->SetRadLen(radlen, intlen);
-  
+
   // Register material in the map
-  RootGM::MaterialMap::Instance()->AddMaterial(this, fMaterial); 
+  RootGM::MaterialMap::Instance()->AddMaterial(this, fMaterial);
 }
-			   
+
 //_____________________________________________________________________________
 RootGM::Material::Material(const std::string& name,
-                           double density, 
+                           double density,
 		           const VGM::ElementVector& elements,
                            const VGM::MassFractionVector& fractions)
   : VGM::IMaterial(),
     fMaterial(0),
     fElements()
 {
-/// Standard constructor to define compound material from parameters 
+/// Standard constructor to define compound material from parameters
 /// \param name its name
 ///	   (must be unique in the factory)
 /// \param density in g/cm3
-/// \param elements vector of elements constituing 
+/// \param elements vector of elements constituing
 ///	   this material
 /// \param fractions vector of mass fractions of
 ///	   elements constituing this material
 
   if ( ! elements.size() ) {
-    std::cerr << "    RootGM::Material::Material: " << std::endl; 
+    std::cerr << "    RootGM::Material::Material: " << std::endl;
     std::cerr << "    No elements defined.";
-    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl;
     exit(1);
   }
 
   // Check coherence
   if (elements.size() != fractions.size()) {
-    std::cerr << "    RootGM::Material::Material: " << std::endl; 
+    std::cerr << "    RootGM::Material::Material: " << std::endl;
     std::cerr << "    Elements size and fractions size differ." << std::endl;
-    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl;
     exit(1);
   }
-    
-  fMaterial = new TGeoMixture(name.data(), 
+
+  fMaterial = new TGeoMixture(name.data(),
                               elements.size(),
 			      density / RootGM::Units::MassDensity());
-			      
-  TGeoMixture* mixture = (TGeoMixture*)fMaterial;			      			      
+
+  TGeoMixture* mixture = (TGeoMixture*)fMaterial;
 
   // Add elements
   for (UInt_t i=0; i<elements.size(); i++) {
     VGM::IElement* element = elements[i];
     mixture->AddElement(element->A(), element->Z(), fractions[i]);
     fElements.push_back(element);
-  }			    			    
-  
+  }
+
   // Register material in the map
-  RootGM::MaterialMap::Instance()->AddMaterial(this, fMaterial); 
+  RootGM::MaterialMap::Instance()->AddMaterial(this, fMaterial);
 }
-			   
+
 //_____________________________________________________________________________
 RootGM::Material::Material(const std::string& name,
-                           double density, 
+                           double density,
 		           const VGM::ElementVector& elements,
                            const VGM::MassFractionVector& fractions,
  	                   VGM::MaterialState state,
@@ -205,11 +205,11 @@ RootGM::Material::Material(const std::string& name,
     fMaterial(0),
     fElements()
 {
-/// Standard constructor to define compound material from parameters 
+/// Standard constructor to define compound material from parameters
 /// \param name its name
 ///	   (must be unique in the factory)
 /// \param density in g/cm3
-/// \param elements vector of elements constituing 
+/// \param elements vector of elements constituing
 ///	   this material
 /// \param fractions vector of mass fractions of
 ///	   elements constituing this material
@@ -218,87 +218,87 @@ RootGM::Material::Material(const std::string& name,
 /// \param pressure material pressure (not defined in Root material)
 
   if ( ! elements.size() ) {
-    std::cerr << "    RootGM::Material::Material: " << std::endl; 
+    std::cerr << "    RootGM::Material::Material: " << std::endl;
     std::cerr << "    No elements defined.";
-    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl;
     exit(1);
   }
 
   // Check coherence
   if (elements.size() != fractions.size()) {
-    std::cerr << "    RootGM::Material::Material: " << std::endl; 
+    std::cerr << "    RootGM::Material::Material: " << std::endl;
     std::cerr << "    Elements size and fractions size differ." << std::endl;
-    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl;
     exit(1);
   }
-    
+
   fMaterial = new TGeoMixture(
-                      name.data(), 
+                      name.data(),
                       elements.size(),
 		      density     / RootGM::Units::MassDensity());
 
   fMaterial->SetState(GetGeoState(state));
   fMaterial->SetTemperature(temperature / RootGM::Units::Temperature());
   fMaterial->SetPressure(pressure / RootGM::Units::Pressure());
-			      
-  TGeoMixture* mixture = (TGeoMixture*)fMaterial;			      			      
+
+  TGeoMixture* mixture = (TGeoMixture*)fMaterial;
 
   // Add elements
   for (UInt_t i=0; i<elements.size(); i++) {
     VGM::IElement* element = elements[i];
     mixture->AddElement(element->A(), element->Z(), fractions[i]);
     fElements.push_back(element);
-  }			    			    
-  
+  }
+
   // Register material in the map
-  RootGM::MaterialMap::Instance()->AddMaterial(this, fMaterial); 
+  RootGM::MaterialMap::Instance()->AddMaterial(this, fMaterial);
 }
-			   
+
 //_____________________________________________________________________________
 RootGM::Material::Material(const std::string& name,
-                           double density, 
+                           double density,
 		           const VGM::ElementVector& elements,
                            const VGM::AtomCountVector& atomCounts)
   : VGM::IMaterial(),
     fMaterial(0),
     fElements()
 {
-/// Standard constructor to define compound material from parameters 
+/// Standard constructor to define compound material from parameters
 /// \param name its name
 ///	   (must be unique in the factory)
 /// \param density in g/cm3
-/// \param elements vector of elements constituing 
+/// \param elements vector of elements constituing
 ///	   this material
 /// \param atomCounts vector of atom counts of
 ///	   elements constituing this material
 
   if ( ! elements.size() ) {
-    std::cerr << "    RootGM::Material::Material: " << std::endl; 
+    std::cerr << "    RootGM::Material::Material: " << std::endl;
     std::cerr << "    No elements defined.";
-    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl;
     exit(1);
   }
 
   // Check coherence
   if (elements.size() != atomCounts.size()) {
-    std::cerr << "    RootGM::Material::Material: " << std::endl; 
+    std::cerr << "    RootGM::Material::Material: " << std::endl;
     std::cerr << "    Elements size and atomCounts size differ." << std::endl;
-    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl;
     exit(1);
   }
-    
-  fMaterial = new TGeoMixture(name.data(), 
+
+  fMaterial = new TGeoMixture(name.data(),
                               elements.size(),
 			      density / RootGM::Units::MassDensity());
-			      
-  TGeoMixture* mixture = (TGeoMixture*)fMaterial;			      			      
+
+  TGeoMixture* mixture = (TGeoMixture*)fMaterial;
 
   // Calculate molecule mass to get mass fractions of elements
   // (As we cannot add element via a, z, atomCount to mixture
   //  directly)
 
   double amol = 0;
-  for ( unsigned i=0; i<elements.size(); i++) 
+  for ( unsigned i=0; i<elements.size(); i++)
     amol += elements[i]->A()*atomCounts[i];
 
   // Add elements
@@ -307,15 +307,15 @@ RootGM::Material::Material(const std::string& name,
     double fraction = atomCounts[i] * element->A()/amol;
     mixture->AddElement(element->A(), element->Z(), fraction);
     fElements.push_back(element);
-  }			    			    
-  
+  }
+
   // Register material in the map
-  RootGM::MaterialMap::Instance()->AddMaterial(this, fMaterial); 
+  RootGM::MaterialMap::Instance()->AddMaterial(this, fMaterial);
 }
-			   
+
 //_____________________________________________________________________________
 RootGM::Material::Material(const std::string& name,
-                           double density, 
+                           double density,
 		           const VGM::ElementVector& elements,
                            const VGM::AtomCountVector& atomCounts,
  	                   VGM::MaterialState state,
@@ -324,47 +324,47 @@ RootGM::Material::Material(const std::string& name,
     fMaterial(0),
     fElements()
 {
-/// Standard constructor to define compound material from parameters 
+/// Standard constructor to define compound material from parameters
 /// \param name its name
 ///	   (must be unique in the factory)
 /// \param density in g/cm3
-/// \param elements vector of elements constituing 
+/// \param elements vector of elements constituing
 ///	   this material
 /// \param atomCounts vector of atom counts of
 ///	   elements constituing this material
 
   if ( ! elements.size() ) {
-    std::cerr << "    RootGM::Material::Material: " << std::endl; 
+    std::cerr << "    RootGM::Material::Material: " << std::endl;
     std::cerr << "    No elements defined.";
-    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl;
     exit(1);
   }
 
   // Check coherence
   if (elements.size() != atomCounts.size()) {
-    std::cerr << "    RootGM::Material::Material: " << std::endl; 
+    std::cerr << "    RootGM::Material::Material: " << std::endl;
     std::cerr << "    Elements size and atomCounts size differ." << std::endl;
-    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl;
     exit(1);
   }
-    
+
   fMaterial = new TGeoMixture(
-                      name.data(), 
+                      name.data(),
                       elements.size(),
 		      density     / RootGM::Units::MassDensity());
 
   fMaterial->SetState(GetGeoState(state));
   fMaterial->SetTemperature(temperature / RootGM::Units::Temperature());
   fMaterial->SetPressure(pressure / RootGM::Units::Pressure());
-			      
-  TGeoMixture* mixture = (TGeoMixture*)fMaterial;			      			      
+
+  TGeoMixture* mixture = (TGeoMixture*)fMaterial;
 
   // Calculate molecule mass to get mass fractions of elements
   // (As we cannot add element via a, z, atomCount to mixture
   //  directly)
 
   double amol = 0;
-  for ( unsigned i=0; i<elements.size(); i++) 
+  for ( unsigned i=0; i<elements.size(); i++)
     amol += elements[i]->A()*atomCounts[i];
 
   // Add elements
@@ -373,12 +373,12 @@ RootGM::Material::Material(const std::string& name,
     double fraction = atomCounts[i] * element->A()/amol;
     mixture->AddElement(element->A(), element->Z(), fraction);
     fElements.push_back(element);
-  }			    			    
-  
+  }
+
   // Register material in the map
-  RootGM::MaterialMap::Instance()->AddMaterial(this, fMaterial); 
+  RootGM::MaterialMap::Instance()->AddMaterial(this, fMaterial);
 }
-			   
+
 //_____________________________________________________________________________
 RootGM::Material::Material(TGeoMaterial* material,
                            const VGM::ElementVector& elements)
@@ -389,21 +389,21 @@ RootGM::Material::Material(TGeoMaterial* material,
 /// Standard constructor to define material from the Root object
 
   // Register material in the map
-  RootGM::MaterialMap::Instance()->AddMaterial(this, fMaterial); 
-}    		  
+  RootGM::MaterialMap::Instance()->AddMaterial(this, fMaterial);
+}
 
 //_____________________________________________________________________________
-RootGM::Material::Material() 
+RootGM::Material::Material()
   : VGM::IMaterial(),
-    fMaterial(0), 
+    fMaterial(0),
     fElements()
 {
 /// Protected default constructor
-}  
+}
 
 //_____________________________________________________________________________
-RootGM::Material::Material(const Material& rhs) 
-  : VGM::IMaterial(rhs), 
+RootGM::Material::Material(const Material& rhs)
+  : VGM::IMaterial(rhs),
     fMaterial(rhs.fMaterial),
     fElements(rhs.fElements)
 {
@@ -422,16 +422,16 @@ RootGM::Material::~Material() {
 //_____________________________________________________________________________
 void RootGM::Material::CheckIndex(int iel) const
 {
-  if (iel<0 || iel >= NofElements()) {  
+  if (iel<0 || iel >= NofElements()) {
     std::cerr << "    RootGM::Material::CheckIndex: " << std::endl;
     std::cerr << "    Index of element outside limits." << std::endl;
     std::cerr << "*** Error: Aborting execution ***" << std::endl;;
     exit(1);
-  }  
-}    
+  }
+}
 
 //_____________________________________________________________________________
-TGeoMaterial::EGeoMaterialState 
+TGeoMaterial::EGeoMaterialState
 RootGM::Material::GetGeoState(VGM::MaterialState state) const
 {
   switch ( state ) {
@@ -441,13 +441,13 @@ RootGM::Material::GetGeoState(VGM::MaterialState state) const
     case VGM::kGas:       return TGeoMaterial::kMatStateGas;
     default:              return TGeoMaterial::kMatStateUndefined;
   }
-  
+
   return TGeoMaterial::kMatStateUndefined;
-}  
+}
 
 
 //_____________________________________________________________________________
-VGM::MaterialState 
+VGM::MaterialState
 RootGM::Material::GetVGMState(TGeoMaterial::EGeoMaterialState state) const
 {
   switch ( state ) {
@@ -459,7 +459,7 @@ RootGM::Material::GetVGMState(TGeoMaterial::EGeoMaterialState state) const
   }
 
   return VGM::kUndefined;
-}  
+}
 
 //
 // public functions
@@ -469,7 +469,7 @@ RootGM::Material::GetVGMState(TGeoMaterial::EGeoMaterialState state) const
 std::string RootGM::Material::Name() const
 {
   return std::string(fMaterial->GetName());
-}  
+}
 
 //_____________________________________________________________________________
 double  RootGM::Material::Density() const
@@ -488,36 +488,36 @@ double  RootGM::Material::NuclearInterLength() const
 {
   return fMaterial->GetIntLen() * RootGM::Units::Length();
 }
-    
+
 //_____________________________________________________________________________
 VGM::MaterialState  RootGM::Material::State() const
 {
-  return GetVGMState(fMaterial->GetState()); 
-}    
+  return GetVGMState(fMaterial->GetState());
+}
 
 //_____________________________________________________________________________
 double  RootGM::Material::Temperature() const
 {
   return fMaterial->GetTemperature() * RootGM::Units::Temperature();
 }
-  
+
 //_____________________________________________________________________________
 double  RootGM::Material::Pressure() const
 {
   return fMaterial->GetPressure() * RootGM::Units::Pressure();
-}  			  
+}
 
 //_____________________________________________________________________________
 int  RootGM::Material::NofElements() const
 {
   if (!fMaterial->IsMixture())
     return 1;
-  else  
+  else
     return ((TGeoMixture*)fMaterial)->GetNelements();
 }
 
 //_____________________________________________________________________________
-VGM::IElement*  
+VGM::IElement*
 RootGM::Material::Element(int iel) const
 {
   CheckIndex(iel);
@@ -529,10 +529,10 @@ RootGM::Material::Element(int iel) const
 double  RootGM::Material::MassFraction(int iel) const
 {
   CheckIndex(iel);
-  
+
   if (!fMaterial->IsMixture())
     return 1.0;
-  else  
+  else
     return ((TGeoMixture*)fMaterial)->GetWmixt()[iel];
 }
 
@@ -540,13 +540,13 @@ double  RootGM::Material::MassFraction(int iel) const
 double  RootGM::Material::AtomCount(int iel) const
 {
   CheckIndex(iel);
-  
+
   if ( NofElements() == 1 ) return 1.0;
-  
+
   // return ((TGeoMixture*)fMaterial)->GetNmixt()[iel];
                  // Temporarily excluded as Root breaks
   std::cerr << "RootGM::Material::AtomCount is not implemented" << std::endl;
-  return 0;                 
+  return 0;
 }
 
 

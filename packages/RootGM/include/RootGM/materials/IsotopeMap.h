@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007 - 2010 Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007 - 2010 Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -26,7 +26,7 @@ class TGeoIsotope;
 
 namespace VGM {
   class IIsotope;
-}  
+}
 
 namespace RootGM {
 
@@ -46,12 +46,12 @@ namespace RootGM {
       virtual ~IsotopeMap();
 
       // static access methods
-      static IsotopeMap* Instance(); 
+      static IsotopeMap* Instance();
 
       // methods
-      void  AddIsotope(VGM::IIsotope*, TGeoIsotope*); 
+      void  AddIsotope(VGM::IIsotope*, TGeoIsotope*);
       void  Print() const;
-  
+
       // get methods
       TGeoIsotope*   GetIsotope(VGM::IIsotope* iIsotope) const;
       VGM::IIsotope* GetIsotope(TGeoIsotope* tgeoIsotope) const;
@@ -62,7 +62,7 @@ namespace RootGM {
     private:
       // static data members
       static IsotopeMap*  fgInstance;
-  
+
       // data members
       TGeoIsotopeMap  fTGeoIsotopes;
       VgmIsotopeMap   fVgmIsotopes;

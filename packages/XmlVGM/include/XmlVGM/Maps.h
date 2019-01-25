@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The XmlVGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -12,7 +12,7 @@
 /// \ingroup XmlVGM
 //
 /// \class XmlVGM::Maps
-/// 
+///
 /// Utility class for mapping XML element values to their names
 /// within the XML exporter precision
 ///
@@ -41,21 +41,21 @@ namespace XmlVGM {
   class Maps
   {
     public:
-      typedef std::map <VGM::ThreeVector, 
-                        std::string, 
-                        std::less<VGM::ThreeVector> >  ThreeVectorMap; 
-      typedef std::multimap <VGM::ThreeVector, 
-                        const VGM::IIsotope*, 
-                        std::less<VGM::ThreeVector> >  IsotopeMap; 
-      typedef std::multimap <VGM::ThreeVector, 
-                        const VGM::IElement*, 
-                        std::less<VGM::ThreeVector> >  ElementMap; 
-      typedef std::map <std::string, 
-                        const VGM::IMaterial*, 
-                        std::less<std::string> >  MaterialMap; 
-      typedef std::map <std::string, 
-                        const VGM::IMedium*, 
-                        std::less<std::string> >  MediumMap; 
+      typedef std::map <VGM::ThreeVector,
+                        std::string,
+                        std::less<VGM::ThreeVector> >  ThreeVectorMap;
+      typedef std::multimap <VGM::ThreeVector,
+                        const VGM::IIsotope*,
+                        std::less<VGM::ThreeVector> >  IsotopeMap;
+      typedef std::multimap <VGM::ThreeVector,
+                        const VGM::IElement*,
+                        std::less<VGM::ThreeVector> >  ElementMap;
+      typedef std::map <std::string,
+                        const VGM::IMaterial*,
+                        std::less<std::string> >  MaterialMap;
+      typedef std::map <std::string,
+                        const VGM::IMedium*,
+                        std::less<std::string> >  MediumMap;
 
     public:
       Maps(double numPrecision,
@@ -64,7 +64,7 @@ namespace XmlVGM {
       // Maps();
       // Maps(const Maps& right);
       virtual ~Maps();
- 
+
       // methods
       std::string AddPosition(const VGM::Transform& transform);
       std::string AddRotation(const VGM::Transform& transform);
@@ -74,10 +74,10 @@ namespace XmlVGM {
       const VGM::IElement*  AddElement(const VGM::IElement* element);
       const VGM::IMaterial* AddMaterial(const VGM::IMaterial* material);
       const VGM::IMedium*   AddMedium(const VGM::IMedium* medium);
-    
+
       std::string  FindPositionName(const VGM::Transform& transform) const;
       std::string  FindRotationName(const VGM::Transform& transform) const;
-      
+
       void WriteAllPositions(IWriter* writer);
       void WriteAllRotations(IWriter* writer);
       void WriteAllIsotopes(IWriter* writer);
@@ -103,13 +103,13 @@ namespace XmlVGM {
       void    CutName(std::string& name) const;
       double  Round2(double number) const;
       VGM::ThreeVector  PurifyAngles(const VGM::ThreeVector& rotation) const;
- 
+
       // data members
       //
       double  fNumPrecision;  // numerical precision
       double  fAngleUnit;     // angle unit
       double  fLengthUnit;    // length unit
-      
+
       ThreeVectorMap     fPositions; //map between positions and their XML names
       ThreeVectorMap     fRotations; //map between rotations and their XML names
       IsotopeMap         fIsotopes;  //map of isotopes

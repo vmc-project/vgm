@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The XmlVGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -16,7 +16,7 @@
 /// The interface for the XML writer that
 /// writes VGM geometry objects to XML:
 ///
-/// \author I. Hrivnacova, 16.01.2004 
+/// \author I. Hrivnacova, 16.01.2004
 
 #ifndef XML_VGM_WRITER_H
 #define XML_VGM_WRITER_H
@@ -46,7 +46,7 @@ namespace XmlVGM {
 
       // methods
 
-      // XML elements 
+      // XML elements
       //
 		    ///
                     /// Open output file
@@ -59,22 +59,22 @@ namespace XmlVGM {
       virtual void OpenSection(const std::string& topVolume) = 0;
 		    ///
                     /// Write positions definitions opening
-      virtual void OpenPositions() = 0; 
+      virtual void OpenPositions() = 0;
 		    ///
                     /// Write rotations definitions opening
-      virtual void OpenRotations() = 0;     
+      virtual void OpenRotations() = 0;
 		    ///
                     /// Write materials definitions opening
-      virtual void OpenMaterials() = 0; 
+      virtual void OpenMaterials() = 0;
 		    ///
                     /// Write media definitions opening
-      virtual void OpenMedia() = 0; 
+      virtual void OpenMedia() = 0;
 		    ///
                     /// Write solids definitions opening
-      virtual void OpenSolids() = 0; 
+      virtual void OpenSolids() = 0;
 		    ///
                     /// Write structure definition opening (if present)
-      virtual void OpenStructure() = 0; 
+      virtual void OpenStructure() = 0;
 		    ///
                     /// Write composition definition opening (if present)
       virtual void OpenComposition(const std::string& name,
@@ -115,39 +115,39 @@ namespace XmlVGM {
       //
 		    ///
                     /// Write VGM isotope
-      virtual void WriteIsotope(const VGM::IIsotope* isotope) = 0; 
-                    ///  
+      virtual void WriteIsotope(const VGM::IIsotope* isotope) = 0;
+                    ///
                     /// Write VGM element
-      virtual void WriteElement(const VGM::IElement* element) = 0; 
+      virtual void WriteElement(const VGM::IElement* element) = 0;
 		    ///
                     /// Write VGM material
-      virtual void WriteMaterial(const VGM::IMaterial* material) = 0; 
+      virtual void WriteMaterial(const VGM::IMaterial* material) = 0;
 		    ///
                     /// Write VGM medium
-      virtual void WriteMedium(const VGM::IMedium* medium) = 0; 
+      virtual void WriteMedium(const VGM::IMedium* medium) = 0;
 		    ///
                     /// Write medium element from material
-      virtual void WriteMedium(const VGM::IMaterial* material) = 0; 
+      virtual void WriteMedium(const VGM::IMaterial* material) = 0;
 		    ///
                     /// Write VGM solid
-      virtual void WriteSolid(std::string lvName, 
-                            const VGM::ISolid* solid, 
-                            std::string mediumName) = 0; 
+      virtual void WriteSolid(std::string lvName,
+                            const VGM::ISolid* solid,
+                            std::string mediumName) = 0;
 		    ///
                     /// Write position (from VGM transformation)
-      virtual void WritePosition(const std::string& name, 
-                            const VGM::Transform& position) = 0; 
+      virtual void WritePosition(const std::string& name,
+                            const VGM::Transform& position) = 0;
 		    ///
                     /// Write rotation (from VGM transformation)
-      virtual void WriteRotation(const std::string& name, 
-                            const VGM::Transform& rotation) = 0; 
+      virtual void WriteRotation(const std::string& name,
+                            const VGM::Transform& rotation) = 0;
 		    ///
                     /// Write scale (from VGM transformation)
-      virtual void WriteScale(const std::string& name) = 0; 
+      virtual void WriteScale(const std::string& name) = 0;
 		    ///
                     /// Write VGM placement
       virtual void WritePlacement(
-                            const VGM::IPlacement& placement) = 0; 
+                            const VGM::IPlacement& placement) = 0;
 		    ///
                     /// Write empty line
       virtual void WriteEmptyLine() = 0;
@@ -176,7 +176,7 @@ namespace XmlVGM {
       // Set methods
       //
 		    ///
-                    /// Set fixed format number width 
+                    /// Set fixed format number width
       virtual void SetNumWidth(int width) = 0;
 		    ///
                     /// Set fixed format number precision
@@ -185,7 +185,7 @@ namespace XmlVGM {
       // Get methods
       //
 		      ///
-                      /// Return fixed format number width 
+                      /// Return fixed format number width
       virtual double GetNumWidth() const = 0;
 		      ///
                       /// Return fixed format number precision

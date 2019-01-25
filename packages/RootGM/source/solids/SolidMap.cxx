@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -25,15 +25,15 @@
 RootGM::SolidMap*  RootGM::SolidMap::fgInstance = 0;
 
 //_____________________________________________________________________________
-RootGM::SolidMap* 
+RootGM::SolidMap*
 RootGM::SolidMap::Instance()
-{ 
+{
 /// Singleton access function
 
   if (!fgInstance) new RootGM::SolidMap();
-  
+
   return fgInstance;
-}  
+}
 
 //_____________________________________________________________________________
 RootGM::SolidMap::SolidMap()
@@ -55,58 +55,58 @@ RootGM::SolidMap::SolidMap(const SolidMap&)
 RootGM::SolidMap::~SolidMap() {
 //
   fgInstance = 0;
-}    
+}
 
 //_____________________________________________________________________________
-void  RootGM::SolidMap::AddSolid(VGM::ISolid* iSolid, 
+void  RootGM::SolidMap::AddSolid(VGM::ISolid* iSolid,
                                  TGeoShape* rootSolid)
 {
 /// Adds the specified pair in both maps
 
   fRootSolids[iSolid] = rootSolid;
   fVgmSolids[rootSolid] = iSolid;
-}  
+}
 
 //_____________________________________________________________________________
-void  RootGM::SolidMap::AddSolidInRootMapOnly(VGM::ISolid* iSolid, 
+void  RootGM::SolidMap::AddSolidInRootMapOnly(VGM::ISolid* iSolid,
                                  TGeoShape* rootSolid)
 {
 /// Adds the specified pair in the Root map only
 
   fRootSolids[iSolid] = rootSolid;
-}  
+}
 
 //_____________________________________________________________________________
-void  RootGM::SolidMap::AddSolidInVGMMapOnly(VGM::ISolid* iSolid, 
+void  RootGM::SolidMap::AddSolidInVGMMapOnly(VGM::ISolid* iSolid,
                                  TGeoShape* rootSolid)
 {
 /// Adds the specified pair in the VGM map only
 
   fVgmSolids[rootSolid] = iSolid;
-}  
+}
 
 //_____________________________________________________________________________
-TGeoShape* 
+TGeoShape*
 RootGM::SolidMap::GetSolid(VGM::ISolid* iSolid) const
 {
 /// Find the Root solid corresponding to a specified VGM solid
 
   RootSolidMapCIterator i = fRootSolids.find(iSolid);
-  if (i != fRootSolids.end()) 
+  if (i != fRootSolids.end())
     return (*i).second;
-  else                 
+  else
     return 0;
 }
 
 //_____________________________________________________________________________
-VGM::ISolid* 
+VGM::ISolid*
 RootGM::SolidMap::GetSolid(TGeoShape* rootSolid) const
 {
 /// Find the VGM solid corresponding to a specified Root solid
 
   VgmSolidMapCIterator i = fVgmSolids.find(rootSolid);
-  if (i != fVgmSolids.end()) 
+  if (i != fVgmSolids.end())
     return (*i).second;
-  else                 
+  else
     return 0;
 }

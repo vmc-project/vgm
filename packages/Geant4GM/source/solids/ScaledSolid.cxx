@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The Geant4GM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -26,10 +26,10 @@
 
 //_____________________________________________________________________________
 Geant4GM::ScaledSolid::ScaledSolid(
-                            const std::string& name, 
+                            const std::string& name,
                             VGM::ISolid* solid,
                             const HepGeom::Scale3D& scale3D)
-  : VGM::ISolid(), 
+  : VGM::ISolid(),
     VGM::IScaledSolid(),
     BaseVGM::VScaledSolid(),
     fScaledSolid(0),
@@ -42,47 +42,47 @@ Geant4GM::ScaledSolid::ScaledSolid(
 
   // Get solid from the volumes map
   G4VSolid* g4Solid = Geant4GM::SolidMap::Instance()->GetSolid(solid);
-  
-  // Create G4 solid
-  fScaledSolid = new G4ScaledSolid(name, g4Solid, scale3D); 
 
-  Geant4GM::SolidMap::Instance()->AddSolid(this, fScaledSolid); 
+  // Create G4 solid
+  fScaledSolid = new G4ScaledSolid(name, g4Solid, scale3D);
+
+  Geant4GM::SolidMap::Instance()->AddSolid(this, fScaledSolid);
 }
 
 //_____________________________________________________________________________
 Geant4GM::ScaledSolid::ScaledSolid(G4ScaledSolid* scaledSolid,
                                    G4ReflectedSolid* reflectedScaled)
-  : VGM::ISolid(), 
+  : VGM::ISolid(),
     VGM::IScaledSolid(),
     BaseVGM::VScaledSolid(),
     fScaledSolid(scaledSolid),
     fToBeReflected(false)
 {
-/// Standard constructor to define Scaled solid via G4 object 
+/// Standard constructor to define Scaled solid via G4 object
 
   if ( reflectedScaled ) {
     fToBeReflected = true;
     Geant4GM::SolidMap::Instance()->AddSolid(this, reflectedScaled);
-  }   
+  }
   else {
-    Geant4GM::SolidMap::Instance()->AddSolid(this, fScaledSolid); 
+    Geant4GM::SolidMap::Instance()->AddSolid(this, fScaledSolid);
   }
 }
 
 //_____________________________________________________________________________
-Geant4GM::ScaledSolid::ScaledSolid() 
-  : VGM::ISolid(), 
+Geant4GM::ScaledSolid::ScaledSolid()
+  : VGM::ISolid(),
     VGM::IScaledSolid(),
-    BaseVGM::VScaledSolid() 
+    BaseVGM::VScaledSolid()
 {
 /// Protected default constructor
 }
 
 //_____________________________________________________________________________
-Geant4GM::ScaledSolid::ScaledSolid(const ScaledSolid& rhs) 
-  : VGM::ISolid(rhs), 
+Geant4GM::ScaledSolid::ScaledSolid(const ScaledSolid& rhs)
+  : VGM::ISolid(rhs),
     VGM::IScaledSolid(rhs),
-    BaseVGM::VScaledSolid(rhs) 
+    BaseVGM::VScaledSolid(rhs)
 {
 /// Protected copy constructor
 }
@@ -92,22 +92,22 @@ Geant4GM::ScaledSolid::~ScaledSolid() {
 //
 }
 
-// 
+//
 // public methods
 //
 
 //_____________________________________________________________________________
-std::string 
+std::string
 Geant4GM::ScaledSolid::Name() const
 {
 // Returns the Scaled solid name
 // ---
 
   return fScaledSolid->GetName();
-}  
+}
 
 //_____________________________________________________________________________
-VGM::ISolid* 
+VGM::ISolid*
 Geant4GM::ScaledSolid::ConstituentSolid() const
 {
 // Returns the constituent (unscaled) solid.
@@ -115,12 +115,12 @@ Geant4GM::ScaledSolid::ConstituentSolid() const
 
  G4VSolid* g4Solid =  fScaledSolid->GetUnscaledSolid();
  VGM::ISolid* solid = Geant4GM::SolidMap::Instance()->GetSolid(g4Solid);
- 
+
  return solid;
-} 
+}
 
 //_____________________________________________________________________________
-VGM::Transform 
+VGM::Transform
 Geant4GM::ScaledSolid::Scale() const
 {
 // Returns the solid scale as three vector

@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007 - 2010 Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007 - 2010 Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -26,7 +26,7 @@ class TGeoElement;
 
 namespace VGM {
   class IElement;
-}  
+}
 
 namespace RootGM {
 
@@ -46,12 +46,12 @@ namespace RootGM {
       virtual ~ElementMap();
 
       // static access methods
-      static ElementMap* Instance(); 
+      static ElementMap* Instance();
 
       // methods
-      void  AddElement(VGM::IElement*, TGeoElement*); 
+      void  AddElement(VGM::IElement*, TGeoElement*);
       void  Print() const;
-  
+
       // get methods
       TGeoElement*   GetElement(VGM::IElement* iElement) const;
       VGM::IElement* GetElement(TGeoElement* tgeoElement) const;
@@ -62,7 +62,7 @@ namespace RootGM {
     private:
       // static data members
       static ElementMap*  fgInstance;
-  
+
       // data members
       TGeoElementMap   fTGeoElements;
       VgmElementMap    fVgmElements;

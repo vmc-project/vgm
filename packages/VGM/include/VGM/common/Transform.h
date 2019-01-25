@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The VGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -21,7 +21,7 @@
 ///   - std::vector<double>[3]   axis angle X in degree
 ///   - std::vector<double>[4]   axis angle Y in degree
 ///   - std::vector<double>[5]   axis angle Z in degree
-///   - std::vector<double>[6]   reflection info: 
+///   - std::vector<double>[6]   reflection info:
 ///   -                              0  - no reflection
 ///   -                              1. - reflection in Z
 ///
@@ -48,7 +48,7 @@ namespace VGM {
     kAngleZ,
     kReflZ,
     kSize
-  };  
+  };
 
 }
 

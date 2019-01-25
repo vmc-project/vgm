@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The BaseVGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -64,21 +64,21 @@ BaseVGM::VFactory::VFactory(const std::string& name,
 }
 
 //_____________________________________________________________________________
-BaseVGM::VFactory::VFactory() 
-  : VGM::IFactory() 
+BaseVGM::VFactory::VFactory()
+  : VGM::IFactory()
 {
 /// Protected default constructor
 }
 
 //_____________________________________________________________________________
-BaseVGM::VFactory::VFactory(const VFactory& rhs) 
-  : VGM::IFactory(rhs) 
+BaseVGM::VFactory::VFactory(const VFactory& rhs)
+  : VGM::IFactory(rhs)
 {
 /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
-BaseVGM::VFactory::~VFactory() 
+BaseVGM::VFactory::~VFactory()
 {
 // Deletes all objects created by factory
 // ---
@@ -86,15 +86,15 @@ BaseVGM::VFactory::~VFactory()
   // Delete solids
   for (unsigned int i=0; i<fSolids.size(); i++) {
     delete fSolids[i];
-  }  
+  }
 
   // Delete volumes
   for (unsigned int j=0; j<fVolumes.size(); j++) {
     delete fVolumes[j];
-  }  
-  
+  }
+
   // Placements are deleted together with volumes
-  
+
   // Material factory
   delete fMaterialFactory;
 }
@@ -104,7 +104,7 @@ BaseVGM::VFactory::~VFactory()
 //
 
 //_____________________________________________________________________________
-VGM::ISolid*  
+VGM::ISolid*
 BaseVGM::VFactory::ExportDisplacedSolid(VGM::IDisplacedSolid* solid,
                                         VGM::IFactory* factory) const
 
@@ -116,21 +116,21 @@ BaseVGM::VFactory::ExportDisplacedSolid(VGM::IDisplacedSolid* solid,
   VGM::ISolid* constituentSolid = ExportSolid(solid->ConstituentSolid(), factory);
         // Can lead to a duplication of solids in case
 	// the solid has been already exported
-	// Should not harm, but will be better to be avoided	
+	// Should not harm, but will be better to be avoided
 
 
   VGM::Transform transform =  solid->Displacement();
 
-  VGM::ISolid* newSolid 
+  VGM::ISolid* newSolid
     = factory->CreateDisplacedSolid(
-                               solid->Name(), 
+                               solid->Name(),
                                constituentSolid,
 			                         transform);
   return newSolid;
-}  
+}
 
 //_____________________________________________________________________________
-VGM::ISolid*  
+VGM::ISolid*
 BaseVGM::VFactory::ExportScaledSolid(VGM::IScaledSolid* solid,
                                      VGM::IFactory* factory) const
 
@@ -142,21 +142,21 @@ BaseVGM::VFactory::ExportScaledSolid(VGM::IScaledSolid* solid,
   VGM::ISolid* constituentSolid = ExportSolid(solid->ConstituentSolid(), factory);
         // Can lead to a duplication of solids in case
   // the solid has been already exported
-  // Should not harm, but will be better to be avoided  
+  // Should not harm, but will be better to be avoided
 
 
   VGM::Transform transform =  solid->Scale();
 
-  VGM::ISolid* newSolid 
+  VGM::ISolid* newSolid
     = factory->CreateScaledSolid(
-                               solid->Name(), 
+                               solid->Name(),
                                constituentSolid,
                                transform);
   return newSolid;
-}  
+}
 
 //_____________________________________________________________________________
-VGM::ISolid*  
+VGM::ISolid*
 BaseVGM::VFactory::ExportBooleanSolid(VGM::IBooleanSolid* solid,
                                      VGM::IFactory* factory) const
 
@@ -169,7 +169,7 @@ BaseVGM::VFactory::ExportBooleanSolid(VGM::IBooleanSolid* solid,
   VGM::ISolid* solidB = ExportSolid(solid->ConstituentSolidB(), factory);
         // Can lead to a duplication of solids in case
 	// the solid has been already exported
-	// Should not harm, but will be better to be avoided	
+	// Should not harm, but will be better to be avoided
 
 
   VGM::BooleanType boolType = solid->BoolType();
@@ -181,12 +181,12 @@ BaseVGM::VFactory::ExportBooleanSolid(VGM::IBooleanSolid* solid,
                                solid->Name(), solidA, solidB,
 			       transform);
   }
-  else if (boolType == VGM::kSubtraction) { 
+  else if (boolType == VGM::kSubtraction) {
     newSolid = factory->CreateSubtractionSolid(
                                solid->Name(), solidA, solidB,
 			       transform);
   }
-  else if (boolType == VGM::kUnion) { 
+  else if (boolType == VGM::kUnion) {
     newSolid = factory->CreateUnionSolid(
                                solid->Name(), solidA, solidB,
 			       transform);
@@ -196,16 +196,16 @@ BaseVGM::VFactory::ExportBooleanSolid(VGM::IBooleanSolid* solid,
     std::cerr << "    BaseVGM::VFactory::ExportBooleanSolid:" << std::endl;
     std::cerr << "    Unknown Boolean type (solid \"" << solid->Name()
               << "\")" << std::endl;
-    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl;
     exit(1);
-  }	      
+  }
 
   return newSolid;
-}  
+}
 
 //_____________________________________________________________________________
-VGM::ISolid* 
-BaseVGM::VFactory::ExportSolid(VGM::ISolid* solid, 
+VGM::ISolid*
+BaseVGM::VFactory::ExportSolid(VGM::ISolid* solid,
                               VGM::IFactory* factory) const
 {
 // Exports specified solid to given factory
@@ -215,44 +215,44 @@ BaseVGM::VFactory::ExportSolid(VGM::ISolid* solid,
     BaseVGM::DebugInfo();
     std::cout << "   Exporting solid: ";
     if (Debug()>1) std::cout << solid;
-    std::cout << std::endl;    
+    std::cout << std::endl;
     BaseVGM::DebugInfo();
     std::cout << "   " << *solid << std::endl;
-  }	      
+  }
 
   VGM::SolidType solidType = solid->Type();
-  if (solidType == VGM::kArb8) { 
-    VGM::IArb8* arb8 = dynamic_cast<VGM::IArb8*>(solid); 
+  if (solidType == VGM::kArb8) {
+    VGM::IArb8* arb8 = dynamic_cast<VGM::IArb8*>(solid);
     std::vector<VGM::TwoVector> vertices;
     for ( int i=0; i<arb8->NofVertices(); ++i ) vertices.push_back(arb8->Vertex(i));
-    return factory->CreateArb8(arb8->Name(), 
+    return factory->CreateArb8(arb8->Name(),
                                arb8->ZHalfLength(),
-                               vertices);  
+                               vertices);
   }
-  else if (solidType == VGM::kBox) { 
-    VGM::IBox* box = dynamic_cast<VGM::IBox*>(solid); 
-    return factory->CreateBox(box->Name(), 
-                              box->XHalfLength(), 
-			      box->YHalfLength(), 
-			      box->ZHalfLength());  
+  else if (solidType == VGM::kBox) {
+    VGM::IBox* box = dynamic_cast<VGM::IBox*>(solid);
+    return factory->CreateBox(box->Name(),
+                              box->XHalfLength(),
+			      box->YHalfLength(),
+			      box->ZHalfLength());
   }
-  else if (solidType == VGM::kCons) { 
-    VGM::ICons* cons = dynamic_cast<VGM::ICons*>(solid); 
-    return factory->CreateCons(cons->Name(), 
+  else if (solidType == VGM::kCons) {
+    VGM::ICons* cons = dynamic_cast<VGM::ICons*>(solid);
+    return factory->CreateCons(cons->Name(),
                               cons->InnerRadiusMinusZ(),
-			      cons->OuterRadiusMinusZ(), 
+			      cons->OuterRadiusMinusZ(),
                               cons->InnerRadiusPlusZ(),
-			      cons->OuterRadiusPlusZ(), 
-			      cons->ZHalfLength(),  
+			      cons->OuterRadiusPlusZ(),
+			      cons->ZHalfLength(),
 			      cons->StartPhi(),
-			      cons->DeltaPhi());  
+			      cons->DeltaPhi());
   }
-  else if (solidType == VGM::kCtubs) { 
-    VGM::ICtubs* ctubs = dynamic_cast<VGM::ICtubs*>(solid); 
-    return factory->CreateCtubs(ctubs->Name(), 
+  else if (solidType == VGM::kCtubs) {
+    VGM::ICtubs* ctubs = dynamic_cast<VGM::ICtubs*>(solid);
+    return factory->CreateCtubs(ctubs->Name(),
                               ctubs->InnerRadius(),
-			      ctubs->OuterRadius(), 
-			      ctubs->ZHalfLength(),  
+			      ctubs->OuterRadius(),
+			      ctubs->ZHalfLength(),
 			      ctubs->StartPhi(),
 			      ctubs->DeltaPhi(),
 			      ctubs->NxLow(),
@@ -260,26 +260,26 @@ BaseVGM::VFactory::ExportSolid(VGM::ISolid* solid,
 			      ctubs->NzLow(),
 			      ctubs->NxHigh(),
 			      ctubs->NyHigh(),
-			      ctubs->NzHigh());  
+			      ctubs->NzHigh());
   }
-  else if (solidType == VGM::kEllipsoid) { 
-    VGM::IEllipsoid* ellipsoid = dynamic_cast<VGM::IEllipsoid*>(solid); 
-    return factory->CreateEllipsoid(ellipsoid->Name(), 
+  else if (solidType == VGM::kEllipsoid) {
+    VGM::IEllipsoid* ellipsoid = dynamic_cast<VGM::IEllipsoid*>(solid);
+    return factory->CreateEllipsoid(ellipsoid->Name(),
                               ellipsoid->XSemiAxis(),
                               ellipsoid->YSemiAxis(),
                               ellipsoid->ZSemiAxis(),
                               ellipsoid->ZBottomCut(),
-                              ellipsoid->ZTopCut());  
+                              ellipsoid->ZTopCut());
   }
-  else if (solidType == VGM::kEltu) { 
-    VGM::IEllipticalTube* eltu = dynamic_cast<VGM::IEllipticalTube*>(solid); 
-    return factory->CreateEllipticalTube(eltu->Name(), 
+  else if (solidType == VGM::kEltu) {
+    VGM::IEllipticalTube* eltu = dynamic_cast<VGM::IEllipticalTube*>(solid);
+    return factory->CreateEllipticalTube(eltu->Name(),
                               eltu->Dx(),
-			      eltu->Dy(), 
-                              eltu->ZHalfLength());  
+			      eltu->Dy(),
+                              eltu->ZHalfLength());
   }
-  else if (solidType == VGM::kExtruded) { 
-    VGM::IExtrudedSolid* xtru = dynamic_cast<VGM::IExtrudedSolid*>(solid);    
+  else if (solidType == VGM::kExtruded) {
+    VGM::IExtrudedSolid* xtru = dynamic_cast<VGM::IExtrudedSolid*>(solid);
     std::vector<VGM::TwoVector> polygon;
     for ( int i=0; i<xtru->NofVertices(); ++i ) polygon.push_back(xtru->Vertex(i));
     std::vector< std::vector<double> > zsections;
@@ -290,41 +290,41 @@ BaseVGM::VFactory::ExportSolid(VGM::ISolid* solid,
       zsection.push_back(xtru->Offset(i).second);
       zsection.push_back(xtru->Scale(i));
       zsections.push_back(zsection);
-    }  
+    }
     return factory->CreateExtrudedSolid(
-                              xtru->Name(), 
+                              xtru->Name(),
                               polygon,
                               zsections);
   }
-  else if (solidType == VGM::kHype) { 
-    VGM::IHype* hype = dynamic_cast<VGM::IHype*>(solid); 
-    return factory->CreateHype(hype->Name(), 
+  else if (solidType == VGM::kHype) {
+    VGM::IHype* hype = dynamic_cast<VGM::IHype*>(solid);
+    return factory->CreateHype(hype->Name(),
                               hype->InnerRadius(),
-                              hype->OuterRadius(), 
+                              hype->OuterRadius(),
                               hype->InnerStereoAngle(),
-                              hype->OuterStereoAngle(), 
-			      hype->ZHalfLength());  
+                              hype->OuterStereoAngle(),
+			      hype->ZHalfLength());
   }
-  else if (solidType == VGM::kPara) { 
-    VGM::IPara* para = dynamic_cast<VGM::IPara*>(solid); 
-    return factory->CreatePara(para->Name(), 
-                              para->XHalfLength(), 
-			      para->YHalfLength(), 
-			      para->ZHalfLength(),  
-                              para->Alpha(), 
-			      para->Theta(), 
-			      para->Phi());  
+  else if (solidType == VGM::kPara) {
+    VGM::IPara* para = dynamic_cast<VGM::IPara*>(solid);
+    return factory->CreatePara(para->Name(),
+                              para->XHalfLength(),
+			      para->YHalfLength(),
+			      para->ZHalfLength(),
+                              para->Alpha(),
+			      para->Theta(),
+			      para->Phi());
   }
-  else if (solidType == VGM::kParaboloid) { 
-    VGM::IParaboloid* paraboloid = dynamic_cast<VGM::IParaboloid*>(solid); 
-    return factory->CreateParaboloid(paraboloid->Name(), 
-                              paraboloid->RadiusMinusZ(), 
-	  		      paraboloid->RadiusPlusZ(), 
-			      paraboloid->ZHalfLength());  
+  else if (solidType == VGM::kParaboloid) {
+    VGM::IParaboloid* paraboloid = dynamic_cast<VGM::IParaboloid*>(solid);
+    return factory->CreateParaboloid(paraboloid->Name(),
+                              paraboloid->RadiusMinusZ(),
+	  		      paraboloid->RadiusPlusZ(),
+			      paraboloid->ZHalfLength());
   }
-  else if (solidType == VGM::kPolycone) { 
-    VGM::IPolycone* polycone = dynamic_cast<VGM::IPolycone*>(solid); 
-    return factory->CreatePolycone(polycone->Name(), 
+  else if (solidType == VGM::kPolycone) {
+    VGM::IPolycone* polycone = dynamic_cast<VGM::IPolycone*>(solid);
+    return factory->CreatePolycone(polycone->Name(),
                               polycone->StartPhi(),
                               polycone->DeltaPhi(),
 			      polycone->NofZPlanes(),
@@ -332,9 +332,9 @@ BaseVGM::VFactory::ExportSolid(VGM::ISolid* solid,
 			      polycone->InnerRadiusValues(),
 			      polycone->OuterRadiusValues());
   }
-  else if (solidType == VGM::kPolyhedra) { 
-    VGM::IPolyhedra* polyhedra = dynamic_cast<VGM::IPolyhedra*>(solid); 
-    return factory->CreatePolyhedra(polyhedra->Name(), 
+  else if (solidType == VGM::kPolyhedra) {
+    VGM::IPolyhedra* polyhedra = dynamic_cast<VGM::IPolyhedra*>(solid);
+    return factory->CreatePolyhedra(polyhedra->Name(),
                               polyhedra->StartPhi(),
                               polyhedra->DeltaPhi(),
                               polyhedra->NofSides(),
@@ -343,81 +343,81 @@ BaseVGM::VFactory::ExportSolid(VGM::ISolid* solid,
 			      polyhedra->InnerRadiusValues(),
 			      polyhedra->OuterRadiusValues());
   }
-  else if (solidType == VGM::kSphere) { 
-    VGM::ISphere* sphere = dynamic_cast<VGM::ISphere*>(solid); 
-    return factory->CreateSphere(sphere->Name(), 
+  else if (solidType == VGM::kSphere) {
+    VGM::ISphere* sphere = dynamic_cast<VGM::ISphere*>(solid);
+    return factory->CreateSphere(sphere->Name(),
                               sphere->InnerRadius(),
-			      sphere->OuterRadius(),  
+			      sphere->OuterRadius(),
                               sphere->StartPhi(),
                               sphere->DeltaPhi(),
                               sphere->StartTheta(),
                               sphere->DeltaTheta());
   }
-  else if (solidType == VGM::kTessellated) { 
-    VGM::ITessellatedSolid* tessellated 
-      = dynamic_cast<VGM::ITessellatedSolid*>(solid); 
+  else if (solidType == VGM::kTessellated) {
+    VGM::ITessellatedSolid* tessellated
+      = dynamic_cast<VGM::ITessellatedSolid*>(solid);
 
     std::vector< std::vector<VGM::ThreeVector> > facets;
     for ( int i=0; i<tessellated->NofFacets(); ++i ) {
       std::vector<VGM::ThreeVector> facet;
       for ( int j=0; j<tessellated->NofVertices(i); ++j ) {
         facet.push_back(tessellated->Vertex(i,j));
-      }  
+      }
       facets.push_back(facet);
-    }        
-    return factory->CreateTessellatedSolid(tessellated->Name(), facets); 
+    }
+    return factory->CreateTessellatedSolid(tessellated->Name(), facets);
   }
-  else if (solidType == VGM::kTorus) { 
-    VGM::ITorus* torus = dynamic_cast<VGM::ITorus*>(solid); 
-    return factory->CreateTorus(torus->Name(), 
+  else if (solidType == VGM::kTorus) {
+    VGM::ITorus* torus = dynamic_cast<VGM::ITorus*>(solid);
+    return factory->CreateTorus(torus->Name(),
                               torus->InnerRadius(),
-			      torus->OuterRadius(),  
-			      torus->AxialRadius(),  
+			      torus->OuterRadius(),
+			      torus->AxialRadius(),
                               torus->StartPhi(),
                               torus->DeltaPhi());
   }
-  else if (solidType == VGM::kTrap) { 
-    VGM::ITrap* trap = dynamic_cast<VGM::ITrap*>(solid); 
-    return factory->CreateTrap(trap->Name(), 
-			      trap->ZHalfLength(),  
-			      trap->Theta(), 
+  else if (solidType == VGM::kTrap) {
+    VGM::ITrap* trap = dynamic_cast<VGM::ITrap*>(solid);
+    return factory->CreateTrap(trap->Name(),
+			      trap->ZHalfLength(),
+			      trap->Theta(),
 			      trap->Phi(),
-			      trap->YHalfLengthMinusZ(), 
-                              trap->XHalfLengthMinusZMinusY(), 
-                              trap->XHalfLengthMinusZPlusY(), 
-                              trap->AlphaMinusZ(), 
-			      trap->YHalfLengthPlusZ(), 
-                              trap->XHalfLengthPlusZMinusY(), 
-                              trap->XHalfLengthPlusZPlusY(), 
-                              trap->AlphaPlusZ()); 
+			      trap->YHalfLengthMinusZ(),
+                              trap->XHalfLengthMinusZMinusY(),
+                              trap->XHalfLengthMinusZPlusY(),
+                              trap->AlphaMinusZ(),
+			      trap->YHalfLengthPlusZ(),
+                              trap->XHalfLengthPlusZMinusY(),
+                              trap->XHalfLengthPlusZPlusY(),
+                              trap->AlphaPlusZ());
   }
-  else if (solidType == VGM::kTrd) { 
-    VGM::ITrd* trd = dynamic_cast<VGM::ITrd*>(solid); 
-    return factory->CreateTrd(trd->Name(), 
-                              trd->XHalfLengthMinusZ(), 
-                              trd->XHalfLengthPlusZ(), 
-			      trd->YHalfLengthMinusZ(), 
-			      trd->YHalfLengthPlusZ(), 
-			      trd->ZHalfLength());  
+  else if (solidType == VGM::kTrd) {
+    VGM::ITrd* trd = dynamic_cast<VGM::ITrd*>(solid);
+    return factory->CreateTrd(trd->Name(),
+                              trd->XHalfLengthMinusZ(),
+                              trd->XHalfLengthPlusZ(),
+			      trd->YHalfLengthMinusZ(),
+			      trd->YHalfLengthPlusZ(),
+			      trd->ZHalfLength());
   }
-  else if (solidType == VGM::kTubs) { 
-    VGM::ITubs* tubs = dynamic_cast<VGM::ITubs*>(solid); 
-    return factory->CreateTubs(tubs->Name(), 
+  else if (solidType == VGM::kTubs) {
+    VGM::ITubs* tubs = dynamic_cast<VGM::ITubs*>(solid);
+    return factory->CreateTubs(tubs->Name(),
                               tubs->InnerRadius(),
-			      tubs->OuterRadius(), 
-			      tubs->ZHalfLength(),  
+			      tubs->OuterRadius(),
+			      tubs->ZHalfLength(),
 			      tubs->StartPhi(),
-			      tubs->DeltaPhi());  
+			      tubs->DeltaPhi());
   }
-  else if (solidType == VGM::kDisplaced) { 
+  else if (solidType == VGM::kDisplaced) {
     VGM::IDisplacedSolid* displaced = dynamic_cast<VGM::IDisplacedSolid*>(solid);
     return ExportDisplacedSolid(displaced, factory);
   }
-  else if (solidType == VGM::kScaled) { 
+  else if (solidType == VGM::kScaled) {
     VGM::IScaledSolid* scaled = dynamic_cast<VGM::IScaledSolid*>(solid);
     return ExportScaledSolid(scaled, factory);
   }
-  else if (solidType == VGM::kBoolean) { 
+  else if (solidType == VGM::kBoolean) {
     VGM::IBooleanSolid* boolean = dynamic_cast<VGM::IBooleanSolid*>(solid);
     return ExportBooleanSolid(boolean, factory);
   }
@@ -425,13 +425,13 @@ BaseVGM::VFactory::ExportSolid(VGM::ISolid* solid,
   std::cerr << "    BaseVGM::VFactory::ExportSolid:" << std::endl;
   std::cerr << "    Unknown solid type (solid \"" << solid->Name()
             << "\")" <<  std::endl;
-  std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+  std::cerr << "*** Error: Aborting execution  ***" << std::endl;
   exit(1);
   return 0;
-}  
+}
 
 //_____________________________________________________________________________
-BaseVGM::VFactory::VolumeMap* 
+BaseVGM::VFactory::VolumeMap*
 BaseVGM::VFactory::ExportVolumeStore(VGM::IFactory* factory) const
 {
 // Exports all volumes.
@@ -440,25 +440,25 @@ BaseVGM::VFactory::ExportVolumeStore(VGM::IFactory* factory) const
   if (Debug()>0) {
     BaseVGM::DebugInfo();
     std::cout << "Exporting volume store: " << std::endl;
-  }	      
+  }
 
   VolumeMap* volumeMap = new VolumeMap();
 
   for (unsigned int i=0; i<Volumes().size(); i++) {
-  
+
     VGM::IVolume* volume = Volumes()[i];
-    
+
     // Export solid
     VGM::ISolid* solid = ExportSolid(volume->Solid(), factory);
 
-    // Create factory's volume 
-    VGM::IVolume* newVolume 
-      = factory->CreateVolume(volume->Name(), 
-                              solid, 
+    // Create factory's volume
+    VGM::IVolume* newVolume
+      = factory->CreateVolume(volume->Name(),
+                              solid,
 			      volume->MediumName());
-			     
+
     // Map new volume to old volume
-    (*volumeMap)[volume] = newVolume;			     
+    (*volumeMap)[volume] = newVolume;
 
     // Debug info
     //
@@ -469,17 +469,17 @@ BaseVGM::VFactory::ExportVolumeStore(VGM::IFactory* factory) const
       if (Debug()>1)
         std::cout << "  " << " oldVGM=" << volume << " newVGM=" << newVolume;
       std::cout << std::endl;
-    }		
-  } 
-  
+    }
+  }
+
   return volumeMap;
 }
-  
+
 //_____________________________________________________________________________
-VGM::IPlacement* 
+VGM::IPlacement*
 BaseVGM::VFactory::ExportSimplePlacement(
                               VGM::IPlacement* placement,
-                              VGM::IFactory* factory, 
+                              VGM::IFactory* factory,
 			      VolumeMap* volumeMap) const
 {
 // Export simple placement.
@@ -487,42 +487,42 @@ BaseVGM::VFactory::ExportSimplePlacement(
 
 #ifndef NEW_DEBUG
   if (Debug()>0) {
-    std::cout << "  simple placement: " 
+    std::cout << "  simple placement: "
               << placement->Name() << std::endl;
-  }	      
+  }
 #endif
 
   VGM::IVolume* newVolume = (*volumeMap)[placement->Volume()];
   VGM::IVolume* newMother = (*volumeMap)[placement->Mother()];
-  
+
   // If boolean or scaled solid that have to be reflected
   /// set reflection to the transformation
   VGM::Transform transform = placement->Transformation();
-  VGM::IBooleanSolid* booleanSolid 
+  VGM::IBooleanSolid* booleanSolid
     = dynamic_cast<VGM::IBooleanSolid*>(placement->Volume()->Solid());
-  VGM::IScaledSolid* scaledSolid 
+  VGM::IScaledSolid* scaledSolid
     = dynamic_cast<VGM::IScaledSolid*>(placement->Volume()->Solid());
   if ( ( booleanSolid && booleanSolid->ToBeReflected() ) ||
        ( scaledSolid && scaledSolid->ToBeReflected() ) ) {
      transform[VGM::kReflZ] = 1;
   }
- 
+
   VGM::IPlacement* newPlacement
     = factory->CreatePlacement(
-                       placement->Name(), 
+                       placement->Name(),
                        placement->CopyNo(),
                        newVolume,
                        newMother,
                        transform);
-      
+
   return newPlacement;
 }
 
 //_____________________________________________________________________________
-VGM::IPlacement* 
+VGM::IPlacement*
 BaseVGM::VFactory::ExportMultiplePlacement(
                               VGM::IPlacement* placement,
-                              VGM::IFactory* factory, 
+                              VGM::IFactory* factory,
                               VolumeMap* volumeMap) const
 {
 // Exports multiple placement.
@@ -530,25 +530,25 @@ BaseVGM::VFactory::ExportMultiplePlacement(
 
   VGM::IVolume* newVolume = (*volumeMap)[placement->Volume()];
   VGM::IVolume* newMother = (*volumeMap)[placement->Mother()];
-  
+
   VGM::Axis axis;
   int nofItems;
   double width;
   double offset;
   double halfGap;
   placement->MultiplePlacementData(axis, nofItems, width, offset, halfGap);
- 
+
 #ifndef NEW_DEBUG
   if (Debug()>0) {
     std::cout << "  multiple placement - data: "
-	      << axis  << ",  " << nofItems << ",  " 
+	      << axis  << ",  " << nofItems << ",  "
 	      << width << ",  " << offset << ",  " << halfGap << std::endl;
-  }	      
+  }
 #endif
-  
+
   VGM::IPlacement* newPlacement
     = factory->CreateMultiplePlacement(
-                     placement->Name(), 
+                     placement->Name(),
                      newVolume,
                      newMother,
                      axis,
@@ -562,7 +562,7 @@ BaseVGM::VFactory::ExportMultiplePlacement(
 
 //_____________________________________________________________________________
 void BaseVGM::VFactory::ExportPlacements(
-                                 VGM::IFactory* factory, 
+                                 VGM::IFactory* factory,
                                  VolumeMap* volumeMap) const
 {
 // Exports all placements.
@@ -572,13 +572,13 @@ void BaseVGM::VFactory::ExportPlacements(
   if (Debug()>0) {
     BaseVGM::DebugInfo();
     std::cout << "Exporting placements:" << std::endl;
-  }           
+  }
 #endif
 
   for (unsigned int i=0; i<Volumes().size(); i++) {
-  
+
     VGM::IVolume* volume = Volumes()[i];
-    
+
 #ifndef NEW_DEBUG
     if (Debug()>0) {
       BaseVGM::DebugInfo();
@@ -586,31 +586,31 @@ void BaseVGM::VFactory::ExportPlacements(
                 << i << "th volume ";
       if (Debug()>1) std::cout << volume << "  ";
       std::cout << volume->Name() << std::endl;
-    }		
+    }
 #endif
 
     for (int id=0; id<volume->NofDaughters(); id++) {
-     
+
       VGM::IPlacement* daughter = volume->Daughter(id);
 
 #ifndef NEW_DEBUG
       if (Debug()>0) {
         BaseVGM::DebugInfo();
-        std::cout << "   " << id << "th daughter vol = ";  
+        std::cout << "   " << id << "th daughter vol = ";
         if (Debug()>1) std::cout << daughter->Volume() << "  ";
 	std::cout << daughter->Volume()->Name();
-      }		  
+      }
 #endif
 
 #ifdef NEW_DEBUG
       if (Debug()>0) {
         BaseVGM::DebugInfo();
-        std::cout << "Exporting placement: ";   
+        std::cout << "Exporting placement: ";
         if (Debug()>1) std::cout << daughter;
-        std::cout << std::endl;    
+        std::cout << std::endl;
         BaseVGM::DebugInfo();
         std::cout << "   " << *daughter << std::endl;
-      }		
+      }
 #endif
 
       if (daughter->Type() == VGM::kSimplePlacement) {
@@ -624,20 +624,20 @@ void BaseVGM::VFactory::ExportPlacements(
           std::cerr << "    BaseVGM::VFactory::ExportPlacements:"<< std::endl;
 	  std::cerr << "    Unknown placement type (placement \""
 	            << daughter->Name() << "\")" << std::endl;
-          std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
-          exit(1); 		    
-        }	   
+          std::cerr << "*** Error: Aborting execution  ***" << std::endl;
+          exit(1);
+        }
     }
   }
-  
+
   // Position the top volume
   // (top volume has no mother volume that's why it must be placed
   //  explicitely)
-  
+
   VGM::IVolume* topVolume = (*volumeMap)[Top()->Volume()];
-  
+
   factory->CreatePlacement(Top()->Name(), Top()->CopyNo(), topVolume, 0, Identity());
-  
+
   delete volumeMap;
 }
 
@@ -668,7 +668,7 @@ bool BaseVGM::VFactory::Export(VGM::IFactory* factory) const
     //
     fMaterialFactory->Export(factory->MaterialFactory());
 
-    // Export volumes 
+    // Export volumes
     //
     VolumeMap* volumeMap = ExportVolumeStore(factory);
     ExportPlacements(factory, volumeMap);
@@ -681,7 +681,7 @@ bool BaseVGM::VFactory::Export(VGM::IFactory* factory) const
     // Check if a solid was created/imported
     if ( ! SingleSolid() ) {
       std::cerr << "++ Warning: ++ " << std::endl;
-      std::cerr << "   BaseVGM::Export:" << std::endl; 
+      std::cerr << "   BaseVGM::Export:" << std::endl;
       std::cerr << "   A solid must be created/imported first." << std::endl;
 
       return false;
@@ -693,13 +693,13 @@ bool BaseVGM::VFactory::Export(VGM::IFactory* factory) const
 
     return ( solid != 0 );
   }
-}  
+}
 
 //_____________________________________________________________________________
 void  BaseVGM::VFactory::PrintSolids() const
 {
 // Print all solids.
-// ---			       
+// ---
 
   std::cout << Name() << " factory solids store: " << std::endl;
 
@@ -707,14 +707,14 @@ void  BaseVGM::VFactory::PrintSolids() const
 
   for (unsigned i=0; i<solids.size(); i++) {
     std::cout << "   " << i << "th solid: " << *solids[i] << std::endl;
-  }   
+  }
 }
 
 //_____________________________________________________________________________
 void  BaseVGM::VFactory::PrintVolumes() const
-{	
+{
 // Print all volumes.
-// ---			       
+// ---
 
   std::cout << Name() << " factory volumes store: " << std::endl;
 
@@ -722,15 +722,15 @@ void  BaseVGM::VFactory::PrintVolumes() const
 
   for (unsigned i=0; i<volumes.size(); i++) {
     std::cout << "   " << i << "th: " << *volumes[i] << std::endl;
-  }   
+  }
 }
 
 //_____________________________________________________________________________
 void BaseVGM::VFactory::SetDebug (int debug)
-{ 
+{
 // Sets debug level; the same level is set to material factory.
-// ---			       
+// ---
 
-  fDebug = debug; 
+  fDebug = debug;
   MaterialFactory()->SetDebug(debug);
 }

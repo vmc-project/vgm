@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The Geant4GM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -32,9 +32,9 @@ namespace Geant4GM {
   class Paraboloid : public BaseVGM::VParaboloid
   {
     public:
-      Paraboloid(const std::string& name, 
+      Paraboloid(const std::string& name,
                  double r1, double r2, double hz);
-      Paraboloid(G4Paraboloid* paraboloid, 
+      Paraboloid(G4Paraboloid* paraboloid,
                  G4ReflectedSolid* reflParaboloid = 0);
       virtual ~Paraboloid();
 
@@ -47,7 +47,7 @@ namespace Geant4GM {
     protected:
       Paraboloid();
       Paraboloid(const Paraboloid& rhs);
- 
+
     private:
       bool          fIsReflected;
       G4Paraboloid* fParaboloid;

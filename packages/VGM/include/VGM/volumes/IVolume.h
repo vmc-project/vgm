@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The VGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -32,7 +32,7 @@ namespace VGM {
   {
     public:
       virtual ~IVolume() {}
-    
+
       // methods
       			    ///
                             /// Return the name of this volume
@@ -58,7 +58,7 @@ namespace VGM {
       virtual void  AddDaughter(VGM::IPlacement* daughter) = 0;
   };
 
-}  
+}
 
 std::ostream& operator << (std::ostream& out, const VGM::IVolume& volume);
 

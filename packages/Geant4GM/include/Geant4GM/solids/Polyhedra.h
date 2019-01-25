@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The Geant4GM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -32,10 +32,10 @@ namespace Geant4GM {
   class Polyhedra : public BaseVGM::VPolyhedra
   {
     public:
-      Polyhedra(const std::string& name, 
+      Polyhedra(const std::string& name,
                 double sphi, double dphi, int nofSides, int nofZplanes,
                 double* z, double* rin, double* rout);
-      Polyhedra(G4Polyhedra* polyhedra, 
+      Polyhedra(G4Polyhedra* polyhedra,
                 G4ReflectedSolid* reflPolyhedra = 0);
       virtual ~Polyhedra();
 

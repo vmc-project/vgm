@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The test program of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -16,7 +16,7 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
- 
+
 #ifndef TST_STEPPING_ACTION_H
 #define TST_STEPPING_ACTION_H
 
@@ -39,4 +39,4 @@ class TstSteppingAction : public G4UserSteppingAction
 
 #endif
 
-    
+

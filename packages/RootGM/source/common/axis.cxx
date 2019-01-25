@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -12,7 +12,7 @@
 //
 // RootGM utilities
 // --------------
-// Utility functions 
+// Utility functions
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
@@ -35,57 +35,57 @@ VGM::Axis RootGM::Axis(const TGeoPatternFinder* finder)
 // Checks the finder concrete type and returns the division axis.
 // ---
 
-  const TGeoPatternX*  finderX 
+  const TGeoPatternX*  finderX
     = dynamic_cast<const TGeoPatternX*>(finder);
   if (finderX) return VGM::kXAxis;
 
-  const TGeoPatternY*  finderY 
+  const TGeoPatternY*  finderY
     = dynamic_cast<const TGeoPatternY*>(finder);
   if (finderY) return VGM::kYAxis;
 
-  const TGeoPatternZ*  finderZ 
+  const TGeoPatternZ*  finderZ
     = dynamic_cast<const TGeoPatternZ*>(finder);
   if (finderZ) return VGM::kZAxis;
 
-  const TGeoPatternParaX*  finderParaX 
+  const TGeoPatternParaX*  finderParaX
     = dynamic_cast<const TGeoPatternParaX*>(finder);
   if (finderParaX) return VGM::kXAxis;
 
-  const TGeoPatternParaY*  finderParaY 
+  const TGeoPatternParaY*  finderParaY
     = dynamic_cast<const TGeoPatternParaY*>(finder);
   if (finderParaY) return VGM::kYAxis;
 
-  const TGeoPatternParaZ*  finderParaZ 
+  const TGeoPatternParaZ*  finderParaZ
     = dynamic_cast<const TGeoPatternParaZ*>(finder);
   if (finderParaZ) return VGM::kZAxis;
 
-  const TGeoPatternTrapZ*  finderTrapZ 
+  const TGeoPatternTrapZ*  finderTrapZ
     = dynamic_cast<const TGeoPatternTrapZ*>(finder);
   if (finderTrapZ) return VGM::kZAxis;
 
-  const TGeoPatternCylR* finderR 
+  const TGeoPatternCylR* finderR
     = dynamic_cast<const TGeoPatternCylR*>(finder);
   if (finderR) return VGM::kRho;
 
-  const TGeoPatternCylPhi* finderPhi 
+  const TGeoPatternCylPhi* finderPhi
     = dynamic_cast<const TGeoPatternCylPhi*>(finder);
   if (finderPhi) return VGM::kPhi;
 
-  const TGeoPatternSphR* finderSphR 
+  const TGeoPatternSphR* finderSphR
     = dynamic_cast<const TGeoPatternSphR*>(finder);
   if (finderSphR) return VGM::kRadial3D;
 
-  const TGeoPatternSphPhi* finderSphPhi 
+  const TGeoPatternSphPhi* finderSphPhi
     = dynamic_cast<const TGeoPatternSphPhi*>(finder);
   if (finderSphPhi) return VGM::kPhi;
-  
-  const TGeoPatternSphTheta* finderSphTheta 
+
+  const TGeoPatternSphTheta* finderSphTheta
     = dynamic_cast<const TGeoPatternSphTheta*>(finder);
   if (finderSphTheta) return VGM::kSphTheta;
-  
+
   // Not supported shapes:
   // Honeycomb
-  
+
   return  VGM::kUnknownAxis;
  }
 
@@ -109,9 +109,9 @@ int RootGM::Axis(VGM::Axis axis)
     case VGM::kRadial3D: return 1;
     case VGM::kUnknownAxis: return 0;
   }
-  
+
   return 0;
-}    
+}
 
 //_____________________________________________________________________________
 double RootGM::AxisUnit(VGM::Axis axis)
@@ -125,5 +125,5 @@ double RootGM::AxisUnit(VGM::Axis axis)
     case VGM::kPhi:      return RootGM::Units::Angle();  break;
     case VGM::kUnknownAxis: return 0; break;
     default:  return 0; break;
-  }  
-}    
+  }
+}

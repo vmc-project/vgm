@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The BaseVGM package of the Virtual Geometry Model
-// Copyright (C) 2007 - 2017, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007 - 2017, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -43,7 +43,7 @@ namespace BaseVGM {
 
 // inline functions
 
-inline VGM::SolidType 
+inline VGM::SolidType
 BaseVGM::VScaledSolid::Type() const { return VGM::kScaled; }
 
 #endif // BASE_VGM_V_SCALED_SOLID_H

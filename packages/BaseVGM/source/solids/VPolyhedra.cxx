@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The BaseVGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -25,14 +25,14 @@ std::ostream& operator<<(std::ostream& out, const VGM::IPolyhedra& polyhedra)
 {
   const VGM::ISolid& polyhedraSolid = polyhedra;
   out << polyhedraSolid;
-  return out; 
+  return out;
 }
 
 //_____________________________________________________________________________
 BaseVGM::VPolyhedra::VPolyhedra()
-  : VGM::IPolyhedra() 
+  : VGM::IPolyhedra()
 {
-/// Default constructor  
+/// Default constructor
 }
 
 
@@ -44,37 +44,37 @@ BaseVGM::VPolyhedra::~VPolyhedra() {
 //_____________________________________________________________________________
 double BaseVGM::VPolyhedra::ConvertRadiusFactor() const
 {
-// 
+//
   double phiTotal = DeltaPhi()/180.*M_PI;
   if ( (phiTotal <=0) || (phiTotal >= 2*M_PI*(1-1e-16)) )
     phiTotal = 2*M_PI;
-  
+
   return cos(0.5*phiTotal/NofSides());
-}  
+}
 
 //_____________________________________________________________________________
 std::ostream& BaseVGM::VPolyhedra::Put(std::ostream& out) const
 {
-  out << "  sphi = "   << StartPhi() << "deg" 
+  out << "  sphi = "   << StartPhi() << "deg"
       << "  dphi = "   << DeltaPhi() << "deg"
       << "  nsides = " << NofSides()
       << "  nz = "     << NofZPlanes()
       << std::endl;
- 
+
   double* zvalues    = ZValues();
   double* rinvalues  = InnerRadiusValues();
-  double* routvalues = OuterRadiusValues();   
- 
+  double* routvalues = OuterRadiusValues();
+
   for (int i=0; i<NofZPlanes(); i++) {
     out << "   "
-        << i << "th plane: "        
-        << " z = "    << zvalues[i]    << "mm"  
-        << " rin = "  << rinvalues[i]  << "mm"  
-        << " rout = " << routvalues[i] << "mm"; 
-  
+        << i << "th plane: "
+        << " z = "    << zvalues[i]    << "mm"
+        << " rin = "  << rinvalues[i]  << "mm"
+        << " rout = " << routvalues[i] << "mm";
+
     if (i<NofZPlanes()-1) out << std::endl;
   }
-      
-  return out; 
+
+  return out;
 }
 

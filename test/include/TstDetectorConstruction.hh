@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The test program of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -37,7 +37,7 @@ class G4Colour;
 class TstDetectorConstruction : public G4VUserDetectorConstruction
 {
   public:
-    TstDetectorConstruction(const G4String& inputType, 
+    TstDetectorConstruction(const G4String& inputType,
                             const G4String& inputFactory,
                             const G4String& outputFactory,
 			    const G4String& outputXML);
@@ -54,8 +54,8 @@ class TstDetectorConstruction : public G4VUserDetectorConstruction
   private:
     bool IsGeant4Geometry() const;
     bool IsRootGeometry() const;
-    void SelectChannels(const G4String& inputType, 
-                        const G4String& inputFactory, 
+    void SelectChannels(const G4String& inputType,
+                        const G4String& inputFactory,
                         const G4String& outputFactory,
 			const G4String& outputXML);
     void SetG4VisAttributes() const;

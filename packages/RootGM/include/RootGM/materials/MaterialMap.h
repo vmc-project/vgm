@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -47,10 +47,10 @@ namespace RootGM {
       virtual ~MaterialMap();
 
       // static access methods
-      static MaterialMap* Instance(); 
+      static MaterialMap* Instance();
 
       // methods
-      void  AddMaterial(VGM::IMaterial*, TGeoMaterial*); 
+      void  AddMaterial(VGM::IMaterial*, TGeoMaterial*);
       void  Print() const;
 
       // get methods
@@ -62,7 +62,7 @@ namespace RootGM {
 
       // static data members
      static MaterialMap*  fgInstance;
-  
+
       // data members
       RootMaterialMap  fRootMaterials;
       VgmMaterialMap   fVgmMaterials;

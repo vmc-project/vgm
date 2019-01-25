@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The Geant4GM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -32,9 +32,9 @@ namespace Geant4GM {
   class Box : public BaseVGM::VBox
   {
     public:
-      Box(const std::string& name, 
+      Box(const std::string& name,
           double hx, double hy, double hz);
-      Box(G4Box* box, 
+      Box(G4Box* box,
           G4ReflectedSolid* reflBox = 0);
       virtual ~Box();
 

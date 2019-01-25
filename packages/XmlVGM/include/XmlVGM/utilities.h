@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The XmlVGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -12,8 +12,8 @@
 /// \ingroup XmlVGM
 //
 /// XmlVGM utilities
-/// 
-/// Utility functions 
+///
+/// Utility functions
 ///
 /// \author I. Hrivnacova, IPN Orsay
 
@@ -26,32 +26,32 @@
 
 namespace XmlVGM {
 
-  std::string UpdateName(const std::string& name,         
+  std::string UpdateName(const std::string& name,
                          const std::string& extension = "");
-  
-  std::string StripName(const std::string& name,         
+
+  std::string StripName(const std::string& name,
                          const std::string& extension = "");
 
   std::string AppendName(const std::string& name, int size);
 
-  std::string IsotopeName(const VGM::IIsotope* isotope);                       
+  std::string IsotopeName(const VGM::IIsotope* isotope);
 
   void CutName(std::string& name);
   void CutName(std::string& name, int size);
 
-  std::ostream& SmartPut(std::ostream& out, 
+  std::ostream& SmartPut(std::ostream& out,
                      int size, int precision, double tolerance,
                      double number, const std::string& separator);
-  
+
   std::ostream& SmartPut(std::ostream& out,
 		     int size, int precision, double tolerance,
-		     const std::string& separator1, 
+		     const std::string& separator1,
 		     double number, const std::string& separator2);
 
   std::string  Date();
 
   // date
-  const char         fgkCharReplacement  = '_';   //replacement for ' ' in names 
+  const char         fgkCharReplacement  = '_';   //replacement for ' ' in names
   const std::string  fgkNotAllowedChars  = " +-*/&<>%^$()"; //not allowed characters in XML
   const std::string  fgkNotAllowedChars1 = "0123456789";  //not allowed first characters
 }

@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The VGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -12,7 +12,7 @@
 /// \ingroup VGM_solids
 ///
 /// \class VGM::IBooleanSolid
-/// 
+///
 /// The VGM interface to Boolean solids.
 ///
 /// \author Ivana Hrivnacova; IPN Orsay
@@ -33,7 +33,7 @@ namespace VGM {
     kUnion,
     kUnknownBoolean
   };
-  
+
   std::string BooleanTypeName(BooleanType typeId);
 
   class IBooleanSolid : public virtual ISolid
@@ -42,33 +42,33 @@ namespace VGM {
       virtual ~IBooleanSolid() {}
 
       // methods
-      
+
       virtual SolidType    Type() const = 0;
       virtual std::string  Name() const = 0;
 
-			    /// 
+			    ///
                             /// Return the Boolean type of this solid
       virtual BooleanType  BoolType() const = 0;
-			    /// 
+			    ///
                             /// Return the first constituent solid
       virtual ISolid*      ConstituentSolidA() const = 0;
-			    /// 
+			    ///
                             /// Return the second constituent solid
       virtual ISolid*      ConstituentSolidB() const = 0;
-			    /// 
-                            /// Return the 3D displacement of the second 
+			    ///
+                            /// Return the 3D displacement of the second
 			    /// constituent solid with respect to the first one
-      virtual Transform    Displacement() const = 0; 
-			    /// 
+      virtual Transform    Displacement() const = 0;
+			    ///
                             /// Return true if the solid has to be first
 			    /// reflected before being placed
-      virtual bool         ToBeReflected() const = 0;     
+      virtual bool         ToBeReflected() const = 0;
 
       // streaming
       virtual std::ostream& Put(std::ostream& out) const = 0;
   };
 
-}  
+}
 
 std::ostream& operator << (std::ostream& out, const VGM::IBooleanSolid& solid);
 

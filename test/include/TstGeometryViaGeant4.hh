@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The test program of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -25,7 +25,7 @@
 class G4LogicalVolume;
 class G4Material;
 
-class TstGeometryViaGeant4 : public TstVGeometry 
+class TstGeometryViaGeant4 : public TstVGeometry
 {
   public:
     TstGeometryViaGeant4();

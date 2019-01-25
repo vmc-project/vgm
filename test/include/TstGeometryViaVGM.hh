@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The test program of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -27,14 +27,14 @@ namespace VGM {
   class IVolume;
 }
 
-class TstGeometryViaVGM : public TstVGeometry 
+class TstGeometryViaVGM : public TstVGeometry
 {
   public:
     TstGeometryViaVGM(VGM::IFactory* factory);
     virtual ~TstGeometryViaVGM();
 
     virtual void  DefineMaterials();
-    
+
     virtual void* TestSolids(bool fullPhi);
     virtual void* TestExtraSolid(VGM::SolidType solidType);
     virtual void* TestNewSolid();
@@ -51,7 +51,7 @@ class TstGeometryViaVGM : public TstVGeometry
 
   private:
     // methods
-    VGM::IVolume* CreateWorld(double x, double y, double z, 
+    VGM::IVolume* CreateWorld(double x, double y, double z,
                               const std::string& materialName = "Basic");
     VGM::ISolid* CreateNewSolid();
     VGM::ISolid* CreateArb8();
@@ -79,12 +79,12 @@ class TstGeometryViaVGM : public TstVGeometry
                       bool fullPhi, bool reflect, bool scale, double zpos);
     void  PlaceSolids(const std::vector<VGM::IVolume*>& volumes,
                       VGM::IVolume* mother);
-    void  PlaceExtraSolid(VGM::SolidType solidType, 
+    void  PlaceExtraSolid(VGM::SolidType solidType,
                       VGM::IVolume* motherVGM);
- 
+
     // data members
     VGM::IFactory*  fFactory;
-    
+
     const double    fCm;
     const double    fDeg;
     const double    fGcm3;

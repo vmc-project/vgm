@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -31,7 +31,7 @@ namespace RootGM {
   class Ctubs : public BaseVGM::VCtubs
   {
     public:
-      Ctubs(const std::string& name, 
+      Ctubs(const std::string& name,
            double rin, double rout, double hz, double sphi, double dphi,
 	   double nxlow, double nylow, double nzlow,
 	   double nxhigh, double nyhigh, double nzhigh);

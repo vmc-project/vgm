@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The BaseVGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -23,14 +23,14 @@ std::ostream& operator<<(std::ostream& out, const VGM::IArb8& arb8)
 {
   const VGM::ISolid& Arb8 = arb8;
   out << Arb8;
-  return out; 
+  return out;
 }
 
 //_____________________________________________________________________________
 BaseVGM::VArb8::VArb8()
-  : VGM::IArb8() 
+  : VGM::IArb8()
 {
-/// Default constructor  
+/// Default constructor
 }
 
 
@@ -45,8 +45,8 @@ std::ostream& BaseVGM::VArb8::Put(std::ostream& out) const
   out << std::endl;
   out << NofVertices() << " vertices:" << std::endl;
   for (int i=0; i< NofVertices(); i++ ) {
-    out << "  (" 
-        << Vertex(i).first  << ", " 
+    out << "  ("
+        << Vertex(i).first  << ", "
         << Vertex(i).second << ")";
   }
   out << " mm" << std::endl;
@@ -55,8 +55,8 @@ std::ostream& BaseVGM::VArb8::Put(std::ostream& out) const
     out << "  " << TwistAngle(i);
   }
   out << " rad" << std::endl;
-  out << "  hz = " << ZHalfLength() << "mm" << std::endl; 
-      
-  return out; 
+  out << "  hz = " << ZHalfLength() << "mm" << std::endl;
+
+  return out;
 }
 

@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The BaseVGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -37,7 +37,7 @@ namespace BaseVGM {
     public:
       VVolume(VGM::ISolid* solid);
       virtual ~VVolume();
-    
+
       // methods
       virtual std::string   Name() const = 0;
       virtual std::string   MaterialName() const = 0;
@@ -46,12 +46,12 @@ namespace BaseVGM {
       virtual VGM::ISolid*      Solid() const;
       virtual int               NofDaughters() const;
       virtual VGM::IPlacement*  Daughter(int i) const;
-    
+
       virtual void  AddDaughter(VGM::IPlacement* daughter);
-      
+
       virtual void  ResetSolid(VGM::ISolid* solid);
-    
-    protected:   
+
+    protected:
       VVolume();
       VVolume(const VVolume& rhs);
 
@@ -59,7 +59,7 @@ namespace BaseVGM {
       VGM::ISolid*  fSolid;
       std::vector<VGM::IPlacement*>  fDaughters;
   };
-  
-}  
+
+}
 
 #endif //BASE_VGM_V_VOLUME_H

@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The BaseVGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -23,14 +23,14 @@ std::ostream& operator<<(std::ostream& out, const VGM::IPolycone& polycone)
 {
   const VGM::ISolid& polyconeSolid = polycone;
   out << polyconeSolid;
-  return out; 
+  return out;
 }
 
 //_____________________________________________________________________________
 BaseVGM::VPolycone::VPolycone()
-  : VGM::IPolycone() 
+  : VGM::IPolycone()
 {
-/// Default constructor  
+/// Default constructor
 }
 
 
@@ -46,21 +46,21 @@ std::ostream& BaseVGM::VPolycone::Put(std::ostream& out) const
       << "  dphi = " << DeltaPhi() << "deg"
       << "  nz = "   << NofZPlanes()
       << std::endl;
-      
+
   double* zvalues    = ZValues();
   double* rinvalues  = InnerRadiusValues();
-  double* routvalues = OuterRadiusValues();   
- 
+  double* routvalues = OuterRadiusValues();
+
   for (int i=0; i<NofZPlanes(); i++) {
     out << "   "
-        << i << "th plane: "        
-        << " z = "    << zvalues[i]    << "mm"  
-        << " rin = "  << rinvalues[i]  << "mm"  
-        << " rout = " << routvalues[i] << "mm"; 
+        << i << "th plane: "
+        << " z = "    << zvalues[i]    << "mm"
+        << " rin = "  << rinvalues[i]  << "mm"
+        << " rout = " << routvalues[i] << "mm";
 
     if (i<NofZPlanes()-1) out << std::endl;
   }
-      
-  return out; 
+
+  return out;
 }
 

@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The VGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -31,7 +31,7 @@ namespace VGM {
   {
     public:
       virtual ~IMedium() {}
-      
+
       // metods
 			   ///
                            /// Return its name
@@ -49,7 +49,7 @@ namespace VGM {
                            /// Return the i-th parameter
       virtual double  Parameter(int i) const = 0;
   };
-}  
+}
 
 std::ostream& operator << (std::ostream& out, const VGM::IMedium& medium);
 

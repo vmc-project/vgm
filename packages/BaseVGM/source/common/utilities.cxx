@@ -2,16 +2,16 @@
 
 // -----------------------------------------------------------------------
 // The BaseVGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
 
 // BaseVGM utilities
 // --------------
-// Utility functions 
+// Utility functions
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
@@ -26,9 +26,9 @@
 //_____________________________________________________________________________
 void  BaseVGM::DebugInfo()
 {
-// 
+//
   std::cout << "VGM info:   ";
-}  
+}
 
 //_____________________________________________________________________________
 double BaseVGM::Round(double x)
@@ -41,7 +41,7 @@ double BaseVGM::Round(double x)
     t = ceil(x);
     if (t - x > 0.5) t -= 1.0;
     return t;
-  } 
+  }
   else {
     t = ceil(-x);
     if (t + x > 0.5) t -= 1.0;
@@ -64,26 +64,26 @@ std::string VGM::AxisTypeName(VGM::Axis typeId)
     case kUnknownAxis: return "Unknown";  break;
     default:           return "Undefined"; break;
   };
-}  
+}
 
 //_____________________________________________________________________________
 std::ostream& operator << (std::ostream& out, const VGM::Transform& transform)
 {
-  out << "( " 
+  out << "( "
       << transform[VGM::kDx] << ", "
       << transform[VGM::kDy] << ", "
-      << transform[VGM::kDz] 
+      << transform[VGM::kDz]
       << ")mm ( "
       << transform[VGM::kAngleX] << ", "
       << transform[VGM::kAngleY] << ", "
-      << transform[VGM::kAngleZ] 
+      << transform[VGM::kAngleZ]
       << ")deg ";
-  
+
   if ( BaseVGM::Round(transform[6]) == 0 )
     out << " noReflZ";
   else
     out << " reflZ";
 
-  return out; 
+  return out;
 }
 

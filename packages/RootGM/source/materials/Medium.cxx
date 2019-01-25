@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -25,10 +25,10 @@
 
 #include <cstdlib>
 
-const int RootGM::Medium::fgkParamSize = 20;  
+const int RootGM::Medium::fgkParamSize = 20;
 
 //_____________________________________________________________________________
-RootGM::Medium::Medium(const std::string& name, 
+RootGM::Medium::Medium(const std::string& name,
                        int mediumId,
                        VGM::IMaterial* material,
                        int nofParameters, double* parameters)
@@ -36,7 +36,7 @@ RootGM::Medium::Medium(const std::string& name,
     BaseVGM::VMedium(material),
     fMedium(0)
 {
-/// Standard constructor to define medium from parameters 
+/// Standard constructor to define medium from parameters
 /// \param name its name
 ///	   (must be unique in the factory)
 /// \param mediumId its unique identifier
@@ -49,17 +49,17 @@ RootGM::Medium::Medium(const std::string& name,
 
   Double_t* param = new Double_t[fgkParamSize];
   for (Int_t i=0; i<fgkParamSize; i++) {
-    if (i<nofParameters) 
+    if (i<nofParameters)
       param[i] = parameters[i];
-    else  
+    else
       param[i] = 0;
-  }   
+  }
 
   fMedium = new TGeoMedium(name.data(), mediumId, geoMaterial, param);
-  
+
   delete [] param;
 }
-			   
+
 //_____________________________________________________________________________
 RootGM::Medium::Medium(TGeoMedium* medium)
   : VGM::IMedium(),
@@ -69,19 +69,19 @@ RootGM::Medium::Medium(TGeoMedium* medium)
 {
 /// Standard constructor to define medium from Root object
 }
-			   
-//_____________________________________________________________________________
-RootGM::Medium::Medium() 
-  : VGM::IMedium(),
-    BaseVGM::VMedium() 
-{
-/// Protected default constructor
-}  
 
 //_____________________________________________________________________________
-RootGM::Medium::Medium(const Medium& rhs) 
+RootGM::Medium::Medium()
+  : VGM::IMedium(),
+    BaseVGM::VMedium()
+{
+/// Protected default constructor
+}
+
+//_____________________________________________________________________________
+RootGM::Medium::Medium(const Medium& rhs)
   : VGM::IMedium(rhs),
-    BaseVGM::VMedium(rhs) 
+    BaseVGM::VMedium(rhs)
 {
 /// Protected copy constructor
 }
@@ -97,13 +97,13 @@ RootGM::Medium::~Medium() {
 //_____________________________________________________________________________
 void RootGM::Medium::CheckIndex(int i) const
 {
-  if (i<0 || i >= NofParameters()) {  
+  if (i<0 || i >= NofParameters()) {
     std::cerr << "    RootGM::Medium::CheckIndex: " << std::endl;
     std::cerr << "    Index of parameter outside limits." << std::endl;
-    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl;
     exit(1);
-  }  
-}    
+  }
+}
 
 //
 // public functions
@@ -113,20 +113,20 @@ void RootGM::Medium::CheckIndex(int i) const
 std::string RootGM::Medium::Name() const
 {
   return std::string(fMedium->GetName());
-}  
+}
 
 //_____________________________________________________________________________
 int RootGM::Medium::Id() const
 {
 //
   return fMedium->GetId();
-}  
+}
 
 //_____________________________________________________________________________
 double  RootGM::Medium::Parameter(int i) const
 {
   CheckIndex(i);
-  
+
   return fMedium->GetParam(i);
-}   
+}
 

@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The BaseVGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -23,14 +23,14 @@ std::ostream& operator<<(std::ostream& out, const VGM::ITorus& torus)
 {
   const VGM::ISolid& torusSolid = torus;
   out << torusSolid;
-  return out; 
+  return out;
 }
 
 //_____________________________________________________________________________
 BaseVGM::VTorus::VTorus()
-  : VGM::ITorus() 
+  : VGM::ITorus()
 {
-/// Default constructor  
+/// Default constructor
 }
 
 
@@ -42,11 +42,11 @@ BaseVGM::VTorus::~VTorus() {
 //_____________________________________________________________________________
 std::ostream& BaseVGM::VTorus::Put(std::ostream& out) const
 {
-  out << "  rin = "  << InnerRadius() << "mm" 
-      << "  rout = " << OuterRadius() << "mm" 
-      << "  rtor = " << AxialRadius() << "mm" 
-      << "  sphi = " << StartPhi()    << "deg" 
-      << "  dphi = " << DeltaPhi()    << "deg"; 
-  return out; 
+  out << "  rin = "  << InnerRadius() << "mm"
+      << "  rout = " << OuterRadius() << "mm"
+      << "  rtor = " << AxialRadius() << "mm"
+      << "  sphi = " << StartPhi()    << "deg"
+      << "  dphi = " << DeltaPhi()    << "deg";
+  return out;
 }
 

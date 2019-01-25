@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -32,7 +32,7 @@ namespace RootGM {
   class Trd : public BaseVGM::VTrd
   {
     public:
-      Trd(const std::string& name, 
+      Trd(const std::string& name,
           double hx1, double hx2, double hy1, double hy2, double hz);
       Trd(TGeoTrd2* trd);
       Trd(TGeoTrd1* trd);

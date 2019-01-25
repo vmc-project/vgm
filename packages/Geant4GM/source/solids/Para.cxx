@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The Geant4GM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -39,12 +39,12 @@ Geant4GM::Para::Para(const std::string& name,
     VGM::IPara(),
     BaseVGM::VPara(),
     fIsReflected(false),
-    fPara( new G4Para(name, 
-                      dx    / ClhepVGM::Units::Length(), 
-		      dy    / ClhepVGM::Units::Length(), 
-		      dz    / ClhepVGM::Units::Length(), 
-		      alpha / ClhepVGM::Units::Angle(), 
-		      theta / ClhepVGM::Units::Angle(), 
+    fPara( new G4Para(name,
+                      dx    / ClhepVGM::Units::Length(),
+		      dy    / ClhepVGM::Units::Length(),
+		      dz    / ClhepVGM::Units::Length(),
+		      alpha / ClhepVGM::Units::Angle(),
+		      theta / ClhepVGM::Units::Angle(),
 		      phi   / ClhepVGM::Units::Angle()) )
 {
 /// Standard constructor to define para from parameters
@@ -59,43 +59,43 @@ Geant4GM::Para::Para(const std::string& name,
 /// \param phi azimuthal angle of the line joining the centres
 ///	   of the faces at -hz and +hz in deg
 
-  Geant4GM::SolidMap::Instance()->AddSolid(this, fPara); 
+  Geant4GM::SolidMap::Instance()->AddSolid(this, fPara);
 }
 
 
 //_____________________________________________________________________________
-Geant4GM::Para::Para(G4Para* para, 
+Geant4GM::Para::Para(G4Para* para,
                      G4ReflectedSolid* reflPara)
   : VGM::ISolid(),
     VGM::IPara(),
     BaseVGM::VPara(),
     fIsReflected(false),
     fPara(para)
-{    
+{
 /// Standard constructor to define para from G4 object
 
   if (reflPara) {
     fIsReflected = true;
     Geant4GM::SolidMap::Instance()->AddSolid(this, reflPara);
   }
-  else   
-    Geant4GM::SolidMap::Instance()->AddSolid(this, para); 
+  else
+    Geant4GM::SolidMap::Instance()->AddSolid(this, para);
 }
 
 //_____________________________________________________________________________
-Geant4GM::Para::Para() 
+Geant4GM::Para::Para()
   : VGM::ISolid(),
     VGM::IPara(),
-    BaseVGM::VPara() 
+    BaseVGM::VPara()
 {
 /// Protected default constructor
 }
 
 //_____________________________________________________________________________
-Geant4GM::Para::Para(const Para& rhs) 
+Geant4GM::Para::Para(const Para& rhs)
   : VGM::ISolid(rhs),
     VGM::IPara(rhs),
-    BaseVGM::VPara(rhs) 
+    BaseVGM::VPara(rhs)
 {
 /// Protected copy constructor
 }
@@ -103,37 +103,37 @@ Geant4GM::Para::Para(const Para& rhs)
 //_____________________________________________________________________________
 Geant4GM::Para::~Para() {
 //
-}    
+}
 
 //_____________________________________________________________________________
 std::string Geant4GM::Para::Name() const
 {
   return fPara->GetName();
-}  
-  
+}
+
 //_____________________________________________________________________________
 double Geant4GM::Para::XHalfLength() const
 {
   return fPara->GetXHalfLength() * ClhepVGM::Units::Length();
-}  
+}
 
 //_____________________________________________________________________________
 double Geant4GM::Para::YHalfLength() const
 {
   return fPara->GetYHalfLength() * ClhepVGM::Units::Length();
-}  
+}
 
 //_____________________________________________________________________________
 double Geant4GM::Para::ZHalfLength() const
 {
   return fPara->GetZHalfLength() * ClhepVGM::Units::Length();
-}  
+}
 
 //_____________________________________________________________________________
 double Geant4GM::Para::Alpha() const
 {
   return atan(fPara->GetTanAlpha()) * ClhepVGM::Units::Angle();
-}  
+}
 
 //_____________________________________________________________________________
 double Geant4GM::Para::Theta() const
@@ -142,12 +142,12 @@ double Geant4GM::Para::Theta() const
     return fPara->GetSymAxis().theta() * ClhepVGM::Units::Angle();
   else
     return (M_PI - fPara->GetSymAxis().theta()) * ClhepVGM::Units::Angle();;
-}  
+}
 
 //_____________________________________________________________________________
 double Geant4GM::Para::Phi() const
 {
   return fPara->GetSymAxis().phi() * ClhepVGM::Units::Angle();
-}  
+}
 
 

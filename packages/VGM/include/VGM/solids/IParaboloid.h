@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The VGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -12,7 +12,7 @@
 /// \ingroup VGM_solids
 ///
 /// \class VGM::IParaboloid
-/// 
+///
 /// The VGM interface to paraboloid solids.
 ///
 /// \author Ivana Hrivnacova; IPN Orsay
@@ -49,8 +49,8 @@ namespace VGM {
       // streaming
       virtual std::ostream& Put(std::ostream& out) const = 0;
   };
-  
-}  
+
+}
 
 std::ostream& operator << (std::ostream& out, const VGM::IParaboloid& paraboloid);
 

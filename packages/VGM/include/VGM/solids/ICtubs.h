@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The VGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -12,7 +12,7 @@
 /// \ingroup VGM_solids
 ///
 /// \class VGM::ICtubs
-/// 
+///
 /// The VGM interface to cut tubs solids.
 ///
 /// \author Ivana Hrivnacova; IPN Orsay
@@ -32,7 +32,7 @@ namespace VGM {
       virtual ~ICtubs() {}
 
       // methods
-      
+
       virtual SolidType   Type() const = 0;
       virtual std::string Name() const = 0;
 
@@ -52,27 +52,27 @@ namespace VGM {
 		      /// Return the opening angle of the segment in deg
       virtual double DeltaPhi() const = 0;
 
- 		      /// X-component of the normal unit vector to the 
+ 		      /// X-component of the normal unit vector to the
 		      /// cut plane in -z
       virtual double NxLow() const = 0;
- 
- 		      /// Y-component of the normal unit vector to the 
+
+ 		      /// Y-component of the normal unit vector to the
 		      /// cut plane in -z
       virtual double NyLow() const = 0;
- 
- 		      /// Z-component of the normal unit vector to the 
+
+ 		      /// Z-component of the normal unit vector to the
 		      /// cut plane in -z
       virtual double NzLow() const = 0;
- 
-  		      /// X-component of the normal unit vector to the 
+
+  		      /// X-component of the normal unit vector to the
 		      /// cut plane in +z
       virtual double NxHigh() const = 0;
- 
- 		      /// Y-component of the normal unit vector to the 
+
+ 		      /// Y-component of the normal unit vector to the
 		      /// cut plane in +z
       virtual double NyHigh() const = 0;
- 
- 		      /// Z-component of the normal unit vector to the 
+
+ 		      /// Z-component of the normal unit vector to the
 		      /// cut plane in +z
       virtual double NzHigh() const = 0;
 

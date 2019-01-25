@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The Geant4GM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -46,12 +46,12 @@ namespace Geant4GM {
       virtual ~VolumeMap();
 
       // static access methods
-      static VolumeMap* Instance(); 
+      static VolumeMap* Instance();
 
       // methods
-      void  AddVolume(VGM::IVolume*, G4LogicalVolume*); 
+      void  AddVolume(VGM::IVolume*, G4LogicalVolume*);
       void  Print() const;
-  
+
       // get methods
       G4LogicalVolume* GetVolume(VGM::IVolume* iVolume) const;
       VGM::IVolume*    GetVolume(G4LogicalVolume* lv) const;
@@ -61,7 +61,7 @@ namespace Geant4GM {
 
       // static data members
       static VolumeMap*  fgInstance;
-  
+
       // data members
       G4VolumeMap   fG4Volumes;
       VgmVolumeMap  fVgmVolumes;

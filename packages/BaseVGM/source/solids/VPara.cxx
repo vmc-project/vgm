@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The BaseVGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -23,14 +23,14 @@ std::ostream& operator<<(std::ostream& out, const VGM::IPara& para)
 {
   const VGM::ISolid& paraSolid = para;
   out << paraSolid;
-  return out; 
+  return out;
 }
 
 //_____________________________________________________________________________
 BaseVGM::VPara::VPara()
-  : VGM::IPara() 
+  : VGM::IPara()
 {
-/// Default constructor  
+/// Default constructor
 }
 
 //_____________________________________________________________________________
@@ -41,12 +41,12 @@ BaseVGM::VPara::~VPara() {
 //_____________________________________________________________________________
 std::ostream& BaseVGM::VPara::Put(std::ostream& out) const
 {
-  out << "  hx = "    << XHalfLength() << "mm" 
-      << "  hy = "    << YHalfLength() << "mm" 
-      << "  hz = "    << ZHalfLength() << "mm" 
+  out << "  hx = "    << XHalfLength() << "mm"
+      << "  hy = "    << YHalfLength() << "mm"
+      << "  hz = "    << ZHalfLength() << "mm"
       << "  alpha = " << Alpha()       << "deg"
       << "  theta = " << Theta()       << "deg"
       << "  phi = "   << Phi()         << "deg";
-  return out; 
+  return out;
 }
 

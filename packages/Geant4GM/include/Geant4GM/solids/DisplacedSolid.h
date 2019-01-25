@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The Geant4GM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -35,9 +35,9 @@ namespace Geant4GM {
   class DisplacedSolid : public BaseVGM::VDisplacedSolid
   {
     public:
-      DisplacedSolid(const std::string& name, 
-                     VGM::ISolid* constituentSolid, 
-                     CLHEP::HepRotation* rotation, 
+      DisplacedSolid(const std::string& name,
+                     VGM::ISolid* constituentSolid,
+                     CLHEP::HepRotation* rotation,
 	 	     const CLHEP::Hep3Vector& translation);
       DisplacedSolid(G4DisplacedSolid* displacedSolid,
                      G4ReflectedSolid* reflectedDisplaced);
@@ -47,8 +47,8 @@ namespace Geant4GM {
       virtual std::string Name() const;
 
       virtual VGM::ISolid*    ConstituentSolid() const;
-      virtual VGM::Transform  Displacement() const;      
-      virtual bool            ToBeReflected() const;     
+      virtual VGM::Transform  Displacement() const;
+      virtual bool            ToBeReflected() const;
 
     protected:
       DisplacedSolid();
@@ -58,10 +58,10 @@ namespace Geant4GM {
       G4DisplacedSolid* fDisplacedSolid;
       bool              fToBeReflected;
   };
-  
-}  
+
+}
 
 inline bool Geant4GM::DisplacedSolid::ToBeReflected() const
-{ return fToBeReflected; }     
+{ return fToBeReflected; }
 
 #endif //GEANT4_GM_DISPLACED_SOLID_H

@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -32,7 +32,7 @@ namespace RootGM {
   class Arb8 : public BaseVGM::VArb8
   {
     public:
-      Arb8(const std::string& name, 
+      Arb8(const std::string& name,
            double hz,
            std::vector<VGM::TwoVector> vertices);
       Arb8(TGeoArb8* arb8);
@@ -48,12 +48,12 @@ namespace RootGM {
     protected:
       Arb8();
       Arb8(const Arb8& rhs);
-      
+
       static const int fgkNofVertices;
 
       TGeoArb8* fArb8;
   };
 
-}  
+}
 
 #endif //ROOT_GM_ARB8_H

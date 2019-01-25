@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The Geant4GM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -39,11 +39,11 @@ namespace Geant4GM {
   class Placement : public BaseVGM::VPlacement
   {
     public:
-      Placement(VGM::IVolume* volume, 
+      Placement(VGM::IVolume* volume,
                 VGM::IVolume* motherVolume,
                 G4VPhysicalVolume* pv);
       virtual ~Placement();
-    
+
       // static methods
       static EAxis GetAxis(VGM::Axis axis);
       static VGM::Axis GetAxis(EAxis axis);
@@ -52,7 +52,7 @@ namespace Geant4GM {
       virtual VGM::PlacementType Type() const;
       virtual std::string        Name() const;
       virtual int                CopyNo() const;
-      virtual VGM::Transform     Transformation() const;      
+      virtual VGM::Transform     Transformation() const;
 
       virtual bool  MultiplePlacementData(
                            VGM::Axis&  axis,
@@ -64,7 +64,7 @@ namespace Geant4GM {
     protected:
       Placement();
       Placement(const Placement& rhs);
-      
+
     private:
       G4VPhysicalVolume*  fPhysicalVolume;
   };

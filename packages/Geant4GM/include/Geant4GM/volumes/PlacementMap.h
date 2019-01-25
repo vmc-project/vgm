@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The Geant4GM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -48,11 +48,11 @@ namespace Geant4GM {
       virtual ~PlacementMap();
 
       // static access methods
-      static PlacementMap* Instance(); 
+      static PlacementMap* Instance();
 
       // methods
-      void  AddPlacement(VGM::IPlacement*, 
-                         G4VPhysicalVolume*); 
+      void  AddPlacement(VGM::IPlacement*,
+                         G4VPhysicalVolume*);
       G4VPhysicalVolume* GetPlacement(VGM::IPlacement* iPlacement) const;
       VGM::IPlacement*   GetPlacement(G4VPhysicalVolume* pv) const;
 
@@ -61,7 +61,7 @@ namespace Geant4GM {
 
       // static data members
       static PlacementMap*  fgInstance;
-  
+
       // data members
       G4PlacementMap    fG4Placements;
       VgmPlacementMap   fVgmPlacements;

@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -31,7 +31,7 @@ namespace RootGM {
   class Polyhedra : public BaseVGM::VPolyhedra
   {
     public:
-      Polyhedra(const std::string& name, 
+      Polyhedra(const std::string& name,
                 double sphi, double dphi, int nofSides, int nofZPlanes,
                 double* z, double* rin, double* rout);
       Polyhedra(TGeoPgon* polycone);
@@ -62,6 +62,6 @@ namespace RootGM {
       TGeoPgon* fPolyhedra;
   };
 
-}  
+}
 
 #endif //ROOT_GM_POLYHEDRA_H

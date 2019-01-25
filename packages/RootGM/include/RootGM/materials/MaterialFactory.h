@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -38,22 +38,22 @@ namespace RootGM {
     public:
       MaterialFactory();
       virtual ~MaterialFactory();
-    
+
       //
       // methods
       //
       virtual VGM::IIsotope*   CreateIsotope(
-                                 const std::string& name,      
+                                 const std::string& name,
                                  int z, int n, double a = 0.);
 
       virtual VGM::IElement*   CreateElement(
-                                 const std::string& name,      
-                                 const std::string& symbol,      
+                                 const std::string& name,
+                                 const std::string& symbol,
                                  double z, double a);
 
       virtual VGM::IElement*   CreateElement(
-                                 const std::string& name,      
-                                 const std::string& symbol,      
+                                 const std::string& name,
+                                 const std::string& symbol,
 	                         const VGM::IsotopeVector& isotopes,
                                  const VGM::RelAbundanceVector& relAbundances);
 
@@ -61,27 +61,27 @@ namespace RootGM {
                                  int z, bool isotopes);
 
       virtual VGM::IMaterial*  CreateMaterial(
-                                 const std::string& name,      
-			         double density, 
+                                 const std::string& name,
+			         double density,
                                  VGM::IElement* element,
 			         double radlen, double intlen);
 
       virtual VGM::IMaterial*  CreateMaterial(
-                                 const std::string& name, 
-	  		         double density, 
-			         VGM::IElement* element,     
+                                 const std::string& name,
+	  		         double density,
+			         VGM::IElement* element,
 			         double radlen, double intlen,
 				 VGM::MaterialState state,
 				 double temperature, double pressure);
 
       virtual VGM::IMaterial*  CreateMaterial(
-                                 const std::string& name, 
+                                 const std::string& name,
                                  double density,
 			         const VGM::ElementVector& elements,
                                  const VGM::MassFractionVector& fractions);
 
       virtual VGM::IMaterial*  CreateMaterial(
-                                 const std::string& name, 
+                                 const std::string& name,
                                  double density,
 			         const VGM::ElementVector& elements,
                                  const VGM::MassFractionVector& fractions,
@@ -89,13 +89,13 @@ namespace RootGM {
 				 double temperature, double pressure);
 
       virtual VGM::IMaterial*  CreateMaterial(
-                                 const std::string& name, 
+                                 const std::string& name,
                                  double density,
 			         const VGM::ElementVector& elements,
                                  const VGM::AtomCountVector& atomCounts);
 
       virtual VGM::IMaterial*  CreateMaterial(
-                                 const std::string& name, 
+                                 const std::string& name,
                                  double density,
 			         const VGM::ElementVector& elements,
                                  const VGM::AtomCountVector& atomCounts,
@@ -107,24 +107,24 @@ namespace RootGM {
 			         int mediumId,
 			         VGM::IMaterial* material,
 			         int nofParameters,
-			         double* parameters);      
+			         double* parameters);
       // import/export
       //
       virtual bool Import();
- 
+
     protected:
       MaterialFactory(const MaterialFactory& rhs);
-    
+
     private:
       // methods
       VGM::IIsotope* GetIsotope(double z, double n) const;
       VGM::IElement* GetElement(double z, double a) const;
       VGM::IElement* GetElement(const std::string& name) const;
 
-      bool  CompareIsotopes(const TGeoElement* tgeoElement, 
+      bool  CompareIsotopes(const TGeoElement* tgeoElement,
                             const VGM::IsotopeVector& isotopes,
                             const VGM::RelAbundanceVector& relAbundances) const;
-      
+
       void  ImportIsotopes(TGeoElement* element);
       void  ImportElements(TGeoMaterial* material,
                            std::vector<VGM::IElement*>& elements);
@@ -132,7 +132,7 @@ namespace RootGM {
       void  ImportMedium(TGeoMedium* medium);
 
       // data members
-      static const double fgkTolerance; 
+      static const double fgkTolerance;
   };
 
 }

@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -34,8 +34,8 @@ namespace RootGM {
   class DisplacedSolid : public BaseVGM::VDisplacedSolid
   {
     public:
-      DisplacedSolid(const std::string& name, 
-                     VGM::ISolid* solid, 
+      DisplacedSolid(const std::string& name,
+                     VGM::ISolid* solid,
                      TGeoMatrix* displacement);
 
       DisplacedSolid(TGeoBBox* box);
@@ -46,15 +46,15 @@ namespace RootGM {
       virtual std::string Name() const;
 
       virtual VGM::ISolid*      ConstituentSolid() const;
-      virtual VGM::Transform    Displacement() const;      
-      virtual bool              ToBeReflected() const;     
+      virtual VGM::Transform    Displacement() const;
+      virtual bool              ToBeReflected() const;
 
     protected:
       DisplacedSolid();
       DisplacedSolid(const DisplacedSolid& rhs);
 
     private:
-      static const std::string fgkNameExtension; 
+      static const std::string fgkNameExtension;
 
       TGeoCompositeShape* fCompositeShape;
       VGM::ISolid*  fConstituentSolid;
@@ -63,6 +63,6 @@ namespace RootGM {
 }
 
 inline bool RootGM::DisplacedSolid::ToBeReflected() const
-{ return false; }     
+{ return false; }
 
 #endif //ROOT_GM_BOOLEAN_SOLID_H

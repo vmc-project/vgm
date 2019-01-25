@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -32,7 +32,7 @@ namespace RootGM {
   class ExtrudedSolid : public BaseVGM::VExtrudedSolid
   {
     public:
-      ExtrudedSolid(const std::string& name, 
+      ExtrudedSolid(const std::string& name,
                     std::vector<VGM::TwoVector> polygon,
                     std::vector< std::vector<double> > zsections);
       ExtrudedSolid(TGeoXtru* xtru);
@@ -54,6 +54,6 @@ namespace RootGM {
       TGeoXtru* fXtru;
   };
 
-}  
+}
 
 #endif //ROOT_GM_EXTRUDED_SOLID_H

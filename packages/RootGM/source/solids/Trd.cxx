@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -24,31 +24,31 @@
 #include "TGeoTrd2.h"
 
 //_____________________________________________________________________________
-RootGM::Trd::Trd(const std::string& name, 
+RootGM::Trd::Trd(const std::string& name,
                  double hx1, double hx2, double hy1, double hy2, double hz)
   : VGM::ISolid(),
     VGM::ITrd(),
     BaseVGM::VTrd(),
-    fTrd(new TGeoTrd2(name.data(), 
-                      hx1 / RootGM::Units::Length(), 
-		      hx2 / RootGM::Units::Length(), 
-		      hy1 / RootGM::Units::Length(), 
-		      hy2 / RootGM::Units::Length(), 
+    fTrd(new TGeoTrd2(name.data(),
+                      hx1 / RootGM::Units::Length(),
+		      hx2 / RootGM::Units::Length(),
+		      hy1 / RootGM::Units::Length(),
+		      hy2 / RootGM::Units::Length(),
 		      hz  / RootGM::Units::Length())),
     fIsOwner(false)
 {
 /// Standard constructor to define trd from parameters
-/// \param hx1 half-length along x at the surface positioned 
-///	       at -hz in mm 
-/// \param hx2 half-length along x at the surface positioned 
-///	       at +hz in mm 
-/// \param hy1 half-length along y at the surface positioned 
-///	       at -hz in mm 
-/// \param hy2 half-length along y at the surface positioned 
-///	       at +hz in mm 
-/// \param hz half-length along the z axis in mm 
+/// \param hx1 half-length along x at the surface positioned
+///	       at -hz in mm
+/// \param hx2 half-length along x at the surface positioned
+///	       at +hz in mm
+/// \param hy1 half-length along y at the surface positioned
+///	       at -hz in mm
+/// \param hy2 half-length along y at the surface positioned
+///	       at +hz in mm
+/// \param hz half-length along the z axis in mm
 
-  RootGM::SolidMap::Instance()->AddSolid(this, fTrd); 
+  RootGM::SolidMap::Instance()->AddSolid(this, fTrd);
 }
 
 
@@ -59,10 +59,10 @@ RootGM::Trd::Trd(TGeoTrd2* trd)
     BaseVGM::VTrd(),
     fTrd(trd),
     fIsOwner(false)
-{    
+{
 /// Standard constructor to define trd from Root Trd2 object
 
-  RootGM::SolidMap::Instance()->AddSolid(this, fTrd); 
+  RootGM::SolidMap::Instance()->AddSolid(this, fTrd);
 }
 
 //_____________________________________________________________________________
@@ -70,32 +70,32 @@ RootGM::Trd::Trd(TGeoTrd1* trd)
   : VGM::ISolid(),
     VGM::ITrd(),
     BaseVGM::VTrd(),
-    fTrd(new TGeoTrd2(trd->GetName(), 
+    fTrd(new TGeoTrd2(trd->GetName(),
                       trd->GetDx1(), trd->GetDx2(),
-		      trd->GetDy(), trd->GetDy(), 
+		      trd->GetDy(), trd->GetDy(),
 		      trd->GetDz())),
     fIsOwner(true)
-		      
-{    
+
+{
 /// Standard constructor to define trd from Root Trd1 object
 
-  RootGM::SolidMap::Instance()->AddSolid(this, trd); 
+  RootGM::SolidMap::Instance()->AddSolid(this, trd);
 }
 
 //_____________________________________________________________________________
-RootGM::Trd::Trd() 
+RootGM::Trd::Trd()
   : VGM::ISolid(),
     VGM::ITrd(),
-    BaseVGM::VTrd() 
+    BaseVGM::VTrd()
 {
 /// Protected default constructor
 }
 
 //_____________________________________________________________________________
-RootGM::Trd::Trd(const Trd& rhs) 
+RootGM::Trd::Trd(const Trd& rhs)
   : VGM::ISolid(rhs),
     VGM::ITrd(rhs),
-    BaseVGM::VTrd(rhs) 
+    BaseVGM::VTrd(rhs)
 {
 /// Protected copy constructor
 }
@@ -104,42 +104,42 @@ RootGM::Trd::Trd(const Trd& rhs)
 RootGM::Trd::~Trd() {
 //
   if (fIsOwner) delete fTrd;
-}    
+}
 
 //_____________________________________________________________________________
 std::string RootGM::Trd::Name() const
 {
   return fTrd->GetName();
-}  
-  
+}
+
 //_____________________________________________________________________________
 double RootGM::Trd::XHalfLengthMinusZ() const
 {
   return fTrd->GetDx1() * RootGM::Units::Length();
-}  
+}
 
 //_____________________________________________________________________________
 double RootGM::Trd::XHalfLengthPlusZ() const
 {
   return fTrd->GetDx2() * RootGM::Units::Length();
-}  
+}
 
 //_____________________________________________________________________________
 double RootGM::Trd::YHalfLengthMinusZ() const
 {
   return fTrd->GetDy1() * RootGM::Units::Length();
-}  
+}
 
 //_____________________________________________________________________________
 double RootGM::Trd::YHalfLengthPlusZ() const
 {
   return fTrd->GetDy2() * RootGM::Units::Length();
-}  
+}
 
 //_____________________________________________________________________________
 double RootGM::Trd::ZHalfLength() const
 {
   return fTrd->GetDz() * RootGM::Units::Length();
-}  
+}
 
 

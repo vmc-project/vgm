@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The XmlVGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -16,7 +16,7 @@
 /// Class for generation of geometry data files in XML,
 /// in the GDML format.
 ///
-/// \author I. Hrivnacova, 31.03.2004 
+/// \author I. Hrivnacova, 31.03.2004
 
 #ifndef XML_VGM_GDML_EXPORTER_H
 #define XML_VGM_GDML_EXPORTER_H
@@ -26,7 +26,7 @@
 namespace VGM {
   class IFactory;
   class IVolume;
-}  
+}
 
 namespace XmlVGM {
 
@@ -37,7 +37,7 @@ namespace XmlVGM {
       // --> protected
       // GDMLExporter(const GDMLExporter& right);
       virtual ~GDMLExporter();
- 
+
     protected:
       GDMLExporter();
       GDMLExporter(const GDMLExporter& right);
@@ -45,12 +45,12 @@ namespace XmlVGM {
       // operators
       GDMLExporter& operator=(const GDMLExporter& right);
 
-      // methods 
+      // methods
       // (specific to XML definition)
       //
       virtual void GenerateGeometry(VGM::IVolume* volume);
       virtual void GenerateSection(VGM::IVolume* volume);
-      virtual void ProcessVolume(VGM::IVolume* volume); 
+      virtual void ProcessVolume(VGM::IVolume* volume);
   };
 
 }

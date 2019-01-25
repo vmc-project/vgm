@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -42,12 +42,12 @@ namespace RootGM {
   {
     public:
       Placement(
-         const std::string& name, 
+         const std::string& name,
          int copyNo,
          VGM::IVolume* volume, VGM::IVolume* motherVolume,
          TGeoMatrix* transformation);
       Placement(
-         const std::string& name, 
+         const std::string& name,
          VGM::IVolume* volume, VGM::IVolume* motherVolume,
          VGM::Axis axis, int nofItems, double  width, double offset);
       Placement(
@@ -57,7 +57,7 @@ namespace RootGM {
          VGM::IVolume* volume, VGM::IVolume* motherVolume,
          TGeoNode* node, std::vector<const TGeoNode*> assemblyNodes);
       virtual ~Placement();
-    
+
       // static methods
       static void SetIncludeAssembliesInNames(bool includeAssembliesInNames);
       static bool GetIncludeAssembliesInNames();
@@ -71,7 +71,7 @@ namespace RootGM {
       virtual VGM::PlacementType Type() const;
       virtual std::string        Name() const;
       virtual int                CopyNo() const;
-      virtual VGM::Transform     Transformation() const;      
+      virtual VGM::Transform     Transformation() const;
 
       virtual bool  MultiplePlacementData(
                                 VGM::Axis&  axis,
@@ -88,12 +88,12 @@ namespace RootGM {
       // methods
       TGeoMatrix*  ComposeMatrix(VGM::IVolume* volume, VGM::IVolume* motherVolume,
                                  TGeoMatrix* transformation) const;
-      
+
       // static data members
-      static bool fgIncludeAssembliesInNames; 
-      static char fgNameSeparator; 
-      static char fgNamePrefix; 
-    
+      static bool fgIncludeAssembliesInNames;
+      static char fgNameSeparator;
+      static char fgNamePrefix;
+
       // data members
       std::string  fName;
       TGeoNode*    fGeoNode;

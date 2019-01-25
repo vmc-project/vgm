@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007 - 2017, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007 - 2017, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -33,7 +33,7 @@ namespace RootGM {
   class ScaledSolid : public BaseVGM::VScaledSolid
   {
     public:
-      ScaledSolid(const std::string& name, 
+      ScaledSolid(const std::string& name,
                    VGM::ISolid* solid,
                    TGeoScale* scale);
       ScaledSolid(TGeoScaledShape* scaledShape);
@@ -43,8 +43,8 @@ namespace RootGM {
       virtual std::string Name() const;
 
       virtual VGM::ISolid*    ConstituentSolid() const;
-      virtual VGM::Transform  Scale() const;      
-      virtual bool            ToBeReflected() const;     
+      virtual VGM::Transform  Scale() const;
+      virtual bool            ToBeReflected() const;
 
     protected:
       ScaledSolid();
@@ -57,6 +57,6 @@ namespace RootGM {
 }
 
 inline bool RootGM::ScaledSolid::ToBeReflected() const
-{ return false; }     
+{ return false; }
 
 #endif //ROOT_GM_SCALED_SOLID_H

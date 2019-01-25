@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -75,30 +75,30 @@
 //_____________________________________________________________________________
 RootGM::Factory::Factory()
   : VGM::IFactory(),
-    BaseVGM::VFactory("Root_GM_Factory",      
+    BaseVGM::VFactory("Root_GM_Factory",
                      new RootGM::MaterialFactory()),
     fTop(0),
     fSolid(0)
 {
 /// Standard default constructor
-  
+
   if (!gGeoManager)
-    new TGeoManager("VGM Root geometry", "VGM Root geometry");  
+    new TGeoManager("VGM Root geometry", "VGM Root geometry");
 }
 
 //_____________________________________________________________________________
-RootGM::Factory::Factory(const Factory& rhs) 
+RootGM::Factory::Factory(const Factory& rhs)
   : VGM::IFactory(rhs),
-    BaseVGM::VFactory(rhs) 
+    BaseVGM::VFactory(rhs)
 {
 /// Protected copy constructor
-}      
+}
 
 //_____________________________________________________________________________
-RootGM::Factory::~Factory() 
+RootGM::Factory::~Factory()
 {
 //
-  
+
   // delete map singletons
   delete RootGM::SolidMap::Instance();
   delete RootGM::VolumeMap::Instance();
@@ -114,12 +114,12 @@ RootGM::Factory::~Factory()
 
 //_____________________________________________________________________________
 void RootGM::Factory::ImportConstituentSolid(
-                                  int index, 
+                                  int index,
                                   TGeoCompositeShape* solid)
 {
 /// Import constituents of Root Boolean solid into VGM
 
-  TGeoShape* consSolid 
+  TGeoShape* consSolid
     = RootGM::BooleanSolid::GetConstituentSolid(index, solid);
 
   if (!RootGM::SolidMap::Instance()->GetSolid(consSolid)) {
@@ -131,32 +131,32 @@ void RootGM::Factory::ImportConstituentSolid(
       else
         std::cout << "   Imported solid: " << "0x0" << std::endl;
     }
-  }    
+  }
 }
 
 //_____________________________________________________________________________
-VGM::ISolid* 
+VGM::ISolid*
 RootGM::Factory::ImportSolid(TGeoShape* shape)
 {
 /// Convert TGeo shape into VGM solid
 
   // Do not import the same solid twice
   //
-  VGM::ISolid* importedSolid 
+  VGM::ISolid* importedSolid
     = RootGM::SolidMap::Instance()->GetSolid(shape);
   if (importedSolid) return importedSolid;
 
   if (Debug()>0) {
     BaseVGM::DebugInfo();
-    std::cout << "Importing shape: "; 
+    std::cout << "Importing shape: ";
     if (Debug()>1) std::cout << shape << "  ";
     std::cout << shape->GetName() << std::endl;
-  }	      
+  }
 
   TGeoBBox* box = dynamic_cast<TGeoBBox*>(shape);
-  if (box && 
-      std::string(shape->ClassName()) == std::string("TGeoBBox")) { 
-     
+  if (box &&
+      std::string(shape->ClassName()) == std::string("TGeoBBox")) {
+
     // Import box if it has not offset defined
     const Double_t* origin = box->GetOrigin();
     if ( ! origin ||
@@ -164,110 +164,110 @@ RootGM::Factory::ImportSolid(TGeoShape* shape)
 
       // Import box itself
       return Register(new RootGM::Box(box));
-    }  
-  
+    }
+
     // Import box with offset via displaced solid
     return Register(new RootGM::DisplacedSolid(box));
   }
 
   TGeoConeSeg* cons = dynamic_cast<TGeoConeSeg*>(shape);
-  if (cons) { 
+  if (cons) {
     return Register(new RootGM::Cons(cons));
   }
 
   TGeoEltu* eltu = dynamic_cast<TGeoEltu*>(shape);
-  if (eltu ) { 
+  if (eltu ) {
     return Register(new RootGM::EllipticalTube(eltu));
   }
 
   TGeoCone* cone = dynamic_cast<TGeoCone*>(shape);
-  if (cone) { 
+  if (cone) {
     return Register(new RootGM::Cons(cone));
   }
 
   TGeoHalfSpace* halfSpace = dynamic_cast<TGeoHalfSpace*>(shape);
-  if (halfSpace) { 
+  if (halfSpace) {
     return Register(new RootGM::DisplacedSolid(halfSpace));
   }
 
   TGeoHype* hype = dynamic_cast<TGeoHype*>(shape);
-  if (hype) { 
+  if (hype) {
     return Register(new RootGM::Hype(hype));
   }
 
   TGeoPara* para = dynamic_cast<TGeoPara*>(shape);
-  if (para) { 
+  if (para) {
     return Register(new RootGM::Para(para));
   }
 
   TGeoParaboloid* paraboloid = dynamic_cast<TGeoParaboloid*>(shape);
-  if (paraboloid) { 
+  if (paraboloid) {
     return Register(new RootGM::Paraboloid(paraboloid));
   }
 
   TGeoPgon* polyhedra = dynamic_cast<TGeoPgon*>(shape);
-  if (polyhedra) { 
+  if (polyhedra) {
     return Register(new RootGM::Polyhedra(polyhedra));
   }
 
   TGeoPcon* polycone = dynamic_cast<TGeoPcon*>(shape);
-  if (polycone) { 
+  if (polycone) {
     return Register(new RootGM::Polycone(polycone));
   }
 
   TGeoSphere* sphere = dynamic_cast<TGeoSphere*>(shape);
-  if (sphere) { 
+  if (sphere) {
     return Register(new RootGM::Sphere(sphere));
   }
 
   TGeoTorus* torus = dynamic_cast<TGeoTorus*>(shape);
-  if (torus) { 
+  if (torus) {
     return Register(new RootGM::Torus(torus));
   }
 
   TGeoTrap* trap = dynamic_cast<TGeoTrap*>(shape);
-  if (trap) { 
+  if (trap) {
     return Register(new RootGM::Trap(trap));
   }
 
   TGeoTrd1* trd1 = dynamic_cast<TGeoTrd1*>(shape);
-  if (trd1) { 
+  if (trd1) {
     return Register(new RootGM::Trd(trd1));
   }
 
   TGeoTrd2* trd2 = dynamic_cast<TGeoTrd2*>(shape);
-  if (trd2) { 
+  if (trd2) {
     return Register(new RootGM::Trd(trd2));
   }
 
   TGeoArb8* arb8 = dynamic_cast<TGeoArb8*>(shape);
-  if (arb8) { 
+  if (arb8) {
     return Register(new RootGM::Arb8(arb8));
   }
 
   TGeoCtub* ctubs = dynamic_cast<TGeoCtub*>(shape);
-  if (ctubs) { 
+  if (ctubs) {
     return Register(new RootGM::Ctubs(ctubs));
   }
 
   TGeoTubeSeg* tubs = dynamic_cast<TGeoTubeSeg*>(shape);
-  if (tubs) { 
+  if (tubs) {
     return Register(new RootGM::Tubs(tubs));
   }
 
   TGeoTube* tube = dynamic_cast<TGeoTube*>(shape);
-  if (tube) { 
+  if (tube) {
     return Register(new RootGM::Tubs(tube));
   }
 
   TGeoXtru* xtru = dynamic_cast<TGeoXtru*>(shape);
-  if (xtru) { 
+  if (xtru) {
     return Register(new RootGM::ExtrudedSolid(xtru));
   }
 
   TGeoShapeAssembly* assembly = dynamic_cast<TGeoShapeAssembly*>(shape);
-  if (assembly) { 
-    return 0; 
+  if (assembly) {
+    return 0;
   }
 
   TGeoScaledShape* scaled = dynamic_cast<TGeoScaledShape*>(shape);
@@ -277,7 +277,7 @@ RootGM::Factory::ImportSolid(TGeoShape* shape)
   }
 
   TGeoCompositeShape* composite = dynamic_cast<TGeoCompositeShape*>(shape);
-  if (composite) { 
+  if (composite) {
     ImportConstituentSolid(0, composite);
     ImportConstituentSolid(1, composite);
     VGM::IBooleanSolid* vgmBoolean = new RootGM::BooleanSolid(composite);
@@ -290,55 +290,55 @@ RootGM::Factory::ImportSolid(TGeoShape* shape)
       std::cout  << std::endl;
       BaseVGM::DebugInfo();
       std::cout << *vgmBoolean << std::endl;
-    }		
-    return vgmBoolean; 
+    }
+    return vgmBoolean;
   }
 
-  std::cerr << "    RootGM::Factory::ImportSolid: " << std::endl; 
-  std::cerr << "    Unsupported solid type (solid \"" 
-            << shape->GetName() << "\"" 
+  std::cerr << "    RootGM::Factory::ImportSolid: " << std::endl;
+  std::cerr << "    Unsupported solid type (solid \""
+            << shape->GetName() << "\""
             << "   type \"" << shape->ClassName() << "\")"
 	    << std::endl;
-	    
+
   if ( Ignore() ) {
-    std::cerr << "*** Warning: Using a box instead  ***" << std::endl; 
+    std::cerr << "*** Warning: Using a box instead  ***" << std::endl;
     return Register(new RootGM::Box(shape->GetName(), 1., 1., 1.));
   }
-  else {	    
-    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+  else {
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl;
     exit(1);
-  }  
+  }
 }
 
 //_____________________________________________________________________________
-VGM::IVolume* 
+VGM::IVolume*
 RootGM::Factory::ImportVolume(TGeoVolume* rootVolume)
 {
   if (Debug()) {
     BaseVGM::DebugInfo();
     std::cout << "Importing volume: " << rootVolume->GetName() << std::endl;
-  }  
+  }
 
   // Import solid
   VGM::ISolid* solid = ImportSolid(rootVolume->GetShape());
-  
+
   if (Debug()) {
     BaseVGM::DebugInfo();
     if ( solid )
       std::cout << "   Imported solid: " << *solid << std::endl;
     else
       std::cout << "   Imported solid: " << "0x0" << std::endl;
-  }  
+  }
 
   // Do not import assembly volumes
   if (dynamic_cast<TGeoVolumeAssembly*>(rootVolume) ) return 0;
-    
-  // Create vgm volume 
+
+  // Create vgm volume
   VGM::IVolume* volume = new RootGM::Volume(solid, rootVolume);
   VolumeStore().push_back(volume);
   return volume;
 }
-  
+
 
 //_____________________________________________________________________________
 void RootGM::Factory::ImportDaughters(TGeoVolume* rootVolume)
@@ -347,25 +347,25 @@ void RootGM::Factory::ImportDaughters(TGeoVolume* rootVolume)
 
   if (Debug()) {
     BaseVGM::DebugInfo();
-    std::cout << "ImportDaughters for " << rootVolume->GetName() 
+    std::cout << "ImportDaughters for " << rootVolume->GetName()
               << std::endl;
-  }	       
+  }
 
   for (int i=0; i<rootVolume->GetNdaughters(); i++) {
-  
+
     TGeoVolume* rootDVolume = rootVolume->GetNode(i)->GetVolume();
 
     VGM::IVolume* dVolume
       = RootGM::VolumeMap::Instance()->GetVolume(rootDVolume);
-      
+
     if (!dVolume) {
-      // Import logical volume 
+      // Import logical volume
       dVolume = ImportVolume(rootDVolume);
-     
+
       // Process its daughters
-      ImportDaughters(rootDVolume); 
-    }    
-  }  
+      ImportDaughters(rootDVolume);
+    }
+  }
 }
 
 //_____________________________________________________________________________
@@ -380,29 +380,29 @@ void RootGM::Factory::ImportAssembly(const TGeoVolume* rootVolume,
   TGeoVolume* rootAssemblyVolume = rootAssemblyNode->GetVolume();
 
   if ( ! rootAssemblyVolume->IsAssembly()) return;
-  
+
   assemblyNodes.push_back(rootAssemblyNode);
-    
+
   for (int i=0; i<rootAssemblyVolume->GetNdaughters(); i++) {
-       
+
     TGeoNode* dNode = rootAssemblyVolume->GetNode(i);
     TGeoVolume* dRootVolume = dNode->GetVolume();
-    
+
     if ( ! dRootVolume->IsAssembly() ) {
-      VGM::IVolume* dVolume 
+      VGM::IVolume* dVolume
         = RootGM::VolumeMap::Instance()->GetVolume(dRootVolume);
-	 
+
       if (Debug()>0) {
          BaseVGM::DebugInfo();
          std::cout << "   " << i << "th assembly daughter  rtVol = ";
-         if (Debug()>1) std::cout << dRootVolume << "  "; 
-         std::cout << dRootVolume->GetName() << " vgmVol = "; 
-         if (Debug()>1) std::cout << dVolume << "  "; 
+         if (Debug()>1) std::cout << dRootVolume << "  ";
+         std::cout << dRootVolume->GetName() << " vgmVol = ";
+         if (Debug()>1) std::cout << dVolume << "  ";
          std::cout << dVolume->Name() << std::endl;
       }
-      // Create placement	    
+      // Create placement
       new RootGM::Placement(dVolume, volume, dNode, assemblyNodes);
-    }  
+    }
     else {
       std::vector<const TGeoNode*> assemblyNodes2(assemblyNodes.size());
       copy (assemblyNodes.begin(), assemblyNodes.end(),
@@ -414,46 +414,46 @@ void RootGM::Factory::ImportAssembly(const TGeoVolume* rootVolume,
 }
 
 //_____________________________________________________________________________
-void RootGM::Factory::ImportPlacements(const TGeoVolume* rootVolume, 
+void RootGM::Factory::ImportPlacements(const TGeoVolume* rootVolume,
                                        VGM::IVolume* volume)
 {
 /// Build Root geometry for the daughters of the specified volume
 
   for (int i=0; i<rootVolume->GetNdaughters(); i++) {
-    
+
     TGeoNode* dNode = rootVolume->GetNode(i);
     TGeoVolume* dRootVolume = dNode->GetVolume();
-    
+
     if (Debug()>0) {
       BaseVGM::DebugInfo();
       std::cout << "   " << i << "th daughter  rtNode = ";
-      if (Debug()>1) std::cout << dNode << "  "; 
-      std::cout << dNode ->GetName()<< "  rtVol = "; 
-      if (Debug()>1) std::cout << dRootVolume << "  "; 
-      std::cout << dRootVolume->GetName();    
-    }	    
-	    
+      if (Debug()>1) std::cout << dNode << "  ";
+      std::cout << dNode ->GetName()<< "  rtVol = ";
+      if (Debug()>1) std::cout << dRootVolume << "  ";
+      std::cout << dRootVolume->GetName();
+    }
+
     if ( ! dRootVolume->IsAssembly()) {
-    
+
       VGM::IVolume* dVolume= RootGM::VolumeMap::Instance()->GetVolume(dRootVolume);
-      
+
       // Create placement
-      VGM::IPlacement* dPlacement 
+      VGM::IPlacement* dPlacement
         = new RootGM::Placement(dVolume, volume, dNode);
 
       if (Debug()>0) {
-        std::cout << " vgmPl = "; 
-        if (Debug()>1) std::cout << dPlacement << "  "; 
-        std::cout << dPlacement->Name() << " vgmVol = "; 
-        if (Debug()>1) std::cout << dVolume << "  "; 
+        std::cout << " vgmPl = ";
+        if (Debug()>1) std::cout << dPlacement << "  ";
+        std::cout << dPlacement->Name() << " vgmVol = ";
+        if (Debug()>1) std::cout << dVolume << "  ";
         std::cout << dVolume->Name() << std::endl;
-      }	    
-	    
+      }
+
     }
     else {
       std::vector<const TGeoNode*> assemblyNodes;
       ImportAssembly(rootVolume, volume, dNode, assemblyNodes);
-    } 
+    }
   }
 }
 
@@ -464,32 +464,32 @@ void RootGM::Factory::ImportDivision(const TGeoVolume* rootVolume,
 /// Import division
 
   // Get  pattern finder
-  TGeoPatternFinder* finderNonConst = rootVolume->GetFinder();    
+  TGeoPatternFinder* finderNonConst = rootVolume->GetFinder();
 
   // Get the first division volume
   TGeoNode* dNode = finderNonConst->GetNodeOffset(0);
   TGeoVolume* dRootVolume = dNode->GetVolume();
   VGM::IVolume* dVolume= RootGM::VolumeMap::Instance()->GetVolume(dRootVolume);
-      
+
   if (Debug()>0) {
     BaseVGM::DebugInfo();
     std::cout << "   " << "0th daughter (division) rtNode = ";
-    if (Debug()>1) std::cout << dNode << "  "; 
-    std::cout << dNode ->GetName()<< "  rtVol = "; 
-    if (Debug()>1) std::cout << dRootVolume << "  "; 
-    std::cout << dRootVolume->GetName();    
-  }	    
-	    
+    if (Debug()>1) std::cout << dNode << "  ";
+    std::cout << dNode ->GetName()<< "  rtVol = ";
+    if (Debug()>1) std::cout << dRootVolume << "  ";
+    std::cout << dRootVolume->GetName();
+  }
+
   // Create placement
   VGM::IPlacement* placement = new RootGM::Placement(dVolume, volume, dNode);
 
   if (Debug()>0) {
-    std::cout << " vgmPl = "; 
-    if (Debug()>1) std::cout << placement << "  "; 
-    std::cout << placement->Name() << " vgmVol = "; 
-    if (Debug()>1) std::cout << volume << "  "; 
+    std::cout << " vgmPl = ";
+    if (Debug()>1) std::cout << placement << "  ";
+    std::cout << placement->Name() << " vgmVol = ";
+    if (Debug()>1) std::cout << volume << "  ";
     std::cout << volume->Name() << std::endl;
-  }     
+  }
 }
 
 //_____________________________________________________________________________
@@ -500,17 +500,17 @@ void RootGM::Factory::ImportPositions()
   if (Debug()>0) {
     BaseVGM::DebugInfo();
     std::cout << "Import positions: " << std::endl;
-  }    
+  }
 
   TObjArray* rootVolumes = gGeoManager->GetListOfVolumes();
 
   for (int i=0; i<rootVolumes->GetEntriesFast(); i++) {
-  
+
     TGeoVolume* rootVolume = (TGeoVolume*)rootVolumes->At(i);
     if (rootVolume->IsAssembly()) continue;
-    
+
     VGM::IVolume* volume= RootGM::VolumeMap::Instance()->GetVolume(rootVolume);
-    
+
     if ( !volume ) continue;
       // There may be defined volumes which are placed
       // or not placed withing this top volume
@@ -518,18 +518,18 @@ void RootGM::Factory::ImportPositions()
 
     if (Debug()>0) {
       BaseVGM::DebugInfo();
-      std::cout << i << "th volume: " << rootVolume->GetName() << "  "; 
-      if (Debug()>1) 
-        std::cout << "   rt : " << rootVolume << "  " 
-                  << "  vgm: " << volume;  
-      std::cout << std::endl; 
-    }		
-     
+      std::cout << i << "th volume: " << rootVolume->GetName() << "  ";
+      if (Debug()>1)
+        std::cout << "   rt : " << rootVolume << "  "
+                  << "  vgm: " << volume;
+      std::cout << std::endl;
+    }
+
     if (IsDivided(rootVolume))
       ImportDivision(rootVolume, volume);
-    else  
+    else
       ImportPlacements(rootVolume, volume);
-  }    	
+  }
 }
 
 //_____________________________________________________________________________
@@ -541,7 +541,7 @@ bool RootGM::Factory::Import(void* topNode)
 
   return Import(rootNode);
 
-}			      
+}
 
 //_____________________________________________________________________________
 bool RootGM::Factory::ImportSolid(void* solid)
@@ -552,7 +552,7 @@ bool RootGM::Factory::ImportSolid(void* solid)
 
   return Import(rootSolid);
 
-}           
+}
 
 //_____________________________________________________________________________
 bool RootGM::Factory::IsDivided(const TGeoVolume* volume) const
@@ -561,21 +561,21 @@ bool RootGM::Factory::IsDivided(const TGeoVolume* volume) const
 /// and division is known to VGM.
 
   // Check if division is present
-  const TGeoPatternFinder* finder = volume->GetFinder();    
+  const TGeoPatternFinder* finder = volume->GetFinder();
   if (!finder) return false;
-    
+
   // Get division axis
   VGM::Axis axis = Axis(finder);
   if (axis == VGM::kUnknownAxis) return false;
-  
+
   // Volume can be processed as VGM division
   return true;
-}  
+}
 
 //_____________________________________________________________________________
 VGM::ISolid*  RootGM::Factory::Register(VGM::ISolid* vgmSolid)
 {
-/// Register solid in  SolidStore() 
+/// Register solid in  SolidStore()
 
   SolidStore().push_back(vgmSolid);
   return vgmSolid;
@@ -708,289 +708,289 @@ void RootGM::Factory::SetSolid(VGM::ISolid* solid)
 //
 
 //_____________________________________________________________________________
-VGM::ISolid* 
-RootGM::Factory::CreateArb8(const std::string& name, 
-                   double hz, 
+VGM::ISolid*
+RootGM::Factory::CreateArb8(const std::string& name,
+                   double hz,
                    std::vector<VGM::TwoVector> vertices)
 {
 //
   return Register(new RootGM::Arb8(name, hz, vertices));
-}  			     
+}
 
 //_____________________________________________________________________________
-VGM::ISolid* 
-RootGM::Factory::CreateBox(const std::string& name, 
+VGM::ISolid*
+RootGM::Factory::CreateBox(const std::string& name,
                    double hx, double hy, double hz)
 {
 //
   return Register(new RootGM::Box(name, hx, hy, hz));
-}  			     
+}
 
 //_____________________________________________________________________________
-VGM::ISolid*  
-RootGM::Factory::CreateCons(const std::string& name, 
-                   double rin1, double rout1, 
+VGM::ISolid*
+RootGM::Factory::CreateCons(const std::string& name,
+                   double rin1, double rout1,
                    double rin2, double rout2, double hz,
                    double sphi, double dphi)
-{			       
+{
 //
-  return Register(new RootGM::Cons(name, rin1, rout1, rin2, rout2, hz, 
+  return Register(new RootGM::Cons(name, rin1, rout1, rin2, rout2, hz,
                         sphi, dphi));
-}  			     
-			       
+}
+
 //_____________________________________________________________________________
-VGM::ISolid*  
-RootGM::Factory::CreateCtubs(const std::string& name, 
-                   double rin, double rout, double hz, 
+VGM::ISolid*
+RootGM::Factory::CreateCtubs(const std::string& name,
+                   double rin, double rout, double hz,
                    double sphi, double dphi,
                    double nxlow, double nylow, double nzlow,
                    double nxhigh, double nyhigh, double nzhigh)
-{			       
+{
 //
-  return Register(new RootGM::Ctubs(name, rin, rout, hz, sphi, dphi, 
+  return Register(new RootGM::Ctubs(name, rin, rout, hz, sphi, dphi,
                         nxlow, nylow, nzlow, nxhigh, nyhigh, nzhigh));
-}  			     
-			       
+}
+
 //_____________________________________________________________________________
-VGM::ISolid*  
-RootGM::Factory::CreateEllipsoid(const std::string& name, 
+VGM::ISolid*
+RootGM::Factory::CreateEllipsoid(const std::string& name,
                    double dx, double dy, double dz,
                    double zBottomCut, double zTopCut)
-{			       
+{
 //
   return Register(new RootGM::Ellipsoid(name, dx, dy, dz, zBottomCut, zTopCut));
-}  			     
-			       
+}
+
 //_____________________________________________________________________________
-VGM::ISolid*  
-RootGM::Factory::CreateEllipticalTube(const std::string& name, 
+VGM::ISolid*
+RootGM::Factory::CreateEllipticalTube(const std::string& name,
                    double dx, double dy, double hz)
-{			       
+{
 //
   return Register(new RootGM::EllipticalTube(name, dx, dy,  hz));
-}  			     
-			       
+}
+
 //_____________________________________________________________________________
-VGM::ISolid*  
-RootGM::Factory::CreateHype(const std::string& name, 
+VGM::ISolid*
+RootGM::Factory::CreateHype(const std::string& name,
                    double r1, double r2, double stereo1, double stereo2,
                    double hz)
-{			       
+{
 //
   return Register(new RootGM::Hype(name, r1, r2, stereo1, stereo2, hz));
-}  			     
-			       
+}
+
 //_____________________________________________________________________________
-VGM::ISolid*  
-RootGM::Factory::CreatePara(const std::string& name, 
+VGM::ISolid*
+RootGM::Factory::CreatePara(const std::string& name,
                    double dx, double dy, double dz,
                    double alpha, double theta, double phi)
-{			       
+{
 //
   return Register(new RootGM::Para(name, dx, dy, dz, alpha, theta, phi));
 
-}  			     
-			       
+}
+
 //_____________________________________________________________________________
-VGM::ISolid*  
-RootGM::Factory::CreateParaboloid(const std::string& name, 
+VGM::ISolid*
+RootGM::Factory::CreateParaboloid(const std::string& name,
                    double r1, double r2, double hz)
-{			       
+{
 //
   return Register(new RootGM::Paraboloid(name, r1, r2, hz));
-}  			     
-			       
+}
+
 //_____________________________________________________________________________
-VGM::ISolid*  
+VGM::ISolid*
 RootGM::Factory::CreatePolycone(
-                   const std::string& name, 
+                   const std::string& name,
                    double sphi, double dphi, int nofZplanes,
                    double* z, double* rin, double* rout)
-{			       
+{
 //
-  return Register(new RootGM::Polycone(name, sphi, dphi, nofZplanes, z, 
+  return Register(new RootGM::Polycone(name, sphi, dphi, nofZplanes, z,
                         rin, rout));
 
-}  			     
-			       
+}
+
 //_____________________________________________________________________________
-VGM::ISolid*  
+VGM::ISolid*
 RootGM::Factory::CreatePolyhedra(
-                   const std::string& name, 
-                   double sphi, double dphi, 
+                   const std::string& name,
+                   double sphi, double dphi,
                    int nofSides, int nofZplanes,
                    double* z, double* rin, double* rout)
-{			       
+{
 //
-  return Register(new RootGM::Polyhedra(name, sphi, dphi, nofSides, nofZplanes, 
+  return Register(new RootGM::Polyhedra(name, sphi, dphi, nofSides, nofZplanes,
                         z, rin, rout));
 }
-  			     			       
+
 //_____________________________________________________________________________
-VGM::ISolid*  
-RootGM::Factory::CreateSphere(const std::string& name, 
-                   double rin, double rout, 
-                   double sphi, double dphi, 
+VGM::ISolid*
+RootGM::Factory::CreateSphere(const std::string& name,
+                   double rin, double rout,
+                   double sphi, double dphi,
                    double stheta, double dtheta)
-{			       
+{
 //
   return Register(new RootGM::Sphere(name, rin, rout, sphi, dphi, stheta, dtheta));
 
-}  			     
-			       
+}
+
 //_____________________________________________________________________________
-VGM::ISolid*  
-RootGM::Factory::CreateTessellatedSolid(const std::string& name, 
+VGM::ISolid*
+RootGM::Factory::CreateTessellatedSolid(const std::string& name,
                    std::vector< std::vector<VGM::ThreeVector> > /*facets*/)
 {
 // Not supported solid in Root
 
-  std::cerr << "*** Error: Cannot create Tessellated solid in Root ***" << std::endl; 
+  std::cerr << "*** Error: Cannot create Tessellated solid in Root ***" << std::endl;
   if ( Ignore() ) {
-    std::cerr << "*** Warning: Using a box instead  ***" << std::endl; 
-    std::cerr << std::endl; 
+    std::cerr << "*** Warning: Using a box instead  ***" << std::endl;
+    std::cerr << std::endl;
     return Register(new RootGM::Box(name, 1., 1., 1.));
   }
-  else {	    
-    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+  else {
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl;
     exit(1);
-  }  
-}                               
+  }
+}
 
 //_____________________________________________________________________________
-VGM::ISolid*  
-RootGM::Factory::CreateTorus(const std::string& name, 
-                   double rin, double rout, double rax, 
+VGM::ISolid*
+RootGM::Factory::CreateTorus(const std::string& name,
+                   double rin, double rout, double rax,
                    double sphi, double dphi)
-{			       
+{
 //
   return Register(new RootGM::Torus(name, rin, rout, rax, sphi, dphi));
-}  			     
-			       
+}
+
 //_____________________________________________________________________________
-VGM::ISolid*  
-RootGM::Factory::CreateTrap(const std::string& name, 
+VGM::ISolid*
+RootGM::Factory::CreateTrap(const std::string& name,
                    double hz, double theta, double phi,
-                   double dy1, double dx1, double dx2, 
-                   double alpha1, 
-                   double dy2, double dx3, double dx4, 
+                   double dy1, double dx1, double dx2,
+                   double alpha1,
+                   double dy2, double dx3, double dx4,
                    double alpha2)
-{			       
+{
 //
-  return Register(new RootGM::Trap(name, hz, theta, phi, 
+  return Register(new RootGM::Trap(name, hz, theta, phi,
                         dy1, dx1, dx2, alpha1, dy2, dx3, dx4, alpha2));
 
-}  			     
-			       
+}
+
 //_____________________________________________________________________________
-VGM::ISolid*  
-RootGM::Factory::CreateTrd(const std::string& name, 
-                   double hx1, double hx2, double hy1, double hy2, 
+VGM::ISolid*
+RootGM::Factory::CreateTrd(const std::string& name,
+                   double hx1, double hx2, double hy1, double hy2,
                    double hz)
-{			       
+{
 //
   return Register(new RootGM::Trd(name, hx1, hx2, hy1, hy2, hz));
-}  			     
-			       
+}
+
 //_____________________________________________________________________________
-VGM::ISolid*  
-RootGM::Factory::CreateTubs(const std::string& name, 
-                   double rin, double rout, double hz, 
+VGM::ISolid*
+RootGM::Factory::CreateTubs(const std::string& name,
+                   double rin, double rout, double hz,
                    double sphi, double dphi)
-{			       
+{
 //
   return Register(new RootGM::Tubs(name, rin, rout, hz, sphi, dphi));
 
-}  			     
-			       
+}
+
 //_____________________________________________________________________________
-VGM::ISolid*  
-RootGM::Factory::CreateExtrudedSolid(const std::string& name, 
+VGM::ISolid*
+RootGM::Factory::CreateExtrudedSolid(const std::string& name,
                    std::vector< VGM::TwoVector > polygon,
                    std::vector< std::vector<double> > zsections)
-{			       
+{
 //
   return Register(new RootGM::ExtrudedSolid(name, polygon, zsections));
 
-}  			     
-			       
+}
+
 //_____________________________________________________________________________
-VGM::ISolid*  
+VGM::ISolid*
 RootGM::Factory::CreateIntersectionSolid(
-                   const std::string& name, 
-                   VGM::ISolid* solidA, VGM::ISolid* solidB, 
+                   const std::string& name,
+                   VGM::ISolid* solidA, VGM::ISolid* solidB,
                    const VGM::Transform& transform)
 {
 //
   return Register(new RootGM::BooleanSolid(
-                         name, 
-                         VGM::kIntersection, 
-			                   solidA, solidB, 
-                         CreateTransform(transform)));
-}  			     
-
-//_____________________________________________________________________________
-VGM::ISolid*  
-RootGM::Factory::CreateSubtractionSolid(
-                   const std::string& name, 
-                   VGM::ISolid* solidA, VGM::ISolid* solidB, 
-                   const VGM::Transform& transform)
-{
-//
-  return Register(new RootGM::BooleanSolid(
-                         name, 
-			                   VGM::kSubtraction,
-			                   solidA, solidB, 
-                         CreateTransform(transform)));
-}  			     
-
-//_____________________________________________________________________________
-VGM::ISolid*  
-RootGM::Factory::CreateUnionSolid(
-                   const std::string& name, 
-                   VGM::ISolid* solidA, VGM::ISolid* solidB, 
-                   const VGM::Transform& transform)
-{
-//
-  return Register(new RootGM::BooleanSolid(
-                         name, 
-			                   VGM::kUnion, 
-			                   solidA, solidB, 
-                         CreateTransform(transform)));
-}  			     
-
-//_____________________________________________________________________________
-VGM::ISolid*  
-RootGM::Factory::CreateDisplacedSolid(
-                   const std::string& name, 
-                   VGM::ISolid* solid, 
-                   const VGM::Transform& transform)
-{
-//
-  return Register(new RootGM::DisplacedSolid(
-                         name, 
-			                   solid, 
+                         name,
+                         VGM::kIntersection,
+			                   solidA, solidB,
                          CreateTransform(transform)));
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*  
+VGM::ISolid*
+RootGM::Factory::CreateSubtractionSolid(
+                   const std::string& name,
+                   VGM::ISolid* solidA, VGM::ISolid* solidB,
+                   const VGM::Transform& transform)
+{
+//
+  return Register(new RootGM::BooleanSolid(
+                         name,
+			                   VGM::kSubtraction,
+			                   solidA, solidB,
+                         CreateTransform(transform)));
+}
+
+//_____________________________________________________________________________
+VGM::ISolid*
+RootGM::Factory::CreateUnionSolid(
+                   const std::string& name,
+                   VGM::ISolid* solidA, VGM::ISolid* solidB,
+                   const VGM::Transform& transform)
+{
+//
+  return Register(new RootGM::BooleanSolid(
+                         name,
+			                   VGM::kUnion,
+			                   solidA, solidB,
+                         CreateTransform(transform)));
+}
+
+//_____________________________________________________________________________
+VGM::ISolid*
+RootGM::Factory::CreateDisplacedSolid(
+                   const std::string& name,
+                   VGM::ISolid* solid,
+                   const VGM::Transform& transform)
+{
+//
+  return Register(new RootGM::DisplacedSolid(
+                         name,
+			                   solid,
+                         CreateTransform(transform)));
+}
+
+//_____________________________________________________________________________
+VGM::ISolid*
 RootGM::Factory::CreateScaledSolid(
-                   const std::string& name, 
-                   VGM::ISolid* solid, 
+                   const std::string& name,
+                   VGM::ISolid* solid,
                    const VGM::Transform& transform)
 {
 //
   return Register(new RootGM::ScaledSolid(
-                         name, 
-                         solid, 
+                         name,
+                         solid,
                          CreateScale(transform)));
-}            
+}
 
 //_____________________________________________________________________________
-VGM::IVolume* 
-RootGM::Factory::CreateVolume(const std::string& name, 
-                   VGM::ISolid* solid, 
+VGM::IVolume*
+RootGM::Factory::CreateVolume(const std::string& name,
+                   VGM::ISolid* solid,
                    const std::string& mediumName)
 {
 //
@@ -999,22 +999,22 @@ RootGM::Factory::CreateVolume(const std::string& name,
 
   VolumeStore().push_back(volume);
   return volume;
-}  			       
+}
 
 //_____________________________________________________________________________
-VGM::IPlacement* 
+VGM::IPlacement*
 RootGM::Factory::CreatePlacement(
-                   const std::string& name, 
+                   const std::string& name,
                    int copyNo,
-                   VGM::IVolume* volume, 
+                   VGM::IVolume* volume,
                    VGM::IVolume* motherVolume,
                    const VGM::Transform& transform)
 {
 //
   VGM::IPlacement* placement
     = new RootGM::Placement(
-                       name, 
-                       copyNo, 
+                       name,
+                       copyNo,
                        volume, motherVolume,
                        CreateTransform(transform));
 
@@ -1025,19 +1025,19 @@ RootGM::Factory::CreatePlacement(
     else {
       std::cerr << "    RootGM::Factory::CreatePlacement:" << std::endl;
       std::cerr << "    Top volume defided twice!" << std::endl;
-      std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+      std::cerr << "*** Error: Aborting execution  ***" << std::endl;
       exit(1);
-    }		  
+    }
   }
-  
+
   return placement;
-}			  			       
+}
 
 //_____________________________________________________________________________
-VGM::IPlacement* 
+VGM::IPlacement*
 RootGM::Factory::CreateMultiplePlacement(
-                   const std::string& name, 
-                   VGM::IVolume* volume, 
+                   const std::string& name,
+                   VGM::IVolume* volume,
                    VGM::IVolume* motherVolume,
                    VGM::Axis axis,
                    int nofItems,
@@ -1050,7 +1050,7 @@ RootGM::Factory::CreateMultiplePlacement(
   if (!motherVolume) {
     std::cerr << "    RootGM::Factory::CreateMultiplePlacement:" << std::endl;
     std::cerr << "    Mother volume not defined!" << std::endl;
-    std::cerr << "*** Error: Aborting execution  ***" << std::endl; 
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl;
     exit(1);
   }
 
@@ -1093,25 +1093,25 @@ RootGM::Factory::CreateMultiplePlacement(
 }
 
 //_____________________________________________________________________________
-VGM::IPlacement* 
-RootGM::Factory::Top() const 
+VGM::IPlacement*
+RootGM::Factory::Top() const
 {
 /// Returns the top volume (VGM placement)
 
   return fTop;
-}  		       
+}
 
 //_____________________________________________________________________________
-VGM::ISolid* 
-RootGM::Factory::SingleSolid() const 
+VGM::ISolid*
+RootGM::Factory::SingleSolid() const
 {
 /// Returns the solid (if in one solid conversion mode)
 
   return fSolid;
-}            
+}
 
 //_____________________________________________________________________________
-TGeoNode*  
+TGeoNode*
 RootGM::Factory::World() const
 {
 /// Returns the world volume (Root node)
@@ -1120,13 +1120,13 @@ RootGM::Factory::World() const
 }
 
 //_____________________________________________________________________________
-TGeoShape*  
+TGeoShape*
 RootGM::Factory::Solid() const
 {
 /// Returns the solid (if in one solid conversion mode)
 
   return RootGM::SolidMap::Instance()->GetSolid(fSolid);
-}            
+}
 
 //_____________________________________________________________________________
 bool RootGM::Factory::Import(TGeoNode* topNode)
@@ -1139,48 +1139,48 @@ bool RootGM::Factory::Import(TGeoNode* topNode)
     std::cout << "RootGM::Factory::Import started ...";
     if (Debug()>1)  std::cout << topNode;
     std::cout << std::endl;
-  }  
+  }
 
   // Inactivate single mode (if it was switch previously)
   //
   SetSingleMode(false);
 
   // Import materials
-  // 
+  //
   MaterialFactory()->Import();
-  
+
   // Get top volume
   TGeoVolume* topVolume = topNode->GetVolume();
 
-  // Import the top volume 
+  // Import the top volume
   VGM::IVolume* worldVolume = ImportVolume(topVolume);
-  
+
   // Import recursively all daughters
   ImportDaughters(topVolume);
-  
+
   // Import positions
   ImportPositions();
-  
+
   if (Debug()>0) {
     BaseVGM::DebugInfo();
     std::cout << std::endl;
     PrintSolids();
     PrintVolumes();
-    if (Debug()>1) 
+    if (Debug()>1)
       RootGM::VolumeMap::Instance()->Print();
-  }  
-  
+  }
+
   // Position the top volume
   fTop = new RootGM::Placement(worldVolume, 0, topNode);
-  
+
   if (Debug()>0) {
     BaseVGM::DebugInfo();
     std::cout << "RootGM::Factory::Import finished." << std::endl;
-  }  
- 
+  }
+
   return true;
 }
-			       
+
 //_____________________________________________________________________________
 bool RootGM::Factory::Import(TGeoShape* shape)
 {
@@ -1193,7 +1193,7 @@ bool RootGM::Factory::Import(TGeoShape* shape)
     std::cout << "RootGM::Factory::Import of one solid started ...";
     if (Debug()>1)  std::cout << shape;
     std::cout << std::endl;
-  } 
+  }
 
   // Clear solid store
   // (Do not delete objects as they are also referenced in a singleton mao)
@@ -1205,11 +1205,11 @@ bool RootGM::Factory::Import(TGeoShape* shape)
 
   // Import shape
   fSolid = ImportSolid(shape);
-  
+
   if (Debug()>0) {
     BaseVGM::DebugInfo();
     std::cout << "RootGM::Factory::Import of one solid finished." << std::endl;
-  }  
- 
+  }
+
   return ( fSolid != 0);
 }

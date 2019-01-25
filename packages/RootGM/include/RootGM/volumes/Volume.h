@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -35,26 +35,26 @@ namespace RootGM {
   class Volume : public BaseVGM::VVolume
   {
     public:
-      Volume(const std::string& name, 
-             VGM::ISolid* solid, 
+      Volume(const std::string& name,
+             VGM::ISolid* solid,
              const std::string& mediumName );
-      Volume(VGM::ISolid* solid, 
+      Volume(VGM::ISolid* solid,
              TGeoVolume* volume);
       virtual ~Volume();
-    
+
       // methods
       virtual std::string  Name() const;
       virtual std::string  MaterialName() const;
       virtual std::string  MediumName() const;
-    
+
       void ResetVolume(TGeoVolume* rootVolume);
-        
+
     protected:
       Volume();
-      Volume(const Volume& rhs);      
-    
+      Volume(const Volume& rhs);
+
     private:
-      TGeoVolume* fGeoVolume;   
+      TGeoVolume* fGeoVolume;
   };
 
 }

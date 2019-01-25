@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The Geant4GM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -32,10 +32,10 @@ namespace Geant4GM {
   class Sphere : public BaseVGM::VSphere
   {
     public:
-      Sphere(const std::string& name, 
-             double rin, double rout, double sphi, double dphi, 
+      Sphere(const std::string& name,
+             double rin, double rout, double sphi, double dphi,
 	     double stheta, double dtheta);
-      Sphere(G4Sphere* sphere, 
+      Sphere(G4Sphere* sphere,
              G4ReflectedSolid* reflSphere = 0);
       virtual ~Sphere();
 

@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -31,7 +31,7 @@ namespace RootGM {
   class Cons : public BaseVGM::VCons
   {
     public:
-      Cons(const std::string& name, 
+      Cons(const std::string& name,
            double rin1, double rout1, double rin2, double rout2,
 	   double hz, double sphi, double dphi);
       Cons(TGeoCone* cons);

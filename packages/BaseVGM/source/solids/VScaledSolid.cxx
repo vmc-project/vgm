@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The BaseVGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -26,14 +26,14 @@ std::ostream& operator<<(std::ostream& out, const VGM::IScaledSolid& scaled)
 {
   const VGM::ISolid& scaledSolid = scaled;
   out << scaledSolid;
-  return out; 
+  return out;
 }
 
 //_____________________________________________________________________________
 BaseVGM::VScaledSolid::VScaledSolid()
-  : VGM::IScaledSolid() 
+  : VGM::IScaledSolid()
 {
-/// Default constructor  
+/// Default constructor
 }
 
 //_____________________________________________________________________________
@@ -46,10 +46,10 @@ std::ostream& BaseVGM::VScaledSolid::Put(std::ostream& out) const
 {
   out << "  "
       << "  Constituent = " << *ConstituentSolid() << std:: endl
-      << "  Scale (object):  ( " 
+      << "  Scale (object):  ( "
       << Scale()[VGM::kDx] << ",  "
       << Scale()[VGM::kDy] << ",  "
       << Scale()[VGM::kDz] << ") " << std:: endl;
-      
-  return out; 
+
+  return out;
 }

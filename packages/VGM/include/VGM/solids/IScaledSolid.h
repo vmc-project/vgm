@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The VGM package of the Virtual Geometry Model
-// Copyright (C) 2007 - 2017, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007 - 2017, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -12,7 +12,7 @@
 /// \ingroup VGM_solids
 ///
 /// \class VGM::IScaledSolid
-/// 
+///
 /// The VGM interface to Boolean solids.
 ///
 /// \author Ivana Hrivnacova; IPN Orsay
@@ -33,26 +33,26 @@ namespace VGM {
       virtual ~IScaledSolid() {}
 
       // methods
-      
+
       virtual SolidType    Type() const = 0;
       virtual std::string  Name() const = 0;
 
-			    /// 
+			    ///
                             /// Return the constituent solid
       virtual ISolid*      ConstituentSolid() const = 0;
-			    /// 
-                            /// Return the 3D scale 
-      virtual Transform    Scale() const = 0; 
+			    ///
+                            /// Return the 3D scale
+      virtual Transform    Scale() const = 0;
 
                             /// Return true if the solid has to be first
                             /// reflected before being placed
-      virtual bool         ToBeReflected() const = 0;     
+      virtual bool         ToBeReflected() const = 0;
 
       // streaming
       virtual std::ostream& Put(std::ostream& out) const = 0;
   };
 
-}  
+}
 
 std::ostream& operator << (std::ostream& out, const VGM::IScaledSolid& solid);
 

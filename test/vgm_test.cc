@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The test program of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -13,7 +13,7 @@
 // VGM test main program
 // --------------------
 // Usage:
-// vgm_test inputType inputFactory outputFactory selectedTest 
+// vgm_test inputType inputFactory outputFactory selectedTest
 //         [debug] [openAngle] [noVis]
 //
 //         inputType     = VGM, AGDD, Geant4, Root
@@ -21,7 +21,7 @@
 //         outputFactory = Geant4, Root, None
 //         outputXML = AGDD, GDML, None
 //         selectedTest  = Solids, NewSolid, Placements, Reflections, Assemblies,
-//                         AssembliesN, BooleanSolidsM, ScaledSolids, Special, 
+//                         AssembliesN, BooleanSolidsM, ScaledSolids, Special,
 //                         DisplacedSolidsN,
 //                             where N = 1, 2; M = 1, 2, 3
 //         debug         = if specified the factories operate in debug mode
@@ -62,14 +62,14 @@
 #include "TstSteppingAction.hh"
 #include "TstRunAction.hh"
 
-int main(int argc, char** argv) 
+int main(int argc, char** argv)
 {
   // Root
   TApplication theApp("otherwise it does not work", &argc, argv);
 
   if ( argc < 5 || argc > 10 ) {
     std::cerr << " Usage: " << std::endl;
-    std::cerr << " vgm_test inputType inputFactory outputFactory outputXML selectedTest " 
+    std::cerr << " vgm_test inputType inputFactory outputFactory outputXML selectedTest "
               << std::endl;
     std::cerr << "          [debug] [openAngle] [noVis] {run] [rootNavig]" << std::endl;
     std::cerr << "          inputType     = VGM, AGDD, Geant4, Root" << std::endl;
@@ -92,7 +92,7 @@ int main(int argc, char** argv)
     std::cerr << "                          (only convert solids from built geometry one by one)" << std::endl;
 
     exit(1);
-  }  
+  }
 
   // Manadatory parameters
   //
@@ -113,7 +113,7 @@ int main(int argc, char** argv)
   G4bool   run = false;
   G4bool   rootNavig = false;
   G4bool   singleMode = false;
-  
+
   if (argc > 6)
   for (G4int i=6; i<argc; i++) {
     if (G4String(argv[i]) == "debug")
@@ -122,20 +122,20 @@ int main(int argc, char** argv)
       ignoreMode = true;
     else if (G4String(argv[i]) == "bestMatch")
       bestMatchMode = true;
-    else if (G4String(argv[i]) == "openAngle")       
+    else if (G4String(argv[i]) == "openAngle")
       fullAngle = false;
-    else if (G4String(argv[i]) == "noVis")  
+    else if (G4String(argv[i]) == "noVis")
       visMode = "None";
-    else if (G4String(argv[i]) == "run")  
+    else if (G4String(argv[i]) == "run")
       run = true;
-    else if (G4String(argv[i]) == "rootNavig")  
+    else if (G4String(argv[i]) == "rootNavig")
       rootNavig = true;
-    else if (G4String(argv[i]) == "singleMode")  
+    else if (G4String(argv[i]) == "singleMode")
       singleMode = true;
-    else  
+    else
       std::cerr << " Argument " << argv[i] << " not recognized." << std::endl;
-  }   
-  
+  }
+
   // Choose the Random engine
   //
   G4Random::setTheEngine(new CLHEP::HepJamesRandom);
@@ -149,16 +149,16 @@ int main(int argc, char** argv)
 
   // Create detector conctruction and let it check selected channels
   TstDetectorConstruction* detector
-    = new TstDetectorConstruction(inputType, inputFactory, outputFactory, 
+    = new TstDetectorConstruction(inputType, inputFactory, outputFactory,
                                   outputXML);
   detector->SetDebug(debugMode);
   detector->SetIgnore(ignoreMode);
   detector->SetBestMatch(bestMatchMode);
   detector->SetSingleMode(singleMode);
-  detector->SelectTest(selectedTest, fullAngle);  
-  detector->SelectVisualization(visMode);  
-    
-  G4RunManager* runManager; 
+  detector->SelectTest(selectedTest, fullAngle);
+  detector->SelectVisualization(visMode);
+
+  G4RunManager* runManager;
   if ( ! rootNavig ) {
     // Construct the default run manager
     runManager = new G4RunManager();
@@ -170,7 +170,7 @@ int main(int argc, char** argv)
   else {
     G4String fileName = selectedTest;
     fileName += ".root";
-  
+
     TGeoManager* geom = TGeoManager::Import(fileName);
     TG4RootNavMgr* mgr = TG4RootNavMgr::GetInstance(geom);
 
@@ -178,14 +178,14 @@ int main(int argc, char** argv)
     runManager = new G4RunManager();
 
     mgr->ConnectToG4();
-  }  
+  }
 #else
   else {
     std::cerr << "Cannot run with rootNavig." << std::endl;
     std::cerr << "vgm_test has been compiled without G4Root." << std::endl;
     exit(1);
-  }  
-#endif     
+  }
+#endif
 
   // Set other mandatory initialization classes
   runManager->SetUserInitialization(new TstPhysicsList());
@@ -195,7 +195,7 @@ int main(int argc, char** argv)
   //runManager->SetUserAction(new TstTrackingAction());
   runManager->SetUserAction(new TstSteppingAction());
   runManager->SetUserAction(new TstRunAction());
-  
+
   if ( run ) {
     // Do not expand names of assemblies in names of placements
     RootGM::Placement::SetIncludeAssembliesInNames(false);
@@ -216,21 +216,21 @@ int main(int argc, char** argv)
 
   if (visMode != "None") {
       // interactive mode
-      ui->ApplyCommand("/control/execute macro/vis.mac");    
+      ui->ApplyCommand("/control/execute macro/vis.mac");
       if (session->IsGUI()) {
          ui->ApplyCommand("/control/execute macro/icons.mac");
-      }   
+      }
       session->SessionStart();
       delete session;
   }
-  
+
   if ( run ) {
       G4String cmd = "/control/execute macro/gener_";
       cmd += selectedTest;
       cmd += ".mac";
       ui->ApplyCommand(cmd);
       ui->ApplyCommand("/control/execute macro/run.mac");
-  }        
+  }
 
   // job termination
   delete visManager;

@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The VGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -34,16 +34,16 @@ namespace VGM {
 
   enum MaterialState {
     kUndefined, ///< Undefined material state
-    kSolid,	///< Solid material 
+    kSolid,	///< Solid material
     kLiquid,	///< Liquid material
     kGas 	///< Gas materila
-  };	   
+  };
 
   class IMaterial
   {
     public:
       virtual ~IMaterial() {}
-      
+
       // methods
 			  ///
                           /// Return the name of this element
@@ -55,34 +55,34 @@ namespace VGM {
                           /// Return the radiation length in mm
       virtual double  RadiationLength() const = 0;
 			  ///
-                          /// Return the nuclear interaction length in mm 
+                          /// Return the nuclear interaction length in mm
       virtual double  NuclearInterLength() const = 0;
                           ///
 			  /// Return the material state
       virtual MaterialState  State() const = 0;
-                          /// 
+                          ///
 			  /// Return the temperature in kelvins
       virtual double  Temperature() const = 0;
                           ///
 			  /// Return the density in atmosphere
-      virtual double  Pressure() const = 0;			  
+      virtual double  Pressure() const = 0;
 			  ///
-                          /// Return the number of elements constituing 
-			  /// this material 
+                          /// Return the number of elements constituing
+			  /// this material
       virtual int     NofElements() const = 0;
 			  ///
                           /// Return the i-th element constituing this material
       virtual IElement*  Element(int iel) const = 0;
 			  ///
-                          /// Return the mass fraction of the i-th element 
+                          /// Return the mass fraction of the i-th element
 			  /// constituing this material
       virtual double     MassFraction(int iel) const = 0 ;
 			  ///
-                          /// Return the atom count of the i-th element 
+                          /// Return the atom count of the i-th element
 			  /// constituing this material
       virtual double     AtomCount(int iel) const = 0 ;
   };
-}  
+}
 
 std::ostream& operator << (std::ostream& out, const VGM::IMaterial& material);
 

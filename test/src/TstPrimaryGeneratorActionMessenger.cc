@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The test program of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -15,7 +15,7 @@
 // The test primary generator action messenger
 //
 // Author: Ivana Hrivnacova; IPN Orsay
- 
+
 #include "TstPrimaryGeneratorActionMessenger.hh"
 #include "TstPrimaryGeneratorAction.hh"
 
@@ -30,7 +30,7 @@ TstPrimaryGeneratorActionMessenger::TstPrimaryGeneratorActionMessenger(
     fDirectory(0),
     fSetGunTypeCmd(0)
 {
-// 
+//
   fDirectory = new G4UIdirectory("/tstGenerator/");
   fDirectory->SetGuidance("TstPrimaryGeneratorAction control commands.");
 
@@ -53,17 +53,17 @@ TstPrimaryGeneratorActionMessenger::~TstPrimaryGeneratorActionMessenger() {
 //
 
 //_____________________________________________________________________________
-void TstPrimaryGeneratorActionMessenger::SetNewValue(G4UIcommand* command, 
+void TstPrimaryGeneratorActionMessenger::SetNewValue(G4UIcommand* command,
        G4String newValue)
-{ 
+{
 /// Apply command to the associated object.
 
-  if(command == fSetGunTypeCmd) { 
+  if(command == fSetGunTypeCmd) {
     if ( newValue == G4String("Gun") ) {
       fPrimaryGeneratorAction->SetGunType(TstPrimaryGeneratorAction::kGun);
     }
     else if ( newValue == G4String("GPS") ) {
       fPrimaryGeneratorAction->SetGunType(TstPrimaryGeneratorAction::kGPS);
     }
-  }   
+  }
 }

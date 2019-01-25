@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The BaseVGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -23,14 +23,14 @@ std::ostream& operator<<(std::ostream& out, const VGM::IEllipsoid& ellipsoid)
 {
   const VGM::ISolid& ellipsoidSolid = ellipsoid;
   out << ellipsoidSolid;
-  return out; 
+  return out;
 }
 
 //_____________________________________________________________________________
 BaseVGM::VEllipsoid::VEllipsoid()
-  : VGM::IEllipsoid() 
+  : VGM::IEllipsoid()
 {
-/// Default constructor  
+/// Default constructor
 }
 
 //_____________________________________________________________________________
@@ -41,11 +41,11 @@ BaseVGM::VEllipsoid::~VEllipsoid() {
 //_____________________________________________________________________________
 std::ostream& BaseVGM::VEllipsoid::Put(std::ostream& out) const
 {
-  out << "  dx = " << XSemiAxis() << "mm" 
-      << "  dy = " << YSemiAxis() << "mm" 
-      << "  dz = " << ZSemiAxis() << "mm" 
-      << "  zBottomCut = " << ZBottomCut() << "mm" 
-      << "  ZTopCut = " << ZTopCut() << "mm"; 
-  return out; 
+  out << "  dx = " << XSemiAxis() << "mm"
+      << "  dy = " << YSemiAxis() << "mm"
+      << "  dz = " << ZSemiAxis() << "mm"
+      << "  zBottomCut = " << ZBottomCut() << "mm"
+      << "  ZTopCut = " << ZTopCut() << "mm";
+  return out;
 }
 

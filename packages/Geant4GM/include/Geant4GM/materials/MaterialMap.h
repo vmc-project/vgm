@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The Geant4GM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -26,7 +26,7 @@ class G4Material;
 
 namespace VGM {
   class IMaterial;
-}  
+}
 
 namespace Geant4GM {
 
@@ -46,10 +46,10 @@ namespace Geant4GM {
       virtual ~MaterialMap();
 
       // static access methods
-      static MaterialMap* Instance(); 
+      static MaterialMap* Instance();
 
       // methods
-      void  AddMaterial(VGM::IMaterial*, G4Material*); 
+      void  AddMaterial(VGM::IMaterial*, G4Material*);
       void  Print() const;
 
       // get methods
@@ -62,7 +62,7 @@ namespace Geant4GM {
     private:
       // static data members
       static MaterialMap*  fgInstance;
-  
+
       // data members
       G4MaterialMap   fG4Materials;
       VgmMaterialMap  fVgmMaterials;

@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The Geant4GM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -36,11 +36,11 @@ namespace Geant4GM {
   class BooleanSolid : public BaseVGM::VBooleanSolid
   {
     public:
-      BooleanSolid(const std::string& name, 
+      BooleanSolid(const std::string& name,
                    VGM::BooleanType boolType,
-                   VGM::ISolid* solidA, 
-                   VGM::ISolid* solidB, 
-                   CLHEP::HepRotation* rotation, 
+                   VGM::ISolid* solidA,
+                   VGM::ISolid* solidB,
+                   CLHEP::HepRotation* rotation,
                    const CLHEP::Hep3Vector& translation);
       BooleanSolid(G4BooleanSolid* booleanSolid,
                    G4ReflectedSolid* reflectedBoolean);
@@ -52,12 +52,12 @@ namespace Geant4GM {
       virtual VGM::BooleanType BoolType() const;
       virtual VGM::ISolid*     ConstituentSolidA() const;
       virtual VGM::ISolid*     ConstituentSolidB() const;
-      virtual VGM::Transform   Displacement() const;      
-      virtual bool             ToBeReflected() const;     
+      virtual VGM::Transform   Displacement() const;
+      virtual bool             ToBeReflected() const;
 
       // utility method
       static G4VSolid* GetConstituentSolid(
-                               int index, 
+                               int index,
                                G4BooleanSolid* booleanSolid);
 
     protected:
@@ -70,10 +70,10 @@ namespace Geant4GM {
       G4BooleanSolid* fBooleanSolid;
       bool            fToBeReflected;
   };
-  
-}  
+
+}
 
 inline bool Geant4GM::BooleanSolid::ToBeReflected() const
-{ return fToBeReflected; }     
+{ return fToBeReflected; }
 
 #endif //GEANT4_GM_BOOLEAN_SOLID_H

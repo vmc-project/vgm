@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The BaseVGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -42,12 +42,12 @@ namespace BaseVGM {
       // streaming
       virtual std::ostream& Put(std::ostream& out) const;
   };
-  
-}  
+
+}
 
 // inline functions
 
-inline VGM::SolidType 
+inline VGM::SolidType
 BaseVGM::VPolyhedra::Type() const { return VGM::kPolyhedra; }
 
 #endif //BASE_VGM_V_POLYHEDRA_H

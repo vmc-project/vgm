@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The Geant4GM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -16,8 +16,8 @@
 // If reflected, the parameters are changed as follows:
 //    rin1, rout1  -->  rin2', rout2'
 //    rin2, rout2  -->  rin1', rout1'
-//    hz           -->  hz' 
-//    sphi, dphi   -->  sphi', dphi' 
+//    hz           -->  hz'
+//    sphi, dphi   -->  sphi', dphi'
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
@@ -30,20 +30,20 @@
 #include "G4ReflectedSolid.hh"
 
 //_____________________________________________________________________________
-Geant4GM::Cons::Cons(const std::string& name, 
+Geant4GM::Cons::Cons(const std::string& name,
                      double rin1, double rout1, double rin2, double rout2,
 	             double hz, double sphi, double dphi)
   : VGM::ISolid(),
     VGM::ICons(),
     BaseVGM::VCons(),
     fIsReflected(false),
-    fCons( new G4Cons(name, 
-                      rin1  / ClhepVGM::Units::Length(), 
-		      rout1 / ClhepVGM::Units::Length(), 
-		      rin2  / ClhepVGM::Units::Length(), 
-		      rout2 / ClhepVGM::Units::Length(), 
-		      hz    / ClhepVGM::Units::Length(), 
-		      sphi  / ClhepVGM::Units::Angle(), 
+    fCons( new G4Cons(name,
+                      rin1  / ClhepVGM::Units::Length(),
+		      rout1 / ClhepVGM::Units::Length(),
+		      rin2  / ClhepVGM::Units::Length(),
+		      rout2 / ClhepVGM::Units::Length(),
+		      hz    / ClhepVGM::Units::Length(),
+		      sphi  / ClhepVGM::Units::Angle(),
 		      dphi  / ClhepVGM::Units::Angle()))
 {
 /// Standard constructor to define cons from parameters
@@ -55,44 +55,44 @@ Geant4GM::Cons::Cons(const std::string& name,
 /// \param sphi starting angle of the segment in deg
 /// \param dphi opening angle of the segment in deg
 
-  Geant4GM::SolidMap::Instance()->AddSolid(this, fCons); 
+  Geant4GM::SolidMap::Instance()->AddSolid(this, fCons);
 }
 
 
 //_____________________________________________________________________________
-Geant4GM::Cons::Cons(G4Cons* cons, 
+Geant4GM::Cons::Cons(G4Cons* cons,
                      G4ReflectedSolid* reflCons)
   : VGM::ISolid(),
     VGM::ICons(),
     BaseVGM::VCons(),
     fIsReflected(false),
     fCons(cons)
-{    
+{
 /// Standard constructor to define cons from G4 object
 
   if (reflCons) {
     fIsReflected = true;
-    Geant4GM::SolidMap::Instance()->AddSolid(this, reflCons); 
-  }  
+    Geant4GM::SolidMap::Instance()->AddSolid(this, reflCons);
+  }
   else
-    Geant4GM::SolidMap::Instance()->AddSolid(this, cons); 
-      
+    Geant4GM::SolidMap::Instance()->AddSolid(this, cons);
+
 }
 
 //_____________________________________________________________________________
-Geant4GM::Cons::Cons() 
+Geant4GM::Cons::Cons()
   : VGM::ISolid(),
     VGM::ICons(),
-    BaseVGM::VCons() 
+    BaseVGM::VCons()
 {
 /// Protected default constructor
 }
 
 //_____________________________________________________________________________
-Geant4GM::Cons::Cons(const Cons& rhs) 
+Geant4GM::Cons::Cons(const Cons& rhs)
   : VGM::ISolid(rhs),
     VGM::ICons(rhs),
-    BaseVGM::VCons(rhs) 
+    BaseVGM::VCons(rhs)
 {
 /// Protected copy constructor
 }
@@ -100,64 +100,64 @@ Geant4GM::Cons::Cons(const Cons& rhs)
 //_____________________________________________________________________________
 Geant4GM::Cons::~Cons() {
 //
-}    
+}
 
 //_____________________________________________________________________________
 std::string Geant4GM::Cons::Name() const
 {
   return fCons->GetName();
-}  
-  
+}
+
 //_____________________________________________________________________________
 double Geant4GM::Cons::InnerRadiusMinusZ() const
 {
   if (!fIsReflected)
     return fCons->GetInnerRadiusMinusZ() * ClhepVGM::Units::Length();
-  else  
+  else
     return fCons->GetInnerRadiusPlusZ() * ClhepVGM::Units::Length();
-}  
+}
 
 //_____________________________________________________________________________
 double Geant4GM::Cons::OuterRadiusMinusZ() const
 {
   if (!fIsReflected)
     return fCons->GetOuterRadiusMinusZ() * ClhepVGM::Units::Length();
-  else  
+  else
     return fCons->GetOuterRadiusPlusZ() * ClhepVGM::Units::Length();
-}  
+}
 
 //_____________________________________________________________________________
 double Geant4GM::Cons::InnerRadiusPlusZ() const
 {
   if (!fIsReflected)
     return fCons->GetInnerRadiusPlusZ() * ClhepVGM::Units::Length();
-  else  
+  else
     return fCons->GetInnerRadiusMinusZ() * ClhepVGM::Units::Length();
-}  
+}
 
 //_____________________________________________________________________________
 double Geant4GM::Cons::OuterRadiusPlusZ() const
 {
   if (!fIsReflected)
     return fCons->GetOuterRadiusPlusZ() * ClhepVGM::Units::Length();
-  else  
+  else
     return fCons->GetOuterRadiusMinusZ() * ClhepVGM::Units::Length();
-}  
+}
 
 //_____________________________________________________________________________
 double Geant4GM::Cons::ZHalfLength() const
 {
   return fCons->GetZHalfLength() * ClhepVGM::Units::Length();
-}  
+}
 
 //_____________________________________________________________________________
 double Geant4GM::Cons::StartPhi() const
 {
   return fCons->GetStartPhiAngle() * ClhepVGM::Units::Angle();
-}  
+}
 
 //_____________________________________________________________________________
 double Geant4GM::Cons::DeltaPhi() const
 {
   return fCons->GetDeltaPhiAngle() * ClhepVGM::Units::Angle();
-}  
+}

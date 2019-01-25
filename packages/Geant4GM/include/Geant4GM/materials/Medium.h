@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The Geant4GM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -35,28 +35,28 @@ namespace Geant4GM {
   class Medium : public BaseVGM::VMedium
   {
     public:
-      Medium(const std::string& name, 
+      Medium(const std::string& name,
              int mediumId,
              VGM::IMaterial* material,
              int nofParameters, double* parameters);
       virtual ~Medium();
-    
+
       // methods
       virtual std::string Name() const;
 
       virtual int     Id() const;
       virtual double  Parameter(int i) const;
 
-    protected:  
+    protected:
       Medium();
-      Medium(const Medium& rhs); 
-    
+      Medium(const Medium& rhs);
+
     private:
       void CheckIndex(int iel) const;
 
       // data members
-      static  const int fgkParamSize;  
-          
+      static  const int fgkParamSize;
+
       G4String     fName;
       G4Material * fMaterial;
       G4int        fId;

@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The BaseVGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -20,8 +20,8 @@
 std::ostream& operator<<(std::ostream& out, const VGM::ISolid& solid)
 {
   out << VGM::SolidTypeName(solid.Type()) << "  \""
-      << solid.Name() << "\"";     
-  return solid.Put(out); 
+      << solid.Name() << "\"";
+  return solid.Put(out);
 }
 
 //_____________________________________________________________________________
@@ -52,4 +52,4 @@ std::string VGM::SolidTypeName(VGM::SolidType typeId)
     case kUnknownSolid: return "Unknown";   break;
     default:            return "Undefined"; break;
   };
-}   
+}

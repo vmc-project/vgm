@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The XmlVGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -14,7 +14,7 @@
 /// \class XmlVGM::VExporter
 ///
 /// Class for generation of geometry data files in XML,
-/// the XML format is independent from the geometry object model. 
+/// the XML format is independent from the geometry object model.
 /// It has one abstract method for processing the volume tree
 /// that has to be provided by derived classes.
 ///
@@ -43,12 +43,12 @@ namespace XmlVGM {
   typedef std::vector<double> ThreeVector;
 
   class IWriter;
-  
+
   class VExporter
   {
     public:
-      typedef std::set <std::string, 
-                        std::less<std::string> >  StringSet; 
+      typedef std::set <std::string,
+                        std::less<std::string> >  StringSet;
 
     public:
       VExporter(const VGM::IFactory* factory,
@@ -57,7 +57,7 @@ namespace XmlVGM {
       // VExporter();
       // VExporter(const VExporter& right);
       virtual ~VExporter();
- 
+
       // methods
       void GenerateXMLGeometry();
       void GenerateXMLGeometry(const std::string& volumeName);
@@ -82,7 +82,7 @@ namespace XmlVGM {
       // abstract methods
       // specific to XML definition
       //
-                  /// Generate XML geometry file for the geometry tree 
+                  /// Generate XML geometry file for the geometry tree
                   /// starting from the specified VGM volume
      virtual void GenerateGeometry(VGM::IVolume* volume) = 0;
 
@@ -96,14 +96,14 @@ namespace XmlVGM {
       void GenerateSolids(VGM::IVolume* volume);
 
       void ClearVolumeNames();
-      
+
       // static data members
       static const std::string fgkUndefinedFileName; //default value of file name
-                                     
+
       // data members
       //
-      const VGM::IFactory*  fFactory; // VGM factory 
-      IWriter*       fWriter;         // interface to XML writer 
+      const VGM::IFactory*  fFactory; // VGM factory
+      IWriter*       fWriter;         // interface to XML writer
       std::string    fFileName;       // output file name
       StringSet      fVolumeNames;    // set of volume names
       int            fDebug;          // debug level
@@ -112,16 +112,16 @@ namespace XmlVGM {
     private:
       // methods
       //
-      void ProcessPositions(VGM::IVolume* volume); 
-      void ProcessPositionsInBoolean(VGM::ISolid* solid); 
-      void ProcessPositionsInTessellated(VGM::ISolid* solid); 
+      void ProcessPositions(VGM::IVolume* volume);
+      void ProcessPositionsInBoolean(VGM::ISolid* solid);
+      void ProcessPositionsInTessellated(VGM::ISolid* solid);
 
-      void ProcessRotations(VGM::IVolume* volume); 
-      void ProcessRotationsInBoolean(VGM::ISolid* solid); 
+      void ProcessRotations(VGM::IVolume* volume);
+      void ProcessRotationsInBoolean(VGM::ISolid* solid);
 
-      void ProcessMaterials(VGM::IVolume* volume); 
-      void ProcessMedia(VGM::IVolume* volume); 
-      void ProcessSolids(VGM::IVolume* volume); 
+      void ProcessMaterials(VGM::IVolume* volume);
+      void ProcessMedia(VGM::IVolume* volume);
+      void ProcessSolids(VGM::IVolume* volume);
   };
 }
 

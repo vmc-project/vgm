@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -25,15 +25,15 @@
 RootGM::PlacementMap*  RootGM::PlacementMap::fgInstance = 0;
 
 //_____________________________________________________________________________
-RootGM::PlacementMap* 
+RootGM::PlacementMap*
 RootGM::PlacementMap::Instance()
-{ 
+{
 /// Singleton access function.
 
   if (!fgInstance) new RootGM::PlacementMap();
-  
+
   return fgInstance;
-}  
+}
 
 //_____________________________________________________________________________
 RootGM::PlacementMap::PlacementMap()
@@ -50,34 +50,34 @@ RootGM::PlacementMap::PlacementMap(const PlacementMap&)
 }
 
 //_____________________________________________________________________________
-RootGM::PlacementMap::~PlacementMap() 
+RootGM::PlacementMap::~PlacementMap()
 {
 //
   fgInstance = 0;
-}  
+}
 
 //
 // public methods
-//  
+//
 
 //_____________________________________________________________________________
-void  RootGM::PlacementMap::AddPlacement(VGM::IPlacement* iPlacement, 
+void  RootGM::PlacementMap::AddPlacement(VGM::IPlacement* iPlacement,
                                          TGeoNode* rtPlacement)
 {
 /// Add the specified pair in the map
 
   fPlacements[iPlacement] = rtPlacement;
-}  
+}
 
 //_____________________________________________________________________________
-TGeoNode* 
+TGeoNode*
 RootGM::PlacementMap::GetPlacement(VGM::IPlacement* iPlacement) const
 {
 /// Find the Root node corresponding to a specified VGM placement.
 
   RootPlacementMapCIterator i = fPlacements.find(iPlacement);
-  if (i != fPlacements.end()) 
+  if (i != fPlacements.end())
     return (*i).second;
-  else                 
+  else
     return 0;
 }

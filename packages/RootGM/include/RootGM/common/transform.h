@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -35,16 +35,16 @@ namespace RootGM {
     VGM::Transform  TransformScale(const TGeoScale& scale);
     VGM::Transform  Identity();
     bool            HasReflection(const TGeoMatrix& matrix);
-    
+
     // VGM -> Root
     TGeoMatrix*     CreateTransform(const VGM::Transform& transform);
     TGeoScale*      CreateScale(const VGM::Transform& transform);
     bool            HasReflection(const VGM::Transform& transform);
-    
+
     // Root special
     TGeoHMatrix     Displacement(TGeoShape* shape);
 
-    void  fromToRotation(double from[3], double to[3], double mtx[3][3]); 
+    void  fromToRotation(double from[3], double to[3], double mtx[3][3]);
 }
 
 #endif //ROOT_GM_TRANSFORM_H

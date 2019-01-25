@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -31,7 +31,7 @@ namespace RootGM {
   class Para : public BaseVGM::VPara
   {
     public:
-      Para(const std::string& name, 
+      Para(const std::string& name,
            double dx, double dy, double dz,
 	   double alpha, double theta, double phi);
       Para(TGeoPara* para);

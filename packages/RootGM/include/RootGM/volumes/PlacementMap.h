@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -43,10 +43,10 @@ namespace RootGM {
       virtual ~PlacementMap();
 
       // static access methods
-      static PlacementMap* Instance(); 
+      static PlacementMap* Instance();
 
       // methods
-      void  AddPlacement(VGM::IPlacement*, TGeoNode*); 
+      void  AddPlacement(VGM::IPlacement*, TGeoNode*);
       TGeoNode* GetPlacement(VGM::IPlacement* iPlacement) const;
 
     protected:
@@ -55,11 +55,11 @@ namespace RootGM {
     private:
       // static data members
       static PlacementMap*  fgInstance;
-   
+
       // data members
       RootPlacementMap  fPlacements;
   };
-  
-}  
+
+}
 
 #endif //ROOT_GM_PLACEMENT_MAP_H

@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The test program of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -23,7 +23,7 @@
 
 
 //_____________________________________________________________________________
-TstPhysicsList::TstPhysicsList() 
+TstPhysicsList::TstPhysicsList()
   : G4VUserPhysicsList()
 {
 //
@@ -36,7 +36,7 @@ TstPhysicsList::~TstPhysicsList()
 }
 
 //_____________________________________________________________________________
-void TstPhysicsList::ConstructParticle() 
+void TstPhysicsList::ConstructParticle()
 {
 // Construct geantino only
 // ---
@@ -56,13 +56,13 @@ void TstPhysicsList::ConstructProcess()
 //_____________________________________________________________________________
 void TstPhysicsList::SetCuts()
 {
-  // Suppress error messages even in case e/gamma/proton do not exist            
-  G4int temp = GetVerboseLevel();                                                SetVerboseLevel(0);                                                           
-  //  " G4VUserPhysicsList::SetCutsWithDefault" method sets 
-  //   the default cut value for all particle types 
-  SetCutsWithDefault();   
+  // Suppress error messages even in case e/gamma/proton do not exist
+  G4int temp = GetVerboseLevel();                                                SetVerboseLevel(0);
+  //  " G4VUserPhysicsList::SetCutsWithDefault" method sets
+  //   the default cut value for all particle types
+  SetCutsWithDefault();
 
   // Retrieve verbose level
-  SetVerboseLevel(temp);  
+  SetVerboseLevel(temp);
 }
 

@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The VGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -12,7 +12,7 @@
 /// \ingroup VGM_solids
 ///
 /// \class VGM::ITrd
-/// 
+///
 /// The VGM interface to trd solids.
 ///
 /// \author Ivana Hrivnacova; IPN Orsay
@@ -32,23 +32,23 @@ namespace VGM {
       virtual ~ITrd() {}
 
       // methods
-      
+
       virtual SolidType   Type() const = 0;
       virtual std::string Name() const = 0;
 
-		      /// Return the half-length along x at the surface positioned 
+		      /// Return the half-length along x at the surface positioned
 		      /// at -hz in mm
       virtual double XHalfLengthMinusZ() const = 0;
 		      ///
-		      /// Return the half-length along x at the surface positioned 
+		      /// Return the half-length along x at the surface positioned
 		      /// at +hz in mm
       virtual double XHalfLengthPlusZ() const = 0;
 		      ///
-		      /// Return the half-length along y at the surface positioned 
+		      /// Return the half-length along y at the surface positioned
 		      /// at -hz in mm
       virtual double YHalfLengthMinusZ() const = 0;
 		      ///
-		      /// Return thehalf-length along y at the surface positioned 
+		      /// Return thehalf-length along y at the surface positioned
 		      /// at +hz in mm
       virtual double YHalfLengthPlusZ() const = 0;
 		      ///

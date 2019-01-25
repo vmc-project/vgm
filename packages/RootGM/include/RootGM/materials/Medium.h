@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -34,26 +34,26 @@ namespace RootGM {
       Medium(const std::string& name, int mediumId,
              VGM::IMaterial* material,
              int nofParameters, double* parameters);
-      Medium(TGeoMedium* medium);		
+      Medium(TGeoMedium* medium);
       virtual ~Medium();
-    
+
       // methods
       virtual std::string Name() const;
 
       virtual int     Id() const;
       virtual double  Parameter(int i) const;
 
-    protected:  
+    protected:
       Medium();
       Medium(const Medium& rhs);
-    
+
     private:
       void CheckIndex(int iel) const;
 
       // data members
-      static  const int fgkParamSize;  
-          
-      TGeoMedium*  fMedium;  
+      static  const int fgkParamSize;
+
+      TGeoMedium*  fMedium;
   };
 
 }

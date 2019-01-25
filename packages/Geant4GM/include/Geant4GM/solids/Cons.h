@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The Geant4GM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -32,10 +32,10 @@ namespace Geant4GM {
   class Cons : public BaseVGM::VCons
   {
     public:
-      Cons(const std::string& name, 
+      Cons(const std::string& name,
            double rin1, double rout1, double rin2, double rout2,
 	   double hz, double sphi, double dphi);
-      Cons(G4Cons* cons, 
+      Cons(G4Cons* cons,
            G4ReflectedSolid* reflCons = 0);
       virtual ~Cons();
 
@@ -52,7 +52,7 @@ namespace Geant4GM {
     protected:
       Cons();
       Cons(const Cons& rhs);
- 
+
     private:
       bool    fIsReflected;
       G4Cons* fCons;

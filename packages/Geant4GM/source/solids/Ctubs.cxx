@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The Geant4GM package of the Virtual Geometry Model
-// Copyright (C) 2014, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2014, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -32,8 +32,8 @@ using CLHEP::HepRotation;
 
 const double Geant4GM::Ctubs::fgkTolerance = 1e-9;
 //_____________________________________________________________________________
-Geant4GM::Ctubs::Ctubs(const std::string& name, 
-                       double rin, double rout, double hz, 
+Geant4GM::Ctubs::Ctubs(const std::string& name,
+                       double rin, double rout, double hz,
 		       double sphi, double dphi,
 	               double nxlow, double nylow, double nzlow,
 	               double nxhigh, double nyhigh, double nzhigh)
@@ -56,33 +56,33 @@ Geant4GM::Ctubs::Ctubs(const std::string& name,
 /// \param nyhigh Y-component of the normal unit vector to the cut plane in +z
 /// \param nzhigh Z-component of the normal unit vector to the cut plane in +z
 
-  /// Create Geabt4 cut tube 
-  fCutTubs = new G4CutTubs(name, 
-                           rin  / ClhepVGM::Units::Length(), 
-		           rout / ClhepVGM::Units::Length(), 
-		           hz   / ClhepVGM::Units::Length(), 
-		           sphi / ClhepVGM::Units::Angle(), 
+  /// Create Geabt4 cut tube
+  fCutTubs = new G4CutTubs(name,
+                           rin  / ClhepVGM::Units::Length(),
+		           rout / ClhepVGM::Units::Length(),
+		           hz   / ClhepVGM::Units::Length(),
+		           sphi / ClhepVGM::Units::Angle(),
 		           dphi / ClhepVGM::Units::Angle(),
-                           G4ThreeVector(nxlow / ClhepVGM::Units::Length(), 
+                           G4ThreeVector(nxlow / ClhepVGM::Units::Length(),
                                          nylow / ClhepVGM::Units::Length(),
                                          nzlow / ClhepVGM::Units::Length()),
-                           G4ThreeVector(nxhigh / ClhepVGM::Units::Length(), 
+                           G4ThreeVector(nxhigh / ClhepVGM::Units::Length(),
                                          nyhigh / ClhepVGM::Units::Length(),
                                          nzhigh / ClhepVGM::Units::Length()));
-		     
-  Geant4GM::SolidMap::Instance()->AddSolid(this, fCutTubs); 
+
+  Geant4GM::SolidMap::Instance()->AddSolid(this, fCutTubs);
 }
 
 
 //_____________________________________________________________________________
-Geant4GM::Ctubs::Ctubs(G4CutTubs* ctubs, 
+Geant4GM::Ctubs::Ctubs(G4CutTubs* ctubs,
                        G4ReflectedSolid* reflCtubs)
   : VGM::ISolid(),
     VGM::ICtubs(),
     BaseVGM::VCtubs(),
     fIsReflected(false),
     fCutTubs(ctubs)
-{    
+{
 /// Standard constructor to define ctubs from G4 object
 
   if (reflCtubs) {
@@ -94,19 +94,19 @@ Geant4GM::Ctubs::Ctubs(G4CutTubs* ctubs,
 }
 
 //_____________________________________________________________________________
-Geant4GM::Ctubs::Ctubs() 
+Geant4GM::Ctubs::Ctubs()
   : VGM::ISolid(),
     VGM::ICtubs(),
-    BaseVGM::VCtubs() 
+    BaseVGM::VCtubs()
 {
 /// Protected default constructor
 }
 
 //_____________________________________________________________________________
-Geant4GM::Ctubs::Ctubs(const Ctubs& rhs) 
+Geant4GM::Ctubs::Ctubs(const Ctubs& rhs)
   : VGM::ISolid(rhs),
     VGM::ICtubs(rhs),
-    BaseVGM::VCtubs(rhs) 
+    BaseVGM::VCtubs(rhs)
 {
 /// Protected copy constructor
 }
@@ -114,43 +114,43 @@ Geant4GM::Ctubs::Ctubs(const Ctubs& rhs)
 //_____________________________________________________________________________
 Geant4GM::Ctubs::~Ctubs() {
 //
-}    
+}
 
 //_____________________________________________________________________________
 std::string Geant4GM::Ctubs::Name() const
 {
   return fCutTubs->GetName();
-}  
-  
+}
+
 //_____________________________________________________________________________
 double Geant4GM::Ctubs::InnerRadius() const
 {
   return fCutTubs->GetInnerRadius() * ClhepVGM::Units::Length();
-}  
+}
 
 //_____________________________________________________________________________
 double Geant4GM::Ctubs::OuterRadius() const
 {
   return fCutTubs->GetOuterRadius() * ClhepVGM::Units::Length();
-}  
+}
 
 //_____________________________________________________________________________
 double Geant4GM::Ctubs::ZHalfLength() const
 {
   return  fCutTubs->GetZHalfLength() * ClhepVGM::Units::Length();
-}  
+}
 
 //_____________________________________________________________________________
 double Geant4GM::Ctubs::StartPhi() const
 {
   return fCutTubs->GetStartPhiAngle() * ClhepVGM::Units::Angle();
-}  
+}
 
 //_____________________________________________________________________________
 double Geant4GM::Ctubs::DeltaPhi() const
 {
   return fCutTubs->GetDeltaPhiAngle() * ClhepVGM::Units::Angle();
-}  
+}
 //_____________________________________________________________________________
 double Geant4GM::Ctubs::NxLow() const
 {
@@ -158,8 +158,8 @@ double Geant4GM::Ctubs::NxLow() const
     return fCutTubs->GetLowNorm().x() * ClhepVGM::Units::Length();
   else
     return fCutTubs->GetHighNorm().x() * ClhepVGM::Units::Length();
-    
-}  
+
+}
 
 //_____________________________________________________________________________
 double Geant4GM::Ctubs::NyLow() const
@@ -168,7 +168,7 @@ double Geant4GM::Ctubs::NyLow() const
     return fCutTubs->GetLowNorm().y() * ClhepVGM::Units::Length();
   else
     return fCutTubs->GetHighNorm().y() * ClhepVGM::Units::Length();
-}  
+}
 
 //_____________________________________________________________________________
 double Geant4GM::Ctubs::NzLow() const
@@ -177,7 +177,7 @@ double Geant4GM::Ctubs::NzLow() const
     return fCutTubs->GetLowNorm().z() * ClhepVGM::Units::Length();
   else
     return fCutTubs->GetHighNorm().z() * ClhepVGM::Units::Length();
-}  
+}
 
 //_____________________________________________________________________________
 double Geant4GM::Ctubs::NxHigh() const
@@ -186,7 +186,7 @@ double Geant4GM::Ctubs::NxHigh() const
     return fCutTubs->GetHighNorm().x() * ClhepVGM::Units::Length();
   else
     return fCutTubs->GetLowNorm().x() * ClhepVGM::Units::Length();
-}  
+}
 
 //_____________________________________________________________________________
 double Geant4GM::Ctubs::NyHigh() const
@@ -195,7 +195,7 @@ double Geant4GM::Ctubs::NyHigh() const
     return fCutTubs->GetHighNorm().y() * ClhepVGM::Units::Length();
   else
     return fCutTubs->GetLowNorm().y() * ClhepVGM::Units::Length();
-}  
+}
 
 //_____________________________________________________________________________
 double Geant4GM::Ctubs::NzHigh() const
@@ -204,5 +204,5 @@ double Geant4GM::Ctubs::NzHigh() const
     return fCutTubs->GetHighNorm().z() * ClhepVGM::Units::Length();
   else
     return fCutTubs->GetLowNorm().z() * ClhepVGM::Units::Length();
-}  
+}
 

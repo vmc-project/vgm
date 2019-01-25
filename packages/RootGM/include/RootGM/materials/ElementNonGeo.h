@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007 - 2010 Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007 - 2010 Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -30,23 +30,23 @@ namespace RootGM {
   class ElementNonGeo : public virtual VGM::IElement
   {
     public:
-      ElementNonGeo(const std::string& name, 
-              const std::string& symbol,      
-              double z, double a); 
+      ElementNonGeo(const std::string& name,
+              const std::string& symbol,
+              double z, double a);
       virtual ~ElementNonGeo();
-      
+
       // methods
       virtual std::string Name() const;
       virtual std::string Symbol() const;
 
-      virtual double  Z() const;     
-      virtual double  N() const;     
-      virtual double  A() const;     
+      virtual double  Z() const;
+      virtual double  N() const;
+      virtual double  A() const;
 
       virtual int     NofIsotopes() const;
       virtual VGM::IIsotope*  Isotope(int i) const;
       virtual double  RelAbundance(int i) const;
-    
+
     private:
       ElementNonGeo(const ElementNonGeo& rhs);
       ElementNonGeo();
@@ -57,9 +57,9 @@ namespace RootGM {
       std::string   fSymbol;
       double  fZ;
       double  fN;
-      double  fA; 
+      double  fA;
   };
-  
-}  
+
+}
 
 #endif //ROOT_GM_ELEMENT_NON_GEO_H

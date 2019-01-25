@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The Geant4GM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -31,23 +31,23 @@ namespace Geant4GM {
   class Isotope : public virtual VGM::IIsotope
   {
     public:
-      Isotope(const std::string& name, int z, int n, double a); 
-      Isotope(G4Isotope* Isotope);		
+      Isotope(const std::string& name, int z, int n, double a);
+      Isotope(G4Isotope* Isotope);
       virtual ~Isotope();
-    
+
       // methods
       virtual std::string Name() const;
 
-      virtual int     Z() const;     
-      virtual int     N() const;     
-      virtual double  A() const;     
+      virtual int     Z() const;
+      virtual int     N() const;
+      virtual double  A() const;
 
-    protected:  
+    protected:
       Isotope();
       Isotope(const Isotope& rhs);
-    
+
     private:
-      G4Isotope*  fIsotope;  
+      G4Isotope*  fIsotope;
   };
 
 }

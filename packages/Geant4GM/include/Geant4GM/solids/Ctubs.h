@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The Geant4GM package of the Virtual Geometry Model
-// Copyright (C) 2014, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2014, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -37,12 +37,12 @@ namespace Geant4GM {
   class Ctubs : public BaseVGM::VCtubs
   {
     public:
-      Ctubs(const std::string& name, 
-              double rin, double rout, double hz, 
+      Ctubs(const std::string& name,
+              double rin, double rout, double hz,
 	      double sphi, double dphi,
 	      double nxlow, double nylow, double nzlow,
 	      double nxhigh, double nyhigh, double nzhigh);
-      Ctubs(G4CutTubs* ctubs, 
+      Ctubs(G4CutTubs* ctubs,
             G4ReflectedSolid* reflCtubs = 0);
       virtual ~Ctubs();
 
@@ -66,7 +66,7 @@ namespace Geant4GM {
 
     private:
       static const double fgkTolerance;
-    
+
       bool        fIsReflected;
       G4CutTubs*  fCutTubs;
   };

@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -31,7 +31,7 @@ namespace RootGM {
   class Polycone : public BaseVGM::VPolycone
   {
     public:
-      Polycone(const std::string& name, 
+      Polycone(const std::string& name,
                double sphi, double dphi, int nofZPlanes,
                double* z, double* rin, double* rout);
       Polycone(TGeoPcon* polycone);
@@ -52,7 +52,7 @@ namespace RootGM {
 
     private:
       void CreateBuffers();
-  
+
       static const int fgkMaxNofZPlanes;
       static double*   fgZBuffer;
       static double*   fgRinBuffer;

@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The VGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -33,7 +33,7 @@ namespace VGM {
     kMultiplePlacement,
     //kParameterised,
     kUnknownPlacement
-  };  
+  };
 
   std::string PlacementTypeName(VGM::PlacementType typeId);
 
@@ -43,7 +43,7 @@ namespace VGM {
   {
     public:
       virtual ~IPlacement() {}
-    
+
       // methods
 			     ///
                              /// Return the type of this placement
@@ -65,7 +65,7 @@ namespace VGM {
 			     ///
                              /// Return the 3D transformation
 			     /// (if simple placement)
-      virtual Transform     Transformation() const = 0;      
+      virtual Transform     Transformation() const = 0;
 			     ///
                              /// Fill the multiple placement data
 			     /// if relevant and return true;

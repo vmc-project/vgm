@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The VGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -12,7 +12,7 @@
 /// \ingroup VGM_solids
 ///
 /// \class VGM::ITorus
-/// 
+///
 /// The VGM interface to torus solids.
 ///
 /// \author Ivana Hrivnacova; IPN Orsay
@@ -32,10 +32,10 @@ namespace VGM {
       virtual ~ITorus() {}
 
       // methods
-      
+
       virtual SolidType   Type() const = 0;
       virtual std::string Name() const = 0;
- 
+
 		      ///
 		      /// Return the inside radius of the torus in mm
       virtual double InnerRadius() const = 0;

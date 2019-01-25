@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The ClhepVGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -13,7 +13,7 @@
 //
 /// ClhepVGM utilities
 ///
-/// Utility functions 
+/// Utility functions
 ///
 /// \author Ivana Hrivnacova; IPN Orsay
 
@@ -36,7 +36,7 @@ namespace ClhepVGM {
     VGM::Transform  TransformScale(const HepGeom::Scale3D& scaleTransform);
     VGM::Transform  Identity();
     bool            HasReflection(const HepGeom::Transform3D& transform);
-    
+
     // VGM -> CLHEP
     //
     CLHEP::Hep3Vector     Translation(const VGM::Transform& transform);

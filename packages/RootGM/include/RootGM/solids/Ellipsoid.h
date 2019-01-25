@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -32,7 +32,7 @@ namespace RootGM {
   class Ellipsoid : public BaseVGM::VEllipsoid
   {
     public:
-      Ellipsoid(const std::string& name, 
+      Ellipsoid(const std::string& name,
           double dx, double dy, double dz, double zBottomCut, double zTopCut);
       Ellipsoid(TGeoScaledShape* scaledShape);
       virtual ~Ellipsoid();
@@ -48,7 +48,7 @@ namespace RootGM {
     protected:
       Ellipsoid();
       Ellipsoid(const Ellipsoid& rhs);
-    
+
     private:
       TGeoShape*  fEllipsoid;
       double      fDx;

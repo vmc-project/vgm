@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The Geant4GM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -34,10 +34,10 @@ namespace Geant4GM {
   class Polycone : public BaseVGM::VPolycone
   {
     public:
-      Polycone(const std::string& name, 
+      Polycone(const std::string& name,
                double sphi, double dphi, int nofZplanes,
                double* z, double* rin, double* rout);
-      Polycone(G4Polycone* polycone, 
+      Polycone(G4Polycone* polycone,
                G4ReflectedSolid* reflPolycone = 0);
       Polycone(G4Cons* cons);
       Polycone(G4Tubs* tubs);

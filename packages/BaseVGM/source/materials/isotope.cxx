@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The BaseVGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -20,11 +20,11 @@
 //_____________________________________________________________________________
 std::ostream& operator<<(std::ostream& out, const VGM::IIsotope& isotope)
 {
-  out << "Isotope: " 
+  out << "Isotope: "
       << "\"" << isotope.Name() << "\"  "
       << "  Z = "  << isotope.Z()
       << "  N = "  << isotope.N()
-      << "  A = "  << isotope.A() << " g/mole";  
-    
-  return out;    
+      << "  A = "  << isotope.A() << " g/mole";
+
+  return out;
 }

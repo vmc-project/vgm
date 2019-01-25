@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -31,7 +31,7 @@ namespace RootGM {
   class Hype : public BaseVGM::VHype
   {
     public:
-      Hype(const std::string& name, 
+      Hype(const std::string& name,
            double r1, double r2, double stereo1, double stereo2, double hz);
       Hype(TGeoHype* hype);
       virtual ~Hype();

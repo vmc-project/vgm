@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The test program of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -15,9 +15,9 @@
 // The test primary generator action messenger
 //
 // Author: Ivana Hrivnacova; IPN Orsay
- 
+
 #ifndef TST_PRIMARY_GENERATOR_ACTION_MESSENGER_H
-#define TST_PRIMARY_GENERATOR_ACTION_MESSENGER_H 
+#define TST_PRIMARY_GENERATOR_ACTION_MESSENGER_H
 
 #include <G4UImessenger.hh>
 #include <globals.hh>
@@ -33,10 +33,10 @@ class TstPrimaryGeneratorActionMessenger: public G4UImessenger
     TstPrimaryGeneratorActionMessenger(
        TstPrimaryGeneratorAction* primaryGeneratorAction);
     virtual ~TstPrimaryGeneratorActionMessenger();
-   
-    // methods 
+
+    // methods
     virtual void SetNewValue(G4UIcommand* command, G4String string);
-    
+
   private:
     TstPrimaryGeneratorActionMessenger();
     TstPrimaryGeneratorActionMessenger(
@@ -45,7 +45,7 @@ class TstPrimaryGeneratorActionMessenger: public G4UImessenger
        const TstPrimaryGeneratorActionMessenger& right);
 
     // data members
-    TstPrimaryGeneratorAction*  fPrimaryGeneratorAction; //associated class 
+    TstPrimaryGeneratorAction*  fPrimaryGeneratorAction; //associated class
     G4UIdirectory*       fDirectory;         //command directory
     G4UIcmdWithAString*  fSetGunTypeCmd;     //command: /tstGenerator/gunType
 };

@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The Geant4GM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -32,9 +32,9 @@ namespace Geant4GM {
   class EllipticalTube : public BaseVGM::VEllipticalTube
   {
     public:
-      EllipticalTube(const std::string& name, 
+      EllipticalTube(const std::string& name,
                      double dx, double dy, double hz);
-      EllipticalTube(G4EllipticalTube* eltu, 
+      EllipticalTube(G4EllipticalTube* eltu,
                      G4ReflectedSolid* reflEltu = 0);
       virtual ~EllipticalTube();
 

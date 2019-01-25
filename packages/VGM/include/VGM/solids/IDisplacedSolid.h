@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The VGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -12,7 +12,7 @@
 /// \ingroup VGM_solids
 ///
 /// \class VGM::IDisplacedSolid
-/// 
+///
 /// The VGM interface to displaced solids.
 ///
 /// \author Ivana Hrivnacova; IPN Orsay
@@ -33,23 +33,23 @@ namespace VGM {
       virtual ~IDisplacedSolid() {}
 
       // methods
-      
+
       virtual SolidType    Type() const = 0;
       virtual std::string  Name() const = 0;
 
-			    /// 
+			    ///
                             /// Return the constituent solid
       virtual ISolid*      ConstituentSolid() const = 0;
-			    /// 
+			    ///
                             /// Return the 3D displacement of
 			    /// the constituent solid
-      virtual Transform    Displacement() const = 0; 
+      virtual Transform    Displacement() const = 0;
 
       // streaming
       virtual std::ostream& Put(std::ostream& out) const = 0;
   };
 
-}  
+}
 
 std::ostream& operator << (std::ostream& out, const VGM::IDisplacedSolid& solid);
 

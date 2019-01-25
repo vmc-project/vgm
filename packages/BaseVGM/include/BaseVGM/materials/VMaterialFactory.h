@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The BaseVGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -14,8 +14,8 @@
 /// \class BaseVGM::VMaterialFactory
 ///
 /// The abstract base class to material factory.
-/// It owns the material stores and implements the export 
-/// to other factory. 
+/// It owns the material stores and implements the export
+/// to other factory.
 ///
 /// \author Ivana Hrivnacova; IPN Orsay
 
@@ -34,49 +34,49 @@ namespace BaseVGM {
     public:
       VMaterialFactory(const std::string& name);
       virtual ~VMaterialFactory();
-    
+
       //
       // methods
       //
-    
-      // access  
+
+      // access
       //
       virtual std::string Name() const;
 
-      virtual const VGM::IsotopeStore&   Isotopes() const;	
-      virtual const VGM::ElementStore&   Elements() const;	
-      virtual const VGM::MaterialStore&  Materials() const;	
-      virtual const VGM::MediumStore&    Media() const;	
+      virtual const VGM::IsotopeStore&   Isotopes() const;
+      virtual const VGM::ElementStore&   Elements() const;
+      virtual const VGM::MaterialStore&  Materials() const;
+      virtual const VGM::MediumStore&    Media() const;
 
-      virtual const VGM::IIsotope*   Isotope(const std::string& name) const;	
-      virtual const VGM::IElement*   Element(const std::string& name) const;	
-      virtual const VGM::IMaterial*  Material(const std::string& name) const;	
-      virtual const VGM::IMedium*    Medium(const std::string& name) const;	
+      virtual const VGM::IIsotope*   Isotope(const std::string& name) const;
+      virtual const VGM::IElement*   Element(const std::string& name) const;
+      virtual const VGM::IMaterial*  Material(const std::string& name) const;
+      virtual const VGM::IMedium*    Medium(const std::string& name) const;
 
       // import/export
       //
-      virtual bool Export(VGM::IMaterialFactory* factory) const;			       
- 
+      virtual bool Export(VGM::IMaterialFactory* factory) const;
+
       // listings
       //
-      virtual void  PrintIsotopes() const;			       
-      virtual void  PrintElements() const;			       
+      virtual void  PrintIsotopes() const;
+      virtual void  PrintElements() const;
       virtual void  PrintMaterials() const;
       virtual void  PrintMedia() const;
-    
+
       // debug
       //
-      virtual void SetDebug (int debug);			       
+      virtual void SetDebug (int debug);
       virtual int  Debug() const;
 
     protected:
       VMaterialFactory();
-      VMaterialFactory(const VMaterialFactory& rhs); 
+      VMaterialFactory(const VMaterialFactory& rhs);
 
-      virtual VGM::IsotopeStore&    IsotopeStore();			       
-      virtual VGM::ElementStore&    ElementStore();			       
-      virtual VGM::MaterialStore&   MaterialStore();			       
-      virtual VGM::MediumStore&     MediumStore();			       
+      virtual VGM::IsotopeStore&    IsotopeStore();
+      virtual VGM::ElementStore&    ElementStore();
+      virtual VGM::MaterialStore&   MaterialStore();
+      virtual VGM::MediumStore&     MediumStore();
 
     private:
       // types
@@ -84,31 +84,31 @@ namespace BaseVGM {
       typedef std::map<VGM::IElement*,  VGM::IElement*>   ElementMap;
       typedef std::map<VGM::IMaterial*, VGM::IMaterial*>  MaterialMap;
 
-      VGM::IIsotope*  ExportIsotope(VGM::IIsotope* isotope, 
+      VGM::IIsotope*  ExportIsotope(VGM::IIsotope* isotope,
                               VGM::IMaterialFactory* factory) const;
-      VGM::IElement*  ExportElement(VGM::IElement* element, 
+      VGM::IElement*  ExportElement(VGM::IElement* element,
                               VGM::IMaterialFactory* factory,
 			      IsotopeMap* map) const;
-      VGM::IMaterial* ExportMaterial(VGM::IMaterial* material, 
+      VGM::IMaterial* ExportMaterial(VGM::IMaterial* material,
                               VGM::IMaterialFactory* factory,
 			      ElementMap* map) const;
-      VGM::IMedium*   ExportMedium(VGM::IMedium* medium, 
+      VGM::IMedium*   ExportMedium(VGM::IMedium* medium,
                               VGM::IMaterialFactory* factory,
 			      MaterialMap* map) const;
-      VGM::IMedium*   GenerateMedium(VGM::IMaterial* material, 
+      VGM::IMedium*   GenerateMedium(VGM::IMaterial* material,
                               int mediumId,
                               VGM::IMaterialFactory* factory,
 			      MaterialMap* map) const;
 
-      IsotopeMap*  ExportIsotopes(VGM::IMaterialFactory* factory) const;			       
+      IsotopeMap*  ExportIsotopes(VGM::IMaterialFactory* factory) const;
       ElementMap*  ExportElements(VGM::IMaterialFactory* factory,
-                                IsotopeMap* map) const;			       
-      MaterialMap* ExportMaterials(VGM::IMaterialFactory* factory, 
-                                ElementMap* map) const;			       
-      void         ExportMedia(VGM::IMaterialFactory* factory, 
-                                 MaterialMap* map) const;			       
-      void         GenerateMedia(VGM::IMaterialFactory* factory, 
-                                MaterialMap* map) const;			       
+                                IsotopeMap* map) const;
+      MaterialMap* ExportMaterials(VGM::IMaterialFactory* factory,
+                                ElementMap* map) const;
+      void         ExportMedia(VGM::IMaterialFactory* factory,
+                                 MaterialMap* map) const;
+      void         GenerateMedia(VGM::IMaterialFactory* factory,
+                                MaterialMap* map) const;
 
       // data members
       int                 fDebug;
@@ -118,64 +118,64 @@ namespace BaseVGM {
       VGM::MaterialStore  fMaterials;
       VGM::MediumStore    fMedia;
   };
-  
-}  
+
+}
 
 // inline functions
 
-inline std::string 
+inline std::string
 BaseVGM::VMaterialFactory::Name() const
 { return fName; }
 
-inline const VGM::IsotopeStore& 
+inline const VGM::IsotopeStore&
 BaseVGM::VMaterialFactory::Isotopes() const
 { return fIsotopes; }
 
-inline const VGM::ElementStore& 
+inline const VGM::ElementStore&
 BaseVGM::VMaterialFactory::Elements() const
 { return fElements; }
 
-inline const VGM::MaterialStore& 
+inline const VGM::MaterialStore&
 BaseVGM::VMaterialFactory::Materials() const
 { return fMaterials; }
 
-inline const VGM::MediumStore& 
+inline const VGM::MediumStore&
 BaseVGM::VMaterialFactory::Media() const
 { return fMedia; }
 
-inline VGM::IsotopeStore& 
+inline VGM::IsotopeStore&
 BaseVGM::VMaterialFactory::IsotopeStore()
-{  
+{
   /// Return the store of isotopes (non const)
-  return fIsotopes; 
+  return fIsotopes;
 }
-			       
-inline VGM::ElementStore& 
+
+inline VGM::ElementStore&
 BaseVGM::VMaterialFactory::ElementStore()
-{  
+{
   /// Return the store of elements (non const)
-  return fElements; 
+  return fElements;
 }
-			       
-inline VGM::MaterialStore& 
+
+inline VGM::MaterialStore&
 BaseVGM::VMaterialFactory::MaterialStore()
-{   
+{
   /// Return the store of materials (non const)
-  return fMaterials; 
+  return fMaterials;
 }
-			       
-inline VGM::MediumStore& 
+
+inline VGM::MediumStore&
 BaseVGM::VMaterialFactory::MediumStore()
 {
   /// Return the store of media (non const)
-  return fMedia; 
+  return fMedia;
 }
-			       
-inline void 
+
+inline void
 BaseVGM::VMaterialFactory::SetDebug (int debug)
 { fDebug = debug; }
-			       
-inline int 
+
+inline int
 BaseVGM::VMaterialFactory::Debug() const
 { return fDebug; }
 

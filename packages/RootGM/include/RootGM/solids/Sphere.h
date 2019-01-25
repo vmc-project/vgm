@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The RootGM package of the Virtual Geometry Model
-// Copyright (C) 2007, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -31,8 +31,8 @@ namespace RootGM {
   class Sphere : public BaseVGM::VSphere
   {
     public:
-      Sphere(const std::string& name, 
-             double rin, double rout, double sphi, double dphi, 
+      Sphere(const std::string& name,
+             double rin, double rout, double sphi, double dphi,
 	     double stheta, double dtheta);
       Sphere(TGeoSphere* sphere);
       virtual ~Sphere();

@@ -2,9 +2,9 @@
 
 // -----------------------------------------------------------------------
 // The Geant4GM package of the Virtual Geometry Model
-// Copyright (C) 2007 - 2017, Ivana Hrivnacova               
-// All rights reserved. 
-//           
+// Copyright (C) 2007 - 2017, Ivana Hrivnacova
+// All rights reserved.
+//
 // For the licensing terms see vgm/LICENSE.
 // Contact: ivana@ipno.in2p3.fr
 // -----------------------------------------------------------------------
@@ -35,8 +35,8 @@ namespace Geant4GM {
   class ScaledSolid : public BaseVGM::VScaledSolid
   {
     public:
-      ScaledSolid(const std::string& name, 
-                  VGM::ISolid* solid, 
+      ScaledSolid(const std::string& name,
+                  VGM::ISolid* solid,
                   const HepGeom::Scale3D& scale3D);
       ScaledSolid(G4ScaledSolid* scaledSolid,
                   G4ReflectedSolid* reflectedScaled);
@@ -46,8 +46,8 @@ namespace Geant4GM {
       virtual std::string Name() const;
 
       virtual VGM::ISolid*     ConstituentSolid() const;
-      virtual VGM::Transform   Scale() const;      
-      virtual bool             ToBeReflected() const;     
+      virtual VGM::Transform   Scale() const;
+      virtual bool             ToBeReflected() const;
 
     protected:
       ScaledSolid();
@@ -57,10 +57,10 @@ namespace Geant4GM {
       G4ScaledSolid*  fScaledSolid;
       bool            fToBeReflected;
   };
-  
-}  
+
+}
 
 inline bool Geant4GM::ScaledSolid::ToBeReflected() const
-{ return fToBeReflected; }     
+{ return fToBeReflected; }
 
 #endif //GEANT4_GM_SCALED_SOLID_H
