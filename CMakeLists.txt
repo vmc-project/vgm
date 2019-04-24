@@ -4,13 +4,13 @@
 # The configuration file for CMake build for Virtual Geometry Model
 # Copyright (C) 2012, Ivana Hrivnacova
 # All rights reserved.
-# 
+#
 # For the licensing terms see vgm/LICENSE.
 # Contact: ivana@ipno.in2p3.fr
 # ------------------------------------------------------------------------------
 
-# The CMake build for Virtual Geometry Model is a result of a merge 
-# of the CMake configuration files kindly provided 
+# The CMake build for Virtual Geometry Model is a result of a merge
+# of the CMake configuration files kindly provided
 # by Florian Uhlig, GSI and Pere Mato, CERN.
 
 #---  Enforce an out-of-source builds before anything else ---------------------
@@ -28,9 +28,9 @@ endif()
 cmake_minimum_required(VERSION 2.8.3 FATAL_ERROR)
 
 #--- CMake Module Path----------------------------------------------------------
-set(CMAKE_MODULE_PATH 
+set(CMAKE_MODULE_PATH
     ${CMAKE_SOURCE_DIR}/cmake
-    ${CMAKE_MODULE_PATH}) 
+    ${CMAKE_MODULE_PATH})
 
 #---Project VGM ----------------------------------------------------------------
 #
@@ -51,7 +51,7 @@ option(WITH_EXAMPLES     "Build examples" ON)
 option(WITH_TEST         "Build test" OFF)
 option(WITH_G4ROOT       "Build test with G4Root" OFF)
 option(INSTALL_EXAMPLES  "Install examples" ON)
-option(BUILD_SHARED_LIBS "Build the dynamic libraries" ON)  
+option(BUILD_SHARED_LIBS "Build the dynamic libraries" ON)
 
 #--- Find required packages ----------------------------------------------------
 include(VGMRequiredPackages)
@@ -68,7 +68,7 @@ if(WITH_TEST)
      add_subdirectory(test)
    else()
      message(STATUS "VGM test inactivated: requires both WITH_GEANT4 and WITH_ROOT set ON.")
-   endif()  
+   endif()
 endif()
 
 #--- Build examples ------------------------------------------------------------

@@ -4,13 +4,13 @@
 # The configuration file for CMake build for Virtual Geometry Model
 # Copyright (C) 2012, Ivana Hrivnacova
 # All rights reserved.
-# 
+#
 # For the licensing terms see vgm/LICENSE.
 # Contact: ivana@ipno.in2p3.fr
 # ------------------------------------------------------------------------------
 
-# The CMake build for Virtual Geometry Model is a result of a merge 
-# of the CMake configuration files kindly provided 
+# The CMake build for Virtual Geometry Model is a result of a merge
+# of the CMake configuration files kindly provided
 # by Florian Uhlig, GSI and Pere Mato, CERN.
 
 # - Try to find CLHEP
@@ -36,7 +36,7 @@ find_path(CLHEP_INCLUDE_DIRS NAMES CLHEP/Evaluator/Evaluator.h PATHS
   $ENV{CLHEP_BASE_DIR}/include
 )
 
-# CLHEP library external to Geant4 
+# CLHEP library external to Geant4
 find_path(EXTERNAL_CLHEP_LIBRARY_DIR NAMES libCLHEP.so libCLHEP.dylib PATHS
   ${CLHEP_LIB_DIR}
   ${CLHEP_DIR}/lib
@@ -44,10 +44,10 @@ find_path(EXTERNAL_CLHEP_LIBRARY_DIR NAMES libCLHEP.so libCLHEP.dylib PATHS
 )
 if (EXTERNAL_CLHEP_LIBRARY_DIR)
   set(CLHEP_LIBRARY_DIR ${EXTERNAL_CLHEP_LIBRARY_DIR})
-  set(CLHEP_LIBRARY_NAME CLHEP)  
-endif()    
+  set(CLHEP_LIBRARY_NAME CLHEP)
+endif()
 
-# CLHEP library within Geant4 
+# CLHEP library within Geant4
 if (NOT EXTERNAL_CLHEP_LIBRARY_DIR)
   find_path(CLHEP_LIBRARY_DIR NAMES libG4clhep.so libG4clhep.dylib PATHS
     ${Geant4_DIR}/..
@@ -56,8 +56,8 @@ if (NOT EXTERNAL_CLHEP_LIBRARY_DIR)
   if (CLHEP_LIBRARY_DIR)
     set(CLHEP_LIBRARY_NAME G4clhep)
   endif(CLHEP_LIBRARY_DIR)
-endif()    
-   
+endif()
+
 if (CLHEP_INCLUDE_DIRS AND CLHEP_LIBRARY_DIR)
   set(CLHEP_FOUND TRUE)
 endif (CLHEP_INCLUDE_DIRS AND CLHEP_LIBRARY_DIR)

@@ -4,18 +4,18 @@
 # The configuration file for CMake build for Virtual Geometry Model
 # Copyright (C) 2012, Ivana Hrivnacova
 # All rights reserved.
-# 
+#
 # For the licensing terms see vgm/LICENSE.
 # Contact: ivana@ipno.in2p3.fr
 # ------------------------------------------------------------------------------
 
-# The CMake build for Virtual Geometry Model is a result of a merge 
-# of the CMake configuration files kindly provided 
+# The CMake build for Virtual Geometry Model is a result of a merge
+# of the CMake configuration files kindly provided
 # by Florian Uhlig, GSI and Pere Mato, CERN.
 
 #---vgm_test -------------------------------------------------------------------
 
-message(STATUS "Configuring vgm_test")  
+message(STATUS "Configuring vgm_test")
 
 # Create executables "vgm_test"
 
@@ -23,12 +23,12 @@ message(STATUS "Configuring vgm_test")
 # Includes
 #
 include_directories(
-   ${CLHEP_INCLUDE_DIRS} 
-   ${ROOT_INCLUDE_DIRS} 
-   ${Geant4_INCLUDE_DIRS} 
+   ${CLHEP_INCLUDE_DIRS}
+   ${ROOT_INCLUDE_DIRS}
+   ${Geant4_INCLUDE_DIRS}
    ${VGM_SOURCE_DIR}/packages/VGM/include
    ${VGM_SOURCE_DIR}/packages/ClhepVGM/include
-   ${VGM_SOURCE_DIR}/packages/BaseVGM/include 
+   ${VGM_SOURCE_DIR}/packages/BaseVGM/include
    ${VGM_SOURCE_DIR}/packages/XmlVGM/include
    ${VGM_SOURCE_DIR}/packages/RootGM/include
    ${VGM_SOURCE_DIR}/packages/Geant4GM/include
@@ -46,7 +46,7 @@ file(GLOB headers include/*.hh)
 #
 if (WITH_ROOT AND WITH_G4ROOT)
   include_directories(${G4Root_INCLUDE_DIRS})
-  add_definitions(-DVGM_WITH_G4ROOT) 
+  add_definitions(-DVGM_WITH_G4ROOT)
 endif(WITH_ROOT AND WITH_G4ROOT)
 
 #----------------------------------------------------------------------------

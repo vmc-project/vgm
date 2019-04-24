@@ -2,7 +2,7 @@
 # The configuration file for CMake build for Virtual Geometry Model
 # Copyright (C) 2014, Ivana Hrivnacova
 # All rights reserved.
-# 
+#
 # For the licensing terms see vgm/LICENSE.
 # Contact: ivana@ipno.in2p3.fr
 # ------------------------------------------------------------------------------
@@ -36,7 +36,7 @@ endif()
 if(WITH_TEST)
   # G4Root
   if (WITH_ROOT AND WITH_G4ROOT)
-    find_package(G4Root REQUIRED)      
+    find_package(G4Root REQUIRED)
   endif(WITH_ROOT AND WITH_G4ROOT)
 
 endif(WITH_TEST)

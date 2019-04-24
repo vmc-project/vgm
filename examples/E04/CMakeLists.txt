@@ -4,7 +4,7 @@
 # The configuration file for CMake build for Virtual Geometry Model
 # Copyright (C) 2012, Ivana Hrivnacova
 # All rights reserved.
-# 
+#
 # For the licensing terms see vgm/LICENSE.
 # Contact: ivana@ipno.in2p3.fr
 # ------------------------------------------------------------------------------
@@ -18,9 +18,9 @@ project(E04)
 #----------------------------------------------------------------------------
 # Set path to Find modules in VGM
 #
-set(CMAKE_MODULE_PATH 
+set(CMAKE_MODULE_PATH
     ${VGM_DIR}/Modules
-    ${CMAKE_MODULE_PATH}) 
+    ${CMAKE_MODULE_PATH})
 
 #----------------------------------------------------------------------------
 # Find VGM package

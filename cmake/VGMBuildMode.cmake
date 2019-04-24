@@ -2,7 +2,7 @@
 # The configuration file for CMake build for Virtual Geometry Model
 # Copyright (C) 2014, Ivana Hrivnacova
 # All rights reserved.
-# 
+#
 # For the licensing terms see vgm/LICENSE.
 # Contact: ivana@ipno.in2p3.fr
 # ------------------------------------------------------------------------------

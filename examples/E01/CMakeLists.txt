@@ -9,16 +9,16 @@ project(E01)
 #----------------------------------------------------------------------------
 # Set path to Find modules in VGM
 #
-set(CMAKE_MODULE_PATH 
+set(CMAKE_MODULE_PATH
     ${VGM_DIR}/Modules
-    ${CMAKE_MODULE_PATH}) 
+    ${CMAKE_MODULE_PATH})
 
 #----------------------------------------------------------------------------
 # Find VGM package
 if (NOT VGM_FOUND)
   find_package(VGM REQUIRED)
 endif()
-  
+
 #----------------------------------------------------------------------------
 # Find ROOT package
 find_package(ROOT REQUIRED)

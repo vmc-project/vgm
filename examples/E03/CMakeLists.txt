@@ -9,9 +9,9 @@ project(E03)
 #----------------------------------------------------------------------------
 # Set path to Find modules in VGM
 #
-set(CMAKE_MODULE_PATH 
+set(CMAKE_MODULE_PATH
     ${VGM_DIR}/Modules
-    ${CMAKE_MODULE_PATH}) 
+    ${CMAKE_MODULE_PATH})
 
 #----------------------------------------------------------------------------
 # Find VGM package
