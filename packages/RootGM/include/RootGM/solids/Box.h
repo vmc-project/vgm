@@ -28,27 +28,27 @@ class TGeoBBox;
 
 namespace RootGM {
 
-  class Box : public BaseVGM::VBox
-  {
-    public:
-      Box(const std::string& name, double hx, double hy, double hz);
-      Box(TGeoBBox* box, bool addInMap = true);
-      virtual ~Box();
+class Box : public BaseVGM::VBox
+{
+ public:
+  Box(const std::string& name, double hx, double hy, double hz);
+  Box(TGeoBBox* box, bool addInMap = true);
+  virtual ~Box();
 
-      // methods
-      virtual std::string Name() const;
-      virtual double XHalfLength() const;
-      virtual double YHalfLength() const;
-      virtual double ZHalfLength() const;
+  // methods
+  virtual std::string Name() const;
+  virtual double XHalfLength() const;
+  virtual double YHalfLength() const;
+  virtual double ZHalfLength() const;
 
-    protected:
-      Box();
-      Box(const Box& rhs);
+ protected:
+  Box();
+  Box(const Box& rhs);
 
-    private:
-      TGeoBBox*  fBox;
-  };
+ private:
+  TGeoBBox* fBox;
+};
 
-}
+} // namespace RootGM
 
-#endif //ROOT_GM_BOX_H
+#endif // ROOT_GM_BOX_H

@@ -29,31 +29,30 @@ class TGeoArb8;
 
 namespace RootGM {
 
-  class Arb8 : public BaseVGM::VArb8
-  {
-    public:
-      Arb8(const std::string& name,
-           double hz,
-           std::vector<VGM::TwoVector> vertices);
-      Arb8(TGeoArb8* arb8);
-      virtual ~Arb8();
+class Arb8 : public BaseVGM::VArb8
+{
+ public:
+  Arb8(
+    const std::string& name, double hz, std::vector<VGM::TwoVector> vertices);
+  Arb8(TGeoArb8* arb8);
+  virtual ~Arb8();
 
-      // methods
-      virtual std::string     Name() const;
-      virtual int             NofVertices() const;
-      virtual VGM::TwoVector  Vertex(int index) const;
-      virtual double          TwistAngle(int index) const;
-      virtual double          ZHalfLength() const;
+  // methods
+  virtual std::string Name() const;
+  virtual int NofVertices() const;
+  virtual VGM::TwoVector Vertex(int index) const;
+  virtual double TwistAngle(int index) const;
+  virtual double ZHalfLength() const;
 
-    protected:
-      Arb8();
-      Arb8(const Arb8& rhs);
+ protected:
+  Arb8();
+  Arb8(const Arb8& rhs);
 
-      static const int fgkNofVertices;
+  static const int fgkNofVertices;
 
-      TGeoArb8* fArb8;
-  };
+  TGeoArb8* fArb8;
+};
 
-}
+} // namespace RootGM
 
-#endif //ROOT_GM_ARB8_H
+#endif // ROOT_GM_ARB8_H

@@ -32,32 +32,30 @@ class G4ReflectedSolid;
 
 namespace Geant4GM {
 
-  class Tubs : public BaseVGM::VTubs
-  {
-    public:
-      Tubs(const std::string& name,
-              double rin, double rout, double hz,
-	      double sphi, double dphi);
-      Tubs(G4Tubs* tubs,
-              G4ReflectedSolid* reflTubs = 0);
-      virtual ~Tubs();
+class Tubs : public BaseVGM::VTubs
+{
+ public:
+  Tubs(const std::string& name, double rin, double rout, double hz, double sphi,
+    double dphi);
+  Tubs(G4Tubs* tubs, G4ReflectedSolid* reflTubs = 0);
+  virtual ~Tubs();
 
-      // methods
-      virtual std::string Name() const;
-      virtual double InnerRadius() const;
-      virtual double OuterRadius() const;
-      virtual double ZHalfLength() const;
-      virtual double StartPhi() const;
-      virtual double DeltaPhi() const;
+  // methods
+  virtual std::string Name() const;
+  virtual double InnerRadius() const;
+  virtual double OuterRadius() const;
+  virtual double ZHalfLength() const;
+  virtual double StartPhi() const;
+  virtual double DeltaPhi() const;
 
-    protected:
-      Tubs();
-      Tubs(const Tubs& rhs);
+ protected:
+  Tubs();
+  Tubs(const Tubs& rhs);
 
-    private:
-      G4Tubs* fTubs;
-  };
+ private:
+  G4Tubs* fTubs;
+};
 
-}
+} // namespace Geant4GM
 
-#endif //GEANT4_GM_TUBS_H
+#endif // GEANT4_GM_TUBS_H

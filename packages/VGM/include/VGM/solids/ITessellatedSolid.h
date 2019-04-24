@@ -27,32 +27,32 @@
 
 namespace VGM {
 
-  class ITessellatedSolid : public virtual ISolid
-  {
-    public:
-      virtual ~ITessellatedSolid() {}
+class ITessellatedSolid : public virtual ISolid
+{
+ public:
+  virtual ~ITessellatedSolid() {}
 
-      // methods
+  // methods
 
-      virtual SolidType   Type() const = 0;
-      virtual std::string Name() const = 0;
+  virtual SolidType Type() const = 0;
+  virtual std::string Name() const = 0;
 
-		           ///
-		           /// Return the number of facets
-      virtual int         NofFacets() const = 0;
-		           ///
-		           /// Return the number of vertices in the the ifacet-th facet
-      virtual int         NofVertices(int ifacet) const = 0;
-		           ///
-		           /// Return the index-th vertex in the ifacet-th facet
-      virtual ThreeVector Vertex(int ifacet, int index) const = 0;
+  ///
+  /// Return the number of facets
+  virtual int NofFacets() const = 0;
+  ///
+  /// Return the number of vertices in the the ifacet-th facet
+  virtual int NofVertices(int ifacet) const = 0;
+  ///
+  /// Return the index-th vertex in the ifacet-th facet
+  virtual ThreeVector Vertex(int ifacet, int index) const = 0;
 
-      // streaming
-      virtual std::ostream& Put(std::ostream& out) const = 0;
-  };
+  // streaming
+  virtual std::ostream& Put(std::ostream& out) const = 0;
+};
 
-}
+} // namespace VGM
 
-std::ostream& operator << (std::ostream& out, const VGM::ITessellatedSolid& xtru);
+std::ostream& operator<<(std::ostream& out, const VGM::ITessellatedSolid& xtru);
 
-#endif //VGM_I_EXTRUDED_SOLID_H
+#endif // VGM_I_EXTRUDED_SOLID_H

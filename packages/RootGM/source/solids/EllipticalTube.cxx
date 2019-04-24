@@ -17,31 +17,27 @@
 // Author: Ivana Hrivnacova; IPN Orsay
 
 #include "RootGM/solids/EllipticalTube.h"
-#include "RootGM/solids/SolidMap.h"
 #include "RootGM/common/Units.h"
+#include "RootGM/solids/SolidMap.h"
 
 #include "TGeoEltu.h"
 
-
 //_____________________________________________________________________________
-RootGM::EllipticalTube::EllipticalTube(const std::string& name,
-                                       double dx, double dy, double hz)
+RootGM::EllipticalTube::EllipticalTube(
+  const std::string& name, double dx, double dy, double hz)
   : VGM::ISolid(),
     VGM::IEllipticalTube(),
     BaseVGM::VEllipticalTube(),
-    fEllipticalTube(new TGeoEltu(name.data(),
-                    dx / RootGM::Units::Length(),
-		    dy / RootGM::Units::Length(),
-		    hz / RootGM::Units::Length()))
+    fEllipticalTube(new TGeoEltu(name.data(), dx / RootGM::Units::Length(),
+      dy / RootGM::Units::Length(), hz / RootGM::Units::Length()))
 {
-/// Standard constructor to define elliptical tube from parameters
-/// \param dx the semi-axis of the ellipse along x in mm
-/// \param dy the semi-axis of the ellipse along y in mm
-/// \param hz half-length along the z axis in mm
+  /// Standard constructor to define elliptical tube from parameters
+  /// \param dx the semi-axis of the ellipse along x in mm
+  /// \param dy the semi-axis of the ellipse along y in mm
+  /// \param hz half-length along the z axis in mm
 
   RootGM::SolidMap::Instance()->AddSolid(this, fEllipticalTube);
 }
-
 
 //_____________________________________________________________________________
 RootGM::EllipticalTube::EllipticalTube(TGeoEltu* eltu)
@@ -50,32 +46,29 @@ RootGM::EllipticalTube::EllipticalTube(TGeoEltu* eltu)
     BaseVGM::VEllipticalTube(),
     fEllipticalTube(eltu)
 {
-/// Standard constructor to define elliptical tube from Root object
+  /// Standard constructor to define elliptical tube from Root object
 
   RootGM::SolidMap::Instance()->AddSolid(this, fEllipticalTube);
 }
 
 //_____________________________________________________________________________
 RootGM::EllipticalTube::EllipticalTube()
-  : VGM::ISolid(),
-    VGM::IEllipticalTube(),
-    BaseVGM::VEllipticalTube()
+  : VGM::ISolid(), VGM::IEllipticalTube(), BaseVGM::VEllipticalTube()
 {
-/// Protected default constructor
+  /// Protected default constructor
 }
 
 //_____________________________________________________________________________
 RootGM::EllipticalTube::EllipticalTube(const EllipticalTube& rhs)
-  : VGM::ISolid(rhs),
-    VGM::IEllipticalTube(rhs),
-    BaseVGM::VEllipticalTube(rhs)
+  : VGM::ISolid(rhs), VGM::IEllipticalTube(rhs), BaseVGM::VEllipticalTube(rhs)
 {
-/// Protected copy constructor
+  /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
-RootGM::EllipticalTube::~EllipticalTube() {
-//
+RootGM::EllipticalTube::~EllipticalTube()
+{
+  //
 }
 
 //_____________________________________________________________________________

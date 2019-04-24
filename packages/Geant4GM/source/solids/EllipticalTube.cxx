@@ -26,34 +26,31 @@
 
 #
 //_____________________________________________________________________________
-Geant4GM::EllipticalTube::EllipticalTube(const std::string& name,
-                                         double dx, double dy, double hz)
+Geant4GM::EllipticalTube::EllipticalTube(
+  const std::string& name, double dx, double dy, double hz)
   : VGM::ISolid(),
     VGM::IEllipticalTube(),
     BaseVGM::VEllipticalTube(),
-    fEllipticalTube(new G4EllipticalTube(name,
-                    dx / ClhepVGM::Units::Length(),
-		    dy / ClhepVGM::Units::Length(),
-		    hz / ClhepVGM::Units::Length()))
+    fEllipticalTube(new G4EllipticalTube(name, dx / ClhepVGM::Units::Length(),
+      dy / ClhepVGM::Units::Length(), hz / ClhepVGM::Units::Length()))
 {
-/// Standard constructor to define elliptical tube from parameters
-/// \param dx the semi-axis of the ellipse along x in mm
-/// \param dy the semi-axis of the ellipse along y in mm
-/// \param hz half-length along the z axis in mm
+  /// Standard constructor to define elliptical tube from parameters
+  /// \param dx the semi-axis of the ellipse along x in mm
+  /// \param dy the semi-axis of the ellipse along y in mm
+  /// \param hz half-length along the z axis in mm
 
   Geant4GM::SolidMap::Instance()->AddSolid(this, fEllipticalTube);
 }
 
-
 //_____________________________________________________________________________
-Geant4GM::EllipticalTube::EllipticalTube(G4EllipticalTube* eltu,
-                                         G4ReflectedSolid* reflEltu)
+Geant4GM::EllipticalTube::EllipticalTube(
+  G4EllipticalTube* eltu, G4ReflectedSolid* reflEltu)
   : VGM::ISolid(),
     VGM::IEllipticalTube(),
     BaseVGM::VEllipticalTube(),
     fEllipticalTube(eltu)
 {
-/// Standard constructor to define elliptical tube from G4 object
+  /// Standard constructor to define elliptical tube from G4 object
 
   if (reflEltu)
     Geant4GM::SolidMap::Instance()->AddSolid(this, reflEltu);
@@ -63,25 +60,22 @@ Geant4GM::EllipticalTube::EllipticalTube(G4EllipticalTube* eltu,
 
 //_____________________________________________________________________________
 Geant4GM::EllipticalTube::EllipticalTube()
-  : VGM::ISolid(),
-    VGM::IEllipticalTube(),
-    BaseVGM::VEllipticalTube()
+  : VGM::ISolid(), VGM::IEllipticalTube(), BaseVGM::VEllipticalTube()
 {
-/// Protected default constructor
+  /// Protected default constructor
 }
 
 //_____________________________________________________________________________
 Geant4GM::EllipticalTube::EllipticalTube(const EllipticalTube& rhs)
-  : VGM::ISolid(rhs),
-    VGM::IEllipticalTube(rhs),
-    BaseVGM::VEllipticalTube(rhs)
+  : VGM::ISolid(rhs), VGM::IEllipticalTube(rhs), BaseVGM::VEllipticalTube(rhs)
 {
-/// Protected copy constructor
+  /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
-Geant4GM::EllipticalTube::~EllipticalTube() {
-//
+Geant4GM::EllipticalTube::~EllipticalTube()
+{
+  //
 }
 
 //_____________________________________________________________________________

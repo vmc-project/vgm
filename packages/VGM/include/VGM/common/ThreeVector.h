@@ -24,7 +24,7 @@
 #include <vector>
 
 namespace VGM {
-  typedef std::vector<double>  ThreeVector;
+typedef std::vector<double> ThreeVector;
 }
 
-#endif //VGM_THREE_VECTOR_H
+#endif // VGM_THREE_VECTOR_H

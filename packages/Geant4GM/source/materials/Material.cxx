@@ -20,30 +20,27 @@
 
 #include "BaseVGM/common/utilities.h"
 
-#include "Geant4GM/materials/Material.h"
 #include "Geant4GM/materials/Element.h"
 #include "Geant4GM/materials/ElementMap.h"
+#include "Geant4GM/materials/Material.h"
 
 #include "G4PhysicalConstants.hh"
 #include "G4SystemOfUnits.hh"
 
 //_____________________________________________________________________________
-Geant4GM::Material::Material(const std::string& name,
-                             double density,
-			     VGM::IElement* element,
-                             bool isVacuum)
-  : VGM::IMaterial(),
-    fMaterial(0)
+Geant4GM::Material::Material(const std::string& name, double density,
+  VGM::IElement* element, bool isVacuum)
+  : VGM::IMaterial(), fMaterial(0)
 
 {
-/// Standard constructor to define material from parameters
-/// \param name its name
-///	   (must be unique in the factory)
-/// \param density in g/cm3
-/// \param element element constituing this material
-/// \param isVacuum the flag for Vacuum material
+  /// Standard constructor to define material from parameters
+  /// \param name its name
+  ///	   (must be unique in the factory)
+  /// \param density in g/cm3
+  /// \param element element constituing this material
+  /// \param isVacuum the flag for Vacuum material
 
-  if ( ! element ) {
+  if (!element) {
     std::cerr << "    Geant4GM::Material::Material: " << std::endl;
     std::cerr << "    No element defined.";
     std::cerr << "*** Error: Aborting execution  ***" << std::endl;
@@ -56,13 +53,13 @@ Geant4GM::Material::Material(const std::string& name,
   // Create vacuum if not allowed low density or
   // if material was associated with an element with Z < 1.0
   //
-  if ( density < universe_mean_density  || isVacuum ) {
+  if (density < universe_mean_density || isVacuum) {
     // lower density not allowed in Geant4
     density = universe_mean_density;
 
     // Create vacuum
-    fMaterial = new G4Material(name, density, 1,
-                               kStateGas, 2.73*kelvin, 3.e-18*pascal);
+    fMaterial = new G4Material(
+      name, density, 1, kStateGas, 2.73 * kelvin, 3.e-18 * pascal);
   }
   else {
     // Create normal material
@@ -75,27 +72,23 @@ Geant4GM::Material::Material(const std::string& name,
 }
 
 //_____________________________________________________________________________
-Geant4GM::Material::Material(const std::string& name,
-                             double density,
-			     VGM::IElement* element,
-	                     VGM::MaterialState state,
-	                     double temperature, double pressure,
-                             bool isVacuum)
-  : VGM::IMaterial(),
-    fMaterial(0)
+Geant4GM::Material::Material(const std::string& name, double density,
+  VGM::IElement* element, VGM::MaterialState state, double temperature,
+  double pressure, bool isVacuum)
+  : VGM::IMaterial(), fMaterial(0)
 
 {
-/// Standard constructor to define material from parameters
-/// \param name its name
-///	   (must be unique in the factory)
-/// \param density in g/cm3
-/// \param element element constituing this material
-/// \param state  the material state
-/// \param temperature the temperature in Kelvin
-/// \param pressure the pressure in atmosphere
-/// \param isVacuum the flag for Vacuum material
+  /// Standard constructor to define material from parameters
+  /// \param name its name
+  ///	   (must be unique in the factory)
+  /// \param density in g/cm3
+  /// \param element element constituing this material
+  /// \param state  the material state
+  /// \param temperature the temperature in Kelvin
+  /// \param pressure the pressure in atmosphere
+  /// \param isVacuum the flag for Vacuum material
 
-  if ( ! element ) {
+  if (!element) {
     std::cerr << "    Geant4GM::Material::Material: " << std::endl;
     std::cerr << "    No element defined.";
     std::cerr << "*** Error: Aborting execution  ***" << std::endl;
@@ -108,22 +101,21 @@ Geant4GM::Material::Material(const std::string& name,
   pressure /= ClhepVGM::Units::Pressure();
   G4State g4State = GetG4State(state);
 
-
   // Create vacuum if not allowed low density or
   // if material was associated with an element with Z < 1.0
   //
-  if ( density < universe_mean_density || isVacuum ) {
+  if (density < universe_mean_density || isVacuum) {
     // lower density not allowed in Geant4
     density = universe_mean_density;
 
     // Create vacuum
-    fMaterial = new G4Material(name, density, 1,
-                               kStateGas, 2.73*kelvin, 3.e-18*pascal);
+    fMaterial = new G4Material(
+      name, density, 1, kStateGas, 2.73 * kelvin, 3.e-18 * pascal);
   }
   else {
     // Create normal material
-    fMaterial
-      = new G4Material(name, density, 1, g4State, temperature, pressure);
+    fMaterial =
+      new G4Material(name, density, 1, g4State, temperature, pressure);
   }
 
   // Add element
@@ -132,25 +124,22 @@ Geant4GM::Material::Material(const std::string& name,
 }
 
 //_____________________________________________________________________________
-Geant4GM::Material::Material(const std::string& name,
-                             double density,
-		             const VGM::ElementVector& elements,
-                             const VGM::MassFractionVector& fractions)
-  : VGM::IMaterial(),
-    fMaterial(0)
+Geant4GM::Material::Material(const std::string& name, double density,
+  const VGM::ElementVector& elements, const VGM::MassFractionVector& fractions)
+  : VGM::IMaterial(), fMaterial(0)
 {
-/// Standard constructor to define compound material from parameters
-/// \param name its name
-///	   (must be unique in the factory)
-/// \param density in g/cm3
-/// \param elements vector of elements constituing
-///	   this material
-/// \param fractions vector of mass fractions of
-///	   elements constituing this material
+  /// Standard constructor to define compound material from parameters
+  /// \param name its name
+  ///	   (must be unique in the factory)
+  /// \param density in g/cm3
+  /// \param elements vector of elements constituing
+  ///	   this material
+  /// \param fractions vector of mass fractions of
+  ///	   elements constituing this material
 
-//
+  //
 
-  if ( ! elements.size() ) {
+  if (!elements.size()) {
     std::cerr << "    Geant4GM::Material::Material: " << std::endl;
     std::cerr << "    No elements defined.";
     std::cerr << "*** Error: Aborting execution  ***" << std::endl;
@@ -169,7 +158,7 @@ Geant4GM::Material::Material(const std::string& name,
   density /= ClhepVGM::Units::MassDensity();
 
   // Update density if lower than universe_mean_density
-  if ( density < universe_mean_density ) {
+  if (density < universe_mean_density) {
     // lower density not allowed in Geant4
     density = universe_mean_density;
   }
@@ -178,40 +167,33 @@ Geant4GM::Material::Material(const std::string& name,
   fMaterial = new G4Material(name, density, elements.size());
 
   // Add elements
-  for (unsigned int i=0; i<elements.size(); i++) {
-    G4Element* g4Element
-      = ElementMap::Instance()->GetElement(elements[i]);
+  for (unsigned int i = 0; i < elements.size(); i++) {
+    G4Element* g4Element = ElementMap::Instance()->GetElement(elements[i]);
     fMaterial->AddElement(g4Element, fractions[i]);
   }
 }
 
-
-
 //_____________________________________________________________________________
-Geant4GM::Material::Material(const std::string& name,
-                             double density,
-		             const VGM::ElementVector& elements,
-                             const VGM::MassFractionVector& fractions,
-	                     VGM::MaterialState state,
-	                     double temperature, double pressure)
-  : VGM::IMaterial(),
-    fMaterial(0)
+Geant4GM::Material::Material(const std::string& name, double density,
+  const VGM::ElementVector& elements, const VGM::MassFractionVector& fractions,
+  VGM::MaterialState state, double temperature, double pressure)
+  : VGM::IMaterial(), fMaterial(0)
 {
-/// Standard constructor to define compound material from parameters
-/// \param name its name
-///	   (must be unique in the factory)
-/// \param density in g/cm3
-/// \param elements vector of elements constituing
-///	   this material
-/// \param fractions vector of mass fractions of
-///	   elements constituing this material
-/// \param state  the material state
-/// \param temperature the temperature in Kelvin
-/// \param pressure the pressure in atmosphere
+  /// Standard constructor to define compound material from parameters
+  /// \param name its name
+  ///	   (must be unique in the factory)
+  /// \param density in g/cm3
+  /// \param elements vector of elements constituing
+  ///	   this material
+  /// \param fractions vector of mass fractions of
+  ///	   elements constituing this material
+  /// \param state  the material state
+  /// \param temperature the temperature in Kelvin
+  /// \param pressure the pressure in atmosphere
 
-//
+  //
 
-  if ( ! elements.size() ) {
+  if (!elements.size()) {
     std::cerr << "    Geant4GM::Material::Material: " << std::endl;
     std::cerr << "    No elements defined.";
     std::cerr << "*** Error: Aborting execution  ***" << std::endl;
@@ -232,45 +214,40 @@ Geant4GM::Material::Material(const std::string& name,
   pressure /= ClhepVGM::Units::Pressure();
   G4State g4State = GetG4State(state);
 
-
   // Update density if lower than universe_mean_density
-  if ( density < universe_mean_density ) {
+  if (density < universe_mean_density) {
     // lower density not allowed in Geant4
     density = universe_mean_density;
   }
 
   // Create material
-  fMaterial = new G4Material(name, density, elements.size(),
-                             g4State, temperature, pressure);
+  fMaterial = new G4Material(
+    name, density, elements.size(), g4State, temperature, pressure);
 
   // Add elements
-  for (unsigned int i=0; i<elements.size(); i++) {
-    G4Element* g4Element
-      = ElementMap::Instance()->GetElement(elements[i]);
+  for (unsigned int i = 0; i < elements.size(); i++) {
+    G4Element* g4Element = ElementMap::Instance()->GetElement(elements[i]);
     fMaterial->AddElement(g4Element, fractions[i]);
   }
 }
 
 //_____________________________________________________________________________
-Geant4GM::Material::Material(const std::string& name,
-                             double density,
-		             const VGM::ElementVector& elements,
-                             const VGM::AtomCountVector& atomCounts)
-  : VGM::IMaterial(),
-    fMaterial(0)
+Geant4GM::Material::Material(const std::string& name, double density,
+  const VGM::ElementVector& elements, const VGM::AtomCountVector& atomCounts)
+  : VGM::IMaterial(), fMaterial(0)
 {
-/// Standard constructor to define compound material from parameters
-/// \param name its name
-///	   (must be unique in the factory)
-/// \param density in g/cm3
-/// \param elements vector of elements constituing
-///	   this material
-/// \param atomCounts vector of atom counts of
-///	   elements constituing this material
+  /// Standard constructor to define compound material from parameters
+  /// \param name its name
+  ///	   (must be unique in the factory)
+  /// \param density in g/cm3
+  /// \param elements vector of elements constituing
+  ///	   this material
+  /// \param atomCounts vector of atom counts of
+  ///	   elements constituing this material
 
-//
+  //
 
-  if ( ! elements.size() ) {
+  if (!elements.size()) {
     std::cerr << "    Geant4GM::Material::Material: " << std::endl;
     std::cerr << "    No elements defined.";
     std::cerr << "*** Error: Aborting execution  ***" << std::endl;
@@ -289,7 +266,7 @@ Geant4GM::Material::Material(const std::string& name,
   density /= ClhepVGM::Units::MassDensity();
 
   // Update density if lower than universe_mean_density
-  if ( density < universe_mean_density ) {
+  if (density < universe_mean_density) {
     // lower density not allowed in Geant4
     density = universe_mean_density;
   }
@@ -298,37 +275,30 @@ Geant4GM::Material::Material(const std::string& name,
   fMaterial = new G4Material(name, density, elements.size());
 
   // Add elements
-  for (unsigned int i=0; i<elements.size(); i++) {
-    G4Element* g4Element
-      = ElementMap::Instance()->GetElement(elements[i]);
+  for (unsigned int i = 0; i < elements.size(); i++) {
+    G4Element* g4Element = ElementMap::Instance()->GetElement(elements[i]);
     fMaterial->AddElement(g4Element, atomCounts[i]);
   }
 }
 
-
-
 //_____________________________________________________________________________
-Geant4GM::Material::Material(const std::string& name,
-                             double density,
-		             const VGM::ElementVector& elements,
-                             const VGM::AtomCountVector& atomCounts,
-	                     VGM::MaterialState state,
-	                     double temperature, double pressure)
-  : VGM::IMaterial(),
-    fMaterial(0)
+Geant4GM::Material::Material(const std::string& name, double density,
+  const VGM::ElementVector& elements, const VGM::AtomCountVector& atomCounts,
+  VGM::MaterialState state, double temperature, double pressure)
+  : VGM::IMaterial(), fMaterial(0)
 {
-/// Standard constructor to define compound material from parameters
-/// \param name its name
-///	   (must be unique in the factory)
-/// \param density in g/cm3
-/// \param elements vector of elements constituing
-///	   this material
-/// \param atomCounts vector of atom counts of
-///	   elements constituing this material
+  /// Standard constructor to define compound material from parameters
+  /// \param name its name
+  ///	   (must be unique in the factory)
+  /// \param density in g/cm3
+  /// \param elements vector of elements constituing
+  ///	   this material
+  /// \param atomCounts vector of atom counts of
+  ///	   elements constituing this material
 
-//
+  //
 
-  if ( ! elements.size() ) {
+  if (!elements.size()) {
     std::cerr << "    Geant4GM::Material::Material: " << std::endl;
     std::cerr << "    No elements defined.";
     std::cerr << "*** Error: Aborting execution  ***" << std::endl;
@@ -349,50 +319,46 @@ Geant4GM::Material::Material(const std::string& name,
   pressure /= ClhepVGM::Units::Pressure();
   G4State g4State = GetG4State(state);
 
-
   // Update density if lower than universe_mean_density
-  if ( density < universe_mean_density ) {
+  if (density < universe_mean_density) {
     // lower density not allowed in Geant4
     density = universe_mean_density;
   }
 
   // Create material
-  fMaterial = new G4Material(name, density, elements.size(),
-                             g4State, temperature, pressure);
+  fMaterial = new G4Material(
+    name, density, elements.size(), g4State, temperature, pressure);
 
   // Add elements
-  for (unsigned int i=0; i<elements.size(); i++) {
-    G4Element* g4Element
-      = ElementMap::Instance()->GetElement(elements[i]);
+  for (unsigned int i = 0; i < elements.size(); i++) {
+    G4Element* g4Element = ElementMap::Instance()->GetElement(elements[i]);
     fMaterial->AddElement(g4Element, atomCounts[i]);
   }
 }
 
 //_____________________________________________________________________________
 Geant4GM::Material::Material(G4Material* material)
-  : VGM::IMaterial(),
-    fMaterial(material)
+  : VGM::IMaterial(), fMaterial(material)
 {
-/// Standard constructor to define material from the G4 object
+  /// Standard constructor to define material from the G4 object
 }
 
 //_____________________________________________________________________________
-Geant4GM::Material::Material()
-  : VGM::IMaterial()
+Geant4GM::Material::Material() : VGM::IMaterial()
 {
-/// Protected default constructor
+  /// Protected default constructor
 }
 
 //_____________________________________________________________________________
-Geant4GM::Material::Material(const Material& rhs)
-  : VGM::IMaterial(rhs)
+Geant4GM::Material::Material(const Material& rhs) : VGM::IMaterial(rhs)
 {
-/// Protected copy constructor
+  /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
-Geant4GM::Material::~Material() {
-//
+Geant4GM::Material::~Material()
+{
+  //
 }
 
 //
@@ -402,10 +368,11 @@ Geant4GM::Material::~Material() {
 //_____________________________________________________________________________
 void Geant4GM::Material::CheckIndex(int iel) const
 {
-  if (iel<0 || iel >= NofElements()) {
+  if (iel < 0 || iel >= NofElements()) {
     std::cerr << "    Geant4GM::Material::CheckIndex: " << std::endl;
     std::cerr << "    In material: " << Name() << std::endl;
-    std::cerr << "    Index of element " << iel << " outside limits." << std::endl;
+    std::cerr << "    Index of element " << iel << " outside limits."
+              << std::endl;
     std::cerr << "*** Error: Aborting execution  ***" << std::endl;
     exit(1);
   }
@@ -414,27 +381,36 @@ void Geant4GM::Material::CheckIndex(int iel) const
 //_____________________________________________________________________________
 G4State Geant4GM::Material::GetG4State(VGM::MaterialState state) const
 {
-  switch ( state ) {
-    case VGM::kUndefined: return kStateUndefined;
-    case VGM::kSolid:     return kStateSolid;
-    case VGM::kLiquid:    return kStateLiquid;
-    case VGM::kGas:       return kStateGas;
-    default:              return kStateUndefined;
+  switch (state) {
+    case VGM::kUndefined:
+      return kStateUndefined;
+    case VGM::kSolid:
+      return kStateSolid;
+    case VGM::kLiquid:
+      return kStateLiquid;
+    case VGM::kGas:
+      return kStateGas;
+    default:
+      return kStateUndefined;
   }
 
   return kStateUndefined;
 }
 
-
 //_____________________________________________________________________________
 VGM::MaterialState Geant4GM::Material::GetVGMState(G4State state) const
 {
-  switch ( state ) {
-    case kStateUndefined : return VGM::kUndefined;
-    case kStateSolid:      return VGM::kSolid;
-    case kStateLiquid:     return VGM::kLiquid;
-    case kStateGas:        return VGM::kGas;
-    default:               return VGM::kUndefined;
+  switch (state) {
+    case kStateUndefined:
+      return VGM::kUndefined;
+    case kStateSolid:
+      return VGM::kSolid;
+    case kStateLiquid:
+      return VGM::kLiquid;
+    case kStateGas:
+      return VGM::kGas;
+    default:
+      return VGM::kUndefined;
   }
 
   return VGM::kUndefined;
@@ -445,56 +421,52 @@ VGM::MaterialState Geant4GM::Material::GetVGMState(G4State state) const
 //
 
 //_____________________________________________________________________________
-std::string Geant4GM::Material::Name() const
-{
-  return fMaterial->GetName();
-}
+std::string Geant4GM::Material::Name() const { return fMaterial->GetName(); }
 
 //_____________________________________________________________________________
-double  Geant4GM::Material::Density() const
+double Geant4GM::Material::Density() const
 {
   return fMaterial->GetDensity() * ClhepVGM::Units::MassDensity();
 }
 
 //_____________________________________________________________________________
-double  Geant4GM::Material::RadiationLength() const
+double Geant4GM::Material::RadiationLength() const
 {
   return fMaterial->GetRadlen() * ClhepVGM::Units::Length();
 }
 
 //_____________________________________________________________________________
-double  Geant4GM::Material::NuclearInterLength() const
+double Geant4GM::Material::NuclearInterLength() const
 {
   return fMaterial->GetNuclearInterLength() * ClhepVGM::Units::Length();
 }
 
 //_____________________________________________________________________________
-VGM::MaterialState  Geant4GM::Material::State() const
+VGM::MaterialState Geant4GM::Material::State() const
 {
   return GetVGMState(fMaterial->GetState());
 }
 
 //_____________________________________________________________________________
-double  Geant4GM::Material::Temperature() const
+double Geant4GM::Material::Temperature() const
 {
   return fMaterial->GetTemperature() * ClhepVGM::Units::Temperature();
 }
 
 //_____________________________________________________________________________
-double  Geant4GM::Material::Pressure() const
+double Geant4GM::Material::Pressure() const
 {
   return fMaterial->GetPressure() * ClhepVGM::Units::Pressure();
 }
 
 //_____________________________________________________________________________
-int  Geant4GM::Material::NofElements() const
+int Geant4GM::Material::NofElements() const
 {
   return fMaterial->GetNumberOfElements();
 }
 
 //_____________________________________________________________________________
-VGM::IElement*
-Geant4GM::Material::Element(int iel) const
+VGM::IElement* Geant4GM::Material::Element(int iel) const
 {
   CheckIndex(iel);
 
@@ -503,7 +475,7 @@ Geant4GM::Material::Element(int iel) const
 }
 
 //_____________________________________________________________________________
-double  Geant4GM::Material::MassFraction(int iel) const
+double Geant4GM::Material::MassFraction(int iel) const
 {
   CheckIndex(iel);
 
@@ -511,13 +483,12 @@ double  Geant4GM::Material::MassFraction(int iel) const
 }
 
 //_____________________________________________________________________________
-double  Geant4GM::Material::AtomCount(int iel) const
+double Geant4GM::Material::AtomCount(int iel) const
 {
   CheckIndex(iel);
 
-  if ( NofElements() == 1 ) return 1.0;
+  if (NofElements() == 1) return 1.0;
 
-  return fMaterial->GetVecNbOfAtomsPerVolume()[iel]/fMaterial->GetTotNbOfAtomsPerVolume();
+  return fMaterial->GetVecNbOfAtomsPerVolume()[iel] /
+         fMaterial->GetTotNbOfAtomsPerVolume();
 }
-
-

@@ -34,36 +34,36 @@ class G4VSolid;
 
 namespace Geant4GM {
 
-  class TessellatedSolid : public BaseVGM::VTessellatedSolid
-  {
-    public:
-      TessellatedSolid(const std::string& name,
-                       std::vector< std::vector<VGM::ThreeVector> > facets);
-      TessellatedSolid(G4TessellatedSolid* tessellated,
-                       G4ReflectedSolid* reflTessellated = 0);
-      virtual ~TessellatedSolid();
+class TessellatedSolid : public BaseVGM::VTessellatedSolid
+{
+ public:
+  TessellatedSolid(const std::string& name,
+    std::vector<std::vector<VGM::ThreeVector> > facets);
+  TessellatedSolid(
+    G4TessellatedSolid* tessellated, G4ReflectedSolid* reflTessellated = 0);
+  virtual ~TessellatedSolid();
 
-      // methods
-      virtual std::string      Name() const;
-      virtual int              NofFacets() const;
-      virtual int              NofVertices(int ifacet) const;
-      virtual VGM::ThreeVector Vertex(int ifacet, int index) const;
+  // methods
+  virtual std::string Name() const;
+  virtual int NofFacets() const;
+  virtual int NofVertices(int ifacet) const;
+  virtual VGM::ThreeVector Vertex(int ifacet, int index) const;
 
-    protected:
-      TessellatedSolid();
-      TessellatedSolid(const TessellatedSolid& rhs);
+ protected:
+  TessellatedSolid();
+  TessellatedSolid(const TessellatedSolid& rhs);
 
-    private:
-      // methods
-      void CheckFacetIndex(int ifacet) const;
-      void CheckVertexIndex(int ifacet, int index) const;
+ private:
+  // methods
+  void CheckFacetIndex(int ifacet) const;
+  void CheckVertexIndex(int ifacet, int index) const;
 
-      // data members
-      G4String  fName;
-      G4bool    fIsReflected;
-      G4TessellatedSolid*  fTessellatedSolid;
-  };
+  // data members
+  G4String fName;
+  G4bool fIsReflected;
+  G4TessellatedSolid* fTessellatedSolid;
+};
 
-}
+} // namespace Geant4GM
 
-#endif //GEANT4_GM_TESSELLATED_SOLID_H
+#endif // GEANT4_GM_TESSELLATED_SOLID_H

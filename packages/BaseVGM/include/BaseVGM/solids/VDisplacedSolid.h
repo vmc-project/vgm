@@ -26,24 +26,26 @@
 
 namespace BaseVGM {
 
-  class VDisplacedSolid : public virtual VGM::IDisplacedSolid
-  {
-    public:
-      VDisplacedSolid();
-      virtual ~VDisplacedSolid();
+class VDisplacedSolid : public virtual VGM::IDisplacedSolid
+{
+ public:
+  VDisplacedSolid();
+  virtual ~VDisplacedSolid();
 
-      // methods
-      virtual VGM::SolidType Type() const;
+  // methods
+  virtual VGM::SolidType Type() const;
 
-      // streaming
-      virtual std::ostream& Put(std::ostream& out) const;
-  };
+  // streaming
+  virtual std::ostream& Put(std::ostream& out) const;
+};
 
-}
+} // namespace BaseVGM
 
 // inline functions
 
-inline VGM::SolidType
-BaseVGM::VDisplacedSolid::Type() const { return VGM::kDisplaced; }
+inline VGM::SolidType BaseVGM::VDisplacedSolid::Type() const
+{
+  return VGM::kDisplaced;
+}
 
 #endif // BASE_VGM_V_BOOLEAN_SOLID_H

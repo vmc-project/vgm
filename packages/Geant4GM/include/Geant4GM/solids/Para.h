@@ -29,35 +29,33 @@ class G4ReflectedSolid;
 
 namespace Geant4GM {
 
-  class Para : public BaseVGM::VPara
-  {
-    public:
-      Para(const std::string& name,
-           double dx, double dy, double dz,
-	   double alpha, double theta, double phi);
-      Para(G4Para* para,
-           G4ReflectedSolid* reflPara = 0);
-      virtual ~Para();
+class Para : public BaseVGM::VPara
+{
+ public:
+  Para(const std::string& name, double dx, double dy, double dz, double alpha,
+    double theta, double phi);
+  Para(G4Para* para, G4ReflectedSolid* reflPara = 0);
+  virtual ~Para();
 
-      // methods
-      virtual std::string Name() const;
+  // methods
+  virtual std::string Name() const;
 
-      virtual double XHalfLength() const;
-      virtual double YHalfLength() const;
-      virtual double ZHalfLength() const;
-      virtual double Alpha() const;
-      virtual double Theta() const;
-      virtual double Phi() const;
+  virtual double XHalfLength() const;
+  virtual double YHalfLength() const;
+  virtual double ZHalfLength() const;
+  virtual double Alpha() const;
+  virtual double Theta() const;
+  virtual double Phi() const;
 
-    protected:
-      Para();
-      Para(const Para& rhs);
+ protected:
+  Para();
+  Para(const Para& rhs);
 
-    private:
-      bool    fIsReflected;
-      G4Para* fPara;
-  };
+ private:
+  bool fIsReflected;
+  G4Para* fPara;
+};
 
-}
+} // namespace Geant4GM
 
-#endif //GEANT4_GM_PARA_H
+#endif // GEANT4_GM_PARA_H

@@ -17,25 +17,20 @@
 // Author: Ivana Hrivnacova; IPN Orsay
 
 #include "RootGM/solids/ScaledSolid.h"
-#include "RootGM/solids/SolidMap.h"
 #include "RootGM/common/transform.h"
+#include "RootGM/solids/SolidMap.h"
 
-#include "TGeoScaledShape.h"
 #include "TGeoMatrix.h"
+#include "TGeoScaledShape.h"
 
 //_____________________________________________________________________________
 RootGM::ScaledSolid::ScaledSolid(
-                             const std::string& name,
-                             VGM::ISolid* solid,
-                             TGeoScale* scale)
-  : VGM::ISolid(),
-    VGM::IScaledSolid(),
-    BaseVGM::VScaledSolid(),
-    fScaledShape(0)
+  const std::string& name, VGM::ISolid* solid, TGeoScale* scale)
+  : VGM::ISolid(), VGM::IScaledSolid(), BaseVGM::VScaledSolid(), fScaledShape(0)
 {
-/// Standard constructor to define Scaled solids via constituents
-/// \param solid constituent solids
-/// \param scale  the TGeo scale transformation
+  /// Standard constructor to define Scaled solids via constituents
+  /// \param solid constituent solids
+  /// \param scale  the TGeo scale transformation
 
   // Get solid from the volumes map
   TGeoShape* rootSolid = RootGM::SolidMap::Instance()->GetSolid(solid);
@@ -53,33 +48,29 @@ RootGM::ScaledSolid::ScaledSolid(TGeoScaledShape* scaledShape)
     BaseVGM::VScaledSolid(),
     fScaledShape(scaledShape)
 {
-/// Standard constructor to define Scaled solid via Root object
+  /// Standard constructor to define Scaled solid via Root object
 
   RootGM::SolidMap::Instance()->AddSolid(this, fScaledShape);
 }
 
-
 //_____________________________________________________________________________
 RootGM::ScaledSolid::ScaledSolid()
-  : VGM::ISolid(),
-    VGM::IScaledSolid(),
-    BaseVGM::VScaledSolid()
+  : VGM::ISolid(), VGM::IScaledSolid(), BaseVGM::VScaledSolid()
 {
-/// Protected default constructor
+  /// Protected default constructor
 }
 
 //_____________________________________________________________________________
 RootGM::ScaledSolid::ScaledSolid(const ScaledSolid& rhs)
-  : VGM::ISolid(rhs),
-    VGM::IScaledSolid(rhs),
-    BaseVGM::VScaledSolid(rhs)
+  : VGM::ISolid(rhs), VGM::IScaledSolid(rhs), BaseVGM::VScaledSolid(rhs)
 {
-/// Protected copy constructor
+  /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
-RootGM::ScaledSolid::~ScaledSolid() {
-//
+RootGM::ScaledSolid::~ScaledSolid()
+{
+  //
 }
 
 //
@@ -87,21 +78,19 @@ RootGM::ScaledSolid::~ScaledSolid() {
 //
 
 //_____________________________________________________________________________
-std::string
-RootGM::ScaledSolid::Name() const
+std::string RootGM::ScaledSolid::Name() const
 {
-// Returns the Scaled solid name
-// ---
+  // Returns the Scaled solid name
+  // ---
 
   return fScaledShape->GetName();
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*
-RootGM::ScaledSolid::ConstituentSolid() const
+VGM::ISolid* RootGM::ScaledSolid::ConstituentSolid() const
 {
-// Returns the first constituent solid.
-// ---
+  // Returns the first constituent solid.
+  // ---
 
   TGeoShape* rootSolid = fScaledShape->GetShape();
   VGM::ISolid* solid = RootGM::SolidMap::Instance()->GetSolid(rootSolid);
@@ -110,11 +99,10 @@ RootGM::ScaledSolid::ConstituentSolid() const
 }
 
 //_____________________________________________________________________________
-VGM::Transform
-RootGM::ScaledSolid::Scale() const
+VGM::Transform RootGM::ScaledSolid::Scale() const
 {
-// Returns the solid scale.
-// ---
+  // Returns the solid scale.
+  // ---
 
   return TransformScale(*(fScaledShape->GetScale()));
 }

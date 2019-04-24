@@ -27,46 +27,45 @@
 class G4VPhysicalVolume;
 
 namespace VGM {
-  class IPlacement;
+class IPlacement;
 }
 
 namespace Geant4GM {
 
-  class PlacementMap;
+class PlacementMap;
 
-  class PlacementMap
-  {
-    public:
-      typedef std::map<VGM::IPlacement*, G4VPhysicalVolume*>  G4PlacementMap;
-      typedef G4PlacementMap::const_iterator    G4PlacementMapCIterator;
+class PlacementMap
+{
+ public:
+  typedef std::map<VGM::IPlacement*, G4VPhysicalVolume*> G4PlacementMap;
+  typedef G4PlacementMap::const_iterator G4PlacementMapCIterator;
 
-      typedef std::map<G4VPhysicalVolume*, VGM::IPlacement*>  VgmPlacementMap;
-      typedef VgmPlacementMap::const_iterator   VgmPlacementMapCIterator;
+  typedef std::map<G4VPhysicalVolume*, VGM::IPlacement*> VgmPlacementMap;
+  typedef VgmPlacementMap::const_iterator VgmPlacementMapCIterator;
 
-    public:
-      PlacementMap();
-      virtual ~PlacementMap();
+ public:
+  PlacementMap();
+  virtual ~PlacementMap();
 
-      // static access methods
-      static PlacementMap* Instance();
+  // static access methods
+  static PlacementMap* Instance();
 
-      // methods
-      void  AddPlacement(VGM::IPlacement*,
-                         G4VPhysicalVolume*);
-      G4VPhysicalVolume* GetPlacement(VGM::IPlacement* iPlacement) const;
-      VGM::IPlacement*   GetPlacement(G4VPhysicalVolume* pv) const;
+  // methods
+  void AddPlacement(VGM::IPlacement*, G4VPhysicalVolume*);
+  G4VPhysicalVolume* GetPlacement(VGM::IPlacement* iPlacement) const;
+  VGM::IPlacement* GetPlacement(G4VPhysicalVolume* pv) const;
 
-    private:
-      PlacementMap(const PlacementMap&);
+ private:
+  PlacementMap(const PlacementMap&);
 
-      // static data members
-      static PlacementMap*  fgInstance;
+  // static data members
+  static PlacementMap* fgInstance;
 
-      // data members
-      G4PlacementMap    fG4Placements;
-      VgmPlacementMap   fVgmPlacements;
-  };
+  // data members
+  G4PlacementMap fG4Placements;
+  VgmPlacementMap fVgmPlacements;
+};
 
-}
+} // namespace Geant4GM
 
-#endif //GEANT4_GM_PLACEMENT_MAP_H
+#endif // GEANT4_GM_PLACEMENT_MAP_H

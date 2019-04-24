@@ -25,48 +25,48 @@
 class TGeoVolume;
 
 namespace VGM {
-  class IVolume;
+class IVolume;
 }
 
 namespace RootGM {
 
-  class VolumeMap;
+class VolumeMap;
 
-  class VolumeMap
-  {
-    public:
-      typedef std::map<VGM::IVolume*, TGeoVolume*>  RootVolumeMap;
-      typedef RootVolumeMap::const_iterator         RootVolumeMapCIterator;
+class VolumeMap
+{
+ public:
+  typedef std::map<VGM::IVolume*, TGeoVolume*> RootVolumeMap;
+  typedef RootVolumeMap::const_iterator RootVolumeMapCIterator;
 
-      typedef std::map<TGeoVolume*, VGM::IVolume*>  VgmVolumeMap;
-      typedef VgmVolumeMap::const_iterator          VgmVolumeMapCIterator;
+  typedef std::map<TGeoVolume*, VGM::IVolume*> VgmVolumeMap;
+  typedef VgmVolumeMap::const_iterator VgmVolumeMapCIterator;
 
-    public:
-      VolumeMap();
-      virtual ~VolumeMap();
+ public:
+  VolumeMap();
+  virtual ~VolumeMap();
 
-      // static access methods
-      static VolumeMap* Instance();
+  // static access methods
+  static VolumeMap* Instance();
 
-      // methods
-      void  AddVolume(VGM::IVolume*, TGeoVolume*);
-      void  Print() const;
+  // methods
+  void AddVolume(VGM::IVolume*, TGeoVolume*);
+  void Print() const;
 
-      // get methods
-      TGeoVolume*   GetVolume(VGM::IVolume* iVolume) const;
-      VGM::IVolume* GetVolume(TGeoVolume* rootVolume) const;
+  // get methods
+  TGeoVolume* GetVolume(VGM::IVolume* iVolume) const;
+  VGM::IVolume* GetVolume(TGeoVolume* rootVolume) const;
 
-    private:
-      VolumeMap(const VolumeMap&);
+ private:
+  VolumeMap(const VolumeMap&);
 
-      // static data members
-      static VolumeMap*  fgInstance;
+  // static data members
+  static VolumeMap* fgInstance;
 
-      // data members
-      RootVolumeMap  fRootVolumes;
-      VgmVolumeMap   fVgmVolumes;
-  };
+  // data members
+  RootVolumeMap fRootVolumes;
+  VgmVolumeMap fVgmVolumes;
+};
 
-}
+} // namespace RootGM
 
-#endif //ROOT_GM_VOLUME_MAP_H
+#endif // ROOT_GM_VOLUME_MAP_H

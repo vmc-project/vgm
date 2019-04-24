@@ -26,24 +26,26 @@
 
 namespace BaseVGM {
 
-  class VTessellatedSolid : public virtual VGM::ITessellatedSolid
-  {
-    public:
-      VTessellatedSolid();
-      virtual ~VTessellatedSolid();
+class VTessellatedSolid : public virtual VGM::ITessellatedSolid
+{
+ public:
+  VTessellatedSolid();
+  virtual ~VTessellatedSolid();
 
-      // methods
-      virtual VGM::SolidType Type() const;
+  // methods
+  virtual VGM::SolidType Type() const;
 
-      // streaming
-      virtual std::ostream& Put(std::ostream& out) const;
-  };
+  // streaming
+  virtual std::ostream& Put(std::ostream& out) const;
+};
 
-}
+} // namespace BaseVGM
 
 // inline functions
 
-inline VGM::SolidType
-BaseVGM::VTessellatedSolid::Type() const { return VGM::kTessellated; }
+inline VGM::SolidType BaseVGM::VTessellatedSolid::Type() const
+{
+  return VGM::kTessellated;
+}
 
-#endif //BASE_VGM_V_TESSELLATED_SOLID_H
+#endif // BASE_VGM_V_TESSELLATED_SOLID_H

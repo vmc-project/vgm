@@ -26,38 +26,38 @@
 
 namespace VGM {
 
-  class ITubs : public virtual ISolid
-  {
-    public:
-      virtual ~ITubs() {}
+class ITubs : public virtual ISolid
+{
+ public:
+  virtual ~ITubs() {}
 
-      // methods
+  // methods
 
-      virtual SolidType   Type() const = 0;
-      virtual std::string Name() const = 0;
+  virtual SolidType Type() const = 0;
+  virtual std::string Name() const = 0;
 
-		      ///
-		      /// Return the inside radius in mm
-      virtual double InnerRadius() const = 0;
-		      ///
-		      /// Return the outside radius in mm
-      virtual double OuterRadius() const = 0;
-		      ///
-		      /// Return the half-length along the z axis in m
-      virtual double ZHalfLength() const = 0;
-		      ///
-		      /// Return the starting angle of the segment in deg
-      virtual double StartPhi() const = 0;
-		      ///
-		      /// Return the opening angle of the segment in deg
-      virtual double DeltaPhi() const = 0;
+  ///
+  /// Return the inside radius in mm
+  virtual double InnerRadius() const = 0;
+  ///
+  /// Return the outside radius in mm
+  virtual double OuterRadius() const = 0;
+  ///
+  /// Return the half-length along the z axis in m
+  virtual double ZHalfLength() const = 0;
+  ///
+  /// Return the starting angle of the segment in deg
+  virtual double StartPhi() const = 0;
+  ///
+  /// Return the opening angle of the segment in deg
+  virtual double DeltaPhi() const = 0;
 
-      // streaming
-      virtual std::ostream& Put(std::ostream& out) const = 0;
-  };
+  // streaming
+  virtual std::ostream& Put(std::ostream& out) const = 0;
+};
 
-}
+} // namespace VGM
 
-std::ostream& operator << (std::ostream& out, const VGM::ITubs& tubs);
+std::ostream& operator<<(std::ostream& out, const VGM::ITubs& tubs);
 
-#endif //VGM_I_TUBS_H
+#endif // VGM_I_TUBS_H

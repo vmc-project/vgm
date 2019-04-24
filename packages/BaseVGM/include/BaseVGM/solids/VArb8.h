@@ -26,24 +26,23 @@
 
 namespace BaseVGM {
 
-  class VArb8 : public virtual VGM::IArb8
-  {
-    public:
-      VArb8();
-      virtual ~VArb8();
+class VArb8 : public virtual VGM::IArb8
+{
+ public:
+  VArb8();
+  virtual ~VArb8();
 
-      // methods
-      virtual VGM::SolidType Type() const;
+  // methods
+  virtual VGM::SolidType Type() const;
 
-      // streaming
-      virtual std::ostream& Put(std::ostream& out) const;
-  };
+  // streaming
+  virtual std::ostream& Put(std::ostream& out) const;
+};
 
-}
+} // namespace BaseVGM
 
 // inline functions
 
-inline VGM::SolidType
-BaseVGM::VArb8::Type() const { return VGM::kArb8; }
+inline VGM::SolidType BaseVGM::VArb8::Type() const { return VGM::kArb8; }
 
-#endif //BASE_VGM_V_ARB8_H
+#endif // BASE_VGM_V_ARB8_H

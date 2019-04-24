@@ -26,31 +26,31 @@
 
 namespace VGM {
 
-  class IBox : public virtual ISolid
-  {
-    public:
-      virtual ~IBox() {}
+class IBox : public virtual ISolid
+{
+ public:
+  virtual ~IBox() {}
 
-      // methods
+  // methods
 
-      virtual SolidType   Type() const = 0;
-      virtual std::string Name() const = 0;
+  virtual SolidType Type() const = 0;
+  virtual std::string Name() const = 0;
 
-		     ///
-		     /// Return the half-length along the x axis in mm
-      virtual double XHalfLength() const = 0;
-		     ///
-		     /// Return the half-length along the y axis in mm
-      virtual double YHalfLength() const = 0;
-		     ///
-		     /// Return the half-length along the z axis in mm
-      virtual double ZHalfLength() const = 0;
+  ///
+  /// Return the half-length along the x axis in mm
+  virtual double XHalfLength() const = 0;
+  ///
+  /// Return the half-length along the y axis in mm
+  virtual double YHalfLength() const = 0;
+  ///
+  /// Return the half-length along the z axis in mm
+  virtual double ZHalfLength() const = 0;
 
-      // streaming
-      virtual std::ostream& Put(std::ostream& out) const = 0;
-  };
-}
+  // streaming
+  virtual std::ostream& Put(std::ostream& out) const = 0;
+};
+} // namespace VGM
 
-std::ostream& operator << (std::ostream& out, const VGM::IBox& box);
+std::ostream& operator<<(std::ostream& out, const VGM::IBox& box);
 
-#endif //VGM_I_BOX_H
+#endif // VGM_I_BOX_H

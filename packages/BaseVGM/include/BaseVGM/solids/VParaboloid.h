@@ -26,24 +26,26 @@
 
 namespace BaseVGM {
 
-  class VParaboloid : public virtual VGM::IParaboloid
-  {
-    public:
-      VParaboloid();
-      virtual ~VParaboloid();
+class VParaboloid : public virtual VGM::IParaboloid
+{
+ public:
+  VParaboloid();
+  virtual ~VParaboloid();
 
-      // methods
-      virtual VGM::SolidType Type() const;
+  // methods
+  virtual VGM::SolidType Type() const;
 
-      // streaming
-      virtual std::ostream& Put(std::ostream& out) const;
-  };
+  // streaming
+  virtual std::ostream& Put(std::ostream& out) const;
+};
 
-}
+} // namespace BaseVGM
 
 // inline functions
 
-inline VGM::SolidType
-BaseVGM::VParaboloid::Type() const { return VGM::kParaboloid; }
+inline VGM::SolidType BaseVGM::VParaboloid::Type() const
+{
+  return VGM::kParaboloid;
+}
 
-#endif //BASE_VGM_V_PARABOLOID_H
+#endif // BASE_VGM_V_PARABOLOID_H

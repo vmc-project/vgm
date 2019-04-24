@@ -16,8 +16,8 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include "BaseVGM/common/utilities.h"
 #include "BaseVGM/solids/VScaledSolid.h"
+#include "BaseVGM/common/utilities.h"
 
 #include <math.h>
 
@@ -30,26 +30,24 @@ std::ostream& operator<<(std::ostream& out, const VGM::IScaledSolid& scaled)
 }
 
 //_____________________________________________________________________________
-BaseVGM::VScaledSolid::VScaledSolid()
-  : VGM::IScaledSolid()
+BaseVGM::VScaledSolid::VScaledSolid() : VGM::IScaledSolid()
 {
-/// Default constructor
+  /// Default constructor
 }
 
 //_____________________________________________________________________________
-BaseVGM::VScaledSolid::~VScaledSolid() {
-//
+BaseVGM::VScaledSolid::~VScaledSolid()
+{
+  //
 }
 
 //_____________________________________________________________________________
 std::ostream& BaseVGM::VScaledSolid::Put(std::ostream& out) const
 {
   out << "  "
-      << "  Constituent = " << *ConstituentSolid() << std:: endl
-      << "  Scale (object):  ( "
-      << Scale()[VGM::kDx] << ",  "
-      << Scale()[VGM::kDy] << ",  "
-      << Scale()[VGM::kDz] << ") " << std:: endl;
+      << "  Constituent = " << *ConstituentSolid() << std::endl
+      << "  Scale (object):  ( " << Scale()[VGM::kDx] << ",  "
+      << Scale()[VGM::kDy] << ",  " << Scale()[VGM::kDz] << ") " << std::endl;
 
   return out;
 }

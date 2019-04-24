@@ -26,24 +26,23 @@
 
 namespace BaseVGM {
 
-  class VTrap : public virtual VGM::ITrap
-  {
-    public:
-      VTrap();
-      virtual ~VTrap();
+class VTrap : public virtual VGM::ITrap
+{
+ public:
+  VTrap();
+  virtual ~VTrap();
 
-      // methods
-      virtual VGM::SolidType Type() const;
+  // methods
+  virtual VGM::SolidType Type() const;
 
-      // streaming
-      virtual std::ostream& Put(std::ostream& out) const;
-  };
+  // streaming
+  virtual std::ostream& Put(std::ostream& out) const;
+};
 
-}
+} // namespace BaseVGM
 
 // inline functions
 
-inline VGM::SolidType
-BaseVGM::VTrap::Type() const { return VGM::kTrap; }
+inline VGM::SolidType BaseVGM::VTrap::Type() const { return VGM::kTrap; }
 
-#endif //BASE_VGM_V_TRAP_H
+#endif // BASE_VGM_V_TRAP_H

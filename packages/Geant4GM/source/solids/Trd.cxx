@@ -22,51 +22,42 @@
 
 #include "ClhepVGM/Units.h"
 
-#include "Geant4GM/solids/Trd.h"
 #include "Geant4GM/solids/SolidMap.h"
+#include "Geant4GM/solids/Trd.h"
 
-#include "G4Trd.hh"
 #include "G4ReflectedSolid.hh"
+#include "G4Trd.hh"
 
 //_____________________________________________________________________________
-Geant4GM::Trd::Trd(const std::string& name,
-                   double hx1, double hx2, double hy1, double hy2, double hz)
+Geant4GM::Trd::Trd(const std::string& name, double hx1, double hx2, double hy1,
+  double hy2, double hz)
   : VGM::ISolid(),
     VGM::ITrd(),
     BaseVGM::VTrd(),
     fIsReflected(false),
-    fTrd( new G4Trd(name,
-                    hx1 / ClhepVGM::Units::Length(),
-		    hx2 / ClhepVGM::Units::Length(),
-		    hy1 / ClhepVGM::Units::Length(),
-		    hy2 / ClhepVGM::Units::Length(),
-		    hz  / ClhepVGM::Units::Length()) )
+    fTrd(new G4Trd(name, hx1 / ClhepVGM::Units::Length(),
+      hx2 / ClhepVGM::Units::Length(), hy1 / ClhepVGM::Units::Length(),
+      hy2 / ClhepVGM::Units::Length(), hz / ClhepVGM::Units::Length()))
 {
-/// Standard constructor to define trd from parameters
-/// \param hx1 half-length along x at the surface positioned
-///	       at -hz in mm
-/// \param hx2 half-length along x at the surface positioned
-///	       at +hz in mm
-/// \param hy1 half-length along y at the surface positioned
-///	       at -hz in mm
-/// \param hy2 half-length along y at the surface positioned
-///	       at +hz in mm
-/// \param hz half-length along the z axis in mm
+  /// Standard constructor to define trd from parameters
+  /// \param hx1 half-length along x at the surface positioned
+  ///	       at -hz in mm
+  /// \param hx2 half-length along x at the surface positioned
+  ///	       at +hz in mm
+  /// \param hy1 half-length along y at the surface positioned
+  ///	       at -hz in mm
+  /// \param hy2 half-length along y at the surface positioned
+  ///	       at +hz in mm
+  /// \param hz half-length along the z axis in mm
 
   Geant4GM::SolidMap::Instance()->AddSolid(this, fTrd);
 }
 
-
 //_____________________________________________________________________________
-Geant4GM::Trd::Trd(G4Trd* trd,
-                   G4ReflectedSolid* reflTrd)
-  : VGM::ISolid(),
-    VGM::ITrd(),
-    BaseVGM::VTrd(),
-    fIsReflected(false),
-    fTrd(trd)
+Geant4GM::Trd::Trd(G4Trd* trd, G4ReflectedSolid* reflTrd)
+  : VGM::ISolid(), VGM::ITrd(), BaseVGM::VTrd(), fIsReflected(false), fTrd(trd)
 {
-/// Standard constructor to define trd from G4 object
+  /// Standard constructor to define trd from G4 object
 
   if (reflTrd) {
     fIsReflected = true;
@@ -77,33 +68,26 @@ Geant4GM::Trd::Trd(G4Trd* trd,
 }
 
 //_____________________________________________________________________________
-Geant4GM::Trd::Trd()
-  : VGM::ISolid(),
-    VGM::ITrd(),
-    BaseVGM::VTrd()
+Geant4GM::Trd::Trd() : VGM::ISolid(), VGM::ITrd(), BaseVGM::VTrd()
 {
-/// Protected default constructor
+  /// Protected default constructor
 }
 
 //_____________________________________________________________________________
 Geant4GM::Trd::Trd(const Trd& rhs)
-  : VGM::ISolid(rhs),
-    VGM::ITrd(rhs),
-    BaseVGM::VTrd(rhs)
+  : VGM::ISolid(rhs), VGM::ITrd(rhs), BaseVGM::VTrd(rhs)
 {
-/// Protected copy constructor
+  /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
-Geant4GM::Trd::~Trd() {
-//
+Geant4GM::Trd::~Trd()
+{
+  //
 }
 
 //_____________________________________________________________________________
-std::string Geant4GM::Trd::Name() const
-{
-  return fTrd->GetName();
-}
+std::string Geant4GM::Trd::Name() const { return fTrd->GetName(); }
 
 //_____________________________________________________________________________
 double Geant4GM::Trd::XHalfLengthMinusZ() const
@@ -146,5 +130,3 @@ double Geant4GM::Trd::ZHalfLength() const
 {
   return fTrd->GetZHalfLength() * ClhepVGM::Units::Length();
 }
-
-

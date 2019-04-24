@@ -27,16 +27,15 @@ std::ostream& operator<<(std::ostream& out, const VGM::IPolycone& polycone)
 }
 
 //_____________________________________________________________________________
-BaseVGM::VPolycone::VPolycone()
-  : VGM::IPolycone()
+BaseVGM::VPolycone::VPolycone() : VGM::IPolycone()
 {
-/// Default constructor
+  /// Default constructor
 }
 
-
 //_____________________________________________________________________________
-BaseVGM::VPolycone::~VPolycone() {
-//
+BaseVGM::VPolycone::~VPolycone()
+{
+  //
 }
 
 //_____________________________________________________________________________
@@ -44,23 +43,20 @@ std::ostream& BaseVGM::VPolycone::Put(std::ostream& out) const
 {
   out << "  sphi = " << StartPhi() << "deg"
       << "  dphi = " << DeltaPhi() << "deg"
-      << "  nz = "   << NofZPlanes()
-      << std::endl;
+      << "  nz = " << NofZPlanes() << std::endl;
 
-  double* zvalues    = ZValues();
-  double* rinvalues  = InnerRadiusValues();
+  double* zvalues = ZValues();
+  double* rinvalues = InnerRadiusValues();
   double* routvalues = OuterRadiusValues();
 
-  for (int i=0; i<NofZPlanes(); i++) {
-    out << "   "
-        << i << "th plane: "
-        << " z = "    << zvalues[i]    << "mm"
-        << " rin = "  << rinvalues[i]  << "mm"
+  for (int i = 0; i < NofZPlanes(); i++) {
+    out << "   " << i << "th plane: "
+        << " z = " << zvalues[i] << "mm"
+        << " rin = " << rinvalues[i] << "mm"
         << " rout = " << routvalues[i] << "mm";
 
-    if (i<NofZPlanes()-1) out << std::endl;
+    if (i < NofZPlanes() - 1) out << std::endl;
   }
 
   return out;
 }
-

@@ -29,32 +29,31 @@ class G4ReflectedSolid;
 
 namespace Geant4GM {
 
-  class Trd : public BaseVGM::VTrd
-  {
-    public:
-      Trd(const std::string& name,
-          double hx1, double hx2, double hy1, double hy2, double hz);
-      Trd(G4Trd* trd,
-          G4ReflectedSolid* reflTrd = 0);
-      virtual ~Trd();
+class Trd : public BaseVGM::VTrd
+{
+ public:
+  Trd(const std::string& name, double hx1, double hx2, double hy1, double hy2,
+    double hz);
+  Trd(G4Trd* trd, G4ReflectedSolid* reflTrd = 0);
+  virtual ~Trd();
 
-      // methods
-      virtual std::string Name() const;
-      virtual double XHalfLengthMinusZ() const;
-      virtual double XHalfLengthPlusZ() const;
-      virtual double YHalfLengthMinusZ() const;
-      virtual double YHalfLengthPlusZ() const;
-      virtual double ZHalfLength() const;
+  // methods
+  virtual std::string Name() const;
+  virtual double XHalfLengthMinusZ() const;
+  virtual double XHalfLengthPlusZ() const;
+  virtual double YHalfLengthMinusZ() const;
+  virtual double YHalfLengthPlusZ() const;
+  virtual double ZHalfLength() const;
 
-    protected:
-      Trd();
-      Trd(const Trd& rhs);
+ protected:
+  Trd();
+  Trd(const Trd& rhs);
 
-    private:
-      bool    fIsReflected;
-      G4Trd*  fTrd;
-  };
+ private:
+  bool fIsReflected;
+  G4Trd* fTrd;
+};
 
-}
+} // namespace Geant4GM
 
-#endif //GEANT4_GM_TRD_H
+#endif // GEANT4_GM_TRD_H

@@ -25,49 +25,48 @@
 class TGeoMaterial;
 
 namespace VGM {
-  class IMaterial;
+class IMaterial;
 }
-
 
 namespace RootGM {
 
-  class MaterialMap;
+class MaterialMap;
 
-  class MaterialMap
-  {
-    public:
-      typedef std::map<VGM::IMaterial*, TGeoMaterial*>  RootMaterialMap;
-      typedef RootMaterialMap::const_iterator           RootMaterialMapCIterator;
+class MaterialMap
+{
+ public:
+  typedef std::map<VGM::IMaterial*, TGeoMaterial*> RootMaterialMap;
+  typedef RootMaterialMap::const_iterator RootMaterialMapCIterator;
 
-      typedef std::map<TGeoMaterial*, VGM::IMaterial*>  VgmMaterialMap;
-      typedef VgmMaterialMap::const_iterator            VgmMaterialMapCIterator;
+  typedef std::map<TGeoMaterial*, VGM::IMaterial*> VgmMaterialMap;
+  typedef VgmMaterialMap::const_iterator VgmMaterialMapCIterator;
 
-    public:
-      MaterialMap();
-      virtual ~MaterialMap();
+ public:
+  MaterialMap();
+  virtual ~MaterialMap();
 
-      // static access methods
-      static MaterialMap* Instance();
+  // static access methods
+  static MaterialMap* Instance();
 
-      // methods
-      void  AddMaterial(VGM::IMaterial*, TGeoMaterial*);
-      void  Print() const;
+  // methods
+  void AddMaterial(VGM::IMaterial*, TGeoMaterial*);
+  void Print() const;
 
-      // get methods
-      TGeoMaterial*   GetMaterial(VGM::IMaterial* iMaterial) const;
-      VGM::IMaterial* GetMaterial(TGeoMaterial* rootMaterial) const;
+  // get methods
+  TGeoMaterial* GetMaterial(VGM::IMaterial* iMaterial) const;
+  VGM::IMaterial* GetMaterial(TGeoMaterial* rootMaterial) const;
 
-    private:
-      MaterialMap(const MaterialMap&);
+ private:
+  MaterialMap(const MaterialMap&);
 
-      // static data members
-     static MaterialMap*  fgInstance;
+  // static data members
+  static MaterialMap* fgInstance;
 
-      // data members
-      RootMaterialMap  fRootMaterials;
-      VgmMaterialMap   fVgmMaterials;
-  };
+  // data members
+  RootMaterialMap fRootMaterials;
+  VgmMaterialMap fVgmMaterials;
+};
 
-}
+} // namespace RootGM
 
-#endif //ROOT_GM_MATERIAL_MAP_H
+#endif // ROOT_GM_MATERIAL_MAP_H

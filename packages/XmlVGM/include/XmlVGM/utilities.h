@@ -26,35 +26,34 @@
 
 namespace XmlVGM {
 
-  std::string UpdateName(const std::string& name,
-                         const std::string& extension = "");
+std::string UpdateName(
+  const std::string& name, const std::string& extension = "");
 
-  std::string StripName(const std::string& name,
-                         const std::string& extension = "");
+std::string StripName(
+  const std::string& name, const std::string& extension = "");
 
-  std::string AppendName(const std::string& name, int size);
+std::string AppendName(const std::string& name, int size);
 
-  std::string IsotopeName(const VGM::IIsotope* isotope);
+std::string IsotopeName(const VGM::IIsotope* isotope);
 
-  void CutName(std::string& name);
-  void CutName(std::string& name, int size);
+void CutName(std::string& name);
+void CutName(std::string& name, int size);
 
-  std::ostream& SmartPut(std::ostream& out,
-                     int size, int precision, double tolerance,
-                     double number, const std::string& separator);
+std::ostream& SmartPut(std::ostream& out, int size, int precision,
+  double tolerance, double number, const std::string& separator);
 
-  std::ostream& SmartPut(std::ostream& out,
-		     int size, int precision, double tolerance,
-		     const std::string& separator1,
-		     double number, const std::string& separator2);
+std::ostream& SmartPut(std::ostream& out, int size, int precision,
+  double tolerance, const std::string& separator1, double number,
+  const std::string& separator2);
 
-  std::string  Date();
+std::string Date();
 
-  // date
-  const char         fgkCharReplacement  = '_';   //replacement for ' ' in names
-  const std::string  fgkNotAllowedChars  = " +-*/&<>%^$()"; //not allowed characters in XML
-  const std::string  fgkNotAllowedChars1 = "0123456789";  //not allowed first characters
-}
+// date
+const char fgkCharReplacement = '_'; // replacement for ' ' in names
+const std::string fgkNotAllowedChars =
+  " +-*/&<>%^$()"; // not allowed characters in XML
+const std::string fgkNotAllowedChars1 =
+  "0123456789"; // not allowed first characters
+} // namespace XmlVGM
 
-#endif //XML_VGM_UTILITIES_H
-
+#endif // XML_VGM_UTILITIES_H

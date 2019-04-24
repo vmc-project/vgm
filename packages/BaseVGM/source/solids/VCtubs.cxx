@@ -27,28 +27,28 @@ std::ostream& operator<<(std::ostream& out, const VGM::ICtubs& ctubs)
 }
 
 //_____________________________________________________________________________
-BaseVGM::VCtubs::VCtubs()
-  : VGM::ICtubs()
+BaseVGM::VCtubs::VCtubs() : VGM::ICtubs()
 {
-/// Default constructor
+  /// Default constructor
 }
 
 //_____________________________________________________________________________
-BaseVGM::VCtubs::~VCtubs() {
-//
+BaseVGM::VCtubs::~VCtubs()
+{
+  //
 }
 
 //_____________________________________________________________________________
 std::ostream& BaseVGM::VCtubs::Put(std::ostream& out) const
 {
-  out << "  rin = "    << InnerRadius()  << "mm"
-      << "  rout = "   << OuterRadius()  << "mm"
-      << "  hz = "     << ZHalfLength()  << "mm"
-      << "  sphi = "   << StartPhi()     << "deg"
-      << "  dphi = "   << DeltaPhi()     << "deg"
-      << "  nlow = ("  << NxLow() << ", " << NyLow() << ", " << NzLow() << ")"
-      << "  nhigh = (" << NxHigh() << ", " << NyHigh() << ", " << NzHigh() << ")";
+  out << "  rin = " << InnerRadius() << "mm"
+      << "  rout = " << OuterRadius() << "mm"
+      << "  hz = " << ZHalfLength() << "mm"
+      << "  sphi = " << StartPhi() << "deg"
+      << "  dphi = " << DeltaPhi() << "deg"
+      << "  nlow = (" << NxLow() << ", " << NyLow() << ", " << NzLow() << ")"
+      << "  nhigh = (" << NxHigh() << ", " << NyHigh() << ", " << NzHigh()
+      << ")";
 
   return out;
 }
-

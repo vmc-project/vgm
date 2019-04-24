@@ -26,39 +26,39 @@
 
 namespace VGM {
 
-  class ITorus : public virtual ISolid
-  {
-    public:
-      virtual ~ITorus() {}
+class ITorus : public virtual ISolid
+{
+ public:
+  virtual ~ITorus() {}
 
-      // methods
+  // methods
 
-      virtual SolidType   Type() const = 0;
-      virtual std::string Name() const = 0;
+  virtual SolidType Type() const = 0;
+  virtual std::string Name() const = 0;
 
-		      ///
-		      /// Return the inside radius of the torus in mm
-      virtual double InnerRadius() const = 0;
-		      ///
-		      /// Return the outside radius of the torus in mm
-      virtual double OuterRadius() const = 0;
-		      ///
-		      /// Return the axial (swept) radius of the torus in mm
-      virtual double AxialRadius() const = 0;
-		      ///
-		      /// Return the starting phi angle of the segment in deg
-		      /// (with 0 being the +x axis)
-      virtual double StartPhi() const = 0;
-		      ///
-		      /// Return the opening phi angle of the segment in deg
-      virtual double DeltaPhi() const = 0;
+  ///
+  /// Return the inside radius of the torus in mm
+  virtual double InnerRadius() const = 0;
+  ///
+  /// Return the outside radius of the torus in mm
+  virtual double OuterRadius() const = 0;
+  ///
+  /// Return the axial (swept) radius of the torus in mm
+  virtual double AxialRadius() const = 0;
+  ///
+  /// Return the starting phi angle of the segment in deg
+  /// (with 0 being the +x axis)
+  virtual double StartPhi() const = 0;
+  ///
+  /// Return the opening phi angle of the segment in deg
+  virtual double DeltaPhi() const = 0;
 
-      // streaming
-      virtual std::ostream& Put(std::ostream& out) const = 0;
-  };
+  // streaming
+  virtual std::ostream& Put(std::ostream& out) const = 0;
+};
 
-}
+} // namespace VGM
 
-std::ostream& operator << (std::ostream& out, const VGM::ITorus& torus);
+std::ostream& operator<<(std::ostream& out, const VGM::ITorus& torus);
 
-#endif //VGM_I_TORUS_H
+#endif // VGM_I_TORUS_H

@@ -26,24 +26,26 @@
 
 namespace BaseVGM {
 
-  class VEllipsoid : public virtual VGM::IEllipsoid
-  {
-    public:
-      VEllipsoid();
-      virtual ~VEllipsoid();
+class VEllipsoid : public virtual VGM::IEllipsoid
+{
+ public:
+  VEllipsoid();
+  virtual ~VEllipsoid();
 
-      // methods
-      virtual VGM::SolidType Type() const;
+  // methods
+  virtual VGM::SolidType Type() const;
 
-      // streaming
-      virtual std::ostream& Put(std::ostream& out) const;
-  };
+  // streaming
+  virtual std::ostream& Put(std::ostream& out) const;
+};
 
-}
+} // namespace BaseVGM
 
 // inline functions
 
-inline VGM::SolidType
-BaseVGM::VEllipsoid::Type() const { return VGM::kEllipsoid; }
+inline VGM::SolidType BaseVGM::VEllipsoid::Type() const
+{
+  return VGM::kEllipsoid;
+}
 
-#endif //BASE_VGM_V_ELLIPSOID_H
+#endif // BASE_VGM_V_ELLIPSOID_H

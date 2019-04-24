@@ -24,36 +24,35 @@
 #include "XmlVGM/VExporter.h"
 
 namespace VGM {
-  class IFactory;
-  class IVolume;
-}
+class IFactory;
+class IVolume;
+} // namespace VGM
 
 namespace XmlVGM {
 
-  class GDMLExporter : public VExporter
-  {
-    public:
-      GDMLExporter(const VGM::IFactory* factory);
-      // --> protected
-      // GDMLExporter(const GDMLExporter& right);
-      virtual ~GDMLExporter();
+class GDMLExporter : public VExporter
+{
+ public:
+  GDMLExporter(const VGM::IFactory* factory);
+  // --> protected
+  // GDMLExporter(const GDMLExporter& right);
+  virtual ~GDMLExporter();
 
-    protected:
-      GDMLExporter();
-      GDMLExporter(const GDMLExporter& right);
+ protected:
+  GDMLExporter();
+  GDMLExporter(const GDMLExporter& right);
 
-      // operators
-      GDMLExporter& operator=(const GDMLExporter& right);
+  // operators
+  GDMLExporter& operator=(const GDMLExporter& right);
 
-      // methods
-      // (specific to XML definition)
-      //
-      virtual void GenerateGeometry(VGM::IVolume* volume);
-      virtual void GenerateSection(VGM::IVolume* volume);
-      virtual void ProcessVolume(VGM::IVolume* volume);
-  };
+  // methods
+  // (specific to XML definition)
+  //
+  virtual void GenerateGeometry(VGM::IVolume* volume);
+  virtual void GenerateSection(VGM::IVolume* volume);
+  virtual void ProcessVolume(VGM::IVolume* volume);
+};
 
-}
+} // namespace XmlVGM
 
-#endif //XML_VGM_GDML_EXPORTER_H
-
+#endif // XML_VGM_GDML_EXPORTER_H

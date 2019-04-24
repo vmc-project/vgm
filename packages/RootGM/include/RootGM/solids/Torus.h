@@ -28,30 +28,30 @@ class TGeoTorus;
 
 namespace RootGM {
 
-  class Torus : public BaseVGM::VTorus
+class Torus : public BaseVGM::VTorus
 {
-    public:
-      Torus(const std::string& name,
-            double rin, double rout, double rax, double sphi, double dphi);
-      Torus(TGeoTorus* torus);
-      virtual ~Torus();
+ public:
+  Torus(const std::string& name, double rin, double rout, double rax,
+    double sphi, double dphi);
+  Torus(TGeoTorus* torus);
+  virtual ~Torus();
 
-      // methods
-      virtual std::string Name() const;
-      virtual double InnerRadius() const;
-      virtual double OuterRadius() const;
-      virtual double AxialRadius() const;
-      virtual double StartPhi() const;
-      virtual double DeltaPhi() const;
+  // methods
+  virtual std::string Name() const;
+  virtual double InnerRadius() const;
+  virtual double OuterRadius() const;
+  virtual double AxialRadius() const;
+  virtual double StartPhi() const;
+  virtual double DeltaPhi() const;
 
-    protected:
-      Torus();
-      Torus(const Torus& rhs);
+ protected:
+  Torus();
+  Torus(const Torus& rhs);
 
-    private:
-      TGeoTorus* fTorus;
-  };
+ private:
+  TGeoTorus* fTorus;
+};
 
-}
+} // namespace RootGM
 
-#endif //ROOT_GM_TORUS_H
+#endif // ROOT_GM_TORUS_H

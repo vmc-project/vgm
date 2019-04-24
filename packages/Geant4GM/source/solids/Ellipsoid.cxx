@@ -25,39 +25,35 @@
 #include "G4ReflectedSolid.hh"
 
 //_____________________________________________________________________________
-Geant4GM::Ellipsoid::Ellipsoid(const std::string& name,
-                   double dx, double dy, double dz,
-                   double zBottomCut, double zTopCut)
+Geant4GM::Ellipsoid::Ellipsoid(const std::string& name, double dx, double dy,
+  double dz, double zBottomCut, double zTopCut)
   : VGM::ISolid(),
     VGM::IEllipsoid(),
     BaseVGM::VEllipsoid(),
-    fEllipsoid( new G4Ellipsoid(name,
-                    dx / ClhepVGM::Units::Length(),
-		    dy / ClhepVGM::Units::Length(),
-		    dz / ClhepVGM::Units::Length(),
-		    zBottomCut / ClhepVGM::Units::Length(),
-		    zTopCut    / ClhepVGM::Units::Length()) )
+    fEllipsoid(new G4Ellipsoid(name, dx / ClhepVGM::Units::Length(),
+      dy / ClhepVGM::Units::Length(), dz / ClhepVGM::Units::Length(),
+      zBottomCut / ClhepVGM::Units::Length(),
+      zTopCut / ClhepVGM::Units::Length()))
 {
-/// Standard constructor to define ellipsoid from parameters
-/// \param dx the semi-axis of the ellipse along x in mm
-/// \param dy the semi-axis of the ellipse along y in mm
-/// \param dz the semi-axis of the ellipse along z in mm
-/// \param zBottomCut bottom cut in z in mm
-/// \param zTopCut top cut in z in mm
+  /// Standard constructor to define ellipsoid from parameters
+  /// \param dx the semi-axis of the ellipse along x in mm
+  /// \param dy the semi-axis of the ellipse along y in mm
+  /// \param dz the semi-axis of the ellipse along z in mm
+  /// \param zBottomCut bottom cut in z in mm
+  /// \param zTopCut top cut in z in mm
 
   Geant4GM::SolidMap::Instance()->AddSolid(this, fEllipsoid);
 }
 
-
 //_____________________________________________________________________________
-Geant4GM::Ellipsoid::Ellipsoid(G4Ellipsoid* ellipsoid,
-                   G4ReflectedSolid* reflEllipsoid)
+Geant4GM::Ellipsoid::Ellipsoid(
+  G4Ellipsoid* ellipsoid, G4ReflectedSolid* reflEllipsoid)
   : VGM::ISolid(),
     VGM::IEllipsoid(),
     BaseVGM::VEllipsoid(),
     fEllipsoid(ellipsoid)
 {
-/// Standard constructor to define ellipsoid from G4 object
+  /// Standard constructor to define ellipsoid from G4 object
 
   if (reflEllipsoid)
     Geant4GM::SolidMap::Instance()->AddSolid(this, reflEllipsoid);
@@ -67,32 +63,26 @@ Geant4GM::Ellipsoid::Ellipsoid(G4Ellipsoid* ellipsoid,
 
 //_____________________________________________________________________________
 Geant4GM::Ellipsoid::Ellipsoid()
-  : VGM::ISolid(),
-    VGM::IEllipsoid(),
-    BaseVGM::VEllipsoid()
+  : VGM::ISolid(), VGM::IEllipsoid(), BaseVGM::VEllipsoid()
 {
-/// Protected default constructor
+  /// Protected default constructor
 }
 
 //_____________________________________________________________________________
 Geant4GM::Ellipsoid::Ellipsoid(const Ellipsoid& rhs)
-  : VGM::ISolid(rhs),
-    VGM::IEllipsoid(rhs),
-    BaseVGM::VEllipsoid(rhs)
+  : VGM::ISolid(rhs), VGM::IEllipsoid(rhs), BaseVGM::VEllipsoid(rhs)
 {
-/// Protected copy constructor
+  /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
-Geant4GM::Ellipsoid::~Ellipsoid() {
-//
+Geant4GM::Ellipsoid::~Ellipsoid()
+{
+  //
 }
 
 //_____________________________________________________________________________
-std::string Geant4GM::Ellipsoid::Name() const
-{
-  return fEllipsoid->GetName();
-}
+std::string Geant4GM::Ellipsoid::Name() const { return fEllipsoid->GetName(); }
 
 //_____________________________________________________________________________
 double Geant4GM::Ellipsoid::XSemiAxis() const
@@ -123,4 +113,3 @@ double Geant4GM::Ellipsoid::ZTopCut() const
 {
   return fEllipsoid->GetZTopCut() * ClhepVGM::Units::Length();
 }
-

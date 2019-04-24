@@ -27,32 +27,30 @@ std::ostream& operator<<(std::ostream& out, const VGM::ITrap& trap)
 }
 
 //_____________________________________________________________________________
-BaseVGM::VTrap::VTrap()
-  : VGM::ITrap()
+BaseVGM::VTrap::VTrap() : VGM::ITrap()
 {
-/// Default constructor
+  /// Default constructor
 }
 
-
 //_____________________________________________________________________________
-BaseVGM::VTrap::~VTrap() {
-//
+BaseVGM::VTrap::~VTrap()
+{
+  //
 }
 
 //_____________________________________________________________________________
 std::ostream& BaseVGM::VTrap::Put(std::ostream& out) const
 {
-  out << "  hz = "     << ZHalfLength()                << "mm"
-      << "  theta = "  << Theta()                      << "deg"
-      << "  phi = "    << Phi()                        << "deg"
-      << "  hy1 = "    << YHalfLengthMinusZ()          << "mm"
-      << "  hx1 = "    << XHalfLengthMinusZMinusY()    << "mm"
-      << "  hx2 = "    << XHalfLengthMinusZPlusY()     << "mm"
-      << "  alpha1 = " << AlphaMinusZ()                << "deg"
-      << "  hy2 = "    << YHalfLengthPlusZ()           << "mm"
-      << "  hx3 = "    << XHalfLengthPlusZMinusY()     << "mm"
-      << "  hx4 = "    << XHalfLengthPlusZPlusY()      << "mm"
-      << "  alpha2 = " << AlphaPlusZ()                 << "deg";
+  out << "  hz = " << ZHalfLength() << "mm"
+      << "  theta = " << Theta() << "deg"
+      << "  phi = " << Phi() << "deg"
+      << "  hy1 = " << YHalfLengthMinusZ() << "mm"
+      << "  hx1 = " << XHalfLengthMinusZMinusY() << "mm"
+      << "  hx2 = " << XHalfLengthMinusZPlusY() << "mm"
+      << "  alpha1 = " << AlphaMinusZ() << "deg"
+      << "  hy2 = " << YHalfLengthPlusZ() << "mm"
+      << "  hx3 = " << XHalfLengthPlusZMinusY() << "mm"
+      << "  hx4 = " << XHalfLengthPlusZPlusY() << "mm"
+      << "  alpha2 = " << AlphaPlusZ() << "deg";
   return out;
 }
-

@@ -31,76 +31,64 @@ class TGeoPatternFinder;
 class TGeoMatrix;
 class TGeoNode;
 
-
 namespace VGM {
-  class IVolume;
+class IVolume;
 }
 
 namespace RootGM {
 
-  class Placement : public BaseVGM::VPlacement
-  {
-    public:
-      Placement(
-         const std::string& name,
-         int copyNo,
-         VGM::IVolume* volume, VGM::IVolume* motherVolume,
-         TGeoMatrix* transformation);
-      Placement(
-         const std::string& name,
-         VGM::IVolume* volume, VGM::IVolume* motherVolume,
-         VGM::Axis axis, int nofItems, double  width, double offset);
-      Placement(
-         VGM::IVolume* volume, VGM::IVolume* motherVolume,
-         TGeoNode* node);
-      Placement(
-         VGM::IVolume* volume, VGM::IVolume* motherVolume,
-         TGeoNode* node, std::vector<const TGeoNode*> assemblyNodes);
-      virtual ~Placement();
+class Placement : public BaseVGM::VPlacement
+{
+ public:
+  Placement(const std::string& name, int copyNo, VGM::IVolume* volume,
+    VGM::IVolume* motherVolume, TGeoMatrix* transformation);
+  Placement(const std::string& name, VGM::IVolume* volume,
+    VGM::IVolume* motherVolume, VGM::Axis axis, int nofItems, double width,
+    double offset);
+  Placement(VGM::IVolume* volume, VGM::IVolume* motherVolume, TGeoNode* node);
+  Placement(VGM::IVolume* volume, VGM::IVolume* motherVolume, TGeoNode* node,
+    std::vector<const TGeoNode*> assemblyNodes);
+  virtual ~Placement();
 
-      // static methods
-      static void SetIncludeAssembliesInNames(bool includeAssembliesInNames);
-      static bool GetIncludeAssembliesInNames();
+  // static methods
+  static void SetIncludeAssembliesInNames(bool includeAssembliesInNames);
+  static bool GetIncludeAssembliesInNames();
 
-      static void SetNameSeparator(char nameSeparator);
-      static void SetNamePrefix(char namePrefix);
-      static char GetNameSeparator();
-      static char GetNamePrefix();
+  static void SetNameSeparator(char nameSeparator);
+  static void SetNamePrefix(char namePrefix);
+  static char GetNameSeparator();
+  static char GetNamePrefix();
 
-      // methods
-      virtual VGM::PlacementType Type() const;
-      virtual std::string        Name() const;
-      virtual int                CopyNo() const;
-      virtual VGM::Transform     Transformation() const;
+  // methods
+  virtual VGM::PlacementType Type() const;
+  virtual std::string Name() const;
+  virtual int CopyNo() const;
+  virtual VGM::Transform Transformation() const;
 
-      virtual bool  MultiplePlacementData(
-                                VGM::Axis&  axis,
-                                int&     nofItems,
-                                double&  width,
-                                double&  offset,
-                                double&  halfGap) const;
+  virtual bool MultiplePlacementData(VGM::Axis& axis, int& nofItems,
+    double& width, double& offset, double& halfGap) const;
 
-    protected:
-      Placement();
-      Placement(const Placement& rhs);
+ protected:
+  Placement();
+  Placement(const Placement& rhs);
 
-    private:
-      // methods
-      TGeoMatrix*  ComposeMatrix(VGM::IVolume* volume, VGM::IVolume* motherVolume,
-                                 TGeoMatrix* transformation) const;
+ private:
+  // methods
+  TGeoMatrix* ComposeMatrix(VGM::IVolume* volume, VGM::IVolume* motherVolume,
+    TGeoMatrix* transformation) const;
 
-      // static data members
-      static bool fgIncludeAssembliesInNames;
-      static char fgNameSeparator;
-      static char fgNamePrefix;
+  // static data members
+  static bool fgIncludeAssembliesInNames;
+  static char fgNameSeparator;
+  static char fgNamePrefix;
 
-      // data members
-      std::string  fName;
-      TGeoNode*    fGeoNode;
-      TGeoMatrix*  fVGMMatrix;
-      std::vector<const TGeoNode*>  fAssemblyNodes;
-  };
+  // data members
+  std::string fName;
+  TGeoNode* fGeoNode;
+  TGeoMatrix* fVGMMatrix;
+  std::vector<const TGeoNode*> fAssemblyNodes;
+};
 
-}
+} // namespace RootGM
 
-#endif //ROOT_GM_PLACEMENT_H
+#endif // ROOT_GM_PLACEMENT_H

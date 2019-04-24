@@ -29,29 +29,27 @@ class G4ReflectedSolid;
 
 namespace Geant4GM {
 
-  class Box : public BaseVGM::VBox
-  {
-    public:
-      Box(const std::string& name,
-          double hx, double hy, double hz);
-      Box(G4Box* box,
-          G4ReflectedSolid* reflBox = 0);
-      virtual ~Box();
+class Box : public BaseVGM::VBox
+{
+ public:
+  Box(const std::string& name, double hx, double hy, double hz);
+  Box(G4Box* box, G4ReflectedSolid* reflBox = 0);
+  virtual ~Box();
 
-      // methods
-      virtual std::string Name() const;
-      virtual double XHalfLength() const;
-      virtual double YHalfLength() const;
-      virtual double ZHalfLength() const;
+  // methods
+  virtual std::string Name() const;
+  virtual double XHalfLength() const;
+  virtual double YHalfLength() const;
+  virtual double ZHalfLength() const;
 
-    protected:
-      Box();
-      Box(const Box& rhs);
+ protected:
+  Box();
+  Box(const Box& rhs);
 
-    private:
-      G4Box* fBox;
-  };
+ private:
+  G4Box* fBox;
+};
 
-}
+} // namespace Geant4GM
 
-#endif //GEANT4_GM_BOX_H
+#endif // GEANT4_GM_BOX_H

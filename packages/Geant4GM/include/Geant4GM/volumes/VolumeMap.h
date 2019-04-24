@@ -25,48 +25,48 @@
 class G4LogicalVolume;
 
 namespace VGM {
-  class IVolume;
+class IVolume;
 }
 
 namespace Geant4GM {
 
-  class VolumeMap;
+class VolumeMap;
 
-  class VolumeMap
-  {
-    public:
-      typedef std::map<VGM::IVolume*, G4LogicalVolume*>  G4VolumeMap;
-      typedef G4VolumeMap::const_iterator                G4VolumeMapCIterator;
+class VolumeMap
+{
+ public:
+  typedef std::map<VGM::IVolume*, G4LogicalVolume*> G4VolumeMap;
+  typedef G4VolumeMap::const_iterator G4VolumeMapCIterator;
 
-      typedef std::map<G4LogicalVolume*, VGM::IVolume*>  VgmVolumeMap;
-      typedef VgmVolumeMap::const_iterator               VgmVolumeMapCIterator;
+  typedef std::map<G4LogicalVolume*, VGM::IVolume*> VgmVolumeMap;
+  typedef VgmVolumeMap::const_iterator VgmVolumeMapCIterator;
 
-    public:
-      VolumeMap();
-      virtual ~VolumeMap();
+ public:
+  VolumeMap();
+  virtual ~VolumeMap();
 
-      // static access methods
-      static VolumeMap* Instance();
+  // static access methods
+  static VolumeMap* Instance();
 
-      // methods
-      void  AddVolume(VGM::IVolume*, G4LogicalVolume*);
-      void  Print() const;
+  // methods
+  void AddVolume(VGM::IVolume*, G4LogicalVolume*);
+  void Print() const;
 
-      // get methods
-      G4LogicalVolume* GetVolume(VGM::IVolume* iVolume) const;
-      VGM::IVolume*    GetVolume(G4LogicalVolume* lv) const;
+  // get methods
+  G4LogicalVolume* GetVolume(VGM::IVolume* iVolume) const;
+  VGM::IVolume* GetVolume(G4LogicalVolume* lv) const;
 
-    private:
-      VolumeMap(const VolumeMap&);
+ private:
+  VolumeMap(const VolumeMap&);
 
-      // static data members
-      static VolumeMap*  fgInstance;
+  // static data members
+  static VolumeMap* fgInstance;
 
-      // data members
-      G4VolumeMap   fG4Volumes;
-      VgmVolumeMap  fVgmVolumes;
-  };
+  // data members
+  G4VolumeMap fG4Volumes;
+  VgmVolumeMap fVgmVolumes;
+};
 
-}
+} // namespace Geant4GM
 
-#endif //GEANT4_GM_VOLUME_MAP_H
+#endif // GEANT4_GM_VOLUME_MAP_H

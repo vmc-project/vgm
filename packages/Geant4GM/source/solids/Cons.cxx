@@ -30,45 +30,38 @@
 #include "G4ReflectedSolid.hh"
 
 //_____________________________________________________________________________
-Geant4GM::Cons::Cons(const std::string& name,
-                     double rin1, double rout1, double rin2, double rout2,
-	             double hz, double sphi, double dphi)
+Geant4GM::Cons::Cons(const std::string& name, double rin1, double rout1,
+  double rin2, double rout2, double hz, double sphi, double dphi)
   : VGM::ISolid(),
     VGM::ICons(),
     BaseVGM::VCons(),
     fIsReflected(false),
-    fCons( new G4Cons(name,
-                      rin1  / ClhepVGM::Units::Length(),
-		      rout1 / ClhepVGM::Units::Length(),
-		      rin2  / ClhepVGM::Units::Length(),
-		      rout2 / ClhepVGM::Units::Length(),
-		      hz    / ClhepVGM::Units::Length(),
-		      sphi  / ClhepVGM::Units::Angle(),
-		      dphi  / ClhepVGM::Units::Angle()))
+    fCons(new G4Cons(name, rin1 / ClhepVGM::Units::Length(),
+      rout1 / ClhepVGM::Units::Length(), rin2 / ClhepVGM::Units::Length(),
+      rout2 / ClhepVGM::Units::Length(), hz / ClhepVGM::Units::Length(),
+      sphi / ClhepVGM::Units::Angle(), dphi / ClhepVGM::Units::Angle()))
 {
-/// Standard constructor to define cons from parameters
-/// \param rin1 inside radius at -hz in mm
-/// \param rout1 outside radius at -hz in mm
-/// \param rin2 inside radius at +hz in mm
-/// \param rout2 outside radius at +hz in mm
-/// \param hz half-length along the z axis in mm
-/// \param sphi starting angle of the segment in deg
-/// \param dphi opening angle of the segment in deg
+  /// Standard constructor to define cons from parameters
+  /// \param rin1 inside radius at -hz in mm
+  /// \param rout1 outside radius at -hz in mm
+  /// \param rin2 inside radius at +hz in mm
+  /// \param rout2 outside radius at +hz in mm
+  /// \param hz half-length along the z axis in mm
+  /// \param sphi starting angle of the segment in deg
+  /// \param dphi opening angle of the segment in deg
 
   Geant4GM::SolidMap::Instance()->AddSolid(this, fCons);
 }
 
-
 //_____________________________________________________________________________
-Geant4GM::Cons::Cons(G4Cons* cons,
-                     G4ReflectedSolid* reflCons)
+Geant4GM::Cons::Cons(G4Cons* cons, G4ReflectedSolid* reflCons)
   : VGM::ISolid(),
     VGM::ICons(),
     BaseVGM::VCons(),
     fIsReflected(false),
     fCons(cons)
 {
-/// Standard constructor to define cons from G4 object
+  /// Standard constructor to define cons from G4 object
 
   if (reflCons) {
     fIsReflected = true;
@@ -76,37 +69,29 @@ Geant4GM::Cons::Cons(G4Cons* cons,
   }
   else
     Geant4GM::SolidMap::Instance()->AddSolid(this, cons);
-
 }
 
 //_____________________________________________________________________________
-Geant4GM::Cons::Cons()
-  : VGM::ISolid(),
-    VGM::ICons(),
-    BaseVGM::VCons()
+Geant4GM::Cons::Cons() : VGM::ISolid(), VGM::ICons(), BaseVGM::VCons()
 {
-/// Protected default constructor
+  /// Protected default constructor
 }
 
 //_____________________________________________________________________________
 Geant4GM::Cons::Cons(const Cons& rhs)
-  : VGM::ISolid(rhs),
-    VGM::ICons(rhs),
-    BaseVGM::VCons(rhs)
+  : VGM::ISolid(rhs), VGM::ICons(rhs), BaseVGM::VCons(rhs)
 {
-/// Protected copy constructor
+  /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
-Geant4GM::Cons::~Cons() {
-//
+Geant4GM::Cons::~Cons()
+{
+  //
 }
 
 //_____________________________________________________________________________
-std::string Geant4GM::Cons::Name() const
-{
-  return fCons->GetName();
-}
+std::string Geant4GM::Cons::Name() const { return fCons->GetName(); }
 
 //_____________________________________________________________________________
 double Geant4GM::Cons::InnerRadiusMinusZ() const

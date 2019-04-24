@@ -16,26 +16,19 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include "ClhepVGM/transform.h"
-#include "ClhepVGM/Units.h"
 #include "BaseVGM/common/utilities.h"
+#include "ClhepVGM/Units.h"
+#include "ClhepVGM/transform.h"
 
-#include "Geant4GM/volumes/Factory.h"
-#include "Geant4GM/volumes/PlacementMap.h"
-#include "Geant4GM/volumes/VolumeMap.h"
-#include "Geant4GM/volumes/Volume.h"
-#include "Geant4GM/volumes/Placement.h"
+#include "Geant4GM/materials/Material.h"
 #include "Geant4GM/materials/MaterialFactory.h"
 #include "Geant4GM/materials/Medium.h"
-#include "Geant4GM/materials/Material.h"
-#include "Geant4GM/solids/SolidMap.h"
-#include "Geant4GM/solids/BooleanSolid.h"
-#include "Geant4GM/solids/DisplacedSolid.h"
-#include "Geant4GM/solids/ScaledSolid.h"
 #include "Geant4GM/solids/Arb8.h"
+#include "Geant4GM/solids/BooleanSolid.h"
 #include "Geant4GM/solids/Box.h"
 #include "Geant4GM/solids/Cons.h"
 #include "Geant4GM/solids/Ctubs.h"
+#include "Geant4GM/solids/DisplacedSolid.h"
 #include "Geant4GM/solids/Ellipsoid.h"
 #include "Geant4GM/solids/EllipticalTube.h"
 #include "Geant4GM/solids/ExtrudedSolid.h"
@@ -44,41 +37,48 @@
 #include "Geant4GM/solids/Paraboloid.h"
 #include "Geant4GM/solids/Polycone.h"
 #include "Geant4GM/solids/Polyhedra.h"
+#include "Geant4GM/solids/ScaledSolid.h"
+#include "Geant4GM/solids/SolidMap.h"
 #include "Geant4GM/solids/Sphere.h"
 #include "Geant4GM/solids/TessellatedSolid.h"
 #include "Geant4GM/solids/Torus.h"
 #include "Geant4GM/solids/Trap.h"
 #include "Geant4GM/solids/Trd.h"
 #include "Geant4GM/solids/Tubs.h"
+#include "Geant4GM/volumes/Factory.h"
+#include "Geant4GM/volumes/Placement.h"
+#include "Geant4GM/volumes/PlacementMap.h"
+#include "Geant4GM/volumes/Volume.h"
+#include "Geant4GM/volumes/VolumeMap.h"
 
-#include "G4PVDivisionFactory.hh"
-#include "G4ReplicatedSlice.hh"
-#include "G4ReflectedSolid.hh"
-#include "G4VPhysicalVolume.hh"
-#include "G4LogicalVolume.hh"
-#include "G4LogicalVolumeStore.hh"
-#include "G4VSolid.hh"
 #include "G4BooleanSolid.hh"
-#include "G4DisplacedSolid.hh"
-#include "G4ScaledSolid.hh"
 #include "G4Box.hh"
 #include "G4Cons.hh"
 #include "G4CutTubs.hh"
+#include "G4DisplacedSolid.hh"
 #include "G4Ellipsoid.hh"
 #include "G4EllipticalTube.hh"
 #include "G4ExtrudedSolid.hh"
 #include "G4Hype.hh"
+#include "G4LogicalVolume.hh"
+#include "G4LogicalVolumeStore.hh"
+#include "G4PVDivisionFactory.hh"
 #include "G4Para.hh"
 #include "G4Paraboloid.hh"
 #include "G4Polycone.hh"
 #include "G4Polyhedra.hh"
+#include "G4ReflectedSolid.hh"
+#include "G4ReplicatedSlice.hh"
+#include "G4ScaledSolid.hh"
 #include "G4Sphere.hh"
+#include "G4SystemOfUnits.hh"
 #include "G4TessellatedSolid.hh"
 #include "G4Torus.hh"
 #include "G4Trap.hh"
 #include "G4Trd.hh"
 #include "G4Tubs.hh"
-#include "G4SystemOfUnits.hh"
+#include "G4VPhysicalVolume.hh"
+#include "G4VSolid.hh"
 
 bool Geant4GM::Factory::fgSurfCheck = false;
 
@@ -89,16 +89,16 @@ bool Geant4GM::Factory::fgSurfCheck = false;
 //_____________________________________________________________________________
 void Geant4GM::Factory::SetSurfCheck(bool surfCheck)
 {
-/// Set the option to activate geometry checking:
-/// set pSurfChk=true for all G4PVPlacement objects
+  /// Set the option to activate geometry checking:
+  /// set pSurfChk=true for all G4PVPlacement objects
 
- fgSurfCheck = surfCheck;
+  fgSurfCheck = surfCheck;
 }
 
 //_____________________________________________________________________________
 bool Geant4GM::Factory::GetSurfCheck()
 {
-/// Return the option to activate geometry checking
+  /// Return the option to activate geometry checking
 
   return fgSurfCheck;
 }
@@ -110,33 +110,31 @@ bool Geant4GM::Factory::GetSurfCheck()
 //_____________________________________________________________________________
 Geant4GM::Factory::Factory()
   : VGM::IFactory(),
-    BaseVGM::VFactory("Geant4_GM_Factory",
-                     new Geant4GM::MaterialFactory()),
+    BaseVGM::VFactory("Geant4_GM_Factory", new Geant4GM::MaterialFactory()),
     fTop(0),
     fSolid(0)
 {
-/// Standard default constructor
+  /// Standard default constructor
 }
 
 //_____________________________________________________________________________
 Geant4GM::Factory::Factory(const Factory& rhs)
-  : VGM::IFactory(rhs),
-    BaseVGM::VFactory(rhs)
+  : VGM::IFactory(rhs), BaseVGM::VFactory(rhs)
 {
-/// Protected copy constructor
+  /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
 Geant4GM::Factory::~Factory()
 {
-//
+  //
   // delete map singletons
   delete Geant4GM::SolidMap::Instance();
   delete Geant4GM::VolumeMap::Instance();
   delete Geant4GM::PlacementMap::Instance();
-              // There is inconsistence in using the singleton maps
-	      // via a factory which is not a singleton
-	      // TO DO: to be improved later
+  // There is inconsistence in using the singleton maps
+  // via a factory which is not a singleton
+  // TO DO: to be improved later
 }
 
 //
@@ -144,42 +142,40 @@ Geant4GM::Factory::~Factory()
 //
 
 //_____________________________________________________________________________
-void Geant4GM::Factory::ImportConstituentSolid(int index,
-                                               G4BooleanSolid* solid)
+void Geant4GM::Factory::ImportConstituentSolid(int index, G4BooleanSolid* solid)
 {
-/// Import constituents of G4 Boolean solid into VGM
+  /// Import constituents of G4 Boolean solid into VGM
 
-  G4VSolid* consSolid
-    = Geant4GM::BooleanSolid::GetConstituentSolid(index, solid);
+  G4VSolid* consSolid =
+    Geant4GM::BooleanSolid::GetConstituentSolid(index, solid);
 
   if (!Geant4GM::SolidMap::Instance()->GetSolid(consSolid)) {
     VGM::ISolid* vgmSolid = ImportSolid(consSolid);
     if (Debug()) {
       BaseVGM::DebugInfo();
-      if ( vgmSolid )
+      if (vgmSolid)
         std::cout << "   Imported solid: " << *vgmSolid << std::endl;
       else
-        std::cout << "   Imported solid: " << "0x0" << std::endl;
+        std::cout << "   Imported solid: "
+                  << "0x0" << std::endl;
     }
   }
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*
-Geant4GM::Factory::ImportSolid(G4VSolid* solid)
+VGM::ISolid* Geant4GM::Factory::ImportSolid(G4VSolid* solid)
 {
-/// Import G4 solid into VGM
+  /// Import G4 solid into VGM
 
   // Do not import the same solid twice
   //
-  VGM::ISolid* importedSolid
-    = Geant4GM::SolidMap::Instance()->GetSolid(solid);
+  VGM::ISolid* importedSolid = Geant4GM::SolidMap::Instance()->GetSolid(solid);
   if (importedSolid) return importedSolid;
 
-  if (Debug()>0) {
+  if (Debug() > 0) {
     BaseVGM::DebugInfo();
     std::cout << "Importing solid: ";
-    if (Debug()>1) std::cout << solid << "  ";
+    if (Debug() > 1) std::cout << solid << "  ";
     std::cout << solid->GetName() << std::endl;
   }
 
@@ -187,10 +183,8 @@ Geant4GM::Factory::ImportSolid(G4VSolid* solid)
 
   // Get constituent solid if the solid is a reflected solid
   //
-  G4ReflectedSolid* reflSolid
-    = dynamic_cast<G4ReflectedSolid*>(solid);
-  if (reflSolid)
-    consSolid = reflSolid->GetConstituentMovedSolid();
+  G4ReflectedSolid* reflSolid = dynamic_cast<G4ReflectedSolid*>(solid);
+  if (reflSolid) consSolid = reflSolid->GetConstituentMovedSolid();
 
   G4Box* box = dynamic_cast<G4Box*>(consSolid);
   if (box) {
@@ -293,14 +287,15 @@ Geant4GM::Factory::ImportSolid(G4VSolid* solid)
   if (boolean) {
     ImportConstituentSolid(0, boolean);
     ImportConstituentSolid(1, boolean);
-    VGM::IBooleanSolid* vgmBoolean = new Geant4GM::BooleanSolid(boolean, reflSolid);
+    VGM::IBooleanSolid* vgmBoolean =
+      new Geant4GM::BooleanSolid(boolean, reflSolid);
     Register(vgmBoolean);
 
-    if (Debug()>0) {
+    if (Debug() > 0) {
       BaseVGM::DebugInfo();
       std::cout << "Imported Boolean solid: ";
-      if (Debug()>1) std::cout << vgmBoolean;
-      std::cout  << std::endl;
+      if (Debug() > 1) std::cout << vgmBoolean;
+      std::cout << std::endl;
       BaseVGM::DebugInfo();
       std::cout << *vgmBoolean << std::endl;
     }
@@ -309,14 +304,13 @@ Geant4GM::Factory::ImportSolid(G4VSolid* solid)
   }
 
   std::cerr << "Geant4GM::Factory::ImportSolid: " << std::endl;
-  std::cerr << "Unsupported solid type (solid \""
-            << solid->GetName() << "\""
-	    << "   type \"" << solid->GetEntityType() << "\")"
-	    << std::endl;
+  std::cerr << "Unsupported solid type (solid \"" << solid->GetName() << "\""
+            << "   type \"" << solid->GetEntityType() << "\")" << std::endl;
 
-  if ( Ignore() ) {
+  if (Ignore()) {
     std::cerr << "*** Warning: Using a box instead  ***" << std::endl;
-    return Register(new Geant4GM::Box(solid->GetName(), 1.*mm, 1.*mm, 1.*mm));
+    return Register(
+      new Geant4GM::Box(solid->GetName(), 1. * mm, 1. * mm, 1. * mm));
   }
   else {
     std::cerr << "*** Error: Aborting execution  ***" << std::endl;
@@ -325,10 +319,9 @@ Geant4GM::Factory::ImportSolid(G4VSolid* solid)
 }
 
 //_____________________________________________________________________________
-VGM::IVolume*
-Geant4GM::Factory::ImportLV(G4LogicalVolume* lv)
+VGM::IVolume* Geant4GM::Factory::ImportLV(G4LogicalVolume* lv)
 {
-/// Import logical volume in VGM
+  /// Import logical volume in VGM
 
   if (Debug()) {
     BaseVGM::DebugInfo();
@@ -340,25 +333,25 @@ Geant4GM::Factory::ImportLV(G4LogicalVolume* lv)
 
   if (Debug()) {
     BaseVGM::DebugInfo();
-    if ( solid )
+    if (solid)
       std::cout << "   Imported solid: " << *solid << std::endl;
     else
-      std::cout << "   Imported solid: " << "0x0" << std::endl;
+      std::cout << "   Imported solid: "
+                << "0x0" << std::endl;
   }
 
   // Create vgm volume
-  VGM::IVolume* volume
-    = new Geant4GM::Volume(solid, lv, lv->GetMaterial()->GetName());
+  VGM::IVolume* volume =
+    new Geant4GM::Volume(solid, lv, lv->GetMaterial()->GetName());
   VolumeStore().push_back(volume);
   return volume;
 }
 
-
 //_____________________________________________________________________________
-VGM::IVolume*
-Geant4GM::Factory::ImportLV(G4LogicalVolume* lv, const std::string& mediumName)
+VGM::IVolume* Geant4GM::Factory::ImportLV(
+  G4LogicalVolume* lv, const std::string& mediumName)
 {
-/// Import logical volume in VGM
+  /// Import logical volume in VGM
 
   if (Debug()) {
     BaseVGM::DebugInfo();
@@ -369,30 +362,26 @@ Geant4GM::Factory::ImportLV(G4LogicalVolume* lv, const std::string& mediumName)
   VGM::ISolid* solid = ImportSolid(lv->GetSolid());
 
   // Create vgm volume
-  VGM::IVolume* volume
-    = new Geant4GM::Volume(solid, lv, mediumName);
+  VGM::IVolume* volume = new Geant4GM::Volume(solid, lv, mediumName);
   VolumeStore().push_back(volume);
   return volume;
 }
-
 
 //_____________________________________________________________________________
 void Geant4GM::Factory::ImportDaughters(G4LogicalVolume* lv)
 {
-// Import recursively all daughters logical volumes.
+  // Import recursively all daughters logical volumes.
 
   if (Debug()) {
     BaseVGM::DebugInfo();
     std::cout << "ImportDaughters for " << lv->GetName() << std::endl;
   }
 
-  for (int i=0; i<lv->GetNoDaughters(); i++) {
+  for (int i = 0; i < lv->GetNoDaughters(); i++) {
 
-    G4LogicalVolume* dLV
-      = lv->GetDaughter(i)->GetLogicalVolume();
+    G4LogicalVolume* dLV = lv->GetDaughter(i)->GetLogicalVolume();
 
-    VGM::IVolume* dVolume
-      = Geant4GM::VolumeMap::Instance()->GetVolume(dLV);
+    VGM::IVolume* dVolume = Geant4GM::VolumeMap::Instance()->GetVolume(dLV);
 
     if (!dVolume) {
       // Import logical volume
@@ -407,52 +396,52 @@ void Geant4GM::Factory::ImportDaughters(G4LogicalVolume* lv)
 //_____________________________________________________________________________
 void Geant4GM::Factory::ImportPositions()
 {
-// Import placements for all volumes imported
+  // Import placements for all volumes imported
 
-  if (Debug()>0) {
+  if (Debug() > 0) {
     BaseVGM::DebugInfo();
     std::cout << "Import positions: " << std::endl;
   }
 
-  for (unsigned int i=0; i<Volumes().size(); i++) {
+  for (unsigned int i = 0; i < Volumes().size(); i++) {
 
     VGM::IVolume* volume = Volumes()[i];
     G4LogicalVolume* lv = Geant4GM::VolumeMap::Instance()->GetVolume(volume);
 
-    if (Debug()>0) {
+    if (Debug() > 0) {
       BaseVGM::DebugInfo();
-      std::cout << i << "th volume: " << lv->GetName() << "  " ;
-      if (Debug()>1)
-        std::cout << "   lv: " << lv << "  "  << "  vgm: " << volume;
+      std::cout << i << "th volume: " << lv->GetName() << "  ";
+      if (Debug() > 1)
+        std::cout << "   lv: " << lv << "  "
+                  << "  vgm: " << volume;
       std::cout << std::endl;
     }
 
-    for (G4int id=0; id<lv->GetNoDaughters(); id++) {
+    for (G4int id = 0; id < lv->GetNoDaughters(); id++) {
 
       G4VPhysicalVolume* dPV = lv->GetDaughter(id);
       G4LogicalVolume* dLV = dPV->GetLogicalVolume();
 
-      if (Debug()>0) {
+      if (Debug() > 0) {
         BaseVGM::DebugInfo();
         std::cout << "   " << id << "th daughter  pv = ";
-        if (Debug()>1) std::cout << dPV << "  ";
-        std::cout << dPV->GetName()<< "  lv = ";
-        if (Debug()>1) std::cout << dLV << "  ";
+        if (Debug() > 1) std::cout << dPV << "  ";
+        std::cout << dPV->GetName() << "  lv = ";
+        if (Debug() > 1) std::cout << dLV << "  ";
         std::cout << dLV->GetName();
       }
 
-      VGM::IVolume* dVolume
-        = Geant4GM::VolumeMap::Instance()->GetVolume(dLV);
+      VGM::IVolume* dVolume = Geant4GM::VolumeMap::Instance()->GetVolume(dLV);
 
       // Create placement
-      VGM::IPlacement* dPlacement
-        = new Geant4GM::Placement(dVolume, volume, dPV);
+      VGM::IPlacement* dPlacement =
+        new Geant4GM::Placement(dVolume, volume, dPV);
 
-      if (Debug()>0) {
+      if (Debug() > 0) {
         std::cout << " vgmPl = ";
-        if (Debug()>1) std::cout << dPlacement << "  ";
+        if (Debug() > 1) std::cout << dPlacement << "  ";
         std::cout << dPlacement->Name() << " vgmVol = ";
-        if (Debug()>1) std::cout << dVolume << "  ";
+        if (Debug() > 1) std::cout << dVolume << "  ";
         std::cout << dVolume->Name() << std::endl;
       }
     }
@@ -462,19 +451,18 @@ void Geant4GM::Factory::ImportPositions()
 //_____________________________________________________________________________
 void Geant4GM::Factory::ImportPositions(G4LogicalVolume* lv)
 {
-// Import placements for daughters tree of specified lv.
-// Check if the placement has been already imported.
+  // Import placements for daughters tree of specified lv.
+  // Check if the placement has been already imported.
 
-  if (Debug()>0) {
+  if (Debug() > 0) {
     BaseVGM::DebugInfo();
     std::cout << "ImportPositions for lv " << lv->GetName()
-              << " nofDaughters: " << lv->GetNoDaughters()
-              << std::endl;
+              << " nofDaughters: " << lv->GetNoDaughters() << std::endl;
   }
 
-  VGM::IVolume* volume= Geant4GM::VolumeMap::Instance()->GetVolume(lv);
+  VGM::IVolume* volume = Geant4GM::VolumeMap::Instance()->GetVolume(lv);
 
-  for (G4int id=0; id<lv->GetNoDaughters(); id++) {
+  for (G4int id = 0; id < lv->GetNoDaughters(); id++) {
 
     G4VPhysicalVolume* dPV = lv->GetDaughter(id);
 
@@ -483,18 +471,19 @@ void Geant4GM::Factory::ImportPositions(G4LogicalVolume* lv)
       std::cout << id << "th daugher: " << dPV->GetName() << std::endl;
     }
 
-    if (! Geant4GM::PlacementMap::Instance()->GetPlacement(dPV)) {
-/*
-      if (Debug()>0) {
-        BaseVGM::DebugInfo();
-        std::cout << "Geant4GM::PlacementMap::Instance()->GetPlacement(dPV) *not* found"
-                  << std::endl;
-        BaseVGM::DebugInfo();
-        std::cout << "  go to import position" << std::endl;
-      }
-*/
+    if (!Geant4GM::PlacementMap::Instance()->GetPlacement(dPV)) {
+      /*
+            if (Debug()>0) {
+              BaseVGM::DebugInfo();
+              std::cout <<
+         "Geant4GM::PlacementMap::Instance()->GetPlacement(dPV) *not* found"
+                        << std::endl;
+              BaseVGM::DebugInfo();
+              std::cout << "  go to import position" << std::endl;
+            }
+      */
       G4LogicalVolume* dLV = dPV->GetLogicalVolume();
-      VGM::IVolume* dVolume= Geant4GM::VolumeMap::Instance()->GetVolume(dLV);
+      VGM::IVolume* dVolume = Geant4GM::VolumeMap::Instance()->GetVolume(dLV);
 
       // Create placement
       new Geant4GM::Placement(dVolume, volume, dPV);
@@ -502,59 +491,58 @@ void Geant4GM::Factory::ImportPositions(G4LogicalVolume* lv)
       // Recursively import positions of daughters
       ImportPositions(dLV);
     }
-/*
-    else
-      if (Debug()>0) {
-        BaseVGM::DebugInfo();
-        std::cout << "Geant4GM::PlacementMap::Instance()->GetPlacement(dPV) found"
-	          << std::endl;
-        BaseVGM::DebugInfo();
-        std::cout << "  do not import position" << std::endl;
-      }
-*/
+    /*
+        else
+          if (Debug()>0) {
+            BaseVGM::DebugInfo();
+            std::cout << "Geant4GM::PlacementMap::Instance()->GetPlacement(dPV)
+       found"
+                      << std::endl;
+            BaseVGM::DebugInfo();
+            std::cout << "  do not import position" << std::endl;
+          }
+    */
   }
 }
 
 //_____________________________________________________________________________
-VGM::IPlacement*
-Geant4GM::Factory::ImportPVPair(VGM::IVolume* volume,
-                                VGM::IVolume* motherVolume,
-                                G4PhysicalVolumesPair pvPair)
+VGM::IPlacement* Geant4GM::Factory::ImportPVPair(VGM::IVolume* volume,
+  VGM::IVolume* motherVolume, G4PhysicalVolumesPair pvPair)
 {
   G4ReflectionFactory* g4ReflectionFactory = G4ReflectionFactory::Instance();
 
   // Get info about created PV
   G4VPhysicalVolume* pv1 = pvPair.first;
-  G4LogicalVolume*   lv1 = pv1->GetLogicalVolume();
+  G4LogicalVolume* lv1 = pv1->GetLogicalVolume();
   VGM::IVolume* iv1 = Geant4GM::VolumeMap::Instance()->GetVolume(lv1);
   if (!iv1) {
-     // a new logical volume has been created by G4 reflection factory
-     // has to be imported into VGM
-     iv1 = ImportLV(lv1, volume->MediumName());
-     ImportDaughters(lv1);
-     ImportPositions(lv1);
+    // a new logical volume has been created by G4 reflection factory
+    // has to be imported into VGM
+    iv1 = ImportLV(lv1, volume->MediumName());
+    ImportDaughters(lv1);
+    ImportPositions(lv1);
   }
-  VGM::IPlacement* placement1
-    = new Geant4GM::Placement(iv1, motherVolume, pv1);
+  VGM::IPlacement* placement1 = new Geant4GM::Placement(iv1, motherVolume, pv1);
   // Register physical volume in the map
   Geant4GM::PlacementMap::Instance()->AddPlacement(placement1, pv1);
 
   G4VPhysicalVolume* pv2 = pvPair.second;
   if (pv2) {
-    G4LogicalVolume* g4MotherLV
-      = Geant4GM::VolumeMap::Instance()->GetVolume(motherVolume);
+    G4LogicalVolume* g4MotherLV =
+      Geant4GM::VolumeMap::Instance()->GetVolume(motherVolume);
 
     // mother volume is the other volume in the pair
     // constituen/reflected mother lv
     G4LogicalVolume* mlv2 = 0;
-    if ( g4ReflectionFactory->IsReflected(g4MotherLV) )
+    if (g4ReflectionFactory->IsReflected(g4MotherLV))
       mlv2 = g4ReflectionFactory->GetConstituentLV(g4MotherLV);
-    if ( g4ReflectionFactory->IsConstituent(g4MotherLV) )
+    if (g4ReflectionFactory->IsConstituent(g4MotherLV))
       mlv2 = g4ReflectionFactory->GetReflectedLV(g4MotherLV);
     if (!mlv2) {
       // should not happen
       std::cerr << "    Geant4GM::Factory::CreatePlacement: " << std::endl;
-      std::cerr << "    Misundersood G4ReflectionFactory behavior " <<std::endl;
+      std::cerr << "    Misundersood G4ReflectionFactory behavior "
+                << std::endl;
       std::cerr << "*** Error: Aborting execution  ***" << std::endl;
       exit(1);
     }
@@ -563,7 +551,7 @@ Geant4GM::Factory::ImportPVPair(VGM::IVolume* volume,
       if (!miv2) {
         // should not happen
         std::cerr << "    Geant4GM::Factory::CreatePlacement: " << std::endl;
-        std::cerr << "    Missing mapping of existing LV to VGM" <<std::endl;
+        std::cerr << "    Missing mapping of existing LV to VGM" << std::endl;
         std::cerr << "*** Error: Aborting execution  ***" << std::endl;
         exit(1);
       }
@@ -587,22 +575,21 @@ Geant4GM::Factory::ImportPVPair(VGM::IVolume* volume,
   Geant4GM::PlacementMap::Instance()->AddPlacement(placement1, pv1);
 
   return placement1;
-     // should allow to return a list of placements
+  // should allow to return a list of placements
 }
 
 //_____________________________________________________________________________
-bool  Geant4GM::Factory::SwitchSolid(VGM::IVolume* volume,
-                                     G4LogicalVolume* g4LV,
-                                     G4LogicalVolume* g4MotherLV)
+bool Geant4GM::Factory::SwitchSolid(
+  VGM::IVolume* volume, G4LogicalVolume* g4LV, G4LogicalVolume* g4MotherLV)
 {
-/// Replace g4LV solid with an equivalent solid of the
-/// same type as g4Mother solid as it is required for G4PVDivision.
-/// Implemented cases:
-/// - G4Cons -> G4Polycone
-/// - G4Tubs -> G4Polycone
+  /// Replace g4LV solid with an equivalent solid of the
+  /// same type as g4Mother solid as it is required for G4PVDivision.
+  /// Implemented cases:
+  /// - G4Cons -> G4Polycone
+  /// - G4Tubs -> G4Polycone
 
-  if ( g4LV->GetSolid()->GetEntityType() == "G4Cons" &&
-       g4MotherLV->GetSolid()->GetEntityType() == "G4Polycone" ) {
+  if (g4LV->GetSolid()->GetEntityType() == "G4Cons" &&
+      g4MotherLV->GetSolid()->GetEntityType() == "G4Polycone") {
 
     G4Cons* cons = static_cast<G4Cons*>(g4LV->GetSolid());
     VGM::ISolid* vgmSolid = new Geant4GM::Polycone(cons);
@@ -611,8 +598,8 @@ bool  Geant4GM::Factory::SwitchSolid(VGM::IVolume* volume,
     return true;
   }
 
-  if ( g4LV->GetSolid()->GetEntityType() == "G4Tubs" &&
-       g4MotherLV->GetSolid()->GetEntityType() == "G4Polycone" ) {
+  if (g4LV->GetSolid()->GetEntityType() == "G4Tubs" &&
+      g4MotherLV->GetSolid()->GetEntityType() == "G4Polycone") {
 
     G4Tubs* tubs = static_cast<G4Tubs*>(g4LV->GetSolid());
     VGM::ISolid* vgmSolid = new Geant4GM::Polycone(tubs);
@@ -627,10 +614,9 @@ bool  Geant4GM::Factory::SwitchSolid(VGM::IVolume* volume,
 //_____________________________________________________________________________
 bool Geant4GM::Factory::Import(void* topVolume)
 {
-/// Import native geometry
+  /// Import native geometry
 
-  G4VPhysicalVolume* worldPV
-    = static_cast<G4VPhysicalVolume*>(topVolume);
+  G4VPhysicalVolume* worldPV = static_cast<G4VPhysicalVolume*>(topVolume);
 
   return Import(worldPV);
 }
@@ -638,18 +624,17 @@ bool Geant4GM::Factory::Import(void* topVolume)
 //_____________________________________________________________________________
 bool Geant4GM::Factory::ImportSolid(void* solid)
 {
-/// Import native geometry
+  /// Import native geometry
 
-  G4VSolid* g4Solid
-    = static_cast<G4VSolid*>(solid);
+  G4VSolid* g4Solid = static_cast<G4VSolid*>(solid);
 
   return Import(g4Solid);
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*  Geant4GM::Factory::Register(VGM::ISolid* vgmSolid)
+VGM::ISolid* Geant4GM::Factory::Register(VGM::ISolid* vgmSolid)
 {
-/// Register solid in SolidStore()
+  /// Register solid in SolidStore()
 
   SolidStore().push_back(vgmSolid);
   return vgmSolid;
@@ -662,7 +647,7 @@ VGM::ISolid*  Geant4GM::Factory::Register(VGM::ISolid* vgmSolid)
 //_____________________________________________________________________________
 void Geant4GM::Factory::SetSolid(VGM::ISolid* solid)
 {
-/// Set solid (in single mode)
+  /// Set solid (in single mode)
 
   fSolid = solid;
 }
@@ -672,15 +657,14 @@ void Geant4GM::Factory::SetSolid(VGM::ISolid* solid)
 //
 
 //_____________________________________________________________________________
-VGM::ISolid*
-Geant4GM::Factory::CreateArb8(const std::string& name,
-                     double hz,
-                     std::vector<VGM::TwoVector> vertices)
+VGM::ISolid* Geant4GM::Factory::CreateArb8(
+  const std::string& name, double hz, std::vector<VGM::TwoVector> vertices)
 {
-//
-  if ( Geant4GM::Arb8::IsTwisted(vertices) ) {
-    std::cerr << "*** Error: Cannot create Twisted Arb8 solid in Geant4 ***" << std::endl;
-    if ( Ignore() ) {
+  //
+  if (Geant4GM::Arb8::IsTwisted(vertices)) {
+    std::cerr << "*** Error: Cannot create Twisted Arb8 solid in Geant4 ***"
+              << std::endl;
+    if (Ignore()) {
       std::cerr << "*** Warning: Using a box instead  ***" << std::endl;
       return Register(new Geant4GM::Box(name, 1., 1., 1.));
     }
@@ -694,203 +678,159 @@ Geant4GM::Factory::CreateArb8(const std::string& name,
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*
-Geant4GM::Factory::CreateBox(const std::string& name,
-                     double hx, double hy, double hz)
+VGM::ISolid* Geant4GM::Factory::CreateBox(
+  const std::string& name, double hx, double hy, double hz)
 {
-//
+  //
   return Register(new Geant4GM::Box(name, hx, hy, hz));
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*
-Geant4GM::Factory::CreateCons(const std::string& name,
-                     double rin1, double rout1,
-                     double rin2, double rout2, double hz,
-                     double sphi, double dphi)
+VGM::ISolid* Geant4GM::Factory::CreateCons(const std::string& name, double rin1,
+  double rout1, double rin2, double rout2, double hz, double sphi, double dphi)
 {
-//
-  return Register(new Geant4GM::Cons(name, rin1, rout1, rin2, rout2, hz,
-                        sphi, dphi));
+  //
+  return Register(
+    new Geant4GM::Cons(name, rin1, rout1, rin2, rout2, hz, sphi, dphi));
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*
-Geant4GM::Factory::CreateCtubs(const std::string& name,
-                     double rin, double rout, double hz,
-                     double sphi, double dphi,
-                     double nxlow, double nylow, double nzlow,
-                     double nxhigh, double nyhigh, double nzhigh)
+VGM::ISolid* Geant4GM::Factory::CreateCtubs(const std::string& name, double rin,
+  double rout, double hz, double sphi, double dphi, double nxlow, double nylow,
+  double nzlow, double nxhigh, double nyhigh, double nzhigh)
 {
-//
-  return Register(new Geant4GM::Ctubs(name, rin, rout, hz, sphi, dphi,
-                          nxlow, nylow, nzlow, nxhigh, nyhigh, nzhigh));
+  //
+  return Register(new Geant4GM::Ctubs(name, rin, rout, hz, sphi, dphi, nxlow,
+    nylow, nzlow, nxhigh, nyhigh, nzhigh));
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*
-Geant4GM::Factory::CreateEllipsoid(const std::string& name,
-                     double dx, double dy, double dz,
-                     double zBottomCut, double zTopCut)
+VGM::ISolid* Geant4GM::Factory::CreateEllipsoid(const std::string& name,
+  double dx, double dy, double dz, double zBottomCut, double zTopCut)
 {
-//
-  return Register(new Geant4GM::Ellipsoid(name, dx, dy, dz, zBottomCut, zTopCut));
+  //
+  return Register(
+    new Geant4GM::Ellipsoid(name, dx, dy, dz, zBottomCut, zTopCut));
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*
-Geant4GM::Factory::CreateEllipticalTube(const std::string& name,
-                     double dx, double dy, double hz)
+VGM::ISolid* Geant4GM::Factory::CreateEllipticalTube(
+  const std::string& name, double dx, double dy, double hz)
 {
-//
-  return Register(new Geant4GM::EllipticalTube(name, dx, dy,  hz));
-
+  //
+  return Register(new Geant4GM::EllipticalTube(name, dx, dy, hz));
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*
-Geant4GM::Factory::CreateHype(const std::string& name,
-                     double r1, double r2, double stereo1, double stereo2,
-                     double hz)
+VGM::ISolid* Geant4GM::Factory::CreateHype(const std::string& name, double r1,
+  double r2, double stereo1, double stereo2, double hz)
 {
-//
+  //
   return Register(new Geant4GM::Hype(name, r1, r2, stereo1, stereo2, hz));
-
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*
-Geant4GM::Factory::CreatePara(const std::string& name,
-                     double dx, double dy, double dz,
-                     double alpha, double theta, double phi)
+VGM::ISolid* Geant4GM::Factory::CreatePara(const std::string& name, double dx,
+  double dy, double dz, double alpha, double theta, double phi)
 {
-//
+  //
   return Register(new Geant4GM::Para(name, dx, dy, dz, alpha, theta, phi));
-
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*
-Geant4GM::Factory::CreateParaboloid(const std::string& name,
-                     double r1, double r2, double hz)
+VGM::ISolid* Geant4GM::Factory::CreateParaboloid(
+  const std::string& name, double r1, double r2, double hz)
 {
-//
+  //
   return Register(new Geant4GM::Paraboloid(name, r1, r2, hz));
-
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*
-Geant4GM::Factory::CreatePolycone(
-                     const std::string& name,
-                     double sphi, double dphi,
-                     int nofZplanes,
-                     double* z, double* rin, double* rout)
+VGM::ISolid* Geant4GM::Factory::CreatePolycone(const std::string& name,
+  double sphi, double dphi, int nofZplanes, double* z, double* rin,
+  double* rout)
 {
-//
-  return Register(new Geant4GM::Polycone(name, sphi, dphi, nofZplanes, z,
-                        rin, rout));
+  //
+  return Register(
+    new Geant4GM::Polycone(name, sphi, dphi, nofZplanes, z, rin, rout));
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*
-Geant4GM::Factory::CreatePolyhedra(
-                     const std::string& name,
-                     double sphi, double dphi,
-                     int nofSides, int nofZplanes,
-                     double* z, double* rin, double* rout)
+VGM::ISolid* Geant4GM::Factory::CreatePolyhedra(const std::string& name,
+  double sphi, double dphi, int nofSides, int nofZplanes, double* z,
+  double* rin, double* rout)
 {
-//
-  return Register(new Geant4GM::Polyhedra(name, sphi, dphi,
-                        nofSides, nofZplanes, z, rin, rout));
-
+  //
+  return Register(new Geant4GM::Polyhedra(
+    name, sphi, dphi, nofSides, nofZplanes, z, rin, rout));
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*
-Geant4GM::Factory::CreateSphere(const std::string& name,
-                     double rin, double rout,
-                     double sphi, double dphi,
-                     double stheta, double dtheta)
+VGM::ISolid* Geant4GM::Factory::CreateSphere(const std::string& name,
+  double rin, double rout, double sphi, double dphi, double stheta,
+  double dtheta)
 {
-//
-  return Register(new Geant4GM::Sphere(name, rin, rout, sphi, dphi, stheta, dtheta));
-
+  //
+  return Register(
+    new Geant4GM::Sphere(name, rin, rout, sphi, dphi, stheta, dtheta));
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*
-Geant4GM::Factory::CreateTessellatedSolid(const std::string& name,
-                     std::vector< std::vector<VGM::ThreeVector> > facets)
+VGM::ISolid* Geant4GM::Factory::CreateTessellatedSolid(
+  const std::string& name, std::vector<std::vector<VGM::ThreeVector> > facets)
 {
-//
+  //
   return Register(new Geant4GM::TessellatedSolid(name, facets));
-
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*
-Geant4GM::Factory::CreateTorus(const std::string& name,
-                     double rin, double rout, double rax,
-                     double sphi, double dphi)
+VGM::ISolid* Geant4GM::Factory::CreateTorus(const std::string& name, double rin,
+  double rout, double rax, double sphi, double dphi)
 {
-//
+  //
   return Register(new Geant4GM::Torus(name, rin, rout, rax, sphi, dphi));
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*
-Geant4GM::Factory::CreateTrap(const std::string& name,
-                     double hz, double theta, double phi,
-                     double dy1, double dx1, double dx2,
-                     double alpha1,
-                     double dy2, double dx3, double dx4,
-                     double alpha2)
+VGM::ISolid* Geant4GM::Factory::CreateTrap(const std::string& name, double hz,
+  double theta, double phi, double dy1, double dx1, double dx2, double alpha1,
+  double dy2, double dx3, double dx4, double alpha2)
 {
-//
-  return Register(new Geant4GM::Trap(name, hz, theta, phi,
-                        dy1, dx1, dx2, alpha1, dy2, dx3, dx4, alpha2));
+  //
+  return Register(new Geant4GM::Trap(
+    name, hz, theta, phi, dy1, dx1, dx2, alpha1, dy2, dx3, dx4, alpha2));
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*
-Geant4GM::Factory::CreateTrd(const std::string& name,
-                     double hx1, double hx2, double hy1, double hy2,
-                     double hz)
+VGM::ISolid* Geant4GM::Factory::CreateTrd(const std::string& name, double hx1,
+  double hx2, double hy1, double hy2, double hz)
 {
-//
+  //
   return Register(new Geant4GM::Trd(name, hx1, hx2, hy1, hy2, hz));
-
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*
-Geant4GM::Factory::CreateTubs(const std::string& name,
-                     double rin, double rout, double hz,
-                     double sphi, double dphi)
+VGM::ISolid* Geant4GM::Factory::CreateTubs(const std::string& name, double rin,
+  double rout, double hz, double sphi, double dphi)
 {
-//
+  //
   return Register(new Geant4GM::Tubs(name, rin, rout, hz, sphi, dphi));
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*
-Geant4GM::Factory::CreateExtrudedSolid(const std::string& name,
-                     std::vector< VGM::TwoVector > polygon,
-                     std::vector< std::vector<double> > zsections)
+VGM::ISolid* Geant4GM::Factory::CreateExtrudedSolid(const std::string& name,
+  std::vector<VGM::TwoVector> polygon,
+  std::vector<std::vector<double> > zsections)
 {
-//
+  //
   return Register(new Geant4GM::ExtrudedSolid(name, polygon, zsections));
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*
-Geant4GM::Factory::CreateIntersectionSolid(
-                     const std::string& name,
-                     VGM::ISolid* solidA, VGM::ISolid* solidB,
-                     const VGM::Transform& transform)
+VGM::ISolid* Geant4GM::Factory::CreateIntersectionSolid(const std::string& name,
+  VGM::ISolid* solidA, VGM::ISolid* solidB, const VGM::Transform& transform)
 {
-//
+  //
   if (ClhepVGM::HasReflection(transform)) {
     std::cerr << "    Geant4GM::Factory::CreateIntersectionSolid:" << std::endl;
     std::cerr << "    Reflection in Boolean solid not supported in Geant4."
@@ -899,22 +839,16 @@ Geant4GM::Factory::CreateIntersectionSolid(
     exit(1);
   }
 
-  return Register(new Geant4GM::BooleanSolid(
-                        name,
-	                      VGM::kIntersection,
-	                      solidA, solidB,
-                        new CLHEP::HepRotation(ClhepVGM::Rotation(transform).inverse()),
-	                      ClhepVGM::Translation(transform)));
+  return Register(new Geant4GM::BooleanSolid(name, VGM::kIntersection, solidA,
+    solidB, new CLHEP::HepRotation(ClhepVGM::Rotation(transform).inverse()),
+    ClhepVGM::Translation(transform)));
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*
-Geant4GM::Factory::CreateSubtractionSolid(
-                     const std::string& name,
-                     VGM::ISolid* solidA, VGM::ISolid* solidB,
-                     const VGM::Transform& transform)
+VGM::ISolid* Geant4GM::Factory::CreateSubtractionSolid(const std::string& name,
+  VGM::ISolid* solidA, VGM::ISolid* solidB, const VGM::Transform& transform)
 {
-//
+  //
 
   if (ClhepVGM::HasReflection(transform)) {
     std::cerr << "    Geant4GM::Factory::CreateSubtractionSolid:" << std::endl;
@@ -924,22 +858,16 @@ Geant4GM::Factory::CreateSubtractionSolid(
     exit(1);
   }
 
-  return Register(new Geant4GM::BooleanSolid(
-                        name,
-	                      VGM::kSubtraction,
-	                      solidA, solidB,
-                        new CLHEP::HepRotation(ClhepVGM::Rotation(transform).inverse()),
-	                      ClhepVGM::Translation(transform)));
+  return Register(new Geant4GM::BooleanSolid(name, VGM::kSubtraction, solidA,
+    solidB, new CLHEP::HepRotation(ClhepVGM::Rotation(transform).inverse()),
+    ClhepVGM::Translation(transform)));
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*
-Geant4GM::Factory::CreateUnionSolid(
-                     const std::string& name,
-                     VGM::ISolid* solidA, VGM::ISolid* solidB,
-                     const VGM::Transform& transform)
+VGM::ISolid* Geant4GM::Factory::CreateUnionSolid(const std::string& name,
+  VGM::ISolid* solidA, VGM::ISolid* solidB, const VGM::Transform& transform)
 {
-//
+  //
   if (ClhepVGM::HasReflection(transform)) {
     std::cerr << "    Geant4GM::Factory::CreateUnionSolid:" << std::endl;
     std::cerr << "    Reflection in Boolean solid not supported in Geant4."
@@ -948,23 +876,17 @@ Geant4GM::Factory::CreateUnionSolid(
     exit(1);
   }
 
-  return Register(new Geant4GM::BooleanSolid(
-                        name,
-	                      VGM::kUnion,
-	                      solidA, solidB,
-                        new CLHEP::HepRotation(ClhepVGM::Rotation(transform).inverse()),
-	                      ClhepVGM::Translation(transform)));
+  return Register(new Geant4GM::BooleanSolid(name, VGM::kUnion, solidA, solidB,
+    new CLHEP::HepRotation(ClhepVGM::Rotation(transform).inverse()),
+    ClhepVGM::Translation(transform)));
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*
-Geant4GM::Factory::CreateDisplacedSolid(
-                     const std::string& name,
-                     VGM::ISolid* solid,
-                     const VGM::Transform& transform)
+VGM::ISolid* Geant4GM::Factory::CreateDisplacedSolid(
+  const std::string& name, VGM::ISolid* solid, const VGM::Transform& transform)
 {
-//
-  if ( ClhepVGM::HasReflection(transform )) {
+  //
+  if (ClhepVGM::HasReflection(transform)) {
     std::cerr << "    Geant4GM::Factory::CreateDisplacedSolid:" << std::endl;
     std::cerr << "    Reflection in Displaced solid not supported in Geant4."
               << std::endl;
@@ -972,22 +894,17 @@ Geant4GM::Factory::CreateDisplacedSolid(
     exit(1);
   }
 
-  return Register(new Geant4GM::DisplacedSolid(
-                        name,
-	                      solid,
-                        new CLHEP::HepRotation(ClhepVGM::Rotation(transform).inverse()),
-	                      ClhepVGM::Translation(transform)));
+  return Register(new Geant4GM::DisplacedSolid(name, solid,
+    new CLHEP::HepRotation(ClhepVGM::Rotation(transform).inverse()),
+    ClhepVGM::Translation(transform)));
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*
-Geant4GM::Factory::CreateScaledSolid(
-                     const std::string& name,
-                     VGM::ISolid* solid,
-                     const VGM::Transform& transform)
+VGM::ISolid* Geant4GM::Factory::CreateScaledSolid(
+  const std::string& name, VGM::ISolid* solid, const VGM::Transform& transform)
 {
-//
-  if ( ClhepVGM::HasReflection(transform )) {
+  //
+  if (ClhepVGM::HasReflection(transform)) {
     std::cerr << "    Geant4GM::Factory::CreateDisplacedSolid:" << std::endl;
     std::cerr << "    Reflection in ScaledSolid solid not supported in Geant4."
               << std::endl;
@@ -995,19 +912,15 @@ Geant4GM::Factory::CreateScaledSolid(
     exit(1);
   }
 
-  return Register(new Geant4GM::ScaledSolid(
-                        name,
-                        solid,
-                        ClhepVGM::Scale(transform)));
+  return Register(
+    new Geant4GM::ScaledSolid(name, solid, ClhepVGM::Scale(transform)));
 }
 
 //_____________________________________________________________________________
-VGM::IVolume*
-Geant4GM::Factory::CreateVolume(const std::string& name,
-                     VGM::ISolid* solid,
-                     const std::string& mediumName)
+VGM::IVolume* Geant4GM::Factory::CreateVolume(
+  const std::string& name, VGM::ISolid* solid, const std::string& mediumName)
 {
-//
+  //
   // Get material name from medium
   const VGM::IMedium* medium = MaterialFactory()->Medium(mediumName);
   if (!medium) {
@@ -1018,56 +931,51 @@ Geant4GM::Factory::CreateVolume(const std::string& name,
   const VGM::IMaterial* material = medium->Material();
   if (!material) {
     std::cerr << "Geant4GM::Factory::CreateVolume: " << std::endl;
-    std::cerr << "   No material is defined for medium " << mediumName << std::endl;
+    std::cerr << "   No material is defined for medium " << mediumName
+              << std::endl;
     exit(1);
   }
   std::string materialName = material->Name();
 
-
-  VGM::IVolume* volume
-    = new Geant4GM::Volume(name, solid, materialName, mediumName);
+  VGM::IVolume* volume =
+    new Geant4GM::Volume(name, solid, materialName, mediumName);
 
   VolumeStore().push_back(volume);
   return volume;
 }
 
 //_____________________________________________________________________________
-VGM::IPlacement*
-Geant4GM::Factory::CreatePlacement(
-                     const std::string& name,
-                     int copyNo,
-                     VGM::IVolume* volume,
-                     VGM::IVolume* motherVolume,
-                     const VGM::Transform& transform)
+VGM::IPlacement* Geant4GM::Factory::CreatePlacement(const std::string& name,
+  int copyNo, VGM::IVolume* volume, VGM::IVolume* motherVolume,
+  const VGM::Transform& transform)
 {
-//
-/*
-  if (!ClhepVGM::HasReflection(transform)) {
-    return CreateSimplePlacement(name, copyNo, volume, motherVolume, transform);
-  }
-*/
+  //
+  /*
+    if (!ClhepVGM::HasReflection(transform)) {
+      return CreateSimplePlacement(name, copyNo, volume, motherVolume,
+    transform);
+    }
+  */
   // Get logical volumes from the volumes map
-  G4LogicalVolume* g4LV
-    = Geant4GM::VolumeMap::Instance()->GetVolume(volume);
+  G4LogicalVolume* g4LV = Geant4GM::VolumeMap::Instance()->GetVolume(volume);
 
-  G4LogicalVolume* g4MotherLV
-    = Geant4GM::VolumeMap::Instance()->GetVolume(motherVolume);
+  G4LogicalVolume* g4MotherLV =
+    Geant4GM::VolumeMap::Instance()->GetVolume(motherVolume);
 
   // Create PV placement
   // for a general transformation we have to use G4 reflection factory
   G4ReflectionFactory* g4ReflectionFactory = G4ReflectionFactory::Instance();
 
-  G4PhysicalVolumesPair pvPair
-    = g4ReflectionFactory
-        ->Place(ClhepVGM::Transform(transform),
-	        name, g4LV, g4MotherLV, false, copyNo, fgSurfCheck);
+  G4PhysicalVolumesPair pvPair =
+    g4ReflectionFactory->Place(ClhepVGM::Transform(transform), name, g4LV,
+      g4MotherLV, false, copyNo, fgSurfCheck);
 
   // Import volumes created via G4 reflection factory
   VGM::IPlacement* placement1 = ImportPVPair(volume, motherVolume, pvPair);
 
   // Top volume
-  if ( ! motherVolume ) {
-    if ( ! fTop )
+  if (!motherVolume) {
+    if (!fTop)
       fTop = placement1;
     else {
       std::cerr << "    Geant4GM::Factory::CreatePlacement:" << std::endl;
@@ -1078,76 +986,67 @@ Geant4GM::Factory::CreatePlacement(
   }
 
   return placement1;
-     // should allow to return a list of placements
+  // should allow to return a list of placements
 }
 
 //_____________________________________________________________________________
-VGM::IPlacement*
-Geant4GM::Factory::CreateMultiplePlacement(
-                     const std::string& name,
-                     VGM::IVolume* volume,
-                     VGM::IVolume* motherVolume,
-                     VGM::Axis axis,
-                     int nofItems,
-                     double  width,
-                     double  offset,
-                     double  halfGap)
+VGM::IPlacement* Geant4GM::Factory::CreateMultiplePlacement(
+  const std::string& name, VGM::IVolume* volume, VGM::IVolume* motherVolume,
+  VGM::Axis axis, int nofItems, double width, double offset, double halfGap)
 {
-//
+  //
 
   // Top volume
   if (!motherVolume) {
-    std::cerr <<     "Geant4GM::Factory::CreateMultiplePlacement: "
+    std::cerr << "Geant4GM::Factory::CreateMultiplePlacement: "
               << "    Mother volume not defined!" << std::endl;
     std::cerr << "*** Error: Aborting execution  ***" << std::endl;
     exit(1);
   }
 
   // Get logical volumes from the volumes map
-  G4LogicalVolume* g4LV
-    = Geant4GM::VolumeMap::Instance()->GetVolume(volume);
+  G4LogicalVolume* g4LV = Geant4GM::VolumeMap::Instance()->GetVolume(volume);
 
-  G4LogicalVolume* g4MotherLV
-    = Geant4GM::VolumeMap::Instance()->GetVolume(motherVolume);
+  G4LogicalVolume* g4MotherLV =
+    Geant4GM::VolumeMap::Instance()->GetVolume(motherVolume);
 
   // Geant4 requires the same type of solid in both
   // volume and mother volume
   VGM::SolidType solidType = volume->Solid()->Type();
   VGM::SolidType motherSolidType = motherVolume->Solid()->Type();
-  if ( solidType != motherSolidType ) {
+  if (solidType != motherSolidType) {
     bool result = SwitchSolid(volume, g4LV, g4MotherLV);
-    if ( ! result ) {
-      std::cerr << "    Geant4GM::Factory::CreateMultiplePlacement: " << std::endl
-                << "    Different solid types in volume and mother!" << std::endl
-                << "    volume: " << volume->Name()
-                << "  " << VGM::SolidTypeName(solidType)
-                << " mother: " << motherVolume->Name()
-                << "  " << VGM::SolidTypeName(motherSolidType)
+    if (!result) {
+      std::cerr << "    Geant4GM::Factory::CreateMultiplePlacement: "
                 << std::endl
+                << "    Different solid types in volume and mother!"
+                << std::endl
+                << "    volume: " << volume->Name() << "  "
+                << VGM::SolidTypeName(solidType)
+                << " mother: " << motherVolume->Name() << "  "
+                << VGM::SolidTypeName(motherSolidType) << std::endl
                 << "*** Error: Aborting execution  ***" << std::endl;
       exit(1);
     }
   }
 
   // Apply units
-  width  /= ClhepVGM::Units::AxisUnit(axis);
+  width /= ClhepVGM::Units::AxisUnit(axis);
   offset /= ClhepVGM::Units::AxisUnit(axis);
 
   // Update offset if it goes beyond mother dhi
-  if ( axis == VGM::kPhi &&
-       offset + nofItems * width > 2 * CLHEP::pi )
+  if (axis == VGM::kPhi && offset + nofItems * width > 2 * CLHEP::pi)
     offset = offset - 2 * CLHEP::pi;
-
 
   // The instance of G4PVDivisionFactory must exist
   G4PVDivisionFactory::GetInstance();
 
   // The halfGap is not yet supported by G4ReflectionFactory
   G4PhysicalVolumesPair pvPair;
-  if ( halfGap != 0. ) {
-    G4VPhysicalVolume* replicatedSlice
-      = new G4ReplicatedSlice(name, g4LV, g4MotherLV,
-              Geant4GM::Placement::GetAxis(axis), nofItems, width, halfGap, offset);
+  if (halfGap != 0.) {
+    G4VPhysicalVolume* replicatedSlice =
+      new G4ReplicatedSlice(name, g4LV, g4MotherLV,
+        Geant4GM::Placement::GetAxis(axis), nofItems, width, halfGap, offset);
     pvPair.first = replicatedSlice;
     pvPair.second = 0;
   }
@@ -1157,51 +1056,45 @@ Geant4GM::Factory::CreateMultiplePlacement(
     G4ReflectionFactory* g4ReflectionFactory = G4ReflectionFactory::Instance();
 
     // G4PhysicalVolumesPair pvPair
-    pvPair
-      = g4ReflectionFactory
-          ->Divide(name, g4LV, g4MotherLV,
-                   Geant4GM::Placement::GetAxis(axis), nofItems, width, offset);
+    pvPair = g4ReflectionFactory->Divide(name, g4LV, g4MotherLV,
+      Geant4GM::Placement::GetAxis(axis), nofItems, width, offset);
   }
 
   // Import volumes created via G4 reflection factory
   VGM::IPlacement* placement1 = ImportPVPair(volume, motherVolume, pvPair);
 
   return placement1;
-     // should allow to return a list of placements
+  // should allow to return a list of placements
 }
 
 //_____________________________________________________________________________
-VGM::IPlacement*
-Geant4GM::Factory::Top() const
+VGM::IPlacement* Geant4GM::Factory::Top() const
 {
-/// Return the top volume (VGM placement)
+  /// Return the top volume (VGM placement)
 
   return fTop;
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*
-Geant4GM::Factory::SingleSolid() const
+VGM::ISolid* Geant4GM::Factory::SingleSolid() const
 {
-/// Returns the solid (if in one solid conversion mode)
+  /// Returns the solid (if in one solid conversion mode)
 
   return fSolid;
 }
 
 //_____________________________________________________________________________
-G4VPhysicalVolume*
-Geant4GM::Factory:: World() const
+G4VPhysicalVolume* Geant4GM::Factory::World() const
 {
-/// Return the world volume (G4 physical volume)
+  /// Return the world volume (G4 physical volume)
 
   return Geant4GM::PlacementMap::Instance()->GetPlacement(fTop);
 }
 
 //_____________________________________________________________________________
-G4VSolid*
-Geant4GM::Factory::Solid() const
+G4VSolid* Geant4GM::Factory::Solid() const
 {
-/// Returns the solid (if in one solid conversion mode)
+  /// Returns the solid (if in one solid conversion mode)
 
   return Geant4GM::SolidMap::Instance()->GetSolid(fSolid);
 }
@@ -1209,12 +1102,12 @@ Geant4GM::Factory::Solid() const
 //_____________________________________________________________________________
 bool Geant4GM::Factory::Import(G4VPhysicalVolume* worldPV)
 {
-/// Import Geant4 native geometry
+  /// Import Geant4 native geometry
 
-  if (Debug()>0) {
+  if (Debug() > 0) {
     BaseVGM::DebugInfo();
     std::cout << "Geant4GM::Factory::Import started ...";
-    if (Debug()>1) std::cout << worldPV;
+    if (Debug() > 1) std::cout << worldPV;
     std::cout << std::endl;
   }
 
@@ -1238,19 +1131,18 @@ bool Geant4GM::Factory::Import(G4VPhysicalVolume* worldPV)
   // Import positions
   ImportPositions();
 
-  if (Debug()>0) {
+  if (Debug() > 0) {
     BaseVGM::DebugInfo();
     std::cout << std::endl;
     PrintSolids();
     PrintVolumes();
-    if (Debug()>1)
-      Geant4GM::VolumeMap::Instance()->Print();
+    if (Debug() > 1) Geant4GM::VolumeMap::Instance()->Print();
   }
 
- // Position the top volume
+  // Position the top volume
   fTop = new Geant4GM::Placement(worldVolume, 0, worldPV);
 
-  if (Debug()>0) {
+  if (Debug() > 0) {
     BaseVGM::DebugInfo();
     std::cout << "Geant4GM::Factory::Import finished." << std::endl;
   }
@@ -1261,14 +1153,13 @@ bool Geant4GM::Factory::Import(G4VPhysicalVolume* worldPV)
 //_____________________________________________________________________________
 bool Geant4GM::Factory::Import(G4VSolid* solid)
 {
-/// Import one Geant4 solid.
-/// This call automatically activates a special single mode
+  /// Import one Geant4 solid.
+  /// This call automatically activates a special single mode
 
-
-  if (Debug()>0) {
+  if (Debug() > 0) {
     BaseVGM::DebugInfo();
     std::cout << "Geant4GM::Factory::Import of one solid started ...";
-    if (Debug()>1)  std::cout << solid;
+    if (Debug() > 1) std::cout << solid;
     std::cout << std::endl;
   }
 
@@ -1283,11 +1174,11 @@ bool Geant4GM::Factory::Import(G4VSolid* solid)
   // Import solid
   fSolid = ImportSolid(solid);
 
-  if (Debug()>0) {
+  if (Debug() > 0) {
     BaseVGM::DebugInfo();
-    std::cout << "Geant4GM::Factory::Import of one solid finished." << std::endl;
+    std::cout << "Geant4GM::Factory::Import of one solid finished."
+              << std::endl;
   }
 
-  return  ( fSolid != 0);
+  return (fSolid != 0);
 }
-

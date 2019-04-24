@@ -25,41 +25,41 @@
 class TGeoNode;
 
 namespace VGM {
-  class IPlacement;
+class IPlacement;
 }
 
 namespace RootGM {
 
-  class PlacementMap;
+class PlacementMap;
 
-  class PlacementMap
-  {
-    public:
-      typedef std::map<VGM::IPlacement*, TGeoNode*>  RootPlacementMap;
-      typedef RootPlacementMap::const_iterator       RootPlacementMapCIterator;
+class PlacementMap
+{
+ public:
+  typedef std::map<VGM::IPlacement*, TGeoNode*> RootPlacementMap;
+  typedef RootPlacementMap::const_iterator RootPlacementMapCIterator;
 
-    public:
-      PlacementMap();
-      virtual ~PlacementMap();
+ public:
+  PlacementMap();
+  virtual ~PlacementMap();
 
-      // static access methods
-      static PlacementMap* Instance();
+  // static access methods
+  static PlacementMap* Instance();
 
-      // methods
-      void  AddPlacement(VGM::IPlacement*, TGeoNode*);
-      TGeoNode* GetPlacement(VGM::IPlacement* iPlacement) const;
+  // methods
+  void AddPlacement(VGM::IPlacement*, TGeoNode*);
+  TGeoNode* GetPlacement(VGM::IPlacement* iPlacement) const;
 
-    protected:
-      PlacementMap(const PlacementMap&);
+ protected:
+  PlacementMap(const PlacementMap&);
 
-    private:
-      // static data members
-      static PlacementMap*  fgInstance;
+ private:
+  // static data members
+  static PlacementMap* fgInstance;
 
-      // data members
-      RootPlacementMap  fPlacements;
-  };
+  // data members
+  RootPlacementMap fPlacements;
+};
 
-}
+} // namespace RootGM
 
-#endif //ROOT_GM_PLACEMENT_MAP_H
+#endif // ROOT_GM_PLACEMENT_MAP_H

@@ -29,32 +29,30 @@ class G4ReflectedSolid;
 
 namespace Geant4GM {
 
-  class Torus : public BaseVGM::VTorus
-  {
-    public:
-      Torus(const std::string& name,
-            double rin, double rout, double rax,
-	    double sphi, double dphi);
-      Torus(G4Torus* torus,
-            G4ReflectedSolid* reflTorus = 0);
-      virtual ~Torus();
+class Torus : public BaseVGM::VTorus
+{
+ public:
+  Torus(const std::string& name, double rin, double rout, double rax,
+    double sphi, double dphi);
+  Torus(G4Torus* torus, G4ReflectedSolid* reflTorus = 0);
+  virtual ~Torus();
 
-      // methods
-      virtual std::string Name() const;
-      virtual double InnerRadius() const;
-      virtual double OuterRadius() const;
-      virtual double AxialRadius() const;
-      virtual double StartPhi() const;
-      virtual double DeltaPhi() const;
+  // methods
+  virtual std::string Name() const;
+  virtual double InnerRadius() const;
+  virtual double OuterRadius() const;
+  virtual double AxialRadius() const;
+  virtual double StartPhi() const;
+  virtual double DeltaPhi() const;
 
-    protected:
-      Torus();
-      Torus(const Torus& rhs);
+ protected:
+  Torus();
+  Torus(const Torus& rhs);
 
-    private:
-      G4Torus* fTorus;
-  };
+ private:
+  G4Torus* fTorus;
+};
 
-}
+} // namespace Geant4GM
 
-#endif //GEANT4_GM_TORUS_H
+#endif // GEANT4_GM_TORUS_H

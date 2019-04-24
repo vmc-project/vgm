@@ -26,24 +26,26 @@
 
 namespace BaseVGM {
 
-  class VEllipticalTube : public virtual VGM::IEllipticalTube
-  {
-    public:
-      VEllipticalTube();
-      virtual ~VEllipticalTube();
+class VEllipticalTube : public virtual VGM::IEllipticalTube
+{
+ public:
+  VEllipticalTube();
+  virtual ~VEllipticalTube();
 
-      // methods
-      virtual VGM::SolidType Type() const;
+  // methods
+  virtual VGM::SolidType Type() const;
 
-      // streaming
-      virtual std::ostream& Put(std::ostream& out) const;
-  };
+  // streaming
+  virtual std::ostream& Put(std::ostream& out) const;
+};
 
-}
+} // namespace BaseVGM
 
 // inline functions
 
-inline VGM::SolidType
-BaseVGM::VEllipticalTube::Type() const { return VGM::kEltu; }
+inline VGM::SolidType BaseVGM::VEllipticalTube::Type() const
+{
+  return VGM::kEltu;
+}
 
-#endif //BASE_VGM_V_ELLIPTICAL_TUBE_H
+#endif // BASE_VGM_V_ELLIPTICAL_TUBE_H

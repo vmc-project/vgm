@@ -31,38 +31,36 @@ class TGeoHalfSpace;
 
 namespace RootGM {
 
-  class DisplacedSolid : public BaseVGM::VDisplacedSolid
-  {
-    public:
-      DisplacedSolid(const std::string& name,
-                     VGM::ISolid* solid,
-                     TGeoMatrix* displacement);
+class DisplacedSolid : public BaseVGM::VDisplacedSolid
+{
+ public:
+  DisplacedSolid(
+    const std::string& name, VGM::ISolid* solid, TGeoMatrix* displacement);
 
-      DisplacedSolid(TGeoBBox* box);
-      DisplacedSolid(TGeoHalfSpace* halfSpace);
-      virtual ~DisplacedSolid();
+  DisplacedSolid(TGeoBBox* box);
+  DisplacedSolid(TGeoHalfSpace* halfSpace);
+  virtual ~DisplacedSolid();
 
-      // methods
-      virtual std::string Name() const;
+  // methods
+  virtual std::string Name() const;
 
-      virtual VGM::ISolid*      ConstituentSolid() const;
-      virtual VGM::Transform    Displacement() const;
-      virtual bool              ToBeReflected() const;
+  virtual VGM::ISolid* ConstituentSolid() const;
+  virtual VGM::Transform Displacement() const;
+  virtual bool ToBeReflected() const;
 
-    protected:
-      DisplacedSolid();
-      DisplacedSolid(const DisplacedSolid& rhs);
+ protected:
+  DisplacedSolid();
+  DisplacedSolid(const DisplacedSolid& rhs);
 
-    private:
-      static const std::string fgkNameExtension;
+ private:
+  static const std::string fgkNameExtension;
 
-      TGeoCompositeShape* fCompositeShape;
-      VGM::ISolid*  fConstituentSolid;
-  };
+  TGeoCompositeShape* fCompositeShape;
+  VGM::ISolid* fConstituentSolid;
+};
 
-}
+} // namespace RootGM
 
-inline bool RootGM::DisplacedSolid::ToBeReflected() const
-{ return false; }
+inline bool RootGM::DisplacedSolid::ToBeReflected() const { return false; }
 
-#endif //ROOT_GM_BOOLEAN_SOLID_H
+#endif // ROOT_GM_BOOLEAN_SOLID_H

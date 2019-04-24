@@ -23,93 +23,89 @@
 
 #include "VGM/common/Transform.h"
 
-#include "G4TessellatedSolid.hh"
-#include "G4TriangularFacet.hh"
 #include "G4QuadrangularFacet.hh"
 #include "G4ReflectedSolid.hh"
+#include "G4TessellatedSolid.hh"
+#include "G4TriangularFacet.hh"
 
 #include <iostream>
-#include <set>
 #include <math.h>
-
+#include <set>
 
 //_____________________________________________________________________________
-Geant4GM::TessellatedSolid::TessellatedSolid(const std::string& name,
-                     std::vector< std::vector<VGM::ThreeVector> > facets)
+Geant4GM::TessellatedSolid::TessellatedSolid(
+  const std::string& name, std::vector<std::vector<VGM::ThreeVector> > facets)
   : VGM::ISolid(),
     VGM::ITessellatedSolid(),
     BaseVGM::VTessellatedSolid(),
     fName(name),
     fTessellatedSolid(0)
 {
-/// Standard constructor to define TessellatedSolid from parameters
-/// \param facets the vector of facets defined as a vector of
-///        three vectors representing the facet points in mm
+  /// Standard constructor to define TessellatedSolid from parameters
+  /// \param facets the vector of facets defined as a vector of
+  ///        three vectors representing the facet points in mm
 
   fTessellatedSolid = new G4TessellatedSolid();
 
   // Add triangular facets
   //
-  for ( G4int i = 0; i < G4int(facets.size()); i++ ) {
+  for (G4int i = 0; i < G4int(facets.size()); i++) {
 
-     std::vector<VGM::ThreeVector> facet = facets[i];
+    std::vector<VGM::ThreeVector> facet = facets[i];
 
-     // check number of vertices
-     if ( facet.size() != 3 && facet.size() != 4 ) {
-        std::cerr << "+++ Error  +++" << std::endl;
-        std::cerr << "    Number of vertices in a facet = " << facet.size()
-              << " has to be == 3 or 4" << std::endl;
-        exit(1);
-     }
+    // check number of vertices
+    if (facet.size() != 3 && facet.size() != 4) {
+      std::cerr << "+++ Error  +++" << std::endl;
+      std::cerr << "    Number of vertices in a facet = " << facet.size()
+                << " has to be == 3 or 4" << std::endl;
+      exit(1);
+    }
 
-     if ( facet.size() == 3 ) {
-       VGM::ThreeVector vertex0 = facet[0];
-       VGM::ThreeVector vertex1 = facet[1];
-       VGM::ThreeVector vertex2 = facet[2];
+    if (facet.size() == 3) {
+      VGM::ThreeVector vertex0 = facet[0];
+      VGM::ThreeVector vertex1 = facet[1];
+      VGM::ThreeVector vertex2 = facet[2];
 
-       fTessellatedSolid
-         ->AddFacet( new G4TriangularFacet(
-                           G4ThreeVector(vertex0[VGM::kDx] / ClhepVGM::Units::Length(),
-                                         vertex0[VGM::kDy] / ClhepVGM::Units::Length(),
-                                         vertex0[VGM::kDz] / ClhepVGM::Units::Length()),
-                           G4ThreeVector(vertex1[VGM::kDx] / ClhepVGM::Units::Length(),
-                                         vertex1[VGM::kDy] / ClhepVGM::Units::Length(),
-                                         vertex1[VGM::kDz] / ClhepVGM::Units::Length()),
-                           G4ThreeVector(vertex2[VGM::kDx] / ClhepVGM::Units::Length(),
-                                         vertex2[VGM::kDy] / ClhepVGM::Units::Length(),
-                                         vertex2[VGM::kDz] / ClhepVGM::Units::Length()),
-                           ABSOLUTE ));
+      fTessellatedSolid->AddFacet(new G4TriangularFacet(
+        G4ThreeVector(vertex0[VGM::kDx] / ClhepVGM::Units::Length(),
+          vertex0[VGM::kDy] / ClhepVGM::Units::Length(),
+          vertex0[VGM::kDz] / ClhepVGM::Units::Length()),
+        G4ThreeVector(vertex1[VGM::kDx] / ClhepVGM::Units::Length(),
+          vertex1[VGM::kDy] / ClhepVGM::Units::Length(),
+          vertex1[VGM::kDz] / ClhepVGM::Units::Length()),
+        G4ThreeVector(vertex2[VGM::kDx] / ClhepVGM::Units::Length(),
+          vertex2[VGM::kDy] / ClhepVGM::Units::Length(),
+          vertex2[VGM::kDz] / ClhepVGM::Units::Length()),
+        ABSOLUTE));
     }
   }
 
-
   // Add quadrangular facets
   //
-  for ( G4int i = 0; i < G4int(facets.size()); i++ ) {
+  for (G4int i = 0; i < G4int(facets.size()); i++) {
 
-     std::vector<VGM::ThreeVector> facet = facets[i];
+    std::vector<VGM::ThreeVector> facet = facets[i];
 
-     if ( facet.size() == 4 ) {
-       VGM::ThreeVector vertex0 = facet[0];
-       VGM::ThreeVector vertex1 = facet[1];
-       VGM::ThreeVector vertex2 = facet[2];
-       VGM::ThreeVector vertex3 = facet[3];
+    if (facet.size() == 4) {
+      VGM::ThreeVector vertex0 = facet[0];
+      VGM::ThreeVector vertex1 = facet[1];
+      VGM::ThreeVector vertex2 = facet[2];
+      VGM::ThreeVector vertex3 = facet[3];
 
-       fTessellatedSolid
-         ->AddFacet( new G4QuadrangularFacet(
-                           G4ThreeVector(vertex0[VGM::kDx] / ClhepVGM::Units::Length(),
-                                         vertex0[VGM::kDy] / ClhepVGM::Units::Length(),
-                                         vertex0[VGM::kDz] / ClhepVGM::Units::Length()),
-                           G4ThreeVector(vertex1[VGM::kDx] / ClhepVGM::Units::Length(),
-                                         vertex1[VGM::kDy] / ClhepVGM::Units::Length(),
-                                         vertex1[VGM::kDz] / ClhepVGM::Units::Length()),
-                           G4ThreeVector(vertex2[VGM::kDx] / ClhepVGM::Units::Length(),
-                                         vertex2[VGM::kDy] / ClhepVGM::Units::Length(),
-                                         vertex2[VGM::kDz] / ClhepVGM::Units::Length()),
-                           G4ThreeVector(vertex3[VGM::kDx] / ClhepVGM::Units::Length(),
-                                         vertex3[VGM::kDy] / ClhepVGM::Units::Length(),
-                                         vertex3[VGM::kDz] / ClhepVGM::Units::Length()),
-                           ABSOLUTE ));
+      fTessellatedSolid->AddFacet(new G4QuadrangularFacet(
+        G4ThreeVector(vertex0[VGM::kDx] / ClhepVGM::Units::Length(),
+          vertex0[VGM::kDy] / ClhepVGM::Units::Length(),
+          vertex0[VGM::kDz] / ClhepVGM::Units::Length()),
+        G4ThreeVector(vertex1[VGM::kDx] / ClhepVGM::Units::Length(),
+          vertex1[VGM::kDy] / ClhepVGM::Units::Length(),
+          vertex1[VGM::kDz] / ClhepVGM::Units::Length()),
+        G4ThreeVector(vertex2[VGM::kDx] / ClhepVGM::Units::Length(),
+          vertex2[VGM::kDy] / ClhepVGM::Units::Length(),
+          vertex2[VGM::kDz] / ClhepVGM::Units::Length()),
+        G4ThreeVector(vertex3[VGM::kDx] / ClhepVGM::Units::Length(),
+          vertex3[VGM::kDy] / ClhepVGM::Units::Length(),
+          vertex3[VGM::kDz] / ClhepVGM::Units::Length()),
+        ABSOLUTE));
     }
   }
 
@@ -118,12 +114,11 @@ Geant4GM::TessellatedSolid::TessellatedSolid(const std::string& name,
   // G4cout << *fTessellatedSolid << G4endl;
 
   Geant4GM::SolidMap::Instance()->AddSolid(this, fTessellatedSolid);
-
 }
 
 //_____________________________________________________________________________
-Geant4GM::TessellatedSolid::TessellatedSolid(G4TessellatedSolid* tessellated,
-                                       G4ReflectedSolid* reflTessellated)
+Geant4GM::TessellatedSolid::TessellatedSolid(
+  G4TessellatedSolid* tessellated, G4ReflectedSolid* reflTessellated)
   : VGM::ISolid(),
     VGM::ITessellatedSolid(),
     BaseVGM::VTessellatedSolid(),
@@ -131,9 +126,9 @@ Geant4GM::TessellatedSolid::TessellatedSolid(G4TessellatedSolid* tessellated,
     fIsReflected(false),
     fTessellatedSolid(tessellated)
 {
-/// Standard constructor to define TessellatedSolid from Geant4 object
+  /// Standard constructor to define TessellatedSolid from Geant4 object
 
-  if ( reflTessellated ) {
+  if (reflTessellated) {
     fIsReflected = true;
     Geant4GM::SolidMap::Instance()->AddSolid(this, reflTessellated);
   }
@@ -151,7 +146,7 @@ Geant4GM::TessellatedSolid::TessellatedSolid()
     fIsReflected(false),
     fTessellatedSolid(0)
 {
-/// Protected default constructor
+  /// Protected default constructor
 }
 
 //_____________________________________________________________________________
@@ -163,41 +158,42 @@ Geant4GM::TessellatedSolid::TessellatedSolid(const TessellatedSolid& rhs)
     fIsReflected(false),
     fTessellatedSolid(0)
 {
-/// Protected copy constructor
+  /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
-Geant4GM::TessellatedSolid::~TessellatedSolid() {
-//
-}
-
-//_____________________________________________________________________________
-void  Geant4GM::TessellatedSolid::CheckFacetIndex(int ifacet) const
+Geant4GM::TessellatedSolid::~TessellatedSolid()
 {
-  if ( ifacet < 0 || ifacet > NofFacets() ) {
+  //
+}
+
+//_____________________________________________________________________________
+void Geant4GM::TessellatedSolid::CheckFacetIndex(int ifacet) const
+{
+  if (ifacet < 0 || ifacet > NofFacets()) {
     std::cerr << "+++ Error  +++" << std::endl;
     std::cerr << "    Wrong facet index: " << ifacet << std::endl;
     exit(1);
   }
 
   G4VFacet* facet = fTessellatedSolid->GetFacet(ifacet);
-  if ( ! facet ) {
+  if (!facet) {
     std::cerr << "+++ Error  +++" << std::endl;
-    std::cerr << "    Facet with index: " << ifacet << " not found." << std::endl;
+    std::cerr << "    Facet with index: " << ifacet << " not found."
+              << std::endl;
     exit(1);
   }
-
 }
 
 //_____________________________________________________________________________
-void  Geant4GM::TessellatedSolid::CheckVertexIndex(int ifacet, int index) const
+void Geant4GM::TessellatedSolid::CheckVertexIndex(int ifacet, int index) const
 {
   CheckFacetIndex(ifacet);
 
-  if ( index < 0 || index > NofVertices(ifacet) ) {
+  if (index < 0 || index > NofVertices(ifacet)) {
     std::cerr << "+++ Error  +++" << std::endl;
-    std::cerr << "    Wrong vertex index: " << index
-             << " in " << ifacet << " th facet." << std::endl;
+    std::cerr << "    Wrong vertex index: " << index << " in " << ifacet
+              << " th facet." << std::endl;
     exit(1);
   }
 }
@@ -225,7 +221,7 @@ int Geant4GM::TessellatedSolid::NofVertices(int ifacet) const
 }
 
 //_____________________________________________________________________________
-VGM::ThreeVector  Geant4GM::TessellatedSolid::Vertex(int ifacet, int index) const
+VGM::ThreeVector Geant4GM::TessellatedSolid::Vertex(int ifacet, int index) const
 {
   CheckVertexIndex(ifacet, index);
 
@@ -236,7 +232,7 @@ VGM::ThreeVector  Geant4GM::TessellatedSolid::Vertex(int ifacet, int index) cons
   vertex.push_back(facet->GetVertex(index).y() * ClhepVGM::Units::Length());
   vertex.push_back(facet->GetVertex(index).z() * ClhepVGM::Units::Length());
 
-  if ( fIsReflected ) vertex[VGM::kDz] = -vertex[VGM::kDz];
+  if (fIsReflected) vertex[VGM::kDz] = -vertex[VGM::kDz];
 
   return vertex;
 }

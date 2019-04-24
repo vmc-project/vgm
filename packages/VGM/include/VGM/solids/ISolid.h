@@ -20,59 +20,60 @@
 #ifndef VGM_I_SOLID_H
 #define VGM_I_SOLID_H
 
-#include <string>
 #include <iostream>
+#include <string>
 
 namespace VGM {
 
-  enum SolidType {
-    kArb8,
-    kBox,
-    kCons,
-    kCtubs,
-    kEllipsoid,
-    kEltu,
-    kExtruded,
-    kHype,
-    kPara,
-    kParaboloid,
-    kPolycone,
-    kPolyhedra,
-    kSphere,
-    kTessellated,
-    kTorus,
-    kTrap,
-    kTrd,
-    kTubs,
-    kBoolean,
-    kDisplaced,
-    kScaled,
-    kUnknownSolid
-  };
+enum SolidType
+{
+  kArb8,
+  kBox,
+  kCons,
+  kCtubs,
+  kEllipsoid,
+  kEltu,
+  kExtruded,
+  kHype,
+  kPara,
+  kParaboloid,
+  kPolycone,
+  kPolyhedra,
+  kSphere,
+  kTessellated,
+  kTorus,
+  kTrap,
+  kTrd,
+  kTubs,
+  kBoolean,
+  kDisplaced,
+  kScaled,
+  kUnknownSolid
+};
 
-  std::string SolidTypeName(VGM::SolidType typeId);
+std::string SolidTypeName(VGM::SolidType typeId);
 
-  class ISolid
-  {
-    public:
-      virtual ~ISolid() {}
+class ISolid
+{
+ public:
+  virtual ~ISolid() {}
 
-      // methods
-			     ///
-                             /// Return the type of this solid
-      virtual SolidType     Type() const = 0;
-			     ///
-                             /// Return the name of this solid
-      virtual std::string   Name() const = 0;
+  // methods
+  ///
+  /// Return the type of this solid
+  virtual SolidType Type() const = 0;
+  ///
+  /// Return the name of this solid
+  virtual std::string Name() const = 0;
 
-      // streaming
-                            /// Put the printing of the solid parameters
-			    /// in the out stream
-      virtual std::ostream& Put(std::ostream& out) const = 0;
-  };
+  // streaming
+  /// Put the printing of the solid parameters
+  /// in the out stream
+  virtual std::ostream& Put(std::ostream& out) const = 0;
+};
 
-}
+} // namespace VGM
 
-std::ostream& operator << (std::ostream& out, const VGM::ISolid& solid);
+std::ostream& operator<<(std::ostream& out, const VGM::ISolid& solid);
 
-#endif //VGM_I_SOLID_H
+#endif // VGM_I_SOLID_H

@@ -23,67 +23,64 @@
 #include "VGM/common/Axis.h"
 #include "VGM/common/Transform.h"
 
-#include <string>
 #include <iostream>
+#include <string>
 
 namespace VGM {
 
-  enum PlacementType {
-    kSimplePlacement,
-    kMultiplePlacement,
-    //kParameterised,
-    kUnknownPlacement
-  };
+enum PlacementType
+{
+  kSimplePlacement,
+  kMultiplePlacement,
+  // kParameterised,
+  kUnknownPlacement
+};
 
-  std::string PlacementTypeName(VGM::PlacementType typeId);
+std::string PlacementTypeName(VGM::PlacementType typeId);
 
-  class IVolume;
+class IVolume;
 
-  class IPlacement
-  {
-    public:
-      virtual ~IPlacement() {}
+class IPlacement
+{
+ public:
+  virtual ~IPlacement() {}
 
-      // methods
-			     ///
-                             /// Return the type of this placement
-      virtual PlacementType Type() const = 0;
-			     ///
-                             /// Return the name of this placement
-      virtual std::string   Name() const = 0;
+  // methods
+  ///
+  /// Return the type of this placement
+  virtual PlacementType Type() const = 0;
+  ///
+  /// Return the name of this placement
+  virtual std::string Name() const = 0;
 
-                             ///
-			     /// Return the associated volume
-      virtual IVolume*      Volume() const = 0;
-			     ///
-                             /// Return the associated mother volume
-      virtual IVolume*      Mother() const = 0;
-			     ///
-                             /// Return the copy number of this placement
-      virtual int           CopyNo() const = 0;
+  ///
+  /// Return the associated volume
+  virtual IVolume* Volume() const = 0;
+  ///
+  /// Return the associated mother volume
+  virtual IVolume* Mother() const = 0;
+  ///
+  /// Return the copy number of this placement
+  virtual int CopyNo() const = 0;
 
-			     ///
-                             /// Return the 3D transformation
-			     /// (if simple placement)
-      virtual Transform     Transformation() const = 0;
-			     ///
-                             /// Fill the multiple placement data
-			     /// if relevant and return true;
-                             /// return false if not multiple placement
-      virtual bool  MultiplePlacementData(
-                           VGM::Axis&  axis,
-                           int&        nofItems,
-                           double&     width,
-                           double&     offset,
-                           double&     halfGap) const = 0;
+  ///
+  /// Return the 3D transformation
+  /// (if simple placement)
+  virtual Transform Transformation() const = 0;
+  ///
+  /// Fill the multiple placement data
+  /// if relevant and return true;
+  /// return false if not multiple placement
+  virtual bool MultiplePlacementData(VGM::Axis& axis, int& nofItems,
+    double& width, double& offset, double& halfGap) const = 0;
 
-                            /// Put the printing of the placement parameters
-			    /// in the out stream
-      virtual std::ostream& Put(std::ostream& out) const = 0;
-  };
+  /// Put the printing of the placement parameters
+  /// in the out stream
+  virtual std::ostream& Put(std::ostream& out) const = 0;
+};
 
-}
+} // namespace VGM
 
-std::ostream& operator << (std::ostream& out, const VGM::IPlacement& placement);
+std::ostream& operator<<(std::ostream& out, const VGM::IPlacement& placement);
 
-#endif //VGM_I_PLACEMENT_H
+#endif // VGM_I_PLACEMENT_H

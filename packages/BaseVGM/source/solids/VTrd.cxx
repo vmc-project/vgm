@@ -27,25 +27,24 @@ std::ostream& operator<<(std::ostream& out, const VGM::ITrd& trd)
 }
 
 //_____________________________________________________________________________
-BaseVGM::VTrd::VTrd()
-  : VGM::ITrd()
+BaseVGM::VTrd::VTrd() : VGM::ITrd()
 {
-/// Default constructor
+  /// Default constructor
 }
 
 //_____________________________________________________________________________
-BaseVGM::VTrd::~VTrd() {
-//
+BaseVGM::VTrd::~VTrd()
+{
+  //
 }
 
 //_____________________________________________________________________________
 std::ostream& BaseVGM::VTrd::Put(std::ostream& out) const
 {
   out << "  hx1 = " << XHalfLengthMinusZ() << "mm"
-      << "  hx2 = " << XHalfLengthPlusZ()  << "mm"
+      << "  hx2 = " << XHalfLengthPlusZ() << "mm"
       << "  hy1 = " << YHalfLengthMinusZ() << "mm"
-      << "  hy2 = " << YHalfLengthPlusZ()  << "mm"
-      << "  hz = "  << ZHalfLength()       << "mm";
+      << "  hy2 = " << YHalfLengthPlusZ() << "mm"
+      << "  hz = " << ZHalfLength() << "mm";
   return out;
 }
-

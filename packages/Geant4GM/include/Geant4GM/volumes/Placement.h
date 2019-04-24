@@ -31,44 +31,39 @@
 class G4VPhysicalVolume;
 
 namespace VGM {
-  class IVolume;
+class IVolume;
 }
 
 namespace Geant4GM {
 
-  class Placement : public BaseVGM::VPlacement
-  {
-    public:
-      Placement(VGM::IVolume* volume,
-                VGM::IVolume* motherVolume,
-                G4VPhysicalVolume* pv);
-      virtual ~Placement();
+class Placement : public BaseVGM::VPlacement
+{
+ public:
+  Placement(
+    VGM::IVolume* volume, VGM::IVolume* motherVolume, G4VPhysicalVolume* pv);
+  virtual ~Placement();
 
-      // static methods
-      static EAxis GetAxis(VGM::Axis axis);
-      static VGM::Axis GetAxis(EAxis axis);
+  // static methods
+  static EAxis GetAxis(VGM::Axis axis);
+  static VGM::Axis GetAxis(EAxis axis);
 
-      // methods
-      virtual VGM::PlacementType Type() const;
-      virtual std::string        Name() const;
-      virtual int                CopyNo() const;
-      virtual VGM::Transform     Transformation() const;
+  // methods
+  virtual VGM::PlacementType Type() const;
+  virtual std::string Name() const;
+  virtual int CopyNo() const;
+  virtual VGM::Transform Transformation() const;
 
-      virtual bool  MultiplePlacementData(
-                           VGM::Axis&  axis,
-                           int&     nofItems,
-                           double&  width,
-                           double&  offset,
-                           double&  halfGap) const;
+  virtual bool MultiplePlacementData(VGM::Axis& axis, int& nofItems,
+    double& width, double& offset, double& halfGap) const;
 
-    protected:
-      Placement();
-      Placement(const Placement& rhs);
+ protected:
+  Placement();
+  Placement(const Placement& rhs);
 
-    private:
-      G4VPhysicalVolume*  fPhysicalVolume;
-  };
+ private:
+  G4VPhysicalVolume* fPhysicalVolume;
+};
 
-}
+} // namespace Geant4GM
 
-#endif //GEANT4_GM_PLACEMENT_H
+#endif // GEANT4_GM_PLACEMENT_H

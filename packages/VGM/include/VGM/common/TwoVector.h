@@ -25,8 +25,8 @@
 
 namespace VGM {
 
-  typedef std::pair<double, double>  TwoVector;
+typedef std::pair<double, double> TwoVector;
 
 }
 
-#endif //VGM_TWO_VECTOR_H
+#endif // VGM_TWO_VECTOR_H

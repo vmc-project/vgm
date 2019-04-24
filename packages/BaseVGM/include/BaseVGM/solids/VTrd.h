@@ -26,24 +26,23 @@
 
 namespace BaseVGM {
 
-  class VTrd : public virtual VGM::ITrd
-  {
-    public:
-      VTrd();
-      virtual ~VTrd();
+class VTrd : public virtual VGM::ITrd
+{
+ public:
+  VTrd();
+  virtual ~VTrd();
 
-      // methods
-      virtual VGM::SolidType Type() const;
+  // methods
+  virtual VGM::SolidType Type() const;
 
-      // streaming
-      virtual std::ostream& Put(std::ostream& out) const;
-  };
+  // streaming
+  virtual std::ostream& Put(std::ostream& out) const;
+};
 
-}
+} // namespace BaseVGM
 
 // inline functions
 
-inline VGM::SolidType
-BaseVGM::VTrd::Type() const { return VGM::kTrd; }
+inline VGM::SolidType BaseVGM::VTrd::Type() const { return VGM::kTrd; }
 
-#endif //BASE_VGM_V_TRD_H
+#endif // BASE_VGM_V_TRD_H

@@ -27,15 +27,15 @@ std::ostream& operator<<(std::ostream& out, const VGM::IBox& box)
 }
 
 //_____________________________________________________________________________
-BaseVGM::VBox::VBox()
-  : VGM::IBox()
+BaseVGM::VBox::VBox() : VGM::IBox()
 {
-/// Default constructor
+  /// Default constructor
 }
 
 //_____________________________________________________________________________
-BaseVGM::VBox::~VBox() {
-//
+BaseVGM::VBox::~VBox()
+{
+  //
 }
 
 //_____________________________________________________________________________
@@ -46,4 +46,3 @@ std::ostream& BaseVGM::VBox::Put(std::ostream& out) const
       << "  hz = " << ZHalfLength() << "mm";
   return out;
 }
-

@@ -25,49 +25,49 @@
 class TGeoShape;
 
 namespace VGM {
-  class ISolid;
+class ISolid;
 }
 
 namespace RootGM {
 
-  class SolidMap;
+class SolidMap;
 
-  class SolidMap
-  {
-    public:
-      typedef std::map<VGM::ISolid*, TGeoShape*>  RootSolidMap;
-      typedef RootSolidMap::const_iterator        RootSolidMapCIterator;
+class SolidMap
+{
+ public:
+  typedef std::map<VGM::ISolid*, TGeoShape*> RootSolidMap;
+  typedef RootSolidMap::const_iterator RootSolidMapCIterator;
 
-      typedef std::map<TGeoShape*, VGM::ISolid*>  VgmSolidMap;
-      typedef VgmSolidMap::const_iterator         VgmSolidMapCIterator;
+  typedef std::map<TGeoShape*, VGM::ISolid*> VgmSolidMap;
+  typedef VgmSolidMap::const_iterator VgmSolidMapCIterator;
 
-    public:
-      SolidMap();
-      virtual ~SolidMap();
+ public:
+  SolidMap();
+  virtual ~SolidMap();
 
-      // static access methods
-      static SolidMap* Instance();
+  // static access methods
+  static SolidMap* Instance();
 
-      // methods
-      void  AddSolid(VGM::ISolid*, TGeoShape*);
-      void  AddSolidInRootMapOnly(VGM::ISolid*, TGeoShape*);
-      void  AddSolidInVGMMapOnly(VGM::ISolid*, TGeoShape*);
+  // methods
+  void AddSolid(VGM::ISolid*, TGeoShape*);
+  void AddSolidInRootMapOnly(VGM::ISolid*, TGeoShape*);
+  void AddSolidInVGMMapOnly(VGM::ISolid*, TGeoShape*);
 
-      // get methods
-      TGeoShape*    GetSolid(VGM::ISolid* iSolid) const;
-      VGM::ISolid*  GetSolid(TGeoShape* solid) const;
+  // get methods
+  TGeoShape* GetSolid(VGM::ISolid* iSolid) const;
+  VGM::ISolid* GetSolid(TGeoShape* solid) const;
 
-    private:
-      SolidMap(const SolidMap&);
+ private:
+  SolidMap(const SolidMap&);
 
-      // static data members
-      static SolidMap*  fgInstance;
+  // static data members
+  static SolidMap* fgInstance;
 
-      // data members
-      RootSolidMap  fRootSolids;
-      VgmSolidMap   fVgmSolids;
-  };
+  // data members
+  RootSolidMap fRootSolids;
+  VgmSolidMap fVgmSolids;
+};
 
-}
+} // namespace RootGM
 
-#endif //ROOT_GM_SOLID_MAP_H
+#endif // ROOT_GM_SOLID_MAP_H

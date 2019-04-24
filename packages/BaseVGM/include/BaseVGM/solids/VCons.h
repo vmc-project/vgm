@@ -26,24 +26,23 @@
 
 namespace BaseVGM {
 
-  class VCons : public virtual VGM::ICons
-  {
-    public:
-      VCons();
-      virtual ~VCons();
+class VCons : public virtual VGM::ICons
+{
+ public:
+  VCons();
+  virtual ~VCons();
 
-      // methods
-      virtual VGM::SolidType Type() const;
+  // methods
+  virtual VGM::SolidType Type() const;
 
-      // streaming
-      virtual std::ostream& Put(std::ostream& out) const;
-  };
+  // streaming
+  virtual std::ostream& Put(std::ostream& out) const;
+};
 
-}
+} // namespace BaseVGM
 
 // inline functions
 
-inline VGM::SolidType
-BaseVGM::VCons::Type() const { return VGM::kCons; }
+inline VGM::SolidType BaseVGM::VCons::Type() const { return VGM::kCons; }
 
-#endif //BASE_VGM_V_CONS_H
+#endif // BASE_VGM_V_CONS_H

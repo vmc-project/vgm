@@ -24,29 +24,26 @@
 #include "G4BooleanSolid.hh"
 #include "G4DisplacedSolid.hh"
 #include "G4IntersectionSolid.hh"
+#include "G4ReflectedSolid.hh"
 #include "G4SubtractionSolid.hh"
 #include "G4UnionSolid.hh"
-#include "G4ReflectedSolid.hh"
 
 //_____________________________________________________________________________
-Geant4GM::BooleanSolid::BooleanSolid(
-                            const std::string& name,
-                            VGM::BooleanType boolType,
-                            VGM::ISolid* solidA, VGM::ISolid* solidB,
-                            CLHEP::HepRotation* rotation,
-			    const CLHEP::Hep3Vector& translation)
+Geant4GM::BooleanSolid::BooleanSolid(const std::string& name,
+  VGM::BooleanType boolType, VGM::ISolid* solidA, VGM::ISolid* solidB,
+  CLHEP::HepRotation* rotation, const CLHEP::Hep3Vector& translation)
   : VGM::ISolid(),
     VGM::IBooleanSolid(),
     BaseVGM::VBooleanSolid(),
     fBooleanSolid(0),
     fToBeReflected(false)
 {
-/// Standard constructor to define Boolean solids via constituents
-/// \param boolType type of Boolean operation (kIntersection, kSubtraction,
-///        kUnion)
-/// \param solidA, solidB constituent solids
-/// \param rotation, translation  the CLHEP rotation and translation of
-///        the solidB with respect to solidA
+  /// Standard constructor to define Boolean solids via constituents
+  /// \param boolType type of Boolean operation (kIntersection, kSubtraction,
+  ///        kUnion)
+  /// \param solidA, solidB constituent solids
+  /// \param rotation, translation  the CLHEP rotation and translation of
+  ///        the solidB with respect to solidA
 
   // Get solids from the volumes map
   G4VSolid* g4SolidA = Geant4GM::SolidMap::Instance()->GetSolid(solidA);
@@ -54,25 +51,25 @@ Geant4GM::BooleanSolid::BooleanSolid(
 
   switch (boolType) {
     case VGM::kIntersection:
-      fBooleanSolid
-        = new G4IntersectionSolid(name, g4SolidA, g4SolidB, rotation, translation);
+      fBooleanSolid = new G4IntersectionSolid(
+        name, g4SolidA, g4SolidB, rotation, translation);
       break;
 
     case VGM::kSubtraction:
-      fBooleanSolid
-        = new G4SubtractionSolid(name, g4SolidA, g4SolidB, rotation, translation);
+      fBooleanSolid =
+        new G4SubtractionSolid(name, g4SolidA, g4SolidB, rotation, translation);
       break;
 
     case VGM::kUnion:
-      fBooleanSolid
-        = new G4UnionSolid(name, g4SolidA, g4SolidB, rotation, translation);
+      fBooleanSolid =
+        new G4UnionSolid(name, g4SolidA, g4SolidB, rotation, translation);
       break;
 
     case VGM::kUnknownBoolean:
     default:
       std::cerr << "    Geant4GM::BooleanSolid::BooleanSolid:" << std::endl;
-      std::cerr << "    Unknown Boolean solid type (solid \""
-                << name << "\")" << std::endl;
+      std::cerr << "    Unknown Boolean solid type (solid \"" << name << "\")"
+                << std::endl;
       std::cerr << "*** Error: Aborting execution  ***" << std::endl;
       exit(1);
   }
@@ -81,15 +78,15 @@ Geant4GM::BooleanSolid::BooleanSolid(
 }
 
 //_____________________________________________________________________________
-Geant4GM::BooleanSolid::BooleanSolid(G4BooleanSolid* booleanSolid,
-                                     G4ReflectedSolid* reflectedBoolean)
+Geant4GM::BooleanSolid::BooleanSolid(
+  G4BooleanSolid* booleanSolid, G4ReflectedSolid* reflectedBoolean)
   : VGM::ISolid(),
     VGM::IBooleanSolid(),
     BaseVGM::VBooleanSolid(),
     fBooleanSolid(booleanSolid),
     fToBeReflected(false)
 {
-/// Standard constructor to define Boolean solid via G4 object
+  /// Standard constructor to define Boolean solid via G4 object
 
   if (reflectedBoolean) {
     fToBeReflected = true;
@@ -101,25 +98,22 @@ Geant4GM::BooleanSolid::BooleanSolid(G4BooleanSolid* booleanSolid,
 
 //_____________________________________________________________________________
 Geant4GM::BooleanSolid::BooleanSolid()
-  : VGM::ISolid(),
-    VGM::IBooleanSolid(),
-    BaseVGM::VBooleanSolid()
+  : VGM::ISolid(), VGM::IBooleanSolid(), BaseVGM::VBooleanSolid()
 {
-/// Protected default constructor
+  /// Protected default constructor
 }
 
 //_____________________________________________________________________________
 Geant4GM::BooleanSolid::BooleanSolid(const BooleanSolid& rhs)
-  : VGM::ISolid(rhs),
-    VGM::IBooleanSolid(rhs),
-    BaseVGM::VBooleanSolid(rhs)
+  : VGM::ISolid(rhs), VGM::IBooleanSolid(rhs), BaseVGM::VBooleanSolid(rhs)
 {
-/// Protected copy constructor
+  /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
-Geant4GM::BooleanSolid::~BooleanSolid() {
-//
+Geant4GM::BooleanSolid::~BooleanSolid()
+{
+  //
 }
 
 //
@@ -127,37 +121,33 @@ Geant4GM::BooleanSolid::~BooleanSolid() {
 //
 
 //_____________________________________________________________________________
-const G4DisplacedSolid*
-Geant4GM::BooleanSolid::DisplacedSolid() const
+const G4DisplacedSolid* Geant4GM::BooleanSolid::DisplacedSolid() const
 {
-// Returns the G4 displaced solid
-// ---
+  // Returns the G4 displaced solid
+  // ---
 
- G4VSolid* g4SolidB = fBooleanSolid->GetConstituentSolid(1);
- return g4SolidB->GetDisplacedSolidPtr();
+  G4VSolid* g4SolidB = fBooleanSolid->GetConstituentSolid(1);
+  return g4SolidB->GetDisplacedSolidPtr();
 }
-
 
 //
 // public methods
 //
 
 //_____________________________________________________________________________
-std::string
-Geant4GM::BooleanSolid::Name() const
+std::string Geant4GM::BooleanSolid::Name() const
 {
-// Returns the Boolean solid name
-// ---
+  // Returns the Boolean solid name
+  // ---
 
   return fBooleanSolid->GetName();
 }
 
 //_____________________________________________________________________________
-VGM::BooleanType
-Geant4GM::BooleanSolid::BoolType() const
+VGM::BooleanType Geant4GM::BooleanSolid::BoolType() const
 {
-// Returns the Boolean solid type name
-// ---
+  // Returns the Boolean solid type name
+  // ---
 
   if (fBooleanSolid->GetEntityType() == "G4IntersectionSolid")
     return VGM::kIntersection;
@@ -165,74 +155,67 @@ Geant4GM::BooleanSolid::BoolType() const
   if (fBooleanSolid->GetEntityType() == "G4SubtractionSolid")
     return VGM::kSubtraction;
 
-  if (fBooleanSolid->GetEntityType() == "G4UnionSolid")
-    return VGM::kUnion;
+  if (fBooleanSolid->GetEntityType() == "G4UnionSolid") return VGM::kUnion;
 
   return VGM::kUnknownBoolean;
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*
-Geant4GM::BooleanSolid::ConstituentSolidA() const
+VGM::ISolid* Geant4GM::BooleanSolid::ConstituentSolidA() const
 {
-// Returns the first constituent solid.
-// ---
+  // Returns the first constituent solid.
+  // ---
 
- G4VSolid* g4SolidA = GetConstituentSolid(0, fBooleanSolid);
- VGM::ISolid* solidA = Geant4GM::SolidMap::Instance()->GetSolid(g4SolidA);
+  G4VSolid* g4SolidA = GetConstituentSolid(0, fBooleanSolid);
+  VGM::ISolid* solidA = Geant4GM::SolidMap::Instance()->GetSolid(g4SolidA);
 
- return solidA;
+  return solidA;
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*
-Geant4GM::BooleanSolid::ConstituentSolidB() const
+VGM::ISolid* Geant4GM::BooleanSolid::ConstituentSolidB() const
 {
-// Returns the first constituent solid.
-// ---
+  // Returns the first constituent solid.
+  // ---
 
- G4VSolid* g4SolidB = GetConstituentSolid(1, fBooleanSolid);
+  G4VSolid* g4SolidB = GetConstituentSolid(1, fBooleanSolid);
 
- VGM::ISolid* solidB = Geant4GM::SolidMap::Instance()->GetSolid(g4SolidB);
+  VGM::ISolid* solidB = Geant4GM::SolidMap::Instance()->GetSolid(g4SolidB);
 
- return solidB;
+  return solidB;
 }
 
 //_____________________________________________________________________________
-VGM::Transform
-Geant4GM::BooleanSolid::Displacement() const
+VGM::Transform Geant4GM::BooleanSolid::Displacement() const
 {
-// Returns the first constituent solid.
-// ---
+  // Returns the first constituent solid.
+  // ---
 
- const G4DisplacedSolid* g4DisplacedSolid = DisplacedSolid();
+  const G4DisplacedSolid* g4DisplacedSolid = DisplacedSolid();
 
- if (g4DisplacedSolid) {
-   return ClhepVGM::Transform(g4DisplacedSolid->GetObjectRotation(),
-                              g4DisplacedSolid->GetObjectTranslation());
- }
- else
-   return ClhepVGM::Transform(CLHEP::HepRotation(), CLHEP::Hep3Vector());
+  if (g4DisplacedSolid) {
+    return ClhepVGM::Transform(g4DisplacedSolid->GetObjectRotation(),
+      g4DisplacedSolid->GetObjectTranslation());
+  }
+  else
+    return ClhepVGM::Transform(CLHEP::HepRotation(), CLHEP::Hep3Vector());
 }
 
 //_____________________________________________________________________________
-G4VSolid*
-Geant4GM::BooleanSolid::GetConstituentSolid(
-                              int index,
-                              G4BooleanSolid* booleanSolid)
+G4VSolid* Geant4GM::BooleanSolid::GetConstituentSolid(
+  int index, G4BooleanSolid* booleanSolid)
 {
-// Returns the constituent solid specified by index,
-// if the constituent solid is displaced solid, returns
-// its moved constituent
-// ---
+  // Returns the constituent solid specified by index,
+  // if the constituent solid is displaced solid, returns
+  // its moved constituent
+  // ---
 
   G4VSolid* consSolid = booleanSolid->GetConstituentSolid(index);
-  if ( index == 0 ) return consSolid;
+  if (index == 0) return consSolid;
 
   G4DisplacedSolid* displacedSolid = consSolid->GetDisplacedSolidPtr();
   if (displacedSolid) consSolid = displacedSolid->GetConstituentMovedSolid();
-             // If displaced solid, import only its constituent
+  // If displaced solid, import only its constituent
 
   return consSolid;
 }
-

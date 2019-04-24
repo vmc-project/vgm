@@ -22,13 +22,12 @@
 
 #include "TGeoNode.h"
 
-RootGM::PlacementMap*  RootGM::PlacementMap::fgInstance = 0;
+RootGM::PlacementMap* RootGM::PlacementMap::fgInstance = 0;
 
 //_____________________________________________________________________________
-RootGM::PlacementMap*
-RootGM::PlacementMap::Instance()
+RootGM::PlacementMap* RootGM::PlacementMap::Instance()
 {
-/// Singleton access function.
+  /// Singleton access function.
 
   if (!fgInstance) new RootGM::PlacementMap();
 
@@ -38,7 +37,7 @@ RootGM::PlacementMap::Instance()
 //_____________________________________________________________________________
 RootGM::PlacementMap::PlacementMap()
 {
-/// Standard default constructor
+  /// Standard default constructor
 
   fgInstance = this;
 }
@@ -46,13 +45,13 @@ RootGM::PlacementMap::PlacementMap()
 //_____________________________________________________________________________
 RootGM::PlacementMap::PlacementMap(const PlacementMap&)
 {
-/// Protected copy constructor
+  /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
 RootGM::PlacementMap::~PlacementMap()
 {
-//
+  //
   fgInstance = 0;
 }
 
@@ -61,19 +60,18 @@ RootGM::PlacementMap::~PlacementMap()
 //
 
 //_____________________________________________________________________________
-void  RootGM::PlacementMap::AddPlacement(VGM::IPlacement* iPlacement,
-                                         TGeoNode* rtPlacement)
+void RootGM::PlacementMap::AddPlacement(
+  VGM::IPlacement* iPlacement, TGeoNode* rtPlacement)
 {
-/// Add the specified pair in the map
+  /// Add the specified pair in the map
 
   fPlacements[iPlacement] = rtPlacement;
 }
 
 //_____________________________________________________________________________
-TGeoNode*
-RootGM::PlacementMap::GetPlacement(VGM::IPlacement* iPlacement) const
+TGeoNode* RootGM::PlacementMap::GetPlacement(VGM::IPlacement* iPlacement) const
 {
-/// Find the Root node corresponding to a specified VGM placement.
+  /// Find the Root node corresponding to a specified VGM placement.
 
   RootPlacementMapCIterator i = fPlacements.find(iPlacement);
   if (i != fPlacements.end())

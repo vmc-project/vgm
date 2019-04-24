@@ -26,14 +26,13 @@
 #include "G4UnionSolid.hh"
 
 #include <iostream>
-#include <set>
 #include <math.h>
-
+#include <set>
 
 //_____________________________________________________________________________
 Geant4GM::ExtrudedSolid::ExtrudedSolid(const std::string& name,
-                    std::vector<VGM::TwoVector> polygon,
-                    std::vector< std::vector<double> > zsections)
+  std::vector<VGM::TwoVector> polygon,
+  std::vector<std::vector<double> > zsections)
   : VGM::ISolid(),
     VGM::IExtrudedSolid(),
     BaseVGM::VExtrudedSolid(),
@@ -42,12 +41,12 @@ Geant4GM::ExtrudedSolid::ExtrudedSolid(const std::string& name,
     fZSections(zsections),
     fConstituents()
 {
-/// Standard constructor to define ExtrudedSolid from parameters
-/// \param polygon the outline polygon
-/// \param zsections the vector of z-sections defined via 4 double numbers:
-///        z position (in mm), the polygon offset in x and y, the scale
+  /// Standard constructor to define ExtrudedSolid from parameters
+  /// \param polygon the outline polygon
+  /// \param zsections the vector of z-sections defined via 4 double numbers:
+  ///        z position (in mm), the polygon offset in x and y, the scale
 
-  if ( zsections.size() < 2 ) {
+  if (zsections.size() < 2) {
     std::cerr << "+++ Error  +++" << std::endl;
     std::cerr << "    Number of z-sections = " << zsections.size()
               << " has to be >= 2" << std::endl;
@@ -56,10 +55,9 @@ Geant4GM::ExtrudedSolid::ExtrudedSolid(const std::string& name,
 
   // Fill polygon
   std::vector<G4TwoVector> g4Polygon;
-  for ( G4int i=0; i<G4int(polygon.size()); ++i ) {
+  for (G4int i = 0; i < G4int(polygon.size()); ++i) {
     g4Polygon.push_back(
-      G4TwoVector(
-        polygon[i].first  / ClhepVGM::Units::Length(),
+      G4TwoVector(polygon[i].first / ClhepVGM::Units::Length(),
         polygon[i].second / ClhepVGM::Units::Length()));
   }
 
@@ -67,29 +65,29 @@ Geant4GM::ExtrudedSolid::ExtrudedSolid(const std::string& name,
   // ( If some z-sections are at the same z-position )
   //
   std::set<unsigned int> toBreak;
-  for ( unsigned int i=1; i<zsections.size(); ++i )
-    if ( fabs (zsections[i][0] - zsections[i-1][0]) < 1e-09 ) toBreak.insert(i-1);
-  toBreak.insert(zsections.size()-1);
+  for (unsigned int i = 1; i < zsections.size(); ++i)
+    if (fabs(zsections[i][0] - zsections[i - 1][0]) < 1e-09)
+      toBreak.insert(i - 1);
+  toBreak.insert(zsections.size() - 1);
 
   // Create solid constituents
   //
   std::vector<G4ExtrudedSolid::ZSection> g4Zsections;
-  for ( unsigned int iz=0; iz<zsections.size(); ++iz) {
+  for (unsigned int iz = 0; iz < zsections.size(); ++iz) {
     // Fill z-sections for this constituent
     g4Zsections.push_back(
-      G4ExtrudedSolid::ZSection(
-        zsections[iz][0]             / ClhepVGM::Units::Length(),
+      G4ExtrudedSolid::ZSection(zsections[iz][0] / ClhepVGM::Units::Length(),
         G4TwoVector(zsections[iz][1] / ClhepVGM::Units::Length(),
-                    zsections[iz][2] / ClhepVGM::Units::Length()),
+          zsections[iz][2] / ClhepVGM::Units::Length()),
         zsections[iz][3]));
 
-    if ( toBreak.find(iz) != toBreak.end() ) {
+    if (toBreak.find(iz) != toBreak.end()) {
       // Create G4ExtrudedSolid
-      //G4cout << "Go to create constituent with " << g4Zsections.size()
+      // G4cout << "Go to create constituent with " << g4Zsections.size()
       //       << " z-sections" << G4endl;
 
-      G4ExtrudedSolid* xtru
-        = new G4ExtrudedSolid(fName, g4Polygon, g4Zsections);
+      G4ExtrudedSolid* xtru =
+        new G4ExtrudedSolid(fName, g4Polygon, g4Zsections);
       fConstituents.push_back(xtru);
       g4Zsections.clear();
     }
@@ -100,10 +98,10 @@ Geant4GM::ExtrudedSolid::ExtrudedSolid(const std::string& name,
   G4VSolid* xtruA = *fConstituents.begin();
 
   std::vector<G4ExtrudedSolid*>::const_iterator it;
-  for ( it = fConstituents.begin()+1; it != fConstituents.end(); ++it ) {
+  for (it = fConstituents.begin() + 1; it != fConstituents.end(); ++it) {
     G4ExtrudedSolid* xtruB = *it;
-    G4VSolid* unionAB
-      = new G4UnionSolid(fName, xtruA, xtruB, 0, G4ThreeVector());
+    G4VSolid* unionAB =
+      new G4UnionSolid(fName, xtruA, xtruB, 0, G4ThreeVector());
     xtruA = unionAB;
   }
   fExtrudedSolid = xtruA;
@@ -111,12 +109,11 @@ Geant4GM::ExtrudedSolid::ExtrudedSolid(const std::string& name,
   // G4cout << *fExtrudedSolid << G4endl;
 
   Geant4GM::SolidMap::Instance()->AddSolid(this, fExtrudedSolid);
-
 }
 
 //_____________________________________________________________________________
-Geant4GM::ExtrudedSolid::ExtrudedSolid(G4ExtrudedSolid* xtru,
-                                       G4ReflectedSolid* reflXtru)
+Geant4GM::ExtrudedSolid::ExtrudedSolid(
+  G4ExtrudedSolid* xtru, G4ReflectedSolid* reflXtru)
   : VGM::ISolid(),
     VGM::IExtrudedSolid(),
     BaseVGM::VExtrudedSolid(),
@@ -125,19 +122,19 @@ Geant4GM::ExtrudedSolid::ExtrudedSolid(G4ExtrudedSolid* xtru,
     fZSections(),
     fConstituents()
 {
-/// Standard constructor to define ExtrudedSolid from Geant4 object
+  /// Standard constructor to define ExtrudedSolid from Geant4 object
 
   G4double sign = 1.;
-  if ( reflXtru ) sign = -1;
+  if (reflXtru) sign = -1;
 
   // Fill z planes parameters
-  for (G4int iz=0; iz<xtru->GetNofZSections(); ++iz ) {
+  for (G4int iz = 0; iz < xtru->GetNofZSections(); ++iz) {
     ZSectionType zsection(4);
-    zsection[0] = sign * xtru->GetZSection(iz).fZ   / ClhepVGM::Units::Length();
+    zsection[0] = sign * xtru->GetZSection(iz).fZ / ClhepVGM::Units::Length();
     zsection[1] = xtru->GetZSection(iz).fOffset.x() / ClhepVGM::Units::Length();
     zsection[2] = xtru->GetZSection(iz).fOffset.y() / ClhepVGM::Units::Length();
     zsection[3] = xtru->GetZSection(iz).fScale;
-    if ( ! reflXtru )
+    if (!reflXtru)
       fZSections.push_back(zsection);
     else
       fZSections.insert(fZSections.begin(), zsection);
@@ -146,7 +143,7 @@ Geant4GM::ExtrudedSolid::ExtrudedSolid(G4ExtrudedSolid* xtru,
   // Fill constituent
   fConstituents.push_back(xtru);
 
-  if ( reflXtru )
+  if (reflXtru)
     Geant4GM::SolidMap::Instance()->AddSolid(this, reflXtru);
   else
     Geant4GM::SolidMap::Instance()->AddSolid(this, xtru);
@@ -162,7 +159,7 @@ Geant4GM::ExtrudedSolid::ExtrudedSolid()
     fZSections(),
     fConstituents()
 {
-/// Protected default constructor
+  /// Protected default constructor
 }
 
 //_____________________________________________________________________________
@@ -175,12 +172,13 @@ Geant4GM::ExtrudedSolid::ExtrudedSolid(const ExtrudedSolid& rhs)
     fZSections(),
     fConstituents()
 {
-/// Protected copy constructor
+  /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
-Geant4GM::ExtrudedSolid::~ExtrudedSolid() {
-//
+Geant4GM::ExtrudedSolid::~ExtrudedSolid()
+{
+  //
 }
 
 /*
@@ -290,29 +288,26 @@ int Geant4GM::ExtrudedSolid::NofVertices() const
 }
 
 //_____________________________________________________________________________
-VGM::TwoVector  Geant4GM::ExtrudedSolid::Vertex(int index) const
+VGM::TwoVector Geant4GM::ExtrudedSolid::Vertex(int index) const
 {
-  if ( index < 0 || index > NofVertices() ) {
+  if (index < 0 || index > NofVertices()) {
     std::cerr << "+++ Error  +++" << std::endl;
     std::cerr << "    Wrong vertex index: " << index << std::endl;
     exit(1);
   }
 
   return VGM::TwoVector(
-           fConstituents[0]->GetVertex(index).x() * ClhepVGM::Units::Length(),
-           fConstituents[0]->GetVertex(index).y() * ClhepVGM::Units::Length());
+    fConstituents[0]->GetVertex(index).x() * ClhepVGM::Units::Length(),
+    fConstituents[0]->GetVertex(index).y() * ClhepVGM::Units::Length());
 }
 
 //_____________________________________________________________________________
-int Geant4GM::ExtrudedSolid::NofZSections() const
-{
-  return fZSections.size();
-}
+int Geant4GM::ExtrudedSolid::NofZSections() const { return fZSections.size(); }
 
 //_____________________________________________________________________________
 double Geant4GM::ExtrudedSolid::ZPosition(int iz) const
 {
-  if ( iz < 0 || iz > NofZSections() ) {
+  if (iz < 0 || iz > NofZSections()) {
     std::cerr << "+++ Error  +++" << std::endl;
     std::cerr << "    Wrong index: " << iz << std::endl;
     exit(1);
@@ -325,7 +320,7 @@ double Geant4GM::ExtrudedSolid::ZPosition(int iz) const
 //_____________________________________________________________________________
 VGM::TwoVector Geant4GM::ExtrudedSolid::Offset(int iz) const
 {
-  if ( iz < 0 || iz > NofZSections() ) {
+  if (iz < 0 || iz > NofZSections()) {
     std::cerr << "+++ Error  +++" << std::endl;
     std::cerr << "    Wrong index: " << iz << std::endl;
     exit(1);
@@ -333,13 +328,13 @@ VGM::TwoVector Geant4GM::ExtrudedSolid::Offset(int iz) const
 
   ZSectionType zplane = fZSections[iz];
   return VGM::TwoVector(zplane[1] * ClhepVGM::Units::Length(),
-                        zplane[2] * ClhepVGM::Units::Length());
+    zplane[2] * ClhepVGM::Units::Length());
 }
 
 //_____________________________________________________________________________
 double Geant4GM::ExtrudedSolid::Scale(int iz) const
 {
-  if ( iz < 0 || iz > NofZSections() ) {
+  if (iz < 0 || iz > NofZSections()) {
     std::cerr << "+++ Error  +++" << std::endl;
     std::cerr << "    Wrong index: " << iz << std::endl;
     exit(1);

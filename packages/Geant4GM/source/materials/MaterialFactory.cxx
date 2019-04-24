@@ -22,17 +22,17 @@
 
 #include "BaseVGM/common/utilities.h"
 
-#include "Geant4GM/materials/MaterialFactory.h"
-#include "Geant4GM/materials/IsotopeMap.h"
-#include "Geant4GM/materials/Isotope.h"
-#include "Geant4GM/materials/ElementMap.h"
 #include "Geant4GM/materials/Element.h"
-#include "Geant4GM/materials/MaterialMap.h"
+#include "Geant4GM/materials/ElementMap.h"
+#include "Geant4GM/materials/Isotope.h"
+#include "Geant4GM/materials/IsotopeMap.h"
 #include "Geant4GM/materials/Material.h"
+#include "Geant4GM/materials/MaterialFactory.h"
+#include "Geant4GM/materials/MaterialMap.h"
 #include "Geant4GM/materials/Medium.h"
 
-#include "G4Material.hh"
 #include "G4Element.hh"
+#include "G4Material.hh"
 #include "G4NistManager.hh"
 #include "G4SystemOfUnits.hh"
 
@@ -46,7 +46,7 @@ Geant4GM::MaterialFactory::MaterialFactory()
     BaseVGM::VMaterialFactory("Geant4_GM_Material_Factory"),
     fVacuumElements()
 {
-/// Standard default constructor
+  /// Standard default constructor
 }
 
 //_____________________________________________________________________________
@@ -56,21 +56,21 @@ Geant4GM::MaterialFactory::MaterialFactory(const MaterialFactory& rhs)
     fVacuumElements(rhs.fVacuumElements)
 
 {
-/// Protected copy constructor
+  /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
-Geant4GM::MaterialFactory::~MaterialFactory() {
-//
+Geant4GM::MaterialFactory::~MaterialFactory()
+{
+  //
 
   // delete map singletons
 
   delete Geant4GM::ElementMap::Instance();
   delete Geant4GM::MaterialMap::Instance();
-              // There is inconsistence in using the singleton maps
-	      // via a factory which is not a singleton
-	      // TO DO: to be improved later
-
+  // There is inconsistence in using the singleton maps
+  // via a factory which is not a singleton
+  // TO DO: to be improved later
 }
 
 //
@@ -80,12 +80,12 @@ Geant4GM::MaterialFactory::~MaterialFactory() {
 //_____________________________________________________________________________
 void Geant4GM::MaterialFactory::ImportIsotope(G4Isotope* isotope)
 {
-/// Import the specified G4 isotope.
+  /// Import the specified G4 isotope.
 
-  if (Debug()>0) {
+  if (Debug() > 0) {
     BaseVGM::DebugInfo();
     std::cout << "Importing isotope: ";
-    if (Debug()>1) {
+    if (Debug() > 1) {
       void* isotopePtr = (void*)isotope;
       std::cout << isotopePtr;
     }
@@ -101,12 +101,12 @@ void Geant4GM::MaterialFactory::ImportIsotope(G4Isotope* isotope)
 //_____________________________________________________________________________
 void Geant4GM::MaterialFactory::ImportElement(G4Element* element)
 {
-/// Import the specified G4 element.
+  /// Import the specified G4 element.
 
-  if (Debug()>0) {
+  if (Debug() > 0) {
     BaseVGM::DebugInfo();
     std::cout << "Importing element: ";
-    if (Debug()>1) {
+    if (Debug() > 1) {
       void* elementPtr = (void*)element;
       std::cout << elementPtr;
     }
@@ -122,12 +122,12 @@ void Geant4GM::MaterialFactory::ImportElement(G4Element* element)
 //_____________________________________________________________________________
 void Geant4GM::MaterialFactory::ImportMaterial(G4Material* material)
 {
-/// Import the specified G4 material.
+  /// Import the specified G4 material.
 
-  if (Debug()>0) {
+  if (Debug() > 0) {
     BaseVGM::DebugInfo();
     std::cout << "Importing material: ";
-    if (Debug()>1) {
+    if (Debug() > 1) {
       void* materialPtr = (void*)material;
       std::cout << materialPtr;
     }
@@ -142,31 +142,33 @@ void Geant4GM::MaterialFactory::ImportMaterial(G4Material* material)
 
 //_____________________________________________________________________________
 bool Geant4GM::MaterialFactory::CompareIsotopes(const G4Element* g4Element,
-                           const VGM::IsotopeVector& isotopes,
-                           const VGM::RelAbundanceVector& relAbundances)
+  const VGM::IsotopeVector& isotopes,
+  const VGM::RelAbundanceVector& relAbundances)
 {
-/// Compare the VGM isotope vector with the isotope vector in the given g4Element;
-/// return true if the isotope composition is identical within the defined tolerance
+  /// Compare the VGM isotope vector with the isotope vector in the given
+  /// g4Element; return true if the isotope composition is identical within the
+  /// defined tolerance
 
-  if ( isotopes.size() != g4Element->GetNumberOfIsotopes() ) return false;
+  if (isotopes.size() != g4Element->GetNumberOfIsotopes()) return false;
 
-  for ( G4int i=0; i<G4int(g4Element->GetNumberOfIsotopes()); ++i ) {
+  for (G4int i = 0; i < G4int(g4Element->GetNumberOfIsotopes()); ++i) {
 
     const G4Isotope* g4Isotope = g4Element->GetIsotope(i);
     double g4RelAbundance = g4Element->GetRelativeAbundanceVector()[i];
     G4bool match = false;
 
-    for ( G4int j=0; j<G4int(isotopes.size()); ++j ) {
+    for (G4int j = 0; j < G4int(isotopes.size()); ++j) {
       VGM::IIsotope* vgmIsotope = isotopes[j];
-      if ( std::abs ( vgmIsotope->Z() - g4Isotope->GetZ() ) < fgkTolerance &&
-           std::abs ( vgmIsotope->N() - g4Isotope->GetN() ) < fgkTolerance &&
-           std::abs ( vgmIsotope->A() - g4Isotope->GetA()/(g/mole) ) < fgkTolerance &&
-           std::abs ( relAbundances[j] - g4RelAbundance ) < fgkTolerance ) {
+      if (std::abs(vgmIsotope->Z() - g4Isotope->GetZ()) < fgkTolerance &&
+          std::abs(vgmIsotope->N() - g4Isotope->GetN()) < fgkTolerance &&
+          std::abs(vgmIsotope->A() - g4Isotope->GetA() / (g / mole)) <
+            fgkTolerance &&
+          std::abs(relAbundances[j] - g4RelAbundance) < fgkTolerance) {
         match = true;
         break;
       }
     }
-    if ( ! match ) return false;
+    if (!match) return false;
   }
 
   // All isotopes were matched
@@ -178,25 +180,23 @@ bool Geant4GM::MaterialFactory::CompareIsotopes(const G4Element* g4Element,
 //
 
 //_____________________________________________________________________________
-VGM::IIsotope*
-Geant4GM::MaterialFactory::CreateIsotope(
-                                 const std::string& name,
-                                 int z, int n, double a)
+VGM::IIsotope* Geant4GM::MaterialFactory::CreateIsotope(
+  const std::string& name, int z, int n, double a)
 {
-// Create isotope if isotope with given name does not yet exist
+  // Create isotope if isotope with given name does not yet exist
 
   G4Isotope* g4Isotope = G4Isotope::GetIsotope(name, false);
 
   // Do not take the isotope if its properties do not match
-  if ( g4Isotope &&
-       ( std::abs ( g4Isotope->GetZ() - z ) >= fgkTolerance ||
-         std::abs ( g4Isotope->GetN() - n  ) >= fgkTolerance ||
-         std::abs ( g4Isotope->GetA()/(g/mole) - a ) >= fgkTolerance ) ) {
-     g4Isotope = 0;
+  if (g4Isotope &&
+      (std::abs(g4Isotope->GetZ() - z) >= fgkTolerance ||
+        std::abs(g4Isotope->GetN() - n) >= fgkTolerance ||
+        std::abs(g4Isotope->GetA() / (g / mole) - a) >= fgkTolerance)) {
+    g4Isotope = 0;
   }
 
   VGM::IIsotope* vgmIsotope;
-  if ( g4Isotope ) {
+  if (g4Isotope) {
     vgmIsotope = Geant4GM::IsotopeMap::Instance()->GetIsotope(g4Isotope);
   }
   else {
@@ -208,42 +208,38 @@ Geant4GM::MaterialFactory::CreateIsotope(
 }
 
 //_____________________________________________________________________________
-VGM::IElement*
-Geant4GM::MaterialFactory::CreateElement(
-                                  const std::string& name,
-                                  const std::string& symbol,
-                                  double z, double a)
+VGM::IElement* Geant4GM::MaterialFactory::CreateElement(
+  const std::string& name, const std::string& symbol, double z, double a)
 {
-// Create element if such element with specified properties does not
-// yet exist
+  // Create element if such element with specified properties does not
+  // yet exist
 
   G4Element* g4Element = G4Element::GetElement(name, false);
 
   // Do not take the element if its properties do not match
-  if ( g4Element &&
-       ( std::abs ( g4Element->GetZ() - z ) >= fgkTolerance ||
-         std::abs ( g4Element->GetA()/(g/mole) - a ) >= fgkTolerance ) ) {
-     g4Element = 0;
+  if (g4Element &&
+      (std::abs(g4Element->GetZ() - z) >= fgkTolerance ||
+        std::abs(g4Element->GetA() / (g / mole) - a) >= fgkTolerance)) {
+    g4Element = 0;
   }
 
   VGM::IElement* vgmElement;
   if (g4Element) {
     vgmElement = Geant4GM::ElementMap::Instance()->GetElement(g4Element);
-    if ( ! vgmElement ) {
+    if (!vgmElement) {
       vgmElement = new Geant4GM::Element(g4Element);
       ElementStore().push_back(vgmElement);
     }
   }
-  else  {
-    if ( z < 1.0) {
+  else {
+    if (z < 1.0) {
       // special case (vacuum)
       // in Geant4 vacuum has element with z = 1.0, a = 1.01
-      vgmElement
-       = new Geant4GM::Element(name, symbol, z = 1.0, a = 1.01);
+      vgmElement = new Geant4GM::Element(name, symbol, z = 1.0, a = 1.01);
 
       fVacuumElements.insert(vgmElement);
     }
-    else  {
+    else {
       vgmElement = new Geant4GM::Element(name, symbol, z, a);
     }
 
@@ -254,39 +250,35 @@ Geant4GM::MaterialFactory::CreateElement(
   g4Element = G4Element::GetElement(name, false);
 
   // Import isotopes if they were created with the G4element
-  for ( unsigned int i=0; i<g4Element->GetNumberOfIsotopes(); ++i ) {
+  for (unsigned int i = 0; i < g4Element->GetNumberOfIsotopes(); ++i) {
     G4Isotope* g4Isotope = const_cast<G4Isotope*>(g4Element->GetIsotope(i));
-    VGM::IIsotope* vgmIsotope
-      = Geant4GM::IsotopeMap::Instance()->GetIsotope(g4Isotope);
-    if ( ! vgmIsotope )  ImportIsotope(g4Isotope);
+    VGM::IIsotope* vgmIsotope =
+      Geant4GM::IsotopeMap::Instance()->GetIsotope(g4Isotope);
+    if (!vgmIsotope) ImportIsotope(g4Isotope);
   }
 
   return vgmElement;
 }
 
 //_____________________________________________________________________________
-VGM::IElement*
-Geant4GM::MaterialFactory::CreateElement(
-                                  const std::string& name,
-                                  const std::string& symbol,
-	                          const VGM::IsotopeVector& isotopes,
-                                  const VGM::RelAbundanceVector& relAbundances)
+VGM::IElement* Geant4GM::MaterialFactory::CreateElement(const std::string& name,
+  const std::string& symbol, const VGM::IsotopeVector& isotopes,
+  const VGM::RelAbundanceVector& relAbundances)
 {
-// Create element if such element with specified properties does not
-// yet exist
+  // Create element if such element with specified properties does not
+  // yet exist
 
   G4Element* g4Element = G4Element::GetElement(name, false);
 
   // Do not take the element if its properties do not match
-  if ( g4Element &&
-       ! CompareIsotopes(g4Element, isotopes, relAbundances ) ) {
-     g4Element = 0;
+  if (g4Element && !CompareIsotopes(g4Element, isotopes, relAbundances)) {
+    g4Element = 0;
   }
 
   VGM::IElement* vgmElement;
   if (g4Element)
     vgmElement = Geant4GM::ElementMap::Instance()->GetElement(g4Element);
-  else  {
+  else {
     vgmElement = new Geant4GM::Element(name, symbol, isotopes, relAbundances);
     ElementStore().push_back(vgmElement);
   }
@@ -295,25 +287,24 @@ Geant4GM::MaterialFactory::CreateElement(
 }
 
 //_____________________________________________________________________________
-VGM::IElement*
-Geant4GM::MaterialFactory::CreateElement(int z, bool isotopes)
+VGM::IElement* Geant4GM::MaterialFactory::CreateElement(int z, bool isotopes)
 {
-// Create element using Nist manager,
-// if such element with specified properties does not yet exist
+  // Create element using Nist manager,
+  // if such element with specified properties does not yet exist
 
   G4NistManager* nistManager = G4NistManager::Instance();
   G4Element* g4Element = nistManager->FindOrBuildElement(z, isotopes);
-  if ( ! g4Element ) {
+  if (!g4Element) {
     std::cerr << "No element with z=" << z << " defined." << std::endl;
     return 0;
   }
 
-  VGM::IElement* vgmElement
-    = Geant4GM::ElementMap::Instance()->GetElement(g4Element);
+  VGM::IElement* vgmElement =
+    Geant4GM::ElementMap::Instance()->GetElement(g4Element);
 
-  if ( ! vgmElement ) {
+  if (!vgmElement) {
 
-    for ( unsigned i=0; i<g4Element->GetNumberOfIsotopes(); i++ )
+    for (unsigned i = 0; i < g4Element->GetNumberOfIsotopes(); i++)
       ImportIsotope(const_cast<G4Isotope*>(g4Element->GetIsotope(i)));
 
     vgmElement = new Geant4GM::Element(g4Element);
@@ -323,134 +314,106 @@ Geant4GM::MaterialFactory::CreateElement(int z, bool isotopes)
 }
 
 //_____________________________________________________________________________
-VGM::IMaterial*
-Geant4GM::MaterialFactory::CreateMaterial(
-                                 const std::string& name,
-                                 double density,
-		                 VGM::IElement* element,
-		                 double /*radlen*/, double /*intlen*/)
+VGM::IMaterial* Geant4GM::MaterialFactory::CreateMaterial(
+  const std::string& name, double density, VGM::IElement* element,
+  double /*radlen*/, double /*intlen*/)
 {
-// Create material
+  // Create material
 
   bool isVacuum = false;
-  if ( fVacuumElements.find(element) != fVacuumElements.end() ) isVacuum = true;
+  if (fVacuumElements.find(element) != fVacuumElements.end()) isVacuum = true;
 
-  VGM::IMaterial* vgmMaterial
-    = new Geant4GM::Material(name, density, element, isVacuum);
+  VGM::IMaterial* vgmMaterial =
+    new Geant4GM::Material(name, density, element, isVacuum);
 
   MaterialStore().push_back(vgmMaterial);
   return vgmMaterial;
 }
 
 //_____________________________________________________________________________
-VGM::IMaterial*
-Geant4GM::MaterialFactory::CreateMaterial(
-                                 const std::string& name,
-                                 double density,
-                                 VGM::IElement* element,
-                                 double /*radlen*/, double /*intlen*/,
-                                 VGM::MaterialState state,
-                                 double temperature, double pressure)
+VGM::IMaterial* Geant4GM::MaterialFactory::CreateMaterial(
+  const std::string& name, double density, VGM::IElement* element,
+  double /*radlen*/, double /*intlen*/, VGM::MaterialState state,
+  double temperature, double pressure)
 {
-// Create material
+  // Create material
 
   bool isVacuum = false;
-  if ( fVacuumElements.find(element) != fVacuumElements.end() ) isVacuum = true;
+  if (fVacuumElements.find(element) != fVacuumElements.end()) isVacuum = true;
 
-  VGM::IMaterial* vgmMaterial
-    = new Geant4GM::Material(name, density, element,
-                             state, temperature, pressure, isVacuum);
-
-  MaterialStore().push_back(vgmMaterial);
-  return vgmMaterial;
-}
-
-//_____________________________________________________________________________
-VGM::IMaterial*
-Geant4GM::MaterialFactory::CreateMaterial(
-                                 const std::string& name,
-                                 double density,
-			         const VGM::ElementVector& elements,
-                                 const VGM::MassFractionVector& fractions)
-{
-// Create material
-
-  VGM::IMaterial* vgmMaterial
-    = new Geant4GM::Material(name, density, elements, fractions);
+  VGM::IMaterial* vgmMaterial = new Geant4GM::Material(
+    name, density, element, state, temperature, pressure, isVacuum);
 
   MaterialStore().push_back(vgmMaterial);
   return vgmMaterial;
 }
 
 //_____________________________________________________________________________
-VGM::IMaterial*
-Geant4GM::MaterialFactory::CreateMaterial(
-                                 const std::string& name,
-                                 double density,
-			         const VGM::ElementVector& elements,
-                                 const VGM::MassFractionVector& fractions,
-                                 VGM::MaterialState state,
-                                 double temperature, double pressure)
+VGM::IMaterial* Geant4GM::MaterialFactory::CreateMaterial(
+  const std::string& name, double density, const VGM::ElementVector& elements,
+  const VGM::MassFractionVector& fractions)
 {
-// Create material
+  // Create material
 
-  VGM::IMaterial* vgmMaterial
-    = new Geant4GM::Material(name, density, elements, fractions,
-                             state, temperature, pressure);
+  VGM::IMaterial* vgmMaterial =
+    new Geant4GM::Material(name, density, elements, fractions);
 
   MaterialStore().push_back(vgmMaterial);
   return vgmMaterial;
 }
 
 //_____________________________________________________________________________
-VGM::IMaterial*
-Geant4GM::MaterialFactory::CreateMaterial(
-                                 const std::string& name,
-                                 double density,
-			         const VGM::ElementVector& elements,
-                                 const VGM::AtomCountVector& atomCounts)
+VGM::IMaterial* Geant4GM::MaterialFactory::CreateMaterial(
+  const std::string& name, double density, const VGM::ElementVector& elements,
+  const VGM::MassFractionVector& fractions, VGM::MaterialState state,
+  double temperature, double pressure)
 {
-// Create material
+  // Create material
 
-  VGM::IMaterial* vgmMaterial
-    = new Geant4GM::Material(name, density, elements, atomCounts);
+  VGM::IMaterial* vgmMaterial = new Geant4GM::Material(
+    name, density, elements, fractions, state, temperature, pressure);
 
   MaterialStore().push_back(vgmMaterial);
   return vgmMaterial;
 }
 
 //_____________________________________________________________________________
-VGM::IMaterial*
-Geant4GM::MaterialFactory::CreateMaterial(
-                                 const std::string& name,
-                                 double density,
-			         const VGM::ElementVector& elements,
-                                 const VGM::AtomCountVector& atomCounts,
-                                 VGM::MaterialState state,
-                                 double temperature, double pressure)
+VGM::IMaterial* Geant4GM::MaterialFactory::CreateMaterial(
+  const std::string& name, double density, const VGM::ElementVector& elements,
+  const VGM::AtomCountVector& atomCounts)
 {
-// Create material
+  // Create material
 
-  VGM::IMaterial* vgmMaterial
-    = new Geant4GM::Material(name, density, elements, atomCounts,
-                             state, temperature, pressure);
+  VGM::IMaterial* vgmMaterial =
+    new Geant4GM::Material(name, density, elements, atomCounts);
 
   MaterialStore().push_back(vgmMaterial);
   return vgmMaterial;
 }
 
 //_____________________________________________________________________________
-VGM::IMedium*
-Geant4GM::MaterialFactory::CreateMedium(const std::string& name,
-                                 int mediumId,
-	  		         VGM::IMaterial* material,
-			         int nofParameters,
-			         double* parameters)
+VGM::IMaterial* Geant4GM::MaterialFactory::CreateMaterial(
+  const std::string& name, double density, const VGM::ElementVector& elements,
+  const VGM::AtomCountVector& atomCounts, VGM::MaterialState state,
+  double temperature, double pressure)
 {
-// Create medium
+  // Create material
 
-  VGM::IMedium* vgmMedium
-    = new Geant4GM::Medium(name, mediumId, material, nofParameters, parameters);
+  VGM::IMaterial* vgmMaterial = new Geant4GM::Material(
+    name, density, elements, atomCounts, state, temperature, pressure);
+
+  MaterialStore().push_back(vgmMaterial);
+  return vgmMaterial;
+}
+
+//_____________________________________________________________________________
+VGM::IMedium* Geant4GM::MaterialFactory::CreateMedium(const std::string& name,
+  int mediumId, VGM::IMaterial* material, int nofParameters, double* parameters)
+{
+  // Create medium
+
+  VGM::IMedium* vgmMedium =
+    new Geant4GM::Medium(name, mediumId, material, nofParameters, parameters);
 
   MediumStore().push_back(vgmMedium);
   return vgmMedium;
@@ -459,30 +422,28 @@ Geant4GM::MaterialFactory::CreateMedium(const std::string& name,
 //_____________________________________________________________________________
 bool Geant4GM::MaterialFactory::Import()
 {
-/// Import all isotopes, elements, materials from G4MaterialTable
+  /// Import all isotopes, elements, materials from G4MaterialTable
 
   const G4IsotopeTable* isotopeTable = G4Isotope::GetIsotopeTable();
 
-  for (G4int i=0; i<G4int(isotopeTable->size()); i++) {
+  for (G4int i = 0; i < G4int(isotopeTable->size()); i++) {
     G4Isotope* isotope = (*isotopeTable)[i];
     ImportIsotope(isotope);
   }
 
   const G4ElementTable* elementTable = G4Element::GetElementTable();
 
-  for (G4int i=0; i<G4int(elementTable->size()); i++) {
+  for (G4int i = 0; i < G4int(elementTable->size()); i++) {
     G4Element* element = (*elementTable)[i];
     ImportElement(element);
   }
 
   const G4MaterialTable* materialTable = G4Material::GetMaterialTable();
 
-  for (G4int j=0; j<G4int(materialTable->size()); j++) {
+  for (G4int j = 0; j < G4int(materialTable->size()); j++) {
     G4Material* material = (*materialTable)[j];
     ImportMaterial(material);
   }
 
   return true;
 }
-
-

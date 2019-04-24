@@ -26,24 +26,23 @@
 
 namespace BaseVGM {
 
-  class VSphere : public virtual VGM::ISphere
-  {
-    public:
-      VSphere();
-      virtual ~VSphere();
+class VSphere : public virtual VGM::ISphere
+{
+ public:
+  VSphere();
+  virtual ~VSphere();
 
-      // methods
-      virtual VGM::SolidType Type() const;
+  // methods
+  virtual VGM::SolidType Type() const;
 
-      // streaming
-      virtual std::ostream& Put(std::ostream& out) const;
-  };
+  // streaming
+  virtual std::ostream& Put(std::ostream& out) const;
+};
 
-}
+} // namespace BaseVGM
 
 // inline functions
 
-inline VGM::SolidType
-BaseVGM::VSphere::Type() const { return VGM::kSphere; }
+inline VGM::SolidType BaseVGM::VSphere::Type() const { return VGM::kSphere; }
 
-#endif //BASE_VGM_V_SPHERE_H
+#endif // BASE_VGM_V_SPHERE_H

@@ -20,37 +20,37 @@
 #ifndef VGM_I_MEDIUM_H
 #define VGM_I_MEDIUM_H
 
-#include <string>
 #include <iostream>
+#include <string>
 
 namespace VGM {
 
-  class IMaterial;
+class IMaterial;
 
-  class IMedium
-  {
-    public:
-      virtual ~IMedium() {}
+class IMedium
+{
+ public:
+  virtual ~IMedium() {}
 
-      // metods
-			   ///
-                           /// Return its name
-      virtual std::string Name() const = 0;
-			   ///
-                           /// Return its associated material
-      virtual IMaterial*  Material() const = 0;
-	                   ///
-                           /// Return its unique identifier
-      virtual int     Id() const = 0;
-	                   ///
-                           /// Return the number of defined parameters
-      virtual int     NofParameters() const = 0;
-	                   ///
-                           /// Return the i-th parameter
-      virtual double  Parameter(int i) const = 0;
-  };
-}
+  // metods
+  ///
+  /// Return its name
+  virtual std::string Name() const = 0;
+  ///
+  /// Return its associated material
+  virtual IMaterial* Material() const = 0;
+  ///
+  /// Return its unique identifier
+  virtual int Id() const = 0;
+  ///
+  /// Return the number of defined parameters
+  virtual int NofParameters() const = 0;
+  ///
+  /// Return the i-th parameter
+  virtual double Parameter(int i) const = 0;
+};
+} // namespace VGM
 
-std::ostream& operator << (std::ostream& out, const VGM::IMedium& medium);
+std::ostream& operator<<(std::ostream& out, const VGM::IMedium& medium);
 
-#endif //VGM_I_MEDIUM_H
+#endif // VGM_I_MEDIUM_H

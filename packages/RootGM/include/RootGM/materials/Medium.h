@@ -28,34 +28,33 @@ class TGeoMedium;
 
 namespace RootGM {
 
-  class Medium : public BaseVGM::VMedium
-  {
-    public:
-      Medium(const std::string& name, int mediumId,
-             VGM::IMaterial* material,
-             int nofParameters, double* parameters);
-      Medium(TGeoMedium* medium);
-      virtual ~Medium();
+class Medium : public BaseVGM::VMedium
+{
+ public:
+  Medium(const std::string& name, int mediumId, VGM::IMaterial* material,
+    int nofParameters, double* parameters);
+  Medium(TGeoMedium* medium);
+  virtual ~Medium();
 
-      // methods
-      virtual std::string Name() const;
+  // methods
+  virtual std::string Name() const;
 
-      virtual int     Id() const;
-      virtual double  Parameter(int i) const;
+  virtual int Id() const;
+  virtual double Parameter(int i) const;
 
-    protected:
-      Medium();
-      Medium(const Medium& rhs);
+ protected:
+  Medium();
+  Medium(const Medium& rhs);
 
-    private:
-      void CheckIndex(int iel) const;
+ private:
+  void CheckIndex(int iel) const;
 
-      // data members
-      static  const int fgkParamSize;
+  // data members
+  static const int fgkParamSize;
 
-      TGeoMedium*  fMedium;
-  };
+  TGeoMedium* fMedium;
+};
 
-}
+} // namespace RootGM
 
-#endif //ROOT_GM_MEDIUM_H
+#endif // ROOT_GM_MEDIUM_H

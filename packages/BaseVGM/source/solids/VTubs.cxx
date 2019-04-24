@@ -27,25 +27,24 @@ std::ostream& operator<<(std::ostream& out, const VGM::ITubs& tubs)
 }
 
 //_____________________________________________________________________________
-BaseVGM::VTubs::VTubs()
-  : VGM::ITubs()
+BaseVGM::VTubs::VTubs() : VGM::ITubs()
 {
-/// Default constructor
+  /// Default constructor
 }
 
 //_____________________________________________________________________________
-BaseVGM::VTubs::~VTubs() {
-//
+BaseVGM::VTubs::~VTubs()
+{
+  //
 }
 
 //_____________________________________________________________________________
 std::ostream& BaseVGM::VTubs::Put(std::ostream& out) const
 {
-  out << "  rin = "  << InnerRadius()  << "mm"
-      << "  rout = " << OuterRadius()  << "mm"
-      << "  hz = "   << ZHalfLength()  << "mm"
-      << "  sphi = " << StartPhi()     << "deg"
-      << "  dphi = " << DeltaPhi()     << "deg";
+  out << "  rin = " << InnerRadius() << "mm"
+      << "  rout = " << OuterRadius() << "mm"
+      << "  hz = " << ZHalfLength() << "mm"
+      << "  sphi = " << StartPhi() << "deg"
+      << "  dphi = " << DeltaPhi() << "deg";
   return out;
 }
-

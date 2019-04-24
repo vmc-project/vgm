@@ -24,40 +24,39 @@
 #include "XmlVGM/VExporter.h"
 
 namespace VGM {
-  class IFactory;
-  class IVolume;
-}
+class IFactory;
+class IVolume;
+} // namespace VGM
 
 namespace XmlVGM {
 
-  class AGDDExporter : public VExporter
-  {
-    public:
-      AGDDExporter(const VGM::IFactory* factory);
-      // --> protected
-      // AGDDExporter();
-      // AGDDExporter(const AGDDExporter& right);
-      virtual ~AGDDExporter();
+class AGDDExporter : public VExporter
+{
+ public:
+  AGDDExporter(const VGM::IFactory* factory);
+  // --> protected
+  // AGDDExporter();
+  // AGDDExporter(const AGDDExporter& right);
+  virtual ~AGDDExporter();
 
-    protected:
-      AGDDExporter();
-      AGDDExporter(const AGDDExporter& right);
+ protected:
+  AGDDExporter();
+  AGDDExporter(const AGDDExporter& right);
 
-      // operators
-      AGDDExporter& operator=(const AGDDExporter& right);
+  // operators
+  AGDDExporter& operator=(const AGDDExporter& right);
 
-      // methods
-      // (specific to XML definition)
-      //
-      virtual void GenerateGeometry(VGM::IVolume* volume);
-      virtual void GenerateSection(VGM::IVolume* volume);
-      virtual void ProcessVolume(VGM::IVolume* volume);
+  // methods
+  // (specific to XML definition)
+  //
+  virtual void GenerateGeometry(VGM::IVolume* volume);
+  virtual void GenerateSection(VGM::IVolume* volume);
+  virtual void ProcessVolume(VGM::IVolume* volume);
 
-    private:
-      ThreeVector Identity() const;
-  };
+ private:
+  ThreeVector Identity() const;
+};
 
-}
+} // namespace XmlVGM
 
-#endif //XML_VGM_AGDD_EXPORTER_H
-
+#endif // XML_VGM_AGDD_EXPORTER_H

@@ -26,24 +26,26 @@
 
 namespace BaseVGM {
 
-  class VPolycone : public virtual VGM::IPolycone
-  {
-    public:
-      VPolycone();
-      virtual ~VPolycone();
+class VPolycone : public virtual VGM::IPolycone
+{
+ public:
+  VPolycone();
+  virtual ~VPolycone();
 
-      // methods
-      virtual VGM::SolidType Type() const;
+  // methods
+  virtual VGM::SolidType Type() const;
 
-      // streaming
-      virtual std::ostream& Put(std::ostream& out) const;
-  };
+  // streaming
+  virtual std::ostream& Put(std::ostream& out) const;
+};
 
-}
+} // namespace BaseVGM
 
 // inline functions
 
-inline VGM::SolidType
-BaseVGM::VPolycone::Type() const { return VGM::kPolycone; }
+inline VGM::SolidType BaseVGM::VPolycone::Type() const
+{
+  return VGM::kPolycone;
+}
 
-#endif //BASE_VGM_V_POLYCONE_H
+#endif // BASE_VGM_V_POLYCONE_H

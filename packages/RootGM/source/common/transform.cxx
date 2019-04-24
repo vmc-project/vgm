@@ -18,15 +18,15 @@
 
 #include "BaseVGM/common/utilities.h"
 
-#include "RootGM/common/transform.h"
 #include "RootGM/common/Units.h"
+#include "RootGM/common/transform.h"
 
-#include "TGeoPatternFinder.h"
 #include "TGeoBBox.h"
+#include "TGeoPatternFinder.h"
 #include "TMath.h"
 
-#include <iostream>
 #include <float.h>
+#include <iostream>
 #include <math.h>
 
 //
@@ -34,9 +34,9 @@
 //
 
 //_____________________________________________________________________________
-VGM::Transform  RootGM::Transform(const TGeoMatrix& matrix)
+VGM::Transform RootGM::Transform(const TGeoMatrix& matrix)
 {
-//
+  //
   // Translation
   //
   const Double_t* translation = matrix.GetTranslation();
@@ -50,18 +50,24 @@ VGM::Transform  RootGM::Transform(const TGeoMatrix& matrix)
   //
   const Double_t* rm = matrix.GetRotationMatrix();
 
-  double xx, xz,        // 3x3  Rotation Matrix (xy not used)
-         yx, yy, yz,
-         zx, zy, zz;
+  double xx, xz, // 3x3  Rotation Matrix (xy not used)
+    yx, yy, yz, zx, zy, zz;
 
-  xx = rm[0]; xz = rm[2];
-  yx = rm[3]; yy = rm[4]; yz = rm[5];
-  zx = rm[6]; zy = rm[7]; zz = rm[8];
+  xx = rm[0];
+  xz = rm[2];
+  yx = rm[3];
+  yy = rm[4];
+  yz = rm[5];
+  zx = rm[6];
+  zy = rm[7];
+  zz = rm[8];
 
   // Decompose reflectionZ from rotation matrix
 
-  if ( HasReflection(matrix) ) {
-    xz = -xz; yz = -yz; zz = -zz;
+  if (HasReflection(matrix)) {
+    xz = -xz;
+    yz = -yz;
+    zz = -zz;
   }
 
   // Get axis angles
@@ -70,13 +76,13 @@ VGM::Transform  RootGM::Transform(const TGeoMatrix& matrix)
   double angleX;
   double angleY;
   double angleZ;
-  double cosb = sqrt(xx*xx + yx*yx);
-  if (cosb > 16*FLT_EPSILON) {
-    angleX = atan2( zy, zz);
+  double cosb = sqrt(xx * xx + yx * yx);
+  if (cosb > 16 * FLT_EPSILON) {
+    angleX = atan2(zy, zz);
     angleY = atan2(-zx, cosb);
-    angleZ = atan2( yx, xx);
+    angleZ = atan2(yx, xx);
   }
-  else{
+  else {
     angleX = atan2(-yz, yy);
     angleY = atan2(-zx, cosb);
     angleZ = 0.;
@@ -91,19 +97,18 @@ VGM::Transform  RootGM::Transform(const TGeoMatrix& matrix)
   transform[VGM::kReflZ] = 0.;
   if (matrix.IsReflection()) transform[VGM::kReflZ] = 1.;
 
-
   return transform;
 }
 
 //_____________________________________________________________________________
-VGM::Transform  RootGM::TransformScale(const TGeoScale& scale)
+VGM::Transform RootGM::TransformScale(const TGeoScale& scale)
 {
   const Double_t* dscale = scale.GetScale();
 
   VGM::Transform transform(VGM::kSize);
   transform[VGM::kDx] = dscale[0];
-  transform[VGM::kDy] = dscale[1] ;
-  transform[VGM::kDz] = dscale[2] ;
+  transform[VGM::kDy] = dscale[1];
+  transform[VGM::kDz] = dscale[2];
 
   return transform;
 }
@@ -111,32 +116,32 @@ VGM::Transform  RootGM::TransformScale(const TGeoScale& scale)
 //_____________________________________________________________________________
 bool RootGM::HasReflection(const TGeoMatrix& matrix)
 {
-//
-/*
-  // Decompose general matrix
-  const Double_t* rm = matrix.GetRotation()
+  //
+  /*
+    // Decompose general matrix
+    const Double_t* rm = matrix.GetRotation()
 
-  // Matrix
-  // rm[0] * sm[0], rm[1] * sm[1], rm[2] * sm[2], tm[0]
-  // rm[3] * sm[0], rm[4] * sm[1], rm[5] * sm[2], tm[1]
-  // rm[6] * sm[0], rm[7] * sm[1], rm[8] * sm[2], tm[2]
+    // Matrix
+    // rm[0] * sm[0], rm[1] * sm[1], rm[2] * sm[2], tm[0]
+    // rm[3] * sm[0], rm[4] * sm[1], rm[5] * sm[2], tm[1]
+    // rm[6] * sm[0], rm[7] * sm[1], rm[8] * sm[2], tm[2]
 
-  double xx, xy, xz, dx,     // 4x3  Transformation Matrix
-         yx, yy, yz, dy,
-         zx, zy, zz, dz;
+    double xx, xy, xz, dx,     // 4x3  Transformation Matrix
+           yx, yy, yz, dy,
+           zx, zy, zz, dz;
 
-  xx = rm[0]; xy = rm[1]; xz = rm[2];
-  yx = rm[3]; yy = rm[4]; yz = rm[5];
-  zx = rm[6]; zy = rm[7]; zz = rm[8];
-  dx = tm[0]; dy = tm[1]; dz = tm[2];
-  sx = sm[0]; sy = sm[1]; sz = sm[2];
+    xx = rm[0]; xy = rm[1]; xz = rm[2];
+    yx = rm[3]; yy = rm[4]; yz = rm[5];
+    zx = rm[6]; zy = rm[7]; zz = rm[8];
+    dx = tm[0]; dy = tm[1]; dz = tm[2];
+    sx = sm[0]; sy = sm[1]; sz = sm[2];
 
-  // If reflection, apply it to scaleZ
-  if (xx*(yy*zz-yz*zy) - xy*(yx*zz-yz*zx) + xz*(yx*zy-yy*zx) < 0)
-    return true;
-  else
-    return false
-*/
+    // If reflection, apply it to scaleZ
+    if (xx*(yy*zz-yz*zy) - xy*(yx*zz-yz*zx) + xz*(yx*zy-yy*zx) < 0)
+      return true;
+    else
+      return false
+  */
 
   return matrix.IsReflection();
 }
@@ -156,37 +161,35 @@ TGeoMatrix* RootGM::CreateTransform(const VGM::Transform& transform)
   }
 
   TGeoRotation* rootRotation = new TGeoRotation();
-  rootRotation->RotateX( transform[VGM::kAngleX] / Units::Angle() );
-  rootRotation->RotateY( transform[VGM::kAngleY] / Units::Angle() );
-  rootRotation->RotateZ( transform[VGM::kAngleZ] / Units::Angle() );
+  rootRotation->RotateX(transform[VGM::kAngleX] / Units::Angle());
+  rootRotation->RotateY(transform[VGM::kAngleY] / Units::Angle());
+  rootRotation->RotateZ(transform[VGM::kAngleZ] / Units::Angle());
 
   if (HasReflection(transform)) {
     // copy matrix in a new one
     const Double_t* matrix = rootRotation->GetRotationMatrix();
     Double_t matrix2[9];
-    for (Int_t i=0; i<9; i++) matrix2[i] = matrix[i];
+    for (Int_t i = 0; i < 9; i++) matrix2[i] = matrix[i];
 
     // apply reflectionZ to rotation matrix
-    matrix2[2] = - matrix2[2];  //xz
-    matrix2[5] = - matrix2[5];  //yz
-    matrix2[8] = - matrix2[8];  //zz
+    matrix2[2] = -matrix2[2]; // xz
+    matrix2[5] = -matrix2[5]; // yz
+    matrix2[8] = -matrix2[8]; // zz
 
     // reset matrix
     rootRotation->SetMatrix(matrix2);
- }
+  }
 
- return new TGeoCombiTrans(transform[VGM::kDx] / Units::Length(),
-                           transform[VGM::kDy] / Units::Length(),
-                           transform[VGM::kDz] / Units::Length(),
-			   rootRotation);
+  return new TGeoCombiTrans(transform[VGM::kDx] / Units::Length(),
+    transform[VGM::kDy] / Units::Length(),
+    transform[VGM::kDz] / Units::Length(), rootRotation);
 }
 
 //_____________________________________________________________________________
-TGeoScale*  RootGM::CreateScale(const VGM::Transform& transform)
+TGeoScale* RootGM::CreateScale(const VGM::Transform& transform)
 {
-  return new TGeoScale(transform[VGM::kDx],
-                       transform[VGM::kDy],
-                       transform[VGM::kDz]);
+  return new TGeoScale(
+    transform[VGM::kDx], transform[VGM::kDy], transform[VGM::kDz]);
 }
 
 //_____________________________________________________________________________
@@ -200,19 +203,17 @@ bool RootGM::HasReflection(const VGM::Transform& transform)
 //
 
 //_____________________________________________________________________________
-TGeoHMatrix  RootGM::Displacement(TGeoShape* shape)
+TGeoHMatrix RootGM::Displacement(TGeoShape* shape)
 {
   TGeoBBox* box = dynamic_cast<TGeoBBox*>(shape);
-  if ( ! box ) return TGeoHMatrix();
+  if (!box) return TGeoHMatrix();
 
   const Double_t* origin = box->GetOrigin();
-  if ( ! origin ) return TGeoHMatrix();
+  if (!origin) return TGeoHMatrix();
 
-  return  TGeoHMatrix(TGeoTranslation(origin[0], origin[1], origin[2]));;
+  return TGeoHMatrix(TGeoTranslation(origin[0], origin[1], origin[2]));
+  ;
 }
-
-
-
 
 //_____________________________________________________________________________
 
@@ -225,17 +226,21 @@ TGeoHMatrix  RootGM::Displacement(TGeoShape* shape)
 
 #define EPSILON 0.000001
 
-#define CROSS(dest, v1, v2){                 \
-          dest[0] = v1[1] * v2[2] - v1[2] * v2[1]; \
-          dest[1] = v1[2] * v2[0] - v1[0] * v2[2]; \
-          dest[2] = v1[0] * v2[1] - v1[1] * v2[0];}
+#define CROSS(dest, v1, v2)                  \
+  {                                          \
+    dest[0] = v1[1] * v2[2] - v1[2] * v2[1]; \
+    dest[1] = v1[2] * v2[0] - v1[0] * v2[2]; \
+    dest[2] = v1[0] * v2[1] - v1[1] * v2[0]; \
+  }
 
 #define DOT(v1, v2) (v1[0] * v2[0] + v1[1] * v2[1] + v1[2] * v2[2])
 
-#define SUB(dest, v1, v2){       \
-          dest[0] = v1[0] - v2[0]; \
-          dest[1] = v1[1] - v2[1]; \
-          dest[2] = v1[2] - v2[2];}
+#define SUB(dest, v1, v2)    \
+  {                          \
+    dest[0] = v1[0] - v2[0]; \
+    dest[1] = v1[1] - v2[1]; \
+    dest[2] = v1[2] - v2[2]; \
+  }
 
 /*
  * A function for creating a rotation matrix that rotates a vector called
@@ -246,64 +251,66 @@ TGeoHMatrix  RootGM::Displacement(TGeoShape* shape)
  *          "Efficiently Building a Matrix to Rotate One Vector to Another"
  *          Journal of Graphics Tools, 4(4):1-4, 1999
  */
-void RootGM::fromToRotation(double from[3], double to[3], double mtx[3][3]) {
+void RootGM::fromToRotation(double from[3], double to[3], double mtx[3][3])
+{
   double v[3];
   double e, h, f;
 
   CROSS(v, from, to);
   e = DOT(from, to);
-  f = (e < 0)? -e:e;
-  if (f > 1.0 - EPSILON)     /* "from" and "to"-vector almost parallel */
+  f = (e < 0) ? -e : e;
+  if (f > 1.0 - EPSILON) /* "from" and "to"-vector almost parallel */
   {
     double utmp[3], vtmp[3]; /* temporary storage vectors */
-    double x[3];       /* vector most nearly orthogonal to "from" */
-    double c1, c2, c3; /* coefficients for later use */
+    double x[3];             /* vector most nearly orthogonal to "from" */
+    double c1, c2, c3;       /* coefficients for later use */
     int i, j;
 
-    x[0] = (from[0] > 0.0)? from[0] : -from[0];
-    x[1] = (from[1] > 0.0)? from[1] : -from[1];
-    x[2] = (from[2] > 0.0)? from[2] : -from[2];
+    x[0] = (from[0] > 0.0) ? from[0] : -from[0];
+    x[1] = (from[1] > 0.0) ? from[1] : -from[1];
+    x[2] = (from[2] > 0.0) ? from[2] : -from[2];
 
-    if (x[0] < x[1])
-    {
-      if (x[0] < x[2])
-      {
-        x[0] = 1.0; x[1] = x[2] = 0.0;
+    if (x[0] < x[1]) {
+      if (x[0] < x[2]) {
+        x[0] = 1.0;
+        x[1] = x[2] = 0.0;
       }
-      else
-      {
-        x[2] = 1.0; x[0] = x[1] = 0.0;
+      else {
+        x[2] = 1.0;
+        x[0] = x[1] = 0.0;
       }
     }
-    else
-    {
-      if (x[1] < x[2])
-      {
-        x[1] = 1.0; x[0] = x[2] = 0.0;
+    else {
+      if (x[1] < x[2]) {
+        x[1] = 1.0;
+        x[0] = x[2] = 0.0;
       }
-      else
-      {
-        x[2] = 1.0; x[0] = x[1] = 0.0;
+      else {
+        x[2] = 1.0;
+        x[0] = x[1] = 0.0;
       }
     }
 
-    utmp[0] = x[0] - from[0]; utmp[1] = x[1] - from[1]; utmp[2] = x[2] - from[2];
-    vtmp[0] = x[0] - to[0];   vtmp[1] = x[1] - to[1];   vtmp[2] = x[2] - to[2];
+    utmp[0] = x[0] - from[0];
+    utmp[1] = x[1] - from[1];
+    utmp[2] = x[2] - from[2];
+    vtmp[0] = x[0] - to[0];
+    vtmp[1] = x[1] - to[1];
+    vtmp[2] = x[2] - to[2];
 
     c1 = 2.0 / DOT(utmp, utmp);
     c2 = 2.0 / DOT(vtmp, vtmp);
-    c3 = c1 * c2  * DOT(utmp, vtmp);
+    c3 = c1 * c2 * DOT(utmp, vtmp);
 
     for (i = 0; i < 3; i++) {
       for (j = 0; j < 3; j++) {
-        mtx[i][j] =  - c1 * utmp[i] * utmp[j]
-                     - c2 * vtmp[i] * vtmp[j]
-                     + c3 * vtmp[i] * utmp[j];
+        mtx[i][j] = -c1 * utmp[i] * utmp[j] - c2 * vtmp[i] * vtmp[j] +
+                    c3 * vtmp[i] * utmp[j];
       }
       mtx[i][i] += 1.0;
     }
   }
-  else  /* the most common case, unless "from"="to", or "from"=-"to" */
+  else /* the most common case, unless "from"="to", or "from"=-"to" */
   {
 #if 0
     /* unoptimized version - a good compiler will optimize this. */
@@ -324,7 +331,7 @@ void RootGM::fromToRotation(double from[3], double to[3], double mtx[3][3]) {
     /* ...otherwise use this hand optimized version (9 mults less) */
     double hvx, hvz, hvxy, hvxz, hvyz;
     /* h = (1.0 - e)/DOT(v, v); old code */
-    h = 1.0/(1.0 + e);      /* optimization by Gottfried Chen */
+    h = 1.0 / (1.0 + e); /* optimization by Gottfried Chen */
     hvx = h * v[0];
     hvz = h * v[2];
     hvxy = hvx * v[1];

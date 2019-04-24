@@ -30,33 +30,30 @@ class TGeoScale;
 
 namespace RootGM {
 
-  class ScaledSolid : public BaseVGM::VScaledSolid
-  {
-    public:
-      ScaledSolid(const std::string& name,
-                   VGM::ISolid* solid,
-                   TGeoScale* scale);
-      ScaledSolid(TGeoScaledShape* scaledShape);
-      virtual ~ScaledSolid();
+class ScaledSolid : public BaseVGM::VScaledSolid
+{
+ public:
+  ScaledSolid(const std::string& name, VGM::ISolid* solid, TGeoScale* scale);
+  ScaledSolid(TGeoScaledShape* scaledShape);
+  virtual ~ScaledSolid();
 
-      // methods
-      virtual std::string Name() const;
+  // methods
+  virtual std::string Name() const;
 
-      virtual VGM::ISolid*    ConstituentSolid() const;
-      virtual VGM::Transform  Scale() const;
-      virtual bool            ToBeReflected() const;
+  virtual VGM::ISolid* ConstituentSolid() const;
+  virtual VGM::Transform Scale() const;
+  virtual bool ToBeReflected() const;
 
-    protected:
-      ScaledSolid();
-      ScaledSolid(const ScaledSolid& rhs);
+ protected:
+  ScaledSolid();
+  ScaledSolid(const ScaledSolid& rhs);
 
-    private:
-      TGeoScaledShape* fScaledShape;
-  };
+ private:
+  TGeoScaledShape* fScaledShape;
+};
 
-}
+} // namespace RootGM
 
-inline bool RootGM::ScaledSolid::ToBeReflected() const
-{ return false; }
+inline bool RootGM::ScaledSolid::ToBeReflected() const { return false; }
 
-#endif //ROOT_GM_SCALED_SOLID_H
+#endif // ROOT_GM_SCALED_SOLID_H

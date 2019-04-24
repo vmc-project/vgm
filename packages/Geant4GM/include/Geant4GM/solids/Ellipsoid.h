@@ -29,31 +29,30 @@ class G4ReflectedSolid;
 
 namespace Geant4GM {
 
-  class Ellipsoid : public BaseVGM::VEllipsoid
-  {
-    public:
-      Ellipsoid(const std::string& name,
-          double dx, double dy, double dz, double zBottomCut, double zTopCut);
-      Ellipsoid(G4Ellipsoid* ellipsoid,
-          G4ReflectedSolid* reflEllipsoid = 0);
-      virtual ~Ellipsoid();
+class Ellipsoid : public BaseVGM::VEllipsoid
+{
+ public:
+  Ellipsoid(const std::string& name, double dx, double dy, double dz,
+    double zBottomCut, double zTopCut);
+  Ellipsoid(G4Ellipsoid* ellipsoid, G4ReflectedSolid* reflEllipsoid = 0);
+  virtual ~Ellipsoid();
 
-      // methods
-      virtual std::string Name() const;
-      virtual double XSemiAxis() const;
-      virtual double YSemiAxis() const;
-      virtual double ZSemiAxis() const;
-      virtual double ZBottomCut() const;
-      virtual double ZTopCut() const;
+  // methods
+  virtual std::string Name() const;
+  virtual double XSemiAxis() const;
+  virtual double YSemiAxis() const;
+  virtual double ZSemiAxis() const;
+  virtual double ZBottomCut() const;
+  virtual double ZTopCut() const;
 
-    protected:
-      Ellipsoid();
-      Ellipsoid(const Ellipsoid& rhs);
+ protected:
+  Ellipsoid();
+  Ellipsoid(const Ellipsoid& rhs);
 
-    private:
-      G4Ellipsoid* fEllipsoid;
-  };
+ private:
+  G4Ellipsoid* fEllipsoid;
+};
 
-}
+} // namespace Geant4GM
 
-#endif //GEANT4_GM_ELLIPSOID_H
+#endif // GEANT4_GM_ELLIPSOID_H

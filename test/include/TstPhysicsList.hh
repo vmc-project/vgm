@@ -23,24 +23,17 @@
 #include "G4VUserPhysicsList.hh"
 #include "globals.hh"
 
-class TstPhysicsList: public G4VUserPhysicsList
+class TstPhysicsList : public G4VUserPhysicsList
 {
-  public:
-    TstPhysicsList();
-    virtual ~TstPhysicsList();
+ public:
+  TstPhysicsList();
+  virtual ~TstPhysicsList();
 
-  protected:
-    // Construct particle and physics process
-    void ConstructParticle();
-    void ConstructProcess();
-    void SetCuts();
+ protected:
+  // Construct particle and physics process
+  void ConstructParticle();
+  void ConstructProcess();
+  void SetCuts();
 };
 
-#endif //G_TST_PHYSICS_LIST_H
-
-
-
-
-
-
-
+#endif // G_TST_PHYSICS_LIST_H

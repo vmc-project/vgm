@@ -22,13 +22,12 @@
 
 #include "G4VSolid.hh"
 
-Geant4GM::SolidMap*  Geant4GM::SolidMap::fgInstance = 0;
+Geant4GM::SolidMap* Geant4GM::SolidMap::fgInstance = 0;
 
 //_____________________________________________________________________________
-Geant4GM::SolidMap*
-Geant4GM::SolidMap::Instance()
+Geant4GM::SolidMap* Geant4GM::SolidMap::Instance()
 {
-/// Singleton access function.
+  /// Singleton access function.
 
   if (!fgInstance) new Geant4GM::SolidMap();
 
@@ -36,11 +35,9 @@ Geant4GM::SolidMap::Instance()
 }
 
 //_____________________________________________________________________________
-Geant4GM::SolidMap::SolidMap()
-  : fG4Solids(),
-    fVgmSolids()
+Geant4GM::SolidMap::SolidMap() : fG4Solids(), fVgmSolids()
 {
-/// Standard default constructor
+  /// Standard default constructor
 
   fgInstance = this;
 }
@@ -48,31 +45,29 @@ Geant4GM::SolidMap::SolidMap()
 //_____________________________________________________________________________
 Geant4GM::SolidMap::SolidMap(const SolidMap&)
 {
-/// Protected copy constructor
+  /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
 Geant4GM::SolidMap::~SolidMap()
 {
-//
+  //
   fgInstance = 0;
 }
 
 //_____________________________________________________________________________
-void  Geant4GM::SolidMap::AddSolid(VGM::ISolid* iSolid,
-                                   G4VSolid* g4Solid)
+void Geant4GM::SolidMap::AddSolid(VGM::ISolid* iSolid, G4VSolid* g4Solid)
 {
-/// Add the specified pair in the map
+  /// Add the specified pair in the map
 
   fG4Solids[iSolid] = g4Solid;
   fVgmSolids[g4Solid] = iSolid;
 }
 
 //_____________________________________________________________________________
-G4VSolid*
-Geant4GM::SolidMap::GetSolid(VGM::ISolid* iSolid) const
+G4VSolid* Geant4GM::SolidMap::GetSolid(VGM::ISolid* iSolid) const
 {
-/// Find the G4 solid corresponding to a specified VGM solid
+  /// Find the G4 solid corresponding to a specified VGM solid
 
   G4SolidMapCIterator i = fG4Solids.find(iSolid);
   if (i != fG4Solids.end())
@@ -82,10 +77,9 @@ Geant4GM::SolidMap::GetSolid(VGM::ISolid* iSolid) const
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*
-Geant4GM::SolidMap::GetSolid(G4VSolid* solid) const
+VGM::ISolid* Geant4GM::SolidMap::GetSolid(G4VSolid* solid) const
 {
-/// Find the VGM solid corresponding to a specified G4 solid
+  /// Find the VGM solid corresponding to a specified G4 solid
 
   VgmSolidMapCIterator i = fVgmSolids.find(solid);
   if (i != fVgmSolids.end())

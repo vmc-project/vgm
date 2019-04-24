@@ -27,27 +27,25 @@ std::ostream& operator<<(std::ostream& out, const VGM::ISphere& sphere)
 }
 
 //_____________________________________________________________________________
-BaseVGM::VSphere::VSphere()
-  : VGM::ISphere()
+BaseVGM::VSphere::VSphere() : VGM::ISphere()
 {
-/// Default constructor
+  /// Default constructor
 }
 
-
 //_____________________________________________________________________________
-BaseVGM::VSphere::~VSphere() {
-//
+BaseVGM::VSphere::~VSphere()
+{
+  //
 }
 
 //_____________________________________________________________________________
 std::ostream& BaseVGM::VSphere::Put(std::ostream& out) const
 {
-  out << "  rin = "    << InnerRadius() << "mm"
-      << "  rout = "   << OuterRadius() << "mm"
-      << "  sphi = "   << StartPhi()    << "deg"
-      << "  dphi = "   << DeltaPhi()    << "deg"
-      << "  stheta = " << StartTheta()  << "deg"
-      << "  dtheta = " << DeltaTheta()  << "deg";
+  out << "  rin = " << InnerRadius() << "mm"
+      << "  rout = " << OuterRadius() << "mm"
+      << "  sphi = " << StartPhi() << "deg"
+      << "  dphi = " << DeltaPhi() << "deg"
+      << "  stheta = " << StartTheta() << "deg"
+      << "  dtheta = " << DeltaTheta() << "deg";
   return out;
 }
-

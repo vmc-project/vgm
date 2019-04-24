@@ -26,38 +26,38 @@
 
 namespace VGM {
 
-  class IHype : public virtual ISolid
-  {
-    public:
-      virtual ~IHype() {}
+class IHype : public virtual ISolid
+{
+ public:
+  virtual ~IHype() {}
 
-      // methods
+  // methods
 
-      virtual SolidType   Type() const = 0;
-      virtual std::string Name() const = 0;
+  virtual SolidType Type() const = 0;
+  virtual std::string Name() const = 0;
 
-		      ///
-		      /// Return the inner radius in mm
-      virtual double InnerRadius() const = 0;
-		      ///
-		      /// Return the inner stereo angle
-      virtual double InnerStereoAngle() const = 0;
-		      ///
-		      /// Return the outer radius in mm
-      virtual double OuterRadius() const = 0;
-		      ///
-		      /// Return the inner stereo angle
-      virtual double OuterStereoAngle() const = 0;
-		      ///
-		      /// Return the half-length along the z axis in mm
-      virtual double ZHalfLength() const = 0;
+  ///
+  /// Return the inner radius in mm
+  virtual double InnerRadius() const = 0;
+  ///
+  /// Return the inner stereo angle
+  virtual double InnerStereoAngle() const = 0;
+  ///
+  /// Return the outer radius in mm
+  virtual double OuterRadius() const = 0;
+  ///
+  /// Return the inner stereo angle
+  virtual double OuterStereoAngle() const = 0;
+  ///
+  /// Return the half-length along the z axis in mm
+  virtual double ZHalfLength() const = 0;
 
-      // streaming
-      virtual std::ostream& Put(std::ostream& out) const = 0;
-  };
+  // streaming
+  virtual std::ostream& Put(std::ostream& out) const = 0;
+};
 
-}
+} // namespace VGM
 
-std::ostream& operator << (std::ostream& out, const VGM::IHype& hype);
+std::ostream& operator<<(std::ostream& out, const VGM::IHype& hype);
 
-#endif //VGM_I_HYPE_H
+#endif // VGM_I_HYPE_H

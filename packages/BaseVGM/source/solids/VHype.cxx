@@ -27,26 +27,24 @@ std::ostream& operator<<(std::ostream& out, const VGM::IHype& hype)
 }
 
 //_____________________________________________________________________________
-BaseVGM::VHype::VHype()
-  : VGM::IHype()
+BaseVGM::VHype::VHype() : VGM::IHype()
 {
-/// Default constructor
+  /// Default constructor
 }
 
-
 //_____________________________________________________________________________
-BaseVGM::VHype::~VHype() {
-//
+BaseVGM::VHype::~VHype()
+{
+  //
 }
 
 //_____________________________________________________________________________
 std::ostream& BaseVGM::VHype::Put(std::ostream& out) const
 {
-  out << "  r1 = "       << InnerRadius()      << "mm"
-      << "  stereo1 = "  << InnerStereoAngle() << "deg"
-      << "  r2 = "       << OuterRadius()      << "mm"
-      << "  stereo1 = "  << OuterStereoAngle() << "deg"
-      << "  hz = "       << ZHalfLength()  << "mm";
+  out << "  r1 = " << InnerRadius() << "mm"
+      << "  stereo1 = " << InnerStereoAngle() << "deg"
+      << "  r2 = " << OuterRadius() << "mm"
+      << "  stereo1 = " << OuterStereoAngle() << "deg"
+      << "  hz = " << ZHalfLength() << "mm";
   return out;
 }
-

@@ -29,30 +29,28 @@ class G4ReflectedSolid;
 
 namespace Geant4GM {
 
-  class Paraboloid : public BaseVGM::VParaboloid
-  {
-    public:
-      Paraboloid(const std::string& name,
-                 double r1, double r2, double hz);
-      Paraboloid(G4Paraboloid* paraboloid,
-                 G4ReflectedSolid* reflParaboloid = 0);
-      virtual ~Paraboloid();
+class Paraboloid : public BaseVGM::VParaboloid
+{
+ public:
+  Paraboloid(const std::string& name, double r1, double r2, double hz);
+  Paraboloid(G4Paraboloid* paraboloid, G4ReflectedSolid* reflParaboloid = 0);
+  virtual ~Paraboloid();
 
-      // methods
-      virtual std::string Name() const;
-      virtual double RadiusMinusZ() const ;
-      virtual double RadiusPlusZ() const;
-      virtual double ZHalfLength() const;
+  // methods
+  virtual std::string Name() const;
+  virtual double RadiusMinusZ() const;
+  virtual double RadiusPlusZ() const;
+  virtual double ZHalfLength() const;
 
-    protected:
-      Paraboloid();
-      Paraboloid(const Paraboloid& rhs);
+ protected:
+  Paraboloid();
+  Paraboloid(const Paraboloid& rhs);
 
-    private:
-      bool          fIsReflected;
-      G4Paraboloid* fParaboloid;
-  };
+ private:
+  bool fIsReflected;
+  G4Paraboloid* fParaboloid;
+};
 
-}
+} // namespace Geant4GM
 
-#endif //GEANT4_GM_PARABOLOID_H
+#endif // GEANT4_GM_PARABOLOID_H

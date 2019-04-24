@@ -29,22 +29,22 @@ class TGeoShape;
 
 namespace RootGM {
 
-    // Root -> VGM
-    //
-    VGM::Transform  Transform(const TGeoMatrix& matrix);
-    VGM::Transform  TransformScale(const TGeoScale& scale);
-    VGM::Transform  Identity();
-    bool            HasReflection(const TGeoMatrix& matrix);
+// Root -> VGM
+//
+VGM::Transform Transform(const TGeoMatrix& matrix);
+VGM::Transform TransformScale(const TGeoScale& scale);
+VGM::Transform Identity();
+bool HasReflection(const TGeoMatrix& matrix);
 
-    // VGM -> Root
-    TGeoMatrix*     CreateTransform(const VGM::Transform& transform);
-    TGeoScale*      CreateScale(const VGM::Transform& transform);
-    bool            HasReflection(const VGM::Transform& transform);
+// VGM -> Root
+TGeoMatrix* CreateTransform(const VGM::Transform& transform);
+TGeoScale* CreateScale(const VGM::Transform& transform);
+bool HasReflection(const VGM::Transform& transform);
 
-    // Root special
-    TGeoHMatrix     Displacement(TGeoShape* shape);
+// Root special
+TGeoHMatrix Displacement(TGeoShape* shape);
 
-    void  fromToRotation(double from[3], double to[3], double mtx[3][3]);
-}
+void fromToRotation(double from[3], double to[3], double mtx[3][3]);
+} // namespace RootGM
 
-#endif //ROOT_GM_TRANSFORM_H
+#endif // ROOT_GM_TRANSFORM_H

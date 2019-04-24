@@ -25,43 +25,40 @@
 #include "G4ReflectedSolid.hh"
 
 //_____________________________________________________________________________
-Geant4GM::DisplacedSolid::DisplacedSolid(
-                            const std::string& name,
-                            VGM::ISolid* constituentSolid,
-                            CLHEP::HepRotation* rotation,
-			    const CLHEP::Hep3Vector& translation)
+Geant4GM::DisplacedSolid::DisplacedSolid(const std::string& name,
+  VGM::ISolid* constituentSolid, CLHEP::HepRotation* rotation,
+  const CLHEP::Hep3Vector& translation)
   : VGM::ISolid(),
     VGM::IDisplacedSolid(),
     BaseVGM::VDisplacedSolid(),
     fDisplacedSolid(0),
     fToBeReflected(false)
 {
-/// Standard constructor to define displaced solids via constituent
-/// \param constituentSolid constituent solids
-/// \param rotation, translation  the CLHEP rotation and translation of
-///        the constituent solid
+  /// Standard constructor to define displaced solids via constituent
+  /// \param constituentSolid constituent solids
+  /// \param rotation, translation  the CLHEP rotation and translation of
+  ///        the constituent solid
 
   // Get solid from the volumes map
-  G4VSolid* g4Solid
-    = Geant4GM::SolidMap::Instance()->GetSolid(constituentSolid);
+  G4VSolid* g4Solid =
+    Geant4GM::SolidMap::Instance()->GetSolid(constituentSolid);
 
   // Create displaced solid
-  fDisplacedSolid
-    = new G4DisplacedSolid(name, g4Solid, rotation, translation);
+  fDisplacedSolid = new G4DisplacedSolid(name, g4Solid, rotation, translation);
 
   Geant4GM::SolidMap::Instance()->AddSolid(this, fDisplacedSolid);
 }
 
 //_____________________________________________________________________________
-Geant4GM::DisplacedSolid::DisplacedSolid(G4DisplacedSolid* displacedSolid,
-                                         G4ReflectedSolid* reflectedDisplaced)
+Geant4GM::DisplacedSolid::DisplacedSolid(
+  G4DisplacedSolid* displacedSolid, G4ReflectedSolid* reflectedDisplaced)
   : VGM::ISolid(),
     VGM::IDisplacedSolid(),
     BaseVGM::VDisplacedSolid(),
     fDisplacedSolid(displacedSolid),
     fToBeReflected(false)
 {
-/// Standard constructor to define Displaced solid via G4 object
+  /// Standard constructor to define Displaced solid via G4 object
 
   if (reflectedDisplaced) {
     fToBeReflected = true;
@@ -73,25 +70,22 @@ Geant4GM::DisplacedSolid::DisplacedSolid(G4DisplacedSolid* displacedSolid,
 
 //_____________________________________________________________________________
 Geant4GM::DisplacedSolid::DisplacedSolid()
-  : VGM::ISolid(),
-    VGM::IDisplacedSolid(),
-    BaseVGM::VDisplacedSolid()
+  : VGM::ISolid(), VGM::IDisplacedSolid(), BaseVGM::VDisplacedSolid()
 {
-/// Protected default constructor
+  /// Protected default constructor
 }
 
 //_____________________________________________________________________________
 Geant4GM::DisplacedSolid::DisplacedSolid(const DisplacedSolid& rhs)
-  : VGM::ISolid(rhs),
-    VGM::IDisplacedSolid(rhs),
-    BaseVGM::VDisplacedSolid(rhs)
+  : VGM::ISolid(rhs), VGM::IDisplacedSolid(rhs), BaseVGM::VDisplacedSolid(rhs)
 {
-/// Protected copy constructor
+  /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
-Geant4GM::DisplacedSolid::~DisplacedSolid() {
-//
+Geant4GM::DisplacedSolid::~DisplacedSolid()
+{
+  //
 }
 
 //
@@ -99,36 +93,33 @@ Geant4GM::DisplacedSolid::~DisplacedSolid() {
 //
 
 //_____________________________________________________________________________
-std::string
-Geant4GM::DisplacedSolid::Name() const
+std::string Geant4GM::DisplacedSolid::Name() const
 {
-// Returns the Displaced solid name
-// ---
+  // Returns the Displaced solid name
+  // ---
 
   return fDisplacedSolid->GetName();
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*
-Geant4GM::DisplacedSolid::ConstituentSolid() const
+VGM::ISolid* Geant4GM::DisplacedSolid::ConstituentSolid() const
 {
-// Returns the constituent solid.
-// ---
+  // Returns the constituent solid.
+  // ---
 
- G4VSolid* g4Solid = fDisplacedSolid->GetConstituentMovedSolid();
+  G4VSolid* g4Solid = fDisplacedSolid->GetConstituentMovedSolid();
 
- VGM::ISolid* solid = Geant4GM::SolidMap::Instance()->GetSolid(g4Solid);
+  VGM::ISolid* solid = Geant4GM::SolidMap::Instance()->GetSolid(g4Solid);
 
- return solid;
+  return solid;
 }
 
 //_____________________________________________________________________________
-VGM::Transform
-Geant4GM::DisplacedSolid::Displacement() const
+VGM::Transform Geant4GM::DisplacedSolid::Displacement() const
 {
-// Returns the first constituent solid.
-// ---
+  // Returns the first constituent solid.
+  // ---
 
- return ClhepVGM::Transform(fDisplacedSolid->GetObjectRotation(),
-                            fDisplacedSolid->GetObjectTranslation());
+  return ClhepVGM::Transform(fDisplacedSolid->GetObjectRotation(),
+    fDisplacedSolid->GetObjectTranslation());
 }

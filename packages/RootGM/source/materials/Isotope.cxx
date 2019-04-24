@@ -25,18 +25,17 @@
 #include <math.h>
 
 //_____________________________________________________________________________
-RootGM::Isotope::Isotope(const std::string& name,
-                         int z, int n, double a)
+RootGM::Isotope::Isotope(const std::string& name, int z, int n, double a)
   : VGM::IIsotope(),
-    fIsotope( new TGeoIsotope(name.data(), z, n,
-                              a / RootGM::Units::AtomicWeight()) )
+    fIsotope(
+      new TGeoIsotope(name.data(), z, n, a / RootGM::Units::AtomicWeight()))
 {
-/// Standard constructor to define Isotope from parameters
-/// \param name its name
-///	   (must be unique in the factory)
-/// \param z the atomic number
-/// \param n the number of nucleons
-/// \param a the mass of a mole in g/mole
+  /// Standard constructor to define Isotope from parameters
+  /// \param name its name
+  ///	   (must be unique in the factory)
+  /// \param z the atomic number
+  /// \param n the number of nucleons
+  /// \param a the mass of a mole in g/mole
 
   // Register Isotope in the map
   IsotopeMap::Instance()->AddIsotope(this, fIsotope);
@@ -44,18 +43,18 @@ RootGM::Isotope::Isotope(const std::string& name,
 
 //_____________________________________________________________________________
 RootGM::Isotope::Isotope(TGeoIsotope* tgeoIsotope)
-  : VGM::IIsotope(),
-    fIsotope(tgeoIsotope)
+  : VGM::IIsotope(), fIsotope(tgeoIsotope)
 {
-/// Standard constructor to define Isotope from the G4 object
+  /// Standard constructor to define Isotope from the G4 object
 
   // Register Isotope in the map
   IsotopeMap::Instance()->AddIsotope(this, fIsotope);
 }
 
 //_____________________________________________________________________________
-RootGM::Isotope::~Isotope() {
-//
+RootGM::Isotope::~Isotope()
+{
+  //
 }
 
 //
@@ -63,26 +62,16 @@ RootGM::Isotope::~Isotope() {
 //
 
 //_____________________________________________________________________________
-std::string RootGM::Isotope::Name() const
-{
-  return fIsotope->GetName();
-}
+std::string RootGM::Isotope::Name() const { return fIsotope->GetName(); }
 
 //_____________________________________________________________________________
-int  RootGM::Isotope::Z() const
-{
-  return fIsotope->GetZ();
-}
+int RootGM::Isotope::Z() const { return fIsotope->GetZ(); }
 
 //_____________________________________________________________________________
-int  RootGM::Isotope::N() const
-{
-  return fIsotope->GetN();
-}
+int RootGM::Isotope::N() const { return fIsotope->GetN(); }
 
 //_____________________________________________________________________________
-double  RootGM::Isotope::A() const
+double RootGM::Isotope::A() const
 {
   return fIsotope->GetA() * RootGM::Units::AtomicWeight();
 }
-

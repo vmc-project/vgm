@@ -27,33 +27,33 @@
 
 namespace VGM {
 
-  class IScaledSolid : public virtual ISolid
-  {
-    public:
-      virtual ~IScaledSolid() {}
+class IScaledSolid : public virtual ISolid
+{
+ public:
+  virtual ~IScaledSolid() {}
 
-      // methods
+  // methods
 
-      virtual SolidType    Type() const = 0;
-      virtual std::string  Name() const = 0;
+  virtual SolidType Type() const = 0;
+  virtual std::string Name() const = 0;
 
-			    ///
-                            /// Return the constituent solid
-      virtual ISolid*      ConstituentSolid() const = 0;
-			    ///
-                            /// Return the 3D scale
-      virtual Transform    Scale() const = 0;
+  ///
+  /// Return the constituent solid
+  virtual ISolid* ConstituentSolid() const = 0;
+  ///
+  /// Return the 3D scale
+  virtual Transform Scale() const = 0;
 
-                            /// Return true if the solid has to be first
-                            /// reflected before being placed
-      virtual bool         ToBeReflected() const = 0;
+  /// Return true if the solid has to be first
+  /// reflected before being placed
+  virtual bool ToBeReflected() const = 0;
 
-      // streaming
-      virtual std::ostream& Put(std::ostream& out) const = 0;
-  };
+  // streaming
+  virtual std::ostream& Put(std::ostream& out) const = 0;
+};
 
-}
+} // namespace VGM
 
-std::ostream& operator << (std::ostream& out, const VGM::IScaledSolid& solid);
+std::ostream& operator<<(std::ostream& out, const VGM::IScaledSolid& solid);
 
-#endif //VGM_I_BOOLEAN_SOLID_H
+#endif // VGM_I_BOOLEAN_SOLID_H

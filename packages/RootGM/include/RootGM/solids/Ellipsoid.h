@@ -29,34 +29,34 @@ class TGeoScaledShape;
 
 namespace RootGM {
 
-  class Ellipsoid : public BaseVGM::VEllipsoid
-  {
-    public:
-      Ellipsoid(const std::string& name,
-          double dx, double dy, double dz, double zBottomCut, double zTopCut);
-      Ellipsoid(TGeoScaledShape* scaledShape);
-      virtual ~Ellipsoid();
+class Ellipsoid : public BaseVGM::VEllipsoid
+{
+ public:
+  Ellipsoid(const std::string& name, double dx, double dy, double dz,
+    double zBottomCut, double zTopCut);
+  Ellipsoid(TGeoScaledShape* scaledShape);
+  virtual ~Ellipsoid();
 
-      // methods
-      virtual std::string Name() const;
-      virtual double XSemiAxis() const;
-      virtual double YSemiAxis() const;
-      virtual double ZSemiAxis() const;
-      virtual double ZBottomCut() const;
-      virtual double ZTopCut() const;
+  // methods
+  virtual std::string Name() const;
+  virtual double XSemiAxis() const;
+  virtual double YSemiAxis() const;
+  virtual double ZSemiAxis() const;
+  virtual double ZBottomCut() const;
+  virtual double ZTopCut() const;
 
-    protected:
-      Ellipsoid();
-      Ellipsoid(const Ellipsoid& rhs);
+ protected:
+  Ellipsoid();
+  Ellipsoid(const Ellipsoid& rhs);
 
-    private:
-      TGeoShape*  fEllipsoid;
-      double      fDx;
-      double      fDy;
-      double      fDz;
-      double      fZBottomCut;
-      double      fZTopCut;
-  };
-}
+ private:
+  TGeoShape* fEllipsoid;
+  double fDx;
+  double fDy;
+  double fDz;
+  double fZBottomCut;
+  double fZTopCut;
+};
+} // namespace RootGM
 
-#endif //ROOT_GM_BOX_H
+#endif // ROOT_GM_BOX_H

@@ -25,47 +25,47 @@
 class G4VSolid;
 
 namespace VGM {
-  class ISolid;
+class ISolid;
 }
 
 namespace Geant4GM {
 
-  class SolidMap;
+class SolidMap;
 
-  class SolidMap
-  {
-    public:
-      typedef std::map<VGM::ISolid*, G4VSolid*>  G4SolidMap;
-      typedef G4SolidMap::const_iterator         G4SolidMapCIterator;
+class SolidMap
+{
+ public:
+  typedef std::map<VGM::ISolid*, G4VSolid*> G4SolidMap;
+  typedef G4SolidMap::const_iterator G4SolidMapCIterator;
 
-      typedef std::map<G4VSolid*, VGM::ISolid*>  VgmSolidMap;
-      typedef VgmSolidMap::const_iterator        VgmSolidMapCIterator;
+  typedef std::map<G4VSolid*, VGM::ISolid*> VgmSolidMap;
+  typedef VgmSolidMap::const_iterator VgmSolidMapCIterator;
 
-    public:
-      SolidMap();
-      virtual ~SolidMap();
+ public:
+  SolidMap();
+  virtual ~SolidMap();
 
-      // static access methods
-      static SolidMap* Instance();
+  // static access methods
+  static SolidMap* Instance();
 
-      // methods
-      void  AddSolid(VGM::ISolid*, G4VSolid*);
+  // methods
+  void AddSolid(VGM::ISolid*, G4VSolid*);
 
-      // get methods
-      G4VSolid* GetSolid(VGM::ISolid* iSolid) const;
-      VGM::ISolid*  GetSolid(G4VSolid* solid) const;
+  // get methods
+  G4VSolid* GetSolid(VGM::ISolid* iSolid) const;
+  VGM::ISolid* GetSolid(G4VSolid* solid) const;
 
-    private:
-      SolidMap(const SolidMap&);
+ private:
+  SolidMap(const SolidMap&);
 
-      // static data members
-      static SolidMap*  fgInstance;
+  // static data members
+  static SolidMap* fgInstance;
 
-      // data members
-      G4SolidMap    fG4Solids;
-      VgmSolidMap   fVgmSolids;
-  };
+  // data members
+  G4SolidMap fG4Solids;
+  VgmSolidMap fVgmSolids;
+};
 
-}
+} // namespace Geant4GM
 
-#endif //GEANT4_GM_SOLID_MAP_H
+#endif // GEANT4_GM_SOLID_MAP_H

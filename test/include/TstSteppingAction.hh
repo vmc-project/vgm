@@ -16,7 +16,6 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-
 #ifndef TST_STEPPING_ACTION_H
 #define TST_STEPPING_ACTION_H
 
@@ -27,16 +26,14 @@ class G4Track;
 
 class TstSteppingAction : public G4UserSteppingAction
 {
-  public:
-    TstSteppingAction();
-   ~TstSteppingAction();
+ public:
+  TstSteppingAction();
+  ~TstSteppingAction();
 
-    virtual void UserSteppingAction(const G4Step* step);
+  virtual void UserSteppingAction(const G4Step* step);
 
-  private:
-    static const G4int fgkMaxStepNumber;
+ private:
+  static const G4int fgkMaxStepNumber;
 };
 
 #endif
-
-

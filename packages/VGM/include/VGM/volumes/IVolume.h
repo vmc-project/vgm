@@ -20,46 +20,46 @@
 #ifndef VGM_I_VOLUME_H
 #define VGM_I_VOLUME_H
 
-#include <string>
 #include <iostream>
+#include <string>
 
 namespace VGM {
 
-  class ISolid;
-  class IPlacement;
+class ISolid;
+class IPlacement;
 
-  class IVolume
-  {
-    public:
-      virtual ~IVolume() {}
+class IVolume
+{
+ public:
+  virtual ~IVolume() {}
 
-      // methods
-      			    ///
-                            /// Return the name of this volume
-      virtual std::string  Name() const = 0;
-			    ///
-                            /// Return the name of the associated material
-      virtual std::string  MaterialName() const = 0;
-			    ///
-                            /// Return the name of the associated medium
-      virtual std::string  MediumName() const = 0;
+  // methods
+  ///
+  /// Return the name of this volume
+  virtual std::string Name() const = 0;
+  ///
+  /// Return the name of the associated material
+  virtual std::string MaterialName() const = 0;
+  ///
+  /// Return the name of the associated medium
+  virtual std::string MediumName() const = 0;
 
-			    ///
-                            /// Return the associated solid
-      virtual ISolid*      Solid() const = 0;
-			    ///
-			    /// Return the number of volume daughters
-      virtual int          NofDaughters() const = 0;
-			    ///
-                            /// Return the i-th daughter
-      virtual IPlacement*  Daughter(int i) const = 0;
-			    ///
-                            /// Add the specified daughter
-      virtual void  AddDaughter(VGM::IPlacement* daughter) = 0;
-  };
+  ///
+  /// Return the associated solid
+  virtual ISolid* Solid() const = 0;
+  ///
+  /// Return the number of volume daughters
+  virtual int NofDaughters() const = 0;
+  ///
+  /// Return the i-th daughter
+  virtual IPlacement* Daughter(int i) const = 0;
+  ///
+  /// Add the specified daughter
+  virtual void AddDaughter(VGM::IPlacement* daughter) = 0;
+};
 
-}
+} // namespace VGM
 
-std::ostream& operator << (std::ostream& out, const VGM::IVolume& volume);
+std::ostream& operator<<(std::ostream& out, const VGM::IVolume& volume);
 
-#endif //VGM_I_VOLUME_H
+#endif // VGM_I_VOLUME_H

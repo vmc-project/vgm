@@ -26,40 +26,40 @@
 
 namespace VGM {
 
-  class IPolycone : public virtual ISolid
-  {
-    public:
-      virtual ~IPolycone() {}
+class IPolycone : public virtual ISolid
+{
+ public:
+  virtual ~IPolycone() {}
 
-      // methods
-      virtual SolidType   Type() const = 0;
-      virtual std::string Name() const = 0;
+  // methods
+  virtual SolidType Type() const = 0;
+  virtual std::string Name() const = 0;
 
-		       ///
-		       /// Return starting phi angle of the segment in deg
-      virtual double  StartPhi() const = 0;
-		       ///
-		       /// Return opening phi angle of the segment in deg
-      virtual double  DeltaPhi() const = 0;
-		       ///
-		       /// Return number of planes perpendicular to the z axis
-      virtual int     NofZPlanes() const = 0;
-		       ///
-		       /// Return the array of z positions of the planes in mm
-      virtual double* ZValues() const = 0;
-		       ///
-		       /// Return the array of inner radius of the planes in mm
-      virtual double* InnerRadiusValues() const = 0;
-		       ///
-		       /// Return the array of outer radius of the planes in mm
-      virtual double* OuterRadiusValues() const = 0;
+  ///
+  /// Return starting phi angle of the segment in deg
+  virtual double StartPhi() const = 0;
+  ///
+  /// Return opening phi angle of the segment in deg
+  virtual double DeltaPhi() const = 0;
+  ///
+  /// Return number of planes perpendicular to the z axis
+  virtual int NofZPlanes() const = 0;
+  ///
+  /// Return the array of z positions of the planes in mm
+  virtual double* ZValues() const = 0;
+  ///
+  /// Return the array of inner radius of the planes in mm
+  virtual double* InnerRadiusValues() const = 0;
+  ///
+  /// Return the array of outer radius of the planes in mm
+  virtual double* OuterRadiusValues() const = 0;
 
-      // streaming
-      virtual std::ostream& Put(std::ostream& out) const = 0;
-  };
+  // streaming
+  virtual std::ostream& Put(std::ostream& out) const = 0;
+};
 
-}
+} // namespace VGM
 
-std::ostream& operator << (std::ostream& out, const VGM::IPolycone& polycone);
+std::ostream& operator<<(std::ostream& out, const VGM::IPolycone& polycone);
 
-#endif //VGM_I_POLYCONE_H
+#endif // VGM_I_POLYCONE_H

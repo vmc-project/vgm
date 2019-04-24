@@ -28,28 +28,27 @@ class TGeoEltu;
 
 namespace RootGM {
 
-  class EllipticalTube : public BaseVGM::VEllipticalTube
-  {
-    public:
-      EllipticalTube(const std::string& name,
-                     double dx, double dy, double hz);
-      EllipticalTube(TGeoEltu* tubs);
-      virtual ~EllipticalTube();
+class EllipticalTube : public BaseVGM::VEllipticalTube
+{
+ public:
+  EllipticalTube(const std::string& name, double dx, double dy, double hz);
+  EllipticalTube(TGeoEltu* tubs);
+  virtual ~EllipticalTube();
 
-      // methods
-      virtual std::string Name() const;
-      virtual double Dx() const;
-      virtual double Dy() const;
-      virtual double ZHalfLength() const;
+  // methods
+  virtual std::string Name() const;
+  virtual double Dx() const;
+  virtual double Dy() const;
+  virtual double ZHalfLength() const;
 
-    protected:
-      EllipticalTube();
-      EllipticalTube(const EllipticalTube& rhs);
+ protected:
+  EllipticalTube();
+  EllipticalTube(const EllipticalTube& rhs);
 
-    private:
-      TGeoEltu* fEllipticalTube;
-  };
+ private:
+  TGeoEltu* fEllipticalTube;
+};
 
-}
+} // namespace RootGM
 
-#endif //ROOT_GM_ELLIPTICAL_TUBE_H
+#endif // ROOT_GM_ELLIPTICAL_TUBE_H

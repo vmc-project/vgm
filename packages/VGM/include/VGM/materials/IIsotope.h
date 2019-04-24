@@ -20,32 +20,32 @@
 #ifndef VGM_I_ISOTOPE_H
 #define VGM_I_ISOTOPE_H
 
-#include <string>
 #include <iostream>
+#include <string>
 
 namespace VGM {
-  class IIsotope
-  {
-    public:
-      virtual ~IIsotope() {}
+class IIsotope
+{
+ public:
+  virtual ~IIsotope() {}
 
-      // methods
-			   ///
-                           /// Return the name of this element
-      virtual std::string Name() const = 0;
-		           ///
-                           /// Return the effective atomic number
-      virtual int     Z() const = 0;
-		           ///
-                           /// Return the effective number of nucleons
-      virtual int     N() const = 0;
-		           ///
-                           /// Return the effective effective mass of a mole
-			   /// in g/mole
-      virtual double  A() const = 0;
-  };
-}
+  // methods
+  ///
+  /// Return the name of this element
+  virtual std::string Name() const = 0;
+  ///
+  /// Return the effective atomic number
+  virtual int Z() const = 0;
+  ///
+  /// Return the effective number of nucleons
+  virtual int N() const = 0;
+  ///
+  /// Return the effective effective mass of a mole
+  /// in g/mole
+  virtual double A() const = 0;
+};
+} // namespace VGM
 
-std::ostream& operator << (std::ostream& out, const VGM::IIsotope& isotope);
+std::ostream& operator<<(std::ostream& out, const VGM::IIsotope& isotope);
 
-#endif //VGM_I_ISOTOPE_H
+#endif // VGM_I_ISOTOPE_H

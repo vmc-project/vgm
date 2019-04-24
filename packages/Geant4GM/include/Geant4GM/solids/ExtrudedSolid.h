@@ -33,43 +33,41 @@ class G4VSolid;
 
 namespace Geant4GM {
 
-  class ExtrudedSolid : public BaseVGM::VExtrudedSolid
-  {
-    public:
-      ExtrudedSolid(const std::string& name,
-                    std::vector<VGM::TwoVector> polygon,
-                    std::vector< std::vector<double> > zsections);
-      ExtrudedSolid(G4ExtrudedSolid* xtru,
-                    G4ReflectedSolid* reflXtru = 0);
-      virtual ~ExtrudedSolid();
+class ExtrudedSolid : public BaseVGM::VExtrudedSolid
+{
+ public:
+  ExtrudedSolid(const std::string& name, std::vector<VGM::TwoVector> polygon,
+    std::vector<std::vector<double> > zsections);
+  ExtrudedSolid(G4ExtrudedSolid* xtru, G4ReflectedSolid* reflXtru = 0);
+  virtual ~ExtrudedSolid();
 
-      // methods
-      virtual std::string     Name() const;
-      inline  int             NofVertices() const;
-      inline  VGM::TwoVector  Vertex(int index) const;
-      virtual int             NofZSections() const;
-      virtual double          ZPosition(int iz) const;
-      virtual VGM::TwoVector  Offset(int iz) const;
-      virtual double          Scale(int iz) const;
+  // methods
+  virtual std::string Name() const;
+  inline int NofVertices() const;
+  inline VGM::TwoVector Vertex(int index) const;
+  virtual int NofZSections() const;
+  virtual double ZPosition(int iz) const;
+  virtual VGM::TwoVector Offset(int iz) const;
+  virtual double Scale(int iz) const;
 
-    protected:
-      ExtrudedSolid();
-      ExtrudedSolid(const ExtrudedSolid& rhs);
+ protected:
+  ExtrudedSolid();
+  ExtrudedSolid(const ExtrudedSolid& rhs);
 
-    private:
-      // types
-      typedef std::vector<double>  ZSectionType;
+ private:
+  // types
+  typedef std::vector<double> ZSectionType;
 
-      // methods
-      void CreateFinalSolid();
+  // methods
+  void CreateFinalSolid();
 
-      // data members
-      G4String   fName;
-      G4VSolid*  fExtrudedSolid;
-      std::vector<ZSectionType>     fZSections;
-      std::vector<G4ExtrudedSolid*> fConstituents;
-  };
+  // data members
+  G4String fName;
+  G4VSolid* fExtrudedSolid;
+  std::vector<ZSectionType> fZSections;
+  std::vector<G4ExtrudedSolid*> fConstituents;
+};
 
-}
+} // namespace Geant4GM
 
-#endif //GEANT4_GM_EXTRUDED_SOLID_H
+#endif // GEANT4_GM_EXTRUDED_SOLID_H

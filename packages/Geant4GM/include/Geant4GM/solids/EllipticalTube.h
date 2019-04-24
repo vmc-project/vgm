@@ -29,29 +29,27 @@ class G4ReflectedSolid;
 
 namespace Geant4GM {
 
-  class EllipticalTube : public BaseVGM::VEllipticalTube
-  {
-    public:
-      EllipticalTube(const std::string& name,
-                     double dx, double dy, double hz);
-      EllipticalTube(G4EllipticalTube* eltu,
-                     G4ReflectedSolid* reflEltu = 0);
-      virtual ~EllipticalTube();
+class EllipticalTube : public BaseVGM::VEllipticalTube
+{
+ public:
+  EllipticalTube(const std::string& name, double dx, double dy, double hz);
+  EllipticalTube(G4EllipticalTube* eltu, G4ReflectedSolid* reflEltu = 0);
+  virtual ~EllipticalTube();
 
-      // methods
-      virtual std::string Name() const;
-      virtual double Dx() const;
-      virtual double Dy() const;
-      virtual double ZHalfLength() const;
+  // methods
+  virtual std::string Name() const;
+  virtual double Dx() const;
+  virtual double Dy() const;
+  virtual double ZHalfLength() const;
 
-    protected:
-      EllipticalTube();
-      EllipticalTube(const EllipticalTube& rhs);
+ protected:
+  EllipticalTube();
+  EllipticalTube(const EllipticalTube& rhs);
 
-    private:
-      G4EllipticalTube* fEllipticalTube;
-  };
+ private:
+  G4EllipticalTube* fEllipticalTube;
+};
 
-}
+} // namespace Geant4GM
 
-#endif //GEANT4_GM_ELLIPTICAL_TUBE_H
+#endif // GEANT4_GM_ELLIPTICAL_TUBE_H

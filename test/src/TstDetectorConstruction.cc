@@ -20,29 +20,30 @@
 #include "XmlVGM/GDMLExporter.h"
 
 #include "TstDetectorConstruction.hh"
-#include "TstGeometryViaVGM.hh"
 #include "TstGeometryViaGeant4.hh"
 #include "TstGeometryViaRoot.hh"
+#include "TstGeometryViaVGM.hh"
 
 #include "G4GDMLParser.hh"
 #include "G4SolidStore.hh"
 
-const G4String TstDetectorConstruction::fgkTestNameCandidates
-  = "Solids NewSolid NewSolid2 ExtraSolid Placements Placements2 Reflections Assemblies1 Assemblies2 BooleanSolids1 BooleanSolids2 BooleanSolids3 BooleanSolids4 BooleanSolids5 BooleanSolids6 BooleanSolids7 ScaledSolids Special DisplacedSolids1 DisplacedSolids2 Special SingleMode";
-const G4String TstDetectorConstruction::fgkVisModeCandidates
-  = "Geant4 Root None";
-const G4String TstDetectorConstruction::fgkInputCandidates
-  = "VGM Geant4 Root";
-const G4String TstDetectorConstruction::fgkFactoryCandidates
-  = "Geant4 Root None";
-const G4String TstDetectorConstruction::fgkOutputXMLCandidates
-  = "AGDD GDML G4GDML noXML";
+const G4String TstDetectorConstruction::fgkTestNameCandidates =
+  "Solids NewSolid NewSolid2 ExtraSolid Placements Placements2 Reflections "
+  "Assemblies1 Assemblies2 BooleanSolids1 BooleanSolids2 BooleanSolids3 "
+  "BooleanSolids4 BooleanSolids5 BooleanSolids6 BooleanSolids7 ScaledSolids "
+  "Special DisplacedSolids1 DisplacedSolids2 Special SingleMode";
+const G4String TstDetectorConstruction::fgkVisModeCandidates =
+  "Geant4 Root None";
+const G4String TstDetectorConstruction::fgkInputCandidates = "VGM Geant4 Root";
+const G4String TstDetectorConstruction::fgkFactoryCandidates =
+  "Geant4 Root None";
+const G4String TstDetectorConstruction::fgkOutputXMLCandidates =
+  "AGDD GDML G4GDML noXML";
 
 //_____________________________________________________________________________
 TstDetectorConstruction::TstDetectorConstruction(const G4String& inputType,
-                                              const G4String& inputFactory,
-                                              const G4String& outputFactory,
-					      const G4String& outputXML)
+  const G4String& inputFactory, const G4String& outputFactory,
+  const G4String& outputXML)
   : G4VUserDetectorConstruction(),
     fSelectedTest("Solids"),
     fSelectedVisMode("Geant4"),
@@ -59,7 +60,7 @@ TstDetectorConstruction::TstDetectorConstruction(const G4String& inputType,
     fGeometry(0),
     fColours()
 {
-//
+  //
   SelectChannels(inputType, inputFactory, outputFactory, outputXML);
   DefineColours();
 }
@@ -80,9 +81,9 @@ TstDetectorConstruction::~TstDetectorConstruction()
 //_____________________________________________________________________________
 G4VPhysicalVolume* TstDetectorConstruction::Construct()
 {
-//  Load Root geometry from a file, import it in VGM and
-//  exports it in Geant4 and in XML.
-// ---
+  //  Load Root geometry from a file, import it in VGM and
+  //  exports it in Geant4 and in XML.
+  // ---
 
   Geant4GM::Factory::SetSurfCheck(false);
 
@@ -106,9 +107,9 @@ G4VPhysicalVolume* TstDetectorConstruction::Construct()
     std::cout << "TestNewSolid2 finished" << std::endl;
   }
   else if (fSelectedTest == "ExtraSolid") {
-    //world = fGeometry->TestExtraSolid(VGM::kArb8);
+    // world = fGeometry->TestExtraSolid(VGM::kArb8);
     world = fGeometry->TestExtraSolid(VGM::kEllipsoid);
-    //world = fGeometry->TestExtraSolid(VGM::kTessellated);
+    // world = fGeometry->TestExtraSolid(VGM::kTessellated);
     std::cout << "TestExtraSolid finished" << std::endl;
   }
   else if (fSelectedTest == "Placements") {
@@ -177,34 +178,34 @@ G4VPhysicalVolume* TstDetectorConstruction::Construct()
   }
 
   // Single mode test (does not build valid geometry)
-  if ( fSingleMode) {
+  if (fSingleMode) {
     std::cout << "Go to Import/Export solids one by one" << std::endl;
 
     // Detect input/output types
-    Geant4GM::Factory* g4InputFactory
-      = dynamic_cast<Geant4GM::Factory*>(fInputFactory);
+    Geant4GM::Factory* g4InputFactory =
+      dynamic_cast<Geant4GM::Factory*>(fInputFactory);
 
-    RootGM::Factory* rtInputFactory
-      = dynamic_cast<RootGM::Factory*>(fInputFactory);
+    RootGM::Factory* rtInputFactory =
+      dynamic_cast<RootGM::Factory*>(fInputFactory);
 
-    Geant4GM::Factory* g4OutputFactory
-      = dynamic_cast<Geant4GM::Factory*>(fOutputFactory);
+    Geant4GM::Factory* g4OutputFactory =
+      dynamic_cast<Geant4GM::Factory*>(fOutputFactory);
 
-    RootGM::Factory* rtOutputFactory
-      = dynamic_cast<RootGM::Factory*>(fOutputFactory);
+    RootGM::Factory* rtOutputFactory =
+      dynamic_cast<RootGM::Factory*>(fOutputFactory);
 
     // Root -> Geant4
-    if ( rtInputFactory && g4OutputFactory ) {
+    if (rtInputFactory && g4OutputFactory) {
       TObjArray* solids = gGeoManager->GetListOfShapes();
       TIter next(solids);
       std::vector<TGeoShape*> solidsVector;
-      while (TObject *obj = next()) {
+      while (TObject* obj = next()) {
         TGeoShape* rtSolid = (TGeoShape*)obj;
         solidsVector.push_back(rtSolid);
       }
-      for (int i=0; i<int(solidsVector.size()); i++) {
+      for (int i = 0; i < int(solidsVector.size()); i++) {
         TGeoShape* rtSolid = solidsVector[i];
-        std::cout<< "Processing solid " << rtSolid->GetName() << std::endl;
+        std::cout << "Processing solid " << rtSolid->GetName() << std::endl;
         rtSolid->Dump();
         rtInputFactory->Import(rtSolid);
         std::cout << "Import  of solid finished" << std::endl;
@@ -222,16 +223,16 @@ G4VPhysicalVolume* TstDetectorConstruction::Construct()
         // std::cout << "Export-back of solid finished: " << std::endl;
       }
     }
-    else if ( g4InputFactory && rtOutputFactory ) {
+    else if (g4InputFactory && rtOutputFactory) {
       G4SolidStore* solidStore = G4SolidStore::GetInstance();
       std::vector<G4VSolid*> solidsVector;
-      for (int i=0; i<int(solidStore->size()); i++) {
+      for (int i = 0; i < int(solidStore->size()); i++) {
         G4VSolid* g4Solid = (*solidStore)[i];
         solidsVector.push_back(g4Solid);
       }
-      for (int i=0; i<int(solidsVector.size()); i++) {
+      for (int i = 0; i < int(solidsVector.size()); i++) {
         G4VSolid* g4Solid = solidsVector[i];
-        std::cout<< "Processing solid " << g4Solid->GetName() << std::endl;
+        std::cout << "Processing solid " << g4Solid->GetName() << std::endl;
         std::cout << *g4Solid << std::endl;
         g4InputFactory->Import(g4Solid);
         g4InputFactory->Export(rtOutputFactory);
@@ -250,18 +251,18 @@ G4VPhysicalVolume* TstDetectorConstruction::Construct()
     }
     else {
       std::cout << "Not supported input/output." << std::endl;
-      exit (0);
+      exit(0);
       return 0;
     }
     std::cout << " Import/Export solids one by one finished." << std::endl;
-    exit (0);
+    exit(0);
     return 0;
   }
 
   // Check if geometry was built
-  if ( !world) {
+  if (!world) {
     std::cout << "No geometry is built." << std::endl;
-    exit (0);
+    exit(0);
     return 0;
   }
 
@@ -272,24 +273,24 @@ G4VPhysicalVolume* TstDetectorConstruction::Construct()
   if (!fInputFactory->Top()) {
     std::cout << "Go to Import" << std::endl;
     // fInputFactory->Import(world);
-            // Now VGM::IFactory::Import(void*) is not public
-	    // We have to use the concrete factory Import function
+    // Now VGM::IFactory::Import(void*) is not public
+    // We have to use the concrete factory Import function
 
-     Geant4GM::Factory* g4InputFactory
-       = dynamic_cast<Geant4GM::Factory*>(fInputFactory);
-     if (g4InputFactory) {
-       // return static_cast<G4VPhysicalVolume*>(world);
-       g4InputFactory->Import(static_cast<G4VPhysicalVolume*>(world));
-     }
+    Geant4GM::Factory* g4InputFactory =
+      dynamic_cast<Geant4GM::Factory*>(fInputFactory);
+    if (g4InputFactory) {
+      // return static_cast<G4VPhysicalVolume*>(world);
+      g4InputFactory->Import(static_cast<G4VPhysicalVolume*>(world));
+    }
 
-     RootGM::Factory* rtInputFactory
-       = dynamic_cast<RootGM::Factory*>(fInputFactory);
-     if ( rtInputFactory ) {
-       G4String fileName = fSelectedTest;
-       fileName += ".root";
-       gGeoManager->Export(fileName);
-       rtInputFactory->Import(static_cast<TGeoNode*>(world));
-     }
+    RootGM::Factory* rtInputFactory =
+      dynamic_cast<RootGM::Factory*>(fInputFactory);
+    if (rtInputFactory) {
+      G4String fileName = fSelectedTest;
+      fileName += ".root";
+      gGeoManager->Export(fileName);
+      rtInputFactory->Import(static_cast<TGeoNode*>(world));
+    }
 
     std::cout << "Import finished" << std::endl;
   }
@@ -302,13 +303,11 @@ G4VPhysicalVolume* TstDetectorConstruction::Construct()
     std::cout << "Export finished" << std::endl;
   }
 
-  if (fSelectedVisMode == "Geant4")
-    SetG4VisAttributes();
-  if (fSelectedVisMode == "Root")
-    DrawRootGeometry();
+  if (fSelectedVisMode == "Geant4") SetG4VisAttributes();
+  if (fSelectedVisMode == "Root") DrawRootGeometry();
 
   // Save Root geometry
-  if ( fRootFactory ) {
+  if (fRootFactory) {
     std::cout << "Go to save Root geometry" << std::endl;
     gGeoManager->CloseGeometry();
     SaveRootGeometry();
@@ -316,14 +315,14 @@ G4VPhysicalVolume* TstDetectorConstruction::Construct()
 
   // Print materials
   //
-/*
-  std::cout << "*** G4 materials" << std::endl;
-  PrintGeant4Materials();
-  std::cout << "*** Root materials" << std::endl;
-  PrintRootMaterials();
-  std::cout << "*** VGM materials" << std::endl;
-  fInputFactory->MaterialFactory()->PrintMaterials();
-*/
+  /*
+    std::cout << "*** G4 materials" << std::endl;
+    PrintGeant4Materials();
+    std::cout << "*** Root materials" << std::endl;
+    PrintRootMaterials();
+    std::cout << "*** VGM materials" << std::endl;
+    fInputFactory->MaterialFactory()->PrintMaterials();
+  */
 
   // Generate XML output
   GenerateXML();
@@ -335,19 +334,18 @@ G4VPhysicalVolume* TstDetectorConstruction::Construct()
   }
   else {
     std::cout << "No Geant4 geometry is built." << std::endl;
-    exit (0);
+    exit(0);
     return 0;
   }
 }
 
 //_____________________________________________________________________________
-void TstDetectorConstruction::SelectTest(const G4String& testName,
-                                         G4bool fullAngle)
+void TstDetectorConstruction::SelectTest(
+  const G4String& testName, G4bool fullAngle)
 {
   if (fgkTestNameCandidates.find(testName) == std::string::npos) {
-      G4Exception("TstDetectorConstruction::SelectTest",
-                  "IllegalConstruct", FatalException,
-                  "Wrong testName specified.");
+    G4Exception("TstDetectorConstruction::SelectTest", "IllegalConstruct",
+      FatalException, "Wrong testName specified.");
   }
 
   fSelectedTest = testName;
@@ -358,9 +356,8 @@ void TstDetectorConstruction::SelectTest(const G4String& testName,
 void TstDetectorConstruction::SelectVisualization(const G4String& visMode)
 {
   if (fgkVisModeCandidates.find(visMode) == std::string::npos) {
-      G4Exception("TstDetectorConstruction::SelectVisualization",
-                  "IllegalConstruct", FatalException,
-                  "Wrong visMode specified.");
+    G4Exception("TstDetectorConstruction::SelectVisualization",
+      "IllegalConstruct", FatalException, "Wrong visMode specified.");
   }
 
   fSelectedVisMode = visMode;
@@ -369,37 +366,37 @@ void TstDetectorConstruction::SelectVisualization(const G4String& visMode)
 //_____________________________________________________________________________
 void TstDetectorConstruction::SetDebug(G4bool debugMode)
 {
-// Set debug mode to instantiated factories
+  // Set debug mode to instantiated factories
 
- if (fInputFactory)  fInputFactory->SetDebug(debugMode);
- if (fOutputFactory) fOutputFactory->SetDebug(debugMode);
+  if (fInputFactory) fInputFactory->SetDebug(debugMode);
+  if (fOutputFactory) fOutputFactory->SetDebug(debugMode);
 }
 
 //_____________________________________________________________________________
 void TstDetectorConstruction::SetIgnore(G4bool ignoreMode)
 {
-// Set debug mode to instantiated factories
+  // Set debug mode to instantiated factories
 
- if (fInputFactory)  fInputFactory->SetIgnore(ignoreMode);
- if (fOutputFactory) fOutputFactory->SetIgnore(ignoreMode);
+  if (fInputFactory) fInputFactory->SetIgnore(ignoreMode);
+  if (fOutputFactory) fOutputFactory->SetIgnore(ignoreMode);
 }
 
 //_____________________________________________________________________________
 void TstDetectorConstruction::SetBestMatch(G4bool bestMatchMode)
 {
-// Set debug mode to instantiated factories
+  // Set debug mode to instantiated factories
 
- fBestMatchMode = bestMatchMode;
- if (fInputFactory)  fInputFactory->SetBestMatch(bestMatchMode);
- if (fOutputFactory) {
+  fBestMatchMode = bestMatchMode;
+  if (fInputFactory) fInputFactory->SetBestMatch(bestMatchMode);
+  if (fOutputFactory) {
     fOutputFactory->SetBestMatch(bestMatchMode);
- }
+  }
 }
 
 //_____________________________________________________________________________
 void TstDetectorConstruction::SetSingleMode(G4bool singleMode)
 {
-// Set single mode option
+  // Set single mode option
 
   fSingleMode = singleMode;
 }
@@ -420,7 +417,6 @@ bool TstDetectorConstruction::IsRootGeometry() const
   return fRootFactory != 0;
 }
 
-
 #include "G4LogicalVolumeStore.hh"
 #include "G4VisAttributes.hh"
 #include "Randomize.hh"
@@ -433,9 +429,9 @@ void TstDetectorConstruction::SetG4VisAttributes() const
 
   // Set volumes colours
   G4LogicalVolumeStore* lvStore = G4LogicalVolumeStore::GetInstance();
-  for (G4int i=0; i<G4int(lvStore->size()); i++) {
+  for (G4int i = 0; i < G4int(lvStore->size()); i++) {
     G4LogicalVolume* lv = (*lvStore)[i];
-    G4Colour colour = fColours[(i+1)%fColours.size()];
+    G4Colour colour = fColours[(i + 1) % fColours.size()];
     G4VisAttributes* visAtt = new G4VisAttributes(colour);
     visAtt->SetVisibility(true);
     lv->SetVisAttributes(visAtt);
@@ -444,15 +440,16 @@ void TstDetectorConstruction::SetG4VisAttributes() const
   // Make world invisible
   G4VPhysicalVolume* world = fGeant4Factory->World();
   G4LogicalVolume* worldLog = world->GetLogicalVolume();
-  worldLog->SetVisAttributes (G4VisAttributes::Invisible);
+  worldLog->SetVisAttributes(G4VisAttributes::Invisible);
 
-  std::cout << "TstDetectorConstruction::SetG4VisAttributes() finished" << std::endl;
+  std::cout << "TstDetectorConstruction::SetG4VisAttributes() finished"
+            << std::endl;
 }
 
 #include "TApplication.h"
 #include "TBrowser.h"
-#include "TPad.h"
 #include "TGeoManager.h"
+#include "TPad.h"
 //_____________________________________________________________________________
 void TstDetectorConstruction::DrawRootGeometry() const
 {
@@ -461,10 +458,10 @@ void TstDetectorConstruction::DrawRootGeometry() const
   // Set visualization attributes
   //
   TObjArray* volumes = gGeoManager->GetListOfVolumes();
-  for (Int_t i=0; i<volumes->GetEntriesFast(); i++) {
+  for (Int_t i = 0; i < volumes->GetEntriesFast(); i++) {
     TGeoVolume* daughter = (TGeoVolume*)volumes->At(i);
-    daughter->SetLineColor((i+1)%fColours.size());
-       // How to set a RBG colour ??
+    daughter->SetLineColor((i + 1) % fColours.size());
+    // How to set a RBG colour ??
   }
 
   // Save Root geometry
@@ -479,10 +476,11 @@ void TstDetectorConstruction::DrawRootGeometry() const
   new TBrowser();
 
   gGeoManager->GetTopVolume()->Draw("ogl");
-  //gGeoManager->GetTopVolume()->Raytrace();
+  // gGeoManager->GetTopVolume()->Raytrace();
   gApplication->Run();
 
-  std::cout << "TstDetectorConstruction::DrawRootGeometry() finished" << std::endl;
+  std::cout << "TstDetectorConstruction::DrawRootGeometry() finished"
+            << std::endl;
 }
 //_____________________________________________________________________________
 void TstDetectorConstruction::SaveRootGeometry() const
@@ -497,8 +495,8 @@ void TstDetectorConstruction::SaveRootGeometry() const
 //_____________________________________________________________________________
 void TstDetectorConstruction::PrintGeant4Materials() const
 {
-// Prints all materials.
-// ---
+  // Prints all materials.
+  // ---
   if (!IsGeant4Geometry()) return;
 
   const G4MaterialTable* matTable = G4Material::GetMaterialTable();
@@ -514,16 +512,16 @@ void TstDetectorConstruction::PrintRootMaterials() const
 
   TList* materials = gGeoManager->GetListOfMaterials();
   TIter next(materials);
-  while (TObject *obj = next()) obj->Print();
+  while (TObject* obj = next()) obj->Print();
 }
 
 //_____________________________________________________________________________
 void TstDetectorConstruction::GenerateXML() const
 {
 
-  if ( ! fXMLExporter && ! fG4GDMLExporter ) return;
+  if (!fXMLExporter && !fG4GDMLExporter) return;
 
-  if ( fXMLExporter ) {
+  if (fXMLExporter) {
     // File name
     std::string xmlFileName = fSelectedTest;
     xmlFileName += fXMLFileName;
@@ -531,7 +529,7 @@ void TstDetectorConstruction::GenerateXML() const
     fXMLExporter->SetFileName(xmlFileName);
     fXMLExporter->GenerateXMLGeometry();
   }
-  else if ( fG4GDMLExporter ) {
+  else if (fG4GDMLExporter) {
     if (!IsGeant4Geometry()) return;
 
     // File name
@@ -544,40 +542,36 @@ void TstDetectorConstruction::GenerateXML() const
   }
 }
 
-
 //_____________________________________________________________________________
 void TstDetectorConstruction::SelectChannels(const G4String& inputType,
-                                          const G4String& inputFactory,
-                                          const G4String& outputFactory,
-					  const G4String& outputXML)
+  const G4String& inputFactory, const G4String& outputFactory,
+  const G4String& outputXML)
 {
   // Check
   if (fgkInputCandidates.find(inputType) == std::string::npos ||
       fgkFactoryCandidates.find(inputFactory) == std::string::npos ||
       fgkFactoryCandidates.find(outputFactory) == std::string::npos ||
       fgkOutputXMLCandidates.find(outputXML) == std::string::npos ||
-      inputFactory == "None" ||
-      outputFactory == inputFactory ||
-      ( inputType != inputFactory && inputType != "VGM" ) ) {
+      inputFactory == "None" || outputFactory == inputFactory ||
+      (inputType != inputFactory && inputType != "VGM")) {
 
-      G4Exception("TstDetectorConstruction::SelectChannels",
-                  "IllegalConstruct", FatalException,
-                  "Wrong channels specified.");
+    G4Exception("TstDetectorConstruction::SelectChannels", "IllegalConstruct",
+      FatalException, "Wrong channels specified.");
   }
 
   // Create factories
   //
   if (inputFactory == "Geant4" || outputFactory == "Geant4") {
-    fGeant4Factory  = new Geant4GM::Factory();
+    fGeant4Factory = new Geant4GM::Factory();
   }
 
   if (inputFactory == "Root" || outputFactory == "Root") {
-    fRootFactory  = new RootGM::Factory();
+    fRootFactory = new RootGM::Factory();
   }
 
   // Select factories
   //
-  if  (inputFactory == "Geant4") {
+  if (inputFactory == "Geant4") {
     fInputFactory = fGeant4Factory;
     fXMLFileName = "G4";
   }
@@ -586,27 +580,27 @@ void TstDetectorConstruction::SelectChannels(const G4String& inputType,
     fXMLFileName = "Root";
   }
 
-  if  (outputFactory == "Geant4") {
-    fOutputFactory  = fGeant4Factory;
+  if (outputFactory == "Geant4") {
+    fOutputFactory = fGeant4Factory;
   }
   else if (outputFactory == "Root") {
-    fOutputFactory  = fRootFactory;
+    fOutputFactory = fRootFactory;
   }
   else if (outputFactory == "None") {
-    fOutputFactory  = 0;
+    fOutputFactory = 0;
   }
 
   // Select input
   //
-  if (inputType == "VGM" ) {
+  if (inputType == "VGM") {
     fGeometry = new TstGeometryViaVGM(fInputFactory);
     fXMLFileName += "ViaVGM";
   }
-  else if (inputType == "Geant4" ) {
+  else if (inputType == "Geant4") {
     fGeometry = new TstGeometryViaGeant4();
     fXMLFileName += "ViaG4";
   }
-  else if (inputType == "Root" ) {
+  else if (inputType == "Root") {
     fGeometry = new TstGeometryViaRoot();
     fXMLFileName += "ViaRoot";
   }
@@ -631,18 +625,15 @@ void TstDetectorConstruction::SelectChannels(const G4String& inputType,
 
   // Print info
   //
-  G4cout << inputFactory
-         << " geometry will be defined via "
-	 << inputType;
-  if (fOutputFactory)
-    G4cout << " and exported to " << outputFactory;
+  G4cout << inputFactory << " geometry will be defined via " << inputType;
+  if (fOutputFactory) G4cout << " and exported to " << outputFactory;
   G4cout << G4endl;
 }
 
 //_____________________________________________________________________________
 void TstDetectorConstruction::DefineColours()
 {
-/// Store prefeined colours
+  /// Store prefeined colours
 
   fColours.push_back(G4Colour::White());
   fColours.push_back(G4Colour::Gray());

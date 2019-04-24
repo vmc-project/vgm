@@ -20,15 +20,14 @@
 
 #include "Geant4GM/materials/MaterialMap.h"
 
-Geant4GM::MaterialMap*  Geant4GM::MaterialMap::fgInstance = 0;
+Geant4GM::MaterialMap* Geant4GM::MaterialMap::fgInstance = 0;
 
 #include "G4Material.hh"
 
 //_____________________________________________________________________________
-Geant4GM::MaterialMap*
-Geant4GM::MaterialMap::Instance()
+Geant4GM::MaterialMap* Geant4GM::MaterialMap::Instance()
 {
-/// Singleton access function.
+  /// Singleton access function.
 
   if (!fgInstance) new MaterialMap();
 
@@ -36,11 +35,9 @@ Geant4GM::MaterialMap::Instance()
 }
 
 //_____________________________________________________________________________
-Geant4GM::MaterialMap::MaterialMap()
-  : fG4Materials(),
-    fVgmMaterials()
+Geant4GM::MaterialMap::MaterialMap() : fG4Materials(), fVgmMaterials()
 {
-/// Standard default constructor
+  /// Standard default constructor
 
   fgInstance = this;
 }
@@ -48,13 +45,13 @@ Geant4GM::MaterialMap::MaterialMap()
 //_____________________________________________________________________________
 Geant4GM::MaterialMap::MaterialMap(const MaterialMap&)
 {
-/// Protected copy constructor
+  /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
 Geant4GM::MaterialMap::~MaterialMap()
 {
-//
+  //
   fgInstance = 0;
 }
 
@@ -63,19 +60,19 @@ Geant4GM::MaterialMap::~MaterialMap()
 //
 
 //_____________________________________________________________________________
-void  Geant4GM::MaterialMap::AddMaterial(VGM::IMaterial* iMaterial,
-                                         G4Material* g4Material)
+void Geant4GM::MaterialMap::AddMaterial(
+  VGM::IMaterial* iMaterial, G4Material* g4Material)
 {
-/// Adds the specified pair in the maps.
+  /// Adds the specified pair in the maps.
 
   fG4Materials[iMaterial] = g4Material;
   fVgmMaterials[g4Material] = iMaterial;
 }
 
 //_____________________________________________________________________________
-void  Geant4GM::MaterialMap::Print() const
+void Geant4GM::MaterialMap::Print() const
 {
-/// Print all materials in  the maps.
+  /// Print all materials in  the maps.
 
   std::cout << "G4 Materials Map: " << std::endl;
 
@@ -85,19 +82,17 @@ void  Geant4GM::MaterialMap::Print() const
     VGM::IMaterial* iMaterial = (*i).first;
     G4Material* g4Material = (*i).second;
 
-    std::cout << "   "
-              << counter++ << "th entry:"
-	      << "  vgmMaterial " << iMaterial << " " << iMaterial->Name()
+    std::cout << "   " << counter++ << "th entry:"
+              << "  vgmMaterial " << iMaterial << " " << iMaterial->Name()
               << "  g4Material " << g4Material << " " << g4Material->GetName()
-	      << std::endl;
+              << std::endl;
   }
 }
 
 //_____________________________________________________________________________
-G4Material*
-Geant4GM::MaterialMap::GetMaterial(VGM::IMaterial* iMaterial) const
+G4Material* Geant4GM::MaterialMap::GetMaterial(VGM::IMaterial* iMaterial) const
 {
-/// Find the G4 material corresponding to a specified VGM material.
+  /// Find the G4 material corresponding to a specified VGM material.
 
   G4MaterialMapCIterator i = fG4Materials.find(iMaterial);
   if (i != fG4Materials.end())
@@ -107,10 +102,9 @@ Geant4GM::MaterialMap::GetMaterial(VGM::IMaterial* iMaterial) const
 }
 
 //_____________________________________________________________________________
-VGM::IMaterial*
-Geant4GM::MaterialMap::GetMaterial(G4Material* g4Material) const
+VGM::IMaterial* Geant4GM::MaterialMap::GetMaterial(G4Material* g4Material) const
 {
-/// Find the VGM material corresponding to a specified G4 material.
+  /// Find the VGM material corresponding to a specified G4 material.
 
   VgmMaterialMapCIterator i = fVgmMaterials.find(g4Material);
   if (i != fVgmMaterials.end())

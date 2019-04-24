@@ -22,13 +22,12 @@
 
 #include "G4Element.hh"
 
-Geant4GM::ElementMap*  Geant4GM::ElementMap::fgInstance = 0;
+Geant4GM::ElementMap* Geant4GM::ElementMap::fgInstance = 0;
 
 //_____________________________________________________________________________
-Geant4GM::ElementMap*
-Geant4GM::ElementMap::Instance()
+Geant4GM::ElementMap* Geant4GM::ElementMap::Instance()
 {
-/// Singleton access function.
+  /// Singleton access function.
 
   if (!fgInstance) new ElementMap();
 
@@ -36,11 +35,9 @@ Geant4GM::ElementMap::Instance()
 }
 
 //_____________________________________________________________________________
-Geant4GM::ElementMap::ElementMap()
-  : fG4Elements(),
-    fVgmElements()
+Geant4GM::ElementMap::ElementMap() : fG4Elements(), fVgmElements()
 {
-/// Standard default constructor
+  /// Standard default constructor
 
   fgInstance = this;
 }
@@ -48,35 +45,34 @@ Geant4GM::ElementMap::ElementMap()
 //_____________________________________________________________________________
 Geant4GM::ElementMap::ElementMap(const ElementMap&)
 {
-/// Protected copy constructor
+  /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
 Geant4GM::ElementMap::~ElementMap()
 {
-//
+  //
   fgInstance = 0;
 }
-
 
 //
 // public methods
 //
 
 //_____________________________________________________________________________
-void  Geant4GM::ElementMap::AddElement(VGM::IElement* iElement,
-                                       G4Element* g4Element)
+void Geant4GM::ElementMap::AddElement(
+  VGM::IElement* iElement, G4Element* g4Element)
 {
-/// Add the specified pair in the map
+  /// Add the specified pair in the map
 
   fG4Elements[iElement] = g4Element;
   fVgmElements[g4Element] = iElement;
 }
 
 //_____________________________________________________________________________
-void  Geant4GM::ElementMap::Print() const
+void Geant4GM::ElementMap::Print() const
 {
-/// Prints all elements in the map
+  /// Prints all elements in the map
 
   std::cout << "Geant4 Elements Map: " << std::endl;
 
@@ -86,19 +82,16 @@ void  Geant4GM::ElementMap::Print() const
     VGM::IElement* iElement = (*i).first;
     G4Element* element = (*i).second;
 
-    std::cout << "   "
-              << counter++ << "th entry:"
-	      << "  vgmElement " << iElement << " " << iElement->Name()
-              << "  LV " << element << " " << element->GetName()
-	      << std::endl;
+    std::cout << "   " << counter++ << "th entry:"
+              << "  vgmElement " << iElement << " " << iElement->Name()
+              << "  LV " << element << " " << element->GetName() << std::endl;
   }
 }
 
 //_____________________________________________________________________________
-G4Element*
-Geant4GM::ElementMap::GetElement(VGM::IElement* iElement) const
+G4Element* Geant4GM::ElementMap::GetElement(VGM::IElement* iElement) const
 {
-/// Find the G4 element corresponding to a specified VGM element
+  /// Find the G4 element corresponding to a specified VGM element
 
   G4ElementMapCIterator i = fG4Elements.find(iElement);
   if (i != fG4Elements.end())
@@ -108,10 +101,9 @@ Geant4GM::ElementMap::GetElement(VGM::IElement* iElement) const
 }
 
 //_____________________________________________________________________________
-VGM::IElement*
-Geant4GM::ElementMap::GetElement(G4Element* element) const
+VGM::IElement* Geant4GM::ElementMap::GetElement(G4Element* element) const
 {
-/// Find the VGM element corresponding to a specified G4 element
+  /// Find the VGM element corresponding to a specified G4 element
 
   VgmElementMapCIterator i = fVgmElements.find(element);
   if (i != fVgmElements.end())

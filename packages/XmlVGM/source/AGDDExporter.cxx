@@ -18,8 +18,8 @@
 // See the class description in the header file.
 
 #include "VGM/volumes/IFactory.h"
-#include "VGM/volumes/IVolume.h"
 #include "VGM/volumes/IPlacement.h"
+#include "VGM/volumes/IVolume.h"
 
 #include "ClhepVGM/transform.h"
 
@@ -30,35 +30,33 @@
 XmlVGM::AGDDExporter::AGDDExporter(const VGM::IFactory* factory)
   : VExporter(factory, new AGDDWriter())
 {
-/// Standard constructor
+  /// Standard constructor
 }
 
 //_____________________________________________________________________________
-XmlVGM::AGDDExporter::AGDDExporter()
-  : VExporter()
+XmlVGM::AGDDExporter::AGDDExporter() : VExporter()
 {
-/// Protected default constructor
+  /// Protected default constructor
 }
 
 //_____________________________________________________________________________
-XmlVGM::AGDDExporter::AGDDExporter(const AGDDExporter& right)
-  : VExporter(right)
+XmlVGM::AGDDExporter::AGDDExporter(const AGDDExporter& right) : VExporter(right)
 {
-/// Protected copy constructor
+  /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
-XmlVGM::AGDDExporter::~AGDDExporter() {
-//
+XmlVGM::AGDDExporter::~AGDDExporter()
+{
+  //
 }
 
 // operators
 
 //_____________________________________________________________________________
-XmlVGM::AGDDExporter&
-XmlVGM::AGDDExporter::operator=(const AGDDExporter& right)
+XmlVGM::AGDDExporter& XmlVGM::AGDDExporter::operator=(const AGDDExporter& right)
 {
-/// Protected assignement operator
+  /// Protected assignement operator
 
   // check assignement to self
   if (this == &right) return *this;
@@ -74,10 +72,9 @@ XmlVGM::AGDDExporter::operator=(const AGDDExporter& right)
 //
 
 //_____________________________________________________________________________
-XmlVGM::ThreeVector
-XmlVGM::AGDDExporter::Identity() const
+XmlVGM::ThreeVector XmlVGM::AGDDExporter::Identity() const
 {
-/// Return zero vector
+  /// Return zero vector
 
   ThreeVector rotation(3);
   rotation[0] = 0.;
@@ -94,8 +91,8 @@ XmlVGM::AGDDExporter::Identity() const
 //_____________________________________________________________________________
 void XmlVGM::AGDDExporter::GenerateGeometry(VGM::IVolume* volume)
 {
-// Generate XML geometry file for the geometry tree
-// starting from the specified VGM volume.
+  // Generate XML geometry file for the geometry tree
+  // starting from the specified VGM volume.
 
   // filename
   std::string fileName;
@@ -130,9 +127,9 @@ void XmlVGM::AGDDExporter::GenerateGeometry(VGM::IVolume* volume)
 //_____________________________________________________________________________
 void XmlVGM::AGDDExporter::GenerateSection(VGM::IVolume* volume)
 {
-/// Generate the XML section element containing
-/// all geometry objects defined in given VGM volume:
-/// solids and volumes tree.
+  /// Generate the XML section element containing
+  /// all geometry objects defined in given VGM volume:
+  /// solids and volumes tree.
 
   // create section
   fWriter->OpenSection(volume->Name());
@@ -153,7 +150,7 @@ void XmlVGM::AGDDExporter::GenerateSection(VGM::IVolume* volume)
 //_____________________________________________________________________________
 void XmlVGM::AGDDExporter::ProcessVolume(VGM::IVolume* volume)
 {
-/// Process the VGM volume tree
+  /// Process the VGM volume tree
 
   int nofDaughters = volume->NofDaughters();
   if (nofDaughters == 0) return;
@@ -163,11 +160,11 @@ void XmlVGM::AGDDExporter::ProcessVolume(VGM::IVolume* volume)
 
   // write positions
   int i;
-  for (i=0; i<nofDaughters; i++) {
+  for (i = 0; i < nofDaughters; i++) {
 
     if (fDebug > 1) {
-      std::cout << "processing " << i << "th daughter of "
-                << volume->Name() << std::endl;
+      std::cout << "processing " << i << "th daughter of " << volume->Name()
+                << std::endl;
     }
 
     fWriter->WritePlacement(*volume->Daughter(i));
@@ -181,7 +178,7 @@ void XmlVGM::AGDDExporter::ProcessVolume(VGM::IVolume* volume)
   fVolumeNames.insert(fVolumeNames.begin(), volume->Name());
 
   // process daughters
-  for (i=0; i<nofDaughters; i++) {
+  for (i = 0; i < nofDaughters; i++) {
     VGM::IVolume* dVolume = volume->Daughter(i)->Volume();
     std::string dVolumeName = dVolume->Name();
 

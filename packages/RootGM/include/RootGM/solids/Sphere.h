@@ -28,32 +28,31 @@ class TGeoSphere;
 
 namespace RootGM {
 
-  class Sphere : public BaseVGM::VSphere
-  {
-    public:
-      Sphere(const std::string& name,
-             double rin, double rout, double sphi, double dphi,
-	     double stheta, double dtheta);
-      Sphere(TGeoSphere* sphere);
-      virtual ~Sphere();
+class Sphere : public BaseVGM::VSphere
+{
+ public:
+  Sphere(const std::string& name, double rin, double rout, double sphi,
+    double dphi, double stheta, double dtheta);
+  Sphere(TGeoSphere* sphere);
+  virtual ~Sphere();
 
-      // methods
-      virtual std::string Name() const;
-      virtual double InnerRadius() const;
-      virtual double OuterRadius() const;
-      virtual double StartPhi() const;
-      virtual double DeltaPhi() const;
-      virtual double StartTheta() const;
-      virtual double DeltaTheta() const;
+  // methods
+  virtual std::string Name() const;
+  virtual double InnerRadius() const;
+  virtual double OuterRadius() const;
+  virtual double StartPhi() const;
+  virtual double DeltaPhi() const;
+  virtual double StartTheta() const;
+  virtual double DeltaTheta() const;
 
-    protected:
-      Sphere();
-      Sphere(const Sphere& rhs);
+ protected:
+  Sphere();
+  Sphere(const Sphere& rhs);
 
-    private:
-      TGeoSphere* fSphere;
-  };
+ private:
+  TGeoSphere* fSphere;
+};
 
-}
+} // namespace RootGM
 
-#endif //ROOT_GM_SPHERE_H
+#endif // ROOT_GM_SPHERE_H

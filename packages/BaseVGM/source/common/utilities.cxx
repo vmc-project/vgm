@@ -24,17 +24,17 @@
 #include <math.h>
 
 //_____________________________________________________________________________
-void  BaseVGM::DebugInfo()
+void BaseVGM::DebugInfo()
 {
-//
+  //
   std::cout << "VGM info:   ";
 }
 
 //_____________________________________________________________________________
 double BaseVGM::Round(double x)
 {
-/// Replacement for round(double) function from math.h
-/// which is not available on all platforms (gcc 2.95.x, Windows)
+  /// Replacement for round(double) function from math.h
+  /// which is not available on all platforms (gcc 2.95.x, Windows)
 
   double t;
   if (x >= 0.0) {
@@ -54,36 +54,47 @@ std::string VGM::AxisTypeName(VGM::Axis typeId)
 {
   // Returns the axis type name for specified typeId
   switch (typeId) {
-    case kXAxis:       return "X";        break;
-    case kYAxis:       return "Y";        break;
-    case kZAxis:       return "Z";        break;
-    case kRho:         return "Rho";      break;
-    case kRadial3D:    return "Radial3D"; break;
-    case kPhi:         return "Phi";      break;
-    case kSphTheta:    return "SphTheta"; break;
-    case kUnknownAxis: return "Unknown";  break;
-    default:           return "Undefined"; break;
+    case kXAxis:
+      return "X";
+      break;
+    case kYAxis:
+      return "Y";
+      break;
+    case kZAxis:
+      return "Z";
+      break;
+    case kRho:
+      return "Rho";
+      break;
+    case kRadial3D:
+      return "Radial3D";
+      break;
+    case kPhi:
+      return "Phi";
+      break;
+    case kSphTheta:
+      return "SphTheta";
+      break;
+    case kUnknownAxis:
+      return "Unknown";
+      break;
+    default:
+      return "Undefined";
+      break;
   };
 }
 
 //_____________________________________________________________________________
-std::ostream& operator << (std::ostream& out, const VGM::Transform& transform)
+std::ostream& operator<<(std::ostream& out, const VGM::Transform& transform)
 {
-  out << "( "
-      << transform[VGM::kDx] << ", "
-      << transform[VGM::kDy] << ", "
-      << transform[VGM::kDz]
-      << ")mm ( "
-      << transform[VGM::kAngleX] << ", "
-      << transform[VGM::kAngleY] << ", "
-      << transform[VGM::kAngleZ]
-      << ")deg ";
+  out << "( " << transform[VGM::kDx] << ", " << transform[VGM::kDy] << ", "
+      << transform[VGM::kDz] << ")mm ( " << transform[VGM::kAngleX] << ", "
+      << transform[VGM::kAngleY] << ", " << transform[VGM::kAngleZ] << ")deg ";
 
-  if ( BaseVGM::Round(transform[6]) == 0 )
+  if (BaseVGM::Round(transform[6]) == 0)
     out << " noReflZ";
   else
     out << " reflZ";
 
   return out;
 }
-

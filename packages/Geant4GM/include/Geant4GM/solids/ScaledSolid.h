@@ -32,35 +32,35 @@ class G4ReflectedSolid;
 
 namespace Geant4GM {
 
-  class ScaledSolid : public BaseVGM::VScaledSolid
-  {
-    public:
-      ScaledSolid(const std::string& name,
-                  VGM::ISolid* solid,
-                  const HepGeom::Scale3D& scale3D);
-      ScaledSolid(G4ScaledSolid* scaledSolid,
-                  G4ReflectedSolid* reflectedScaled);
-      virtual ~ScaledSolid();
+class ScaledSolid : public BaseVGM::VScaledSolid
+{
+ public:
+  ScaledSolid(const std::string& name, VGM::ISolid* solid,
+    const HepGeom::Scale3D& scale3D);
+  ScaledSolid(G4ScaledSolid* scaledSolid, G4ReflectedSolid* reflectedScaled);
+  virtual ~ScaledSolid();
 
-      // methods
-      virtual std::string Name() const;
+  // methods
+  virtual std::string Name() const;
 
-      virtual VGM::ISolid*     ConstituentSolid() const;
-      virtual VGM::Transform   Scale() const;
-      virtual bool             ToBeReflected() const;
+  virtual VGM::ISolid* ConstituentSolid() const;
+  virtual VGM::Transform Scale() const;
+  virtual bool ToBeReflected() const;
 
-    protected:
-      ScaledSolid();
-      ScaledSolid(const ScaledSolid& rhs);
+ protected:
+  ScaledSolid();
+  ScaledSolid(const ScaledSolid& rhs);
 
-    private:
-      G4ScaledSolid*  fScaledSolid;
-      bool            fToBeReflected;
-  };
+ private:
+  G4ScaledSolid* fScaledSolid;
+  bool fToBeReflected;
+};
 
-}
+} // namespace Geant4GM
 
 inline bool Geant4GM::ScaledSolid::ToBeReflected() const
-{ return fToBeReflected; }
+{
+  return fToBeReflected;
+}
 
-#endif //GEANT4_GM_SCALED_SOLID_H
+#endif // GEANT4_GM_SCALED_SOLID_H

@@ -27,16 +27,15 @@ std::ostream& operator<<(std::ostream& out, const VGM::IExtrudedSolid& xtru)
 }
 
 //_____________________________________________________________________________
-BaseVGM::VExtrudedSolid::VExtrudedSolid()
-  : VGM::IExtrudedSolid()
+BaseVGM::VExtrudedSolid::VExtrudedSolid() : VGM::IExtrudedSolid()
 {
-/// Default constructor
+  /// Default constructor
 }
 
-
 //_____________________________________________________________________________
-BaseVGM::VExtrudedSolid::~VExtrudedSolid() {
-//
+BaseVGM::VExtrudedSolid::~VExtrudedSolid()
+{
+  //
 }
 
 //_____________________________________________________________________________
@@ -44,21 +43,18 @@ std::ostream& BaseVGM::VExtrudedSolid::Put(std::ostream& out) const
 {
   out << std::endl;
   out << "Polygon,  " << NofVertices() << " vertices:" << std::endl;
-  for (int i=0; i< NofVertices(); i++ ) {
-    out << "  ("
-        << Vertex(i).first  << ", "
-        << Vertex(i).second << ")";
+  for (int i = 0; i < NofVertices(); i++) {
+    out << "  (" << Vertex(i).first << ", " << Vertex(i).second << ")";
   }
   out << " mm" << std::endl;
 
-  out << "Planes:"   << std::endl;
-  for (int i=0; i<NofZSections(); i++ ) {
-    out << "  z = "    << ZPosition(i)     << " mm  "
-        << "  x0 = "   << Offset(i).first  << " mm  "
-        << "  y0 = "   << Offset(i).second << " mm  "
-        << "  scale= " << Scale(i)         << std::endl;
+  out << "Planes:" << std::endl;
+  for (int i = 0; i < NofZSections(); i++) {
+    out << "  z = " << ZPosition(i) << " mm  "
+        << "  x0 = " << Offset(i).first << " mm  "
+        << "  y0 = " << Offset(i).second << " mm  "
+        << "  scale= " << Scale(i) << std::endl;
   }
 
   return out;
 }
-

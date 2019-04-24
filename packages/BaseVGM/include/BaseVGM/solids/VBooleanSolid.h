@@ -26,26 +26,28 @@
 
 namespace BaseVGM {
 
-  std::string BooleanTypeName(VGM::BooleanType typeId);
+std::string BooleanTypeName(VGM::BooleanType typeId);
 
-  class VBooleanSolid : public virtual VGM::IBooleanSolid
-  {
-    public:
-      VBooleanSolid();
-      virtual ~VBooleanSolid();
+class VBooleanSolid : public virtual VGM::IBooleanSolid
+{
+ public:
+  VBooleanSolid();
+  virtual ~VBooleanSolid();
 
-      // methods
-      virtual VGM::SolidType Type() const;
+  // methods
+  virtual VGM::SolidType Type() const;
 
-      // streaming
-      virtual std::ostream& Put(std::ostream& out) const;
-  };
+  // streaming
+  virtual std::ostream& Put(std::ostream& out) const;
+};
 
-}
+} // namespace BaseVGM
 
 // inline functions
 
-inline VGM::SolidType
-BaseVGM::VBooleanSolid::Type() const { return VGM::kBoolean; }
+inline VGM::SolidType BaseVGM::VBooleanSolid::Type() const
+{
+  return VGM::kBoolean;
+}
 
 #endif // BASE_VGM_V_BOOLEAN_SOLID_H

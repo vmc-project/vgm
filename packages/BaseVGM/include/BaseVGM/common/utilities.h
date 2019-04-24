@@ -22,11 +22,11 @@
 
 namespace BaseVGM {
 
-    /// Debug printing
-    void  DebugInfo();
+/// Debug printing
+void DebugInfo();
 
-    /// Round number
-    double Round(double x);
-}
+/// Round number
+double Round(double x);
+} // namespace BaseVGM
 
-#endif //BASE_VGM_UTILITIES_H
+#endif // BASE_VGM_UTILITIES_H

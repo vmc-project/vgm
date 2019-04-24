@@ -28,43 +28,41 @@ class G4Element;
 
 namespace Geant4GM {
 
-  class Element : public virtual VGM::IElement
-  {
-    public:
-      Element(const std::string& name,
-              const std::string& symbol,
-              double z, double a);
+class Element : public virtual VGM::IElement
+{
+ public:
+  Element(
+    const std::string& name, const std::string& symbol, double z, double a);
 
-      Element(const std::string& name,
-              const std::string& symbol,
-	      const VGM::IsotopeVector& isotopes,
-              const VGM::RelAbundanceVector& relAbundances);
+  Element(const std::string& name, const std::string& symbol,
+    const VGM::IsotopeVector& isotopes,
+    const VGM::RelAbundanceVector& relAbundances);
 
-      Element(G4Element* element);
-      virtual ~Element();
+  Element(G4Element* element);
+  virtual ~Element();
 
-      // methods
-      virtual std::string Name() const;
-      virtual std::string Symbol() const;
+  // methods
+  virtual std::string Name() const;
+  virtual std::string Symbol() const;
 
-      virtual double  Z() const;
-      virtual double  N() const;
-      virtual double  A() const;
+  virtual double Z() const;
+  virtual double N() const;
+  virtual double A() const;
 
-      virtual int     NofIsotopes() const;
-      virtual VGM::IIsotope*  Isotope(int i) const;
-      virtual double  RelAbundance(int i) const;
+  virtual int NofIsotopes() const;
+  virtual VGM::IIsotope* Isotope(int i) const;
+  virtual double RelAbundance(int i) const;
 
-    protected:
-      Element();
-      Element(const Element& rhs);
+ protected:
+  Element();
+  Element(const Element& rhs);
 
-    private:
-      void CheckIndex(int iel) const;
+ private:
+  void CheckIndex(int iel) const;
 
-      G4Element*  fElement;
-  };
+  G4Element* fElement;
+};
 
-}
+} // namespace Geant4GM
 
-#endif //GEANT4_GM_ELEMENT_H
+#endif // GEANT4_GM_ELEMENT_H

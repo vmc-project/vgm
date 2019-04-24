@@ -28,30 +28,30 @@ class TGeoIsotope;
 
 namespace RootGM {
 
-  class Isotope : public virtual VGM::IIsotope
-  {
-    public:
-      Isotope(const std::string& name, int z, int n, double a);
-      Isotope(TGeoIsotope* tgeoIsotope);
-      virtual ~Isotope();
+class Isotope : public virtual VGM::IIsotope
+{
+ public:
+  Isotope(const std::string& name, int z, int n, double a);
+  Isotope(TGeoIsotope* tgeoIsotope);
+  virtual ~Isotope();
 
-      // operators
-      //Isotope& operator=(const Isotope& rhs);
+  // operators
+  // Isotope& operator=(const Isotope& rhs);
 
-      // methods
-      virtual std::string Name() const;
+  // methods
+  virtual std::string Name() const;
 
-      virtual int     Z() const;
-      virtual int     N() const;
-      virtual double  A() const;
+  virtual int Z() const;
+  virtual int N() const;
+  virtual double A() const;
 
-    private:
-      Isotope(const Isotope& rhs);
-      Isotope();
+ private:
+  Isotope(const Isotope& rhs);
+  Isotope();
 
-      TGeoIsotope*  fIsotope;
-  };
+  TGeoIsotope* fIsotope;
+};
 
-}
+} // namespace RootGM
 
-#endif //ROOT_GM_ISOTOPE_H
+#endif // ROOT_GM_ISOTOPE_H

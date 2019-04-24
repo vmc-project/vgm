@@ -16,15 +16,15 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-#include "VGM/solids/IDisplacedSolid.h"
 #include "BaseVGM/common/utilities.h"
+#include "VGM/solids/IDisplacedSolid.h"
 
+#include "RootGM/common/transform.h"
 #include "RootGM/solids/BooleanSolid.h"
 #include "RootGM/solids/SolidMap.h"
-#include "RootGM/common/transform.h"
 
-#include "TGeoCompositeShape.h"
 #include "TGeoBoolNode.h"
+#include "TGeoCompositeShape.h"
 #include "TGeoMatrix.h"
 
 #include <cstdlib>
@@ -35,42 +35,42 @@ const char RootGM::BooleanSolid::fgkUnionChar = '+';
 const char RootGM::BooleanSolid::fgkSeparator = ':';
 
 //_____________________________________________________________________________
-RootGM::BooleanSolid::BooleanSolid(
-                             const std::string& name,
-                             VGM::BooleanType boolType,
-                             VGM::ISolid* solidA, VGM::ISolid* solidB,
-			     TGeoMatrix* displacementB)
+RootGM::BooleanSolid::BooleanSolid(const std::string& name,
+  VGM::BooleanType boolType, VGM::ISolid* solidA, VGM::ISolid* solidB,
+  TGeoMatrix* displacementB)
   : VGM::ISolid(),
     VGM::IBooleanSolid(),
     BaseVGM::VBooleanSolid(),
     fCompositeShape(0)
 {
-/// Standard constructor to define Boolean solids via constituents
-/// \param boolType type of Boolean operation (kIntersection, kSubtraction,
-///        kUnion)
-/// \param solidA, solidB constituent solids
-/// \param displacementB the Root 3D transformation that defines the
-///        displacement of the solidB with respect to solidA
+  /// Standard constructor to define Boolean solids via constituents
+  /// \param boolType type of Boolean operation (kIntersection, kSubtraction,
+  ///        kUnion)
+  /// \param solidA, solidB constituent solids
+  /// \param displacementB the Root 3D transformation that defines the
+  ///        displacement of the solidB with respect to solidA
 
   // Get solid displacement, if present, and update transformation
   // which will be used in Root node
   //
   TGeoHMatrix matrixA;
   VGM::ISolid* constSolidA = solidA;
-  if ( constSolidA->Type() == VGM::kDisplaced ) {
-    VGM::IDisplacedSolid* displacedSolid
-      = dynamic_cast<VGM::IDisplacedSolid*>(constSolidA);
-    TGeoHMatrix displacement(*RootGM::CreateTransform(displacedSolid->Displacement()));
+  if (constSolidA->Type() == VGM::kDisplaced) {
+    VGM::IDisplacedSolid* displacedSolid =
+      dynamic_cast<VGM::IDisplacedSolid*>(constSolidA);
+    TGeoHMatrix displacement(
+      *RootGM::CreateTransform(displacedSolid->Displacement()));
     matrixA = matrixA * displacement;
     constSolidA = displacedSolid->ConstituentSolid();
   }
 
   TGeoHMatrix matrixB;
   VGM::ISolid* constSolidB = solidB;
-  if ( constSolidB->Type() == VGM::kDisplaced ) {
-    VGM::IDisplacedSolid* displacedSolid
-      = dynamic_cast<VGM::IDisplacedSolid*>(constSolidB);
-    TGeoHMatrix displacement(*RootGM::CreateTransform(displacedSolid->Displacement()));
+  if (constSolidB->Type() == VGM::kDisplaced) {
+    VGM::IDisplacedSolid* displacedSolid =
+      dynamic_cast<VGM::IDisplacedSolid*>(constSolidB);
+    TGeoHMatrix displacement(
+      *RootGM::CreateTransform(displacedSolid->Displacement()));
     matrixB = matrixB * displacement;
     constSolidB = displacedSolid->ConstituentSolid();
   }
@@ -81,27 +81,28 @@ RootGM::BooleanSolid::BooleanSolid(
 
   // Create new TGeo matrices
   TGeoMatrix* newMatrixA = 0;
-  if ( ! matrixA.IsIdentity() )
-    newMatrixA = new TGeoHMatrix(matrixA);
+  if (!matrixA.IsIdentity()) newMatrixA = new TGeoHMatrix(matrixA);
 
   TGeoMatrix* newMatrixB = displacementB;
-  if ( ! matrixB.IsIdentity() )
+  if (!matrixB.IsIdentity())
     newMatrixB = new TGeoHMatrix(TGeoHMatrix(*displacementB) * matrixB);
 
   TGeoBoolNode* boolNode = 0;
   switch (boolType) {
     case VGM::kIntersection:
-      boolNode = new TGeoIntersection(rootSolidA, rootSolidB, newMatrixA, newMatrixB);
+      boolNode =
+        new TGeoIntersection(rootSolidA, rootSolidB, newMatrixA, newMatrixB);
       break;
     case VGM::kSubtraction:
-      boolNode = new TGeoSubtraction(rootSolidA, rootSolidB, newMatrixA, newMatrixB);
+      boolNode =
+        new TGeoSubtraction(rootSolidA, rootSolidB, newMatrixA, newMatrixB);
       break;
     case VGM::kUnion:
       boolNode = new TGeoUnion(rootSolidA, rootSolidB, newMatrixA, newMatrixB);
       break;
     case VGM::kUnknownBoolean:
     default:
-      std::cerr << "    RootGM::BooleanSolid::BooleanSolid: "<< std::endl;
+      std::cerr << "    RootGM::BooleanSolid::BooleanSolid: " << std::endl;
       std::cerr << "    Unknown Boolean solid type" << std::endl;
       std::cerr << "*** Error: Aborting execution  ***" << std::endl;
       exit(1);
@@ -119,33 +120,29 @@ RootGM::BooleanSolid::BooleanSolid(TGeoCompositeShape* compositeShape)
     BaseVGM::VBooleanSolid(),
     fCompositeShape(compositeShape)
 {
-/// Standard constructor to define Boolean solid via Root object
+  /// Standard constructor to define Boolean solid via Root object
 
   RootGM::SolidMap::Instance()->AddSolid(this, fCompositeShape);
 }
 
-
 //_____________________________________________________________________________
 RootGM::BooleanSolid::BooleanSolid()
-  : VGM::ISolid(),
-    VGM::IBooleanSolid(),
-    BaseVGM::VBooleanSolid()
+  : VGM::ISolid(), VGM::IBooleanSolid(), BaseVGM::VBooleanSolid()
 {
-/// Protected default constructor
+  /// Protected default constructor
 }
 
 //_____________________________________________________________________________
 RootGM::BooleanSolid::BooleanSolid(const BooleanSolid& rhs)
-  : VGM::ISolid(rhs),
-    VGM::IBooleanSolid(rhs),
-    BaseVGM::VBooleanSolid(rhs)
+  : VGM::ISolid(rhs), VGM::IBooleanSolid(rhs), BaseVGM::VBooleanSolid(rhs)
 {
-/// Protected copy constructor
+  /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
-RootGM::BooleanSolid::~BooleanSolid() {
-//
+RootGM::BooleanSolid::~BooleanSolid()
+{
+  //
 }
 
 //
@@ -153,21 +150,19 @@ RootGM::BooleanSolid::~BooleanSolid() {
 //
 
 //_____________________________________________________________________________
-std::string
-RootGM::BooleanSolid::Name() const
+std::string RootGM::BooleanSolid::Name() const
 {
-// Returns the Boolean solid name
-// ---
+  // Returns the Boolean solid name
+  // ---
 
   return fCompositeShape->GetName();
 }
 
 //_____________________________________________________________________________
-VGM::BooleanType
-RootGM::BooleanSolid::BoolType() const
+VGM::BooleanType RootGM::BooleanSolid::BoolType() const
 {
-// Returns the Boolean solid type name
-// ---
+  // Returns the Boolean solid type name
+  // ---
 
   TGeoBoolNode* boolNode = fCompositeShape->GetBoolNode();
 
@@ -184,11 +179,10 @@ RootGM::BooleanSolid::BoolType() const
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*
-RootGM::BooleanSolid::ConstituentSolidA() const
+VGM::ISolid* RootGM::BooleanSolid::ConstituentSolidA() const
 {
-// Returns the first constituent solid.
-// ---
+  // Returns the first constituent solid.
+  // ---
 
   TGeoBoolNode* boolNode = fCompositeShape->GetBoolNode();
 
@@ -199,11 +193,10 @@ RootGM::BooleanSolid::ConstituentSolidA() const
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*
-RootGM::BooleanSolid::ConstituentSolidB() const
+VGM::ISolid* RootGM::BooleanSolid::ConstituentSolidB() const
 {
-// Returns the second constituent solid.
-// ---
+  // Returns the second constituent solid.
+  // ---
 
   TGeoBoolNode* boolNode = fCompositeShape->GetBoolNode();
 
@@ -214,12 +207,11 @@ RootGM::BooleanSolid::ConstituentSolidB() const
 }
 
 //_____________________________________________________________________________
-VGM::Transform
-RootGM::BooleanSolid::Displacement() const
+VGM::Transform RootGM::BooleanSolid::Displacement() const
 {
-// Returns the solid displacemnt transformation
-// in the frame of the first (left) solid.
-// ---
+  // Returns the solid displacemnt transformation
+  // in the frame of the first (left) solid.
+  // ---
 
   TGeoBoolNode* boolNode = fCompositeShape->GetBoolNode();
 
@@ -241,57 +233,53 @@ RootGM::BooleanSolid::Displacement() const
 
   while (shapeA->IsComposite()) {
 
-     TGeoBoolNode* boolNodeAC
-       = ((TGeoCompositeShape*)shapeA)->GetBoolNode();
+    TGeoBoolNode* boolNodeAC = ((TGeoCompositeShape*)shapeA)->GetBoolNode();
 
-     TGeoShape* shapeAC = boolNodeAC->GetLeftShape();
-          // left component of the shape A
+    TGeoShape* shapeAC = boolNodeAC->GetLeftShape();
+    // left component of the shape A
 
-     TGeoMatrix* matrixAC = boolNodeAC->GetLeftMatrix();
-     TGeoHMatrix transformAC(*matrixAC);
+    TGeoMatrix* matrixAC = boolNodeAC->GetLeftMatrix();
+    TGeoHMatrix transformAC(*matrixAC);
 
-     totalTransformA = totalTransformA * transformAC;
+    totalTransformA = totalTransformA * transformAC;
 
-     // Take into account shifted origin
-     // totalTransformA = totalTransformA * RootGM::Displacement(shapeAC);
+    // Take into account shifted origin
+    // totalTransformA = totalTransformA * RootGM::Displacement(shapeAC);
 
-     shapeA = shapeAC;
+    shapeA = shapeAC;
   }
 
   TGeoHMatrix totalTransformB(transformB);
   TGeoShape* shapeB = boolNode->GetRightShape();
   // Take into account shifted origin
-  //totalTransformB = totalTransformB * RootGM::Displacement(shapeB);
+  // totalTransformB = totalTransformB * RootGM::Displacement(shapeB);
 
   while (shapeB->IsComposite()) {
 
-     TGeoBoolNode* boolNodeBC
-       = ((TGeoCompositeShape*)shapeB)->GetBoolNode();
+    TGeoBoolNode* boolNodeBC = ((TGeoCompositeShape*)shapeB)->GetBoolNode();
 
-     TGeoShape* shapeBC = boolNodeBC->GetLeftShape();
-          // left component of the shape B
+    TGeoShape* shapeBC = boolNodeBC->GetLeftShape();
+    // left component of the shape B
 
-     TGeoMatrix* matrixBC = boolNodeBC->GetLeftMatrix();
-     TGeoHMatrix transformBC(*matrixBC);
+    TGeoMatrix* matrixBC = boolNodeBC->GetLeftMatrix();
+    TGeoHMatrix transformBC(*matrixBC);
 
-     totalTransformB = totalTransformB * transformBC;
+    totalTransformB = totalTransformB * transformBC;
 
-     // Take into account shifted origin
-     // totalTransformB = totalTransformB * RootGM::Displacement(shapeBC);
+    // Take into account shifted origin
+    // totalTransformB = totalTransformB * RootGM::Displacement(shapeBC);
 
-     shapeB = shapeBC;
+    shapeB = shapeBC;
   }
 
   return Transform(totalTransformA.Inverse() * totalTransformB);
 }
 
 //_____________________________________________________________________________
-TGeoShape*
-RootGM::BooleanSolid::GetConstituentSolid(
-                               int index,
-                               TGeoCompositeShape* compositeShape)
+TGeoShape* RootGM::BooleanSolid::GetConstituentSolid(
+  int index, TGeoCompositeShape* compositeShape)
 {
-/// Return the constituent shape specified by index
+  /// Return the constituent shape specified by index
 
   TGeoBoolNode* boolNode = compositeShape->GetBoolNode();
 
@@ -299,12 +287,10 @@ RootGM::BooleanSolid::GetConstituentSolid(
     return boolNode->GetLeftShape();
   else if (index == 1)
     return boolNode->GetRightShape();
-  else  {
+  else {
     std::cerr << "    RootGM::BooleanSolid::GetConstituentSolid: " << std::endl;
     std::cerr << "    Index out of scope <0, 1>" << std::endl;
     std::cerr << "*** Error: Aborting execution  ***" << std::endl;
     exit(1);
   }
 }
-
-

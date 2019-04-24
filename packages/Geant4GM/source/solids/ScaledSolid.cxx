@@ -21,24 +21,22 @@
 #include "Geant4GM/solids/ScaledSolid.h"
 #include "Geant4GM/solids/SolidMap.h"
 
-#include "G4ScaledSolid.hh"
 #include "G4ReflectedSolid.hh"
+#include "G4ScaledSolid.hh"
 
 //_____________________________________________________________________________
 Geant4GM::ScaledSolid::ScaledSolid(
-                            const std::string& name,
-                            VGM::ISolid* solid,
-                            const HepGeom::Scale3D& scale3D)
+  const std::string& name, VGM::ISolid* solid, const HepGeom::Scale3D& scale3D)
   : VGM::ISolid(),
     VGM::IScaledSolid(),
     BaseVGM::VScaledSolid(),
     fScaledSolid(0),
     fToBeReflected(false)
 {
-/// Standard constructor to define Scaled solids via constituent
-/// and a scale
-/// \param solid constituent solids
-/// \param scale  the CLHEP scale transformation
+  /// Standard constructor to define Scaled solids via constituent
+  /// and a scale
+  /// \param solid constituent solids
+  /// \param scale  the CLHEP scale transformation
 
   // Get solid from the volumes map
   G4VSolid* g4Solid = Geant4GM::SolidMap::Instance()->GetSolid(solid);
@@ -50,17 +48,17 @@ Geant4GM::ScaledSolid::ScaledSolid(
 }
 
 //_____________________________________________________________________________
-Geant4GM::ScaledSolid::ScaledSolid(G4ScaledSolid* scaledSolid,
-                                   G4ReflectedSolid* reflectedScaled)
+Geant4GM::ScaledSolid::ScaledSolid(
+  G4ScaledSolid* scaledSolid, G4ReflectedSolid* reflectedScaled)
   : VGM::ISolid(),
     VGM::IScaledSolid(),
     BaseVGM::VScaledSolid(),
     fScaledSolid(scaledSolid),
     fToBeReflected(false)
 {
-/// Standard constructor to define Scaled solid via G4 object
+  /// Standard constructor to define Scaled solid via G4 object
 
-  if ( reflectedScaled ) {
+  if (reflectedScaled) {
     fToBeReflected = true;
     Geant4GM::SolidMap::Instance()->AddSolid(this, reflectedScaled);
   }
@@ -71,25 +69,22 @@ Geant4GM::ScaledSolid::ScaledSolid(G4ScaledSolid* scaledSolid,
 
 //_____________________________________________________________________________
 Geant4GM::ScaledSolid::ScaledSolid()
-  : VGM::ISolid(),
-    VGM::IScaledSolid(),
-    BaseVGM::VScaledSolid()
+  : VGM::ISolid(), VGM::IScaledSolid(), BaseVGM::VScaledSolid()
 {
-/// Protected default constructor
+  /// Protected default constructor
 }
 
 //_____________________________________________________________________________
 Geant4GM::ScaledSolid::ScaledSolid(const ScaledSolid& rhs)
-  : VGM::ISolid(rhs),
-    VGM::IScaledSolid(rhs),
-    BaseVGM::VScaledSolid(rhs)
+  : VGM::ISolid(rhs), VGM::IScaledSolid(rhs), BaseVGM::VScaledSolid(rhs)
 {
-/// Protected copy constructor
+  /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
-Geant4GM::ScaledSolid::~ScaledSolid() {
-//
+Geant4GM::ScaledSolid::~ScaledSolid()
+{
+  //
 }
 
 //
@@ -97,34 +92,31 @@ Geant4GM::ScaledSolid::~ScaledSolid() {
 //
 
 //_____________________________________________________________________________
-std::string
-Geant4GM::ScaledSolid::Name() const
+std::string Geant4GM::ScaledSolid::Name() const
 {
-// Returns the Scaled solid name
-// ---
+  // Returns the Scaled solid name
+  // ---
 
   return fScaledSolid->GetName();
 }
 
 //_____________________________________________________________________________
-VGM::ISolid*
-Geant4GM::ScaledSolid::ConstituentSolid() const
+VGM::ISolid* Geant4GM::ScaledSolid::ConstituentSolid() const
 {
-// Returns the constituent (unscaled) solid.
-// ---
+  // Returns the constituent (unscaled) solid.
+  // ---
 
- G4VSolid* g4Solid =  fScaledSolid->GetUnscaledSolid();
- VGM::ISolid* solid = Geant4GM::SolidMap::Instance()->GetSolid(g4Solid);
+  G4VSolid* g4Solid = fScaledSolid->GetUnscaledSolid();
+  VGM::ISolid* solid = Geant4GM::SolidMap::Instance()->GetSolid(g4Solid);
 
- return solid;
+  return solid;
 }
 
 //_____________________________________________________________________________
-VGM::Transform
-Geant4GM::ScaledSolid::Scale() const
+VGM::Transform Geant4GM::ScaledSolid::Scale() const
 {
-// Returns the solid scale as three vector
-// ---
+  // Returns the solid scale as three vector
+  // ---
 
   return ClhepVGM::TransformScale(fScaledSolid->GetScaleTransform());
 }

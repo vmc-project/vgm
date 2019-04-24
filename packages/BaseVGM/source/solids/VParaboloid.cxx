@@ -27,24 +27,22 @@ std::ostream& operator<<(std::ostream& out, const VGM::IParaboloid& paraboloid)
 }
 
 //_____________________________________________________________________________
-BaseVGM::VParaboloid::VParaboloid()
-  : VGM::IParaboloid()
+BaseVGM::VParaboloid::VParaboloid() : VGM::IParaboloid()
 {
-/// Default constructor
+  /// Default constructor
 }
 
-
 //_____________________________________________________________________________
-BaseVGM::VParaboloid::~VParaboloid() {
-//
+BaseVGM::VParaboloid::~VParaboloid()
+{
+  //
 }
 
 //_____________________________________________________________________________
 std::ostream& BaseVGM::VParaboloid::Put(std::ostream& out) const
 {
-  out << "  r1 = "  << RadiusMinusZ() << "mm"
-      << "  r2 = "  << RadiusPlusZ()  << "mm"
-      << "  hz = "  << ZHalfLength()  << "mm";
+  out << "  r1 = " << RadiusMinusZ() << "mm"
+      << "  r2 = " << RadiusPlusZ() << "mm"
+      << "  hz = " << ZHalfLength() << "mm";
   return out;
 }
-

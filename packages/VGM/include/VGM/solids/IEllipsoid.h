@@ -26,37 +26,37 @@
 
 namespace VGM {
 
-  class IEllipsoid : public virtual ISolid
-  {
-    public:
-      virtual ~IEllipsoid() {}
+class IEllipsoid : public virtual ISolid
+{
+ public:
+  virtual ~IEllipsoid() {}
 
-      // methods
+  // methods
 
-      virtual SolidType   Type() const = 0;
-      virtual std::string Name() const = 0;
+  virtual SolidType Type() const = 0;
+  virtual std::string Name() const = 0;
 
-		     ///
-		     /// Return the semi-axis of the ellipse along x in mm
-      virtual double XSemiAxis() const = 0;
-		     ///
-		     /// Return the semi-axis of the ellipse along y in mm
-      virtual double YSemiAxis() const = 0;
-		     ///
-		     /// Return the semi-axis of the ellipse along z in mm
-      virtual double ZSemiAxis() const = 0;
-		     ///
-		     /// Return the z bottom cut in mm
-      virtual double ZBottomCut() const = 0;
-		     ///
-		     /// Return the z top cut in mm
-      virtual double ZTopCut() const = 0;
+  ///
+  /// Return the semi-axis of the ellipse along x in mm
+  virtual double XSemiAxis() const = 0;
+  ///
+  /// Return the semi-axis of the ellipse along y in mm
+  virtual double YSemiAxis() const = 0;
+  ///
+  /// Return the semi-axis of the ellipse along z in mm
+  virtual double ZSemiAxis() const = 0;
+  ///
+  /// Return the z bottom cut in mm
+  virtual double ZBottomCut() const = 0;
+  ///
+  /// Return the z top cut in mm
+  virtual double ZTopCut() const = 0;
 
-      // streaming
-      virtual std::ostream& Put(std::ostream& out) const = 0;
-  };
-}
+  // streaming
+  virtual std::ostream& Put(std::ostream& out) const = 0;
+};
+} // namespace VGM
 
-std::ostream& operator << (std::ostream& out, const VGM::IEllipsoid& box);
+std::ostream& operator<<(std::ostream& out, const VGM::IEllipsoid& box);
 
-#endif //VGM_I_ELLIPSOID_H
+#endif // VGM_I_ELLIPSOID_H

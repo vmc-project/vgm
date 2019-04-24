@@ -22,13 +22,12 @@
 
 #include "TGeoElement.h"
 
-RootGM::ElementMap*  RootGM::ElementMap::fgInstance = 0;
+RootGM::ElementMap* RootGM::ElementMap::fgInstance = 0;
 
 //_____________________________________________________________________________
-RootGM::ElementMap*
-RootGM::ElementMap::Instance()
+RootGM::ElementMap* RootGM::ElementMap::Instance()
 {
-/// Singleton access function.
+  /// Singleton access function.
 
   if (!fgInstance) new ElementMap();
 
@@ -36,11 +35,9 @@ RootGM::ElementMap::Instance()
 }
 
 //_____________________________________________________________________________
-RootGM::ElementMap::ElementMap()
-  : fTGeoElements(),
-    fVgmElements()
+RootGM::ElementMap::ElementMap() : fTGeoElements(), fVgmElements()
 {
-/// Standard default constructor
+  /// Standard default constructor
 
   fgInstance = this;
 }
@@ -48,35 +45,34 @@ RootGM::ElementMap::ElementMap()
 //_____________________________________________________________________________
 RootGM::ElementMap::ElementMap(const ElementMap&)
 {
-/// Protected copy constructor
+  /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
 RootGM::ElementMap::~ElementMap()
 {
-//
+  //
   fgInstance = 0;
 }
-
 
 //
 // public methods
 //
 
 //_____________________________________________________________________________
-void  RootGM::ElementMap::AddElement(VGM::IElement* iElement,
-                                       TGeoElement* tgeoElement)
+void RootGM::ElementMap::AddElement(
+  VGM::IElement* iElement, TGeoElement* tgeoElement)
 {
-/// Add the specified pair in the map
+  /// Add the specified pair in the map
 
   fTGeoElements[iElement] = tgeoElement;
   fVgmElements[tgeoElement] = iElement;
 }
 
 //_____________________________________________________________________________
-void  RootGM::ElementMap::Print() const
+void RootGM::ElementMap::Print() const
 {
-/// Print all elements in the map
+  /// Print all elements in the map
 
   std::cout << "Geant4 Elements Map: " << std::endl;
 
@@ -86,19 +82,16 @@ void  RootGM::ElementMap::Print() const
     VGM::IElement* iElement = (*i).first;
     TGeoElement* element = (*i).second;
 
-    std::cout << "   "
-              << counter++ << "th entry:"
-	      << "  vgmElement " << iElement << " " << iElement->Name()
-              << "  LV " << element << " " << element->GetName()
-	      << std::endl;
+    std::cout << "   " << counter++ << "th entry:"
+              << "  vgmElement " << iElement << " " << iElement->Name()
+              << "  LV " << element << " " << element->GetName() << std::endl;
   }
 }
 
 //_____________________________________________________________________________
-TGeoElement*
-RootGM::ElementMap::GetElement(VGM::IElement* iElement) const
+TGeoElement* RootGM::ElementMap::GetElement(VGM::IElement* iElement) const
 {
-/// Find the Root element corresponding to a specified VGM element
+  /// Find the Root element corresponding to a specified VGM element
 
   TGeoElementMapCIterator i = fTGeoElements.find(iElement);
   if (i != fTGeoElements.end())
@@ -108,10 +101,9 @@ RootGM::ElementMap::GetElement(VGM::IElement* iElement) const
 }
 
 //_____________________________________________________________________________
-VGM::IElement*
-RootGM::ElementMap::GetElement(TGeoElement* element) const
+VGM::IElement* RootGM::ElementMap::GetElement(TGeoElement* element) const
 {
-/// Find the VGM element corresponding to a specified Root element
+  /// Find the VGM element corresponding to a specified Root element
 
   VgmElementMapCIterator i = fVgmElements.find(element);
   if (i != fVgmElements.end())

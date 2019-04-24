@@ -30,18 +30,19 @@
 #include <string>
 
 namespace VGM {
-  enum Axis {
-    kXAxis,
-    kYAxis,
-    kZAxis,
-    kRho,
-    kRadial3D,
-    kPhi,
-    kSphTheta,
-    kUnknownAxis
-  };
+enum Axis
+{
+  kXAxis,
+  kYAxis,
+  kZAxis,
+  kRho,
+  kRadial3D,
+  kPhi,
+  kSphTheta,
+  kUnknownAxis
+};
 
-  std::string AxisTypeName(VGM::Axis typeId);
-}
+std::string AxisTypeName(VGM::Axis typeId);
+} // namespace VGM
 
-#endif //VGM_AXIS_H
+#endif // VGM_AXIS_H

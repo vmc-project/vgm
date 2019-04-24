@@ -25,50 +25,44 @@
 
 #include "ClhepVGM/Units.h"
 
-#include "Geant4GM/solids/Sphere.h"
 #include "Geant4GM/solids/SolidMap.h"
+#include "Geant4GM/solids/Sphere.h"
 
-#include "G4Sphere.hh"
 #include "G4ReflectedSolid.hh"
+#include "G4Sphere.hh"
 
 //_____________________________________________________________________________
-Geant4GM::Sphere::Sphere(const std::string& name,
-                         double rin, double rout, double sphi, double dphi,
-	                 double stheta, double dtheta)
+Geant4GM::Sphere::Sphere(const std::string& name, double rin, double rout,
+  double sphi, double dphi, double stheta, double dtheta)
   : VGM::ISolid(),
     VGM::ISphere(),
     BaseVGM::VSphere(),
     fIsReflected(false),
-    fSphere( new G4Sphere(name,
-                          rin    / ClhepVGM::Units::Length(),
-			  rout   / ClhepVGM::Units::Length(),
-			  sphi   / ClhepVGM::Units::Angle(),
-			  dphi   / ClhepVGM::Units::Angle(),
-			  stheta / ClhepVGM::Units::Angle(),
-			  dtheta / ClhepVGM::Units::Angle()))
+    fSphere(new G4Sphere(name, rin / ClhepVGM::Units::Length(),
+      rout / ClhepVGM::Units::Length(), sphi / ClhepVGM::Units::Angle(),
+      dphi / ClhepVGM::Units::Angle(), stheta / ClhepVGM::Units::Angle(),
+      dtheta / ClhepVGM::Units::Angle()))
 {
-/// Standard constructor to define sphere from parameters
-/// \param rin inside radius of the shell in mm
-/// \param rout outside radius of the shell in mm
-/// \param sphi starting azimuthal angle of the segment in deg
-/// \param dphi opening azimuthal angle of the segment in deg
-/// \param stheta starting polar angle of the segment in deg
-/// \param dtheta opening polar angle of the segment in deg
+  /// Standard constructor to define sphere from parameters
+  /// \param rin inside radius of the shell in mm
+  /// \param rout outside radius of the shell in mm
+  /// \param sphi starting azimuthal angle of the segment in deg
+  /// \param dphi opening azimuthal angle of the segment in deg
+  /// \param stheta starting polar angle of the segment in deg
+  /// \param dtheta opening polar angle of the segment in deg
 
   Geant4GM::SolidMap::Instance()->AddSolid(this, fSphere);
 }
 
-
 //_____________________________________________________________________________
-Geant4GM::Sphere::Sphere(G4Sphere* sphere,
-                         G4ReflectedSolid* reflSphere)
+Geant4GM::Sphere::Sphere(G4Sphere* sphere, G4ReflectedSolid* reflSphere)
   : VGM::ISolid(),
     VGM::ISphere(),
     BaseVGM::VSphere(),
     fIsReflected(false),
     fSphere(sphere)
 {
-/// Standard constructor to define sphere from G4 object
+  /// Standard constructor to define sphere from G4 object
 
   if (reflSphere) {
     fIsReflected = true;
@@ -79,33 +73,26 @@ Geant4GM::Sphere::Sphere(G4Sphere* sphere,
 }
 
 //_____________________________________________________________________________
-Geant4GM::Sphere::Sphere()
-  : VGM::ISolid(),
-    VGM::ISphere(),
-    BaseVGM::VSphere()
+Geant4GM::Sphere::Sphere() : VGM::ISolid(), VGM::ISphere(), BaseVGM::VSphere()
 {
-/// Protected default constructor
+  /// Protected default constructor
 }
 
 //_____________________________________________________________________________
 Geant4GM::Sphere::Sphere(const Sphere& rhs)
-  : VGM::ISolid(rhs),
-    VGM::ISphere(rhs),
-    BaseVGM::VSphere(rhs)
+  : VGM::ISolid(rhs), VGM::ISphere(rhs), BaseVGM::VSphere(rhs)
 {
-/// Protected copy constructor
+  /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
-Geant4GM::Sphere::~Sphere() {
-//
+Geant4GM::Sphere::~Sphere()
+{
+  //
 }
 
 //_____________________________________________________________________________
-std::string Geant4GM::Sphere::Name() const
-{
-  return fSphere->GetName();
-}
+std::string Geant4GM::Sphere::Name() const { return fSphere->GetName(); }
 
 //_____________________________________________________________________________
 double Geant4GM::Sphere::InnerRadius() const

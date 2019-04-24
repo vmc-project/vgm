@@ -25,49 +25,49 @@
 class TGeoElement;
 
 namespace VGM {
-  class IElement;
+class IElement;
 }
 
 namespace RootGM {
 
-  class ElementMap;
+class ElementMap;
 
-  class ElementMap
-  {
-    public:
-      typedef std::map<VGM::IElement*, TGeoElement*>  TGeoElementMap;
-      typedef TGeoElementMap::const_iterator          TGeoElementMapCIterator;
+class ElementMap
+{
+ public:
+  typedef std::map<VGM::IElement*, TGeoElement*> TGeoElementMap;
+  typedef TGeoElementMap::const_iterator TGeoElementMapCIterator;
 
-      typedef std::map<TGeoElement*, VGM::IElement*>  VgmElementMap;
-      typedef VgmElementMap::const_iterator           VgmElementMapCIterator;
+  typedef std::map<TGeoElement*, VGM::IElement*> VgmElementMap;
+  typedef VgmElementMap::const_iterator VgmElementMapCIterator;
 
-    public:
-      ElementMap();
-      virtual ~ElementMap();
+ public:
+  ElementMap();
+  virtual ~ElementMap();
 
-      // static access methods
-      static ElementMap* Instance();
+  // static access methods
+  static ElementMap* Instance();
 
-      // methods
-      void  AddElement(VGM::IElement*, TGeoElement*);
-      void  Print() const;
+  // methods
+  void AddElement(VGM::IElement*, TGeoElement*);
+  void Print() const;
 
-      // get methods
-      TGeoElement*   GetElement(VGM::IElement* iElement) const;
-      VGM::IElement* GetElement(TGeoElement* tgeoElement) const;
+  // get methods
+  TGeoElement* GetElement(VGM::IElement* iElement) const;
+  VGM::IElement* GetElement(TGeoElement* tgeoElement) const;
 
-    protected:
-      ElementMap(const ElementMap&);
+ protected:
+  ElementMap(const ElementMap&);
 
-    private:
-      // static data members
-      static ElementMap*  fgInstance;
+ private:
+  // static data members
+  static ElementMap* fgInstance;
 
-      // data members
-      TGeoElementMap   fTGeoElements;
-      VgmElementMap    fVgmElements;
-  };
+  // data members
+  TGeoElementMap fTGeoElements;
+  VgmElementMap fVgmElements;
+};
 
-}
+} // namespace RootGM
 
-#endif //GEANT4_GM_ELEMENT_MAP_H
+#endif // GEANT4_GM_ELEMENT_MAP_H

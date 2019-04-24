@@ -26,28 +26,30 @@
 
 namespace BaseVGM {
 
-  class VPolyhedra : public virtual VGM::IPolyhedra
-  {
-    public:
-      VPolyhedra();
-      virtual ~VPolyhedra();
+class VPolyhedra : public virtual VGM::IPolyhedra
+{
+ public:
+  VPolyhedra();
+  virtual ~VPolyhedra();
 
-      // methods
-      virtual VGM::SolidType Type() const;
+  // methods
+  virtual VGM::SolidType Type() const;
 
-      double ConvertRadiusFactor() const;
-             // converts radius of the sides to radius of the corners:
-	     // r_corners = r_sides/factor
+  double ConvertRadiusFactor() const;
+  // converts radius of the sides to radius of the corners:
+  // r_corners = r_sides/factor
 
-      // streaming
-      virtual std::ostream& Put(std::ostream& out) const;
-  };
+  // streaming
+  virtual std::ostream& Put(std::ostream& out) const;
+};
 
-}
+} // namespace BaseVGM
 
 // inline functions
 
-inline VGM::SolidType
-BaseVGM::VPolyhedra::Type() const { return VGM::kPolyhedra; }
+inline VGM::SolidType BaseVGM::VPolyhedra::Type() const
+{
+  return VGM::kPolyhedra;
+}
 
-#endif //BASE_VGM_V_POLYHEDRA_H
+#endif // BASE_VGM_V_POLYHEDRA_H

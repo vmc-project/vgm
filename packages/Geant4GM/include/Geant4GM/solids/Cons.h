@@ -29,35 +29,33 @@ class G4ReflectedSolid;
 
 namespace Geant4GM {
 
-  class Cons : public BaseVGM::VCons
-  {
-    public:
-      Cons(const std::string& name,
-           double rin1, double rout1, double rin2, double rout2,
-	   double hz, double sphi, double dphi);
-      Cons(G4Cons* cons,
-           G4ReflectedSolid* reflCons = 0);
-      virtual ~Cons();
+class Cons : public BaseVGM::VCons
+{
+ public:
+  Cons(const std::string& name, double rin1, double rout1, double rin2,
+    double rout2, double hz, double sphi, double dphi);
+  Cons(G4Cons* cons, G4ReflectedSolid* reflCons = 0);
+  virtual ~Cons();
 
-      // methods
-      virtual std::string Name() const;
-      virtual double InnerRadiusMinusZ() const ;
-      virtual double OuterRadiusMinusZ() const;
-      virtual double InnerRadiusPlusZ() const;
-      virtual double OuterRadiusPlusZ() const;
-      virtual double ZHalfLength() const;
-      virtual double StartPhi() const;
-      virtual double DeltaPhi() const;
+  // methods
+  virtual std::string Name() const;
+  virtual double InnerRadiusMinusZ() const;
+  virtual double OuterRadiusMinusZ() const;
+  virtual double InnerRadiusPlusZ() const;
+  virtual double OuterRadiusPlusZ() const;
+  virtual double ZHalfLength() const;
+  virtual double StartPhi() const;
+  virtual double DeltaPhi() const;
 
-    protected:
-      Cons();
-      Cons(const Cons& rhs);
+ protected:
+  Cons();
+  Cons(const Cons& rhs);
 
-    private:
-      bool    fIsReflected;
-      G4Cons* fCons;
-  };
+ private:
+  bool fIsReflected;
+  G4Cons* fCons;
+};
 
-}
+} // namespace Geant4GM
 
-#endif //GEANT4_GM_CONS_H
+#endif // GEANT4_GM_CONS_H

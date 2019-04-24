@@ -27,15 +27,15 @@ std::ostream& operator<<(std::ostream& out, const VGM::IEllipsoid& ellipsoid)
 }
 
 //_____________________________________________________________________________
-BaseVGM::VEllipsoid::VEllipsoid()
-  : VGM::IEllipsoid()
+BaseVGM::VEllipsoid::VEllipsoid() : VGM::IEllipsoid()
 {
-/// Default constructor
+  /// Default constructor
 }
 
 //_____________________________________________________________________________
-BaseVGM::VEllipsoid::~VEllipsoid() {
-//
+BaseVGM::VEllipsoid::~VEllipsoid()
+{
+  //
 }
 
 //_____________________________________________________________________________
@@ -48,4 +48,3 @@ std::ostream& BaseVGM::VEllipsoid::Put(std::ostream& out) const
       << "  ZTopCut = " << ZTopCut() << "mm";
   return out;
 }
-

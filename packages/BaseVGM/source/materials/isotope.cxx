@@ -22,9 +22,8 @@ std::ostream& operator<<(std::ostream& out, const VGM::IIsotope& isotope)
 {
   out << "Isotope: "
       << "\"" << isotope.Name() << "\"  "
-      << "  Z = "  << isotope.Z()
-      << "  N = "  << isotope.N()
-      << "  A = "  << isotope.A() << " g/mole";
+      << "  Z = " << isotope.Z() << "  N = " << isotope.N()
+      << "  A = " << isotope.A() << " g/mole";
 
   return out;
 }

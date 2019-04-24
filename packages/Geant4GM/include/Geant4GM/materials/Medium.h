@@ -32,37 +32,35 @@ class G4Material;
 
 namespace Geant4GM {
 
-  class Medium : public BaseVGM::VMedium
-  {
-    public:
-      Medium(const std::string& name,
-             int mediumId,
-             VGM::IMaterial* material,
-             int nofParameters, double* parameters);
-      virtual ~Medium();
+class Medium : public BaseVGM::VMedium
+{
+ public:
+  Medium(const std::string& name, int mediumId, VGM::IMaterial* material,
+    int nofParameters, double* parameters);
+  virtual ~Medium();
 
-      // methods
-      virtual std::string Name() const;
+  // methods
+  virtual std::string Name() const;
 
-      virtual int     Id() const;
-      virtual double  Parameter(int i) const;
+  virtual int Id() const;
+  virtual double Parameter(int i) const;
 
-    protected:
-      Medium();
-      Medium(const Medium& rhs);
+ protected:
+  Medium();
+  Medium(const Medium& rhs);
 
-    private:
-      void CheckIndex(int iel) const;
+ private:
+  void CheckIndex(int iel) const;
 
-      // data members
-      static  const int fgkParamSize;
+  // data members
+  static const int fgkParamSize;
 
-      G4String     fName;
-      G4Material * fMaterial;
-      G4int        fId;
-      G4double*    fParameters;
-  };
+  G4String fName;
+  G4Material* fMaterial;
+  G4int fId;
+  G4double* fParameters;
+};
 
-}
+} // namespace Geant4GM
 
-#endif //GEANT4_GM_MEDIUM_H
+#endif // GEANT4_GM_MEDIUM_H

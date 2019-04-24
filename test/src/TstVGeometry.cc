@@ -18,54 +18,50 @@
 
 #include "TstVGeometry.hh"
 
-#include <iostream>
 #include <cstdlib>
+#include <iostream>
 
 //_____________________________________________________________________________
 TstVGeometry::TstVGeometry()
 {
-//
+  //
 }
 
 //_____________________________________________________________________________
 TstVGeometry::~TstVGeometry()
 {
-//
+  //
 }
 
 //_____________________________________________________________________________
 void* TstVGeometry::TestAssemblies()
 {
-//
-  std::cerr << "TstVGeometry::TestAssemblies is not implemented."
-            << std::endl;
+  //
+  std::cerr << "TstVGeometry::TestAssemblies is not implemented." << std::endl;
   exit(1);
 }
 
 //_____________________________________________________________________________
 void* TstVGeometry::TestAssemblies2()
 {
-//
-  std::cerr << "TstVGeometry::TestAssemblies2 is not implemented."
-            << std::endl;
+  //
+  std::cerr << "TstVGeometry::TestAssemblies2 is not implemented." << std::endl;
   exit(1);
 }
 
 //_____________________________________________________________________________
 void* TstVGeometry::TestBooleanSolids4()
 {
-//
+  //
   std::cerr << "TstVGeometry::TestBooleanSolids4 is not implemented."
             << std::endl;
   exit(1);
 }
 
-
-
 //_____________________________________________________________________________
 void* TstVGeometry::TestBooleanSolids5()
 {
-//
+  //
   std::cerr << "TstVGeometry::TestBooleanSolids5 is not implemented."
             << std::endl;
   exit(1);
@@ -74,7 +70,7 @@ void* TstVGeometry::TestBooleanSolids5()
 //_____________________________________________________________________________
 void* TstVGeometry::TestBooleanSolids6()
 {
-//
+  //
   std::cerr << "TstVGeometry::TestBooleanSolids6 is not implemented."
             << std::endl;
   exit(1);
@@ -83,7 +79,7 @@ void* TstVGeometry::TestBooleanSolids6()
 //_____________________________________________________________________________
 void* TstVGeometry::TestBooleanSolids7()
 {
-//
+  //
   std::cerr << "TstVGeometry::TestBooleanSolids7 is not implemented."
             << std::endl;
   exit(1);
@@ -92,7 +88,7 @@ void* TstVGeometry::TestBooleanSolids7()
 //_____________________________________________________________________________
 void* TstVGeometry::TestDisplacedSolids1()
 {
-//
+  //
   std::cerr << "TstVGeometry::TestDisplacedSolids is not implemented."
             << std::endl;
   exit(1);
@@ -101,7 +97,7 @@ void* TstVGeometry::TestDisplacedSolids1()
 //_____________________________________________________________________________
 void* TstVGeometry::TestDisplacedSolids2()
 {
-//
+  //
   std::cerr << "TstVGeometry::TestDisplacedSolids is not implemented."
             << std::endl;
   exit(1);
@@ -110,8 +106,7 @@ void* TstVGeometry::TestDisplacedSolids2()
 //_____________________________________________________________________________
 void* TstVGeometry::TestSpecial()
 {
-//
-  std::cerr << "TstVGeometry::TestSpecial is not implemented."
-            << std::endl;
+  //
+  std::cerr << "TstVGeometry::TestSpecial is not implemented." << std::endl;
   exit(1);
 }

@@ -27,26 +27,24 @@ std::ostream& operator<<(std::ostream& out, const VGM::ITorus& torus)
 }
 
 //_____________________________________________________________________________
-BaseVGM::VTorus::VTorus()
-  : VGM::ITorus()
+BaseVGM::VTorus::VTorus() : VGM::ITorus()
 {
-/// Default constructor
+  /// Default constructor
 }
 
-
 //_____________________________________________________________________________
-BaseVGM::VTorus::~VTorus() {
-//
+BaseVGM::VTorus::~VTorus()
+{
+  //
 }
 
 //_____________________________________________________________________________
 std::ostream& BaseVGM::VTorus::Put(std::ostream& out) const
 {
-  out << "  rin = "  << InnerRadius() << "mm"
+  out << "  rin = " << InnerRadius() << "mm"
       << "  rout = " << OuterRadius() << "mm"
       << "  rtor = " << AxialRadius() << "mm"
-      << "  sphi = " << StartPhi()    << "deg"
-      << "  dphi = " << DeltaPhi()    << "deg";
+      << "  sphi = " << StartPhi() << "deg"
+      << "  dphi = " << DeltaPhi() << "deg";
   return out;
 }
-

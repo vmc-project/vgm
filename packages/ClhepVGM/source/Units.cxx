@@ -20,38 +20,39 @@
 
 #include "CLHEP/Units/SystemOfUnits.h"
 
-#include <iostream>
 #include <cstdlib>
+#include <iostream>
 
-using CLHEP::mm;
+using CLHEP::atmosphere;
 using CLHEP::cm;
 using CLHEP::cm3;
 using CLHEP::deg;
 using CLHEP::g;
-using CLHEP::mole;
 using CLHEP::kelvin;
-using CLHEP::atmosphere;
+using CLHEP::mm;
+using CLHEP::mole;
 
 //
 // static const data members
 //
 
-const double ClhepVGM::Units::fgkLength       = 1./mm;
-const double ClhepVGM::Units::fgkAngle        = 1./deg;
-const double ClhepVGM::Units::fgkMassDensity  = 1./(g/cm3);
-const double ClhepVGM::Units::fgkAtomicWeight = 1./(g/mole);
-const double ClhepVGM::Units::fgkTemperature  = 1./kelvin;
-const double ClhepVGM::Units::fgkPressure     = 1./atmosphere;
+const double ClhepVGM::Units::fgkLength = 1. / mm;
+const double ClhepVGM::Units::fgkAngle = 1. / deg;
+const double ClhepVGM::Units::fgkMassDensity = 1. / (g / cm3);
+const double ClhepVGM::Units::fgkAtomicWeight = 1. / (g / mole);
+const double ClhepVGM::Units::fgkTemperature = 1. / kelvin;
+const double ClhepVGM::Units::fgkPressure = 1. / atmosphere;
 
 //_____________________________________________________________________________
 ClhepVGM::Units::Units()
 {
-/// Protected default constructor
+  /// Protected default constructor
 }
 
 //_____________________________________________________________________________
-ClhepVGM::Units::~Units() {
-//
+ClhepVGM::Units::~Units()
+{
+  //
 }
 
 //
@@ -61,32 +62,25 @@ ClhepVGM::Units::~Units() {
 //_____________________________________________________________________________
 double ClhepVGM::Units::AxisUnit(VGM::Axis axis)
 {
-  if (axis == VGM::kXAxis ||
-      axis == VGM::kYAxis ||
-      axis == VGM::kZAxis ||
-      axis == VGM::kRho   ||
-      axis == VGM::kRadial3D) {
+  if (axis == VGM::kXAxis || axis == VGM::kYAxis || axis == VGM::kZAxis ||
+      axis == VGM::kRho || axis == VGM::kRadial3D) {
 
     return Length();
   }
 
-  if (axis == VGM::kPhi ||
-      axis == VGM::kSphTheta) {
+  if (axis == VGM::kPhi || axis == VGM::kSphTheta) {
     return Angle();
   }
 
   // axis == kUndefined
-  std::cerr << "    ClhepVGM::Units::AxisUnit:"       << std::endl;
-  std::cerr << "    Undefined axis"                 << std::endl;
+  std::cerr << "    ClhepVGM::Units::AxisUnit:" << std::endl;
+  std::cerr << "    Undefined axis" << std::endl;
   std::cerr << "*** Error: Aborting execution  ***" << std::endl;
   exit(1);
 }
 
 //_____________________________________________________________________________
-double ClhepVGM::Units::Length()
-{
-  return fgkLength;
-}
+double ClhepVGM::Units::Length() { return fgkLength; }
 
 //_____________________________________________________________________________
 double ClhepVGM::Units::Length(double clhepUnit)
@@ -95,22 +89,13 @@ double ClhepVGM::Units::Length(double clhepUnit)
 }
 
 //_____________________________________________________________________________
-double ClhepVGM::Units::Angle()
-{
-  return fgkAngle;
-}
+double ClhepVGM::Units::Angle() { return fgkAngle; }
 
 //_____________________________________________________________________________
-double ClhepVGM::Units::Angle(double clhepUnit)
-{
-  return fgkAngle * clhepUnit;
-}
+double ClhepVGM::Units::Angle(double clhepUnit) { return fgkAngle * clhepUnit; }
 
 //_____________________________________________________________________________
-double ClhepVGM::Units::MassDensity()
-{
-  return fgkMassDensity;
-}
+double ClhepVGM::Units::MassDensity() { return fgkMassDensity; }
 
 //_____________________________________________________________________________
 double ClhepVGM::Units::MassDensity(double clhepUnit)
@@ -119,10 +104,7 @@ double ClhepVGM::Units::MassDensity(double clhepUnit)
 }
 
 //_____________________________________________________________________________
-double ClhepVGM::Units::AtomicWeight()
-{
-  return fgkAtomicWeight;
-}
+double ClhepVGM::Units::AtomicWeight() { return fgkAtomicWeight; }
 
 //_____________________________________________________________________________
 double ClhepVGM::Units::AtomicWeight(double clhepUnit)
@@ -131,10 +113,7 @@ double ClhepVGM::Units::AtomicWeight(double clhepUnit)
 }
 
 //_____________________________________________________________________________
-double ClhepVGM::Units::Temperature()
-{
-  return fgkTemperature;
-}
+double ClhepVGM::Units::Temperature() { return fgkTemperature; }
 
 //_____________________________________________________________________________
 double ClhepVGM::Units::Temperature(double clhepUnit)
@@ -143,14 +122,10 @@ double ClhepVGM::Units::Temperature(double clhepUnit)
 }
 
 //_____________________________________________________________________________
-double ClhepVGM::Units::Pressure()
-{
-  return fgkPressure;
-}
+double ClhepVGM::Units::Pressure() { return fgkPressure; }
 
 //_____________________________________________________________________________
 double ClhepVGM::Units::Pressure(double clhepUnit)
 {
   return fgkPressure * clhepUnit;
 }
-

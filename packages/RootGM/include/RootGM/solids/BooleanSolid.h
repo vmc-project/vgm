@@ -30,46 +30,42 @@ class TGeoMatrix;
 
 namespace RootGM {
 
-  class BooleanSolid : public BaseVGM::VBooleanSolid
-  {
-    public:
-      BooleanSolid(const std::string& name,
-                   VGM::BooleanType boolType,
-                   VGM::ISolid* solidA, VGM::ISolid* solidB,
-                   TGeoMatrix* displacementB);
-      BooleanSolid(TGeoCompositeShape* compositeShape);
-      virtual ~BooleanSolid();
+class BooleanSolid : public BaseVGM::VBooleanSolid
+{
+ public:
+  BooleanSolid(const std::string& name, VGM::BooleanType boolType,
+    VGM::ISolid* solidA, VGM::ISolid* solidB, TGeoMatrix* displacementB);
+  BooleanSolid(TGeoCompositeShape* compositeShape);
+  virtual ~BooleanSolid();
 
-      // methods
-      virtual std::string Name() const;
+  // methods
+  virtual std::string Name() const;
 
-      virtual VGM::BooleanType  BoolType() const;
-      virtual VGM::ISolid*      ConstituentSolidA() const;
-      virtual VGM::ISolid*      ConstituentSolidB() const;
-      virtual VGM::Transform    Displacement() const;
-      virtual bool              ToBeReflected() const;
+  virtual VGM::BooleanType BoolType() const;
+  virtual VGM::ISolid* ConstituentSolidA() const;
+  virtual VGM::ISolid* ConstituentSolidB() const;
+  virtual VGM::Transform Displacement() const;
+  virtual bool ToBeReflected() const;
 
-      // utility method
-      static TGeoShape* GetConstituentSolid(
-                                int index,
-                                TGeoCompositeShape* compositeShape);
+  // utility method
+  static TGeoShape* GetConstituentSolid(
+    int index, TGeoCompositeShape* compositeShape);
 
-    protected:
-      BooleanSolid();
-      BooleanSolid(const BooleanSolid& rhs);
+ protected:
+  BooleanSolid();
+  BooleanSolid(const BooleanSolid& rhs);
 
-    private:
-      static const char fgkIntersectionChar;
-      static const char fgkSubtractionChar;
-      static const char fgkUnionChar;
-      static const char fgkSeparator;
+ private:
+  static const char fgkIntersectionChar;
+  static const char fgkSubtractionChar;
+  static const char fgkUnionChar;
+  static const char fgkSeparator;
 
-      TGeoCompositeShape* fCompositeShape;
-  };
+  TGeoCompositeShape* fCompositeShape;
+};
 
-}
+} // namespace RootGM
 
-inline bool RootGM::BooleanSolid::ToBeReflected() const
-{ return false; }
+inline bool RootGM::BooleanSolid::ToBeReflected() const { return false; }
 
-#endif //ROOT_GM_BOOLEAN_SOLID_H
+#endif // ROOT_GM_BOOLEAN_SOLID_H

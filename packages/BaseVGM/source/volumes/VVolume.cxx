@@ -24,14 +24,16 @@
 //_____________________________________________________________________________
 std::ostream& operator<<(std::ostream& out, const VGM::IVolume& volume)
 {
-  out << "Volume: " << "\"" << volume.Name() << "\""
-      << " material " << "\"" << volume.MaterialName() << "\""
-      << " solid " << "\""
-      << VGM::SolidTypeName(volume.Solid()->Type()) << "\"  "
+  out << "Volume: "
+      << "\"" << volume.Name() << "\""
+      << " material "
+      << "\"" << volume.MaterialName() << "\""
+      << " solid "
+      << "\"" << VGM::SolidTypeName(volume.Solid()->Type()) << "\"  "
       << volume.NofDaughters() << " daughters: ";
 
-  for (int i=0; i<volume.NofDaughters(); i++) {
-      out << "\"" << volume.Daughter(i)->Name()  << "\"  ";
+  for (int i = 0; i < volume.NofDaughters(); i++) {
+    out << "\"" << volume.Daughter(i)->Name() << "\"  ";
   }
 
   return out;
@@ -39,64 +41,51 @@ std::ostream& operator<<(std::ostream& out, const VGM::IVolume& volume)
 
 //_____________________________________________________________________________
 BaseVGM::VVolume::VVolume(VGM::ISolid* solid)
-  : VGM::IVolume(),
-    fSolid(solid),
-    fDaughters()
+  : VGM::IVolume(), fSolid(solid), fDaughters()
 {
-/// Standard constructor
+  /// Standard constructor
 }
 
 //_____________________________________________________________________________
-BaseVGM::VVolume::VVolume()
-  : VGM::IVolume()
+BaseVGM::VVolume::VVolume() : VGM::IVolume()
 {
-/// Protected default constructor
+  /// Protected default constructor
 }
 
 //_____________________________________________________________________________
-BaseVGM::VVolume::VVolume(const VVolume& rhs)
-  : VGM::IVolume(rhs)
+BaseVGM::VVolume::VVolume(const VVolume& rhs) : VGM::IVolume(rhs)
 {
-/// Protected copy constructor
+  /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
-BaseVGM::VVolume::~VVolume() {
-//
+BaseVGM::VVolume::~VVolume()
+{
+  //
 
   // Delete daughters
-  for (unsigned int i=0; i<fDaughters.size(); i++) {
+  for (unsigned int i = 0; i < fDaughters.size(); i++) {
     delete fDaughters[i];
   }
 }
 
 //_____________________________________________________________________________
-VGM::ISolid* BaseVGM::VVolume::Solid() const
-{
-  return fSolid;
-}
+VGM::ISolid* BaseVGM::VVolume::Solid() const { return fSolid; }
 
 //_____________________________________________________________________________
-int BaseVGM::VVolume::NofDaughters() const
-{
-  return fDaughters.size();
-}
+int BaseVGM::VVolume::NofDaughters() const { return fDaughters.size(); }
 
 //_____________________________________________________________________________
-VGM::IPlacement*
-BaseVGM::VVolume::Daughter(int i) const
+VGM::IPlacement* BaseVGM::VVolume::Daughter(int i) const
 {
   return fDaughters[i];
 }
 
 //_____________________________________________________________________________
-void  BaseVGM::VVolume::AddDaughter(VGM::IPlacement* daughter)
+void BaseVGM::VVolume::AddDaughter(VGM::IPlacement* daughter)
 {
   fDaughters.push_back(daughter);
 }
 
 //_____________________________________________________________________________
-void  BaseVGM::VVolume::ResetSolid(VGM::ISolid* solid)
-{
-  fSolid = solid;
-}
+void BaseVGM::VVolume::ResetSolid(VGM::ISolid* solid) { fSolid = solid; }

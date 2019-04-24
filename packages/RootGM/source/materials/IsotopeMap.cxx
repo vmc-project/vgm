@@ -22,13 +22,12 @@
 
 #include "TGeoElement.h"
 
-RootGM::IsotopeMap*  RootGM::IsotopeMap::fgInstance = 0;
+RootGM::IsotopeMap* RootGM::IsotopeMap::fgInstance = 0;
 
 //_____________________________________________________________________________
-RootGM::IsotopeMap*
-RootGM::IsotopeMap::Instance()
+RootGM::IsotopeMap* RootGM::IsotopeMap::Instance()
 {
-/// Singleton access function.
+  /// Singleton access function.
 
   if (!fgInstance) new IsotopeMap();
 
@@ -36,11 +35,9 @@ RootGM::IsotopeMap::Instance()
 }
 
 //_____________________________________________________________________________
-RootGM::IsotopeMap::IsotopeMap()
-  : fTGeoIsotopes(),
-    fVgmIsotopes()
+RootGM::IsotopeMap::IsotopeMap() : fTGeoIsotopes(), fVgmIsotopes()
 {
-/// Standard default constructor
+  /// Standard default constructor
 
   fgInstance = this;
 }
@@ -48,35 +45,34 @@ RootGM::IsotopeMap::IsotopeMap()
 //_____________________________________________________________________________
 RootGM::IsotopeMap::IsotopeMap(const IsotopeMap&)
 {
-/// Protected copy constructor
+  /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
 RootGM::IsotopeMap::~IsotopeMap()
 {
-//
+  //
   fgInstance = 0;
 }
-
 
 //
 // public methods
 //
 
 //_____________________________________________________________________________
-void  RootGM::IsotopeMap::AddIsotope(VGM::IIsotope* iIsotope,
-                                       TGeoIsotope* tgeoIsotope)
+void RootGM::IsotopeMap::AddIsotope(
+  VGM::IIsotope* iIsotope, TGeoIsotope* tgeoIsotope)
 {
-/// Add the specified pair in the map
+  /// Add the specified pair in the map
 
   fTGeoIsotopes[iIsotope] = tgeoIsotope;
   fVgmIsotopes[tgeoIsotope] = iIsotope;
 }
 
 //_____________________________________________________________________________
-void  RootGM::IsotopeMap::Print() const
+void RootGM::IsotopeMap::Print() const
 {
-/// Print all Isotopes in the map
+  /// Print all Isotopes in the map
 
   std::cout << "Geant4 Isotopes Map: " << std::endl;
 
@@ -86,19 +82,17 @@ void  RootGM::IsotopeMap::Print() const
     VGM::IIsotope* iIsotope = (*i).first;
     TGeoIsotope* tgeoIsotope = (*i).second;
 
-    std::cout << "   "
-              << counter++ << "th entry:"
-	      << "  vgmIsotope " << iIsotope << " " << iIsotope->Name()
-              << "  tgeoIsotope " << tgeoIsotope << " " << tgeoIsotope->GetName()
-	      << std::endl;
+    std::cout << "   " << counter++ << "th entry:"
+              << "  vgmIsotope " << iIsotope << " " << iIsotope->Name()
+              << "  tgeoIsotope " << tgeoIsotope << " "
+              << tgeoIsotope->GetName() << std::endl;
   }
 }
 
 //_____________________________________________________________________________
-TGeoIsotope*
-RootGM::IsotopeMap::GetIsotope(VGM::IIsotope* iIsotope) const
+TGeoIsotope* RootGM::IsotopeMap::GetIsotope(VGM::IIsotope* iIsotope) const
 {
-/// Find the Root Isotope corresponding to a specified VGM Isotope
+  /// Find the Root Isotope corresponding to a specified VGM Isotope
 
   TGeoIsotopeMapCIterator i = fTGeoIsotopes.find(iIsotope);
   if (i != fTGeoIsotopes.end())
@@ -108,10 +102,9 @@ RootGM::IsotopeMap::GetIsotope(VGM::IIsotope* iIsotope) const
 }
 
 //_____________________________________________________________________________
-VGM::IIsotope*
-RootGM::IsotopeMap::GetIsotope(TGeoIsotope* tgeoIsotope) const
+VGM::IIsotope* RootGM::IsotopeMap::GetIsotope(TGeoIsotope* tgeoIsotope) const
 {
-/// Find the VGM Isotope corresponding to a specified Root Isotope
+  /// Find the VGM Isotope corresponding to a specified Root Isotope
 
   VgmIsotopeMapCIterator i = fVgmIsotopes.find(tgeoIsotope);
   if (i != fVgmIsotopes.end())

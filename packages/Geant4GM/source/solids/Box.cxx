@@ -25,34 +25,26 @@
 #include "G4ReflectedSolid.hh"
 
 //_____________________________________________________________________________
-Geant4GM::Box::Box(const std::string& name,
-                   double hx, double hy, double hz)
+Geant4GM::Box::Box(const std::string& name, double hx, double hy, double hz)
   : VGM::ISolid(),
     VGM::IBox(),
     BaseVGM::VBox(),
-    fBox( new G4Box(name,
-                    hx / ClhepVGM::Units::Length(),
-		    hy / ClhepVGM::Units::Length(),
-		    hz / ClhepVGM::Units::Length()) )
+    fBox(new G4Box(name, hx / ClhepVGM::Units::Length(),
+      hy / ClhepVGM::Units::Length(), hz / ClhepVGM::Units::Length()))
 {
-/// Standard constructor to define box from parameters
-/// \param hx half-length along the x axis in mm
-/// \param hy half-length along the y axis in mm
-/// \param hz half-length along the z axis in mm
+  /// Standard constructor to define box from parameters
+  /// \param hx half-length along the x axis in mm
+  /// \param hy half-length along the y axis in mm
+  /// \param hz half-length along the z axis in mm
 
   Geant4GM::SolidMap::Instance()->AddSolid(this, fBox);
 }
 
-
 //_____________________________________________________________________________
-Geant4GM::Box::Box(G4Box* box,
-                   G4ReflectedSolid* reflBox)
-  : VGM::ISolid(),
-    VGM::IBox(),
-    BaseVGM::VBox(),
-    fBox(box)
+Geant4GM::Box::Box(G4Box* box, G4ReflectedSolid* reflBox)
+  : VGM::ISolid(), VGM::IBox(), BaseVGM::VBox(), fBox(box)
 {
-/// Standard constructor to define box from G4 object
+  /// Standard constructor to define box from G4 object
 
   if (reflBox)
     Geant4GM::SolidMap::Instance()->AddSolid(this, reflBox);
@@ -61,33 +53,26 @@ Geant4GM::Box::Box(G4Box* box,
 }
 
 //_____________________________________________________________________________
-Geant4GM::Box::Box()
-  : VGM::ISolid(),
-    VGM::IBox(),
-    BaseVGM::VBox()
+Geant4GM::Box::Box() : VGM::ISolid(), VGM::IBox(), BaseVGM::VBox()
 {
-/// Protected default constructor
+  /// Protected default constructor
 }
 
 //_____________________________________________________________________________
 Geant4GM::Box::Box(const Box& rhs)
-  : VGM::ISolid(rhs),
-    VGM::IBox(rhs),
-    BaseVGM::VBox(rhs)
+  : VGM::ISolid(rhs), VGM::IBox(rhs), BaseVGM::VBox(rhs)
 {
-/// Protected copy constructor
+  /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
-Geant4GM::Box::~Box() {
-//
+Geant4GM::Box::~Box()
+{
+  //
 }
 
 //_____________________________________________________________________________
-std::string Geant4GM::Box::Name() const
-{
-  return fBox->GetName();
-}
+std::string Geant4GM::Box::Name() const { return fBox->GetName(); }
 
 //_____________________________________________________________________________
 double Geant4GM::Box::XHalfLength() const
@@ -106,5 +91,3 @@ double Geant4GM::Box::ZHalfLength() const
 {
   return fBox->GetZHalfLength() * ClhepVGM::Units::Length();
 }
-
-

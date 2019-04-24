@@ -17,29 +17,26 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-
 #include "TstPhysicsList.hh"
 #include "G4ParticleTypes.hh"
 
-
 //_____________________________________________________________________________
-TstPhysicsList::TstPhysicsList()
-  : G4VUserPhysicsList()
+TstPhysicsList::TstPhysicsList() : G4VUserPhysicsList()
 {
-//
+  //
 }
 
 //_____________________________________________________________________________
 TstPhysicsList::~TstPhysicsList()
 {
-//
+  //
 }
 
 //_____________________________________________________________________________
 void TstPhysicsList::ConstructParticle()
 {
-// Construct geantino only
-// ---
+  // Construct geantino only
+  // ---
 
   G4Geantino::GeantinoDefinition();
 }
@@ -47,8 +44,8 @@ void TstPhysicsList::ConstructParticle()
 //_____________________________________________________________________________
 void TstPhysicsList::ConstructProcess()
 {
-// Define transportation process
-// ---
+  // Define transportation process
+  // ---
 
   AddTransportation();
 }
@@ -57,7 +54,8 @@ void TstPhysicsList::ConstructProcess()
 void TstPhysicsList::SetCuts()
 {
   // Suppress error messages even in case e/gamma/proton do not exist
-  G4int temp = GetVerboseLevel();                                                SetVerboseLevel(0);
+  G4int temp = GetVerboseLevel();
+  SetVerboseLevel(0);
   //  " G4VUserPhysicsList::SetCutsWithDefault" method sets
   //   the default cut value for all particle types
   SetCutsWithDefault();
@@ -65,4 +63,3 @@ void TstPhysicsList::SetCuts()
   // Retrieve verbose level
   SetVerboseLevel(temp);
 }
-

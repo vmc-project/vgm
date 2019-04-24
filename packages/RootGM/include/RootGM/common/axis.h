@@ -27,14 +27,14 @@ class TGeoPatternFinder;
 
 namespace RootGM {
 
-    // Root -> VGM
-    //
-    VGM::Axis  Axis(const TGeoPatternFinder* finder);
+// Root -> VGM
+//
+VGM::Axis Axis(const TGeoPatternFinder* finder);
 
-    // VGM -> Root
-    //
-    int      Axis(VGM::Axis axis);
-    double   AxisUnit(VGM::Axis axis);
-}
+// VGM -> Root
+//
+int Axis(VGM::Axis axis);
+double AxisUnit(VGM::Axis axis);
+} // namespace RootGM
 
-#endif //ROOT_GM_AXIS_H
+#endif // ROOT_GM_AXIS_H

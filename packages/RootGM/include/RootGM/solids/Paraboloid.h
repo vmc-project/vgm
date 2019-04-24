@@ -28,28 +28,27 @@ class TGeoParaboloid;
 
 namespace RootGM {
 
-  class Paraboloid : public BaseVGM::VParaboloid
-  {
-    public:
-      Paraboloid(const std::string& name,
-                 double r1, double r2, double hz);
-      Paraboloid(TGeoParaboloid* paraboloid);
-      virtual ~Paraboloid();
+class Paraboloid : public BaseVGM::VParaboloid
+{
+ public:
+  Paraboloid(const std::string& name, double r1, double r2, double hz);
+  Paraboloid(TGeoParaboloid* paraboloid);
+  virtual ~Paraboloid();
 
-      // methods
-      virtual std::string Name() const;
-      virtual double RadiusMinusZ() const ;
-      virtual double RadiusPlusZ() const;
-      virtual double ZHalfLength() const;
+  // methods
+  virtual std::string Name() const;
+  virtual double RadiusMinusZ() const;
+  virtual double RadiusPlusZ() const;
+  virtual double ZHalfLength() const;
 
-    protected:
-      Paraboloid();
-      Paraboloid(const Paraboloid& rhs);
+ protected:
+  Paraboloid();
+  Paraboloid(const Paraboloid& rhs);
 
-    private:
-      TGeoParaboloid* fParaboloid;
-  };
+ private:
+  TGeoParaboloid* fParaboloid;
+};
 
-}
+} // namespace RootGM
 
-#endif //ROOT_GM_PARABOLOID_H
+#endif // ROOT_GM_PARABOLOID_H

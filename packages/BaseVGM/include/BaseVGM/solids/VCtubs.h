@@ -26,24 +26,23 @@
 
 namespace BaseVGM {
 
-  class VCtubs : public virtual VGM::ICtubs
-  {
-    public:
-      VCtubs();
-      virtual ~VCtubs();
+class VCtubs : public virtual VGM::ICtubs
+{
+ public:
+  VCtubs();
+  virtual ~VCtubs();
 
-      // methods
-      virtual VGM::SolidType Type() const;
+  // methods
+  virtual VGM::SolidType Type() const;
 
-      // streaming
-      virtual std::ostream& Put(std::ostream& out) const;
-  };
+  // streaming
+  virtual std::ostream& Put(std::ostream& out) const;
+};
 
-}
+} // namespace BaseVGM
 
 // inline functions
 
-inline VGM::SolidType
-BaseVGM::VCtubs::Type() const { return VGM::kCtubs; }
+inline VGM::SolidType BaseVGM::VCtubs::Type() const { return VGM::kCtubs; }
 
-#endif //BASE_VGM_V_CTUBS_H
+#endif // BASE_VGM_V_CTUBS_H

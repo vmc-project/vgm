@@ -26,24 +26,26 @@
 
 namespace BaseVGM {
 
-  class VScaledSolid : public virtual VGM::IScaledSolid
-  {
-    public:
-      VScaledSolid();
-      virtual ~VScaledSolid();
+class VScaledSolid : public virtual VGM::IScaledSolid
+{
+ public:
+  VScaledSolid();
+  virtual ~VScaledSolid();
 
-      // methods
-      virtual VGM::SolidType Type() const;
+  // methods
+  virtual VGM::SolidType Type() const;
 
-      // streaming
-      virtual std::ostream& Put(std::ostream& out) const;
-  };
+  // streaming
+  virtual std::ostream& Put(std::ostream& out) const;
+};
 
-}
+} // namespace BaseVGM
 
 // inline functions
 
-inline VGM::SolidType
-BaseVGM::VScaledSolid::Type() const { return VGM::kScaled; }
+inline VGM::SolidType BaseVGM::VScaledSolid::Type() const
+{
+  return VGM::kScaled;
+}
 
 #endif // BASE_VGM_V_SCALED_SOLID_H

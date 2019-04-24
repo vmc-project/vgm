@@ -27,23 +27,22 @@ std::ostream& operator<<(std::ostream& out, const VGM::IEllipticalTube& eltu)
 }
 
 //_____________________________________________________________________________
-BaseVGM::VEllipticalTube::VEllipticalTube()
-  : VGM::IEllipticalTube()
+BaseVGM::VEllipticalTube::VEllipticalTube() : VGM::IEllipticalTube()
 {
-/// Default constructor
+  /// Default constructor
 }
 
 //_____________________________________________________________________________
-BaseVGM::VEllipticalTube::~VEllipticalTube() {
-//
+BaseVGM::VEllipticalTube::~VEllipticalTube()
+{
+  //
 }
 
 //_____________________________________________________________________________
 std::ostream& BaseVGM::VEllipticalTube::Put(std::ostream& out) const
 {
-  out << "  dx = "  << Dx()  << "mm"
-      << "  dy = "  << Dy()  << "mm"
-      << "  hz = "  << ZHalfLength()  << "mm";
+  out << "  dx = " << Dx() << "mm"
+      << "  dy = " << Dy() << "mm"
+      << "  hz = " << ZHalfLength() << "mm";
   return out;
 }
-

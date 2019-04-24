@@ -25,49 +25,49 @@
 class G4Material;
 
 namespace VGM {
-  class IMaterial;
+class IMaterial;
 }
 
 namespace Geant4GM {
 
-  class MaterialMap;
+class MaterialMap;
 
-  class MaterialMap
-  {
-    public:
-      typedef std::map<VGM::IMaterial*, G4Material*>  G4MaterialMap;
-      typedef G4MaterialMap::const_iterator           G4MaterialMapCIterator;
+class MaterialMap
+{
+ public:
+  typedef std::map<VGM::IMaterial*, G4Material*> G4MaterialMap;
+  typedef G4MaterialMap::const_iterator G4MaterialMapCIterator;
 
-      typedef std::map<G4Material*, VGM::IMaterial*>  VgmMaterialMap;
-      typedef VgmMaterialMap::const_iterator          VgmMaterialMapCIterator;
+  typedef std::map<G4Material*, VGM::IMaterial*> VgmMaterialMap;
+  typedef VgmMaterialMap::const_iterator VgmMaterialMapCIterator;
 
-    public:
-      MaterialMap();
-      virtual ~MaterialMap();
+ public:
+  MaterialMap();
+  virtual ~MaterialMap();
 
-      // static access methods
-      static MaterialMap* Instance();
+  // static access methods
+  static MaterialMap* Instance();
 
-      // methods
-      void  AddMaterial(VGM::IMaterial*, G4Material*);
-      void  Print() const;
+  // methods
+  void AddMaterial(VGM::IMaterial*, G4Material*);
+  void Print() const;
 
-      // get methods
-      G4Material* GetMaterial(VGM::IMaterial* iMaterial) const;
-      VGM::IMaterial* GetMaterial(G4Material* g4Material) const;
+  // get methods
+  G4Material* GetMaterial(VGM::IMaterial* iMaterial) const;
+  VGM::IMaterial* GetMaterial(G4Material* g4Material) const;
 
-    protected:
-      MaterialMap(const MaterialMap&);
+ protected:
+  MaterialMap(const MaterialMap&);
 
-    private:
-      // static data members
-      static MaterialMap*  fgInstance;
+ private:
+  // static data members
+  static MaterialMap* fgInstance;
 
-      // data members
-      G4MaterialMap   fG4Materials;
-      VgmMaterialMap  fVgmMaterials;
-  };
+  // data members
+  G4MaterialMap fG4Materials;
+  VgmMaterialMap fVgmMaterials;
+};
 
-}
+} // namespace Geant4GM
 
-#endif //GEANT4_GM_VOLUME_MAP_H
+#endif // GEANT4_GM_VOLUME_MAP_H

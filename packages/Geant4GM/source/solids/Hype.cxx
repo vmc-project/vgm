@@ -26,77 +26,60 @@
 #include "G4ReflectedSolid.hh"
 
 //_____________________________________________________________________________
-Geant4GM::Hype::Hype(const std::string& name,
-                     double r1, double r2, double stereo1, double stereo2,
-                     double hz)
+Geant4GM::Hype::Hype(const std::string& name, double r1, double r2,
+  double stereo1, double stereo2, double hz)
   : VGM::ISolid(),
     VGM::IHype(),
     BaseVGM::VHype(),
-    fHype( new G4Hype(name,
-                      r1      / ClhepVGM::Units::Length(),
-                      r2      / ClhepVGM::Units::Length(),
-                      stereo1 / ClhepVGM::Units::Angle(),
-                      stereo2 / ClhepVGM::Units::Angle(),
-		      hz      / ClhepVGM::Units::Length()))
+    fHype(new G4Hype(name, r1 / ClhepVGM::Units::Length(),
+      r2 / ClhepVGM::Units::Length(), stereo1 / ClhepVGM::Units::Angle(),
+      stereo2 / ClhepVGM::Units::Angle(), hz / ClhepVGM::Units::Length()))
 {
-/// Standard constructor to define hyperboloid from parameters
-/// Standard constructor to define hyperboloid from parameters
-/// \param r1 radius of the inner hyperbolic surface in mm
-/// \param r2 radius of the outer hyperbolic surface in mm
-/// \param stereo1 stereo angle for the inner hyperbolic surface in deg
-/// \param stereo2 stereo angle for the outer hyperbolic surface in deg
-/// \param hz half-length along the z axis in mm
+  /// Standard constructor to define hyperboloid from parameters
+  /// Standard constructor to define hyperboloid from parameters
+  /// \param r1 radius of the inner hyperbolic surface in mm
+  /// \param r2 radius of the outer hyperbolic surface in mm
+  /// \param stereo1 stereo angle for the inner hyperbolic surface in deg
+  /// \param stereo2 stereo angle for the outer hyperbolic surface in deg
+  /// \param hz half-length along the z axis in mm
 
   Geant4GM::SolidMap::Instance()->AddSolid(this, fHype);
 }
 
-
 //_____________________________________________________________________________
-Geant4GM::Hype::Hype(G4Hype* hype,
-                     G4ReflectedSolid* reflHype)
-  : VGM::ISolid(),
-    VGM::IHype(),
-    BaseVGM::VHype(),
-    fHype(hype)
+Geant4GM::Hype::Hype(G4Hype* hype, G4ReflectedSolid* reflHype)
+  : VGM::ISolid(), VGM::IHype(), BaseVGM::VHype(), fHype(hype)
 {
-/// Standard constructor to define hyperboloid from G4 object
+  /// Standard constructor to define hyperboloid from G4 object
 
   if (reflHype) {
     Geant4GM::SolidMap::Instance()->AddSolid(this, reflHype);
   }
   else
     Geant4GM::SolidMap::Instance()->AddSolid(this, hype);
-
 }
 
 //_____________________________________________________________________________
-Geant4GM::Hype::Hype()
-  : VGM::ISolid(),
-    VGM::IHype(),
-    BaseVGM::VHype()
+Geant4GM::Hype::Hype() : VGM::ISolid(), VGM::IHype(), BaseVGM::VHype()
 {
-/// Protected default constructor
+  /// Protected default constructor
 }
 
 //_____________________________________________________________________________
 Geant4GM::Hype::Hype(const Hype& rhs)
-  : VGM::ISolid(rhs),
-    VGM::IHype(rhs),
-    BaseVGM::VHype(rhs)
+  : VGM::ISolid(rhs), VGM::IHype(rhs), BaseVGM::VHype(rhs)
 {
-/// Protected copy constructor
+  /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
-Geant4GM::Hype::~Hype() {
-//
+Geant4GM::Hype::~Hype()
+{
+  //
 }
 
 //_____________________________________________________________________________
-std::string Geant4GM::Hype::Name() const
-{
-  return fHype->GetName();
-}
+std::string Geant4GM::Hype::Name() const { return fHype->GetName(); }
 
 //_____________________________________________________________________________
 double Geant4GM::Hype::InnerRadius() const

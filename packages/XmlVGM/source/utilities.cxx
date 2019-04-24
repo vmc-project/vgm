@@ -22,19 +22,18 @@
 
 #include <ClhepVGM/transform.h>
 
-#include <iostream>
 #include <iomanip>
+#include <iostream>
 #include <sstream>
 #include <time.h>
 
 //_____________________________________________________________________________
-std::string
-XmlVGM::UpdateName(const std::string& name,
-                   const std::string& extension)
+std::string XmlVGM::UpdateName(
+  const std::string& name, const std::string& extension)
 {
-/// Remove spaces after the name if present,
-/// replace not allowed characters with fgkCharReplacement inside names
-/// and apped the specified extension.
+  /// Remove spaces after the name if present,
+  /// replace not allowed characters with fgkCharReplacement inside names
+  /// and apped the specified extension.
 
   std::string newName(name);
 
@@ -44,11 +43,11 @@ XmlVGM::UpdateName(const std::string& name,
 
   // Replace not allowed characters
   //
-  for (i=0; i<int(newName.length()); i++) {
+  for (i = 0; i < int(newName.length()); i++) {
 
-    if (( i==0 &&
+    if ((i == 0 &&
           fgkNotAllowedChars1.find(newName[i]) < fgkNotAllowedChars1.size()) ||
-          fgkNotAllowedChars.find(newName[i]) < fgkNotAllowedChars.size() )
+        fgkNotAllowedChars.find(newName[i]) < fgkNotAllowedChars.size())
 
       newName[i] = fgkCharReplacement;
   }
@@ -60,25 +59,23 @@ XmlVGM::UpdateName(const std::string& name,
 }
 
 //_____________________________________________________________________________
-std::string
-XmlVGM::StripName(const std::string& name,
-                  const std::string& extension)
+std::string XmlVGM::StripName(
+  const std::string& name, const std::string& extension)
 {
-/// Remove specified extension from the name if present
+  /// Remove specified extension from the name if present
 
   return name.substr(0, name.find(extension));
 }
 
 //_____________________________________________________________________________
-std::string
-XmlVGM::AppendName(const std::string& name, int size)
+std::string XmlVGM::AppendName(const std::string& name, int size)
 {
-///  Append name with spaces to get the desired size
+  ///  Append name with spaces to get the desired size
 
   std::string newName(name);
 
-  for (int i=0; i < size - int(name.size()); i++) {
-    //std::cout << string << "appending " << i << std::endl;
+  for (int i = 0; i < size - int(name.size()); i++) {
+    // std::cout << string << "appending " << i << std::endl;
     newName.append(" ");
   }
 
@@ -86,10 +83,9 @@ XmlVGM::AppendName(const std::string& name, int size)
 }
 
 //_____________________________________________________________________________
-std::string
-XmlVGM::IsotopeName(const VGM::IIsotope* isotope)
+std::string XmlVGM::IsotopeName(const VGM::IIsotope* isotope)
 {
-/// Generate isotope name in the form Symbol_N
+  /// Generate isotope name in the form Symbol_N
 
   std::string name = UpdateName(isotope->Name());
   std::ostringstream nStream;
@@ -97,9 +93,9 @@ XmlVGM::IsotopeName(const VGM::IIsotope* isotope)
   std::string n(nStream.str());
 
   // Cut N from name if present
-  if ( name.find(n) < name.size() )
+  if (name.find(n) < name.size())
     name.insert(name.find(n), 1, fgkCharReplacement);
-  else  {
+  else {
     name += fgkCharReplacement;
     name += n;
   }
@@ -110,62 +106,58 @@ XmlVGM::IsotopeName(const VGM::IIsotope* isotope)
 //_____________________________________________________________________________
 void XmlVGM::CutName(std::string& name)
 {
-/// Removes spaces after the name if present
+  /// Removes spaces after the name if present
 
   int i = name.length();
-  while (name[--i] == ' ') name = std::string(name,0,i);
+  while (name[--i] == ' ') name = std::string(name, 0, i);
 }
 
 //_____________________________________________________________________________
 void XmlVGM::CutName(std::string& name, int size)
 {
-// Cut name to given size
+  // Cut name to given size
 
   if (int(name.length()) > size) name = std::string(name, 0, size);
 }
 
 //_____________________________________________________________________________
-std::ostream&
-XmlVGM::SmartPut(std::ostream& out,
-                 int size, int precision, double tolerance,
-                 double number,
-		 const std::string& separator)
+std::ostream& XmlVGM::SmartPut(std::ostream& out, int size, int precision,
+  double tolerance, double number, const std::string& separator)
 {
-/// Help function to supress - sign in case the number == 0
-/// within the given precision
+  /// Help function to supress - sign in case the number == 0
+  /// within the given precision
 
-  if ( fabs(number) < tolerance ) number = 0.0;
+  if (fabs(number) < tolerance) number = 0.0;
 
-  if ( number != 0.0 &&
-       ClhepVGM::Round(number*pow(10.,precision))/pow(10.,precision) == 0.0) {
+  if (number != 0.0 &&
+      ClhepVGM::Round(number * pow(10., precision)) / pow(10., precision) ==
+        0.0) {
     out << std::scientific << std::setw(size) << std::setprecision(precision)
         << number << std::fixed << separator;
   }
   else {
-    out << std::setw(size) << std::setprecision(precision)
-        << number << separator;
+    out << std::setw(size) << std::setprecision(precision) << number
+        << separator;
   }
 
   return out;
 }
 
 //_____________________________________________________________________________
-std::ostream&
-XmlVGM::SmartPut(std::ostream& out,
-                 int size, int precision, double tolerance,
-		 const std::string& separator1,
-                 double number,
-		 const std::string& separator2)
+std::ostream& XmlVGM::SmartPut(std::ostream& out, int size, int precision,
+  double tolerance, const std::string& separator1, double number,
+  const std::string& separator2)
 {
-/// Help function to supress - sign in case the number == 0
-/// within the given precision
+  /// Help function to supress - sign in case the number == 0
+  /// within the given precision
 
   out << separator1;
 
-  if ( fabs(number) < tolerance ) number = 0.0;
+  if (fabs(number) < tolerance) number = 0.0;
 
-  if ( number != 0.0 &&
-       ClhepVGM::Round(number*pow(10.,precision))/pow(10.,precision) == 0.0) {
+  if (number != 0.0 &&
+      ClhepVGM::Round(number * pow(10., precision)) / pow(10., precision) ==
+        0.0) {
     out << std::scientific << std::setw(size) << std::setprecision(precision)
         << number << std::fixed;
   }
@@ -178,21 +170,18 @@ XmlVGM::SmartPut(std::ostream& out,
   return out;
 }
 
-
 //_____________________________________________________________________________
 std::string XmlVGM::Date()
 {
-/// Convert date to string
+  /// Convert date to string
 
   time_t t = time(0);
   tm time = *localtime(&t);
 
   std::ostringstream tmpStream;
-  tmpStream
-    << time.tm_year + 1900 << "-"
-    << std::setw(2) << std::setfill('0') << time.tm_mon + 1 << "-"
-    << std::setw(2) << std::setfill('0') << time.tm_mday;
+  tmpStream << time.tm_year + 1900 << "-" << std::setw(2) << std::setfill('0')
+            << time.tm_mon + 1 << "-" << std::setw(2) << std::setfill('0')
+            << time.tm_mday;
 
   return tmpStream.str();
 }
-

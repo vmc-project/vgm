@@ -23,48 +23,43 @@
 #include "VGM/volumes/IPlacement.h"
 
 namespace VGM {
-  class IVolume;
+class IVolume;
 }
 
 namespace BaseVGM {
 
-  class VPlacement : public virtual VGM::IPlacement
-  {
-    public:
-      VPlacement(VGM::IVolume* volume,
-                 VGM::IVolume* motherVolume);
-      virtual ~VPlacement();
+class VPlacement : public virtual VGM::IPlacement
+{
+ public:
+  VPlacement(VGM::IVolume* volume, VGM::IVolume* motherVolume);
+  virtual ~VPlacement();
 
-      // methods
+  // methods
 
-      virtual std::string     Name() const = 0;
-      virtual VGM::IVolume*   Volume() const;
-      virtual VGM::IVolume*   Mother() const;
-      virtual int             CopyNo() const = 0;
-      virtual VGM::Transform  Transformation() const = 0;
+  virtual std::string Name() const = 0;
+  virtual VGM::IVolume* Volume() const;
+  virtual VGM::IVolume* Mother() const;
+  virtual int CopyNo() const = 0;
+  virtual VGM::Transform Transformation() const = 0;
 
-      virtual bool  MultiplePlacementData(
-                             VGM::Axis&  axis,
-                             int&     nofDivisions,
-                             double&  width,
-                             double&  offset,
-                             double&  halfGap) const = 0;
+  virtual bool MultiplePlacementData(VGM::Axis& axis, int& nofDivisions,
+    double& width, double& offset, double& halfGap) const = 0;
 
-                            /// Put the printing of the placement parameters
-			    /// in the out stream
-      virtual std::ostream& Put(std::ostream& out) const;
+  /// Put the printing of the placement parameters
+  /// in the out stream
+  virtual std::ostream& Put(std::ostream& out) const;
 
-      void SetVolume(VGM::IVolume* volume);
+  void SetVolume(VGM::IVolume* volume);
 
-    protected:
-      VPlacement();
-      VPlacement(const VPlacement& rhs);
+ protected:
+  VPlacement();
+  VPlacement(const VPlacement& rhs);
 
-    private:
-      VGM::IVolume*  fVolume;
-      VGM::IVolume*  fMotherVolume;
-  };
+ private:
+  VGM::IVolume* fVolume;
+  VGM::IVolume* fMotherVolume;
+};
 
-}
+} // namespace BaseVGM
 
-#endif //BASE_VGM_V_PLACEMENT_H
+#endif // BASE_VGM_V_PLACEMENT_H

@@ -25,11 +25,12 @@ const int BaseVGM::VMedium::fgkParamSize = 20;
 //_____________________________________________________________________________
 std::ostream& operator<<(std::ostream& out, const VGM::IMedium& medium)
 {
-  out << "Medium: " << "\"" << medium.Name() << "\""
+  out << "Medium: "
+      << "\"" << medium.Name() << "\""
       << "  material " << medium.Name() << " g/cm3"
       << "  parameters:";
 
-  for (int i=0; i<medium.NofParameters(); i++)
+  for (int i = 0; i < medium.NofParameters(); i++)
     out << "  " << medium.Parameter(i);
 
   return out;
@@ -37,43 +38,35 @@ std::ostream& operator<<(std::ostream& out, const VGM::IMedium& medium)
 
 //_____________________________________________________________________________
 BaseVGM::VMedium::VMedium(VGM::IMaterial* material)
-  : VGM::IMedium(),
-    fMaterial(material)
+  : VGM::IMedium(), fMaterial(material)
 {
-/// Standard constructor
-}
-
-
-//_____________________________________________________________________________
-BaseVGM::VMedium::VMedium()
-  : VGM::IMedium()
-{
-/// Protected default constructor
+  /// Standard constructor
 }
 
 //_____________________________________________________________________________
-BaseVGM::VMedium::VMedium(const VMedium& rhs)
-  : VGM::IMedium(rhs)
+BaseVGM::VMedium::VMedium() : VGM::IMedium()
 {
-/// Protected copy constructor
+  /// Protected default constructor
 }
 
 //_____________________________________________________________________________
-BaseVGM::VMedium::~VMedium() {
-//
+BaseVGM::VMedium::VMedium(const VMedium& rhs) : VGM::IMedium(rhs)
+{
+  /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
-VGM::IMaterial*
-BaseVGM::VMedium::Material() const
+BaseVGM::VMedium::~VMedium()
 {
-//
+  //
+}
+
+//_____________________________________________________________________________
+VGM::IMaterial* BaseVGM::VMedium::Material() const
+{
+  //
   return fMaterial;
 }
 
 //_____________________________________________________________________________
-int  BaseVGM::VMedium::NofParameters() const
-{
-  return fgkParamSize;
-}
-
+int BaseVGM::VMedium::NofParameters() const { return fgkParamSize; }

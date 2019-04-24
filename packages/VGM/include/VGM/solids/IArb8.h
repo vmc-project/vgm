@@ -27,35 +27,35 @@
 
 namespace VGM {
 
-  class IArb8 : public virtual ISolid
-  {
-    public:
-      virtual ~IArb8() {}
+class IArb8 : public virtual ISolid
+{
+ public:
+  virtual ~IArb8() {}
 
-      // methods
+  // methods
 
-      virtual SolidType   Type() const = 0;
-      virtual std::string Name() const = 0;
+  virtual SolidType Type() const = 0;
+  virtual std::string Name() const = 0;
 
-		           ///
-		           /// Return the number of vertices
-      virtual int        NofVertices() const = 0;
-		           ///
-		           /// Return the index-th vertex
-      virtual TwoVector  Vertex(int index) const = 0;
-		           ///
-		           /// Return the index-th twist angle
-      virtual double     TwistAngle(int index) const = 0;
-		           ///
-		           /// Return the half-length along the z axis in mm
-      virtual double     ZHalfLength() const = 0;
+  ///
+  /// Return the number of vertices
+  virtual int NofVertices() const = 0;
+  ///
+  /// Return the index-th vertex
+  virtual TwoVector Vertex(int index) const = 0;
+  ///
+  /// Return the index-th twist angle
+  virtual double TwistAngle(int index) const = 0;
+  ///
+  /// Return the half-length along the z axis in mm
+  virtual double ZHalfLength() const = 0;
 
-      // streaming
-      virtual std::ostream& Put(std::ostream& out) const = 0;
-  };
+  // streaming
+  virtual std::ostream& Put(std::ostream& out) const = 0;
+};
 
-}
+} // namespace VGM
 
-std::ostream& operator << (std::ostream& out, const VGM::IArb8& xtru);
+std::ostream& operator<<(std::ostream& out, const VGM::IArb8& xtru);
 
-#endif //VGM_I_ARB8_H
+#endif // VGM_I_ARB8_H

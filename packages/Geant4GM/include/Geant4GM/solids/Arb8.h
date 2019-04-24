@@ -26,8 +26,8 @@
 
 #include "VGM/common/TwoVector.h"
 
-#include "globals.hh"
 #include "G4ThreeVector.hh"
+#include "globals.hh"
 
 #include <string>
 #include <vector>
@@ -37,51 +37,48 @@ class G4VFacet;
 
 namespace Geant4GM {
 
-  class Arb8 : public BaseVGM::VArb8
-  {
-    public:
-      Arb8(const std::string& name,
-           double hz,
-           std::vector<VGM::TwoVector> vertices);
-      virtual ~Arb8();
+class Arb8 : public BaseVGM::VArb8
+{
+ public:
+  Arb8(
+    const std::string& name, double hz, std::vector<VGM::TwoVector> vertices);
+  virtual ~Arb8();
 
-      // static methods
-      static bool IsTwisted(std::vector<VGM::TwoVector> vertices);
+  // static methods
+  static bool IsTwisted(std::vector<VGM::TwoVector> vertices);
 
-      // methods
-      virtual std::string     Name() const;
-      virtual int             NofVertices() const;
-      virtual VGM::TwoVector  Vertex(int index) const;
-      virtual double          TwistAngle(int index) const;
-      virtual double          ZHalfLength() const;
+  // methods
+  virtual std::string Name() const;
+  virtual int NofVertices() const;
+  virtual VGM::TwoVector Vertex(int index) const;
+  virtual double TwistAngle(int index) const;
+  virtual double ZHalfLength() const;
 
-    protected:
-      Arb8();
-      Arb8(const Arb8& rhs);
+ protected:
+  Arb8();
+  Arb8(const Arb8& rhs);
 
-    private:
-      // methods
-      void ReorderVertices(std::vector<G4ThreeVector>& vertices);
+ private:
+  // methods
+  void ReorderVertices(std::vector<G4ThreeVector>& vertices);
 
-      G4VFacet* MakeDownFacet(std::vector<G4ThreeVector> fromVertices,
-                              int ind1, int ind2, int ind3) const;
-      G4VFacet* MakeUpFacet(std::vector<G4ThreeVector> fromVertices,
-                              int ind1, int ind2, int ind3) const;
-      G4VFacet* MakeSideFacet(G4ThreeVector downVertex0,
-                              G4ThreeVector downVertex1,
-                              G4ThreeVector upVertex1,
-                              G4ThreeVector upVertex0) const;
+  G4VFacet* MakeDownFacet(std::vector<G4ThreeVector> fromVertices, int ind1,
+    int ind2, int ind3) const;
+  G4VFacet* MakeUpFacet(std::vector<G4ThreeVector> fromVertices, int ind1,
+    int ind2, int ind3) const;
+  G4VFacet* MakeSideFacet(G4ThreeVector downVertex0, G4ThreeVector downVertex1,
+    G4ThreeVector upVertex1, G4ThreeVector upVertex0) const;
 
-      // static data members
-      static const int    fgkNofVertices;
-      static const double fgkTolerance;
+  // static data members
+  static const int fgkNofVertices;
+  static const double fgkTolerance;
 
-      // data members
-      double                      fHz;
-      std::vector<VGM::TwoVector> fVertices;
-      G4TessellatedSolid*         fTessellatedSolid;
-  };
+  // data members
+  double fHz;
+  std::vector<VGM::TwoVector> fVertices;
+  G4TessellatedSolid* fTessellatedSolid;
+};
 
-}
+} // namespace Geant4GM
 
-#endif //GEANT4_GM_EXTRUDED_SOLID_H
+#endif // GEANT4_GM_EXTRUDED_SOLID_H

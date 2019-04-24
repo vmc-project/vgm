@@ -27,26 +27,25 @@ std::ostream& operator<<(std::ostream& out, const VGM::IPara& para)
 }
 
 //_____________________________________________________________________________
-BaseVGM::VPara::VPara()
-  : VGM::IPara()
+BaseVGM::VPara::VPara() : VGM::IPara()
 {
-/// Default constructor
+  /// Default constructor
 }
 
 //_____________________________________________________________________________
-BaseVGM::VPara::~VPara() {
-//
+BaseVGM::VPara::~VPara()
+{
+  //
 }
 
 //_____________________________________________________________________________
 std::ostream& BaseVGM::VPara::Put(std::ostream& out) const
 {
-  out << "  hx = "    << XHalfLength() << "mm"
-      << "  hy = "    << YHalfLength() << "mm"
-      << "  hz = "    << ZHalfLength() << "mm"
-      << "  alpha = " << Alpha()       << "deg"
-      << "  theta = " << Theta()       << "deg"
-      << "  phi = "   << Phi()         << "deg";
+  out << "  hx = " << XHalfLength() << "mm"
+      << "  hy = " << YHalfLength() << "mm"
+      << "  hz = " << ZHalfLength() << "mm"
+      << "  alpha = " << Alpha() << "deg"
+      << "  theta = " << Theta() << "deg"
+      << "  phi = " << Phi() << "deg";
   return out;
 }
-

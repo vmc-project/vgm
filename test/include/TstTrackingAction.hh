@@ -16,7 +16,6 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-
 #ifndef TST_TRACKING_ACTION_H
 #define TST_TRACKING_ACTION_H
 
@@ -26,14 +25,12 @@ class G4Track;
 
 class TstTrackingAction : public G4UserTrackingAction
 {
-  public:
-    TstTrackingAction();
-   ~TstTrackingAction();
+ public:
+  TstTrackingAction();
+  ~TstTrackingAction();
 
-  public:
-    virtual void PreUserTrackingAction(const G4Track*);
+ public:
+  virtual void PreUserTrackingAction(const G4Track*);
 };
 
 #endif
-
-

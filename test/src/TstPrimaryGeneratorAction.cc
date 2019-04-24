@@ -18,9 +18,9 @@
 
 #include "G4Event.hh"
 #include "G4GeneralParticleSource.hh"
+#include "G4ParticleDefinition.hh"
 #include "G4ParticleGun.hh"
 #include "G4ParticleTable.hh"
-#include "G4ParticleDefinition.hh"
 #include "globals.hh"
 
 #include "TstPrimaryGeneratorAction.hh"
@@ -44,14 +44,12 @@ TstPrimaryGeneratorAction::~TstPrimaryGeneratorAction()
 
 void TstPrimaryGeneratorAction::GeneratePrimaries(G4Event* event)
 {
-  switch ( fGunType ) {
+  switch (fGunType) {
     case kGun:
-     fParticleGun->GeneratePrimaryVertex(event);
-     break;
+      fParticleGun->GeneratePrimaryVertex(event);
+      break;
     case kGPS:
-     fGPSGun->GeneratePrimaryVertex(event);
-     break;
+      fGPSGun->GeneratePrimaryVertex(event);
+      break;
   }
 }
-
-

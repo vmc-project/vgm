@@ -19,18 +19,18 @@
 #include "TstPrimaryGeneratorActionMessenger.hh"
 #include "TstPrimaryGeneratorAction.hh"
 
-#include <G4UIdirectory.hh>
 #include <G4UIcmdWithAString.hh>
+#include <G4UIdirectory.hh>
 
 //_____________________________________________________________________________
 TstPrimaryGeneratorActionMessenger::TstPrimaryGeneratorActionMessenger(
-                             TstPrimaryGeneratorAction* primaryGeneratorAction)
+  TstPrimaryGeneratorAction* primaryGeneratorAction)
   : G4UImessenger(),
     fPrimaryGeneratorAction(primaryGeneratorAction),
     fDirectory(0),
     fSetGunTypeCmd(0)
 {
-//
+  //
   fDirectory = new G4UIdirectory("/tstGenerator/");
   fDirectory->SetGuidance("TstPrimaryGeneratorAction control commands.");
 
@@ -38,12 +38,14 @@ TstPrimaryGeneratorActionMessenger::TstPrimaryGeneratorActionMessenger(
   fSetGunTypeCmd->SetGuidance("Select gun type: Gun GPS");
   fSetGunTypeCmd->SetParameterName("gunType", false);
   fSetGunTypeCmd->SetCandidates("Gun GPS");
-  fSetGunTypeCmd->AvailableForStates(G4State_PreInit, G4State_Init, G4State_Idle);
+  fSetGunTypeCmd->AvailableForStates(
+    G4State_PreInit, G4State_Init, G4State_Idle);
 }
 
 //_____________________________________________________________________________
-TstPrimaryGeneratorActionMessenger::~TstPrimaryGeneratorActionMessenger() {
-//
+TstPrimaryGeneratorActionMessenger::~TstPrimaryGeneratorActionMessenger()
+{
+  //
   delete fDirectory;
   delete fSetGunTypeCmd;
 }
@@ -53,16 +55,16 @@ TstPrimaryGeneratorActionMessenger::~TstPrimaryGeneratorActionMessenger() {
 //
 
 //_____________________________________________________________________________
-void TstPrimaryGeneratorActionMessenger::SetNewValue(G4UIcommand* command,
-       G4String newValue)
+void TstPrimaryGeneratorActionMessenger::SetNewValue(
+  G4UIcommand* command, G4String newValue)
 {
-/// Apply command to the associated object.
+  /// Apply command to the associated object.
 
-  if(command == fSetGunTypeCmd) {
-    if ( newValue == G4String("Gun") ) {
+  if (command == fSetGunTypeCmd) {
+    if (newValue == G4String("Gun")) {
       fPrimaryGeneratorAction->SetGunType(TstPrimaryGeneratorAction::kGun);
     }
-    else if ( newValue == G4String("GPS") ) {
+    else if (newValue == G4String("GPS")) {
       fPrimaryGeneratorAction->SetGunType(TstPrimaryGeneratorAction::kGPS);
     }
   }

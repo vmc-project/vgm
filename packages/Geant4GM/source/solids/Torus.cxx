@@ -18,47 +18,38 @@
 
 #include "ClhepVGM/Units.h"
 
-#include "Geant4GM/solids/Torus.h"
 #include "Geant4GM/solids/SolidMap.h"
+#include "Geant4GM/solids/Torus.h"
 
-#include "G4Torus.hh"
 #include "G4ReflectedSolid.hh"
+#include "G4Torus.hh"
 
 //_____________________________________________________________________________
-Geant4GM::Torus::Torus(const std::string& name,
-                       double rin, double rout, double rax,
-		       double sphi, double dphi)
+Geant4GM::Torus::Torus(const std::string& name, double rin, double rout,
+  double rax, double sphi, double dphi)
   : VGM::ISolid(),
     VGM::ITorus(),
     BaseVGM::VTorus(),
-    fTorus( new G4Torus(name,
-                        rin  / ClhepVGM::Units::Length(),
-			rout / ClhepVGM::Units::Length(),
-			rax  / ClhepVGM::Units::Length(),
-			sphi / ClhepVGM::Units::Angle(),
-			dphi / ClhepVGM::Units::Angle()) )
+    fTorus(new G4Torus(name, rin / ClhepVGM::Units::Length(),
+      rout / ClhepVGM::Units::Length(), rax / ClhepVGM::Units::Length(),
+      sphi / ClhepVGM::Units::Angle(), dphi / ClhepVGM::Units::Angle()))
 {
-/// Standard constructor to define torus from parameters
-/// \param rin inside radius of the torus in mm
-/// \param rout outside radius of the torus in mm
-/// \param rax axial (swept) radius of the torus in mm
-/// \param sphi starting angle of the segment in deg
-///	   (with 0 being the +x axis)
-/// \param dphi opening angle of the segment in deg
+  /// Standard constructor to define torus from parameters
+  /// \param rin inside radius of the torus in mm
+  /// \param rout outside radius of the torus in mm
+  /// \param rax axial (swept) radius of the torus in mm
+  /// \param sphi starting angle of the segment in deg
+  ///	   (with 0 being the +x axis)
+  /// \param dphi opening angle of the segment in deg
 
   Geant4GM::SolidMap::Instance()->AddSolid(this, fTorus);
 }
 
-
 //_____________________________________________________________________________
-Geant4GM::Torus::Torus(G4Torus* torus,
-                       G4ReflectedSolid* reflTorus)
-  : VGM::ISolid(),
-    VGM::ITorus(),
-    BaseVGM::VTorus(),
-    fTorus(torus)
+Geant4GM::Torus::Torus(G4Torus* torus, G4ReflectedSolid* reflTorus)
+  : VGM::ISolid(), VGM::ITorus(), BaseVGM::VTorus(), fTorus(torus)
 {
-/// Standard constructor to define torus from G4 object
+  /// Standard constructor to define torus from G4 object
 
   if (reflTorus)
     Geant4GM::SolidMap::Instance()->AddSolid(this, reflTorus);
@@ -67,33 +58,26 @@ Geant4GM::Torus::Torus(G4Torus* torus,
 }
 
 //_____________________________________________________________________________
-Geant4GM::Torus::Torus()
-  : VGM::ISolid(),
-    VGM::ITorus(),
-    BaseVGM::VTorus()
+Geant4GM::Torus::Torus() : VGM::ISolid(), VGM::ITorus(), BaseVGM::VTorus()
 {
-/// Protected default constructor
+  /// Protected default constructor
 }
 
 //_____________________________________________________________________________
 Geant4GM::Torus::Torus(const Torus& rhs)
-  : VGM::ISolid(rhs),
-    VGM::ITorus(rhs),
-    BaseVGM::VTorus(rhs)
+  : VGM::ISolid(rhs), VGM::ITorus(rhs), BaseVGM::VTorus(rhs)
 {
-/// Protected copy constructor
+  /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
-Geant4GM::Torus::~Torus() {
-//
+Geant4GM::Torus::~Torus()
+{
+  //
 }
 
 //_____________________________________________________________________________
-std::string Geant4GM::Torus::Name() const
-{
-  return fTorus->GetName();
-}
+std::string Geant4GM::Torus::Name() const { return fTorus->GetName(); }
 
 //_____________________________________________________________________________
 double Geant4GM::Torus::InnerRadius() const

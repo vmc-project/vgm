@@ -17,7 +17,6 @@
 //
 // Author: Ivana Hrivnacova; IPN Orsay
 
-
 #include "TstSteppingAction.hh"
 
 #include "G4Track.hh"
@@ -25,11 +24,9 @@
 
 const G4int TstSteppingAction::fgkMaxStepNumber = 1000;
 
-TstSteppingAction::TstSteppingAction()
-{}
+TstSteppingAction::TstSteppingAction() {}
 
-TstSteppingAction::~TstSteppingAction()
-{}
+TstSteppingAction::~TstSteppingAction() {}
 
 void TstSteppingAction::UserSteppingAction(const G4Step* step)
 {
@@ -38,7 +35,7 @@ void TstSteppingAction::UserSteppingAction(const G4Step* step)
 
   // stop track if maximum number of steps has been reached
   //
-  if ( stepNumber ==  fgkMaxStepNumber) {
+  if (stepNumber == fgkMaxStepNumber) {
     G4cerr << "MaxStepNumber (" << fgkMaxStepNumber
            << ") has been reached. Stopping track ..." << G4endl;
 

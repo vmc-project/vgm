@@ -22,35 +22,35 @@
 
 #include "VGM/materials/IMedium.h"
 
-#include <string>
 #include <iostream>
+#include <string>
 
 namespace VGM {
-  class IMaterial;
+class IMaterial;
 }
 
 namespace BaseVGM {
 
-  class VMedium : public virtual VGM::IMedium
-  {
-    public:
-      VMedium(VGM::IMaterial* material);
-      virtual ~VMedium();
+class VMedium : public virtual VGM::IMedium
+{
+ public:
+  VMedium(VGM::IMaterial* material);
+  virtual ~VMedium();
 
-      // methods
-      virtual VGM::IMaterial* Material() const ;
-      virtual int  NofParameters() const;
+  // methods
+  virtual VGM::IMaterial* Material() const;
+  virtual int NofParameters() const;
 
-    protected:
-      VMedium();
-      VMedium(const VMedium& rhs);
+ protected:
+  VMedium();
+  VMedium(const VMedium& rhs);
 
-      // data members
-      static const int fgkParamSize;
+  // data members
+  static const int fgkParamSize;
 
-      VGM::IMaterial* fMaterial;
-  };
+  VGM::IMaterial* fMaterial;
+};
 
-}
+} // namespace BaseVGM
 
-#endif //BASE_VGM_V_MEDIUM_H
+#endif // BASE_VGM_V_MEDIUM_H

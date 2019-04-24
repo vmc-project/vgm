@@ -25,49 +25,49 @@
 class TGeoIsotope;
 
 namespace VGM {
-  class IIsotope;
+class IIsotope;
 }
 
 namespace RootGM {
 
-  class IsotopeMap;
+class IsotopeMap;
 
-  class IsotopeMap
-  {
-    public:
-      typedef std::map<VGM::IIsotope*, TGeoIsotope*>  TGeoIsotopeMap;
-      typedef TGeoIsotopeMap::const_iterator          TGeoIsotopeMapCIterator;
+class IsotopeMap
+{
+ public:
+  typedef std::map<VGM::IIsotope*, TGeoIsotope*> TGeoIsotopeMap;
+  typedef TGeoIsotopeMap::const_iterator TGeoIsotopeMapCIterator;
 
-      typedef std::map<TGeoIsotope*, VGM::IIsotope*>  VgmIsotopeMap;
-      typedef VgmIsotopeMap::const_iterator           VgmIsotopeMapCIterator;
+  typedef std::map<TGeoIsotope*, VGM::IIsotope*> VgmIsotopeMap;
+  typedef VgmIsotopeMap::const_iterator VgmIsotopeMapCIterator;
 
-    public:
-      IsotopeMap();
-      virtual ~IsotopeMap();
+ public:
+  IsotopeMap();
+  virtual ~IsotopeMap();
 
-      // static access methods
-      static IsotopeMap* Instance();
+  // static access methods
+  static IsotopeMap* Instance();
 
-      // methods
-      void  AddIsotope(VGM::IIsotope*, TGeoIsotope*);
-      void  Print() const;
+  // methods
+  void AddIsotope(VGM::IIsotope*, TGeoIsotope*);
+  void Print() const;
 
-      // get methods
-      TGeoIsotope*   GetIsotope(VGM::IIsotope* iIsotope) const;
-      VGM::IIsotope* GetIsotope(TGeoIsotope* tgeoIsotope) const;
+  // get methods
+  TGeoIsotope* GetIsotope(VGM::IIsotope* iIsotope) const;
+  VGM::IIsotope* GetIsotope(TGeoIsotope* tgeoIsotope) const;
 
-    protected:
-      IsotopeMap(const IsotopeMap&);
+ protected:
+  IsotopeMap(const IsotopeMap&);
 
-    private:
-      // static data members
-      static IsotopeMap*  fgInstance;
+ private:
+  // static data members
+  static IsotopeMap* fgInstance;
 
-      // data members
-      TGeoIsotopeMap  fTGeoIsotopes;
-      VgmIsotopeMap   fVgmIsotopes;
-  };
+  // data members
+  TGeoIsotopeMap fTGeoIsotopes;
+  VgmIsotopeMap fVgmIsotopes;
+};
 
-}
+} // namespace RootGM
 
-#endif //GEANT4_GM_ISOTOPE_MAP_H
+#endif // GEANT4_GM_ISOTOPE_MAP_H

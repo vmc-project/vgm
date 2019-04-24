@@ -17,30 +17,27 @@
 // Author: Ivana Hrivnacova; IPN Orsay
 
 #include "RootGM/solids/ExtrudedSolid.h"
-#include "RootGM/solids/SolidMap.h"
 #include "RootGM/common/Units.h"
+#include "RootGM/solids/SolidMap.h"
 
 #include "TGeoXtru.h"
 
+#include <cstdlib>
 #include <iostream>
 #include <math.h>
-#include <cstdlib>
 
 //_____________________________________________________________________________
 RootGM::ExtrudedSolid::ExtrudedSolid(const std::string& name,
-                               std::vector<VGM::TwoVector> polygon,
-                               std::vector< std::vector<double> > zsections)
-  : VGM::ISolid(),
-    VGM::IExtrudedSolid(),
-    BaseVGM::VExtrudedSolid(),
-    fXtru(0)
+  std::vector<VGM::TwoVector> polygon,
+  std::vector<std::vector<double> > zsections)
+  : VGM::ISolid(), VGM::IExtrudedSolid(), BaseVGM::VExtrudedSolid(), fXtru(0)
 {
-/// Standard constructor to define ExtrudedSolid from parameters
-/// \param polygon the outline polygon
-/// \param zsections the z-sections defined by
-///        z positions, polygon offset in x, y and scale
+  /// Standard constructor to define ExtrudedSolid from parameters
+  /// \param polygon the outline polygon
+  /// \param zsections the z-sections defined by
+  ///        z positions, polygon offset in x, y and scale
 
-  if ( zsections.size() < 2 ) {
+  if (zsections.size() < 2) {
     std::cerr << "+++ Error  +++" << std::endl;
     std::cerr << "    Number of z-sections = " << zsections.size()
               << " has to be >= 2" << std::endl;
@@ -51,51 +48,42 @@ RootGM::ExtrudedSolid::ExtrudedSolid(const std::string& name,
   fXtru->SetName(name.data());
 
   // set polygon
-  Int_t   nv = polygon.size();
+  Int_t nv = polygon.size();
   double* xv = new double[nv];
   double* yv = new double[nv];
-  for (unsigned int i=0; i<polygon.size(); ++i ) {
-    xv[i] = polygon[i].first  / RootGM::Units::Length();
+  for (unsigned int i = 0; i < polygon.size(); ++i) {
+    xv[i] = polygon[i].first / RootGM::Units::Length();
     yv[i] = polygon[i].second / RootGM::Units::Length();
   }
   fXtru->DefinePolygon(nv, xv, yv);
 
   // set z-sections
-  for (unsigned int i=0; i<zsections.size(); ++i ) {
-    fXtru->DefineSection(i,
-                 zsections[i][0]/ RootGM::Units::Length(),
-                 zsections[i][1]/ RootGM::Units::Length(),
-                 zsections[i][2]/ RootGM::Units::Length(),
-                 zsections[i][3]);
+  for (unsigned int i = 0; i < zsections.size(); ++i) {
+    fXtru->DefineSection(i, zsections[i][0] / RootGM::Units::Length(),
+      zsections[i][1] / RootGM::Units::Length(),
+      zsections[i][2] / RootGM::Units::Length(), zsections[i][3]);
   }
 
   RootGM::SolidMap::Instance()->AddSolid(this, fXtru);
 
-  delete [] xv;
-  delete [] yv;
+  delete[] xv;
+  delete[] yv;
 }
-
 
 //_____________________________________________________________________________
 RootGM::ExtrudedSolid::ExtrudedSolid(TGeoXtru* xtru)
-  : VGM::ISolid(),
-    VGM::IExtrudedSolid(),
-    BaseVGM::VExtrudedSolid(),
-    fXtru(xtru)
+  : VGM::ISolid(), VGM::IExtrudedSolid(), BaseVGM::VExtrudedSolid(), fXtru(xtru)
 {
-/// Standard constructor to define ExtrudedSolid from Root object
+  /// Standard constructor to define ExtrudedSolid from Root object
 
   RootGM::SolidMap::Instance()->AddSolid(this, fXtru);
 }
 
 //_____________________________________________________________________________
 RootGM::ExtrudedSolid::ExtrudedSolid()
-  : VGM::ISolid(),
-    VGM::IExtrudedSolid(),
-    BaseVGM::VExtrudedSolid(),
-    fXtru(0)
+  : VGM::ISolid(), VGM::IExtrudedSolid(), BaseVGM::VExtrudedSolid(), fXtru(0)
 {
-/// Protected default constructor
+  /// Protected default constructor
 }
 
 //_____________________________________________________________________________
@@ -105,13 +93,13 @@ RootGM::ExtrudedSolid::ExtrudedSolid(const ExtrudedSolid& rhs)
     BaseVGM::VExtrudedSolid(rhs),
     fXtru(0)
 {
-/// Protected copy constructor
+  /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
 RootGM::ExtrudedSolid::~ExtrudedSolid()
 {
-//
+  //
 }
 
 /*
@@ -138,41 +126,31 @@ void  RootGM::ExtrudedSolid::AddZPlane(double zpos,
 */
 
 //_____________________________________________________________________________
-std::string RootGM::ExtrudedSolid::Name() const
-{
-  return fXtru->GetName();
-}
+std::string RootGM::ExtrudedSolid::Name() const { return fXtru->GetName(); }
 
 //_____________________________________________________________________________
-int RootGM::ExtrudedSolid::NofVertices() const
-{
-  return fXtru->GetNvert();
-}
+int RootGM::ExtrudedSolid::NofVertices() const { return fXtru->GetNvert(); }
 
 //_____________________________________________________________________________
-VGM::TwoVector  RootGM::ExtrudedSolid::Vertex(int index) const
+VGM::TwoVector RootGM::ExtrudedSolid::Vertex(int index) const
 {
-  if ( index < 0 || index > NofVertices() ) {
+  if (index < 0 || index > NofVertices()) {
     std::cerr << "+++ Error  +++" << std::endl;
     std::cerr << "    Wrong vertex index: " << index << std::endl;
     exit(1);
   }
 
-  return VGM::TwoVector(
-           fXtru->GetX(index) * RootGM::Units::Length(),
-           fXtru->GetY(index) * RootGM::Units::Length());
+  return VGM::TwoVector(fXtru->GetX(index) * RootGM::Units::Length(),
+    fXtru->GetY(index) * RootGM::Units::Length());
 }
 
 //_____________________________________________________________________________
-int RootGM::ExtrudedSolid::NofZSections() const
-{
-  return fXtru->GetNz();
-}
+int RootGM::ExtrudedSolid::NofZSections() const { return fXtru->GetNz(); }
 
 //_____________________________________________________________________________
 double RootGM::ExtrudedSolid::ZPosition(int iz) const
 {
-  if ( iz < 0 || iz > NofZSections() ) {
+  if (iz < 0 || iz > NofZSections()) {
     std::cerr << "+++ Error  +++" << std::endl;
     std::cerr << "    Wrong index: " << iz << std::endl;
     exit(1);
@@ -184,20 +162,20 @@ double RootGM::ExtrudedSolid::ZPosition(int iz) const
 //_____________________________________________________________________________
 VGM::TwoVector RootGM::ExtrudedSolid::Offset(int iz) const
 {
-  if ( iz < 0 || iz > NofZSections() ) {
+  if (iz < 0 || iz > NofZSections()) {
     std::cerr << "+++ Error  +++" << std::endl;
     std::cerr << "    Wrong index: " << iz << std::endl;
     exit(1);
   }
 
   return VGM::TwoVector(fXtru->GetXOffset(iz) * RootGM::Units::Length(),
-                        fXtru->GetYOffset(iz) * RootGM::Units::Length());
+    fXtru->GetYOffset(iz) * RootGM::Units::Length());
 }
 
 //_____________________________________________________________________________
 double RootGM::ExtrudedSolid::Scale(int iz) const
 {
-  if ( iz < 0 || iz > NofZSections() ) {
+  if (iz < 0 || iz > NofZSections()) {
     std::cerr << "+++ Error  +++" << std::endl;
     std::cerr << "    Wrong index: " << iz << std::endl;
     exit(1);

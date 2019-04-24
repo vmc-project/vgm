@@ -32,36 +32,36 @@ class G4ReflectedSolid;
 
 namespace Geant4GM {
 
-  class DisplacedSolid : public BaseVGM::VDisplacedSolid
-  {
-    public:
-      DisplacedSolid(const std::string& name,
-                     VGM::ISolid* constituentSolid,
-                     CLHEP::HepRotation* rotation,
-	 	     const CLHEP::Hep3Vector& translation);
-      DisplacedSolid(G4DisplacedSolid* displacedSolid,
-                     G4ReflectedSolid* reflectedDisplaced);
-      virtual ~DisplacedSolid();
+class DisplacedSolid : public BaseVGM::VDisplacedSolid
+{
+ public:
+  DisplacedSolid(const std::string& name, VGM::ISolid* constituentSolid,
+    CLHEP::HepRotation* rotation, const CLHEP::Hep3Vector& translation);
+  DisplacedSolid(
+    G4DisplacedSolid* displacedSolid, G4ReflectedSolid* reflectedDisplaced);
+  virtual ~DisplacedSolid();
 
-      // methods
-      virtual std::string Name() const;
+  // methods
+  virtual std::string Name() const;
 
-      virtual VGM::ISolid*    ConstituentSolid() const;
-      virtual VGM::Transform  Displacement() const;
-      virtual bool            ToBeReflected() const;
+  virtual VGM::ISolid* ConstituentSolid() const;
+  virtual VGM::Transform Displacement() const;
+  virtual bool ToBeReflected() const;
 
-    protected:
-      DisplacedSolid();
-      DisplacedSolid(const DisplacedSolid& rhs);
+ protected:
+  DisplacedSolid();
+  DisplacedSolid(const DisplacedSolid& rhs);
 
-    private:
-      G4DisplacedSolid* fDisplacedSolid;
-      bool              fToBeReflected;
-  };
+ private:
+  G4DisplacedSolid* fDisplacedSolid;
+  bool fToBeReflected;
+};
 
-}
+} // namespace Geant4GM
 
 inline bool Geant4GM::DisplacedSolid::ToBeReflected() const
-{ return fToBeReflected; }
+{
+  return fToBeReflected;
+}
 
-#endif //GEANT4_GM_DISPLACED_SOLID_H
+#endif // GEANT4_GM_DISPLACED_SOLID_H

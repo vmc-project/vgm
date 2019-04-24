@@ -32,26 +32,27 @@
 #ifndef VGM_TRANSFORM_H
 #define VGM_TRANSFORM_H
 
-#include <vector>
 #include <iostream>
+#include <vector>
 
 namespace VGM {
 
-  typedef std::vector<double>  Transform;
+typedef std::vector<double> Transform;
 
-  enum TransformVector {
-    kDx,
-    kDy,
-    kDz,
-    kAngleX,
-    kAngleY,
-    kAngleZ,
-    kReflZ,
-    kSize
-  };
+enum TransformVector
+{
+  kDx,
+  kDy,
+  kDz,
+  kAngleX,
+  kAngleY,
+  kAngleZ,
+  kReflZ,
+  kSize
+};
 
-}
+} // namespace VGM
 
-std::ostream& operator << (std::ostream& out, const VGM::Transform& transform);
+std::ostream& operator<<(std::ostream& out, const VGM::Transform& transform);
 
-#endif //VGM_TRANSFORM_H
+#endif // VGM_TRANSFORM_H

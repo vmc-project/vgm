@@ -26,24 +26,23 @@
 
 namespace BaseVGM {
 
-  class VHype : public virtual VGM::IHype
-  {
-    public:
-      VHype();
-      virtual ~VHype();
+class VHype : public virtual VGM::IHype
+{
+ public:
+  VHype();
+  virtual ~VHype();
 
-      // methods
-      virtual VGM::SolidType Type() const;
+  // methods
+  virtual VGM::SolidType Type() const;
 
-      // streaming
-      virtual std::ostream& Put(std::ostream& out) const;
-  };
+  // streaming
+  virtual std::ostream& Put(std::ostream& out) const;
+};
 
-}
+} // namespace BaseVGM
 
 // inline functions
 
-inline VGM::SolidType
-BaseVGM::VHype::Type() const { return VGM::kHype; }
+inline VGM::SolidType BaseVGM::VHype::Type() const { return VGM::kHype; }
 
-#endif //BASE_VGM_V_HYPE_H
+#endif // BASE_VGM_V_HYPE_H

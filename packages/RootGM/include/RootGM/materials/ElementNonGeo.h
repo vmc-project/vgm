@@ -27,39 +27,38 @@
 
 namespace RootGM {
 
-  class ElementNonGeo : public virtual VGM::IElement
-  {
-    public:
-      ElementNonGeo(const std::string& name,
-              const std::string& symbol,
-              double z, double a);
-      virtual ~ElementNonGeo();
+class ElementNonGeo : public virtual VGM::IElement
+{
+ public:
+  ElementNonGeo(
+    const std::string& name, const std::string& symbol, double z, double a);
+  virtual ~ElementNonGeo();
 
-      // methods
-      virtual std::string Name() const;
-      virtual std::string Symbol() const;
+  // methods
+  virtual std::string Name() const;
+  virtual std::string Symbol() const;
 
-      virtual double  Z() const;
-      virtual double  N() const;
-      virtual double  A() const;
+  virtual double Z() const;
+  virtual double N() const;
+  virtual double A() const;
 
-      virtual int     NofIsotopes() const;
-      virtual VGM::IIsotope*  Isotope(int i) const;
-      virtual double  RelAbundance(int i) const;
+  virtual int NofIsotopes() const;
+  virtual VGM::IIsotope* Isotope(int i) const;
+  virtual double RelAbundance(int i) const;
 
-    private:
-      ElementNonGeo(const ElementNonGeo& rhs);
-      ElementNonGeo();
+ private:
+  ElementNonGeo(const ElementNonGeo& rhs);
+  ElementNonGeo();
 
-      void   CheckIndex(int iel) const;
+  void CheckIndex(int iel) const;
 
-      std::string   fName;
-      std::string   fSymbol;
-      double  fZ;
-      double  fN;
-      double  fA;
-  };
+  std::string fName;
+  std::string fSymbol;
+  double fZ;
+  double fN;
+  double fA;
+};
 
-}
+} // namespace RootGM
 
-#endif //ROOT_GM_ELEMENT_NON_GEO_H
+#endif // ROOT_GM_ELEMENT_NON_GEO_H

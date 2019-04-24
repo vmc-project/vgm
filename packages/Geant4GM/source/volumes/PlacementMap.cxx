@@ -22,13 +22,12 @@
 
 #include "G4VPhysicalVolume.hh"
 
-Geant4GM::PlacementMap*  Geant4GM::PlacementMap::fgInstance = 0;
+Geant4GM::PlacementMap* Geant4GM::PlacementMap::fgInstance = 0;
 
 //_____________________________________________________________________________
-Geant4GM::PlacementMap*
-Geant4GM::PlacementMap::Instance()
+Geant4GM::PlacementMap* Geant4GM::PlacementMap::Instance()
 {
-/// Singleton access function.
+  /// Singleton access function.
 
   if (!fgInstance) new Geant4GM::PlacementMap();
 
@@ -36,11 +35,9 @@ Geant4GM::PlacementMap::Instance()
 }
 
 //_____________________________________________________________________________
-Geant4GM::PlacementMap::PlacementMap()
-  : fG4Placements(),
-    fVgmPlacements()
+Geant4GM::PlacementMap::PlacementMap() : fG4Placements(), fVgmPlacements()
 {
-/// Standard default constructor
+  /// Standard default constructor
 
   fgInstance = this;
 }
@@ -48,31 +45,31 @@ Geant4GM::PlacementMap::PlacementMap()
 //_____________________________________________________________________________
 Geant4GM::PlacementMap::PlacementMap(const PlacementMap&)
 {
-/// Protected copy constructor
+  /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
 Geant4GM::PlacementMap::~PlacementMap()
 {
-//
+  //
   fgInstance = 0;
 }
 
 //_____________________________________________________________________________
-void  Geant4GM::PlacementMap::AddPlacement(VGM::IPlacement* iPlacement,
-                                           G4VPhysicalVolume* g4Placement)
+void Geant4GM::PlacementMap::AddPlacement(
+  VGM::IPlacement* iPlacement, G4VPhysicalVolume* g4Placement)
 {
-/// Add the specified pair in the map
+  /// Add the specified pair in the map
 
   fG4Placements[iPlacement] = g4Placement;
   fVgmPlacements[g4Placement] = iPlacement;
 }
 
 //_____________________________________________________________________________
-G4VPhysicalVolume*
-Geant4GM::PlacementMap::GetPlacement(VGM::IPlacement* iPlacement) const
+G4VPhysicalVolume* Geant4GM::PlacementMap::GetPlacement(
+  VGM::IPlacement* iPlacement) const
 {
-/// Find the G4 physical volume corresponding to a specified VGM placement
+  /// Find the G4 physical volume corresponding to a specified VGM placement
 
   G4PlacementMapCIterator i = fG4Placements.find(iPlacement);
   if (i != fG4Placements.end())
@@ -82,10 +79,10 @@ Geant4GM::PlacementMap::GetPlacement(VGM::IPlacement* iPlacement) const
 }
 
 //_____________________________________________________________________________
-VGM::IPlacement*
-Geant4GM::PlacementMap::GetPlacement(G4VPhysicalVolume* pv) const
+VGM::IPlacement* Geant4GM::PlacementMap::GetPlacement(
+  G4VPhysicalVolume* pv) const
 {
-/// Find the VGM placement corresponding to a specified G4 physical volume
+  /// Find the VGM placement corresponding to a specified G4 physical volume
 
   VgmPlacementMapCIterator i = fVgmPlacements.find(pv);
   if (i != fVgmPlacements.end())

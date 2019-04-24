@@ -29,31 +29,30 @@ class TGeoXtru;
 
 namespace RootGM {
 
-  class ExtrudedSolid : public BaseVGM::VExtrudedSolid
-  {
-    public:
-      ExtrudedSolid(const std::string& name,
-                    std::vector<VGM::TwoVector> polygon,
-                    std::vector< std::vector<double> > zsections);
-      ExtrudedSolid(TGeoXtru* xtru);
-      virtual ~ExtrudedSolid();
+class ExtrudedSolid : public BaseVGM::VExtrudedSolid
+{
+ public:
+  ExtrudedSolid(const std::string& name, std::vector<VGM::TwoVector> polygon,
+    std::vector<std::vector<double> > zsections);
+  ExtrudedSolid(TGeoXtru* xtru);
+  virtual ~ExtrudedSolid();
 
-      // methods
-      virtual std::string     Name() const;
-      inline  int             NofVertices() const;
-      inline  VGM::TwoVector  Vertex(int index) const;
-      virtual int             NofZSections() const;
-      virtual double          ZPosition(int iz) const;
-      virtual VGM::TwoVector  Offset(int iz) const;
-      virtual double          Scale(int iz) const;
+  // methods
+  virtual std::string Name() const;
+  inline int NofVertices() const;
+  inline VGM::TwoVector Vertex(int index) const;
+  virtual int NofZSections() const;
+  virtual double ZPosition(int iz) const;
+  virtual VGM::TwoVector Offset(int iz) const;
+  virtual double Scale(int iz) const;
 
-    protected:
-      ExtrudedSolid();
-      ExtrudedSolid(const ExtrudedSolid& rhs);
+ protected:
+  ExtrudedSolid();
+  ExtrudedSolid(const ExtrudedSolid& rhs);
 
-      TGeoXtru* fXtru;
-  };
+  TGeoXtru* fXtru;
+};
 
-}
+} // namespace RootGM
 
-#endif //ROOT_GM_EXTRUDED_SOLID_H
+#endif // ROOT_GM_EXTRUDED_SOLID_H

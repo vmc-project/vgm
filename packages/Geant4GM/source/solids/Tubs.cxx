@@ -18,46 +18,37 @@
 
 #include "ClhepVGM/Units.h"
 
-#include "Geant4GM/solids/Tubs.h"
 #include "Geant4GM/solids/SolidMap.h"
+#include "Geant4GM/solids/Tubs.h"
 
-#include "G4Tubs.hh"
 #include "G4ReflectedSolid.hh"
+#include "G4Tubs.hh"
 
 //_____________________________________________________________________________
-Geant4GM::Tubs::Tubs(const std::string& name,
-                     double rin, double rout, double hz,
-		     double sphi, double dphi)
+Geant4GM::Tubs::Tubs(const std::string& name, double rin, double rout,
+  double hz, double sphi, double dphi)
   : VGM::ISolid(),
     VGM::ITubs(),
     BaseVGM::VTubs(),
-    fTubs(new G4Tubs(name,
-                     rin  / ClhepVGM::Units::Length(),
-		     rout / ClhepVGM::Units::Length(),
-		     hz   / ClhepVGM::Units::Length(),
-		     sphi / ClhepVGM::Units::Angle(),
-		     dphi / ClhepVGM::Units::Angle()))
+    fTubs(new G4Tubs(name, rin / ClhepVGM::Units::Length(),
+      rout / ClhepVGM::Units::Length(), hz / ClhepVGM::Units::Length(),
+      sphi / ClhepVGM::Units::Angle(), dphi / ClhepVGM::Units::Angle()))
 {
-/// Standard constructor to define tubs from parameters
-/// \param rin inside radius in mm
-/// \param rout outside radius in mm
-/// \param hz half-length along the z axis in mm
-/// \param sphi starting angle of the segment in deg
-/// \param dphi opening angle of the segment in deg
+  /// Standard constructor to define tubs from parameters
+  /// \param rin inside radius in mm
+  /// \param rout outside radius in mm
+  /// \param hz half-length along the z axis in mm
+  /// \param sphi starting angle of the segment in deg
+  /// \param dphi opening angle of the segment in deg
 
   Geant4GM::SolidMap::Instance()->AddSolid(this, fTubs);
 }
 
-
 //_____________________________________________________________________________
-Geant4GM::Tubs::Tubs(G4Tubs* tubs,
-                     G4ReflectedSolid* reflTubs)
-  : VGM::ISolid(),
-    VGM::ITubs(),
-    BaseVGM::VTubs(),
-    fTubs(tubs)
+Geant4GM::Tubs::Tubs(G4Tubs* tubs, G4ReflectedSolid* reflTubs)
+  : VGM::ISolid(), VGM::ITubs(), BaseVGM::VTubs(), fTubs(tubs)
 {
-/// Standard constructor to define tubs from G4 object
+  /// Standard constructor to define tubs from G4 object
 
   if (reflTubs)
     Geant4GM::SolidMap::Instance()->AddSolid(this, reflTubs);
@@ -66,33 +57,26 @@ Geant4GM::Tubs::Tubs(G4Tubs* tubs,
 }
 
 //_____________________________________________________________________________
-Geant4GM::Tubs::Tubs()
-  : VGM::ISolid(),
-    VGM::ITubs(),
-    BaseVGM::VTubs()
+Geant4GM::Tubs::Tubs() : VGM::ISolid(), VGM::ITubs(), BaseVGM::VTubs()
 {
-/// Protected default constructor
+  /// Protected default constructor
 }
 
 //_____________________________________________________________________________
 Geant4GM::Tubs::Tubs(const Tubs& rhs)
-  : VGM::ISolid(rhs),
-    VGM::ITubs(rhs),
-    BaseVGM::VTubs(rhs)
+  : VGM::ISolid(rhs), VGM::ITubs(rhs), BaseVGM::VTubs(rhs)
 {
-/// Protected copy constructor
+  /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
-Geant4GM::Tubs::~Tubs() {
-//
+Geant4GM::Tubs::~Tubs()
+{
+  //
 }
 
 //_____________________________________________________________________________
-std::string Geant4GM::Tubs::Name() const
-{
-  return fTubs->GetName();
-}
+std::string Geant4GM::Tubs::Name() const { return fTubs->GetName(); }
 
 //_____________________________________________________________________________
 double Geant4GM::Tubs::InnerRadius() const

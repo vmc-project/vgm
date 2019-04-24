@@ -26,32 +26,32 @@
 
 namespace VGM {
 
-  class IParaboloid : public virtual ISolid
-  {
-    public:
-      virtual ~IParaboloid() {}
+class IParaboloid : public virtual ISolid
+{
+ public:
+  virtual ~IParaboloid() {}
 
-      // methods
+  // methods
 
-      virtual SolidType   Type() const = 0;
-      virtual std::string Name() const = 0;
+  virtual SolidType Type() const = 0;
+  virtual std::string Name() const = 0;
 
-		      ///
-		      /// Return the radius at -z in mm
-      virtual double RadiusMinusZ() const = 0;
-		      ///
-		      /// Return the radius at +z in mm
-      virtual double RadiusPlusZ() const = 0;
-		      ///
-		      /// Return the half-length along the z axis in mm
-      virtual double ZHalfLength() const = 0;
+  ///
+  /// Return the radius at -z in mm
+  virtual double RadiusMinusZ() const = 0;
+  ///
+  /// Return the radius at +z in mm
+  virtual double RadiusPlusZ() const = 0;
+  ///
+  /// Return the half-length along the z axis in mm
+  virtual double ZHalfLength() const = 0;
 
-      // streaming
-      virtual std::ostream& Put(std::ostream& out) const = 0;
-  };
+  // streaming
+  virtual std::ostream& Put(std::ostream& out) const = 0;
+};
 
-}
+} // namespace VGM
 
-std::ostream& operator << (std::ostream& out, const VGM::IParaboloid& paraboloid);
+std::ostream& operator<<(std::ostream& out, const VGM::IParaboloid& paraboloid);
 
-#endif //VGM_I_PARABOLOID_H
+#endif // VGM_I_PARABOLOID_H

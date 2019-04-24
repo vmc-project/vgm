@@ -27,27 +27,27 @@ class TstPrimaryGeneratorAction;
 class G4UIdirectory;
 class G4UIcmdWithAString;
 
-class TstPrimaryGeneratorActionMessenger: public G4UImessenger
+class TstPrimaryGeneratorActionMessenger : public G4UImessenger
 {
-  public:
-    TstPrimaryGeneratorActionMessenger(
-       TstPrimaryGeneratorAction* primaryGeneratorAction);
-    virtual ~TstPrimaryGeneratorActionMessenger();
+ public:
+  TstPrimaryGeneratorActionMessenger(
+    TstPrimaryGeneratorAction* primaryGeneratorAction);
+  virtual ~TstPrimaryGeneratorActionMessenger();
 
-    // methods
-    virtual void SetNewValue(G4UIcommand* command, G4String string);
+  // methods
+  virtual void SetNewValue(G4UIcommand* command, G4String string);
 
-  private:
-    TstPrimaryGeneratorActionMessenger();
-    TstPrimaryGeneratorActionMessenger(
-       const TstPrimaryGeneratorActionMessenger& right);
-    TstPrimaryGeneratorActionMessenger& operator=(
-       const TstPrimaryGeneratorActionMessenger& right);
+ private:
+  TstPrimaryGeneratorActionMessenger();
+  TstPrimaryGeneratorActionMessenger(
+    const TstPrimaryGeneratorActionMessenger& right);
+  TstPrimaryGeneratorActionMessenger& operator=(
+    const TstPrimaryGeneratorActionMessenger& right);
 
-    // data members
-    TstPrimaryGeneratorAction*  fPrimaryGeneratorAction; //associated class
-    G4UIdirectory*       fDirectory;         //command directory
-    G4UIcmdWithAString*  fSetGunTypeCmd;     //command: /tstGenerator/gunType
+  // data members
+  TstPrimaryGeneratorAction* fPrimaryGeneratorAction; // associated class
+  G4UIdirectory* fDirectory;                          // command directory
+  G4UIcmdWithAString* fSetGunTypeCmd; // command: /tstGenerator/gunType
 };
 
-#endif //TST_PRIMARY_GENERATOR_ACTION_MESSENGER_H
+#endif // TST_PRIMARY_GENERATOR_ACTION_MESSENGER_H

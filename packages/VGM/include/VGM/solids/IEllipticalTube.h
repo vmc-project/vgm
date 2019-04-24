@@ -26,32 +26,32 @@
 
 namespace VGM {
 
-  class IEllipticalTube : public virtual ISolid
-  {
-    public:
-      virtual ~IEllipticalTube() {}
+class IEllipticalTube : public virtual ISolid
+{
+ public:
+  virtual ~IEllipticalTube() {}
 
-      // methods
+  // methods
 
-      virtual SolidType   Type() const = 0;
-      virtual std::string Name() const = 0;
+  virtual SolidType Type() const = 0;
+  virtual std::string Name() const = 0;
 
-		      ///
-		      /// Return the semi-axis of the ellipse along x in mm
-      virtual double Dx() const = 0;
-		      ///
-		      /// Return the semi-axis of the ellipse along y in mm
-      virtual double Dy() const = 0;
-		      ///
-		      /// Return the half-length along the z axis in mm
-      virtual double ZHalfLength() const = 0;
+  ///
+  /// Return the semi-axis of the ellipse along x in mm
+  virtual double Dx() const = 0;
+  ///
+  /// Return the semi-axis of the ellipse along y in mm
+  virtual double Dy() const = 0;
+  ///
+  /// Return the half-length along the z axis in mm
+  virtual double ZHalfLength() const = 0;
 
-      // streaming
-      virtual std::ostream& Put(std::ostream& out) const = 0;
-  };
+  // streaming
+  virtual std::ostream& Put(std::ostream& out) const = 0;
+};
 
-}
+} // namespace VGM
 
-std::ostream& operator << (std::ostream& out, const VGM::IEllipticalTube& eltu);
+std::ostream& operator<<(std::ostream& out, const VGM::IEllipticalTube& eltu);
 
-#endif //VGM_I_ELLIPTICAL_TUBE_H
+#endif // VGM_I_ELLIPTICAL_TUBE_H

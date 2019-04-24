@@ -27,36 +27,34 @@
 class TGeoVolume;
 
 namespace VGM {
-  class ISolid;
+class ISolid;
 }
 
 namespace RootGM {
 
-  class Volume : public BaseVGM::VVolume
-  {
-    public:
-      Volume(const std::string& name,
-             VGM::ISolid* solid,
-             const std::string& mediumName );
-      Volume(VGM::ISolid* solid,
-             TGeoVolume* volume);
-      virtual ~Volume();
+class Volume : public BaseVGM::VVolume
+{
+ public:
+  Volume(
+    const std::string& name, VGM::ISolid* solid, const std::string& mediumName);
+  Volume(VGM::ISolid* solid, TGeoVolume* volume);
+  virtual ~Volume();
 
-      // methods
-      virtual std::string  Name() const;
-      virtual std::string  MaterialName() const;
-      virtual std::string  MediumName() const;
+  // methods
+  virtual std::string Name() const;
+  virtual std::string MaterialName() const;
+  virtual std::string MediumName() const;
 
-      void ResetVolume(TGeoVolume* rootVolume);
+  void ResetVolume(TGeoVolume* rootVolume);
 
-    protected:
-      Volume();
-      Volume(const Volume& rhs);
+ protected:
+  Volume();
+  Volume(const Volume& rhs);
 
-    private:
-      TGeoVolume* fGeoVolume;
-  };
+ private:
+  TGeoVolume* fGeoVolume;
+};
 
-}
+} // namespace RootGM
 
-#endif //ROOT_GM_VOLUME_H
+#endif // ROOT_GM_VOLUME_H

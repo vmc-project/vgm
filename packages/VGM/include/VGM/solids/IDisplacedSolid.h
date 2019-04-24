@@ -27,30 +27,30 @@
 
 namespace VGM {
 
-  class IDisplacedSolid : public virtual ISolid
-  {
-    public:
-      virtual ~IDisplacedSolid() {}
+class IDisplacedSolid : public virtual ISolid
+{
+ public:
+  virtual ~IDisplacedSolid() {}
 
-      // methods
+  // methods
 
-      virtual SolidType    Type() const = 0;
-      virtual std::string  Name() const = 0;
+  virtual SolidType Type() const = 0;
+  virtual std::string Name() const = 0;
 
-			    ///
-                            /// Return the constituent solid
-      virtual ISolid*      ConstituentSolid() const = 0;
-			    ///
-                            /// Return the 3D displacement of
-			    /// the constituent solid
-      virtual Transform    Displacement() const = 0;
+  ///
+  /// Return the constituent solid
+  virtual ISolid* ConstituentSolid() const = 0;
+  ///
+  /// Return the 3D displacement of
+  /// the constituent solid
+  virtual Transform Displacement() const = 0;
 
-      // streaming
-      virtual std::ostream& Put(std::ostream& out) const = 0;
-  };
+  // streaming
+  virtual std::ostream& Put(std::ostream& out) const = 0;
+};
 
-}
+} // namespace VGM
 
-std::ostream& operator << (std::ostream& out, const VGM::IDisplacedSolid& solid);
+std::ostream& operator<<(std::ostream& out, const VGM::IDisplacedSolid& solid);
 
-#endif //VGM_I_BOOLEAN_SOLID_H
+#endif // VGM_I_BOOLEAN_SOLID_H

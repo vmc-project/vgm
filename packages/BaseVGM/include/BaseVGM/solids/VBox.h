@@ -26,24 +26,23 @@
 
 namespace BaseVGM {
 
-  class VBox : public virtual VGM::IBox
-  {
-    public:
-      VBox();
-      virtual ~VBox();
+class VBox : public virtual VGM::IBox
+{
+ public:
+  VBox();
+  virtual ~VBox();
 
-      // methods
-      virtual VGM::SolidType Type() const;
+  // methods
+  virtual VGM::SolidType Type() const;
 
-      // streaming
-      virtual std::ostream& Put(std::ostream& out) const;
-  };
+  // streaming
+  virtual std::ostream& Put(std::ostream& out) const;
+};
 
-}
+} // namespace BaseVGM
 
 // inline functions
 
-inline VGM::SolidType
-BaseVGM::VBox::Type() const { return VGM::kBox; }
+inline VGM::SolidType BaseVGM::VBox::Type() const { return VGM::kBox; }
 
-#endif //BASE_VGM_V_BOX_H
+#endif // BASE_VGM_V_BOX_H

@@ -17,8 +17,8 @@
 // See the class description in the header file.
 
 #include "VGM/volumes/IFactory.h"
-#include "VGM/volumes/IVolume.h"
 #include "VGM/volumes/IPlacement.h"
+#include "VGM/volumes/IVolume.h"
 
 #include "ClhepVGM/transform.h"
 
@@ -29,37 +29,35 @@
 XmlVGM::GDMLExporter::GDMLExporter(const VGM::IFactory* factory)
   : VExporter(factory, new GDMLWriter())
 {
-/// Standard constructor
+  /// Standard constructor
 
   dynamic_cast<GDMLWriter*>(fWriter)->SetMaps(&fMaps);
 }
 
 //_____________________________________________________________________________
-XmlVGM::GDMLExporter::GDMLExporter()
-  : VExporter()
+XmlVGM::GDMLExporter::GDMLExporter() : VExporter()
 {
-/// Protected default constructor
+  /// Protected default constructor
 }
 
 //_____________________________________________________________________________
-XmlVGM::GDMLExporter::GDMLExporter(const GDMLExporter& right)
-  : VExporter(right)
+XmlVGM::GDMLExporter::GDMLExporter(const GDMLExporter& right) : VExporter(right)
 {
-/// Protected copy constructor
+  /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
-XmlVGM::GDMLExporter::~GDMLExporter() {
-//
+XmlVGM::GDMLExporter::~GDMLExporter()
+{
+  //
 }
 
 // operators
 
 //_____________________________________________________________________________
-XmlVGM::GDMLExporter&
-XmlVGM::GDMLExporter::operator=(const GDMLExporter& right)
+XmlVGM::GDMLExporter& XmlVGM::GDMLExporter::operator=(const GDMLExporter& right)
 {
-/// Protected assignement operator
+  /// Protected assignement operator
 
   // check assignement to self
   if (this == &right) return *this;
@@ -77,8 +75,8 @@ XmlVGM::GDMLExporter::operator=(const GDMLExporter& right)
 //_____________________________________________________________________________
 void XmlVGM::GDMLExporter::GenerateGeometry(VGM::IVolume* volume)
 {
-// Generate XML geometry file for the geometry tree
-// starting from the specified VGM volume.
+  // Generate XML geometry file for the geometry tree
+  // starting from the specified VGM volume.
 
   // Compose filename
   std::string fileName;
@@ -107,9 +105,9 @@ void XmlVGM::GDMLExporter::GenerateGeometry(VGM::IVolume* volume)
 //_____________________________________________________________________________
 void XmlVGM::GDMLExporter::GenerateSection(VGM::IVolume* volume)
 {
-/// Generate the XML section element containing
-/// all geometry objects defined in given logical volume:
-/// positions, rotations, materials, solids and volumes hierarchy
+  /// Generate the XML section element containing
+  /// all geometry objects defined in given logical volume:
+  /// positions, rotations, materials, solids and volumes hierarchy
 
   // Create section
   fWriter->OpenSection(volume->Name());
@@ -135,20 +133,19 @@ void XmlVGM::GDMLExporter::GenerateSection(VGM::IVolume* volume)
 //_____________________________________________________________________________
 void XmlVGM::GDMLExporter::ProcessVolume(VGM::IVolume* volume)
 {
-/// Process the VGM volume tree
+  /// Process the VGM volume tree
 
   int nofDaughters = volume->NofDaughters();
 
   if (nofDaughters == 0) {
     // Open composition
-    fWriter->OpenComposition(volume->Name(),
-                                volume->MaterialName());
+    fWriter->OpenComposition(volume->Name(), volume->MaterialName());
   }
   else {
 
     // Recursively process daughters
     //
-    for (int i=0; i<nofDaughters; i++) {
+    for (int i = 0; i < nofDaughters; i++) {
 
       VGM::IVolume* dVolume = volume->Daughter(i)->Volume();
 
@@ -159,15 +156,14 @@ void XmlVGM::GDMLExporter::ProcessVolume(VGM::IVolume* volume)
     // Write the volume with its childs now
     //
     // Open composition
-    fWriter->OpenComposition(volume->Name(),
-                             volume->MaterialName());
+    fWriter->OpenComposition(volume->Name(), volume->MaterialName());
 
     // Write positions
-    for (int j=0; j<nofDaughters; j++) {
+    for (int j = 0; j < nofDaughters; j++) {
 
       if (fDebug > 1) {
-        std::cout << "processing " << j << "th daughter of "
-                  << volume->Name() << std::endl;
+        std::cout << "processing " << j << "th daughter of " << volume->Name()
+                  << std::endl;
       }
 
       fWriter->WritePlacement(*volume->Daughter(j));
@@ -181,4 +177,3 @@ void XmlVGM::GDMLExporter::ProcessVolume(VGM::IVolume* volume)
   // store the name of logical volume in the set
   fVolumeNames.insert(fVolumeNames.begin(), volume->Name());
 }
-

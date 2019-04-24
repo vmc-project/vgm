@@ -28,30 +28,30 @@ class TGeoHype;
 
 namespace RootGM {
 
-  class Hype : public BaseVGM::VHype
-  {
-    public:
-      Hype(const std::string& name,
-           double r1, double r2, double stereo1, double stereo2, double hz);
-      Hype(TGeoHype* hype);
-      virtual ~Hype();
+class Hype : public BaseVGM::VHype
+{
+ public:
+  Hype(const std::string& name, double r1, double r2, double stereo1,
+    double stereo2, double hz);
+  Hype(TGeoHype* hype);
+  virtual ~Hype();
 
-      // methods
-      virtual std::string Name() const;
-      virtual double InnerRadius() const;
-      virtual double InnerStereoAngle() const;
-      virtual double OuterRadius() const;
-      virtual double OuterStereoAngle() const;
-      virtual double ZHalfLength() const;
+  // methods
+  virtual std::string Name() const;
+  virtual double InnerRadius() const;
+  virtual double InnerStereoAngle() const;
+  virtual double OuterRadius() const;
+  virtual double OuterStereoAngle() const;
+  virtual double ZHalfLength() const;
 
-    protected:
-      Hype();
-      Hype(const Hype& rhs);
+ protected:
+  Hype();
+  Hype(const Hype& rhs);
 
-    private:
-      TGeoHype* fHype;
-  };
+ private:
+  TGeoHype* fHype;
+};
 
-}
+} // namespace RootGM
 
-#endif //ROOT_GM_HYPE_H
+#endif // ROOT_GM_HYPE_H

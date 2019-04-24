@@ -27,114 +27,87 @@ class TGeoMaterial;
 class TGeoMedium;
 
 namespace VGM {
-  class IMaterial;
-  class IIsotope;
-}
+class IMaterial;
+class IIsotope;
+} // namespace VGM
 
 namespace RootGM {
 
-  class MaterialFactory : public BaseVGM::VMaterialFactory
-  {
-    public:
-      MaterialFactory();
-      virtual ~MaterialFactory();
+class MaterialFactory : public BaseVGM::VMaterialFactory
+{
+ public:
+  MaterialFactory();
+  virtual ~MaterialFactory();
 
-      //
-      // methods
-      //
-      virtual VGM::IIsotope*   CreateIsotope(
-                                 const std::string& name,
-                                 int z, int n, double a = 0.);
+  //
+  // methods
+  //
+  virtual VGM::IIsotope* CreateIsotope(
+    const std::string& name, int z, int n, double a = 0.);
 
-      virtual VGM::IElement*   CreateElement(
-                                 const std::string& name,
-                                 const std::string& symbol,
-                                 double z, double a);
+  virtual VGM::IElement* CreateElement(
+    const std::string& name, const std::string& symbol, double z, double a);
 
-      virtual VGM::IElement*   CreateElement(
-                                 const std::string& name,
-                                 const std::string& symbol,
-	                         const VGM::IsotopeVector& isotopes,
-                                 const VGM::RelAbundanceVector& relAbundances);
+  virtual VGM::IElement* CreateElement(const std::string& name,
+    const std::string& symbol, const VGM::IsotopeVector& isotopes,
+    const VGM::RelAbundanceVector& relAbundances);
 
-      virtual VGM::IElement*   CreateElement(
-                                 int z, bool isotopes);
+  virtual VGM::IElement* CreateElement(int z, bool isotopes);
 
-      virtual VGM::IMaterial*  CreateMaterial(
-                                 const std::string& name,
-			         double density,
-                                 VGM::IElement* element,
-			         double radlen, double intlen);
+  virtual VGM::IMaterial* CreateMaterial(const std::string& name,
+    double density, VGM::IElement* element, double radlen, double intlen);
 
-      virtual VGM::IMaterial*  CreateMaterial(
-                                 const std::string& name,
-	  		         double density,
-			         VGM::IElement* element,
-			         double radlen, double intlen,
-				 VGM::MaterialState state,
-				 double temperature, double pressure);
+  virtual VGM::IMaterial* CreateMaterial(const std::string& name,
+    double density, VGM::IElement* element, double radlen, double intlen,
+    VGM::MaterialState state, double temperature, double pressure);
 
-      virtual VGM::IMaterial*  CreateMaterial(
-                                 const std::string& name,
-                                 double density,
-			         const VGM::ElementVector& elements,
-                                 const VGM::MassFractionVector& fractions);
+  virtual VGM::IMaterial* CreateMaterial(const std::string& name,
+    double density, const VGM::ElementVector& elements,
+    const VGM::MassFractionVector& fractions);
 
-      virtual VGM::IMaterial*  CreateMaterial(
-                                 const std::string& name,
-                                 double density,
-			         const VGM::ElementVector& elements,
-                                 const VGM::MassFractionVector& fractions,
-				 VGM::MaterialState state,
-				 double temperature, double pressure);
+  virtual VGM::IMaterial* CreateMaterial(const std::string& name,
+    double density, const VGM::ElementVector& elements,
+    const VGM::MassFractionVector& fractions, VGM::MaterialState state,
+    double temperature, double pressure);
 
-      virtual VGM::IMaterial*  CreateMaterial(
-                                 const std::string& name,
-                                 double density,
-			         const VGM::ElementVector& elements,
-                                 const VGM::AtomCountVector& atomCounts);
+  virtual VGM::IMaterial* CreateMaterial(const std::string& name,
+    double density, const VGM::ElementVector& elements,
+    const VGM::AtomCountVector& atomCounts);
 
-      virtual VGM::IMaterial*  CreateMaterial(
-                                 const std::string& name,
-                                 double density,
-			         const VGM::ElementVector& elements,
-                                 const VGM::AtomCountVector& atomCounts,
-				 VGM::MaterialState state,
-				 double temperature, double pressure);
+  virtual VGM::IMaterial* CreateMaterial(const std::string& name,
+    double density, const VGM::ElementVector& elements,
+    const VGM::AtomCountVector& atomCounts, VGM::MaterialState state,
+    double temperature, double pressure);
 
-      virtual VGM::IMedium*    CreateMedium(
-                                 const std::string& name,
-			         int mediumId,
-			         VGM::IMaterial* material,
-			         int nofParameters,
-			         double* parameters);
-      // import/export
-      //
-      virtual bool Import();
+  virtual VGM::IMedium* CreateMedium(const std::string& name, int mediumId,
+    VGM::IMaterial* material, int nofParameters, double* parameters);
+  // import/export
+  //
+  virtual bool Import();
 
-    protected:
-      MaterialFactory(const MaterialFactory& rhs);
+ protected:
+  MaterialFactory(const MaterialFactory& rhs);
 
-    private:
-      // methods
-      VGM::IIsotope* GetIsotope(double z, double n) const;
-      VGM::IElement* GetElement(double z, double a) const;
-      VGM::IElement* GetElement(const std::string& name) const;
+ private:
+  // methods
+  VGM::IIsotope* GetIsotope(double z, double n) const;
+  VGM::IElement* GetElement(double z, double a) const;
+  VGM::IElement* GetElement(const std::string& name) const;
 
-      bool  CompareIsotopes(const TGeoElement* tgeoElement,
-                            const VGM::IsotopeVector& isotopes,
-                            const VGM::RelAbundanceVector& relAbundances) const;
+  bool CompareIsotopes(const TGeoElement* tgeoElement,
+    const VGM::IsotopeVector& isotopes,
+    const VGM::RelAbundanceVector& relAbundances) const;
 
-      void  ImportIsotopes(TGeoElement* element);
-      void  ImportElements(TGeoMaterial* material,
-                           std::vector<VGM::IElement*>& elements);
-      void  ImportMaterial(TGeoMaterial* material);
-      void  ImportMedium(TGeoMedium* medium);
+  void ImportIsotopes(TGeoElement* element);
+  void ImportElements(
+    TGeoMaterial* material, std::vector<VGM::IElement*>& elements);
+  void ImportMaterial(TGeoMaterial* material);
+  void ImportMedium(TGeoMedium* medium);
 
-      // data members
-      static const double fgkTolerance;
-  };
+  // data members
+  static const double fgkTolerance;
+};
 
-}
+} // namespace RootGM
 
-#endif //ROOT_GM_MATERIAL_FACTORY_H
+#endif // ROOT_GM_MATERIAL_FACTORY_H

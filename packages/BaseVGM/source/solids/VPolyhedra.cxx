@@ -29,52 +29,47 @@ std::ostream& operator<<(std::ostream& out, const VGM::IPolyhedra& polyhedra)
 }
 
 //_____________________________________________________________________________
-BaseVGM::VPolyhedra::VPolyhedra()
-  : VGM::IPolyhedra()
+BaseVGM::VPolyhedra::VPolyhedra() : VGM::IPolyhedra()
 {
-/// Default constructor
+  /// Default constructor
 }
 
-
 //_____________________________________________________________________________
-BaseVGM::VPolyhedra::~VPolyhedra() {
-//
+BaseVGM::VPolyhedra::~VPolyhedra()
+{
+  //
 }
 
 //_____________________________________________________________________________
 double BaseVGM::VPolyhedra::ConvertRadiusFactor() const
 {
-//
-  double phiTotal = DeltaPhi()/180.*M_PI;
-  if ( (phiTotal <=0) || (phiTotal >= 2*M_PI*(1-1e-16)) )
-    phiTotal = 2*M_PI;
+  //
+  double phiTotal = DeltaPhi() / 180. * M_PI;
+  if ((phiTotal <= 0) || (phiTotal >= 2 * M_PI * (1 - 1e-16)))
+    phiTotal = 2 * M_PI;
 
-  return cos(0.5*phiTotal/NofSides());
+  return cos(0.5 * phiTotal / NofSides());
 }
 
 //_____________________________________________________________________________
 std::ostream& BaseVGM::VPolyhedra::Put(std::ostream& out) const
 {
-  out << "  sphi = "   << StartPhi() << "deg"
-      << "  dphi = "   << DeltaPhi() << "deg"
-      << "  nsides = " << NofSides()
-      << "  nz = "     << NofZPlanes()
-      << std::endl;
+  out << "  sphi = " << StartPhi() << "deg"
+      << "  dphi = " << DeltaPhi() << "deg"
+      << "  nsides = " << NofSides() << "  nz = " << NofZPlanes() << std::endl;
 
-  double* zvalues    = ZValues();
-  double* rinvalues  = InnerRadiusValues();
+  double* zvalues = ZValues();
+  double* rinvalues = InnerRadiusValues();
   double* routvalues = OuterRadiusValues();
 
-  for (int i=0; i<NofZPlanes(); i++) {
-    out << "   "
-        << i << "th plane: "
-        << " z = "    << zvalues[i]    << "mm"
-        << " rin = "  << rinvalues[i]  << "mm"
+  for (int i = 0; i < NofZPlanes(); i++) {
+    out << "   " << i << "th plane: "
+        << " z = " << zvalues[i] << "mm"
+        << " rin = " << rinvalues[i] << "mm"
         << " rout = " << routvalues[i] << "mm";
 
-    if (i<NofZPlanes()-1) out << std::endl;
+    if (i < NofZPlanes() - 1) out << std::endl;
   }
 
   return out;
 }
-

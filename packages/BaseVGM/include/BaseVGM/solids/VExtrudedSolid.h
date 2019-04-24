@@ -26,24 +26,26 @@
 
 namespace BaseVGM {
 
-  class VExtrudedSolid : public virtual VGM::IExtrudedSolid
-  {
-    public:
-      VExtrudedSolid();
-      virtual ~VExtrudedSolid();
+class VExtrudedSolid : public virtual VGM::IExtrudedSolid
+{
+ public:
+  VExtrudedSolid();
+  virtual ~VExtrudedSolid();
 
-      // methods
-      virtual VGM::SolidType Type() const;
+  // methods
+  virtual VGM::SolidType Type() const;
 
-      // streaming
-      virtual std::ostream& Put(std::ostream& out) const;
-  };
+  // streaming
+  virtual std::ostream& Put(std::ostream& out) const;
+};
 
-}
+} // namespace BaseVGM
 
 // inline functions
 
-inline VGM::SolidType
-BaseVGM::VExtrudedSolid::Type() const { return VGM::kExtruded; }
+inline VGM::SolidType BaseVGM::VExtrudedSolid::Type() const
+{
+  return VGM::kExtruded;
+}
 
-#endif //BASE_VGM_V_EXTRUDED_SOLID_H
+#endif // BASE_VGM_V_EXTRUDED_SOLID_H

@@ -22,13 +22,12 @@
 
 #include "G4Isotope.hh"
 
-Geant4GM::IsotopeMap*  Geant4GM::IsotopeMap::fgInstance = 0;
+Geant4GM::IsotopeMap* Geant4GM::IsotopeMap::fgInstance = 0;
 
 //_____________________________________________________________________________
-Geant4GM::IsotopeMap*
-Geant4GM::IsotopeMap::Instance()
+Geant4GM::IsotopeMap* Geant4GM::IsotopeMap::Instance()
 {
-/// Singleton access function.
+  /// Singleton access function.
 
   if (!fgInstance) new IsotopeMap();
 
@@ -36,11 +35,9 @@ Geant4GM::IsotopeMap::Instance()
 }
 
 //_____________________________________________________________________________
-Geant4GM::IsotopeMap::IsotopeMap()
-  : fG4Isotopes(),
-    fVgmIsotopes()
+Geant4GM::IsotopeMap::IsotopeMap() : fG4Isotopes(), fVgmIsotopes()
 {
-/// Standard default constructor
+  /// Standard default constructor
 
   fgInstance = this;
 }
@@ -48,35 +45,34 @@ Geant4GM::IsotopeMap::IsotopeMap()
 //_____________________________________________________________________________
 Geant4GM::IsotopeMap::IsotopeMap(const IsotopeMap&)
 {
-/// Protected copy constructor
+  /// Protected copy constructor
 }
 
 //_____________________________________________________________________________
 Geant4GM::IsotopeMap::~IsotopeMap()
 {
-//
+  //
   fgInstance = 0;
 }
-
 
 //
 // public methods
 //
 
 //_____________________________________________________________________________
-void  Geant4GM::IsotopeMap::AddIsotope(VGM::IIsotope* iIsotope,
-                                       G4Isotope* g4Isotope)
+void Geant4GM::IsotopeMap::AddIsotope(
+  VGM::IIsotope* iIsotope, G4Isotope* g4Isotope)
 {
-/// Add the specified pair in the map
+  /// Add the specified pair in the map
 
   fG4Isotopes[iIsotope] = g4Isotope;
   fVgmIsotopes[g4Isotope] = iIsotope;
 }
 
 //_____________________________________________________________________________
-void  Geant4GM::IsotopeMap::Print() const
+void Geant4GM::IsotopeMap::Print() const
 {
-/// Prints all Isotopes in the map
+  /// Prints all Isotopes in the map
 
   std::cout << "Geant4 Isotopes Map: " << std::endl;
 
@@ -86,19 +82,17 @@ void  Geant4GM::IsotopeMap::Print() const
     VGM::IIsotope* iIsotope = (*i).first;
     G4Isotope* g4Isotope = (*i).second;
 
-    std::cout << "   "
-              << counter++ << "th entry:"
-	      << "  vgmIsotope " << iIsotope << " " << iIsotope->Name()
+    std::cout << "   " << counter++ << "th entry:"
+              << "  vgmIsotope " << iIsotope << " " << iIsotope->Name()
               << "  g4Isotope " << g4Isotope << " " << g4Isotope->GetName()
-	      << std::endl;
+              << std::endl;
   }
 }
 
 //_____________________________________________________________________________
-G4Isotope*
-Geant4GM::IsotopeMap::GetIsotope(VGM::IIsotope* iIsotope) const
+G4Isotope* Geant4GM::IsotopeMap::GetIsotope(VGM::IIsotope* iIsotope) const
 {
-/// Find the G4 Isotope corresponding to a specified VGM Isotope
+  /// Find the G4 Isotope corresponding to a specified VGM Isotope
 
   G4IsotopeMapCIterator i = fG4Isotopes.find(iIsotope);
   if (i != fG4Isotopes.end())
@@ -108,10 +102,9 @@ Geant4GM::IsotopeMap::GetIsotope(VGM::IIsotope* iIsotope) const
 }
 
 //_____________________________________________________________________________
-VGM::IIsotope*
-Geant4GM::IsotopeMap::GetIsotope(G4Isotope* Isotope) const
+VGM::IIsotope* Geant4GM::IsotopeMap::GetIsotope(G4Isotope* Isotope) const
 {
-/// Find the VGM Isotope corresponding to a specified G4 Isotope
+  /// Find the VGM Isotope corresponding to a specified G4 Isotope
 
   VgmIsotopeMapCIterator i = fVgmIsotopes.find(Isotope);
   if (i != fVgmIsotopes.end())

@@ -26,24 +26,23 @@
 
 namespace BaseVGM {
 
-  class VPara : public virtual VGM::IPara
-  {
-    public:
-      VPara();
-      virtual ~VPara();
+class VPara : public virtual VGM::IPara
+{
+ public:
+  VPara();
+  virtual ~VPara();
 
-      // methods
-      virtual VGM::SolidType Type() const;
+  // methods
+  virtual VGM::SolidType Type() const;
 
-      // streaming
-      virtual std::ostream& Put(std::ostream& out) const;
-  };
+  // streaming
+  virtual std::ostream& Put(std::ostream& out) const;
+};
 
-}
+} // namespace BaseVGM
 
 // inline functions
 
-inline VGM::SolidType
-BaseVGM::VPara::Type() const { return VGM::kPara; }
+inline VGM::SolidType BaseVGM::VPara::Type() const { return VGM::kPara; }
 
-#endif //BASE_VGM_V_PARA_H
+#endif // BASE_VGM_V_PARA_H
