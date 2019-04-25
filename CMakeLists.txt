@@ -27,6 +27,9 @@ endif()
 #--- CMake required version ----------------------------------------------------
 cmake_minimum_required(VERSION 2.8.3 FATAL_ERROR)
 
+# Required to be able to use non Apple Clang builds on macOS
+cmake_policy(SET CMP0025 NEW)
+
 #--- CMake Module Path----------------------------------------------------------
 set(CMAKE_MODULE_PATH
     ${CMAKE_SOURCE_DIR}/cmake
