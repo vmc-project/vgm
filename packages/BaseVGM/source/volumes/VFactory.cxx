@@ -55,6 +55,7 @@ BaseVGM::VFactory::VFactory(
     fIgnore(false),
     fBestMatch(false),
     fSingleMode(false),
+    fDummyBoxDimensions(VGM::kDefaultDummyBoxDimensions),
     fName(name),
     fSolids(),
     fVolumes(),
@@ -642,4 +643,11 @@ void BaseVGM::VFactory::SetDebug(int debug)
 
   fDebug = debug;
   MaterialFactory()->SetDebug(debug);
+}
+
+//_____________________________________________________________________________
+void BaseVGM::VFactory::SetIgnore(bool ignore, double dummyBoxDimensions)
+{
+  fIgnore = ignore;
+  fDummyBoxDimensions = dummyBoxDimensions;
 }

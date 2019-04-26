@@ -42,6 +42,10 @@ class IExtrudedSolid;
 typedef std::vector<ISolid*> SolidStore;
 typedef std::vector<IVolume*> VolumeStore;
 
+/// The default value for the dimensions in mm of a dummy box
+/// replacing the unsupported shapes if the 'ignore' option is activated
+constexpr double kDefaultDummyBoxDimensions = 1.; // in mm
+
 class IFactory
 {
  public:
@@ -441,10 +445,18 @@ class IFactory
   /// - if not set (default) - program stops when an unsupported
   ///   feature occurs
   /// - if set - only warning is issued
-  virtual void SetIgnore(bool value) = 0;
+  virtual void SetIgnore(
+    bool value, double dummyBoxDimensions = kDefaultDummyBoxDimensions) = 0;
   ///
   /// Return the ignore option
   virtual bool Ignore() const = 0;
+
+  /// Set the dimensions in mm of a dummy box replacing the unsupported shapes
+  /// if the 'ignore' option is activated
+  virtual void SetDummyBoxDimensions(double value) = 0;
+  ///
+  /// Return the ignore option
+  virtual double DummyBoxDimensions() const = 0;
 
   ///
   /// Set best match option

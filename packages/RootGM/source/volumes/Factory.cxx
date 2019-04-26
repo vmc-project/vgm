@@ -18,6 +18,7 @@
 
 #include "BaseVGM/common/utilities.h"
 
+#include "RootGM/common/Units.h"
 #include "RootGM/common/axis.h"
 #include "RootGM/common/transform.h"
 #include "RootGM/materials/MaterialFactory.h"
@@ -294,7 +295,10 @@ VGM::ISolid* RootGM::Factory::ImportSolid(TGeoShape* shape)
 
   if (Ignore()) {
     std::cerr << "*** Warning: Using a box instead  ***" << std::endl;
-    return Register(new RootGM::Box(shape->GetName(), 1., 1., 1.));
+    return Register(new RootGM::Box(shape->GetName(),
+      DummyBoxDimensions() / RootGM::Units::Length(),
+      DummyBoxDimensions() / RootGM::Units::Length(),
+      DummyBoxDimensions() / RootGM::Units::Length()));
   }
   else {
     std::cerr << "*** Error: Aborting execution  ***" << std::endl;

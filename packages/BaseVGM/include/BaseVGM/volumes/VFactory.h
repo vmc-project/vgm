@@ -61,8 +61,12 @@ class VFactory : public virtual VGM::IFactory
   virtual void SetDebug(int debug);
   virtual int Debug() const;
 
-  virtual void SetIgnore(bool ignore);
+  virtual void SetIgnore(
+    bool ignore, double dummyBoxDimensions = VGM::kDefaultDummyBoxDimensions);
   virtual bool Ignore() const;
+
+  virtual void SetDummyBoxDimensions(double value);
+  virtual double DummyBoxDimensions() const;
 
   virtual void SetBestMatch(bool value);
   virtual bool BestMatch() const;
@@ -104,6 +108,7 @@ class VFactory : public virtual VGM::IFactory
   bool fIgnore;
   bool fBestMatch;
   bool fSingleMode;
+  double fDummyBoxDimensions;
   std::string fName;
   VGM::SolidStore fSolids;
   VGM::VolumeStore fVolumes;
@@ -145,9 +150,17 @@ inline VGM::VolumeStore& BaseVGM::VFactory::VolumeStore()
 
 inline int BaseVGM::VFactory::Debug() const { return fDebug; }
 
-inline void BaseVGM::VFactory::SetIgnore(bool ignore) { fIgnore = ignore; }
-
 inline bool BaseVGM::VFactory::Ignore() const { return fIgnore; }
+
+inline void BaseVGM::VFactory::SetDummyBoxDimensions(double value)
+{
+  fDummyBoxDimensions = value;
+}
+
+inline double BaseVGM::VFactory::DummyBoxDimensions() const
+{
+  return fDummyBoxDimensions;
+}
 
 inline void BaseVGM::VFactory::SetBestMatch(bool bestMatch)
 {

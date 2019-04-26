@@ -619,10 +619,6 @@ void TstDetectorConstruction::SelectChannels(const G4String& inputType,
     fXMLFileName += ".gdml";
   }
 
-  // Set ignore
-  if (fGeant4Factory) fGeant4Factory->SetIgnore(true);
-  if (fRootFactory) fRootFactory->SetIgnore(true);
-
   // Print info
   //
   G4cout << inputFactory << " geometry will be defined via " << inputType;

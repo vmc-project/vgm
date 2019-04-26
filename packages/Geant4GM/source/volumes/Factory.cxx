@@ -309,8 +309,10 @@ VGM::ISolid* Geant4GM::Factory::ImportSolid(G4VSolid* solid)
 
   if (Ignore()) {
     std::cerr << "*** Warning: Using a box instead  ***" << std::endl;
-    return Register(
-      new Geant4GM::Box(solid->GetName(), 1. * mm, 1. * mm, 1. * mm));
+    return Register(new Geant4GM::Box(solid->GetName(),
+      DummyBoxDimensions() / ClhepVGM::Units::Length(),
+      DummyBoxDimensions() / ClhepVGM::Units::Length(),
+      DummyBoxDimensions() / ClhepVGM::Units::Length()));
   }
   else {
     std::cerr << "*** Error: Aborting execution  ***" << std::endl;
