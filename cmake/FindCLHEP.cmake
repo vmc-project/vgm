@@ -37,25 +37,26 @@ find_path(CLHEP_INCLUDE_DIRS NAMES CLHEP/Evaluator/Evaluator.h PATHS
 )
 
 # CLHEP library external to Geant4
-find_path(EXTERNAL_CLHEP_LIBRARY_DIR NAMES libCLHEP.so libCLHEP.dylib PATHS
+find_library(EXTERNAL_CLHEP_LIBRARY NAMES libCLHEP.so libCLHEP.dylib PATHS
   ${CLHEP_LIB_DIR}
   ${CLHEP_DIR}/lib
   $ENV{CLHEP_BASE_DIR}/lib
 )
-if (EXTERNAL_CLHEP_LIBRARY_DIR)
-  set(CLHEP_LIBRARY_DIR ${EXTERNAL_CLHEP_LIBRARY_DIR})
+if (EXTERNAL_CLHEP_LIBRARY)
+  get_filename_component(CLHEP_LIBRARY_DIR "${EXTERNAL_CLHEP_LIBRARY}" DIRECTORY)
   set(CLHEP_LIBRARY_NAME CLHEP)
 endif()
 
 # CLHEP library within Geant4
-if (NOT EXTERNAL_CLHEP_LIBRARY_DIR)
-  find_path(CLHEP_LIBRARY_DIR NAMES libG4clhep.so libG4clhep.dylib PATHS
+if (NOT EXTERNAL_CLHEP_LIBRARY)
+  find_library(CLHEP_LIBRARY NAMES libG4clhep.so libG4clhep.dylib PATHS
     ${Geant4_DIR}/..
     ${GEANT4_LIBRARY_DIR}
   )
-  if (CLHEP_LIBRARY_DIR)
+  if (CLHEP_LIBRARY)
+    get_filename_component(CLHEP_LIBRARY_DIR "${CLHEP_LIBRARY}" DIRECTORY)
     set(CLHEP_LIBRARY_NAME G4clhep)
-  endif(CLHEP_LIBRARY_DIR)
+  endif(CLHEP_LIBRARY)
 endif()
 
 if (CLHEP_INCLUDE_DIRS AND CLHEP_LIBRARY_DIR)
