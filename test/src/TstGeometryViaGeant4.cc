@@ -249,7 +249,7 @@ G4VSolid* TstGeometryViaGeant4::CreatePolyhedra(G4double sphi, G4double dphi)
 
   z[1] = 10. * cm;
   rin[1] = 20. * cm;
-  rout[1] = 20. * cm;
+  rout[1] = 30. * cm;
 
   z[2] = 40. * cm;
   rin[2] = 30. * cm;

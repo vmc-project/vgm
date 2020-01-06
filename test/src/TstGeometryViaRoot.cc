@@ -475,7 +475,7 @@ TGeoShape* TstGeometryViaRoot::CreatePolyhedra(Double_t sphi, Double_t dphi)
 
   z[1] = 10.;
   rin[1] = 20.;
-  rout[1] = 20.;
+  rout[1] = 30.;
 
   z[2] = 40.;
   rin[2] = 30.;

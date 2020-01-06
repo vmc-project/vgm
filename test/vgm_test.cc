@@ -240,9 +240,6 @@ int main(int argc, char** argv)
   if (visMode != "None") {
     // interactive mode
     ui->ApplyCommand("/control/execute macro/vis.mac");
-    if (session->IsGUI()) {
-      ui->ApplyCommand("/control/execute macro/icons.mac");
-    }
     session->SessionStart();
     delete session;
   }

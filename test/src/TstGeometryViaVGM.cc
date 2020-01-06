@@ -369,7 +369,7 @@ ISolid* TstGeometryViaVGM::CreatePolyhedra(double sphi, double dphi)
 
   z[1] = 10. * fCm;
   rin[1] = 20. * fCm;
-  rout[1] = 20. * fCm;
+  rout[1] = 30. * fCm;
 
   z[2] = 40. * fCm;
   rin[2] = 30. * fCm;
