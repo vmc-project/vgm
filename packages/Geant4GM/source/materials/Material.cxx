@@ -295,6 +295,9 @@ Geant4GM::Material::Material(const std::string& name, double density,
   ///	   this material
   /// \param atomCounts vector of atom counts of
   ///	   elements constituing this material
+  /// \param state  the material state
+  /// \param temperature the temperature in Kelvin
+  /// \param pressure the pressure in atmosphere
 
   //
 

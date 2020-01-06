@@ -370,8 +370,10 @@ class IFactory
   /// \param nofItems number of replications
   /// \param width the replication width (the unit depends on the axis;
   ///        can be mm or deg)
-  ///  \param offset the replication offset (the unit depends on the axis;
+  /// \param offset the replication offset (the unit depends on the axis;
   ///        can be mm or deg)
+  /// \param halfGap the half with of the gap between replications
+  ///        (can be mm or deg)
   ///
   virtual IPlacement* CreateMultiplePlacement(const std::string& name,
     VGM::IVolume* volume, VGM::IVolume* motherVolume, VGM::Axis axis,

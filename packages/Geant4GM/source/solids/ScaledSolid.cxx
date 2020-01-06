@@ -36,7 +36,7 @@ Geant4GM::ScaledSolid::ScaledSolid(
   /// Standard constructor to define Scaled solids via constituent
   /// and a scale
   /// \param solid constituent solids
-  /// \param scale  the CLHEP scale transformation
+  /// \param scale3D  the CLHEP scale transformation
 
   // Get solid from the volumes map
   G4VSolid* g4Solid = Geant4GM::SolidMap::Instance()->GetSolid(solid);
