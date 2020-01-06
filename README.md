@@ -220,7 +220,7 @@
  ## Platforms
 
  Tested on platform:
- Tested platform: Mac OSX 10.14: with Apple LLVM version 10.0.0
+ Tested platform: Mac OSX 10.14.6: with Apple LLVM version 11.0.0
 
  ## Files
 

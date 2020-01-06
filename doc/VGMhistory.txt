@@ -11,6 +11,27 @@ $Id$
 
  The Virtual Geometry Model - Versions
 =========================================
+  06/01/2020
+  version 4.6
+    New features:
+    - Applied clang-format:
+      Processed all .h and .cxx files in packages and test (except files for Doxygen)
+    - Added a possibility to change the dimensions of a dummy box replacing…
+      the unsupported shapes if the 'ignore' option is activated by the user:
+      - via a second argument of IFactory::SetIgnore(..)
+      - via a new function IFactory::SetDummyBoxDimensions(double value)
+
+    Fixes:
+    - Allow compiling with non Apple Clang on macOS 
+      (Thanks to Giulio Eulisse, CERN)
+    - Improve finding of CLHEP libraries.
+      (Thanks to Oliver Freyermuth, , University of Bonn)
+    - Fixed dimensions of polyhedra in the tests.
+
+    Tested with Root 6.18/04, Geant4 10.05.p01
+    (with embedded CLHEP 2.4.1.0)
+    Mac OSX 10.14.6: with Apple LLVM version 11.0.0
+
   25/01/2019
   version 4.5
     New features:
@@ -32,8 +53,8 @@ $Id$
     - CMake build: Add support for ROOT compiled with C++14:
       (thanks to Dario Berzano, CERN)
 
-    Tested with Root 5.34/38 and 6.08/04, Geant4 10.03
-    (with embedded CLHEP 2.3.4.3)
+    Tested with Root 5.34/38 and 6.14/06, Geant4 10.05
+    (with embedded CLHEP 2.4.1.0)
     Mac OSX 10.14: with Apple LLVM version 10.0.0
 
   06/02/2017
