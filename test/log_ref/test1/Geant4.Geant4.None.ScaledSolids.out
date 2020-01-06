@@ -1,7 +1,7 @@
 Geant4 geometry will be defined via Geant4
 
 **************************************************************
- Geant4 version Name: geant4-10-05    (7-December-2018)
+ Geant4 version Name: geant4-10-05-patch-01    (17-April-2019)
                        Copyright : Geant4 Collaboration
                       References : NIM A 506 (2003), 250-303
                                  : IEEE-TNS 53 (2006), 270-278
@@ -232,7 +232,7 @@ VGM info:   Importing solid: phedraS
 VGM info:   Importing solid: phedraS
 VGM info:      Imported solid: Scaled  "phedraS"    Constituent = Polygone  "phedraS"  sphi = 0deg  dphi = 360deg  nsides = 4  nz = 3
    0th plane:  z = -500mm rin = 100mm rout = 400mm
-   1th plane:  z = 100mm rin = 200mm rout = 200mm
+   1th plane:  z = 100mm rin = 200mm rout = 300mm
    2th plane:  z = 400mm rin = 300mm rout = 500mm
   Scale (object):  ( 0.8,  0.5,  0.25) 
 
@@ -241,7 +241,7 @@ VGM info:   Importing LV: phedra_refl
 VGM info:   Importing solid: phedraS_refl
 VGM info:      Imported solid: Scaled  "phedraS"    Constituent = Polygone  "phedraS"  sphi = 0deg  dphi = 360deg  nsides = 4  nz = 3
    0th plane:  z = -500mm rin = 100mm rout = 400mm
-   1th plane:  z = 100mm rin = 200mm rout = 200mm
+   1th plane:  z = 100mm rin = 200mm rout = 300mm
    2th plane:  z = 400mm rin = 300mm rout = 500mm
   Scale (object):  ( 0.8,  0.5,  0.25) 
 
@@ -586,17 +586,17 @@ Geant4_GM_Factory factory solids store:
 
    16th solid: Polygone  "phedraS"  sphi = 0deg  dphi = 360deg  nsides = 4  nz = 3
    0th plane:  z = -500mm rin = 100mm rout = 400mm
-   1th plane:  z = 100mm rin = 200mm rout = 200mm
+   1th plane:  z = 100mm rin = 200mm rout = 300mm
    2th plane:  z = 400mm rin = 300mm rout = 500mm
    17th solid: Scaled  "phedraS"    Constituent = Polygone  "phedraS"  sphi = 0deg  dphi = 360deg  nsides = 4  nz = 3
    0th plane:  z = -500mm rin = 100mm rout = 400mm
-   1th plane:  z = 100mm rin = 200mm rout = 200mm
+   1th plane:  z = 100mm rin = 200mm rout = 300mm
    2th plane:  z = 400mm rin = 300mm rout = 500mm
   Scale (object):  ( 0.8,  0.5,  0.25) 
 
    18th solid: Scaled  "phedraS"    Constituent = Polygone  "phedraS"  sphi = 0deg  dphi = 360deg  nsides = 4  nz = 3
    0th plane:  z = -500mm rin = 100mm rout = 400mm
-   1th plane:  z = 100mm rin = 200mm rout = 200mm
+   1th plane:  z = 100mm rin = 200mm rout = 300mm
    2th plane:  z = 400mm rin = 300mm rout = 500mm
   Scale (object):  ( 0.8,  0.5,  0.25) 
 
@@ -785,8 +785,10 @@ RayTracer (RayTracer)
 VRML1FILE (VRML1FILE)
 VRML2FILE (VRML2FILE)
 gMocrenFile (gMocrenFile)
-OpenGLImmediateX (OGLIX, OGLI)
-OpenGLStoredX (OGLSX, OGL, OGLS)
+OpenGLImmediateQt (OGLIQt, OGLI)
+OpenGLStoredQt (OGLSQt, OGL, OGLS)
+OpenGLImmediateX (OGLIX, OGLIQt_FALLBACK)
+OpenGLStoredX (OGLSX, OGLSQt_FALLBACK)
 RayTracerX (RayTracerX)
 
 Registering model factories...

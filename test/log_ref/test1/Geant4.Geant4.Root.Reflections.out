@@ -2,7 +2,7 @@ Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometr
 Geant4 geometry will be defined via Geant4 and exported to Root
 
 **************************************************************
- Geant4 version Name: geant4-10-05    (7-December-2018)
+ Geant4 version Name: geant4-10-05-patch-01    (17-April-2019)
                        Copyright : Geant4 Collaboration
                       References : NIM A 506 (2003), 250-303
                                  : IEEE-TNS 53 (2006), 270-278
@@ -207,14 +207,14 @@ VGM info:   Importing LV: phedra
 VGM info:   Importing solid: phedraS
 VGM info:      Imported solid: Polygone  "phedraS"  sphi = 0deg  dphi = 360deg  nsides = 4  nz = 3
    0th plane:  z = -500mm rin = 100mm rout = 400mm
-   1th plane:  z = 100mm rin = 200mm rout = 200mm
+   1th plane:  z = 100mm rin = 200mm rout = 300mm
    2th plane:  z = 400mm rin = 300mm rout = 500mm
 VGM info:   ImportDaughters for phedra
 VGM info:   Importing LV: phedra_refl
 VGM info:   Importing solid: phedraS_refl
 VGM info:      Imported solid: Polygone  "phedraS"  sphi = 0deg  dphi = 360deg  nsides = 4  nz = 3
    0th plane:  z = 500mm rin = 100mm rout = 400mm
-   1th plane:  z = -100mm rin = 200mm rout = 200mm
+   1th plane:  z = -100mm rin = 200mm rout = 300mm
    2th plane:  z = -400mm rin = 300mm rout = 500mm
 VGM info:   ImportDaughters for phedra_refl
 VGM info:   Importing LV: sphere
@@ -484,11 +484,11 @@ Geant4_GM_Factory factory solids store:
    2th plane:  z = -400mm rin = 300mm rout = 600mm
    11th solid: Polygone  "phedraS"  sphi = 0deg  dphi = 360deg  nsides = 4  nz = 3
    0th plane:  z = -500mm rin = 100mm rout = 400mm
-   1th plane:  z = 100mm rin = 200mm rout = 200mm
+   1th plane:  z = 100mm rin = 200mm rout = 300mm
    2th plane:  z = 400mm rin = 300mm rout = 500mm
    12th solid: Polygone  "phedraS"  sphi = 0deg  dphi = 360deg  nsides = 4  nz = 3
    0th plane:  z = 500mm rin = 100mm rout = 400mm
-   1th plane:  z = -100mm rin = 200mm rout = 200mm
+   1th plane:  z = -100mm rin = 200mm rout = 300mm
    2th plane:  z = -400mm rin = 300mm rout = 500mm
    13th solid: Sphere  "sphereS"  rin = 200mm  rout = 600mm  sphi = 0deg  dphi = 360deg  stheta = 0deg  dtheta = 180deg
    14th solid: Sphere  "sphereS"  rin = 200mm  rout = 600mm  sphi = 0deg  dphi = 360deg  stheta = 0deg  dtheta = 180deg
@@ -803,13 +803,13 @@ VGM info:   Exporting volume:  10th  "pcone_refl"  material: "Basic"
 VGM info:      Exporting solid: 
 VGM info:      Polygone  "phedraS"  sphi = 0deg  dphi = 360deg  nsides = 4  nz = 3
    0th plane:  z = -500mm rin = 100mm rout = 400mm
-   1th plane:  z = 100mm rin = 200mm rout = 200mm
+   1th plane:  z = 100mm rin = 200mm rout = 300mm
    2th plane:  z = 400mm rin = 300mm rout = 500mm
 VGM info:   Exporting volume:  11th  "phedra"  material: "Basic"
 VGM info:      Exporting solid: 
 VGM info:      Polygone  "phedraS"  sphi = 0deg  dphi = 360deg  nsides = 4  nz = 3
    0th plane:  z = 500mm rin = 100mm rout = 400mm
-   1th plane:  z = -100mm rin = 200mm rout = 200mm
+   1th plane:  z = -100mm rin = 200mm rout = 300mm
    2th plane:  z = -400mm rin = 300mm rout = 500mm
 VGM info:   Exporting volume:  12th  "phedra_refl"  material: "Basic"
 VGM info:      Exporting solid: 
@@ -1045,8 +1045,10 @@ RayTracer (RayTracer)
 VRML1FILE (VRML1FILE)
 VRML2FILE (VRML2FILE)
 gMocrenFile (gMocrenFile)
-OpenGLImmediateX (OGLIX, OGLI)
-OpenGLStoredX (OGLSX, OGL, OGLS)
+OpenGLImmediateQt (OGLIQt, OGLI)
+OpenGLStoredQt (OGLSQt, OGL, OGLS)
+OpenGLImmediateX (OGLIX, OGLIQt_FALLBACK)
+OpenGLStoredX (OGLSX, OGLSQt_FALLBACK)
 RayTracerX (RayTracerX)
 
 Registering model factories...

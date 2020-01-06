@@ -76,7 +76,7 @@
          numsides="4"
          startphi="    0.0000"  deltaphi="  360.0000" >
          <zplane  z="  -50.0000"  rmin="   10.0000"  rmax="   40.0000" />
-         <zplane  z="   10.0000"  rmin="   20.0000"  rmax="   20.0000" />
+         <zplane  z="   10.0000"  rmin="   20.0000"  rmax="   30.0000" />
          <zplane  z="   40.0000"  rmin="   30.0000"  rmax="   50.0000" />
       </polyhedra>
 

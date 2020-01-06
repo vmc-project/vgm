@@ -1,7 +1,7 @@
 Geant4 geometry will be defined via Geant4
 
 **************************************************************
- Geant4 version Name: geant4-10-05    (7-December-2018)
+ Geant4 version Name: geant4-10-05-patch-01    (17-April-2019)
                        Copyright : Geant4 Collaboration
                       References : NIM A 506 (2003), 250-303
                                  : IEEE-TNS 53 (2006), 270-278
@@ -26,8 +26,10 @@ RayTracer (RayTracer)
 VRML1FILE (VRML1FILE)
 VRML2FILE (VRML2FILE)
 gMocrenFile (gMocrenFile)
-OpenGLImmediateX (OGLIX, OGLI)
-OpenGLStoredX (OGLSX, OGL, OGLS)
+OpenGLImmediateQt (OGLIQt, OGLI)
+OpenGLStoredQt (OGLSQt, OGL, OGLS)
+OpenGLImmediateX (OGLIX, OGLIQt_FALLBACK)
+OpenGLStoredX (OGLSX, OGLSQt_FALLBACK)
 RayTracerX (RayTracerX)
 
 Registering model factories...
@@ -63,132 +65,6 @@ Some /vis commands (optionally) take a string to specify colour.
  i97 = 64, u[i97] = 0.141433
  j97 = 0, u[j97] = 0.589389
 ----------------------------------------
-
--------- WWWW ------- G4Exception-START -------- WWWW -------
-*** G4Exception : GeomMgt1002
-      issued by : G4Polyhedra::CalculateExtent()
-Triangulation of RZ contour has failed for solid: phedraS !
-Extent has been calculated using boundary box
-*** This is just a warning message. ***
--------- WWWW -------- G4Exception-END --------- WWWW -------
-
-
--------- WWWW ------- G4Exception-START -------- WWWW -------
-*** G4Exception : GeomMgt1002
-      issued by : G4Polyhedra::CalculateExtent()
-Triangulation of RZ contour has failed for solid: phedraS !
-Extent has been calculated using boundary box
-*** This is just a warning message. ***
--------- WWWW -------- G4Exception-END --------- WWWW -------
-
-
--------- WWWW ------- G4Exception-START -------- WWWW -------
-*** G4Exception : GeomMgt1002
-      issued by : G4Polyhedra::CalculateExtent()
-Triangulation of RZ contour has failed for solid: phedraS !
-Extent has been calculated using boundary box
-*** This is just a warning message. ***
--------- WWWW -------- G4Exception-END --------- WWWW -------
-
-
--------- WWWW ------- G4Exception-START -------- WWWW -------
-*** G4Exception : GeomMgt1002
-      issued by : G4Polyhedra::CalculateExtent()
-Triangulation of RZ contour has failed for solid: phedraS !
-Extent has been calculated using boundary box
-*** This is just a warning message. ***
--------- WWWW -------- G4Exception-END --------- WWWW -------
-
-
--------- WWWW ------- G4Exception-START -------- WWWW -------
-*** G4Exception : GeomMgt1002
-      issued by : G4Polyhedra::CalculateExtent()
-Triangulation of RZ contour has failed for solid: phedraS !
-Extent has been calculated using boundary box
-*** This is just a warning message. ***
--------- WWWW -------- G4Exception-END --------- WWWW -------
-
-
--------- WWWW ------- G4Exception-START -------- WWWW -------
-*** G4Exception : GeomMgt1002
-      issued by : G4Polyhedra::CalculateExtent()
-Triangulation of RZ contour has failed for solid: phedraS !
-Extent has been calculated using boundary box
-*** This is just a warning message. ***
--------- WWWW -------- G4Exception-END --------- WWWW -------
-
-
--------- WWWW ------- G4Exception-START -------- WWWW -------
-*** G4Exception : GeomMgt1002
-      issued by : G4Polyhedra::CalculateExtent()
-Triangulation of RZ contour has failed for solid: phedraS !
-Extent has been calculated using boundary box
-*** This is just a warning message. ***
--------- WWWW -------- G4Exception-END --------- WWWW -------
-
-
--------- WWWW ------- G4Exception-START -------- WWWW -------
-*** G4Exception : GeomMgt1002
-      issued by : G4Polyhedra::CalculateExtent()
-Triangulation of RZ contour has failed for solid: phedraS !
-Extent has been calculated using boundary box
-*** This is just a warning message. ***
--------- WWWW -------- G4Exception-END --------- WWWW -------
-
-
--------- WWWW ------- G4Exception-START -------- WWWW -------
-*** G4Exception : GeomMgt1002
-      issued by : G4Polyhedra::CalculateExtent()
-Triangulation of RZ contour has failed for solid: phedraS !
-Extent has been calculated using boundary box
-*** This is just a warning message. ***
--------- WWWW -------- G4Exception-END --------- WWWW -------
-
-
--------- WWWW ------- G4Exception-START -------- WWWW -------
-*** G4Exception : GeomMgt1002
-      issued by : G4Polyhedra::CalculateExtent()
-Triangulation of RZ contour has failed for solid: phedraS !
-Extent has been calculated using boundary box
-*** This is just a warning message. ***
--------- WWWW -------- G4Exception-END --------- WWWW -------
-
-
--------- WWWW ------- G4Exception-START -------- WWWW -------
-*** G4Exception : GeomMgt1002
-      issued by : G4Polyhedra::CalculateExtent()
-Triangulation of RZ contour has failed for solid: phedraS !
-Extent has been calculated using boundary box
-*** This is just a warning message. ***
--------- WWWW -------- G4Exception-END --------- WWWW -------
-
-
--------- WWWW ------- G4Exception-START -------- WWWW -------
-*** G4Exception : GeomMgt1002
-      issued by : G4Polyhedra::CalculateExtent()
-Triangulation of RZ contour has failed for solid: phedraS !
-Extent has been calculated using boundary box
-*** This is just a warning message. ***
--------- WWWW -------- G4Exception-END --------- WWWW -------
-
-
--------- WWWW ------- G4Exception-START -------- WWWW -------
-*** G4Exception : GeomMgt1002
-      issued by : G4Polyhedra::CalculateExtent()
-Triangulation of RZ contour has failed for solid: phedraS !
-Extent has been calculated using boundary box
-*** This is just a warning message. ***
--------- WWWW -------- G4Exception-END --------- WWWW -------
-
-
--------- WWWW ------- G4Exception-START -------- WWWW -------
-*** G4Exception : GeomMgt1002
-      issued by : G4Polyhedra::CalculateExtent()
-Triangulation of RZ contour has failed for solid: phedraS !
-Extent has been calculated using boundary box
-*** This is just a warning message. ***
--------- WWWW -------- G4Exception-END --------- WWWW -------
-
 ### Run 0 start.
 
 *********************************************************************************************************
@@ -620,8 +496,8 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -570      230 1.56e+03         1        0        0         0       world initStep
-    1 -1.96e+03 1.12e+03      797         1        0 1.81e+03  1.81e+03      phedra Transportation
-    2 -2.5e+03 1.46e+03      500         1        0      708  2.52e+03       world Transportation
+    1 -1.92e+03 1.09e+03      819         1        0 1.76e+03  1.76e+03      phedra Transportation
+    2 -2.5e+03 1.46e+03      500         1        0      760  2.52e+03       world Transportation
     3 -4.91e+03    3e+03     -822         1        0 3.15e+03  5.67e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -806,9 +682,9 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      118      266      537         1        0        0         0       world initStep
-    1 -1.54e+03 1.45e+03     -621         1        0 2.34e+03  2.34e+03      phedra Transportation
-    2 -2.04e+03  1.8e+03     -969         1        0      704  3.05e+03       world Transportation
-    3 -2.58e+03 2.19e+03 -1.35e+03         1        0      768  3.82e+03        para Transportation
+    1 -1.52e+03 1.44e+03     -608         1        0 2.32e+03  2.32e+03      phedra Transportation
+    2 -2.1e+03 1.85e+03 -1.01e+03         1        0      813  3.13e+03       world Transportation
+    3 -2.58e+03 2.19e+03 -1.35e+03         1        0      685  3.82e+03        para Transportation
     4 -2.6e+03  2.2e+03 -1.36e+03         1        0     25.5  3.84e+03       world Transportation
     5 -3.72e+03    3e+03 -2.14e+03         1        0 1.58e+03  5.42e+03  OutOfWorld Transportation
 
@@ -1224,8 +1100,8 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -3.38e+03      721 -2.82e+03         1        0        0         0       world initStep
-    1 -2.07e+03 1.12e+03     -755         1        0 2.48e+03  2.48e+03      phedra Transportation
-    2 -1.91e+03 1.17e+03     -500         1        0      306  2.79e+03       world Transportation
+    1 -2.1e+03 1.11e+03     -811         1        0 2.42e+03  2.42e+03      phedra Transportation
+    2 -1.91e+03 1.17e+03     -500         1        0      374  2.79e+03       world Transportation
     3 -1.09e+03 1.42e+03      777         1        0 1.53e+03  4.32e+03       torus Transportation
     4 -1.04e+03 1.44e+03      862         1        0      102  4.42e+03       world Transportation
     5     -833  1.5e+03 1.19e+03         1        0      392  4.82e+03       torus Transportation
@@ -1254,8 +1130,8 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      764 2.64e+03       23         1        0        0         0       world initStep
-    1 -1.86e+03  1.8e+03 -1.21e+03         1        0 3.02e+03  3.02e+03      phedra Transportation
-    2 -1.93e+03 1.78e+03 -1.24e+03         1        0     78.8   3.1e+03       world Transportation
+    1 -1.81e+03 1.82e+03 -1.19e+03         1        0 2.96e+03  2.96e+03      phedra Transportation
+    2 -1.93e+03 1.78e+03 -1.24e+03         1        0      137   3.1e+03       world Transportation
     3 -2.24e+03 1.68e+03 -1.39e+03         1        0      353  3.45e+03      phedra Transportation
     4 -2.26e+03 1.67e+03 -1.4e+03         1        0     27.8  3.48e+03       world Transportation
     5 -5.66e+03      588   -3e+03         1        0 3.91e+03  7.39e+03  OutOfWorld Transportation
@@ -1483,8 +1359,8 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -1.78e+03 1.05e+03 -1.84e+03         1        0        0         0       world initStep
     1 -1.46e+03 1.52e+03 -1.4e+03         1        0      710       710      phedra Transportation
-    2 -1.43e+03 1.57e+03 -1.35e+03         1        0     79.2       790       world Transportation
-    3     -452    3e+03     -2.8         1        0  2.2e+03  2.99e+03  OutOfWorld Transportation
+    2 -1.42e+03 1.58e+03 -1.34e+03         1        0     92.9       803       world Transportation
+    3     -452    3e+03     -2.8         1        0 2.18e+03  2.99e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -1564,8 +1440,8 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -464 1.65e+03      680         1        0        0         0       world initStep
-    1 -1.62e+03 1.34e+03      554         1        0  1.2e+03   1.2e+03      phedra Transportation
-    2 -2.11e+03 1.21e+03      500         1        0      514  1.71e+03       world Transportation
+    1 -1.6e+03 1.35e+03      556         1        0 1.18e+03  1.18e+03      phedra Transportation
+    2 -2.11e+03 1.21e+03      500         1        0      531  1.71e+03       world Transportation
     3 -6.2e+03      135     53.4         1        0 4.25e+03  5.96e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
@@ -3596,8 +3472,8 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -2.61e+03 1.44e+03 -1.39e+03         1        0        0         0      phedra initStep
-    1 -2.62e+03 1.47e+03 -1.36e+03         1        0     48.8      48.8       world Transportation
-    2 -3.25e+03    3e+03      376         1        0 2.39e+03  2.44e+03  OutOfWorld Transportation
+    1 -2.63e+03  1.5e+03 -1.32e+03         1        0     94.6      94.6       world Transportation
+    2 -3.25e+03    3e+03      376         1        0 2.35e+03  2.44e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -3917,9 +3793,9 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -1.07e+03 2.26e+03 -1.15e+03         1        0        0         0       world initStep
-    1 -1.96e+03 1.91e+03 -1.22e+03         1        0      959       959      phedra Transportation
-    2 -2.12e+03 1.85e+03 -1.23e+03         1        0      171  1.13e+03       world Transportation
-    3 -2.99e+03 1.52e+03 -1.3e+03         1        0      932  2.06e+03        para Transportation
+    1 -1.9e+03 1.94e+03 -1.22e+03         1        0      897       897      phedra Transportation
+    2 -2.26e+03  1.8e+03 -1.24e+03         1        0      386  1.28e+03       world Transportation
+    3 -2.99e+03 1.52e+03 -1.3e+03         1        0      778  2.06e+03        para Transportation
     4 -3.98e+03 1.14e+03 -1.38e+03         1        0 1.07e+03  3.13e+03       world Transportation
     5 -6.2e+03      296 -1.55e+03         1        0 2.38e+03  5.51e+03  OutOfWorld Transportation
 
@@ -4281,10 +4157,10 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -4.01e+03 1.84e+03 -2.99e+03         1        0        0         0       world initStep
     1 -2.46e+03 1.31e+03 -1.4e+03         1        0 2.28e+03  2.28e+03      phedra Transportation
-    2 -2.39e+03 1.29e+03 -1.33e+03         1        0      100  2.38e+03       world Transportation
-    3 -2.01e+03 1.16e+03     -941         1        0      560  2.94e+03      phedra Transportation
-    4 -1.98e+03 1.14e+03     -908         1        0     46.1  2.98e+03       world Transportation
-    5 1.83e+03     -157    3e+03         1        0 5.61e+03   8.6e+03  OutOfWorld Transportation
+    2 -2.29e+03 1.25e+03 -1.22e+03         1        0      258  2.54e+03       world Transportation
+    3 -2.13e+03 1.19e+03 -1.06e+03         1        0      233  2.77e+03      phedra Transportation
+    4 -1.89e+03 1.11e+03     -819         1        0      345  3.11e+03       world Transportation
+    5 1.83e+03     -157    3e+03         1        0 5.48e+03   8.6e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -5011,8 +4887,8 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -2.64e+03 1.85e+03      822         1        0        0         0       world initStep
     1 -2.17e+03 1.18e+03     -500         1        0 1.56e+03  1.56e+03      phedra Transportation
-    2 -2.13e+03 1.12e+03     -623         1        0      145   1.7e+03       world Transportation
-    3 -1.27e+03    -89.1   -3e+03         1        0  2.8e+03   4.5e+03  OutOfWorld Transportation
+    2 -2.1e+03 1.08e+03     -698         1        0      233  1.79e+03       world Transportation
+    3 -1.27e+03    -89.1   -3e+03         1        0 2.71e+03   4.5e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -6609,9 +6485,9 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -974      828     -518         1        0        0         0       world initStep
-    1 -1.47e+03 1.47e+03     -510         1        0      810       810      phedra Transportation
-    2 -1.7e+03 1.76e+03     -506         1        0      366  1.18e+03       world Transportation
-    3 -2.66e+03    3e+03     -491         1        0 1.57e+03  2.75e+03  OutOfWorld Transportation
+    1 -1.47e+03 1.47e+03     -510         1        0      809       809      phedra Transportation
+    2 -1.7e+03 1.76e+03     -506         1        0      377  1.19e+03       world Transportation
+    3 -2.66e+03    3e+03     -491         1        0 1.56e+03  2.75e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -8458,11 +8334,11 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -3.21e+03      401 -1.5e+03         1        0        0         0       world initStep
-    1 -2.11e+03 1.31e+03 -1.11e+03         1        0 1.49e+03  1.49e+03      phedra Transportation
-    2 -2.1e+03 1.32e+03 -1.11e+03         1        0        7  1.49e+03       world Transportation
+    1 -2.2e+03 1.24e+03 -1.14e+03         1        0 1.36e+03  1.36e+03      phedra Transportation
+    2 -2.1e+03 1.32e+03 -1.11e+03         1        0      131  1.49e+03       world Transportation
     3 -1.81e+03 1.57e+03   -1e+03         1        0      402  1.89e+03      phedra Transportation
-    4 -1.76e+03  1.6e+03     -985         1        0     57.1  1.95e+03       world Transportation
-    5    -75.4    3e+03     -381         1        0 2.27e+03  4.23e+03  OutOfWorld Transportation
+    4 -1.7e+03 1.66e+03     -962         1        0      145  2.04e+03       world Transportation
+    5    -75.4    3e+03     -381         1        0 2.19e+03  4.23e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -8785,7 +8661,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -2.36e+03 1.15e+03 2.64e+03         1        0        0         0       world initStep
     1 -5.38e+03   -3e+03     -309         1        0 5.91e+03  5.91e+03  OutOfWorld Transportation
-number of event = 1000 User=0.030000s Real=0.060119s Sys=0.030000s
-Execution time: R: 0.0601 s  C: 0.0601 s 
+number of event = 1000 User=0.020000s Real=0.048057s Sys=0.020000s
+Execution time: R: 0.0481 s  C: 0.0481 s 
 Graphics systems deleted.
 Visualization Manager deleting...
