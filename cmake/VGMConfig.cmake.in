@@ -23,6 +23,12 @@
 #
 # I. Hrivnacova, 04/06/2014
 
+# Support CMake >= 3.8
+cmake_policy(VERSION 3.8)
+if(CMAKE_VERSION VERSION_LESS 3.8)
+  message(FATAL_ERROR "VGMConfig requires CMake 3.8 or newer")
+endif()
+
 # Compute installation prefix relative to this file
 get_filename_component(_dir "${CMAKE_CURRENT_LIST_FILE}" PATH)
 get_filename_component(_prefix "${_dir}/../.." ABSOLUTE)
@@ -38,19 +44,19 @@ set(VGM_WITH_G4ROOT @WITH_G4ROOT@)
 set(VGM_WITH_EXAMPLES @ WITH_EXAMPLES@)
 
 # These are IMPORTED targets created by VGMTargets.cmake
-set(VGM_LIBRARIES BaseVGM;XmlVGM;ClhepVGM)
+set(VGM_LIBRARIES VGM::BaseVGM;VGM::XmlVGM;VGM::ClhepVGM)
 if(VGM_WITH_GEANT4)
-set(VGM_LIBRARIES "${VGM_LIBRARIES};Geant4GM")
+set(VGM_LIBRARIES "${VGM_LIBRARIES};VGM::Geant4GM")
 endif()
 if(VGM_WITH_ROOT)
-set(VGM_LIBRARIES "${VGM_LIBRARIES};RootGM")
+set(VGM_LIBRARIES "${VGM_LIBRARIES};VGM::RootGM")
 endif()
 
 if(VGM_WITH_GEANT4)
-set(VGM_GEANT4_LIBRARIES Geant4GM;ClhepVGM;BaseVGM;XmlVGM)
+set(VGM_GEANT4_LIBRARIES VGM::Geant4GM;VGM::ClhepVGM;VGM::BaseVGM;VGM::XmlVGM)
 endif()
 if(VGM_WITH_ROOT)
-set(VGM_ROOT_LIBRARIES RootGM;ClhepVGM;BaseVGM;XmlVGM)
+set(VGM_ROOT_LIBRARIES VGM::RootGM;VGM::ClhepVGM;VGM::BaseVGM;VGM::XmlVGM)
 endif()
 
 # Set includes

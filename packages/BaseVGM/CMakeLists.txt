@@ -15,6 +15,11 @@
 
 #---BaseVGM --------------------------------------------------------------------
 
+#----------------------------------------------------------------------------
+# Define installed names
+#
+set(_library_name BaseVGM)
+
 #---Include directories---------------------------------------------------------
 include_directories(
   ${VGM_SOURCE_DIR}/packages/VGM/include
@@ -24,8 +29,9 @@ include_directories(
 
 #---Add library-----------------------------------------------------------------
 file(GLOB sources source/*/*.cxx)
-add_library(BaseVGM ${sources})
+add_library(${_library_name} ${sources})
+target_include_directories(${_library_name} INTERFACE $<INSTALL_INTERFACE:include/${_library_name}>)
 
 #----Installation---------------------------------------------------------------
-install(DIRECTORY include/ DESTINATION include  PATTERN ".svn" EXCLUDE)
-install(TARGETS BaseVGM EXPORT VGMTargets DESTINATION ${CMAKE_INSTALL_LIBDIR})
+install(DIRECTORY include/ DESTINATION include)
+install(TARGETS ${_library_name} EXPORT VGMTargets DESTINATION ${CMAKE_INSTALL_LIBDIR})

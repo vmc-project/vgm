@@ -24,12 +24,31 @@ if(WITH_GEANT4)
   include(${Geant4_USE_FILE})
 endif()
 
-#-- CLHEP (required) -----------------------------------------------------------
-find_package(CLHEP REQUIRED)
-
 #-- ROOT (optional) ------------------------------------------------------------
 if(WITH_ROOT)
-  find_package(ROOT REQUIRED)
+  find_package(ROOT CONFIG COMPONENTS Geom REQUIRED)
+  set(ROOT_DEPS ROOT::Core ROOT::Physics ROOT::Geom)
+  if(NOT WITH_GEANT4)
+    # use ROOT comilation flags if not taken from Geant4
+    include(${ROOT_USE_FILE})
+  endif()
+endif()
+
+#-- CLHEP (required) -----------------------------------------------------------
+if(Geant4_builtin_clhep_FOUND)
+  if(${Geant4_VERSION} VERSION_LESS "10.6")
+     set(CLHEP_LIBRARIES G4clhep)
+  else()
+     set(CLHEP_LIBRARIES Geant4::G4clhep)
+  endif()
+else()
+  find_package(CLHEP CONFIG REQUIRED)
+  if(NOT WITH_GEANT4 AND NOT WITH_ROOT)
+    # set c++11 standard explicitely if Geant4 and Root use files are not used
+    # at it is the default for CLHEP build
+    set(CMAKE_CXX_STANDARD 11)
+  endif()
+
 endif()
 
 #-- Optional packages used in test ---------------------------------------------

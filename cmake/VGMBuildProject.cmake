@@ -14,24 +14,8 @@
 #
 # I. Hrivnacova, 04/06/2014
 
-# Find modules
-foreach(_find_mod CLHEP Geant4 ROOT)
-  configure_file(
-    ${PROJECT_SOURCE_DIR}/cmake/Find${_find_mod}.cmake
-    ${PROJECT_BINARY_DIR}/Modules/Find${_find_mod}.cmake
-    COPYONLY
-  )
-endforeach()
-
 # Set needed variables for the install tree
 set(VGM_CMAKE_DIR ${CMAKE_INSTALL_PREFIX}/cmake)
-
-# Install the custom modules for the examples
-install(DIRECTORY
-  ${PROJECT_BINARY_DIR}/Modules/
-  DESTINATION ${CMAKE_INSTALL_LIBDIR}/VGM-${VGM_VERSION}/Modules
-  COMPONENT Development
-)
 
 # Install examples
 if(INSTALL_EXAMPLES)
@@ -57,5 +41,5 @@ install(FILES
   "${PROJECT_BINARY_DIR}/VGMConfigVersion.cmake"
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/VGM-${VGM_VERSION})
 
-install(EXPORT VGMTargets
+install(EXPORT VGMTargets NAMESPACE ${PROJECT_NAME}::
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/VGM-${VGM_VERSION})

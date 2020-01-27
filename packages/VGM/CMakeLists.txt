@@ -16,4 +16,4 @@
 #---VGM ------------------------------------------------------------------------
 
 #----Installation---------------------------------------------------------------
-install(DIRECTORY include/ DESTINATION include PATTERN ".svn" EXCLUDE)
+install(DIRECTORY include/ DESTINATION include)

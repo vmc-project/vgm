@@ -15,6 +15,11 @@
 
 #---Geant4GM -------------------------------------------------------------------
 
+#----------------------------------------------------------------------------
+# Define installed names
+#
+set(_library_name Geant4GM)
+
 #---Include directories---------------------------------------------------------
 include_directories(
   ${CLHEP_INCLUDE_DIRS}
@@ -27,9 +32,12 @@ include_directories(
 
 #---Add library-----------------------------------------------------------------
 file(GLOB sources source/*/*.cxx)
-add_library(Geant4GM ${sources})
-target_link_libraries(Geant4GM BaseVGM ClhepVGM ${Geant4_LIBRARIES} ${CLHEP_LIBRARIES})
+add_library(${_library_name} ${sources})
+set(_dependencies BaseVGM ClhepVGM ${Geant4_LIBRARIES} ${CLHEP_LIBRARIES})
+target_link_libraries(${_library_name} ${_dependencies})
+set_target_properties(${_library_name} PROPERTIES INTERFACE_LINK_LIBRARIES "${_dependencies}")
+target_include_directories(${_library_name} INTERFACE $<INSTALL_INTERFACE:include/${_library_name}>)
 
 #----Installation---------------------------------------------------------------
-install(DIRECTORY include/ DESTINATION include  PATTERN ".svn" EXCLUDE)
-install(TARGETS Geant4GM EXPORT VGMTargets DESTINATION ${CMAKE_INSTALL_LIBDIR})
+install(DIRECTORY include/ DESTINATION include)
+install(TARGETS ${_library_name} EXPORT VGMTargets DESTINATION ${CMAKE_INSTALL_LIBDIR})
