@@ -38,7 +38,7 @@ PROJECT_NAME           = "VGM"
 # could be handy for archiving the generated documentation or if some version
 # control system is used.
 
-PROJECT_NUMBER         = "Version 4.4"
+PROJECT_NUMBER         = "Version 4.7"
 
 # Using the PROJECT_BRIEF tag one can provide an optional one line description
 # for a project that appears at the top of each page and should give viewer a
@@ -2002,9 +2002,9 @@ SEARCH_INCLUDES        = YES
 # preprocessor.
 # This tag requires that the tag SEARCH_INCLUDES is set to YES.
 
-INCLUDE_PATH           = /work/projects/vgm/new/geant4/include \
-                         /work/projects/vgm/new/root/include \
-                         /work/projects/vgm/new/geant4_vmc/include
+INCLUDE_PATH           = /Users/ivana/work/projects/vgm/new_root6/geant4/include \
+                         /Users/ivana/work/projects/vgm/new_root6/root/include \
+                         /Users/ivana/work/projects/vgm/new_root6/g4root_install/include
 
 # You can use the INCLUDE_FILE_PATTERNS tag to specify one or more wildcard
 # patterns (like *.h and *.hpp) to filter out the header-files in the

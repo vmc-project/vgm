@@ -11,6 +11,25 @@ $Id$
 
  The Virtual Geometry Model - Versions
 =========================================
+  26/02/2020
+  version 4.7
+    New features:
+      CMake upgrade:
+      - Updated cmake minimim version to 3.8
+      - Make VGM relocatable:
+      - Use Geant4 compilation flags (including cxx standard) if built with Geant4,
+        ROOT compilation flags if built with Root and without Geant4
+        set c++11 standard explicitly if Geant4 and Root use files are not used
+        (at it is the default for CLHEP build)
+
+    Fixes:
+      - Fixed the examples top CMake file for building all examples outside
+        VGM build
+
+    Tested with Root 6.18/04, Geant4 10.05.p01
+    (with embedded CLHEP 2.4.1.0)
+    Mac OSX 10.14.6: with Apple LLVM version 11.0.0
+
   06/01/2020
   version 4.6
     New features:
