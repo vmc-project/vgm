@@ -98,10 +98,6 @@
          <fraction n="  0.9999"  ref="H_1_i" />
          <fraction n="  0.0001"  ref="H_2_i" />
       </element>
-      <element  name="H_e"  >
-         <fraction n="  0.9999"  ref="H_1_i" />
-         <fraction n="  0.0001"  ref="H_2_i" />
-      </element>
       <element  name="C_e"  >
          <fraction n="  0.9893"  ref="C_12_i" />
          <fraction n="  0.0107"  ref="C_13_i" />
