@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/GDML_2_10_0/src/GDMLSchema/gdml.xsd">
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="
+http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
 
    <define>
       <position  name="pos_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
@@ -70,9 +70,6 @@
       <element  name="H_e"  Z="  1.0000"  N="  1" >
          <atom type="A" unit="g/mol" value="  1.0079" />
       </element>
-      <element  name="Vacuum_e"  Z="  1.0000"  N="  1" >
-         <atom type="A" unit="g/mol" value="  1.0100" />
-      </element>
       <element  name="C_e"  Z="  6.0000"  N=" 12" >
          <atom type="A" unit="g/mol" value=" 12.0107" />
       </element>
@@ -105,7 +102,7 @@
          <D type="density" unit="g/cm3" value=" 1.0000e-25"/>
          <T type="temperature" unit="K" value="     2.7300"/>
          <P type="pressure" unit="pascal" value=" 3.0000e-18"/>
-         <fraction n="    1.0000"  ref="Vacuum_e"/>
+         <fraction n="    1.0000"  ref="H_e"/>
       </material>
 
    </materials>

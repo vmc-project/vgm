@@ -6,7 +6,7 @@
 <xi:include href="StandardColors.agdd"/>
 
 <materials  version = "Id"
-            date    = "2020-02-28"
+            date    = "2020-12-18"
             author  = "VGM AGGD Writer"
             DTD_version="v7"  >
 
@@ -15,9 +15,6 @@
 
    <element  symbol="HYDROGEN">
       <atom zeff="1.0000"  aweight="1.0079" />
-   </element>
-   <element  symbol="Vacuum_e">
-      <atom zeff="1.0000"  aweight="1.0100" />
    </element>
    <element  symbol="CARBON">
       <atom zeff="6.0000"  aweight="12.0107" />
@@ -45,13 +42,13 @@
       <addelement name="U"  natoms=" 1.0000"/>
    </material>
    <material  name="Vacuum_mat"  density="1.0000e-25">
-      <addelement name="Vacuum_e"  natoms=" 1.0000"/>
+      <addelement name="HYDROGEN"  natoms=" 1.0000"/>
    </material>
 
 </materials>
 
 <media  version = "Id"
-        date    = "2020-02-28"
+        date    = "2020-12-18"
         author  = "VGM AGGD Writer"
         DTD_version="v7"  >
 
@@ -81,7 +78,7 @@
 <section DTD_version = "v7"
          name        = "world"
          version     = "Id"
-         date        = "2020-02-28"
+         date        = "2020-12-18"
          author      = "VGM AGGD Writer"
          top_volume  = "world_comp"  >
 

@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/GDML_2_10_0/src/GDMLSchema/gdml.xsd">
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="
+http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
 
    <define>
       <position  name="pos_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
@@ -60,14 +60,8 @@
    </define>
 
    <materials>
-      <isotope  name="Vacuum_e_1_i"Z="  1.0000"  N="  1" >
-         <atom type="A" unit="g/mol" value="  1.0078" />
-      </isotope>
       <isotope  name="H_1_i"     Z="  1.0000"  N="  1" >
          <atom type="A" unit="g/mol" value="  1.0078" />
-      </isotope>
-      <isotope  name="Vacuum_e_2_i"Z="  1.0000"  N="  2" >
-         <atom type="A" unit="g/mol" value="  2.0141" />
       </isotope>
       <isotope  name="H_2_i"     Z="  1.0000"  N="  2" >
          <atom type="A" unit="g/mol" value="  2.0141" />
@@ -103,10 +97,6 @@
       <element  name="H_e"  >
          <fraction n="  0.9999"  ref="H_1_i" />
          <fraction n="  0.0001"  ref="H_2_i" />
-      </element>
-      <element  name="Vacuum_e"  >
-         <fraction n="  0.9999"  ref="Vacuum_e_1_i" />
-         <fraction n="  0.0001"  ref="Vacuum_e_2_i" />
       </element>
       <element  name="C_e"  >
          <fraction n="  0.9893"  ref="C_12_i" />
@@ -147,7 +137,7 @@
          <D type="density" unit="g/cm3" value=" 1.0000e-25"/>
          <T type="temperature" unit="K" value="     2.7300"/>
          <P type="pressure" unit="pascal" value=" 3.0000e-18"/>
-         <fraction n="    1.0000"  ref="Vacuum_e"/>
+         <fraction n="    1.0000"  ref="H_e"/>
       </material>
 
    </materials>

@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/GDML_2_10_0/src/GDMLSchema/gdml.xsd">
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="
+http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
 
    <define>
       <position  name="pos_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
@@ -201,8 +201,8 @@
          name="ctubs_refl_s"
          rmin="   20.0000"  rmax="   30.0000"  z="  120.9800"
          startphi="  -30.0000"  deltaphi="  280.0000"
-         lowX="    0.0000"  lowY="    0.1029"  lowZ="    0.9947"
-         highX="    0.0000"  highY="    0.6392"  highZ="   -0.7690" />
+         lowX="    0.0000"  lowY="    0.1029"  lowZ="   -0.9947"
+         highX="    0.0000"  highY="    0.6392"  highZ="    0.7690" />
 
       <xtru  lunit="cm" aunit="degree"
          name="xtru1_s" >
@@ -237,7 +237,7 @@
       </xtru>
 
       <xtru  lunit="cm" aunit="degree"
-         name="xtru2_s" >
+         name="xtru2_constA_s" >
          <twoDimVertex  x="  -30.0000"  y="  -30.0000" />
          <twoDimVertex  x="  -30.0000"  y="   30.0000" />
          <twoDimVertex  x="   30.0000"  y="   30.0000" />
@@ -248,9 +248,28 @@
          <twoDimVertex  x="  -15.0000"  y="  -30.0000" />
          <section  zPosition="  -40.0000"  zOrder="  0"  xOffset="  -20.0000"  yOffset="   10.0000"  scalingFactor="    1.5000" />
          <section  zPosition="   10.0000"  zOrder="  1"  xOffset="    0.0000"  yOffset="    0.0000"  scalingFactor="    0.5000" />
-         <section  zPosition="   10.0000"  zOrder="  2"  xOffset="    0.0000"  yOffset="    0.0000"  scalingFactor="    0.7000" />
-         <section  zPosition="   40.0000"  zOrder="  3"  xOffset="   20.0000"  yOffset="   20.0000"  scalingFactor="    0.9000" />
       </xtru>
+
+      <xtru  lunit="cm" aunit="degree"
+         name="xtru2_constB_s" >
+         <twoDimVertex  x="  -30.0000"  y="  -30.0000" />
+         <twoDimVertex  x="  -30.0000"  y="   30.0000" />
+         <twoDimVertex  x="   30.0000"  y="   30.0000" />
+         <twoDimVertex  x="   30.0000"  y="  -30.0000" />
+         <twoDimVertex  x="   15.0000"  y="  -30.0000" />
+         <twoDimVertex  x="   15.0000"  y="   15.0000" />
+         <twoDimVertex  x="  -15.0000"  y="   15.0000" />
+         <twoDimVertex  x="  -15.0000"  y="  -30.0000" />
+         <section  zPosition="   10.0000"  zOrder="  0"  xOffset="    0.0000"  yOffset="    0.0000"  scalingFactor="    0.7000" />
+         <section  zPosition="   40.0000"  zOrder="  1"  xOffset="   20.0000"  yOffset="   20.0000"  scalingFactor="    0.9000" />
+      </xtru>
+
+      <union name="xtru2_s" >
+         <first  ref="xtru2_constA_s" />
+         <second ref="xtru2_constB_s" />
+         <position  name="posB_0"    x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+         <rotation  name="rotB_0"    x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
+      </union>
 
       <xtru  lunit="cm" aunit="degree"
          name="xtru2_refl_constA_s" >
@@ -283,8 +302,8 @@
       <union name="xtru2_refl_s" >
          <first  ref="xtru2_refl_constA_s" />
          <second ref="xtru2_refl_constB_s" />
-         <position  name="posB_0"    x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
-         <rotation  name="rotB_0"    x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
+         <position  name="posB_1"    x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+         <rotation  name="rotB_1"    x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
       </union>
 
       <hype  lunit="cm" aunit="degree"

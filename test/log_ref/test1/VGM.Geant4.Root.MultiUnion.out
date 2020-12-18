@@ -1,0 +1,242 @@
+Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometry created
+Geant4 geometry will be defined via VGM and exported to Root
+
+**************************************************************
+ Geant4 version Name: geant4-10-07    (4-December-2020)
+                       Copyright : Geant4 Collaboration
+                      References : NIM A 506 (2003), 250-303
+                                 : IEEE-TNS 53 (2006), 270-278
+                                 : NIM A 835 (2016), 186-225
+                             WWW : http://geant4.org/
+**************************************************************
+
+VGM info:   Importing isotope: 
+VGM info:    Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   C13   Z =  6   N =  13   A =  13.00 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   N14   Z =  7   N =  14   A =  14.00 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   N15   Z =  7   N =  15   A =  15.00 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   O16   Z =  8   N =  16   A =  15.99 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   O17   Z =  8   N =  17   A =  17.00 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:   O18   Z =  8   N =  18   A =  18.00 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:  Al27   Z = 13   N =  27   A =  26.98 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:  W180   Z = 74   N = 180   A = 179.95 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:  W182   Z = 74   N = 182   A = 181.95 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:  W183   Z = 74   N = 183   A = 182.95 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:  W184   Z = 74   N = 184   A = 183.95 g/mole
+VGM info:   Importing isotope: 
+VGM info:    Isotope:  W186   Z = 74   N = 186   A = 185.95 g/mole
+TestMultiUnion finished
+Go to export
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "H1"    Z = 1  N = 1  A = 1.00783 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "H2"    Z = 1  N = 2  A = 2.0141 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "C12"    Z = 6  N = 12  A = 12 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "C13"    Z = 6  N = 13  A = 13.0034 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "N14"    Z = 7  N = 14  A = 14.0031 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "N15"    Z = 7  N = 15  A = 15.0001 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "O16"    Z = 8  N = 16  A = 15.9949 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "O17"    Z = 8  N = 17  A = 16.9991 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "O18"    Z = 8  N = 18  A = 17.9992 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "Al27"    Z = 13  N = 27  A = 26.9815 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "W180"    Z = 74  N = 180  A = 179.947 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "W182"    Z = 74  N = 182  A = 181.948 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "W183"    Z = 74  N = 183  A = 182.95 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "W184"    Z = 74  N = 184  A = 183.951 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "W186"    Z = 74  N = 186  A = 185.954 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "U235"    Z = 92  N = 235  A = 235.01 g/mole
+VGM info:   Exporting isotope: 
+VGM info:   Isotope: "U238"    Z = 92  N = 238  A = 238.03 g/mole
+VGM info:   Exporting element: 
+VGM info:   Element: "H"  "H"  Z = 1  N = 1.00794  A = 1.00794 g/mole
+     0th isotope: Isotope: "H1"    Z = 1  N = 1  A = 1.00783 g/mole  abundance: 99.9885%
+     1th isotope: Isotope: "H2"    Z = 1  N = 2  A = 2.0141 g/mole  abundance: 0.0115%
+VGM info:   Exporting element: 
+VGM info:   Element: "C"  "C"  Z = 6  N = 12.0107  A = 12.0107 g/mole
+     0th isotope: Isotope: "C12"    Z = 6  N = 12  A = 12 g/mole  abundance: 98.93%
+     1th isotope: Isotope: "C13"    Z = 6  N = 13  A = 13.0034 g/mole  abundance: 1.07%
+VGM info:   Exporting element: 
+VGM info:   Element: "Nitrogen"  "N"  Z = 7  N = 14.01  A = 14.01 g/mole
+     0th isotope: Isotope: "N14"    Z = 7  N = 14  A = 14.0031 g/mole  abundance: 99.632%
+     1th isotope: Isotope: "N15"    Z = 7  N = 15  A = 15.0001 g/mole  abundance: 0.368%
+VGM info:   Exporting element: 
+VGM info:   Element: "Oxygen"  "O"  Z = 8  N = 16  A = 16 g/mole
+     0th isotope: Isotope: "O16"    Z = 8  N = 16  A = 15.9949 g/mole  abundance: 99.757%
+     1th isotope: Isotope: "O17"    Z = 8  N = 17  A = 16.9991 g/mole  abundance: 0.038%
+     2th isotope: Isotope: "O18"    Z = 8  N = 18  A = 17.9992 g/mole  abundance: 0.205%
+VGM info:   Exporting element: 
+VGM info:   Element: "Aluminium"  "Al"  Z = 13  N = 26.98  A = 26.98 g/mole
+     0th isotope: Isotope: "Al27"    Z = 13  N = 27  A = 26.9815 g/mole  abundance: 100%
+VGM info:   Exporting element: 
+VGM info:   Element: "Tungsten"  "W"  Z = 74  N = 183.84  A = 183.84 g/mole
+     0th isotope: Isotope: "W180"    Z = 74  N = 180  A = 179.947 g/mole  abundance: 0.12%
+     1th isotope: Isotope: "W182"    Z = 74  N = 182  A = 181.948 g/mole  abundance: 26.5%
+     2th isotope: Isotope: "W183"    Z = 74  N = 183  A = 182.95 g/mole  abundance: 14.31%
+     3th isotope: Isotope: "W184"    Z = 74  N = 184  A = 183.951 g/mole  abundance: 30.64%
+     4th isotope: Isotope: "W186"    Z = 74  N = 186  A = 185.954 g/mole  abundance: 28.43%
+VGM info:   Exporting element: 
+VGM info:   Element: "enriched Uranium"  "U"  Z = 92  N = 235.312  A = 235.312 g/mole
+     0th isotope: Isotope: "U235"    Z = 92  N = 235  A = 235.01 g/mole  abundance: 90%
+     1th isotope: Isotope: "U238"    Z = 92  N = 238  A = 238.03 g/mole  abundance: 10%
+VGM info:   Exporting material: 
+VGM info:   Material: "Basic"  density 2.7 g/cm3  radlen 8.89253 cm  intlen 38.8793 cm  state "Solid"  temperature 293.15 kelvin  pressure 1 atm
+   0th element: Element: "Aluminium"  "Al"  Z = 13  N = 26.98  A = 26.98 g/mole
+     0th isotope: Isotope: "Al27"    Z = 13  N = 27  A = 26.9815 g/mole  abundance: 100%  Elm mass fraction: 100 %
+VGM info:   Exporting material: 
+VGM info:   Material: "Air"  density 0.00129 g/cm3  radlen 28516.1 cm  intlen 66268 cm  state "Gas"  temperature 293.15 kelvin  pressure 1 atm
+   0th element: Element: "Nitrogen"  "N"  Z = 7  N = 14.01  A = 14.01 g/mole
+     0th isotope: Isotope: "N14"    Z = 7  N = 14  A = 14.0031 g/mole  abundance: 99.632%
+     1th isotope: Isotope: "N15"    Z = 7  N = 15  A = 15.0001 g/mole  abundance: 0.368%  Elm mass fraction: 70 %
+   1th element: Element: "Oxygen"  "O"  Z = 8  N = 16  A = 16 g/mole
+     0th isotope: Isotope: "O16"    Z = 8  N = 16  A = 15.9949 g/mole  abundance: 99.757%
+     1th isotope: Isotope: "O17"    Z = 8  N = 17  A = 16.9991 g/mole  abundance: 0.038%
+     2th isotope: Isotope: "O18"    Z = 8  N = 18  A = 17.9992 g/mole  abundance: 0.205%  Elm mass fraction: 30 %
+VGM info:   Exporting material: 
+VGM info:   Material: "Scintillator"  density 1.032 g/cm3  radlen 42.5442 cm  intlen 69.9694 cm  state "Solid"  temperature 293.15 kelvin  pressure 1 atm
+   0th element: Element: "C"  "C"  Z = 6  N = 12.0107  A = 12.0107 g/mole
+     0th isotope: Isotope: "C12"    Z = 6  N = 12  A = 12 g/mole  abundance: 98.93%
+     1th isotope: Isotope: "C13"    Z = 6  N = 13  A = 13.0034 g/mole  abundance: 1.07%  Elm mass fraction: 91.4709 %
+   1th element: Element: "H"  "H"  Z = 1  N = 1.00794  A = 1.00794 g/mole
+     0th isotope: Isotope: "H1"    Z = 1  N = 1  A = 1.00783 g/mole  abundance: 99.9885%
+     1th isotope: Isotope: "H2"    Z = 1  N = 2  A = 2.0141 g/mole  abundance: 0.0115%  Elm mass fraction: 8.52915 %
+VGM info:   Exporting material: 
+VGM info:   Material: "Uranium"  density 13.61 g/cm3  radlen 0.435829 cm  intlen 15.8766 cm  state "Solid"  temperature 293.15 kelvin  pressure 1 atm
+   0th element: Element: "enriched Uranium"  "U"  Z = 92  N = 235.312  A = 235.312 g/mole
+     0th isotope: Isotope: "U235"    Z = 92  N = 235  A = 235.01 g/mole  abundance: 90%
+     1th isotope: Isotope: "U238"    Z = 92  N = 238  A = 238.03 g/mole  abundance: 10%  Elm mass fraction: 100 %
+VGM info:   Exporting material: 
+VGM info:   Material: "Vacuum"  density 1e-25 g/cm3  radlen 6.30435e+26 cm  intlen 3.5e+26 cm  state "Gas"  temperature 2.73 kelvin  pressure 2.96077e-23 atm
+   0th element: Element: "H"  "H"  Z = 1  N = 1.00794  A = 1.00794 g/mole
+     0th isotope: Isotope: "H1"    Z = 1  N = 1  A = 1.00783 g/mole  abundance: 99.9885%
+     1th isotope: Isotope: "H2"    Z = 1  N = 2  A = 2.0141 g/mole  abundance: 0.0115%  Elm mass fraction: 100 %
+VGM info:   Exporting material: 
+VGM info:   Material: "Tungsten"  density 19.25 g/cm3  radlen 0.351325 cm  intlen 10.3383 cm  state "Solid"  temperature 293.15 kelvin  pressure 1 atm
+   0th element: Element: "Tungsten"  "W"  Z = 74  N = 183.84  A = 183.84 g/mole
+     0th isotope: Isotope: "W180"    Z = 74  N = 180  A = 179.947 g/mole  abundance: 0.12%
+     1th isotope: Isotope: "W182"    Z = 74  N = 182  A = 181.948 g/mole  abundance: 26.5%
+     2th isotope: Isotope: "W183"    Z = 74  N = 183  A = 182.95 g/mole  abundance: 14.31%
+     3th isotope: Isotope: "W184"    Z = 74  N = 184  A = 183.951 g/mole  abundance: 30.64%
+     4th isotope: Isotope: "W186"    Z = 74  N = 186  A = 185.954 g/mole  abundance: 28.43%  Elm mass fraction: 100 %
+VGM info:   Exporting medium: 
+VGM info:   Medium: "Basic"  material Basic g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+VGM info:   Exporting medium: 
+VGM info:   Medium: "Air"  material Air g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+VGM info:   Exporting medium: 
+VGM info:   Medium: "Scintillator"  material Scintillator g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+VGM info:   Exporting medium: 
+VGM info:   Medium: "Uranium"  material Uranium g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+VGM info:   Exporting medium: 
+VGM info:   Medium: "Vacuum"  material Vacuum g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+VGM info:   Exporting medium: 
+VGM info:   Medium: "Tungsten"  material Tungsten g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+VGM info:   Exporting volume store: 
+VGM info:      Exporting solid: 
+VGM info:      Box  "worldS"  hx = 600mm  hy = 600mm  hz = 1600mm
+VGM info:   Exporting volume:  0th  "world"  material: "Basic"
+VGM info:      Exporting solid: 
+VGM info:      MultiUnion  "boxesUnion"0th constituent = Box  "Box1"  hx = 50mm  hy = 50mm  hz = 100mm
+  Displacement translation (object):  ( 0,  0,  0) mm 
+  Displacement rotation (object):  (0,  -0,  0) deg    no reflectionZ1th constituent = Box  "Box2"  hx = 50mm  hy = 50mm  hz = 100mm
+  Displacement translation (object):  ( 0,  30,  100) mm 
+  Displacement rotation (object):  (0,  -0,  0) deg    no reflectionZ
+VGM info:      Exporting solid: 
+VGM info:      Box  "Box1"  hx = 50mm  hy = 50mm  hz = 100mm
+VGM info:      Exporting solid: 
+VGM info:      Box  "Box2"  hx = 50mm  hy = 50mm  hz = 100mm
+VGM info:   Exporting volume:  1th  "boxesUnion"  material: "Basic"
+VGM info:   ExportPlacements for 0th volume world
+VGM info:      0th daughter vol = boxesUnion  simple placement: boxesUnion
+VGM info:   ExportPlacements for 1th volume boxesUnion
+Info in <TGeoManager::SetTopVolume>: Top volume is world. Master volume is world
+Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+Export finished
+Go to save Root geometry
+Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
+Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
+Info in <TGeoManager::CloseGeometry>: Counting nodes...
+Info in <TGeoManager::Voxelize>: Voxelizing...
+Info in <TGeoManager::CloseGeometry>: Building cache...
+Info in <TGeoManager::CountLevels>: max level = 1, max placements = 1
+Info in <TGeoManager::CloseGeometry>: 2 nodes/ 2 volume UID's in VGM Root geometry
+Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+Info in <TGeoManager::Export>: Exporting VGM Root geometry VGM Root geometry as root file. Optimizations streamed.
+Visualization Manager instantiating with verbosity "warnings (3)"...
+Visualization Manager initialising...
+Registering graphics systems...
+
+You have successfully registered the following graphics systems.
+Registered graphics systems are:
+  ASCIITree (ATree)
+  DAWNFILE (DAWNFILE)
+  G4HepRep (HepRepXML)
+  G4HepRepFile (HepRepFile)
+  RayTracer (RayTracer)
+  VRML1FILE (VRML1FILE)
+  VRML2FILE (VRML2FILE)
+  gMocrenFile (gMocrenFile)
+  OpenGLImmediateX (OGLIX, OGLI)
+  OpenGLStoredX (OGLSX, OGL, OGLS)
+  RayTracerX (RayTracerX)
+
+Registering model factories...
+
+You have successfully registered the following model factories.
+Registered model factories:
+  generic
+  drawByAttribute
+  drawByCharge
+  drawByOriginVolume
+  drawByParticleID
+  drawByEncounteredVolume
+
+Registered models:
+  None
+
+Registered filter factories:
+  attributeFilter
+  chargeFilter
+  originVolumeFilter
+  particleFilter
+  encounteredVolumeFilter
+
+Registered filters:
+  None
+
+You have successfully registered the following user vis actions.
+Run Duration User Vis Actions: none
+End of Event User Vis Actions: none
+End of Run User Vis Actions: none
+
+Some /vis commands (optionally) take a string to specify colour.
+"/vis/list" to see available colours.
+Graphics systems deleted.
+Visualization Manager deleting...

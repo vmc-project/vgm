@@ -1,7 +1,7 @@
 Geant4 geometry will be defined via Geant4
 
 **************************************************************
- Geant4 version Name: geant4-10-06-patch-01    (14-February-2020)
+ Geant4 version Name: geant4-10-07    (4-December-2020)
                        Copyright : Geant4 Collaboration
                       References : NIM A 506 (2003), 250-303
                                  : IEEE-TNS 53 (2006), 270-278
@@ -124,7 +124,7 @@ VGM info:    Material:  Uranium    density: 13.610 g/cm3   RadL:   4.358 mm   Nu
           ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
 
 VGM info:   Importing material: 
-VGM info:    Material:   Vacuum    density:  0.000 kg/m3   RadL: 204310101.835 pc   Nucl.Int.Length: 113427275.267 pc 
+VGM info:    Material:   Vacuum    density:  0.000 mg/cm3  RadL: 204310098.490 pc   Nucl.Int.Length: 113427284.261 pc 
                        Imean:  19.200 eV   temperature:   2.73 K  pressure:   0.00 atm
 
    --->  Element: H (H)   Z =  1.0   N =     1   A =  1.008 g/mole
@@ -254,7 +254,7 @@ VGM info:      Imported solid: Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 
 VGM info:   ImportDaughters for ctubs
 VGM info:   Importing LV: ctubs_refl
 VGM info:   Importing solid: ctubsS_refl
-VGM info:      Imported solid: Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = -30deg  dphi = 280deg  nlow = (0, 0.102899, 0.994692)  nhigh = (0, 0.639201, -0.769039)
+VGM info:      Imported solid: Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = -30deg  dphi = 280deg  nlow = (0, 0.102899, -0.994692)  nhigh = (0, 0.639201, 0.769039)
 VGM info:   ImportDaughters for ctubs_refl
 VGM info:   Importing LV: Xtru1
 VGM info:   Importing solid: Xtru1S
@@ -492,7 +492,7 @@ Geant4_GM_Factory factory solids store:
    21th solid: Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
    22th solid: Tubs  "tubsS"  rin = 200mm  rout = 400mm  hz = 500mm  sphi = 0deg  dphi = 360deg
    23th solid: Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = -30deg  dphi = 280deg  nlow = (0, 0.639201, -0.769039)  nhigh = (0, 0.102899, 0.994692)
-   24th solid: Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = -30deg  dphi = 280deg  nlow = (0, 0.102899, 0.994692)  nhigh = (0, 0.639201, -0.769039)
+   24th solid: Ctubs  "ctubsS"  rin = 200mm  rout = 300mm  hz = 604.9mm  sphi = -30deg  dphi = 280deg  nlow = (0, 0.102899, -0.994692)  nhigh = (0, 0.639201, 0.769039)
    25th solid: Extruded  "Xtru1S"
 Polygon,  8 vertices:
   (-300, -300)  (-300, 300)  (300, 300)  (300, -300)  (150, -300)  (150, 150)  (-150, 150)  (-150, -300) mm
@@ -604,18 +604,18 @@ Visualization Manager initialising...
 Registering graphics systems...
 
 You have successfully registered the following graphics systems.
-Current available graphics systems are:
-ASCIITree (ATree)
-DAWNFILE (DAWNFILE)
-G4HepRep (HepRepXML)
-G4HepRepFile (HepRepFile)
-RayTracer (RayTracer)
-VRML1FILE (VRML1FILE)
-VRML2FILE (VRML2FILE)
-gMocrenFile (gMocrenFile)
-OpenGLImmediateX (OGLIX, OGLI)
-OpenGLStoredX (OGLSX, OGL, OGLS)
-RayTracerX (RayTracerX)
+Registered graphics systems are:
+  ASCIITree (ATree)
+  DAWNFILE (DAWNFILE)
+  G4HepRep (HepRepXML)
+  G4HepRepFile (HepRepFile)
+  RayTracer (RayTracer)
+  VRML1FILE (VRML1FILE)
+  VRML2FILE (VRML2FILE)
+  gMocrenFile (gMocrenFile)
+  OpenGLImmediateX (OGLIX, OGLI)
+  OpenGLStoredX (OGLSX, OGL, OGLS)
+  RayTracerX (RayTracerX)
 
 Registering model factories...
 
@@ -628,12 +628,18 @@ Registered model factories:
   drawByParticleID
   drawByEncounteredVolume
 
+Registered models:
+  None
+
 Registered filter factories:
   attributeFilter
   chargeFilter
   originVolumeFilter
   particleFilter
   encounteredVolumeFilter
+
+Registered filters:
+  None
 
 You have successfully registered the following user vis actions.
 Run Duration User Vis Actions: none

@@ -4,7 +4,7 @@ Info in <TGeoManager::TGeoManager>: Geometry Test, Test geometry via Root create
 Root geometry will be defined via Root
 
 **************************************************************
- Geant4 version Name: geant4-10-06-patch-01    (14-February-2020)
+ Geant4 version Name: geant4-10-07    (4-December-2020)
                        Copyright : Geant4 Collaboration
                       References : NIM A 506 (2003), 250-303
                                  : IEEE-TNS 53 (2006), 270-278

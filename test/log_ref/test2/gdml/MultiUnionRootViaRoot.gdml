@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="
+http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
+
+   <define>
+      <position  name="pos_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+
+      <rotation  name="rot_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
+
+      <scale     name="scale_0"   x="     1.0000"  y="     1.0000"  z="    -1.0000"  />
+   </define>
+
+   <materials>
+
+      <element  name="ALUMINIUM_e"  Z=" 13.0000"  N=" 27" >
+         <atom type="A" unit="g/mol" value=" 26.9800" />
+      </element>
+
+      <material  name="Basic"  state="undefined"  >
+         <D type="density" unit="g/cm3" value="     2.7000"/>
+         <fraction n="    1.0000"  ref="ALUMINIUM_e"/>
+      </material>
+
+   </materials>
+
+   <solids>
+      <box  lunit="cm" aunit="degree"
+         name="world_s"
+         x="  120.0000"  y="  120.0000"  z="  320.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="boxesUnion_constA_s"
+         x="   10.0000"  y="   10.0000"  z="   20.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="boxesUnion_constB_s"
+         x="   10.0000"  y="   10.0000"  z="   20.0000" />
+
+      <union name="boxesUnion_s" >
+         <first  ref="boxesUnion_constA_s" />
+         <second ref="boxesUnion_constB_s" />
+         <position  name="posB_0"    x="     0.0000"  y="     3.0000"  z="    10.0000"  unit="cm" />
+         <rotation  name="rotB_0"    x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
+      </union>
+
+   </solids>
+
+   <structure>
+      <volume name="boxesUnion">
+         <materialref ref="Basic"/>
+         <solidref ref="boxesUnion_s"/>
+      </volume>
+
+      <volume name="world">
+         <materialref ref="Basic"/>
+         <solidref ref="world_s"/>
+         <physvol>
+            <volumeref ref="boxesUnion"/>
+               <positionref ref="pos_0"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+      </volume>
+
+   </structure>
+
+   <setup name="unit1"   version="1.0">
+      <world ref="world"/>
+   </setup>
+
+</gdml>

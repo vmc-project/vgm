@@ -6,7 +6,7 @@
 <xi:include href="StandardColors.agdd"/>
 
 <materials  version = "Id"
-            date    = "2020-02-28"
+            date    = "2020-12-18"
             author  = "VGM AGGD Writer"
             DTD_version="v7"  >
 
@@ -23,7 +23,7 @@
 </materials>
 
 <media  version = "Id"
-        date    = "2020-02-28"
+        date    = "2020-12-18"
         author  = "VGM AGGD Writer"
         DTD_version="v7"  >
 
@@ -38,7 +38,7 @@
 <section DTD_version = "v7"
          name        = "world"
          version     = "Id"
-         date        = "2020-02-28"
+         date        = "2020-12-18"
          author      = "VGM AGGD Writer"
          top_volume  = "world_comp"  >
 
@@ -200,11 +200,24 @@
       medium="Basic"
       X_Y_Z=" 0.2000;  0.2000;  0.2000" />
 
-   <!-- !!! unsupported shape  !!!  name= "xtru2" -->
+   <!-- !!! unsupported shape  !!!  name= "xtru2_constA" -->
    <!-- dummy box is written instead  -->
-   <box    name="xtru2"
+   <box    name="xtru2_constA"
       medium="Basic"
       X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
+   <!-- !!! unsupported shape  !!!  name= "xtru2_constB" -->
+   <!-- dummy box is written instead  -->
+   <box    name="xtru2_constB"
+      medium="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
+   <union name="xtru2" >
+      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="xtru2_constA"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="xtru2_constB"/>
+      </posXYZ>
+   </union>
 
    <!-- !!! unsupported shape  !!!  name= "xtru2_refl_constA" -->
    <!-- dummy box is written instead  -->

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<AGDD DTD_version = "v7"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+<xi:include href="StandardColors.agdd"/>
+
+<materials  version = "Id"
+            date    = "2020-12-18"
+            author  = "VGM AGGD Writer"
+            DTD_version="v7"  >
+
+   <isotope  name="Al_27"   z=" 13"  n=" 27"  a=" 27"/>
+
+   <element  symbol="Al">
+      <addisotope name="Al_27"  natoms="100" />
+   </element>
+
+   <material  name="Basic_mat"  density="  2.7000">
+      <addelement name="Al"  natoms=" 1.0000"/>
+   </material>
+
+</materials>
+
+<media  version = "Id"
+        date    = "2020-12-18"
+        author  = "VGM AGGD Writer"
+        DTD_version="v7"  >
+
+   <medium  name="Basic"  
+      material="Basic_mat"  
+      color="random"
+      sensitive="true"
+      parameters=" 0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000;   0.0000"/>
+
+</media>
+
+<section DTD_version = "v7"
+         name        = "world"
+         version     = "Id"
+         date        = "2020-12-18"
+         author      = "VGM AGGD Writer"
+         top_volume  = "world_comp"  >
+
+   <box    name="world"
+      medium="Basic"
+      X_Y_Z="120.0000; 120.0000; 320.0000" />
+
+   <!-- !!! unsupported shape  !!!  name= "boxesUnion" -->
+   <!-- dummy box is written instead  -->
+   <box    name="boxesUnion"
+      medium="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
+
+   <composition name="world_comp">
+      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="boxesUnion"/>
+      </posXYZ>
+   </composition>
+
+
+</section>
+
+</AGDD>

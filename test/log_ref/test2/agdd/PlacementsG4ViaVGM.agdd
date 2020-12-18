@@ -6,13 +6,11 @@
 <xi:include href="StandardColors.agdd"/>
 
 <materials  version = "Id"
-            date    = "2020-02-28"
+            date    = "2020-12-18"
             author  = "VGM AGGD Writer"
             DTD_version="v7"  >
 
-   <isotope  name="Vacuum_e_1"z="  1"  n="  1"  a="  1"/>
    <isotope  name="H_1"     z="  1"  n="  1"  a="  1"/>
-   <isotope  name="Vacuum_e_2"z="  1"  n="  2"  a="  2"/>
    <isotope  name="H_2"     z="  1"  n="  2"  a="  2"/>
    <isotope  name="C_12"    z="  6"  n=" 12"  a=" 12"/>
    <isotope  name="C_13"    z="  6"  n=" 13"  a=" 13"/>
@@ -27,10 +25,6 @@
    <element  symbol="H">
       <addisotope name="H_1"  natoms=" 99" />
       <addisotope name="H_2"  natoms="  0" />
-   </element>
-   <element  symbol="Vacuum_e">
-      <addisotope name="Vacuum_e_1"  natoms=" 99" />
-      <addisotope name="Vacuum_e_2"  natoms="  0" />
    </element>
    <element  symbol="C">
       <addisotope name="C_12"  natoms=" 98" />
@@ -62,13 +56,13 @@
       <addelement name="U"  natoms=" 1.0000"/>
    </material>
    <material  name="Vacuum_mat"  density="1.0000e-25">
-      <addelement name="Vacuum_e"  natoms=" 1.0000"/>
+      <addelement name="H"  natoms=" 1.0000"/>
    </material>
 
 </materials>
 
 <media  version = "Id"
-        date    = "2020-02-28"
+        date    = "2020-12-18"
         author  = "VGM AGGD Writer"
         DTD_version="v7"  >
 
@@ -98,7 +92,7 @@
 <section DTD_version = "v7"
          name        = "world"
          version     = "Id"
-         date        = "2020-02-28"
+         date        = "2020-12-18"
          author      = "VGM AGGD Writer"
          top_volume  = "world_comp"  >
 

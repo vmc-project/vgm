@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/GDML_2_10_0/src/GDMLSchema/gdml.xsd">
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="
+http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
 
    <define>
       <position  name="pos_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
@@ -67,7 +67,7 @@
          <atom type="A" unit="g/mol" value="238.0300" />
       </isotope>
 
-      <element  name="VACUUM_e"  Z="  0.0000"  N="  1" >
+      <element  name="VACUUM_e"  Z="  1.0000"  N="  1" >
          <atom type="A" unit="g/mol" value="  0.0000" />
       </element>
       <element  name="H_e"  Z="  1.0000"  N="  1" >
