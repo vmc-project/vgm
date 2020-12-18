@@ -11,6 +11,24 @@ $Id$
 
  The Virtual Geometry Model - Versions
 =========================================
+  18/12/2020
+  version 4.9
+    New features:
+    - Added support for G4MultiUnion solid
+      in ROOT emulated with TGeoCompositeShape
+
+    Fixes:
+    - Fixed the head element in the GDML output
+    - Fixed cut tube reflection in Geant4 GM
+    - Fixed exporting ROOT vacuum in GDML
+      (GDML does not allow N,Z = 0)
+    - vgm_test: Define xtru2 via VGM as a union of two extrusions
+      (to avoid the limitation in Geant4)
+
+    Tested with Root 6.22/06, Geant4 10.7
+    (with embedded CLHEP 2.4.4.0)
+    Mac OSX 10.15.6: with Apple clang version 11.0.3
+
   28/02/2020
   version 4.8
     Migration to Geant4 10.6   
