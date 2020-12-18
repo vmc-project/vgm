@@ -1796,13 +1796,11 @@ void* TstGeometryViaRoot::TestMultiUnion()
   tr2->RegisterYourself();
 
   // Create composite shape
-  TGeoShape* unionS =
-    new TGeoCompositeShape("unionS", "Box1:t1+Box2:t2");
+  TGeoShape* unionS = new TGeoCompositeShape("unionS", "Box1:t1+Box2:t2");
 
-  TGeoVolume* unionV =
-    new TGeoVolume("boxesUnion", unionS, fBasicMedium);
+  TGeoVolume* unionV = new TGeoVolume("boxesUnion", unionS, fBasicMedium);
 
-  worldV->AddNode(unionV, 1, new TGeoTranslation(0.,0.,0.));
+  worldV->AddNode(unionV, 1, new TGeoTranslation(0., 0., 0.));
 
   return (void*)gGeoManager->GetTopNode();
 }

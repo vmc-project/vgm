@@ -917,8 +917,7 @@ VGM::ISolid* RootGM::Factory::CreateMultiUnion(const std::string& name,
     rootTransforms.push_back(CreateTransform(transform));
   }
 
-  return Register(new RootGM::MultiUnion(
-    name, constituents, rootTransforms));
+  return Register(new RootGM::MultiUnion(name, constituents, rootTransforms));
 }
 
 //_____________________________________________________________________________

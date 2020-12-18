@@ -624,7 +624,8 @@ void XmlVGM::GDMLWriter::WriteMultiUnion(
   for (int i = 0; i < multiUnion->NofSolids(); ++i) {
     VGM::ISolid* constSolid = multiUnion->ConstituentSolid(i);
     // write solid
-    std::string constName = StripName(constSolid->Name(), fgkSolidNameExtension);
+    std::string constName =
+      StripName(constSolid->Name(), fgkSolidNameExtension);
     WriteSolid(constName, constSolid, "");
     constName = UpdateName(constName, fgkSolidNameExtension);
     constNames.push_back(constName);
@@ -650,20 +651,24 @@ void XmlVGM::GDMLWriter::WriteMultiUnion(
 
   // write nodes
   for (int i = 0; i < multiUnion->NofSolids(); ++i) {
-    fOutFile
-      << indention << element3 << i << element2 << std::endl
-      << indention2 << element4 << constNames[i] << element5 << std::endl;
+    fOutFile << indention << element3 << i << element2 << std::endl
+             << indention2 << element4 << constNames[i] << element5
+             << std::endl;
 
     // Displacement
-    std::string positionRef= fMaps->FindPositionName(multiUnion->Transformation(i));
-    std::string rotationRef = fMaps->FindRotationName(multiUnion->Transformation(i));
+    std::string positionRef =
+      fMaps->FindPositionName(multiUnion->Transformation(i));
+    std::string rotationRef =
+      fMaps->FindRotationName(multiUnion->Transformation(i));
 
     if (positionRef.size()) {
-      fOutFile << indention2 << element6 << positionRef << element5 << std::endl;
+      fOutFile << indention2 << element6 << positionRef << element5
+               << std::endl;
     }
 
     if (rotationRef.size()) {
-      fOutFile << indention2 << element7 << rotationRef << element5 << std::endl;
+      fOutFile << indention2 << element7 << rotationRef << element5
+               << std::endl;
     }
     fOutFile << indention << element8 << std::endl;
   }
@@ -1342,12 +1347,14 @@ void XmlVGM::GDMLWriter::OpenDocument()
   // Write document opening;
   // Could be made customizable in future
 
-  fOutFile
-    << "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" \?>" << std::endl
-    << "<gdml xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\""
-    << std::endl
-    << "http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd\">"
-    << std::endl;
+  fOutFile << "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" \?>"
+           << std::endl
+           << "<gdml xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" "
+              "xsi:noNamespaceSchemaLocation=\""
+           << std::endl
+           << "http://service-spi.web.cern.ch/service-spi/app/releases/GDML/"
+              "schema/gdml.xsd\">"
+           << std::endl;
 }
 
 //_____________________________________________________________________________

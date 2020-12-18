@@ -230,12 +230,12 @@ void XmlVGM::VExporter::ProcessPositionsInMultiUnion(VGM::ISolid* solid)
 
   if (solid->Type() != VGM::kMultiUnion) return;
 
-  VGM::IMultiUnion* multiUnion =
-    dynamic_cast<VGM::IMultiUnion*>(solid);
+  VGM::IMultiUnion* multiUnion = dynamic_cast<VGM::IMultiUnion*>(solid);
 
   for (int i = 0; i < multiUnion->NofSolids(); ++i) {
     std::string posName = fMaps.AddPosition(multiUnion->Transformation(i));
-    if (posName != "") fWriter->WritePosition(posName, multiUnion->Transformation(i));
+    if (posName != "")
+      fWriter->WritePosition(posName, multiUnion->Transformation(i));
   }
 }
 
@@ -323,12 +323,12 @@ void XmlVGM::VExporter::ProcessRotationsInMultiUnion(VGM::ISolid* solid)
 
   if (solid->Type() != VGM::kMultiUnion) return;
 
-  VGM::IMultiUnion* multiUnion =
-    dynamic_cast<VGM::IMultiUnion*>(solid);
+  VGM::IMultiUnion* multiUnion = dynamic_cast<VGM::IMultiUnion*>(solid);
 
   for (int i = 0; i < multiUnion->NofSolids(); ++i) {
     std::string rotName = fMaps.AddRotation(multiUnion->Transformation(i));
-    if (rotName != "") fWriter->WriteRotation(rotName, multiUnion->Transformation(i));
+    if (rotName != "")
+      fWriter->WriteRotation(rotName, multiUnion->Transformation(i));
   }
 }
 

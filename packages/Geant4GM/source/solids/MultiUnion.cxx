@@ -25,9 +25,8 @@
 #include "G4ReflectedSolid.hh"
 
 //_____________________________________________________________________________
-Geant4GM::MultiUnion::MultiUnion(const std::string& name, 
-    std::vector<VGM::ISolid*> constituents,
-    std::vector<G4Transform3D> transforms)
+Geant4GM::MultiUnion::MultiUnion(const std::string& name,
+  std::vector<VGM::ISolid*> constituents, std::vector<G4Transform3D> transforms)
   : VGM::ISolid(),
     VGM::IMultiUnion(),
     BaseVGM::VMultiUnion(),
@@ -40,9 +39,10 @@ Geant4GM::MultiUnion::MultiUnion(const std::string& name,
 
   fMultiUnion = new G4MultiUnion(name);
 
-  for (size_t i = 0; i < constituents.size(); ++i ) {
+  for (size_t i = 0; i < constituents.size(); ++i) {
     // Get solid from the volumes map
-    G4VSolid* g4Solid = Geant4GM::SolidMap::Instance()->GetSolid(constituents[i]);
+    G4VSolid* g4Solid =
+      Geant4GM::SolidMap::Instance()->GetSolid(constituents[i]);
     // Add constituent
     fMultiUnion->AddNode(*g4Solid, transforms[i]);
   }

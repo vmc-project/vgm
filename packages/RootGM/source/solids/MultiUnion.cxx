@@ -34,8 +34,7 @@ const char RootGM::MultiUnion::fgkSeparator = ':';
 
 //_____________________________________________________________________________
 RootGM::MultiUnion::MultiUnion(const std::string& name,
-    std::vector<VGM::ISolid*> constituents,
-    std::vector<TGeoMatrix*> transforms)
+  std::vector<VGM::ISolid*> constituents, std::vector<TGeoMatrix*> transforms)
   : VGM::ISolid(),
     VGM::IMultiUnion(),
     BaseVGM::VMultiUnion(),
@@ -47,10 +46,9 @@ RootGM::MultiUnion::MultiUnion(const std::string& name,
   /// \param solids constituent solids
   /// \param transforms the constituent solid transformations
 
-
   TString formula;
 
-  for (size_t i = 0; i < constituents.size(); ++i ) {
+  for (size_t i = 0; i < constituents.size(); ++i) {
     // Get solid displacement, if present, and update transformation
     // which will be used in Root node
     //
@@ -63,7 +61,7 @@ RootGM::MultiUnion::MultiUnion(const std::string& name,
       VGM::IDisplacedSolid* displacedSolid =
         dynamic_cast<VGM::IDisplacedSolid*>(iConstSolid);
       TGeoHMatrix displacement(
-          *RootGM::CreateTransform(displacedSolid->Displacement()));
+        *RootGM::CreateTransform(displacedSolid->Displacement()));
       iConstSolid = displacedSolid->ConstituentSolid();
       imatrix = imatrix * displacement;
     }
@@ -71,9 +69,9 @@ RootGM::MultiUnion::MultiUnion(const std::string& name,
     // Get Root solid
     TGeoShape* irootSolid = RootGM::SolidMap::Instance()->GetSolid(iConstSolid);
     TString irootSolidName = irootSolid->GetName();
-       // CHECK
-       // The Root factory should attribute unique name 
-    if (i>0) {
+    // CHECK
+    // The Root factory should attribute unique name
+    if (i > 0) {
       formula += fgkUnionChar;
     }
     formula += irootSolidName;
@@ -92,7 +90,8 @@ RootGM::MultiUnion::MultiUnion(const std::string& name,
     }
   }
 
-  // std::cout << "RootGM::MultiUnion::MultiUnion formula: " << formula << std::endl;
+  // std::cout << "RootGM::MultiUnion::MultiUnion formula: " << formula <<
+  // std::endl;
   fCompositeShape = new TGeoCompositeShape(name.data(), formula.Data());
   RootGM::SolidMap::Instance()->AddSolid(this, fCompositeShape);
 }

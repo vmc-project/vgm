@@ -38,11 +38,9 @@ namespace Geant4GM {
 class MultiUnion : public BaseVGM::VMultiUnion
 {
  public:
-  MultiUnion(const std::string& name, 
-    std::vector<VGM::ISolid*> constituents,
+  MultiUnion(const std::string& name, std::vector<VGM::ISolid*> constituents,
     std::vector<G4Transform3D> transforms);
-  MultiUnion(
-    G4MultiUnion* MultiUnion, G4ReflectedSolid* reflected);
+  MultiUnion(G4MultiUnion* MultiUnion, G4ReflectedSolid* reflected);
   virtual ~MultiUnion();
 
   // methods

@@ -44,13 +44,14 @@ BaseVGM::VMultiUnion::~VMultiUnion()
 //_____________________________________________________________________________
 std::ostream& BaseVGM::VMultiUnion::Put(std::ostream& out) const
 {
-  for (int i = 0; i < NofSolids(); ++i ) {
+  for (int i = 0; i < NofSolids(); ++i) {
     out << i << "th constituent = " << *ConstituentSolid(i) << std::endl
-        << "  Displacement translation (object):  ( " << Transformation(i)[VGM::kDx]
-        << ",  " << Transformation(i)[VGM::kDy] << ",  " << Transformation(i)[VGM::kDz]
-        << ") mm " << std::endl
-        << "  Displacement rotation (object):  (" << Transformation(i)[VGM::kAngleX]
-        << ",  " << Transformation(i)[VGM::kAngleY] << ",  "
+        << "  Displacement translation (object):  ( "
+        << Transformation(i)[VGM::kDx] << ",  " << Transformation(i)[VGM::kDy]
+        << ",  " << Transformation(i)[VGM::kDz] << ") mm " << std::endl
+        << "  Displacement rotation (object):  ("
+        << Transformation(i)[VGM::kAngleX] << ",  "
+        << Transformation(i)[VGM::kAngleY] << ",  "
         << Transformation(i)[VGM::kAngleZ] << ") deg  ";
     if (Round(Transformation(i)[6]) == 0)
       out << "  no reflectionZ";

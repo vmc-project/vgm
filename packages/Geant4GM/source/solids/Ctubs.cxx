@@ -159,7 +159,7 @@ double Geant4GM::Ctubs::NzLow() const
   if (!fIsReflected)
     return fCutTubs->GetLowNorm().z() * ClhepVGM::Units::Length();
   else
-    return - fCutTubs->GetHighNorm().z() * ClhepVGM::Units::Length();
+    return -fCutTubs->GetHighNorm().z() * ClhepVGM::Units::Length();
 }
 
 //_____________________________________________________________________________
@@ -186,5 +186,5 @@ double Geant4GM::Ctubs::NzHigh() const
   if (!fIsReflected)
     return fCutTubs->GetHighNorm().z() * ClhepVGM::Units::Length();
   else
-    return - fCutTubs->GetLowNorm().z() * ClhepVGM::Units::Length();
+    return -fCutTubs->GetLowNorm().z() * ClhepVGM::Units::Length();
 }

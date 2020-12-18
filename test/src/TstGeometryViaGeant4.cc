@@ -1442,13 +1442,13 @@ void* TstGeometryViaGeant4::TestMultiUnion()
     new G4PVPlacement(0, CLHEP::Hep3Vector(), worldV, "world", 0, false, 0);
 
   // Define two -G4Box- shapes
-  G4Box* box1 = new G4Box("Box1", 5.*cm, 5.*cm, 10.*cm);
-  G4Box* box2 = new G4Box("Box2", 5.*cm, 5.*cm, 10.*cm);
+  G4Box* box1 = new G4Box("Box1", 5. * cm, 5. * cm, 10. * cm);
+  G4Box* box2 = new G4Box("Box2", 5. * cm, 5. * cm, 10. * cm);
 
   // Define displacements for the shapes
-  G4RotationMatrix rotation  = G4RotationMatrix();
-  G4ThreeVector position1 = G4ThreeVector(0., 0., 0.*cm);
-  G4ThreeVector position2 = G4ThreeVector(0., 3.*cm, 10.*cm);
+  G4RotationMatrix rotation = G4RotationMatrix();
+  G4ThreeVector position1 = G4ThreeVector(0., 0., 0. * cm);
+  G4ThreeVector position2 = G4ThreeVector(0., 3. * cm, 10. * cm);
   G4Transform3D tr1 = G4Transform3D(rotation, position1);
   G4Transform3D tr2 = G4Transform3D(rotation, position2);
 
@@ -1472,8 +1472,8 @@ void* TstGeometryViaGeant4::TestMultiUnion()
   G4LogicalVolume* multiUnionV =
     new G4LogicalVolume(multiUnion, fBasicMaterial, "boxesUnion");
 
-  new G4PVPlacement(0, CLHEP::Hep3Vector(0, 0, 0), multiUnionV,
-    "boxesUnion", worldV, false, 0);
+  new G4PVPlacement(
+    0, CLHEP::Hep3Vector(0, 0, 0), multiUnionV, "boxesUnion", worldV, false, 0);
 
   return (void*)world;
 }

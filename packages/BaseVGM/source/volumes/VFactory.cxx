@@ -204,8 +204,8 @@ VGM::ISolid* BaseVGM::VFactory::ExportMultiUnion(
     newConstituents.push_back(ExportSolid(solid->ConstituentSolid(i), factory));
     newTransforms.push_back(solid->Transformation(i));
   }
-  VGM::ISolid* newSolid
-    = factory->CreateMultiUnion(solid->Name(), newConstituents, newTransforms);
+  VGM::ISolid* newSolid =
+    factory->CreateMultiUnion(solid->Name(), newConstituents, newTransforms);
 
   return newSolid;
 }

@@ -35,8 +35,7 @@ namespace RootGM {
 class MultiUnion : public BaseVGM::VMultiUnion
 {
  public:
-  MultiUnion(const std::string& name, 
-    std::vector<VGM::ISolid*> constituents,
+  MultiUnion(const std::string& name, std::vector<VGM::ISolid*> constituents,
     std::vector<TGeoMatrix*> transforms);
   virtual ~MultiUnion();
 

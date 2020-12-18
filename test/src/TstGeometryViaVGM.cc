@@ -300,16 +300,16 @@ ISolid* TstGeometryViaVGM::CreateExtrudedSolid2()
   zsections1.push_back(std::vector<double>(array1, array1 + 4));
   zsections1.push_back(std::vector<double>(array2, array2 + 4));
   VGM::ISolid* xtruS1 =
-    fFactory->CreateExtrudedSolid("xtruS1", polygon, zsections1); 
+    fFactory->CreateExtrudedSolid("xtruS1", polygon, zsections1);
 
   std::vector<std::vector<double> > zsections2;
   zsections2.push_back(std::vector<double>(array3, array3 + 4));
   zsections2.push_back(std::vector<double>(array4, array4 + 4));
   VGM::ISolid* xtruS2 =
-    fFactory->CreateExtrudedSolid("xtruS2", polygon, zsections2); 
+    fFactory->CreateExtrudedSolid("xtruS2", polygon, zsections2);
 
-  return fFactory->CreateUnionSolid("xtru2S",xtruS1, xtruS2,
-      ClhepVGM::Identity());
+  return fFactory->CreateUnionSolid(
+    "xtru2S", xtruS1, xtruS2, ClhepVGM::Identity());
 }
 
 //_____________________________________________________________________________
@@ -885,8 +885,8 @@ void TstGeometryViaVGM::DefineMaterials()
   density = CLHEP::universe_mean_density / (g / cm3) * fGcm3;
   temperature = 2.73 * fKelvin;
   pressure = 3.e-18 * ClhepVGM::Units::Pressure(pascal);
-  IMaterial* material5 = materialFactory->CreateMaterial("Vacuum", density,
-    elH, radlen = 0., intlen = 0., VGM::kGas, temperature, pressure);
+  IMaterial* material5 = materialFactory->CreateMaterial("Vacuum", density, elH,
+    radlen = 0., intlen = 0., VGM::kGas, temperature, pressure);
 
   // simple material (Tungsten)  which caused problem in v3.03
   //
@@ -1522,14 +1522,15 @@ void* TstGeometryViaVGM::TestMultiUnion()
 
   // Define displacements
   std::vector<Transform> transforms;
+  transforms.push_back(
+    ClhepVGM::Transform(CLHEP::HepRotation(), CLHEP::Hep3Vector()));
   transforms.push_back(ClhepVGM::Transform(
-      CLHEP::HepRotation(), CLHEP::Hep3Vector()));
-  transforms.push_back(ClhepVGM::Transform(
-      CLHEP::HepRotation(), CLHEP::Hep3Vector(0, 3. * fCm, 10. * fCm)));
+    CLHEP::HepRotation(), CLHEP::Hep3Vector(0, 3. * fCm, 10. * fCm)));
 
   // Constituent with reflection - not supported
   // constituents.push_back(
-  //    fFactory->CreateCons("consS", 1.*fCm, 4.*fCm, 2.*fCm, 6.*fCm, 10.*fCm, 0., 360.*fDeg));
+  //    fFactory->CreateCons("consS", 1.*fCm, 4.*fCm, 2.*fCm, 6.*fCm, 10.*fCm,
+  //    0., 360.*fDeg));
   // HepGeom::ReflectZ3D reflect3D;
   // transforms.push_back(ClhepVGM::Transform(
   //     HepGeom::Translate3D(0.,0.,0.)*reflect3D));
@@ -1540,8 +1541,8 @@ void* TstGeometryViaVGM::TestMultiUnion()
   IVolume* multiUnionV =
     fFactory->CreateVolume("boxesUnion", multiUnionS, "Basic");
 
-  fFactory->CreatePlacement("boxesUnion", 0, multiUnionV, worldV,
-    ClhepVGM::Identity());
+  fFactory->CreatePlacement(
+    "boxesUnion", 0, multiUnionV, worldV, ClhepVGM::Identity());
 
   return (void*)fFactory->Top();
 }
