@@ -85,6 +85,9 @@ std::string VGM::SolidTypeName(VGM::SolidType typeId)
     case kDisplaced:
       return "Displaced";
       break;
+    case kMultiUnion:
+      return "MultiUnion";
+      break;
     case kScaled:
       return "Scaled";
       break;

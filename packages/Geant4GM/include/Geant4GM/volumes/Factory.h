@@ -30,6 +30,7 @@ class G4VSolid;
 class G4LogicalVolume;
 class G4VPhysicalVolume;
 class G4BooleanSolid;
+class G4MultiUnion;
 
 namespace VGM {
 class ISolid;
@@ -134,6 +135,10 @@ class Factory : public BaseVGM::VFactory
   virtual VGM::ISolid* CreateScaledSolid(const std::string& name,
     VGM::ISolid* solid, const VGM::Transform& transform);
 
+  virtual VGM::ISolid* CreateMultiUnion(const std::string& name,
+    std::vector<VGM::ISolid*> constituents,
+    std::vector<VGM::Transform> transforms);
+
   // volumes
   //
   virtual VGM::IVolume* CreateVolume(
@@ -171,6 +176,7 @@ class Factory : public BaseVGM::VFactory
   // methods
 
   void ImportConstituentSolid(int index, G4BooleanSolid* solid);
+  void ImportConstituentSolid(int index, G4MultiUnion* solid);
   VGM::ISolid* ImportSolid(G4VSolid* solid);
   VGM::IVolume* ImportLV(G4LogicalVolume* lv);
   VGM::IVolume* ImportLV(G4LogicalVolume* lv, const std::string& mediumName);

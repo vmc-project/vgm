@@ -72,7 +72,7 @@ int main(int argc, char** argv)
     std::cerr << " vgm_test inputType inputFactory outputFactory outputXML "
                  "selectedTest "
               << std::endl;
-    std::cerr << "          [debug] [openAngle] [noVis] {run] [rootNavig]"
+    std::cerr << "          [debug] [openAngle] [noVis] [run] [rootNavig]"
               << std::endl;
     std::cerr << "          inputType     = VGM, AGDD, Geant4, Root"
               << std::endl;
@@ -80,13 +80,14 @@ int main(int argc, char** argv)
     std::cerr << "          outputFactory = Geant4, Root, None" << std::endl;
     std::cerr << "          outputXML     = AGDD, GDML, noXML" << std::endl;
     std::cerr << "          selectedTest  = Solids, NewSolid, Placements[2], "
-                 "Reflections, Assemblies,"
+                 "Reflections"
               << std::endl;
     std::cerr
       << "                          AssembliesN, BooleanSolidsM, ScaledSolids, "
       << std::endl;
-    std::cerr << "                          Special, DisplacedSolidN "
-              << std::endl;
+    std::cerr
+      << "                          MultiUnion, Special, DisplacedSolidN"
+      << std::endl;
     std::cerr << "                               where N = 1, 2; M = 1, 2, 3"
               << std::endl;
     std::cerr << "          debug         = if specified the factories operate "

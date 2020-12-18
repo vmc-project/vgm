@@ -32,6 +32,7 @@
 #include "RootGM/solids/EllipticalTube.h"
 #include "RootGM/solids/ExtrudedSolid.h"
 #include "RootGM/solids/Hype.h"
+#include "RootGM/solids/MultiUnion.h"
 #include "RootGM/solids/Para.h"
 #include "RootGM/solids/Paraboloid.h"
 #include "RootGM/solids/Polycone.h"
@@ -903,6 +904,21 @@ VGM::ISolid* RootGM::Factory::CreateScaledSolid(
 {
   //
   return Register(new RootGM::ScaledSolid(name, solid, CreateScale(transform)));
+}
+
+//_____________________________________________________________________________
+VGM::ISolid* RootGM::Factory::CreateMultiUnion(const std::string& name,
+  std::vector<VGM::ISolid*> constituents,
+  std::vector<VGM::Transform> transforms)
+{
+  //
+  std::vector<TGeoMatrix*> rootTransforms;
+  for (auto transform : transforms) {
+    rootTransforms.push_back(CreateTransform(transform));
+  }
+
+  return Register(new RootGM::MultiUnion(
+    name, constituents, rootTransforms));
 }
 
 //_____________________________________________________________________________

@@ -39,6 +39,7 @@ class IEllipsoid;
 class IEllipticalTube;
 class IExtrudedSolid;
 class IHype;
+class IMultiUnion;
 class IPara;
 class IParaboloid;
 class IPolycone;
@@ -169,6 +170,7 @@ class GDMLWriter : public virtual IWriter
   void WriteExtrudedSolid(
     std::string name, const VGM::IExtrudedSolid* extruded);
   void WriteHype(std::string name, const VGM::IHype* hype);
+  void WriteMultiUnion(std::string name, const VGM::IMultiUnion* multiUnion);
   void WritePara(std::string name, const VGM::IPara* para);
   void WriteParaboloid(std::string name, const VGM::IParaboloid* paraboloid);
   void WritePolycone(std::string name, const VGM::IPolycone* polycone);

@@ -47,6 +47,7 @@ enum SolidType
   kTubs,
   kBoolean,
   kDisplaced,
+  kMultiUnion,
   kScaled,
   kUnknownSolid
 };

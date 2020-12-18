@@ -30,6 +30,7 @@ namespace VGM {
 class ISolid;
 class IBooleanSolid;
 class IDisplacedSolid;
+class IMultiUnion;
 class IScaledSolid;
 class IVolume;
 class IPlacement;
@@ -93,6 +94,8 @@ class VFactory : public virtual VGM::IFactory
     VGM::IDisplacedSolid* solid, VGM::IFactory* factory) const;
   VGM::ISolid* ExportScaledSolid(
     VGM::IScaledSolid* solid, VGM::IFactory* factory) const;
+  VGM::ISolid* ExportMultiUnion(
+    VGM::IMultiUnion* solid, VGM::IFactory* factory) const;
   VolumeMap* ExportVolumeStore(VGM::IFactory* factory) const;
 
   VGM::IPlacement* ExportSimplePlacement(VGM::IPlacement* placement,

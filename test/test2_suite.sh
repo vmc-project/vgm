@@ -40,7 +40,7 @@ do
   do
     for inputFactory in Geant4 Root
     do
-      for selectedTest in Solids Placements Placements2 Reflections Assemblies1 Assemblies2 BooleanSolids2 DisplacedSolids1 DisplacedSolids2
+      for selectedTest in Solids Placements Placements2 Reflections Assemblies1 Assemblies2 BooleanSolids2 DisplacedSolids1 DisplacedSolids2 MultiUnion
       #for selectedTest in Placements 
       do
         DOIT="1"

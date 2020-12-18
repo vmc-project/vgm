@@ -128,6 +128,10 @@ class Factory : public BaseVGM::VFactory
   virtual VGM::ISolid* CreateScaledSolid(const std::string& name,
     VGM::ISolid* solid, const VGM::Transform& transform);
 
+  virtual VGM::ISolid* CreateMultiUnion(const std::string& name,
+    std::vector<VGM::ISolid*> constituents,
+    std::vector<VGM::Transform> transforms);
+
   // volumes
   //
   virtual VGM::IVolume* CreateVolume(

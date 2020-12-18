@@ -32,6 +32,7 @@
 #include "G4IntersectionSolid.hh"
 #include "G4LogicalVolume.hh"
 #include "G4Material.hh"
+#include "G4MultiUnion.hh"
 #include "G4NistManager.hh"
 #include "G4PVDivision.hh"
 #include "G4PVPlacement.hh"
@@ -1431,7 +1432,51 @@ void* TstGeometryViaGeant4::TestDisplacedSolids2()
   return (void*)world;
 }
 
-//#include "MyDetectorConstruction.hh"
+//_____________________________________________________________________________
+void* TstGeometryViaGeant4::TestMultiUnion()
+{
+  // World
+  //
+  G4LogicalVolume* worldV = CreateWorld(60. * cm, 60. * cm, 160. * cm);
+  G4VPhysicalVolume* world =
+    new G4PVPlacement(0, CLHEP::Hep3Vector(), worldV, "world", 0, false, 0);
+
+  // Define two -G4Box- shapes
+  G4Box* box1 = new G4Box("Box1", 5.*cm, 5.*cm, 10.*cm);
+  G4Box* box2 = new G4Box("Box2", 5.*cm, 5.*cm, 10.*cm);
+
+  // Define displacements for the shapes
+  G4RotationMatrix rotation  = G4RotationMatrix();
+  G4ThreeVector position1 = G4ThreeVector(0., 0., 0.*cm);
+  G4ThreeVector position2 = G4ThreeVector(0., 3.*cm, 10.*cm);
+  G4Transform3D tr1 = G4Transform3D(rotation, position1);
+  G4Transform3D tr2 = G4Transform3D(rotation, position2);
+
+  // Initialise a MultiUnion structure
+  G4MultiUnion* multiUnion = new G4MultiUnion("boxesUnion");
+
+  // Add the shapes to the structure
+  multiUnion->AddNode(*box1, tr1);
+  multiUnion->AddNode(*box2, tr2);
+
+  // Cons shape (for testing reflection)
+  // G4Cons* cons = new G4Cons(
+  //   "consS", 1.*cm, 4.*cm, 2.*cm, 6.*cm, 10.*cm, 0., 360.*deg);
+  // HepGeom::ReflectZ3D reflect3D;
+  // multiUnion->AddNode(*cons, reflect3D);
+
+  // Finally close the structure
+  multiUnion->Voxelize();
+
+  // Associate it to a logical volume as a normal solid
+  G4LogicalVolume* multiUnionV =
+    new G4LogicalVolume(multiUnion, fBasicMaterial, "boxesUnion");
+
+  new G4PVPlacement(0, CLHEP::Hep3Vector(0, 0, 0), multiUnionV,
+    "boxesUnion", worldV, false, 0);
+
+  return (void*)world;
+}
 
 //_____________________________________________________________________________
 void* TstGeometryViaGeant4::TestSpecial()

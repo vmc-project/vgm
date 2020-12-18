@@ -296,13 +296,20 @@ ISolid* TstGeometryViaVGM::CreateExtrudedSolid2()
   double array3[] = { 10. * cm, 0. * cm, 0. * cm, 0.7 };
   double array4[] = { 40. * cm, 20. * cm, 20. * cm, 0.9 };
 
-  std::vector<std::vector<double> > zsections;
-  zsections.push_back(std::vector<double>(array1, array1 + 4));
-  zsections.push_back(std::vector<double>(array2, array2 + 4));
-  zsections.push_back(std::vector<double>(array3, array3 + 4));
-  zsections.push_back(std::vector<double>(array4, array4 + 4));
+  std::vector<std::vector<double> > zsections1;
+  zsections1.push_back(std::vector<double>(array1, array1 + 4));
+  zsections1.push_back(std::vector<double>(array2, array2 + 4));
+  VGM::ISolid* xtruS1 =
+    fFactory->CreateExtrudedSolid("xtruS1", polygon, zsections1); 
 
-  return fFactory->CreateExtrudedSolid("xtru2S", polygon, zsections);
+  std::vector<std::vector<double> > zsections2;
+  zsections2.push_back(std::vector<double>(array3, array3 + 4));
+  zsections2.push_back(std::vector<double>(array4, array4 + 4));
+  VGM::ISolid* xtruS2 =
+    fFactory->CreateExtrudedSolid("xtruS2", polygon, zsections2); 
+
+  return fFactory->CreateUnionSolid("xtru2S",xtruS1, xtruS2,
+      ClhepVGM::Identity());
 }
 
 //_____________________________________________________________________________
@@ -806,8 +813,8 @@ void TstGeometryViaVGM::DefineMaterials()
 
   // create elements
   double z, a, density, radlen, intlen, temperature, pressure;
-  IElement* elVacuum = materialFactory->CreateElement(
-    "Vacuum", "Vacuum_e", z = 1., a = 1.01 * fGmole);
+  // IElement* elVacuum = materialFactory->CreateElement(
+  //   "Vacuum", "Vacuum_e", z = 1., a = 1.01 * fGmole);
   IElement* elN =
     materialFactory->CreateElement("Nitrogen", "N", z = 7., a = 14.01 * fGmole);
   IElement* elO =
@@ -879,7 +886,7 @@ void TstGeometryViaVGM::DefineMaterials()
   temperature = 2.73 * fKelvin;
   pressure = 3.e-18 * ClhepVGM::Units::Pressure(pascal);
   IMaterial* material5 = materialFactory->CreateMaterial("Vacuum", density,
-    elVacuum, radlen = 0., intlen = 0., VGM::kGas, temperature, pressure);
+    elH, radlen = 0., intlen = 0., VGM::kGas, temperature, pressure);
 
   // simple material (Tungsten)  which caused problem in v3.03
   //
@@ -1494,6 +1501,47 @@ void* TstGeometryViaVGM::TestDisplacedSolids2()
   fFactory->CreatePlacement("union_solid1_solid2", 0, unionV, worldV,
     ClhepVGM::Transform(
       CLHEP::HepRotation(), CLHEP::Hep3Vector(250. * fCm, 0., 200. * fCm)));
+
+  return (void*)fFactory->Top();
+}
+
+//_____________________________________________________________________________
+void* TstGeometryViaVGM::TestMultiUnion()
+{
+  // World
+  //
+  IVolume* worldV = CreateWorld(60. * fCm, 60. * fCm, 160. * fCm);
+  fFactory->CreatePlacement("world", 0, worldV, 0, ClhepVGM::Identity());
+
+  // Define constituent solids
+  std::vector<ISolid*> constituents;
+  constituents.push_back(
+    fFactory->CreateBox("Box1", 5. * fCm, 5. * fCm, 10. * fCm));
+  constituents.push_back(
+    fFactory->CreateBox("Box2", 5. * fCm, 5. * fCm, 10. * fCm));
+
+  // Define displacements
+  std::vector<Transform> transforms;
+  transforms.push_back(ClhepVGM::Transform(
+      CLHEP::HepRotation(), CLHEP::Hep3Vector()));
+  transforms.push_back(ClhepVGM::Transform(
+      CLHEP::HepRotation(), CLHEP::Hep3Vector(0, 3. * fCm, 10. * fCm)));
+
+  // Constituent with reflection - not supported
+  // constituents.push_back(
+  //    fFactory->CreateCons("consS", 1.*fCm, 4.*fCm, 2.*fCm, 6.*fCm, 10.*fCm, 0., 360.*fDeg));
+  // HepGeom::ReflectZ3D reflect3D;
+  // transforms.push_back(ClhepVGM::Transform(
+  //     HepGeom::Translate3D(0.,0.,0.)*reflect3D));
+
+  ISolid* multiUnionS =
+    fFactory->CreateMultiUnion("boxesUnion", constituents, transforms);
+
+  IVolume* multiUnionV =
+    fFactory->CreateVolume("boxesUnion", multiUnionS, "Basic");
+
+  fFactory->CreatePlacement("boxesUnion", 0, multiUnionV, worldV,
+    ClhepVGM::Identity());
 
   return (void*)fFactory->Top();
 }

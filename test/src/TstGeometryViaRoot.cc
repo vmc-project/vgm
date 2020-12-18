@@ -1779,6 +1779,35 @@ void* TstGeometryViaRoot::TestDisplacedSolids1()
 }
 
 //_____________________________________________________________________________
+void* TstGeometryViaRoot::TestMultiUnion()
+{
+  // World
+  //
+  TGeoVolume* worldV = CreateWorld(60., 60., 160.);
+
+  // Define two -G4Box- shapes
+  new TGeoBBox("Box1", 5., 5., 10.);
+  new TGeoBBox("Box2", 5., 5., 10.);
+
+  // Define displacements for the shapes
+  TGeoTranslation* tr1 = new TGeoTranslation("t1", 0, 0, 0);
+  TGeoTranslation* tr2 = new TGeoTranslation("t2", 0, 3., 10.);
+  tr1->RegisterYourself();
+  tr2->RegisterYourself();
+
+  // Create composite shape
+  TGeoShape* unionS =
+    new TGeoCompositeShape("unionS", "Box1:t1+Box2:t2");
+
+  TGeoVolume* unionV =
+    new TGeoVolume("boxesUnion", unionS, fBasicMedium);
+
+  worldV->AddNode(unionV, 1, new TGeoTranslation(0.,0.,0.));
+
+  return (void*)gGeoManager->GetTopNode();
+}
+
+//_____________________________________________________________________________
 void* TstGeometryViaRoot::TestSpecial()
 {
   // Special test, geometry is loaded from geometry.root file.

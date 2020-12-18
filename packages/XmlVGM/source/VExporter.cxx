@@ -21,6 +21,7 @@
 #include "VGM/materials/IMaterial.h"
 #include "VGM/materials/IMaterialFactory.h"
 #include "VGM/solids/IBooleanSolid.h"
+#include "VGM/solids/IMultiUnion.h"
 #include "VGM/solids/ISolid.h"
 #include "VGM/solids/ITessellatedSolid.h"
 #include "VGM/volumes/IFactory.h"
@@ -150,6 +151,13 @@ void XmlVGM::VExporter::ProcessPositions(VGM::IVolume* volume)
 
         ProcessPositionsInTessellated(dSolid);
       }
+
+      // Positions in multi union solids
+      //
+      if (dSolid->Type() == VGM::kMultiUnion) {
+
+        ProcessPositionsInMultiUnion(dSolid);
+      }
       /*
             // Displacemnt positions in Boolean solids
             //
@@ -216,6 +224,22 @@ void XmlVGM::VExporter::ProcessPositionsInTessellated(VGM::ISolid* solid)
 }
 
 //_____________________________________________________________________________
+void XmlVGM::VExporter::ProcessPositionsInMultiUnion(VGM::ISolid* solid)
+{
+  /// Write all positions in the multi union solid
+
+  if (solid->Type() != VGM::kMultiUnion) return;
+
+  VGM::IMultiUnion* multiUnion =
+    dynamic_cast<VGM::IMultiUnion*>(solid);
+
+  for (int i = 0; i < multiUnion->NofSolids(); ++i) {
+    std::string posName = fMaps.AddPosition(multiUnion->Transformation(i));
+    if (posName != "") fWriter->WritePosition(posName, multiUnion->Transformation(i));
+  }
+}
+
+//_____________________________________________________________________________
 void XmlVGM::VExporter::ProcessRotations(VGM::IVolume* volume)
 {
   /// Write all rotation matrices in the volume tree of
@@ -251,6 +275,14 @@ void XmlVGM::VExporter::ProcessRotations(VGM::IVolume* volume)
               ProcessRotationsInBoolean(dSolid);
             }
       */
+
+      // Rotations in multi union solids
+      //
+      VGM::ISolid* dSolid = dPlacement->Volume()->Solid();
+      if (dSolid->Type() == VGM::kMultiUnion) {
+        ProcessRotationsInMultiUnion(dSolid);
+      }
+
       std::string dVolumeName = dPlacement->Volume()->Name();
       if (fVolumeNames.find(dVolumeName) == fVolumeNames.end()) {
         // process volumed only if it was not yet processed
@@ -282,6 +314,22 @@ void XmlVGM::VExporter::ProcessRotationsInBoolean(VGM::ISolid* solid)
 
   if (solidA->Type() == VGM::kBoolean) ProcessRotationsInBoolean(solidA);
   if (solidB->Type() == VGM::kBoolean) ProcessPositionsInBoolean(solidB);
+}
+
+//_____________________________________________________________________________
+void XmlVGM::VExporter::ProcessRotationsInMultiUnion(VGM::ISolid* solid)
+{
+  /// Write all positions in the multi union solid
+
+  if (solid->Type() != VGM::kMultiUnion) return;
+
+  VGM::IMultiUnion* multiUnion =
+    dynamic_cast<VGM::IMultiUnion*>(solid);
+
+  for (int i = 0; i < multiUnion->NofSolids(); ++i) {
+    std::string rotName = fMaps.AddRotation(multiUnion->Transformation(i));
+    if (rotName != "") fWriter->WriteRotation(rotName, multiUnion->Transformation(i));
+  }
 }
 
 //_____________________________________________________________________________

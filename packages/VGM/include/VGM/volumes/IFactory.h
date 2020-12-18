@@ -338,6 +338,13 @@ class IFactory
   virtual ISolid* CreateScaledSolid(const std::string& name, VGM::ISolid* solid,
     const VGM::Transform& transform) = 0;
 
+  /// Create the multi union of solids
+  /// \param constituents constituent solids
+  /// \param transforms 3D displacement of the constituent solids
+  virtual ISolid* CreateMultiUnion(const std::string& name,
+    std::vector<VGM::ISolid*> constituents,
+    std::vector<VGM::Transform> transforms) = 0;
+
   //
   // volumes
   //

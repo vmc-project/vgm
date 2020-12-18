@@ -33,6 +33,7 @@
 #include "Geant4GM/solids/EllipticalTube.h"
 #include "Geant4GM/solids/ExtrudedSolid.h"
 #include "Geant4GM/solids/Hype.h"
+#include "Geant4GM/solids/MultiUnion.h"
 #include "Geant4GM/solids/Para.h"
 #include "Geant4GM/solids/Paraboloid.h"
 #include "Geant4GM/solids/Polycone.h"
@@ -60,6 +61,7 @@
 #include "G4EllipticalTube.hh"
 #include "G4ExtrudedSolid.hh"
 #include "G4Hype.hh"
+#include "G4MultiUnion.hh"
 #include "G4LogicalVolume.hh"
 #include "G4LogicalVolumeStore.hh"
 #include "G4PVDivisionFactory.hh"
@@ -158,6 +160,25 @@ void Geant4GM::Factory::ImportConstituentSolid(int index, G4BooleanSolid* solid)
       else
         std::cout << "   Imported solid: "
                   << "0x0" << std::endl;
+    }
+  }
+}
+
+//_____________________________________________________________________________
+void Geant4GM::Factory::ImportConstituentSolid(int index, G4MultiUnion* solid)
+{
+  /// Import constituents of G4 Boolean solid into VGM
+
+  G4VSolid* consSolid = solid->GetSolid(index);
+
+  if (!Geant4GM::SolidMap::Instance()->GetSolid(consSolid)) {
+    VGM::ISolid* vgmSolid = ImportSolid(consSolid);
+    if (Debug()) {
+      BaseVGM::DebugInfo();
+      if (vgmSolid)
+        std::cout << "   Imported solid: " << *vgmSolid << std::endl;
+      else
+        std::cout << "   Imported solid: " << "0x0" << std::endl;
     }
   }
 }
@@ -301,6 +322,27 @@ VGM::ISolid* Geant4GM::Factory::ImportSolid(G4VSolid* solid)
     }
 
     return vgmBoolean;
+  }
+
+  G4MultiUnion* multiUnion = dynamic_cast<G4MultiUnion*>(consSolid);
+  if (multiUnion) {
+    for (G4int i=0; i<multiUnion->GetNumberOfSolids(); ++i) {
+      ImportConstituentSolid(i, multiUnion);
+    }
+    VGM::IMultiUnion* vgmMultiUnion =
+      new Geant4GM::MultiUnion(multiUnion, reflSolid);
+    Register(vgmMultiUnion);
+
+    if (Debug() > 0) {
+      BaseVGM::DebugInfo();
+      std::cout << "Imported MultiUnion solid: ";
+      if (Debug() > 1) std::cout << vgmMultiUnion;
+      std::cout << std::endl;
+      BaseVGM::DebugInfo();
+      std::cout << *vgmMultiUnion << std::endl;
+    }
+
+    return vgmMultiUnion;
   }
 
   std::cerr << "Geant4GM::Factory::ImportSolid: " << std::endl;
@@ -916,6 +958,29 @@ VGM::ISolid* Geant4GM::Factory::CreateScaledSolid(
 
   return Register(
     new Geant4GM::ScaledSolid(name, solid, ClhepVGM::Scale(transform)));
+}
+
+//_____________________________________________________________________________
+VGM::ISolid* Geant4GM::Factory::CreateMultiUnion(
+    const std::string& name,
+    std::vector<VGM::ISolid*> constituents,
+    std::vector<VGM::Transform> transforms)
+{
+  //
+  std::vector<G4Transform3D> g4Transforms;
+  for (auto transform : transforms) {
+    if (ClhepVGM::HasReflection(transform)) {
+        std::cerr << "    Geant4GM::Factory::CreateMultiUnion:" << std::endl;
+        std::cerr << "    Reflection in MultiUnion solid is not supported in Geant4."
+                  << std::endl;
+        std::cerr << "*** Error: Aborting execution  ***" << std::endl;
+        exit(1);
+    }
+    g4Transforms.push_back(ClhepVGM::Transform(transform));
+  }
+
+  return Register(
+    new Geant4GM::MultiUnion(name, constituents, g4Transforms));
 }
 
 //_____________________________________________________________________________

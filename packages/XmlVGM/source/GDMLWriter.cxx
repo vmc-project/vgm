@@ -27,6 +27,7 @@
 #include "VGM/solids/IEllipticalTube.h"
 #include "VGM/solids/IExtrudedSolid.h"
 #include "VGM/solids/IHype.h"
+#include "VGM/solids/IMultiUnion.h"
 #include "VGM/solids/IPara.h"
 #include "VGM/solids/IParaboloid.h"
 #include "VGM/solids/IPolycone.h"
@@ -610,6 +611,63 @@ void XmlVGM::GDMLWriter::WriteHype(std::string name, const VGM::IHype* hype)
            << indention << element7 << std::setw(fNW) << std::setprecision(fNP)
            << dz << element8 << std::endl
            << std::endl;
+}
+
+//_____________________________________________________________________________
+void XmlVGM::GDMLWriter::WriteMultiUnion(
+  std::string name, const VGM::IMultiUnion* multiUnion)
+{
+  /// Write multi union solid
+
+  // Write constituent solids
+  std::vector<std::string> constNames;
+  for (int i = 0; i < multiUnion->NofSolids(); ++i) {
+    VGM::ISolid* constSolid = multiUnion->ConstituentSolid(i);
+    // write solid
+    std::string constName = StripName(constSolid->Name(), fgkSolidNameExtension);
+    WriteSolid(constName, constSolid, "");
+    constName = UpdateName(constName, fgkSolidNameExtension);
+    constNames.push_back(constName);
+  }
+
+  // compose element
+  //
+  std::string element1 = "<multiUnion name=\"";
+  std::string element2 = "\">";
+  std::string element3 = "<multiUnionNode name=\"node-";
+  std::string element4 = "<solid ref=\"";
+  std::string element5 = "\" />";
+  std::string element6 = "<positionref ref=\"";
+  std::string element7 = "<rotationref ref=\"";
+  std::string element8 = "</multiUnionNode>";
+  std::string element9 = "</multiUnion>";
+
+  // write opening element
+  fOutFile << fIndention << element1 << name << element2 << std::endl;
+
+  std::string indention = fIndention + fkBasicIndention;
+  std::string indention2 = indention + fkBasicIndention;
+
+  // write nodes
+  for (int i = 0; i < multiUnion->NofSolids(); ++i) {
+    fOutFile
+      << indention << element3 << i << element2 << std::endl
+      << indention2 << element4 << constNames[i] << element5 << std::endl;
+
+    // Displacement
+    std::string positionRef= fMaps->FindPositionName(multiUnion->Transformation(i));
+    std::string rotationRef = fMaps->FindRotationName(multiUnion->Transformation(i));
+
+    if (positionRef.size()) {
+      fOutFile << indention2 << element6 << positionRef << element5 << std::endl;
+    }
+
+    if (rotationRef.size()) {
+      fOutFile << indention2 << element7 << rotationRef << element5 << std::endl;
+    }
+    fOutFile << indention << element8 << std::endl;
+  }
+  fOutFile << fIndention << element9 << std::endl << std::endl;
 }
 
 //_____________________________________________________________________________
@@ -1285,12 +1343,10 @@ void XmlVGM::GDMLWriter::OpenDocument()
   // Could be made customizable in future
 
   fOutFile
-    << "<?xml version=\"1.0\" encoding=\"UTF-8\"\?>" << std::endl
-    << "<gdml xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""
+    << "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" \?>" << std::endl
+    << "<gdml xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\""
     << std::endl
-    << "      "
-       "xsi:noNamespaceSchemaLocation=\"http://service-spi.web.cern.ch/"
-       "service-spi/app/releases/GDML/GDML_2_10_0/src/GDMLSchema/gdml.xsd\">"
+    << "http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd\">"
     << std::endl;
 }
 
@@ -1623,8 +1679,9 @@ void XmlVGM::GDMLWriter::WriteElement(const VGM::IElement* element)
     int theN = (int)ClhepVGM::Round(element->N());
     double theA = element->A() / AtomicWeightUnit();
 
-    // GDML does not allow N=0
+    // GDML does not allow Z=0, N=0
     // Let's put =1 in this case
+    if (theZ == 0) theZ = 1;
     if (theN == 0) theN = 1;
 
     std::string element3 = "Z=\"";
@@ -1836,6 +1893,12 @@ void XmlVGM::GDMLWriter::WriteSolid(std::string volumeName,
     const VGM::IBooleanSolid* boolean =
       dynamic_cast<const VGM::IBooleanSolid*>(solid);
     WriteBooleanSolid(solidName, boolean);
+    return;
+  }
+  else if (solidType == VGM::kMultiUnion) {
+    const VGM::IMultiUnion* multiUnion =
+      dynamic_cast<const VGM::IMultiUnion*>(solid);
+    WriteMultiUnion(solidName, multiUnion);
     return;
   }
 

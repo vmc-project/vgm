@@ -27,6 +27,7 @@
 #include "VGM/solids/IEllipticalTube.h"
 #include "VGM/solids/IExtrudedSolid.h"
 #include "VGM/solids/IHype.h"
+#include "VGM/solids/IMultiUnion.h"
 #include "VGM/solids/IPara.h"
 #include "VGM/solids/IParaboloid.h"
 #include "VGM/solids/IPolycone.h"
@@ -190,6 +191,26 @@ VGM::ISolid* BaseVGM::VFactory::ExportBooleanSolid(
 }
 
 //_____________________________________________________________________________
+VGM::ISolid* BaseVGM::VFactory::ExportMultiUnion(
+  VGM::IMultiUnion* solid, VGM::IFactory* factory) const
+{
+  // Exports specified Boolean solid to given factory
+  // ---
+
+  // Export constituent solids first
+  std::vector<VGM::ISolid*> newConstituents;
+  std::vector<VGM::Transform> newTransforms;
+  for (int i = 0; i < solid->NofSolids(); ++i) {
+    newConstituents.push_back(ExportSolid(solid->ConstituentSolid(i), factory));
+    newTransforms.push_back(solid->Transformation(i));
+  }
+  VGM::ISolid* newSolid
+    = factory->CreateMultiUnion(solid->Name(), newConstituents, newTransforms);
+
+  return newSolid;
+}
+
+//_____________________________________________________________________________
 VGM::ISolid* BaseVGM::VFactory::ExportSolid(
   VGM::ISolid* solid, VGM::IFactory* factory) const
 {
@@ -348,6 +369,10 @@ VGM::ISolid* BaseVGM::VFactory::ExportSolid(
   else if (solidType == VGM::kBoolean) {
     VGM::IBooleanSolid* boolean = dynamic_cast<VGM::IBooleanSolid*>(solid);
     return ExportBooleanSolid(boolean, factory);
+  }
+  else if (solidType == VGM::kMultiUnion) {
+    VGM::IMultiUnion* multiUnion = dynamic_cast<VGM::IMultiUnion*>(solid);
+    return ExportMultiUnion(multiUnion, factory);
   }
 
   std::cerr << "    BaseVGM::VFactory::ExportSolid:" << std::endl;

@@ -48,6 +48,7 @@ class TstVGeometry
   virtual void* TestBooleanSolids7();
   virtual void* TestDisplacedSolids1();
   virtual void* TestDisplacedSolids2();
+  virtual void* TestMultiUnion() = 0;
   virtual void* TestSpecial();
 };
 

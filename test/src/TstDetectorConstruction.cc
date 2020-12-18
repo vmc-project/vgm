@@ -31,7 +31,7 @@ const G4String TstDetectorConstruction::fgkTestNameCandidates =
   "Solids NewSolid NewSolid2 ExtraSolid Placements Placements2 Reflections "
   "Assemblies1 Assemblies2 BooleanSolids1 BooleanSolids2 BooleanSolids3 "
   "BooleanSolids4 BooleanSolids5 BooleanSolids6 BooleanSolids7 ScaledSolids "
-  "Special DisplacedSolids1 DisplacedSolids2 Special SingleMode";
+  "Special DisplacedSolids1 DisplacedSolids2 MultiUnion Special SingleMode";
 const G4String TstDetectorConstruction::fgkVisModeCandidates =
   "Geant4 Root None";
 const G4String TstDetectorConstruction::fgkInputCandidates = "VGM Geant4 Root";
@@ -171,6 +171,10 @@ G4VPhysicalVolume* TstDetectorConstruction::Construct()
   else if (fSelectedTest == "DisplacedSolids2") {
     world = fGeometry->TestDisplacedSolids2();
     std::cout << "TestDisplacedSolids2 finished" << std::endl;
+  }
+  else if (fSelectedTest == "MultiUnion") {
+    world = fGeometry->TestMultiUnion();
+    std::cout << "TestMultiUnion finished" << std::endl;
   }
   else if (fSelectedTest == "Special") {
     world = fGeometry->TestSpecial();

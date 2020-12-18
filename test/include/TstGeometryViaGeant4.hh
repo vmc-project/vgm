@@ -47,6 +47,7 @@ class TstGeometryViaGeant4 : public TstVGeometry
   virtual void* TestBooleanSolids3();
   virtual void* TestDisplacedSolids1();
   virtual void* TestDisplacedSolids2();
+  virtual void* TestMultiUnion();
   virtual void* TestSpecial();
 
  private:
