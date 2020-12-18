@@ -55,6 +55,18 @@ endif()
 if(WITH_TEST)
   # G4Root
   if (WITH_ROOT AND WITH_G4ROOT)
+
+#-- VMC (required) ------------------------------------------------------------
+    if(ROOT_vmc_FOUND)
+      message(STATUS "Using VMC built with ROOT")
+      set(VMC_LIBRARIES ROOT::VMC)
+    else()
+      find_package(VMC CONFIG REQUIRED)
+       #  set(VMC_DEPS VMCLibrary)
+      if(NOT VMC_FIND_QUIETLY)
+        message(STATUS "Found VMC ${VMC_VERSION} in ${VMC_DIR}")
+      endif()
+    endif()
     find_package(G4Root REQUIRED)
   endif(WITH_ROOT AND WITH_G4ROOT)
 
