@@ -76,7 +76,8 @@ set(VGM_TEST_SCRIPTS
   test1_suite.sh
   test2_suite.sh
   test3_suite.sh
-  test_suite.sh)
+  test_suite.sh
+  startRun.rdm)
 
 foreach(_script ${VGM_TEST_SCRIPTS})
   configure_file(
