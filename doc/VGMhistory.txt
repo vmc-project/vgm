@@ -1,5 +1,3 @@
-$Id$
-
 ------------------------------------------------------------------------
  The documentation file for the Virtual Geometry Model
  Copyright (C) 2007, 2014 Ivana Hrivnacova               
