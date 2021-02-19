@@ -8,5 +8,7 @@
 
  [![License: GPL v2](https://img.shields.io/badge/License-GPLv2-blue.svg)](http://www.gnu.org/licenses/gpl-2.0)
 
- Documentation pages: https://vmc-project.github.io/vgm-documentation
+ Documentation: https://vmc-project.github.io/vgm-documentation/
+ 
+ Reference: https://vmc-project.github.io/vgm/
  
