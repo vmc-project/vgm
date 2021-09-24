@@ -11,6 +11,7 @@
 #
 # Configuration file for CMake build for VGM packages.
 # It defines the following variables
+#  VGM_PREFIX       - installation prefix
 #  VGM_INCLUDE_DIRS - include directories for VGM
 #  VGM_LIBRARIES    - libraries to link against
 #  VGM_GEANT4_LIBRARIES  - libraries to link against (Geant4 dependent only)
@@ -37,6 +38,7 @@ get_filename_component(_prefix "${_dir}/../.." ABSOLUTE)
 include("${_prefix}/@CMAKE_INSTALL_LIBDIR@/VGM-@VGM_VERSION@/VGMTargets.cmake")
  
 # Import options
+set(VGM_PREFIX "${_prefix}")
 set(VGM_WITH_GEANT4 @WITH_GEANT4@) 
 set(VGM_WITH_ROOT @WITH_ROOT@)
 set(VGM_WITH_TEST @WITH_TEST@)
