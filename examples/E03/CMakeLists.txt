@@ -1,9 +1,7 @@
-# $Id$
-
 #----------------------------------------------------------------------------
 # Setup the project
 #
-cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.16...3.21)
 project(E03)
 
 #----------------------------------------------------------------------------
@@ -37,8 +35,8 @@ endif()
 #
 include(${Geant4_USE_FILE})
 include_directories(${PROJECT_SOURCE_DIR}/include
-                    ${Geant4_INCLUDE_DIR}
-                    ${VGM_INCLUDE_DIRS})
+                   ${ROOT_INCLUDE_DIRS}
+                   ${VGM_INCLUDE_DIRS})
 
 #----------------------------------------------------------------------------
 # Locate sources and headers for this project
@@ -51,29 +49,26 @@ file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
 # Add the executable, and link it to the Geant4 libraries
 #
 add_executable(exampleE03 exampleB4a.cc ${sources} ${headers})
-target_link_libraries(exampleE03 ${VGM_GEANT4_LIBRARIES} ${Geant4_LIBRARIES})
-#VGM Libraries can be used also explicitly
-#target_link_libraries(exampleE03 Geant4GM ClhepVGM BaseVGM XmlVGM  ${Geant4_LIBRARIES})
+target_link_libraries(exampleE03 ${VGM_LIBRARIES} ${ROOT_LIBRARIES} ${Geant4_LIBRARIES})
 
 #----------------------------------------------------------------------------
 # Copy all scripts to the build directory, i.e. the directory in which we
 # build B4a. This is so that we can run the executable directly because it
 # relies on these scripts being in the current working directory.
 #
-set(B4a_SCRIPTS
+set(EXAMPLEB4A_SCRIPTS
   exampleB4a.out
   exampleB4.in
-  icons.mac
   gui.mac
-  run.png
-  init.mac
   init_vis.mac
+  plotHisto.C
+  plotNtuple.C
   run1.mac
   run2.mac
   vis.mac
   )
 
-foreach(_script ${B4a_SCRIPTS})
+foreach(_script ${EXAMPLEB4A_SCRIPTS})
   configure_file(
     ${PROJECT_SOURCE_DIR}/${_script}
     ${PROJECT_BINARY_DIR}/${_script}

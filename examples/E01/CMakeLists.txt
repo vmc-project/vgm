@@ -1,9 +1,7 @@
-# $Id$
-
 #----------------------------------------------------------------------------
 # Setup the project
 #
-cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.16...3.21)
 project(E01)
 
 #----------------------------------------------------------------------------
@@ -41,9 +39,9 @@ endif()
 #
 include(${Geant4_USE_FILE})
 include_directories(${PROJECT_SOURCE_DIR}/include
-                    ${Geant4_INCLUDE_DIR}
                     ${ROOT_INCLUDE_DIRS}
                     ${VGM_INCLUDE_DIRS})
+
 
 #----------------------------------------------------------------------------
 # Locate sources and headers for this project
@@ -63,20 +61,19 @@ target_link_libraries(exampleE01 ${VGM_LIBRARIES} ${ROOT_LIBRARIES} ${Geant4_LIB
 # build B4a. This is so that we can run the executable directly because it
 # relies on these scripts being in the current working directory.
 #
-set(B4a_SCRIPTS
+set(EXAMPLEB4A_SCRIPTS
   exampleB4a.out
   exampleB4.in
-  icons.mac
   gui.mac
-  run.png
-  init.mac
   init_vis.mac
+  plotHisto.C
+  plotNtuple.C
   run1.mac
   run2.mac
   vis.mac
   )
 
-foreach(_script ${B4a_SCRIPTS})
+foreach(_script ${EXAMPLEB4A_SCRIPTS})
   configure_file(
     ${PROJECT_SOURCE_DIR}/${_script}
     ${PROJECT_BINARY_DIR}/${_script}
