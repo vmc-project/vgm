@@ -1,0 +1,32 @@
+ $Id $ 
+
+------------------------------------------------------------------------
+ The documentation file for the Virtual Geometry Model example
+ Copyright (C) 2007,2014 Ivana Hrivnacova               
+ All rights reserved. 
+           
+ For the licensing terms see vgm/LICENSE.
+ Contact: ivana@ipno.in2p3.fr
+------------------------------------------------------------------------
+
+
+ VGM Example E02
+ Converting geometry from Root to Geant4
+ ----------------------------------------
+ 
+ Source: Geant4 basic B4a example
+         With modified detector construction
+ 
+ See Geant4 documentation in README_Geant4 and
+ http://geant4.web.cern.ch/geant4/UserDocumentation/Doxygen/examples_doc/html/ExampleB4.html        
+         
+ 1. Build example:
+    The example is built in the same way as a standard Geant4 example;
+    the VGM packages are already provided in CMakeList.txt
+    The example program is called exampleE02.
+     
+ 2. Run example, the geometry will be imported from Root file during 
+    initialization:
+    $ exampleE02
+
+                

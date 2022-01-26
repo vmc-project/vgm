@@ -17,7 +17,7 @@
  Source: Geant4 basic B4a example
  
  See Geant4 documentation in README_Geant4 and
- http://geant4.web.cern.ch/geant4/UserDocumentation/Doxygen/examples_doc/html/ExampleB4.html        
+ https://geant4-userdoc.web.cern.ch/Doxygen/examples_doc/html/ExampleB4.html
          
  1. Build example:
     The example is built in the same way as a standard Geant4 example;

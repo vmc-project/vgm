@@ -473,7 +473,7 @@ VGM::IElement* Geant4GM::Material::Element(int iel) const
 {
   CheckIndex(iel);
 
-  G4Element* g4Element = (*fMaterial->GetElementVector())[iel];
+  G4Element* g4Element = const_cast<G4Element*>((*fMaterial->GetElementVector())[iel]);
   return ElementMap::Instance()->GetElement(g4Element);
 }
 
