@@ -444,7 +444,7 @@ void TstDetectorConstruction::SetG4VisAttributes() const
   // Make world invisible
   G4VPhysicalVolume* world = fGeant4Factory->World();
   G4LogicalVolume* worldLog = world->GetLogicalVolume();
-  worldLog->SetVisAttributes(G4VisAttributes::Invisible);
+  worldLog->SetVisAttributes(G4VisAttributes::GetInvisible());
 
   std::cout << "TstDetectorConstruction::SetG4VisAttributes() finished"
             << std::endl;
