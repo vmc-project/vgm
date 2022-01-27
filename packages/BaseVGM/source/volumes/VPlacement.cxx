@@ -93,11 +93,11 @@ std::ostream& BaseVGM::VPlacement::Put(std::ostream& out) const
   }
 
   if (Type() == VGM::kMultiplePlacement) {
-    VGM::Axis axis;
-    int nofItems;
-    double width;
-    double offset;
-    double halfGap;
+    VGM::Axis axis = VGM::kUnknownAxis;
+    int nofItems = 0;
+    double width = 0.;
+    double offset = 0.;
+    double halfGap = 0.;
     MultiplePlacementData(axis, nofItems, width, offset, halfGap);
 
     out << "  axis: \"" << VGM::AxisTypeName(axis) << "\""

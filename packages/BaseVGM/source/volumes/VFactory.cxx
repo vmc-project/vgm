@@ -474,11 +474,11 @@ VGM::IPlacement* BaseVGM::VFactory::ExportMultiplePlacement(
   VGM::IVolume* newVolume = (*volumeMap)[placement->Volume()];
   VGM::IVolume* newMother = (*volumeMap)[placement->Mother()];
 
-  VGM::Axis axis;
-  int nofItems;
-  double width;
-  double offset;
-  double halfGap;
+  VGM::Axis axis = VGM::kUnknownAxis;
+  int nofItems = 0;
+  double width = 0.;
+  double offset = 0.;
+  double halfGap = 0.;
   placement->MultiplePlacementData(axis, nofItems, width, offset, halfGap);
 
 #ifndef NEW_DEBUG

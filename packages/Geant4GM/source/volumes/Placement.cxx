@@ -183,9 +183,34 @@ bool Geant4GM::Placement::MultiplePlacementData(VGM::Axis& axis, int& nofItems,
   if (Type() != VGM::kMultiplePlacement) return false;
 
   // Different get functions for PVReplica and PVDivisions
-  //
   EAxis g4Axis = kUndefined;
-  if (dynamic_cast<G4PVReplica*>(fPhysicalVolume)) {
+  if (dynamic_cast<G4PVDivision*>(fPhysicalVolume) ||
+      dynamic_cast<G4ReplicatedSlice*>(fPhysicalVolume)) {
+    // G4PVDivision derives from G4PVReplica (since Geant4 11.0)
+    // - it must be tested first
+    G4VDivisionParameterisation* param =
+      dynamic_cast<G4VDivisionParameterisation*>(
+        fPhysicalVolume->GetParameterisation());
+
+    if (!param) {
+      std::cerr << "    Geant4GM::Placement::MultiplePlacementData: "
+                << std::endl;
+      std::cerr << "    Incorrect parameterisation type for "
+                   "G4PVDivision/G4ReplicatedSlice"
+                << std::endl;
+      std::cerr << "    (G4VDivisionParameterisation type was expected.)"
+                << std::endl;
+      std::cerr << "*** Error: Aborting execution  ***" << std::endl;
+      exit(1);
+    }
+
+    g4Axis = param->GetAxis();
+    nofItems = param->GetNoDiv();
+    width = param->GetWidth();
+    offset = param->GetOffset();
+    halfGap = param->GetHalfGap();
+  }
+  else if (dynamic_cast<G4PVReplica*>(fPhysicalVolume)) {
     bool consuming;
 
     G4double offset0;
@@ -224,31 +249,6 @@ bool Geant4GM::Placement::MultiplePlacementData(VGM::Axis& axis, int& nofItems,
 
     offset = offset0 - xlo;
   }
-  else if (dynamic_cast<G4PVDivision*>(fPhysicalVolume) ||
-           dynamic_cast<G4ReplicatedSlice*>(fPhysicalVolume)) {
-    G4VDivisionParameterisation* param =
-      dynamic_cast<G4VDivisionParameterisation*>(
-        fPhysicalVolume->GetParameterisation());
-
-    if (!param) {
-      std::cerr << "    Geant4GM::Placement::MultiplePlacementData: "
-                << std::endl;
-      std::cerr << "    Incorrect parameterisation type for "
-                   "G4PVDivision/G4ReplicatedSlice"
-                << std::endl;
-      std::cerr << "    (G4VDivisionParameterisation type was expected.)"
-                << std::endl;
-      std::cerr << "*** Error: Aborting execution  ***" << std::endl;
-      exit(1);
-    }
-
-    g4Axis = param->GetAxis();
-    nofItems = param->GetNoDiv();
-    width = param->GetWidth();
-    offset = param->GetOffset();
-    halfGap = param->GetHalfGap();
-  }
-
   axis = GetAxis(g4Axis);
 
   // Convert units
