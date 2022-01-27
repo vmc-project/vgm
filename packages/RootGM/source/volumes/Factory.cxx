@@ -71,6 +71,7 @@
 #include "TGeoVolume.h"
 #include "TGeoXtru.h"
 #include "TObjArray.h"
+#include "RVersion.h"
 
 #include <algorithm>
 
@@ -84,6 +85,13 @@ RootGM::Factory::Factory()
   /// Standard default constructor
 
   if (!gGeoManager) new TGeoManager("VGM Root geometry", "VGM Root geometry");
+
+#if ROOT_VERSION_CODE >= ROOT_VERSION(6, 22, 8)
+    // Set Root default units to TGeo
+    TGeoManager::LockDefaultUnits(false);
+    TGeoManager::SetDefaultUnits(TGeoManager::kRootUnits);
+    TGeoManager::LockDefaultUnits(true);
+#endif
 }
 
 //_____________________________________________________________________________
