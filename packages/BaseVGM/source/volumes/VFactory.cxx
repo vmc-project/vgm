@@ -44,9 +44,30 @@
 #include "VGM/volumes/IVolume.h"
 
 #include "BaseVGM/common/utilities.h"
+#include "BaseVGM/common/version.h"
 #include "BaseVGM/volumes/VFactory.h"
 
 #include <cstdlib>
+
+namespace {
+
+//_____________________________________________________________________________
+void PrintVersion()
+{
+  /// Prints the  version banner
+
+  std::cout
+    << std::endl
+    << "============================================================="
+    << std::endl << " Virtual Geometry Model " << std::endl << " Version "
+    << VGM_RELEASE << " ( " << VGM_RELEASE_DATE << " )"
+    << std::endl << " WWW : https://vmc-project.github.io/vgm-documentation/"
+    << std::endl
+    << "============================================================="
+    << std::endl << std::endl;
+}
+
+}
 
 //_____________________________________________________________________________
 BaseVGM::VFactory::VFactory(
@@ -63,6 +84,13 @@ BaseVGM::VFactory::VFactory(
     fMaterialFactory(materialFactory)
 {
   /// Standard constructor
+
+  // Print version info
+  static bool printVersion = true;
+  if (printVersion) {
+    PrintVersion();
+    printVersion = false;
+  }
 }
 
 //_____________________________________________________________________________
