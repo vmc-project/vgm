@@ -9,6 +9,24 @@
 
  The Virtual Geometry Model - Versions
 =========================================
+  27/01/2022
+  version 5.0
+    New features:
+    - Migration to Geant4 11.0
+    - Migration to new documentation:
+      https://vmc-project.github.io/vgm-documentation/
+    - Removed obsolete GNUmakefile build system
+    - Added printing of the version banner
+    - Upgraded license to GPL 3.0
+
+    Fixes:
+    - Export install prefix in CMake package
+      (thanks to Christian Tacke, GSI)
+
+    Tested with Root 6.24/06, Geant4 11.0
+    (with embedded CLHEP 2.4.5.1)
+    Mac OSX 11.5.2: with Apple clang version 12.0.5
+
   18/12/2020
   version 4.9
     New features:
