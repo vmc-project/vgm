@@ -396,7 +396,7 @@ ISolid* TstGeometryViaVGM::CreateSphere(double sphi, double dphi)
 //_____________________________________________________________________________
 ISolid* TstGeometryViaVGM::CreateTessellatedSolid()
 {
-  double targetSize = 100. * fCm;
+  double targetSize = 50. * fCm;
 
   VGM::ThreeVector vertex;
   std::vector<VGM::ThreeVector> facet1;
@@ -739,6 +739,17 @@ void* TstGeometryViaVGM::PlaceSolids(
       ClhepVGM::Transform(
         HepGeom::Translate3D(x0 + (counter)*dx, dy, -zpos) * reflect3D));
 
+  // Tessellated
+  //
+  ISolid* tessellated = CreateTessellatedSolid();
+  IVolume* tessellatedV = CreateVolume(tessellated, scale);
+  fFactory->CreatePlacement("tessellated", 0, tessellatedV, mother,
+    ClhepVGM::Transform(HepGeom::Translate3D(x0 + (++counter)*dx, dy, zpos)));
+  if (reflect)
+    fFactory->CreatePlacement("tessellated", 0, tessellatedV, mother,
+      ClhepVGM::Transform(
+        HepGeom::Translate3D(x0 + (counter)*dx, dy, -zpos) * reflect3D));
+
   return (void*)fFactory->Top();
 }
 
@@ -906,7 +917,7 @@ void TstGeometryViaVGM::DefineMaterials()
 //_____________________________________________________________________________
 void* TstGeometryViaVGM::TestSolids(bool fullPhi)
 {
-  IVolume* worldV = CreateWorld(620. * fCm, 300. * fCm, 200. * fCm);
+  IVolume* worldV = CreateWorld(800. * fCm, 300. * fCm, 200. * fCm);
   fFactory->CreatePlacement("world", 0, worldV, 0, ClhepVGM::Identity());
 
   PlaceSolids(worldV, fullPhi, false, false, 0.);
@@ -917,7 +928,7 @@ void* TstGeometryViaVGM::TestSolids(bool fullPhi)
 //_____________________________________________________________________________
 void* TstGeometryViaVGM::TestExtraSolid(VGM::SolidType solidType)
 {
-  IVolume* worldV = CreateWorld(620. * fCm, 300. * fCm, 200. * fCm);
+  IVolume* worldV = CreateWorld(800. * fCm, 300. * fCm, 200. * fCm);
   fFactory->CreatePlacement("world", 0, worldV, 0, ClhepVGM::Identity());
 
   PlaceExtraSolid(solidType, worldV);
@@ -1088,7 +1099,7 @@ void* TstGeometryViaVGM::TestPlacements2(bool /*bestMatch*/)
 //_____________________________________________________________________________
 void* TstGeometryViaVGM::TestReflections(bool fullPhi)
 {
-  IVolume* worldV = CreateWorld(620. * fCm, 300. * fCm, 300. * fCm);
+  IVolume* worldV = CreateWorld(800. * fCm, 300. * fCm, 300. * fCm);
   fFactory->CreatePlacement("world", 0, worldV, 0, ClhepVGM::Identity());
 
   PlaceSolids(worldV, fullPhi, true, false, 100. * fCm);
@@ -1099,7 +1110,7 @@ void* TstGeometryViaVGM::TestReflections(bool fullPhi)
 //_____________________________________________________________________________
 void* TstGeometryViaVGM::TestScaledSolids(bool fullPhi)
 {
-  IVolume* worldV = CreateWorld(620. * fCm, 300. * fCm, 300. * fCm);
+  IVolume* worldV = CreateWorld(800. * fCm, 300. * fCm, 300. * fCm);
   fFactory->CreatePlacement("world", 0, worldV, 0, ClhepVGM::Identity());
 
   PlaceSolids(worldV, fullPhi, true, true, 100. * fCm);
