@@ -1,17 +1,17 @@
-#!/bin/sh 
+#!/bin/bash
 # $Id$
 
 # -----------------------------------------------------------------------
 # The test script of the Virtual Geometry Model
-# Copyright (C) 2007, Ivana Hrivnacova               
-# All rights reserved. 
-#           
+# Copyright (C) 2007, Ivana Hrivnacova
+# All rights reserved.
+#
 # For the licensing terms see vgm/LICENSE.
 # Contact: ivana@ipno.in2p3.fr
 # -----------------------------------------------------------------------
 
 #
-# Full VGM test suite 
+# Full VGM test suite
 #
 # by I. Hrivnacova, IPN Orsay
 
@@ -21,9 +21,18 @@ NOVIS="noVis"
 NOXML="noXML"
 #NOVIS=""
 
-if [ ! -d $OUTDIR ] 
+# When running on Mac with SIP enabled, the DYLD_LIBRARY_PATH must be defined
+# via another env variable
+RUN_ENV=""
+if [[ $LD_LIBRARY_PATH} ]]
 then
-  mkdir -p $OUTDIR 
+  RUN_ENV="env DYLD_LIBRARY_PATH=${LD_LIBRARY_PATH} "
+fi
+EXE="$RUN_ENV vgm_test"
+
+if [ ! -d $OUTDIR ]
+then
+  mkdir -p $OUTDIR
 fi
 
 for inputType in VGM Geant4 Root
@@ -37,22 +46,22 @@ do
         DOIT="1"
 
         # exclude wrong combinations
-	if [ $inputType != "VGM" -a $inputFactory != $inputType ];  then DOIT="0"; fi 
- 	if [ $inputType  = "VGM" -a $outputFactory = "None" ];      then DOIT="0"; fi 
-  	if [ $inputFactory = $outputFactory ]; then DOIT="0";  fi 
+        if [ $inputType != "VGM" -a $inputFactory != $inputType ];  then DOIT="0"; fi
+        if [ $inputType  = "VGM" -a $outputFactory = "None" ];      then DOIT="0"; fi
+        if [ $inputFactory = $outputFactory ]; then DOIT="0";  fi
 
         # exclude non existing tests
-  	if [ $inputType  = "VGM"  -a $selectedTest  = "Assemblies1" ]; then DOIT="0";  fi 
-  	if [ $inputType  = "VGM"  -a $selectedTest  = "Assemblies2" ]; then DOIT="0";  fi 
-  	if [ $inputType  = "Root" -a $selectedTest  = "DisplacedSolids2" ]; then DOIT="0";  fi 
+        if [ $inputType  = "VGM"  -a $selectedTest  = "Assemblies1" ]; then DOIT="0";  fi
+        if [ $inputType  = "VGM"  -a $selectedTest  = "Assemblies2" ]; then DOIT="0";  fi
+        if [ $inputType  = "Root" -a $selectedTest  = "DisplacedSolids2" ]; then DOIT="0";  fi
 
         if [ $DOIT = "1" ]; then
           # run test
           echo "Testing configuration: $inputType $inputFactory $outputFactory $selectedTest"
-          vgm_test $inputType $inputFactory $outputFactory $NOXML $selectedTest $NOVIS debug \
+          $EXE $inputType $inputFactory $outputFactory $NOXML $selectedTest $NOVIS debug \
             >& $OUTDIR/"$inputType.$inputFactory.$outputFactory.$selectedTest.out"
-        fi    
-      done 	
+        fi
+      done
     done
-  done  
+  done
 done

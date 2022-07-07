@@ -1,17 +1,17 @@
-#!/bin/sh 
+#!/bin/sh
 # $Id$
 
 # -----------------------------------------------------------------------
 # The test script of the Virtual Geometry Model
-# Copyright (C) 2007, Ivana Hrivnacova               
-# All rights reserved. 
-#           
+# Copyright (C) 2007, Ivana Hrivnacova
+# All rights reserved.
+#
 # For the licensing terms see vgm/LICENSE.
 # Contact: ivana@ipno.in2p3.fr
 # -----------------------------------------------------------------------
 
 #
-# VGM tracking test suite 
+# VGM tracking test suite
 #
 # by I. Hrivnacova, IPN Orsay
 
@@ -20,10 +20,19 @@ OUTDIR=$LOGDIR/test3
 NOVIS="noVis"
 NOXML="noXML"
 
-if [ ! -d $OUTDIR ] 
+if [ ! -d $OUTDIR ]
 then
-  mkdir -p $OUTDIR 
+  mkdir -p $OUTDIR
 fi
+
+# When running on Mac with SIP enabled, the DYLD_LIBRARY_PATH must be defined
+# via another env variable
+RUN_ENV=""
+if [[ $LD_LIBRARY_PATH} ]]
+then
+  RUN_ENV="env DYLD_LIBRARY_PATH=${LD_LIBRARY_PATH} "
+fi
+EXE="$RUN_ENV vgm_test"
 
 for inputType in VGM Geant4 Root
 # Use the line below for performance tests (G4 navigator)/G4Root navigator)
@@ -62,20 +71,20 @@ do
           if [ $inputFactory = "Root" -a "$outputFactory" = "None" ]
           then
             NAVIG=rootNavig
-            #echo "... Regenerating Root geometry file: $selectedTest"
-            vgm_test $inputType $inputFactory $outputFactory $NOXML $selectedTest $NOVIS $OPTION \
+            # echo "... Regenerating Root geometry file: $selectedTest"
+            $EXE $inputType $inputFactory $outputFactory $NOXML $selectedTest $NOVIS $OPTION \
               >& $OUTDIR/tmp.out
           fi
 
           # run test
           echo "Testing configuration: $inputType $inputFactory $outputFactory $selectedTest $NAVIG $OPTION"
-          vgm_test $inputType $inputFactory $outputFactory $NOXML $selectedTest $NOVIS $OPTION run $NAVIG \
+          $EXE $inputType $inputFactory $outputFactory $NOXML $selectedTest $NOVIS $OPTION run $NAVIG \
             >& $OUTDIR/"$inputType.$inputFactory.$outputFactory.$selectedTest$OPTION.out"
 
-        fi  	
-      done 
+        fi
+      done
     done
-  done  
-done  
+  done
+done
 
 rm $OUTDIR/tmp.out
