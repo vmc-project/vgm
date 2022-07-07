@@ -38,6 +38,7 @@
 #include "TGeoPgon.h"
 #include "TGeoScaledShape.h"
 #include "TGeoSphere.h"
+#include "TGeoTessellated.h"
 #include "TGeoTorus.h"
 #include "TGeoTrd2.h"
 #include "TGeoTube.h"
@@ -46,6 +47,8 @@
 #include "TMath.h"
 
 #include "TstGeometryViaRoot.hh"
+
+using ROOT::Geom::Vertex_t;
 
 //_____________________________________________________________________________
 TstGeometryViaRoot::TstGeometryViaRoot() : TstVGeometry(), fBasicMedium(0)
@@ -514,6 +517,53 @@ TGeoShape* TstGeometryViaRoot::CreateSphere(Double_t sphi, Double_t dphi)
 }
 
 //_____________________________________________________________________________
+TGeoShape* TstGeometryViaRoot::CreateTessellatedSolid()
+{
+  // First declare a tessellated solid
+  //
+  TGeoTessellated* tessellatedS = new TGeoTessellated("tessellatedS");
+
+  Double_t targetSize = 50.;
+
+  // facet1
+  tessellatedS->AddFacet(
+    Vertex_t(-targetSize, -targetSize, 0.0),
+    Vertex_t(+targetSize, -targetSize, 0.0),
+    Vertex_t(0.0, 0.0, +targetSize));
+
+  // facet2
+  tessellatedS->AddFacet(
+    Vertex_t(+targetSize, -targetSize, 0.0),
+    Vertex_t(+targetSize, +targetSize, 0.0),
+    Vertex_t(0.0, 0.0, +targetSize));
+
+  // facet3
+  tessellatedS->AddFacet(
+    Vertex_t(+targetSize, +targetSize, 0.0),
+    Vertex_t(-targetSize, +targetSize, 0.0),
+    Vertex_t(0.0, 0.0, +targetSize));
+
+  // facet4
+  tessellatedS->AddFacet(
+    Vertex_t(-targetSize, +targetSize, 0.0),
+    Vertex_t(-targetSize, -targetSize, 0.0),
+    Vertex_t(0.0, 0.0, +targetSize));
+
+  // facet5
+  tessellatedS->AddFacet(
+    Vertex_t(-targetSize, -targetSize, 0.0),
+    Vertex_t(-targetSize, +targetSize, 0.0),
+    Vertex_t(+targetSize, +targetSize, 0.0),
+    Vertex_t(+targetSize, -targetSize, 0.0));
+
+  // close shape
+  tessellatedS->CloseShape();
+
+  return tessellatedS;
+}
+
+
+//_____________________________________________________________________________
 TGeoShape* TstGeometryViaRoot::CreateTorus(Double_t sphi, Double_t dphi)
 {
   return new TGeoTorus("torusS", 40., 20., 30., sphi, dphi);
@@ -747,6 +797,17 @@ TGeoVolume* TstGeometryViaRoot::PlaceSolids(TGeoVolume* mother, Bool_t fullPhi,
     mother->AddNode(paraboloidV, 1,
       new TGeoCombiTrans(x0 + (counter)*dx, dy, -zpos, reflect3D));
 
+  // Tessellated
+  //
+  TGeoShape* tessellated = CreateTessellatedSolid();
+  TGeoVolume* tessellatedV = CreateVolume(tessellated, scale3D);
+  mother->AddNode(
+    tessellatedV, 0, new TGeoTranslation(x0 + (++counter)*dx, dy, zpos));
+  std::cout << "Tessellated position: " << x0 + counter*dx << ", " << dy << ", " << zpos << std::endl;
+  if (reflect)
+    mother->AddNode(tessellatedV, 1,
+      new TGeoCombiTrans(x0 + (counter)*dx, dy, -zpos, reflect3D));
+
   return mother;
 }
 
@@ -883,7 +944,7 @@ void TstGeometryViaRoot::DefineMaterials()
 //_____________________________________________________________________________
 void* TstGeometryViaRoot::TestSolids(Bool_t fullPhi)
 {
-  TGeoVolume* worldV = CreateWorld(620., 300., 200.);
+  TGeoVolume* worldV = CreateWorld(800., 300., 200.);
 
   PlaceSolids(worldV, fullPhi, false, false, 0.);
 
@@ -893,7 +954,7 @@ void* TstGeometryViaRoot::TestSolids(Bool_t fullPhi)
 //_____________________________________________________________________________
 void* TstGeometryViaRoot::TestExtraSolid(VGM::SolidType solidType)
 {
-  TGeoVolume* worldV = CreateWorld(620., 300., 200.);
+  TGeoVolume* worldV = CreateWorld(800., 300., 200.);
 
   PlaceExtraSolid(solidType, worldV);
 
@@ -916,7 +977,7 @@ void* TstGeometryViaRoot::TestNewSolid()
 //_____________________________________________________________________________
 void* TstGeometryViaRoot::TestNewSolid2()
 {
-  TGeoVolume* worldV = CreateWorld(620., 300., 200.);
+  TGeoVolume* worldV = CreateWorld(800., 300., 200.);
 
   std::vector<TGeoVolume*> volumes;
   CreateArb8Solids(volumes);
@@ -1068,7 +1129,7 @@ void* TstGeometryViaRoot::TestPlacements2(Bool_t bestMatch)
 void* TstGeometryViaRoot::TestReflections(Bool_t fullPhi)
 {
 
-  TGeoVolume* worldV = CreateWorld(620., 300., 300.);
+  TGeoVolume* worldV = CreateWorld(800., 300., 300.);
 
   PlaceSolids(worldV, fullPhi, true, false, 100.);
 
@@ -1079,7 +1140,7 @@ void* TstGeometryViaRoot::TestReflections(Bool_t fullPhi)
 void* TstGeometryViaRoot::TestScaledSolids(Bool_t fullPhi)
 {
 
-  TGeoVolume* worldV = CreateWorld(620., 300., 300.);
+  TGeoVolume* worldV = CreateWorld(800., 300., 300.);
 
   PlaceSolids(worldV, fullPhi, true, true, 100.);
 

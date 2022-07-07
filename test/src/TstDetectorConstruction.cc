@@ -451,7 +451,7 @@ void TstDetectorConstruction::SetG4VisAttributes() const
 }
 
 #include "TApplication.h"
-#include "TBrowser.h"
+#include "TCanvas.h"
 #include "TGeoManager.h"
 #include "TPad.h"
 //_____________________________________________________________________________
@@ -474,10 +474,10 @@ void TstDetectorConstruction::DrawRootGeometry() const
 
   // Draw Root geometry
   //
+  new TCanvas("vgm","vgm test",200,10,700,500);
   gGeoManager->SetVisLevel(4);
   gGeoManager->SetVisOption(0);
   gGeoManager->GetTopVolume()->SetVisContainers(kTRUE);
-  new TBrowser();
 
   gGeoManager->GetTopVolume()->Draw("ogl");
   // gGeoManager->GetTopVolume()->Raytrace();

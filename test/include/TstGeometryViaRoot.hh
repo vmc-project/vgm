@@ -73,6 +73,7 @@ class TstGeometryViaRoot : public TstVGeometry
   TGeoShape* CreatePolycone(Double_t sphi, Double_t dphi);
   TGeoShape* CreatePolyhedra(Double_t sphi, Double_t dphi);
   TGeoShape* CreateSphere(Double_t sphi, Double_t dphi);
+  TGeoShape* CreateTessellatedSolid();
   TGeoShape* CreateTorus(Double_t sphi, Double_t dphi);
   TGeoShape* CreateTrap();
   TGeoShape* CreateTrd();

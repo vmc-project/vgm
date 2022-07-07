@@ -40,6 +40,7 @@
 #include "RootGM/solids/ScaledSolid.h"
 #include "RootGM/solids/SolidMap.h"
 #include "RootGM/solids/Sphere.h"
+#include "RootGM/solids/TessellatedSolid.h"
 #include "RootGM/solids/Torus.h"
 #include "RootGM/solids/Trap.h"
 #include "RootGM/solids/Trd.h"
@@ -65,6 +66,7 @@
 #include "TGeoShape.h"
 #include "TGeoShapeAssembly.h"
 #include "TGeoSphere.h"
+#include "TGeoTessellated.h"
 #include "TGeoTorus.h"
 #include "TGeoTrd1.h"
 #include "TGeoTrd2.h"
@@ -266,6 +268,11 @@ VGM::ISolid* RootGM::Factory::ImportSolid(TGeoShape* shape)
   TGeoXtru* xtru = dynamic_cast<TGeoXtru*>(shape);
   if (xtru) {
     return Register(new RootGM::ExtrudedSolid(xtru));
+  }
+
+  TGeoTessellated* tessellated = dynamic_cast<TGeoTessellated*>(shape);
+  if (tessellated) {
+    return Register(new RootGM::TessellatedSolid(tessellated));
   }
 
   TGeoShapeAssembly* assembly = dynamic_cast<TGeoShapeAssembly*>(shape);
@@ -810,21 +817,11 @@ VGM::ISolid* RootGM::Factory::CreateSphere(const std::string& name, double rin,
 
 //_____________________________________________________________________________
 VGM::ISolid* RootGM::Factory::CreateTessellatedSolid(const std::string& name,
-  std::vector<std::vector<VGM::ThreeVector> > /*facets*/)
+  std::vector<std::vector<VGM::ThreeVector> > facets)
 {
-  // Not supported solid in Root
-
-  std::cerr << "*** Error: Cannot create Tessellated solid in Root ***"
-            << std::endl;
-  if (Ignore()) {
-    std::cerr << "*** Warning: Using a box instead  ***" << std::endl;
-    std::cerr << std::endl;
-    return Register(new RootGM::Box(name, 1., 1., 1.));
-  }
-  else {
-    std::cerr << "*** Error: Aborting execution  ***" << std::endl;
-    exit(1);
-  }
+  //
+  return Register(
+    new RootGM::TessellatedSolid(name, facets));
 }
 
 //_____________________________________________________________________________

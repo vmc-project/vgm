@@ -274,7 +274,7 @@ G4VSolid* TstGeometryViaGeant4::CreateTessellatedSolid()
   //
   G4TessellatedSolid* tessellatedS = new G4TessellatedSolid("tessellatedS");
 
-  G4double targetSize = 100 * cm;
+  G4double targetSize = 50 * cm;
   G4TriangularFacet* facet1 =
     new G4TriangularFacet(G4ThreeVector(-targetSize, -targetSize, 0.0),
       G4ThreeVector(+targetSize, -targetSize, 0.0),
@@ -593,6 +593,19 @@ G4LogicalVolume* TstGeometryViaGeant4::PlaceSolids(G4LogicalVolume* mother,
       "paraboloid", paraboloidV, mother, false, 0);
   }
 
+  // Tessellated
+  G4VSolid* tessellated = CreateTessellatedSolid();
+  G4LogicalVolume* tessellatedV = CreateVolume(tessellated, scale);
+  new G4PVPlacement(HepGeom::Translate3D(x0 + (++counter)*dx, dy, zpos),
+    tessellatedV, "tessellated", mother, false, 0);
+  std::cout << "Tessellated position: " << x0 + counter*dx << ", " << dy << ", " << zpos << std::endl;
+
+  if (reflect) {
+    G4ReflectionFactory::Instance()->Place(
+      HepGeom::Translate3D(x0 + (counter)*dx, dy, -zpos) * reflect3D,
+      "tesselled", tessellatedV, mother, false, 0);
+  }
+
   return mother;
 }
 
@@ -694,7 +707,7 @@ void TstGeometryViaGeant4::DefineMaterials()
 void* TstGeometryViaGeant4::TestSolids(G4bool fullPhi)
 {
 
-  G4LogicalVolume* worldV = CreateWorld(6.2 * m, 3. * m, 2. * m);
+  G4LogicalVolume* worldV = CreateWorld(8.0 * m, 3. * m, 2. * m);
   G4VPhysicalVolume* world =
     new G4PVPlacement(0, CLHEP::Hep3Vector(), worldV, "world", 0, false, 0);
 
@@ -707,7 +720,7 @@ void* TstGeometryViaGeant4::TestSolids(G4bool fullPhi)
 void* TstGeometryViaGeant4::TestExtraSolid(VGM::SolidType solidType)
 {
 
-  G4LogicalVolume* worldV = CreateWorld(6.2 * m, 3. * m, 2. * m);
+  G4LogicalVolume* worldV = CreateWorld(8.0 * m, 3. * m, 2. * m);
   G4VPhysicalVolume* world =
     new G4PVPlacement(0, CLHEP::Hep3Vector(), worldV, "world", 0, false, 0);
 
@@ -923,7 +936,7 @@ void* TstGeometryViaGeant4::TestReflections(G4bool fullPhi)
 
   // World
   //
-  G4LogicalVolume* worldV = CreateWorld(6.2 * m, 3. * m, 3. * m);
+  G4LogicalVolume* worldV = CreateWorld(8.0 * m, 3. * m, 3. * m);
   G4VPhysicalVolume* world =
     new G4PVPlacement(0, CLHEP::Hep3Vector(), worldV, "world", 0, false, 0);
 
@@ -938,7 +951,7 @@ void* TstGeometryViaGeant4::TestScaledSolids(G4bool fullPhi)
 
   // World
   //
-  G4LogicalVolume* worldV = CreateWorld(6.2 * m, 3. * m, 3. * m);
+  G4LogicalVolume* worldV = CreateWorld(8.0 * m, 3. * m, 3. * m);
   G4VPhysicalVolume* world =
     new G4PVPlacement(0, CLHEP::Hep3Vector(), worldV, "world", 0, false, 0);
 

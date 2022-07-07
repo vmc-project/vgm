@@ -21,10 +21,10 @@
 #include "BaseVGM/solids/VTessellatedSolid.h"
 
 //_____________________________________________________________________________
-std::ostream& operator<<(std::ostream& out, const VGM::ITessellatedSolid& xtru)
+std::ostream& operator<<(std::ostream& out, const VGM::ITessellatedSolid& tessellated)
 {
-  const VGM::ISolid& xtruSolid = xtru;
-  out << xtruSolid;
+  const VGM::ISolid& tessellatedSolid = tessellated;
+  out << tessellatedSolid;
   return out;
 }
 

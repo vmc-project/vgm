@@ -45,7 +45,7 @@ Geant4GM::TessellatedSolid::TessellatedSolid(
   /// \param facets the vector of facets defined as a vector of
   ///        three vectors representing the facet points in mm
 
-  fTessellatedSolid = new G4TessellatedSolid();
+  fTessellatedSolid = new G4TessellatedSolid(name);
 
   // Add triangular facets
   //
@@ -78,15 +78,8 @@ Geant4GM::TessellatedSolid::TessellatedSolid(
           vertex2[VGM::kDz] / ClhepVGM::Units::Length()),
         ABSOLUTE));
     }
-  }
-
-  // Add quadrangular facets
-  //
-  for (G4int i = 0; i < G4int(facets.size()); i++) {
-
-    std::vector<VGM::ThreeVector> facet = facets[i];
-
-    if (facet.size() == 4) {
+    else {
+      // Quadrangular facet
       VGM::ThreeVector vertex0 = facet[0];
       VGM::ThreeVector vertex1 = facet[1];
       VGM::ThreeVector vertex2 = facet[2];
@@ -108,7 +101,6 @@ Geant4GM::TessellatedSolid::TessellatedSolid(
         ABSOLUTE));
     }
   }
-
   fTessellatedSolid->SetSolidClosed(true);
 
   // G4cout << *fTessellatedSolid << G4endl;

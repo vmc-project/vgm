@@ -67,6 +67,9 @@ std::string VGM::SolidTypeName(VGM::SolidType typeId)
     case kSphere:
       return "Sphere";
       break;
+    case kTessellated:
+      return "Tessellated";
+      break;
     case kTorus:
       return "Torus";
       break;
