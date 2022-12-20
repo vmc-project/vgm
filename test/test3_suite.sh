@@ -44,7 +44,8 @@ do
     # Use the line below for performance tests (G4 navigator)/G4Root navigator)
     # for outputFactory in None
     do
-      for selectedTest in Solids Placements Placements2 Reflections ScaledSolids Assemblies1 Assemblies2 BooleanSolids1 BooleanSolids2 DisplacedSolids1 DisplacedSolids2 MultiUnion BestMatch
+#      for selectedTest in Solids Placements Placements2 Reflections ScaledSolids Assemblies1 Assemblies2 BooleanSolids1 BooleanSolids2 DisplacedSolids1 DisplacedSolids2 MultiUnion BestMatch
+      for selectedTest in Solids Placements Placements2 Reflections ScaledSolids Assemblies1 Assemblies2 BooleanSolids1 BooleanSolids2 DisplacedSolids1 DisplacedSolids2 BestMatch
       do
         DOIT="1"
 

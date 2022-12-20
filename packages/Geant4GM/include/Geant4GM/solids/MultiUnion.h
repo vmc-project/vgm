@@ -25,6 +25,7 @@
 #include "BaseVGM/solids/VMultiUnion.h"
 
 #include "G4Transform3D.hh"
+#include "G4Types.hh"
 
 #include <iostream>
 #include <vector>
