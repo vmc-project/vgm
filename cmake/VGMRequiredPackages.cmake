@@ -22,6 +22,7 @@ if(WITH_GEANT4)
     find_package(Geant4 REQUIRED)
   endif()
   include(${Geant4_USE_FILE})
+  set(CMAKE_CXX_STANDARD ${Geant4_CXX_STANDARD})
 endif()
 
 #-- ROOT (optional) ------------------------------------------------------------
