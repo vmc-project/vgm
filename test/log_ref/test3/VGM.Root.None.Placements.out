@@ -2,11 +2,10 @@ Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometr
 
 =============================================================
  Virtual Geometry Model 
- Version 5.0 ( 27 January 2022 )
+ Version 5.1 ( 17 January 2023 )
  WWW : https://vmc-project.github.io/vgm-documentation/
 =============================================================
 
-Warning in <TGeoManager>: Changing system of units to ROOT units (cm, s, GeV).
 Root geometry will be defined via VGM
 Info in <TGeoManager::Import>: Reading geometry from file: Placements.root
 Info in <TGeoManager::CloseGeometry>: Geometry loaded from file...
@@ -19,14 +18,8 @@ Info in <TGeoManager::CloseGeometry>: ----------------modeler ready-------------
 Info in <TObject::SetNavigator>: TG4RootNavigator created and registered to G4TransportationManager
 isMaster=1
 
-
-          ################################
-          !!! G4Backtrace is activated !!!
-          ################################
-
-
 **************************************************************
- Geant4 version Name: geant4-11-00-ref-00    (10-December-2021)
+ Geant4 version Name: geant4-11-01    (9-December-2022)
                        Copyright : Geant4 Collaboration
                       References : NIM A 506 (2003), 250-303
                                  : IEEE-TNS 53 (2006), 270-278
@@ -54,9 +47,12 @@ Registered graphics systems are:
   RayTracer (RayTracer)
   VRML2FILE (VRML2FILE)
   gMocrenFile (gMocrenFile)
+  TOOLSSG_OFFSCREEN (TSG_OFFSCREEN)
+  TOOLSSG_OFFSCREEN (TSG_OFFSCREEN, TSG_FILE)
   OpenGLImmediateX (OGLIX, OGLI)
   OpenGLStoredX (OGLSX, OGL, OGLS)
   RayTracerX (RayTracerX)
+  TOOLSSG_X11_GLES (TSG_X11_GLES, TSGX11, TSG)
 
 Registering model factories...
 
@@ -5296,7 +5292,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      321     -297 -4.6e+03         1        0        0         0       world initStep
     1 2.24e+03    -49.4 -4.25e+03         1        0 1.97e+03  1.97e+03      layerA Transportation
-    2 2.62e+03 2.13e-14 -4.18e+03         1        0      391  2.36e+03      layerC Transportation
+    2 2.62e+03 1.42e-14 -4.18e+03         1        0      391  2.36e+03      layerC Transportation
     3 2.65e+03        4 -4.17e+03         1        0     31.7  2.39e+03      layerB Transportation
     4 2.96e+03     43.1 -4.12e+03         1        0      310   2.7e+03       world Transportation
     5    6e+03      437 -3.57e+03         1        0 3.12e+03  5.82e+03  OutOfWorld Transportation
@@ -7790,7 +7786,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 2.13e+03     -710 -2.32e+03         1        0        0         0       world initStep
     1 4.54e+03    -26.3 -1.61e+03         1        0 2.61e+03  2.61e+03      layerA Transportation
-    2 4.63e+03        0 -1.58e+03         1        0      100  2.71e+03      layerC Transportation
+    2 4.63e+03 7.11e-15 -1.58e+03         1        0      100  2.71e+03      layerC Transportation
     3 4.65e+03        4 -1.57e+03         1        0     15.3  2.72e+03      layerB Transportation
     4 4.99e+03      101 -1.47e+03         1        0      371  3.09e+03       world Transportation
     5    6e+03      388 -1.17e+03         1        0 1.09e+03  4.19e+03  OutOfWorld Transportation
@@ -8785,10 +8781,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -2.28e+03      382 5.27e+03         1        0        0         0       world initStep
     1 -3.29e+03   -1e+03 4.29e+03         1        0 1.97e+03  1.97e+03  OutOfWorld Transportation
-number of event = 1000 User=0.050000s Real=0.163375s Sys=0.050000s
-Execution time: R: 0.163 s  C: 0.163 s 
-0 events have been kept for refreshing and/or reviewing.
-  "/vis/reviewKeptEvents" to review them one by one.
-  "/vis/enable", then "/vis/viewer/flush" or "/vis/viewer/rebuild" to see them accumulated.
+number of event = 1000 User=0.020000s Real=0.027563s Sys=0.010000s
+Execution time: R: 0.0276 s  C: 0.0276 s 
 Graphics systems deleted.
 Visualization Manager deleting...

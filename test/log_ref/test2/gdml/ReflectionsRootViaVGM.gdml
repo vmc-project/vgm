@@ -36,6 +36,13 @@ http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
       <position  name="pos_30"    x="   550.0000"  y="  -150.0000"  z="  -100.0000"  unit="cm" />
       <position  name="pos_31"    x="   550.0000"  y="   150.0000"  z="   100.0000"  unit="cm" />
       <position  name="pos_32"    x="   550.0000"  y="   150.0000"  z="  -100.0000"  unit="cm" />
+      <position  name="pos_33"    x="   700.0000"  y="   150.0000"  z="   100.0000"  unit="cm" />
+      <position  name="pos_34"    x="   -50.0000"  y="   -50.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_35"    x="    50.0000"  y="   -50.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_36"    x="     0.0000"  y="     0.0000"  z="    50.0000"  unit="cm" />
+      <position  name="pos_37"    x="    50.0000"  y="    50.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_38"    x="   -50.0000"  y="    50.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_39"    x="   700.0000"  y="   150.0000"  z="  -100.0000"  unit="cm" />
 
       <rotation  name="rot_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
 
@@ -58,7 +65,7 @@ http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
    <solids>
       <box  lunit="cm" aunit="degree"
          name="world_s"
-         x=" 1240.0000"  y="  600.0000"  z="  600.0000" />
+         x=" 1600.0000"  y="  600.0000"  z="  600.0000" />
 
       <box  lunit="cm" aunit="degree"
          name="box_s"
@@ -191,6 +198,14 @@ http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
          name="paraboloid_s"
          rlo="   20.0000"  rhi="   45.0000"  dz="   50.0000" />
 
+      <tessellated name="tessellated_s">
+         <triangular     vertex1="pos_34"  vertex2="pos_35"  vertex3="pos_36"/>
+         <triangular     vertex1="pos_35"  vertex2="pos_37"  vertex3="pos_36"/>
+         <triangular     vertex1="pos_37"  vertex2="pos_38"  vertex3="pos_36"/>
+         <triangular     vertex1="pos_38"  vertex2="pos_34"  vertex3="pos_36"/>
+         <quadrangular   vertex1="pos_34"  vertex2="pos_38"  vertex3="pos_37"  vertex4="pos_35"/>
+      </tessellated>
+
    </solids>
 
    <structure>
@@ -272,6 +287,11 @@ http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
       <volume name="paraboloid">
          <materialref ref="Basic"/>
          <solidref ref="paraboloid_s"/>
+      </volume>
+
+      <volume name="tessellated">
+         <materialref ref="Basic"/>
+         <solidref ref="tessellated_s"/>
       </volume>
 
       <volume name="world">
@@ -450,6 +470,17 @@ http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
          <physvol>
             <volumeref ref="paraboloid"/>
                <positionref ref="pos_32"/>
+               <rotationref ref="rot_0"/>
+               <scaleref    ref="scale_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="tessellated"/>
+               <positionref ref="pos_33"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="tessellated"/>
+               <positionref ref="pos_39"/>
                <rotationref ref="rot_0"/>
                <scaleref    ref="scale_0"/>
          </physvol>

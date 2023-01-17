@@ -1,22 +1,15 @@
 
 =============================================================
  Virtual Geometry Model 
- Version 5.0 ( 27 January 2022 )
+ Version 5.1 ( 17 January 2023 )
  WWW : https://vmc-project.github.io/vgm-documentation/
 =============================================================
 
 Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometry created
-Warning in <TGeoManager>: Changing system of units to ROOT units (cm, s, GeV).
 Geant4 geometry will be defined via Geant4 and exported to Root
 
-
-          ################################
-          !!! G4Backtrace is activated !!!
-          ################################
-
-
 **************************************************************
- Geant4 version Name: geant4-11-00-ref-00    (10-December-2021)
+ Geant4 version Name: geant4-11-01    (9-December-2022)
                        Copyright : Geant4 Collaboration
                       References : NIM A 506 (2003), 250-303
                                  : IEEE-TNS 53 (2006), 270-278
@@ -117,7 +110,7 @@ VGM info:    Material:      Air    density:  1.290 mg/cm3  RadL: 285.161 m    Nu
 
 VGM info:   Importing material: 
 VGM info:    Material: Scintillator    density:  1.032 g/cm3   RadL:  42.544 cm   Nucl.Int.Length:  69.969 cm 
-                       Imean:  64.684 eV   temperature: 293.15 K  pressure:   1.00 atm
+                       Imean:  62.657 eV   temperature: 293.15 K  pressure:   1.00 atm
 
    --->  Element: C (C)   Z =  6.0   N =    12   A = 12.011 g/mole
          --->  Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole   abundance: 98.930 %
@@ -419,9 +412,12 @@ Registered graphics systems are:
   RayTracer (RayTracer)
   VRML2FILE (VRML2FILE)
   gMocrenFile (gMocrenFile)
+  TOOLSSG_OFFSCREEN (TSG_OFFSCREEN)
+  TOOLSSG_OFFSCREEN (TSG_OFFSCREEN, TSG_FILE)
   OpenGLImmediateX (OGLIX, OGLI)
   OpenGLStoredX (OGLSX, OGL, OGLS)
   RayTracerX (RayTracerX)
+  TOOLSSG_X11_GLES (TSG_X11_GLES, TSGX11, TSG)
 
 Registering model factories...
 

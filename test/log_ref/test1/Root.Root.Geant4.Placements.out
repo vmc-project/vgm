@@ -1,24 +1,17 @@
 
 =============================================================
  Virtual Geometry Model 
- Version 5.0 ( 27 January 2022 )
+ Version 5.1 ( 17 January 2023 )
  WWW : https://vmc-project.github.io/vgm-documentation/
 =============================================================
 
 Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometry created
-Warning in <TGeoManager>: Changing system of units to ROOT units (cm, s, GeV).
 Warning in <TGeoManager::Init>: Deleting previous geometry: VGM Root geometry/VGM Root geometry
 Info in <TGeoManager::TGeoManager>: Geometry Test, Test geometry via Root created
 Root geometry will be defined via Root and exported to Geant4
 
-
-          ################################
-          !!! G4Backtrace is activated !!!
-          ################################
-
-
 **************************************************************
- Geant4 version Name: geant4-11-00-ref-00    (10-December-2021)
+ Geant4 version Name: geant4-11-01    (9-December-2022)
                        Copyright : Geant4 Collaboration
                       References : NIM A 506 (2003), 250-303
                                  : IEEE-TNS 53 (2006), 270-278
@@ -46,8 +39,8 @@ VGM info:   Importing element: from material
 VGM info:   Element: O      Z=8   N=16.000000   A=15.999400 [g/mole]
 VGM info:   Importing material: 
 VGM info:   Mixture Scintillator    Aeff=11.0723 Zeff=5.57354 rho=1.032 radlen=42.132 intlen=70.1008 index=2
-   Element #0 : C  Z=  6.00 A= 12.01 w= 0.915 natoms=9
-   Element #1 : H  Z=  1.00 A=  1.01 w= 0.085 natoms=10
+   Element #0 : C  Z=  6.00 A= 12.01 w= 0.915
+   Element #1 : H  Z=  1.00 A=  1.01 w= 0.085
 VGM info:   Importing element: from element object
 VGM info:   Element: C      Z=6   N=12.000000   A=12.010700 [g/mole]
 VGM info:   Importing element: from element object
@@ -303,9 +296,12 @@ Registered graphics systems are:
   RayTracer (RayTracer)
   VRML2FILE (VRML2FILE)
   gMocrenFile (gMocrenFile)
+  TOOLSSG_OFFSCREEN (TSG_OFFSCREEN)
+  TOOLSSG_OFFSCREEN (TSG_OFFSCREEN, TSG_FILE)
   OpenGLImmediateX (OGLIX, OGLI)
   OpenGLStoredX (OGLSX, OGL, OGLS)
   RayTracerX (RayTracerX)
+  TOOLSSG_X11_GLES (TSG_X11_GLES, TSGX11, TSG)
 
 Registering model factories...
 

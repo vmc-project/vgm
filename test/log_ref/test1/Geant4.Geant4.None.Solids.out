@@ -1,20 +1,14 @@
 
 =============================================================
  Virtual Geometry Model 
- Version 5.0 ( 27 January 2022 )
+ Version 5.1 ( 17 January 2023 )
  WWW : https://vmc-project.github.io/vgm-documentation/
 =============================================================
 
 Geant4 geometry will be defined via Geant4
 
-
-          ################################
-          !!! G4Backtrace is activated !!!
-          ################################
-
-
 **************************************************************
- Geant4 version Name: geant4-11-00-ref-00    (10-December-2021)
+ Geant4 version Name: geant4-11-01    (9-December-2022)
                        Copyright : Geant4 Collaboration
                       References : NIM A 506 (2003), 250-303
                                  : IEEE-TNS 53 (2006), 270-278
@@ -22,6 +16,7 @@ Geant4 geometry will be defined via Geant4
                              WWW : http://geant4.org/
 **************************************************************
 
+Tessellated position: 7000, 1500, 0
 TestSolids finished
 Go to Import
 VGM info:   Geant4GM::Factory::Import started ...
@@ -115,7 +110,7 @@ VGM info:    Material:      Air    density:  1.290 mg/cm3  RadL: 285.161 m    Nu
 
 VGM info:   Importing material: 
 VGM info:    Material: Scintillator    density:  1.032 g/cm3   RadL:  42.544 cm   Nucl.Int.Length:  69.969 cm 
-                       Imean:  64.684 eV   temperature: 293.15 K  pressure:   1.00 atm
+                       Imean:  62.657 eV   temperature: 293.15 K  pressure:   1.00 atm
 
    --->  Element: C (C)   Z =  6.0   N =    12   A = 12.011 g/mole
          --->  Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole   abundance: 98.930 %
@@ -159,7 +154,7 @@ VGM info:    Material: Tungsten    density: 19.250 g/cm3   RadL:   3.513 mm   Nu
 
 VGM info:   Importing LV: world
 VGM info:   Importing solid: worldS
-VGM info:      Imported solid: Box  "worldS"  hx = 6200mm  hy = 3000mm  hz = 2000mm
+VGM info:      Imported solid: Box  "worldS"  hx = 8000mm  hy = 3000mm  hz = 2000mm
 VGM info:   ImportDaughters for world
 VGM info:   Importing LV: box
 VGM info:   Importing solid: boxS
@@ -289,6 +284,38 @@ VGM info:   Importing LV: paraboloid
 VGM info:   Importing solid: paraboloidS
 VGM info:      Imported solid: Paraboloid  "paraboloidS"  r1 = 200mm  r2 = 450mm  hz = 500mm
 VGM info:   ImportDaughters for paraboloid
+VGM info:   Importing LV: tessellated
+VGM info:   Importing solid: tessellatedS
+VGM info:      Imported solid: Tessellated  "tessellatedS"
+5 facets:
+Facet #0: 
+   3 vertices:
+     (-500, -500, 0) mm
+     (500, -500, 0) mm
+     (0, 0, 500) mm
+Facet #1: 
+   3 vertices:
+     (500, -500, 0) mm
+     (500, 500, 0) mm
+     (0, 0, 500) mm
+Facet #2: 
+   3 vertices:
+     (500, 500, 0) mm
+     (-500, 500, 0) mm
+     (0, 0, 500) mm
+Facet #3: 
+   3 vertices:
+     (-500, 500, 0) mm
+     (-500, -500, 0) mm
+     (0, 0, 500) mm
+Facet #4: 
+   4 vertices:
+     (-500, -500, 0) mm
+     (-500, 500, 0) mm
+     (500, 500, 0) mm
+     (500, -500, 0) mm
+
+VGM info:   ImportDaughters for tessellated
 VGM info:   Import positions: 
 VGM info:   0th volume: world  
 VGM info:      0th daughter  pv = box  lv = box vgmPl = box vgmVol = box
@@ -307,6 +334,7 @@ VGM info:      12th daughter  pv = xtru1  lv = Xtru1 vgmPl = xtru1 vgmVol = Xtru
 VGM info:      13th daughter  pv = xtru2  lv = xtru2 vgmPl = xtru2 vgmVol = xtru2
 VGM info:      14th daughter  pv = hype  lv = hype vgmPl = hype vgmVol = hype
 VGM info:      15th daughter  pv = paraboloid  lv = paraboloid vgmPl = paraboloid vgmVol = paraboloid
+VGM info:      16th daughter  pv = tessellated  lv = tessellated vgmPl = tessellated vgmVol = tessellated
 VGM info:   1th volume: box  
 VGM info:   2th volume: cons  
 VGM info:   3th volume: eltu  
@@ -323,9 +351,10 @@ VGM info:   13th volume: Xtru1
 VGM info:   14th volume: xtru2  
 VGM info:   15th volume: hype  
 VGM info:   16th volume: paraboloid  
+VGM info:   17th volume: tessellated  
 VGM info:   
 Geant4_GM_Factory factory solids store: 
-   0th solid: Box  "worldS"  hx = 6200mm  hy = 3000mm  hz = 2000mm
+   0th solid: Box  "worldS"  hx = 8000mm  hy = 3000mm  hz = 2000mm
    1th solid: Box  "boxS"  hx = 200mm  hy = 600mm  hz = 500mm
    2th solid: Cons  "consS"  rin1 = 100mm  rout1 = 400mm  rin2 = 200mm  rout2 = 600mm  hz = 500mm  sphi = 0deg  dphi = 360deg
    3th solid: Eltu  "eltuS"  dx = 200mm  dy = 300mm  hz = 500mm
@@ -386,8 +415,37 @@ Planes:
   Displacement rotation (object):  (0,  -0,  0) deg    no reflectionZ
    17th solid: Hype  "hypeS"  r1 = 200mm  stereo1 = 30deg  r2 = 300mm  stereo1 = 40deg  hz = 500mm
    18th solid: Paraboloid  "paraboloidS"  r1 = 200mm  r2 = 450mm  hz = 500mm
+   19th solid: Tessellated  "tessellatedS"
+5 facets:
+Facet #0: 
+   3 vertices:
+     (-500, -500, 0) mm
+     (500, -500, 0) mm
+     (0, 0, 500) mm
+Facet #1: 
+   3 vertices:
+     (500, -500, 0) mm
+     (500, 500, 0) mm
+     (0, 0, 500) mm
+Facet #2: 
+   3 vertices:
+     (500, 500, 0) mm
+     (-500, 500, 0) mm
+     (0, 0, 500) mm
+Facet #3: 
+   3 vertices:
+     (-500, 500, 0) mm
+     (-500, -500, 0) mm
+     (0, 0, 500) mm
+Facet #4: 
+   4 vertices:
+     (-500, -500, 0) mm
+     (-500, 500, 0) mm
+     (500, 500, 0) mm
+     (500, -500, 0) mm
+
 Geant4_GM_Factory factory volumes store: 
-   0th: Volume: "world" material "Basic" solid "Box"  16 daughters: "box"  "cons"  "eltu"  "para"  "pcone"  "phedra"  "sphere"  "torus"  "trap"  "trd"  "tubs"  "ctubs"  "xtru1"  "xtru2"  "hype"  "paraboloid"  
+   0th: Volume: "world" material "Basic" solid "Box"  17 daughters: "box"  "cons"  "eltu"  "para"  "pcone"  "phedra"  "sphere"  "torus"  "trap"  "trd"  "tubs"  "ctubs"  "xtru1"  "xtru2"  "hype"  "paraboloid"  "tessellated"  
    1th: Volume: "box" material "Basic" solid "Box"  0 daughters: 
    2th: Volume: "cons" material "Basic" solid "Cons"  0 daughters: 
    3th: Volume: "eltu" material "Basic" solid "Eltu"  0 daughters: 
@@ -404,6 +462,7 @@ Geant4_GM_Factory factory volumes store:
    14th: Volume: "xtru2" material "Basic" solid "Boolean"  0 daughters: 
    15th: Volume: "hype" material "Basic" solid "Hype"  0 daughters: 
    16th: Volume: "paraboloid" material "Basic" solid "Paraboloid"  0 daughters: 
+   17th: Volume: "tessellated" material "Basic" solid "Tessellated"  0 daughters: 
 VGM info:   Geant4GM::Factory::Import finished.
 Import finished
 Visualization Manager instantiating with verbosity "warnings (3)"...
@@ -418,9 +477,12 @@ Registered graphics systems are:
   RayTracer (RayTracer)
   VRML2FILE (VRML2FILE)
   gMocrenFile (gMocrenFile)
+  TOOLSSG_OFFSCREEN (TSG_OFFSCREEN)
+  TOOLSSG_OFFSCREEN (TSG_OFFSCREEN, TSG_FILE)
   OpenGLImmediateX (OGLIX, OGLI)
   OpenGLStoredX (OGLSX, OGL, OGLS)
   RayTracerX (RayTracerX)
+  TOOLSSG_X11_GLES (TSG_X11_GLES, TSGX11, TSG)
 
 Registering model factories...
 

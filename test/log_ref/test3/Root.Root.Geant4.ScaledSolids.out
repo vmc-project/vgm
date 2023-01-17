@@ -1,24 +1,17 @@
 
 =============================================================
  Virtual Geometry Model 
- Version 5.0 ( 27 January 2022 )
+ Version 5.1 ( 17 January 2023 )
  WWW : https://vmc-project.github.io/vgm-documentation/
 =============================================================
 
 Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometry created
-Warning in <TGeoManager>: Changing system of units to ROOT units (cm, s, GeV).
 Warning in <TGeoManager::Init>: Deleting previous geometry: VGM Root geometry/VGM Root geometry
 Info in <TGeoManager::TGeoManager>: Geometry Test, Test geometry via Root created
 Root geometry will be defined via Root and exported to Geant4
 
-
-          ################################
-          !!! G4Backtrace is activated !!!
-          ################################
-
-
 **************************************************************
- Geant4 version Name: geant4-11-00-ref-00    (10-December-2021)
+ Geant4 version Name: geant4-11-01    (9-December-2022)
                        Copyright : Geant4 Collaboration
                       References : NIM A 506 (2003), 250-303
                                  : IEEE-TNS 53 (2006), 270-278
@@ -28,6 +21,7 @@ Root geometry will be defined via Root and exported to Geant4
 
 Info in <TGeoManager::SetTopVolume>: Top volume is world. Master volume is world
 Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+Tessellated position: 700, 150, 100
 TestScaledSolids finished
 Go to Import
 Info in <TGeoManager::Export>: Exporting Test Test geometry via Root as root file. Optimizations streamed.
@@ -40,8 +34,8 @@ Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
 Info in <TGeoManager::CloseGeometry>: Counting nodes...
 Info in <TGeoManager::Voxelize>: Voxelizing...
 Info in <TGeoManager::CloseGeometry>: Building cache...
-Info in <TGeoManager::CountLevels>: max level = 1, max placements = 32
-Info in <TGeoManager::CloseGeometry>: 33 nodes/ 17 volume UID's in Test geometry via Root
+Info in <TGeoManager::CountLevels>: max level = 1, max placements = 34
+Info in <TGeoManager::CloseGeometry>: 35 nodes/ 18 volume UID's in Test geometry via Root
 Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
 Info in <TGeoManager::Export>: Exporting Test Test geometry via Root as root file. Optimizations streamed.
 Visualization Manager instantiating with verbosity "warnings (3)"...
@@ -56,9 +50,12 @@ Registered graphics systems are:
   RayTracer (RayTracer)
   VRML2FILE (VRML2FILE)
   gMocrenFile (gMocrenFile)
+  TOOLSSG_OFFSCREEN (TSG_OFFSCREEN)
+  TOOLSSG_OFFSCREEN (TSG_OFFSCREEN, TSG_FILE)
   OpenGLImmediateX (OGLIX, OGLI)
   OpenGLStoredX (OGLSX, OGL, OGLS)
   RayTracerX (RayTracerX)
+  TOOLSSG_X11_GLES (TSG_X11_GLES, TSGX11, TSG)
 
 Registering model factories...
 
@@ -109,7 +106,7 @@ See commands in /vis/modeling/trajectories/ for other options.
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 4.45e+03 -1.31e+03     -925         1        0        0         0       world initStep
-    1  6.2e+03 -1.17e+03    -31.1         1        0 1.97e+03  1.97e+03  OutOfWorld Transportation
+    1    8e+03 -1.03e+03      891         1        0 3.99e+03  3.99e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -117,7 +114,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -6.19e+03 1.02e+03 -1.62e+03         1        0        0         0       world initStep
-    1 -6.2e+03 1.02e+03 -1.62e+03         1        0     8.08      8.08  OutOfWorld Transportation
+    1   -8e+03      170 -1.32e+03         1        0 2.02e+03  2.02e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -149,7 +146,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -4.64e+03     -841 1.94e+03         1        0        0         0       world initStep
-    1 -6.2e+03     -381 1.78e+03         1        0 1.63e+03  1.63e+03  OutOfWorld Transportation
+    1   -8e+03      151  1.6e+03         1        0 3.52e+03  3.52e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -205,7 +202,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -3.96e+03     -349 1.61e+03         1        0        0         0       world initStep
-    1 -6.2e+03 2.13e+03     -213         1        0  3.8e+03   3.8e+03  OutOfWorld Transportation
+    1 -6.99e+03    3e+03     -853         1        0 5.14e+03  5.14e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -213,7 +210,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 3.18e+03      691 -1.76e+03         1        0        0         0       world initStep
-    1  6.2e+03      246 -1.53e+03         1        0 3.06e+03  3.06e+03  OutOfWorld Transportation
+    1    8e+03    -19.4 -1.39e+03         1        0 4.88e+03  4.88e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -221,7 +218,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -4.3e+03 -1.37e+03 1.95e+03         1        0        0         0       world initStep
-    1 -6.2e+03 -2.11e+03      431         1        0 2.54e+03  2.54e+03  OutOfWorld Transportation
+    1   -8e+03 -2.81e+03 -1.01e+03         1        0 4.95e+03  4.95e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -277,7 +274,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 6.18e+03 1.41e+03     -108         1        0        0         0       world initStep
-    1  6.2e+03 1.25e+03    -61.4         1        0      168       168  OutOfWorld Transportation
+    1 6.81e+03   -3e+03 1.18e+03         1        0 4.64e+03  4.64e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -325,7 +322,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 3.66e+03     -227      377         1        0        0         0       world initStep
-    1 -6.2e+03 2.94e+03 2.45e+03         1        0 1.06e+04  1.06e+04  OutOfWorld Transportation
+    1 -6.39e+03    3e+03 2.49e+03         1        0 1.08e+04  1.08e+04  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -373,7 +370,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -2.26e+03 1.71e+03      626         1        0        0         0       world initStep
-    1 -6.2e+03 -2.72e+03 2.21e+03         1        0 6.13e+03  6.13e+03  OutOfWorld Transportation
+    1 -6.45e+03   -3e+03 2.32e+03         1        0 6.53e+03  6.53e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -407,7 +404,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -4.88e+03 -1.91e+03      613         1        0        0         0       world initStep
-    1 -6.2e+03 -1.55e+03     -905         1        0 2.05e+03  2.05e+03  OutOfWorld Transportation
+    1   -8e+03 -1.07e+03 -2.97e+03         1        0 4.83e+03  4.83e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -431,7 +428,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -4.82e+03     -851      116         1        0        0         0       world initStep
-    1 -6.2e+03 -1.48e+03 -1.12e+03         1        0 1.96e+03  1.96e+03  OutOfWorld Transportation
+    1   -8e+03 -2.29e+03 -2.73e+03         1        0 4.51e+03  4.51e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -439,7 +436,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -6.2e+03     -559 -1.45e+03         1        0        0         0       world initStep
-    1 -6.2e+03     -308 -1.36e+03         1        0      265       265  OutOfWorld Transportation
+    1 -6.22e+03    3e+03     -218         1        0 3.77e+03  3.77e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -447,7 +444,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 2.25e+03 -1.73e+03     -504         1        0        0         0       world initStep
-    1  6.2e+03     -735 2.12e+03         1        0 4.85e+03  4.85e+03  OutOfWorld Transportation
+    1 7.52e+03     -402    3e+03         1        0 6.46e+03  6.46e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -463,7 +460,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 4.26e+03    -1.54     -422         1        0        0         0       world initStep
-    1  6.2e+03 -1.16e+03     -899         1        0 2.31e+03  2.31e+03  OutOfWorld Transportation
+    1    8e+03 -2.23e+03 -1.34e+03         1        0 4.45e+03  4.45e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -487,7 +484,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 3.59e+03 2.66e+03     -131         1        0        0         0       world initStep
-    1  6.2e+03     -379      778         1        0  4.1e+03   4.1e+03  OutOfWorld Transportation
+    1    8e+03 -2.48e+03 1.41e+03         1        0 6.94e+03  6.94e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -559,7 +556,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -5.68e+03      944     -119         1        0        0         0       world initStep
-    1 -6.2e+03     -385     -577         1        0  1.5e+03   1.5e+03  OutOfWorld Transportation
+    1 -7.21e+03   -3e+03 -1.48e+03         1        0 4.44e+03  4.44e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -567,7 +564,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 4.98e+03      940     72.9         1        0        0         0       world initStep
-    1  6.2e+03 2.95e+03 -1.59e+03         1        0 2.88e+03  2.88e+03  OutOfWorld Transportation
+    1 6.23e+03    3e+03 -1.63e+03         1        0 2.95e+03  2.95e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -585,7 +582,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     0 4.88e+03      820     68.6         1        0        0         0       world initStep
     1 5.54e+03 1.36e+03      930         1        0 1.21e+03  1.21e+03  paraboloid Transportation
     2 5.69e+03 1.49e+03 1.12e+03         1        0      276  1.49e+03       world Transportation
-    3  6.2e+03 1.91e+03 1.79e+03         1        0      939  2.43e+03  OutOfWorld Transportation
+    3 7.13e+03 2.67e+03    3e+03         1        0 2.65e+03  4.14e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -625,7 +622,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -1.5e+03 -2.04e+03      898         1        0        0         0       world initStep
-    1 -6.2e+03      202 1.26e+03         1        0 5.22e+03  5.22e+03  OutOfWorld Transportation
+    1   -8e+03 1.06e+03  1.4e+03         1        0 7.22e+03  7.22e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -681,7 +678,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 5.79e+03 1.02e+03    -71.4         1        0        0         0       world initStep
-    1  6.2e+03      362      758         1        0 1.14e+03  1.14e+03  OutOfWorld Transportation
+    1  7.3e+03 -1.42e+03    3e+03         1        0  4.2e+03   4.2e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -733,7 +730,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -4.61e+03     -736 1.54e+03         1        0        0         0       world initStep
-    1 -6.2e+03 1.12e+03      980         1        0 2.51e+03  2.51e+03  OutOfWorld Transportation
+    1 -7.82e+03    3e+03      415         1        0 5.05e+03  5.05e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -749,7 +746,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 5.99e+03      186 1.19e+03         1        0        0         0       world initStep
-    1  6.2e+03 1.66e+03     -106         1        0 1.98e+03  1.98e+03  OutOfWorld Transportation
+    1 6.39e+03    3e+03 -1.28e+03         1        0 3.76e+03  3.76e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -845,7 +842,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 4.25e+03 -1.95e+03 -1.55e+03         1        0        0         0       world initStep
-    1  6.2e+03 -1.47e+03 -2.76e+03         1        0 2.34e+03  2.34e+03  OutOfWorld Transportation
+    1 6.59e+03 -1.38e+03   -3e+03         1        0 2.81e+03  2.81e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -917,7 +914,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 1.87e+03 2.05e+03 1.07e+03         1        0        0         0       world initStep
-    1  6.2e+03 -1.23e+03 -1.65e+03         1        0 6.08e+03  6.08e+03  OutOfWorld Transportation
+    1    8e+03 -2.6e+03 -2.78e+03         1        0  8.6e+03   8.6e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -925,7 +922,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 5.88e+03 1.88e+03     -224         1        0        0         0       world initStep
-    1  6.2e+03 1.61e+03     -440         1        0      469       469  OutOfWorld Transportation
+    1    8e+03     68.1 -1.67e+03         1        0 3.14e+03  3.14e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -961,7 +958,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     2 2.35e+03 -1.54e+03     -916         1        0      163  1.54e+03       world Transportation
     3 2.66e+03 -1.51e+03     -883         1        0      308  1.85e+03        tubs Transportation
     4 2.73e+03 -1.5e+03     -875         1        0     73.1  1.92e+03       world Transportation
-    5  6.2e+03 -1.16e+03     -494         1        0 3.51e+03  5.43e+03  OutOfWorld Transportation
+    5    8e+03     -984     -296         1        0 5.33e+03  7.25e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -985,7 +982,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -1.1e+03 2.79e+03 -1.26e+03         1        0        0         0       world initStep
-    1 -6.2e+03      673 1.85e+03         1        0 6.34e+03  6.34e+03  OutOfWorld Transportation
+    1   -8e+03    -75.2 2.95e+03         1        0 8.58e+03  8.58e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -993,7 +990,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 5.24e+03 -1.99e+03      415         1        0        0         0       world initStep
-    1  6.2e+03 -1.77e+03      779         1        0 1.05e+03  1.05e+03  OutOfWorld Transportation
+    1    8e+03 -1.37e+03 1.46e+03         1        0 3.02e+03  3.02e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -1009,7 +1006,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 4.56e+03     28.3      463         1        0        0         0       world initStep
-    1  6.2e+03 1.19e+03     -457         1        0 2.21e+03  2.21e+03  OutOfWorld Transportation
+    1    8e+03 2.47e+03 -1.47e+03         1        0 4.64e+03  4.64e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -1043,7 +1040,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 5.28e+03 2.33e+03 1.83e+03         1        0        0         0       world initStep
-    1  6.2e+03      238 2.79e+03         1        0 2.47e+03  2.47e+03  OutOfWorld Transportation
+    1  6.4e+03     -221    3e+03         1        0 3.02e+03  3.02e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -1095,7 +1092,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -5.88e+03 1.32e+03 1.65e+03         1        0        0         0       world initStep
-    1 -6.2e+03 1.11e+03      770         1        0      958       958  OutOfWorld Transportation
+    1 -7.55e+03      213   -3e+03         1        0 5.06e+03  5.06e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -1135,7 +1132,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -5.01e+03 2.95e+03      723         1        0        0         0       world initStep
-    1 -6.2e+03 2.13e+03      840         1        0 1.45e+03  1.45e+03  OutOfWorld Transportation
+    1   -8e+03      897 1.02e+03         1        0 3.64e+03  3.64e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -1143,7 +1140,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 2.26e+03      606 1.96e+03         1        0        0         0       world initStep
-    1  6.2e+03      689 2.14e+03         1        0 3.94e+03  3.94e+03  OutOfWorld Transportation
+    1    8e+03      728 2.22e+03         1        0 5.74e+03  5.74e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -1207,7 +1204,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 5.21e+03 -1.72e+03 -1.01e+03         1        0        0         0       world initStep
-    1  6.2e+03 -1.91e+03     -439         1        0 1.16e+03  1.16e+03  OutOfWorld Transportation
+    1    8e+03 -2.25e+03      600         1        0 3.27e+03  3.27e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -1215,7 +1212,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -5.32e+03     -416 1.49e+03         1        0        0         0       world initStep
-    1 -6.2e+03    1e+03      648         1        0 1.87e+03  1.87e+03  OutOfWorld Transportation
+    1 -7.44e+03    3e+03     -529         1        0  4.5e+03   4.5e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -1223,7 +1220,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 1.86e+03 2.56e+03 1.58e+03         1        0        0         0       world initStep
-    1  6.2e+03 1.49e+03 -1.3e+03         1        0 5.32e+03  5.32e+03  OutOfWorld Transportation
+    1    8e+03 1.05e+03 -2.5e+03         1        0 7.52e+03  7.52e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -1239,7 +1236,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 5.84e+03      316 1.92e+03         1        0        0         0       world initStep
-    1  6.2e+03      366 2.34e+03         1        0      559       559  OutOfWorld Transportation
+    1 6.77e+03      445    3e+03         1        0 1.43e+03  1.43e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -1347,7 +1344,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     0 2.31e+03  1.7e+03      507         1        0        0         0       world initStep
     1   -5e+03 -1.58e+03     -875         1        0 8.14e+03  8.14e+03         box Transportation
     2 -5.16e+03 -1.65e+03     -904         1        0      173  8.31e+03       world Transportation
-    3 -6.2e+03 -2.12e+03 -1.1e+03         1        0 1.16e+03  9.47e+03  OutOfWorld Transportation
+    3   -8e+03 -2.93e+03 -1.44e+03         1        0 3.16e+03  1.15e+04  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -1379,7 +1376,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 4.58e+03 2.75e+03 1.44e+03         1        0        0         0       world initStep
-    1  6.2e+03 1.75e+03      638         1        0 2.06e+03  2.06e+03  OutOfWorld Transportation
+    1    8e+03      629     -252         1        0 4.36e+03  4.36e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -1403,7 +1400,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -464 1.65e+03      453         1        0        0         0       world initStep
-    1 -6.2e+03      135     -173         1        0 5.96e+03  5.96e+03  OutOfWorld Transportation
+    1   -8e+03     -339     -370         1        0 7.84e+03  7.84e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -1477,7 +1474,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0  5.7e+03 2.89e+03     -184         1        0        0         0       world initStep
-    1  6.2e+03 2.59e+03     -629         1        0      734       734  OutOfWorld Transportation
+    1    8e+03  1.5e+03 -2.23e+03         1        0 3.38e+03  3.38e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -1503,7 +1500,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 4.04e+03     75.2      958         1        0        0         0       world initStep
-    1  6.2e+03 2.09e+03     -451         1        0 3.27e+03  3.27e+03  OutOfWorld Transportation
+    1 7.18e+03    3e+03 -1.09e+03         1        0 4.75e+03  4.75e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -1519,7 +1516,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -4.99e+03 2.66e+03 -1.52e+03         1        0        0         0       world initStep
-    1 -6.2e+03 1.94e+03 -2.62e+03         1        0 1.79e+03  1.79e+03  OutOfWorld Transportation
+    1 -6.62e+03 1.69e+03   -3e+03         1        0 2.41e+03  2.41e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -1527,7 +1524,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 5.85e+03     -172      347         1        0        0         0       world initStep
-    1  6.2e+03     -341      516         1        0      423       423  OutOfWorld Transportation
+    1    8e+03 -1.22e+03 1.38e+03         1        0  2.6e+03   2.6e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -1559,7 +1556,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 5.94e+03 1.05e+03     -763         1        0        0         0       world initStep
-    1  6.2e+03 1.35e+03     -849         1        0      404       404  OutOfWorld Transportation
+    1 7.62e+03    3e+03 -1.32e+03         1        0 2.63e+03  2.63e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -1607,7 +1604,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 4.85e+03 1.81e+03 1.65e+03         1        0        0         0       world initStep
-    1  6.2e+03      342 -2.58e+03         1        0 4.68e+03  4.68e+03  OutOfWorld Transportation
+    1 6.33e+03      197   -3e+03         1        0 5.14e+03  5.14e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -1631,7 +1628,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 5.54e+03      153      208         1        0        0         0       world initStep
-    1 -6.2e+03 -2.46e+03     43.1         1        0  1.2e+04   1.2e+04  OutOfWorld Transportation
+    1   -8e+03 -2.86e+03     17.9         1        0 1.39e+04  1.39e+04  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -1665,7 +1662,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     0    1e+03 -1.58e+03 -1.77e+03         1        0        0         0       world initStep
     1 2.61e+03 -1.36e+03 -1.12e+03         1        0 1.75e+03  1.75e+03        tubs Transportation
     2  2.7e+03 -1.34e+03 -1.09e+03         1        0     94.4  1.85e+03       world Transportation
-    3  6.2e+03     -859      319         1        0  3.8e+03  5.65e+03  OutOfWorld Transportation
+    3    8e+03     -609 1.04e+03         1        0 5.76e+03  7.61e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -1673,7 +1670,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 3.26e+03 -2.29e+03     -482         1        0        0         0       world initStep
-    1 -6.2e+03 -2.39e+03 1.66e+03         1        0  9.7e+03   9.7e+03  OutOfWorld Transportation
+    1   -8e+03 -2.41e+03 2.07e+03         1        0 1.15e+04  1.15e+04  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -1737,7 +1734,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 5.44e+03 2.61e+03 1.74e+03         1        0        0         0       world initStep
-    1  6.2e+03 2.97e+03 1.23e+03         1        0      983       983  OutOfWorld Transportation
+    1 6.26e+03    3e+03 1.19e+03         1        0 1.06e+03  1.06e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -1755,7 +1752,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 3.28e+03     -283      608         1        0        0         0       world initStep
-    1 -6.2e+03  2.8e+03 2.22e+03         1        0 1.01e+04  1.01e+04  OutOfWorld Transportation
+    1 -6.81e+03    3e+03 2.33e+03         1        0 1.08e+04  1.08e+04  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -1775,7 +1772,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     2 5.47e+03 -1.68e+03      942         1        0       74  2.64e+03       world Transportation
     3 5.61e+03 -1.73e+03 1.11e+03         1        0      226  2.87e+03        hype Transportation
     4 5.62e+03 -1.74e+03 1.12e+03         1        0     14.2  2.88e+03       world Transportation
-    5  6.2e+03 -1.98e+03 1.87e+03         1        0      978  3.86e+03  OutOfWorld Transportation
+    5 7.08e+03 -2.34e+03    3e+03         1        0 2.46e+03  5.34e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -1817,7 +1814,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0  1.5e+03      499      216         1        0        0         0       world initStep
-    1 -6.2e+03 -1.43e+03 -2.12e+03         1        0 8.27e+03  8.27e+03  OutOfWorld Transportation
+    1   -8e+03 -1.88e+03 -2.67e+03         1        0 1.02e+04  1.02e+04  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -1923,7 +1920,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -4.85e+03      830 1.89e+03         1        0        0         0       world initStep
-    1 -6.2e+03      557 1.91e+03         1        0 1.38e+03  1.38e+03  OutOfWorld Transportation
+    1   -8e+03      195 1.93e+03         1        0 3.22e+03  3.22e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -1931,7 +1928,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -5.72e+03      514 -1.52e+03         1        0        0         0       world initStep
-    1 -6.2e+03 1.32e+03     -434         1        0 1.43e+03  1.43e+03  OutOfWorld Transportation
+    1 -7.2e+03    3e+03 1.83e+03         1        0 4.42e+03  4.42e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -1979,7 +1976,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -2.74e+03 2.29e+03 -1.04e+03         1        0        0         0       world initStep
-    1 -6.2e+03 2.62e+03     -535         1        0 3.52e+03  3.52e+03  OutOfWorld Transportation
+    1   -8e+03 2.79e+03     -274         1        0 5.34e+03  5.34e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -2021,7 +2018,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 2.13e+03 1.43e+03      171         1        0        0         0       world initStep
-    1  6.2e+03 1.81e+03      849         1        0 4.15e+03  4.15e+03  OutOfWorld Transportation
+    1    8e+03 1.98e+03 1.15e+03         1        0 5.98e+03  5.98e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -2037,7 +2034,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 4.82e+03      349 1.26e+03         1        0        0         0       world initStep
-    1  6.2e+03 2.96e+03     -354         1        0 3.36e+03  3.36e+03  OutOfWorld Transportation
+    1 6.22e+03    3e+03     -380         1        0 3.42e+03  3.42e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -2053,7 +2050,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 6.18e+03    -40.5 -1.04e+03         1        0        0         0       world initStep
-    1  6.2e+03     68.1 -1.05e+03         1        0      111       111  OutOfWorld Transportation
+    1 6.72e+03    3e+03 -1.47e+03         1        0 3.12e+03  3.12e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -2085,7 +2082,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -3.19e+03      880     -163         1        0        0         0       world initStep
-    1 -6.2e+03 2.17e+03      603         1        0 3.36e+03  3.36e+03  OutOfWorld Transportation
+    1   -8e+03 2.94e+03 1.06e+03         1        0 5.37e+03  5.37e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -2101,7 +2098,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      281 2.47e+03 -1.85e+03         1        0        0         0       world initStep
-    1  6.2e+03      927      395         1        0 6.51e+03  6.51e+03  OutOfWorld Transportation
+    1    8e+03      459 1.08e+03         1        0  8.5e+03   8.5e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -2109,7 +2106,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 5.12e+03 -2.07e+03 -1.62e+03         1        0        0         0       world initStep
-    1  6.2e+03 -1.54e+03 -2.24e+03         1        0 1.35e+03  1.35e+03  OutOfWorld Transportation
+    1 7.53e+03     -900   -3e+03         1        0 3.01e+03  3.01e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -2119,7 +2116,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     0 -4.25e+03      865     -346         1        0        0         0       world initStep
     1 2.19e+03 -1.44e+03 -1.12e+03         1        0 6.89e+03  6.89e+03        tubs Transportation
     2 2.27e+03 -1.47e+03 -1.12e+03         1        0     84.4  6.97e+03       world Transportation
-    3  6.2e+03 -2.88e+03 -1.59e+03         1        0  4.2e+03  1.12e+04  OutOfWorld Transportation
+    3 6.54e+03   -3e+03 -1.63e+03         1        0 4.56e+03  1.15e+04  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -2127,7 +2124,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 4.74e+03     -813     -943         1        0        0         0       world initStep
-    1  6.2e+03 -1.03e+03 -1.07e+03         1        0 1.48e+03  1.48e+03  OutOfWorld Transportation
+    1    8e+03 -1.3e+03 -1.22e+03         1        0  3.3e+03   3.3e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -2135,7 +2132,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 5.16e+03      304      908         1        0        0         0       world initStep
-    1  6.2e+03 1.82e+03     -196         1        0 2.15e+03  2.15e+03  OutOfWorld Transportation
+    1 7.01e+03    3e+03 -1.05e+03         1        0 3.81e+03  3.81e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -2187,7 +2184,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -3.23e+03     -390 -1.44e+03         1        0        0         0       world initStep
-    1 -6.2e+03     -563      179         1        0 3.39e+03  3.39e+03  OutOfWorld Transportation
+    1   -8e+03     -667 1.16e+03         1        0 5.44e+03  5.44e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -2195,7 +2192,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 4.54e+03     -258     -599         1        0        0         0       world initStep
-    1  6.2e+03     -269     -593         1        0 1.66e+03  1.66e+03  OutOfWorld Transportation
+    1    8e+03     -281     -586         1        0 3.46e+03  3.46e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -2379,7 +2376,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -5.39e+03 2.95e+03      465         1        0        0         0       world initStep
-    1 -6.2e+03 1.59e+03 1.78e+03         1        0 2.06e+03  2.06e+03  OutOfWorld Transportation
+    1 -6.96e+03      326    3e+03         1        0 3.97e+03  3.97e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -2407,7 +2404,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -5.56e+03     -711 -1.72e+03         1        0        0         0       world initStep
-    1 -6.2e+03 -1.89e+03 -2.32e+03         1        0 1.47e+03  1.47e+03  OutOfWorld Transportation
+    1 -6.8e+03   -3e+03 -2.88e+03         1        0 2.85e+03  2.85e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -2471,7 +2468,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -5.42e+03 1.86e+03     -878         1        0        0         0       world initStep
-    1 -6.2e+03 -1.72e+03     -918         1        0 3.66e+03  3.66e+03  OutOfWorld Transportation
+    1 -6.48e+03   -3e+03     -933         1        0 4.97e+03  4.97e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -2535,7 +2532,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -1.06e+03 -2.45e+03      285         1        0        0         0       world initStep
-    1  6.2e+03      924     -524         1        0 8.05e+03  8.05e+03  OutOfWorld Transportation
+    1    8e+03 1.76e+03     -724         1        0    1e+04     1e+04  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -2543,7 +2540,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -5.78e+03      293     -625         1        0        0         0       world initStep
-    1 -6.2e+03      131     -814         1        0      491       491  OutOfWorld Transportation
+    1   -8e+03     -560 -1.62e+03         1        0 2.58e+03  2.58e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -2567,7 +2564,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -5.8e+03 -2.23e+03     -474         1        0        0         0       world initStep
-    1 -6.2e+03 -1.3e+03 1.94e+03         1        0 2.62e+03  2.62e+03  OutOfWorld Transportation
+    1 -6.37e+03     -889    3e+03         1        0 3.77e+03  3.77e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -2693,7 +2690,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 4.47e+03     -741      510         1        0        0         0       world initStep
-    1  6.2e+03     -701 2.55e+03         1        0 2.68e+03  2.68e+03  OutOfWorld Transportation
+    1 6.58e+03     -692    3e+03         1        0 3.27e+03  3.27e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -2789,7 +2786,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      391 -2.36e+03 1.84e+03         1        0        0         0       world initStep
-    1  6.2e+03     -252 2.04e+03         1        0 6.18e+03  6.18e+03  OutOfWorld Transportation
+    1    8e+03      401  2.1e+03         1        0  8.1e+03   8.1e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -2857,7 +2854,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -3.37e+03 -1.18e+03 1.16e+03         1        0        0         0       world initStep
-    1 -6.2e+03     -383 -1.22e+03         1        0 3.78e+03  3.78e+03  OutOfWorld Transportation
+    1   -8e+03      126 -2.74e+03         1        0 6.19e+03  6.19e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -2889,7 +2886,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -1.65e+03     -214      551         1        0        0         0       world initStep
-    1  6.2e+03      709      149         1        0 7.91e+03  7.91e+03  OutOfWorld Transportation
+    1    8e+03      921     56.2         1        0 9.73e+03  9.73e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -2897,7 +2894,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0   -3e+03 -1.46e+03 -1.03e+03         1        0        0         0       world initStep
-    1 -6.2e+03     -746      635         1        0 3.68e+03  3.68e+03  OutOfWorld Transportation
+    1   -8e+03     -345 1.57e+03         1        0 5.75e+03  5.75e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -2945,7 +2942,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 3.74e+03 -1.04e+03 1.98e+03         1        0        0         0       world initStep
-    1  6.2e+03      718      568         1        0 3.34e+03  3.34e+03  OutOfWorld Transportation
+    1    8e+03 2.01e+03     -470         1        0 5.78e+03  5.78e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -2953,7 +2950,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 1.57e+03      820      554         1        0        0         0       world initStep
-    1  6.2e+03 2.78e+03 2.99e+03         1        0 5.59e+03  5.59e+03  OutOfWorld Transportation
+    1 6.21e+03 2.78e+03    3e+03         1        0  5.6e+03   5.6e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -2977,7 +2974,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 5.38e+03     -609 1.99e+03         1        0        0         0       world initStep
-    1  6.2e+03 -1.07e+03 2.08e+03         1        0      941       941  OutOfWorld Transportation
+    1    8e+03 -2.07e+03 2.26e+03         1        0 3.01e+03  3.01e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -2987,7 +2984,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     0 -1.06e+03 -1.7e+03 1.14e+03         1        0        0         0       world initStep
     1     -768 -1.74e+03 1.02e+03         1        0      314       314      sphere Transportation
     2     -568 -1.78e+03      946         1        0      218       532       world Transportation
-    3  6.2e+03 -2.88e+03 -1.72e+03         1        0 7.36e+03  7.89e+03  OutOfWorld Transportation
+    3 6.93e+03   -3e+03 -2.01e+03         1        0 8.16e+03  8.69e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -3019,7 +3016,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -3.02e+03 1.99e+03 -1.58e+03         1        0        0         0       world initStep
-    1 -6.2e+03      351     -247         1        0 3.82e+03  3.82e+03  OutOfWorld Transportation
+    1   -8e+03     -578      504         1        0 5.98e+03  5.98e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -3085,7 +3082,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 3.78e+03      497      639         1        0        0         0       world initStep
-    1 -6.2e+03 -2.29e+03      472         1        0 1.04e+04  1.04e+04  OutOfWorld Transportation
+    1   -8e+03 -2.8e+03      442         1        0 1.22e+04  1.22e+04  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -3093,7 +3090,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -5.83e+03 2.18e+03     -323         1        0        0         0       world initStep
-    1 -6.2e+03 2.23e+03     -214         1        0      391       391  OutOfWorld Transportation
+    1   -8e+03 2.47e+03      315         1        0 2.28e+03  2.28e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -3145,7 +3142,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 2.52e+03 -1.79e+03 -1.59e+03         1        0        0         0       world initStep
-    1  6.2e+03     -184 -2.63e+03         1        0 4.15e+03  4.15e+03  OutOfWorld Transportation
+    1 7.51e+03      385   -3e+03         1        0 5.62e+03  5.62e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -3201,7 +3198,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 2.47e+03 -1.72e+03      435         1        0        0         0       world initStep
-    1  6.2e+03 -2.41e+03      502         1        0 3.79e+03  3.79e+03  OutOfWorld Transportation
+    1    8e+03 -2.74e+03      534         1        0 5.62e+03  5.62e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -3225,7 +3222,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 1.48e+03 -2.56e+03    2e+03         1        0        0         0       world initStep
-    1  6.2e+03     -200 1.79e+03         1        0 5.28e+03  5.28e+03  OutOfWorld Transportation
+    1    8e+03      701 1.72e+03         1        0  7.3e+03   7.3e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -3305,7 +3302,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -4.1e+03     -254 1.39e+03         1        0        0         0       world initStep
-    1 -6.2e+03      873      985         1        0 2.42e+03  2.42e+03  OutOfWorld Transportation
+    1   -8e+03 1.84e+03      634         1        0 4.49e+03  4.49e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -3353,7 +3350,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -5.32e+03      243      852         1        0        0         0       world initStep
-    1 -6.2e+03     -437      943         1        0 1.11e+03  1.11e+03  OutOfWorld Transportation
+    1   -8e+03 -1.83e+03 1.13e+03         1        0  3.4e+03   3.4e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -3361,7 +3358,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -5.33e+03 2.53e+03 -1.57e+03         1        0        0         0       world initStep
-    1 -6.2e+03 1.69e+03 -1.48e+03         1        0 1.22e+03  1.22e+03  OutOfWorld Transportation
+    1   -8e+03    -56.2 -1.29e+03         1        0 3.73e+03  3.73e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -3393,7 +3390,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -2.02e+03      912     -373         1        0        0         0       world initStep
-    1  6.2e+03     -296 -1.15e+03         1        0 8.35e+03  8.35e+03  OutOfWorld Transportation
+    1    8e+03     -561 -1.32e+03         1        0 1.02e+04  1.02e+04  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -3417,7 +3414,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0  1.9e+03     -243     -126         1        0        0         0       world initStep
-    1  6.2e+03     -455 -2.35e+03         1        0 4.85e+03  4.85e+03  OutOfWorld Transportation
+    1 7.46e+03     -517   -3e+03         1        0 6.27e+03  6.27e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -3521,7 +3518,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -4.02e+03 -1.71e+03 -1.85e+03         1        0        0         0       world initStep
-    1 -6.2e+03 1.59e+03     -311         1        0 4.24e+03  4.24e+03  OutOfWorld Transportation
+    1 -7.13e+03    3e+03      345         1        0 6.05e+03  6.05e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -3569,7 +3566,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -6.17e+03 -1.93e+03 1.87e+03         1        0        0         0       world initStep
-    1 -6.2e+03 -1.82e+03 1.84e+03         1        0      119       119  OutOfWorld Transportation
+    1 -7.7e+03    3e+03      512         1        0 5.34e+03  5.34e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -3585,7 +3582,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 5.93e+03 1.86e+03     64.5         1        0        0         0       world initStep
-    1  6.2e+03 2.06e+03     -296         1        0      496       496  OutOfWorld Transportation
+    1 7.47e+03    3e+03 -1.97e+03         1        0  2.8e+03   2.8e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -3601,7 +3598,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -3.04e+03 2.42e+03 1.65e+03         1        0        0         0       world initStep
-    1 -6.2e+03 -2.29e+03      817         1        0 5.73e+03  5.73e+03  OutOfWorld Transportation
+    1 -6.68e+03   -3e+03      691         1        0 6.59e+03  6.59e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -3635,7 +3632,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     0 -1.07e+03 2.26e+03     -769         1        0        0         0       world initStep
     1 -3.35e+03 1.39e+03     -943         1        0 2.45e+03  2.45e+03        para Transportation
     2 -3.86e+03 1.19e+03     -982         1        0      550     3e+03       world Transportation
-    3 -6.2e+03      296 -1.16e+03         1        0 2.51e+03  5.51e+03  OutOfWorld Transportation
+    3   -8e+03     -391 -1.3e+03         1        0 4.44e+03  7.44e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -3651,7 +3648,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 1.79e+03     -811 -1.9e+03         1        0        0         0       world initStep
-    1 -6.2e+03     -533 -2.75e+03         1        0 8.04e+03  8.04e+03  OutOfWorld Transportation
+    1   -8e+03     -470 -2.94e+03         1        0 9.85e+03  9.85e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -3667,7 +3664,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -5.53e+03 1.01e+03 1.44e+03         1        0        0         0       world initStep
-    1 -6.2e+03      746 1.87e+03         1        0      838       838  OutOfWorld Transportation
+    1 -7.97e+03     41.1    3e+03         1        0 3.06e+03  3.06e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -3695,7 +3692,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -2.27e+03 2.22e+03     -241         1        0        0         0       world initStep
-    1 -6.2e+03 2.47e+03 1.79e+03         1        0 4.43e+03  4.43e+03  OutOfWorld Transportation
+    1   -8e+03 2.58e+03 2.72e+03         1        0 6.46e+03  6.46e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -3739,7 +3736,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     0  2.5e+03 1.54e+03 -1.56e+03         1        0        0         0       world initStep
     1 4.17e+03 1.77e+03     -900         1        0 1.81e+03  1.81e+03       xtru2 Transportation
     2 4.17e+03 1.77e+03     -900         1        0    0.502  1.81e+03       world Transportation
-    3  6.2e+03 2.06e+03     -100         1        0  2.2e+03  4.01e+03  OutOfWorld Transportation
+    3    8e+03 2.32e+03      611         1        0 4.15e+03  5.96e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -3763,7 +3760,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -5.3e+03     -836     -968         1        0        0         0       world initStep
-    1 -6.2e+03 -1.57e+03      464         1        0 1.85e+03  1.85e+03  OutOfWorld Transportation
+    1 -7.79e+03 -2.88e+03    3e+03         1        0 5.11e+03  5.11e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -3787,7 +3784,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -3.07e+03 1.23e+03 -1.13e+03         1        0        0         0       world initStep
-    1 -6.2e+03 -2.48e+03     -596         1        0 4.89e+03  4.89e+03  OutOfWorld Transportation
+    1 -6.64e+03   -3e+03     -521         1        0 5.57e+03  5.57e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -3827,7 +3824,9 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 6.14e+03  1.9e+03 1.47e+03         1        0        0         0       world initStep
-    1  6.2e+03 1.88e+03 1.44e+03         1        0     75.3      75.3  OutOfWorld Transportation
+    1 6.78e+03 1.64e+03 1.05e+03         1        0      809       809 tessellated Transportation
+    2 6.86e+03 1.61e+03    1e+03         1        0      104       913       world Transportation
+    3    8e+03 1.15e+03      254         1        0 1.44e+03  2.35e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -3851,7 +3850,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -4.56e+03     -215 1.19e+03         1        0        0         0       world initStep
-    1 -6.2e+03      640 1.14e+03         1        0 1.85e+03  1.85e+03  OutOfWorld Transportation
+    1   -8e+03 1.58e+03 1.09e+03         1        0 3.88e+03  3.88e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -3983,7 +3982,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 2.47e+03     -395 1.23e+03         1        0        0         0       world initStep
-    1  6.2e+03 1.68e+03 2.67e+03         1        0 4.51e+03  4.51e+03  OutOfWorld Transportation
+    1 7.05e+03 2.16e+03    3e+03         1        0 5.53e+03  5.53e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -4031,7 +4030,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -4.38e+03     76.8     -498         1        0        0         0       world initStep
-    1 -6.2e+03 1.52e+03     -655         1        0 2.33e+03  2.33e+03  OutOfWorld Transportation
+    1   -8e+03 2.96e+03     -810         1        0 4.63e+03  4.63e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -4047,7 +4046,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -4.52e+03 -2.2e+03 1.01e+03         1        0        0         0       world initStep
-    1 -6.2e+03 -2.13e+03 1.21e+03         1        0  1.7e+03   1.7e+03  OutOfWorld Transportation
+    1   -8e+03 -2.06e+03 1.42e+03         1        0 3.51e+03  3.51e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -4063,7 +4062,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -3.63e+03 1.36e+03     -544         1        0        0         0       world initStep
-    1 -6.2e+03 2.03e+03 -1.05e+03         1        0  2.7e+03   2.7e+03  OutOfWorld Transportation
+    1   -8e+03  2.5e+03 -1.4e+03         1        0 4.59e+03  4.59e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -4071,7 +4070,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 1.65e+03     -674      584         1        0        0         0       world initStep
-    1  6.2e+03 -1.73e+03 2.39e+03         1        0 5.01e+03  5.01e+03  OutOfWorld Transportation
+    1 7.75e+03 -2.08e+03    3e+03         1        0 6.71e+03  6.71e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -4115,7 +4114,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     0 -1.06e+03     -972   -2e+03         1        0        0         0       world initStep
     1 -4.58e+03 1.55e+03 -1.05e+03         1        0 4.43e+03  4.43e+03        cons Transportation
     2 -4.8e+03 1.71e+03     -989         1        0      277  4.71e+03       world Transportation
-    3 -6.2e+03 2.72e+03     -610         1        0 1.77e+03  6.48e+03  OutOfWorld Transportation
+    3 -6.59e+03    3e+03     -504         1        0 2.26e+03  6.97e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -4189,7 +4188,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      985    -13.6     -702         1        0        0         0       world initStep
-    1 -6.2e+03 -2.43e+03 -2.98e+03         1        0 7.91e+03  7.91e+03  OutOfWorld Transportation
+    1 -6.27e+03 -2.46e+03   -3e+03         1        0    8e+03     8e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -4197,7 +4196,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 5.92e+03 -1.51e+03      728         1        0        0         0       world initStep
-    1  6.2e+03 -1.52e+03      439         1        0      402       402  OutOfWorld Transportation
+    1    8e+03 -1.55e+03 -1.42e+03         1        0 2.99e+03  2.99e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -4213,7 +4212,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -3.12e+03 -1.04e+03     49.9         1        0        0         0       world initStep
-    1 -6.2e+03 -1.73e+03     -761         1        0 3.26e+03  3.26e+03  OutOfWorld Transportation
+    1   -8e+03 -2.14e+03 -1.24e+03         1        0 5.16e+03  5.16e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -4237,7 +4236,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -229 2.01e+03     -253         1        0        0         0       world initStep
-    1  6.2e+03      273 -1.49e+03         1        0 6.77e+03  6.77e+03  OutOfWorld Transportation
+    1    8e+03     -213 -1.83e+03         1        0 8.67e+03  8.67e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -4333,7 +4332,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      642 1.16e+03      139         1        0        0         0       world initStep
-    1 -6.2e+03 -1.15e+03 -2.63e+03         1        0 7.73e+03  7.73e+03  OutOfWorld Transportation
+    1 -7.11e+03 -1.45e+03   -3e+03         1        0 8.76e+03  8.76e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -4357,7 +4356,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -6.16e+03      694     -601         1        0        0         0       world initStep
-    1 -6.2e+03      689     -650         1        0       60        60  OutOfWorld Transportation
+    1 -7.9e+03      447   -3e+03         1        0 2.97e+03  2.97e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -4431,7 +4430,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -2.69e+03     -310 -1.22e+03         1        0        0         0       world initStep
-    1 -6.2e+03 -1.44e+03 -1.73e+03         1        0 3.72e+03  3.72e+03  OutOfWorld Transportation
+    1   -8e+03 -2.02e+03   -2e+03         1        0 5.63e+03  5.63e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -4489,7 +4488,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 5.17e+03      736      503         1        0        0         0       world initStep
-    1  6.2e+03 1.89e+03 2.32e+03         1        0 2.38e+03  2.38e+03  OutOfWorld Transportation
+    1 6.58e+03 2.31e+03    3e+03         1        0 3.27e+03  3.27e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -4569,7 +4568,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      436     -210 1.06e+03         1        0        0         0       world initStep
-    1 -6.2e+03      160 2.75e+03         1        0 6.86e+03  6.86e+03  OutOfWorld Transportation
+    1 -7.18e+03      214    3e+03         1        0 7.87e+03  7.87e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -4709,7 +4708,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -5.07e+03     -232     -127         1        0        0         0       world initStep
-    1 -6.2e+03      570 1.44e+03         1        0 2.09e+03  2.09e+03  OutOfWorld Transportation
+    1 -7.33e+03 1.37e+03    3e+03         1        0 4.18e+03  4.18e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -4808,7 +4807,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     0      778 2.77e+03      824         1        0        0         0       world initStep
     1 2.64e+03 1.57e+03      879         1        0 2.21e+03  2.21e+03       ctubs Transportation
     2 2.74e+03 1.51e+03      882         1        0      122  2.34e+03       world Transportation
-    3  6.2e+03     -728      984         1        0 4.12e+03  6.46e+03  OutOfWorld Transportation
+    3    8e+03 -1.89e+03 1.04e+03         1        0 6.26e+03   8.6e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -4832,7 +4831,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -4.54e+03      206      106         1        0        0         0       world initStep
-    1 -6.2e+03 1.83e+03 -1.77e+03         1        0 2.98e+03  2.98e+03  OutOfWorld Transportation
+    1 -7.29e+03 2.89e+03   -3e+03         1        0 4.94e+03  4.94e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -4840,7 +4839,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -2.85e+03 -1.41e+03     -613         1        0        0         0       world initStep
-    1 -6.2e+03     -951 -1.07e+03         1        0 3.42e+03  3.42e+03  OutOfWorld Transportation
+    1   -8e+03     -704 -1.31e+03         1        0 5.25e+03  5.25e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -4848,7 +4847,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -5.49e+03 1.06e+03      229         1        0        0         0       world initStep
-    1 -6.2e+03     -819      461         1        0 2.02e+03  2.02e+03  OutOfWorld Transportation
+    1 -7.02e+03   -3e+03      731         1        0 4.37e+03  4.37e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -4986,7 +4985,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      332     -892 -1.53e+03         1        0        0         0       world initStep
-    1  6.2e+03     -134     -472         1        0 6.01e+03  6.01e+03  OutOfWorld Transportation
+    1    8e+03     98.8     -147         1        0 7.85e+03  7.85e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -5018,7 +5017,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 3.84e+03 1.93e+03 -1.39e+03         1        0        0         0       world initStep
-    1  6.2e+03 2.14e+03 -1.13e+03         1        0 2.38e+03  2.38e+03  OutOfWorld Transportation
+    1    8e+03 2.29e+03     -925         1        0  4.2e+03   4.2e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -5026,7 +5025,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -5.81e+03 -1.17e+03 -1.04e+03         1        0        0         0       world initStep
-    1 -6.2e+03 -1.26e+03     -723         1        0      510       510  OutOfWorld Transportation
+    1   -8e+03 -1.69e+03      755         1        0 2.88e+03  2.88e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -5115,7 +5114,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 4.81e+03 -1.07e+03 1.01e+03         1        0        0         0       world initStep
-    1  6.2e+03 -2.15e+03 1.53e+03         1        0 1.84e+03  1.84e+03  OutOfWorld Transportation
+    1 7.29e+03   -3e+03 1.93e+03         1        0 3.27e+03  3.27e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -5173,7 +5172,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 4.79e+03 1.55e+03 -1.37e+03         1        0        0         0       world initStep
-    1  6.2e+03 1.69e+03 -1.18e+03         1        0 1.43e+03  1.43e+03  OutOfWorld Transportation
+    1    8e+03 1.87e+03     -930         1        0 3.26e+03  3.26e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -5279,7 +5278,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      231 1.71e+03     33.7         1        0        0         0       world initStep
-    1  6.2e+03 -2.86e+03     -633         1        0 7.54e+03  7.54e+03  OutOfWorld Transportation
+    1 6.39e+03   -3e+03     -654         1        0 7.78e+03  7.78e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -5287,7 +5286,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 3.21e+03      594 -1.29e+03         1        0        0         0       world initStep
-    1  6.2e+03     -210 -1.65e+03         1        0 3.11e+03  3.11e+03  OutOfWorld Transportation
+    1    8e+03     -695 -1.86e+03         1        0 4.99e+03  4.99e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -5319,7 +5318,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -1.12e+03 1.58e+03 -1.03e+03         1        0        0         0       world initStep
-    1 -6.2e+03 -1.99e+03 -2.29e+03         1        0 6.34e+03  6.34e+03  OutOfWorld Transportation
+    1 -7.64e+03   -3e+03 -2.65e+03         1        0 8.13e+03  8.13e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -5377,7 +5376,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -4.65e+03 1.85e+03 -1.07e+03         1        0        0         0       world initStep
-    1 -6.2e+03 2.88e+03     -226         1        0 2.04e+03  2.04e+03  OutOfWorld Transportation
+    1 -6.38e+03    3e+03     -130         1        0 2.28e+03  2.28e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -5393,7 +5392,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 1.95e+03    -37.7     -826         1        0        0         0       world initStep
-    1 -6.2e+03 1.76e+03    -98.9         1        0 8.38e+03  8.38e+03  OutOfWorld Transportation
+    1   -8e+03 2.16e+03     61.6         1        0 1.02e+04  1.02e+04  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -5425,7 +5424,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 5.49e+03 -2.55e+03 1.92e+03         1        0        0         0       world initStep
-    1  6.2e+03 -1.25e+03      919         1        0 1.78e+03  1.78e+03  OutOfWorld Transportation
+    1    8e+03 2.05e+03 -1.64e+03         1        0 6.33e+03  6.33e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -5433,7 +5432,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 5.31e+03 -1.75e+03     -596         1        0        0         0       world initStep
-    1 -6.2e+03 -2.02e+03 2.44e+03         1        0 1.19e+04  1.19e+04  OutOfWorld Transportation
+    1   -8e+03 -2.07e+03 2.92e+03         1        0 1.38e+04  1.38e+04  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -5457,7 +5456,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -3.56e+03     -703 1.54e+03         1        0        0         0       world initStep
-    1 -6.2e+03     -193 1.28e+03         1        0  2.7e+03   2.7e+03  OutOfWorld Transportation
+    1   -8e+03      155 1.09e+03         1        0 4.54e+03  4.54e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -5481,7 +5480,9 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 5.37e+03 2.09e+03     -306         1        0        0         0       world initStep
-    1  6.2e+03 1.92e+03     -600         1        0      899       899  OutOfWorld Transportation
+    1 7.33e+03 1.68e+03   -1e+03         1        0 2.12e+03  2.12e+03 tessellated Transportation
+    2 7.36e+03 1.68e+03 -1.01e+03         1        0     35.1  2.16e+03       world Transportation
+    3    8e+03 1.54e+03 -1.24e+03         1        0      688  2.84e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -5517,7 +5518,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     2 2.43e+03 1.38e+03     -910         1        0     56.5  2.81e+03       world Transportation
     3 2.66e+03 1.44e+03     -978         1        0      247  3.06e+03       ctubs Transportation
     4 2.73e+03 1.46e+03     -998         1        0     72.5  3.13e+03       world Transportation
-    5  6.2e+03 2.33e+03 -2.02e+03         1        0 3.72e+03  6.85e+03  OutOfWorld Transportation
+    5    8e+03 2.78e+03 -2.54e+03         1        0 5.65e+03  8.78e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -5533,7 +5534,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -236 2.91e+03 -1.95e+03         1        0        0         0       world initStep
-    1  6.2e+03 -1.23e+03 -2.81e+03         1        0  7.7e+03   7.7e+03  OutOfWorld Transportation
+    1 7.62e+03 -2.15e+03   -3e+03         1        0  9.4e+03   9.4e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -5565,7 +5566,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -6.04e+03     -573      738         1        0        0         0       world initStep
-    1 -6.2e+03     -794 1.06e+03         1        0      418       418  OutOfWorld Transportation
+    1 -7.15e+03 -2.15e+03    3e+03         1        0 2.97e+03  2.97e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -5599,7 +5600,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0  3.7e+03 -2.24e+03 1.47e+03         1        0        0         0       world initStep
-    1  6.2e+03 -1.69e+03 2.51e+03         1        0 2.76e+03  2.76e+03  OutOfWorld Transportation
+    1 7.37e+03 -1.43e+03    3e+03         1        0 4.06e+03  4.06e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -5607,7 +5608,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -5.96e+03      707     -963         1        0        0         0       world initStep
-    1 -6.2e+03      914 -1.07e+03         1        0      330       330  OutOfWorld Transportation
+    1   -8e+03 2.49e+03 -1.85e+03         1        0 2.85e+03  2.85e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -5785,7 +5786,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      324     -180     -897         1        0        0         0       world initStep
-    1 -6.2e+03 -2.95e+03 2.76e+03         1        0 7.98e+03  7.98e+03  OutOfWorld Transportation
+    1 -6.32e+03   -3e+03 2.83e+03         1        0 8.12e+03  8.12e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -5803,7 +5804,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     0 -5.35e+03  1.4e+03     -719         1        0        0         0       world initStep
     1 -4.09e+03 1.24e+03     -967         1        0 1.29e+03  1.29e+03        para Transportation
     2 -3.82e+03 1.21e+03 -1.02e+03         1        0      277  1.57e+03       world Transportation
-    3  6.2e+03    -6.09   -3e+03         1        0 1.03e+04  1.19e+04  OutOfWorld Transportation
+    3 6.23e+03    -9.16   -3e+03         1        0 1.03e+04  1.19e+04  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -5811,7 +5812,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 3.73e+03     -398 -1.1e+03         1        0        0         0       world initStep
-    1  6.2e+03 2.63e+03     -772         1        0 3.93e+03  3.93e+03  OutOfWorld Transportation
+    1  6.5e+03    3e+03     -734         1        0  4.4e+03   4.4e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -5851,7 +5852,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 4.19e+03 2.44e+03 -1.69e+03         1        0        0         0       world initStep
-    1  6.2e+03 2.51e+03 -1.86e+03         1        0 2.01e+03  2.01e+03  OutOfWorld Transportation
+    1    8e+03 2.58e+03 -2.01e+03         1        0 3.82e+03  3.82e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -5859,7 +5860,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 5.62e+03     -925     -672         1        0        0         0       world initStep
-    1  6.2e+03     -362     -566         1        0      813       813  OutOfWorld Transportation
+    1    8e+03  1.4e+03     -236         1        0 3.35e+03  3.35e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -5901,7 +5902,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -6.12e+03 2.23e+03 1.82e+03         1        0        0         0       world initStep
-    1 -6.2e+03  2.3e+03  1.7e+03         1        0      163       163  OutOfWorld Transportation
+    1 -6.93e+03    3e+03      542         1        0  1.7e+03   1.7e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -5925,7 +5926,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -5.12e+03      439 1.98e+03         1        0        0         0       world initStep
-    1 -6.2e+03     -714 -2.54e+03         1        0 4.78e+03  4.78e+03  OutOfWorld Transportation
+    1 -6.31e+03     -832   -3e+03         1        0 5.27e+03  5.27e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -5959,7 +5960,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     0 -2.82e+03     -429 1.69e+03         1        0        0         0       world initStep
     1 -5.27e+03 1.59e+03 1.12e+03         1        0 3.22e+03  3.22e+03        cons Transportation
     2 -5.38e+03 1.67e+03  1.1e+03         1        0      136  3.36e+03       world Transportation
-    3 -6.2e+03 2.35e+03      910         1        0 1.08e+03  4.45e+03  OutOfWorld Transportation
+    3 -6.99e+03    3e+03      726         1        0 2.13e+03  5.49e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -6011,7 +6012,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -2.73e+03 -2.11e+03     12.9         1        0        0         0       world initStep
-    1 -6.2e+03 -1.73e+03     81.1         1        0  3.5e+03   3.5e+03  OutOfWorld Transportation
+    1   -8e+03 -1.53e+03      116         1        0 5.31e+03  5.31e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -6067,7 +6068,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -5.01e+03 -1.19e+03 1.67e+03         1        0        0         0       world initStep
-    1 -6.2e+03 -1.39e+03  1.9e+03         1        0 1.23e+03  1.23e+03  OutOfWorld Transportation
+    1   -8e+03 -1.68e+03 2.26e+03         1        0 3.09e+03  3.09e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -6083,7 +6084,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -4.22e+03 -1.52e+03      850         1        0        0         0       world initStep
-    1 -6.2e+03 -1.35e+03      439         1        0 2.03e+03  2.03e+03  OutOfWorld Transportation
+    1   -8e+03 -1.19e+03     65.2         1        0 3.88e+03  3.88e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -6123,7 +6124,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 5.45e+03 -1.83e+03 1.09e+03         1        0        0         0       world initStep
-    1  6.2e+03 -2.42e+03      531         1        0  1.1e+03   1.1e+03  OutOfWorld Transportation
+    1 6.94e+03   -3e+03    -22.4         1        0 2.19e+03  2.19e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -6147,7 +6148,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -5.63e+03      559 -1.47e+03         1        0        0         0       world initStep
-    1 -6.2e+03 1.32e+03 -2.13e+03         1        0 1.16e+03  1.16e+03  OutOfWorld Transportation
+    1 -6.94e+03 2.32e+03   -3e+03         1        0 2.67e+03  2.67e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -6219,7 +6220,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -4.83e+03 -2.06e+03 1.48e+03         1        0        0         0       world initStep
-    1 -6.2e+03     -255      854         1        0 2.35e+03  2.35e+03  OutOfWorld Transportation
+    1   -8e+03 2.12e+03     35.4         1        0 5.44e+03  5.44e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -6227,7 +6228,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 5.44e+03 1.09e+03     -860         1        0        0         0       world initStep
-    1  6.2e+03      898 -1.48e+03         1        0    1e+03     1e+03  OutOfWorld Transportation
+    1    8e+03      438 -2.97e+03         1        0 3.38e+03  3.38e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -6287,7 +6288,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -5.85e+03 1.38e+03     -556         1        0        0         0       world initStep
-    1 -6.2e+03 1.96e+03     -394         1        0      702       702  OutOfWorld Transportation
+    1 -6.82e+03    3e+03     -109         1        0 1.94e+03  1.94e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -6319,7 +6320,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -4.75e+03     -436     -747         1        0        0         0       world initStep
-    1 -6.2e+03 -2.35e+03 -1.9e+03         1        0 2.67e+03  2.67e+03  OutOfWorld Transportation
+    1 -6.69e+03   -3e+03 -2.29e+03         1        0 3.57e+03  3.57e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -6351,7 +6352,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -1.09e+03 2.24e+03     -620         1        0        0         0       world initStep
-    1 -6.2e+03 1.63e+03 2.22e+03         1        0 5.88e+03  5.88e+03  OutOfWorld Transportation
+    1 -7.6e+03 1.47e+03    3e+03         1        0 7.48e+03  7.48e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -6367,7 +6368,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -6.17e+03 -2.79e+03      104         1        0        0         0       world initStep
-    1 -6.2e+03 -2.76e+03       98         1        0     50.6      50.6  OutOfWorld Transportation
+    1   -8e+03     -609     -264         1        0 2.88e+03  2.88e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -6399,7 +6400,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -5.65e+03 -1.16e+03     -826         1        0        0         0       world initStep
-    1 -6.2e+03 -1.16e+03     -760         1        0      550       550  OutOfWorld Transportation
+    1   -8e+03 -1.17e+03     -546         1        0 2.36e+03  2.36e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -6472,7 +6473,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 4.61e+03 1.69e+03     -231         1        0        0         0       world initStep
-    1  6.2e+03 1.85e+03     -384         1        0 1.61e+03  1.61e+03  OutOfWorld Transportation
+    1    8e+03 2.03e+03     -558         1        0 3.43e+03  3.43e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -6480,7 +6481,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 6.16e+03 1.36e+03 -1.71e+03         1        0        0         0       world initStep
-    1  6.2e+03 1.41e+03 -1.99e+03         1        0      284       284  OutOfWorld Transportation
+    1 6.35e+03 1.57e+03   -3e+03         1        0 1.32e+03  1.32e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -6488,7 +6489,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 6.09e+03 -2.18e+03 -1.51e+03         1        0        0         0       world initStep
-    1  6.2e+03 -2.04e+03 -1.43e+03         1        0      186       186  OutOfWorld Transportation
+    1    8e+03      199     -221         1        0 3.31e+03  3.31e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -6504,7 +6505,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -3.13e+03     -813     -539         1        0        0         0       world initStep
-    1 -6.2e+03      507     -759         1        0 3.35e+03  3.35e+03  OutOfWorld Transportation
+    1   -8e+03 1.28e+03     -888         1        0 5.31e+03  5.31e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -6512,7 +6513,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      432 2.49e+03      401         1        0        0         0       world initStep
-    1 -6.2e+03 -1.88e+03     99.9         1        0 7.95e+03  7.95e+03  OutOfWorld Transportation
+    1 -7.91e+03   -3e+03     22.4         1        0 9.99e+03  9.99e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -6588,7 +6589,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -6.11e+03 2.72e+03 1.29e+03         1        0        0         0       world initStep
-    1 -6.2e+03 2.72e+03 1.29e+03         1        0       87        87  OutOfWorld Transportation
+    1   -8e+03 2.85e+03 1.25e+03         1        0 1.89e+03  1.89e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -6612,7 +6613,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 5.43e+03      684      241         1        0        0         0       world initStep
-    1  6.2e+03 2.06e+03 1.18e+03         1        0 1.84e+03  1.84e+03  OutOfWorld Transportation
+    1 6.73e+03    3e+03 1.82e+03         1        0 3.09e+03  3.09e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -6628,7 +6629,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -4.49e+03     28.9 1.27e+03         1        0        0         0       world initStep
-    1 -6.2e+03 -1.77e+03 -1.81e+03         1        0 3.96e+03  3.96e+03  OutOfWorld Transportation
+    1 -6.86e+03 -2.47e+03   -3e+03         1        0 5.49e+03  5.49e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -6676,7 +6677,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 3.69e+03 1.13e+03 1.22e+03         1        0        0         0       world initStep
-    1 -6.2e+03      667 1.68e+03         1        0 9.92e+03  9.92e+03  OutOfWorld Transportation
+    1   -8e+03      582 1.77e+03         1        0 1.17e+04  1.17e+04  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -6728,7 +6729,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     0 -1.45e+03 -1.22e+03      849         1        0        0         0       world initStep
     1 4.12e+03 -1.3e+03 1.08e+03         1        0 5.57e+03  5.57e+03       xtru1 Transportation
     2 4.35e+03 -1.31e+03 1.09e+03         1        0      230   5.8e+03       world Transportation
-    3  6.2e+03 -1.33e+03 1.17e+03         1        0 1.85e+03  7.65e+03  OutOfWorld Transportation
+    3    8e+03 -1.36e+03 1.24e+03         1        0 3.66e+03  9.46e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -6744,7 +6745,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 5.05e+03 2.15e+03 1.28e+03         1        0        0         0       world initStep
-    1  6.2e+03 2.07e+03 1.21e+03         1        0 1.16e+03  1.16e+03  OutOfWorld Transportation
+    1    8e+03 1.94e+03  1.1e+03         1        0 2.97e+03  2.97e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -6760,7 +6761,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      755     10.8     36.2         1        0        0         0       world initStep
-    1 -6.2e+03     -669 2.76e+03         1        0  7.5e+03   7.5e+03  OutOfWorld Transportation
+    1 -6.82e+03     -730    3e+03         1        0 8.17e+03  8.17e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -6784,7 +6785,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 5.33e+03 2.67e+03 1.09e+03         1        0        0         0       world initStep
-    1  6.2e+03 2.98e+03 1.13e+03         1        0      930       930  OutOfWorld Transportation
+    1 6.25e+03    3e+03 1.14e+03         1        0      980       980  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -6872,7 +6873,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0    -29.7 -2.94e+03 1.77e+03         1        0        0         0       world initStep
-    1  6.2e+03 -1.61e+03 2.25e+03         1        0 6.39e+03  6.39e+03  OutOfWorld Transportation
+    1    8e+03 -1.22e+03 2.38e+03         1        0 8.23e+03  8.23e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -6880,7 +6881,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 5.52e+03 -1.18e+03      699         1        0        0         0       world initStep
-    1  6.2e+03 -1.02e+03 1.17e+03         1        0      844       844  OutOfWorld Transportation
+    1    8e+03     -603  2.4e+03         1        0 3.07e+03  3.07e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -6904,7 +6905,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 1.81e+03 1.68e+03     -809         1        0        0         0       world initStep
-    1  6.2e+03 2.08e+03 -2.35e+03         1        0 4.67e+03  4.67e+03  OutOfWorld Transportation
+    1    8e+03 2.24e+03 -2.98e+03         1        0 6.58e+03  6.58e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -6952,7 +6953,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -3.61e+03     -962     -361         1        0        0         0       world initStep
-    1 -6.2e+03     -952      879         1        0 2.87e+03  2.87e+03  OutOfWorld Transportation
+    1   -8e+03     -945 1.74e+03         1        0 4.86e+03  4.86e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -6984,7 +6985,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -1.65e+03 2.51e+03 -1.12e+03         1        0        0         0       world initStep
-    1 -6.2e+03 1.75e+03     66.3         1        0 4.76e+03  4.76e+03  OutOfWorld Transportation
+    1   -8e+03 1.45e+03      537         1        0 6.65e+03  6.65e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -7000,7 +7001,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 6.19e+03 -1.43e+03 -1.83e+03         1        0        0         0       world initStep
-    1  6.2e+03 -1.43e+03 -1.81e+03         1        0     17.9      17.9  OutOfWorld Transportation
+    1    8e+03     -777 1.56e+03         1        0 3.89e+03  3.89e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -7026,7 +7027,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0  1.2e+03 2.94e+03   -1e+03         1        0        0         0       world initStep
-    1 -6.2e+03 -1.55e+03    2e+03         1        0 9.16e+03  9.16e+03  OutOfWorld Transportation
+    1   -8e+03 -2.64e+03 2.73e+03         1        0 1.14e+04  1.14e+04  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -7042,7 +7043,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 3.41e+03      501      370         1        0        0         0       world initStep
-    1  6.2e+03 2.86e+03  1.8e+03         1        0 3.93e+03  3.93e+03  OutOfWorld Transportation
+    1 6.37e+03    3e+03 1.88e+03         1        0 4.16e+03  4.16e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -7050,7 +7051,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -5.07e+03     -244 1.77e+03         1        0        0         0       world initStep
-    1 -6.2e+03 1.34e+03 2.99e+03         1        0  2.3e+03   2.3e+03  OutOfWorld Transportation
+    1 -6.21e+03 1.36e+03    3e+03         1        0 2.32e+03  2.32e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -7058,7 +7059,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 3.21e+03 -2.2e+03 1.12e+03         1        0        0         0       world initStep
-    1  6.2e+03 -1.4e+03 2.07e+03         1        0 3.24e+03  3.24e+03  OutOfWorld Transportation
+    1    8e+03     -915 2.64e+03         1        0 5.18e+03  5.18e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -7074,7 +7075,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 2.02e+03 -2.48e+03    -95.7         1        0        0         0       world initStep
-    1  6.2e+03 -2.8e+03 1.24e+03         1        0  4.4e+03   4.4e+03  OutOfWorld Transportation
+    1    8e+03 -2.94e+03 1.81e+03         1        0  6.3e+03   6.3e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -7090,7 +7091,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 3.78e+03      240 1.54e+03         1        0        0         0       world initStep
-    1 -6.2e+03     -447      481         1        0 1.01e+04  1.01e+04  OutOfWorld Transportation
+    1   -8e+03     -571      291         1        0 1.19e+04  1.19e+04  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -7098,7 +7099,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 5.89e+03 -1.07e+03 -1.64e+03         1        0        0         0       world initStep
-    1  6.2e+03     -708 -1.43e+03         1        0      518       518  OutOfWorld Transportation
+    1    8e+03 1.41e+03     -191         1        0 3.56e+03  3.56e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -7106,7 +7107,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 2.66e+03 -1.83e+03      950         1        0        0         0       world initStep
-    1  6.2e+03     -273      281         1        0 3.93e+03  3.93e+03  OutOfWorld Transportation
+    1    8e+03      518    -59.1         1        0 5.92e+03  5.92e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -7146,7 +7147,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 1.39e+03 2.44e+03     -125         1        0        0         0       world initStep
-    1  6.2e+03 -1.53e+03     -670         1        0 6.26e+03  6.26e+03  OutOfWorld Transportation
+    1 7.98e+03   -3e+03     -872         1        0 8.58e+03  8.58e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -7170,7 +7171,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 4.73e+03 1.87e+03 1.29e+03         1        0        0         0       world initStep
-    1  6.2e+03      763 -1.74e+03         1        0 3.54e+03  3.54e+03  OutOfWorld Transportation
+    1 6.81e+03      303   -3e+03         1        0 5.02e+03  5.02e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -7218,7 +7219,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 6.02e+03 2.52e+03 -1.71e+03         1        0        0         0       world initStep
-    1  6.2e+03 2.49e+03 -1.56e+03         1        0      230       230  OutOfWorld Transportation
+    1    8e+03 2.18e+03    -77.4         1        0 2.58e+03  2.58e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -7242,7 +7243,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -4.51e+03 -2.13e+03 -1.66e+03         1        0        0         0       world initStep
-    1  6.2e+03 -2.47e+03 2.48e+03         1        0 1.15e+04  1.15e+04  OutOfWorld Transportation
+    1 7.55e+03 -2.51e+03    3e+03         1        0 1.29e+04  1.29e+04  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -7258,7 +7259,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -5.48e+03  1.3e+03 -1.34e+03         1        0        0         0       world initStep
-    1 -6.2e+03 1.24e+03     -282         1        0 1.28e+03  1.28e+03  OutOfWorld Transportation
+    1   -8e+03 1.11e+03 2.34e+03         1        0 4.47e+03  4.47e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -7314,7 +7315,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0  2.2e+03 -2.13e+03     -774         1        0        0         0       world initStep
-    1  6.2e+03     -995      415         1        0 4.33e+03  4.33e+03  OutOfWorld Transportation
+    1    8e+03     -485      950         1        0 6.27e+03  6.27e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -7374,7 +7375,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -870 -1.45e+03 -1.61e+03         1        0        0         0       world initStep
-    1  6.2e+03 -2.05e+03 -1.86e+03         1        0  7.1e+03   7.1e+03  OutOfWorld Transportation
+    1    8e+03 -2.2e+03 -1.93e+03         1        0 8.91e+03  8.91e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -7406,7 +7407,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -3.74e+03 -1.25e+03 1.24e+03         1        0        0         0       world initStep
-    1 -6.2e+03 -1.19e+03 1.22e+03         1        0 2.47e+03  2.47e+03  OutOfWorld Transportation
+    1   -8e+03 -1.15e+03  1.2e+03         1        0 4.27e+03  4.27e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -7422,7 +7423,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      470     -678 1.09e+03         1        0        0         0       world initStep
-    1 -6.2e+03    0.562      922         1        0 6.71e+03  6.71e+03  OutOfWorld Transportation
+    1   -8e+03      184      877         1        0 8.52e+03  8.52e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -7446,7 +7447,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -4.3e+03 -2.44e+03     -754         1        0        0         0       world initStep
-    1 -6.2e+03 -2.8e+03     -768         1        0 1.93e+03  1.93e+03  OutOfWorld Transportation
+    1 -7.27e+03   -3e+03     -775         1        0 3.02e+03  3.02e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -7496,7 +7497,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 2.83e+03     -811 -1.38e+03         1        0        0         0       world initStep
-    1  6.2e+03     53.2 -2.8e+03         1        0 3.75e+03  3.75e+03  OutOfWorld Transportation
+    1 6.69e+03      179   -3e+03         1        0  4.3e+03   4.3e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -7551,7 +7552,7 @@ Stuck Track: potential geometry or navigation problem.
 
    11  4.5e+03      826 -1.08e+03         1        0    1e-07       843        hype Transportation
    12 5.65e+03 -1.68e+03      917         1        0 3.41e+03  4.25e+03       world Transportation
-   13  6.2e+03 -2.87e+03 1.87e+03         1        0 1.62e+03  5.87e+03  OutOfWorld Transportation
+   13 6.26e+03   -3e+03 1.97e+03         1        0 1.79e+03  6.04e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -7567,7 +7568,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 5.85e+03 -2.83e+03      691         1        0        0         0       world initStep
-    1  6.2e+03 -2.68e+03      770         1        0      389       389  OutOfWorld Transportation
+    1    8e+03 -1.96e+03 1.18e+03         1        0 2.37e+03  2.37e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -7623,7 +7624,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 4.86e+03 -1.89e+03     -292         1        0        0         0       world initStep
-    1  6.2e+03 -2.17e+03 -1.64e+03         1        0 1.92e+03  1.92e+03  OutOfWorld Transportation
+    1 7.55e+03 -2.46e+03   -3e+03         1        0 3.86e+03  3.86e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -7639,7 +7640,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -5.18e+03      693     -599         1        0        0         0       world initStep
-    1 -6.2e+03      244   -2e+03         1        0 1.79e+03  1.79e+03  OutOfWorld Transportation
+    1 -6.93e+03    -77.4   -3e+03         1        0 3.07e+03  3.07e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -7736,7 +7737,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     51.3     -770    -43.2         1        0        0         0       world initStep
-    1 -6.2e+03      290 -1.79e+03         1        0 6.58e+03  6.58e+03  OutOfWorld Transportation
+    1   -8e+03      596 -2.3e+03         1        0 8.47e+03  8.47e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -7752,7 +7753,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 2.78e+03     -105     -451         1        0        0         0       world initStep
-    1 -6.2e+03     -523 -2.03e+03         1        0 9.12e+03  9.12e+03  OutOfWorld Transportation
+    1   -8e+03     -606 -2.34e+03         1        0  1.1e+04   1.1e+04  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -7768,7 +7769,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 5.88e+03 -1.55e+03 1.93e+03         1        0        0         0       world initStep
-    1  6.2e+03 -1.53e+03 2.12e+03         1        0      370       370  OutOfWorld Transportation
+    1 7.65e+03 -1.4e+03    3e+03         1        0 2.07e+03  2.07e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -7808,7 +7809,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -4.61e+03     33.4 1.43e+03         1        0        0         0       world initStep
-    1 -6.2e+03 -1.67e+03 -1.15e+03         1        0 3.48e+03  3.48e+03  OutOfWorld Transportation
+    1 -7.33e+03 -2.88e+03   -3e+03         1        0 5.97e+03  5.97e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -7848,7 +7849,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -4.62e+03      206 1.47e+03         1        0        0         0       world initStep
-    1 -6.2e+03      493 1.64e+03         1        0 1.61e+03  1.61e+03  OutOfWorld Transportation
+    1   -8e+03      820 1.84e+03         1        0 3.46e+03  3.46e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -7856,7 +7857,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -5.71e+03 2.72e+03 -1.49e+03         1        0        0         0       world initStep
-    1 -6.2e+03 2.57e+03 -1.49e+03         1        0      508       508  OutOfWorld Transportation
+    1   -8e+03 2.02e+03 -1.53e+03         1        0 2.39e+03  2.39e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -7864,7 +7865,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -5.99e+03 -2.28e+03     -435         1        0        0         0       world initStep
-    1 -6.2e+03 -1.91e+03    -44.7         1        0      579       579  OutOfWorld Transportation
+    1 -7.84e+03    1e+03    3e+03         1        0  5.1e+03   5.1e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -7872,7 +7873,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 5.98e+03 1.89e+03 -1.03e+03         1        0        0         0       world initStep
-    1  6.2e+03 2.08e+03 -1.23e+03         1        0      356       356  OutOfWorld Transportation
+    1 7.28e+03    3e+03 -2.24e+03         1        0  2.1e+03   2.1e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -8020,7 +8021,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 4.39e+03     -965      574         1        0        0         0       world initStep
-    1 -6.2e+03 -1.28e+03     -119         1        0 1.06e+04  1.06e+04  OutOfWorld Transportation
+    1   -8e+03 -1.33e+03     -237         1        0 1.24e+04  1.24e+04  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -8070,7 +8071,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 5.62e+03 -1.59e+03 -1.82e+03         1        0        0         0       world initStep
-    1  6.2e+03      415     -662         1        0 2.39e+03  2.39e+03  OutOfWorld Transportation
+    1 6.95e+03    3e+03      838         1        0 5.47e+03  5.47e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -8078,7 +8079,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -4.65e+03     -655     46.9         1        0        0         0       world initStep
-    1 -6.2e+03     -797      896         1        0 1.77e+03  1.77e+03  OutOfWorld Transportation
+    1   -8e+03     -962 1.88e+03         1        0 3.83e+03  3.83e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -8166,7 +8167,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0  5.8e+03     -876      590         1        0        0         0       world initStep
-    1  6.2e+03 -1.04e+03      636         1        0      431       431  OutOfWorld Transportation
+    1    8e+03 -1.79e+03      847         1        0 2.39e+03  2.39e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -8182,7 +8183,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -5.03e+03 2.17e+03 -1.13e+03         1        0        0         0       world initStep
-    1 -6.2e+03     -225 -2.64e+03         1        0 3.06e+03  3.06e+03  OutOfWorld Transportation
+    1 -6.48e+03     -806   -3e+03         1        0  3.8e+03   3.8e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -8270,7 +8271,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0      397 -1.24e+03     -662         1        0        0         0       world initStep
-    1  6.2e+03 -2.45e+03      569         1        0 6.05e+03  6.05e+03  OutOfWorld Transportation
+    1    8e+03 -2.82e+03      951         1        0 7.93e+03  7.93e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -8278,7 +8279,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 3.93e+03 -2.53e+03 -1.79e+03         1        0        0         0       world initStep
-    1  6.2e+03     -349 -1.23e+03         1        0  3.2e+03   3.2e+03  OutOfWorld Transportation
+    1    8e+03 1.38e+03     -797         1        0 5.74e+03  5.74e+03  OutOfWorld Transportation
 
 *********************************************************************************************************
 * G4Track Information:   Particle = geantino,   Track ID = 1,   Parent ID = 0
@@ -8287,10 +8288,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -2.36e+03 1.15e+03 1.76e+03         1        0        0         0       world initStep
     1 -5.38e+03   -3e+03 -1.19e+03         1        0 5.91e+03  5.91e+03  OutOfWorld Transportation
-number of event = 1000 User=0.020000s Real=0.054476s Sys=0.030000s
-Execution time: R: 0.0545 s  C: 0.0545 s 
-0 events have been kept for refreshing and/or reviewing.
-  "/vis/reviewKeptEvents" to review them one by one.
-  "/vis/enable", then "/vis/viewer/flush" or "/vis/viewer/rebuild" to see them accumulated.
+number of event = 1000 User=0.020000s Real=0.029817s Sys=0.010000s
+Execution time: R: 0.0298 s  C: 0.0298 s 
 Graphics systems deleted.
 Visualization Manager deleting...

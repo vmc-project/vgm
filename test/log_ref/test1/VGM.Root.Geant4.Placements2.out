@@ -1,22 +1,15 @@
 
 =============================================================
  Virtual Geometry Model 
- Version 5.0 ( 27 January 2022 )
+ Version 5.1 ( 17 January 2023 )
  WWW : https://vmc-project.github.io/vgm-documentation/
 =============================================================
 
 Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometry created
-Warning in <TGeoManager>: Changing system of units to ROOT units (cm, s, GeV).
 Root geometry will be defined via VGM and exported to Geant4
 
-
-          ################################
-          !!! G4Backtrace is activated !!!
-          ################################
-
-
 **************************************************************
- Geant4 version Name: geant4-11-00-ref-00    (10-December-2021)
+ Geant4 version Name: geant4-11-01    (9-December-2022)
                        Copyright : Geant4 Collaboration
                       References : NIM A 506 (2003), 250-303
                                  : IEEE-TNS 53 (2006), 270-278
@@ -159,7 +152,7 @@ Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
 Info in <TGeoManager::CloseGeometry>: Counting nodes...
 Info in <TGeoManager::Voxelize>: Voxelizing...
 Info in <TGeoManager::CloseGeometry>: Building cache...
-Info in <TGeoManager::CountLevels>: max level = 3, max placements = 3
+Info in <TGeoManager::CountLevels>: max level = 3, max placements = 6
 Info in <TGeoManager::CloseGeometry>: 28 nodes/ 8 volume UID's in VGM Root geometry
 Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
 Info in <TGeoManager::Export>: Exporting VGM Root geometry VGM Root geometry as root file. Optimizations streamed.
@@ -175,9 +168,12 @@ Registered graphics systems are:
   RayTracer (RayTracer)
   VRML2FILE (VRML2FILE)
   gMocrenFile (gMocrenFile)
+  TOOLSSG_OFFSCREEN (TSG_OFFSCREEN)
+  TOOLSSG_OFFSCREEN (TSG_OFFSCREEN, TSG_FILE)
   OpenGLImmediateX (OGLIX, OGLI)
   OpenGLStoredX (OGLSX, OGL, OGLS)
   RayTracerX (RayTracerX)
+  TOOLSSG_X11_GLES (TSG_X11_GLES, TSGX11, TSG)
 
 Registering model factories...
 

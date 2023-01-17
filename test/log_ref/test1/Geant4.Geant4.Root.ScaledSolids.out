@@ -1,22 +1,15 @@
 
 =============================================================
  Virtual Geometry Model 
- Version 5.0 ( 27 January 2022 )
+ Version 5.1 ( 17 January 2023 )
  WWW : https://vmc-project.github.io/vgm-documentation/
 =============================================================
 
 Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometry created
-Warning in <TGeoManager>: Changing system of units to ROOT units (cm, s, GeV).
 Geant4 geometry will be defined via Geant4 and exported to Root
 
-
-          ################################
-          !!! G4Backtrace is activated !!!
-          ################################
-
-
 **************************************************************
- Geant4 version Name: geant4-11-00-ref-00    (10-December-2021)
+ Geant4 version Name: geant4-11-01    (9-December-2022)
                        Copyright : Geant4 Collaboration
                       References : NIM A 506 (2003), 250-303
                                  : IEEE-TNS 53 (2006), 270-278
@@ -24,6 +17,7 @@ Geant4 geometry will be defined via Geant4 and exported to Root
                              WWW : http://geant4.org/
 **************************************************************
 
+Tessellated position: 7000, 1500, 1000
 TestScaledSolids finished
 Go to Import
 VGM info:   Geant4GM::Factory::Import started ...
@@ -117,7 +111,7 @@ VGM info:    Material:      Air    density:  1.290 mg/cm3  RadL: 285.161 m    Nu
 
 VGM info:   Importing material: 
 VGM info:    Material: Scintillator    density:  1.032 g/cm3   RadL:  42.544 cm   Nucl.Int.Length:  69.969 cm 
-                       Imean:  64.684 eV   temperature: 293.15 K  pressure:   1.00 atm
+                       Imean:  62.657 eV   temperature: 293.15 K  pressure:   1.00 atm
 
    --->  Element: C (C)   Z =  6.0   N =    12   A = 12.011 g/mole
          --->  Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole   abundance: 98.930 %
@@ -161,7 +155,7 @@ VGM info:    Material: Tungsten    density: 19.250 g/cm3   RadL:   3.513 mm   Nu
 
 VGM info:   Importing LV: world
 VGM info:   Importing solid: worldS
-VGM info:      Imported solid: Box  "worldS"  hx = 6200mm  hy = 3000mm  hz = 3000mm
+VGM info:      Imported solid: Box  "worldS"  hx = 8000mm  hy = 3000mm  hz = 3000mm
 VGM info:   ImportDaughters for world
 VGM info:   Importing LV: box
 VGM info:   Importing solid: boxS
@@ -478,6 +472,75 @@ VGM info:      Imported solid: Scaled  "paraboloidS"    Constituent = Paraboloid
   Scale (object):  ( 0.8,  0.5,  0.25) 
 
 VGM info:   ImportDaughters for paraboloid_refl
+VGM info:   Importing LV: tessellated
+VGM info:   Importing solid: tessellatedS
+VGM info:   Importing solid: tessellatedS
+VGM info:      Imported solid: Scaled  "tessellatedS"    Constituent = Tessellated  "tessellatedS"
+5 facets:
+Facet #0: 
+   3 vertices:
+     (-500, -500, 0) mm
+     (500, -500, 0) mm
+     (0, 0, 500) mm
+Facet #1: 
+   3 vertices:
+     (500, -500, 0) mm
+     (500, 500, 0) mm
+     (0, 0, 500) mm
+Facet #2: 
+   3 vertices:
+     (500, 500, 0) mm
+     (-500, 500, 0) mm
+     (0, 0, 500) mm
+Facet #3: 
+   3 vertices:
+     (-500, 500, 0) mm
+     (-500, -500, 0) mm
+     (0, 0, 500) mm
+Facet #4: 
+   4 vertices:
+     (-500, -500, 0) mm
+     (-500, 500, 0) mm
+     (500, 500, 0) mm
+     (500, -500, 0) mm
+
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+VGM info:   ImportDaughters for tessellated
+VGM info:   Importing LV: tessellated_refl
+VGM info:   Importing solid: tessellatedS_refl
+VGM info:      Imported solid: Scaled  "tessellatedS"    Constituent = Tessellated  "tessellatedS"
+5 facets:
+Facet #0: 
+   3 vertices:
+     (-500, -500, 0) mm
+     (500, -500, 0) mm
+     (0, 0, 500) mm
+Facet #1: 
+   3 vertices:
+     (500, -500, 0) mm
+     (500, 500, 0) mm
+     (0, 0, 500) mm
+Facet #2: 
+   3 vertices:
+     (500, 500, 0) mm
+     (-500, 500, 0) mm
+     (0, 0, 500) mm
+Facet #3: 
+   3 vertices:
+     (-500, 500, 0) mm
+     (-500, -500, 0) mm
+     (0, 0, 500) mm
+Facet #4: 
+   4 vertices:
+     (-500, -500, 0) mm
+     (-500, 500, 0) mm
+     (500, 500, 0) mm
+     (500, -500, 0) mm
+
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+VGM info:   ImportDaughters for tessellated_refl
 VGM info:   Import positions: 
 VGM info:   0th volume: world  
 VGM info:      0th daughter  pv = box  lv = box vgmPl = box vgmVol = box
@@ -512,6 +575,8 @@ VGM info:      28th daughter  pv = hype  lv = hype vgmPl = hype vgmVol = hype
 VGM info:      29th daughter  pv = hype  lv = hype_refl vgmPl = hype vgmVol = hype_refl
 VGM info:      30th daughter  pv = paraboloid  lv = paraboloid vgmPl = paraboloid vgmVol = paraboloid
 VGM info:      31th daughter  pv = paraboloid  lv = paraboloid_refl vgmPl = paraboloid vgmVol = paraboloid_refl
+VGM info:      32th daughter  pv = tessellated  lv = tessellated vgmPl = tessellated vgmVol = tessellated
+VGM info:      33th daughter  pv = tesselled  lv = tessellated_refl vgmPl = tesselled vgmVol = tessellated_refl
 VGM info:   1th volume: box  
 VGM info:   2th volume: box_refl  
 VGM info:   3th volume: cons  
@@ -544,9 +609,11 @@ VGM info:   29th volume: hype
 VGM info:   30th volume: hype_refl  
 VGM info:   31th volume: paraboloid  
 VGM info:   32th volume: paraboloid_refl  
+VGM info:   33th volume: tessellated  
+VGM info:   34th volume: tessellated_refl  
 VGM info:   
 Geant4_GM_Factory factory solids store: 
-   0th solid: Box  "worldS"  hx = 6200mm  hy = 3000mm  hz = 3000mm
+   0th solid: Box  "worldS"  hx = 8000mm  hy = 3000mm  hz = 3000mm
    1th solid: Box  "boxS"  hx = 200mm  hy = 600mm  hz = 500mm
    2th solid: Scaled  "boxS"    Constituent = Box  "boxS"  hx = 200mm  hy = 600mm  hz = 500mm
   Scale (object):  ( 0.8,  0.5,  0.25) 
@@ -742,8 +809,99 @@ Planes:
    49th solid: Scaled  "paraboloidS"    Constituent = Paraboloid  "paraboloidS"  r1 = 200mm  r2 = 450mm  hz = 500mm
   Scale (object):  ( 0.8,  0.5,  0.25) 
 
+   50th solid: Tessellated  "tessellatedS"
+5 facets:
+Facet #0: 
+   3 vertices:
+     (-500, -500, 0) mm
+     (500, -500, 0) mm
+     (0, 0, 500) mm
+Facet #1: 
+   3 vertices:
+     (500, -500, 0) mm
+     (500, 500, 0) mm
+     (0, 0, 500) mm
+Facet #2: 
+   3 vertices:
+     (500, 500, 0) mm
+     (-500, 500, 0) mm
+     (0, 0, 500) mm
+Facet #3: 
+   3 vertices:
+     (-500, 500, 0) mm
+     (-500, -500, 0) mm
+     (0, 0, 500) mm
+Facet #4: 
+   4 vertices:
+     (-500, -500, 0) mm
+     (-500, 500, 0) mm
+     (500, 500, 0) mm
+     (500, -500, 0) mm
+
+   51th solid: Scaled  "tessellatedS"    Constituent = Tessellated  "tessellatedS"
+5 facets:
+Facet #0: 
+   3 vertices:
+     (-500, -500, 0) mm
+     (500, -500, 0) mm
+     (0, 0, 500) mm
+Facet #1: 
+   3 vertices:
+     (500, -500, 0) mm
+     (500, 500, 0) mm
+     (0, 0, 500) mm
+Facet #2: 
+   3 vertices:
+     (500, 500, 0) mm
+     (-500, 500, 0) mm
+     (0, 0, 500) mm
+Facet #3: 
+   3 vertices:
+     (-500, 500, 0) mm
+     (-500, -500, 0) mm
+     (0, 0, 500) mm
+Facet #4: 
+   4 vertices:
+     (-500, -500, 0) mm
+     (-500, 500, 0) mm
+     (500, 500, 0) mm
+     (500, -500, 0) mm
+
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+   52th solid: Scaled  "tessellatedS"    Constituent = Tessellated  "tessellatedS"
+5 facets:
+Facet #0: 
+   3 vertices:
+     (-500, -500, 0) mm
+     (500, -500, 0) mm
+     (0, 0, 500) mm
+Facet #1: 
+   3 vertices:
+     (500, -500, 0) mm
+     (500, 500, 0) mm
+     (0, 0, 500) mm
+Facet #2: 
+   3 vertices:
+     (500, 500, 0) mm
+     (-500, 500, 0) mm
+     (0, 0, 500) mm
+Facet #3: 
+   3 vertices:
+     (-500, 500, 0) mm
+     (-500, -500, 0) mm
+     (0, 0, 500) mm
+Facet #4: 
+   4 vertices:
+     (-500, -500, 0) mm
+     (-500, 500, 0) mm
+     (500, 500, 0) mm
+     (500, -500, 0) mm
+
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
 Geant4_GM_Factory factory volumes store: 
-   0th: Volume: "world" material "Basic" solid "Box"  32 daughters: "box"  "box"  "cons"  "cons"  "eltu"  "eltu"  "para"  "para"  "pcone"  "pcone"  "phedra"  "phedra"  "sphere"  "sphere"  "torus"  "torus"  "trap"  "trap"  "trd"  "trd"  "tubs"  "tubs"  "ctubs"  "ctubs"  "xtru1"  "xtru1"  "xtru2"  "xtru2"  "hype"  "hype"  "paraboloid"  "paraboloid"  
+   0th: Volume: "world" material "Basic" solid "Box"  34 daughters: "box"  "box"  "cons"  "cons"  "eltu"  "eltu"  "para"  "para"  "pcone"  "pcone"  "phedra"  "phedra"  "sphere"  "sphere"  "torus"  "torus"  "trap"  "trap"  "trd"  "trd"  "tubs"  "tubs"  "ctubs"  "ctubs"  "xtru1"  "xtru1"  "xtru2"  "xtru2"  "hype"  "hype"  "paraboloid"  "paraboloid"  "tessellated"  "tesselled"  
    1th: Volume: "box" material "Basic" solid "Scaled"  0 daughters: 
    2th: Volume: "box_refl" material "Basic" solid "Scaled"  0 daughters: 
    3th: Volume: "cons" material "Basic" solid "Scaled"  0 daughters: 
@@ -776,6 +934,8 @@ Geant4_GM_Factory factory volumes store:
    30th: Volume: "hype_refl" material "Basic" solid "Scaled"  0 daughters: 
    31th: Volume: "paraboloid" material "Basic" solid "Scaled"  0 daughters: 
    32th: Volume: "paraboloid_refl" material "Basic" solid "Scaled"  0 daughters: 
+   33th: Volume: "tessellated" material "Basic" solid "Scaled"  0 daughters: 
+   34th: Volume: "tessellated_refl" material "Basic" solid "Scaled"  0 daughters: 
 VGM info:   Geant4GM::Factory::Import finished.
 Import finished
 Go to export
@@ -924,7 +1084,7 @@ VGM info:   Material: "Tungsten"  density 19.25 g/cm3  radlen 0.351328 cm  intle
      4th isotope: Isotope: "W186"    Z = 74  N = 186  A = 185.954 g/mole  abundance: 28.43%  Elm mass fraction: 100 %
 VGM info:   Exporting volume store: 
 VGM info:      Exporting solid: 
-VGM info:      Box  "worldS"  hx = 6200mm  hy = 3000mm  hz = 3000mm
+VGM info:      Box  "worldS"  hx = 8000mm  hy = 3000mm  hz = 3000mm
 VGM info:   Exporting volume:  0th  "world"  material: "Basic"
 VGM info:      Exporting solid: 
 VGM info:      Scaled  "boxS"    Constituent = Box  "boxS"  hx = 200mm  hy = 600mm  hz = 500mm
@@ -1262,6 +1422,132 @@ VGM info:      Scaled  "paraboloidS"    Constituent = Paraboloid  "paraboloidS" 
 VGM info:      Exporting solid: 
 VGM info:      Paraboloid  "paraboloidS"  r1 = 200mm  r2 = 450mm  hz = 500mm
 VGM info:   Exporting volume:  32th  "paraboloid_refl"  material: "Basic"
+VGM info:      Exporting solid: 
+VGM info:      Scaled  "tessellatedS"    Constituent = Tessellated  "tessellatedS"
+5 facets:
+Facet #0: 
+   3 vertices:
+     (-500, -500, 0) mm
+     (500, -500, 0) mm
+     (0, 0, 500) mm
+Facet #1: 
+   3 vertices:
+     (500, -500, 0) mm
+     (500, 500, 0) mm
+     (0, 0, 500) mm
+Facet #2: 
+   3 vertices:
+     (500, 500, 0) mm
+     (-500, 500, 0) mm
+     (0, 0, 500) mm
+Facet #3: 
+   3 vertices:
+     (-500, 500, 0) mm
+     (-500, -500, 0) mm
+     (0, 0, 500) mm
+Facet #4: 
+   4 vertices:
+     (-500, -500, 0) mm
+     (-500, 500, 0) mm
+     (500, 500, 0) mm
+     (500, -500, 0) mm
+
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+VGM info:      Exporting solid: 
+VGM info:      Tessellated  "tessellatedS"
+5 facets:
+Facet #0: 
+   3 vertices:
+     (-500, -500, 0) mm
+     (500, -500, 0) mm
+     (0, 0, 500) mm
+Facet #1: 
+   3 vertices:
+     (500, -500, 0) mm
+     (500, 500, 0) mm
+     (0, 0, 500) mm
+Facet #2: 
+   3 vertices:
+     (500, 500, 0) mm
+     (-500, 500, 0) mm
+     (0, 0, 500) mm
+Facet #3: 
+   3 vertices:
+     (-500, 500, 0) mm
+     (-500, -500, 0) mm
+     (0, 0, 500) mm
+Facet #4: 
+   4 vertices:
+     (-500, -500, 0) mm
+     (-500, 500, 0) mm
+     (500, 500, 0) mm
+     (500, -500, 0) mm
+
+VGM info:   Exporting volume:  33th  "tessellated"  material: "Basic"
+VGM info:      Exporting solid: 
+VGM info:      Scaled  "tessellatedS"    Constituent = Tessellated  "tessellatedS"
+5 facets:
+Facet #0: 
+   3 vertices:
+     (-500, -500, 0) mm
+     (500, -500, 0) mm
+     (0, 0, 500) mm
+Facet #1: 
+   3 vertices:
+     (500, -500, 0) mm
+     (500, 500, 0) mm
+     (0, 0, 500) mm
+Facet #2: 
+   3 vertices:
+     (500, 500, 0) mm
+     (-500, 500, 0) mm
+     (0, 0, 500) mm
+Facet #3: 
+   3 vertices:
+     (-500, 500, 0) mm
+     (-500, -500, 0) mm
+     (0, 0, 500) mm
+Facet #4: 
+   4 vertices:
+     (-500, -500, 0) mm
+     (-500, 500, 0) mm
+     (500, 500, 0) mm
+     (500, -500, 0) mm
+
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+VGM info:      Exporting solid: 
+VGM info:      Tessellated  "tessellatedS"
+5 facets:
+Facet #0: 
+   3 vertices:
+     (-500, -500, 0) mm
+     (500, -500, 0) mm
+     (0, 0, 500) mm
+Facet #1: 
+   3 vertices:
+     (500, -500, 0) mm
+     (500, 500, 0) mm
+     (0, 0, 500) mm
+Facet #2: 
+   3 vertices:
+     (500, 500, 0) mm
+     (-500, 500, 0) mm
+     (0, 0, 500) mm
+Facet #3: 
+   3 vertices:
+     (-500, 500, 0) mm
+     (-500, -500, 0) mm
+     (0, 0, 500) mm
+Facet #4: 
+   4 vertices:
+     (-500, -500, 0) mm
+     (-500, 500, 0) mm
+     (500, 500, 0) mm
+     (500, -500, 0) mm
+
+VGM info:   Exporting volume:  34th  "tessellated_refl"  material: "Basic"
 VGM info:   ExportPlacements for 0th volume world
 VGM info:      0th daughter vol = box  simple placement: box
 VGM info:      1th daughter vol = box_refl  simple placement: box
@@ -1295,6 +1581,8 @@ VGM info:      28th daughter vol = hype  simple placement: hype
 VGM info:      29th daughter vol = hype_refl  simple placement: hype
 VGM info:      30th daughter vol = paraboloid  simple placement: paraboloid
 VGM info:      31th daughter vol = paraboloid_refl  simple placement: paraboloid
+VGM info:      32th daughter vol = tessellated  simple placement: tessellated
+VGM info:      33th daughter vol = tessellated_refl  simple placement: tesselled
 VGM info:   ExportPlacements for 1th volume box
 VGM info:   ExportPlacements for 2th volume box_refl
 VGM info:   ExportPlacements for 3th volume cons
@@ -1327,6 +1615,8 @@ VGM info:   ExportPlacements for 29th volume hype
 VGM info:   ExportPlacements for 30th volume hype_refl
 VGM info:   ExportPlacements for 31th volume paraboloid
 VGM info:   ExportPlacements for 32th volume paraboloid_refl
+VGM info:   ExportPlacements for 33th volume tessellated
+VGM info:   ExportPlacements for 34th volume tessellated_refl
 Info in <TGeoManager::SetTopVolume>: Top volume is world. Master volume is world
 Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
 Export finished
@@ -1336,8 +1626,8 @@ Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
 Info in <TGeoManager::CloseGeometry>: Counting nodes...
 Info in <TGeoManager::Voxelize>: Voxelizing...
 Info in <TGeoManager::CloseGeometry>: Building cache...
-Info in <TGeoManager::CountLevels>: max level = 1, max placements = 32
-Info in <TGeoManager::CloseGeometry>: 33 nodes/ 33 volume UID's in VGM Root geometry
+Info in <TGeoManager::CountLevels>: max level = 1, max placements = 34
+Info in <TGeoManager::CloseGeometry>: 35 nodes/ 35 volume UID's in VGM Root geometry
 Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
 Info in <TGeoManager::Export>: Exporting VGM Root geometry VGM Root geometry as root file. Optimizations streamed.
 Visualization Manager instantiating with verbosity "warnings (3)"...
@@ -1352,9 +1642,12 @@ Registered graphics systems are:
   RayTracer (RayTracer)
   VRML2FILE (VRML2FILE)
   gMocrenFile (gMocrenFile)
+  TOOLSSG_OFFSCREEN (TSG_OFFSCREEN)
+  TOOLSSG_OFFSCREEN (TSG_OFFSCREEN, TSG_FILE)
   OpenGLImmediateX (OGLIX, OGLI)
   OpenGLStoredX (OGLSX, OGL, OGLS)
   RayTracerX (RayTracerX)
+  TOOLSSG_X11_GLES (TSG_X11_GLES, TSGX11, TSG)
 
 Registering model factories...
 

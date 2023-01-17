@@ -6,7 +6,7 @@
 <xi:include href="StandardColors.agdd"/>
 
 <materials  version = "Id"
-            date    = "2022-01-27"
+            date    = "2023-01-17"
             author  = "VGM AGGD Writer"
             DTD_version="v7"  >
 
@@ -23,7 +23,7 @@
 </materials>
 
 <media  version = "Id"
-        date    = "2022-01-27"
+        date    = "2023-01-17"
         author  = "VGM AGGD Writer"
         DTD_version="v7"  >
 
@@ -38,13 +38,13 @@
 <section DTD_version = "v7"
          name        = "world"
          version     = "Id"
-         date        = "2022-01-27"
+         date        = "2023-01-17"
          author      = "VGM AGGD Writer"
          top_volume  = "world_comp"  >
 
    <box    name="world"
       medium="Basic"
-      X_Y_Z="1240.0000; 600.0000; 600.0000" />
+      X_Y_Z="1600.0000; 600.0000; 600.0000" />
 
    <box    name="box"
       medium="Basic"
@@ -262,6 +262,18 @@
       medium="Basic"
       X_Y_Z=" 0.2000;  0.2000;  0.2000" />
 
+   <!-- !!! unsupported shape  !!!  name= "tessellated" -->
+   <!-- dummy box is written instead  -->
+   <box    name="tessellated"
+      medium="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
+   <!-- !!! unsupported shape  !!!  name= "tessellated_refl" -->
+   <!-- dummy box is written instead  -->
+   <box    name="tessellated_refl"
+      medium="Basic"
+      X_Y_Z=" 0.2000;  0.2000;  0.2000" />
+
 
    <composition name="world_comp">
       <posXYZ   X_Y_Z="-500.0000; -150.0000; 100.0000"> <volume name="box"/>
@@ -330,6 +342,10 @@
       <posXYZ   X_Y_Z="550.0000; 150.0000; 100.0000"> <volume name="paraboloid"/>
       </posXYZ>
       <posXYZ   X_Y_Z="550.0000; 150.0000; -100.0000"> <volume name="paraboloid_refl"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="700.0000; 150.0000; 100.0000"> <volume name="tessellated"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="700.0000; 150.0000; -100.0000"> <volume name="tessellated_refl"/>
       </posXYZ>
    </composition>
 

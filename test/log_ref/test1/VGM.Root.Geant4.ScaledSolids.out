@@ -1,22 +1,15 @@
 
 =============================================================
  Virtual Geometry Model 
- Version 5.0 ( 27 January 2022 )
+ Version 5.1 ( 17 January 2023 )
  WWW : https://vmc-project.github.io/vgm-documentation/
 =============================================================
 
 Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometry created
-Warning in <TGeoManager>: Changing system of units to ROOT units (cm, s, GeV).
 Root geometry will be defined via VGM and exported to Geant4
 
-
-          ################################
-          !!! G4Backtrace is activated !!!
-          ################################
-
-
 **************************************************************
- Geant4 version Name: geant4-11-00-ref-00    (10-December-2021)
+ Geant4 version Name: geant4-11-01    (9-December-2022)
                        Copyright : Geant4 Collaboration
                       References : NIM A 506 (2003), 250-303
                                  : IEEE-TNS 53 (2006), 270-278
@@ -114,7 +107,7 @@ VGM info:   Exporting medium:
 VGM info:   Medium: "Tungsten"  material Tungsten g/cm3  parameters:  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
 VGM info:   Exporting volume store: 
 VGM info:      Exporting solid: 
-VGM info:      Box  "worldS"  hx = 6200mm  hy = 3000mm  hz = 3000mm
+VGM info:      Box  "worldS"  hx = 8000mm  hy = 3000mm  hz = 3000mm
 VGM info:   Exporting volume:  0th  "world"  material: "Basic"
 VGM info:      Exporting solid: 
 VGM info:      Scaled  "boxS"    Constituent = Box  "boxS"  hx = 200mm  hy = 600mm  hz = 500mm
@@ -304,6 +297,69 @@ VGM info:      Scaled  "paraboloidS"    Constituent = Paraboloid  "paraboloidS" 
 VGM info:      Exporting solid: 
 VGM info:      Paraboloid  "paraboloidS"  r1 = 200mm  r2 = 450mm  hz = 500mm
 VGM info:   Exporting volume:  16th  "paraboloid"  material: "Basic"
+VGM info:      Exporting solid: 
+VGM info:      Scaled  "tessellatedS"    Constituent = Tessellated  "tessellatedS"
+5 facets:
+Facet #0: 
+   3 vertices:
+     (-500, -500, 0) mm
+     (500, -500, 0) mm
+     (0, 0, 500) mm
+Facet #1: 
+   3 vertices:
+     (500, -500, 0) mm
+     (500, 500, 0) mm
+     (0, 0, 500) mm
+Facet #2: 
+   3 vertices:
+     (500, 500, 0) mm
+     (-500, 500, 0) mm
+     (0, 0, 500) mm
+Facet #3: 
+   3 vertices:
+     (-500, 500, 0) mm
+     (-500, -500, 0) mm
+     (0, 0, 500) mm
+Facet #4: 
+   4 vertices:
+     (-500, -500, 0) mm
+     (-500, 500, 0) mm
+     (500, 500, 0) mm
+     (500, -500, 0) mm
+
+  Scale (object):  ( 0.8,  0.5,  0.25) 
+
+VGM info:      Exporting solid: 
+VGM info:      Tessellated  "tessellatedS"
+5 facets:
+Facet #0: 
+   3 vertices:
+     (-500, -500, 0) mm
+     (500, -500, 0) mm
+     (0, 0, 500) mm
+Facet #1: 
+   3 vertices:
+     (500, -500, 0) mm
+     (500, 500, 0) mm
+     (0, 0, 500) mm
+Facet #2: 
+   3 vertices:
+     (500, 500, 0) mm
+     (-500, 500, 0) mm
+     (0, 0, 500) mm
+Facet #3: 
+   3 vertices:
+     (-500, 500, 0) mm
+     (-500, -500, 0) mm
+     (0, 0, 500) mm
+Facet #4: 
+   4 vertices:
+     (-500, -500, 0) mm
+     (-500, 500, 0) mm
+     (500, 500, 0) mm
+     (500, -500, 0) mm
+
+VGM info:   Exporting volume:  17th  "tessellated"  material: "Basic"
 VGM info:   ExportPlacements for 0th volume world
 VGM info:      0th daughter vol = box  simple placement: box
 VGM info:      1th daughter vol = box  simple placement: box
@@ -401,6 +457,12 @@ VGM info:   Importing LV: paraboloid_refl
 VGM info:   Importing solid: paraboloidS_refl
 VGM info:   ImportDaughters for paraboloid_refl
 VGM info:   ImportPositions for lv paraboloid_refl nofDaughters: 0
+VGM info:      32th daughter vol = tessellated  simple placement: tessellated
+VGM info:      33th daughter vol = tessellated  simple placement: tessellated
+VGM info:   Importing LV: tessellated_refl
+VGM info:   Importing solid: tessellatedS_refl
+VGM info:   ImportDaughters for tessellated_refl
+VGM info:   ImportPositions for lv tessellated_refl nofDaughters: 0
 VGM info:   ExportPlacements for 1th volume box
 VGM info:   ExportPlacements for 2th volume cons
 VGM info:   ExportPlacements for 3th volume eltu
@@ -417,6 +479,7 @@ VGM info:   ExportPlacements for 13th volume xtru1
 VGM info:   ExportPlacements for 14th volume xtru2
 VGM info:   ExportPlacements for 15th volume hype
 VGM info:   ExportPlacements for 16th volume paraboloid
+VGM info:   ExportPlacements for 17th volume tessellated
 Export finished
 Go to save Root geometry
 Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
@@ -424,8 +487,8 @@ Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
 Info in <TGeoManager::CloseGeometry>: Counting nodes...
 Info in <TGeoManager::Voxelize>: Voxelizing...
 Info in <TGeoManager::CloseGeometry>: Building cache...
-Info in <TGeoManager::CountLevels>: max level = 1, max placements = 32
-Info in <TGeoManager::CloseGeometry>: 33 nodes/ 17 volume UID's in VGM Root geometry
+Info in <TGeoManager::CountLevels>: max level = 1, max placements = 34
+Info in <TGeoManager::CloseGeometry>: 35 nodes/ 18 volume UID's in VGM Root geometry
 Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
 Info in <TGeoManager::Export>: Exporting VGM Root geometry VGM Root geometry as root file. Optimizations streamed.
 Visualization Manager instantiating with verbosity "warnings (3)"...
@@ -440,9 +503,12 @@ Registered graphics systems are:
   RayTracer (RayTracer)
   VRML2FILE (VRML2FILE)
   gMocrenFile (gMocrenFile)
+  TOOLSSG_OFFSCREEN (TSG_OFFSCREEN)
+  TOOLSSG_OFFSCREEN (TSG_OFFSCREEN, TSG_FILE)
   OpenGLImmediateX (OGLIX, OGLI)
   OpenGLStoredX (OGLSX, OGL, OGLS)
   RayTracerX (RayTracerX)
+  TOOLSSG_X11_GLES (TSG_X11_GLES, TSGX11, TSG)
 
 Registering model factories...
 
