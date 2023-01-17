@@ -9,6 +9,20 @@
 
  The Virtual Geometry Model - Versions
 =========================================
+  17/01/2023
+  version 5.1
+    New features:
+    - Migration to Geant4 11.1
+    - Added support for Root tessellated solid
+      - Added tessellated solid in vgm_test - Solids
+
+    Fixes:
+    - Fixed test for macOS with SIP enabled
+
+    Tested with Root 6.24/10, Geant4 11.1
+    (with embedded CLHEP 2.4.6.2.)
+    Mac OSX 12.6: with Apple clang version 14.0.0
+
   27/01/2022
   version 5.0
     New features:
