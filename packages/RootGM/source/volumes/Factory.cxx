@@ -51,6 +51,7 @@
 #include "RootGM/volumes/Volume.h"
 #include "RootGM/volumes/VolumeMap.h"
 
+#include "RVersion.h"
 #include "TGeoArb8.h"
 #include "TGeoCompositeShape.h"
 #include "TGeoCone.h"
@@ -73,7 +74,6 @@
 #include "TGeoVolume.h"
 #include "TGeoXtru.h"
 #include "TObjArray.h"
-#include "RVersion.h"
 
 #include <algorithm>
 
@@ -89,10 +89,10 @@ RootGM::Factory::Factory()
   if (!gGeoManager) new TGeoManager("VGM Root geometry", "VGM Root geometry");
 
 #if ROOT_VERSION_CODE >= ROOT_VERSION(6, 22, 8)
-    // Set Root default units to TGeo
-    TGeoManager::LockDefaultUnits(false);
-    TGeoManager::SetDefaultUnits(TGeoManager::kRootUnits);
-    TGeoManager::LockDefaultUnits(true);
+  // Set Root default units to TGeo
+  TGeoManager::LockDefaultUnits(false);
+  TGeoManager::SetDefaultUnits(TGeoManager::kRootUnits);
+  TGeoManager::LockDefaultUnits(true);
 #endif
 }
 
@@ -816,12 +816,11 @@ VGM::ISolid* RootGM::Factory::CreateSphere(const std::string& name, double rin,
 }
 
 //_____________________________________________________________________________
-VGM::ISolid* RootGM::Factory::CreateTessellatedSolid(const std::string& name,
-  std::vector<std::vector<VGM::ThreeVector> > facets)
+VGM::ISolid* RootGM::Factory::CreateTessellatedSolid(
+  const std::string& name, std::vector<std::vector<VGM::ThreeVector> > facets)
 {
   //
-  return Register(
-    new RootGM::TessellatedSolid(name, facets));
+  return Register(new RootGM::TessellatedSolid(name, facets));
 }
 
 //_____________________________________________________________________________
@@ -1010,6 +1009,33 @@ VGM::IPlacement* RootGM::Factory::CreateMultiplePlacement(
 
     return placement;
   }
+}
+
+//_____________________________________________________________________________
+VGM::IPlacement* RootGM::Factory::CreateParameterisedPlacement(
+  const std::string& name, const std::map<int, VGM::IVolume*>& newVolumes,
+  VGM::IVolume* motherVolume, const std::vector<VGM::Transform>& Transforms)
+{
+  //
+  // Cannot be top volume
+  if (!motherVolume) {
+    std::cerr << "    RootGM::Factory::CreateParameterisedPlacement:"
+              << std::endl;
+    std::cerr << "    Mother volume not defined!" << std::endl;
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl;
+    exit(1);
+  }
+
+  VGM::IVolume* vol = nullptr;
+  for (size_t i = 0; i < Transforms.size(); ++i) {
+    std::map<int, VGM::IVolume*>::const_iterator it = newVolumes.find(i);
+    if (it != newVolumes.end()) {
+      vol = it->second;
+    }
+    CreatePlacement(name, i, vol, motherVolume, Transforms[i]);
+  }
+
+  return 0;
 }
 
 //_____________________________________________________________________________

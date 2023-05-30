@@ -68,6 +68,9 @@ class Placement : public BaseVGM::VPlacement
   virtual bool MultiplePlacementData(VGM::Axis& axis, int& nofItems,
     double& width, double& offset, double& halfGap) const;
 
+  virtual bool ParameterisedPlacementData(
+    std::vector<VGM::Transform>& Transforms) const;
+
  protected:
   Placement();
   Placement(const Placement& rhs);

@@ -32,7 +32,7 @@ enum PlacementType
 {
   kSimplePlacement,
   kMultiplePlacement,
-  // kParameterised,
+  kParameterised,
   kUnknownPlacement
 };
 
@@ -73,6 +73,12 @@ class IPlacement
   /// return false if not multiple placement
   virtual bool MultiplePlacementData(VGM::Axis& axis, int& nofItems,
     double& width, double& offset, double& halfGap) const = 0;
+  ///
+  /// Fill the parameterised placement data
+  /// if relevant and return true;
+  /// return false if not parameterised placement
+  virtual bool ParameterisedPlacementData(
+    std::vector<VGM::Transform>& Transforms) const = 0;
 
   /// Put the printing of the placement parameters
   /// in the out stream
