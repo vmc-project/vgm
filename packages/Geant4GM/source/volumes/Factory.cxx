@@ -434,7 +434,7 @@ void Geant4GM::Factory::ImportDaughters(G4LogicalVolume* lv)
 
   std::map<std::pair<G4VSolid*, G4Material*>, int> LocalSolidMaterialStore;
 
-  for (int i = 0; i < lv->GetNoDaughters(); i++) {
+  for (size_t i = 0; i < lv->GetNoDaughters(); i++) {
     // first we try to import the daugther
     G4LogicalVolume* dLV = lv->GetDaughter(i)->GetLogicalVolume();
     VGM::IVolume* dVolume = Geant4GM::VolumeMap::Instance()->GetVolume(dLV);
@@ -507,7 +507,7 @@ void Geant4GM::Factory::ImportPositions()
       std::cout << std::endl;
     }
 
-    for (int id = 0; id < lv->GetNoDaughters(); id++) {
+    for (size_t id = 0; id < lv->GetNoDaughters(); id++) {
 
       G4VPhysicalVolume* dPV = lv->GetDaughter(id);
       G4LogicalVolume* dLV = dPV->GetLogicalVolume();
@@ -552,7 +552,7 @@ void Geant4GM::Factory::ImportPositions(G4LogicalVolume* lv)
 
   VGM::IVolume* volume = Geant4GM::VolumeMap::Instance()->GetVolume(lv);
 
-  for (int id = 0; id < lv->GetNoDaughters(); id++) {
+  for (size_t id = 0; id < lv->GetNoDaughters(); id++) {
 
     G4VPhysicalVolume* dPV = lv->GetDaughter(id);
 
