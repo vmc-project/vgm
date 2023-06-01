@@ -79,7 +79,7 @@ int main(int argc, char** argv)
     std::cerr << "          inputFactory  = AGDD, Geant4, Root" << std::endl;
     std::cerr << "          outputFactory = Geant4, Root, None" << std::endl;
     std::cerr << "          outputXML     = AGDD, GDML, noXML" << std::endl;
-    std::cerr << "          selectedTest  = Solids, NewSolid, Placements[2], "
+    std::cerr << "          selectedTest  = Solids, NewSolid, Placements[3], "
                  "Reflections"
               << std::endl;
     std::cerr

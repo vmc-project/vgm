@@ -38,6 +38,7 @@ class TstGeometryViaGeant4 : public TstVGeometry
   virtual void* TestNewSolid2();
   virtual void* TestPlacements();
   virtual void* TestPlacements2(G4bool bestMatch);
+  virtual void* TestPlacements3();
   virtual void* TestReflections(G4bool fullPhi);
   virtual void* TestScaledSolids(G4bool fullPhi);
   virtual void* TestAssemblies();

@@ -28,7 +28,8 @@
 #include "G4SolidStore.hh"
 
 const G4String TstDetectorConstruction::fgkTestNameCandidates =
-  "Solids NewSolid NewSolid2 ExtraSolid Placements Placements2 Reflections "
+  "Solids NewSolid NewSolid2 ExtraSolid Placements Placements2 Placements3 "
+  "Reflections "
   "Assemblies1 Assemblies2 BooleanSolids1 BooleanSolids2 BooleanSolids3 "
   "BooleanSolids4 BooleanSolids5 BooleanSolids6 BooleanSolids7 ScaledSolids "
   "Special DisplacedSolids1 DisplacedSolids2 MultiUnion Special SingleMode";
@@ -118,6 +119,10 @@ G4VPhysicalVolume* TstDetectorConstruction::Construct()
   }
   else if (fSelectedTest == "Placements2") {
     world = fGeometry->TestPlacements2(fBestMatchMode);
+    std::cout << "TestPlacements finished" << std::endl;
+  }
+  else if (fSelectedTest == "Placements3") {
+    world = fGeometry->TestPlacements3();
     std::cout << "TestPlacements finished" << std::endl;
   }
   else if (fSelectedTest == "Reflections") {
@@ -474,7 +479,7 @@ void TstDetectorConstruction::DrawRootGeometry() const
 
   // Draw Root geometry
   //
-  new TCanvas("vgm","vgm test",200,10,700,500);
+  new TCanvas("vgm", "vgm test", 200, 10, 700, 500);
   gGeoManager->SetVisLevel(4);
   gGeoManager->SetVisOption(0);
   gGeoManager->GetTopVolume()->SetVisContainers(kTRUE);
