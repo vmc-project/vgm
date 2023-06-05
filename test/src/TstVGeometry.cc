@@ -34,6 +34,14 @@ TstVGeometry::~TstVGeometry()
 }
 
 //_____________________________________________________________________________
+void* TstVGeometry::TestPlacements3()
+{
+  //
+  std::cerr << "TstVGeometry::TestPlacements3 is not implemented." << std::endl;
+  exit(1);
+}
+
+//_____________________________________________________________________________
 void* TstVGeometry::TestAssemblies()
 {
   //

@@ -56,18 +56,20 @@ void PrintVersion()
 {
   /// Prints the  version banner
 
-  std::cout
-    << std::endl
-    << "============================================================="
-    << std::endl << " Virtual Geometry Model " << std::endl << " Version "
-    << VGM_RELEASE << " ( " << VGM_RELEASE_DATE << " )"
-    << std::endl << " WWW : https://vmc-project.github.io/vgm-documentation/"
-    << std::endl
-    << "============================================================="
-    << std::endl << std::endl;
+  std::cout << std::endl
+            << "============================================================="
+            << std::endl
+            << " Virtual Geometry Model " << std::endl
+            << " Version " << VGM_RELEASE << " ( " << VGM_RELEASE_DATE << " )"
+            << std::endl
+            << " WWW : https://vmc-project.github.io/vgm-documentation/"
+            << std::endl
+            << "============================================================="
+            << std::endl
+            << std::endl;
 }
 
-}
+} // namespace
 
 //_____________________________________________________________________________
 BaseVGM::VFactory::VFactory(
@@ -297,7 +299,7 @@ VGM::ISolid* BaseVGM::VFactory::ExportSolid(
     std::vector<VGM::TwoVector> polygon;
     for (int i = 0; i < xtru->NofVertices(); ++i)
       polygon.push_back(xtru->Vertex(i));
-    std::vector<std::vector<double> > zsections;
+    std::vector<std::vector<double>> zsections;
     for (int i = 0; i < xtru->NofZSections(); ++i) {
       std::vector<double> zsection;
       zsection.push_back(xtru->ZPosition(i));
@@ -349,7 +351,7 @@ VGM::ISolid* BaseVGM::VFactory::ExportSolid(
     VGM::ITessellatedSolid* tessellated =
       dynamic_cast<VGM::ITessellatedSolid*>(solid);
 
-    std::vector<std::vector<VGM::ThreeVector> > facets;
+    std::vector<std::vector<VGM::ThreeVector>> facets;
     for (int i = 0; i < tessellated->NofFacets(); ++i) {
       std::vector<VGM::ThreeVector> facet;
       for (int j = 0; j < tessellated->NofVertices(i); ++j) {
@@ -525,6 +527,70 @@ VGM::IPlacement* BaseVGM::VFactory::ExportMultiplePlacement(
 }
 
 //_____________________________________________________________________________
+VGM::IPlacement* BaseVGM::VFactory::ExportParameterisedPlacement(
+  VGM::IPlacement* placement, VGM::IFactory* factory,
+  VolumeMap* volumeMap) const
+{
+  // Exports parameterised placement.
+  // ---
+
+  // Daughters might be anywhere inside the mothers with any rotations. We
+  // extract the transformations first
+  std::vector<VGM::Transform> Transforms;
+  placement->ParameterisedPlacementData(Transforms);
+
+#ifndef NEW_DEBUG
+  if (Debug() > 0) {
+    std::cout << "  parameterised placement - transforms: " << std::endl;
+    for (VGM::Transform& tr : Transforms) {
+      std::cout << tr << std::endl;
+    }
+  }
+#endif
+
+  VGM::IVolume* newVolume = (*volumeMap)[placement->Volume()];
+  VGM::IVolume* newMother = (*volumeMap)[placement->Mother()];
+
+  // Daughters may also change solids or materials. We account for that where we
+  // search for all volumes in the store now that have names associated to the
+  // original volume
+  std::map<int, VGM::IVolume*> newVolumes;
+
+  // Of course we need to store the first daugther
+  newVolumes.insert(std::make_pair(0, newVolume));
+
+  std::string NameVol = newVolume->Name();
+  for (auto vol : *volumeMap) {
+    std::string NameHere = vol.first->Name();
+    // Test if we find volume names that match the original daughter + "_x",
+    // where x is indicating the first element during parameterisation that
+    // should use this new volume.
+    if (NameHere.find(NameVol) != std::string::npos && NameHere != NameVol) {
+      // Get rid of the "_" and the original name to extract the first element
+      // position that the new volume should represent
+      std::string Ending = NameHere.substr(NameVol.size() + 1);
+      newVolumes.insert(
+        std::make_pair(std::stoi(Ending), (*volumeMap)[vol.first]));
+    }
+  }
+
+#ifndef NEW_DEBUG
+  if (Debug() > 0) {
+    std::cout << "  parameterised placement - number of different volumes "
+                 "during parameterisation: "
+              << std::endl;
+    for (auto& p : newVolumes) {
+      std::cout << "Volume from element " << p.first << ": " << p.second->Name()
+                << std::endl;
+    }
+  }
+#endif
+
+  return factory->CreateParameterisedPlacement(
+    placement->Name(), newVolumes, newMother, Transforms);
+}
+
+//_____________________________________________________________________________
 void BaseVGM::VFactory::ExportPlacements(
   VGM::IFactory* factory, VolumeMap* volumeMap) const
 {
@@ -580,6 +646,9 @@ void BaseVGM::VFactory::ExportPlacements(
       }
       else if (daughter->Type() == VGM::kMultiplePlacement) {
         ExportMultiplePlacement(daughter, factory, volumeMap);
+      }
+      else if (daughter->Type() == VGM::kParameterised) {
+        ExportParameterisedPlacement(daughter, factory, volumeMap);
       }
       else {
         std::cout << std::endl;

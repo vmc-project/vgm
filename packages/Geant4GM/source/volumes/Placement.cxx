@@ -30,13 +30,17 @@
 #include "Geant4GM/volumes/PlacementMap.h"
 #include "Geant4GM/volumes/VolumeMap.h"
 
+#include "G4LogicalVolume.hh"
+#include "G4Material.hh"
 #include "G4PVDivision.hh"
+#include "G4PVParameterised.hh"
 #include "G4PVPlacement.hh"
 #include "G4PVReplica.hh"
 #include "G4ReflectionFactory.hh"
 #include "G4ReplicatedSlice.hh"
 #include "G4VDivisionParameterisation.hh"
 #include "G4VPhysicalVolume.hh"
+#include "G4VSolid.hh"
 
 //_____________________________________________________________________________
 Geant4GM::Placement::Placement(
@@ -143,9 +147,8 @@ VGM::Axis Geant4GM::Placement::GetAxis(EAxis axis)
 //_____________________________________________________________________________
 VGM::PlacementType Geant4GM::Placement::Type() const
 {
-  // TO DO: add check for general parameterised volume
-  // return VGM::kUnknownPlacement;
-  // not yet supported
+  if (dynamic_cast<G4PVParameterised*>(fPhysicalVolume))
+    return VGM::kParameterised;
 
   if (fPhysicalVolume->IsParameterised() || fPhysicalVolume->IsReplicated())
     return VGM::kMultiplePlacement;
@@ -256,5 +259,42 @@ bool Geant4GM::Placement::MultiplePlacementData(VGM::Axis& axis, int& nofItems,
   width *= ClhepVGM::Units::AxisUnit(axis);
   halfGap *= ClhepVGM::Units::AxisUnit(axis);
 
+  return true;
+}
+
+//_____________________________________________________________________________
+bool Geant4GM::Placement::ParameterisedPlacementData(
+  std::vector<VGM::Transform>& Transforms) const
+{
+  // Fill data only if parameterised placement
+  if (Type() != VGM::kParameterised) return false;
+
+  G4PVParameterised* ParaPhysicalVolume =
+    dynamic_cast<G4PVParameterised*>(fPhysicalVolume);
+  if (!ParaPhysicalVolume) {
+    std::cerr << "    Geant4GM::Placement::ParameterisedPlacementData: "
+              << std::endl;
+    std::cerr << "    Physical volume is not parameterised..." << std::endl;
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl;
+    exit(1);
+  }
+
+  G4VPVParameterisation* pPara = ParaPhysicalVolume->GetParameterisation();
+  if (!pPara) {
+    std::cerr << "    Geant4GM::Placement::ParameterisedPlacementData: "
+              << std::endl;
+    std::cerr << "    Incorrect parameterisation type for G4PVParameterised"
+              << std::endl;
+    std::cerr << "    (G4VPVParameterisation type was expected.)" << std::endl;
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl;
+    exit(1);
+  }
+
+  for (int i = 0; i < ParaPhysicalVolume->GetMultiplicity(); ++i) {
+    pPara->ComputeTransformation(i, ParaPhysicalVolume);
+    Transforms.emplace_back(
+      ClhepVGM::Transform(*ParaPhysicalVolume->GetObjectRotation(),
+        ParaPhysicalVolume->GetObjectTranslation()));
+  }
   return true;
 }

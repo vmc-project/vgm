@@ -102,6 +102,8 @@ class VFactory : public virtual VGM::IFactory
     VGM::IFactory* factory, VolumeMap* volumeMap) const;
   VGM::IPlacement* ExportMultiplePlacement(VGM::IPlacement* placement,
     VGM::IFactory* factory, VolumeMap* volumeMap) const;
+  VGM::IPlacement* ExportParameterisedPlacement(VGM::IPlacement* placement,
+    VGM::IFactory* factory, VolumeMap* volumeMap) const;
   void ExportPlacements(VGM::IFactory* factory, VolumeMap* map) const;
 
   VGM::Transform Identity() const;

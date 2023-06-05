@@ -65,6 +65,7 @@
 #include "G4LogicalVolumeStore.hh"
 #include "G4MultiUnion.hh"
 #include "G4PVDivisionFactory.hh"
+#include "G4PVParameterised.hh"
 #include "G4Para.hh"
 #include "G4Paraboloid.hh"
 #include "G4Polycone.hh"
@@ -422,17 +423,61 @@ void Geant4GM::Factory::ImportDaughters(G4LogicalVolume* lv)
     std::cout << "ImportDaughters for " << lv->GetName() << std::endl;
   }
 
+  // For parameterised volumes, the daugthers might change in solids and
+  // materials. Geant4 internally can not account for this while looping over
+  // daugthers because the logical volume is always the same. During
+  // parameterisation, only the solid and material is replaced. The actual
+  // logical volume pointer stays the same. To overcome this issue, we introduce
+  // a map of solids and materials to determine if we need a new volume to
+  // describe certain parts in parameterised volumes. All non parameterised
+  // volumes should be unaffected sind there is no change in solid / material
+
+  std::map<std::pair<G4VSolid*, G4Material*>, int> LocalSolidMaterialStore;
+
   for (size_t i = 0; i < lv->GetNoDaughters(); i++) {
-
+    // first we try to import the daugther
     G4LogicalVolume* dLV = lv->GetDaughter(i)->GetLogicalVolume();
-
     VGM::IVolume* dVolume = Geant4GM::VolumeMap::Instance()->GetVolume(dLV);
 
     if (!dVolume) {
       // Import logical volume
-      dVolume = ImportLV(dLV);
+      ImportLV(dLV);
+    }
 
-      // Process its daughters
+    // we also import in our local store
+    LocalSolidMaterialStore.insert(
+      std::make_pair(std::make_pair(dLV->GetSolid(), dLV->GetMaterial()), 0));
+
+    // now we check if the daugther is parameterised.
+    G4PVParameterised* ParaPhysVol =
+      dynamic_cast<G4PVParameterised*>(lv->GetDaughter(i));
+    if (ParaPhysVol) {
+      G4LogicalVolume* localLV = ParaPhysVol->GetLogicalVolume();
+      // Loop over parameterisations and check if the solids / materials change
+      // during parameterisation
+      for (int k = 0; k < ParaPhysVol->GetMultiplicity(); ++k) {
+        // compute transformations.
+        G4VPVParameterisation* pParam = ParaPhysVol->GetParameterisation();
+        G4VSolid* pSolid = pParam->ComputeSolid(k, ParaPhysVol);
+        pSolid->ComputeDimensions(pParam, k, ParaPhysVol);
+        G4Material* pMat = pParam->ComputeMaterial(k, ParaPhysVol);
+
+        // If the solid / material changes, create new logical volume and import
+        if (LocalSolidMaterialStore
+              .insert(std::make_pair(std::make_pair(pSolid, pMat), 0))
+              .second == true) {
+          // Naming convention: Original name + "_" + first place in
+          // parameterisation where this new volume is needed. We can extract
+          // this information from the naming scheme later during placement
+          // again.
+          ImportLV(new G4LogicalVolume(
+            pSolid, pMat, localLV->GetName() + "_" + std::to_string(k)));
+        }
+      }
+    }
+
+    if (!dVolume) {
+      // Process daughters of this logical volume
       ImportDaughters(dLV);
     }
   }
@@ -1132,6 +1177,32 @@ VGM::IPlacement* Geant4GM::Factory::CreateMultiplePlacement(
 
   return placement1;
   // should allow to return a list of placements
+}
+
+//_____________________________________________________________________________
+VGM::IPlacement* Geant4GM::Factory::CreateParameterisedPlacement(
+  const std::string& name, const std::map<int, VGM::IVolume*>& newVolumes,
+  VGM::IVolume* motherVolume, const std::vector<VGM::Transform>& Transforms)
+{
+  //
+  // Cannot be top volume
+  if (!motherVolume) {
+    std::cerr << "    Geant4GM::Factory::CreateParameterisedPlacement:"
+              << std::endl;
+    std::cerr << "    Mother volume not defined!" << std::endl;
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl;
+    exit(1);
+  }
+  VGM::IVolume* vol = nullptr;
+
+  for (size_t i = 0; i < Transforms.size(); ++i) {
+    std::map<int, VGM::IVolume*>::const_iterator it = newVolumes.find(i);
+    if (it != newVolumes.end()) {
+      vol = it->second;
+    }
+    CreatePlacement(name, i, vol, motherVolume, Transforms[i]);
+  }
+  return 0;
 }
 
 //_____________________________________________________________________________

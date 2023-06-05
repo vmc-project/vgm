@@ -447,3 +447,16 @@ bool RootGM::Placement::MultiplePlacementData(VGM::Axis& axis, int& nofItems,
 
   return true;
 }
+
+//_____________________________________________________________________________
+bool RootGM::Placement::ParameterisedPlacementData(
+  std::vector<VGM::Transform>&) const
+{
+  // I think this is not usefull in ROOT anyways but we need it here since the
+  // class would be abstract elsewise. If it turns out to be needed, this has to
+  // be implemented
+  std::cout << "Please implement RootGM::Placement::ParameterisedPlacementData "
+               "if you need to use it!"
+            << std::endl;
+  abort();
+}
