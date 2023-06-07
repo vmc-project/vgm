@@ -21,6 +21,7 @@
 #define GEANT4_GM_VOLUME_MAP_H
 
 #include <map>
+#include <vector>
 
 class G4LogicalVolume;
 
@@ -36,10 +37,8 @@ class VolumeMap
 {
  public:
   typedef std::map<VGM::IVolume*, G4LogicalVolume*> G4VolumeMap;
-  typedef G4VolumeMap::const_iterator G4VolumeMapCIterator;
-
   typedef std::map<G4LogicalVolume*, VGM::IVolume*> VgmVolumeMap;
-  typedef VgmVolumeMap::const_iterator VgmVolumeMapCIterator;
+  typedef std::map<G4LogicalVolume*, std::vector<G4LogicalVolume*>> G4ParamVolumesMap;
 
  public:
   VolumeMap();
@@ -50,11 +49,13 @@ class VolumeMap
 
   // methods
   void AddVolume(VGM::IVolume*, G4LogicalVolume*);
+  void AddParamVolume(G4LogicalVolume*, const std::vector<G4LogicalVolume*>&);
   void Print() const;
 
   // get methods
   G4LogicalVolume* GetVolume(VGM::IVolume* iVolume) const;
   VGM::IVolume* GetVolume(G4LogicalVolume* lv) const;
+  const std::vector<G4LogicalVolume*>& GetParamVolumes(G4LogicalVolume* lv) const;
 
  private:
   VolumeMap(const VolumeMap&);
@@ -65,6 +66,8 @@ class VolumeMap
   // data members
   G4VolumeMap fG4Volumes;
   VgmVolumeMap fVgmVolumes;
+  G4ParamVolumesMap fG4ParamVolumes;
+  std::vector<G4LogicalVolume*> fDummyVector;
 };
 
 } // namespace Geant4GM

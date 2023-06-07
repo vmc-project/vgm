@@ -1013,8 +1013,9 @@ VGM::IPlacement* RootGM::Factory::CreateMultiplePlacement(
 
 //_____________________________________________________________________________
 VGM::IPlacement* RootGM::Factory::CreateParameterisedPlacement(
-  const std::string& name, const std::map<int, VGM::IVolume*>& newVolumes,
-  VGM::IVolume* motherVolume, const std::vector<VGM::Transform>& Transforms)
+  const std::string& name, VGM::IVolume* motherVolume,
+  const std::vector<VGM::Transform>& transforms,
+  const std::vector<VGM::IVolume*>& volumes)
 {
   //
   // Cannot be top volume
@@ -1026,13 +1027,19 @@ VGM::IPlacement* RootGM::Factory::CreateParameterisedPlacement(
     exit(1);
   }
 
-  VGM::IVolume* vol = nullptr;
-  for (size_t i = 0; i < Transforms.size(); ++i) {
-    std::map<int, VGM::IVolume*>::const_iterator it = newVolumes.find(i);
-    if (it != newVolumes.end()) {
-      vol = it->second;
-    }
-    CreatePlacement(name, i, vol, motherVolume, Transforms[i]);
+  // the vector sizes cannot be different
+  if (transforms.size() != volumes.size()) {
+    std::cerr << "    RootGM::Factory::CreateParameterisedPlacement:"
+              << std::endl;
+    std::cerr << "    Transformations and Volumes vector sizes cannot be different!"
+              << std::endl;
+    std::cerr << "*** Error: Aborting execution  ***" << std::endl;
+    exit(1);
+  }
+
+  for (size_t i = 0; i < transforms.size(); ++i) {
+    std::cout << i << " " << volumes[i]->Name() << " " << transforms[i] << std::endl;
+    CreatePlacement(name, i, volumes[i], motherVolume, transforms[i]);
   }
 
   return 0;

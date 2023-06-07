@@ -57,7 +57,8 @@ class Placement : public BaseVGM::VPlacement
     double& width, double& offset, double& halfGap) const;
 
   virtual bool ParameterisedPlacementData(
-    std::vector<VGM::Transform>& Transforms) const;
+    std::vector<VGM::Transform>& transforms,
+    std::vector<VGM::IVolume*>& volumes) const;
 
  protected:
   Placement();

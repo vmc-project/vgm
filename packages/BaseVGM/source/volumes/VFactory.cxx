@@ -534,60 +534,42 @@ VGM::IPlacement* BaseVGM::VFactory::ExportParameterisedPlacement(
   // Exports parameterised placement.
   // ---
 
-  // Daughters might be anywhere inside the mothers with any rotations. We
-  // extract the transformations first
-  std::vector<VGM::Transform> Transforms;
-  placement->ParameterisedPlacementData(Transforms);
+  // Get parameterised placement data
+  std::vector<VGM::Transform> transforms;
+  std::vector<VGM::IVolume*> volumes;
+  placement->ParameterisedPlacementData(transforms, volumes);
 
 #ifndef NEW_DEBUG
+  if (Debug() > 0) {
+    std::cout << "  parameterised placement" << std::endl;
+  }
+#else
   if (Debug() > 0) {
     std::cout << "  parameterised placement - transforms: " << std::endl;
-    for (VGM::Transform& tr : Transforms) {
-      std::cout << tr << std::endl;
+    for (VGM::Transform& tr : transforms) {
+      std::cout << "                  " << tr << std::endl;
     }
   }
 #endif
 
-  VGM::IVolume* newVolume = (*volumeMap)[placement->Volume()];
-  VGM::IVolume* newMother = (*volumeMap)[placement->Mother()];
-
-  // Daughters may also change solids or materials. We account for that where we
-  // search for all volumes in the store now that have names associated to the
-  // original volume
-  std::map<int, VGM::IVolume*> newVolumes;
-
-  // Of course we need to store the first daugther
-  newVolumes.insert(std::make_pair(0, newVolume));
-
-  std::string NameVol = newVolume->Name();
-  for (auto vol : *volumeMap) {
-    std::string NameHere = vol.first->Name();
-    // Test if we find volume names that match the original daughter + "_x",
-    // where x is indicating the first element during parameterisation that
-    // should use this new volume.
-    if (NameHere.find(NameVol) != std::string::npos && NameHere != NameVol) {
-      // Get rid of the "_" and the original name to extract the first element
-      // position that the new volume should represent
-      std::string Ending = NameHere.substr(NameVol.size() + 1);
-      newVolumes.insert(
-        std::make_pair(std::stoi(Ending), (*volumeMap)[vol.first]));
-    }
-  }
-
-#ifndef NEW_DEBUG
   if (Debug() > 0) {
-    std::cout << "  parameterised placement - number of different volumes "
-                 "during parameterisation: "
+    std::cout << "               parameterised volumes: "
               << std::endl;
-    for (auto& p : newVolumes) {
-      std::cout << "Volume from element " << p.first << ": " << p.second->Name()
-                << std::endl;
+    int counter = 0;
+    for (auto& vol : volumes) {
+      std::cout << "                  Volume from element "
+                << counter++ << ": " << " " << vol->Name() << std::endl;
     }
   }
-#endif
+
+  VGM::IVolume* newMother = (*volumeMap)[placement->Mother()];
+  std::vector<VGM::IVolume*> newVolumes;
+  for (auto volume : volumes) {
+    newVolumes.emplace_back((*volumeMap)[volume]);
+  }
 
   return factory->CreateParameterisedPlacement(
-    placement->Name(), newVolumes, newMother, Transforms);
+    placement->Name(), newMother, transforms, newVolumes);
 }
 
 //_____________________________________________________________________________
