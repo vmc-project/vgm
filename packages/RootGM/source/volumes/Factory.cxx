@@ -1038,7 +1038,6 @@ VGM::IPlacement* RootGM::Factory::CreateParameterisedPlacement(
   }
 
   for (size_t i = 0; i < transforms.size(); ++i) {
-    std::cout << i << " " << volumes[i]->Name() << " " << transforms[i] << std::endl;
     CreatePlacement(name, i, volumes[i], motherVolume, transforms[i]);
   }
 

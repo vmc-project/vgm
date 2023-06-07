@@ -474,8 +474,9 @@ void Geant4GM::Factory::ImportDaughters(G4LogicalVolume* lv)
         G4Material* pMat = pParam->ComputeMaterial(k, paraPhysVol);
 
         // If the solid / material changes, create new logical volume and import
-        if (auto itv = localSolidMaterialStore.find(std::make_pair(pSolid, pMat));
-            itv == localSolidMaterialStore.end()) {
+
+        auto itv = localSolidMaterialStore.find(std::make_pair(pSolid, pMat));
+        if (itv == localSolidMaterialStore.end()) {
 
           // Naming convention: Original name + "_" + first place in
           // parameterisation where this new volume is needed.
