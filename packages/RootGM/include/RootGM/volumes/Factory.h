@@ -148,8 +148,9 @@ class Factory : public BaseVGM::VFactory
     int nofItems, double width, double offset, double halfGap);
 
   virtual VGM::IPlacement* CreateParameterisedPlacement(const std::string& name,
-    const std::map<int, VGM::IVolume*>& newVolumes, VGM::IVolume* motherVolume,
-    const std::vector<VGM::Transform>& Transforms);
+    VGM::IVolume* motherVolume,
+    const std::vector<VGM::Transform>& transforms,
+    const std::vector<VGM::IVolume*>& volumes);
 
   // top volume
   //

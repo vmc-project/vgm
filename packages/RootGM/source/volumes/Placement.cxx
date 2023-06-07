@@ -450,7 +450,8 @@ bool RootGM::Placement::MultiplePlacementData(VGM::Axis& axis, int& nofItems,
 
 //_____________________________________________________________________________
 bool RootGM::Placement::ParameterisedPlacementData(
-  std::vector<VGM::Transform>&) const
+  std::vector<VGM::Transform>& /*transforms*/,
+  std::vector<VGM::IVolume*>& /*volumes*/) const
 {
   // I think this is not usefull in ROOT anyways but we need it here since the
   // class would be abstract elsewise. If it turns out to be needed, this has to

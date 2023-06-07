@@ -78,7 +78,8 @@ class IPlacement
   /// if relevant and return true;
   /// return false if not parameterised placement
   virtual bool ParameterisedPlacementData(
-    std::vector<VGM::Transform>& Transforms) const = 0;
+    std::vector<VGM::Transform>& transforms,
+    std::vector<VGM::IVolume*>& volumes) const = 0;
 
   /// Put the printing of the placement parameters
   /// in the out stream

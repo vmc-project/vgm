@@ -147,9 +147,12 @@ VGM::Axis Geant4GM::Placement::GetAxis(EAxis axis)
 //_____________________________________________________________________________
 VGM::PlacementType Geant4GM::Placement::Type() const
 {
-  if (dynamic_cast<G4PVParameterised*>(fPhysicalVolume))
+  // paremeterised volumes with user defined parameterisation
+  if (dynamic_cast<G4PVParameterised*>(fPhysicalVolume) &&
+      (! dynamic_cast<G4PVDivision*>(fPhysicalVolume)))
     return VGM::kParameterised;
 
+  // divisions and replicas
   if (fPhysicalVolume->IsParameterised() || fPhysicalVolume->IsReplicated())
     return VGM::kMultiplePlacement;
 
@@ -264,14 +267,15 @@ bool Geant4GM::Placement::MultiplePlacementData(VGM::Axis& axis, int& nofItems,
 
 //_____________________________________________________________________________
 bool Geant4GM::Placement::ParameterisedPlacementData(
-  std::vector<VGM::Transform>& Transforms) const
+  std::vector<VGM::Transform>& transforms,
+  std::vector<VGM::IVolume*>& volumes) const
 {
   // Fill data only if parameterised placement
   if (Type() != VGM::kParameterised) return false;
 
-  G4PVParameterised* ParaPhysicalVolume =
+  G4PVParameterised* paraPhysicalVolume =
     dynamic_cast<G4PVParameterised*>(fPhysicalVolume);
-  if (!ParaPhysicalVolume) {
+  if (!paraPhysicalVolume) {
     std::cerr << "    Geant4GM::Placement::ParameterisedPlacementData: "
               << std::endl;
     std::cerr << "    Physical volume is not parameterised..." << std::endl;
@@ -279,22 +283,22 @@ bool Geant4GM::Placement::ParameterisedPlacementData(
     exit(1);
   }
 
-  G4VPVParameterisation* pPara = ParaPhysicalVolume->GetParameterisation();
-  if (!pPara) {
-    std::cerr << "    Geant4GM::Placement::ParameterisedPlacementData: "
-              << std::endl;
-    std::cerr << "    Incorrect parameterisation type for G4PVParameterised"
-              << std::endl;
-    std::cerr << "    (G4VPVParameterisation type was expected.)" << std::endl;
-    std::cerr << "*** Error: Aborting execution  ***" << std::endl;
-    exit(1);
+  // Get parameterised volume elements saved in the map with import
+  const auto& g4ParamVolumes = Geant4GM::VolumeMap::Instance()->
+    GetParamVolumes(paraPhysicalVolume->GetLogicalVolume());
+
+  G4VPVParameterisation* pPara = paraPhysicalVolume->GetParameterisation();
+  for (int i = 0; i < paraPhysicalVolume->GetMultiplicity(); ++i) {
+    // transformations
+    pPara->ComputeTransformation(i, paraPhysicalVolume);
+    transforms.emplace_back(
+      ClhepVGM::Transform(*paraPhysicalVolume->GetObjectRotation(),
+        paraPhysicalVolume->GetObjectTranslation()));
+
+    // volumes
+    auto paramVolume = Geant4GM::VolumeMap::Instance()->GetVolume(g4ParamVolumes[i]);
+    volumes.emplace_back(paramVolume);
   }
 
-  for (int i = 0; i < ParaPhysicalVolume->GetMultiplicity(); ++i) {
-    pPara->ComputeTransformation(i, ParaPhysicalVolume);
-    Transforms.emplace_back(
-      ClhepVGM::Transform(*ParaPhysicalVolume->GetObjectRotation(),
-        ParaPhysicalVolume->GetObjectTranslation()));
-  }
   return true;
 }

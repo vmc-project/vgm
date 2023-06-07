@@ -26,7 +26,6 @@
 #include "VGM/common/Transform.h"
 #include "VGM/common/TwoVector.h"
 
-#include <map>
 #include <string>
 #include <vector>
 
@@ -395,19 +394,14 @@ class IFactory
   // for it
 
   /// Create the parameterised volume placement
-  /// \param newVolumes the associated volumes which will be replicated. The key
-  /// (int) of the map shows the first element, corresponding to the value of
-  /// the map (VGM::IVolume). This is introduced, since in Geant4 one can switch
-  /// the solid and material on parameterisation level. This map is to be
-  /// expected of size 1 at least, with value 0, i.e. the volume from 0th entry
-  /// onwards that should be replicated
   /// \param motherVolume the associated mother volume
-  /// \param Transforms Transformations for every replicated
-  /// element. Number of replicas is extracted from size of this vector
+  /// \param transforms transformations for every replicated element
+  /// \param volumes volumes for every replicated element
   ///
   virtual VGM::IPlacement* CreateParameterisedPlacement(const std::string& name,
-    const std::map<int, VGM::IVolume*>& newVolumes, VGM::IVolume* motherVolume,
-    const std::vector<VGM::Transform>& Transforms) = 0;
+    VGM::IVolume* motherVolume,
+    const std::vector<VGM::Transform>& transforms,
+    const std::vector<VGM::IVolume*>& volumes) = 0;
 
   ///
   // top volume
