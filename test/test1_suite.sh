@@ -41,7 +41,7 @@ do
   do
     for outputFactory in None Geant4 Root
     do
-      for selectedTest in Solids Placements Placements2 Reflections ScaledSolids Assemblies1 Assemblies2 BooleanSolids2 DisplacedSolids1 DisplacedSolids2 MultiUnion
+      for selectedTest in Solids Placements Placements2 Placements3 Reflections ScaledSolids Assemblies1 Assemblies2 BooleanSolids2 DisplacedSolids1 DisplacedSolids2 MultiUnion
       do
         DOIT="1"
 
@@ -54,6 +54,7 @@ do
         if [ $inputType  = "VGM"  -a $selectedTest  = "Assemblies1" ]; then DOIT="0";  fi
         if [ $inputType  = "VGM"  -a $selectedTest  = "Assemblies2" ]; then DOIT="0";  fi
         if [ $inputType  = "Root" -a $selectedTest  = "DisplacedSolids2" ]; then DOIT="0";  fi
+        if [ $inputType != "Geant4"  -a $selectedTest = "Placements3" ]; then DOIT="0";  fi
 
         if [ $DOIT = "1" ]; then
           # run test

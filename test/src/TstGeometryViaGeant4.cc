@@ -934,20 +934,35 @@ void* TstGeometryViaGeant4::TestPlacements2(G4bool /*bestMatch*/)
   return (void*)world;
 }
 
-class Placements3Para : public G4VPVParameterisation
+class Placements3FirstLayerPara : public G4VPVParameterisation
 {
  public:
-  Placements3Para(
-    const std::vector<std::pair<G4ThreeVector, G4RotationMatrix*>>& Transforms,
-    G4VSolid* Solid1 = nullptr, G4VSolid* Solid2 = nullptr, int StartSolid2 = 0,
-    G4Material* Mat1 = G4Material::GetMaterial("Scintillator"),
-    G4Material* Mat2 = G4Material::GetMaterial("Tungsten"))
-    : mTransforms(Transforms),
-      mSolid1(Solid1),
-      mSolid2(Solid2),
-      mStartSolid2(StartSolid2),
-      mMat1(Mat1),
-      mMat2(Mat2)
+  Placements3FirstLayerPara(
+    const std::vector<std::pair<G4ThreeVector, G4RotationMatrix*>>& transforms)
+    : mTransforms(transforms)
+  {}
+
+  virtual void ComputeTransformation(
+    const G4int copyNo, G4VPhysicalVolume* physVol) const
+  {
+    physVol->SetTranslation(mTransforms.at(copyNo).first);
+    physVol->SetRotation(mTransforms.at(copyNo).second);
+  }
+
+ private:
+  std::vector<std::pair<G4ThreeVector, G4RotationMatrix*>> mTransforms;
+};
+
+class Placements3SecondLayerPara : public G4VPVParameterisation
+{
+ public:
+  Placements3SecondLayerPara(
+    const std::vector<std::pair<G4ThreeVector, G4RotationMatrix*>>& transforms,
+    G4VSolid* solid1, G4VSolid* solid2, int startSolid2)
+    : mTransforms(transforms),
+      mSolid1(solid1),
+      mSolid2(solid2),
+      mStartSolid2(startSolid2)
   {}
 
   virtual void ComputeTransformation(
@@ -960,13 +975,6 @@ class Placements3Para : public G4VPVParameterisation
   virtual G4Material* ComputeMaterial(
     const G4int copyNo, G4VPhysicalVolume* physVol, const G4VTouchable*)
   {
-    if (!mSolid1) {
-      return G4VPVParameterisation::ComputeMaterial(copyNo, physVol);
-    }
-    if (!mSolid2) {
-      physVol->GetLogicalVolume()->SetVisAttributes(red);
-      return mMat1;
-    }
     if (copyNo < mStartSolid2) {
       physVol->GetLogicalVolume()->SetVisAttributes(red);
       return mMat1;
@@ -977,12 +985,6 @@ class Placements3Para : public G4VPVParameterisation
 
   virtual G4VSolid* ComputeSolid(const G4int copyNo, G4VPhysicalVolume* physVol)
   {
-    if (!mSolid1) {
-      return G4VPVParameterisation::ComputeSolid(copyNo, physVol);
-    }
-    if (!mSolid2) {
-      return mSolid1;
-    }
     if (copyNo < mStartSolid2) {
       return mSolid1;
     }
@@ -991,11 +993,11 @@ class Placements3Para : public G4VPVParameterisation
 
  private:
   std::vector<std::pair<G4ThreeVector, G4RotationMatrix*>> mTransforms;
-  G4VSolid* mSolid1;
-  G4VSolid* mSolid2;
-  int mStartSolid2;
-  G4Material* mMat1;
-  G4Material* mMat2;
+  G4VSolid* mSolid1 = nullptr;
+  G4VSolid* mSolid2 = nullptr;
+  int mStartSolid2 = 0;
+  G4Material* mMat1 = G4Material::GetMaterial("Scintillator");
+  G4Material* mMat2 = G4Material::GetMaterial("Tungsten");
   G4VisAttributes* red = new G4VisAttributes(true, G4Colour(1.0, 0.0, 0.0));
   G4VisAttributes* blue = new G4VisAttributes(true, G4Colour(0.0, 0.0, 1.0));
 };
@@ -1014,68 +1016,67 @@ void* TstGeometryViaGeant4::TestPlacements3()
   worldV->SetVisAttributes(G4VisAttributes::GetInvisible());
 
   // colours
-  G4VisAttributes* yellow_50 =
+  G4VisAttributes* yellow50 =
     new G4VisAttributes(true, G4Colour(1.0, 0.91, 0.13, 0.3));
   G4VisAttributes* lightgreen =
     new G4VisAttributes(true, G4Colour(0.5, 1.0, 0.5));
 
   // build holding box for replication
-  double HalfLengthHolding = 0.4 * m;
-  G4Box* Holding = new G4Box(
-    "Holding", HalfLengthHolding, HalfLengthHolding, HalfLengthHolding);
-  G4LogicalVolume* HoldingLog = new G4LogicalVolume(
-    Holding, G4Material::GetMaterial("Uranium"), "HoldingLog");
-  HoldingLog->SetVisAttributes(yellow_50);
-  new G4PVPlacement(0, CLHEP::Hep3Vector(0, 0, 0), HoldingLog,
-    "HoldingLogPlacement", worldV, false, 0);
+  G4double halfLengthHolding = 0.4 * m;
+  G4Box* holding = new G4Box(
+    "Holding", halfLengthHolding, halfLengthHolding, halfLengthHolding);
+  G4LogicalVolume* holdingLog = new G4LogicalVolume(
+    holding, G4Material::GetMaterial("Uranium"), "Holding");
+  holdingLog->SetVisAttributes(yellow50);
+  new G4PVPlacement(0, CLHEP::Hep3Vector(0, 0, 0), holdingLog,
+    "Holding", worldV, false, 0);
 
-  // build box for first layer
-  double HalfLenghtFirstLayer = HalfLengthHolding / 8.;
-  std::vector<std::pair<G4ThreeVector, G4RotationMatrix*>> Transforms1;
-  Transforms1.emplace_back(std::make_pair(
-    G4ThreeVector(-0.5 * HalfLengthHolding, -0.5 * HalfLengthHolding, 0),
+  G4double halfLenghtFirstLayer = halfLengthHolding / 8.;
+  std::vector<std::pair<G4ThreeVector, G4RotationMatrix*>> transforms1;
+  transforms1.emplace_back(std::make_pair(
+    G4ThreeVector(-0.5 * halfLengthHolding, -0.5 * halfLengthHolding, 0),
     nullptr));
-  Transforms1.emplace_back(std::make_pair(
-    G4ThreeVector(0.5 * HalfLengthHolding, -0.5 * HalfLengthHolding, 0),
+  transforms1.emplace_back(std::make_pair(
+    G4ThreeVector(0.5 * halfLengthHolding, -0.5 * halfLengthHolding, 0),
     nullptr));
-  Transforms1.emplace_back(std::make_pair(
-    G4ThreeVector(-0.5 * HalfLengthHolding, 0.5 * HalfLengthHolding, 0),
+  transforms1.emplace_back(std::make_pair(
+    G4ThreeVector(-0.5 * halfLengthHolding, 0.5 * halfLengthHolding, 0),
     nullptr));
-  Transforms1.emplace_back(std::make_pair(
-    G4ThreeVector(0.5 * HalfLengthHolding, 0.5 * HalfLengthHolding, 0),
+  transforms1.emplace_back(std::make_pair(
+    G4ThreeVector(0.5 * halfLengthHolding, 0.5 * halfLengthHolding, 0),
     nullptr));
-  G4Box* FirstLayer = new G4Box("FirstLayer", HalfLenghtFirstLayer,
-    HalfLenghtFirstLayer, HalfLengthHolding);
-  G4LogicalVolume* FirstLayerLog = new G4LogicalVolume(
-    FirstLayer, G4Material::GetMaterial("Air"), "FirstLayerLog");
-  FirstLayerLog->SetVisAttributes(lightgreen);
-  new G4PVParameterised("FirstLayerPara", FirstLayerLog, HoldingLog, kZAxis,
-    Transforms1.size(), new Placements3Para(Transforms1));
+  G4Box* firstLayer = new G4Box("FirstLayer", halfLenghtFirstLayer,
+    halfLenghtFirstLayer, halfLengthHolding);
+  G4LogicalVolume* firstLayerLog = new G4LogicalVolume(
+    firstLayer, G4Material::GetMaterial("Air"), "FirstLayer");
+  firstLayerLog->SetVisAttributes(lightgreen);
+  new G4PVParameterised("FirstLayer", firstLayerLog, holdingLog, kZAxis,
+    transforms1.size(), new Placements3FirstLayerPara(transforms1));
 
   // build more complicated second layer
-  double HalfLenghtSecondLayer = HalfLenghtFirstLayer / 8.;
-  std::vector<std::pair<G4ThreeVector, G4RotationMatrix*>> Transforms2;
-  Transforms2.emplace_back(std::make_pair(
-    G4ThreeVector(-0.5 * HalfLenghtFirstLayer, -0.5 * HalfLenghtFirstLayer, 0),
+  G4double halfLenghtSecondLayer = halfLenghtFirstLayer / 8.;
+  std::vector<std::pair<G4ThreeVector, G4RotationMatrix*>> transforms2;
+  transforms2.emplace_back(std::make_pair(
+    G4ThreeVector(-0.5 * halfLenghtFirstLayer, -0.5 * halfLenghtFirstLayer, 0),
     nullptr));
-  Transforms2.emplace_back(std::make_pair(
-    G4ThreeVector(0.5 * HalfLenghtFirstLayer, -0.5 * HalfLenghtFirstLayer, 0),
+  transforms2.emplace_back(std::make_pair(
+    G4ThreeVector(0.5 * halfLenghtFirstLayer, -0.5 * halfLenghtFirstLayer, 0),
     nullptr));
-  Transforms2.emplace_back(std::make_pair(
-    G4ThreeVector(-0.5 * HalfLenghtFirstLayer, 0.5 * HalfLenghtFirstLayer, 0),
+  transforms2.emplace_back(std::make_pair(
+    G4ThreeVector(-0.5 * halfLenghtFirstLayer, 0.5 * halfLenghtFirstLayer, 0),
     nullptr));
-  Transforms2.emplace_back(std::make_pair(
-    G4ThreeVector(0.5 * HalfLenghtFirstLayer, 0.5 * HalfLenghtFirstLayer, 0),
+  transforms2.emplace_back(std::make_pair(
+    G4ThreeVector(0.5 * halfLenghtFirstLayer, 0.5 * halfLenghtFirstLayer, 0),
     nullptr));
-  G4Box* SecondLayer1 = new G4Box("SecondLayer1", HalfLenghtSecondLayer,
-    HalfLenghtSecondLayer, HalfLengthHolding);
-  G4Tubs* SecondLayer2 = new G4Tubs("SecondLayer1", 0, HalfLenghtSecondLayer,
-    HalfLengthHolding, 0, 360 * CLHEP::deg);
-  G4LogicalVolume* SecondLayerLog = new G4LogicalVolume(
-    SecondLayer1, G4Material::GetMaterial("Vacuum"), "SecondLayerLog");
-  new G4PVParameterised("SecondLayerPara", SecondLayerLog, FirstLayerLog,
-    kZAxis, Transforms2.size(),
-    new Placements3Para(Transforms2, SecondLayer1, SecondLayer2, 2));
+  G4Box* secondLayerBox = new G4Box("SecondLayerBox", halfLenghtSecondLayer,
+    halfLenghtSecondLayer, halfLengthHolding);
+  G4Tubs* secondLayerTubs = new G4Tubs("SecondLayerTubs", 0, halfLenghtSecondLayer,
+    halfLengthHolding, 0, 360 * CLHEP::deg);
+  G4LogicalVolume* secondLayerLog = new G4LogicalVolume(
+    secondLayerBox, G4Material::GetMaterial("Vacuum"), "SecondLayer");
+  new G4PVParameterised("SecondLayer", secondLayerLog, firstLayerLog,
+    kZAxis, transforms2.size(),
+    new Placements3SecondLayerPara(transforms2, secondLayerBox, secondLayerTubs, 2));
 
   return (void*)world;
 }

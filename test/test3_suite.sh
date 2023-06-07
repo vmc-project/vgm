@@ -44,8 +44,7 @@ do
     # Use the line below for performance tests (G4 navigator)/G4Root navigator)
     # for outputFactory in None
     do
-#      for selectedTest in Solids Placements Placements2 Reflections ScaledSolids Assemblies1 Assemblies2 BooleanSolids1 BooleanSolids2 DisplacedSolids1 DisplacedSolids2 MultiUnion BestMatch
-      for selectedTest in Solids Placements Placements2 Reflections ScaledSolids Assemblies1 Assemblies2 BooleanSolids1 BooleanSolids2 DisplacedSolids1 DisplacedSolids2 BestMatch
+      for selectedTest in Solids Placements Placements2 Placements3 Reflections ScaledSolids Assemblies1 Assemblies2 BooleanSolids1 BooleanSolids2 DisplacedSolids1 DisplacedSolids2 MultiUnion BestMatch
       do
         DOIT="1"
 
@@ -58,6 +57,7 @@ do
         if [ $inputType = "VGM"  -a $selectedTest = "Assemblies2" ]; then DOIT="0";  fi
         if [ $inputType = "Root" -a $selectedTest = "DisplacedSolids2" ]; then DOIT="0";  fi
         if [ $inputFactory != "Root" -a $outputFactory != "Root" -a $selectedTest = "BestMatch" ]; then DOIT="0";  fi
+        if [ $inputType != "Geant4"  -a $selectedTest = "Placements3" ]; then DOIT="0";  fi
 
         if [ $DOIT = "1" ]; then
           # Placements2 test with bestMatch option
@@ -81,8 +81,34 @@ do
           echo "Testing configuration: $inputType $inputFactory $outputFactory $selectedTest $NAVIG $OPTION"
           $EXE $inputType $inputFactory $outputFactory $NOXML $selectedTest $NOVIS $OPTION run $NAVIG \
             >& $OUTDIR/"$inputType.$inputFactory.$outputFactory.$selectedTest$OPTION.out"
-
         fi
+      done
+    done
+  done
+done
+
+# Placement3 with Root navigation
+# (not tested with Root as inputFactory)
+for inputType in Geant4
+do
+  for inputFactory in Geant4
+  do
+    for outputFactory in Root
+    # Use the line below for performance tests (G4 navigator)/G4Root navigator)
+    # for outputFactory in None
+    do
+      for selectedTest in Placements3
+      do
+        NAVIG=rootNavig
+        OPTION=""
+        # echo "... Regenerating Root geometry file: $selectedTest"
+        $EXE $inputType $inputFactory $outputFactory $NOXML $selectedTest $NOVIS $OPTION \
+          >& $OUTDIR/tmp.out
+
+        # run test
+        echo "Testing configuration: $inputType $inputFactory $outputFactory $selectedTest $NAVIG $OPTION"
+        $EXE $inputType $inputFactory $outputFactory $NOXML $selectedTest $NOVIS $OPTION run $NAVIG \
+          >& $OUTDIR/"$inputType.$inputFactory.$outputFactory.$selectedTest.out"
       done
     done
   done
