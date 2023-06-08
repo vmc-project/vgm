@@ -18,7 +18,7 @@
 ///
 /// \author Ivana Hrivnacova; IJClab Orsay
 
-#define VGM_RELEASE "5.1"
-#define VGM_RELEASE_DATE "17 January 2023"
+#define VGM_RELEASE "5.2"
+#define VGM_RELEASE_DATE "8 June 2023"
 
 #endif // BASE_VGM_VERSION_H

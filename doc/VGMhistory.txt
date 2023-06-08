@@ -9,6 +9,17 @@
 
  The Virtual Geometry Model - Versions
 =========================================
+  08/06/2023
+  version 5.2
+    New features:
+    - Added support for Geant4 parameterised volumes
+      - Added Placements3 test in vgm_test
+      (Thanks to Henri Clemens Pekeler, HISKP Uni Bonn)
+
+    Tested with Root 6.28/04, Geant4 11.1.p1
+    (with embedded CLHEP 2.4.6.2.)
+    Mac OSX 12.6: with Apple clang version 14.0.0
+
   17/01/2023
   version 5.1
     New features:
