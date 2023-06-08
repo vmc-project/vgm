@@ -1482,6 +1482,45 @@ void XmlVGM::AGDDWriter::WritePlacement(const VGM::IPlacement& placement)
     if (nd > 0)
       WriteMultiplePlacement(compName, axis, nReplicas, width, offset);
   }
+  else if (placementType == VGM::kParameterised) {
+
+    // get parameters
+    std::vector<VGM::Transform> transforms;
+    std::vector<VGM::IVolume*> volumes;
+    placement.ParameterisedPlacementData(transforms, volumes);
+
+
+    for (size_t i=0; i<transforms.size(); ++i) {
+
+      auto transform = transforms[i];
+      auto volumeName = volumes[i]->Name();
+
+      // position
+      VGM::ThreeVector position(3);
+      position[0] = transform[VGM::kDx];
+      position[1] = transform[VGM::kDy];
+      position[2] = transform[VGM::kDz];
+
+      // rotation
+      VGM::ThreeVector rotation(3);
+      rotation[0] = transform[VGM::kAngleX];
+      rotation[1] = transform[VGM::kAngleY];
+      rotation[2] = transform[VGM::kAngleZ];
+
+      if (IsIdentity(rotation)) {
+        WritePlacement(volumeName, position);
+        if (nd > 0) {
+          WritePlacement(compName, position);
+        }
+      }
+      else {
+        WritePlacementWithRotation(volumeName, position, rotation);
+        if (nd > 0) {
+          WritePlacementWithRotation(compName, position, rotation);
+        }
+      }
+    }
+  }
   else {
     std::cerr << "+++ Warning  +++" << std::endl;
     std::cerr << "  XmlVGM::Writer::WritePlacement: " << std::endl;

@@ -151,6 +151,19 @@ void XmlVGM::GDMLExporter::ProcessVolume(VGM::IVolume* volume)
 
       if (fVolumeNames.find(dVolume->Name()) == fVolumeNames.end())
         ProcessVolume(dVolume);
+
+      // process parameterised element volumes if parameterised volume
+      if (volume->Daughter(i)->Type() == VGM::kParameterised) {
+        std::vector<VGM::Transform> transforms;
+        std::vector<VGM::IVolume*> volumes;
+        volume->Daughter(i)->ParameterisedPlacementData(transforms, volumes);
+
+        for (auto parVolume : volumes) {
+          if (fVolumeNames.find(parVolume->Name()) == fVolumeNames.end()) {
+            ProcessVolume(parVolume);
+          }
+        }
+      }
     }
 
     // Write the volume with its childs now

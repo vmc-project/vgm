@@ -2069,6 +2069,30 @@ void XmlVGM::GDMLWriter::WritePlacement(const VGM::IPlacement& placement)
     WriteMultiplePlacement(
       placement.Volume()->Name(), axis, nReplicas, width, offset);
   }
+  else if (placementType == VGM::kParameterised) {
+
+    // get parameters
+    std::vector<VGM::Transform> transforms;
+    std::vector<VGM::IVolume*> volumes;
+    placement.ParameterisedPlacementData(transforms, volumes);
+
+
+    for (size_t i=0; i<transforms.size(); ++i) {
+
+      auto transform = transforms[i];
+
+      // Get position & rotation
+      std::string positionRef = fMaps->FindPositionName(transform);
+      std::string rotationRef = fMaps->FindRotationName(transform);
+
+      bool isReflection = ClhepVGM::HasReflection(transform);
+
+      auto volumeName = volumes[i]->Name();
+
+      WriteSimplePlacement(
+        volumeName, positionRef, rotationRef, isReflection);
+    }
+  }
   else {
     std::cerr << "+++ Warning  +++" << std::endl;
     std::cerr << "    XmlVGM::GDMLExporter::ProcessVolume: " << std::endl;

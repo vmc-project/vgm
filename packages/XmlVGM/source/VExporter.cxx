@@ -144,6 +144,23 @@ void XmlVGM::VExporter::ProcessPositions(VGM::IVolume* volume)
         if (name != "") fWriter->WritePosition(name, transform);
       }
 
+      // Parameterised placement positions
+      //
+      if (dPlacement->Type() == VGM::kParameterised) {
+
+        // get parameters
+        std::vector<VGM::Transform> transforms;
+        std::vector<VGM::IVolume*> volumes;
+        dPlacement->ParameterisedPlacementData(transforms, volumes);
+
+
+        for (size_t i=0; i<transforms.size(); ++i) {
+          auto transform = transforms[i];
+          std::string name = fMaps.AddPosition(transform);
+          if (name != "") fWriter->WritePosition(name, transform);
+        }
+      }
+
       // Positions in tessellated solids
       //
       VGM::ISolid* dSolid = dPlacement->Volume()->Solid();
@@ -264,6 +281,18 @@ void XmlVGM::VExporter::ProcessRotations(VGM::IVolume* volume)
         std::string name = fMaps.AddRotation(transform);
 
         if (name != "") fWriter->WriteRotation(name, transform);
+      }
+
+      if (dPlacement->Type() == VGM::kParameterised) {
+
+        std::vector<VGM::Transform> transforms;
+        std::vector<VGM::IVolume*> volumes;
+        dPlacement->ParameterisedPlacementData(transforms, volumes);
+
+        for (auto transform : transforms) {
+          std::string name = fMaps.AddRotation(transform);
+          if (name != "") fWriter->WriteRotation(name, transform);
+        }
       }
 
       /*
@@ -437,7 +466,7 @@ void XmlVGM::VExporter::ProcessSolids(VGM::IVolume* volume)
 
   // process daughters
   int nofDaughters = volume->NofDaughters();
-  if (nofDaughters > 0)
+  if (nofDaughters > 0) {
     for (int i = 0; i < nofDaughters; i++) {
 
       if (fDebug > 1) {
@@ -452,7 +481,22 @@ void XmlVGM::VExporter::ProcessSolids(VGM::IVolume* volume)
         // process dVolume only if it was not yet processed
         ProcessSolids(dVolume);
       }
+
+      // process solids if Parameterised placement
+      if (volume->Daughter(i)->Type() == VGM::kParameterised) {
+        std::vector<VGM::Transform> transforms;
+        std::vector<VGM::IVolume*> volumes;
+        volume->Daughter(i)->ParameterisedPlacementData(transforms, volumes);
+
+        for (size_t i=0; i<volumes.size(); ++i) {
+          std::string iVolumeName = volumes[i]->Name();
+          if (fVolumeNames.find(iVolumeName) == fVolumeNames.end()) {
+            ProcessSolids(volumes[i]);
+          }
+        }
+      }
     }
+  }
 }
 
 //
