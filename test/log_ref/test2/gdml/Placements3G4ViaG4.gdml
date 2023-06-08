@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="
+http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
+
+   <define>
+      <position  name="pos_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_1"     x="   -20.0000"  y="   -20.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_2"     x="    20.0000"  y="   -20.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_3"     x="   -20.0000"  y="    20.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_4"     x="    20.0000"  y="    20.0000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_5"     x="    -2.5000"  y="    -2.5000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_6"     x="     2.5000"  y="    -2.5000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_7"     x="    -2.5000"  y="     2.5000"  z="     0.0000"  unit="cm" />
+      <position  name="pos_8"     x="     2.5000"  y="     2.5000"  z="     0.0000"  unit="cm" />
+
+      <rotation  name="rot_0"     x="     0.0000"  y="     0.0000"  z="     0.0000"  unit="degree" />
+
+      <scale     name="scale_0"   x="     1.0000"  y="     1.0000"  z="    -1.0000"  />
+   </define>
+
+   <materials>
+      <isotope  name="H_1_i"     Z="  1.0000"  N="  1" >
+         <atom type="A" unit="g/mol" value="  1.0078" />
+      </isotope>
+      <isotope  name="H_2_i"     Z="  1.0000"  N="  2" >
+         <atom type="A" unit="g/mol" value="  2.0141" />
+      </isotope>
+      <isotope  name="N_14_i"    Z="  7.0000"  N=" 14" >
+         <atom type="A" unit="g/mol" value=" 14.0031" />
+      </isotope>
+      <isotope  name="N_15_i"    Z="  7.0000"  N=" 15" >
+         <atom type="A" unit="g/mol" value=" 15.0001" />
+      </isotope>
+      <isotope  name="O_16_i"    Z="  8.0000"  N=" 16" >
+         <atom type="A" unit="g/mol" value=" 15.9949" />
+      </isotope>
+      <isotope  name="O_17_i"    Z="  8.0000"  N=" 17" >
+         <atom type="A" unit="g/mol" value=" 16.9991" />
+      </isotope>
+      <isotope  name="O_18_i"    Z="  8.0000"  N=" 18" >
+         <atom type="A" unit="g/mol" value=" 17.9992" />
+      </isotope>
+      <isotope  name="U_235_i"   Z=" 92.0000"  N="235" >
+         <atom type="A" unit="g/mol" value="235.0100" />
+      </isotope>
+      <isotope  name="U_238_i"   Z=" 92.0000"  N="238" >
+         <atom type="A" unit="g/mol" value="238.0300" />
+      </isotope>
+
+      <element  name="H_e"  >
+         <fraction n="  0.9999"  ref="H_1_i" />
+         <fraction n="  0.0001"  ref="H_2_i" />
+      </element>
+      <element  name="Nitrogen_e"  >
+         <fraction n="  0.9963"  ref="N_14_i" />
+         <fraction n="  0.0037"  ref="N_15_i" />
+      </element>
+      <element  name="Oxygen_e"  >
+         <fraction n="  0.9976"  ref="O_16_i" />
+         <fraction n="  0.0004"  ref="O_17_i" />
+         <fraction n="  0.0020"  ref="O_18_i" />
+      </element>
+      <element  name="enriched_Uranium_e"  >
+         <fraction n="  0.9000"  ref="U_235_i" />
+         <fraction n="  0.1000"  ref="U_238_i" />
+      </element>
+
+      <material  name="Air"  state="gas"  >
+         <D type="density" unit="g/cm3" value="     0.0013"/>
+         <T type="temperature" unit="K" value="   293.1500"/>
+         <fraction n="    0.7000"  ref="Nitrogen_e"/>
+         <fraction n="    0.3000"  ref="Oxygen_e"/>
+      </material>
+      <material  name="Uranium"  state="solid"  >
+         <D type="density" unit="g/cm3" value="    13.6100"/>
+         <T type="temperature" unit="K" value="   293.1500"/>
+         <fraction n="    1.0000"  ref="enriched_Uranium_e"/>
+      </material>
+      <material  name="Vacuum"  state="gas"  >
+         <D type="density" unit="g/cm3" value=" 1.0000e-25"/>
+         <T type="temperature" unit="K" value="     2.7300"/>
+         <P type="pressure" unit="pascal" value=" 3.0000e-18"/>
+         <fraction n="    1.0000"  ref="H_e"/>
+      </material>
+
+   </materials>
+
+   <solids>
+      <box  lunit="cm" aunit="degree"
+         name="world_s"
+         x="  400.0000"  y="  200.0000"  z="  800.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="Holding_s"
+         x="   80.0000"  y="   80.0000"  z="   80.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="FirstLayer_s"
+         x="   10.0000"  y="   10.0000"  z="   80.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="SecondLayer_s"
+         x="    1.2500"  y="    1.2500"  z="   80.0000" />
+
+      <box  lunit="cm" aunit="degree"
+         name="SecondLayer_0_s"
+         x="    1.2500"  y="    1.2500"  z="   80.0000" />
+
+      <tube  lunit="cm" aunit="degree"
+         name="SecondLayer_2_s"
+         rmin="    0.0000"  rmax="    0.6250"  z="   80.0000"
+         startphi="    0.0000"  deltaphi="  360.0000" />
+
+   </solids>
+
+   <structure>
+      <volume name="SecondLayer">
+         <materialref ref="Vacuum"/>
+         <solidref ref="SecondLayer_s"/>
+      </volume>
+
+      <volume name="SecondLayer_0">
+         <materialref ref="Scintillator"/>
+         <solidref ref="SecondLayer_0_s"/>
+      </volume>
+
+      <volume name="SecondLayer_2">
+         <materialref ref="Tungsten"/>
+         <solidref ref="SecondLayer_2_s"/>
+      </volume>
+
+      <volume name="FirstLayer">
+         <materialref ref="Air"/>
+         <solidref ref="FirstLayer_s"/>
+         <physvol>
+            <volumeref ref="SecondLayer_0"/>
+               <positionref ref="pos_5"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="SecondLayer_0"/>
+               <positionref ref="pos_6"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="SecondLayer_2"/>
+               <positionref ref="pos_7"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="SecondLayer_2"/>
+               <positionref ref="pos_8"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+      </volume>
+
+      <volume name="Holding">
+         <materialref ref="Uranium"/>
+         <solidref ref="Holding_s"/>
+         <physvol>
+            <volumeref ref="FirstLayer"/>
+               <positionref ref="pos_1"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="FirstLayer"/>
+               <positionref ref="pos_2"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="FirstLayer"/>
+               <positionref ref="pos_3"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+         <physvol>
+            <volumeref ref="FirstLayer"/>
+               <positionref ref="pos_4"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+      </volume>
+
+      <volume name="world">
+         <materialref ref="Vacuum"/>
+         <solidref ref="world_s"/>
+         <physvol>
+            <volumeref ref="Holding"/>
+               <positionref ref="pos_0"/>
+               <rotationref ref="rot_0"/>
+         </physvol>
+      </volume>
+
+   </structure>
+
+   <setup name="unit1"   version="1.0">
+      <world ref="world"/>
+   </setup>
+
+</gdml>

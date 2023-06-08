@@ -156,61 +156,57 @@ VGM info:   Importing LV: world
 VGM info:   Importing solid: worldS
 VGM info:      Imported solid: Box  "worldS"  hx = 2000mm  hy = 1000mm  hz = 4000mm
 VGM info:   ImportDaughters for world
-VGM info:   Importing LV: vol1A
-VGM info:   Importing solid: box1A
-VGM info:      Imported solid: Box  "box1A"  hx = 200mm  hy = 600mm  hz = 500mm
-VGM info:   ImportDaughters for vol1A
-VGM info:   Importing LV: vol1B
-VGM info:   Importing solid: box1B
-VGM info:      Imported solid: Box  "box1B"  hx = 200mm  hy = 100mm  hz = 500mm
-VGM info:   ImportDaughters for vol1B
-VGM info:   Importing LV: vol2A
-VGM info:   Importing solid: box2A
-VGM info:      Imported solid: Box  "box2A"  hx = 200mm  hy = 600mm  hz = 500mm
-VGM info:   ImportDaughters for vol2A
-VGM info:   Importing LV: vol2B
-VGM info:   Importing solid: box2B
-VGM info:      Imported solid: Box  "box2B"  hx = 200mm  hy = 50mm  hz = 500mm
-VGM info:   ImportDaughters for vol2B
-VGM info:   Importing LV: vol3A
-VGM info:   Importing solid: box3A
-VGM info:      Imported solid: Box  "box3A"  hx = 200mm  hy = 600mm  hz = 500mm
-VGM info:   ImportDaughters for vol3A
-VGM info:   Importing LV: vol3B
-VGM info:   Importing solid: box3B
-VGM info:      Imported solid: Box  "box3B"  hx = 200mm  hy = 100mm  hz = 500mm
-VGM info:   ImportDaughters for vol3B
+VGM info:   Importing LV: Holding
+VGM info:   Importing solid: Holding
+VGM info:      Imported solid: Box  "Holding"  hx = 400mm  hy = 400mm  hz = 400mm
+VGM info:   ImportDaughters for Holding
+VGM info:   Importing LV: FirstLayer
+VGM info:   Importing solid: FirstLayer
+VGM info:      Imported solid: Box  "FirstLayer"  hx = 50mm  hy = 50mm  hz = 400mm
+VGM info:   Processing parameterised daughter FirstLayer (multiplicity = 4)
+VGM info:      Skipping creating LV FirstLayer_0
+VGM info:      Skipping creating LV FirstLayer_1
+VGM info:      Skipping creating LV FirstLayer_2
+VGM info:      Skipping creating LV FirstLayer_3
+VGM info:   ImportDaughters for FirstLayer
+VGM info:   Importing LV: SecondLayer
+VGM info:   Importing solid: SecondLayerBox
+VGM info:      Imported solid: Box  "SecondLayerBox"  hx = 6.25mm  hy = 6.25mm  hz = 400mm
+VGM info:   Processing parameterised daughter SecondLayer (multiplicity = 4)
+VGM info:      Going to create LV SecondLayer_0
+VGM info:   Importing LV: SecondLayer_0
+VGM info:      Imported solid: Box  "SecondLayerBox"  hx = 6.25mm  hy = 6.25mm  hz = 400mm
+VGM info:      Skipping creating LV SecondLayer_1
+VGM info:      Going to create LV SecondLayer_2
+VGM info:   Importing LV: SecondLayer_2
+VGM info:   Importing solid: SecondLayerTubs
+VGM info:      Imported solid: Tubs  "SecondLayerTubs"  rin = 0mm  rout = 6.25mm  hz = 400mm  sphi = 0deg  dphi = 360deg
+VGM info:      Skipping creating LV SecondLayer_3
+VGM info:   ImportDaughters for SecondLayer
 VGM info:   Import positions: 
 VGM info:   0th volume: world  
-VGM info:      0th daughter  pv = vol1A  lv = vol1A vgmPl = vol1A vgmVol = vol1A
-VGM info:      1th daughter  pv = vol2A  lv = vol2A vgmPl = vol2A vgmVol = vol2A
-VGM info:      2th daughter  pv = vol3A  lv = vol3A vgmPl = vol3A vgmVol = vol3A
-VGM info:   1th volume: vol1A  
-VGM info:      0th daughter  pv = vol1B  lv = vol1B vgmPl = vol1B vgmVol = vol1B
-VGM info:   2th volume: vol1B  
-VGM info:   3th volume: vol2A  
-VGM info:      0th daughter  pv = vol2B  lv = vol2B vgmPl = vol2B vgmVol = vol2B
-VGM info:   4th volume: vol2B  
-VGM info:   5th volume: vol3A  
-VGM info:      0th daughter  pv = vol3B  lv = vol3B vgmPl = vol3B vgmVol = vol3B
-VGM info:   6th volume: vol3B  
+VGM info:      0th daughter  pv = Holding  lv = Holding vgmPl = Holding vgmVol = Holding
+VGM info:   1th volume: Holding  
+VGM info:      0th daughter  pv = FirstLayer  lv = FirstLayer vgmPl = FirstLayer vgmVol = FirstLayer
+VGM info:   2th volume: FirstLayer  
+VGM info:      0th daughter  pv = SecondLayer  lv = SecondLayer vgmPl = SecondLayer vgmVol = SecondLayer
+VGM info:   3th volume: SecondLayer  
+VGM info:   4th volume: SecondLayer_0  
+VGM info:   5th volume: SecondLayer_2  
 VGM info:   
 Geant4_GM_Factory factory solids store: 
    0th solid: Box  "worldS"  hx = 2000mm  hy = 1000mm  hz = 4000mm
-   1th solid: Box  "box1A"  hx = 200mm  hy = 600mm  hz = 500mm
-   2th solid: Box  "box1B"  hx = 200mm  hy = 100mm  hz = 500mm
-   3th solid: Box  "box2A"  hx = 200mm  hy = 600mm  hz = 500mm
-   4th solid: Box  "box2B"  hx = 200mm  hy = 50mm  hz = 500mm
-   5th solid: Box  "box3A"  hx = 200mm  hy = 600mm  hz = 500mm
-   6th solid: Box  "box3B"  hx = 200mm  hy = 100mm  hz = 500mm
+   1th solid: Box  "Holding"  hx = 400mm  hy = 400mm  hz = 400mm
+   2th solid: Box  "FirstLayer"  hx = 50mm  hy = 50mm  hz = 400mm
+   3th solid: Box  "SecondLayerBox"  hx = 6.25mm  hy = 6.25mm  hz = 400mm
+   4th solid: Tubs  "SecondLayerTubs"  rin = 0mm  rout = 6.25mm  hz = 400mm  sphi = 0deg  dphi = 360deg
 Geant4_GM_Factory factory volumes store: 
-   0th: Volume: "world" material "Air" solid "Box"  3 daughters: "vol1A"  "vol2A"  "vol3A"  
-   1th: Volume: "vol1A" material "Air" solid "Box"  1 daughters: "vol1B"  
-   2th: Volume: "vol1B" material "Scintillator" solid "Box"  0 daughters: 
-   3th: Volume: "vol2A" material "Air" solid "Box"  1 daughters: "vol2B"  
-   4th: Volume: "vol2B" material "Scintillator" solid "Box"  0 daughters: 
-   5th: Volume: "vol3A" material "Air" solid "Box"  1 daughters: "vol3B"  
-   6th: Volume: "vol3B" material "Scintillator" solid "Box"  0 daughters: 
+   0th: Volume: "world" material "Vacuum" solid "Box"  1 daughters: "Holding"  
+   1th: Volume: "Holding" material "Uranium" solid "Box"  1 daughters: "FirstLayer"  
+   2th: Volume: "FirstLayer" material "Air" solid "Box"  1 daughters: "SecondLayer"  
+   3th: Volume: "SecondLayer" material "Vacuum" solid "Box"  0 daughters: 
+   4th: Volume: "SecondLayer_0" material "Scintillator" solid "Box"  0 daughters: 
+   5th: Volume: "SecondLayer_2" material "Tungsten" solid "Tubs"  0 daughters: 
 VGM info:   Geant4GM::Factory::Import finished.
 Import finished
 Visualization Manager instantiating with verbosity "warnings (3)"...

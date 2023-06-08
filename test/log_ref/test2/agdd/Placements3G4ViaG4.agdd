@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<AGDD DTD_version = "v7"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+<xi:include href="StandardColors.agdd"/>
+
+<materials  version = "Id"
+            date    = "2023-06-08"
+            author  = "VGM AGGD Writer"
+            DTD_version="v7"  >
+
+   <isotope  name="H_1"     z="  1"  n="  1"  a="  1"/>
+   <isotope  name="H_2"     z="  1"  n="  2"  a="  2"/>
+   <isotope  name="N_14"    z="  7"  n=" 14"  a=" 14"/>
+   <isotope  name="N_15"    z="  7"  n=" 15"  a=" 15"/>
+   <isotope  name="O_16"    z="  8"  n=" 16"  a=" 16"/>
+   <isotope  name="O_17"    z="  8"  n=" 17"  a=" 17"/>
+   <isotope  name="O_18"    z="  8"  n=" 18"  a=" 18"/>
+   <isotope  name="U_235"   z=" 92"  n="235"  a="235"/>
+   <isotope  name="U_238"   z=" 92"  n="238"  a="238"/>
+
+   <element  symbol="H">
+      <addisotope name="H_1"  natoms=" 99" />
+      <addisotope name="H_2"  natoms="  0" />
+   </element>
+   <element  symbol="N">
+      <addisotope name="N_14"  natoms=" 99" />
+      <addisotope name="N_15"  natoms="  0" />
+   </element>
+   <element  symbol="O">
+      <addisotope name="O_16"  natoms=" 99" />
+      <addisotope name="O_17"  natoms="  0" />
+      <addisotope name="O_18"  natoms="  0" />
+   </element>
+   <element  symbol="U">
+      <addisotope name="U_235"  natoms=" 90" />
+      <addisotope name="U_238"  natoms=" 10" />
+   </element>
+
+   <material  name="Air_mat"  density="  0.0013">
+      <addelement name="N"  natoms=" 0.7271"/>
+      <addelement name="O"  natoms=" 0.2729"/>
+   </material>
+   <material  name="Uranium_mat"  density=" 13.6100">
+      <addelement name="U"  natoms=" 1.0000"/>
+   </material>
+   <material  name="Vacuum_mat"  density="1.0000e-25">
+      <addelement name="H"  natoms=" 1.0000"/>
+   </material>
+
+</materials>
+
+<media  version = "Id"
+        date    = "2023-06-08"
+        author  = "VGM AGGD Writer"
+        DTD_version="v7"  >
+
+   <medium  name="Air"  
+      material="Air_mat"  
+      color="random"
+      sensitive="true"
+      parameters=""/>
+   <medium  name="Uranium"  
+      material="Uranium_mat"  
+      color="random"
+      sensitive="true"
+      parameters=""/>
+   <medium  name="Vacuum"  
+      material="Vacuum_mat"  
+      color="random"
+      sensitive="true"
+      parameters=""/>
+
+</media>
+
+<section DTD_version = "v7"
+         name        = "world"
+         version     = "Id"
+         date        = "2023-06-08"
+         author      = "VGM AGGD Writer"
+         top_volume  = "world_comp"  >
+
+   <box    name="world"
+      medium="Vacuum"
+      X_Y_Z="400.0000; 200.0000; 800.0000" />
+
+   <box    name="Holding"
+      medium="Uranium"
+      X_Y_Z="80.0000; 80.0000; 80.0000" />
+
+   <box    name="FirstLayer"
+      medium="Air"
+      X_Y_Z="10.0000; 10.0000; 80.0000" />
+
+   <box    name="SecondLayer"
+      medium="Vacuum"
+      X_Y_Z=" 1.2500;  1.2500; 80.0000" />
+
+   <box    name="SecondLayer_0"
+      medium="Scintillator"
+      X_Y_Z=" 1.2500;  1.2500; 80.0000" />
+
+   <tubs   name="SecondLayer_2"
+      medium="Tungsten"
+      profile=" 0.0000; 360.0000"
+      Rio_Z  =" 0.0000;  0.6250; 80.0000" />
+
+
+   <composition name="world_comp">
+      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="Holding"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="  0.0000;   0.0000;   0.0000"> <volume name="Holding_comp"/>
+      </posXYZ>
+   </composition>
+
+   <composition name="Holding_comp">
+      <posXYZ   X_Y_Z="-20.0000; -20.0000;   0.0000"> <volume name="FirstLayer"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-20.0000; -20.0000;   0.0000"> <volume name="FirstLayer_comp"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z=" 20.0000; -20.0000;   0.0000"> <volume name="FirstLayer"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z=" 20.0000; -20.0000;   0.0000"> <volume name="FirstLayer_comp"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-20.0000;  20.0000;   0.0000"> <volume name="FirstLayer"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="-20.0000;  20.0000;   0.0000"> <volume name="FirstLayer_comp"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z=" 20.0000;  20.0000;   0.0000"> <volume name="FirstLayer"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z=" 20.0000;  20.0000;   0.0000"> <volume name="FirstLayer_comp"/>
+      </posXYZ>
+   </composition>
+
+   <composition name="FirstLayer_comp">
+      <posXYZ   X_Y_Z=" -2.5000;  -2.5000;   0.0000"> <volume name="SecondLayer_0"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="  2.5000;  -2.5000;   0.0000"> <volume name="SecondLayer_0"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z=" -2.5000;   2.5000;   0.0000"> <volume name="SecondLayer_2"/>
+      </posXYZ>
+      <posXYZ   X_Y_Z="  2.5000;   2.5000;   0.0000"> <volume name="SecondLayer_2"/>
+      </posXYZ>
+   </composition>
+
+
+</section>
+
+</AGDD>

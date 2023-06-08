@@ -1,8 +1,9 @@
+Warning in <TFile::Init>: no StreamerInfo found in /Users/ivana/work/projects/vgm/dev/vmc_install/lib/libVMCLibrary_rdict.pcm therefore preventing schema evolution when reading this file. The file was produced with version 6.28/00 of ROOT.
 Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometry created
 
 =============================================================
  Virtual Geometry Model 
- Version 5.1 ( 17 January 2023 )
+ Version 5.2 ( 8 June 2023 )
  WWW : https://vmc-project.github.io/vgm-documentation/
 =============================================================
 
@@ -21,7 +22,7 @@ Info in <TObject::SetNavigator>: TG4RootNavigator created and registered to G4Tr
 isMaster=1
 
 **************************************************************
- Geant4 version Name: geant4-11-01    (9-December-2022)
+ Geant4 version Name: geant4-11-01-patch-01    (10-February-2023)
                        Copyright : Geant4 Collaboration
                       References : NIM A 506 (2003), 250-303
                                  : IEEE-TNS 53 (2006), 270-278
@@ -8783,7 +8784,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -2.28e+03      382 5.27e+03         1        0        0         0       world initStep
     1 -3.29e+03   -1e+03 4.29e+03         1        0 1.97e+03  1.97e+03  OutOfWorld Transportation
-number of event = 1000 User=0.010000s Real=0.027934s Sys=0.020000s
-Execution time: R: 0.0279 s  C: 0.0279 s 
+number of event = 1000 User=0.010000s Real=0.027777s Sys=0.010000s
+Execution time: R: 0.0278 s  C: 0.0278 s 
 Graphics systems deleted.
 Visualization Manager deleting...
