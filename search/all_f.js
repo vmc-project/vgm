@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['radiationlength_0',['RadiationLength',['../classGeant4GM_1_1Material.html#ad04c82dc3de37ce4c6586efe21b96c7c',1,'Geant4GM::Material::RadiationLength()'],['../classRootGM_1_1Material.html#a6f1685f85e0fbaedf0307ce2c98cec04',1,'RootGM::Material::RadiationLength()'],['../classVGM_1_1IMaterial.html#ab6b5f0e6e443a82b13a986e952415f61',1,'VGM::IMaterial::RadiationLength()']]],
+  ['radiusminusz_1',['RadiusMinusZ',['../classGeant4GM_1_1Paraboloid.html#a6ee1b1fed66cd17fa9a21d654091ff09',1,'Geant4GM::Paraboloid::RadiusMinusZ()'],['../classRootGM_1_1Paraboloid.html#a1e984f151f47166e957c5f462062e58b',1,'RootGM::Paraboloid::RadiusMinusZ()'],['../classVGM_1_1IParaboloid.html#aaba8e45d831e25243de15357c2dcd579',1,'VGM::IParaboloid::RadiusMinusZ() const =0']]],
+  ['radiusplusz_2',['RadiusPlusZ',['../classVGM_1_1IParaboloid.html#ad2eb2bb18489e7633c786eab7bb004de',1,'VGM::IParaboloid::RadiusPlusZ()'],['../classGeant4GM_1_1Paraboloid.html#adc0b517354d7adbddb46a4b63d118f43',1,'Geant4GM::Paraboloid::RadiusPlusZ()'],['../classRootGM_1_1Paraboloid.html#a6db98809ca855650260559e14cda0000',1,'RootGM::Paraboloid::RadiusPlusZ()']]],
+  ['readme_2emd_3',['README.md',['../README_8md.html',1,'']]],
+  ['relabundance_4',['RelAbundance',['../classGeant4GM_1_1Element.html#afd32cf809e0e3951ea4e91030990b9f7',1,'Geant4GM::Element::RelAbundance()'],['../classRootGM_1_1Element.html#a383547422fbfdf3cd62acb4740231f69',1,'RootGM::Element::RelAbundance()'],['../classRootGM_1_1ElementNonGeo.html#af2999b262fab589b4b11535c02789288',1,'RootGM::ElementNonGeo::RelAbundance()'],['../classVGM_1_1IElement.html#a5c1b6b6a0271123eaeb1007b16228b34',1,'VGM::IElement::RelAbundance()']]],
+  ['relabundancevector_5',['RelAbundanceVector',['../namespaceVGM.html#a17dd959e517db16abe56825972c0e88a',1,'VGM']]],
+  ['resetsolid_6',['ResetSolid',['../classBaseVGM_1_1VVolume.html#a303b8d4c32581a347421075463f945f5',1,'BaseVGM::VVolume::ResetSolid()'],['../classGeant4GM_1_1Volume.html#a7fb0593efa5fbc9674b1373135b14a4c',1,'Geant4GM::Volume::ResetSolid()']]],
+  ['resetvolume_7',['ResetVolume',['../classRootGM_1_1Volume.html#a22285f09adc5888f643be018c8b624af',1,'RootGM::Volume']]],
+  ['rootgm_8',['RootGM',['../namespaceRootGM.html',1,'']]],
+  ['rootgm_20common_9',['RootGM common',['../group__RootGM__common.html',1,'']]],
+  ['rootgm_20materials_10',['RootGM materials',['../group__RootGM__materials.html',1,'']]],
+  ['rootgm_20solids_11',['RootGM solids',['../group__RootGM__solids.html',1,'']]],
+  ['rootgm_20volumes_12',['RootGM volumes',['../group__RootGM__volumes.html',1,'']]],
+  ['rootmaterialmap_13',['RootMaterialMap',['../classRootGM_1_1MaterialMap.html#a6a42b7daa657a6ae6a5950ae7519e66b',1,'RootGM::MaterialMap']]],
+  ['rootmaterialmapciterator_14',['RootMaterialMapCIterator',['../classRootGM_1_1MaterialMap.html#addd257a1ad501b29a93f803d61d34abf',1,'RootGM::MaterialMap']]],
+  ['rootplacementmap_15',['RootPlacementMap',['../classRootGM_1_1PlacementMap.html#ad99fa25e70e776602b4c8d4fba55a23c',1,'RootGM::PlacementMap']]],
+  ['rootplacementmapciterator_16',['RootPlacementMapCIterator',['../classRootGM_1_1PlacementMap.html#a3ca8767b14da8c2adb3bfcadd00c2f36',1,'RootGM::PlacementMap']]],
+  ['rootsolidmap_17',['RootSolidMap',['../classRootGM_1_1SolidMap.html#a40b490c71a997283bee1e1e10fbb1875',1,'RootGM::SolidMap']]],
+  ['rootsolidmapciterator_18',['RootSolidMapCIterator',['../classRootGM_1_1SolidMap.html#afca7020b712040afeee24f95be7be3d3',1,'RootGM::SolidMap']]],
+  ['rootvolumemap_19',['RootVolumeMap',['../classRootGM_1_1VolumeMap.html#a94de95cc9b040263bfff1371b32a9cbc',1,'RootGM::VolumeMap']]],
+  ['rootvolumemapciterator_20',['RootVolumeMapCIterator',['../classRootGM_1_1VolumeMap.html#a2cce26cfab9acc5749a5e3e7bf5e57bf',1,'RootGM::VolumeMap']]],
+  ['rotation_21',['Rotation',['../namespaceClhepVGM.html#aa8606e61c4547fa0451744fcc069fcc9',1,'ClhepVGM']]],
+  ['round_22',['Round',['../namespaceBaseVGM.html#a603a0a614a847d967e331a461efc642c',1,'BaseVGM::Round()'],['../namespaceClhepVGM.html#a1036ebc89c0f71a5594d74cd4c423268',1,'ClhepVGM::Round()']]]
+];

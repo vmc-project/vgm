@@ -1,0 +1,11 @@
+var searchData=
+[
+  ['radiationlength_0',['RadiationLength',['../classRootGM_1_1Material.html#a6f1685f85e0fbaedf0307ce2c98cec04',1,'RootGM::Material::RadiationLength()'],['../classVGM_1_1IMaterial.html#ab6b5f0e6e443a82b13a986e952415f61',1,'VGM::IMaterial::RadiationLength()'],['../classGeant4GM_1_1Material.html#ad04c82dc3de37ce4c6586efe21b96c7c',1,'Geant4GM::Material::RadiationLength()']]],
+  ['radiusminusz_1',['RadiusMinusZ',['../classGeant4GM_1_1Paraboloid.html#a6ee1b1fed66cd17fa9a21d654091ff09',1,'Geant4GM::Paraboloid::RadiusMinusZ()'],['../classRootGM_1_1Paraboloid.html#a1e984f151f47166e957c5f462062e58b',1,'RootGM::Paraboloid::RadiusMinusZ()'],['../classVGM_1_1IParaboloid.html#aaba8e45d831e25243de15357c2dcd579',1,'VGM::IParaboloid::RadiusMinusZ()']]],
+  ['radiusplusz_2',['RadiusPlusZ',['../classGeant4GM_1_1Paraboloid.html#adc0b517354d7adbddb46a4b63d118f43',1,'Geant4GM::Paraboloid::RadiusPlusZ()'],['../classRootGM_1_1Paraboloid.html#a6db98809ca855650260559e14cda0000',1,'RootGM::Paraboloid::RadiusPlusZ()'],['../classVGM_1_1IParaboloid.html#ad2eb2bb18489e7633c786eab7bb004de',1,'VGM::IParaboloid::RadiusPlusZ()']]],
+  ['relabundance_3',['RelAbundance',['../classGeant4GM_1_1Element.html#afd32cf809e0e3951ea4e91030990b9f7',1,'Geant4GM::Element::RelAbundance()'],['../classVGM_1_1IElement.html#a5c1b6b6a0271123eaeb1007b16228b34',1,'VGM::IElement::RelAbundance()'],['../classRootGM_1_1ElementNonGeo.html#af2999b262fab589b4b11535c02789288',1,'RootGM::ElementNonGeo::RelAbundance()'],['../classRootGM_1_1Element.html#a383547422fbfdf3cd62acb4740231f69',1,'RootGM::Element::RelAbundance()']]],
+  ['resetsolid_4',['ResetSolid',['../classBaseVGM_1_1VVolume.html#a303b8d4c32581a347421075463f945f5',1,'BaseVGM::VVolume::ResetSolid()'],['../classGeant4GM_1_1Volume.html#a7fb0593efa5fbc9674b1373135b14a4c',1,'Geant4GM::Volume::ResetSolid()']]],
+  ['resetvolume_5',['ResetVolume',['../classRootGM_1_1Volume.html#a22285f09adc5888f643be018c8b624af',1,'RootGM::Volume']]],
+  ['rotation_6',['Rotation',['../namespaceClhepVGM.html#aa8606e61c4547fa0451744fcc069fcc9',1,'ClhepVGM']]],
+  ['round_7',['Round',['../namespaceBaseVGM.html#a603a0a614a847d967e331a461efc642c',1,'BaseVGM::Round()'],['../namespaceClhepVGM.html#a1036ebc89c0f71a5594d74cd4c423268',1,'ClhepVGM::Round()']]]
+];
