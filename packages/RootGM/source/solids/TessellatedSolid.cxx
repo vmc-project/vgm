@@ -178,13 +178,16 @@ VGM::ThreeVector RootGM::TessellatedSolid::Vertex(int ifacet, int index) const
 {
   CheckVertexIndex(ifacet, index);
 
-  const TGeoFacet& facet = fTessellated->GetFacet(ifacet);
+#if ROOT_VERSION_CODE > ROOT_VERSION(6, 30, 4)
+  const auto& rvertex =  fTessellated->GetVertex((fTessellated->GetFacet(ifacet))[index]);
+#else
+  const auto& rvertex =  fTessellated->GetFacet(ifacet).GetVertex(index);
+#endif
 
   VGM::ThreeVector vertex;
-  vertex.push_back(facet.GetVertex(index).fVec[0] * RootGM::Units::Length());
-  vertex.push_back(facet.GetVertex(index).fVec[1] * RootGM::Units::Length());
-  vertex.push_back(facet.GetVertex(index).fVec[2] * RootGM::Units::Length());
+  vertex.push_back(rvertex.fVec[0] * RootGM::Units::Length());
+  vertex.push_back(rvertex.fVec[1] * RootGM::Units::Length());
+  vertex.push_back(rvertex.fVec[2] * RootGM::Units::Length());
 
   return vertex;
 }
-
