@@ -1,0 +1,13 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=FreeSans.ttf,fontsize=10,labelfontname=FreeSans.ttf,labelfontsize=10];
+  node [fontname=FreeSans.ttf,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node0 [id="Node000000",label="XmlVGM::VExporter",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classXmlVGM_1_1VExporter.html",tooltip="Class for generation of geometry data files in XML, the XML format is independent from the geometry o..."];
+  Node0 -> Node1 [id="edge113_Node000000_Node000001",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node1 [id="Node000001",label="XmlVGM::AGDDExporter",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classXmlVGM_1_1AGDDExporter.html",tooltip="Class for generation of geometry data files in XML, in the AGDD XML format."];
+  Node0 -> Node2 [id="edge114_Node000000_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="XmlVGM::GDMLExporter",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classXmlVGM_1_1GDMLExporter.html",tooltip="Class for generation of geometry data files in XML, in the GDML format."];
+}

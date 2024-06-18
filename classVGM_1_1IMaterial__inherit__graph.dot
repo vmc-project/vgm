@@ -1,0 +1,12 @@
+digraph "VGM::IMaterial"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=FreeSans.ttf,fontsize=10,labelfontname=FreeSans.ttf,labelfontsize=10];
+  node [fontname=FreeSans.ttf,fontsize=10,shape=box,height=0.2,width=0.4];
+  Node1 [id="Node000001",label="VGM::IMaterial",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="The VGM interface to materials."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="Geant4GM::Material",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$classGeant4GM_1_1Material.html",tooltip="VGM implementation for Geant4 material."];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="RootGM::Material",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$classRootGM_1_1Material.html",tooltip="VGM implementation for Root material."];
+}
