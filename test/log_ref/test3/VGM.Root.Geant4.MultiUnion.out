@@ -1,8 +1,7 @@
-Warning in <TFile::Init>: no StreamerInfo found in /Users/ivana/work/projects/vgm/dev/vmc_install/lib/libVMCLibrary_rdict.pcm therefore preventing schema evolution when reading this file. The file was produced with version 6.28/00 of ROOT.
 
 =============================================================
  Virtual Geometry Model 
- Version 5.2 ( 8 June 2023 )
+ Version 5.3 ( 18 June 2024 )
  WWW : https://vmc-project.github.io/vgm-documentation/
 =============================================================
 
@@ -10,7 +9,7 @@ Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometr
 Root geometry will be defined via VGM and exported to Geant4
 
 **************************************************************
- Geant4 version Name: geant4-11-01-patch-01    (10-February-2023)
+ Geant4 version Name: geant4-11-02-patch-01    (16-February-2024)
                        Copyright : Geant4 Collaboration
                       References : NIM A 506 (2003), 250-303
                                  : IEEE-TNS 53 (2006), 270-278
@@ -51,6 +50,10 @@ Registered graphics systems are:
   OpenGLStoredX (OGLSX, OGL, OGLS)
   RayTracerX (RayTracerX)
   TOOLSSG_X11_GLES (TSG_X11_GLES, TSGX11, TSG)
+Default graphics system is: TSG_OFFSCREEN (based on batch session).
+Default window size hint is: 600x600-0+0 (based on G4VisManager initialisation).
+Note: Parameters specified on the command line will override these defaults.
+      Use "vis/open" without parameters to get these defaults.
 
 Registering model factories...
 
@@ -8217,7 +8220,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0    -76.1     76.4      527         1        0        0         0       world initStep
     1     -568     -600     46.8         1        0      965       965  OutOfWorld Transportation
-number of event = 1000 User=0.010000s Real=0.025621s Sys=0.010000s
-Execution time: R: 0.0256 s  C: 0.0256 s 
+number of event = 1000 User=0.010000s Real=0.018004s Sys=0.020000s
+Execution time: R: 0.018 s  C: 0.018 s 
 Graphics systems deleted.
 Visualization Manager deleting...

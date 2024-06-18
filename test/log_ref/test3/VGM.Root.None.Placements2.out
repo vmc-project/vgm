@@ -1,9 +1,8 @@
-Warning in <TFile::Init>: no StreamerInfo found in /Users/ivana/work/projects/vgm/dev/vmc_install/lib/libVMCLibrary_rdict.pcm therefore preventing schema evolution when reading this file. The file was produced with version 6.28/00 of ROOT.
 Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometry created
 
 =============================================================
  Virtual Geometry Model 
- Version 5.2 ( 8 June 2023 )
+ Version 5.3 ( 18 June 2024 )
  WWW : https://vmc-project.github.io/vgm-documentation/
 =============================================================
 
@@ -20,7 +19,7 @@ Info in <TObject::SetNavigator>: TG4RootNavigator created and registered to G4Tr
 isMaster=1
 
 **************************************************************
- Geant4 version Name: geant4-11-01-patch-01    (10-February-2023)
+ Geant4 version Name: geant4-11-02-patch-01    (16-February-2024)
                        Copyright : Geant4 Collaboration
                       References : NIM A 506 (2003), 250-303
                                  : IEEE-TNS 53 (2006), 270-278
@@ -54,6 +53,10 @@ Registered graphics systems are:
   OpenGLStoredX (OGLSX, OGL, OGLS)
   RayTracerX (RayTracerX)
   TOOLSSG_X11_GLES (TSG_X11_GLES, TSGX11, TSG)
+Default graphics system is: TSG_OFFSCREEN (based on batch session).
+Default window size hint is: 600x600-0+0 (based on G4VisManager initialisation).
+Note: Parameters specified on the command line will override these defaults.
+      Use "vis/open" without parameters to get these defaults.
 
 Registering model factories...
 
@@ -1833,7 +1836,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     0      483      166      431         1        0        0         0       world initStep
     1      200     95.6      345         1        0      304       304       vol2B Transportation
     2    -22.3       40      278         1        0      239       543    vol2Bbis Transportation
-    3     -182 7.11e-15      229         1        0      172       715    vol2Bbis Transportation
+    3     -182        0      229         1        0      172       715    vol2Bbis Transportation
     4     -200    -4.43      224         1        0       19       734       world Transportation
     5   -2e+03     -454     -323         1        0 1.93e+03  2.67e+03  OutOfWorld Transportation
 
@@ -4437,7 +4440,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     3    -72.4     -200      176         1        0     60.6  1.02e+03    vol2Bbis Transportation
     4      -36     -160      148         1        0     60.6  1.08e+03       vol2B Transportation
     5     73.1      -40     66.6         1        0      182  1.26e+03    vol2Bbis Transportation
-    6      109 7.11e-15     39.3         1        0     60.6  1.32e+03    vol2Bbis Transportation
+    6      109        0     39.3         1        0     60.6  1.32e+03    vol2Bbis Transportation
     7      146       40     12.1         1        0     60.6  1.39e+03       vol2B Transportation
     8      200     99.5    -28.6         1        0     90.1  1.48e+03       world Transportation
     9 1.02e+03    1e+03     -643         1        0 1.36e+03  2.84e+03  OutOfWorld Transportation
@@ -5746,7 +5749,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0    -45.8     -223 -2.11e+03         1        0        0         0       vol1B initStep
     1      -38     -200 -2.1e+03         1        0     27.1      27.1       vol1B Transportation
-    2     30.4 -2.84e-14 -1.99e+03         1        0      237       264       vol1B Transportation
+    2     30.4        0 -1.99e+03         1        0      237       264       vol1B Transportation
     3     98.9      200 -1.88e+03         1        0      237       502       vol1B Transportation
     4      167      400 -1.78e+03         1        0      237       739       vol1B Transportation
     5      200      496 -1.73e+03         1        0      113       852       world Transportation
@@ -8153,7 +8156,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 1.62e+03     -991 1.04e+03         1        0        0         0       world initStep
     1      200    -5.21      107         1        0 1.96e+03  1.96e+03    vol2Bbis Transportation
-    2      192 4.44e-15      102         1        0     10.4  1.97e+03    vol2Bbis Transportation
+    2      192        0      102         1        0     10.4  1.97e+03    vol2Bbis Transportation
     3      135       40     64.2         1        0     79.7  2.05e+03       vol2B Transportation
     4    -37.9      160    -49.6         1        0      239  2.29e+03    vol2Bbis Transportation
     5    -95.5      200    -87.5         1        0     79.7  2.37e+03    vol2Bbis Transportation
@@ -8382,7 +8385,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     1      200     -295      380         1        0 2.99e+03  2.99e+03       vol2B Transportation
     2      169     -268      500         1        0      127  3.12e+03       world Transportation
     3    -91.9    -44.2  1.5e+03         1        0 1.06e+03  4.17e+03       vol3B Transportation
-    4     -143 -7.11e-15  1.7e+03         1        0      209  4.38e+03       vol3B Transportation
+    4     -143        0  1.7e+03         1        0      209  4.38e+03       vol3B Transportation
     5     -200     48.7 1.91e+03         1        0      230  4.61e+03       world Transportation
     6     -743      516    4e+03         1        0  2.2e+03  6.82e+03  OutOfWorld Transportation
 
@@ -8425,7 +8428,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0     -761      382 3.52e+03         1        0        0         0       world initStep
     1 -1.77e+03   -1e+03 2.53e+03         1        0 1.97e+03  1.97e+03  OutOfWorld Transportation
-number of event = 1000 User=0.020000s Real=0.025446s Sys=0.010000s
-Execution time: R: 0.0254 s  C: 0.0254 s 
+number of event = 1000 User=0.010000s Real=0.018971s Sys=0.020000s
+Execution time: R: 0.019 s  C: 0.019 s 
 Graphics systems deleted.
 Visualization Manager deleting...

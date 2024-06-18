@@ -1,8 +1,7 @@
-Warning in <TFile::Init>: no StreamerInfo found in /Users/ivana/work/projects/vgm/dev/vmc_install/lib/libVMCLibrary_rdict.pcm therefore preventing schema evolution when reading this file. The file was produced with version 6.28/00 of ROOT.
 
 =============================================================
  Virtual Geometry Model 
- Version 5.2 ( 8 June 2023 )
+ Version 5.3 ( 18 June 2024 )
  WWW : https://vmc-project.github.io/vgm-documentation/
 =============================================================
 
@@ -12,7 +11,7 @@ Info in <TGeoManager::TGeoManager>: Geometry Test, Test geometry via Root create
 Root geometry will be defined via Root and exported to Geant4
 
 **************************************************************
- Geant4 version Name: geant4-11-01-patch-01    (10-February-2023)
+ Geant4 version Name: geant4-11-02-patch-01    (16-February-2024)
                        Copyright : Geant4 Collaboration
                       References : NIM A 506 (2003), 250-303
                                  : IEEE-TNS 53 (2006), 270-278
@@ -56,6 +55,10 @@ Registered graphics systems are:
   OpenGLStoredX (OGLSX, OGL, OGLS)
   RayTracerX (RayTracerX)
   TOOLSSG_X11_GLES (TSG_X11_GLES, TSGX11, TSG)
+Default graphics system is: TSG_OFFSCREEN (based on batch session).
+Default window size hint is: 600x600-0+0 (based on G4VisManager initialisation).
+Note: Parameters specified on the command line will override these defaults.
+      Use "vis/open" without parameters to get these defaults.
 
 Registering model factories...
 
@@ -3050,7 +3053,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     1 -3.47e+03     -336 3.32e+03         1        0      276       276      layerA Transportation
     2 -3.77e+03     -251 3.06e+03         1        0      401       677       world Transportation
     3 -3.99e+03     -189 2.88e+03         1        0      291       968      layerA Transportation
-    4 -4.66e+03 5.68e-14 2.32e+03         1        0      897  1.86e+03      layerC Transportation
+    4 -4.66e+03 2.84e-14 2.32e+03         1        0      897  1.86e+03      layerC Transportation
     5 -4.67e+03        4  2.3e+03         1        0     18.9  1.88e+03      layerB Transportation
     6 -4.68e+03     4.97  2.3e+03         1        0     4.59  1.89e+03       world Transportation
     7   -6e+03      379 1.18e+03         1        0 1.77e+03  3.66e+03  OutOfWorld Transportation
@@ -3493,7 +3496,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -3.51e+03     -846 -2.15e+03         1        0        0         0       world initStep
     1 -4.01e+03     -247 -2.66e+03         1        0      929       929      layerA Transportation
-    2 -4.21e+03 -1.14e-13 -2.87e+03         1        0      382  1.31e+03      layerC Transportation
+    2 -4.21e+03 -8.53e-14 -2.87e+03         1        0      382  1.31e+03      layerC Transportation
     3 -4.22e+03        4 -2.87e+03         1        0      6.2  1.32e+03      layerB Transportation
     4 -4.3e+03      105 -2.96e+03         1        0      156  1.47e+03       world Transportation
     5 -5.04e+03    1e+03 -3.72e+03         1        0 1.39e+03  2.86e+03  OutOfWorld Transportation
@@ -6408,7 +6411,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
     0 1.72e+03      251 5.49e+03         1        0        0         0       world initStep
     1 1.69e+03     26.4 4.93e+03         1        0      603       603      layerB Transportation
     2 1.68e+03        4 4.88e+03         1        0     60.2       663      layerC Transportation
-    3 1.68e+03 4.44e-16 4.87e+03         1        0     10.8       674      layerA Transportation
+    3 1.68e+03        0 4.87e+03         1        0     10.8       674      layerA Transportation
     4 1.66e+03     -137 4.52e+03         1        0      368  1.04e+03       world Transportation
     5 1.52e+03   -1e+03 2.38e+03         1        0 2.32e+03  3.36e+03  OutOfWorld Transportation
 
@@ -8784,7 +8787,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0 -2.28e+03      382 5.27e+03         1        0        0         0       world initStep
     1 -3.29e+03   -1e+03 4.29e+03         1        0 1.97e+03  1.97e+03  OutOfWorld Transportation
-number of event = 1000 User=0.020000s Real=0.029490s Sys=0.010000s
-Execution time: R: 0.0295 s  C: 0.0295 s 
+number of event = 1000 User=0.010000s Real=0.020195s Sys=0.020000s
+Execution time: R: 0.0202 s  C: 0.0202 s 
 Graphics systems deleted.
 Visualization Manager deleting...
