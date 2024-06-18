@@ -9,6 +9,17 @@
 
  The Virtual Geometry Model - Versions
 =========================================
+  18/06/2024
+  version 5.3
+    New features:
+    - Migration to ROOT 6.32/02:
+      Updated RootGM::TessellatedSolid for incompatible changes in ROOT
+      (This fixes the reported issue #15)
+
+    Tested with Root 6.32/02, Geant4 11.2.p1
+    (with embedded CLHEP 2.4.7.1)
+    Mac OSX 14.2.1: with Apple clang version 15.0.0
+
   08/06/2023
   version 5.2
     New features:
