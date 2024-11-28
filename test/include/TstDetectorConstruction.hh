@@ -22,6 +22,7 @@
 #include <vector>
 
 #include "G4VUserDetectorConstruction.hh"
+#include "G4Colour.hh"
 #include "globals.hh"
 
 #include "Geant4GM/volumes/Factory.h"
@@ -31,7 +32,6 @@
 
 class TstVGeometry;
 class G4GDMLParser;
-class G4Colour;
 
 class TstDetectorConstruction : public G4VUserDetectorConstruction
 {
