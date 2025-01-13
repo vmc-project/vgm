@@ -9,6 +9,15 @@
 
  The Virtual Geometry Model - Versions
 =========================================
+  13/01/2025
+  version 5.3.1
+    - Fixed test compilation with Geant4 11.2.p2: (#17)
+      Replaced G4Colour forward declaration with include
+
+    Tested with Root 6.32/08, Geant4 11.2.p2
+    (with embedded CLHEP 2.4.7.1)
+    Mac OSX 14.6.1: with Apple clang version 15.0.0
+
   18/06/2024
   version 5.3
     New features:
