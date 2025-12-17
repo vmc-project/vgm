@@ -9,7 +9,7 @@
 # Contact: ivana@ipno.in2p3.fr
 # ------------------------------------------------------------------------------
 
-cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.16...3.27)
 
 project(vgm_examples)
 

@@ -25,7 +25,7 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
 endif()
 
 #--- CMake required version ----------------------------------------------------
-cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.16...3.27)
 
 # Required to be able to use non Apple Clang builds on macOS
 cmake_policy(SET CMP0025 NEW)
