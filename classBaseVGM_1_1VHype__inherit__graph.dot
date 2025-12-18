@@ -1,0 +1,16 @@
+digraph "BaseVGM::VHype"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=FreeSans.ttf,fontsize=10,labelfontname=FreeSans.ttf,labelfontsize=10];
+  node [fontname=FreeSans.ttf,fontsize=10,shape=box,height=0.2,width=0.4];
+  Node1 [id="Node000001",label="BaseVGM::VHype",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="The ABC for hyperboloid solids."];
+  Node2 -> Node1 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="VGM::IHype",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$classVGM_1_1IHype.html",tooltip="The VGM interface to hyperboloid solids."];
+  Node3 -> Node2 [id="edge2_Node000002_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="VGM::ISolid",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$classVGM_1_1ISolid.html",tooltip="The VGM interface to solids."];
+  Node1 -> Node4 [id="edge3_Node000001_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="Geant4GM::Hype",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$classGeant4GM_1_1Hype.html",tooltip="VGM implementation for Geant4 hyperboloid solid."];
+  Node1 -> Node5 [id="edge4_Node000001_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="RootGM::Hype",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$classRootGM_1_1Hype.html",tooltip="VGM implementation for Root hyperboloid solid."];
+}

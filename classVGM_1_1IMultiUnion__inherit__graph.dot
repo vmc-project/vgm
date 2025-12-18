@@ -1,0 +1,16 @@
+digraph "VGM::IMultiUnion"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=FreeSans.ttf,fontsize=10,labelfontname=FreeSans.ttf,labelfontsize=10];
+  node [fontname=FreeSans.ttf,fontsize=10,shape=box,height=0.2,width=0.4];
+  Node1 [id="Node000001",label="VGM::IMultiUnion",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="The VGM interface to Boolean solids."];
+  Node2 -> Node1 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="VGM::ISolid",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$classVGM_1_1ISolid.html",tooltip="The VGM interface to solids."];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="BaseVGM::VMultiUnion",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$classBaseVGM_1_1VMultiUnion.html",tooltip="The ABC for Boolean solids."];
+  Node3 -> Node4 [id="edge3_Node000003_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="Geant4GM::MultiUnion",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$classGeant4GM_1_1MultiUnion.html",tooltip="VGM implementation for Geant4 Boolean solid."];
+  Node3 -> Node5 [id="edge4_Node000003_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="RootGM::MultiUnion",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$classRootGM_1_1MultiUnion.html",tooltip="VGM implementation for Root Boolean solid."];
+}

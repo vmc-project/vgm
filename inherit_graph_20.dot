@@ -1,0 +1,13 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=FreeSans.ttf,fontsize=10,labelfontname=FreeSans.ttf,labelfontsize=10];
+  node [fontname=FreeSans.ttf,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node0 [id="Node000000",label="VGM::IIsotope",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classVGM_1_1IIsotope.html",tooltip="The VGM interface to elements."];
+  Node0 -> Node1 [id="edge7_Node000000_Node000001",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node1 [id="Node000001",label="Geant4GM::Isotope",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classGeant4GM_1_1Isotope.html",tooltip="VGM implementation for Geant4 Isotope."];
+  Node0 -> Node2 [id="edge8_Node000000_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="RootGM::Isotope",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classRootGM_1_1Isotope.html",tooltip="VGM implementation for Root isotope."];
+}
