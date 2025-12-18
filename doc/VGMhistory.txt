@@ -9,6 +9,17 @@
 
  The Virtual Geometry Model - Versions
 =========================================
+  18/12/2025
+  version 5.4
+    - Updated GDML exporter (PR #20):
+      - Added 'copynumber' and 'name' attributes to placements elements
+        ('physvol' and 'divisionvol')
+    - Updated CMake minimum version (PR #21)
+
+    Tested with Root 6.36/06, Geant4 11.4
+    (with embedded CLHEP 2.4.7.2)
+    Mac OSX 15.6.1: with Apple clang version 17.0.0
+
   13/01/2025
   version 5.3.1
     - Fixed test compilation with Geant4 11.2.p2: (#17)
