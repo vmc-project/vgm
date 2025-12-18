@@ -186,11 +186,13 @@ class GDMLWriter : public virtual IWriter
 
   // Writing placements
   //
-  virtual void WriteSimplePlacement(const std::string& lvName,
+  virtual void WriteSimplePlacement(const std::string& name,
+    const std::string& lvName,
     const std::string& positionRef, const std::string& rotationRef,
-    bool isReflection);
+    bool isReflection, int copyNo);
 
-  virtual void WriteMultiplePlacement(const std::string& lvName, VGM::Axis axis,
+  virtual void WriteMultiplePlacement(const std::string& name,
+    const std::string& lvName, VGM::Axis axis,
     int nofReplicas, double width, double offset);
 
   // static data members
