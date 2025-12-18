@@ -12,7 +12,7 @@
 #----------------------------------------------------------------------------
 # Setup the project
 #
-cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.16...3.27)
 project(E04)
 
 #----------------------------------------------------------------------------
