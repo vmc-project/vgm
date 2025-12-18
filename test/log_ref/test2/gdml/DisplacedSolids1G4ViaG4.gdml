@@ -63,7 +63,7 @@ http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
       <volume name="volume1">
          <materialref ref="Basic"/>
          <solidref ref="volume1_s"/>
-         <physvol>
+         <physvol copynumber="1"  name="volume4">
             <volumeref ref="volume4"/>
                <positionref ref="pos_0"/>
                <rotationref ref="rot_0"/>
@@ -78,12 +78,12 @@ http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
       <volume name="volume2C">
          <materialref ref="Basic"/>
          <solidref ref="volume2C_s"/>
-         <physvol>
+         <physvol copynumber="1"  name="volume3">
             <volumeref ref="volume3"/>
                <positionref ref="pos_2"/>
                <rotationref ref="rot_0"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="2"  name="volume5A">
             <volumeref ref="volume3"/>
                <positionref ref="pos_2"/>
                <rotationref ref="rot_0"/>
@@ -93,12 +93,12 @@ http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
       <volume name="world">
          <materialref ref="Basic"/>
          <solidref ref="world_s"/>
-         <physvol>
+         <physvol copynumber="1"  name="volume1">
             <volumeref ref="volume1"/>
                <positionref ref="pos_1"/>
                <rotationref ref="rot_0"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="2"  name="volume2C">
             <volumeref ref="volume2C"/>
                <positionref ref="pos_1"/>
                <rotationref ref="rot_0"/>

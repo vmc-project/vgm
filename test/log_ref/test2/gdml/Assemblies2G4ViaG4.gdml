@@ -66,22 +66,22 @@ http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
       <volume name="world">
          <materialref ref="Basic"/>
          <solidref ref="world_s"/>
-         <physvol>
+         <physvol copynumber="1"  name="av_1_impr_1_CONS_pv_0">
             <volumeref ref="CONS"/>
                <positionref ref="pos_1"/>
                <rotationref ref="rot_1"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="2"  name="av_1_impr_1_CONS_pv_1">
             <volumeref ref="CONS_refl"/>
                <positionref ref="pos_2"/>
                <rotationref ref="rot_1"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="3"  name="av_1_impr_1_CONS_pv_2">
             <volumeref ref="CONS"/>
                <positionref ref="pos_3"/>
                <rotationref ref="rot_2"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="4"  name="av_1_impr_1_CONS_pv_3">
             <volumeref ref="CONS_refl"/>
                <positionref ref="pos_4"/>
                <rotationref ref="rot_2"/>

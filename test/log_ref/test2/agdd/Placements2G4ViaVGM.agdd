@@ -6,7 +6,7 @@
 <xi:include href="StandardColors.agdd"/>
 
 <materials  version = "Id"
-            date    = "2024-06-18"
+            date    = "2025-12-18"
             author  = "VGM AGGD Writer"
             DTD_version="v7"  >
 
@@ -50,7 +50,7 @@
 </materials>
 
 <media  version = "Id"
-        date    = "2024-06-18"
+        date    = "2025-12-18"
         author  = "VGM AGGD Writer"
         DTD_version="v7"  >
 
@@ -70,7 +70,7 @@
 <section DTD_version = "v7"
          name        = "world"
          version     = "Id"
-         date        = "2024-06-18"
+         date        = "2025-12-18"
          author      = "VGM AGGD Writer"
          top_volume  = "world_comp"  >
 

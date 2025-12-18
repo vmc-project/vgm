@@ -54,7 +54,7 @@ http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
       <volume name="world">
          <materialref ref="Basic"/>
          <solidref ref="world_s"/>
-         <physvol>
+         <physvol copynumber="1"  name="boxesUnion">
             <volumeref ref="boxesUnion"/>
                <positionref ref="pos_0"/>
                <rotationref ref="rot_0"/>

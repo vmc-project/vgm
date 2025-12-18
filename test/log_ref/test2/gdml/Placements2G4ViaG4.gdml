@@ -114,7 +114,7 @@ http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
       <volume name="vol1A">
          <materialref ref="Air"/>
          <solidref ref="vol1A_s"/>
-         <divisionvol unit="cm"
+         <divisionvol name="vol1B"  unit="cm"
             axis="kYAxis"  number="6"  offset="     0.0000"  width="    20.0000">
             <volumeref ref="vol1B"/>
          </divisionvol>
@@ -128,7 +128,7 @@ http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
       <volume name="vol2A">
          <materialref ref="Air"/>
          <solidref ref="vol2A_s"/>
-         <divisionvol unit="cm"
+         <divisionvol name="vol2B"  unit="cm"
             axis="kYAxis"  number="6"  offset="     0.0000"  width="    20.0000">
             <volumeref ref="vol2B"/>
          </divisionvol>
@@ -142,7 +142,7 @@ http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
       <volume name="vol3A">
          <materialref ref="Air"/>
          <solidref ref="vol3A_s"/>
-         <divisionvol unit="cm"
+         <divisionvol name="vol3B"  unit="cm"
             axis="kYAxis"  number="6"  offset="     0.0000"  width="    20.0000">
             <volumeref ref="vol3B"/>
          </divisionvol>
@@ -151,17 +151,17 @@ http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
       <volume name="world">
          <materialref ref="Air"/>
          <solidref ref="world_s"/>
-         <physvol>
+         <physvol copynumber="0"  name="vol1A">
             <volumeref ref="vol1A"/>
                <positionref ref="pos_1"/>
                <rotationref ref="rot_0"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="1"  name="vol2A">
             <volumeref ref="vol2A"/>
                <positionref ref="pos_0"/>
                <rotationref ref="rot_0"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="2"  name="vol3A">
             <volumeref ref="vol3A"/>
                <positionref ref="pos_2"/>
                <rotationref ref="rot_0"/>

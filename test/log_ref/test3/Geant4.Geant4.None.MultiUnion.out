@@ -1,14 +1,14 @@
 
 =============================================================
  Virtual Geometry Model 
- Version 5.3 ( 18 June 2024 )
+ Version 5.4 ( 18 December 2025 )
  WWW : https://vmc-project.github.io/vgm-documentation/
 =============================================================
 
 Geant4 geometry will be defined via Geant4
 
 **************************************************************
- Geant4 version Name: geant4-11-02-patch-01    (16-February-2024)
+ Geant4 version Name: geant4-11-04    (5-December-2025)
                        Copyright : Geant4 Collaboration
                       References : NIM A 506 (2003), 250-303
                                  : IEEE-TNS 53 (2006), 270-278
@@ -27,20 +27,25 @@ You have successfully registered the following graphics systems.
 Registered graphics systems are:
   ASCIITree (ATree)
   DAWNFILE (DAWNFILE)
-  G4HepRepFile (HepRepFile)
-  RayTracer (RayTracer)
+  RayTracer (RT)
   VRML2FILE (VRML2FILE)
   gMocrenFile (gMocrenFile)
-  TOOLSSG_OFFSCREEN (TSG_OFFSCREEN)
   TOOLSSG_OFFSCREEN (TSG_OFFSCREEN, TSG_FILE)
   OpenGLImmediateX (OGLIX, OGLI)
-  OpenGLStoredX (OGLSX, OGL, OGLS)
-  RayTracerX (RayTracerX)
-  TOOLSSG_X11_GLES (TSG_X11_GLES, TSGX11, TSG)
-Default graphics system is: TSG_OFFSCREEN (based on batch session).
-Default window size hint is: 600x600-0+0 (based on G4VisManager initialisation).
-Note: Parameters specified on the command line will override these defaults.
-      Use "vis/open" without parameters to get these defaults.
+  OpenGLStoredX (OGLSX, OGLS)
+  RayTracerX (RTX)
+  TOOLSSG_X11_GLES (TSG_X11_GLES, TSGX11, TSG, OGL)
+  TOOLSSG_X11_ZB (TSG_X11_ZB, TSGX11ZB, TSGZB)
+You may choose a graphics system (driver) with a parameter of
+the command "/vis/open" or "/vis/sceneHandler/create",
+or you may omit the driver parameter and choose at run time:
+- by argument in the construction of G4VisExecutive;
+- by environment variable "G4VIS_DEFAULT_DRIVER";
+- by entry in "~/.g4session";
+- by build flags.
+- Note: This feature is not allowed in batch mode.
+For further information see "examples/basic/B1/exampleB1.cc"
+and "vis.mac".
 
 Registering model factories...
 
@@ -81,8 +86,6 @@ Some /vis commands (optionally) take a string to specify colour.
  i97 = 64, u[i97] = 0.141433
  j97 = 0, u[j97] = 0.589389
 ----------------------------------------
-G4VisManager: Using G4TrajectoryDrawByCharge as fallback trajectory model.
-See commands in /vis/modeling/trajectories/ for other options.
 ### Run 0 start.
 
 *********************************************************************************************************
@@ -8207,7 +8210,7 @@ Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolu
 Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
     0    -76.1     76.4      527         1        0        0         0       world initStep
     1     -568     -600     46.8         1        0      965       965  OutOfWorld Transportation
-number of event = 1000 User=0.010000s Real=0.020758s Sys=0.010000s
-Execution time: R: 0.0208 s  C: 0.0208 s 
+number of event = 1000 User=0.010000s Real=0.018863s Sys=0.010000s
+Execution time: R: 0.0189 s  C: 0.0189 s 
 Graphics systems deleted.
 Visualization Manager deleting...

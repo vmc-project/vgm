@@ -135,12 +135,12 @@ http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
       <volume name="layerB">
          <materialref ref="Uranium"/>
          <solidref ref="layerB_s"/>
-         <physvol>
+         <physvol copynumber="0"  name="layerC">
             <volumeref ref="layerC"/>
                <positionref ref="pos_2"/>
                <rotationref ref="rot_0"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="1"  name="layerC">
             <volumeref ref="layerC"/>
                <positionref ref="pos_3"/>
                <rotationref ref="rot_0"/>
@@ -150,7 +150,7 @@ http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
       <volume name="layerA">
          <materialref ref="Air"/>
          <solidref ref="layerA_s"/>
-         <divisionvol unit="cm"
+         <divisionvol name="layerB"  unit="cm"
             axis="kYAxis"  number="3"  offset="    60.0000"  width="    20.0000">
             <volumeref ref="layerB"/>
          </divisionvol>
@@ -159,122 +159,122 @@ http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
       <volume name="world">
          <materialref ref="Vacuum"/>
          <solidref ref="world_s"/>
-         <physvol>
+         <physvol copynumber="0"  name="layerA">
             <volumeref ref="layerA"/>
                <positionref ref="pos_1"/>
                <rotationref ref="rot_1"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="1"  name="layerA">
             <volumeref ref="layerA"/>
                <positionref ref="pos_4"/>
                <rotationref ref="rot_2"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="2"  name="layerA">
             <volumeref ref="layerA"/>
                <positionref ref="pos_5"/>
                <rotationref ref="rot_3"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="3"  name="layerA">
             <volumeref ref="layerA"/>
                <positionref ref="pos_6"/>
                <rotationref ref="rot_4"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="4"  name="layerA">
             <volumeref ref="layerA"/>
                <positionref ref="pos_7"/>
                <rotationref ref="rot_5"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="5"  name="layerA">
             <volumeref ref="layerA"/>
                <positionref ref="pos_8"/>
                <rotationref ref="rot_6"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="6"  name="layerA">
             <volumeref ref="layerA"/>
                <positionref ref="pos_9"/>
                <rotationref ref="rot_7"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="7"  name="layerA">
             <volumeref ref="layerA"/>
                <positionref ref="pos_10"/>
                <rotationref ref="rot_8"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="8"  name="layerA">
             <volumeref ref="layerA"/>
                <positionref ref="pos_11"/>
                <rotationref ref="rot_9"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="9"  name="layerA">
             <volumeref ref="layerA"/>
                <positionref ref="pos_12"/>
                <rotationref ref="rot_10"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="10"  name="layerA">
             <volumeref ref="layerA"/>
                <positionref ref="pos_13"/>
                <rotationref ref="rot_11"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="11"  name="layerA">
             <volumeref ref="layerA"/>
                <positionref ref="pos_14"/>
                <rotationref ref="rot_12"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="12"  name="layerA">
             <volumeref ref="layerA"/>
                <positionref ref="pos_15"/>
                <rotationref ref="rot_13"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="13"  name="layerA">
             <volumeref ref="layerA"/>
                <positionref ref="pos_16"/>
                <rotationref ref="rot_14"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="14"  name="layerA">
             <volumeref ref="layerA"/>
                <positionref ref="pos_17"/>
                <rotationref ref="rot_15"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="15"  name="layerA">
             <volumeref ref="layerA"/>
                <positionref ref="pos_18"/>
                <rotationref ref="rot_16"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="16"  name="layerA">
             <volumeref ref="layerA"/>
                <positionref ref="pos_19"/>
                <rotationref ref="rot_17"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="17"  name="layerA">
             <volumeref ref="layerA"/>
                <positionref ref="pos_20"/>
                <rotationref ref="rot_18"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="18"  name="layerA">
             <volumeref ref="layerA"/>
                <positionref ref="pos_21"/>
                <rotationref ref="rot_19"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="19"  name="layerA">
             <volumeref ref="layerA"/>
                <positionref ref="pos_22"/>
                <rotationref ref="rot_20"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="20"  name="layerA">
             <volumeref ref="layerA"/>
                <positionref ref="pos_23"/>
                <rotationref ref="rot_21"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="21"  name="layerA">
             <volumeref ref="layerA"/>
                <positionref ref="pos_24"/>
                <rotationref ref="rot_22"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="22"  name="layerA">
             <volumeref ref="layerA"/>
                <positionref ref="pos_25"/>
                <rotationref ref="rot_23"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="23"  name="layerA">
             <volumeref ref="layerA"/>
                <positionref ref="pos_26"/>
                <rotationref ref="rot_0"/>

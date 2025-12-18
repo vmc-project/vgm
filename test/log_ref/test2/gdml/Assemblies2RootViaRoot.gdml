@@ -51,23 +51,23 @@ http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
       <volume name="world">
          <materialref ref="Basic"/>
          <solidref ref="world_s"/>
-         <physvol>
+         <physvol copynumber="1"  name="&Assembly_1%CONS">
             <volumeref ref="CONS"/>
                <positionref ref="pos_1"/>
                <rotationref ref="rot_1"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="2"  name="&Assembly_1%CONS">
             <volumeref ref="CONS"/>
                <positionref ref="pos_2"/>
                <rotationref ref="rot_1"/>
                <scaleref    ref="scale_0"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="3"  name="&Assembly_1%CONS">
             <volumeref ref="CONS"/>
                <positionref ref="pos_3"/>
                <rotationref ref="rot_2"/>
          </physvol>
-         <physvol>
+         <physvol copynumber="4"  name="&Assembly_1%CONS">
             <volumeref ref="CONS"/>
                <positionref ref="pos_4"/>
                <rotationref ref="rot_2"/>
