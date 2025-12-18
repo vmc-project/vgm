@@ -33,7 +33,7 @@ std::string XmlVGM::UpdateName(
 {
   /// Remove spaces after the name if present,
   /// replace not allowed characters with fgkCharReplacement inside names
-  /// and apped the specified extension.
+  /// and append the specified extension.
 
   std::string newName(name);
 

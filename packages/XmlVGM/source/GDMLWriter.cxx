@@ -1197,22 +1197,26 @@ void XmlVGM::GDMLWriter::WriteNotSupportedSolid(std::string name)
 }
 
 //_____________________________________________________________________________
-void XmlVGM::GDMLWriter::WriteSimplePlacement(const std::string& volumeName,
+void XmlVGM::GDMLWriter::WriteSimplePlacement(const std::string& name,
+  const std::string& volumeName,
   const std::string& positionRef, const std::string& rotationRef,
-  bool isReflection)
+  bool isReflection, int copyNo)
 {
   /// Write position with rotation with a given volume name
 
   // Update name
-  std::string name = UpdateName(volumeName);
+  std::string newVolumeName = UpdateName(volumeName);
 
   // Compose element strings
   //
   std::string element0 = "\"/>";
-  std::string element1 = "<physvol>";
+  std::string element1 = "<physvol copynumber=\"";
+  std::string element1b = "\"  name=\"";
+  element1b.append(name);
+  element1b.append("\">");
 
   std::string element2 = "<volumeref ref=\"";
-  element2.append(name);
+  element2.append(newVolumeName);
   element2.append(element0);
 
   std::string element3 = "<positionref ref=\"";
@@ -1233,7 +1237,7 @@ void XmlVGM::GDMLWriter::WriteSimplePlacement(const std::string& volumeName,
   std::string indention2 = fIndention + fkBasicIndention + fkBasicIndention;
 
   // Write element
-  fOutFile << fIndention << element1 << std::endl
+  fOutFile << fIndention << element1 << copyNo << element1b << std::endl
            << indention1 << element2 << std::endl
            << indention2 << element3 << std::endl
            << indention2 << element4 << std::endl;
@@ -1244,7 +1248,8 @@ void XmlVGM::GDMLWriter::WriteSimplePlacement(const std::string& volumeName,
 }
 
 //_____________________________________________________________________________
-void XmlVGM::GDMLWriter::WriteMultiplePlacement(const std::string& volumeName,
+void XmlVGM::GDMLWriter::WriteMultiplePlacement(const std::string& name,
+  const std::string& volumeName,
   VGM::Axis axis, int nofReplicas, double width, double offset)
 {
   /// Write multiple position
@@ -1292,11 +1297,16 @@ void XmlVGM::GDMLWriter::WriteMultiplePlacement(const std::string& volumeName,
     unit = "degree";
   }
 
+  // Update name
+  std::string newVolumeName = UpdateName(volumeName);
+
   // Compose element strings
   //
   // compose element string template
   std::string quota = "\"";
-  std::string element1 = "<divisionvol unit=\"";
+  std::string element1 = "<divisionvol name=\"";
+  element1.append(name);
+  element1.append("\"  unit=\"");
   std::string element2 = "axis=\"";
   std::string element3 = "number=\"";
   std::string element4 = "offset=\"";
@@ -1316,7 +1326,7 @@ void XmlVGM::GDMLWriter::WriteMultiplePlacement(const std::string& volumeName,
            << std::setprecision(fNP) << offset2 << quota << "  " << element5
            << std::setw(fNW + 1) << std::setprecision(fNP) << width2 << element6
            << std::endl
-           << indention1 << element7 << volumeName << element8 << std::endl
+           << indention1 << element7 << newVolumeName << element8 << std::endl
            << fIndention << element9 << std::endl;
 }
 
@@ -2045,7 +2055,8 @@ void XmlVGM::GDMLWriter::WritePlacement(const VGM::IPlacement& placement)
     bool isReflection = ClhepVGM::HasReflection(transform);
 
     WriteSimplePlacement(
-      placement.Volume()->Name(), positionRef, rotationRef, isReflection);
+      placement.Name(), placement.Volume()->Name(), positionRef, rotationRef,
+      isReflection, placement.CopyNo());
   }
   else if (placementType == VGM::kMultiplePlacement) {
 
@@ -2067,7 +2078,8 @@ void XmlVGM::GDMLWriter::WritePlacement(const VGM::IPlacement& placement)
 
     // write multiple position
     WriteMultiplePlacement(
-      placement.Volume()->Name(), axis, nReplicas, width, offset);
+      placement.Name(), placement.Volume()->Name(), axis, nReplicas, width,
+      offset);
   }
   else if (placementType == VGM::kParameterised) {
 
@@ -2090,7 +2102,8 @@ void XmlVGM::GDMLWriter::WritePlacement(const VGM::IPlacement& placement)
       auto volumeName = volumes[i]->Name();
 
       WriteSimplePlacement(
-        volumeName, positionRef, rotationRef, isReflection);
+        placement.Name(), volumeName, positionRef, rotationRef,
+        isReflection, i);
     }
   }
   else {
