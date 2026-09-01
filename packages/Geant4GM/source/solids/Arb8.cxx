@@ -21,6 +21,7 @@
 
 #include "ClhepVGM/Units.h"
 
+#include "G4GenericTrap.hh"
 #include "G4QuadrangularFacet.hh"
 #include "G4TessellatedSolid.hh"
 #include "G4TriangularFacet.hh"
@@ -65,7 +66,8 @@ Geant4GM::Arb8::Arb8(
     BaseVGM::VArb8(),
     fHz(hz),
     fVertices(vertices),
-    fTessellatedSolid(0)
+    fTessellatedSolid(0),
+    fSolid(0)
 {
   /// Standard constructor to define Arb8 from parameters
   /// \param hz half-length along the z axis in mm
@@ -88,10 +90,17 @@ Geant4GM::Arb8::Arb8(
   /// Points can be identical in order to create shapes with less than
   /// vertices.
 
+  // A twisted arb8 has non-planar sides, so it cannot be built from planar
+  // facets.  G4GenericTrap is the same shape and handles the twist itself.
   if (IsTwisted(vertices)) {
-    std::cerr << "+++ Error  +++" << std::endl;
-    std::cerr << "    Twisted Arb8 is not supported " << std::endl;
-    exit(1);
+    std::vector<G4TwoVector> g4Vertices;
+    for (G4int i = 0; i < fgkNofVertices; i++)
+      g4Vertices.push_back(G4TwoVector(vertices[i].first / ClhepVGM::Units::Length(),
+        vertices[i].second / ClhepVGM::Units::Length()));
+
+    fSolid = new G4GenericTrap(name, hz / ClhepVGM::Units::Length(), g4Vertices);
+    Geant4GM::SolidMap::Instance()->AddSolid(this, fSolid);
+    return;
   }
 
   // 3D vertices
@@ -147,7 +156,8 @@ Geant4GM::Arb8::Arb8(
   // G4cout << "Arb8 solid " <<  Name() <<  G4endl;
   // G4cout << *fTessellatedSolid << G4endl;
 
-  Geant4GM::SolidMap::Instance()->AddSolid(this, fTessellatedSolid);
+  fSolid = fTessellatedSolid;
+  Geant4GM::SolidMap::Instance()->AddSolid(this, fSolid);
 }
 
 //_____________________________________________________________________________
@@ -157,7 +167,8 @@ Geant4GM::Arb8::Arb8()
     BaseVGM::VArb8(),
     fHz(0),
     fVertices(),
-    fTessellatedSolid(0)
+    fTessellatedSolid(0),
+    fSolid(0)
 {
   /// Protected default constructor
 }
@@ -169,7 +180,8 @@ Geant4GM::Arb8::Arb8(const Arb8& rhs)
     BaseVGM::VArb8(rhs),
     fHz(0),
     fVertices(),
-    fTessellatedSolid(0)
+    fTessellatedSolid(0),
+    fSolid(0)
 {
   /// Protected copy constructor
 }
@@ -285,7 +297,7 @@ G4VFacet* Geant4GM::Arb8::MakeSideFacet(G4ThreeVector downVertex0,
 //_____________________________________________________________________________
 std::string Geant4GM::Arb8::Name() const
 {
-  return fTessellatedSolid->GetName();
+  return fSolid->GetName();
 }
 
 //_____________________________________________________________________________
@@ -306,13 +318,15 @@ VGM::TwoVector Geant4GM::Arb8::Vertex(int index) const
 //_____________________________________________________________________________
 double Geant4GM::Arb8::TwistAngle(int index) const
 {
-  // Just return 0, as twisted arb8 are not supported
-
   if (index < 0 || index >= 4) {
     std::cerr << "+++ Error  +++" << std::endl;
     std::cerr << "    Wrong twist angle index: " << index << std::endl;
     exit(1);
   }
+
+  // Non-zero only for the generic-trap branch; a tessellated arb8 is not twisted
+  G4GenericTrap* genericTrap = dynamic_cast<G4GenericTrap*>(fSolid);
+  if (genericTrap) return genericTrap->GetTwistAngle(index + 1);
 
   return 0;
 }
