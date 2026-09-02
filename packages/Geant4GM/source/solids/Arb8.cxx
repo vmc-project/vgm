@@ -30,6 +30,47 @@
 
 const int Geant4GM::Arb8::fgkNofVertices = 8;
 const double Geant4GM::Arb8::fgkTolerance = 1E-3;
+// The largest twist G4GenericTrap accepts on a lateral face, in degrees.
+const double Geant4GM::Arb8::fgkMaxTwistAngle = 90.;
+
+//_____________________________________________________________________________
+double Geant4GM::Arb8::TwistAngleOfFace(
+  const std::vector<VGM::TwoVector>& vertices, int index)
+{
+  /// Returns the angle, in radians, between the projections on the xy plane of
+  /// the two edges of the lateral face \em index.
+  /// A face with an edge collapsed to a point is a triangle and so is planar,
+  /// whatever the other edge does; its angle is reported as zero.
+
+  int nv = fgkNofVertices / 2;
+  int i = index % nv;
+  int j = (index + 1) % nv;
+
+  double dx1 = vertices[j].first - vertices[i].first;
+  double dy1 = vertices[j].second - vertices[i].second;
+  double dx2 = vertices[nv + j].first - vertices[nv + i].first;
+  double dy2 = vertices[nv + j].second - vertices[nv + i].second;
+
+  if ((dx1 == 0 && dy1 == 0) || (dx2 == 0 && dy2 == 0)) return 0.;
+
+  return atan2(dx1 * dy2 - dy1 * dx2, dx1 * dx2 + dy1 * dy2);
+}
+
+//_____________________________________________________________________________
+double Geant4GM::Arb8::MaxTwistAngle(
+  const std::vector<VGM::TwoVector>& vertices)
+{
+  /// Returns the largest twist of the four lateral faces, in degrees.
+  /// This is the quantity G4GenericTrap limits to 90 degrees, so it says
+  /// whether a twisted Arb8 can be converted to Geant4 at all.
+
+  double maxAngle = 0.;
+  for (int i = 0; i < 4; i++) {
+    double angle = fabs(TwistAngleOfFace(vertices, i)) * 180. / M_PI;
+    if (angle > maxAngle) maxAngle = angle;
+  }
+  return maxAngle;
+}
 
 //_____________________________________________________________________________
 bool Geant4GM::Arb8::IsTwisted(std::vector<VGM::TwoVector> vertices)
@@ -93,6 +134,17 @@ Geant4GM::Arb8::Arb8(
   // A twisted arb8 has non-planar sides, so it cannot be built from planar
   // facets.  G4GenericTrap is the same shape and handles the twist itself.
   if (IsTwisted(vertices)) {
+    double maxTwist = MaxTwistAngle(vertices);
+    if (maxTwist > fgkMaxTwistAngle) {
+      std::cerr << "+++ Error  +++" << std::endl;
+      std::cerr << "    Arb8 \"" << name << "\" has a lateral face twisted by "
+                << maxTwist << " degrees." << std::endl;
+      std::cerr << "    G4GenericTrap accepts at most " << fgkMaxTwistAngle
+                << " degrees, so this solid has no Geant4 equivalent."
+                << std::endl;
+      exit(1);
+    }
+
     std::vector<G4TwoVector> g4Vertices;
     for (G4int i = 0; i < fgkNofVertices; i++)
       g4Vertices.push_back(G4TwoVector(vertices[i].first / ClhepVGM::Units::Length(),
@@ -324,11 +376,7 @@ double Geant4GM::Arb8::TwistAngle(int index) const
     exit(1);
   }
 
-  // Non-zero only for the generic-trap branch; a tessellated arb8 is not twisted
-  G4GenericTrap* genericTrap = dynamic_cast<G4GenericTrap*>(fSolid);
-  if (genericTrap) return genericTrap->GetTwistAngle(index + 1);
-
-  return 0;
+  return TwistAngleOfFace(fVertices, index) * ClhepVGM::Units::Angle();
 }
 
 //_____________________________________________________________________________

@@ -47,6 +47,7 @@ class Arb8 : public BaseVGM::VArb8
 
   // static methods
   static bool IsTwisted(std::vector<VGM::TwoVector> vertices);
+  static double MaxTwistAngle(const std::vector<VGM::TwoVector>& vertices);
 
   // methods
   virtual std::string Name() const;
@@ -70,9 +71,13 @@ class Arb8 : public BaseVGM::VArb8
   G4VFacet* MakeSideFacet(G4ThreeVector downVertex0, G4ThreeVector downVertex1,
     G4ThreeVector upVertex1, G4ThreeVector upVertex0) const;
 
+  static double TwistAngleOfFace(
+    const std::vector<VGM::TwoVector>& vertices, int index);
+
   // static data members
   static const int fgkNofVertices;
   static const double fgkTolerance;
+  static const double fgkMaxTwistAngle;
 
   // data members
   double fHz;
