@@ -367,34 +367,10 @@ VGM::Transform RootGM::Placement::Transformation() const
   // Boolean solids
   TGeoHMatrix transform3D;
   if (fGeoNode->GetVolume()->GetShape()->IsComposite()) {
-    TGeoCompositeShape* composite =
-      (TGeoCompositeShape*)fGeoNode->GetVolume()->GetShape();
-    TGeoMatrix* leftMatrix = composite->GetBoolNode()->GetLeftMatrix();
-
-    TGeoHMatrix t1(*leftMatrix);
-    TGeoHMatrix t2(*(fGeoNode->GetMatrix()));
-
-    transform3D = t2 * t1;
-
-    // If constituents are composite shapes,
-    // the displacement have to take into account the transformation
-    // of left constituent not passed to the solid
-
-    TGeoShape* shapeA = composite->GetBoolNode()->GetLeftShape();
-
-    while (shapeA->IsComposite()) {
-      TGeoBoolNode* boolNodeAC = ((TGeoCompositeShape*)shapeA)->GetBoolNode();
-
-      TGeoShape* shapeAC = boolNodeAC->GetLeftShape();
-      // left component of the shape A
-
-      TGeoMatrix* matrixAC = boolNodeAC->GetLeftMatrix();
-      TGeoHMatrix transformAC(*matrixAC);
-
-      transform3D = transform3D * transformAC;
-
-      shapeA = shapeAC;
-    }
+    // The solid is defined in the frame of its first constituent, so the
+    // placement has to carry the transformation of that constituent.
+    transform3D = TGeoHMatrix(*(fGeoNode->GetMatrix())) *
+                  RootGM::CompositeLeftTransform(fGeoNode->GetVolume()->GetShape());
   }
   else {
     transform3D = fGeoNode->GetMatrix();
@@ -412,6 +388,20 @@ VGM::Transform RootGM::Placement::Transformation() const
     TGeoMatrix* matrixAN = fAssemblyNodes[i - 1]->GetMatrix();
     TGeoHMatrix transformAN(*matrixAN);
     transform3D = transformAN * transform3D;
+  }
+
+  // Volumes placed in a volume with a composite solid
+  // The placement of that volume is expressed in the frame of the solid's
+  // first constituent (above); its daughters, which Root defines in the frame
+  // of the composite expression, need the opposite correction.
+
+  const TGeoNode* motherNode =
+    fAssemblyNodes.size() ? fAssemblyNodes[0] : fGeoNode;
+  TGeoVolume* motherVolume = motherNode ? motherNode->GetMotherVolume() : 0;
+
+  if (motherVolume && motherVolume->GetShape()->IsComposite()) {
+    transform3D =
+      RootGM::CompositeLeftTransform(motherVolume->GetShape()).Inverse() * transform3D;
   }
 
   // work around to suppress a warning:

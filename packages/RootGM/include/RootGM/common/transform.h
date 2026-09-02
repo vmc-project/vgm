@@ -43,6 +43,7 @@ bool HasReflection(const VGM::Transform& transform);
 
 // Root special
 TGeoHMatrix Displacement(TGeoShape* shape);
+TGeoHMatrix CompositeLeftTransform(TGeoShape* shape);
 
 void fromToRotation(double from[3], double to[3], double mtx[3][3]);
 } // namespace RootGM

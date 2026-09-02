@@ -22,6 +22,8 @@
 #include "RootGM/common/transform.h"
 
 #include "TGeoBBox.h"
+#include "TGeoBoolNode.h"
+#include "TGeoCompositeShape.h"
 #include "TGeoPatternFinder.h"
 #include "TMath.h"
 
@@ -201,6 +203,26 @@ bool RootGM::HasReflection(const VGM::Transform& transform)
 //
 // Root special
 //
+
+//_____________________________________________________________________________
+TGeoHMatrix RootGM::CompositeLeftTransform(TGeoShape* shape)
+{
+  // Returns the transformation of the first constituent of a composite shape,
+  // accumulated over nested composites.
+  // A Root composite solid is defined in the frame in which its constituent
+  // matrices are given, its VGM counterpart in the frame of the first
+  // constituent; this matrix is what separates the two frames.
+  // ---
+
+  TGeoHMatrix total;
+  while (shape && shape->IsComposite()) {
+    TGeoBoolNode* boolNode = ((TGeoCompositeShape*)shape)->GetBoolNode();
+    if (!boolNode) break;
+    total = total * TGeoHMatrix(*boolNode->GetLeftMatrix());
+    shape = boolNode->GetLeftShape();
+  }
+  return total;
+}
 
 //_____________________________________________________________________________
 TGeoHMatrix RootGM::Displacement(TGeoShape* shape)

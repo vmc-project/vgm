@@ -225,52 +225,11 @@ VGM::Transform RootGM::BooleanSolid::Displacement() const
   // the displacement have to take into account the transformation
   // of left constituent not passed to the solid
 
-  TGeoHMatrix totalTransformA(transformA);
-  TGeoShape* shapeA = boolNode->GetLeftShape();
+  TGeoHMatrix totalTransformA =
+    transformA * RootGM::CompositeLeftTransform(boolNode->GetLeftShape());
 
-  // Take into account shifted origin
-  // totalTransformA = totalTransformA * RootGM::Displacement(shapeA);
-
-  while (shapeA->IsComposite()) {
-
-    TGeoBoolNode* boolNodeAC = ((TGeoCompositeShape*)shapeA)->GetBoolNode();
-
-    TGeoShape* shapeAC = boolNodeAC->GetLeftShape();
-    // left component of the shape A
-
-    TGeoMatrix* matrixAC = boolNodeAC->GetLeftMatrix();
-    TGeoHMatrix transformAC(*matrixAC);
-
-    totalTransformA = totalTransformA * transformAC;
-
-    // Take into account shifted origin
-    // totalTransformA = totalTransformA * RootGM::Displacement(shapeAC);
-
-    shapeA = shapeAC;
-  }
-
-  TGeoHMatrix totalTransformB(transformB);
-  TGeoShape* shapeB = boolNode->GetRightShape();
-  // Take into account shifted origin
-  // totalTransformB = totalTransformB * RootGM::Displacement(shapeB);
-
-  while (shapeB->IsComposite()) {
-
-    TGeoBoolNode* boolNodeBC = ((TGeoCompositeShape*)shapeB)->GetBoolNode();
-
-    TGeoShape* shapeBC = boolNodeBC->GetLeftShape();
-    // left component of the shape B
-
-    TGeoMatrix* matrixBC = boolNodeBC->GetLeftMatrix();
-    TGeoHMatrix transformBC(*matrixBC);
-
-    totalTransformB = totalTransformB * transformBC;
-
-    // Take into account shifted origin
-    // totalTransformB = totalTransformB * RootGM::Displacement(shapeBC);
-
-    shapeB = shapeBC;
-  }
+  TGeoHMatrix totalTransformB =
+    transformB * RootGM::CompositeLeftTransform(boolNode->GetRightShape());
 
   return Transform(totalTransformA.Inverse() * totalTransformB);
 }
