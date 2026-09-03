@@ -87,5 +87,18 @@ foreach(_script ${VGM_TEST_SCRIPTS})
     )
 endforeach()
 
+#----------------------------------------------------------------------------
+# Self-checking tests
+#
+# Unlike vgm_test these need no run manager and no reference output: they
+# report their result through the exit code, so ctest can run them.
+#
+
+add_executable(vgm_arb8_twist_test vgm_arb8_twist_test.cc)
+target_link_libraries(vgm_arb8_twist_test
+  Geant4GM RootGM BaseVGM ClhepVGM
+  ${Geant4_LIBRARIES} ${CLHEP_LIBRARIES} ${ROOT_LIBRARIES})
+add_test(NAME arb8_twist COMMAND vgm_arb8_twist_test)
+
 #----Installation-----------------------------------------------------------------
 install(TARGETS vgm_test DESTINATION bin)

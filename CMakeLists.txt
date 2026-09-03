@@ -66,6 +66,8 @@ include(VGMInstallLibDir)
 add_subdirectory(packages)
 
 #--- Build test ----------------------------------------------------------------
+enable_testing()
+
 if(WITH_TEST)
    if (WITH_GEANT4 AND WITH_ROOT)
      add_subdirectory(test)

@@ -14,8 +14,8 @@
 /// \class Geant4GM::Arb8
 ///
 /// VGM implementation for Geant4 Arb8 solid,
-/// the shape is implemented using G4TessellatedSolid.
-/// The twisted shape is not supported.
+/// the shape is implemented using G4TessellatedSolid, or G4GenericTrap
+/// when the shape is twisted.
 ///
 /// \author Ivana Hrivnacova; IPN Orsay
 
@@ -33,6 +33,7 @@
 #include <vector>
 
 class G4TessellatedSolid;
+class G4VSolid;
 class G4VFacet;
 
 namespace Geant4GM {
@@ -46,6 +47,7 @@ class Arb8 : public BaseVGM::VArb8
 
   // static methods
   static bool IsTwisted(std::vector<VGM::TwoVector> vertices);
+  static double MaxTwistAngle(const std::vector<VGM::TwoVector>& vertices);
 
   // methods
   virtual std::string Name() const;
@@ -69,14 +71,19 @@ class Arb8 : public BaseVGM::VArb8
   G4VFacet* MakeSideFacet(G4ThreeVector downVertex0, G4ThreeVector downVertex1,
     G4ThreeVector upVertex1, G4ThreeVector upVertex0) const;
 
+  static double TwistAngleOfFace(
+    const std::vector<VGM::TwoVector>& vertices, int index);
+
   // static data members
   static const int fgkNofVertices;
   static const double fgkTolerance;
+  static const double fgkMaxTwistAngle;
 
   // data members
   double fHz;
   std::vector<VGM::TwoVector> fVertices;
   G4TessellatedSolid* fTessellatedSolid;
+  G4VSolid* fSolid; ///< the solid handed to Geant4: tessellated, or a generic trap when twisted
 };
 
 } // namespace Geant4GM

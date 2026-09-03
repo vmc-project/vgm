@@ -779,20 +779,7 @@ void Geant4GM::Factory::SetSolid(VGM::ISolid* solid)
 VGM::ISolid* Geant4GM::Factory::CreateArb8(
   const std::string& name, double hz, std::vector<VGM::TwoVector> vertices)
 {
-  //
-  if (Geant4GM::Arb8::IsTwisted(vertices)) {
-    std::cerr << "*** Error: Cannot create Twisted Arb8 solid in Geant4 ***"
-              << std::endl;
-    if (Ignore()) {
-      std::cerr << "*** Warning: Using a box instead  ***" << std::endl;
-      return Register(new Geant4GM::Box(name, 1., 1., 1.));
-    }
-    else {
-      std::cerr << "*** Error: Aborting execution  ***" << std::endl;
-      exit(1);
-    }
-  }
-
+  // A twisted arb8 is handled by Geant4GM::Arb8 itself, via G4GenericTrap
   return Register(new Geant4GM::Arb8(name, hz, vertices));
 }
 
