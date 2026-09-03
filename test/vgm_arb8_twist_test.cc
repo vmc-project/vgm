@@ -21,13 +21,19 @@
 //                 degrees, with all eight vertices distinct
 //   arbCollapsed  two bottom vertices collapsed, twisted by 39 degrees
 //
-// and checks that a shape beyond the Geant4 limit is recognised as such:
+// and checks that a shape beyond the single-G4GenericTrap limit is split into
+// two G4GenericTrap solids:
 //
 //   arbSteep      two top vertices collapsed, twisted by 104 degrees
+//
+// It also checks a convex Arb8 for which different lateral faces require
+// incompatible split positions, so no division into only two GenericTraps is
+// possible.
 //
 // Needs no run manager and returns a non-zero code on failure.
 
 #include "Geant4GM/solids/Arb8.h"
+#include "Geant4GM/solids/Arb8Splitter.h"
 #include "Geant4GM/volumes/Factory.h"
 #include "RootGM/volumes/Factory.h"
 
@@ -37,6 +43,7 @@
 #include "TGeoVolume.h"
 
 #include "G4GenericTrap.hh"
+#include "G4MultiUnion.hh"
 #include "G4SolidStore.hh"
 #include "G4SystemOfUnits.hh"
 #include "G4VSolid.hh"
@@ -71,6 +78,19 @@ const Shape kSteep = { "arbSteep", 75.,
   { { 45., -15. }, { 0., -75. }, { -30., -75. }, { 15., -15. },
     { 0., -75. }, { 0., -75. }, { -30., -75. }, { 15., -15. } } };
 
+// Both end faces and every interpolated cross-section are convex, but the
+// permitted split intervals of lateral faces 1 and 3 do not overlap:
+// approximately [0.2891, 0.9554] and [0.0842, 0.2723], respectively.
+const Shape kCannotSplitInTwo = { "arbCannotSplitInTwo", 1.,
+  { { -0.4307636622, 0.2231118424 },
+    { -0.1447443560, 0.2962323240 },
+    { 4.7352057379, -1.0445794352 },
+    { -0.0675924807, -0.2728480420 },
+    { 0.0607942928, 0.1081316842 },
+    { 0.9940584508, 0.1184766124 },
+    { 0.3162721535, -1.4566513801 },
+    { -3.2320871703, -0.2667477443 } } };
+
 std::vector<VGM::TwoVector> Vertices(const Shape& shape)
 {
   std::vector<VGM::TwoVector> vertices;
@@ -99,9 +119,16 @@ bool CompareContains(const Shape& shape)
     std::cerr << "FAILED  " << shape.fName << ": no Geant4 solid" << std::endl;
     return false;
   }
-  if (!dynamic_cast<G4GenericTrap*>(g4Solid)) {
+  const bool splitExpected =
+    Geant4GM::Arb8::MaxTwistAngle(Vertices(shape)) > 90.;
+  const bool typeMatches = splitExpected
+                             ? dynamic_cast<G4MultiUnion*>(g4Solid) != nullptr
+                             : dynamic_cast<G4GenericTrap*>(g4Solid) != nullptr;
+  if (!typeMatches) {
     std::cerr << "FAILED  " << shape.fName << ": converted to "
-              << g4Solid->GetEntityType() << ", expected G4GenericTrap" << std::endl;
+              << g4Solid->GetEntityType() << ", expected "
+              << (splitExpected ? "G4MultiUnion" : "G4GenericTrap")
+              << std::endl;
     return false;
   }
 
@@ -153,17 +180,83 @@ bool CheckMaxTwist(const Shape& shape, double expected)
   return ok;
 }
 
+bool CheckGenericTrapConstructor(const Shape& shape)
+{
+  std::vector<G4TwoVector> vertices;
+  for (int i = 0; i < 8; ++i) {
+    vertices.push_back(G4TwoVector(
+      shape.fVertices[i][0] * cm, shape.fVertices[i][1] * cm));
+  }
+
+  G4GenericTrap* genericTrap =
+    new G4GenericTrap("arbImportedS", shape.fDz * cm, vertices);
+  Geant4GM::Arb8* imported = new Geant4GM::Arb8(genericTrap);
+
+  bool ok = imported->Name() == "arbImportedS" &&
+            std::abs(imported->ZHalfLength() - shape.fDz * cm) < 1.e-9;
+  for (int i = 0; i < 8; ++i) {
+    const VGM::TwoVector vertex = imported->Vertex(i);
+    ok &= std::abs(vertex.first - shape.fVertices[i][0] * cm) < 1.e-9;
+    ok &= std::abs(vertex.second - shape.fVertices[i][1] * cm) < 1.e-9;
+  }
+
+  std::cout << (ok ? "OK      " : "FAILED  ")
+            << "G4GenericTrap import constructor" << std::endl;
+  return ok;
+}
+
+bool CheckNonCentralSplit()
+{
+  // For differently sized end faces, z=0 need not be a valid split plane.
+  std::vector<VGM::TwoVector> vertices = { { -0.5, -0.5 }, { -0.5, 0.5 },
+    { 0.5, 0.5 }, { 0.5, -0.5 } };
+  const double angle = 100. * M_PI / 180.;
+  const double cosine = std::cos(angle);
+  const double sine = std::sin(angle);
+  for (int i = 0; i < 4; ++i) {
+    const double x = vertices[i].first;
+    const double y = vertices[i].second;
+    vertices.push_back(VGM::TwoVector(
+      10. * (cosine * x - sine * y), 10. * (sine * x + cosine * y)));
+  }
+
+  Geant4GM::Arb8Split split;
+  const auto result = Geant4GM::SplitArb8ForGenericTrap(10., vertices, split);
+  const bool ok = result == Geant4GM::Arb8SplitResult::kSuccess &&
+                  split.fraction < 0.5 &&
+                  Geant4GM::Arb8::MaxTwistAngle(split.lowerVertices) < 90. &&
+                  Geant4GM::Arb8::MaxTwistAngle(split.upperVertices) < 90.;
+  std::cout << (ok ? "OK      " : "FAILED  ")
+            << "non-central split at fraction " << split.fraction << std::endl;
+  return ok;
+}
+
+bool CheckCannotSplitInTwo()
+{
+  Geant4GM::Arb8Split split;
+  const auto result = Geant4GM::SplitArb8ForGenericTrap(
+    kCannotSplitInTwo.fDz, Vertices(kCannotSplitInTwo), split);
+  const bool ok =
+    result == Geant4GM::Arb8SplitResult::kCannotSplitInTwo;
+  std::cout << (ok ? "OK      " : "FAILED  ")
+            << kCannotSplitInTwo.fName
+            << ": incompatible lateral-face split intervals" << std::endl;
+  return ok;
+}
+
 } // namespace
 
 int main()
 {
   bool ok = true;
 
-  // the twist Geant4 cannot represent has to be recognised before any solid is
-  // built, so that the conversion can refuse instead of aborting inside Geant4
+  // Check the twist calculation before constructing the solids.
   ok &= CheckMaxTwist(kAlice, 16.9038);
   ok &= CheckMaxTwist(kCollapsed, 38.6598);
   ok &= CheckMaxTwist(kSteep, 104.0362);
+  ok &= CheckGenericTrapConstructor(kAlice);
+  ok &= CheckNonCentralSplit();
+  ok &= CheckCannotSplitInTwo();
 
   new TGeoManager("arb8Twist", "twisted Arb8 solids");
   TGeoMedium* medium = new TGeoMedium("medium", 1, new TGeoMaterial("material", 26.98, 13., 2.7));
@@ -171,6 +264,7 @@ int main()
   gGeoManager->SetTopVolume(world);
   world->AddNode(CreateVolume(kAlice, medium), 1, gGeoIdentity);
   world->AddNode(CreateVolume(kCollapsed, medium), 1, gGeoIdentity);
+  world->AddNode(CreateVolume(kSteep, medium), 1, gGeoIdentity);
   gGeoManager->CloseGeometry();
 
   RootGM::Factory rootFactory;
@@ -180,6 +274,7 @@ int main()
 
   ok &= CompareContains(kAlice);
   ok &= CompareContains(kCollapsed);
+  ok &= CompareContains(kSteep);
 
   return ok ? 0 : 1;
 }

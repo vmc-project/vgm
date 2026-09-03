@@ -194,31 +194,43 @@ void TstGeometryViaRoot::CreateArb8Solids(std::vector<TGeoVolume*>& volumes)
   arbS7->SetVertex(7, 15., -15.);
   volumes.push_back(new TGeoVolume("arb7", arbS7, fBasicMedium));
 
-  /*
-    // 3 down vertices: 0=1 (twisted )
-    TGeoArb8* arbS3 = new TGeoArb8("arbS3", 75.0);
-    arbS3->SetVertex(0,  45., -15.);
-    arbS3->SetVertex(1,  45., -15.);
-    arbS3->SetVertex(2, -30., -75.);
-    arbS3->SetVertex(3,  15., -15.);
-    arbS3->SetVertex(4,  45., -15.);
-    arbS3->SetVertex(5,   0., -75.);
-    arbS3->SetVertex(6, -30., -75.);
-    arbS3->SetVertex(7,  15., -15.);
-    volumes.push_back(new TGeoVolume("arb3", arbS3, fBasicMedium));
+  // 3 down vertices: 0=1 (twisted )
+  TGeoArb8* arbS8 = new TGeoArb8("arbS8", 75.0);
+  arbS8->SetVertex(0,  45., -15.);
+  arbS8->SetVertex(1,  45., -15.);
+  arbS8->SetVertex(2, -30., -75.);
+  arbS8->SetVertex(3,  15., -15.);
+  arbS8->SetVertex(4,  45., -15.);
+  arbS8->SetVertex(5,   0., -75.);
+  arbS8->SetVertex(6, -30., -75.);
+  arbS8->SetVertex(7,  15., -15.);
+  volumes.push_back(new TGeoVolume("arb8", arbS8, fBasicMedium));
 
-    // 3 up vertices: 4=5 (twisted )
-    TGeoArb8* arbS6 = new TGeoArb8("arbS6", 75.0);
-    arbS6->SetVertex(0,  45., -15.);
-    arbS6->SetVertex(1,   0., -75.);
-    arbS6->SetVertex(2, -30., -75.);
-    arbS6->SetVertex(3,  15., -15.);
-    arbS6->SetVertex(4,   0., -75.);
-    arbS6->SetVertex(5,   0., -75.);
-    arbS6->SetVertex(6, -30., -75.);
-    arbS6->SetVertex(7,  15., -15.);
-    volumes.push_back(new TGeoVolume("arb3", arbS3, fBasicMedium));
-  */
+  // 3 up vertices: 4=5 (twisted )
+  TGeoArb8* arbS9 = new TGeoArb8("arbS9", 75.0);
+  arbS9->SetVertex(0,  45., -15.);
+  arbS9->SetVertex(1,   0., -75.);
+  arbS9->SetVertex(2, -30., -75.);
+  arbS9->SetVertex(3,  15., -15.);
+  arbS9->SetVertex(4,   0., -75.);
+  arbS9->SetVertex(5,   0., -75.);
+  arbS9->SetVertex(6, -30., -75.);
+  arbS9->SetVertex(7,  15., -15.);
+  volumes.push_back(new TGeoVolume("arb9", arbS9, fBasicMedium));
+
+/*
+  // Convex Arb8 whose lateral faces require incompatible split positions
+  TGeoArb8* arbS10 = new TGeoArb8("arbS10", 1.0);
+  arbS10->SetVertex(0, -0.4307636622,  0.2231118424);
+  arbS10->SetVertex(1, -0.1447443560,  0.2962323240);
+  arbS10->SetVertex(2,  4.7352057379, -1.0445794352);
+  arbS10->SetVertex(3, -0.0675924807, -0.2728480420);
+  arbS10->SetVertex(4,  0.0607942928,  0.1081316842);
+  arbS10->SetVertex(5,  0.9940584508,  0.1184766124);
+  arbS10->SetVertex(6,  0.3162721535, -1.4566513801);
+  arbS10->SetVertex(7, -3.2320871703, -0.2667477443);
+  volumes.push_back(new TGeoVolume("arb10", arbS10, fBasicMedium));
+*/
 }
 
 //_____________________________________________________________________________
