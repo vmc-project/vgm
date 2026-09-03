@@ -24,6 +24,7 @@
 #include "Geant4GM/materials/MaterialFactory.h"
 #include "Geant4GM/materials/Medium.h"
 #include "Geant4GM/solids/Arb8.h"
+#include "Geant4GM/solids/Arb8Splitter.h"
 #include "Geant4GM/solids/BooleanSolid.h"
 #include "Geant4GM/solids/Box.h"
 #include "Geant4GM/solids/Cons.h"
@@ -60,6 +61,7 @@
 #include "G4Ellipsoid.hh"
 #include "G4EllipticalTube.hh"
 #include "G4ExtrudedSolid.hh"
+#include "G4GenericTrap.hh"
 #include "G4Hype.hh"
 #include "G4LogicalVolume.hh"
 #include "G4LogicalVolumeStore.hh"
@@ -239,6 +241,11 @@ VGM::ISolid* Geant4GM::Factory::ImportSolid(G4VSolid* solid)
   G4ExtrudedSolid* xtru = dynamic_cast<G4ExtrudedSolid*>(consSolid);
   if (xtru) {
     return Register(new Geant4GM::ExtrudedSolid(xtru, reflSolid));
+  }
+
+  G4GenericTrap* gtrap = dynamic_cast<G4GenericTrap*>(consSolid);
+  if (gtrap) {
+    return Register(new Geant4GM::Arb8(gtrap, reflSolid));
   }
 
   G4Hype* hype = dynamic_cast<G4Hype*>(consSolid);
@@ -779,7 +786,28 @@ void Geant4GM::Factory::SetSolid(VGM::ISolid* solid)
 VGM::ISolid* Geant4GM::Factory::CreateArb8(
   const std::string& name, double hz, std::vector<VGM::TwoVector> vertices)
 {
-  // A twisted arb8 is handled by Geant4GM::Arb8 itself, via G4GenericTrap
+  // Twisted Arb8 solids are represented by one G4GenericTrap, or by two of
+  // them when their common permitted split interval is non-empty.
+  if (Geant4GM::Arb8::IsTwisted(vertices) &&
+      Geant4GM::Arb8::MaxTwistAngle(vertices) > 90.) {
+    Geant4GM::Arb8Split split;
+    if (Geant4GM::SplitArb8ForGenericTrap(hz, vertices, split) !=
+        Geant4GM::Arb8SplitResult::kSuccess) {
+      std::cerr << "*** Error: Cannot create Arb8 solid \"" << name
+                << "\" in Geant4: it cannot be represented by one or two "
+                   "G4GenericTrap solids ***"
+                << std::endl;
+      if (Ignore()) {
+        std::cerr << "*** Warning: Using a box instead  ***" << std::endl;
+        return Register(new Geant4GM::Box(name, 1., 1., 1.));
+      }
+      else {
+        std::cerr << "*** Error: Aborting execution  ***" << std::endl;
+        exit(1);
+      }
+    }
+  }
+
   return Register(new Geant4GM::Arb8(name, hz, vertices));
 }
 

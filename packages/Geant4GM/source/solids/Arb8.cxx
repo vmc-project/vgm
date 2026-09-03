@@ -17,15 +17,20 @@
 // Author: Ivana Hrivnacova; IPN Orsay
 
 #include "Geant4GM/solids/Arb8.h"
+#include "Geant4GM/solids/Arb8Splitter.h"
 #include "Geant4GM/solids/SolidMap.h"
 
 #include "ClhepVGM/Units.h"
 
 #include "G4GenericTrap.hh"
+#include "G4MultiUnion.hh"
 #include "G4QuadrangularFacet.hh"
+#include "G4ReflectedSolid.hh"
 #include "G4TessellatedSolid.hh"
 #include "G4TriangularFacet.hh"
 
+#include <algorithm>
+#include <cmath>
 #include <iostream>
 
 const int Geant4GM::Arb8::fgkNofVertices = 8;
@@ -131,26 +136,74 @@ Geant4GM::Arb8::Arb8(
   /// Points can be identical in order to create shapes with less than
   /// vertices.
 
+  auto faceSpan = [&vertices](G4int first) {
+    double span = 0.;
+    for (G4int i = first + 1; i < first + 4; ++i) {
+      for (G4int j = first; j < i; ++j) {
+        double dx = vertices[i].first - vertices[j].first;
+        double dy = vertices[i].second - vertices[j].second;
+        span = std::max(span, std::sqrt(dx * dx + dy * dy));
+      }
+    }
+    return span;
+  };
+  double downSpan = faceSpan(0);
+  double upSpan = faceSpan(4);
+  bool hasCollapsedFace =
+    std::min(downSpan, upSpan) < 1.e-7 * std::max(downSpan, upSpan);
+
   // A twisted arb8 has non-planar sides, so it cannot be built from planar
-  // facets.  G4GenericTrap is the same shape and handles the twist itself.
-  if (IsTwisted(vertices)) {
+  // facets. Near-collapsed end faces can also make tessellated-solid
+  // navigation ambiguous. G4GenericTrap handles both cases.
+  if (IsTwisted(vertices) || hasCollapsedFace) {
+    auto makeGenericTrap = [&name](const std::string& suffix, double halfLength,
+                             const std::vector<VGM::TwoVector>& trapVertices) {
+      std::vector<G4TwoVector> g4Vertices;
+      g4Vertices.reserve(trapVertices.size());
+      for (const auto& vertex : trapVertices) {
+        g4Vertices.push_back(
+          G4TwoVector(vertex.first / ClhepVGM::Units::Length(),
+            vertex.second / ClhepVGM::Units::Length()));
+      }
+      return new G4GenericTrap(
+        name + suffix, halfLength / ClhepVGM::Units::Length(), g4Vertices);
+    };
+
     double maxTwist = MaxTwistAngle(vertices);
     if (maxTwist > fgkMaxTwistAngle) {
-      std::cerr << "+++ Error  +++" << std::endl;
-      std::cerr << "    Arb8 \"" << name << "\" has a lateral face twisted by "
-                << maxTwist << " degrees." << std::endl;
-      std::cerr << "    G4GenericTrap accepts at most " << fgkMaxTwistAngle
-                << " degrees, so this solid has no Geant4 equivalent."
-                << std::endl;
-      exit(1);
+      Arb8Split split;
+      Arb8SplitResult result = SplitArb8ForGenericTrap(hz, vertices, split);
+      if (result != Arb8SplitResult::kSuccess) {
+        std::cerr << "+++ Error  +++" << std::endl;
+        std::cerr << "    Arb8 \"" << name
+                  << "\" cannot be divided into two G4GenericTrap solids."
+                  << std::endl;
+        std::cerr << "    Its maximum lateral-face twist is " << maxTwist
+                  << " degrees." << std::endl;
+        exit(1);
+      }
+
+      G4GenericTrap* lower =
+        makeGenericTrap("_lower", split.lowerHalfLength, split.lowerVertices);
+      G4GenericTrap* upper =
+        makeGenericTrap("_upper", split.upperHalfLength, split.upperVertices);
+
+      G4MultiUnion* combined = new G4MultiUnion(name);
+      G4RotationMatrix rotation;
+      combined->AddNode(
+        *lower, G4Transform3D(
+                  rotation, G4ThreeVector(0., 0.,
+                              split.lowerZOffset / ClhepVGM::Units::Length())));
+      combined->AddNode(
+        *upper, G4Transform3D(
+                  rotation, G4ThreeVector(0., 0.,
+                              split.upperZOffset / ClhepVGM::Units::Length())));
+      combined->Voxelize();
+      fSolid = combined;
     }
-
-    std::vector<G4TwoVector> g4Vertices;
-    for (G4int i = 0; i < fgkNofVertices; i++)
-      g4Vertices.push_back(G4TwoVector(vertices[i].first / ClhepVGM::Units::Length(),
-        vertices[i].second / ClhepVGM::Units::Length()));
-
-    fSolid = new G4GenericTrap(name, hz / ClhepVGM::Units::Length(), g4Vertices);
+    else {
+      fSolid = makeGenericTrap("", hz, vertices);
+    }
     Geant4GM::SolidMap::Instance()->AddSolid(this, fSolid);
     return;
   }
@@ -210,6 +263,36 @@ Geant4GM::Arb8::Arb8(
 
   fSolid = fTessellatedSolid;
   Geant4GM::SolidMap::Instance()->AddSolid(this, fSolid);
+}
+
+//_____________________________________________________________________________
+Geant4GM::Arb8::Arb8(
+  G4GenericTrap* genericTrap, G4ReflectedSolid* reflected)
+  : VGM::ISolid(),
+    VGM::IArb8(),
+    BaseVGM::VArb8(),
+    fHz(genericTrap->GetZHalfLength() * ClhepVGM::Units::Length()),
+    fVertices(),
+    fTessellatedSolid(0),
+    fSolid(genericTrap)
+{
+  /// Standard constructor to define Arb8 from Geant4 object
+
+  const std::vector<G4TwoVector>& vertices = genericTrap->GetVertices();
+  fVertices.reserve(vertices.size());
+
+  for (G4int i = 0; i < G4int(vertices.size()); ++i) {
+    // Reflection in z exchanges the lower and upper vertex planes.
+    G4int source = reflected ? (i + fgkNofVertices / 2) % fgkNofVertices : i;
+    fVertices.push_back(VGM::TwoVector(
+      vertices[source].x() * ClhepVGM::Units::Length(),
+      vertices[source].y() * ClhepVGM::Units::Length()));
+  }
+
+  if (reflected)
+    Geant4GM::SolidMap::Instance()->AddSolid(this, reflected);
+  else
+    Geant4GM::SolidMap::Instance()->AddSolid(this, genericTrap);
 }
 
 //_____________________________________________________________________________
