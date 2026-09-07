@@ -94,11 +94,19 @@ endforeach()
 # report their result through the exit code, so ctest can run them.
 #
 
+# arb8_twist
 add_executable(vgm_arb8_twist_test vgm_arb8_twist_test.cc)
 target_link_libraries(vgm_arb8_twist_test
   Geant4GM RootGM BaseVGM ClhepVGM
   ${Geant4_LIBRARIES} ${CLHEP_LIBRARIES} ${ROOT_LIBRARIES})
 add_test(NAME arb8_twist COMMAND vgm_arb8_twist_test)
+
+# boolean_frame
+add_executable(vgm_boolean_frame_test vgm_boolean_frame_test.cc)
+target_link_libraries(vgm_boolean_frame_test
+  Geant4GM RootGM BaseVGM ClhepVGM
+  ${Geant4_LIBRARIES} ${CLHEP_LIBRARIES} ${ROOT_LIBRARIES})
+add_test(NAME boolean_frame COMMAND vgm_boolean_frame_test)
 
 #----Installation-----------------------------------------------------------------
 install(TARGETS vgm_test DESTINATION bin)
