@@ -33,6 +33,8 @@
 #include <vector>
 
 class G4TessellatedSolid;
+class G4GenericTrap;
+class G4ReflectedSolid;
 class G4VSolid;
 class G4VFacet;
 
@@ -43,6 +45,7 @@ class Arb8 : public BaseVGM::VArb8
  public:
   Arb8(
     const std::string& name, double hz, std::vector<VGM::TwoVector> vertices);
+  Arb8(G4GenericTrap* genericTrap, G4ReflectedSolid* reflected = 0);
   virtual ~Arb8();
 
   // static methods
