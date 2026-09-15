@@ -9,6 +9,17 @@
 
  The Virtual Geometry Model - Versions
 =========================================
+  15/09/2026
+  version 5.5
+    - Make tessellatedSolid optional in vgm_test
+    - Support twisted Arb8 solids via G4GenericTrap (#23)
+    - Keep daughters in place when a boolean's first constituent is transformed (#24)
+    - Handle steep and degenerate Arb8 solids in Geant4GM (#25)
+
+    Tested with Root 6.40/02, Geant4 11.4.p2
+    (with embedded CLHEP 2.4.7.2)
+    Mac OSX 26.4.1: with Apple clang version 21.0.0
+
   18/12/2025
   version 5.4
     - Updated GDML exporter (PR #20):
